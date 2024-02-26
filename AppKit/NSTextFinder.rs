@@ -37,12 +37,15 @@ ns_enum!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type NSPasteboardTypeTextFinderOptionKey = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTextFinderCaseInsensitiveKey: &'static NSPasteboardTypeTextFinderOptionKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTextFinderMatchingTypeKey: &'static NSPasteboardTypeTextFinderOptionKey);
 
 ns_enum!(

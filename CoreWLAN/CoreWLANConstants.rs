@@ -4,24 +4,35 @@ use crate::common::*;
 use crate::CoreWLAN::*;
 use crate::Foundation::*;
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CWErrorDomain: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CWPowerDidChangeNotification: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CWSSIDDidChangeNotification: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CWBSSIDDidChangeNotification: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CWLinkDidChangeNotification: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CWModeDidChangeNotification: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CWCountryCodeDidChangeNotification: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CWScanCacheDidUpdateNotification: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CWLinkQualityDidChangeNotification: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CWLinkQualityNotificationRSSIKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CWLinkQualityNotificationTransmitRateKey: &'static NSString);

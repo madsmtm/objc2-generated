@@ -25,6 +25,7 @@ ns_enum!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSPrintOperationExistsException: &'static NSExceptionName);
 
 extern_class!(

@@ -5,18 +5,22 @@ use crate::AppKit::*;
 use crate::AuthenticationServices::*;
 use crate::Foundation::*;
 
+#[cfg(feature = "Foundation_NSString")]
 typed_extensible_enum!(
     pub type ASAuthorizationSecurityKeyPublicKeyCredentialDescriptorTransport = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(ASAuthorizationSecurityKeyPublicKeyCredentialDescriptorTransportUSB: &'static ASAuthorizationSecurityKeyPublicKeyCredentialDescriptorTransport);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(ASAuthorizationSecurityKeyPublicKeyCredentialDescriptorTransportNFC: &'static ASAuthorizationSecurityKeyPublicKeyCredentialDescriptorTransport);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(ASAuthorizationSecurityKeyPublicKeyCredentialDescriptorTransportBluetooth: &'static ASAuthorizationSecurityKeyPublicKeyCredentialDescriptorTransport);
 
 extern_fn!(
-    #[cfg(feature = "Foundation_NSArray")]
+    #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
     pub unsafe fn ASAuthorizationAllSupportedPublicKeyCredentialDescriptorTransports(
     ) -> NonNull<NSArray<ASAuthorizationSecurityKeyPublicKeyCredentialDescriptorTransport>>;
 );
@@ -60,7 +64,11 @@ extern_methods!(
         feature = "AuthenticationServices_ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor"
     )]
     unsafe impl ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor {
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSData"))]
+        #[cfg(all(
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSData",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Init initWithCredentialID:transports:)]
         pub unsafe fn initWithCredentialID_transports(
             this: Allocated<Self>,
@@ -70,13 +78,13 @@ extern_methods!(
             >,
         ) -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other transports)]
         pub unsafe fn transports(
             &self,
         ) -> Id<NSArray<ASAuthorizationSecurityKeyPublicKeyCredentialDescriptorTransport>>;
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method(setTransports:)]
         pub unsafe fn setTransports(
             &self,

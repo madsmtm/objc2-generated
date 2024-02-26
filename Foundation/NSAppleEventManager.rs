@@ -9,6 +9,7 @@ extern_static!(NSAppleEventTimeOutDefault: c_double);
 
 extern_static!(NSAppleEventTimeOutNone: c_double);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAppleEventManagerWillProcessFirstEventNotification: &'static NSNotificationName);
 
 extern_class!(

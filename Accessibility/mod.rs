@@ -57,15 +57,23 @@ pub use self::__AXBrailleMap::AXBrailleMapRenderer;
 pub use self::__AXCustomContent::AXCustomContent;
 pub use self::__AXCustomContent::AXCustomContentImportance;
 pub use self::__AXCustomContent::AXCustomContentProvider;
+#[cfg(all(
+    feature = "Accessibility_AXCustomContent",
+    feature = "Foundation_NSArray"
+))]
 pub use self::__AXCustomContent::AXCustomContentReturnBlock;
 pub use self::__AXHearingUtilities::AXHearingDeviceEar;
 #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSUUID"))]
 pub use self::__AXHearingUtilities::AXMFiHearingDevicePairedUUIDs;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__AXHearingUtilities::AXMFiHearingDevicePairedUUIDsDidChangeNotification;
 pub use self::__AXHearingUtilities::AXMFiHearingDeviceStreamingEar;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__AXHearingUtilities::AXMFiHearingDeviceStreamingEarDidChangeNotification;
 pub use self::__AXHearingUtilities::AXSupportsBidirectionalAXMFiHearingDeviceStreaming;
 pub use self::__AXSettings::AXAnimatedImagesEnabled;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__AXSettings::AXAnimatedImagesEnabledDidChangeNotification;
 pub use self::__AXSettings::AXPrefersHorizontalTextLayout;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__AXSettings::AXPrefersHorizontalTextLayoutDidChangeNotification;

@@ -49,6 +49,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other clientDataHash)]
         pub unsafe fn clientDataHash(&self) -> Id<NSData>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other userVerificationPreference)]
         pub unsafe fn userVerificationPreference(
             &self,

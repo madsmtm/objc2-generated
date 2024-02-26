@@ -3,22 +3,29 @@
 use crate::common::*;
 use crate::Foundation::*;
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLErrorDomain: &'static NSErrorDomain);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLErrorFailingURLErrorKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLErrorFailingURLStringErrorKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSErrorFailingURLStringKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLErrorFailingURLPeerTrustErrorKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLErrorBackgroundTaskCancelledReasonKey: &'static NSString);
 
 pub const NSURLErrorCancelledReasonUserForceQuitApplication: NSInteger = 0;
 pub const NSURLErrorCancelledReasonBackgroundUpdatesDisabled: NSInteger = 1;
 pub const NSURLErrorCancelledReasonInsufficientSystemResources: NSInteger = 2;
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLErrorNetworkUnavailableReasonKey: &'static NSErrorUserInfoKey);
 
 ns_enum!(

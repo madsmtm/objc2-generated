@@ -30,14 +30,19 @@ ns_enum!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(WebActionNavigationTypeKey: Option<&'static NSString>);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(WebActionElementKey: Option<&'static NSString>);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(WebActionButtonKey: Option<&'static NSString>);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(WebActionModifierFlagsKey: Option<&'static NSString>);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(WebActionOriginalURLKey: Option<&'static NSString>);
 
 extern_protocol!(

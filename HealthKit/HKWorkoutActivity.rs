@@ -101,18 +101,26 @@ extern_methods!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(HKPredicateKeyPathWorkoutActivityType: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(HKPredicateKeyPathWorkoutActivityDuration: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(HKPredicateKeyPathWorkoutActivityStartDate: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(HKPredicateKeyPathWorkoutActivityEndDate: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(HKPredicateKeyPathWorkoutActivitySumQuantity: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(HKPredicateKeyPathWorkoutActivityMinimumQuantity: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(HKPredicateKeyPathWorkoutActivityMaximumQuantity: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(HKPredicateKeyPathWorkoutActivityAverageQuantity: &'static NSString);

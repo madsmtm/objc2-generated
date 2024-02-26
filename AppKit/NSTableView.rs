@@ -104,6 +104,7 @@ ns_enum!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 pub type NSTableViewAutosaveName = NSString;
 
 ns_options!(
@@ -314,13 +315,14 @@ extern_methods!(
         #[method(moveColumn:toColumn:)]
         pub unsafe fn moveColumn_toColumn(&self, old_index: NSInteger, new_index: NSInteger);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(columnWithIdentifier:)]
         pub unsafe fn columnWithIdentifier(
             &self,
             identifier: &NSUserInterfaceItemIdentifier,
         ) -> NSInteger;
 
-        #[cfg(feature = "AppKit_NSTableColumn")]
+        #[cfg(all(feature = "AppKit_NSTableColumn", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other tableColumnWithIdentifier:)]
         pub unsafe fn tableColumnWithIdentifier(
             &self,
@@ -587,9 +589,11 @@ extern_methods!(
         #[method(frameOfCellAtColumn:row:)]
         pub unsafe fn frameOfCellAtColumn_row(&self, column: NSInteger, row: NSInteger) -> NSRect;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other autosaveName)]
         pub unsafe fn autosaveName(&self) -> Option<Id<NSTableViewAutosaveName>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setAutosaveName:)]
         pub unsafe fn setAutosaveName(&self, autosave_name: Option<&NSTableViewAutosaveName>);
 
@@ -643,6 +647,7 @@ extern_methods!(
         #[method(columnForView:)]
         pub unsafe fn columnForView(&self, view: &NSView) -> NSInteger;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other makeViewWithIdentifier:owner:)]
         pub unsafe fn makeViewWithIdentifier_owner(
             &self,
@@ -714,7 +719,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other hiddenRowIndexes)]
         pub unsafe fn hiddenRowIndexes(&self) -> Id<NSIndexSet>;
 
-        #[cfg(feature = "AppKit_NSNib")]
+        #[cfg(all(feature = "AppKit_NSNib", feature = "Foundation_NSString"))]
         #[method(registerNib:forIdentifier:)]
         pub unsafe fn registerNib_forIdentifier(
             &self,
@@ -722,7 +727,11 @@ extern_methods!(
             identifier: &NSUserInterfaceItemIdentifier,
         );
 
-        #[cfg(all(feature = "AppKit_NSNib", feature = "Foundation_NSDictionary"))]
+        #[cfg(all(
+            feature = "AppKit_NSNib",
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Other registeredNibsByIdentifier)]
         pub unsafe fn registeredNibsByIdentifier(
             &self,
@@ -1088,14 +1097,19 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn NSTableViewDelegate {}
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTableViewSelectionDidChangeNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTableViewColumnDidMoveNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTableViewColumnDidResizeNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTableViewSelectionIsChangingNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTableViewRowViewKey: &'static NSUserInterfaceItemIdentifier);
 
 extern_protocol!(

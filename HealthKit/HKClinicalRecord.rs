@@ -6,8 +6,10 @@ use crate::Foundation::*;
 use crate::HealthKit::*;
 use crate::UniformTypeIdentifiers::*;
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(HKPredicateKeyPathClinicalRecordFHIRResourceIdentifier: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(HKPredicateKeyPathClinicalRecordFHIRResourceType: &'static NSString);
 
 extern_class!(

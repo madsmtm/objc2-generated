@@ -5,10 +5,13 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
+#[cfg(feature = "Foundation_NSString")]
 pub type NSHelpBookName = NSString;
 
+#[cfg(feature = "Foundation_NSString")]
 pub type NSHelpAnchorName = NSString;
 
+#[cfg(feature = "Foundation_NSString")]
 pub type NSHelpManagerContextHelpKey = NSString;
 
 extern_class!(
@@ -66,6 +69,7 @@ extern_methods!(
             pt: NSPoint,
         ) -> bool;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(openHelpAnchor:inBook:)]
         pub unsafe fn openHelpAnchor_inBook(
             &self,
@@ -95,15 +99,20 @@ extern_methods!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSContextHelpModeDidActivateNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSContextHelpModeDidDeactivateNotification: &'static NSNotificationName);
 
 extern_category!(
     /// Category on [`NSBundle`].
     #[cfg(feature = "Foundation_NSBundle")]
     pub unsafe trait NSBundleHelpExtension {
-        #[cfg(feature = "Foundation_NSAttributedString")]
+        #[cfg(all(
+            feature = "Foundation_NSAttributedString",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Other contextHelpForKey:)]
         unsafe fn contextHelpForKey(
             &self,

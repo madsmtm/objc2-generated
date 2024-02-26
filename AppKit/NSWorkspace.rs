@@ -395,14 +395,18 @@ extern_methods!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type NSWorkspaceDesktopImageOptionKey = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSWorkspaceDesktopImageScalingKey: &'static NSWorkspaceDesktopImageOptionKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSWorkspaceDesktopImageAllowClippingKey: &'static NSWorkspaceDesktopImageOptionKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSWorkspaceDesktopImageFillColorKey: &'static NSWorkspaceDesktopImageOptionKey);
 
 extern_methods!(
@@ -413,6 +417,7 @@ extern_methods!(
             feature = "AppKit_NSScreen",
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSError",
+            feature = "Foundation_NSString",
             feature = "Foundation_NSURL"
         ))]
         #[method(setDesktopImageURL:forScreen:options:error:_)]
@@ -427,7 +432,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Other desktopImageURLForScreen:)]
         pub unsafe fn desktopImageURLForScreen(&self, screen: &NSScreen) -> Option<Id<NSURL>>;
 
-        #[cfg(all(feature = "AppKit_NSScreen", feature = "Foundation_NSDictionary"))]
+        #[cfg(all(
+            feature = "AppKit_NSScreen",
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Other desktopImageOptionsForScreen:)]
         pub unsafe fn desktopImageOptionsForScreen(
             &self,
@@ -513,56 +522,82 @@ extern_category!(
     unsafe impl NSFileManagerNSWorkspaceAuthorization for NSFileManager {}
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSWorkspaceApplicationKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSWorkspaceWillLaunchApplicationNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSWorkspaceDidLaunchApplicationNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSWorkspaceDidTerminateApplicationNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSWorkspaceDidHideApplicationNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSWorkspaceDidUnhideApplicationNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSWorkspaceDidActivateApplicationNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSWorkspaceDidDeactivateApplicationNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSWorkspaceVolumeLocalizedNameKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSWorkspaceVolumeURLKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSWorkspaceVolumeOldLocalizedNameKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSWorkspaceVolumeOldURLKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSWorkspaceDidMountNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSWorkspaceDidUnmountNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSWorkspaceWillUnmountNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSWorkspaceDidRenameVolumeNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSWorkspaceWillPowerOffNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSWorkspaceWillSleepNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSWorkspaceDidWakeNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSWorkspaceScreensDidSleepNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSWorkspaceScreensDidWakeNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSWorkspaceSessionDidBecomeActiveNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSWorkspaceSessionDidResignActiveNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSWorkspaceDidChangeFileLabelsNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSWorkspaceActiveSpaceDidChangeNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type NSWorkspaceFileOperationName = NSString;
 );
@@ -597,16 +632,21 @@ ns_options!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type NSWorkspaceLaunchConfigurationKey = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSWorkspaceLaunchConfigurationAppleEvent: &'static NSWorkspaceLaunchConfigurationKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSWorkspaceLaunchConfigurationArguments: &'static NSWorkspaceLaunchConfigurationKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSWorkspaceLaunchConfigurationEnvironment: &'static NSWorkspaceLaunchConfigurationKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSWorkspaceLaunchConfigurationArchitecture: &'static NSWorkspaceLaunchConfigurationKey);
 
 extern_methods!(
@@ -646,6 +686,7 @@ extern_methods!(
             feature = "AppKit_NSRunningApplication",
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSError",
+            feature = "Foundation_NSString",
             feature = "Foundation_NSURL"
         ))]
         #[deprecated = "Use -[NSWorkspace openApplicationAtURL:configuration:completionHandler:] instead."]
@@ -661,6 +702,7 @@ extern_methods!(
             feature = "AppKit_NSRunningApplication",
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSError",
+            feature = "Foundation_NSString",
             feature = "Foundation_NSURL"
         ))]
         #[deprecated = "Use -[NSWorkspace openURL:configuration:completionHandler:] instead."]
@@ -677,6 +719,7 @@ extern_methods!(
             feature = "Foundation_NSArray",
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSError",
+            feature = "Foundation_NSString",
             feature = "Foundation_NSURL"
         ))]
         #[deprecated = "Use -[NSWorkspace openURLs:withApplicationAtURL:configuration:completionHandler:] instead."]
@@ -895,34 +938,50 @@ extern_methods!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSWorkspaceMoveOperation: &'static NSWorkspaceFileOperationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSWorkspaceCopyOperation: &'static NSWorkspaceFileOperationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSWorkspaceLinkOperation: &'static NSWorkspaceFileOperationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSWorkspaceCompressOperation: &'static NSWorkspaceFileOperationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSWorkspaceDecompressOperation: &'static NSWorkspaceFileOperationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSWorkspaceEncryptOperation: &'static NSWorkspaceFileOperationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSWorkspaceDecryptOperation: &'static NSWorkspaceFileOperationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSWorkspaceDestroyOperation: &'static NSWorkspaceFileOperationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSWorkspaceRecycleOperation: &'static NSWorkspaceFileOperationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSWorkspaceDuplicateOperation: &'static NSWorkspaceFileOperationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSWorkspaceDidPerformFileOperationNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSPlainFileType: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSDirectoryFileType: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSApplicationFileType: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFilesystemFileType: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSShellCommandFileType: &'static NSString);

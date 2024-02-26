@@ -11,7 +11,11 @@ extern_category!(
     #[doc(alias = "UI")]
     #[cfg(feature = "LocalAuthentication_LARight")]
     pub unsafe trait LARightUI {
-        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "AppKit_NSWindow",
+            feature = "Foundation_NSError",
+            feature = "Foundation_NSString"
+        ))]
         #[method(authorizeWithLocalizedReason:inPresentationContext:completion:)]
         unsafe fn authorizeWithLocalizedReason_inPresentationContext_completion(
             &self,

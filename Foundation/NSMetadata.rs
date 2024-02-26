@@ -219,36 +219,52 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn NSMetadataQueryDelegate {}
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataQueryDidStartGatheringNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataQueryGatheringProgressNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataQueryDidFinishGatheringNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataQueryDidUpdateNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataQueryUpdateAddedItemsKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataQueryUpdateChangedItemsKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataQueryUpdateRemovedItemsKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataQueryResultContentRelevanceAttribute: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataQueryUserHomeScope: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataQueryLocalComputerScope: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataQueryNetworkScope: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataQueryIndexedLocalComputerScope: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataQueryIndexedNetworkScope: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataQueryUbiquitousDocumentsScope: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataQueryUbiquitousDataScope: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataQueryAccessibleUbiquitousExternalDocumentsScope: &'static NSString);
 
 extern_class!(

@@ -42,6 +42,7 @@ pub const NSTextCheckingAllCustomTypes: NSTextCheckingTypes = 0xffffffff << 32;
 pub const NSTextCheckingAllTypes: NSTextCheckingTypes =
     NSTextCheckingAllSystemTypes | NSTextCheckingAllCustomTypes;
 
+#[cfg(feature = "Foundation_NSString")]
 typed_extensible_enum!(
     pub type NSTextCheckingKey = NSString;
 );
@@ -170,26 +171,37 @@ extern_methods!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTextCheckingNameKey: &'static NSTextCheckingKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTextCheckingJobTitleKey: &'static NSTextCheckingKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTextCheckingOrganizationKey: &'static NSTextCheckingKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTextCheckingStreetKey: &'static NSTextCheckingKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTextCheckingCityKey: &'static NSTextCheckingKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTextCheckingStateKey: &'static NSTextCheckingKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTextCheckingZIPKey: &'static NSTextCheckingKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTextCheckingCountryKey: &'static NSTextCheckingKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTextCheckingPhoneKey: &'static NSTextCheckingKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTextCheckingAirlineKey: &'static NSTextCheckingKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTextCheckingFlightKey: &'static NSTextCheckingKey);
 
 extern_methods!(

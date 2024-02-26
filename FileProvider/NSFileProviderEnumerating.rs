@@ -6,16 +6,20 @@ use crate::FileProvider::*;
 use crate::Foundation::*;
 use crate::UniformTypeIdentifiers::*;
 
+#[cfg(feature = "Foundation_NSData")]
 typed_extensible_enum!(
     pub type NSFileProviderSyncAnchor = NSData;
 );
 
+#[cfg(feature = "Foundation_NSData")]
 typed_extensible_enum!(
     pub type NSFileProviderPage = NSData;
 );
 
+#[cfg(feature = "Foundation_NSData")]
 extern_static!(NSFileProviderInitialPageSortedByDate: &'static NSFileProviderPage);
 
+#[cfg(feature = "Foundation_NSData")]
 extern_static!(NSFileProviderInitialPageSortedByName: &'static NSFileProviderPage);
 
 extern_protocol!(
@@ -27,6 +31,7 @@ extern_protocol!(
             updated_items: &NSArray<ProtocolObject<dyn NSFileProviderItemProtocol>>,
         );
 
+        #[cfg(feature = "Foundation_NSData")]
         #[method(finishEnumeratingUpToPage:)]
         unsafe fn finishEnumeratingUpToPage(&self, next_page: Option<&NSFileProviderPage>);
 
@@ -51,13 +56,14 @@ extern_protocol!(
             updated_items: &NSArray<ProtocolObject<dyn NSFileProviderItemProtocol>>,
         );
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method(didDeleteItemsWithIdentifiers:)]
         unsafe fn didDeleteItemsWithIdentifiers(
             &self,
             deleted_item_identifiers: &NSArray<NSFileProviderItemIdentifier>,
         );
 
+        #[cfg(feature = "Foundation_NSData")]
         #[method(finishEnumeratingChangesUpToSyncAnchor:moreComing:)]
         unsafe fn finishEnumeratingChangesUpToSyncAnchor_moreComing(
             &self,
@@ -82,6 +88,7 @@ extern_protocol!(
         #[method(invalidate)]
         unsafe fn invalidate(&self);
 
+        #[cfg(feature = "Foundation_NSData")]
         #[method(enumerateItemsForObserver:startingAtPage:)]
         unsafe fn enumerateItemsForObserver_startingAtPage(
             &self,
@@ -89,6 +96,7 @@ extern_protocol!(
             page: &NSFileProviderPage,
         );
 
+        #[cfg(feature = "Foundation_NSData")]
         #[optional]
         #[method(enumerateChangesForObserver:fromSyncAnchor:)]
         unsafe fn enumerateChangesForObserver_fromSyncAnchor(
@@ -97,6 +105,7 @@ extern_protocol!(
             sync_anchor: &NSFileProviderSyncAnchor,
         );
 
+        #[cfg(feature = "Foundation_NSData")]
         #[optional]
         #[method(currentSyncAnchorWithCompletionHandler:)]
         unsafe fn currentSyncAnchorWithCompletionHandler(
@@ -112,7 +121,7 @@ extern_methods!(
     /// NSFileProviderEnumeration
     #[cfg(feature = "FileProvider_NSFileProviderExtension")]
     unsafe impl NSFileProviderExtension {
-        #[cfg(feature = "Foundation_NSError")]
+        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other enumeratorForContainerItemIdentifier:error:_)]
         pub unsafe fn enumeratorForContainerItemIdentifier_error(
             &self,

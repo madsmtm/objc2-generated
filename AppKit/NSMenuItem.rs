@@ -302,6 +302,7 @@ extern_methods!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMenuItemImportFromDeviceIdentifier: &'static NSUserInterfaceItemIdentifier);
 
 extern_methods!(

@@ -3,364 +3,545 @@
 use crate::common::*;
 use crate::Foundation::*;
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemFSNameKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemDisplayNameKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemURLKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemPathKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemFSSizeKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemFSCreationDateKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemFSContentChangeDateKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemContentTypeKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemContentTypeTreeKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemIsUbiquitousKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataUbiquitousItemHasUnresolvedConflictsKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataUbiquitousItemIsDownloadedKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataUbiquitousItemDownloadingStatusKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataUbiquitousItemDownloadingStatusNotDownloaded: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataUbiquitousItemDownloadingStatusDownloaded: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataUbiquitousItemDownloadingStatusCurrent: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataUbiquitousItemIsDownloadingKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataUbiquitousItemIsUploadedKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataUbiquitousItemIsUploadingKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataUbiquitousItemPercentDownloadedKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataUbiquitousItemPercentUploadedKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataUbiquitousItemDownloadingErrorKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataUbiquitousItemUploadingErrorKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataUbiquitousItemDownloadRequestedKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataUbiquitousItemIsExternalDocumentKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataUbiquitousItemContainerDisplayNameKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataUbiquitousItemURLInLocalContainerKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataUbiquitousItemIsSharedKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataUbiquitousSharedItemCurrentUserRoleKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataUbiquitousSharedItemCurrentUserPermissionsKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataUbiquitousSharedItemOwnerNameComponentsKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataUbiquitousSharedItemMostRecentEditorNameComponentsKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataUbiquitousSharedItemRoleOwner: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataUbiquitousSharedItemRoleParticipant: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataUbiquitousSharedItemPermissionsReadOnly: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataUbiquitousSharedItemPermissionsReadWrite: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemAttributeChangeDateKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemKeywordsKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemTitleKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemAuthorsKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemEditorsKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemParticipantsKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemProjectsKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemDownloadedDateKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemWhereFromsKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemCommentKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemCopyrightKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemLastUsedDateKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemContentCreationDateKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemContentModificationDateKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemDateAddedKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemDurationSecondsKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemContactKeywordsKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemVersionKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemPixelHeightKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemPixelWidthKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemPixelCountKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemColorSpaceKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemBitsPerSampleKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemFlashOnOffKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemFocalLengthKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemAcquisitionMakeKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemAcquisitionModelKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemISOSpeedKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemOrientationKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemLayerNamesKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemWhiteBalanceKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemApertureKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemProfileNameKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemResolutionWidthDPIKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemResolutionHeightDPIKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemExposureModeKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemExposureTimeSecondsKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemEXIFVersionKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemCameraOwnerKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemFocalLength35mmKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemLensModelKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemEXIFGPSVersionKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemAltitudeKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemLatitudeKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemLongitudeKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemSpeedKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemTimestampKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemGPSTrackKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemImageDirectionKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemNamedLocationKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemGPSStatusKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemGPSMeasureModeKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemGPSDOPKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemGPSMapDatumKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemGPSDestLatitudeKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemGPSDestLongitudeKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemGPSDestBearingKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemGPSDestDistanceKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemGPSProcessingMethodKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemGPSAreaInformationKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemGPSDateStampKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemGPSDifferentalKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemCodecsKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemMediaTypesKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemStreamableKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemTotalBitRateKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemVideoBitRateKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemAudioBitRateKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemDeliveryTypeKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemAlbumKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemHasAlphaChannelKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemRedEyeOnOffKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemMeteringModeKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemMaxApertureKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemFNumberKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemExposureProgramKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemExposureTimeStringKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemHeadlineKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemInstructionsKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemCityKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemStateOrProvinceKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemCountryKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemTextContentKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemAudioSampleRateKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemAudioChannelCountKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemTempoKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemKeySignatureKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemTimeSignatureKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemAudioEncodingApplicationKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemComposerKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemLyricistKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemAudioTrackNumberKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemRecordingDateKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemMusicalGenreKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemIsGeneralMIDISequenceKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemRecordingYearKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemOrganizationsKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemLanguagesKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemRightsKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemPublishersKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemContributorsKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemCoverageKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemSubjectKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemThemeKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemDescriptionKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemIdentifierKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemAudiencesKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemNumberOfPagesKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemPageWidthKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemPageHeightKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemSecurityMethodKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemCreatorKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemEncodingApplicationsKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemDueDateKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemStarRatingKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemPhoneNumbersKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemEmailAddressesKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemInstantMessageAddressesKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemKindKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemRecipientsKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemFinderCommentKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemFontsKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemAppleLoopsRootKeyKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemAppleLoopsKeyFilterTypeKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemAppleLoopsLoopModeKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemAppleLoopDescriptorsKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemMusicalInstrumentCategoryKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemMusicalInstrumentNameKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemCFBundleIdentifierKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemInformationKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemDirectorKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemProducerKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemGenreKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemPerformersKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemOriginalFormatKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemOriginalSourceKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemAuthorEmailAddressesKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemRecipientEmailAddressesKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemAuthorAddressesKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemRecipientAddressesKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemIsLikelyJunkKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemExecutableArchitecturesKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemExecutablePlatformKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemApplicationCategoriesKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMetadataItemIsApplicationManagedKey: &'static NSString);

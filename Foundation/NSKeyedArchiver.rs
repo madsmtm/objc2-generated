@@ -3,10 +3,13 @@
 use crate::common::*;
 use crate::Foundation::*;
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSInvalidArchiveOperationException: &'static NSExceptionName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSInvalidUnarchiveOperationException: &'static NSExceptionName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSKeyedArchiveRootObjectKey: &'static NSString);
 
 extern_class!(

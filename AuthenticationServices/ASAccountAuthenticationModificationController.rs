@@ -45,7 +45,10 @@ extern_protocol!(
     pub unsafe trait ASAccountAuthenticationModificationControllerPresentationContextProviding:
         NSObjectProtocol
     {
-        #[cfg(feature = "AuthenticationServices_ASAccountAuthenticationModificationController")]
+        #[cfg(all(
+            feature = "AppKit_NSWindow",
+            feature = "AuthenticationServices_ASAccountAuthenticationModificationController"
+        ))]
         #[method_id(@__retain_semantics Other presentationAnchorForAccountAuthenticationModificationController:)]
         unsafe fn presentationAnchorForAccountAuthenticationModificationController(
             &self,

@@ -14,16 +14,22 @@ ns_enum!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(EABluetoothAccessoryPickerErrorDomain: &'static NSString);
 
+#[cfg(feature = "Foundation_NSError")]
 pub type EABluetoothAccessoryPickerCompletion = *mut Block<dyn Fn(*mut NSError)>;
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(EAAccessoryDidConnectNotification: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(EAAccessoryDidDisconnectNotification: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(EAAccessoryKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(EAAccessorySelectedKey: &'static NSString);
 
 extern_class!(
@@ -47,7 +53,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other sharedAccessoryManager)]
         pub unsafe fn sharedAccessoryManager() -> Id<EAAccessoryManager>;
 
-        #[cfg(feature = "Foundation_NSPredicate")]
+        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSPredicate"))]
         #[method(showBluetoothAccessoryPickerWithNameFilter:completion:)]
         pub unsafe fn showBluetoothAccessoryPickerWithNameFilter_completion(
             &self,

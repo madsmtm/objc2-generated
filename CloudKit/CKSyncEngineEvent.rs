@@ -753,6 +753,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other recordID)]
         pub unsafe fn recordID(&self) -> Id<CKRecordID>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other recordType)]
         pub unsafe fn recordType(&self) -> Id<CKRecordType>;
     }

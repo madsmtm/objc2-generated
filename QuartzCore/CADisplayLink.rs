@@ -28,11 +28,11 @@ extern_methods!(
             sel: Sel,
         ) -> Id<CADisplayLink>;
 
-        #[cfg(feature = "Foundation_NSRunLoop")]
+        #[cfg(all(feature = "Foundation_NSRunLoop", feature = "Foundation_NSString"))]
         #[method(addToRunLoop:forMode:)]
         pub unsafe fn addToRunLoop_forMode(&self, runloop: &NSRunLoop, mode: &NSRunLoopMode);
 
-        #[cfg(feature = "Foundation_NSRunLoop")]
+        #[cfg(all(feature = "Foundation_NSRunLoop", feature = "Foundation_NSString"))]
         #[method(removeFromRunLoop:forMode:)]
         pub unsafe fn removeFromRunLoop_forMode(&self, runloop: &NSRunLoop, mode: &NSRunLoopMode);
 

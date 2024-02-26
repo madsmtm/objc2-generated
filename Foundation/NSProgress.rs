@@ -3,20 +3,24 @@
 use crate::common::*;
 use crate::Foundation::*;
 
+#[cfg(feature = "Foundation_NSString")]
 typed_extensible_enum!(
     pub type NSProgressKind = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 typed_extensible_enum!(
     pub type NSProgressUserInfoKey = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 typed_extensible_enum!(
     pub type NSProgressFileOperationKind = NSString;
 );
 
 pub type NSProgressUnpublishingHandler = *mut Block<dyn Fn()>;
 
+#[cfg(feature = "Foundation_NSProgress")]
 pub type NSProgressPublishingHandler =
     *mut Block<dyn Fn(NonNull<NSProgress>) -> NSProgressUnpublishingHandler>;
 
@@ -60,7 +64,7 @@ extern_methods!(
             portion_of_parent_total_unit_count: i64,
         ) -> Id<NSProgress>;
 
-        #[cfg(feature = "Foundation_NSDictionary")]
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Init initWithParent:userInfo:)]
         pub unsafe fn initWithParent_userInfo(
             this: Allocated<Self>,
@@ -151,6 +155,7 @@ extern_methods!(
         #[method(setResumingHandler:)]
         pub unsafe fn setResumingHandler(&self, resuming_handler: Option<&Block<dyn Fn()>>);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setUserInfoObject:forKey:)]
         pub unsafe fn setUserInfoObject_forKey(
             &self,
@@ -176,13 +181,15 @@ extern_methods!(
         #[method(resume)]
         pub unsafe fn resume(&self);
 
-        #[cfg(feature = "Foundation_NSDictionary")]
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other userInfo)]
         pub unsafe fn userInfo(&self) -> Id<NSDictionary<NSProgressUserInfoKey, AnyObject>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other kind)]
         pub unsafe fn kind(&self) -> Option<Id<NSProgressKind>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setKind:)]
         pub unsafe fn setKind(&self, kind: Option<&NSProgressKind>);
 
@@ -202,9 +209,11 @@ extern_methods!(
         #[method(setThroughput:)]
         pub unsafe fn setThroughput(&self, throughput: Option<&NSNumber>);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other fileOperationKind)]
         pub unsafe fn fileOperationKind(&self) -> Option<Id<NSProgressFileOperationKind>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setFileOperationKind:)]
         pub unsafe fn setFileOperationKind(
             &self,
@@ -278,34 +287,50 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn NSProgressReporting {}
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSProgressEstimatedTimeRemainingKey: &'static NSProgressUserInfoKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSProgressThroughputKey: &'static NSProgressUserInfoKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSProgressKindFile: &'static NSProgressKind);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSProgressFileOperationKindKey: &'static NSProgressUserInfoKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSProgressFileOperationKindDownloading: &'static NSProgressFileOperationKind);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSProgressFileOperationKindDecompressingAfterDownloading: &'static NSProgressFileOperationKind);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSProgressFileOperationKindReceiving: &'static NSProgressFileOperationKind);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSProgressFileOperationKindCopying: &'static NSProgressFileOperationKind);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSProgressFileOperationKindUploading: &'static NSProgressFileOperationKind);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSProgressFileOperationKindDuplicating: &'static NSProgressFileOperationKind);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSProgressFileURLKey: &'static NSProgressUserInfoKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSProgressFileTotalCountKey: &'static NSProgressUserInfoKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSProgressFileCompletedCountKey: &'static NSProgressUserInfoKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSProgressFileAnimationImageKey: &'static NSProgressUserInfoKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSProgressFileAnimationImageOriginalRectKey: &'static NSProgressUserInfoKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSProgressFileIconKey: &'static NSProgressUserInfoKey);

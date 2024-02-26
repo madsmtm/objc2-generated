@@ -361,14 +361,19 @@ extern_methods!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSScrollViewWillStartLiveMagnifyNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSScrollViewDidEndLiveMagnifyNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSScrollViewWillStartLiveScrollNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSScrollViewDidLiveScrollNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSScrollViewDidEndLiveScrollNotification: &'static NSNotificationName);
 
 extern_methods!(

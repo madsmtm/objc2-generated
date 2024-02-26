@@ -17,16 +17,21 @@ ns_options!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type NSFontCollectionMatchingOptionKey = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFontCollectionIncludeDisabledFontsOption: &'static NSFontCollectionMatchingOptionKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFontCollectionRemoveDuplicatesOption: &'static NSFontCollectionMatchingOptionKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFontCollectionDisallowAutoActivationOption: &'static NSFontCollectionMatchingOptionKey);
 
+#[cfg(feature = "Foundation_NSString")]
 typed_extensible_enum!(
     pub type NSFontCollectionName = NSString;
 );
@@ -71,7 +76,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other fontCollectionWithLocale:)]
         pub unsafe fn fontCollectionWithLocale(locale: &NSLocale) -> Option<Id<NSFontCollection>>;
 
-        #[cfg(feature = "Foundation_NSError")]
+        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
         #[method(showFontCollection:withName:visibility:error:_)]
         pub unsafe fn showFontCollection_withName_visibility_error(
             collection: &NSFontCollection,
@@ -79,14 +84,14 @@ extern_methods!(
             visibility: NSFontCollectionVisibility,
         ) -> Result<(), Id<NSError>>;
 
-        #[cfg(feature = "Foundation_NSError")]
+        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
         #[method(hideFontCollectionWithName:visibility:error:_)]
         pub unsafe fn hideFontCollectionWithName_visibility_error(
             name: &NSFontCollectionName,
             visibility: NSFontCollectionVisibility,
         ) -> Result<(), Id<NSError>>;
 
-        #[cfg(feature = "Foundation_NSError")]
+        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
         #[method(renameFontCollectionWithName:visibility:toName:error:_)]
         pub unsafe fn renameFontCollectionWithName_visibility_toName_error(
             old_name: &NSFontCollectionName,
@@ -94,15 +99,17 @@ extern_methods!(
             new_name: &NSFontCollectionName,
         ) -> Result<(), Id<NSError>>;
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other allFontCollectionNames)]
         pub unsafe fn allFontCollectionNames() -> Id<NSArray<NSFontCollectionName>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other fontCollectionWithName:)]
         pub unsafe fn fontCollectionWithName(
             name: &NSFontCollectionName,
         ) -> Option<Id<NSFontCollection>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other fontCollectionWithName:visibility:)]
         pub unsafe fn fontCollectionWithName_visibility(
             name: &NSFontCollectionName,
@@ -125,7 +132,8 @@ extern_methods!(
             feature = "AppKit_NSFontDescriptor",
             feature = "Foundation_NSArray",
             feature = "Foundation_NSDictionary",
-            feature = "Foundation_NSNumber"
+            feature = "Foundation_NSNumber",
+            feature = "Foundation_NSString"
         ))]
         #[method_id(@__retain_semantics Other matchingDescriptorsWithOptions:)]
         pub unsafe fn matchingDescriptorsWithOptions(
@@ -213,11 +221,13 @@ extern_methods!(
         #[method_id(@__retain_semantics Other fontCollectionWithLocale:)]
         pub unsafe fn fontCollectionWithLocale(locale: &NSLocale) -> Id<NSMutableFontCollection>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other fontCollectionWithName:)]
         pub unsafe fn fontCollectionWithName(
             name: &NSFontCollectionName,
         ) -> Option<Id<NSMutableFontCollection>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other fontCollectionWithName:visibility:)]
         pub unsafe fn fontCollectionWithName_visibility(
             name: &NSFontCollectionName,
@@ -268,34 +278,48 @@ extern_methods!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFontCollectionDidChangeNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type NSFontCollectionUserInfoKey = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFontCollectionActionKey: &'static NSFontCollectionUserInfoKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFontCollectionNameKey: &'static NSFontCollectionUserInfoKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFontCollectionOldNameKey: &'static NSFontCollectionUserInfoKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFontCollectionVisibilityKey: &'static NSFontCollectionUserInfoKey);
 
+#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type NSFontCollectionActionTypeKey = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFontCollectionWasShown: &'static NSFontCollectionActionTypeKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFontCollectionWasHidden: &'static NSFontCollectionActionTypeKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFontCollectionWasRenamed: &'static NSFontCollectionActionTypeKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFontCollectionAllFonts: &'static NSFontCollectionName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFontCollectionUser: &'static NSFontCollectionName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFontCollectionFavorites: &'static NSFontCollectionName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFontCollectionRecentlyUsed: &'static NSFontCollectionName);

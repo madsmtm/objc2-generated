@@ -15,6 +15,7 @@ ns_options!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CKRecordZoneDefaultName: &'static NSString);
 
 extern_class!(

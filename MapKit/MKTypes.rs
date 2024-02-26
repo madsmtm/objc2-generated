@@ -25,6 +25,7 @@ ns_enum!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MKErrorDomain: &'static NSString);
 
 ns_enum!(

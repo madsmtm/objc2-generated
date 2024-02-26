@@ -57,6 +57,7 @@ extern_methods!(
     /// Methods declared on superclass `NSTouchBarItem`
     #[cfg(feature = "AppKit_NSCustomTouchBarItem")]
     unsafe impl NSCustomTouchBarItem {
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithIdentifier:)]
         pub unsafe fn initWithIdentifier(
             this: Allocated<Self>,

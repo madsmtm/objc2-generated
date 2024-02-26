@@ -4,6 +4,7 @@ use crate::common::*;
 use crate::ClassKit::*;
 use crate::Foundation::*;
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CLSErrorCodeDomain: Option<&'static NSString>);
 
 ns_error_enum!(
@@ -34,28 +35,39 @@ ns_error_enum!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 typed_extensible_enum!(
     pub type CLSErrorUserInfoKey = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CLSErrorObjectKey: Option<&'static CLSErrorUserInfoKey>);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CLSErrorUnderlyingErrorsKey: Option<&'static CLSErrorUserInfoKey>);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CLSErrorSuccessfulObjectsKey: Option<&'static CLSErrorUserInfoKey>);
 
+#[cfg(feature = "Foundation_NSString")]
 typed_extensible_enum!(
     pub type CLSPredicateKeyPath = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CLSPredicateKeyPathDateCreated: Option<&'static CLSPredicateKeyPath>);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CLSPredicateKeyPathIdentifier: Option<&'static CLSPredicateKeyPath>);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CLSPredicateKeyPathTitle: Option<&'static CLSPredicateKeyPath>);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CLSPredicateKeyPathUniversalLinkURL: Option<&'static CLSPredicateKeyPath>);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CLSPredicateKeyPathTopic: Option<&'static CLSPredicateKeyPath>);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CLSPredicateKeyPathParent: Option<&'static CLSPredicateKeyPath>);

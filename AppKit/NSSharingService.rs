@@ -5,48 +5,69 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
+#[cfg(feature = "Foundation_NSString")]
 typed_extensible_enum!(
     pub type NSSharingServiceName = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSSharingServiceNameComposeEmail: &'static NSSharingServiceName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSSharingServiceNameComposeMessage: &'static NSSharingServiceName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSSharingServiceNameSendViaAirDrop: &'static NSSharingServiceName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSSharingServiceNameAddToSafariReadingList: &'static NSSharingServiceName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSSharingServiceNameAddToIPhoto: &'static NSSharingServiceName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSSharingServiceNameAddToAperture: &'static NSSharingServiceName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSSharingServiceNameUseAsDesktopPicture: &'static NSSharingServiceName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSSharingServiceNamePostOnFacebook: &'static NSSharingServiceName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSSharingServiceNamePostOnTwitter: &'static NSSharingServiceName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSSharingServiceNamePostOnSinaWeibo: &'static NSSharingServiceName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSSharingServiceNamePostOnTencentWeibo: &'static NSSharingServiceName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSSharingServiceNamePostOnLinkedIn: &'static NSSharingServiceName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSSharingServiceNameUseAsTwitterProfileImage: &'static NSSharingServiceName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSSharingServiceNameUseAsFacebookProfileImage: &'static NSSharingServiceName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSSharingServiceNameUseAsLinkedInProfileImage: &'static NSSharingServiceName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSSharingServiceNamePostImageOnFlickr: &'static NSSharingServiceName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSSharingServiceNamePostVideoOnVimeo: &'static NSSharingServiceName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSSharingServiceNamePostVideoOnYouku: &'static NSSharingServiceName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSSharingServiceNamePostVideoOnTudou: &'static NSSharingServiceName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSSharingServiceNameCloudSharing: &'static NSSharingServiceName);
 
 extern_class!(
@@ -136,6 +157,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other sharingServicesForItems:)]
         pub unsafe fn sharingServicesForItems(items: &NSArray) -> Id<NSArray<NSSharingService>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other sharingServiceNamed:)]
         pub unsafe fn sharingServiceNamed(
             service_name: &NSSharingServiceName,

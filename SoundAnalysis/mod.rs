@@ -47,6 +47,7 @@ pub use self::__SNClassificationResult::SNClassificationResult;
 #[cfg(feature = "SoundAnalysis_SNClassifySoundRequest")]
 pub use self::__SNClassifySoundRequest::SNClassifySoundRequest;
 pub use self::__SNError::SNErrorCode;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__SNError::SNErrorDomain;
 pub use self::__SNRequest::SNRequest;
 pub use self::__SNResult::SNResult;
@@ -54,5 +55,7 @@ pub use self::__SNResult::SNResultsObserving;
 #[cfg(feature = "SoundAnalysis_SNTimeDurationConstraint")]
 pub use self::__SNTimeDurationConstraint::SNTimeDurationConstraint;
 pub use self::__SNTimeDurationConstraint::SNTimeDurationConstraintType;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__SNTypes::SNClassifierIdentifier;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__SNTypes::SNClassifierIdentifierVersion1;

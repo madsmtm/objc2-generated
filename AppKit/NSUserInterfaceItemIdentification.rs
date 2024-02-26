@@ -5,15 +5,18 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
+#[cfg(feature = "Foundation_NSString")]
 typed_extensible_enum!(
     pub type NSUserInterfaceItemIdentifier = NSString;
 );
 
 extern_protocol!(
     pub unsafe trait NSUserInterfaceItemIdentification {
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other identifier)]
         unsafe fn identifier(&self) -> Option<Id<NSUserInterfaceItemIdentifier>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setIdentifier:)]
         unsafe fn setIdentifier(&self, identifier: Option<&NSUserInterfaceItemIdentifier>);
     }

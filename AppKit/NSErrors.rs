@@ -5,74 +5,110 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTextLineTooLongException: &'static NSExceptionName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTextNoSelectionException: &'static NSExceptionName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSWordTablesWriteException: &'static NSExceptionName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSWordTablesReadException: &'static NSExceptionName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTextReadException: &'static NSExceptionName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTextWriteException: &'static NSExceptionName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSPasteboardCommunicationException: &'static NSExceptionName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSPrintingCommunicationException: &'static NSExceptionName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAbortModalException: &'static NSExceptionName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAbortPrintingException: &'static NSExceptionName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSIllegalSelectorException: &'static NSExceptionName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAppKitVirtualMemoryException: &'static NSExceptionName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSBadRTFDirectiveException: &'static NSExceptionName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSBadRTFFontTableException: &'static NSExceptionName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSBadRTFStyleSheetException: &'static NSExceptionName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTypedStreamVersionException: &'static NSExceptionName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTIFFException: &'static NSExceptionName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSPrintPackageException: &'static NSExceptionName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSBadRTFColorTableException: &'static NSExceptionName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSDraggingException: &'static NSExceptionName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSColorListIOException: &'static NSExceptionName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSColorListNotEditableException: &'static NSExceptionName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSBadBitmapParametersException: &'static NSExceptionName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSWindowServerCommunicationException: &'static NSExceptionName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFontUnavailableException: &'static NSExceptionName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSPPDIncludeNotFoundException: &'static NSExceptionName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSPPDParseException: &'static NSExceptionName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSPPDIncludeStackOverflowException: &'static NSExceptionName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSPPDIncludeStackUnderflowException: &'static NSExceptionName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSRTFPropertyStackOverflowException: &'static NSExceptionName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAppKitIgnoredException: &'static NSExceptionName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSBadComparisonException: &'static NSExceptionName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSImageCacheException: &'static NSExceptionName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSNibLoadingException: &'static NSExceptionName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSBrowserIllegalDelegateException: &'static NSExceptionName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityException: &'static NSExceptionName);

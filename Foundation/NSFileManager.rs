@@ -3,18 +3,22 @@
 use crate::common::*;
 use crate::Foundation::*;
 
+#[cfg(feature = "Foundation_NSString")]
 typed_extensible_enum!(
     pub type NSFileAttributeKey = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type NSFileAttributeType = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type NSFileProtectionType = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 typed_extensible_enum!(
     pub type NSFileProviderServiceName = NSString;
 );
@@ -66,8 +70,10 @@ ns_options!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFileManagerUnmountDissentingProcessIdentifierErrorKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSUbiquityIdentityDidChangeNotification: &'static NSNotificationName);
 
 extern_class!(
@@ -91,7 +97,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Other defaultManager)]
         pub unsafe fn defaultManager() -> Id<NSFileManager>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSURL"))]
+        #[cfg(all(
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSString",
+            feature = "Foundation_NSURL"
+        ))]
         #[method_id(@__retain_semantics Other mountedVolumeURLsIncludingResourceValuesForKeys:options:)]
         pub unsafe fn mountedVolumeURLsIncludingResourceValuesForKeys_options(
             &self,
@@ -111,6 +121,7 @@ extern_methods!(
         #[cfg(all(
             feature = "Foundation_NSArray",
             feature = "Foundation_NSError",
+            feature = "Foundation_NSString",
             feature = "Foundation_NSURL"
         ))]
         #[method_id(@__retain_semantics Other contentsOfDirectoryAtURL:includingPropertiesForKeys:options:error:_)]
@@ -161,6 +172,7 @@ extern_methods!(
         #[cfg(all(
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSError",
+            feature = "Foundation_NSString",
             feature = "Foundation_NSURL"
         ))]
         #[method(createDirectoryAtURL:withIntermediateDirectories:attributes:error:_)]
@@ -501,6 +513,7 @@ extern_methods!(
             feature = "Foundation_NSArray",
             feature = "Foundation_NSDirectoryEnumerator",
             feature = "Foundation_NSError",
+            feature = "Foundation_NSString",
             feature = "Foundation_NSURL"
         ))]
         #[method_id(@__retain_semantics Other enumeratorAtURL:includingPropertiesForKeys:options:errorHandler:)]
@@ -611,6 +624,7 @@ extern_methods!(
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSError",
             feature = "Foundation_NSFileProviderService",
+            feature = "Foundation_NSString",
             feature = "Foundation_NSURL"
         ))]
         #[method(getFileProviderServicesForItemAtURL:completionHandler:)]
@@ -900,13 +914,13 @@ unsafe impl<ObjectType: ?Sized> NSObjectProtocol for NSDirectoryEnumerator<Objec
 extern_methods!(
     #[cfg(feature = "Foundation_NSDirectoryEnumerator")]
     unsafe impl<ObjectType: Message> NSDirectoryEnumerator<ObjectType> {
-        #[cfg(feature = "Foundation_NSDictionary")]
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other fileAttributes)]
         pub unsafe fn fileAttributes(
             &self,
         ) -> Option<Id<NSDictionary<NSFileAttributeKey, AnyObject>>>;
 
-        #[cfg(feature = "Foundation_NSDictionary")]
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other directoryAttributes)]
         pub unsafe fn directoryAttributes(
             &self,
@@ -963,6 +977,7 @@ extern_methods!(
             completion_handler: &Block<dyn Fn(*mut NSXPCConnection, *mut NSError)>,
         );
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Id<NSFileProviderServiceName>;
     }
@@ -980,76 +995,112 @@ extern_methods!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFileType: &'static NSFileAttributeKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFileTypeDirectory: &'static NSFileAttributeType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFileTypeRegular: &'static NSFileAttributeType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFileTypeSymbolicLink: &'static NSFileAttributeType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFileTypeSocket: &'static NSFileAttributeType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFileTypeCharacterSpecial: &'static NSFileAttributeType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFileTypeBlockSpecial: &'static NSFileAttributeType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFileTypeUnknown: &'static NSFileAttributeType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFileSize: &'static NSFileAttributeKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFileModificationDate: &'static NSFileAttributeKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFileReferenceCount: &'static NSFileAttributeKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFileDeviceIdentifier: &'static NSFileAttributeKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFileOwnerAccountName: &'static NSFileAttributeKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFileGroupOwnerAccountName: &'static NSFileAttributeKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFilePosixPermissions: &'static NSFileAttributeKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFileSystemNumber: &'static NSFileAttributeKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFileSystemFileNumber: &'static NSFileAttributeKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFileExtensionHidden: &'static NSFileAttributeKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFileHFSCreatorCode: &'static NSFileAttributeKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFileHFSTypeCode: &'static NSFileAttributeKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFileImmutable: &'static NSFileAttributeKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFileAppendOnly: &'static NSFileAttributeKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFileCreationDate: &'static NSFileAttributeKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFileOwnerAccountID: &'static NSFileAttributeKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFileGroupOwnerAccountID: &'static NSFileAttributeKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFileBusy: &'static NSFileAttributeKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFileProtectionKey: &'static NSFileAttributeKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFileProtectionNone: &'static NSFileProtectionType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFileProtectionComplete: &'static NSFileProtectionType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFileProtectionCompleteUnlessOpen: &'static NSFileProtectionType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFileProtectionCompleteUntilFirstUserAuthentication: &'static NSFileProtectionType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFileProtectionCompleteWhenUserInactive: &'static NSFileProtectionType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFileSystemSize: &'static NSFileAttributeKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFileSystemFreeSize: &'static NSFileAttributeKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFileSystemNodes: &'static NSFileAttributeKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFileSystemFreeNodes: &'static NSFileAttributeKey);
 
 extern_methods!(

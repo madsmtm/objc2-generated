@@ -3,20 +3,27 @@
 use crate::common::*;
 use crate::Foundation::*;
 
+#[cfg(feature = "Foundation_NSString")]
 typed_extensible_enum!(
     pub type NSValueTransformerName = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSNegateBooleanTransformerName: &'static NSValueTransformerName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSIsNilTransformerName: &'static NSValueTransformerName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSIsNotNilTransformerName: &'static NSValueTransformerName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSUnarchiveFromDataTransformerName: &'static NSValueTransformerName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSKeyedUnarchiveFromDataTransformerName: &'static NSValueTransformerName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSSecureUnarchiveFromDataTransformerName: &'static NSValueTransformerName);
 
 extern_class!(
@@ -37,18 +44,20 @@ unsafe impl NSObjectProtocol for NSValueTransformer {}
 extern_methods!(
     #[cfg(feature = "Foundation_NSValueTransformer")]
     unsafe impl NSValueTransformer {
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setValueTransformer:forName:)]
         pub unsafe fn setValueTransformer_forName(
             transformer: Option<&NSValueTransformer>,
             name: &NSValueTransformerName,
         );
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other valueTransformerForName:)]
         pub unsafe fn valueTransformerForName(
             name: &NSValueTransformerName,
         ) -> Option<Id<NSValueTransformer>>;
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other valueTransformerNames)]
         pub unsafe fn valueTransformerNames() -> Id<NSArray<NSValueTransformerName>>;
 

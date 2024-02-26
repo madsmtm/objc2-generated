@@ -61,15 +61,19 @@ pub use self::__EKCalendar::EKCalendar;
 #[cfg(feature = "EventKit_EKCalendarItem")]
 pub use self::__EKCalendarItem::EKCalendarItem;
 pub use self::__EKError::EKErrorCode;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__EKError::EKErrorDomain;
 #[cfg(feature = "EventKit_EKEvent")]
 pub use self::__EKEvent::EKEvent;
 pub use self::__EKEvent::EKEventAvailability;
 pub use self::__EKEvent::EKEventStatus;
+#[cfg(feature = "EventKit_EKEvent")]
 pub use self::__EKEventStore::EKEventSearchCallback;
 #[cfg(feature = "EventKit_EKEventStore")]
 pub use self::__EKEventStore::EKEventStore;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__EKEventStore::EKEventStoreChangedNotification;
+#[cfg(feature = "Foundation_NSError")]
 pub use self::__EKEventStore::EKEventStoreRequestAccessCompletionHandler;
 pub use self::__EKEventStore::EKSpan;
 #[cfg(feature = "EventKit_EKObject")]
@@ -107,6 +111,7 @@ pub use self::__EKTypes::EKWeekday;
 pub use self::__EKVirtualConferenceDescriptor::EKVirtualConferenceDescriptor;
 #[cfg(feature = "EventKit_EKVirtualConferenceRoomTypeDescriptor")]
 pub use self::__EKVirtualConferenceDescriptor::EKVirtualConferenceRoomTypeDescriptor;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__EKVirtualConferenceDescriptor::EKVirtualConferenceRoomTypeIdentifier;
 #[cfg(feature = "EventKit_EKVirtualConferenceURLDescriptor")]
 pub use self::__EKVirtualConferenceDescriptor::EKVirtualConferenceURLDescriptor;

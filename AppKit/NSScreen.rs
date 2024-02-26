@@ -45,7 +45,7 @@ extern_methods!(
         #[method(visibleFrame)]
         pub fn visibleFrame(&self) -> NSRect;
 
-        #[cfg(feature = "Foundation_NSDictionary")]
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other deviceDescription)]
         pub fn deviceDescription(&self) -> Id<NSDictionary<NSDeviceDescriptionKey, AnyObject>>;
 
@@ -102,6 +102,7 @@ extern_methods!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSScreenColorSpaceDidChangeNotification: &'static NSNotificationName);
 
 extern_methods!(

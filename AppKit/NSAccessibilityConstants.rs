@@ -5,206 +5,304 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityErrorCodeExceptionInfo: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type NSAccessibilityAttributeName = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityRoleAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityRoleDescriptionAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilitySubroleAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityHelpAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityValueAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityMinValueAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityMaxValueAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityEnabledAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityFocusedAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityParentAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityChildrenAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityWindowAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityTopLevelUIElementAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilitySelectedChildrenAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityVisibleChildrenAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityPositionAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilitySizeAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityContentsAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityTitleAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityDescriptionAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityShownMenuAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityValueDescriptionAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilitySharedFocusElementsAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityPreviousContentsAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityNextContentsAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityHeaderAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityEditedAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityTabsAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityHorizontalScrollBarAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityVerticalScrollBarAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityOverflowButtonAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityIncrementButtonAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityDecrementButtonAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityFilenameAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityExpandedAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilitySelectedAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilitySplittersAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityDocumentAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityActivationPointAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityURLAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityIndexAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityRowCountAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityColumnCountAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityOrderedByRowAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityWarningValueAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityCriticalValueAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityPlaceholderValueAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityContainsProtectedContentAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityAlternateUIVisibleAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityRequiredAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityTitleUIElementAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityServesAsTitleForUIElementsAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityLinkedUIElementsAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilitySelectedTextAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilitySelectedTextRangeAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityNumberOfCharactersAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityVisibleCharacterRangeAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilitySharedTextUIElementsAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilitySharedCharacterRangeAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityInsertionPointLineNumberAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilitySelectedTextRangesAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type NSAccessibilityParameterizedAttributeName = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityLineForIndexParameterizedAttribute: &'static NSAccessibilityParameterizedAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityRangeForLineParameterizedAttribute: &'static NSAccessibilityParameterizedAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityStringForRangeParameterizedAttribute: &'static NSAccessibilityParameterizedAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityRangeForPositionParameterizedAttribute: &'static NSAccessibilityParameterizedAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityRangeForIndexParameterizedAttribute: &'static NSAccessibilityParameterizedAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityBoundsForRangeParameterizedAttribute: &'static NSAccessibilityParameterizedAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityRTFForRangeParameterizedAttribute: &'static NSAccessibilityParameterizedAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityStyleRangeForIndexParameterizedAttribute: &'static NSAccessibilityParameterizedAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityAttributedStringForRangeParameterizedAttribute: &'static NSAccessibilityParameterizedAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityFontTextAttribute: &'static NSAttributedStringKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityForegroundColorTextAttribute: &'static NSAttributedStringKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityBackgroundColorTextAttribute: &'static NSAttributedStringKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityUnderlineColorTextAttribute: &'static NSAttributedStringKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityStrikethroughColorTextAttribute: &'static NSAttributedStringKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityUnderlineTextAttribute: &'static NSAttributedStringKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilitySuperscriptTextAttribute: &'static NSAttributedStringKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityStrikethroughTextAttribute: &'static NSAttributedStringKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityShadowTextAttribute: &'static NSAttributedStringKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityAttachmentTextAttribute: &'static NSAttributedStringKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityLinkTextAttribute: &'static NSAttributedStringKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityAutocorrectedTextAttribute: &'static NSAttributedStringKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityTextAlignmentAttribute: &'static NSAttributedStringKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityListItemPrefixTextAttribute: &'static NSAttributedStringKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityListItemIndexTextAttribute: &'static NSAttributedStringKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityListItemLevelTextAttribute: &'static NSAttributedStringKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityMisspelledTextAttribute: &'static NSAttributedStringKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityMarkedMisspelledTextAttribute: &'static NSAttributedStringKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityLanguageTextAttribute: &'static NSAttributedStringKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityCustomTextAttribute: &'static NSAttributedStringKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityAnnotationTextAttribute: &'static NSAttributedStringKey);
 
+#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type NSAccessibilityAnnotationAttributeKey = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityAnnotationLabel: &'static NSAccessibilityAnnotationAttributeKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityAnnotationElement: &'static NSAccessibilityAnnotationAttributeKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityAnnotationLocation: &'static NSAccessibilityAnnotationAttributeKey);
 
 ns_enum!(
@@ -219,56 +317,81 @@ ns_enum!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type NSAccessibilityFontAttributeKey = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityFontNameKey: &'static NSAccessibilityFontAttributeKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityFontFamilyKey: &'static NSAccessibilityFontAttributeKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityVisibleNameKey: &'static NSAccessibilityFontAttributeKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityFontSizeKey: &'static NSAccessibilityFontAttributeKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityMainAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityMinimizedAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityCloseButtonAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityZoomButtonAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityMinimizeButtonAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityToolbarButtonAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityProxyAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityGrowAreaAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityModalAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityDefaultButtonAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityCancelButtonAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityFullScreenButtonAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityMenuBarAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityWindowsAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityFrontmostAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityHiddenAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityMainWindowAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityFocusedWindowAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityFocusedUIElementAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityExtrasMenuBarAttribute: &'static NSAccessibilityAttributeName);
 
 ns_enum!(
@@ -283,80 +406,116 @@ ns_enum!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityOrientationAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type NSAccessibilityOrientationValue = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityVerticalOrientationValue: &'static NSAccessibilityOrientationValue);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityHorizontalOrientationValue: &'static NSAccessibilityOrientationValue);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityUnknownOrientationValue: &'static NSAccessibilityOrientationValue);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityColumnTitlesAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilitySearchButtonAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilitySearchMenuAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityClearButtonAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityRowsAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityVisibleRowsAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilitySelectedRowsAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityColumnsAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityVisibleColumnsAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilitySelectedColumnsAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilitySortDirectionAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilitySelectedCellsAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityVisibleCellsAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityRowHeaderUIElementsAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityColumnHeaderUIElementsAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityCellForColumnAndRowParameterizedAttribute: &'static NSAccessibilityParameterizedAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityRowIndexRangeAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityColumnIndexRangeAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityHorizontalUnitsAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityVerticalUnitsAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityHorizontalUnitDescriptionAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityVerticalUnitDescriptionAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityLayoutPointForScreenPointParameterizedAttribute: &'static NSAccessibilityParameterizedAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityLayoutSizeForScreenSizeParameterizedAttribute: &'static NSAccessibilityParameterizedAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityScreenPointForLayoutPointParameterizedAttribute: &'static NSAccessibilityParameterizedAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityScreenSizeForLayoutSizeParameterizedAttribute: &'static NSAccessibilityParameterizedAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityHandlesAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type NSAccessibilitySortDirectionValue = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityAscendingSortDirectionValue: &'static NSAccessibilitySortDirectionValue);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityDescendingSortDirectionValue: &'static NSAccessibilitySortDirectionValue);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityUnknownSortDirectionValue: &'static NSAccessibilitySortDirectionValue);
 
 ns_enum!(
@@ -371,58 +530,84 @@ ns_enum!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityDisclosingAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityDisclosedRowsAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityDisclosedByRowAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityDisclosureLevelAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityAllowedValuesAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityLabelUIElementsAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityLabelValueAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityMatteHoleAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityMatteContentUIElementAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityMarkerUIElementsAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityMarkerValuesAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityMarkerGroupUIElementAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityUnitsAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityUnitDescriptionAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityMarkerTypeAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityMarkerTypeDescriptionAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityIdentifierAttribute: &'static NSAccessibilityAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type NSAccessibilityRulerMarkerTypeValue = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityLeftTabStopMarkerTypeValue: &'static NSAccessibilityRulerMarkerTypeValue);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityRightTabStopMarkerTypeValue: &'static NSAccessibilityRulerMarkerTypeValue);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityCenterTabStopMarkerTypeValue: &'static NSAccessibilityRulerMarkerTypeValue);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityDecimalTabStopMarkerTypeValue: &'static NSAccessibilityRulerMarkerTypeValue);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityHeadIndentMarkerTypeValue: &'static NSAccessibilityRulerMarkerTypeValue);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityTailIndentMarkerTypeValue: &'static NSAccessibilityRulerMarkerTypeValue);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityFirstLineIndentMarkerTypeValue: &'static NSAccessibilityRulerMarkerTypeValue);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityUnknownMarkerTypeValue: &'static NSAccessibilityRulerMarkerTypeValue);
 
 ns_enum!(
@@ -447,18 +632,24 @@ ns_enum!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type NSAccessibilityRulerUnitValue = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityInchesUnitValue: &'static NSAccessibilityRulerUnitValue);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityCentimetersUnitValue: &'static NSAccessibilityRulerUnitValue);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityPointsUnitValue: &'static NSAccessibilityRulerUnitValue);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityPicasUnitValue: &'static NSAccessibilityRulerUnitValue);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityUnknownUnitValue: &'static NSAccessibilityRulerUnitValue);
 
 ns_enum!(
@@ -477,298 +668,438 @@ ns_enum!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 typed_extensible_enum!(
     pub type NSAccessibilityActionName = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityPressAction: &'static NSAccessibilityActionName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityIncrementAction: &'static NSAccessibilityActionName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityDecrementAction: &'static NSAccessibilityActionName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityConfirmAction: &'static NSAccessibilityActionName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityPickAction: &'static NSAccessibilityActionName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityCancelAction: &'static NSAccessibilityActionName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityRaiseAction: &'static NSAccessibilityActionName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityShowMenuAction: &'static NSAccessibilityActionName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityDeleteAction: &'static NSAccessibilityActionName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityShowAlternateUIAction: &'static NSAccessibilityActionName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityShowDefaultUIAction: &'static NSAccessibilityActionName);
 
+#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type NSAccessibilityNotificationName = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityMainWindowChangedNotification: &'static NSAccessibilityNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityFocusedWindowChangedNotification: &'static NSAccessibilityNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityFocusedUIElementChangedNotification: &'static NSAccessibilityNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityApplicationActivatedNotification: &'static NSAccessibilityNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityApplicationDeactivatedNotification: &'static NSAccessibilityNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityApplicationHiddenNotification: &'static NSAccessibilityNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityApplicationShownNotification: &'static NSAccessibilityNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityWindowCreatedNotification: &'static NSAccessibilityNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityWindowMovedNotification: &'static NSAccessibilityNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityWindowResizedNotification: &'static NSAccessibilityNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityWindowMiniaturizedNotification: &'static NSAccessibilityNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityWindowDeminiaturizedNotification: &'static NSAccessibilityNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityDrawerCreatedNotification: &'static NSAccessibilityNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilitySheetCreatedNotification: &'static NSAccessibilityNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityUIElementDestroyedNotification: &'static NSAccessibilityNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityValueChangedNotification: &'static NSAccessibilityNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityTitleChangedNotification: &'static NSAccessibilityNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityResizedNotification: &'static NSAccessibilityNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityMovedNotification: &'static NSAccessibilityNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityCreatedNotification: &'static NSAccessibilityNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityLayoutChangedNotification: &'static NSAccessibilityNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityHelpTagCreatedNotification: &'static NSAccessibilityNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilitySelectedTextChangedNotification: &'static NSAccessibilityNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityRowCountChangedNotification: &'static NSAccessibilityNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilitySelectedChildrenChangedNotification: &'static NSAccessibilityNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilitySelectedRowsChangedNotification: &'static NSAccessibilityNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilitySelectedColumnsChangedNotification: &'static NSAccessibilityNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityRowExpandedNotification: &'static NSAccessibilityNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityRowCollapsedNotification: &'static NSAccessibilityNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilitySelectedCellsChangedNotification: &'static NSAccessibilityNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityUnitsChangedNotification: &'static NSAccessibilityNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilitySelectedChildrenMovedNotification: &'static NSAccessibilityNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityAnnouncementRequestedNotification: &'static NSAccessibilityNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type NSAccessibilityRole = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityUnknownRole: &'static NSAccessibilityRole);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityButtonRole: &'static NSAccessibilityRole);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityRadioButtonRole: &'static NSAccessibilityRole);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityCheckBoxRole: &'static NSAccessibilityRole);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilitySliderRole: &'static NSAccessibilityRole);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityTabGroupRole: &'static NSAccessibilityRole);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityTextFieldRole: &'static NSAccessibilityRole);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityStaticTextRole: &'static NSAccessibilityRole);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityTextAreaRole: &'static NSAccessibilityRole);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityScrollAreaRole: &'static NSAccessibilityRole);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityPopUpButtonRole: &'static NSAccessibilityRole);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityMenuButtonRole: &'static NSAccessibilityRole);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityTableRole: &'static NSAccessibilityRole);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityApplicationRole: &'static NSAccessibilityRole);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityGroupRole: &'static NSAccessibilityRole);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityRadioGroupRole: &'static NSAccessibilityRole);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityListRole: &'static NSAccessibilityRole);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityScrollBarRole: &'static NSAccessibilityRole);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityValueIndicatorRole: &'static NSAccessibilityRole);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityImageRole: &'static NSAccessibilityRole);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityMenuBarRole: &'static NSAccessibilityRole);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityMenuBarItemRole: &'static NSAccessibilityRole);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityMenuRole: &'static NSAccessibilityRole);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityMenuItemRole: &'static NSAccessibilityRole);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityColumnRole: &'static NSAccessibilityRole);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityRowRole: &'static NSAccessibilityRole);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityToolbarRole: &'static NSAccessibilityRole);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityBusyIndicatorRole: &'static NSAccessibilityRole);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityProgressIndicatorRole: &'static NSAccessibilityRole);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityWindowRole: &'static NSAccessibilityRole);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityDrawerRole: &'static NSAccessibilityRole);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilitySystemWideRole: &'static NSAccessibilityRole);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityOutlineRole: &'static NSAccessibilityRole);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityIncrementorRole: &'static NSAccessibilityRole);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityBrowserRole: &'static NSAccessibilityRole);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityComboBoxRole: &'static NSAccessibilityRole);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilitySplitGroupRole: &'static NSAccessibilityRole);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilitySplitterRole: &'static NSAccessibilityRole);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityColorWellRole: &'static NSAccessibilityRole);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityGrowAreaRole: &'static NSAccessibilityRole);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilitySheetRole: &'static NSAccessibilityRole);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityHelpTagRole: &'static NSAccessibilityRole);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityMatteRole: &'static NSAccessibilityRole);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityRulerRole: &'static NSAccessibilityRole);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityRulerMarkerRole: &'static NSAccessibilityRole);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityLinkRole: &'static NSAccessibilityRole);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityDisclosureTriangleRole: &'static NSAccessibilityRole);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityGridRole: &'static NSAccessibilityRole);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityRelevanceIndicatorRole: &'static NSAccessibilityRole);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityLevelIndicatorRole: &'static NSAccessibilityRole);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityCellRole: &'static NSAccessibilityRole);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityPopoverRole: &'static NSAccessibilityRole);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityPageRole: &'static NSAccessibilityRole);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityLayoutAreaRole: &'static NSAccessibilityRole);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityLayoutItemRole: &'static NSAccessibilityRole);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityHandleRole: &'static NSAccessibilityRole);
 
+#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type NSAccessibilitySubrole = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityUnknownSubrole: &'static NSAccessibilitySubrole);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityCloseButtonSubrole: &'static NSAccessibilitySubrole);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityZoomButtonSubrole: &'static NSAccessibilitySubrole);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityMinimizeButtonSubrole: &'static NSAccessibilitySubrole);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityToolbarButtonSubrole: &'static NSAccessibilitySubrole);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityTableRowSubrole: &'static NSAccessibilitySubrole);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityOutlineRowSubrole: &'static NSAccessibilitySubrole);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilitySecureTextFieldSubrole: &'static NSAccessibilitySubrole);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityStandardWindowSubrole: &'static NSAccessibilitySubrole);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityDialogSubrole: &'static NSAccessibilitySubrole);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilitySystemDialogSubrole: &'static NSAccessibilitySubrole);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityFloatingWindowSubrole: &'static NSAccessibilitySubrole);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilitySystemFloatingWindowSubrole: &'static NSAccessibilitySubrole);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityIncrementArrowSubrole: &'static NSAccessibilitySubrole);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityDecrementArrowSubrole: &'static NSAccessibilitySubrole);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityIncrementPageSubrole: &'static NSAccessibilitySubrole);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityDecrementPageSubrole: &'static NSAccessibilitySubrole);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilitySearchFieldSubrole: &'static NSAccessibilitySubrole);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityTextAttachmentSubrole: &'static NSAccessibilitySubrole);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityTextLinkSubrole: &'static NSAccessibilitySubrole);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityTimelineSubrole: &'static NSAccessibilitySubrole);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilitySortButtonSubrole: &'static NSAccessibilitySubrole);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityRatingIndicatorSubrole: &'static NSAccessibilitySubrole);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityContentListSubrole: &'static NSAccessibilitySubrole);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityDefinitionListSubrole: &'static NSAccessibilitySubrole);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityFullScreenButtonSubrole: &'static NSAccessibilitySubrole);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityToggleSubrole: &'static NSAccessibilitySubrole);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilitySwitchSubrole: &'static NSAccessibilitySubrole);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityDescriptionListSubrole: &'static NSAccessibilitySubrole);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityTabButtonSubrole: &'static NSAccessibilitySubrole);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityCollectionListSubrole: &'static NSAccessibilitySubrole);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilitySectionListSubrole: &'static NSAccessibilitySubrole);
 
+#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type NSAccessibilityNotificationUserInfoKey = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityUIElementsKey: &'static NSAccessibilityNotificationUserInfoKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityPriorityKey: &'static NSAccessibilityNotificationUserInfoKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityAnnouncementKey: &'static NSAccessibilityNotificationUserInfoKey);
 
 extern_fn!(
-    #[cfg(feature = "Foundation_NSDictionary")]
+    #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
     pub unsafe fn NSAccessibilityPostNotificationWithUserInfo(
         element: &AnyObject,
         notification: &NSAccessibilityNotificationName,
@@ -787,4 +1118,5 @@ ns_enum!(
 
 pub type NSAccessibilityLoadingToken = TodoProtocols;
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilitySortButtonRole: &'static NSAccessibilityRole);

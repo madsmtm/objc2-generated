@@ -127,6 +127,7 @@ pub use self::__MXDiskWriteExceptionDiagnostic::MXDiskWriteExceptionDiagnostic;
 #[cfg(feature = "MetricKit_MXDisplayMetric")]
 pub use self::__MXDisplayMetric::MXDisplayMetric;
 pub use self::__MXError::MXErrorCode;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__MXError::MXErrorDomain;
 #[cfg(feature = "MetricKit_MXGPUMetric")]
 pub use self::__MXGPUMetric::MXGPUMetric;

@@ -46,7 +46,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other managerForDomain:)]
         pub unsafe fn managerForDomain(domain: &NSFileProviderDomain) -> Option<Id<Self>>;
 
-        #[cfg(feature = "Foundation_NSError")]
+        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
         #[method(signalEnumeratorForContainerItemIdentifier:completionHandler:)]
         pub unsafe fn signalEnumeratorForContainerItemIdentifier_completionHandler(
             &self,
@@ -54,7 +54,11 @@ extern_methods!(
             completion: &Block<dyn Fn(*mut NSError)>,
         );
 
-        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
+        #[cfg(all(
+            feature = "Foundation_NSError",
+            feature = "Foundation_NSString",
+            feature = "Foundation_NSURL"
+        ))]
         #[method(getUserVisibleURLForItemIdentifier:completionHandler:)]
         pub unsafe fn getUserVisibleURLForItemIdentifier_completionHandler(
             &self,
@@ -62,7 +66,11 @@ extern_methods!(
             completion_handler: &Block<dyn Fn(*mut NSURL, *mut NSError)>,
         );
 
-        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
+        #[cfg(all(
+            feature = "Foundation_NSError",
+            feature = "Foundation_NSString",
+            feature = "Foundation_NSURL"
+        ))]
         #[method(getIdentifierForUserVisibleFileAtURL:completionHandler:)]
         pub unsafe fn getIdentifierForUserVisibleFileAtURL_completionHandler(
             url: &NSURL,
@@ -77,6 +85,7 @@ extern_methods!(
 
         #[cfg(all(
             feature = "Foundation_NSError",
+            feature = "Foundation_NSString",
             feature = "Foundation_NSURLSessionTask"
         ))]
         #[method(registerURLSessionTask:forItemWithIdentifier:completionHandler:)]
@@ -168,7 +177,7 @@ extern_methods!(
             completion_handler: &Block<dyn Fn(*mut NSError)>,
         );
 
-        #[cfg(feature = "Foundation_NSProgress")]
+        #[cfg(all(feature = "Foundation_NSProgress", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other globalProgressForKind:)]
         pub unsafe fn globalProgressForKind(
             &self,
@@ -186,6 +195,7 @@ extern_methods!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFileProviderMaterializedSetDidChange: &'static NSNotificationName);
 
 extern_methods!(
@@ -199,6 +209,7 @@ extern_methods!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFileProviderPendingSetDidChange: &'static NSNotificationName);
 
 extern_protocol!(
@@ -244,7 +255,7 @@ extern_methods!(
             completion_handler: &Block<dyn Fn(*mut NSError)>,
         );
 
-        #[cfg(feature = "Foundation_NSError")]
+        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
         #[method(reimportItemsBelowItemWithIdentifier:completionHandler:)]
         pub unsafe fn reimportItemsBelowItemWithIdentifier_completionHandler(
             &self,
@@ -252,7 +263,7 @@ extern_methods!(
             completion_handler: &Block<dyn Fn(*mut NSError)>,
         );
 
-        #[cfg(feature = "Foundation_NSError")]
+        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
         #[method(requestModificationOfFields:forItemWithIdentifier:options:completionHandler:)]
         pub unsafe fn requestModificationOfFields_forItemWithIdentifier_options_completionHandler(
             &self,
@@ -268,7 +279,7 @@ extern_methods!(
     /// Eviction
     #[cfg(feature = "FileProvider_NSFileProviderManager")]
     unsafe impl NSFileProviderManager {
-        #[cfg(feature = "Foundation_NSError")]
+        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
         #[method(evictItemWithIdentifier:completionHandler:)]
         pub unsafe fn evictItemWithIdentifier_completionHandler(
             &self,
@@ -282,7 +293,7 @@ extern_methods!(
     /// Barrier
     #[cfg(feature = "FileProvider_NSFileProviderManager")]
     unsafe impl NSFileProviderManager {
-        #[cfg(feature = "Foundation_NSError")]
+        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
         #[method(waitForChangesOnItemsBelowItemWithIdentifier:completionHandler:)]
         pub unsafe fn waitForChangesOnItemsBelowItemWithIdentifier_completionHandler(
             &self,
@@ -339,7 +350,7 @@ extern_methods!(
     /// Materialize
     #[cfg(feature = "FileProvider_NSFileProviderManager")]
     unsafe impl NSFileProviderManager {
-        #[cfg(feature = "Foundation_NSError")]
+        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
         #[method(requestDownloadForItemWithIdentifier:requestedRange:completionHandler:)]
         pub unsafe fn requestDownloadForItemWithIdentifier_requestedRange_completionHandler(
             &self,

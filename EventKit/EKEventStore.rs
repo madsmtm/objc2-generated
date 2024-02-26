@@ -17,8 +17,10 @@ ns_enum!(
     }
 );
 
+#[cfg(feature = "EventKit_EKEvent")]
 pub type EKEventSearchCallback = *mut Block<dyn Fn(NonNull<EKEvent>, NonNull<Bool>)>;
 
+#[cfg(feature = "Foundation_NSError")]
 pub type EKEventStoreRequestAccessCompletionHandler = *mut Block<dyn Fn(Bool, *mut NSError)>;
 
 extern_class!(
@@ -61,24 +63,28 @@ extern_methods!(
             sources: &NSArray<EKSource>,
         ) -> Id<Self>;
 
+        #[cfg(feature = "Foundation_NSError")]
         #[method(requestFullAccessToEventsWithCompletion:)]
         pub unsafe fn requestFullAccessToEventsWithCompletion(
             &self,
             completion: EKEventStoreRequestAccessCompletionHandler,
         );
 
+        #[cfg(feature = "Foundation_NSError")]
         #[method(requestWriteOnlyAccessToEventsWithCompletion:)]
         pub unsafe fn requestWriteOnlyAccessToEventsWithCompletion(
             &self,
             completion: EKEventStoreRequestAccessCompletionHandler,
         );
 
+        #[cfg(feature = "Foundation_NSError")]
         #[method(requestFullAccessToRemindersWithCompletion:)]
         pub unsafe fn requestFullAccessToRemindersWithCompletion(
             &self,
             completion: EKEventStoreRequestAccessCompletionHandler,
         );
 
+        #[cfg(feature = "Foundation_NSError")]
         #[deprecated = "Use -requestFullAccessToEventsWithCompletion:, -requestWriteOnlyAccessToEventsWithCompletion:, or -requestFullAccessToRemindersWithCompletion:"]
         #[method(requestAccessToEntityType:completion:)]
         pub unsafe fn requestAccessToEntityType_completion(
@@ -212,7 +218,7 @@ extern_methods!(
             predicate: &NSPredicate,
         ) -> Id<NSArray<EKEvent>>;
 
-        #[cfg(feature = "Foundation_NSPredicate")]
+        #[cfg(all(feature = "EventKit_EKEvent", feature = "Foundation_NSPredicate"))]
         #[method(enumerateEventsMatchingPredicate:usingBlock:)]
         pub unsafe fn enumerateEventsMatchingPredicate_usingBlock(
             &self,
@@ -325,4 +331,5 @@ extern_methods!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(EKEventStoreChangedNotification: &'static NSString);

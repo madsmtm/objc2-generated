@@ -251,8 +251,10 @@ extern_methods!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSProcessInfoThermalStateDidChangeNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSProcessInfoPowerStateDidChangeNotification: &'static NSNotificationName);
 
 extern_methods!(

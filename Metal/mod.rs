@@ -206,6 +206,7 @@ pub use self::__MTLArgumentEncoder::MTLAttributeStrideStatic;
 pub use self::__MTLBinaryArchive::MTLBinaryArchive;
 #[cfg(feature = "Metal_MTLBinaryArchiveDescriptor")]
 pub use self::__MTLBinaryArchive::MTLBinaryArchiveDescriptor;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__MTLBinaryArchive::MTLBinaryArchiveDomain;
 pub use self::__MTLBinaryArchive::MTLBinaryArchiveError;
 pub use self::__MTLBlitCommandEncoder::MTLBlitCommandEncoder;
@@ -221,6 +222,7 @@ pub use self::__MTLBuffer::MTLBuffer;
 pub use self::__MTLCaptureManager::MTLCaptureDescriptor;
 pub use self::__MTLCaptureManager::MTLCaptureDestination;
 pub use self::__MTLCaptureManager::MTLCaptureError;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__MTLCaptureManager::MTLCaptureErrorDomain;
 #[cfg(feature = "Metal_MTLCaptureManager")]
 pub use self::__MTLCaptureManager::MTLCaptureManager;
@@ -229,8 +231,10 @@ pub use self::__MTLCommandBuffer::MTLCommandBuffer;
 #[cfg(feature = "Metal_MTLCommandBufferDescriptor")]
 pub use self::__MTLCommandBuffer::MTLCommandBufferDescriptor;
 pub use self::__MTLCommandBuffer::MTLCommandBufferEncoderInfo;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__MTLCommandBuffer::MTLCommandBufferEncoderInfoErrorKey;
 pub use self::__MTLCommandBuffer::MTLCommandBufferError;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__MTLCommandBuffer::MTLCommandBufferErrorDomain;
 pub use self::__MTLCommandBuffer::MTLCommandBufferErrorOption;
 pub use self::__MTLCommandBuffer::MTLCommandBufferHandler;
@@ -255,27 +259,48 @@ pub use self::__MTLComputePipeline::MTLComputePipelineDescriptor;
 #[cfg(feature = "Metal_MTLComputePipelineReflection")]
 pub use self::__MTLComputePipeline::MTLComputePipelineReflection;
 pub use self::__MTLComputePipeline::MTLComputePipelineState;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__MTLCounters::MTLCommonCounter;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__MTLCounters::MTLCommonCounterClipperInvocations;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__MTLCounters::MTLCommonCounterClipperPrimitivesOut;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__MTLCounters::MTLCommonCounterComputeKernelInvocations;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__MTLCounters::MTLCommonCounterFragmentCycles;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__MTLCounters::MTLCommonCounterFragmentInvocations;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__MTLCounters::MTLCommonCounterFragmentsPassed;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__MTLCounters::MTLCommonCounterPostTessellationVertexCycles;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__MTLCounters::MTLCommonCounterPostTessellationVertexInvocations;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__MTLCounters::MTLCommonCounterRenderTargetWriteCycles;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__MTLCounters::MTLCommonCounterSet;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__MTLCounters::MTLCommonCounterSetStageUtilization;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__MTLCounters::MTLCommonCounterSetStatistic;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__MTLCounters::MTLCommonCounterSetTimestamp;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__MTLCounters::MTLCommonCounterTessellationCycles;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__MTLCounters::MTLCommonCounterTessellationInputPatches;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__MTLCounters::MTLCommonCounterTimestamp;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__MTLCounters::MTLCommonCounterTotalCycles;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__MTLCounters::MTLCommonCounterVertexCycles;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__MTLCounters::MTLCommonCounterVertexInvocations;
 pub use self::__MTLCounters::MTLCounter;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__MTLCounters::MTLCounterErrorDomain;
 pub use self::__MTLCounters::MTLCounterResultStageUtilization;
 pub use self::__MTLCounters::MTLCounterResultStatistic;
@@ -304,18 +329,34 @@ pub use self::__MTLDevice::MTLCounterSamplingPoint;
 pub use self::__MTLDevice::MTLCreateSystemDefaultDevice;
 pub use self::__MTLDevice::MTLDevice;
 pub use self::__MTLDevice::MTLDeviceLocation;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__MTLDevice::MTLDeviceNotificationHandler;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__MTLDevice::MTLDeviceNotificationName;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__MTLDevice::MTLDeviceRemovalRequestedNotification;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__MTLDevice::MTLDeviceWasAddedNotification;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__MTLDevice::MTLDeviceWasRemovedNotification;
 pub use self::__MTLDevice::MTLFeatureSet;
 pub use self::__MTLDevice::MTLGPUFamily;
 pub use self::__MTLDevice::MTLIOCompressionMethod;
+#[cfg(feature = "Foundation_NSError")]
 pub use self::__MTLDevice::MTLNewComputePipelineStateCompletionHandler;
+#[cfg(all(
+    feature = "Foundation_NSError",
+    feature = "Metal_MTLComputePipelineReflection"
+))]
 pub use self::__MTLDevice::MTLNewComputePipelineStateWithReflectionCompletionHandler;
+#[cfg(feature = "Foundation_NSError")]
 pub use self::__MTLDevice::MTLNewLibraryCompletionHandler;
+#[cfg(feature = "Foundation_NSError")]
 pub use self::__MTLDevice::MTLNewRenderPipelineStateCompletionHandler;
+#[cfg(all(
+    feature = "Foundation_NSError",
+    feature = "Metal_MTLRenderPipelineReflection"
+))]
 pub use self::__MTLDevice::MTLNewRenderPipelineStateWithReflectionCompletionHandler;
 pub use self::__MTLDevice::MTLPipelineOption;
 pub use self::__MTLDevice::MTLReadWriteTextureTier;
@@ -327,6 +368,7 @@ pub use self::__MTLDevice::MTLTimestamp;
 pub use self::__MTLDrawable::MTLDrawable;
 pub use self::__MTLDrawable::MTLDrawablePresentedHandler;
 pub use self::__MTLDynamicLibrary::MTLDynamicLibrary;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__MTLDynamicLibrary::MTLDynamicLibraryDomain;
 pub use self::__MTLDynamicLibrary::MTLDynamicLibraryError;
 pub use self::__MTLEvent::MTLEvent;
@@ -373,6 +415,7 @@ pub use self::__MTLIOCommandQueue::MTLIOCommandQueue;
 pub use self::__MTLIOCommandQueue::MTLIOCommandQueueDescriptor;
 pub use self::__MTLIOCommandQueue::MTLIOCommandQueueType;
 pub use self::__MTLIOCommandQueue::MTLIOError;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__MTLIOCommandQueue::MTLIOErrorDomain;
 pub use self::__MTLIOCommandQueue::MTLIOFileHandle;
 pub use self::__MTLIOCommandQueue::MTLIOPriority;
@@ -407,6 +450,7 @@ pub use self::__MTLLibrary::MTLFunctionType;
 pub use self::__MTLLibrary::MTLLanguageVersion;
 pub use self::__MTLLibrary::MTLLibrary;
 pub use self::__MTLLibrary::MTLLibraryError;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__MTLLibrary::MTLLibraryErrorDomain;
 pub use self::__MTLLibrary::MTLLibraryOptimizationLevel;
 pub use self::__MTLLibrary::MTLLibraryType;

@@ -6,24 +6,32 @@ use crate::Foundation::*;
 use crate::HealthKit::*;
 use crate::UniformTypeIdentifiers::*;
 
+#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type HKVerifiableClinicalRecordSourceType = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(HKVerifiableClinicalRecordSourceTypeSMARTHealthCard: &'static HKVerifiableClinicalRecordSourceType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(HKVerifiableClinicalRecordSourceTypeEUDigitalCOVIDCertificate: &'static HKVerifiableClinicalRecordSourceType);
 
+#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type HKVerifiableClinicalRecordCredentialType = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(HKVerifiableClinicalRecordCredentialTypeCOVID19: &'static HKVerifiableClinicalRecordCredentialType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(HKVerifiableClinicalRecordCredentialTypeImmunization: &'static HKVerifiableClinicalRecordCredentialType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(HKVerifiableClinicalRecordCredentialTypeLaboratory: &'static HKVerifiableClinicalRecordCredentialType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(HKVerifiableClinicalRecordCredentialTypeRecovery: &'static HKVerifiableClinicalRecordCredentialType);
 
 extern_class!(
@@ -79,6 +87,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other itemNames)]
         pub unsafe fn itemNames(&self) -> Id<NSArray<NSString>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other sourceType)]
         pub unsafe fn sourceType(&self) -> Option<Id<HKVerifiableClinicalRecordSourceType>>;
 

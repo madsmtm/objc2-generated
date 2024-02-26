@@ -8,6 +8,7 @@ use crate::UniformTypeIdentifiers::*;
 
 extern_protocol!(
     pub unsafe trait NSFileProviderServiceSource {
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other serviceName)]
         unsafe fn serviceName(&self) -> Id<NSFileProviderServiceName>;
 
@@ -32,7 +33,11 @@ extern_methods!(
     /// NSFileProviderService
     #[cfg(feature = "FileProvider_NSFileProviderExtension")]
     unsafe impl NSFileProviderExtension {
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSError"))]
+        #[cfg(all(
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSError",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Other supportedServiceSourcesForItemIdentifier:error:_)]
         pub unsafe fn supportedServiceSourcesForItemIdentifier_error(
             &self,
@@ -47,7 +52,8 @@ extern_methods!(
     unsafe impl NSFileProviderManager {
         #[cfg(all(
             feature = "Foundation_NSError",
-            feature = "Foundation_NSFileProviderService"
+            feature = "Foundation_NSFileProviderService",
+            feature = "Foundation_NSString"
         ))]
         #[method(getServiceWithName:itemIdentifier:completionHandler:)]
         pub unsafe fn getServiceWithName_itemIdentifier_completionHandler(

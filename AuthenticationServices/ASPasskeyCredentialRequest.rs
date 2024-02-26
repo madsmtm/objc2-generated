@@ -42,7 +42,8 @@ extern_methods!(
             feature = "AuthenticationServices_ASPasskeyCredentialIdentity",
             feature = "Foundation_NSArray",
             feature = "Foundation_NSData",
-            feature = "Foundation_NSNumber"
+            feature = "Foundation_NSNumber",
+            feature = "Foundation_NSString"
         ))]
         #[method_id(@__retain_semantics Init initWithCredentialIdentity:clientDataHash:userVerificationPreference:supportedAlgorithms:)]
         pub unsafe fn initWithCredentialIdentity_clientDataHash_userVerificationPreference_supportedAlgorithms(
@@ -57,7 +58,8 @@ extern_methods!(
             feature = "AuthenticationServices_ASPasskeyCredentialIdentity",
             feature = "Foundation_NSArray",
             feature = "Foundation_NSData",
-            feature = "Foundation_NSNumber"
+            feature = "Foundation_NSNumber",
+            feature = "Foundation_NSString"
         ))]
         #[method_id(@__retain_semantics Other requestWithCredentialIdentity:clientDataHash:userVerificationPreference:supportedAlgorithms:)]
         pub unsafe fn requestWithCredentialIdentity_clientDataHash_userVerificationPreference_supportedAlgorithms(
@@ -71,11 +73,13 @@ extern_methods!(
         #[method_id(@__retain_semantics Other clientDataHash)]
         pub unsafe fn clientDataHash(&self) -> Id<NSData>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other userVerificationPreference)]
         pub unsafe fn userVerificationPreference(
             &self,
         ) -> Id<ASAuthorizationPublicKeyCredentialUserVerificationPreference>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setUserVerificationPreference:)]
         pub unsafe fn setUserVerificationPreference(
             &self,

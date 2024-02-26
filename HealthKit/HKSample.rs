@@ -66,10 +66,14 @@ extern_methods!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(HKSampleSortIdentifierStartDate: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(HKSampleSortIdentifierEndDate: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(HKPredicateKeyPathStartDate: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(HKPredicateKeyPathEndDate: &'static NSString);

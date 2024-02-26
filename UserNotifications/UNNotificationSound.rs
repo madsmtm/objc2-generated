@@ -5,6 +5,7 @@ use crate::CoreLocation::*;
 use crate::Foundation::*;
 use crate::UserNotifications::*;
 
+#[cfg(feature = "Foundation_NSString")]
 typed_extensible_enum!(
     pub type UNNotificationSoundName = NSString;
 );
@@ -48,15 +49,19 @@ extern_methods!(
         #[method_id(@__retain_semantics Other defaultCriticalSoundWithAudioVolume:)]
         pub unsafe fn defaultCriticalSoundWithAudioVolume(volume: c_float) -> Id<Self>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other soundNamed:)]
         pub unsafe fn soundNamed(name: &UNNotificationSoundName) -> Id<Self>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other ringtoneSoundNamed:)]
         pub unsafe fn ringtoneSoundNamed(name: &UNNotificationSoundName) -> Id<Self>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other criticalSoundNamed:)]
         pub unsafe fn criticalSoundNamed(name: &UNNotificationSoundName) -> Id<Self>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other criticalSoundNamed:withAudioVolume:)]
         pub unsafe fn criticalSoundNamed_withAudioVolume(
             name: &UNNotificationSoundName,

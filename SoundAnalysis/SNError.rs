@@ -4,6 +4,7 @@ use crate::common::*;
 use crate::Foundation::*;
 use crate::SoundAnalysis::*;
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(SNErrorDomain: Option<&'static NSString>);
 
 ns_error_enum!(

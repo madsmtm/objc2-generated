@@ -4,6 +4,7 @@ use crate::common::*;
 use crate::BackgroundTasks::*;
 use crate::Foundation::*;
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(BGTaskSchedulerErrorDomain: &'static NSErrorDomain);
 
 ns_error_enum!(

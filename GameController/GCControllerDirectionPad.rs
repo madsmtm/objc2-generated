@@ -5,6 +5,7 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::GameController::*;
 
+#[cfg(feature = "GameController_GCControllerDirectionPad")]
 pub type GCControllerDirectionPadValueChangedHandler =
     *mut Block<dyn Fn(NonNull<GCControllerDirectionPad>, c_float, c_float)>;
 

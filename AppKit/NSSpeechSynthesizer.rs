@@ -5,94 +5,134 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
+#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type NSSpeechSynthesizerVoiceName = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type NSVoiceAttributeKey = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSVoiceName: &'static NSVoiceAttributeKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSVoiceIdentifier: &'static NSVoiceAttributeKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSVoiceAge: &'static NSVoiceAttributeKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSVoiceGender: &'static NSVoiceAttributeKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSVoiceDemoText: &'static NSVoiceAttributeKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSVoiceLocaleIdentifier: &'static NSVoiceAttributeKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSVoiceSupportedCharacters: &'static NSVoiceAttributeKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSVoiceIndividuallySpokenCharacters: &'static NSVoiceAttributeKey);
 
+#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type NSSpeechDictionaryKey = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSSpeechDictionaryLocaleIdentifier: &'static NSSpeechDictionaryKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSSpeechDictionaryModificationDate: &'static NSSpeechDictionaryKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSSpeechDictionaryPronunciations: &'static NSSpeechDictionaryKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSSpeechDictionaryAbbreviations: &'static NSSpeechDictionaryKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSSpeechDictionaryEntrySpelling: &'static NSSpeechDictionaryKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSSpeechDictionaryEntryPhonemes: &'static NSSpeechDictionaryKey);
 
+#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type NSVoiceGenderName = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSVoiceGenderNeuter: &'static NSVoiceGenderName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSVoiceGenderMale: &'static NSVoiceGenderName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSVoiceGenderFemale: &'static NSVoiceGenderName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSVoiceGenderNeutral: &'static NSVoiceGenderName);
 
+#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type NSSpeechPropertyKey = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSSpeechStatusProperty: &'static NSSpeechPropertyKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSSpeechErrorsProperty: &'static NSSpeechPropertyKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSSpeechInputModeProperty: &'static NSSpeechPropertyKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSSpeechCharacterModeProperty: &'static NSSpeechPropertyKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSSpeechNumberModeProperty: &'static NSSpeechPropertyKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSSpeechRateProperty: &'static NSSpeechPropertyKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSSpeechPitchBaseProperty: &'static NSSpeechPropertyKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSSpeechPitchModProperty: &'static NSSpeechPropertyKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSSpeechVolumeProperty: &'static NSSpeechPropertyKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSSpeechSynthesizerInfoProperty: &'static NSSpeechPropertyKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSSpeechRecentSyncProperty: &'static NSSpeechPropertyKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSSpeechPhonemeSymbolsProperty: &'static NSSpeechPropertyKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSSpeechCurrentVoiceProperty: &'static NSSpeechPropertyKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSSpeechCommandDelimiterProperty: &'static NSSpeechPropertyKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSSpeechResetProperty: &'static NSSpeechPropertyKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSSpeechOutputToFileURLProperty: &'static NSSpeechPropertyKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSVoiceLanguage: &'static NSVoiceAttributeKey);
 
 ns_enum!(
@@ -126,6 +166,7 @@ unsafe impl NSObjectProtocol for NSSpeechSynthesizer {}
 extern_methods!(
     #[cfg(feature = "AppKit_NSSpeechSynthesizer")]
     unsafe impl NSSpeechSynthesizer {
+        #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
         #[method_id(@__retain_semantics Init initWithVoice:)]
         pub unsafe fn initWithVoice(
@@ -174,10 +215,12 @@ extern_methods!(
             delegate: Option<&ProtocolObject<dyn NSSpeechSynthesizerDelegate>>,
         );
 
+        #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
         #[method_id(@__retain_semantics Other voice)]
         pub unsafe fn voice(&self) -> Option<Id<NSSpeechSynthesizerVoiceName>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
         #[method(setVoice:)]
         pub unsafe fn setVoice(&self, voice: Option<&NSSpeechSynthesizerVoiceName>) -> bool;
@@ -202,7 +245,7 @@ extern_methods!(
         #[method(setUsesFeedbackWindow:)]
         pub unsafe fn setUsesFeedbackWindow(&self, uses_feedback_window: bool);
 
-        #[cfg(feature = "Foundation_NSDictionary")]
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method(addSpeechDictionary:)]
         pub unsafe fn addSpeechDictionary(
             &self,
@@ -213,14 +256,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Other phonemesFromText:)]
         pub unsafe fn phonemesFromText(&self, text: &NSString) -> Id<NSString>;
 
-        #[cfg(feature = "Foundation_NSError")]
+        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other objectForProperty:error:_)]
         pub unsafe fn objectForProperty_error(
             &self,
             property: &NSSpeechPropertyKey,
         ) -> Result<Id<AnyObject>, Id<NSError>>;
 
-        #[cfg(feature = "Foundation_NSError")]
+        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
         #[method(setObject:forProperty:error:_)]
         pub unsafe fn setObject_forProperty_error(
             &self,
@@ -232,16 +275,17 @@ extern_methods!(
         #[method(isAnyApplicationSpeaking)]
         pub unsafe fn isAnyApplicationSpeaking() -> bool;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
         #[method_id(@__retain_semantics Other defaultVoice)]
         pub unsafe fn defaultVoice() -> Id<NSSpeechSynthesizerVoiceName>;
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
         #[method_id(@__retain_semantics Other availableVoices)]
         pub unsafe fn availableVoices() -> Id<NSArray<NSSpeechSynthesizerVoiceName>>;
 
-        #[cfg(feature = "Foundation_NSDictionary")]
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
         #[method_id(@__retain_semantics Other attributesForVoice:)]
         pub unsafe fn attributesForVoice(
@@ -331,70 +375,98 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn NSSpeechSynthesizerDelegate {}
 );
 
+#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type NSSpeechMode = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSSpeechModeText: &'static NSSpeechMode);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSSpeechModePhoneme: &'static NSSpeechMode);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSSpeechModeNormal: &'static NSSpeechMode);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSSpeechModeLiteral: &'static NSSpeechMode);
 
+#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type NSSpeechStatusKey = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSSpeechStatusOutputBusy: &'static NSSpeechStatusKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSSpeechStatusOutputPaused: &'static NSSpeechStatusKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSSpeechStatusNumberOfCharactersLeft: &'static NSSpeechStatusKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSSpeechStatusPhonemeCode: &'static NSSpeechStatusKey);
 
+#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type NSSpeechErrorKey = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSSpeechErrorCount: &'static NSSpeechErrorKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSSpeechErrorOldestCode: &'static NSSpeechErrorKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSSpeechErrorOldestCharacterOffset: &'static NSSpeechErrorKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSSpeechErrorNewestCode: &'static NSSpeechErrorKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSSpeechErrorNewestCharacterOffset: &'static NSSpeechErrorKey);
 
+#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type NSSpeechSynthesizerInfoKey = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSSpeechSynthesizerInfoIdentifier: &'static NSSpeechSynthesizerInfoKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSSpeechSynthesizerInfoVersion: &'static NSSpeechSynthesizerInfoKey);
 
+#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type NSSpeechPhonemeInfoKey = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSSpeechPhonemeInfoOpcode: &'static NSSpeechPhonemeInfoKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSSpeechPhonemeInfoSymbol: &'static NSSpeechPhonemeInfoKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSSpeechPhonemeInfoExample: &'static NSSpeechPhonemeInfoKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSSpeechPhonemeInfoHiliteStart: &'static NSSpeechPhonemeInfoKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSSpeechPhonemeInfoHiliteEnd: &'static NSSpeechPhonemeInfoKey);
 
+#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type NSSpeechCommandDelimiterKey = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSSpeechCommandPrefix: &'static NSSpeechCommandDelimiterKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSSpeechCommandSuffix: &'static NSSpeechCommandDelimiterKey);

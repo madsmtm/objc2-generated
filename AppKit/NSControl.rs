@@ -400,10 +400,13 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn NSControlTextEditingDelegate {}
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSControlTextDidBeginEditingNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSControlTextDidEndEditingNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSControlTextDidChangeNotification: &'static NSNotificationName);
 
 extern_methods!(

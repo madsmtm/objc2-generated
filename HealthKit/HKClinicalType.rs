@@ -6,33 +6,43 @@ use crate::Foundation::*;
 use crate::HealthKit::*;
 use crate::UniformTypeIdentifiers::*;
 
+#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type HKClinicalTypeIdentifier = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(HKClinicalTypeIdentifierAllergyRecord: &'static HKClinicalTypeIdentifier);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(HKClinicalTypeIdentifierClinicalNoteRecord: &'static HKClinicalTypeIdentifier);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(HKClinicalTypeIdentifierConditionRecord: &'static HKClinicalTypeIdentifier);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(HKClinicalTypeIdentifierImmunizationRecord: &'static HKClinicalTypeIdentifier);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(HKClinicalTypeIdentifierLabResultRecord: &'static HKClinicalTypeIdentifier);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(HKClinicalTypeIdentifierMedicationRecord: &'static HKClinicalTypeIdentifier);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(HKClinicalTypeIdentifierProcedureRecord: &'static HKClinicalTypeIdentifier);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(HKClinicalTypeIdentifierVitalSignRecord: &'static HKClinicalTypeIdentifier);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(HKClinicalTypeIdentifierCoverageRecord: &'static HKClinicalTypeIdentifier);
 
 extern_methods!(
     /// ClinicalType
     #[cfg(feature = "HealthKit_HKObjectType")]
     unsafe impl HKObjectType {
-        #[cfg(feature = "HealthKit_HKClinicalType")]
+        #[cfg(all(feature = "Foundation_NSString", feature = "HealthKit_HKClinicalType"))]
         #[method_id(@__retain_semantics Other clinicalTypeForIdentifier:)]
         pub unsafe fn clinicalTypeForIdentifier(
             identifier: &HKClinicalTypeIdentifier,

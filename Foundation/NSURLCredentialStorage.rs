@@ -200,6 +200,8 @@ extern_methods!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLCredentialStorageChangedNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLCredentialStorageRemoveSynchronizableCredentials: &'static NSString);

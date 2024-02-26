@@ -5,12 +5,15 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
+#[cfg(feature = "Foundation_NSString")]
 typed_extensible_enum!(
     pub type NSDraggingImageComponentKey = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSDraggingImageComponentIconKey: &'static NSDraggingImageComponentKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSDraggingImageComponentLabelKey: &'static NSDraggingImageComponentKey);
 
 extern_class!(
@@ -31,11 +34,13 @@ unsafe impl NSObjectProtocol for NSDraggingImageComponent {}
 extern_methods!(
     #[cfg(feature = "AppKit_NSDraggingImageComponent")]
     unsafe impl NSDraggingImageComponent {
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other draggingImageComponentWithKey:)]
         pub unsafe fn draggingImageComponentWithKey(
             key: &NSDraggingImageComponentKey,
         ) -> Id<NSDraggingImageComponent>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithKey:)]
         pub unsafe fn initWithKey(
             this: Allocated<Self>,
@@ -45,9 +50,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other key)]
         pub unsafe fn key(&self) -> Id<NSDraggingImageComponentKey>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setKey:)]
         pub unsafe fn setKey(&self, key: &NSDraggingImageComponentKey);
 

@@ -5,6 +5,7 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
+#[cfg(feature = "Foundation_NSString")]
 pub type NSCollectionViewTransitionLayoutAnimatedKey = NSString;
 
 extern_class!(
@@ -48,6 +49,7 @@ extern_methods!(
             new_layout: &NSCollectionViewLayout,
         ) -> Id<Self>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(updateValue:forAnimatedKey:)]
         pub unsafe fn updateValue_forAnimatedKey(
             &self,
@@ -55,6 +57,7 @@ extern_methods!(
             key: &NSCollectionViewTransitionLayoutAnimatedKey,
         );
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(valueForAnimatedKey:)]
         pub unsafe fn valueForAnimatedKey(
             &self,

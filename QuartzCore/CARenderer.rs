@@ -73,6 +73,8 @@ extern_methods!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(kCARendererColorSpace: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(kCARendererMetalCommandQueue: &'static NSString);

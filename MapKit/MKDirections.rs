@@ -7,8 +7,13 @@ use crate::CoreLocation::*;
 use crate::Foundation::*;
 use crate::MapKit::*;
 
+#[cfg(all(
+    feature = "Foundation_NSError",
+    feature = "MapKit_MKDirectionsResponse"
+))]
 pub type MKDirectionsHandler = *mut Block<dyn Fn(*mut MKDirectionsResponse, *mut NSError)>;
 
+#[cfg(all(feature = "Foundation_NSError", feature = "MapKit_MKETAResponse"))]
 pub type MKETAHandler = *mut Block<dyn Fn(*mut MKETAResponse, *mut NSError)>;
 
 extern_class!(
@@ -36,12 +41,17 @@ extern_methods!(
             request: &MKDirectionsRequest,
         ) -> Id<Self>;
 
+        #[cfg(all(
+            feature = "Foundation_NSError",
+            feature = "MapKit_MKDirectionsResponse"
+        ))]
         #[method(calculateDirectionsWithCompletionHandler:)]
         pub unsafe fn calculateDirectionsWithCompletionHandler(
             &self,
             completion_handler: MKDirectionsHandler,
         );
 
+        #[cfg(all(feature = "Foundation_NSError", feature = "MapKit_MKETAResponse"))]
         #[method(calculateETAWithCompletionHandler:)]
         pub unsafe fn calculateETAWithCompletionHandler(&self, completion_handler: MKETAHandler);
 

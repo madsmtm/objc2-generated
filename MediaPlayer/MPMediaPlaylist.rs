@@ -19,18 +19,25 @@ ns_options!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MPMediaPlaylistPropertyPersistentID: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MPMediaPlaylistPropertyCloudGlobalID: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MPMediaPlaylistPropertyName: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MPMediaPlaylistPropertyPlaylistAttributes: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MPMediaPlaylistPropertySeedItems: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MPMediaPlaylistPropertyDescriptionText: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MPMediaPlaylistPropertyAuthorDisplayName: &'static NSString);
 
 extern_class!(

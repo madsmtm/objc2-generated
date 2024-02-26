@@ -132,6 +132,7 @@ extern_methods!(
     /// Methods declared on superclass `NSTouchBarItem`
     #[cfg(feature = "AppKit_NSCandidateListTouchBarItem")]
     unsafe impl<CandidateType: Message> NSCandidateListTouchBarItem<CandidateType> {
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithIdentifier:)]
         pub unsafe fn initWithIdentifier(
             this: Allocated<Self>,
@@ -211,4 +212,5 @@ extern_methods!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTouchBarItemIdentifierCandidateList: &'static NSTouchBarItemIdentifier);

@@ -48,6 +48,7 @@ pub use self::__BADownloadManager::BADownloadManager;
 pub use self::__BADownloadManager::BADownloadManagerDelegate;
 pub use self::__BADownloaderExtension::BADownloaderExtension;
 pub use self::__BAError::BAErrorCode;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__BAError::BAErrorDomain;
 pub use self::__BATypes::BAContentRequest;
 #[cfg(feature = "BackgroundAssets_BAURLDownload")]

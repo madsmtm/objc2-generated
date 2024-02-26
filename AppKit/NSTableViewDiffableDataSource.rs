@@ -5,6 +5,11 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
+#[cfg(all(
+    feature = "AppKit_NSTableColumn",
+    feature = "AppKit_NSTableView",
+    feature = "AppKit_NSView"
+))]
 pub type NSTableViewDiffableDataSourceCellProvider = *mut Block<
     dyn Fn(
         NonNull<NSTableView>,
@@ -14,10 +19,12 @@ pub type NSTableViewDiffableDataSourceCellProvider = *mut Block<
     ) -> NonNull<NSView>,
 >;
 
+#[cfg(all(feature = "AppKit_NSTableRowView", feature = "AppKit_NSTableView"))]
 pub type NSTableViewDiffableDataSourceRowProvider = *mut Block<
     dyn Fn(NonNull<NSTableView>, NSInteger, NonNull<AnyObject>) -> NonNull<NSTableRowView>,
 >;
 
+#[cfg(all(feature = "AppKit_NSTableView", feature = "AppKit_NSView"))]
 pub type NSTableViewDiffableDataSourceSectionHeaderViewProvider =
     *mut Block<dyn Fn(NonNull<NSTableView>, NSInteger, NonNull<AnyObject>) -> NonNull<NSView>>;
 
@@ -68,7 +75,11 @@ extern_methods!(
     unsafe impl<SectionIdentifierType: Message, ItemIdentifierType: Message>
         NSTableViewDiffableDataSource<SectionIdentifierType, ItemIdentifierType>
     {
-        #[cfg(feature = "AppKit_NSTableView")]
+        #[cfg(all(
+            feature = "AppKit_NSTableColumn",
+            feature = "AppKit_NSTableView",
+            feature = "AppKit_NSView"
+        ))]
         #[method_id(@__retain_semantics Init initWithTableView:cellProvider:)]
         pub unsafe fn initWithTableView_cellProvider(
             this: Allocated<Self>,
@@ -124,24 +135,28 @@ extern_methods!(
             identifier: &SectionIdentifierType,
         ) -> NSInteger;
 
+        #[cfg(all(feature = "AppKit_NSTableRowView", feature = "AppKit_NSTableView"))]
         #[method(rowViewProvider)]
         pub unsafe fn rowViewProvider(
             &self,
             mtm: MainThreadMarker,
         ) -> NSTableViewDiffableDataSourceRowProvider;
 
+        #[cfg(all(feature = "AppKit_NSTableRowView", feature = "AppKit_NSTableView"))]
         #[method(setRowViewProvider:)]
         pub unsafe fn setRowViewProvider(
             &self,
             row_view_provider: NSTableViewDiffableDataSourceRowProvider,
         );
 
+        #[cfg(all(feature = "AppKit_NSTableView", feature = "AppKit_NSView"))]
         #[method(sectionHeaderViewProvider)]
         pub unsafe fn sectionHeaderViewProvider(
             &self,
             mtm: MainThreadMarker,
         ) -> NSTableViewDiffableDataSourceSectionHeaderViewProvider;
 
+        #[cfg(all(feature = "AppKit_NSTableView", feature = "AppKit_NSView"))]
         #[method(setSectionHeaderViewProvider:)]
         pub unsafe fn setSectionHeaderViewProvider(
             &self,

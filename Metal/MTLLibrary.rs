@@ -415,6 +415,7 @@ impl DefaultId for MTLCompileOptions {
     }
 }
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MTLLibraryErrorDomain: &'static NSErrorDomain);
 
 ns_enum!(

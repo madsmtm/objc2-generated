@@ -135,6 +135,7 @@ extern_methods!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(GKPlayerAuthenticationDidChangeNotificationName: &'static NSNotificationName);
 
 extern_methods!(

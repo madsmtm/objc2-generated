@@ -237,6 +237,7 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn NSColorChanging {}
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSColorPanelColorDidChangeNotification: &'static NSNotificationName);
 
 extern_static!(NSNoModeColorPanel: NSColorPanelMode = NSColorPanelMode(NSColorPanelMode::None.0));

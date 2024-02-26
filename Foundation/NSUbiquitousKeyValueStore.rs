@@ -120,10 +120,13 @@ extern_methods!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSUbiquitousKeyValueStoreDidChangeExternallyNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSUbiquitousKeyValueStoreChangeReasonKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSUbiquitousKeyValueStoreChangedKeysKey: &'static NSString);
 
 pub const NSUbiquitousKeyValueStoreServerChange: NSInteger = 0;

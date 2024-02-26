@@ -83,38 +83,54 @@ ns_options!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 typed_extensible_enum!(
     pub type NSBitmapImageRepPropertyKey = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSImageCompressionMethod: &'static NSBitmapImageRepPropertyKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSImageCompressionFactor: &'static NSBitmapImageRepPropertyKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSImageDitherTransparency: &'static NSBitmapImageRepPropertyKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSImageRGBColorTable: &'static NSBitmapImageRepPropertyKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSImageInterlaced: &'static NSBitmapImageRepPropertyKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSImageColorSyncProfileData: &'static NSBitmapImageRepPropertyKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSImageFrameCount: &'static NSBitmapImageRepPropertyKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSImageCurrentFrame: &'static NSBitmapImageRepPropertyKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSImageCurrentFrameDuration: &'static NSBitmapImageRepPropertyKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSImageLoopCount: &'static NSBitmapImageRepPropertyKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSImageGamma: &'static NSBitmapImageRepPropertyKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSImageProgressive: &'static NSBitmapImageRepPropertyKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSImageEXIFData: &'static NSBitmapImageRepPropertyKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSImageIPTCData: &'static NSBitmapImageRepPropertyKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSImageFallbackBackgroundColor: &'static NSBitmapImageRepPropertyKey);
 
 extern_class!(
@@ -152,6 +168,7 @@ extern_methods!(
             rect: NSRect,
         ) -> Option<Id<Self>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithBitmapDataPlanes:pixelsWide:pixelsHigh:bitsPerSample:samplesPerPixel:hasAlpha:isPlanar:colorSpaceName:bytesPerRow:bitsPerPixel:)]
         pub unsafe fn initWithBitmapDataPlanes_pixelsWide_pixelsHigh_bitsPerSample_samplesPerPixel_hasAlpha_isPlanar_colorSpaceName_bytesPerRow_bitsPerPixel(
             this: Allocated<Self>,
@@ -167,6 +184,7 @@ extern_methods!(
             p_bits: NSInteger,
         ) -> Option<Id<Self>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithBitmapDataPlanes:pixelsWide:pixelsHigh:bitsPerSample:samplesPerPixel:hasAlpha:isPlanar:colorSpaceName:bitmapFormat:bytesPerRow:bitsPerPixel:)]
         pub unsafe fn initWithBitmapDataPlanes_pixelsWide_pixelsHigh_bitsPerSample_samplesPerPixel_hasAlpha_isPlanar_colorSpaceName_bitmapFormat_bytesPerRow_bitsPerPixel(
             this: Allocated<Self>,
@@ -358,7 +376,8 @@ extern_methods!(
         #[cfg(all(
             feature = "Foundation_NSArray",
             feature = "Foundation_NSData",
-            feature = "Foundation_NSDictionary"
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSString"
         ))]
         #[method_id(@__retain_semantics Other representationOfImageRepsInArray:usingType:properties:)]
         pub unsafe fn representationOfImageRepsInArray_usingType_properties(
@@ -367,7 +386,11 @@ extern_methods!(
             properties: &NSDictionary<NSBitmapImageRepPropertyKey, AnyObject>,
         ) -> Option<Id<NSData>>;
 
-        #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSDictionary"))]
+        #[cfg(all(
+            feature = "Foundation_NSData",
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Other representationUsingType:properties:)]
         pub unsafe fn representationUsingType_properties(
             &self,
@@ -375,6 +398,7 @@ extern_methods!(
             properties: &NSDictionary<NSBitmapImageRepPropertyKey, AnyObject>,
         ) -> Option<Id<NSData>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setProperty:withValue:)]
         pub unsafe fn setProperty_withValue(
             &self,
@@ -382,6 +406,7 @@ extern_methods!(
             value: Option<&AnyObject>,
         );
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other valueForProperty:)]
         pub unsafe fn valueForProperty(
             &self,

@@ -15,6 +15,7 @@ ns_enum!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(ASAuthorizationAppleIDProviderCredentialRevokedNotification: &'static NSNotificationName);
 
 extern_class!(

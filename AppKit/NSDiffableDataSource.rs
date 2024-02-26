@@ -217,6 +217,12 @@ extern_methods!(
     }
 );
 
+#[cfg(all(
+    feature = "AppKit_NSCollectionView",
+    feature = "AppKit_NSView",
+    feature = "Foundation_NSIndexPath",
+    feature = "Foundation_NSString"
+))]
 pub type NSCollectionViewDiffableDataSourceSupplementaryViewProvider = *mut Block<
     dyn Fn(NonNull<NSCollectionView>, NonNull<NSString>, NonNull<NSIndexPath>) -> *mut NSView,
 >;
@@ -297,12 +303,24 @@ extern_methods!(
             identifier: &ItemIdentifierType,
         ) -> Option<Id<NSIndexPath>>;
 
+        #[cfg(all(
+            feature = "AppKit_NSCollectionView",
+            feature = "AppKit_NSView",
+            feature = "Foundation_NSIndexPath",
+            feature = "Foundation_NSString"
+        ))]
         #[method(supplementaryViewProvider)]
         pub unsafe fn supplementaryViewProvider(
             &self,
             mtm: MainThreadMarker,
         ) -> NSCollectionViewDiffableDataSourceSupplementaryViewProvider;
 
+        #[cfg(all(
+            feature = "AppKit_NSCollectionView",
+            feature = "AppKit_NSView",
+            feature = "Foundation_NSIndexPath",
+            feature = "Foundation_NSString"
+        ))]
         #[method(setSupplementaryViewProvider:)]
         pub unsafe fn setSupplementaryViewProvider(
             &self,

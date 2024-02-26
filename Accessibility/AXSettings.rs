@@ -8,10 +8,12 @@ extern_fn!(
     pub unsafe fn AXPrefersHorizontalTextLayout() -> Bool;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(AXPrefersHorizontalTextLayoutDidChangeNotification: &'static NSNotificationName);
 
 extern_fn!(
     pub unsafe fn AXAnimatedImagesEnabled() -> Bool;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(AXAnimatedImagesEnabledDidChangeNotification: &'static NSNotificationName);

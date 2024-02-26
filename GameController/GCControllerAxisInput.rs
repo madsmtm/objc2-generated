@@ -5,6 +5,7 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::GameController::*;
 
+#[cfg(feature = "GameController_GCControllerAxisInput")]
 pub type GCControllerAxisValueChangedHandler =
     *mut Block<dyn Fn(NonNull<GCControllerAxisInput>, c_float)>;
 

@@ -184,8 +184,11 @@ extern_methods!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MPMusicPlayerControllerPlaybackStateDidChangeNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MPMusicPlayerControllerNowPlayingItemDidChangeNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MPMusicPlayerControllerVolumeDidChangeNotification: &'static NSNotificationName);

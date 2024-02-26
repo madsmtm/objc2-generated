@@ -48,11 +48,11 @@ extern_methods!(
         #[method(setShouldFetchRootRecord:)]
         pub unsafe fn setShouldFetchRootRecord(&self, should_fetch_root_record: bool);
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other rootRecordDesiredKeys)]
         pub unsafe fn rootRecordDesiredKeys(&self) -> Option<Id<NSArray<CKRecordFieldKey>>>;
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method(setRootRecordDesiredKeys:)]
         pub unsafe fn setRootRecordDesiredKeys(
             &self,

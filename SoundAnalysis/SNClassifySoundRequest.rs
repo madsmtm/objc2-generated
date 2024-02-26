@@ -46,7 +46,7 @@ extern_methods!(
             ml_model: &MLModel,
         ) -> Result<Id<Self>, Id<NSError>>;
 
-        #[cfg(feature = "Foundation_NSError")]
+        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Init initWithClassifierIdentifier:error:_)]
         pub unsafe fn initWithClassifierIdentifier_error(
             this: Allocated<Self>,

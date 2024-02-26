@@ -887,6 +887,7 @@ extern_static!(NSSmallControlSize: NSControlSize = NSControlSize(NSControlSize::
 
 extern_static!(NSMiniControlSize: NSControlSize = NSControlSize(NSControlSize::Mini.0));
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSControlTintDidChangeNotification: &'static NSNotificationName);
 
 #[deprecated = "Use formatters instead"]

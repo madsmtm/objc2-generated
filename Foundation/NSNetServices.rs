@@ -3,8 +3,10 @@
 use crate::common::*;
 use crate::Foundation::*;
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSNetServicesErrorCode: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSNetServicesErrorDomain: &'static NSErrorDomain);
 
 ns_enum!(
@@ -70,7 +72,7 @@ extern_methods!(
             name: &NSString,
         ) -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSRunLoop")]
+        #[cfg(all(feature = "Foundation_NSRunLoop", feature = "Foundation_NSString"))]
         #[deprecated = "Use nw_connection_t or nw_listener_t in Network framework instead"]
         #[method(scheduleInRunLoop:forMode:)]
         pub unsafe fn scheduleInRunLoop_forMode(
@@ -79,7 +81,7 @@ extern_methods!(
             mode: &NSRunLoopMode,
         );
 
-        #[cfg(feature = "Foundation_NSRunLoop")]
+        #[cfg(all(feature = "Foundation_NSRunLoop", feature = "Foundation_NSString"))]
         #[deprecated = "Use nw_connection_t or nw_listener_t in Network framework instead"]
         #[method(removeFromRunLoop:forMode:)]
         pub unsafe fn removeFromRunLoop_forMode(
@@ -248,7 +250,7 @@ extern_methods!(
         #[method(setIncludesPeerToPeer:)]
         pub unsafe fn setIncludesPeerToPeer(&self, includes_peer_to_peer: bool);
 
-        #[cfg(feature = "Foundation_NSRunLoop")]
+        #[cfg(all(feature = "Foundation_NSRunLoop", feature = "Foundation_NSString"))]
         #[deprecated = "Use nw_browser_t in Network framework instead"]
         #[method(scheduleInRunLoop:forMode:)]
         pub unsafe fn scheduleInRunLoop_forMode(
@@ -257,7 +259,7 @@ extern_methods!(
             mode: &NSRunLoopMode,
         );
 
-        #[cfg(feature = "Foundation_NSRunLoop")]
+        #[cfg(all(feature = "Foundation_NSRunLoop", feature = "Foundation_NSString"))]
         #[deprecated = "Use nw_browser_t in Network framework instead"]
         #[method(removeFromRunLoop:forMode:)]
         pub unsafe fn removeFromRunLoop_forMode(

@@ -4,48 +4,68 @@ use crate::common::*;
 use crate::Foundation::*;
 use crate::Metal::*;
 
+#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type MTLCommonCounter = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MTLCommonCounterTimestamp: &'static MTLCommonCounter);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MTLCommonCounterTessellationInputPatches: &'static MTLCommonCounter);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MTLCommonCounterVertexInvocations: &'static MTLCommonCounter);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MTLCommonCounterPostTessellationVertexInvocations: &'static MTLCommonCounter);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MTLCommonCounterClipperInvocations: &'static MTLCommonCounter);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MTLCommonCounterClipperPrimitivesOut: &'static MTLCommonCounter);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MTLCommonCounterFragmentInvocations: &'static MTLCommonCounter);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MTLCommonCounterFragmentsPassed: &'static MTLCommonCounter);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MTLCommonCounterComputeKernelInvocations: &'static MTLCommonCounter);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MTLCommonCounterTotalCycles: &'static MTLCommonCounter);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MTLCommonCounterVertexCycles: &'static MTLCommonCounter);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MTLCommonCounterTessellationCycles: &'static MTLCommonCounter);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MTLCommonCounterPostTessellationVertexCycles: &'static MTLCommonCounter);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MTLCommonCounterFragmentCycles: &'static MTLCommonCounter);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MTLCommonCounterRenderTargetWriteCycles: &'static MTLCommonCounter);
 
+#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type MTLCommonCounterSet = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MTLCommonCounterSetTimestamp: &'static MTLCommonCounterSet);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MTLCommonCounterSetStageUtilization: &'static MTLCommonCounterSet);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MTLCommonCounterSetStatistic: &'static MTLCommonCounterSet);
 
 extern_struct!(
@@ -186,6 +206,7 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn MTLCounterSampleBuffer {}
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MTLCounterErrorDomain: &'static NSErrorDomain);
 
 ns_enum!(

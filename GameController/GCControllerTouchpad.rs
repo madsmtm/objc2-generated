@@ -17,6 +17,7 @@ ns_enum!(
     }
 );
 
+#[cfg(feature = "GameController_GCControllerTouchpad")]
 pub type GCControllerTouchpadHandler =
     *mut Block<dyn Fn(NonNull<GCControllerTouchpad>, c_float, c_float, c_float, Bool)>;
 

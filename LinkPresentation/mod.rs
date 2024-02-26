@@ -29,6 +29,7 @@ mod __LPLinkView;
 mod __LPMetadataProvider;
 
 pub use self::__LPError::LPErrorCode;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__LPError::LPErrorDomain;
 #[cfg(feature = "LinkPresentation_LPLinkMetadata")]
 pub use self::__LPLinkMetadata::LPLinkMetadata;

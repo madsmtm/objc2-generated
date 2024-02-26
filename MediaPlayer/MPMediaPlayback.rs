@@ -47,4 +47,5 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn MPMediaPlayback {}
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MPMediaPlaybackIsPreparedToPlayDidChangeNotification: Option<&'static NSString>);

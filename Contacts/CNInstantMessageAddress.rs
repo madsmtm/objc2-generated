@@ -69,26 +69,38 @@ extern_methods!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CNInstantMessageAddressUsernameKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CNInstantMessageAddressServiceKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CNInstantMessageServiceAIM: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CNInstantMessageServiceFacebook: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CNInstantMessageServiceGaduGadu: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CNInstantMessageServiceGoogleTalk: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CNInstantMessageServiceICQ: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CNInstantMessageServiceJabber: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CNInstantMessageServiceMSN: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CNInstantMessageServiceQQ: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CNInstantMessageServiceSkype: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CNInstantMessageServiceYahoo: &'static NSString);

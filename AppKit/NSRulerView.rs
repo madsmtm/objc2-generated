@@ -13,16 +13,21 @@ ns_enum!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 typed_extensible_enum!(
     pub type NSRulerViewUnitName = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSRulerViewUnitInches: &'static NSRulerViewUnitName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSRulerViewUnitCentimeters: &'static NSRulerViewUnitName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSRulerViewUnitPoints: &'static NSRulerViewUnitName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSRulerViewUnitPicas: &'static NSRulerViewUnitName);
 
 extern_class!(
@@ -136,9 +141,11 @@ extern_methods!(
             reserved_thickness_for_accessory_view: CGFloat,
         );
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other measurementUnits)]
         pub unsafe fn measurementUnits(&self) -> Id<NSRulerViewUnitName>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setMeasurementUnits:)]
         pub unsafe fn setMeasurementUnits(&self, measurement_units: &NSRulerViewUnitName);
 

@@ -6,20 +6,28 @@ use crate::Foundation::*;
 use crate::HealthKit::*;
 use crate::UniformTypeIdentifiers::*;
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(HKDevicePropertyKeyName: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(HKDevicePropertyKeyManufacturer: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(HKDevicePropertyKeyModel: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(HKDevicePropertyKeyHardwareVersion: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(HKDevicePropertyKeyFirmwareVersion: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(HKDevicePropertyKeySoftwareVersion: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(HKDevicePropertyKeyLocalIdentifier: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(HKDevicePropertyKeyUDIDeviceIdentifier: &'static NSString);
 
 extern_class!(

@@ -5,6 +5,7 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
+#[cfg(feature = "Foundation_NSString")]
 pub type NSSplitViewAutosaveName = NSString;
 
 ns_enum!(
@@ -71,9 +72,11 @@ extern_methods!(
         #[method(setDividerStyle:)]
         pub unsafe fn setDividerStyle(&self, divider_style: NSSplitViewDividerStyle);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other autosaveName)]
         pub unsafe fn autosaveName(&self) -> Option<Id<NSSplitViewAutosaveName>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setAutosaveName:)]
         pub unsafe fn setAutosaveName(&self, autosave_name: Option<&NSSplitViewAutosaveName>);
 
@@ -305,8 +308,10 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn NSSplitViewDelegate {}
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSSplitViewWillResizeSubviewsNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSSplitViewDidResizeSubviewsNotification: &'static NSNotificationName);
 
 extern_methods!(

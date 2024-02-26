@@ -132,40 +132,57 @@ ns_options!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 typed_extensible_enum!(
     pub type NSStringTransform = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSStringTransformLatinToKatakana: &'static NSStringTransform);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSStringTransformLatinToHiragana: &'static NSStringTransform);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSStringTransformLatinToHangul: &'static NSStringTransform);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSStringTransformLatinToArabic: &'static NSStringTransform);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSStringTransformLatinToHebrew: &'static NSStringTransform);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSStringTransformLatinToThai: &'static NSStringTransform);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSStringTransformLatinToCyrillic: &'static NSStringTransform);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSStringTransformLatinToGreek: &'static NSStringTransform);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSStringTransformToLatin: &'static NSStringTransform);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSStringTransformMandarinToLatin: &'static NSStringTransform);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSStringTransformHiraganaToKatakana: &'static NSStringTransform);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSStringTransformFullwidthToHalfwidth: &'static NSStringTransform);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSStringTransformToXMLHex: &'static NSStringTransform);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSStringTransformToUnicodeName: &'static NSStringTransform);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSStringTransformStripCombiningMarks: &'static NSStringTransform);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSStringTransformStripDiacritics: &'static NSStringTransform);
 
 extern_methods!(
@@ -884,22 +901,30 @@ extern_methods!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type NSStringEncodingDetectionOptionsKey = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSStringEncodingDetectionSuggestedEncodingsKey: &'static NSStringEncodingDetectionOptionsKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSStringEncodingDetectionDisallowedEncodingsKey: &'static NSStringEncodingDetectionOptionsKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSStringEncodingDetectionUseOnlySuggestedEncodingsKey: &'static NSStringEncodingDetectionOptionsKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSStringEncodingDetectionAllowLossyKey: &'static NSStringEncodingDetectionOptionsKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSStringEncodingDetectionFromWindowsKey: &'static NSStringEncodingDetectionOptionsKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSStringEncodingDetectionLossySubstitutionKey: &'static NSStringEncodingDetectionOptionsKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSStringEncodingDetectionLikelyLanguageKey: &'static NSStringEncodingDetectionOptionsKey);
 
 extern_methods!(
@@ -1042,8 +1067,10 @@ extern_methods!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSCharacterConversionException: &'static NSExceptionName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSParseErrorException: &'static NSExceptionName);
 
 extern_methods!(

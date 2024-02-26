@@ -41,7 +41,8 @@ extern_protocol!(
     pub unsafe trait NSFileProviderEnumerating: NSObjectProtocol {
         #[cfg(all(
             feature = "FileProvider_NSFileProviderRequest",
-            feature = "Foundation_NSError"
+            feature = "Foundation_NSError",
+            feature = "Foundation_NSString"
         ))]
         #[method_id(@__retain_semantics Other enumeratorForContainerItemIdentifier:request:error:_)]
         unsafe fn enumeratorForContainerItemIdentifier_request_error(
@@ -68,7 +69,8 @@ extern_protocol!(
         #[cfg(all(
             feature = "FileProvider_NSFileProviderRequest",
             feature = "Foundation_NSError",
-            feature = "Foundation_NSProgress"
+            feature = "Foundation_NSProgress",
+            feature = "Foundation_NSString"
         ))]
         #[method_id(@__retain_semantics Other itemForIdentifier:request:completionHandler:)]
         unsafe fn itemForIdentifier_request_completionHandler(
@@ -83,6 +85,7 @@ extern_protocol!(
             feature = "FileProvider_NSFileProviderRequest",
             feature = "Foundation_NSError",
             feature = "Foundation_NSProgress",
+            feature = "Foundation_NSString",
             feature = "Foundation_NSURL"
         ))]
         #[method_id(@__retain_semantics Other fetchContentsForItemWithIdentifier:version:request:completionHandler:)]
@@ -138,7 +141,8 @@ extern_protocol!(
             feature = "FileProvider_NSFileProviderItemVersion",
             feature = "FileProvider_NSFileProviderRequest",
             feature = "Foundation_NSError",
-            feature = "Foundation_NSProgress"
+            feature = "Foundation_NSProgress",
+            feature = "Foundation_NSString"
         ))]
         #[method_id(@__retain_semantics Other deleteItemWithIdentifier:baseVersion:options:request:completionHandler:)]
         unsafe fn deleteItemWithIdentifier_baseVersion_options_request_completionHandler(
@@ -179,6 +183,7 @@ extern_protocol!(
             feature = "FileProvider_NSFileProviderRequest",
             feature = "Foundation_NSError",
             feature = "Foundation_NSProgress",
+            feature = "Foundation_NSString",
             feature = "Foundation_NSURL"
         ))]
         #[method_id(@__retain_semantics Other fetchContentsForItemWithIdentifier:version:usingExistingContentsAtURL:existingVersion:request:completionHandler:)]
@@ -201,7 +206,8 @@ extern_protocol!(
         #[cfg(all(
             feature = "Foundation_NSArray",
             feature = "Foundation_NSError",
-            feature = "Foundation_NSProgress"
+            feature = "Foundation_NSProgress",
+            feature = "Foundation_NSString"
         ))]
         #[method_id(@__retain_semantics Other supportedServiceSourcesForItemIdentifier:completionHandler:)]
         unsafe fn supportedServiceSourcesForItemIdentifier_completionHandler(
@@ -222,7 +228,8 @@ extern_protocol!(
             feature = "Foundation_NSArray",
             feature = "Foundation_NSData",
             feature = "Foundation_NSError",
-            feature = "Foundation_NSProgress"
+            feature = "Foundation_NSProgress",
+            feature = "Foundation_NSString"
         ))]
         #[method_id(@__retain_semantics Other fetchThumbnailsForItemIdentifiers:requestedSize:perThumbnailCompletionHandler:completionHandler:)]
         unsafe fn fetchThumbnailsForItemIdentifiers_requestedSize_perThumbnailCompletionHandler_completionHandler(
@@ -244,7 +251,8 @@ extern_protocol!(
         #[cfg(all(
             feature = "Foundation_NSArray",
             feature = "Foundation_NSError",
-            feature = "Foundation_NSProgress"
+            feature = "Foundation_NSProgress",
+            feature = "Foundation_NSString"
         ))]
         #[method_id(@__retain_semantics Other performActionWithIdentifier:onItemsWithIdentifiers:completionHandler:)]
         unsafe fn performActionWithIdentifier_onItemsWithIdentifiers_completionHandler(
@@ -300,6 +308,7 @@ extern_protocol!(
             feature = "FileProvider_NSFileProviderRequest",
             feature = "Foundation_NSError",
             feature = "Foundation_NSProgress",
+            feature = "Foundation_NSString",
             feature = "Foundation_NSURL"
         ))]
         #[method_id(@__retain_semantics Other fetchPartialContentsForItemWithIdentifier:version:request:minimalRange:aligningTo:options:completionHandler:)]

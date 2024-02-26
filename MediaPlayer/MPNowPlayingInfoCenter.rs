@@ -79,42 +79,62 @@ extern_methods!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MPNowPlayingInfoPropertyElapsedPlaybackTime: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MPNowPlayingInfoPropertyPlaybackRate: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MPNowPlayingInfoPropertyDefaultPlaybackRate: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MPNowPlayingInfoPropertyPlaybackQueueIndex: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MPNowPlayingInfoPropertyPlaybackQueueCount: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MPNowPlayingInfoPropertyChapterNumber: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MPNowPlayingInfoPropertyChapterCount: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MPNowPlayingInfoPropertyIsLiveStream: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MPNowPlayingInfoPropertyAvailableLanguageOptions: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MPNowPlayingInfoPropertyCurrentLanguageOptions: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MPNowPlayingInfoCollectionIdentifier: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MPNowPlayingInfoPropertyExternalContentIdentifier: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MPNowPlayingInfoPropertyExternalUserProfileIdentifier: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MPNowPlayingInfoPropertyServiceIdentifier: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MPNowPlayingInfoPropertyPlaybackProgress: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MPNowPlayingInfoPropertyMediaType: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MPNowPlayingInfoPropertyAssetURL: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MPNowPlayingInfoPropertyCurrentPlaybackDate: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MPNowPlayingInfoPropertyAdTimeRanges: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MPNowPlayingInfoPropertyCreditsStartTime: &'static NSString);

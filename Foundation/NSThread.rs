@@ -151,10 +151,13 @@ impl DefaultId for NSThread {
     }
 }
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSWillBecomeMultiThreadedNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSDidBecomeSingleThreadedNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSThreadWillExitNotification: &'static NSNotificationName);
 
 extern_category!(

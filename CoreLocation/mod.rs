@@ -88,9 +88,16 @@ pub use self::__CLCircularGeographicCondition::CLCircularGeographicCondition;
 pub use self::__CLCircularRegion::CLCircularRegion;
 #[cfg(feature = "CoreLocation_CLCondition")]
 pub use self::__CLCondition::CLCondition;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__CLError::kCLErrorUserInfoAlternateRegionKey;
 pub use self::__CLError::CLError;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__CLErrorDomain::kCLErrorDomain;
+#[cfg(all(
+    feature = "CoreLocation_CLPlacemark",
+    feature = "Foundation_NSArray",
+    feature = "Foundation_NSError"
+))]
 pub use self::__CLGeocoder::CLGeocodeCompletionHandler;
 #[cfg(feature = "CoreLocation_CLGeocoder")]
 pub use self::__CLGeocoder::CLGeocoder;
@@ -133,6 +140,7 @@ pub use self::__CLLocationManager::CLDeviceOrientation;
 pub use self::__CLLocationManager::CLLocationManager;
 pub use self::__CLLocationManagerDelegate::CLLocationManagerDelegate;
 pub use self::__CLLocationPushServiceError::CLLocationPushServiceError;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__CLLocationPushServiceError::CLLocationPushServiceErrorDomain;
 pub use self::__CLLocationPushServiceExtension::CLLocationPushServiceExtension;
 pub use self::__CLLocationUpdater::CLLiveUpdateConfiguration;

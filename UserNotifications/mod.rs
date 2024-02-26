@@ -51,6 +51,7 @@ mod __UNUserNotificationCenter;
 #[cfg(feature = "Foundation_NSString")]
 pub use self::__NSString_UserNotifications::NSStringUNUserNotificationCenterSupport;
 pub use self::__UNError::UNErrorCode;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__UNError::UNErrorDomain;
 #[cfg(feature = "UserNotifications_UNNotification")]
 pub use self::__UNNotification::UNNotification;
@@ -64,9 +65,13 @@ pub use self::__UNNotificationAction::UNTextInputNotificationAction;
 pub use self::__UNNotificationActionIcon::UNNotificationActionIcon;
 #[cfg(feature = "UserNotifications_UNNotificationAttachment")]
 pub use self::__UNNotificationAttachment::UNNotificationAttachment;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__UNNotificationAttachment::UNNotificationAttachmentOptionsThumbnailClippingRectKey;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__UNNotificationAttachment::UNNotificationAttachmentOptionsThumbnailHiddenKey;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__UNNotificationAttachment::UNNotificationAttachmentOptionsThumbnailTimeKey;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__UNNotificationAttachment::UNNotificationAttachmentOptionsTypeHintKey;
 #[cfg(feature = "UserNotifications_UNNotificationCategory")]
 pub use self::__UNNotificationCategory::UNNotificationCategory;
@@ -80,7 +85,9 @@ pub use self::__UNNotificationContent::UNNotificationContentProviding;
 pub use self::__UNNotificationContent::UNNotificationInterruptionLevel;
 #[cfg(feature = "UserNotifications_UNNotificationRequest")]
 pub use self::__UNNotificationRequest::UNNotificationRequest;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__UNNotificationResponse::UNNotificationDefaultActionIdentifier;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__UNNotificationResponse::UNNotificationDismissActionIdentifier;
 #[cfg(feature = "UserNotifications_UNNotificationResponse")]
 pub use self::__UNNotificationResponse::UNNotificationResponse;
@@ -96,6 +103,7 @@ pub use self::__UNNotificationSettings::UNNotificationSettings;
 pub use self::__UNNotificationSettings::UNShowPreviewsSetting;
 #[cfg(feature = "UserNotifications_UNNotificationSound")]
 pub use self::__UNNotificationSound::UNNotificationSound;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__UNNotificationSound::UNNotificationSoundName;
 #[cfg(feature = "UserNotifications_UNCalendarNotificationTrigger")]
 pub use self::__UNNotificationTrigger::UNCalendarNotificationTrigger;

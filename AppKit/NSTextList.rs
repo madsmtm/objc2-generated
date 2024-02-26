@@ -12,42 +12,60 @@ ns_options!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 typed_extensible_enum!(
     pub type NSTextListMarkerFormat = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTextListMarkerBox: &'static NSTextListMarkerFormat);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTextListMarkerCheck: &'static NSTextListMarkerFormat);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTextListMarkerCircle: &'static NSTextListMarkerFormat);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTextListMarkerDiamond: &'static NSTextListMarkerFormat);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTextListMarkerDisc: &'static NSTextListMarkerFormat);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTextListMarkerHyphen: &'static NSTextListMarkerFormat);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTextListMarkerSquare: &'static NSTextListMarkerFormat);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTextListMarkerLowercaseHexadecimal: &'static NSTextListMarkerFormat);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTextListMarkerUppercaseHexadecimal: &'static NSTextListMarkerFormat);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTextListMarkerOctal: &'static NSTextListMarkerFormat);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTextListMarkerLowercaseAlpha: &'static NSTextListMarkerFormat);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTextListMarkerUppercaseAlpha: &'static NSTextListMarkerFormat);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTextListMarkerLowercaseLatin: &'static NSTextListMarkerFormat);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTextListMarkerUppercaseLatin: &'static NSTextListMarkerFormat);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTextListMarkerLowercaseRoman: &'static NSTextListMarkerFormat);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTextListMarkerUppercaseRoman: &'static NSTextListMarkerFormat);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTextListMarkerDecimal: &'static NSTextListMarkerFormat);
 
 extern_class!(
@@ -77,6 +95,7 @@ unsafe impl NSSecureCoding for NSTextList {}
 extern_methods!(
     #[cfg(feature = "AppKit_NSTextList")]
     unsafe impl NSTextList {
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithMarkerFormat:options:startingItemNumber:)]
         pub unsafe fn initWithMarkerFormat_options_startingItemNumber(
             this: Allocated<Self>,
@@ -85,6 +104,7 @@ extern_methods!(
             starting_item_number: NSInteger,
         ) -> Id<Self>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithMarkerFormat:options:)]
         pub unsafe fn initWithMarkerFormat_options(
             this: Allocated<Self>,
@@ -96,6 +116,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other markerFormat)]
         pub unsafe fn markerFormat(&self) -> Id<NSTextListMarkerFormat>;
 

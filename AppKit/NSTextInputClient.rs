@@ -69,7 +69,7 @@ extern_protocol!(
             actual_range: NSRangePointer,
         ) -> Option<Id<NSAttributedString>>;
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other validAttributesForMarkedText)]
         unsafe fn validAttributesForMarkedText(&self) -> Id<NSArray<NSAttributedStringKey>>;
 

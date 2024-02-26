@@ -70,8 +70,11 @@ extern_methods!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CNContainerIdentifierKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CNContainerNameKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CNContainerTypeKey: &'static NSString);

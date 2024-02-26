@@ -166,19 +166,29 @@ extern_methods!(
         #[method(setQueueName:)]
         pub unsafe fn setQueueName(&self, queue_name: Option<&NSString>);
 
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other properties)]
         pub unsafe fn properties(&self) -> Option<Id<GKMatchProperties>>;
 
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method(setProperties:)]
         pub unsafe fn setProperties(&self, properties: Option<&GKMatchProperties>);
 
-        #[cfg(all(feature = "Foundation_NSDictionary", feature = "GameKit_GKPlayer"))]
+        #[cfg(all(
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSString",
+            feature = "GameKit_GKPlayer"
+        ))]
         #[method_id(@__retain_semantics Other recipientProperties)]
         pub unsafe fn recipientProperties(
             &self,
         ) -> Option<Id<NSDictionary<GKPlayer, GKMatchProperties>>>;
 
-        #[cfg(all(feature = "Foundation_NSDictionary", feature = "GameKit_GKPlayer"))]
+        #[cfg(all(
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSString",
+            feature = "GameKit_GKPlayer"
+        ))]
         #[method(setRecipientProperties:)]
         pub unsafe fn setRecipientProperties(
             &self,
@@ -301,6 +311,7 @@ unsafe impl NSObjectProtocol for GKMatchedPlayers {}
 extern_methods!(
     #[cfg(feature = "GameKit_GKMatchedPlayers")]
     unsafe impl GKMatchedPlayers {
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other properties)]
         pub unsafe fn properties(&self) -> Option<Id<GKMatchProperties>>;
 
@@ -308,7 +319,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Other players)]
         pub unsafe fn players(&self) -> Id<NSArray<GKPlayer>>;
 
-        #[cfg(all(feature = "Foundation_NSDictionary", feature = "GameKit_GKPlayer"))]
+        #[cfg(all(
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSString",
+            feature = "GameKit_GKPlayer"
+        ))]
         #[method_id(@__retain_semantics Other playerProperties)]
         pub unsafe fn playerProperties(
             &self,

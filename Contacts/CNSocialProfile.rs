@@ -79,28 +79,41 @@ extern_methods!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CNSocialProfileURLStringKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CNSocialProfileUsernameKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CNSocialProfileUserIdentifierKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CNSocialProfileServiceKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CNSocialProfileServiceFacebook: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CNSocialProfileServiceFlickr: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CNSocialProfileServiceLinkedIn: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CNSocialProfileServiceMySpace: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CNSocialProfileServiceSinaWeibo: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CNSocialProfileServiceTencentWeibo: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CNSocialProfileServiceTwitter: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CNSocialProfileServiceYelp: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CNSocialProfileServiceGameCenter: &'static NSString);

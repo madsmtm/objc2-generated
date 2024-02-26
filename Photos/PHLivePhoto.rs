@@ -11,10 +11,13 @@ pub type PHLivePhotoRequestID = i32;
 
 extern_static!(PHLivePhotoRequestIDInvalid: PHLivePhotoRequestID = 0);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(PHLivePhotoInfoErrorKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(PHLivePhotoInfoIsDegradedKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(PHLivePhotoInfoCancelledKey: &'static NSString);
 
 extern_class!(

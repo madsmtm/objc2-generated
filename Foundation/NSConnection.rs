@@ -274,8 +274,10 @@ extern_methods!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSConnectionReplyMode: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSConnectionDidDieNotification: &'static NSString);
 
 extern_protocol!(
@@ -340,8 +342,10 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn NSConnectionDelegate {}
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFailedAuthenticationException: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSConnectionDidInitializeNotification: &'static NSString);
 
 extern_class!(

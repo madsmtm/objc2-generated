@@ -5,54 +5,77 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
+#[cfg(feature = "Foundation_NSString")]
 typed_extensible_enum!(
     pub type NSPasteboardType = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSPasteboardTypeString: &'static NSPasteboardType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSPasteboardTypePDF: &'static NSPasteboardType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSPasteboardTypeTIFF: &'static NSPasteboardType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSPasteboardTypePNG: &'static NSPasteboardType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSPasteboardTypeRTF: &'static NSPasteboardType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSPasteboardTypeRTFD: &'static NSPasteboardType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSPasteboardTypeHTML: &'static NSPasteboardType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSPasteboardTypeTabularText: &'static NSPasteboardType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSPasteboardTypeFont: &'static NSPasteboardType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSPasteboardTypeRuler: &'static NSPasteboardType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSPasteboardTypeColor: &'static NSPasteboardType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSPasteboardTypeSound: &'static NSPasteboardType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSPasteboardTypeMultipleTextSelection: &'static NSPasteboardType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSPasteboardTypeTextFinderOptions: &'static NSPasteboardType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSPasteboardTypeURL: &'static NSPasteboardType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSPasteboardTypeFileURL: &'static NSPasteboardType);
 
+#[cfg(feature = "Foundation_NSString")]
 typed_extensible_enum!(
     pub type NSPasteboardName = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSPasteboardNameGeneral: &'static NSPasteboardName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSPasteboardNameFont: &'static NSPasteboardName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSPasteboardNameRuler: &'static NSPasteboardName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSPasteboardNameFind: &'static NSPasteboardName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSPasteboardNameDrag: &'static NSPasteboardName);
 
 ns_options!(
@@ -62,12 +85,15 @@ ns_options!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type NSPasteboardReadingOptionKey = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSPasteboardURLReadingFileURLsOnlyKey: &'static NSPasteboardReadingOptionKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSPasteboardURLReadingContentsConformToTypesKey: &'static NSPasteboardReadingOptionKey);
 
 extern_class!(
@@ -91,12 +117,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Other generalPasteboard)]
         pub unsafe fn generalPasteboard() -> Id<NSPasteboard>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other pasteboardWithName:)]
         pub unsafe fn pasteboardWithName(name: &NSPasteboardName) -> Id<NSPasteboard>;
 
         #[method_id(@__retain_semantics Other pasteboardWithUniqueName)]
         pub unsafe fn pasteboardWithUniqueName() -> Id<NSPasteboard>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Id<NSPasteboardName>;
 
@@ -119,7 +147,11 @@ extern_methods!(
             objects: &NSArray<ProtocolObject<dyn NSPasteboardWriting>>,
         ) -> bool;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSDictionary"))]
+        #[cfg(all(
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Other readObjectsForClasses:options:)]
         pub unsafe fn readObjectsForClasses_options(
             &self,
@@ -145,7 +177,11 @@ extern_methods!(
             types: &NSArray<NSString>,
         ) -> bool;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSDictionary"))]
+        #[cfg(all(
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSString"
+        ))]
         #[method(canReadObjectForClasses:options:)]
         pub unsafe fn canReadObjectForClasses_options(
             &self,
@@ -153,7 +189,7 @@ extern_methods!(
             options: Option<&NSDictionary<NSPasteboardReadingOptionKey, AnyObject>>,
         ) -> bool;
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method(declareTypes:owner:)]
         pub unsafe fn declareTypes_owner(
             &self,
@@ -161,7 +197,7 @@ extern_methods!(
             new_owner: Option<&AnyObject>,
         ) -> NSInteger;
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method(addTypes:owner:)]
         pub unsafe fn addTypes_owner(
             &self,
@@ -169,18 +205,18 @@ extern_methods!(
             new_owner: Option<&AnyObject>,
         ) -> NSInteger;
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other types)]
         pub unsafe fn types(&self) -> Option<Id<NSArray<NSPasteboardType>>>;
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other availableTypeFromArray:)]
         pub unsafe fn availableTypeFromArray(
             &self,
             types: &NSArray<NSPasteboardType>,
         ) -> Option<Id<NSPasteboardType>>;
 
-        #[cfg(feature = "Foundation_NSData")]
+        #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSString"))]
         #[method(setData:forType:)]
         pub unsafe fn setData_forType(
             &self,
@@ -188,6 +224,7 @@ extern_methods!(
             data_type: &NSPasteboardType,
         ) -> bool;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setPropertyList:forType:)]
         pub unsafe fn setPropertyList_forType(
             &self,
@@ -203,10 +240,11 @@ extern_methods!(
             data_type: &NSPasteboardType,
         ) -> bool;
 
-        #[cfg(feature = "Foundation_NSData")]
+        #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other dataForType:)]
         pub unsafe fn dataForType(&self, data_type: &NSPasteboardType) -> Option<Id<NSData>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other propertyListForType:)]
         pub fn propertyListForType(&self, data_type: &NSPasteboardType) -> Option<Id<AnyObject>>;
 
@@ -232,7 +270,7 @@ extern_methods!(
     /// FilterServices
     #[cfg(feature = "AppKit_NSPasteboard")]
     unsafe impl NSPasteboard {
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other typesFilterableTo:)]
         pub unsafe fn typesFilterableTo(r#type: &NSPasteboardType)
             -> Id<NSArray<NSPasteboardType>>;
@@ -241,7 +279,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other pasteboardByFilteringFile:)]
         pub unsafe fn pasteboardByFilteringFile(filename: &NSString) -> Id<NSPasteboard>;
 
-        #[cfg(feature = "Foundation_NSData")]
+        #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other pasteboardByFilteringData:ofType:)]
         pub unsafe fn pasteboardByFilteringData_ofType(
             data: &NSData,
@@ -257,7 +295,7 @@ extern_methods!(
 
 extern_protocol!(
     pub unsafe trait NSPasteboardTypeOwner: NSObjectProtocol {
-        #[cfg(feature = "AppKit_NSPasteboard")]
+        #[cfg(all(feature = "AppKit_NSPasteboard", feature = "Foundation_NSString"))]
         #[method(pasteboard:provideDataForType:)]
         unsafe fn pasteboard_provideDataForType(
             &self,
@@ -283,14 +321,18 @@ ns_options!(
 
 extern_protocol!(
     pub unsafe trait NSPasteboardWriting: NSObjectProtocol {
-        #[cfg(all(feature = "AppKit_NSPasteboard", feature = "Foundation_NSArray"))]
+        #[cfg(all(
+            feature = "AppKit_NSPasteboard",
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Other writableTypesForPasteboard:)]
         unsafe fn writableTypesForPasteboard(
             &self,
             pasteboard: &NSPasteboard,
         ) -> Id<NSArray<NSPasteboardType>>;
 
-        #[cfg(feature = "AppKit_NSPasteboard")]
+        #[cfg(all(feature = "AppKit_NSPasteboard", feature = "Foundation_NSString"))]
         #[optional]
         #[method(writingOptionsForType:pasteboard:)]
         unsafe fn writingOptionsForType_pasteboard(
@@ -299,6 +341,7 @@ extern_protocol!(
             pasteboard: &NSPasteboard,
         ) -> NSPasteboardWritingOptions;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other pasteboardPropertyListForType:)]
         unsafe fn pasteboardPropertyListForType(
             &self,
@@ -321,13 +364,17 @@ ns_options!(
 
 extern_protocol!(
     pub unsafe trait NSPasteboardReading: NSObjectProtocol {
-        #[cfg(all(feature = "AppKit_NSPasteboard", feature = "Foundation_NSArray"))]
+        #[cfg(all(
+            feature = "AppKit_NSPasteboard",
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Other readableTypesForPasteboard:)]
         unsafe fn readableTypesForPasteboard(
             pasteboard: &NSPasteboard,
         ) -> Id<NSArray<NSPasteboardType>>;
 
-        #[cfg(feature = "AppKit_NSPasteboard")]
+        #[cfg(all(feature = "AppKit_NSPasteboard", feature = "Foundation_NSString"))]
         #[optional]
         #[method(readingOptionsForType:pasteboard:)]
         unsafe fn readingOptionsForType_pasteboard(
@@ -335,6 +382,7 @@ extern_protocol!(
             pasteboard: &NSPasteboard,
         ) -> NSPasteboardReadingOptions;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[optional]
         #[method_id(@__retain_semantics Init initWithPasteboardPropertyList:ofType:)]
         unsafe fn initWithPasteboardPropertyList_ofType(
@@ -403,6 +451,7 @@ extern_methods!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFileContentsPboardType: &'static NSPasteboardType);
 
 extern_fn!(
@@ -427,50 +476,74 @@ extern_fn!(
     ) -> *mut NSArray<NSString>;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSStringPboardType: &'static NSPasteboardType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFilenamesPboardType: &'static NSPasteboardType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTIFFPboardType: &'static NSPasteboardType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSRTFPboardType: &'static NSPasteboardType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTabularTextPboardType: &'static NSPasteboardType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFontPboardType: &'static NSPasteboardType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSRulerPboardType: &'static NSPasteboardType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSColorPboardType: &'static NSPasteboardType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSRTFDPboardType: &'static NSPasteboardType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSHTMLPboardType: &'static NSPasteboardType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLPboardType: &'static NSPasteboardType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSPDFPboardType: &'static NSPasteboardType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMultipleTextSelectionPboardType: &'static NSPasteboardType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSPostScriptPboardType: &'static NSPasteboardType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSVCardPboardType: &'static NSPasteboardType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSInkTextPboardType: &'static NSPasteboardType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFilesPromisePboardType: &'static NSPasteboardType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSPasteboardTypeFindPanelSearchOptions: &'static NSPasteboardType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSGeneralPboard: &'static NSPasteboardName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFontPboard: &'static NSPasteboardName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSRulerPboard: &'static NSPasteboardName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFindPboard: &'static NSPasteboardName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSDragPboard: &'static NSPasteboardName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSPICTPboardType: &'static NSPasteboardType);

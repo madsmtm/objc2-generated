@@ -6,55 +6,76 @@ use crate::Foundation::*;
 use crate::Metal::*;
 use crate::MetalKit::*;
 
+#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type MTKTextureLoaderError = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MTKTextureLoaderErrorDomain: &'static MTKTextureLoaderError);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MTKTextureLoaderErrorKey: &'static MTKTextureLoaderError);
 
+#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type MTKTextureLoaderOption = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MTKTextureLoaderOptionAllocateMipmaps: &'static MTKTextureLoaderOption);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MTKTextureLoaderOptionGenerateMipmaps: &'static MTKTextureLoaderOption);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MTKTextureLoaderOptionSRGB: &'static MTKTextureLoaderOption);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MTKTextureLoaderOptionTextureUsage: &'static MTKTextureLoaderOption);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MTKTextureLoaderOptionTextureCPUCacheMode: &'static MTKTextureLoaderOption);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MTKTextureLoaderOptionTextureStorageMode: &'static MTKTextureLoaderOption);
 
+#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type MTKTextureLoaderCubeLayout = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MTKTextureLoaderOptionCubeLayout: &'static MTKTextureLoaderOption);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MTKTextureLoaderCubeLayoutVertical: &'static MTKTextureLoaderCubeLayout);
 
+#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type MTKTextureLoaderOrigin = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MTKTextureLoaderOptionOrigin: &'static MTKTextureLoaderOption);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MTKTextureLoaderOriginTopLeft: &'static MTKTextureLoaderOrigin);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MTKTextureLoaderOriginBottomLeft: &'static MTKTextureLoaderOrigin);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MTKTextureLoaderOriginFlippedVertically: &'static MTKTextureLoaderOrigin);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MTKTextureLoaderOptionLoadAsArray: &'static MTKTextureLoaderOption);
 
+#[cfg(feature = "Foundation_NSError")]
 pub type MTKTextureLoaderCallback =
     *mut Block<dyn Fn(*mut ProtocolObject<dyn MTLTexture>, *mut NSError)>;
 
+#[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSError"))]
 pub type MTKTextureLoaderArrayCallback =
     *mut Block<dyn Fn(NonNull<NSArray<ProtocolObject<dyn MTLTexture>>>, *mut NSError)>;
 
@@ -88,7 +109,12 @@ extern_methods!(
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Id<Self>;
 
-        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSURL"))]
+        #[cfg(all(
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSError",
+            feature = "Foundation_NSString",
+            feature = "Foundation_NSURL"
+        ))]
         #[method(newTextureWithContentsOfURL:options:completionHandler:)]
         pub unsafe fn newTextureWithContentsOfURL_options_completionHandler(
             &self,
@@ -100,6 +126,7 @@ extern_methods!(
         #[cfg(all(
             feature = "Foundation_NSBundle",
             feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSError",
             feature = "Foundation_NSString"
         ))]
         #[method(newTextureWithName:scaleFactor:bundle:options:completionHandler:)]
@@ -115,6 +142,7 @@ extern_methods!(
         #[cfg(all(
             feature = "Foundation_NSBundle",
             feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSError",
             feature = "Foundation_NSString"
         ))]
         #[method(newTextureWithName:scaleFactor:displayGamut:bundle:options:completionHandler:)]
@@ -131,6 +159,8 @@ extern_methods!(
         #[cfg(all(
             feature = "Foundation_NSArray",
             feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSError",
+            feature = "Foundation_NSString",
             feature = "Foundation_NSURL"
         ))]
         #[method(newTexturesWithContentsOfURLs:options:completionHandler:)]
@@ -145,6 +175,7 @@ extern_methods!(
             feature = "Foundation_NSArray",
             feature = "Foundation_NSBundle",
             feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSError",
             feature = "Foundation_NSString"
         ))]
         #[method(newTexturesWithNames:scaleFactor:bundle:options:completionHandler:)]
@@ -161,6 +192,7 @@ extern_methods!(
             feature = "Foundation_NSArray",
             feature = "Foundation_NSBundle",
             feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSError",
             feature = "Foundation_NSString"
         ))]
         #[method(newTexturesWithNames:scaleFactor:displayGamut:bundle:options:completionHandler:)]
@@ -174,7 +206,12 @@ extern_methods!(
             completion_handler: MTKTextureLoaderArrayCallback,
         );
 
-        #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSDictionary"))]
+        #[cfg(all(
+            feature = "Foundation_NSData",
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSError",
+            feature = "Foundation_NSString"
+        ))]
         #[method(newTextureWithData:options:completionHandler:)]
         pub unsafe fn newTextureWithData_options_completionHandler(
             &self,
@@ -183,7 +220,12 @@ extern_methods!(
             completion_handler: MTKTextureLoaderCallback,
         );
 
-        #[cfg(all(feature = "Foundation_NSDictionary", feature = "ModelIO_MDLTexture"))]
+        #[cfg(all(
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSError",
+            feature = "Foundation_NSString",
+            feature = "ModelIO_MDLTexture"
+        ))]
         #[method(newTextureWithMDLTexture:options:completionHandler:)]
         pub unsafe fn newTextureWithMDLTexture_options_completionHandler(
             &self,
@@ -195,6 +237,7 @@ extern_methods!(
         #[cfg(all(
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSError",
+            feature = "Foundation_NSString",
             feature = "Foundation_NSURL"
         ))]
         #[method_id(@__retain_semantics New newTextureWithContentsOfURL:options:error:_)]
@@ -207,7 +250,8 @@ extern_methods!(
         #[cfg(all(
             feature = "Foundation_NSData",
             feature = "Foundation_NSDictionary",
-            feature = "Foundation_NSError"
+            feature = "Foundation_NSError",
+            feature = "Foundation_NSString"
         ))]
         #[method_id(@__retain_semantics New newTextureWithData:options:error:_)]
         pub unsafe fn newTextureWithData_options_error(
@@ -219,6 +263,7 @@ extern_methods!(
         #[cfg(all(
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSError",
+            feature = "Foundation_NSString",
             feature = "ModelIO_MDLTexture"
         ))]
         #[method_id(@__retain_semantics New newTextureWithMDLTexture:options:error:_)]

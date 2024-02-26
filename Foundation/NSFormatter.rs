@@ -63,7 +63,8 @@ extern_methods!(
 
         #[cfg(all(
             feature = "Foundation_NSAttributedString",
-            feature = "Foundation_NSDictionary"
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSString"
         ))]
         #[method_id(@__retain_semantics Other attributedStringForObjectValue:withDefaultAttributes:)]
         pub unsafe fn attributedStringForObjectValue_withDefaultAttributes(

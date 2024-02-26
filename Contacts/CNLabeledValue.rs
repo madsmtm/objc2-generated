@@ -102,16 +102,23 @@ extern_methods!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CNLabelHome: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CNLabelWork: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CNLabelSchool: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CNLabelOther: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CNLabelEmailiCloud: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CNLabelURLAddressHomePage: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CNLabelDateAnniversary: &'static NSString);

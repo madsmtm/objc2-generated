@@ -45,11 +45,11 @@ extern_methods!(
         #[method(setRecordIDs:)]
         pub unsafe fn setRecordIDs(&self, record_i_ds: Option<&NSArray<CKRecordID>>);
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other desiredKeys)]
         pub unsafe fn desiredKeys(&self) -> Option<Id<NSArray<CKRecordFieldKey>>>;
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method(setDesiredKeys:)]
         pub unsafe fn setDesiredKeys(&self, desired_keys: Option<&NSArray<CKRecordFieldKey>>);
 

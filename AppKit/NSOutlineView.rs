@@ -842,22 +842,32 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn NSOutlineViewDelegate {}
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSOutlineViewDisclosureButtonKey: &'static NSUserInterfaceItemIdentifier);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSOutlineViewShowHideButtonKey: &'static NSUserInterfaceItemIdentifier);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSOutlineViewSelectionDidChangeNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSOutlineViewColumnDidMoveNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSOutlineViewColumnDidResizeNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSOutlineViewSelectionIsChangingNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSOutlineViewItemWillExpandNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSOutlineViewItemDidExpandNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSOutlineViewItemWillCollapseNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSOutlineViewItemDidCollapseNotification: &'static NSNotificationName);

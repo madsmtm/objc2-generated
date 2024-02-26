@@ -52,6 +52,7 @@ extern_methods!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MEComposeSessionErrorDomain: &'static NSErrorDomain);
 
 ns_error_enum!(

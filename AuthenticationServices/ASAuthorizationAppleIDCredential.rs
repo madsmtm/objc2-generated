@@ -55,7 +55,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other state)]
         pub unsafe fn state(&self) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other authorizedScopes)]
         pub unsafe fn authorizedScopes(&self) -> Id<NSArray<ASAuthorizationScope>>;
 

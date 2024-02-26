@@ -5,18 +5,25 @@ use crate::CloudKit::*;
 use crate::CoreLocation::*;
 use crate::Foundation::*;
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CKErrorDomain: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CKPartialErrorsByItemIDKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CKRecordChangedErrorAncestorRecordKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CKRecordChangedErrorServerRecordKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CKRecordChangedErrorClientRecordKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CKErrorUserDidResetEncryptedDataKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CKErrorRetryAfterKey: &'static NSString);
 
 ns_enum!(

@@ -204,7 +204,11 @@ extern_methods!(
         #[method(itemAtURL:didMoveToURL:)]
         pub unsafe fn itemAtURL_didMoveToURL(&self, old_url: &NSURL, new_url: &NSURL);
 
-        #[cfg(all(feature = "Foundation_NSSet", feature = "Foundation_NSURL"))]
+        #[cfg(all(
+            feature = "Foundation_NSSet",
+            feature = "Foundation_NSString",
+            feature = "Foundation_NSURL"
+        ))]
         #[method(itemAtURL:didChangeUbiquityAttributes:)]
         pub unsafe fn itemAtURL_didChangeUbiquityAttributes(
             &self,

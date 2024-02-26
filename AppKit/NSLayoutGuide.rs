@@ -40,9 +40,11 @@ extern_methods!(
         #[method(setOwningView:)]
         pub unsafe fn setOwningView(&self, owning_view: Option<&NSView>);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other identifier)]
         pub unsafe fn identifier(&self) -> Id<NSUserInterfaceItemIdentifier>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setIdentifier:)]
         pub unsafe fn setIdentifier(&self, identifier: &NSUserInterfaceItemIdentifier);
 

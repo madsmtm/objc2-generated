@@ -5,6 +5,7 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
+#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type NSImageHintKey = NSString;
 );
@@ -63,7 +64,7 @@ extern_methods!(
         #[method(drawInRect:)]
         pub unsafe fn drawInRect(&self, rect: NSRect) -> bool;
 
-        #[cfg(feature = "Foundation_NSDictionary")]
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method(drawInRect:fromRect:operation:fraction:respectFlipped:hints:)]
         pub unsafe fn drawInRect_fromRect_operation_fraction_respectFlipped_hints(
             &self,
@@ -93,9 +94,11 @@ extern_methods!(
         #[method(setOpaque:)]
         pub unsafe fn setOpaque(&self, opaque: bool);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other colorSpaceName)]
         pub unsafe fn colorSpaceName(&self) -> Id<NSColorSpaceName>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setColorSpaceName:)]
         pub unsafe fn setColorSpaceName(&self, color_space_name: &NSColorSpaceName);
 
@@ -138,6 +141,7 @@ extern_methods!(
         #[method(imageRepClassForFileType:)]
         pub unsafe fn imageRepClassForFileType(r#type: &NSString) -> Option<&'static AnyClass>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "Use +imageRepClassForType: instead"]
         #[method(imageRepClassForPasteboardType:)]
         pub unsafe fn imageRepClassForPasteboardType(
@@ -161,7 +165,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other imageUnfilteredFileTypes)]
         pub unsafe fn imageUnfilteredFileTypes() -> Id<NSArray<NSString>>;
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[deprecated = "Use +imageUnfilteredTypes instead"]
         #[method_id(@__retain_semantics Other imageUnfilteredPasteboardTypes)]
         pub unsafe fn imageUnfilteredPasteboardTypes() -> Id<NSArray<NSPasteboardType>>;
@@ -171,7 +175,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other imageFileTypes)]
         pub unsafe fn imageFileTypes() -> Id<NSArray<NSString>>;
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[deprecated = "Use +imageTypes instead"]
         #[method_id(@__retain_semantics Other imagePasteboardTypes)]
         pub unsafe fn imagePasteboardTypes() -> Id<NSArray<NSPasteboardType>>;
@@ -227,4 +231,5 @@ extern_methods!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSImageRepRegistryDidChangeNotification: &'static NSNotificationName);

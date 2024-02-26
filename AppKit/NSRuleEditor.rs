@@ -5,22 +5,30 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
+#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type NSRuleEditorPredicatePartKey = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSRuleEditorPredicateLeftExpression: &'static NSRuleEditorPredicatePartKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSRuleEditorPredicateRightExpression: &'static NSRuleEditorPredicatePartKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSRuleEditorPredicateComparisonModifier: &'static NSRuleEditorPredicatePartKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSRuleEditorPredicateOptions: &'static NSRuleEditorPredicatePartKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSRuleEditorPredicateOperatorType: &'static NSRuleEditorPredicatePartKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSRuleEditorPredicateCustomSelector: &'static NSRuleEditorPredicatePartKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSRuleEditorPredicateCompoundType: &'static NSRuleEditorPredicatePartKey);
 
 ns_enum!(
@@ -325,7 +333,11 @@ extern_protocol!(
             row: NSInteger,
         ) -> Id<AnyObject>;
 
-        #[cfg(all(feature = "AppKit_NSRuleEditor", feature = "Foundation_NSDictionary"))]
+        #[cfg(all(
+            feature = "AppKit_NSRuleEditor",
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSString"
+        ))]
         #[optional]
         #[method_id(@__retain_semantics Other ruleEditor:predicatePartsForCriterion:withDisplayValue:inRow:)]
         unsafe fn ruleEditor_predicatePartsForCriterion_withDisplayValue_inRow(
@@ -345,4 +357,5 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn NSRuleEditorDelegate {}
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSRuleEditorRowsDidChangeNotification: &'static NSNotificationName);

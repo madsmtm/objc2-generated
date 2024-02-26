@@ -427,9 +427,11 @@ extern_protocol!(
             accessibility_visible_children: Option<&NSArray>,
         );
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other accessibilitySubrole)]
         unsafe fn accessibilitySubrole(&self) -> Option<Id<NSAccessibilitySubrole>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setAccessibilitySubrole:)]
         unsafe fn setAccessibilitySubrole(
             &self,
@@ -510,9 +512,11 @@ extern_protocol!(
             accessibility_previous_contents: Option<&NSArray>,
         );
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other accessibilityRole)]
         unsafe fn accessibilityRole(&self) -> Option<Id<NSAccessibilityRole>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setAccessibilityRole:)]
         unsafe fn setAccessibilityRole(&self, accessibility_role: Option<&NSAccessibilityRole>);
 

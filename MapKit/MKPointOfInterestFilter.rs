@@ -40,23 +40,25 @@ extern_methods!(
         #[method_id(@__retain_semantics Other filterExcludingAllCategories)]
         pub unsafe fn filterExcludingAllCategories() -> Id<MKPointOfInterestFilter>;
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Init initIncludingCategories:)]
         pub unsafe fn initIncludingCategories(
             this: Allocated<Self>,
             categories: &NSArray<MKPointOfInterestCategory>,
         ) -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Init initExcludingCategories:)]
         pub unsafe fn initExcludingCategories(
             this: Allocated<Self>,
             categories: &NSArray<MKPointOfInterestCategory>,
         ) -> Id<Self>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(includesCategory:)]
         pub unsafe fn includesCategory(&self, category: &MKPointOfInterestCategory) -> bool;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(excludesCategory:)]
         pub unsafe fn excludesCategory(&self, category: &MKPointOfInterestCategory) -> bool;
     }

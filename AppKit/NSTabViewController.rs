@@ -152,7 +152,11 @@ extern_methods!(
             tab_view_item: Option<&NSTabViewItem>,
         ) -> bool;
 
-        #[cfg(all(feature = "AppKit_NSToolbar", feature = "AppKit_NSToolbarItem"))]
+        #[cfg(all(
+            feature = "AppKit_NSToolbar",
+            feature = "AppKit_NSToolbarItem",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Other toolbar:itemForItemIdentifier:willBeInsertedIntoToolbar:)]
         pub unsafe fn toolbar_itemForItemIdentifier_willBeInsertedIntoToolbar(
             &self,
@@ -161,21 +165,33 @@ extern_methods!(
             flag: bool,
         ) -> Option<Id<NSToolbarItem>>;
 
-        #[cfg(all(feature = "AppKit_NSToolbar", feature = "Foundation_NSArray"))]
+        #[cfg(all(
+            feature = "AppKit_NSToolbar",
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Other toolbarDefaultItemIdentifiers:)]
         pub unsafe fn toolbarDefaultItemIdentifiers(
             &self,
             toolbar: &NSToolbar,
         ) -> Id<NSArray<NSToolbarItemIdentifier>>;
 
-        #[cfg(all(feature = "AppKit_NSToolbar", feature = "Foundation_NSArray"))]
+        #[cfg(all(
+            feature = "AppKit_NSToolbar",
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Other toolbarAllowedItemIdentifiers:)]
         pub unsafe fn toolbarAllowedItemIdentifiers(
             &self,
             toolbar: &NSToolbar,
         ) -> Id<NSArray<NSToolbarItemIdentifier>>;
 
-        #[cfg(all(feature = "AppKit_NSToolbar", feature = "Foundation_NSArray"))]
+        #[cfg(all(
+            feature = "AppKit_NSToolbar",
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Other toolbarSelectableItemIdentifiers:)]
         pub unsafe fn toolbarSelectableItemIdentifiers(
             &self,
@@ -188,7 +204,7 @@ extern_methods!(
     /// Methods declared on superclass `NSViewController`
     #[cfg(feature = "AppKit_NSTabViewController")]
     unsafe impl NSTabViewController {
-        #[cfg(feature = "Foundation_NSBundle")]
+        #[cfg(all(feature = "Foundation_NSBundle", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Init initWithNibName:bundle:)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,

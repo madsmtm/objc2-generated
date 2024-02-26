@@ -3,326 +3,480 @@
 use crate::common::*;
 use crate::Foundation::*;
 
+#[cfg(feature = "Foundation_NSString")]
 typed_extensible_enum!(
     pub type NSURLResourceKey = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLFileScheme: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLKeysOfUnsetValuesKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLNameKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLLocalizedNameKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLIsRegularFileKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLIsDirectoryKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLIsSymbolicLinkKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLIsVolumeKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLIsPackageKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLIsApplicationKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLApplicationIsScriptableKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLIsSystemImmutableKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLIsUserImmutableKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLIsHiddenKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLHasHiddenExtensionKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLCreationDateKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLContentAccessDateKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLContentModificationDateKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLAttributeModificationDateKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLLinkCountKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLParentDirectoryURLKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLVolumeURLKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLTypeIdentifierKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLContentTypeKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLLocalizedTypeDescriptionKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLLabelNumberKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLLabelColorKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLLocalizedLabelKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLEffectiveIconKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLCustomIconKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLFileResourceIdentifierKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLVolumeIdentifierKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLPreferredIOBlockSizeKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLIsReadableKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLIsWritableKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLIsExecutableKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLFileSecurityKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLIsExcludedFromBackupKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLTagNamesKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLPathKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLCanonicalPathKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLIsMountTriggerKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLGenerationIdentifierKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLDocumentIdentifierKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLAddedToDirectoryDateKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLQuarantinePropertiesKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLFileResourceTypeKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLFileIdentifierKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLFileContentIdentifierKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLMayShareFileContentKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLMayHaveExtendedAttributesKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLIsPurgeableKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLIsSparseKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type NSURLFileResourceType = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLFileResourceTypeNamedPipe: &'static NSURLFileResourceType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLFileResourceTypeCharacterSpecial: &'static NSURLFileResourceType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLFileResourceTypeDirectory: &'static NSURLFileResourceType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLFileResourceTypeBlockSpecial: &'static NSURLFileResourceType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLFileResourceTypeRegular: &'static NSURLFileResourceType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLFileResourceTypeSymbolicLink: &'static NSURLFileResourceType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLFileResourceTypeSocket: &'static NSURLFileResourceType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLFileResourceTypeUnknown: &'static NSURLFileResourceType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLThumbnailDictionaryKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLThumbnailKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 typed_extensible_enum!(
     pub type NSURLThumbnailDictionaryItem = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSThumbnail1024x1024SizeKey: &'static NSURLThumbnailDictionaryItem);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLFileSizeKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLFileAllocatedSizeKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLTotalFileSizeKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLTotalFileAllocatedSizeKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLIsAliasFileKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLFileProtectionKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type NSURLFileProtectionType = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLFileProtectionNone: &'static NSURLFileProtectionType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLFileProtectionComplete: &'static NSURLFileProtectionType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLFileProtectionCompleteUnlessOpen: &'static NSURLFileProtectionType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLFileProtectionCompleteUntilFirstUserAuthentication: &'static NSURLFileProtectionType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLFileProtectionCompleteWhenUserInactive: &'static NSURLFileProtectionType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLDirectoryEntryCountKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLVolumeLocalizedFormatDescriptionKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLVolumeTotalCapacityKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLVolumeAvailableCapacityKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLVolumeResourceCountKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLVolumeSupportsPersistentIDsKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLVolumeSupportsSymbolicLinksKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLVolumeSupportsHardLinksKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLVolumeSupportsJournalingKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLVolumeIsJournalingKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLVolumeSupportsSparseFilesKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLVolumeSupportsZeroRunsKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLVolumeSupportsCaseSensitiveNamesKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLVolumeSupportsCasePreservedNamesKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLVolumeSupportsRootDirectoryDatesKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLVolumeSupportsVolumeSizesKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLVolumeSupportsRenamingKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLVolumeSupportsAdvisoryFileLockingKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLVolumeSupportsExtendedSecurityKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLVolumeIsBrowsableKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLVolumeMaximumFileSizeKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLVolumeIsEjectableKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLVolumeIsRemovableKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLVolumeIsInternalKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLVolumeIsAutomountedKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLVolumeIsLocalKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLVolumeIsReadOnlyKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLVolumeCreationDateKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLVolumeURLForRemountingKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLVolumeUUIDStringKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLVolumeNameKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLVolumeLocalizedNameKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLVolumeIsEncryptedKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLVolumeIsRootFileSystemKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLVolumeSupportsCompressionKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLVolumeSupportsFileCloningKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLVolumeSupportsSwapRenamingKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLVolumeSupportsExclusiveRenamingKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLVolumeSupportsImmutableFilesKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLVolumeSupportsAccessPermissionsKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLVolumeSupportsFileProtectionKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLVolumeAvailableCapacityForImportantUsageKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLVolumeAvailableCapacityForOpportunisticUsageKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLVolumeTypeNameKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLVolumeSubtypeKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLVolumeMountFromLocationKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLIsUbiquitousItemKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLUbiquitousItemHasUnresolvedConflictsKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLUbiquitousItemIsDownloadedKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLUbiquitousItemIsDownloadingKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLUbiquitousItemIsUploadedKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLUbiquitousItemIsUploadingKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLUbiquitousItemPercentDownloadedKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLUbiquitousItemPercentUploadedKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLUbiquitousItemDownloadingStatusKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLUbiquitousItemDownloadingErrorKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLUbiquitousItemUploadingErrorKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLUbiquitousItemDownloadRequestedKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLUbiquitousItemContainerDisplayNameKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLUbiquitousItemIsExcludedFromSyncKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLUbiquitousItemIsSharedKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLUbiquitousSharedItemCurrentUserRoleKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLUbiquitousSharedItemCurrentUserPermissionsKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLUbiquitousSharedItemOwnerNameComponentsKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLUbiquitousSharedItemMostRecentEditorNameComponentsKey: &'static NSURLResourceKey);
 
+#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type NSURLUbiquitousItemDownloadingStatus = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLUbiquitousItemDownloadingStatusNotDownloaded: &'static NSURLUbiquitousItemDownloadingStatus);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLUbiquitousItemDownloadingStatusDownloaded: &'static NSURLUbiquitousItemDownloadingStatus);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLUbiquitousItemDownloadingStatusCurrent: &'static NSURLUbiquitousItemDownloadingStatus);
 
+#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type NSURLUbiquitousSharedItemRole = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLUbiquitousSharedItemRoleOwner: &'static NSURLUbiquitousSharedItemRole);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLUbiquitousSharedItemRoleParticipant: &'static NSURLUbiquitousSharedItemRole);
 
+#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type NSURLUbiquitousSharedItemPermissions = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLUbiquitousSharedItemPermissionsReadOnly: &'static NSURLUbiquitousSharedItemPermissions);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLUbiquitousSharedItemPermissionsReadWrite: &'static NSURLUbiquitousSharedItemPermissions);
 
 ns_options!(
@@ -622,7 +776,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other filePathURL)]
         pub unsafe fn filePathURL(&self) -> Option<Id<NSURL>>;
 
-        #[cfg(feature = "Foundation_NSError")]
+        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
         #[method(getResourceValue:forKey:error:_)]
         pub unsafe fn getResourceValue_forKey_error(
             &self,
@@ -633,7 +787,8 @@ extern_methods!(
         #[cfg(all(
             feature = "Foundation_NSArray",
             feature = "Foundation_NSDictionary",
-            feature = "Foundation_NSError"
+            feature = "Foundation_NSError",
+            feature = "Foundation_NSString"
         ))]
         #[method_id(@__retain_semantics Other resourceValuesForKeys:error:_)]
         pub unsafe fn resourceValuesForKeys_error(
@@ -641,7 +796,7 @@ extern_methods!(
             keys: &NSArray<NSURLResourceKey>,
         ) -> Result<Id<NSDictionary<NSURLResourceKey, AnyObject>>, Id<NSError>>;
 
-        #[cfg(feature = "Foundation_NSError")]
+        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
         #[method(setResourceValue:forKey:error:_)]
         pub unsafe fn setResourceValue_forKey_error(
             &self,
@@ -649,19 +804,25 @@ extern_methods!(
             key: &NSURLResourceKey,
         ) -> Result<(), Id<NSError>>;
 
-        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSError"))]
+        #[cfg(all(
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSError",
+            feature = "Foundation_NSString"
+        ))]
         #[method(setResourceValues:error:_)]
         pub unsafe fn setResourceValues_error(
             &self,
             keyed_values: &NSDictionary<NSURLResourceKey, AnyObject>,
         ) -> Result<(), Id<NSError>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(removeCachedResourceValueForKey:)]
         pub unsafe fn removeCachedResourceValueForKey(&self, key: &NSURLResourceKey);
 
         #[method(removeAllCachedResourceValues)]
         pub unsafe fn removeAllCachedResourceValues(&self);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setTemporaryResourceValue:forKey:)]
         pub unsafe fn setTemporaryResourceValue_forKey(
             &self,
@@ -672,7 +833,8 @@ extern_methods!(
         #[cfg(all(
             feature = "Foundation_NSArray",
             feature = "Foundation_NSData",
-            feature = "Foundation_NSError"
+            feature = "Foundation_NSError",
+            feature = "Foundation_NSString"
         ))]
         #[method_id(@__retain_semantics Other bookmarkDataWithOptions:includingResourceValuesForKeys:relativeToURL:error:_)]
         pub unsafe fn bookmarkDataWithOptions_includingResourceValuesForKeys_relativeToURL_error(
@@ -704,7 +866,8 @@ extern_methods!(
         #[cfg(all(
             feature = "Foundation_NSArray",
             feature = "Foundation_NSData",
-            feature = "Foundation_NSDictionary"
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSString"
         ))]
         #[method_id(@__retain_semantics Other resourceValuesForKeys:fromBookmarkData:)]
         pub unsafe fn resourceValuesForKeys_fromBookmarkData(
@@ -757,7 +920,7 @@ extern_methods!(
     /// NSPromisedItems
     #[cfg(feature = "Foundation_NSURL")]
     unsafe impl NSURL {
-        #[cfg(feature = "Foundation_NSError")]
+        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
         #[method(getPromisedItemResourceValue:forKey:error:_)]
         pub unsafe fn getPromisedItemResourceValue_forKey_error(
             &self,
@@ -768,7 +931,8 @@ extern_methods!(
         #[cfg(all(
             feature = "Foundation_NSArray",
             feature = "Foundation_NSDictionary",
-            feature = "Foundation_NSError"
+            feature = "Foundation_NSError",
+            feature = "Foundation_NSString"
         ))]
         #[method_id(@__retain_semantics Other promisedItemResourceValuesForKeys:error:_)]
         pub unsafe fn promisedItemResourceValuesForKeys_error(

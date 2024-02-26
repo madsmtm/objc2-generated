@@ -141,7 +141,7 @@ extern_methods!(
             line_origin: NSPoint,
         );
 
-        #[cfg(feature = "Foundation_NSDictionary")]
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other attributesForExtraLineFragment)]
         pub unsafe fn attributesForExtraLineFragment(
             &self,

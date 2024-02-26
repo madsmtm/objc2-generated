@@ -555,7 +555,7 @@ extern_methods!(
         #[method(printDocument:)]
         pub unsafe fn printDocument(&self, sender: Option<&AnyObject>);
 
-        #[cfg(feature = "Foundation_NSDictionary")]
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method(printDocumentWithSettings:showPrintPanel:delegate:didPrintSelector:contextInfo:)]
         pub unsafe fn printDocumentWithSettings_showPrintPanel_delegate_didPrintSelector_contextInfo(
             &self,
@@ -569,7 +569,8 @@ extern_methods!(
         #[cfg(all(
             feature = "AppKit_NSPrintOperation",
             feature = "Foundation_NSDictionary",
-            feature = "Foundation_NSError"
+            feature = "Foundation_NSError",
+            feature = "Foundation_NSString"
         ))]
         #[method_id(@__retain_semantics Other printOperationWithSettings:error:_)]
         pub unsafe fn printOperationWithSettings_error(
@@ -689,6 +690,7 @@ extern_methods!(
         #[method(makeWindowControllers)]
         pub unsafe fn makeWindowControllers(&self);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other windowNibName)]
         pub unsafe fn windowNibName(&self) -> Option<Id<NSNibName>>;
 
@@ -781,7 +783,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other presentedItemURL)]
         pub unsafe fn presentedItemURL(&self) -> Option<Id<NSURL>>;
 
-        #[cfg(feature = "Foundation_NSSet")]
+        #[cfg(all(feature = "Foundation_NSSet", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other observedPresentedItemUbiquityAttributes)]
         pub unsafe fn observedPresentedItemUbiquityAttributes(&self)
             -> Id<NSSet<NSURLResourceKey>>;
@@ -819,7 +821,7 @@ extern_methods!(
         #[method(presentedItemDidChange)]
         pub unsafe fn presentedItemDidChange(&self);
 
-        #[cfg(feature = "Foundation_NSSet")]
+        #[cfg(all(feature = "Foundation_NSSet", feature = "Foundation_NSString"))]
         #[method(presentedItemDidChangeUbiquityAttributes:)]
         pub unsafe fn presentedItemDidChangeUbiquityAttributes(
             &self,

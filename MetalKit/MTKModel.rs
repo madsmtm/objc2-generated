@@ -6,12 +6,15 @@ use crate::Foundation::*;
 use crate::Metal::*;
 use crate::MetalKit::*;
 
+#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type MTKModelError = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MTKModelErrorDomain: &'static MTKModelError);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MTKModelErrorKey: &'static MTKModelError);
 
 extern_class!(

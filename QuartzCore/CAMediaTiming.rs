@@ -4,6 +4,7 @@ use crate::common::*;
 use crate::Foundation::*;
 use crate::QuartzCore::*;
 
+#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type CAMediaTimingFillMode = NSString;
 );
@@ -52,9 +53,11 @@ extern_protocol!(
         #[method(setAutoreverses:)]
         unsafe fn setAutoreverses(&self, autoreverses: bool);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other fillMode)]
         unsafe fn fillMode(&self) -> Id<CAMediaTimingFillMode>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setFillMode:)]
         unsafe fn setFillMode(&self, fill_mode: &CAMediaTimingFillMode);
     }
@@ -62,10 +65,14 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn CAMediaTiming {}
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(kCAFillModeForwards: &'static CAMediaTimingFillMode);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(kCAFillModeBackwards: &'static CAMediaTimingFillMode);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(kCAFillModeBoth: &'static CAMediaTimingFillMode);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(kCAFillModeRemoved: &'static CAMediaTimingFillMode);

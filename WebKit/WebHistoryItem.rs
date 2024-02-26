@@ -5,6 +5,7 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::WebKit::*;
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(WebHistoryItemChangedNotification: Option<&'static NSString>);
 
 extern_class!(

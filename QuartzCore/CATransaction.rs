@@ -85,10 +85,14 @@ extern_methods!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(kCATransactionAnimationDuration: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(kCATransactionDisableActions: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(kCATransactionAnimationTimingFunction: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(kCATransactionCompletionBlock: &'static NSString);

@@ -93,11 +93,13 @@ extern_methods!(
             excluded_credentials: &NSArray<ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor>,
         );
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other residentKeyPreference)]
         pub unsafe fn residentKeyPreference(
             &self,
         ) -> Id<ASAuthorizationPublicKeyCredentialResidentKeyPreference>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setResidentKeyPreference:)]
         pub unsafe fn setResidentKeyPreference(
             &self,

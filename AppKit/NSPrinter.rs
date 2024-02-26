@@ -14,10 +14,12 @@ ns_enum!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 typed_extensible_enum!(
     pub type NSPrinterTypeName = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 typed_extensible_enum!(
     pub type NSPrinterPaperName = NSString;
 );
@@ -50,7 +52,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other printerNames)]
         pub unsafe fn printerNames() -> Id<NSArray<NSString>>;
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other printerTypes)]
         pub unsafe fn printerTypes() -> Id<NSArray<NSPrinterTypeName>>;
 
@@ -58,6 +60,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other printerWithName:)]
         pub unsafe fn printerWithName(name: &NSString) -> Option<Id<NSPrinter>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other printerWithType:)]
         pub unsafe fn printerWithType(r#type: &NSPrinterTypeName) -> Option<Id<NSPrinter>>;
 
@@ -65,16 +68,18 @@ extern_methods!(
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Id<NSString>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other type)]
         pub unsafe fn r#type(&self) -> Id<NSPrinterTypeName>;
 
         #[method(languageLevel)]
         pub unsafe fn languageLevel(&self) -> NSInteger;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(pageSizeForPaper:)]
         pub unsafe fn pageSizeForPaper(&self, paper_name: &NSPrinterPaperName) -> NSSize;
 
-        #[cfg(feature = "Foundation_NSDictionary")]
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other deviceDescription)]
         pub unsafe fn deviceDescription(
             &self,

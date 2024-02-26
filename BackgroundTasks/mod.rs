@@ -45,4 +45,5 @@ pub use self::__BGTaskRequest::BGTaskRequest;
 #[cfg(feature = "BackgroundTasks_BGTaskScheduler")]
 pub use self::__BGTaskScheduler::BGTaskScheduler;
 pub use self::__BGTaskScheduler::BGTaskSchedulerErrorCode;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__BGTaskScheduler::BGTaskSchedulerErrorDomain;

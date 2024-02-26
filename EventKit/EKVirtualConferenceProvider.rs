@@ -43,7 +43,8 @@ extern_methods!(
 
         #[cfg(all(
             feature = "EventKit_EKVirtualConferenceDescriptor",
-            feature = "Foundation_NSError"
+            feature = "Foundation_NSError",
+            feature = "Foundation_NSString"
         ))]
         #[method(fetchVirtualConferenceForIdentifier:completionHandler:)]
         pub unsafe fn fetchVirtualConferenceForIdentifier_completionHandler(

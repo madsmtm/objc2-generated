@@ -185,7 +185,11 @@ extern_methods!(
             text_selection_navigation: &NSTextSelectionNavigation,
         );
 
-        #[cfg(all(feature = "AppKit_NSTextRange", feature = "Foundation_NSDictionary"))]
+        #[cfg(all(
+            feature = "AppKit_NSTextRange",
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSString"
+        ))]
         #[method(enumerateRenderingAttributesFromLocation:reverse:usingBlock:)]
         pub unsafe fn enumerateRenderingAttributesFromLocation_reverse_usingBlock(
             &self,
@@ -201,7 +205,11 @@ extern_methods!(
             >,
         );
 
-        #[cfg(all(feature = "AppKit_NSTextRange", feature = "Foundation_NSDictionary"))]
+        #[cfg(all(
+            feature = "AppKit_NSTextRange",
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSString"
+        ))]
         #[method(setRenderingAttributes:forTextRange:)]
         pub unsafe fn setRenderingAttributes_forTextRange(
             &self,
@@ -209,7 +217,7 @@ extern_methods!(
             text_range: &NSTextRange,
         );
 
-        #[cfg(feature = "AppKit_NSTextRange")]
+        #[cfg(all(feature = "AppKit_NSTextRange", feature = "Foundation_NSString"))]
         #[method(addRenderingAttribute:value:forTextRange:)]
         pub unsafe fn addRenderingAttribute_value_forTextRange(
             &self,
@@ -218,7 +226,7 @@ extern_methods!(
             text_range: &NSTextRange,
         );
 
-        #[cfg(feature = "AppKit_NSTextRange")]
+        #[cfg(all(feature = "AppKit_NSTextRange", feature = "Foundation_NSString"))]
         #[method(removeRenderingAttribute:forTextRange:)]
         pub unsafe fn removeRenderingAttribute_forTextRange(
             &self,
@@ -245,11 +253,11 @@ extern_methods!(
             >,
         );
 
-        #[cfg(feature = "Foundation_NSDictionary")]
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other linkRenderingAttributes)]
         pub unsafe fn linkRenderingAttributes() -> Id<NSDictionary<NSAttributedStringKey, AnyObject>>;
 
-        #[cfg(feature = "Foundation_NSDictionary")]
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other renderingAttributesForLink:atLocation:)]
         pub unsafe fn renderingAttributesForLink_atLocation(
             &self,
@@ -331,7 +339,8 @@ extern_protocol!(
 
         #[cfg(all(
             feature = "AppKit_NSTextLayoutManager",
-            feature = "Foundation_NSDictionary"
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSString"
         ))]
         #[optional]
         #[method_id(@__retain_semantics Other textLayoutManager:renderingAttributesForLink:atLocation:defaultAttributes:)]

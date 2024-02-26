@@ -7,6 +7,7 @@ use crate::EventKit::*;
 use crate::Foundation::*;
 use crate::MapKit::*;
 
+#[cfg(feature = "Foundation_NSString")]
 pub type EKVirtualConferenceRoomTypeIdentifier = NSString;
 
 extern_class!(
@@ -39,6 +40,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other title)]
         pub unsafe fn title(&self) -> Id<NSString>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other identifier)]
         pub unsafe fn identifier(&self) -> Id<EKVirtualConferenceRoomTypeIdentifier>;
 

@@ -376,8 +376,10 @@ extern_methods!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSBundleDidLoadNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSLoadedClasses: &'static NSString);
 
 extern_class!(
@@ -483,6 +485,7 @@ extern_methods!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSBundleResourceRequestLowDiskSpaceNotification: &'static NSNotificationName);
 
 extern_static!(NSBundleResourceRequestLoadingPriorityUrgent: c_double);

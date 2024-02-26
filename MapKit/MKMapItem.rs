@@ -64,9 +64,11 @@ extern_methods!(
         #[method(setTimeZone:)]
         pub unsafe fn setTimeZone(&self, time_zone: Option<&NSTimeZone>);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other pointOfInterestCategory)]
         pub unsafe fn pointOfInterestCategory(&self) -> Option<Id<MKPointOfInterestCategory>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setPointOfInterestCategory:)]
         pub unsafe fn setPointOfInterestCategory(
             &self,
@@ -113,24 +115,34 @@ extern_methods!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MKLaunchOptionsDirectionsModeKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MKLaunchOptionsMapTypeKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MKLaunchOptionsShowsTrafficKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MKLaunchOptionsDirectionsModeDefault: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MKLaunchOptionsDirectionsModeDriving: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MKLaunchOptionsDirectionsModeWalking: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MKLaunchOptionsDirectionsModeTransit: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MKLaunchOptionsMapCenterKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MKLaunchOptionsMapSpanKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MKLaunchOptionsCameraKey: &'static NSString);
 
 extern_methods!(
@@ -142,4 +154,5 @@ extern_methods!(
 #[cfg(feature = "MapKit_MKMapItem")]
 unsafe impl NSSecureCoding for MKMapItem {}
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MKMapItemTypeIdentifier: &'static NSString);

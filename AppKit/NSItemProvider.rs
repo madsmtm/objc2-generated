@@ -24,10 +24,14 @@ extern_category!(
     unsafe impl NSItemProviderNSItemSourceInfo for NSItemProvider {}
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTypeIdentifierDateText: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTypeIdentifierAddressText: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTypeIdentifierPhoneNumberText: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTypeIdentifierTransitInformationText: &'static NSString);

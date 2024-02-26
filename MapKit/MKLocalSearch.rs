@@ -7,6 +7,10 @@ use crate::CoreLocation::*;
 use crate::Foundation::*;
 use crate::MapKit::*;
 
+#[cfg(all(
+    feature = "Foundation_NSError",
+    feature = "MapKit_MKLocalSearchResponse"
+))]
 pub type MKLocalSearchCompletionHandler =
     *mut Block<dyn Fn(*mut MKLocalSearchResponse, *mut NSError)>;
 
@@ -42,6 +46,10 @@ extern_methods!(
             request: &MKLocalPointsOfInterestRequest,
         ) -> Id<Self>;
 
+        #[cfg(all(
+            feature = "Foundation_NSError",
+            feature = "MapKit_MKLocalSearchResponse"
+        ))]
         #[method(startWithCompletionHandler:)]
         pub unsafe fn startWithCompletionHandler(
             &self,

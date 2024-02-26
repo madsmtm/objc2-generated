@@ -5,10 +5,12 @@ use crate::Foundation::*;
 
 extern_static!(NSFoundationVersionNumber: c_double);
 
+#[cfg(feature = "Foundation_NSString")]
 typed_extensible_enum!(
     pub type NSExceptionName = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 typed_extensible_enum!(
     pub type NSRunLoopMode = NSString;
 );

@@ -6,32 +6,45 @@ use crate::Foundation::*;
 use crate::HealthKit::*;
 use crate::UniformTypeIdentifiers::*;
 
+#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type HKFHIRResourceType = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(HKFHIRResourceTypeAllergyIntolerance: &'static HKFHIRResourceType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(HKFHIRResourceTypeCondition: &'static HKFHIRResourceType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(HKFHIRResourceTypeCoverage: &'static HKFHIRResourceType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(HKFHIRResourceTypeDiagnosticReport: &'static HKFHIRResourceType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(HKFHIRResourceTypeDocumentReference: &'static HKFHIRResourceType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(HKFHIRResourceTypeImmunization: &'static HKFHIRResourceType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(HKFHIRResourceTypeMedicationDispense: &'static HKFHIRResourceType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(HKFHIRResourceTypeMedicationOrder: &'static HKFHIRResourceType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(HKFHIRResourceTypeMedicationRequest: &'static HKFHIRResourceType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(HKFHIRResourceTypeMedicationStatement: &'static HKFHIRResourceType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(HKFHIRResourceTypeObservation: &'static HKFHIRResourceType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(HKFHIRResourceTypeProcedure: &'static HKFHIRResourceType);
 
 extern_class!(
@@ -65,6 +78,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other FHIRVersion)]
         pub unsafe fn FHIRVersion(&self) -> Id<HKFHIRVersion>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other resourceType)]
         pub unsafe fn resourceType(&self) -> Id<HKFHIRResourceType>;
 

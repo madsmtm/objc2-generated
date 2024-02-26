@@ -5,10 +5,13 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSSoundPboardType: &'static NSPasteboardType);
 
+#[cfg(feature = "Foundation_NSString")]
 pub type NSSoundName = NSString;
 
+#[cfg(feature = "Foundation_NSString")]
 pub type NSSoundPlaybackDeviceIdentifier = NSString;
 
 extern_class!(
@@ -44,6 +47,7 @@ unsafe impl NSSecureCoding for NSSound {}
 extern_methods!(
     #[cfg(feature = "AppKit_NSSound")]
     unsafe impl NSSound {
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other soundNamed:)]
         pub unsafe fn soundNamed(name: &NSSoundName) -> Option<Id<NSSound>>;
 
@@ -67,9 +71,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithData:)]
         pub unsafe fn initWithData(this: Allocated<Self>, data: &NSData) -> Option<Id<Self>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setName:)]
         pub unsafe fn setName(&self, string: Option<&NSSoundName>) -> bool;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Option<Id<NSSoundName>>;
 
@@ -137,11 +143,13 @@ extern_methods!(
         #[method(setLoops:)]
         pub unsafe fn setLoops(&self, loops: bool);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other playbackDeviceIdentifier)]
         pub unsafe fn playbackDeviceIdentifier(
             &self,
         ) -> Option<Id<NSSoundPlaybackDeviceIdentifier>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setPlaybackDeviceIdentifier:)]
         pub unsafe fn setPlaybackDeviceIdentifier(
             &self,

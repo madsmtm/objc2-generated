@@ -289,6 +289,7 @@ extern_methods!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSUserNotificationDefaultSoundName: &'static NSString);
 
 extern_class!(

@@ -51,7 +51,7 @@ extern_methods!(
     /// Methods declared on superclass `NSViewController`
     #[cfg(feature = "GameController_GCEventViewController")]
     unsafe impl GCEventViewController {
-        #[cfg(feature = "Foundation_NSBundle")]
+        #[cfg(all(feature = "Foundation_NSBundle", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Init initWithNibName:bundle:)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,

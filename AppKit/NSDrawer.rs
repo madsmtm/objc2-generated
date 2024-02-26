@@ -224,10 +224,14 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn NSDrawerDelegate {}
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSDrawerWillOpenNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSDrawerDidOpenNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSDrawerWillCloseNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSDrawerDidCloseNotification: &'static NSNotificationName);

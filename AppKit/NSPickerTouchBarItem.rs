@@ -62,7 +62,11 @@ extern_methods!(
             mtm: MainThreadMarker,
         ) -> Id<Self>;
 
-        #[cfg(all(feature = "AppKit_NSImage", feature = "Foundation_NSArray"))]
+        #[cfg(all(
+            feature = "AppKit_NSImage",
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Other pickerTouchBarItemWithIdentifier:images:selectionMode:target:action:)]
         pub unsafe fn pickerTouchBarItemWithIdentifier_images_selectionMode_target_action(
             identifier: &NSTouchBarItemIdentifier,
@@ -184,6 +188,7 @@ extern_methods!(
     /// Methods declared on superclass `NSTouchBarItem`
     #[cfg(feature = "AppKit_NSPickerTouchBarItem")]
     unsafe impl NSPickerTouchBarItem {
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithIdentifier:)]
         pub unsafe fn initWithIdentifier(
             this: Allocated<Self>,

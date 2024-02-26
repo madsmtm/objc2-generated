@@ -3,14 +3,17 @@
 use crate::common::*;
 use crate::Foundation::*;
 
+#[cfg(feature = "Foundation_NSString")]
 typed_extensible_enum!(
     pub type NSAttributedStringKey = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 typed_extensible_enum!(
     pub type NSAttributedStringFormattingContextKey = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSInflectionConceptsKey: &'static NSAttributedStringFormattingContextKey);
 
 extern_class!(
@@ -47,7 +50,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other string)]
         pub fn string(&self) -> Id<NSString>;
 
-        #[cfg(feature = "Foundation_NSDictionary")]
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other attributesAtIndex:effectiveRange:)]
         pub unsafe fn attributesAtIndex_effectiveRange(
             &self,
@@ -92,6 +95,7 @@ extern_methods!(
         #[method(length)]
         pub fn length(&self) -> NSUInteger;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other attribute:atIndex:effectiveRange:)]
         pub unsafe fn attribute_atIndex_effectiveRange(
             &self,
@@ -104,7 +108,7 @@ extern_methods!(
         pub unsafe fn attributedSubstringFromRange(&self, range: NSRange)
             -> Id<NSAttributedString>;
 
-        #[cfg(feature = "Foundation_NSDictionary")]
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other attributesAtIndex:longestEffectiveRange:inRange:)]
         pub unsafe fn attributesAtIndex_longestEffectiveRange_inRange(
             &self,
@@ -113,6 +117,7 @@ extern_methods!(
             range_limit: NSRange,
         ) -> Id<NSDictionary<NSAttributedStringKey, AnyObject>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other attribute:atIndex:longestEffectiveRange:inRange:)]
         pub unsafe fn attribute_atIndex_longestEffectiveRange_inRange(
             &self,
@@ -143,7 +148,7 @@ extern_methods!(
             attr_str: &NSAttributedString,
         ) -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSDictionary")]
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method(enumerateAttributesInRange:options:usingBlock:)]
         pub unsafe fn enumerateAttributesInRange_options_usingBlock(
             &self,
@@ -158,6 +163,7 @@ extern_methods!(
             >,
         );
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(enumerateAttribute:inRange:options:usingBlock:)]
         pub unsafe fn enumerateAttribute_inRange_options_usingBlock(
             &self,
@@ -234,7 +240,7 @@ extern_methods!(
             str: &NSString,
         );
 
-        #[cfg(feature = "Foundation_NSDictionary")]
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method(setAttributes:range:)]
         pub unsafe fn setAttributes_range(
             &mut self,
@@ -272,6 +278,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other mutableString)]
         pub unsafe fn mutableString(&self) -> Id<NSMutableString>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(addAttribute:value:range:)]
         pub unsafe fn addAttribute_value_range(
             &mut self,
@@ -280,7 +287,7 @@ extern_methods!(
             range: NSRange,
         );
 
-        #[cfg(feature = "Foundation_NSDictionary")]
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method(addAttributes:range:)]
         pub unsafe fn addAttributes_range(
             &mut self,
@@ -288,6 +295,7 @@ extern_methods!(
             range: NSRange,
         );
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(removeAttribute:range:)]
         pub unsafe fn removeAttribute_range(
             &mut self,
@@ -348,14 +356,19 @@ ns_options!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSInlinePresentationIntentAttributeName: &'static NSAttributedStringKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAlternateDescriptionAttributeName: &'static NSAttributedStringKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSImageURLAttributeName: &'static NSAttributedStringKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSLanguageIdentifierAttributeName: &'static NSAttributedStringKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMarkdownSourcePositionAttributeName: &'static NSAttributedStringKey);
 
 ns_enum!(
@@ -636,6 +649,7 @@ extern_methods!(
     unsafe impl NSMutableAttributedString {}
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSReplacementIndexAttributeName: &'static NSAttributedStringKey);
 
 extern_methods!(
@@ -647,18 +661,25 @@ extern_methods!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMorphologyAttributeName: &'static NSAttributedStringKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSInflectionRuleAttributeName: &'static NSAttributedStringKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSInflectionAgreementArgumentAttributeName: &'static NSAttributedStringKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSInflectionAgreementConceptAttributeName: &'static NSAttributedStringKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSInflectionReferentConceptAttributeName: &'static NSAttributedStringKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSInflectionAlternativeAttributeName: &'static NSAttributedStringKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSPresentationIntentAttributeName: &'static NSAttributedStringKey);
 
 ns_enum!(

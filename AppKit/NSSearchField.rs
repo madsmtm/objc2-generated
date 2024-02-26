@@ -5,6 +5,7 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
+#[cfg(feature = "Foundation_NSString")]
 pub type NSSearchFieldRecentsAutosaveName = NSString;
 
 extern_protocol!(
@@ -92,9 +93,11 @@ extern_methods!(
         #[method(setRecentSearches:)]
         pub unsafe fn setRecentSearches(&self, recent_searches: &NSArray<NSString>);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other recentsAutosaveName)]
         pub unsafe fn recentsAutosaveName(&self) -> Option<Id<NSSearchFieldRecentsAutosaveName>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setRecentsAutosaveName:)]
         pub unsafe fn setRecentsAutosaveName(
             &self,

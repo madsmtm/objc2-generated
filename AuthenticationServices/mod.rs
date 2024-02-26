@@ -202,8 +202,11 @@ pub use self::__ASAccountAuthenticationModificationRequest::ASAccountAuthenticat
 pub use self::__ASAccountAuthenticationModificationUpgradePasswordToStrongPasswordRequest::ASAccountAuthenticationModificationUpgradePasswordToStrongPasswordRequest;
 #[cfg(feature = "AuthenticationServices_ASAuthorization")]
 pub use self::__ASAuthorization::ASAuthorization;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__ASAuthorization::ASAuthorizationScope;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__ASAuthorization::ASAuthorizationScopeEmail;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__ASAuthorization::ASAuthorizationScopeFullName;
 pub use self::__ASAuthorizationAppleIDButton::ASAuthorizationAppleIDButtonStyle;
 pub use self::__ASAuthorizationAppleIDButton::ASAuthorizationAppleIDButtonType;
@@ -212,6 +215,7 @@ pub use self::__ASAuthorizationAppleIDCredential::ASAuthorizationAppleIDCredenti
 pub use self::__ASAuthorizationAppleIDCredential::ASUserDetectionStatus;
 #[cfg(feature = "AuthenticationServices_ASAuthorizationAppleIDProvider")]
 pub use self::__ASAuthorizationAppleIDProvider::ASAuthorizationAppleIDProvider;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__ASAuthorizationAppleIDProvider::ASAuthorizationAppleIDProviderCredentialRevokedNotification;
 pub use self::__ASAuthorizationAppleIDProvider::ASAuthorizationAppleIDProviderCredentialState;
 #[cfg(feature = "AuthenticationServices_ASAuthorizationAppleIDRequest")]
@@ -222,18 +226,28 @@ pub use self::__ASAuthorizationController::ASAuthorizationControllerDelegate;
 pub use self::__ASAuthorizationController::ASAuthorizationControllerPresentationContextProviding;
 pub use self::__ASAuthorizationController::ASAuthorizationControllerRequestOptions;
 pub use self::__ASAuthorizationCredential::ASAuthorizationCredential;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__ASAuthorizationCustomMethod::ASAuthorizationCustomMethod;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__ASAuthorizationCustomMethod::ASAuthorizationCustomMethodOther;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__ASAuthorizationCustomMethod::ASAuthorizationCustomMethodRestorePurchase;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__ASAuthorizationCustomMethod::ASAuthorizationCustomMethodVideoSubscriberAccount;
 pub use self::__ASAuthorizationError::ASAuthorizationError;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__ASAuthorizationError::ASAuthorizationErrorDomain;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__ASAuthorizationOpenIDRequest::ASAuthorizationOpenIDOperation;
 #[cfg(feature = "AuthenticationServices_ASAuthorizationOpenIDRequest")]
 pub use self::__ASAuthorizationOpenIDRequest::ASAuthorizationOpenIDRequest;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__ASAuthorizationOpenIDRequest::ASAuthorizationOperationImplicit;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__ASAuthorizationOpenIDRequest::ASAuthorizationOperationLogin;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__ASAuthorizationOpenIDRequest::ASAuthorizationOperationLogout;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__ASAuthorizationOpenIDRequest::ASAuthorizationOperationRefresh;
 #[cfg(feature = "AuthenticationServices_ASAuthorizationPasswordProvider")]
 pub use self::__ASAuthorizationPasswordProvider::ASAuthorizationPasswordProvider;
@@ -258,8 +272,11 @@ pub use self::__ASAuthorizationPlatformPublicKeyCredentialRegistration::ASAuthor
 )]
 pub use self::__ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest::ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest;
 pub use self::__ASAuthorizationProvider::ASAuthorizationProvider;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__ASAuthorizationProviderExtensionAuthorizationRequest::ASAuthorizationProviderAuthorizationOperation;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__ASAuthorizationProviderExtensionAuthorizationRequest::ASAuthorizationProviderAuthorizationOperationConfigurationRemoved;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__ASAuthorizationProviderExtensionAuthorizationRequest::ASAuthorizationProviderAuthorizationOperationDirectRequest;
 #[cfg(feature = "AuthenticationServices_ASAuthorizationProviderExtensionAuthorizationRequest")]
 pub use self::__ASAuthorizationProviderExtensionAuthorizationRequest::ASAuthorizationProviderExtensionAuthorizationRequest;
@@ -287,18 +304,31 @@ pub use self::__ASAuthorizationProviderExtensionUserLoginConfiguration::ASAuthor
 pub use self::__ASAuthorizationPublicKeyCredentialAssertion::ASAuthorizationPublicKeyCredentialAssertion;
 pub use self::__ASAuthorizationPublicKeyCredentialAssertionRequest::ASAuthorizationPublicKeyCredentialAssertionRequest;
 pub use self::__ASAuthorizationPublicKeyCredentialConstants::ASAuthorizationPublicKeyCredentialAttachment;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__ASAuthorizationPublicKeyCredentialConstants::ASAuthorizationPublicKeyCredentialAttestationKind;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__ASAuthorizationPublicKeyCredentialConstants::ASAuthorizationPublicKeyCredentialAttestationKindDirect;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__ASAuthorizationPublicKeyCredentialConstants::ASAuthorizationPublicKeyCredentialAttestationKindEnterprise;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__ASAuthorizationPublicKeyCredentialConstants::ASAuthorizationPublicKeyCredentialAttestationKindIndirect;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__ASAuthorizationPublicKeyCredentialConstants::ASAuthorizationPublicKeyCredentialAttestationKindNone;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__ASAuthorizationPublicKeyCredentialConstants::ASAuthorizationPublicKeyCredentialResidentKeyPreference;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__ASAuthorizationPublicKeyCredentialConstants::ASAuthorizationPublicKeyCredentialResidentKeyPreferenceDiscouraged;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__ASAuthorizationPublicKeyCredentialConstants::ASAuthorizationPublicKeyCredentialResidentKeyPreferencePreferred;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__ASAuthorizationPublicKeyCredentialConstants::ASAuthorizationPublicKeyCredentialResidentKeyPreferenceRequired;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__ASAuthorizationPublicKeyCredentialConstants::ASAuthorizationPublicKeyCredentialUserVerificationPreference;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__ASAuthorizationPublicKeyCredentialConstants::ASAuthorizationPublicKeyCredentialUserVerificationPreferenceDiscouraged;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__ASAuthorizationPublicKeyCredentialConstants::ASAuthorizationPublicKeyCredentialUserVerificationPreferencePreferred;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__ASAuthorizationPublicKeyCredentialConstants::ASAuthorizationPublicKeyCredentialUserVerificationPreferenceRequired;
 pub use self::__ASAuthorizationPublicKeyCredentialDescriptor::ASAuthorizationPublicKeyCredentialDescriptor;
 #[cfg(
@@ -333,15 +363,19 @@ pub use self::__ASAuthorizationSecurityKeyPublicKeyCredentialAssertion::ASAuthor
     feature = "AuthenticationServices_ASAuthorizationSecurityKeyPublicKeyCredentialAssertionRequest"
 )]
 pub use self::__ASAuthorizationSecurityKeyPublicKeyCredentialAssertionRequest::ASAuthorizationSecurityKeyPublicKeyCredentialAssertionRequest;
-#[cfg(feature = "Foundation_NSArray")]
+#[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
 pub use self::__ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor::ASAuthorizationAllSupportedPublicKeyCredentialDescriptorTransports;
 #[cfg(
     feature = "AuthenticationServices_ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor"
 )]
 pub use self::__ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor::ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor::ASAuthorizationSecurityKeyPublicKeyCredentialDescriptorTransport;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor::ASAuthorizationSecurityKeyPublicKeyCredentialDescriptorTransportBluetooth;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor::ASAuthorizationSecurityKeyPublicKeyCredentialDescriptorTransportNFC;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor::ASAuthorizationSecurityKeyPublicKeyCredentialDescriptorTransportUSB;
 #[cfg(
     feature = "AuthenticationServices_ASAuthorizationSecurityKeyPublicKeyCredentialProvider"
@@ -378,6 +412,7 @@ pub use self::__ASCredentialIdentity::ASCredentialIdentity;
 #[cfg(feature = "AuthenticationServices_ASCredentialIdentityStore")]
 pub use self::__ASCredentialIdentityStore::ASCredentialIdentityStore;
 pub use self::__ASCredentialIdentityStore::ASCredentialIdentityStoreErrorCode;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__ASCredentialIdentityStore::ASCredentialIdentityStoreErrorDomain;
 #[cfg(feature = "AuthenticationServices_ASCredentialIdentityStoreState")]
 pub use self::__ASCredentialIdentityStoreState::ASCredentialIdentityStoreState;
@@ -389,7 +424,9 @@ pub use self::__ASCredentialRequest::ASCredentialRequestType;
 pub use self::__ASCredentialServiceIdentifier::ASCredentialServiceIdentifier;
 pub use self::__ASCredentialServiceIdentifier::ASCredentialServiceIdentifierType;
 pub use self::__ASExtensionErrors::ASExtensionErrorCode;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__ASExtensionErrors::ASExtensionErrorDomain;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__ASExtensionErrors::ASExtensionLocalizedFailureReasonErrorKey;
 #[cfg(feature = "AuthenticationServices_ASPasskeyAssertionCredential")]
 pub use self::__ASPasskeyAssertionCredential::ASPasskeyAssertionCredential;
@@ -416,8 +453,10 @@ pub use self::__ASSettingsHelper::ASSettingsHelper;
 pub use self::__ASWebAuthenticationSession::ASWebAuthenticationPresentationContextProviding;
 #[cfg(feature = "AuthenticationServices_ASWebAuthenticationSession")]
 pub use self::__ASWebAuthenticationSession::ASWebAuthenticationSession;
+#[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
 pub use self::__ASWebAuthenticationSession::ASWebAuthenticationSessionCompletionHandler;
 pub use self::__ASWebAuthenticationSession::ASWebAuthenticationSessionErrorCode;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__ASWebAuthenticationSession::ASWebAuthenticationSessionErrorDomain;
 #[cfg(feature = "AuthenticationServices_ASWebAuthenticationSessionRequest")]
 pub use self::__ASWebAuthenticationSessionRequest::ASWebAuthenticationSessionRequest;

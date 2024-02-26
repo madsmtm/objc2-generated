@@ -530,34 +530,50 @@ extern_methods!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(HKPredicateKeyPathWorkoutDuration: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(HKPredicateKeyPathWorkoutTotalDistance: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(HKPredicateKeyPathWorkoutTotalEnergyBurned: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(HKPredicateKeyPathWorkoutType: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(HKPredicateKeyPathWorkoutTotalSwimmingStrokeCount: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(HKPredicateKeyPathWorkoutTotalFlightsClimbed: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(HKPredicateKeyPathWorkoutSumQuantity: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(HKPredicateKeyPathWorkoutMinimumQuantity: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(HKPredicateKeyPathWorkoutMaximumQuantity: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(HKPredicateKeyPathWorkoutAverageQuantity: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(HKPredicateKeyPathWorkoutActivity: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(HKWorkoutSortIdentifierDuration: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(HKWorkoutSortIdentifierTotalDistance: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(HKWorkoutSortIdentifierTotalEnergyBurned: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(HKWorkoutSortIdentifierTotalSwimmingStrokeCount: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(HKWorkoutSortIdentifierTotalFlightsClimbed: &'static NSString);

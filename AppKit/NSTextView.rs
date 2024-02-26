@@ -24,6 +24,7 @@ ns_enum!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAllRomanInputSourcesLocaleIdentifier: &'static NSString);
 
 extern_class!(
@@ -434,11 +435,11 @@ extern_methods!(
     /// NSPasteboard
     #[cfg(feature = "AppKit_NSTextView")]
     unsafe impl NSTextView {
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other writablePasteboardTypes)]
         pub unsafe fn writablePasteboardTypes(&self) -> Id<NSArray<NSPasteboardType>>;
 
-        #[cfg(feature = "AppKit_NSPasteboard")]
+        #[cfg(all(feature = "AppKit_NSPasteboard", feature = "Foundation_NSString"))]
         #[method(writeSelectionToPasteboard:type:)]
         pub unsafe fn writeSelectionToPasteboard_type(
             &self,
@@ -446,7 +447,11 @@ extern_methods!(
             r#type: &NSPasteboardType,
         ) -> bool;
 
-        #[cfg(all(feature = "AppKit_NSPasteboard", feature = "Foundation_NSArray"))]
+        #[cfg(all(
+            feature = "AppKit_NSPasteboard",
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSString"
+        ))]
         #[method(writeSelectionToPasteboard:types:)]
         pub unsafe fn writeSelectionToPasteboard_types(
             &self,
@@ -454,11 +459,11 @@ extern_methods!(
             types: &NSArray<NSPasteboardType>,
         ) -> bool;
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other readablePasteboardTypes)]
         pub unsafe fn readablePasteboardTypes(&self) -> Id<NSArray<NSPasteboardType>>;
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other preferredPasteboardTypeFromArray:restrictedToTypesFromArray:)]
         pub unsafe fn preferredPasteboardTypeFromArray_restrictedToTypesFromArray(
             &self,
@@ -466,7 +471,7 @@ extern_methods!(
             allowed_types: Option<&NSArray<NSPasteboardType>>,
         ) -> Option<Id<NSPasteboardType>>;
 
-        #[cfg(feature = "AppKit_NSPasteboard")]
+        #[cfg(all(feature = "AppKit_NSPasteboard", feature = "Foundation_NSString"))]
         #[method(readSelectionFromPasteboard:type:)]
         pub unsafe fn readSelectionFromPasteboard_type(
             &self,
@@ -481,6 +486,7 @@ extern_methods!(
         #[method(registerForServices)]
         pub unsafe fn registerForServices(mtm: MainThreadMarker);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other validRequestorForSendType:returnType:)]
         pub unsafe fn validRequestorForSendType_returnType(
             &self,
@@ -517,10 +523,11 @@ extern_methods!(
             origin: NSPointPointer,
         ) -> Option<Id<NSImage>>;
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other acceptableDragTypes)]
         pub unsafe fn acceptableDragTypes(&self) -> Id<NSArray<NSPasteboardType>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(dragOperationForDraggingInfo:type:)]
         pub unsafe fn dragOperationForDraggingInfo_type(
             &self,
@@ -571,13 +578,13 @@ extern_methods!(
         #[method(setSelectionGranularity:)]
         pub unsafe fn setSelectionGranularity(&self, selection_granularity: NSSelectionGranularity);
 
-        #[cfg(feature = "Foundation_NSDictionary")]
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other selectedTextAttributes)]
         pub unsafe fn selectedTextAttributes(
             &self,
         ) -> Id<NSDictionary<NSAttributedStringKey, AnyObject>>;
 
-        #[cfg(feature = "Foundation_NSDictionary")]
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method(setSelectedTextAttributes:)]
         pub unsafe fn setSelectedTextAttributes(
             &self,
@@ -595,26 +602,26 @@ extern_methods!(
         #[method(updateInsertionPointStateAndRestartTimer:)]
         pub unsafe fn updateInsertionPointStateAndRestartTimer(&self, restart_flag: bool);
 
-        #[cfg(feature = "Foundation_NSDictionary")]
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other markedTextAttributes)]
         pub unsafe fn markedTextAttributes(
             &self,
         ) -> Option<Id<NSDictionary<NSAttributedStringKey, AnyObject>>>;
 
-        #[cfg(feature = "Foundation_NSDictionary")]
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method(setMarkedTextAttributes:)]
         pub unsafe fn setMarkedTextAttributes(
             &self,
             marked_text_attributes: Option<&NSDictionary<NSAttributedStringKey, AnyObject>>,
         );
 
-        #[cfg(feature = "Foundation_NSDictionary")]
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other linkTextAttributes)]
         pub unsafe fn linkTextAttributes(
             &self,
         ) -> Option<Id<NSDictionary<NSAttributedStringKey, AnyObject>>>;
 
-        #[cfg(feature = "Foundation_NSDictionary")]
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method(setLinkTextAttributes:)]
         pub unsafe fn setLinkTextAttributes(
             &self,
@@ -672,12 +679,12 @@ extern_methods!(
         #[method(setSpellingState:range:)]
         pub unsafe fn setSpellingState_range(&self, value: NSInteger, char_range: NSRange);
 
-        #[cfg(feature = "Foundation_NSDictionary")]
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other typingAttributes)]
         pub unsafe fn typingAttributes(&self)
             -> Id<NSDictionary<NSAttributedStringKey, AnyObject>>;
 
-        #[cfg(feature = "Foundation_NSDictionary")]
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method(setTypingAttributes:)]
         pub unsafe fn setTypingAttributes(
             &self,
@@ -982,7 +989,7 @@ extern_methods!(
             enabled_text_checking_types: NSTextCheckingTypes,
         );
 
-        #[cfg(feature = "Foundation_NSDictionary")]
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method(checkTextInRange:types:options:)]
         pub unsafe fn checkTextInRange_types_options(
             &self,
@@ -995,6 +1002,7 @@ extern_methods!(
             feature = "Foundation_NSArray",
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSOrthography",
+            feature = "Foundation_NSString",
             feature = "Foundation_NSTextCheckingResult"
         ))]
         #[method(handleTextCheckingResults:forRange:types:options:orthography:wordCount:)]
@@ -1189,7 +1197,11 @@ extern_protocol!(
             char_index: NSUInteger,
         );
 
-        #[cfg(all(feature = "AppKit_NSTextView", feature = "Foundation_NSArray"))]
+        #[cfg(all(
+            feature = "AppKit_NSTextView",
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSString"
+        ))]
         #[optional]
         #[method_id(@__retain_semantics Other textView:writablePasteboardTypesForCell:atIndex:)]
         unsafe fn textView_writablePasteboardTypesForCell_atIndex(
@@ -1199,7 +1211,11 @@ extern_protocol!(
             char_index: NSUInteger,
         ) -> Id<NSArray<NSPasteboardType>>;
 
-        #[cfg(all(feature = "AppKit_NSPasteboard", feature = "AppKit_NSTextView"))]
+        #[cfg(all(
+            feature = "AppKit_NSPasteboard",
+            feature = "AppKit_NSTextView",
+            feature = "Foundation_NSString"
+        ))]
         #[optional]
         #[method(textView:writeCell:atIndex:toPasteboard:type:)]
         unsafe fn textView_writeCell_atIndex_toPasteboard_type(
@@ -1343,7 +1359,11 @@ extern_protocol!(
             char_index: NSUInteger,
         ) -> Option<Id<NSMenu>>;
 
-        #[cfg(all(feature = "AppKit_NSTextView", feature = "Foundation_NSDictionary"))]
+        #[cfg(all(
+            feature = "AppKit_NSTextView",
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSString"
+        ))]
         #[optional]
         #[method_id(@__retain_semantics Other textView:willCheckTextInRange:options:types:)]
         unsafe fn textView_willCheckTextInRange_options_types(
@@ -1359,6 +1379,7 @@ extern_protocol!(
             feature = "Foundation_NSArray",
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSOrthography",
+            feature = "Foundation_NSString",
             feature = "Foundation_NSTextCheckingResult"
         ))]
         #[optional]
@@ -1407,7 +1428,11 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other undoManagerForTextView:)]
         unsafe fn undoManagerForTextView(&self, view: &NSTextView) -> Option<Id<NSUndoManager>>;
 
-        #[cfg(all(feature = "AppKit_NSTextView", feature = "Foundation_NSArray"))]
+        #[cfg(all(
+            feature = "AppKit_NSTextView",
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSString"
+        ))]
         #[optional]
         #[method_id(@__retain_semantics Other textView:shouldUpdateTouchBarItemIdentifiers:)]
         unsafe fn textView_shouldUpdateTouchBarItemIdentifiers(
@@ -1496,26 +1521,37 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn NSTextViewDelegate {}
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTouchBarItemIdentifierCharacterPicker: &'static NSTouchBarItemIdentifier);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTouchBarItemIdentifierTextColorPicker: &'static NSTouchBarItemIdentifier);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTouchBarItemIdentifierTextStyle: &'static NSTouchBarItemIdentifier);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTouchBarItemIdentifierTextAlignment: &'static NSTouchBarItemIdentifier);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTouchBarItemIdentifierTextList: &'static NSTouchBarItemIdentifier);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTouchBarItemIdentifierTextFormat: &'static NSTouchBarItemIdentifier);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTextViewWillChangeNotifyingTextViewNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTextViewDidChangeSelectionNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTextViewDidChangeTypingAttributesNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTextViewWillSwitchToNSLayoutManagerNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTextViewDidSwitchToNSLayoutManagerNotification: &'static NSNotificationName);
 
 ns_enum!(
@@ -1544,14 +1580,18 @@ ns_enum!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFindPanelSearchOptionsPboardType: &'static NSPasteboardType);
 
+#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type NSPasteboardTypeFindPanelSearchOptionKey = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFindPanelCaseInsensitiveSearch: &'static NSPasteboardTypeFindPanelSearchOptionKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFindPanelSubstringMatch: &'static NSPasteboardTypeFindPanelSearchOptionKey);
 
 ns_enum!(

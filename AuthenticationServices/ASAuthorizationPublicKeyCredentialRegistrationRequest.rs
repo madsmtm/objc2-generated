@@ -45,22 +45,26 @@ extern_protocol!(
         #[method(setChallenge:)]
         unsafe fn setChallenge(&self, challenge: &NSData);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other userVerificationPreference)]
         unsafe fn userVerificationPreference(
             &self,
         ) -> Id<ASAuthorizationPublicKeyCredentialUserVerificationPreference>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setUserVerificationPreference:)]
         unsafe fn setUserVerificationPreference(
             &self,
             user_verification_preference: &ASAuthorizationPublicKeyCredentialUserVerificationPreference,
         );
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other attestationPreference)]
         unsafe fn attestationPreference(
             &self,
         ) -> Id<ASAuthorizationPublicKeyCredentialAttestationKind>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setAttestationPreference:)]
         unsafe fn setAttestationPreference(
             &self,

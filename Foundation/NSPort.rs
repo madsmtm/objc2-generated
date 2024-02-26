@@ -5,6 +5,7 @@ use crate::Foundation::*;
 
 pub type NSSocketNativeHandle = c_int;
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSPortDidBecomeInvalidNotification: &'static NSNotificationName);
 
 extern_class!(
@@ -46,11 +47,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSPortDelegate>>>;
 
-        #[cfg(feature = "Foundation_NSRunLoop")]
+        #[cfg(all(feature = "Foundation_NSRunLoop", feature = "Foundation_NSString"))]
         #[method(scheduleInRunLoop:forMode:)]
         pub unsafe fn scheduleInRunLoop_forMode(&self, run_loop: &NSRunLoop, mode: &NSRunLoopMode);
 
-        #[cfg(feature = "Foundation_NSRunLoop")]
+        #[cfg(all(feature = "Foundation_NSRunLoop", feature = "Foundation_NSString"))]
         #[method(removeFromRunLoop:forMode:)]
         pub unsafe fn removeFromRunLoop_forMode(&self, run_loop: &NSRunLoop, mode: &NSRunLoopMode);
 
@@ -78,7 +79,11 @@ extern_methods!(
             header_space_reserved: NSUInteger,
         ) -> bool;
 
-        #[cfg(all(feature = "Foundation_NSConnection", feature = "Foundation_NSRunLoop"))]
+        #[cfg(all(
+            feature = "Foundation_NSConnection",
+            feature = "Foundation_NSRunLoop",
+            feature = "Foundation_NSString"
+        ))]
         #[deprecated = "Use NSXPCConnection instead"]
         #[method(addConnection:toRunLoop:forMode:)]
         pub unsafe fn addConnection_toRunLoop_forMode(
@@ -88,7 +93,11 @@ extern_methods!(
             mode: &NSRunLoopMode,
         );
 
-        #[cfg(all(feature = "Foundation_NSConnection", feature = "Foundation_NSRunLoop"))]
+        #[cfg(all(
+            feature = "Foundation_NSConnection",
+            feature = "Foundation_NSRunLoop",
+            feature = "Foundation_NSString"
+        ))]
         #[deprecated = "Use NSXPCConnection instead"]
         #[method(removeConnection:fromRunLoop:forMode:)]
         pub unsafe fn removeConnection_fromRunLoop_forMode(
@@ -185,11 +194,11 @@ extern_methods!(
         #[method(machPort)]
         pub unsafe fn machPort(&self) -> u32;
 
-        #[cfg(feature = "Foundation_NSRunLoop")]
+        #[cfg(all(feature = "Foundation_NSRunLoop", feature = "Foundation_NSString"))]
         #[method(scheduleInRunLoop:forMode:)]
         pub unsafe fn scheduleInRunLoop_forMode(&self, run_loop: &NSRunLoop, mode: &NSRunLoopMode);
 
-        #[cfg(feature = "Foundation_NSRunLoop")]
+        #[cfg(all(feature = "Foundation_NSRunLoop", feature = "Foundation_NSString"))]
         #[method(removeFromRunLoop:forMode:)]
         pub unsafe fn removeFromRunLoop_forMode(&self, run_loop: &NSRunLoop, mode: &NSRunLoopMode);
     }

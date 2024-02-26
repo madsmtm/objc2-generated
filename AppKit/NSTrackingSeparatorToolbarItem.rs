@@ -27,7 +27,7 @@ unsafe impl NSObjectProtocol for NSTrackingSeparatorToolbarItem {}
 extern_methods!(
     #[cfg(feature = "AppKit_NSTrackingSeparatorToolbarItem")]
     unsafe impl NSTrackingSeparatorToolbarItem {
-        #[cfg(feature = "AppKit_NSSplitView")]
+        #[cfg(all(feature = "AppKit_NSSplitView", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other trackingSeparatorToolbarItemWithIdentifier:splitView:dividerIndex:)]
         pub unsafe fn trackingSeparatorToolbarItemWithIdentifier_splitView_dividerIndex(
             identifier: &NSToolbarItemIdentifier,
@@ -55,6 +55,7 @@ extern_methods!(
     /// Methods declared on superclass `NSToolbarItem`
     #[cfg(feature = "AppKit_NSTrackingSeparatorToolbarItem")]
     unsafe impl NSTrackingSeparatorToolbarItem {
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithItemIdentifier:)]
         pub unsafe fn initWithItemIdentifier(
             this: Allocated<Self>,

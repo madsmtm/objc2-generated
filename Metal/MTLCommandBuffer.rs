@@ -22,6 +22,7 @@ ns_enum!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MTLCommandBufferErrorDomain: &'static NSErrorDomain);
 
 ns_enum!(
@@ -55,6 +56,7 @@ ns_enum!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MTLCommandBufferEncoderInfoErrorKey: &'static NSErrorUserInfoKey);
 
 ns_options!(

@@ -48,6 +48,7 @@ pub use self::__LAContext::LACredentialType;
 pub use self::__LAContext::LAPolicy;
 pub use self::__LAContext::LATouchIDAuthenticationMaximumAllowableReuseDuration;
 pub use self::__LAError::LAError;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__LAError::LAErrorDomain;
 #[cfg(feature = "LocalAuthentication_LAPersistedRight")]
 pub use self::__LAPersistedRight::LAPersistedRight;

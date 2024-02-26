@@ -4,16 +4,22 @@ use crate::common::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMigrationManagerKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMigrationSourceObjectKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMigrationDestinationObjectKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMigrationEntityMappingKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMigrationPropertyMappingKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMigrationEntityPolicyKey: &'static NSString);
 
 extern_class!(

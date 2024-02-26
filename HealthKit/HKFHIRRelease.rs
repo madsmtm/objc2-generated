@@ -6,12 +6,16 @@ use crate::Foundation::*;
 use crate::HealthKit::*;
 use crate::UniformTypeIdentifiers::*;
 
+#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type HKFHIRRelease = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(HKFHIRReleaseDSTU2: &'static HKFHIRRelease);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(HKFHIRReleaseR4: &'static HKFHIRRelease);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(HKFHIRReleaseUnknown: &'static HKFHIRRelease);

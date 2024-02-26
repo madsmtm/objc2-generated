@@ -228,8 +228,10 @@ extern_methods!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSInvocationOperationVoidResultException: &'static NSExceptionName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSInvocationOperationCancelledException: &'static NSExceptionName);
 
 extern_static!(NSOperationQueueDefaultMaxConcurrentOperationCount: NSInteger = -1);

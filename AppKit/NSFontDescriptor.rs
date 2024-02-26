@@ -36,18 +36,22 @@ ns_options!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 typed_extensible_enum!(
     pub type NSFontDescriptorAttributeName = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type NSFontDescriptorTraitKey = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type NSFontDescriptorVariationKey = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 typed_extensible_enum!(
     pub type NSFontDescriptorFeatureKey = NSString;
 );
@@ -60,14 +64,17 @@ typed_extensible_enum!(
     pub type NSFontWidth = CGFloat;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type NSFontDescriptorSystemDesign = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type NSFontTextStyle = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type NSFontTextStyleOptionKey = NSString;
 );
@@ -116,19 +123,20 @@ extern_methods!(
         #[method(requiresFontAssetRequest)]
         pub unsafe fn requiresFontAssetRequest(&self) -> bool;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other objectForKey:)]
         pub unsafe fn objectForKey(
             &self,
             attribute: &NSFontDescriptorAttributeName,
         ) -> Option<Id<AnyObject>>;
 
-        #[cfg(feature = "Foundation_NSDictionary")]
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other fontAttributes)]
         pub unsafe fn fontAttributes(
             &self,
         ) -> Id<NSDictionary<NSFontDescriptorAttributeName, AnyObject>>;
 
-        #[cfg(feature = "Foundation_NSDictionary")]
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other fontDescriptorWithFontAttributes:)]
         pub unsafe fn fontDescriptorWithFontAttributes(
             attributes: Option<&NSDictionary<NSFontDescriptorAttributeName, AnyObject>>,
@@ -151,28 +159,32 @@ extern_methods!(
             matrix: &NSAffineTransform,
         ) -> Id<NSFontDescriptor>;
 
-        #[cfg(feature = "Foundation_NSDictionary")]
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Init initWithFontAttributes:)]
         pub unsafe fn initWithFontAttributes(
             this: Allocated<Self>,
             attributes: Option<&NSDictionary<NSFontDescriptorAttributeName, AnyObject>>,
         ) -> Id<Self>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSSet"))]
+        #[cfg(all(
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSSet",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Other matchingFontDescriptorsWithMandatoryKeys:)]
         pub unsafe fn matchingFontDescriptorsWithMandatoryKeys(
             &self,
             mandatory_keys: Option<&NSSet<NSFontDescriptorAttributeName>>,
         ) -> Id<NSArray<NSFontDescriptor>>;
 
-        #[cfg(feature = "Foundation_NSSet")]
+        #[cfg(all(feature = "Foundation_NSSet", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other matchingFontDescriptorWithMandatoryKeys:)]
         pub unsafe fn matchingFontDescriptorWithMandatoryKeys(
             &self,
             mandatory_keys: Option<&NSSet<NSFontDescriptorAttributeName>>,
         ) -> Option<Id<NSFontDescriptor>>;
 
-        #[cfg(feature = "Foundation_NSDictionary")]
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other fontDescriptorByAddingAttributes:)]
         pub unsafe fn fontDescriptorByAddingAttributes(
             &self,
@@ -209,6 +221,7 @@ extern_methods!(
             new_family: &NSString,
         ) -> Id<NSFontDescriptor>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other fontDescriptorWithDesign:)]
         pub unsafe fn fontDescriptorWithDesign(
             &self,
@@ -229,50 +242,73 @@ extern_methods!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFontFamilyAttribute: &'static NSFontDescriptorAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFontNameAttribute: &'static NSFontDescriptorAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFontFaceAttribute: &'static NSFontDescriptorAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFontSizeAttribute: &'static NSFontDescriptorAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFontVisibleNameAttribute: &'static NSFontDescriptorAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFontMatrixAttribute: &'static NSFontDescriptorAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFontVariationAttribute: &'static NSFontDescriptorAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFontCharacterSetAttribute: &'static NSFontDescriptorAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFontCascadeListAttribute: &'static NSFontDescriptorAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFontTraitsAttribute: &'static NSFontDescriptorAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFontFixedAdvanceAttribute: &'static NSFontDescriptorAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFontFeatureSettingsAttribute: &'static NSFontDescriptorAttributeName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFontSymbolicTrait: &'static NSFontDescriptorTraitKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFontWeightTrait: &'static NSFontDescriptorTraitKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFontWidthTrait: &'static NSFontDescriptorTraitKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFontSlantTrait: &'static NSFontDescriptorTraitKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFontVariationAxisIdentifierKey: &'static NSFontDescriptorVariationKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFontVariationAxisMinimumValueKey: &'static NSFontDescriptorVariationKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFontVariationAxisMaximumValueKey: &'static NSFontDescriptorVariationKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFontVariationAxisDefaultValueKey: &'static NSFontDescriptorVariationKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFontVariationAxisNameKey: &'static NSFontDescriptorVariationKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFontFeatureTypeIdentifierKey: &'static NSFontDescriptorFeatureKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFontFeatureSelectorIdentifierKey: &'static NSFontDescriptorFeatureKey);
 
 extern_static!(NSFontWeightUltraLight: NSFontWeight);
@@ -301,34 +337,49 @@ extern_static!(NSFontWidthStandard: NSFontWidth);
 
 extern_static!(NSFontWidthExpanded: NSFontWidth);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFontDescriptorSystemDesignDefault: &'static NSFontDescriptorSystemDesign);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFontDescriptorSystemDesignSerif: &'static NSFontDescriptorSystemDesign);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFontDescriptorSystemDesignMonospaced: &'static NSFontDescriptorSystemDesign);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFontDescriptorSystemDesignRounded: &'static NSFontDescriptorSystemDesign);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFontTextStyleLargeTitle: &'static NSFontTextStyle);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFontTextStyleTitle1: &'static NSFontTextStyle);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFontTextStyleTitle2: &'static NSFontTextStyle);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFontTextStyleTitle3: &'static NSFontTextStyle);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFontTextStyleHeadline: &'static NSFontTextStyle);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFontTextStyleSubheadline: &'static NSFontTextStyle);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFontTextStyleBody: &'static NSFontTextStyle);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFontTextStyleCallout: &'static NSFontTextStyle);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFontTextStyleFootnote: &'static NSFontTextStyle);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFontTextStyleCaption1: &'static NSFontTextStyle);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFontTextStyleCaption2: &'static NSFontTextStyle);
 
 pub type NSFontFamilyClass = u32;
@@ -355,13 +406,14 @@ pub const NSFontMonoSpaceTrait: c_uint = 1 << 10;
 pub const NSFontVerticalTrait: c_uint = 1 << 11;
 pub const NSFontUIOptimizedTrait: c_uint = 1 << 12;
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFontColorAttribute: &'static NSString);
 
 extern_methods!(
     /// NSFontDescriptor_TextStyles
     #[cfg(feature = "AppKit_NSFontDescriptor")]
     unsafe impl NSFontDescriptor {
-        #[cfg(feature = "Foundation_NSDictionary")]
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other preferredFontDescriptorForTextStyle:options:)]
         pub unsafe fn preferredFontDescriptorForTextStyle_options(
             style: &NSFontTextStyle,

@@ -5,6 +5,7 @@ use crate::AppKit::*;
 use crate::AuthenticationServices::*;
 use crate::Foundation::*;
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(ASCredentialIdentityStoreErrorDomain: &'static NSErrorDomain);
 
 ns_error_enum!(

@@ -79,7 +79,7 @@ extern_methods!(
     /// Methods declared on superclass `NSViewController`
     #[cfg(feature = "StoreKit_SKStoreProductViewController")]
     unsafe impl SKStoreProductViewController {
-        #[cfg(feature = "Foundation_NSBundle")]
+        #[cfg(all(feature = "Foundation_NSBundle", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Init initWithNibName:bundle:)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,
@@ -125,16 +125,23 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn SKStoreProductViewControllerDelegate {}
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(SKStoreProductParameterITunesItemIdentifier: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(SKStoreProductParameterProductIdentifier: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(SKStoreProductParameterCustomProductPageIdentifier: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(SKStoreProductParameterAffiliateToken: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(SKStoreProductParameterCampaignToken: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(SKStoreProductParameterProviderToken: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(SKStoreProductParameterAdvertisingPartnerToken: &'static NSString);

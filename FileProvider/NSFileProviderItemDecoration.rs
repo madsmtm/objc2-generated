@@ -6,13 +6,14 @@ use crate::FileProvider::*;
 use crate::Foundation::*;
 use crate::UniformTypeIdentifiers::*;
 
+#[cfg(feature = "Foundation_NSString")]
 typed_extensible_enum!(
     pub type NSFileProviderItemDecorationIdentifier = NSString;
 );
 
 extern_protocol!(
     pub unsafe trait NSFileProviderItemDecorating: NSFileProviderItemProtocol {
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other decorations)]
         unsafe fn decorations(&self)
             -> Option<Id<NSArray<NSFileProviderItemDecorationIdentifier>>>;

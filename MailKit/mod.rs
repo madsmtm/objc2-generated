@@ -70,6 +70,7 @@ pub use self::__MEComposeContext::MEComposeUserAction;
 #[cfg(feature = "MailKit_MEComposeSession")]
 pub use self::__MEComposeSession::MEComposeSession;
 pub use self::__MEComposeSession::MEComposeSessionErrorCode;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__MEComposeSession::MEComposeSessionErrorDomain;
 pub use self::__MEComposeSession::MEComposeSessionHandler;
 pub use self::__MEContentBlocker::MEContentBlocker;
@@ -102,6 +103,7 @@ pub use self::__MEMessageEncoder::MEMessageEncoder;
 #[cfg(feature = "MailKit_MEMessageEncodingResult")]
 pub use self::__MEMessageEncodingResult::MEMessageEncodingResult;
 pub use self::__MEMessageSecurityHandler::MEMessageSecurityErrorCode;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__MEMessageSecurityHandler::MEMessageSecurityErrorDomain;
 pub use self::__MEMessageSecurityHandler::MEMessageSecurityHandler;
 #[cfg(feature = "MailKit_MEMessageSecurityInformation")]

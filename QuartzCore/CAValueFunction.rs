@@ -4,6 +4,7 @@ use crate::common::*;
 use crate::Foundation::*;
 use crate::QuartzCore::*;
 
+#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type CAValueFunctionName = NSString;
 );
@@ -32,9 +33,11 @@ unsafe impl NSSecureCoding for CAValueFunction {}
 extern_methods!(
     #[cfg(feature = "QuartzCore_CAValueFunction")]
     unsafe impl CAValueFunction {
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other functionWithName:)]
         pub unsafe fn functionWithName(name: &CAValueFunctionName) -> Option<Id<Self>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Id<CAValueFunctionName>;
     }
@@ -52,24 +55,35 @@ extern_methods!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(kCAValueFunctionRotateX: &'static CAValueFunctionName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(kCAValueFunctionRotateY: &'static CAValueFunctionName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(kCAValueFunctionRotateZ: &'static CAValueFunctionName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(kCAValueFunctionScale: &'static CAValueFunctionName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(kCAValueFunctionScaleX: &'static CAValueFunctionName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(kCAValueFunctionScaleY: &'static CAValueFunctionName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(kCAValueFunctionScaleZ: &'static CAValueFunctionName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(kCAValueFunctionTranslate: &'static CAValueFunctionName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(kCAValueFunctionTranslateX: &'static CAValueFunctionName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(kCAValueFunctionTranslateY: &'static CAValueFunctionName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(kCAValueFunctionTranslateZ: &'static CAValueFunctionName);

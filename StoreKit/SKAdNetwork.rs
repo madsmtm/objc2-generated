@@ -5,14 +5,18 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::StoreKit::*;
 
+#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type SKAdNetworkCoarseConversionValue = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(SKAdNetworkCoarseConversionValueHigh: &'static SKAdNetworkCoarseConversionValue);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(SKAdNetworkCoarseConversionValueMedium: &'static SKAdNetworkCoarseConversionValue);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(SKAdNetworkCoarseConversionValueLow: &'static SKAdNetworkCoarseConversionValue);
 
 extern_class!(
@@ -62,7 +66,7 @@ extern_methods!(
             completion: Option<&Block<dyn Fn(*mut NSError)>>,
         );
 
-        #[cfg(feature = "Foundation_NSError")]
+        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
         #[method(updatePostbackConversionValue:coarseValue:completionHandler:)]
         pub unsafe fn updatePostbackConversionValue_coarseValue_completionHandler(
             fine_value: NSInteger,
@@ -70,7 +74,7 @@ extern_methods!(
             completion: Option<&Block<dyn Fn(*mut NSError)>>,
         );
 
-        #[cfg(feature = "Foundation_NSError")]
+        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
         #[method(updatePostbackConversionValue:coarseValue:lockWindow:completionHandler:)]
         pub unsafe fn updatePostbackConversionValue_coarseValue_lockWindow_completionHandler(
             fine_value: NSInteger,
@@ -93,18 +97,26 @@ extern_methods!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(SKStoreProductParameterAdNetworkAttributionSignature: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(SKStoreProductParameterAdNetworkCampaignIdentifier: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(SKStoreProductParameterAdNetworkSourceIdentifier: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(SKStoreProductParameterAdNetworkIdentifier: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(SKStoreProductParameterAdNetworkNonce: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(SKStoreProductParameterAdNetworkTimestamp: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(SKStoreProductParameterAdNetworkSourceAppStoreIdentifier: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(SKStoreProductParameterAdNetworkVersion: &'static NSString);

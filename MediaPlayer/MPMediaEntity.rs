@@ -7,6 +7,7 @@ use crate::MediaPlayer::*;
 
 pub type MPMediaEntityPersistentID = u64;
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MPMediaEntityPropertyPersistentID: &'static NSString);
 
 extern_class!(

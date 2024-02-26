@@ -5,6 +5,7 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
+#[cfg(feature = "Foundation_NSString")]
 pub type NSTextInputSourceIdentifier = NSString;
 
 extern_class!(
@@ -79,15 +80,17 @@ extern_methods!(
         #[method(textInputClientDidEndScrollingOrZooming)]
         pub unsafe fn textInputClientDidEndScrollingOrZooming(&self);
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other keyboardInputSources)]
         pub unsafe fn keyboardInputSources(
             &self,
         ) -> Option<Id<NSArray<NSTextInputSourceIdentifier>>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other selectedKeyboardInputSource)]
         pub fn selectedKeyboardInputSource(&self) -> Option<Id<NSTextInputSourceIdentifier>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setSelectedKeyboardInputSource:)]
         pub unsafe fn setSelectedKeyboardInputSource(
             &self,
@@ -112,4 +115,5 @@ extern_methods!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTextInputContextKeyboardSelectionDidChangeNotification: &'static NSNotificationName);

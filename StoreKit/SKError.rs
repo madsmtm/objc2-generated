@@ -5,6 +5,7 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::StoreKit::*;
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(SKErrorDomain: &'static NSString);
 
 ns_enum!(

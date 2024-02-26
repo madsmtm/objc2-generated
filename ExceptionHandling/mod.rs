@@ -41,6 +41,9 @@ pub use self::__NSExceptionHandler::NSLogUncaughtExceptionMask;
 pub use self::__NSExceptionHandler::NSLogUncaughtRuntimeErrorMask;
 pub use self::__NSExceptionHandler::NSLogUncaughtSystemExceptionMask;
 pub use self::__NSExceptionHandler::NSObjectNSExceptionHandlerDelegate;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__NSExceptionHandler::NSStackTraceKey;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__NSExceptionHandler::NSUncaughtRuntimeErrorException;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__NSExceptionHandler::NSUncaughtSystemExceptionException;

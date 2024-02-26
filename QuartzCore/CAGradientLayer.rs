@@ -4,6 +4,7 @@ use crate::common::*;
 use crate::Foundation::*;
 use crate::QuartzCore::*;
 
+#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type CAGradientLayerType = NSString;
 );
@@ -64,9 +65,11 @@ extern_methods!(
         #[method(setEndPoint:)]
         pub unsafe fn setEndPoint(&self, end_point: CGPoint);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other type)]
         pub unsafe fn r#type(&self) -> Id<CAGradientLayerType>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setType:)]
         pub unsafe fn setType(&self, r#type: &CAGradientLayerType);
     }
@@ -96,8 +99,11 @@ extern_methods!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(kCAGradientLayerAxial: &'static CAGradientLayerType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(kCAGradientLayerRadial: &'static CAGradientLayerType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(kCAGradientLayerConic: &'static CAGradientLayerType);

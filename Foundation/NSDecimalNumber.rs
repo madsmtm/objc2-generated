@@ -3,12 +3,16 @@
 use crate::common::*;
 use crate::Foundation::*;
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSDecimalNumberExactnessException: &'static NSExceptionName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSDecimalNumberOverflowException: &'static NSExceptionName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSDecimalNumberUnderflowException: &'static NSExceptionName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSDecimalNumberDivideByZeroException: &'static NSExceptionName);
 
 extern_protocol!(

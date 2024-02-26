@@ -31,7 +31,10 @@ extern_protocol!(
             error: &NSError,
         );
 
-        #[cfg(feature = "AuthenticationServices_ASAuthorizationController")]
+        #[cfg(all(
+            feature = "AuthenticationServices_ASAuthorizationController",
+            feature = "Foundation_NSString"
+        ))]
         #[optional]
         #[method(authorizationController:didCompleteWithCustomMethod:)]
         unsafe fn authorizationController_didCompleteWithCustomMethod(
@@ -48,7 +51,10 @@ extern_protocol!(
     pub unsafe trait ASAuthorizationControllerPresentationContextProviding:
         NSObjectProtocol
     {
-        #[cfg(feature = "AuthenticationServices_ASAuthorizationController")]
+        #[cfg(all(
+            feature = "AppKit_NSWindow",
+            feature = "AuthenticationServices_ASAuthorizationController"
+        ))]
         #[method_id(@__retain_semantics Other presentationAnchorForAuthorizationController:)]
         unsafe fn presentationAnchorForAuthorizationController(
             &self,
@@ -116,12 +122,12 @@ extern_methods!(
             >,
         );
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other customAuthorizationMethods)]
         pub unsafe fn customAuthorizationMethods(&self)
             -> Id<NSArray<ASAuthorizationCustomMethod>>;
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method(setCustomAuthorizationMethods:)]
         pub unsafe fn setCustomAuthorizationMethods(
             &self,

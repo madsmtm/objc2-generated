@@ -4,18 +4,22 @@ use crate::common::*;
 use crate::Foundation::*;
 use crate::QuartzCore::*;
 
+#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type CAAnimationCalculationMode = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type CAAnimationRotationMode = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type CATransitionType = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type CATransitionSubtype = NSString;
 );
@@ -367,9 +371,11 @@ extern_methods!(
             timing_functions: Option<&NSArray<CAMediaTimingFunction>>,
         );
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other calculationMode)]
         pub unsafe fn calculationMode(&self) -> Id<CAAnimationCalculationMode>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setCalculationMode:)]
         pub unsafe fn setCalculationMode(&self, calculation_mode: &CAAnimationCalculationMode);
 
@@ -397,9 +403,11 @@ extern_methods!(
         #[method(setBiasValues:)]
         pub unsafe fn setBiasValues(&self, bias_values: Option<&NSArray<NSNumber>>);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other rotationMode)]
         pub unsafe fn rotationMode(&self) -> Option<Id<CAAnimationRotationMode>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setRotationMode:)]
         pub unsafe fn setRotationMode(&self, rotation_mode: Option<&CAAnimationRotationMode>);
     }
@@ -436,18 +444,25 @@ extern_methods!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(kCAAnimationLinear: &'static CAAnimationCalculationMode);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(kCAAnimationDiscrete: &'static CAAnimationCalculationMode);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(kCAAnimationPaced: &'static CAAnimationCalculationMode);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(kCAAnimationCubic: &'static CAAnimationCalculationMode);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(kCAAnimationCubicPaced: &'static CAAnimationCalculationMode);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(kCAAnimationRotateAuto: &'static CAAnimationRotationMode);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(kCAAnimationRotateAutoReverse: &'static CAAnimationRotationMode);
 
 extern_class!(
@@ -597,15 +612,19 @@ unsafe impl NSSecureCoding for CATransition {}
 extern_methods!(
     #[cfg(feature = "QuartzCore_CATransition")]
     unsafe impl CATransition {
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other type)]
         pub unsafe fn r#type(&self) -> Id<CATransitionType>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setType:)]
         pub unsafe fn setType(&self, r#type: &CATransitionType);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other subtype)]
         pub unsafe fn subtype(&self) -> Option<Id<CATransitionSubtype>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setSubtype:)]
         pub unsafe fn setSubtype(&self, subtype: Option<&CATransitionSubtype>);
 
@@ -650,20 +669,28 @@ extern_methods!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(kCATransitionFade: &'static CATransitionType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(kCATransitionMoveIn: &'static CATransitionType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(kCATransitionPush: &'static CATransitionType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(kCATransitionReveal: &'static CATransitionType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(kCATransitionFromRight: &'static CATransitionSubtype);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(kCATransitionFromLeft: &'static CATransitionSubtype);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(kCATransitionFromTop: &'static CATransitionSubtype);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(kCATransitionFromBottom: &'static CATransitionSubtype);
 
 extern_class!(

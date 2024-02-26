@@ -29,22 +29,29 @@ ns_options!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type NSPrintPanelJobStyleHint = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSPrintPhotoJobStyleHint: &'static NSPrintPanelJobStyleHint);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSPrintAllPresetsJobStyleHint: &'static NSPrintPanelJobStyleHint);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSPrintNoPresetsJobStyleHint: &'static NSPrintPanelJobStyleHint);
 
+#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type NSPrintPanelAccessorySummaryKey = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSPrintPanelAccessorySummaryItemNameKey: &'static NSPrintPanelAccessorySummaryKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSPrintPanelAccessorySummaryItemDescriptionKey: &'static NSPrintPanelAccessorySummaryKey);
 
 extern_protocol!(
@@ -115,15 +122,19 @@ extern_methods!(
         #[method_id(@__retain_semantics Other defaultButtonTitle)]
         pub unsafe fn defaultButtonTitle(&self) -> Option<Id<NSString>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other helpAnchor)]
         pub unsafe fn helpAnchor(&self) -> Option<Id<NSHelpAnchorName>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setHelpAnchor:)]
         pub unsafe fn setHelpAnchor(&self, help_anchor: Option<&NSHelpAnchorName>);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other jobStyleHint)]
         pub unsafe fn jobStyleHint(&self) -> Option<Id<NSPrintPanelJobStyleHint>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setJobStyleHint:)]
         pub unsafe fn setJobStyleHint(&self, job_style_hint: Option<&NSPrintPanelJobStyleHint>);
 

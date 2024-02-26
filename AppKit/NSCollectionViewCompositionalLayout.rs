@@ -142,6 +142,7 @@ extern_methods!(
     }
 );
 
+#[cfg(feature = "AppKit_NSCollectionLayoutSection")]
 pub type NSCollectionViewCompositionalLayoutSectionProvider = *mut Block<
     dyn Fn(
         NSInteger,
@@ -189,13 +190,17 @@ extern_methods!(
             configuration: &NSCollectionViewCompositionalLayoutConfiguration,
         ) -> Id<Self>;
 
+        #[cfg(feature = "AppKit_NSCollectionLayoutSection")]
         #[method_id(@__retain_semantics Init initWithSectionProvider:)]
         pub unsafe fn initWithSectionProvider(
             this: Allocated<Self>,
             section_provider: NSCollectionViewCompositionalLayoutSectionProvider,
         ) -> Id<Self>;
 
-        #[cfg(feature = "AppKit_NSCollectionViewCompositionalLayoutConfiguration")]
+        #[cfg(all(
+            feature = "AppKit_NSCollectionLayoutSection",
+            feature = "AppKit_NSCollectionViewCompositionalLayoutConfiguration"
+        ))]
         #[method_id(@__retain_semantics Init initWithSectionProvider:configuration:)]
         pub unsafe fn initWithSectionProvider_configuration(
             this: Allocated<Self>,
@@ -242,6 +247,7 @@ ns_enum!(
     }
 );
 
+#[cfg(feature = "Foundation_NSArray")]
 pub type NSCollectionLayoutSectionVisibleItemsInvalidationHandler = *mut Block<
     dyn Fn(
         NonNull<NSArray<ProtocolObject<dyn NSCollectionLayoutVisibleItem>>>,
@@ -332,11 +338,13 @@ extern_methods!(
             supplementaries_follow_content_insets: bool,
         );
 
+        #[cfg(feature = "Foundation_NSArray")]
         #[method(visibleItemsInvalidationHandler)]
         pub unsafe fn visibleItemsInvalidationHandler(
             &self,
         ) -> NSCollectionLayoutSectionVisibleItemsInvalidationHandler;
 
+        #[cfg(feature = "Foundation_NSArray")]
         #[method(setVisibleItemsInvalidationHandler:)]
         pub unsafe fn setVisibleItemsInvalidationHandler(
             &self,
@@ -473,6 +481,10 @@ extern_methods!(
     }
 );
 
+#[cfg(all(
+    feature = "AppKit_NSCollectionLayoutGroupCustomItem",
+    feature = "Foundation_NSArray"
+))]
 pub type NSCollectionLayoutGroupCustomItemProvider = *mut Block<
     dyn Fn(
         NonNull<ProtocolObject<dyn NSCollectionLayoutEnvironment>>,
@@ -537,7 +549,11 @@ extern_methods!(
             subitems: &NSArray<NSCollectionLayoutItem>,
         ) -> Id<Self>;
 
-        #[cfg(feature = "AppKit_NSCollectionLayoutSize")]
+        #[cfg(all(
+            feature = "AppKit_NSCollectionLayoutGroupCustomItem",
+            feature = "AppKit_NSCollectionLayoutSize",
+            feature = "Foundation_NSArray"
+        ))]
         #[method_id(@__retain_semantics Other customGroupWithLayoutSize:itemProvider:)]
         pub unsafe fn customGroupWithLayoutSize_itemProvider(
             layout_size: &NSCollectionLayoutSize,

@@ -81,11 +81,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithMetalLayer:)]
         pub unsafe fn initWithMetalLayer(this: Allocated<Self>, layer: &CAMetalLayer) -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSRunLoop")]
+        #[cfg(all(feature = "Foundation_NSRunLoop", feature = "Foundation_NSString"))]
         #[method(addToRunLoop:forMode:)]
         pub unsafe fn addToRunLoop_forMode(&self, runloop: &NSRunLoop, mode: &NSRunLoopMode);
 
-        #[cfg(feature = "Foundation_NSRunLoop")]
+        #[cfg(all(feature = "Foundation_NSRunLoop", feature = "Foundation_NSString"))]
         #[method(removeFromRunLoop:forMode:)]
         pub unsafe fn removeFromRunLoop_forMode(&self, runloop: &NSRunLoop, mode: &NSRunLoopMode);
 

@@ -43,4 +43,5 @@ pub use self::__AEAssessmentParticipantConfiguration::AEAssessmentParticipantCon
 pub use self::__AEAssessmentSession::AEAssessmentSession;
 pub use self::__AEAssessmentSessionDelegate::AEAssessmentSessionDelegate;
 pub use self::__AEErrors::AEAssessmentErrorCode;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__AEErrors::AEAssessmentErrorDomain;

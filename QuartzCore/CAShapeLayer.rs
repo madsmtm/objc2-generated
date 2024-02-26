@@ -4,14 +4,17 @@ use crate::common::*;
 use crate::Foundation::*;
 use crate::QuartzCore::*;
 
+#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type CAShapeLayerFillRule = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type CAShapeLayerLineJoin = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type CAShapeLayerLineCap = NSString;
 );
@@ -44,9 +47,11 @@ unsafe impl NSSecureCoding for CAShapeLayer {}
 extern_methods!(
     #[cfg(feature = "QuartzCore_CAShapeLayer")]
     unsafe impl CAShapeLayer {
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other fillRule)]
         pub unsafe fn fillRule(&self) -> Id<CAShapeLayerFillRule>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setFillRule:)]
         pub unsafe fn setFillRule(&self, fill_rule: &CAShapeLayerFillRule);
 
@@ -74,15 +79,19 @@ extern_methods!(
         #[method(setMiterLimit:)]
         pub unsafe fn setMiterLimit(&self, miter_limit: CGFloat);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other lineCap)]
         pub unsafe fn lineCap(&self) -> Id<CAShapeLayerLineCap>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setLineCap:)]
         pub unsafe fn setLineCap(&self, line_cap: &CAShapeLayerLineCap);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other lineJoin)]
         pub unsafe fn lineJoin(&self) -> Id<CAShapeLayerLineJoin>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setLineJoin:)]
         pub unsafe fn setLineJoin(&self, line_join: &CAShapeLayerLineJoin);
 
@@ -126,18 +135,26 @@ extern_methods!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(kCAFillRuleNonZero: &'static CAShapeLayerFillRule);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(kCAFillRuleEvenOdd: &'static CAShapeLayerFillRule);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(kCALineJoinMiter: &'static CAShapeLayerLineJoin);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(kCALineJoinRound: &'static CAShapeLayerLineJoin);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(kCALineJoinBevel: &'static CAShapeLayerLineJoin);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(kCALineCapButt: &'static CAShapeLayerLineCap);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(kCALineCapRound: &'static CAShapeLayerLineCap);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(kCALineCapSquare: &'static CAShapeLayerLineCap);

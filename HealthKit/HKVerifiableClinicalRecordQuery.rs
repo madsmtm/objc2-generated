@@ -29,7 +29,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other recordTypes)]
         pub unsafe fn recordTypes(&self) -> Id<NSArray<NSString>>;
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other sourceTypes)]
         pub unsafe fn sourceTypes(&self) -> Id<NSArray<HKVerifiableClinicalRecordSourceType>>;
 

@@ -37,7 +37,8 @@ extern_protocol!(
         #[cfg(all(
             feature = "AppKit_NSImage",
             feature = "AppKit_NSTextContainer",
-            feature = "Foundation_NSDictionary"
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSString"
         ))]
         #[method_id(@__retain_semantics Other imageForBounds:attributes:location:textContainer:)]
         unsafe fn imageForBounds_attributes_location_textContainer(
@@ -50,7 +51,8 @@ extern_protocol!(
 
         #[cfg(all(
             feature = "AppKit_NSTextContainer",
-            feature = "Foundation_NSDictionary"
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSString"
         ))]
         #[method(attachmentBoundsForAttributes:location:textContainer:proposedLineFragment:position:)]
         unsafe fn attachmentBoundsForAttributes_location_textContainer_proposedLineFragment_position(
@@ -301,7 +303,8 @@ extern_methods!(
 
         #[cfg(all(
             feature = "AppKit_NSTextContainer",
-            feature = "Foundation_NSDictionary"
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSString"
         ))]
         #[method(attachmentBoundsForAttributes:location:textContainer:proposedLineFragment:position:)]
         pub unsafe fn attachmentBoundsForAttributes_location_textContainer_proposedLineFragment_position(

@@ -38,6 +38,7 @@ unsafe impl NSUserInterfaceItemIdentification for NSTableColumn {}
 extern_methods!(
     #[cfg(feature = "AppKit_NSTableColumn")]
     unsafe impl NSTableColumn {
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithIdentifier:)]
         pub unsafe fn initWithIdentifier(
             this: Allocated<Self>,
@@ -48,9 +49,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Id<Self>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other identifier)]
         pub unsafe fn identifier(&self) -> Id<NSUserInterfaceItemIdentifier>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setIdentifier:)]
         pub unsafe fn setIdentifier(&self, identifier: &NSUserInterfaceItemIdentifier);
 

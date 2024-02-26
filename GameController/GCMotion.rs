@@ -41,6 +41,7 @@ extern_struct!(
     }
 );
 
+#[cfg(feature = "GameController_GCMotion")]
 pub type GCMotionValueChangedHandler = *mut Block<dyn Fn(NonNull<GCMotion>)>;
 
 extern_class!(

@@ -159,9 +159,11 @@ unsafe impl NSObjectProtocol for BGHealthResearchTaskRequest {}
 extern_methods!(
     #[cfg(feature = "BackgroundTasks_BGHealthResearchTaskRequest")]
     unsafe impl BGHealthResearchTaskRequest {
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other protectionTypeOfRequiredData)]
         pub unsafe fn protectionTypeOfRequiredData(&self) -> Id<NSFileProtectionType>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setProtectionTypeOfRequiredData:)]
         pub unsafe fn setProtectionTypeOfRequiredData(
             &self,

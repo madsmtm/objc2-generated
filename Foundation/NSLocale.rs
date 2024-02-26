@@ -3,6 +3,7 @@
 use crate::common::*;
 use crate::Foundation::*;
 
+#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type NSLocaleKey = NSString;
 );
@@ -40,6 +41,7 @@ unsafe impl NSSecureCoding for NSLocale {}
 extern_methods!(
     #[cfg(feature = "Foundation_NSLocale")]
     unsafe impl NSLocale {
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other objectForKey:)]
         pub unsafe fn objectForKey(&self, key: &NSLocaleKey) -> Option<Id<AnyObject>>;
 
@@ -318,64 +320,95 @@ extern_methods!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSCurrentLocaleDidChangeNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSLocaleIdentifier: &'static NSLocaleKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSLocaleLanguageCode: &'static NSLocaleKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSLocaleCountryCode: &'static NSLocaleKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSLocaleScriptCode: &'static NSLocaleKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSLocaleVariantCode: &'static NSLocaleKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSLocaleExemplarCharacterSet: &'static NSLocaleKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSLocaleCalendar: &'static NSLocaleKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSLocaleCollationIdentifier: &'static NSLocaleKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSLocaleUsesMetricSystem: &'static NSLocaleKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSLocaleMeasurementSystem: &'static NSLocaleKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSLocaleDecimalSeparator: &'static NSLocaleKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSLocaleGroupingSeparator: &'static NSLocaleKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSLocaleCurrencySymbol: &'static NSLocaleKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSLocaleCurrencyCode: &'static NSLocaleKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSLocaleCollatorIdentifier: &'static NSLocaleKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSLocaleQuotationBeginDelimiterKey: &'static NSLocaleKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSLocaleQuotationEndDelimiterKey: &'static NSLocaleKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSLocaleAlternateQuotationBeginDelimiterKey: &'static NSLocaleKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSLocaleAlternateQuotationEndDelimiterKey: &'static NSLocaleKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSGregorianCalendar: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSBuddhistCalendar: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSChineseCalendar: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSHebrewCalendar: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSIslamicCalendar: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSIslamicCivilCalendar: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSJapaneseCalendar: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSRepublicOfChinaCalendar: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSPersianCalendar: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSIndianCalendar: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSISO8601Calendar: &'static NSString);

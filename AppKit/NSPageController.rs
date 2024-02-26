@@ -5,6 +5,7 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
+#[cfg(feature = "Foundation_NSString")]
 pub type NSPageControllerObjectIdentifier = NSString;
 
 ns_enum!(
@@ -106,7 +107,7 @@ extern_methods!(
     /// Methods declared on superclass `NSViewController`
     #[cfg(feature = "AppKit_NSPageController")]
     unsafe impl NSPageController {
-        #[cfg(feature = "Foundation_NSBundle")]
+        #[cfg(all(feature = "Foundation_NSBundle", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Init initWithNibName:bundle:)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,
@@ -140,7 +141,7 @@ extern_methods!(
 
 extern_protocol!(
     pub unsafe trait NSPageControllerDelegate: NSObjectProtocol + IsMainThreadOnly {
-        #[cfg(feature = "AppKit_NSPageController")]
+        #[cfg(all(feature = "AppKit_NSPageController", feature = "Foundation_NSString"))]
         #[optional]
         #[method_id(@__retain_semantics Other pageController:identifierForObject:)]
         unsafe fn pageController_identifierForObject(
@@ -151,7 +152,8 @@ extern_protocol!(
 
         #[cfg(all(
             feature = "AppKit_NSPageController",
-            feature = "AppKit_NSViewController"
+            feature = "AppKit_NSViewController",
+            feature = "Foundation_NSString"
         ))]
         #[optional]
         #[method_id(@__retain_semantics Other pageController:viewControllerForIdentifier:)]

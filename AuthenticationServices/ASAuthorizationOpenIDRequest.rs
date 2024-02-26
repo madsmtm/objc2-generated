@@ -5,16 +5,21 @@ use crate::AppKit::*;
 use crate::AuthenticationServices::*;
 use crate::Foundation::*;
 
+#[cfg(feature = "Foundation_NSString")]
 typed_extensible_enum!(
     pub type ASAuthorizationOpenIDOperation = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(ASAuthorizationOperationImplicit: &'static ASAuthorizationOpenIDOperation);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(ASAuthorizationOperationLogin: &'static ASAuthorizationOpenIDOperation);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(ASAuthorizationOperationRefresh: &'static ASAuthorizationOpenIDOperation);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(ASAuthorizationOperationLogout: &'static ASAuthorizationOpenIDOperation);
 
 extern_class!(
@@ -45,11 +50,11 @@ unsafe impl NSSecureCoding for ASAuthorizationOpenIDRequest {}
 extern_methods!(
     #[cfg(feature = "AuthenticationServices_ASAuthorizationOpenIDRequest")]
     unsafe impl ASAuthorizationOpenIDRequest {
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other requestedScopes)]
         pub unsafe fn requestedScopes(&self) -> Option<Id<NSArray<ASAuthorizationScope>>>;
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method(setRequestedScopes:)]
         pub unsafe fn setRequestedScopes(
             &self,
@@ -72,9 +77,11 @@ extern_methods!(
         #[method(setNonce:)]
         pub unsafe fn setNonce(&self, nonce: Option<&NSString>);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other requestedOperation)]
         pub unsafe fn requestedOperation(&self) -> Id<ASAuthorizationOpenIDOperation>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setRequestedOperation:)]
         pub unsafe fn setRequestedOperation(
             &self,

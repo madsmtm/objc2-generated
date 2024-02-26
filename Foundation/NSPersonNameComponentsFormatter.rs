@@ -141,18 +141,26 @@ extern_methods!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSPersonNameComponentKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSPersonNameComponentGivenName: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSPersonNameComponentFamilyName: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSPersonNameComponentMiddleName: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSPersonNameComponentPrefix: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSPersonNameComponentSuffix: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSPersonNameComponentNickname: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSPersonNameComponentDelimiter: &'static NSString);

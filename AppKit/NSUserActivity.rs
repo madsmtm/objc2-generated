@@ -57,4 +57,5 @@ extern_methods!(
 #[cfg(feature = "AppKit_NSDocument")]
 unsafe impl NSUserActivityRestoring for NSDocument {}
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSUserActivityDocumentURLKey: &'static NSString);

@@ -43,6 +43,7 @@ ns_enum!(
     }
 );
 
+#[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSError"))]
 pub type PHAssetImageProgressHandler =
     *mut Block<dyn Fn(c_double, *mut NSError, NonNull<Bool>, *mut NSDictionary)>;
 
@@ -103,9 +104,11 @@ extern_methods!(
         #[method(setSynchronous:)]
         pub unsafe fn setSynchronous(&self, synchronous: bool);
 
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSError"))]
         #[method(progressHandler)]
         pub unsafe fn progressHandler(&self) -> PHAssetImageProgressHandler;
 
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSError"))]
         #[method(setProgressHandler:)]
         pub unsafe fn setProgressHandler(&self, progress_handler: PHAssetImageProgressHandler);
 
@@ -168,9 +171,11 @@ extern_methods!(
         #[method(setNetworkAccessAllowed:)]
         pub unsafe fn setNetworkAccessAllowed(&self, network_access_allowed: bool);
 
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSError"))]
         #[method(progressHandler)]
         pub unsafe fn progressHandler(&self) -> PHAssetImageProgressHandler;
 
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSError"))]
         #[method(setProgressHandler:)]
         pub unsafe fn setProgressHandler(&self, progress_handler: PHAssetImageProgressHandler);
     }
@@ -212,6 +217,7 @@ ns_enum!(
     }
 );
 
+#[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSError"))]
 pub type PHAssetVideoProgressHandler =
     *mut Block<dyn Fn(c_double, *mut NSError, NonNull<Bool>, *mut NSDictionary)>;
 
@@ -254,9 +260,11 @@ extern_methods!(
         #[method(setDeliveryMode:)]
         pub unsafe fn setDeliveryMode(&self, delivery_mode: PHVideoRequestOptionsDeliveryMode);
 
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSError"))]
         #[method(progressHandler)]
         pub unsafe fn progressHandler(&self) -> PHAssetVideoProgressHandler;
 
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSError"))]
         #[method(setProgressHandler:)]
         pub unsafe fn setProgressHandler(&self, progress_handler: PHAssetVideoProgressHandler);
     }
@@ -280,14 +288,19 @@ extern_static!(PHInvalidImageRequestID: PHImageRequestID = 0);
 
 extern_static!(PHImageManagerMaximumSize: CGSize);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(PHImageResultIsInCloudKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(PHImageResultIsDegradedKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(PHImageResultRequestIDKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(PHImageCancelledKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(PHImageErrorKey: &'static NSString);
 
 extern_class!(

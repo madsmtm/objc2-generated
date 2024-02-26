@@ -46,24 +46,33 @@ ns_enum!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type CLSContextTopic = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CLSContextTopicMath: &'static CLSContextTopic);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CLSContextTopicScience: &'static CLSContextTopic);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CLSContextTopicLiteracyAndWriting: &'static CLSContextTopic);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CLSContextTopicWorldLanguage: &'static CLSContextTopic);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CLSContextTopicSocialScience: &'static CLSContextTopic);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CLSContextTopicComputerScienceAndEngineering: &'static CLSContextTopic);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CLSContextTopicArtsAndMusic: &'static CLSContextTopic);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CLSContextTopicHealthAndFitness: &'static CLSContextTopic);
 
 extern_class!(
@@ -138,9 +147,11 @@ extern_methods!(
         #[method(setDisplayOrder:)]
         pub unsafe fn setDisplayOrder(&self, display_order: NSInteger);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other topic)]
         pub unsafe fn topic(&self) -> Option<Id<CLSContextTopic>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setTopic:)]
         pub unsafe fn setTopic(&self, topic: Option<&CLSContextTopic>);
 

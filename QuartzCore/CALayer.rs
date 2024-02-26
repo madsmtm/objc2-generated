@@ -4,18 +4,22 @@ use crate::common::*;
 use crate::Foundation::*;
 use crate::QuartzCore::*;
 
+#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type CALayerContentsGravity = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type CALayerContentsFormat = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type CALayerContentsFilter = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type CALayerCornerCurve = NSString;
 );
@@ -258,9 +262,11 @@ extern_methods!(
         #[method(setContentsRect:)]
         pub fn setContentsRect(&self, contents_rect: CGRect);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other contentsGravity)]
         pub fn contentsGravity(&self) -> Id<CALayerContentsGravity>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setContentsGravity:)]
         pub fn setContentsGravity(&self, contents_gravity: &CALayerContentsGravity);
 
@@ -276,9 +282,11 @@ extern_methods!(
         #[method(setContentsCenter:)]
         pub fn setContentsCenter(&self, contents_center: CGRect);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other contentsFormat)]
         pub fn contentsFormat(&self) -> Id<CALayerContentsFormat>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setContentsFormat:)]
         pub fn setContentsFormat(&self, contents_format: &CALayerContentsFormat);
 
@@ -291,15 +299,19 @@ extern_methods!(
             wants_extended_dynamic_range_content: bool,
         );
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other minificationFilter)]
         pub fn minificationFilter(&self) -> Id<CALayerContentsFilter>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setMinificationFilter:)]
         pub fn setMinificationFilter(&self, minification_filter: &CALayerContentsFilter);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other magnificationFilter)]
         pub fn magnificationFilter(&self) -> Id<CALayerContentsFilter>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setMagnificationFilter:)]
         pub fn setMagnificationFilter(&self, magnification_filter: &CALayerContentsFilter);
 
@@ -366,12 +378,15 @@ extern_methods!(
         #[method(setMaskedCorners:)]
         pub fn setMaskedCorners(&self, masked_corners: CACornerMask);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other cornerCurve)]
         pub fn cornerCurve(&self) -> Id<CALayerCornerCurve>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setCornerCurve:)]
         pub fn setCornerCurve(&self, corner_curve: &CALayerCornerCurve);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(cornerCurveExpansionFactor:)]
         pub fn cornerCurveExpansionFactor(curve: &CALayerCornerCurve) -> CGFloat;
 
@@ -629,48 +644,71 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn CALayerDelegate {}
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(kCAGravityCenter: &'static CALayerContentsGravity);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(kCAGravityTop: &'static CALayerContentsGravity);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(kCAGravityBottom: &'static CALayerContentsGravity);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(kCAGravityLeft: &'static CALayerContentsGravity);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(kCAGravityRight: &'static CALayerContentsGravity);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(kCAGravityTopLeft: &'static CALayerContentsGravity);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(kCAGravityTopRight: &'static CALayerContentsGravity);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(kCAGravityBottomLeft: &'static CALayerContentsGravity);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(kCAGravityBottomRight: &'static CALayerContentsGravity);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(kCAGravityResize: &'static CALayerContentsGravity);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(kCAGravityResizeAspect: &'static CALayerContentsGravity);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(kCAGravityResizeAspectFill: &'static CALayerContentsGravity);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(kCAContentsFormatRGBA8Uint: &'static CALayerContentsFormat);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(kCAContentsFormatRGBA16Float: &'static CALayerContentsFormat);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(kCAContentsFormatGray8Uint: &'static CALayerContentsFormat);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(kCAFilterNearest: &'static CALayerContentsFilter);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(kCAFilterLinear: &'static CALayerContentsFilter);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(kCAFilterTrilinear: &'static CALayerContentsFilter);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(kCACornerCurveCircular: &'static CALayerCornerCurve);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(kCACornerCurveContinuous: &'static CALayerCornerCurve);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(kCAOnOrderIn: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(kCAOnOrderOut: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(kCATransition: &'static NSString);

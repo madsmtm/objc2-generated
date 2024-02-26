@@ -3,6 +3,7 @@
 use crate::common::*;
 use crate::Foundation::*;
 
+#[cfg(feature = "Foundation_NSString")]
 pub type NSUserActivityPersistentIdentifier = NSString;
 
 extern_class!(
@@ -179,17 +180,19 @@ extern_methods!(
         #[method(setEligibleForPrediction:)]
         pub unsafe fn setEligibleForPrediction(&self, eligible_for_prediction: bool);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other persistentIdentifier)]
         pub unsafe fn persistentIdentifier(&self)
             -> Option<Id<NSUserActivityPersistentIdentifier>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setPersistentIdentifier:)]
         pub unsafe fn setPersistentIdentifier(
             &self,
             persistent_identifier: Option<&NSUserActivityPersistentIdentifier>,
         );
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method(deleteSavedUserActivitiesWithPersistentIdentifiers:completionHandler:)]
         pub unsafe fn deleteSavedUserActivitiesWithPersistentIdentifiers_completionHandler(
             persistent_identifiers: &NSArray<NSUserActivityPersistentIdentifier>,
@@ -210,6 +213,7 @@ extern_methods!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSUserActivityTypeBrowsingWeb: &'static NSString);
 
 extern_protocol!(

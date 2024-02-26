@@ -5,6 +5,7 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::GameController::*;
 
+#[cfg(feature = "GameController_GCMouseInput")]
 pub type GCMouseMoved = *mut Block<dyn Fn(NonNull<GCMouseInput>, c_float, c_float)>;
 
 extern_class!(

@@ -7,6 +7,7 @@ use crate::Foundation::*;
 use crate::Photos::*;
 use crate::UniformTypeIdentifiers::*;
 
+#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type PHLivePhotoEditingOption = NSString;
 );
@@ -117,8 +118,10 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn PHLivePhotoFrame {}
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(PHLivePhotoShouldRenderAtPlaybackTime: &'static PHLivePhotoEditingOption);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(PHLivePhotoEditingErrorDomain: &'static NSString);
 
 ns_enum!(

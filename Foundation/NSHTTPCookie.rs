@@ -3,44 +3,62 @@
 use crate::common::*;
 use crate::Foundation::*;
 
+#[cfg(feature = "Foundation_NSString")]
 typed_extensible_enum!(
     pub type NSHTTPCookiePropertyKey = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type NSHTTPCookieStringPolicy = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSHTTPCookieName: &'static NSHTTPCookiePropertyKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSHTTPCookieValue: &'static NSHTTPCookiePropertyKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSHTTPCookieOriginURL: &'static NSHTTPCookiePropertyKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSHTTPCookieVersion: &'static NSHTTPCookiePropertyKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSHTTPCookieDomain: &'static NSHTTPCookiePropertyKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSHTTPCookiePath: &'static NSHTTPCookiePropertyKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSHTTPCookieSecure: &'static NSHTTPCookiePropertyKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSHTTPCookieExpires: &'static NSHTTPCookiePropertyKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSHTTPCookieComment: &'static NSHTTPCookiePropertyKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSHTTPCookieCommentURL: &'static NSHTTPCookiePropertyKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSHTTPCookieDiscard: &'static NSHTTPCookiePropertyKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSHTTPCookieMaximumAge: &'static NSHTTPCookiePropertyKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSHTTPCookiePort: &'static NSHTTPCookiePropertyKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSHTTPCookieSameSitePolicy: &'static NSHTTPCookiePropertyKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSHTTPCookieSameSiteLax: &'static NSHTTPCookieStringPolicy);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSHTTPCookieSameSiteStrict: &'static NSHTTPCookieStringPolicy);
 
 extern_class!(
@@ -67,14 +85,14 @@ unsafe impl NSObjectProtocol for NSHTTPCookie {}
 extern_methods!(
     #[cfg(feature = "Foundation_NSHTTPCookie")]
     unsafe impl NSHTTPCookie {
-        #[cfg(feature = "Foundation_NSDictionary")]
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Init initWithProperties:)]
         pub unsafe fn initWithProperties(
             this: Allocated<Self>,
             properties: &NSDictionary<NSHTTPCookiePropertyKey, AnyObject>,
         ) -> Option<Id<Self>>;
 
-        #[cfg(feature = "Foundation_NSDictionary")]
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other cookieWithProperties:)]
         pub unsafe fn cookieWithProperties(
             properties: &NSDictionary<NSHTTPCookiePropertyKey, AnyObject>,
@@ -102,7 +120,7 @@ extern_methods!(
             url: &NSURL,
         ) -> Id<NSArray<NSHTTPCookie>>;
 
-        #[cfg(feature = "Foundation_NSDictionary")]
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other properties)]
         pub unsafe fn properties(
             &self,
@@ -152,6 +170,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other portList)]
         pub unsafe fn portList(&self) -> Option<Id<NSArray<NSNumber>>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other sameSitePolicy)]
         pub unsafe fn sameSitePolicy(&self) -> Option<Id<NSHTTPCookieStringPolicy>>;
     }

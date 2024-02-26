@@ -5,6 +5,7 @@ use crate::CloudKit::*;
 use crate::CoreLocation::*;
 use crate::Foundation::*;
 
+#[cfg(feature = "Foundation_NSString")]
 pub type CKOperationID = NSString;
 
 extern_class!(
@@ -45,6 +46,7 @@ extern_methods!(
         #[method(setGroup:)]
         pub unsafe fn setGroup(&self, group: Option<&CKOperationGroup>);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other operationID)]
         pub unsafe fn operationID(&self) -> Id<CKOperationID>;
 

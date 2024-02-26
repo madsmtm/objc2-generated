@@ -5,14 +5,18 @@ use crate::AppKit::*;
 use crate::BusinessChat::*;
 use crate::Foundation::*;
 
+#[cfg(feature = "Foundation_NSString")]
 typed_extensible_enum!(
     pub type BCParameterName = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(BCParameterNameIntent: &'static BCParameterName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(BCParameterNameGroup: &'static BCParameterName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(BCParameterNameBody: &'static BCParameterName);
 
 extern_class!(

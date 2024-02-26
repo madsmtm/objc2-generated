@@ -5,8 +5,10 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::GameController::*;
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(GCKeyboardDidConnectNotification: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(GCKeyboardDidDisconnectNotification: &'static NSString);
 
 extern_class!(

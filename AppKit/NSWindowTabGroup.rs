@@ -23,6 +23,7 @@ unsafe impl NSObjectProtocol for NSWindowTabGroup {}
 extern_methods!(
     #[cfg(feature = "AppKit_NSWindowTabGroup")]
     unsafe impl NSWindowTabGroup {
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other identifier)]
         pub unsafe fn identifier(&self) -> Id<NSWindowTabbingIdentifier>;
 

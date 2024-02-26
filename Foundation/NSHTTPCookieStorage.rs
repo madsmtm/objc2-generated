@@ -146,6 +146,8 @@ extern_methods!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSHTTPCookieManagerAcceptPolicyChangedNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSHTTPCookieManagerCookiesChangedNotification: &'static NSNotificationName);

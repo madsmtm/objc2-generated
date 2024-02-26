@@ -82,6 +82,10 @@ extern_methods!(
     }
 );
 
+#[cfg(all(
+    feature = "Accessibility_AXCustomContent",
+    feature = "Foundation_NSArray"
+))]
 pub type AXCustomContentReturnBlock = *mut Block<dyn Fn() -> *mut NSArray<AXCustomContent>>;
 
 extern_protocol!(
@@ -103,10 +107,18 @@ extern_protocol!(
             accessibility_custom_content: Option<&NSArray<AXCustomContent>>,
         );
 
+        #[cfg(all(
+            feature = "Accessibility_AXCustomContent",
+            feature = "Foundation_NSArray"
+        ))]
         #[optional]
         #[method(accessibilityCustomContentBlock)]
         unsafe fn accessibilityCustomContentBlock(&self) -> AXCustomContentReturnBlock;
 
+        #[cfg(all(
+            feature = "Accessibility_AXCustomContent",
+            feature = "Foundation_NSArray"
+        ))]
         #[optional]
         #[method(setAccessibilityCustomContentBlock:)]
         unsafe fn setAccessibilityCustomContentBlock(

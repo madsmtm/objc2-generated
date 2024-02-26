@@ -5,14 +5,22 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::GameController::*;
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(GCInputMicroGamepadDpad: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(GCInputMicroGamepadButtonA: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(GCInputMicroGamepadButtonX: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(GCInputMicroGamepadButtonMenu: &'static NSString);
 
+#[cfg(all(
+    feature = "GameController_GCControllerElement",
+    feature = "GameController_GCMicroGamepad"
+))]
 pub type GCMicroGamepadValueChangedHandler =
     *mut Block<dyn Fn(NonNull<GCMicroGamepad>, NonNull<GCControllerElement>)>;
 
@@ -39,9 +47,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Other controller)]
         pub unsafe fn controller(&self) -> Option<Id<GCController>>;
 
+        #[cfg(feature = "GameController_GCControllerElement")]
         #[method(valueChangedHandler)]
         pub unsafe fn valueChangedHandler(&self) -> GCMicroGamepadValueChangedHandler;
 
+        #[cfg(feature = "GameController_GCControllerElement")]
         #[method(setValueChangedHandler:)]
         pub unsafe fn setValueChangedHandler(
             &self,

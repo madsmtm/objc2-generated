@@ -56,6 +56,8 @@ extern_methods!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CNGroupIdentifierKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CNGroupNameKey: &'static NSString);

@@ -205,4 +205,5 @@ extern_methods!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTaskDidTerminateNotification: &'static NSNotificationName);

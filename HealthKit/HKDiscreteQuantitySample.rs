@@ -124,16 +124,23 @@ extern_methods!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(HKPredicateKeyPathMin: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(HKPredicateKeyPathAverage: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(HKPredicateKeyPathMax: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(HKPredicateKeyPathMostRecent: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(HKPredicateKeyPathMostRecentStartDate: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(HKPredicateKeyPathMostRecentEndDate: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(HKPredicateKeyPathMostRecentDuration: &'static NSString);

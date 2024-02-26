@@ -153,27 +153,35 @@ extern_methods!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFileHandleOperationException: &'static NSExceptionName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFileHandleReadCompletionNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFileHandleReadToEndOfFileCompletionNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFileHandleConnectionAcceptedNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFileHandleDataAvailableNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFileHandleNotificationDataItem: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFileHandleNotificationFileHandleItem: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFileHandleNotificationMonitorModes: &'static NSString);
 
 extern_methods!(
     /// NSFileHandleAsynchronousAccess
     #[cfg(feature = "Foundation_NSFileHandle")]
     unsafe impl NSFileHandle {
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method(readInBackgroundAndNotifyForModes:)]
         pub unsafe fn readInBackgroundAndNotifyForModes(
             &self,
@@ -183,7 +191,7 @@ extern_methods!(
         #[method(readInBackgroundAndNotify)]
         pub unsafe fn readInBackgroundAndNotify(&self);
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method(readToEndOfFileInBackgroundAndNotifyForModes:)]
         pub unsafe fn readToEndOfFileInBackgroundAndNotifyForModes(
             &self,
@@ -193,7 +201,7 @@ extern_methods!(
         #[method(readToEndOfFileInBackgroundAndNotify)]
         pub unsafe fn readToEndOfFileInBackgroundAndNotify(&self);
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method(acceptConnectionInBackgroundAndNotifyForModes:)]
         pub unsafe fn acceptConnectionInBackgroundAndNotifyForModes(
             &self,
@@ -203,7 +211,7 @@ extern_methods!(
         #[method(acceptConnectionInBackgroundAndNotify)]
         pub unsafe fn acceptConnectionInBackgroundAndNotify(&self);
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method(waitForDataInBackgroundAndNotifyForModes:)]
         pub unsafe fn waitForDataInBackgroundAndNotifyForModes(
             &self,

@@ -329,6 +329,7 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn NSXMLParserDelegate {}
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSXMLParserErrorDomain: &'static NSErrorDomain);
 
 ns_enum!(

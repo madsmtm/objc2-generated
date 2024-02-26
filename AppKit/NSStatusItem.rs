@@ -5,6 +5,7 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
+#[cfg(feature = "Foundation_NSString")]
 pub type NSStatusItemAutosaveName = NSString;
 
 ns_options!(
@@ -69,9 +70,11 @@ extern_methods!(
         #[method(setVisible:)]
         pub unsafe fn setVisible(&self, visible: bool);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other autosaveName)]
         pub unsafe fn autosaveName(&self) -> Id<NSStatusItemAutosaveName>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setAutosaveName:)]
         pub unsafe fn setAutosaveName(&self, autosave_name: Option<&NSStatusItemAutosaveName>);
     }

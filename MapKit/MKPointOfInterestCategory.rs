@@ -7,86 +7,127 @@ use crate::CoreLocation::*;
 use crate::Foundation::*;
 use crate::MapKit::*;
 
+#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type MKPointOfInterestCategory = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MKPointOfInterestCategoryAirport: Option<&'static MKPointOfInterestCategory>);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MKPointOfInterestCategoryAmusementPark: Option<&'static MKPointOfInterestCategory>);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MKPointOfInterestCategoryAquarium: Option<&'static MKPointOfInterestCategory>);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MKPointOfInterestCategoryATM: Option<&'static MKPointOfInterestCategory>);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MKPointOfInterestCategoryBakery: Option<&'static MKPointOfInterestCategory>);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MKPointOfInterestCategoryBank: Option<&'static MKPointOfInterestCategory>);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MKPointOfInterestCategoryBeach: Option<&'static MKPointOfInterestCategory>);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MKPointOfInterestCategoryBrewery: Option<&'static MKPointOfInterestCategory>);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MKPointOfInterestCategoryCafe: Option<&'static MKPointOfInterestCategory>);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MKPointOfInterestCategoryCampground: Option<&'static MKPointOfInterestCategory>);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MKPointOfInterestCategoryCarRental: Option<&'static MKPointOfInterestCategory>);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MKPointOfInterestCategoryEVCharger: Option<&'static MKPointOfInterestCategory>);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MKPointOfInterestCategoryFireStation: Option<&'static MKPointOfInterestCategory>);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MKPointOfInterestCategoryFitnessCenter: Option<&'static MKPointOfInterestCategory>);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MKPointOfInterestCategoryFoodMarket: Option<&'static MKPointOfInterestCategory>);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MKPointOfInterestCategoryGasStation: Option<&'static MKPointOfInterestCategory>);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MKPointOfInterestCategoryHospital: Option<&'static MKPointOfInterestCategory>);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MKPointOfInterestCategoryHotel: Option<&'static MKPointOfInterestCategory>);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MKPointOfInterestCategoryLaundry: Option<&'static MKPointOfInterestCategory>);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MKPointOfInterestCategoryLibrary: Option<&'static MKPointOfInterestCategory>);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MKPointOfInterestCategoryMarina: Option<&'static MKPointOfInterestCategory>);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MKPointOfInterestCategoryMovieTheater: Option<&'static MKPointOfInterestCategory>);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MKPointOfInterestCategoryMuseum: Option<&'static MKPointOfInterestCategory>);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MKPointOfInterestCategoryNationalPark: Option<&'static MKPointOfInterestCategory>);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MKPointOfInterestCategoryNightlife: Option<&'static MKPointOfInterestCategory>);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MKPointOfInterestCategoryPark: Option<&'static MKPointOfInterestCategory>);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MKPointOfInterestCategoryParking: Option<&'static MKPointOfInterestCategory>);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MKPointOfInterestCategoryPharmacy: Option<&'static MKPointOfInterestCategory>);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MKPointOfInterestCategoryPolice: Option<&'static MKPointOfInterestCategory>);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MKPointOfInterestCategoryPostOffice: Option<&'static MKPointOfInterestCategory>);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MKPointOfInterestCategoryPublicTransport: Option<&'static MKPointOfInterestCategory>);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MKPointOfInterestCategoryRestaurant: Option<&'static MKPointOfInterestCategory>);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MKPointOfInterestCategoryRestroom: Option<&'static MKPointOfInterestCategory>);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MKPointOfInterestCategorySchool: Option<&'static MKPointOfInterestCategory>);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MKPointOfInterestCategoryStadium: Option<&'static MKPointOfInterestCategory>);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MKPointOfInterestCategoryStore: Option<&'static MKPointOfInterestCategory>);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MKPointOfInterestCategoryTheater: Option<&'static MKPointOfInterestCategory>);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MKPointOfInterestCategoryUniversity: Option<&'static MKPointOfInterestCategory>);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MKPointOfInterestCategoryWinery: Option<&'static MKPointOfInterestCategory>);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MKPointOfInterestCategoryZoo: Option<&'static MKPointOfInterestCategory>);

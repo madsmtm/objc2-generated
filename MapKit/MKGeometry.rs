@@ -203,21 +203,18 @@ inline_fn!(
 );
 
 inline_fn!(
-    #[cfg(feature = "Foundation_NSString")]
     pub unsafe fn MKStringFromMapPoint(point: MKMapPoint) -> NonNull<NSString> {
         todo!()
     }
 );
 
 inline_fn!(
-    #[cfg(feature = "Foundation_NSString")]
     pub unsafe fn MKStringFromMapSize(size: MKMapSize) -> NonNull<NSString> {
         todo!()
     }
 );
 
 inline_fn!(
-    #[cfg(feature = "Foundation_NSString")]
     pub unsafe fn MKStringFromMapRect(rect: MKMapRect) -> NonNull<NSString> {
         todo!()
     }

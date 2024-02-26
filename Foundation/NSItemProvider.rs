@@ -88,9 +88,11 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn NSItemProviderReading {}
 );
 
+#[cfg(feature = "Foundation_NSError")]
 pub type NSItemProviderCompletionHandler =
     *mut Block<dyn Fn(*mut ProtocolObject<dyn NSSecureCoding>, *mut NSError)>;
 
+#[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSError"))]
 pub type NSItemProviderLoadHandler =
     *mut Block<dyn Fn(NSItemProviderCompletionHandler, *const AnyClass, *mut NSDictionary)>;
 
@@ -249,7 +251,11 @@ extern_methods!(
             file_url: Option<&NSURL>,
         ) -> Option<Id<Self>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSError",
+            feature = "Foundation_NSString"
+        ))]
         #[method(registerItemForTypeIdentifier:loadHandler:)]
         pub unsafe fn registerItemForTypeIdentifier_loadHandler(
             &self,
@@ -257,7 +263,11 @@ extern_methods!(
             load_handler: NSItemProviderLoadHandler,
         );
 
-        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSError",
+            feature = "Foundation_NSString"
+        ))]
         #[method(loadItemForTypeIdentifier:options:completionHandler:)]
         pub unsafe fn loadItemForTypeIdentifier_options_completionHandler(
             &self,
@@ -277,22 +287,25 @@ extern_methods!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSItemProviderPreferredImageSizeKey: &'static NSString);
 
 extern_methods!(
     /// NSPreviewSupport
     #[cfg(feature = "Foundation_NSItemProvider")]
     unsafe impl NSItemProvider {
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSError"))]
         #[method(previewImageHandler)]
         pub unsafe fn previewImageHandler(&self) -> NSItemProviderLoadHandler;
 
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSError"))]
         #[method(setPreviewImageHandler:)]
         pub unsafe fn setPreviewImageHandler(
             &self,
             preview_image_handler: NSItemProviderLoadHandler,
         );
 
-        #[cfg(feature = "Foundation_NSDictionary")]
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSError"))]
         #[method(loadPreviewImageWithOptions:completionHandler:)]
         pub unsafe fn loadPreviewImageWithOptions_completionHandler(
             &self,
@@ -302,10 +315,13 @@ extern_methods!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSExtensionJavaScriptPreprocessingResultsKey: Option<&'static NSString>);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSExtensionJavaScriptFinalizeArgumentKey: Option<&'static NSString>);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSItemProviderErrorDomain: &'static NSString);
 
 ns_enum!(

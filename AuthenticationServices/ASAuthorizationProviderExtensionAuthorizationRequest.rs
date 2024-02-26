@@ -5,12 +5,15 @@ use crate::AppKit::*;
 use crate::AuthenticationServices::*;
 use crate::Foundation::*;
 
+#[cfg(feature = "Foundation_NSString")]
 typed_extensible_enum!(
     pub type ASAuthorizationProviderAuthorizationOperation = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(ASAuthorizationProviderAuthorizationOperationConfigurationRemoved: &'static ASAuthorizationProviderAuthorizationOperation);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(ASAuthorizationProviderAuthorizationOperationDirectRequest: &'static ASAuthorizationProviderAuthorizationOperation);
 
 extern_protocol!(
@@ -109,6 +112,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other url)]
         pub unsafe fn url(&self) -> Id<NSURL>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other requestedOperation)]
         pub unsafe fn requestedOperation(
             &self,

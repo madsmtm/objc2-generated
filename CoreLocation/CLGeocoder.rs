@@ -5,6 +5,11 @@ use crate::Contacts::*;
 use crate::CoreLocation::*;
 use crate::Foundation::*;
 
+#[cfg(all(
+    feature = "CoreLocation_CLPlacemark",
+    feature = "Foundation_NSArray",
+    feature = "Foundation_NSError"
+))]
 pub type CLGeocodeCompletionHandler = *mut Block<dyn Fn(*mut NSArray<CLPlacemark>, *mut NSError)>;
 
 extern_class!(
@@ -28,7 +33,12 @@ extern_methods!(
         #[method(isGeocoding)]
         pub unsafe fn isGeocoding(&self) -> bool;
 
-        #[cfg(feature = "CoreLocation_CLLocation")]
+        #[cfg(all(
+            feature = "CoreLocation_CLLocation",
+            feature = "CoreLocation_CLPlacemark",
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSError"
+        ))]
         #[method(reverseGeocodeLocation:completionHandler:)]
         pub unsafe fn reverseGeocodeLocation_completionHandler(
             &self,
@@ -36,7 +46,13 @@ extern_methods!(
             completion_handler: CLGeocodeCompletionHandler,
         );
 
-        #[cfg(all(feature = "CoreLocation_CLLocation", feature = "Foundation_NSLocale"))]
+        #[cfg(all(
+            feature = "CoreLocation_CLLocation",
+            feature = "CoreLocation_CLPlacemark",
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSError",
+            feature = "Foundation_NSLocale"
+        ))]
         #[method(reverseGeocodeLocation:preferredLocale:completionHandler:)]
         pub unsafe fn reverseGeocodeLocation_preferredLocale_completionHandler(
             &self,
@@ -45,7 +61,12 @@ extern_methods!(
             completion_handler: CLGeocodeCompletionHandler,
         );
 
-        #[cfg(feature = "Foundation_NSDictionary")]
+        #[cfg(all(
+            feature = "CoreLocation_CLPlacemark",
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSError"
+        ))]
         #[deprecated = "Use -geocodePostalAddress:completionHandler:"]
         #[method(geocodeAddressDictionary:completionHandler:)]
         pub unsafe fn geocodeAddressDictionary_completionHandler(
@@ -54,7 +75,13 @@ extern_methods!(
             completion_handler: CLGeocodeCompletionHandler,
         );
 
-        #[cfg(all(feature = "CoreLocation_CLRegion", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "CoreLocation_CLPlacemark",
+            feature = "CoreLocation_CLRegion",
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSError",
+            feature = "Foundation_NSString"
+        ))]
         #[method(geocodeAddressString:inRegion:completionHandler:)]
         pub unsafe fn geocodeAddressString_inRegion_completionHandler(
             &self,
@@ -64,7 +91,10 @@ extern_methods!(
         );
 
         #[cfg(all(
+            feature = "CoreLocation_CLPlacemark",
             feature = "CoreLocation_CLRegion",
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSError",
             feature = "Foundation_NSLocale",
             feature = "Foundation_NSString"
         ))]
@@ -77,7 +107,12 @@ extern_methods!(
             completion_handler: CLGeocodeCompletionHandler,
         );
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(
+            feature = "CoreLocation_CLPlacemark",
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSError",
+            feature = "Foundation_NSString"
+        ))]
         #[method(geocodeAddressString:completionHandler:)]
         pub unsafe fn geocodeAddressString_completionHandler(
             &self,
@@ -106,7 +141,12 @@ extern_methods!(
     /// ContactsAdditions
     #[cfg(feature = "CoreLocation_CLGeocoder")]
     unsafe impl CLGeocoder {
-        #[cfg(feature = "Contacts_CNPostalAddress")]
+        #[cfg(all(
+            feature = "Contacts_CNPostalAddress",
+            feature = "CoreLocation_CLPlacemark",
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSError"
+        ))]
         #[method(geocodePostalAddress:completionHandler:)]
         pub unsafe fn geocodePostalAddress_completionHandler(
             &self,
@@ -114,7 +154,13 @@ extern_methods!(
             completion_handler: CLGeocodeCompletionHandler,
         );
 
-        #[cfg(all(feature = "Contacts_CNPostalAddress", feature = "Foundation_NSLocale"))]
+        #[cfg(all(
+            feature = "Contacts_CNPostalAddress",
+            feature = "CoreLocation_CLPlacemark",
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSError",
+            feature = "Foundation_NSLocale"
+        ))]
         #[method(geocodePostalAddress:preferredLocale:completionHandler:)]
         pub unsafe fn geocodePostalAddress_preferredLocale_completionHandler(
             &self,

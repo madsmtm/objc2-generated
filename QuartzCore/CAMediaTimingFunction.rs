@@ -4,6 +4,7 @@ use crate::common::*;
 use crate::Foundation::*;
 use crate::QuartzCore::*;
 
+#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type CAMediaTimingFunctionName = NSString;
 );
@@ -32,6 +33,7 @@ unsafe impl NSSecureCoding for CAMediaTimingFunction {}
 extern_methods!(
     #[cfg(feature = "QuartzCore_CAMediaTimingFunction")]
     unsafe impl CAMediaTimingFunction {
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other functionWithName:)]
         pub unsafe fn functionWithName(name: &CAMediaTimingFunctionName) -> Id<Self>;
 
@@ -66,12 +68,17 @@ extern_methods!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(kCAMediaTimingFunctionLinear: &'static CAMediaTimingFunctionName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(kCAMediaTimingFunctionEaseIn: &'static CAMediaTimingFunctionName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(kCAMediaTimingFunctionEaseOut: &'static CAMediaTimingFunctionName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(kCAMediaTimingFunctionEaseInEaseOut: &'static CAMediaTimingFunctionName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(kCAMediaTimingFunctionDefault: &'static CAMediaTimingFunctionName);

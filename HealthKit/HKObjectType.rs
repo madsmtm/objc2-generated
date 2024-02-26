@@ -46,31 +46,37 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
-        #[cfg(feature = "HealthKit_HKQuantityType")]
+        #[cfg(all(feature = "Foundation_NSString", feature = "HealthKit_HKQuantityType"))]
         #[method_id(@__retain_semantics Other quantityTypeForIdentifier:)]
         pub unsafe fn quantityTypeForIdentifier(
             identifier: &HKQuantityTypeIdentifier,
         ) -> Option<Id<HKQuantityType>>;
 
-        #[cfg(feature = "HealthKit_HKCategoryType")]
+        #[cfg(all(feature = "Foundation_NSString", feature = "HealthKit_HKCategoryType"))]
         #[method_id(@__retain_semantics Other categoryTypeForIdentifier:)]
         pub unsafe fn categoryTypeForIdentifier(
             identifier: &HKCategoryTypeIdentifier,
         ) -> Option<Id<HKCategoryType>>;
 
-        #[cfg(feature = "HealthKit_HKCharacteristicType")]
+        #[cfg(all(
+            feature = "Foundation_NSString",
+            feature = "HealthKit_HKCharacteristicType"
+        ))]
         #[method_id(@__retain_semantics Other characteristicTypeForIdentifier:)]
         pub unsafe fn characteristicTypeForIdentifier(
             identifier: &HKCharacteristicTypeIdentifier,
         ) -> Option<Id<HKCharacteristicType>>;
 
-        #[cfg(feature = "HealthKit_HKCorrelationType")]
+        #[cfg(all(
+            feature = "Foundation_NSString",
+            feature = "HealthKit_HKCorrelationType"
+        ))]
         #[method_id(@__retain_semantics Other correlationTypeForIdentifier:)]
         pub unsafe fn correlationTypeForIdentifier(
             identifier: &HKCorrelationTypeIdentifier,
         ) -> Option<Id<HKCorrelationType>>;
 
-        #[cfg(feature = "HealthKit_HKDocumentType")]
+        #[cfg(all(feature = "Foundation_NSString", feature = "HealthKit_HKDocumentType"))]
         #[method_id(@__retain_semantics Other documentTypeForIdentifier:)]
         pub unsafe fn documentTypeForIdentifier(
             identifier: &HKDocumentTypeIdentifier,

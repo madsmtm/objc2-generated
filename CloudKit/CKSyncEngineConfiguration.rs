@@ -81,9 +81,11 @@ extern_methods!(
         #[method(setAutomaticallySync:)]
         pub unsafe fn setAutomaticallySync(&self, automatically_sync: bool);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other subscriptionID)]
         pub unsafe fn subscriptionID(&self) -> Option<Id<CKSubscriptionID>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setSubscriptionID:)]
         pub unsafe fn setSubscriptionID(&self, subscription_id: Option<&CKSubscriptionID>);
     }

@@ -17,6 +17,7 @@ ns_enum!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 pub type CKSubscriptionID = NSString;
 
 extern_class!(
@@ -52,6 +53,7 @@ extern_methods!(
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other subscriptionID)]
         pub unsafe fn subscriptionID(&self) -> Id<CKSubscriptionID>;
 
@@ -110,7 +112,7 @@ unsafe impl NSSecureCoding for CKQuerySubscription {}
 extern_methods!(
     #[cfg(feature = "CloudKit_CKQuerySubscription")]
     unsafe impl CKQuerySubscription {
-        #[cfg(feature = "Foundation_NSPredicate")]
+        #[cfg(all(feature = "Foundation_NSPredicate", feature = "Foundation_NSString"))]
         #[deprecated]
         #[method_id(@__retain_semantics Init initWithRecordType:predicate:options:)]
         pub unsafe fn initWithRecordType_predicate_options(
@@ -120,7 +122,7 @@ extern_methods!(
             query_subscription_options: CKQuerySubscriptionOptions,
         ) -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSPredicate")]
+        #[cfg(all(feature = "Foundation_NSPredicate", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Init initWithRecordType:predicate:subscriptionID:options:)]
         pub unsafe fn initWithRecordType_predicate_subscriptionID_options(
             this: Allocated<Self>,
@@ -134,6 +136,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, a_decoder: &NSCoder) -> Id<Self>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other recordType)]
         pub unsafe fn recordType(&self) -> Id<CKRecordType>;
 
@@ -199,7 +202,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithZoneID:)]
         pub unsafe fn initWithZoneID(this: Allocated<Self>, zone_id: &CKRecordZoneID) -> Id<Self>;
 
-        #[cfg(feature = "CloudKit_CKRecordZoneID")]
+        #[cfg(all(feature = "CloudKit_CKRecordZoneID", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Init initWithZoneID:subscriptionID:)]
         pub unsafe fn initWithZoneID_subscriptionID(
             this: Allocated<Self>,
@@ -215,9 +218,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Other zoneID)]
         pub unsafe fn zoneID(&self) -> Id<CKRecordZoneID>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other recordType)]
         pub unsafe fn recordType(&self) -> Option<Id<CKRecordType>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setRecordType:)]
         pub unsafe fn setRecordType(&self, record_type: Option<&CKRecordType>);
     }
@@ -270,6 +275,7 @@ extern_methods!(
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithSubscriptionID:)]
         pub unsafe fn initWithSubscriptionID(
             this: Allocated<Self>,
@@ -280,9 +286,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, a_decoder: &NSCoder) -> Id<Self>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other recordType)]
         pub unsafe fn recordType(&self) -> Option<Id<CKRecordType>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setRecordType:)]
         pub unsafe fn setRecordType(&self, record_type: Option<&CKRecordType>);
     }
@@ -331,11 +339,11 @@ extern_methods!(
         #[method(setAlertLocalizationKey:)]
         pub unsafe fn setAlertLocalizationKey(&self, alert_localization_key: Option<&NSString>);
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other alertLocalizationArgs)]
         pub unsafe fn alertLocalizationArgs(&self) -> Option<Id<NSArray<CKRecordFieldKey>>>;
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method(setAlertLocalizationArgs:)]
         pub unsafe fn setAlertLocalizationArgs(
             &self,
@@ -358,11 +366,11 @@ extern_methods!(
         #[method(setTitleLocalizationKey:)]
         pub unsafe fn setTitleLocalizationKey(&self, title_localization_key: Option<&NSString>);
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other titleLocalizationArgs)]
         pub unsafe fn titleLocalizationArgs(&self) -> Option<Id<NSArray<CKRecordFieldKey>>>;
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method(setTitleLocalizationArgs:)]
         pub unsafe fn setTitleLocalizationArgs(
             &self,
@@ -388,11 +396,11 @@ extern_methods!(
             subtitle_localization_key: Option<&NSString>,
         );
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other subtitleLocalizationArgs)]
         pub unsafe fn subtitleLocalizationArgs(&self) -> Option<Id<NSArray<CKRecordFieldKey>>>;
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method(setSubtitleLocalizationArgs:)]
         pub unsafe fn setSubtitleLocalizationArgs(
             &self,
@@ -426,11 +434,11 @@ extern_methods!(
         #[method(setSoundName:)]
         pub unsafe fn setSoundName(&self, sound_name: Option<&NSString>);
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other desiredKeys)]
         pub unsafe fn desiredKeys(&self) -> Option<Id<NSArray<CKRecordFieldKey>>>;
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method(setDesiredKeys:)]
         pub unsafe fn setDesiredKeys(&self, desired_keys: Option<&NSArray<CKRecordFieldKey>>);
 

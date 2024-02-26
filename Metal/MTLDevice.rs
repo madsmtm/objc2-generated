@@ -29,16 +29,21 @@ extern_fn!(
     pub unsafe fn MTLCopyAllDevices() -> NonNull<NSArray<ProtocolObject<dyn MTLDevice>>>;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type MTLDeviceNotificationName = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MTLDeviceWasAddedNotification: &'static MTLDeviceNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MTLDeviceRemovalRequestedNotification: &'static MTLDeviceNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MTLDeviceWasRemovedNotification: &'static MTLDeviceNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 pub type MTLDeviceNotificationHandler =
     *mut Block<dyn Fn(NonNull<ProtocolObject<dyn MTLDevice>>, NonNull<MTLDeviceNotificationName>)>;
 
@@ -260,12 +265,18 @@ extern_struct!(
     }
 );
 
+#[cfg(feature = "Foundation_NSError")]
 pub type MTLNewLibraryCompletionHandler =
     *mut Block<dyn Fn(*mut ProtocolObject<dyn MTLLibrary>, *mut NSError)>;
 
+#[cfg(feature = "Foundation_NSError")]
 pub type MTLNewRenderPipelineStateCompletionHandler =
     *mut Block<dyn Fn(*mut ProtocolObject<dyn MTLRenderPipelineState>, *mut NSError)>;
 
+#[cfg(all(
+    feature = "Foundation_NSError",
+    feature = "Metal_MTLRenderPipelineReflection"
+))]
 pub type MTLNewRenderPipelineStateWithReflectionCompletionHandler = *mut Block<
     dyn Fn(
         *mut ProtocolObject<dyn MTLRenderPipelineState>,
@@ -274,9 +285,14 @@ pub type MTLNewRenderPipelineStateWithReflectionCompletionHandler = *mut Block<
     ),
 >;
 
+#[cfg(feature = "Foundation_NSError")]
 pub type MTLNewComputePipelineStateCompletionHandler =
     *mut Block<dyn Fn(*mut ProtocolObject<dyn MTLComputePipelineState>, *mut NSError)>;
 
+#[cfg(all(
+    feature = "Foundation_NSError",
+    feature = "Metal_MTLComputePipelineReflection"
+))]
 pub type MTLNewComputePipelineStateWithReflectionCompletionHandler = *mut Block<
     dyn Fn(
         *mut ProtocolObject<dyn MTLComputePipelineState>,
@@ -603,7 +619,11 @@ extern_protocol!(
             options: Option<&MTLCompileOptions>,
         ) -> Result<Id<ProtocolObject<dyn MTLLibrary>>, Id<NSError>>;
 
-        #[cfg(all(feature = "Foundation_NSString", feature = "Metal_MTLCompileOptions"))]
+        #[cfg(all(
+            feature = "Foundation_NSError",
+            feature = "Foundation_NSString",
+            feature = "Metal_MTLCompileOptions"
+        ))]
         #[method(newLibraryWithSource:options:completionHandler:)]
         unsafe fn newLibraryWithSource_options_completionHandler(
             &self,
@@ -622,7 +642,10 @@ extern_protocol!(
             descriptor: &MTLStitchedLibraryDescriptor,
         ) -> Result<Id<ProtocolObject<dyn MTLLibrary>>, Id<NSError>>;
 
-        #[cfg(feature = "Metal_MTLStitchedLibraryDescriptor")]
+        #[cfg(all(
+            feature = "Foundation_NSError",
+            feature = "Metal_MTLStitchedLibraryDescriptor"
+        ))]
         #[method(newLibraryWithStitchedDescriptor:completionHandler:)]
         unsafe fn newLibraryWithStitchedDescriptor_completionHandler(
             &self,
@@ -640,7 +663,10 @@ extern_protocol!(
             descriptor: &MTLRenderPipelineDescriptor,
         ) -> Result<Id<ProtocolObject<dyn MTLRenderPipelineState>>, Id<NSError>>;
 
-        #[cfg(feature = "Metal_MTLRenderPipelineDescriptor")]
+        #[cfg(all(
+            feature = "Foundation_NSError",
+            feature = "Metal_MTLRenderPipelineDescriptor"
+        ))]
         #[method(newRenderPipelineStateWithDescriptor:completionHandler:)]
         unsafe fn newRenderPipelineStateWithDescriptor_completionHandler(
             &self,
@@ -648,7 +674,11 @@ extern_protocol!(
             completion_handler: MTLNewRenderPipelineStateCompletionHandler,
         );
 
-        #[cfg(feature = "Metal_MTLRenderPipelineDescriptor")]
+        #[cfg(all(
+            feature = "Foundation_NSError",
+            feature = "Metal_MTLRenderPipelineDescriptor",
+            feature = "Metal_MTLRenderPipelineReflection"
+        ))]
         #[method(newRenderPipelineStateWithDescriptor:options:completionHandler:)]
         unsafe fn newRenderPipelineStateWithDescriptor_options_completionHandler(
             &self,
@@ -664,6 +694,7 @@ extern_protocol!(
             compute_function: &ProtocolObject<dyn MTLFunction>,
         ) -> Result<Id<ProtocolObject<dyn MTLComputePipelineState>>, Id<NSError>>;
 
+        #[cfg(feature = "Foundation_NSError")]
         #[method(newComputePipelineStateWithFunction:completionHandler:)]
         unsafe fn newComputePipelineStateWithFunction_completionHandler(
             &self,
@@ -671,6 +702,10 @@ extern_protocol!(
             completion_handler: MTLNewComputePipelineStateCompletionHandler,
         );
 
+        #[cfg(all(
+            feature = "Foundation_NSError",
+            feature = "Metal_MTLComputePipelineReflection"
+        ))]
         #[method(newComputePipelineStateWithFunction:options:completionHandler:)]
         unsafe fn newComputePipelineStateWithFunction_options_completionHandler(
             &self,
@@ -679,7 +714,11 @@ extern_protocol!(
             completion_handler: MTLNewComputePipelineStateWithReflectionCompletionHandler,
         );
 
-        #[cfg(feature = "Metal_MTLComputePipelineDescriptor")]
+        #[cfg(all(
+            feature = "Foundation_NSError",
+            feature = "Metal_MTLComputePipelineDescriptor",
+            feature = "Metal_MTLComputePipelineReflection"
+        ))]
         #[method(newComputePipelineStateWithDescriptor:options:completionHandler:)]
         unsafe fn newComputePipelineStateWithDescriptor_options_completionHandler(
             &self,
@@ -709,7 +748,11 @@ extern_protocol!(
         fn minimumTextureBufferAlignmentForPixelFormat(&self, format: MTLPixelFormat)
             -> NSUInteger;
 
-        #[cfg(feature = "Metal_MTLTileRenderPipelineDescriptor")]
+        #[cfg(all(
+            feature = "Foundation_NSError",
+            feature = "Metal_MTLRenderPipelineReflection",
+            feature = "Metal_MTLTileRenderPipelineDescriptor"
+        ))]
         #[method(newRenderPipelineStateWithTileDescriptor:options:completionHandler:)]
         unsafe fn newRenderPipelineStateWithTileDescriptor_options_completionHandler(
             &self,
@@ -718,7 +761,11 @@ extern_protocol!(
             completion_handler: MTLNewRenderPipelineStateWithReflectionCompletionHandler,
         );
 
-        #[cfg(feature = "Metal_MTLMeshRenderPipelineDescriptor")]
+        #[cfg(all(
+            feature = "Foundation_NSError",
+            feature = "Metal_MTLMeshRenderPipelineDescriptor",
+            feature = "Metal_MTLRenderPipelineReflection"
+        ))]
         #[method(newRenderPipelineStateWithMeshDescriptor:options:completionHandler:)]
         unsafe fn newRenderPipelineStateWithMeshDescriptor_options_completionHandler(
             &self,

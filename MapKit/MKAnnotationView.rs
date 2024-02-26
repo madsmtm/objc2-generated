@@ -7,6 +7,7 @@ use crate::CoreLocation::*;
 use crate::Foundation::*;
 use crate::MapKit::*;
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MKAnnotationCalloutInfoDidChangeNotification: &'static NSString);
 
 ns_enum!(

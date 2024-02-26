@@ -24,21 +24,21 @@ unsafe impl NSObjectProtocol for NSFileProviderExtension {}
 extern_methods!(
     #[cfg(feature = "FileProvider_NSFileProviderExtension")]
     unsafe impl NSFileProviderExtension {
-        #[cfg(feature = "Foundation_NSError")]
+        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other itemForIdentifier:error:_)]
         pub unsafe fn itemForIdentifier_error(
             &self,
             identifier: &NSFileProviderItemIdentifier,
         ) -> Result<Id<NSFileProviderItem>, Id<NSError>>;
 
-        #[cfg(feature = "Foundation_NSURL")]
+        #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
         #[method_id(@__retain_semantics Other URLForItemWithPersistentIdentifier:)]
         pub unsafe fn URLForItemWithPersistentIdentifier(
             &self,
             identifier: &NSFileProviderItemIdentifier,
         ) -> Option<Id<NSURL>>;
 
-        #[cfg(feature = "Foundation_NSURL")]
+        #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
         #[method_id(@__retain_semantics Other persistentIdentifierForItemAtURL:)]
         pub unsafe fn persistentIdentifierForItemAtURL(
             &self,
@@ -90,6 +90,7 @@ extern_methods!(
         #[cfg(all(
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSError",
+            feature = "Foundation_NSString",
             feature = "Foundation_NSURL"
         ))]
         #[deprecated = "Use the corresponding method on NSFileProviderManager instead"]

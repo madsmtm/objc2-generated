@@ -4,14 +4,17 @@ use crate::common::*;
 use crate::Foundation::*;
 use crate::QuartzCore::*;
 
+#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type CAEmitterLayerEmitterShape = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type CAEmitterLayerEmitterMode = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type CAEmitterLayerRenderMode = NSString;
 );
@@ -88,21 +91,27 @@ extern_methods!(
         #[method(setEmitterDepth:)]
         pub unsafe fn setEmitterDepth(&self, emitter_depth: CGFloat);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other emitterShape)]
         pub unsafe fn emitterShape(&self) -> Id<CAEmitterLayerEmitterShape>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setEmitterShape:)]
         pub unsafe fn setEmitterShape(&self, emitter_shape: &CAEmitterLayerEmitterShape);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other emitterMode)]
         pub unsafe fn emitterMode(&self) -> Id<CAEmitterLayerEmitterMode>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setEmitterMode:)]
         pub unsafe fn setEmitterMode(&self, emitter_mode: &CAEmitterLayerEmitterMode);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other renderMode)]
         pub unsafe fn renderMode(&self) -> Id<CAEmitterLayerRenderMode>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setRenderMode:)]
         pub unsafe fn setRenderMode(&self, render_mode: &CAEmitterLayerRenderMode);
 
@@ -162,32 +171,47 @@ extern_methods!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(kCAEmitterLayerPoint: &'static CAEmitterLayerEmitterShape);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(kCAEmitterLayerLine: &'static CAEmitterLayerEmitterShape);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(kCAEmitterLayerRectangle: &'static CAEmitterLayerEmitterShape);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(kCAEmitterLayerCuboid: &'static CAEmitterLayerEmitterShape);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(kCAEmitterLayerCircle: &'static CAEmitterLayerEmitterShape);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(kCAEmitterLayerSphere: &'static CAEmitterLayerEmitterShape);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(kCAEmitterLayerPoints: &'static CAEmitterLayerEmitterMode);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(kCAEmitterLayerOutline: &'static CAEmitterLayerEmitterMode);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(kCAEmitterLayerSurface: &'static CAEmitterLayerEmitterMode);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(kCAEmitterLayerVolume: &'static CAEmitterLayerEmitterMode);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(kCAEmitterLayerUnordered: &'static CAEmitterLayerRenderMode);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(kCAEmitterLayerOldestFirst: &'static CAEmitterLayerRenderMode);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(kCAEmitterLayerOldestLast: &'static CAEmitterLayerRenderMode);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(kCAEmitterLayerBackToFront: &'static CAEmitterLayerRenderMode);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(kCAEmitterLayerAdditive: &'static CAEmitterLayerRenderMode);

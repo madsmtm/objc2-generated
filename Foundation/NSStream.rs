@@ -3,6 +3,7 @@
 use crate::common::*;
 use crate::Foundation::*;
 
+#[cfg(feature = "Foundation_NSString")]
 typed_extensible_enum!(
     pub type NSStreamPropertyKey = NSString;
 );
@@ -77,9 +78,11 @@ extern_methods!(
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSStreamDelegate>>);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other propertyForKey:)]
         pub unsafe fn propertyForKey(&self, key: &NSStreamPropertyKey) -> Option<Id<AnyObject>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setProperty:forKey:)]
         pub unsafe fn setProperty_forKey(
             &self,
@@ -87,7 +90,7 @@ extern_methods!(
             key: &NSStreamPropertyKey,
         ) -> bool;
 
-        #[cfg(feature = "Foundation_NSRunLoop")]
+        #[cfg(all(feature = "Foundation_NSRunLoop", feature = "Foundation_NSString"))]
         #[method(scheduleInRunLoop:forMode:)]
         pub unsafe fn scheduleInRunLoop_forMode(
             &self,
@@ -95,7 +98,7 @@ extern_methods!(
             mode: &NSRunLoopMode,
         );
 
-        #[cfg(feature = "Foundation_NSRunLoop")]
+        #[cfg(all(feature = "Foundation_NSRunLoop", feature = "Foundation_NSString"))]
         #[method(removeFromRunLoop:forMode:)]
         pub unsafe fn removeFromRunLoop_forMode(
             &self,
@@ -359,66 +362,94 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn NSStreamDelegate {}
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSStreamSocketSecurityLevelKey: &'static NSStreamPropertyKey);
 
+#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type NSStreamSocketSecurityLevel = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSStreamSocketSecurityLevelNone: &'static NSStreamSocketSecurityLevel);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSStreamSocketSecurityLevelSSLv2: &'static NSStreamSocketSecurityLevel);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSStreamSocketSecurityLevelSSLv3: &'static NSStreamSocketSecurityLevel);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSStreamSocketSecurityLevelTLSv1: &'static NSStreamSocketSecurityLevel);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSStreamSocketSecurityLevelNegotiatedSSL: &'static NSStreamSocketSecurityLevel);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSStreamSOCKSProxyConfigurationKey: &'static NSStreamPropertyKey);
 
+#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type NSStreamSOCKSProxyConfiguration = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSStreamSOCKSProxyHostKey: &'static NSStreamSOCKSProxyConfiguration);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSStreamSOCKSProxyPortKey: &'static NSStreamSOCKSProxyConfiguration);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSStreamSOCKSProxyVersionKey: &'static NSStreamSOCKSProxyConfiguration);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSStreamSOCKSProxyUserKey: &'static NSStreamSOCKSProxyConfiguration);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSStreamSOCKSProxyPasswordKey: &'static NSStreamSOCKSProxyConfiguration);
 
+#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type NSStreamSOCKSProxyVersion = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSStreamSOCKSProxyVersion4: &'static NSStreamSOCKSProxyVersion);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSStreamSOCKSProxyVersion5: &'static NSStreamSOCKSProxyVersion);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSStreamDataWrittenToMemoryStreamKey: &'static NSStreamPropertyKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSStreamFileCurrentOffsetKey: &'static NSStreamPropertyKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSStreamSocketSSLErrorDomain: &'static NSErrorDomain);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSStreamSOCKSErrorDomain: &'static NSErrorDomain);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSStreamNetworkServiceType: &'static NSStreamPropertyKey);
 
+#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type NSStreamNetworkServiceTypeValue = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSStreamNetworkServiceTypeVoIP: &'static NSStreamNetworkServiceTypeValue);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSStreamNetworkServiceTypeVideo: &'static NSStreamNetworkServiceTypeValue);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSStreamNetworkServiceTypeBackground: &'static NSStreamNetworkServiceTypeValue);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSStreamNetworkServiceTypeVoice: &'static NSStreamNetworkServiceTypeValue);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSStreamNetworkServiceTypeCallSignaling: &'static NSStreamNetworkServiceTypeValue);

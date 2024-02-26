@@ -913,11 +913,11 @@ extern_methods!(
             source: &ProtocolObject<dyn NSDraggingSource>,
         ) -> Id<NSDraggingSession>;
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other registeredDraggedTypes)]
         pub unsafe fn registeredDraggedTypes(&self) -> Id<NSArray<NSPasteboardType>>;
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method(registerForDraggedTypes:)]
         pub unsafe fn registerForDraggedTypes(&self, new_types: &NSArray<NSPasteboardType>);
 
@@ -926,23 +926,32 @@ extern_methods!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type NSViewFullScreenModeOptionKey = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFullScreenModeAllScreens: &'static NSViewFullScreenModeOptionKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFullScreenModeSetting: &'static NSViewFullScreenModeOptionKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFullScreenModeWindowLevel: &'static NSViewFullScreenModeOptionKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFullScreenModeApplicationPresentationOptions: &'static NSViewFullScreenModeOptionKey);
 
 extern_methods!(
     /// NSFullScreenMode
     #[cfg(feature = "AppKit_NSView")]
     unsafe impl NSView {
-        #[cfg(all(feature = "AppKit_NSScreen", feature = "Foundation_NSDictionary"))]
+        #[cfg(all(
+            feature = "AppKit_NSScreen",
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSString"
+        ))]
         #[method(enterFullScreenMode:withOptions:)]
         pub unsafe fn enterFullScreenMode_withOptions(
             &self,
@@ -950,7 +959,7 @@ extern_methods!(
             options: Option<&NSDictionary<NSViewFullScreenModeOptionKey, AnyObject>>,
         ) -> bool;
 
-        #[cfg(feature = "Foundation_NSDictionary")]
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method(exitFullScreenModeWithOptions:)]
         pub unsafe fn exitFullScreenModeWithOptions(
             &self,
@@ -962,18 +971,23 @@ extern_methods!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type NSDefinitionOptionKey = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSDefinitionPresentationTypeKey: &'static NSDefinitionOptionKey);
 
+#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type NSDefinitionPresentationType = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSDefinitionPresentationTypeOverlay: &'static NSDefinitionPresentationType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSDefinitionPresentationTypeDictionaryApplication: &'static NSDefinitionPresentationType);
 
 extern_methods!(
@@ -990,7 +1004,8 @@ extern_methods!(
 
         #[cfg(all(
             feature = "Foundation_NSAttributedString",
-            feature = "Foundation_NSDictionary"
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSString"
         ))]
         #[method(showDefinitionForAttributedString:range:options:baselineOriginProvider:)]
         pub unsafe fn showDefinitionForAttributedString_range_options_baselineOriginProvider(
@@ -1228,12 +1243,17 @@ extern_methods!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSViewFrameDidChangeNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSViewFocusDidChangeNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSViewBoundsDidChangeNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSViewGlobalFrameDidChangeNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSViewDidUpdateTrackingAreasNotification: &'static NSNotificationName);

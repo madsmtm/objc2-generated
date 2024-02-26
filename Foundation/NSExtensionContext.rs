@@ -59,12 +59,17 @@ extern_methods!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSExtensionItemsAndErrorsKey: Option<&'static NSString>);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSExtensionHostWillEnterForegroundNotification: Option<&'static NSString>);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSExtensionHostDidEnterBackgroundNotification: Option<&'static NSString>);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSExtensionHostWillResignActiveNotification: Option<&'static NSString>);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSExtensionHostDidBecomeActiveNotification: Option<&'static NSString>);

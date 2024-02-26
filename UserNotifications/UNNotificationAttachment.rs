@@ -71,10 +71,14 @@ extern_methods!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(UNNotificationAttachmentOptionsTypeHintKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(UNNotificationAttachmentOptionsThumbnailHiddenKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(UNNotificationAttachmentOptionsThumbnailClippingRectKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(UNNotificationAttachmentOptionsThumbnailTimeKey: &'static NSString);

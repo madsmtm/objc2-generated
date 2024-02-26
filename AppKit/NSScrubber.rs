@@ -337,6 +337,7 @@ extern_methods!(
             index: NSInteger,
         ) -> Option<Id<NSScrubberItemView>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(registerClass:forItemIdentifier:)]
         pub unsafe fn registerClass_forItemIdentifier(
             &self,
@@ -344,7 +345,7 @@ extern_methods!(
             item_identifier: &NSUserInterfaceItemIdentifier,
         );
 
-        #[cfg(feature = "AppKit_NSNib")]
+        #[cfg(all(feature = "AppKit_NSNib", feature = "Foundation_NSString"))]
         #[method(registerNib:forItemIdentifier:)]
         pub unsafe fn registerNib_forItemIdentifier(
             &self,
@@ -352,7 +353,7 @@ extern_methods!(
             item_identifier: &NSUserInterfaceItemIdentifier,
         );
 
-        #[cfg(feature = "AppKit_NSScrubberItemView")]
+        #[cfg(all(feature = "AppKit_NSScrubberItemView", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other makeItemWithIdentifier:owner:)]
         pub unsafe fn makeItemWithIdentifier_owner(
             &self,

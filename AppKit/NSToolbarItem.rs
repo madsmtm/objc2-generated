@@ -38,12 +38,14 @@ unsafe impl NSObjectProtocol for NSToolbarItem {}
 extern_methods!(
     #[cfg(feature = "AppKit_NSToolbarItem")]
     unsafe impl NSToolbarItem {
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithItemIdentifier:)]
         pub unsafe fn initWithItemIdentifier(
             this: Allocated<Self>,
             item_identifier: &NSToolbarItemIdentifier,
         ) -> Id<Self>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other itemIdentifier)]
         pub unsafe fn itemIdentifier(&self) -> Id<NSToolbarItemIdentifier>;
 
@@ -229,26 +231,38 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn NSToolbarItemValidation {}
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSToolbarSpaceItemIdentifier: &'static NSToolbarItemIdentifier);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSToolbarFlexibleSpaceItemIdentifier: &'static NSToolbarItemIdentifier);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSToolbarShowColorsItemIdentifier: &'static NSToolbarItemIdentifier);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSToolbarShowFontsItemIdentifier: &'static NSToolbarItemIdentifier);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSToolbarPrintItemIdentifier: &'static NSToolbarItemIdentifier);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSToolbarToggleSidebarItemIdentifier: &'static NSToolbarItemIdentifier);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSToolbarToggleInspectorItemIdentifier: &'static NSToolbarItemIdentifier);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSToolbarCloudSharingItemIdentifier: &'static NSToolbarItemIdentifier);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSToolbarSidebarTrackingSeparatorItemIdentifier: &'static NSToolbarItemIdentifier);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSToolbarInspectorTrackingSeparatorItemIdentifier: &'static NSToolbarItemIdentifier);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSToolbarSeparatorItemIdentifier: &'static NSToolbarItemIdentifier);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSToolbarCustomizeToolbarItemIdentifier: &'static NSToolbarItemIdentifier);

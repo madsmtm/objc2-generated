@@ -3,6 +3,7 @@
 use crate::common::*;
 use crate::Foundation::*;
 
+#[cfg(feature = "Foundation_NSError")]
 pub type NSUserScriptTaskCompletionHandler = *mut Block<dyn Fn(*mut NSError)>;
 
 extern_class!(
@@ -34,6 +35,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other scriptURL)]
         pub unsafe fn scriptURL(&self) -> Id<NSURL>;
 
+        #[cfg(feature = "Foundation_NSError")]
         #[method(executeWithCompletionHandler:)]
         pub unsafe fn executeWithCompletionHandler(
             &self,
@@ -54,6 +56,7 @@ extern_methods!(
     }
 );
 
+#[cfg(feature = "Foundation_NSError")]
 pub type NSUserUnixTaskCompletionHandler = *mut Block<dyn Fn(*mut NSError)>;
 
 extern_class!(
@@ -99,7 +102,11 @@ extern_methods!(
         #[method(setStandardError:)]
         pub unsafe fn setStandardError(&self, standard_error: Option<&NSFileHandle>);
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSError",
+            feature = "Foundation_NSString"
+        ))]
         #[method(executeWithArguments:completionHandler:)]
         pub unsafe fn executeWithArguments_completionHandler(
             &self,
@@ -134,6 +141,10 @@ extern_methods!(
     }
 );
 
+#[cfg(all(
+    feature = "Foundation_NSAppleEventDescriptor",
+    feature = "Foundation_NSError"
+))]
 pub type NSUserAppleScriptTaskCompletionHandler =
     *mut Block<dyn Fn(*mut NSAppleEventDescriptor, *mut NSError)>;
 
@@ -156,7 +167,10 @@ unsafe impl NSObjectProtocol for NSUserAppleScriptTask {}
 extern_methods!(
     #[cfg(feature = "Foundation_NSUserAppleScriptTask")]
     unsafe impl NSUserAppleScriptTask {
-        #[cfg(feature = "Foundation_NSAppleEventDescriptor")]
+        #[cfg(all(
+            feature = "Foundation_NSAppleEventDescriptor",
+            feature = "Foundation_NSError"
+        ))]
         #[method(executeWithAppleEvent:completionHandler:)]
         pub unsafe fn executeWithAppleEvent_completionHandler(
             &self,
@@ -191,6 +205,7 @@ extern_methods!(
     }
 );
 
+#[cfg(feature = "Foundation_NSError")]
 pub type NSUserAutomatorTaskCompletionHandler = *mut Block<dyn Fn(*mut AnyObject, *mut NSError)>;
 
 extern_class!(
@@ -220,6 +235,7 @@ extern_methods!(
         #[method(setVariables:)]
         pub unsafe fn setVariables(&self, variables: Option<&NSDictionary<NSString, AnyObject>>);
 
+        #[cfg(feature = "Foundation_NSError")]
         #[method(executeWithInput:completionHandler:)]
         pub unsafe fn executeWithInput_completionHandler(
             &self,

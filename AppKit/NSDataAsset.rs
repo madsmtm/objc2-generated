@@ -5,6 +5,7 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
+#[cfg(feature = "Foundation_NSString")]
 pub type NSDataAssetName = NSString;
 
 extern_class!(
@@ -31,13 +32,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithName:)]
         pub unsafe fn initWithName(
             this: Allocated<Self>,
             name: &NSDataAssetName,
         ) -> Option<Id<Self>>;
 
-        #[cfg(feature = "Foundation_NSBundle")]
+        #[cfg(all(feature = "Foundation_NSBundle", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Init initWithName:bundle:)]
         pub unsafe fn initWithName_bundle(
             this: Allocated<Self>,
@@ -45,6 +47,7 @@ extern_methods!(
             bundle: &NSBundle,
         ) -> Option<Id<Self>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Id<NSDataAssetName>;
 

@@ -28,7 +28,8 @@ extern_methods!(
             feature = "AppKit_NSTextList",
             feature = "Foundation_NSArray",
             feature = "Foundation_NSAttributedString",
-            feature = "Foundation_NSDictionary"
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSString"
         ))]
         #[method_id(@__retain_semantics Init initWithParentElement:textList:contents:markerAttributes:childElements:)]
         pub unsafe fn initWithParentElement_textList_contents_markerAttributes_childElements(
@@ -51,7 +52,8 @@ extern_methods!(
             feature = "AppKit_NSTextList",
             feature = "Foundation_NSArray",
             feature = "Foundation_NSAttributedString",
-            feature = "Foundation_NSDictionary"
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSString"
         ))]
         #[method_id(@__retain_semantics Other textListElementWithContents:markerAttributes:textList:childElements:)]
         pub unsafe fn textListElementWithContents_markerAttributes_textList_childElements(
@@ -77,7 +79,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other contents)]
         pub unsafe fn contents(&self) -> Option<Id<NSAttributedString>>;
 
-        #[cfg(feature = "Foundation_NSDictionary")]
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other markerAttributes)]
         pub unsafe fn markerAttributes(
             &self,

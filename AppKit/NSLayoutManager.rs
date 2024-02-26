@@ -669,7 +669,7 @@ extern_methods!(
             effective_glyph_range: NSRangePointer,
         ) -> NSRect;
 
-        #[cfg(feature = "Foundation_NSDictionary")]
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other temporaryAttributesAtCharacterIndex:effectiveRange:)]
         pub unsafe fn temporaryAttributesAtCharacterIndex_effectiveRange(
             &self,
@@ -677,7 +677,7 @@ extern_methods!(
             effective_char_range: NSRangePointer,
         ) -> Id<NSDictionary<NSAttributedStringKey, AnyObject>>;
 
-        #[cfg(feature = "Foundation_NSDictionary")]
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method(setTemporaryAttributes:forCharacterRange:)]
         pub unsafe fn setTemporaryAttributes_forCharacterRange(
             &self,
@@ -685,7 +685,7 @@ extern_methods!(
             char_range: NSRange,
         );
 
-        #[cfg(feature = "Foundation_NSDictionary")]
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method(addTemporaryAttributes:forCharacterRange:)]
         pub unsafe fn addTemporaryAttributes_forCharacterRange(
             &self,
@@ -693,6 +693,7 @@ extern_methods!(
             char_range: NSRange,
         );
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(removeTemporaryAttribute:forCharacterRange:)]
         pub unsafe fn removeTemporaryAttribute_forCharacterRange(
             &self,
@@ -700,6 +701,7 @@ extern_methods!(
             char_range: NSRange,
         );
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other temporaryAttribute:atCharacterIndex:effectiveRange:)]
         pub unsafe fn temporaryAttribute_atCharacterIndex_effectiveRange(
             &self,
@@ -708,6 +710,7 @@ extern_methods!(
             range: NSRangePointer,
         ) -> Option<Id<AnyObject>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other temporaryAttribute:atCharacterIndex:longestEffectiveRange:inRange:)]
         pub unsafe fn temporaryAttribute_atCharacterIndex_longestEffectiveRange_inRange(
             &self,
@@ -717,7 +720,7 @@ extern_methods!(
             range_limit: NSRange,
         ) -> Option<Id<AnyObject>>;
 
-        #[cfg(feature = "Foundation_NSDictionary")]
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other temporaryAttributesAtCharacterIndex:longestEffectiveRange:inRange:)]
         pub unsafe fn temporaryAttributesAtCharacterIndex_longestEffectiveRange_inRange(
             &self,
@@ -726,6 +729,7 @@ extern_methods!(
             range_limit: NSRange,
         ) -> Id<NSDictionary<NSAttributedStringKey, AnyObject>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(addTemporaryAttribute:value:forCharacterRange:)]
         pub unsafe fn addTemporaryAttribute_value_forCharacterRange(
             &self,
@@ -917,7 +921,8 @@ extern_protocol!(
 
         #[cfg(all(
             feature = "AppKit_NSLayoutManager",
-            feature = "Foundation_NSDictionary"
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSString"
         ))]
         #[optional]
         #[method_id(@__retain_semantics Other layoutManager:shouldUseTemporaryAttributes:forDrawingToScreen:atCharacterIndex:effectiveRange:)]

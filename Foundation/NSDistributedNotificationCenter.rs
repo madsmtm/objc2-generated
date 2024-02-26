@@ -3,10 +3,12 @@
 use crate::common::*;
 use crate::Foundation::*;
 
+#[cfg(feature = "Foundation_NSString")]
 typed_extensible_enum!(
     pub type NSDistributedNotificationCenterType = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSLocalNotificationCenterType: &'static NSDistributedNotificationCenterType);
 
 ns_enum!(
@@ -54,6 +56,7 @@ unsafe impl NSObjectProtocol for NSDistributedNotificationCenter {}
 extern_methods!(
     #[cfg(feature = "Foundation_NSDistributedNotificationCenter")]
     unsafe impl NSDistributedNotificationCenter {
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other notificationCenterForType:)]
         pub unsafe fn notificationCenterForType(
             notification_center_type: &NSDistributedNotificationCenterType,

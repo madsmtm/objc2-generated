@@ -5,10 +5,13 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
+#[cfg(feature = "Foundation_NSString")]
 pub type NSStoryboardName = NSString;
 
+#[cfg(feature = "Foundation_NSString")]
 pub type NSStoryboardSceneIdentifier = NSString;
 
+#[cfg(feature = "Foundation_NSCoder")]
 pub type NSStoryboardControllerCreator = *mut Block<dyn Fn(NonNull<NSCoder>) -> *mut AnyObject>;
 
 extern_class!(
@@ -32,7 +35,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other mainStoryboard)]
         pub unsafe fn mainStoryboard() -> Option<Id<NSStoryboard>>;
 
-        #[cfg(feature = "Foundation_NSBundle")]
+        #[cfg(all(feature = "Foundation_NSBundle", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other storyboardWithName:bundle:)]
         pub unsafe fn storyboardWithName_bundle(
             name: &NSStoryboardName,
@@ -42,18 +45,21 @@ extern_methods!(
         #[method_id(@__retain_semantics Other instantiateInitialController)]
         pub unsafe fn instantiateInitialController(&self) -> Option<Id<AnyObject>>;
 
+        #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Other instantiateInitialControllerWithCreator:)]
         pub unsafe fn instantiateInitialControllerWithCreator(
             &self,
             block: NSStoryboardControllerCreator,
         ) -> Option<Id<AnyObject>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other instantiateControllerWithIdentifier:)]
         pub unsafe fn instantiateControllerWithIdentifier(
             &self,
             identifier: &NSStoryboardSceneIdentifier,
         ) -> Id<AnyObject>;
 
+        #[cfg(all(feature = "Foundation_NSCoder", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other instantiateControllerWithIdentifier:creator:)]
         pub unsafe fn instantiateControllerWithIdentifier_creator(
             &self,

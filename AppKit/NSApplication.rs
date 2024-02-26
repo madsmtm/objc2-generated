@@ -163,8 +163,10 @@ extern_static!(NSAppKitVersionNumber14_0: NSAppKitVersion = 2487);
 
 extern_static!(NSAppKitVersionNumber14_1: NSAppKitVersion = 2487.2);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSModalPanelRunLoopMode: &'static NSRunLoopMode);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSEventTrackingRunLoopMode: &'static NSRunLoopMode);
 
 typed_extensible_enum!(
@@ -537,7 +539,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Other currentEvent)]
         pub fn currentEvent(&self) -> Option<Id<NSEvent>>;
 
-        #[cfg(all(feature = "AppKit_NSEvent", feature = "Foundation_NSDate"))]
+        #[cfg(all(
+            feature = "AppKit_NSEvent",
+            feature = "Foundation_NSDate",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Other nextEventMatchingMask:untilDate:inMode:dequeue:)]
         pub unsafe fn nextEventMatchingMask_untilDate_inMode_dequeue(
             &self,
@@ -583,6 +589,7 @@ extern_methods!(
         #[method(tryToPerform:with:)]
         pub unsafe fn tryToPerform_with(&self, action: Sel, object: Option<&AnyObject>) -> bool;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other validRequestorForSendType:returnType:)]
         pub unsafe fn validRequestorForSendType_returnType(
             &self,
@@ -1006,7 +1013,7 @@ extern_methods!(
         #[method(setServicesMenu:)]
         pub unsafe fn setServicesMenu(&self, services_menu: Option<&NSMenu>);
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method(registerServicesMenuSendTypes:returnTypes:)]
         pub unsafe fn registerServicesMenuSendTypes_returnTypes(
             &self,
@@ -1018,7 +1025,11 @@ extern_methods!(
 
 extern_protocol!(
     pub unsafe trait NSServicesMenuRequestor: NSObjectProtocol {
-        #[cfg(all(feature = "AppKit_NSPasteboard", feature = "Foundation_NSArray"))]
+        #[cfg(all(
+            feature = "AppKit_NSPasteboard",
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSString"
+        ))]
         #[optional]
         #[method(writeSelectionToPasteboard:types:)]
         unsafe fn writeSelectionToPasteboard_types(
@@ -1048,18 +1059,24 @@ extern_methods!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type NSAboutPanelOptionKey = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAboutPanelOptionCredits: &'static NSAboutPanelOptionKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAboutPanelOptionApplicationName: &'static NSAboutPanelOptionKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAboutPanelOptionApplicationIcon: &'static NSAboutPanelOptionKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAboutPanelOptionVersion: &'static NSAboutPanelOptionKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAboutPanelOptionApplicationVersion: &'static NSAboutPanelOptionKey);
 
 extern_methods!(
@@ -1069,7 +1086,7 @@ extern_methods!(
         #[method(orderFrontStandardAboutPanel:)]
         pub unsafe fn orderFrontStandardAboutPanel(&self, sender: Option<&AnyObject>);
 
-        #[cfg(feature = "Foundation_NSDictionary")]
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method(orderFrontStandardAboutPanelWithOptions:)]
         pub unsafe fn orderFrontStandardAboutPanelWithOptions(
             &self,
@@ -1161,9 +1178,11 @@ extern_fn!(
     pub unsafe fn NSPerformService(item_name: &NSString, pboard: Option<&NSPasteboard>) -> Bool;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 pub type NSServiceProviderName = NSString;
 
 extern_fn!(
+    #[cfg(feature = "Foundation_NSString")]
     pub unsafe fn NSRegisterServicesProvider(
         provider: Option<&AnyObject>,
         name: &NSServiceProviderName,
@@ -1171,47 +1190,68 @@ extern_fn!(
 );
 
 extern_fn!(
+    #[cfg(feature = "Foundation_NSString")]
     pub unsafe fn NSUnregisterServicesProvider(name: &NSServiceProviderName);
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSApplicationDidBecomeActiveNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSApplicationDidHideNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSApplicationDidFinishLaunchingNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSApplicationDidResignActiveNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSApplicationDidUnhideNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSApplicationDidUpdateNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSApplicationWillBecomeActiveNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSApplicationWillHideNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSApplicationWillFinishLaunchingNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSApplicationWillResignActiveNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSApplicationWillUnhideNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSApplicationWillUpdateNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSApplicationWillTerminateNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSApplicationDidChangeScreenParametersNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSApplicationProtectedDataWillBecomeUnavailableNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSApplicationProtectedDataDidBecomeAvailableNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSApplicationLaunchIsDefaultLaunchKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSApplicationLaunchUserNotificationKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSApplicationLaunchRemoteNotificationKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSApplicationDidChangeOcclusionStateNotification: &'static NSNotificationName);
 
 #[deprecated = "Use NSModalResponseStop instead"]

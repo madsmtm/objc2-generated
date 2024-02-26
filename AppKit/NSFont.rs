@@ -243,8 +243,10 @@ extern_methods!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAntialiasThresholdChangedNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFontSetChangedNotification: &'static NSNotificationName);
 
 pub type NSGlyph = c_uint;
@@ -340,7 +342,7 @@ extern_methods!(
     /// NSFont_TextStyles
     #[cfg(feature = "AppKit_NSFont")]
     unsafe impl NSFont {
-        #[cfg(feature = "Foundation_NSDictionary")]
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other preferredFontForTextStyle:options:)]
         pub unsafe fn preferredFontForTextStyle_options(
             style: &NSFontTextStyle,

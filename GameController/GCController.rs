@@ -5,14 +5,19 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::GameController::*;
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(GCControllerDidConnectNotification: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(GCControllerDidDisconnectNotification: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(GCControllerDidBecomeCurrentNotification: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(GCControllerDidStopBeingCurrentNotification: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(GCControllerUserCustomizationsDidChangeNotification: &'static NSString);
 
 ns_enum!(

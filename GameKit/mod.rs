@@ -118,7 +118,17 @@ pub use self::__GKBasePlayer::GKBasePlayer;
 pub use self::__GKChallenge::GKAchievementChallenge;
 #[cfg(feature = "GameKit_GKChallenge")]
 pub use self::__GKChallenge::GKChallenge;
+#[cfg(all(
+    feature = "AppKit_NSViewController",
+    feature = "Foundation_NSArray",
+    feature = "Foundation_NSString"
+))]
 pub use self::__GKChallenge::GKChallengeComposeCompletionBlock;
+#[cfg(all(
+    feature = "AppKit_NSViewController",
+    feature = "Foundation_NSArray",
+    feature = "GameKit_GKPlayer"
+))]
 pub use self::__GKChallenge::GKChallengeComposeHandler;
 pub use self::__GKChallenge::GKChallengeState;
 #[cfg(feature = "GameKit_GKScoreChallenge")]
@@ -131,11 +141,13 @@ pub use self::__GKChallengesViewController::GKChallengesViewController;
 pub use self::__GKChallengesViewController::GKChallengesViewControllerDelegate;
 #[cfg(feature = "GameKit_GKCloudPlayer")]
 pub use self::__GKCloudPlayer::GKCloudPlayer;
+#[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
 pub use self::__GKDefines::GKMatchProperties;
 #[cfg(feature = "GameKit_GKDialogController")]
 pub use self::__GKDialogController::GKDialogController;
 pub use self::__GKDialogController::GKViewController;
 pub use self::__GKError::GKErrorCode;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__GKError::GKErrorDomain;
 pub use self::__GKEventListener::GKChallengeListener;
 #[cfg(feature = "GameKit_GKFriendRequestComposeViewController")]
@@ -150,6 +162,7 @@ pub use self::__GKGameSession::GKConnectionState;
 pub use self::__GKGameSession::GKGameSession;
 pub use self::__GKGameSession::GKTransportType;
 pub use self::__GKGameSessionError::GKGameSessionErrorCode;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__GKGameSessionError::GKGameSessionErrorDomain;
 pub use self::__GKGameSessionEventListener::GKGameSessionEventListener;
 #[cfg(feature = "GameKit_GKLeaderboard")]
@@ -170,6 +183,7 @@ pub use self::__GKLocalPlayer::GKFriendsAuthorizationStatus;
 #[cfg(feature = "GameKit_GKLocalPlayer")]
 pub use self::__GKLocalPlayer::GKLocalPlayer;
 pub use self::__GKLocalPlayer::GKLocalPlayerListener;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__GKLocalPlayer::GKPlayerAuthenticationDidChangeNotificationName;
 #[cfg(feature = "GameKit_GKMatch")]
 pub use self::__GKMatch::GKMatch;
@@ -197,12 +211,15 @@ pub use self::__GKNotificationBanner::GKNotificationBanner;
 pub use self::__GKPlayer::GKPhotoSize;
 #[cfg(feature = "GameKit_GKPlayer")]
 pub use self::__GKPlayer::GKPlayer;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__GKPlayer::GKPlayerDidChangeNotificationName;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__GKPlayer::GKPlayerIDNoLongerAvailable;
 pub use self::__GKPublicConstants::GKPeerConnectionState;
 pub use self::__GKPublicConstants::GKSendDataMode;
 pub use self::__GKPublicConstants::GKSessionMode;
 pub use self::__GKPublicConstants::GKVoiceChatServiceError;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__GKPublicConstants::GKVoiceChatServiceErrorDomain;
 pub use self::__GKPublicProtocols::GKSessionDelegate;
 pub use self::__GKPublicProtocols::GKVoiceChatClient;
@@ -214,6 +231,7 @@ pub use self::__GKScore::GKScore;
 #[cfg(feature = "GameKit_GKSession")]
 pub use self::__GKSession::GKSession;
 pub use self::__GKSessionError::GKSessionError;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__GKSessionError::GKSessionErrorDomain;
 pub use self::__GKTurnBasedMatch::GKExchangeTimeoutDefault;
 pub use self::__GKTurnBasedMatch::GKExchangeTimeoutNone;

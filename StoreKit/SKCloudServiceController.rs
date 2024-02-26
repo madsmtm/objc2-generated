@@ -111,8 +111,11 @@ extern_methods!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(SKCloudServiceCapabilitiesDidChangeNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(SKStorefrontCountryCodeDidChangeNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(SKStorefrontIdentifierDidChangeNotification: &'static NSNotificationName);

@@ -46,6 +46,7 @@ extern_methods!(
         #[method(performKeyEquivalent:)]
         pub unsafe fn performKeyEquivalent(&self, event: &NSEvent) -> bool;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other validRequestorForSendType:returnType:)]
         pub unsafe fn validRequestorForSendType_returnType(
             &self,

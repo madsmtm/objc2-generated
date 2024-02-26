@@ -56,18 +56,26 @@ extern_methods!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CNLabelPhoneNumberiPhone: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CNLabelPhoneNumberAppleWatch: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CNLabelPhoneNumberMobile: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CNLabelPhoneNumberMain: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CNLabelPhoneNumberHomeFax: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CNLabelPhoneNumberWorkFax: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CNLabelPhoneNumberOtherFax: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CNLabelPhoneNumberPager: &'static NSString);

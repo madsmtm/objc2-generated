@@ -37,7 +37,7 @@ extern_methods!(
             mtm: MainThreadMarker,
         ) -> Id<Self>;
 
-        #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(all(feature = "AppKit_NSImage", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other buttonTouchBarItemWithIdentifier:image:target:action:)]
         pub unsafe fn buttonTouchBarItemWithIdentifier_image_target_action(
             identifier: &NSTouchBarItemIdentifier,
@@ -114,6 +114,7 @@ extern_methods!(
     /// Methods declared on superclass `NSTouchBarItem`
     #[cfg(feature = "AppKit_NSButtonTouchBarItem")]
     unsafe impl NSButtonTouchBarItem {
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithIdentifier:)]
         pub unsafe fn initWithIdentifier(
             this: Allocated<Self>,

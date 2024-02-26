@@ -3,34 +3,49 @@
 use crate::common::*;
 use crate::Foundation::*;
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSGenericException: &'static NSExceptionName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSRangeException: &'static NSExceptionName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSInvalidArgumentException: &'static NSExceptionName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSInternalInconsistencyException: &'static NSExceptionName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMallocException: &'static NSExceptionName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSObjectInaccessibleException: &'static NSExceptionName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSObjectNotAvailableException: &'static NSExceptionName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSDestinationInvalidException: &'static NSExceptionName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSPortTimeoutException: &'static NSExceptionName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSInvalidSendPortException: &'static NSExceptionName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSInvalidReceivePortException: &'static NSExceptionName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSPortSendException: &'static NSExceptionName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSPortReceiveException: &'static NSExceptionName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSOldStyleException: &'static NSExceptionName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSInconsistentArchiveException: &'static NSExceptionName);
 
 extern_class!(
@@ -77,6 +92,7 @@ extern_methods!(
             a_user_info: Option<&NSDictionary>,
         ) -> Id<Self>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
         pub fn name(&self) -> Id<NSExceptionName>;
 
@@ -113,16 +129,20 @@ extern_methods!(
     unsafe impl NSException {}
 );
 
+#[cfg(feature = "Foundation_NSException")]
 pub type NSUncaughtExceptionHandler = TodoFunction;
 
 extern_fn!(
+    #[cfg(feature = "Foundation_NSException")]
     pub unsafe fn NSGetUncaughtExceptionHandler() -> *mut NSUncaughtExceptionHandler;
 );
 
 extern_fn!(
+    #[cfg(feature = "Foundation_NSException")]
     pub unsafe fn NSSetUncaughtExceptionHandler(_: *mut NSUncaughtExceptionHandler);
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAssertionHandlerKey: &'static NSString);
 
 extern_class!(

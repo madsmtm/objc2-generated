@@ -5,6 +5,10 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::GameController::*;
 
+#[cfg(all(
+    feature = "GameController_GCControllerElement",
+    feature = "GameController_GCExtendedGamepad"
+))]
 pub type GCExtendedGamepadValueChangedHandler =
     *mut Block<dyn Fn(NonNull<GCExtendedGamepad>, NonNull<GCControllerElement>)>;
 
@@ -31,9 +35,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Other controller)]
         pub unsafe fn controller(&self) -> Option<Id<GCController>>;
 
+        #[cfg(feature = "GameController_GCControllerElement")]
         #[method(valueChangedHandler)]
         pub unsafe fn valueChangedHandler(&self) -> GCExtendedGamepadValueChangedHandler;
 
+        #[cfg(feature = "GameController_GCControllerElement")]
         #[method(setValueChangedHandler:)]
         pub unsafe fn setValueChangedHandler(
             &self,

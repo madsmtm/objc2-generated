@@ -5,14 +5,19 @@ use crate::CloudKit::*;
 use crate::CoreLocation::*;
 use crate::Foundation::*;
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CKRecordTypeShare: &'static CKRecordType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CKRecordNameZoneWideShare: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CKShareTitleKey: &'static CKRecordFieldKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CKShareThumbnailImageDataKey: &'static CKRecordFieldKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CKShareTypeKey: &'static CKRecordFieldKey);
 
 extern_class!(
@@ -105,13 +110,14 @@ extern_methods!(
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithRecordType:)]
         pub unsafe fn initWithRecordType(
             this: Allocated<Self>,
             record_type: &CKRecordType,
         ) -> Id<Self>;
 
-        #[cfg(feature = "CloudKit_CKRecordID")]
+        #[cfg(all(feature = "CloudKit_CKRecordID", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Init initWithRecordType:recordID:)]
         pub unsafe fn initWithRecordType_recordID(
             this: Allocated<Self>,
@@ -119,7 +125,7 @@ extern_methods!(
             record_id: &CKRecordID,
         ) -> Id<Self>;
 
-        #[cfg(feature = "CloudKit_CKRecordZoneID")]
+        #[cfg(all(feature = "CloudKit_CKRecordZoneID", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Init initWithRecordType:zoneID:)]
         pub unsafe fn initWithRecordType_zoneID(
             this: Allocated<Self>,

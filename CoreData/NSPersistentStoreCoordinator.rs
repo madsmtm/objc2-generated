@@ -4,98 +4,145 @@ use crate::common::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSSQLiteStoreType: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSXMLStoreType: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSBinaryStoreType: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSInMemoryStoreType: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSStoreTypeKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSStoreUUIDKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSPersistentStoreCoordinatorStoresWillChangeNotification: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSPersistentStoreCoordinatorStoresDidChangeNotification: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSPersistentStoreCoordinatorWillRemoveStoreNotification: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAddedPersistentStoresKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSRemovedPersistentStoresKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSUUIDChangedPersistentStoresKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSReadOnlyPersistentStoreOption: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSValidateXMLStoreOption: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSPersistentStoreTimeoutOption: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSSQLitePragmasOption: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSSQLiteAnalyzeOption: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSSQLiteManualVacuumOption: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSIgnorePersistentStoreVersioningOption: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMigratePersistentStoresAutomaticallyOption: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSInferMappingModelAutomaticallyOption: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSStoreModelVersionHashesKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSStoreModelVersionIdentifiersKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSPersistentStoreOSCompatibility: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSPersistentStoreConnectionPoolMaxSizeKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSCoreDataCoreSpotlightExporter: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSPersistentStoreStagedMigrationManagerOptionKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSXMLExternalRecordType: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSBinaryExternalRecordType: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSExternalRecordsFileFormatOption: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSExternalRecordsDirectoryOption: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSExternalRecordExtensionOption: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSEntityNameInPathKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSStoreUUIDInPathKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSStorePathKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSModelPathKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSObjectURIKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSPersistentStoreForceDestroyOption: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSPersistentStoreFileProtectionKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSPersistentHistoryTrackingKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSBinaryStoreSecureDecodingClasses: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSBinaryStoreInsecureDecodingCompatibilityOption: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSPersistentStoreRemoteChangeNotificationPostOptionKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSPersistentStoreRemoteChangeNotification: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSPersistentStoreURLKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSPersistentHistoryTokenKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSPersistentStoreDeferredLightweightMigrationOptionKey: &'static NSString);
 
 extern_class!(
@@ -470,18 +517,26 @@ ns_enum!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSPersistentStoreUbiquitousContentNameKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSPersistentStoreUbiquitousContentURLKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSPersistentStoreDidImportUbiquitousContentChangesNotification: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSPersistentStoreUbiquitousTransitionTypeKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSPersistentStoreUbiquitousPeerTokenOption: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSPersistentStoreRemoveUbiquitousMetadataOption: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSPersistentStoreUbiquitousContainerIdentifierKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSPersistentStoreRebuildFromUbiquitousContentOption: &'static NSString);

@@ -4,8 +4,10 @@ use crate::common::*;
 use crate::Foundation::*;
 use crate::SoundAnalysis::*;
 
+#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type SNClassifierIdentifier = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(SNClassifierIdentifierVersion1: Option<&'static SNClassifierIdentifier>);

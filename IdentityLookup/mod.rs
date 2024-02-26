@@ -81,6 +81,7 @@ pub use self::__ILMessageFilterCapabilitiesQueryRequest::ILMessageFilterCapabili
 #[cfg(feature = "IdentityLookup_ILMessageFilterCapabilitiesQueryResponse")]
 pub use self::__ILMessageFilterCapabilitiesQueryResponse::ILMessageFilterCapabilitiesQueryResponse;
 pub use self::__ILMessageFilterError::ILMessageFilterError;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__ILMessageFilterError::ILMessageFilterErrorDomain;
 #[cfg(feature = "IdentityLookup_ILMessageFilterExtension")]
 pub use self::__ILMessageFilterExtension::ILMessageFilterExtension;

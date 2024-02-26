@@ -31,10 +31,12 @@ ns_options!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type NSTextTabOptionKey = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTabColumnTerminatorsAttributeName: &'static NSTextTabOptionKey);
 
 extern_class!(
@@ -69,7 +71,7 @@ extern_methods!(
         pub unsafe fn columnTerminatorsForLocale(a_locale: Option<&NSLocale>)
             -> Id<NSCharacterSet>;
 
-        #[cfg(feature = "Foundation_NSDictionary")]
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Init initWithTextAlignment:location:options:)]
         pub unsafe fn initWithTextAlignment_location_options(
             this: Allocated<Self>,
@@ -84,7 +86,7 @@ extern_methods!(
         #[method(location)]
         pub unsafe fn location(&self) -> CGFloat;
 
-        #[cfg(feature = "Foundation_NSDictionary")]
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other options)]
         pub unsafe fn options(&self) -> Id<NSDictionary<NSTextTabOptionKey, AnyObject>>;
     }

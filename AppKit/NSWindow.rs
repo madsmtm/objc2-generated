@@ -235,10 +235,13 @@ ns_enum!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 pub type NSWindowFrameAutosaveName = NSString;
 
+#[cfg(feature = "Foundation_NSString")]
 pub type NSWindowPersistableFrameDescriptor = NSString;
 
+#[cfg(feature = "Foundation_NSString")]
 pub type NSWindowTabbingIdentifier = NSString;
 
 extern_class!(
@@ -600,6 +603,7 @@ extern_methods!(
         #[method(tryToPerform:with:)]
         pub unsafe fn tryToPerform_with(&self, action: Sel, object: Option<&AnyObject>) -> bool;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other validRequestorForSendType:returnType:)]
         pub unsafe fn validRequestorForSendType_returnType(
             &self,
@@ -925,15 +929,19 @@ extern_methods!(
         #[method(toggleFullScreen:)]
         pub fn toggleFullScreen(&self, sender: Option<&AnyObject>);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other stringWithSavedFrame)]
         pub unsafe fn stringWithSavedFrame(&self) -> Id<NSWindowPersistableFrameDescriptor>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setFrameFromString:)]
         pub unsafe fn setFrameFromString(&self, string: &NSWindowPersistableFrameDescriptor);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(saveFrameUsingName:)]
         pub unsafe fn saveFrameUsingName(&self, name: &NSWindowFrameAutosaveName);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setFrameUsingName:force:)]
         pub unsafe fn setFrameUsingName_force(
             &self,
@@ -941,15 +949,19 @@ extern_methods!(
             force: bool,
         ) -> bool;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setFrameUsingName:)]
         pub unsafe fn setFrameUsingName(&self, name: &NSWindowFrameAutosaveName) -> bool;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setFrameAutosaveName:)]
         pub unsafe fn setFrameAutosaveName(&self, name: &NSWindowFrameAutosaveName) -> bool;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other frameAutosaveName)]
         pub unsafe fn frameAutosaveName(&self) -> Id<NSWindowFrameAutosaveName>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(removeFrameUsingName:)]
         pub unsafe fn removeFrameUsingName(name: &NSWindowFrameAutosaveName, mtm: MainThreadMarker);
 
@@ -989,7 +1001,7 @@ extern_methods!(
         #[method(setMaxFullScreenContentSize:)]
         pub unsafe fn setMaxFullScreenContentSize(&self, max_full_screen_content_size: NSSize);
 
-        #[cfg(feature = "Foundation_NSDictionary")]
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other deviceDescription)]
         pub unsafe fn deviceDescription(
             &self,
@@ -1225,9 +1237,11 @@ extern_methods!(
         #[method(setTabbingMode:)]
         pub fn setTabbingMode(&self, tabbing_mode: NSWindowTabbingMode);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other tabbingIdentifier)]
         pub fn tabbingIdentifier(&self) -> Id<NSWindowTabbingIdentifier>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setTabbingIdentifier:)]
         pub fn setTabbingIdentifier(&self, tabbing_identifier: &NSWindowTabbingIdentifier);
 
@@ -1306,7 +1320,7 @@ extern_methods!(
     /// NSEvent
     #[cfg(feature = "AppKit_NSWindow")]
     unsafe impl NSWindow {
-        #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(all(feature = "AppKit_NSEvent", feature = "Foundation_NSString"))]
         #[method(trackEventsMatchingMask:timeout:mode:handler:)]
         pub unsafe fn trackEventsMatchingMask_timeout_mode_handler(
             &self,
@@ -1320,7 +1334,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Other nextEventMatchingMask:)]
         pub unsafe fn nextEventMatchingMask(&self, mask: NSEventMask) -> Option<Id<NSEvent>>;
 
-        #[cfg(all(feature = "AppKit_NSEvent", feature = "Foundation_NSDate"))]
+        #[cfg(all(
+            feature = "AppKit_NSEvent",
+            feature = "Foundation_NSDate",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Other nextEventMatchingMask:untilDate:inMode:dequeue:)]
         pub unsafe fn nextEventMatchingMask_untilDate_inMode_dequeue(
             &self,
@@ -1413,7 +1431,7 @@ extern_methods!(
             slide_flag: bool,
         );
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method(registerForDraggedTypes:)]
         pub fn registerForDraggedTypes(&self, new_types: &NSArray<NSPasteboardType>);
 
@@ -1782,66 +1800,97 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn NSWindowDelegate {}
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSWindowDidBecomeKeyNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSWindowDidBecomeMainNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSWindowDidChangeScreenNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSWindowDidDeminiaturizeNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSWindowDidExposeNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSWindowDidMiniaturizeNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSWindowDidMoveNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSWindowDidResignKeyNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSWindowDidResignMainNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSWindowDidResizeNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSWindowDidUpdateNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSWindowWillCloseNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSWindowWillMiniaturizeNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSWindowWillMoveNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSWindowWillBeginSheetNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSWindowDidEndSheetNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSWindowDidChangeBackingPropertiesNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSBackingPropertyOldScaleFactorKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSBackingPropertyOldColorSpaceKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSWindowDidChangeScreenProfileNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSWindowWillStartLiveResizeNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSWindowDidEndLiveResizeNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSWindowWillEnterFullScreenNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSWindowDidEnterFullScreenNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSWindowWillExitFullScreenNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSWindowDidExitFullScreenNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSWindowWillEnterVersionBrowserNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSWindowDidEnterVersionBrowserNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSWindowWillExitVersionBrowserNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSWindowDidExitVersionBrowserNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSWindowDidChangeOcclusionStateNotification: &'static NSNotificationName);
 
 ns_enum!(

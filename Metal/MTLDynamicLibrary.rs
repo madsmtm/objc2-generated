@@ -4,6 +4,7 @@ use crate::common::*;
 use crate::Foundation::*;
 use crate::Metal::*;
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MTLDynamicLibraryDomain: &'static NSErrorDomain);
 
 ns_enum!(

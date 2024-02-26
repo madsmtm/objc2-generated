@@ -163,22 +163,30 @@ extern_methods!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSPopoverCloseReasonKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type NSPopoverCloseReasonValue = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSPopoverCloseReasonStandard: &'static NSPopoverCloseReasonValue);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSPopoverCloseReasonDetachToWindow: &'static NSPopoverCloseReasonValue);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSPopoverWillShowNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSPopoverDidShowNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSPopoverWillCloseNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSPopoverDidCloseNotification: &'static NSNotificationName);
 
 extern_protocol!(

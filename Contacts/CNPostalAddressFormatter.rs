@@ -95,6 +95,8 @@ extern_methods!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CNPostalAddressPropertyAttribute: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CNPostalAddressLocalizedPropertyNameAttribute: &'static NSString);

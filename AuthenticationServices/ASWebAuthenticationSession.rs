@@ -5,6 +5,7 @@ use crate::AppKit::*;
 use crate::AuthenticationServices::*;
 use crate::Foundation::*;
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(ASWebAuthenticationSessionErrorDomain: &'static NSErrorDomain);
 
 ns_error_enum!(
@@ -19,6 +20,7 @@ ns_error_enum!(
     }
 );
 
+#[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
 pub type ASWebAuthenticationSessionCompletionHandler = *mut Block<dyn Fn(*mut NSURL, *mut NSError)>;
 
 extern_class!(
@@ -39,7 +41,11 @@ unsafe impl NSObjectProtocol for ASWebAuthenticationSession {}
 extern_methods!(
     #[cfg(feature = "AuthenticationServices_ASWebAuthenticationSession")]
     unsafe impl ASWebAuthenticationSession {
-        #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+        #[cfg(all(
+            feature = "Foundation_NSError",
+            feature = "Foundation_NSString",
+            feature = "Foundation_NSURL"
+        ))]
         #[method_id(@__retain_semantics Init initWithURL:callbackURLScheme:completionHandler:)]
         pub unsafe fn initWithURL_callbackURLScheme_completionHandler(
             this: Allocated<Self>,
@@ -91,7 +97,10 @@ extern_protocol!(
     pub unsafe trait ASWebAuthenticationPresentationContextProviding:
         NSObjectProtocol
     {
-        #[cfg(feature = "AuthenticationServices_ASWebAuthenticationSession")]
+        #[cfg(all(
+            feature = "AppKit_NSWindow",
+            feature = "AuthenticationServices_ASWebAuthenticationSession"
+        ))]
         #[method_id(@__retain_semantics Other presentationAnchorForWebAuthenticationSession:)]
         unsafe fn presentationAnchorForWebAuthenticationSession(
             &self,

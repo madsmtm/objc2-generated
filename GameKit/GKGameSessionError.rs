@@ -5,6 +5,7 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::GameKit::*;
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(GKGameSessionErrorDomain: &'static NSString);
 
 ns_enum!(

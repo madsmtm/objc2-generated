@@ -24,9 +24,13 @@ mod __BCChatButton;
 
 #[cfg(feature = "BusinessChat_BCChatAction")]
 pub use self::__BCChatAction::BCChatAction;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__BCChatAction::BCParameterName;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__BCChatAction::BCParameterNameBody;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__BCChatAction::BCParameterNameGroup;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__BCChatAction::BCParameterNameIntent;
 #[cfg(feature = "BusinessChat_BCChatButton")]
 pub use self::__BCChatButton::BCChatButton;

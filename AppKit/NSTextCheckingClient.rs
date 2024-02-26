@@ -137,6 +137,7 @@ extern_protocol!(
             range: NSRange,
         );
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(removeAnnotation:range:)]
         unsafe fn removeAnnotation_range(
             &self,

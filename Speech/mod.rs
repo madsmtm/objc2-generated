@@ -41,6 +41,7 @@ mod __SFTranscriptionSegment;
 mod __SFVoiceAnalytics;
 
 pub use self::__SFErrors::SFSpeechErrorCode;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__SFErrors::SFSpeechErrorDomain;
 #[cfg(feature = "Speech_SFSpeechLanguageModel")]
 pub use self::__SFSpeechLanguageModel::SFSpeechLanguageModel;

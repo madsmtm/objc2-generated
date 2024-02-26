@@ -5,6 +5,7 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
+#[cfg(feature = "Foundation_NSString")]
 typed_extensible_enum!(
     pub type NSAppearanceName = NSString;
 );
@@ -33,6 +34,7 @@ unsafe impl NSSecureCoding for NSAppearance {}
 extern_methods!(
     #[cfg(feature = "AppKit_NSAppearance")]
     unsafe impl NSAppearance {
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Id<NSAppearanceName>;
 
@@ -50,10 +52,11 @@ extern_methods!(
         #[method(performAsCurrentDrawingAppearance:)]
         pub unsafe fn performAsCurrentDrawingAppearance(&self, block: &Block<dyn Fn() + '_>);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other appearanceNamed:)]
         pub fn appearanceNamed(name: &NSAppearanceName) -> Option<Id<NSAppearance>>;
 
-        #[cfg(feature = "Foundation_NSBundle")]
+        #[cfg(all(feature = "Foundation_NSBundle", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Init initWithAppearanceNamed:bundle:)]
         pub unsafe fn initWithAppearanceNamed_bundle(
             this: Allocated<Self>,
@@ -68,7 +71,7 @@ extern_methods!(
         #[method(allowsVibrancy)]
         pub unsafe fn allowsVibrancy(&self) -> bool;
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other bestMatchFromAppearancesWithNames:)]
         pub fn bestMatchFromAppearancesWithNames(
             &self,
@@ -89,22 +92,31 @@ extern_methods!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAppearanceNameAqua: &'static NSAppearanceName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAppearanceNameDarkAqua: &'static NSAppearanceName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAppearanceNameLightContent: &'static NSAppearanceName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAppearanceNameVibrantDark: &'static NSAppearanceName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAppearanceNameVibrantLight: &'static NSAppearanceName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAppearanceNameAccessibilityHighContrastAqua: &'static NSAppearanceName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAppearanceNameAccessibilityHighContrastDarkAqua: &'static NSAppearanceName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAppearanceNameAccessibilityHighContrastVibrantLight: &'static NSAppearanceName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAppearanceNameAccessibilityHighContrastVibrantDark: &'static NSAppearanceName);
 
 extern_protocol!(

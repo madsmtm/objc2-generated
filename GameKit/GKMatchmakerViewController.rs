@@ -124,7 +124,7 @@ extern_methods!(
     /// Methods declared on superclass `NSViewController`
     #[cfg(feature = "GameKit_GKMatchmakerViewController")]
     unsafe impl GKMatchmakerViewController {
-        #[cfg(feature = "Foundation_NSBundle")]
+        #[cfg(all(feature = "Foundation_NSBundle", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Init initWithNibName:bundle:)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,
@@ -225,6 +225,8 @@ extern_protocol!(
         );
 
         #[cfg(all(
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSString",
             feature = "GameKit_GKMatchmakerViewController",
             feature = "GameKit_GKPlayer"
         ))]

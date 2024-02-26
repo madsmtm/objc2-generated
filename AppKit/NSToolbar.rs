@@ -5,16 +5,20 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
+#[cfg(feature = "Foundation_NSString")]
 pub type NSToolbarIdentifier = NSString;
 
+#[cfg(feature = "Foundation_NSString")]
 typed_extensible_enum!(
     pub type NSToolbarItemIdentifier = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type NSToolbarUserInfoKey = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSToolbarItemKey: &'static NSToolbarUserInfoKey);
 
 ns_enum!(
@@ -65,6 +69,7 @@ unsafe impl NSObjectProtocol for NSToolbar {}
 extern_methods!(
     #[cfg(feature = "AppKit_NSToolbar")]
     unsafe impl NSToolbar {
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithIdentifier:)]
         pub unsafe fn initWithIdentifier(
             this: Allocated<Self>,
@@ -74,6 +79,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(insertItemWithItemIdentifier:atIndex:)]
         pub unsafe fn insertItemWithItemIdentifier_atIndex(
             &self,
@@ -108,9 +114,11 @@ extern_methods!(
         #[method(setDisplayMode:)]
         pub unsafe fn setDisplayMode(&self, display_mode: NSToolbarDisplayMode);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other selectedItemIdentifier)]
         pub unsafe fn selectedItemIdentifier(&self) -> Option<Id<NSToolbarItemIdentifier>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setSelectedItemIdentifier:)]
         pub unsafe fn setSelectedItemIdentifier(
             &self,
@@ -137,6 +145,7 @@ extern_methods!(
         #[method(setAllowsUserCustomization:)]
         pub unsafe fn setAllowsUserCustomization(&self, allows_user_customization: bool);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other identifier)]
         pub unsafe fn identifier(&self) -> Id<NSToolbarIdentifier>;
 
@@ -148,21 +157,23 @@ extern_methods!(
         #[method_id(@__retain_semantics Other visibleItems)]
         pub unsafe fn visibleItems(&self) -> Option<Id<NSArray<NSToolbarItem>>>;
 
-        #[cfg(feature = "Foundation_NSSet")]
+        #[cfg(all(feature = "Foundation_NSSet", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other centeredItemIdentifiers)]
         pub unsafe fn centeredItemIdentifiers(&self) -> Id<NSSet<NSToolbarItemIdentifier>>;
 
-        #[cfg(feature = "Foundation_NSSet")]
+        #[cfg(all(feature = "Foundation_NSSet", feature = "Foundation_NSString"))]
         #[method(setCenteredItemIdentifiers:)]
         pub unsafe fn setCenteredItemIdentifiers(
             &self,
             centered_item_identifiers: &NSSet<NSToolbarItemIdentifier>,
         );
 
+        #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "Use the centeredItemIdentifiers property instead"]
         #[method_id(@__retain_semantics Other centeredItemIdentifier)]
         pub unsafe fn centeredItemIdentifier(&self) -> Option<Id<NSToolbarItemIdentifier>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "Use the centeredItemIdentifiers property instead"]
         #[method(setCenteredItemIdentifier:)]
         pub unsafe fn setCenteredItemIdentifier(
@@ -209,7 +220,11 @@ extern_methods!(
 
 extern_protocol!(
     pub unsafe trait NSToolbarDelegate: NSObjectProtocol + IsMainThreadOnly {
-        #[cfg(all(feature = "AppKit_NSToolbar", feature = "AppKit_NSToolbarItem"))]
+        #[cfg(all(
+            feature = "AppKit_NSToolbar",
+            feature = "AppKit_NSToolbarItem",
+            feature = "Foundation_NSString"
+        ))]
         #[optional]
         #[method_id(@__retain_semantics Other toolbar:itemForItemIdentifier:willBeInsertedIntoToolbar:)]
         unsafe fn toolbar_itemForItemIdentifier_willBeInsertedIntoToolbar(
@@ -219,7 +234,11 @@ extern_protocol!(
             flag: bool,
         ) -> Option<Id<NSToolbarItem>>;
 
-        #[cfg(all(feature = "AppKit_NSToolbar", feature = "Foundation_NSArray"))]
+        #[cfg(all(
+            feature = "AppKit_NSToolbar",
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSString"
+        ))]
         #[optional]
         #[method_id(@__retain_semantics Other toolbarDefaultItemIdentifiers:)]
         unsafe fn toolbarDefaultItemIdentifiers(
@@ -227,7 +246,11 @@ extern_protocol!(
             toolbar: &NSToolbar,
         ) -> Id<NSArray<NSToolbarItemIdentifier>>;
 
-        #[cfg(all(feature = "AppKit_NSToolbar", feature = "Foundation_NSArray"))]
+        #[cfg(all(
+            feature = "AppKit_NSToolbar",
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSString"
+        ))]
         #[optional]
         #[method_id(@__retain_semantics Other toolbarAllowedItemIdentifiers:)]
         unsafe fn toolbarAllowedItemIdentifiers(
@@ -235,7 +258,11 @@ extern_protocol!(
             toolbar: &NSToolbar,
         ) -> Id<NSArray<NSToolbarItemIdentifier>>;
 
-        #[cfg(all(feature = "AppKit_NSToolbar", feature = "Foundation_NSArray"))]
+        #[cfg(all(
+            feature = "AppKit_NSToolbar",
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSString"
+        ))]
         #[optional]
         #[method_id(@__retain_semantics Other toolbarSelectableItemIdentifiers:)]
         unsafe fn toolbarSelectableItemIdentifiers(
@@ -243,7 +270,11 @@ extern_protocol!(
             toolbar: &NSToolbar,
         ) -> Id<NSArray<NSToolbarItemIdentifier>>;
 
-        #[cfg(all(feature = "AppKit_NSToolbar", feature = "Foundation_NSSet"))]
+        #[cfg(all(
+            feature = "AppKit_NSToolbar",
+            feature = "Foundation_NSSet",
+            feature = "Foundation_NSString"
+        ))]
         #[optional]
         #[method_id(@__retain_semantics Other toolbarImmovableItemIdentifiers:)]
         unsafe fn toolbarImmovableItemIdentifiers(
@@ -251,7 +282,7 @@ extern_protocol!(
             toolbar: &NSToolbar,
         ) -> Id<NSSet<NSToolbarItemIdentifier>>;
 
-        #[cfg(feature = "AppKit_NSToolbar")]
+        #[cfg(all(feature = "AppKit_NSToolbar", feature = "Foundation_NSString"))]
         #[optional]
         #[method(toolbar:itemIdentifier:canBeInsertedAtIndex:)]
         unsafe fn toolbar_itemIdentifier_canBeInsertedAtIndex(
@@ -275,8 +306,10 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn NSToolbarDelegate {}
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSToolbarWillAddItemNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSToolbarDidRemoveItemNotification: &'static NSNotificationName);
 
 extern_methods!(

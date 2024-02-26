@@ -5,30 +5,42 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
+#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type NSTextCheckingOptionKey = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTextCheckingOrthographyKey: &'static NSTextCheckingOptionKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTextCheckingQuotesKey: &'static NSTextCheckingOptionKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTextCheckingReplacementsKey: &'static NSTextCheckingOptionKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTextCheckingReferenceDateKey: &'static NSTextCheckingOptionKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTextCheckingReferenceTimeZoneKey: &'static NSTextCheckingOptionKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTextCheckingDocumentURLKey: &'static NSTextCheckingOptionKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTextCheckingDocumentTitleKey: &'static NSTextCheckingOptionKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTextCheckingDocumentAuthorKey: &'static NSTextCheckingOptionKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTextCheckingRegularExpressionsKey: &'static NSTextCheckingOptionKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTextCheckingSelectedRangeKey: &'static NSTextCheckingOptionKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTextCheckingGenerateInlinePredictionsKey: &'static NSTextCheckingOptionKey);
 
 ns_enum!(
@@ -473,20 +485,28 @@ extern_methods!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSSpellCheckerDidChangeAutomaticSpellingCorrectionNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSSpellCheckerDidChangeAutomaticTextReplacementNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSSpellCheckerDidChangeAutomaticQuoteSubstitutionNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSSpellCheckerDidChangeAutomaticDashSubstitutionNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSSpellCheckerDidChangeAutomaticCapitalizationNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSSpellCheckerDidChangeAutomaticPeriodSubstitutionNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSSpellCheckerDidChangeAutomaticTextCompletionNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSSpellCheckerDidChangeAutomaticInlinePredictionNotification: &'static NSNotificationName);
 
 extern_methods!(

@@ -118,9 +118,11 @@ extern_methods!(
         #[method(setRecentSearches:)]
         pub unsafe fn setRecentSearches(&self, recent_searches: Option<&NSArray<NSString>>);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other recentsAutosaveName)]
         pub unsafe fn recentsAutosaveName(&self) -> Option<Id<NSSearchFieldRecentsAutosaveName>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setRecentsAutosaveName:)]
         pub unsafe fn setRecentsAutosaveName(
             &self,

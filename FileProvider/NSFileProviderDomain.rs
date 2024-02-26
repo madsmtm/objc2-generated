@@ -6,6 +6,7 @@ use crate::FileProvider::*;
 use crate::Foundation::*;
 use crate::UniformTypeIdentifiers::*;
 
+#[cfg(feature = "Foundation_NSString")]
 typed_extensible_enum!(
     pub type NSFileProviderDomainIdentifier = NSString;
 );
@@ -100,6 +101,7 @@ extern_methods!(
             display_name: &NSString,
         ) -> Id<Self>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other identifier)]
         pub unsafe fn identifier(&self) -> Id<NSFileProviderDomainIdentifier>;
 
@@ -166,4 +168,5 @@ extern_methods!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFileProviderDomainDidChange: &'static NSNotificationName);

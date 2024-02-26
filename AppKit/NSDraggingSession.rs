@@ -58,7 +58,8 @@ extern_methods!(
             feature = "AppKit_NSDraggingItem",
             feature = "AppKit_NSView",
             feature = "Foundation_NSArray",
-            feature = "Foundation_NSDictionary"
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSString"
         ))]
         #[method(enumerateDraggingItemsWithOptions:forView:classes:searchOptions:usingBlock:)]
         pub unsafe fn enumerateDraggingItemsWithOptions_forView_classes_searchOptions_usingBlock(

@@ -23,4 +23,5 @@ mod __AAAttribution;
 #[cfg(feature = "AdServices_AAAttribution")]
 pub use self::__AAAttribution::AAAttribution;
 pub use self::__AAAttribution::AAAttributionErrorCode;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__AAAttribution::AAAttributionErrorDomain;

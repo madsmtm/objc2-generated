@@ -123,12 +123,12 @@ extern_methods!(
             secondary_selection_location: Option<&ProtocolObject<dyn NSTextLocation>>,
         );
 
-        #[cfg(feature = "Foundation_NSDictionary")]
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other typingAttributes)]
         pub unsafe fn typingAttributes(&self)
             -> Id<NSDictionary<NSAttributedStringKey, AnyObject>>;
 
-        #[cfg(feature = "Foundation_NSDictionary")]
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method(setTypingAttributes:)]
         pub unsafe fn setTypingAttributes(
             &self,

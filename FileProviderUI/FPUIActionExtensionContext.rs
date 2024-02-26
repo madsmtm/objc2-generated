@@ -6,8 +6,10 @@ use crate::FileProvider::*;
 use crate::FileProviderUI::*;
 use crate::Foundation::*;
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(FPUIErrorDomain: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 typed_extensible_enum!(
     pub type FPUIActionIdentifier = NSString;
 );
@@ -41,6 +43,7 @@ unsafe impl NSObjectProtocol for FPUIActionExtensionContext {}
 extern_methods!(
     #[cfg(feature = "FileProviderUI_FPUIActionExtensionContext")]
     unsafe impl FPUIActionExtensionContext {
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other domainIdentifier)]
         pub unsafe fn domainIdentifier(&self) -> Option<Id<NSFileProviderDomainIdentifier>>;
 

@@ -5,6 +5,7 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
+#[cfg(feature = "Foundation_NSString")]
 pub type NSStoryboardSegueIdentifier = NSString;
 
 extern_class!(
@@ -25,6 +26,7 @@ unsafe impl NSObjectProtocol for NSStoryboardSegue {}
 extern_methods!(
     #[cfg(feature = "AppKit_NSStoryboardSegue")]
     unsafe impl NSStoryboardSegue {
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other segueWithIdentifier:source:destination:performHandler:)]
         pub unsafe fn segueWithIdentifier_source_destination_performHandler(
             identifier: &NSStoryboardSegueIdentifier,
@@ -33,6 +35,7 @@ extern_methods!(
             perform_handler: &Block<dyn Fn()>,
         ) -> Id<Self>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithIdentifier:source:destination:)]
         pub unsafe fn initWithIdentifier_source_destination(
             this: Allocated<Self>,
@@ -41,6 +44,7 @@ extern_methods!(
             destination_controller: &AnyObject,
         ) -> Id<Self>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other identifier)]
         pub unsafe fn identifier(&self) -> Option<Id<NSStoryboardSegueIdentifier>>;
 
@@ -78,6 +82,7 @@ extern_protocol!(
             sender: Option<&AnyObject>,
         );
 
+        #[cfg(feature = "Foundation_NSString")]
         #[optional]
         #[method(performSegueWithIdentifier:sender:)]
         unsafe fn performSegueWithIdentifier_sender(
@@ -86,6 +91,7 @@ extern_protocol!(
             sender: Option<&AnyObject>,
         );
 
+        #[cfg(feature = "Foundation_NSString")]
         #[optional]
         #[method(shouldPerformSegueWithIdentifier:sender:)]
         unsafe fn shouldPerformSegueWithIdentifier_sender(

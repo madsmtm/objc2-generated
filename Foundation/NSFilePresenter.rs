@@ -57,7 +57,7 @@ extern_protocol!(
         #[method(presentedItemDidChange)]
         unsafe fn presentedItemDidChange(&self);
 
-        #[cfg(feature = "Foundation_NSSet")]
+        #[cfg(all(feature = "Foundation_NSSet", feature = "Foundation_NSString"))]
         #[optional]
         #[method(presentedItemDidChangeUbiquityAttributes:)]
         unsafe fn presentedItemDidChangeUbiquityAttributes(
@@ -65,7 +65,7 @@ extern_protocol!(
             attributes: &NSSet<NSURLResourceKey>,
         );
 
-        #[cfg(feature = "Foundation_NSSet")]
+        #[cfg(all(feature = "Foundation_NSSet", feature = "Foundation_NSString"))]
         #[optional]
         #[method_id(@__retain_semantics Other observedPresentedItemUbiquityAttributes)]
         unsafe fn observedPresentedItemUbiquityAttributes(&self) -> Id<NSSet<NSURLResourceKey>>;

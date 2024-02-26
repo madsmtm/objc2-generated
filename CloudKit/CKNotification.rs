@@ -114,6 +114,7 @@ extern_methods!(
         #[method(isPruned)]
         pub unsafe fn isPruned(&self) -> bool;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other subscriptionID)]
         pub unsafe fn subscriptionID(&self) -> Option<Id<CKSubscriptionID>>;
     }

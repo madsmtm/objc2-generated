@@ -5,56 +5,82 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFontAttributeName: &'static NSAttributedStringKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSParagraphStyleAttributeName: &'static NSAttributedStringKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSForegroundColorAttributeName: &'static NSAttributedStringKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSBackgroundColorAttributeName: &'static NSAttributedStringKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSLigatureAttributeName: &'static NSAttributedStringKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSKernAttributeName: &'static NSAttributedStringKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTrackingAttributeName: &'static NSAttributedStringKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSStrikethroughStyleAttributeName: &'static NSAttributedStringKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSUnderlineStyleAttributeName: &'static NSAttributedStringKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSStrokeColorAttributeName: &'static NSAttributedStringKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSStrokeWidthAttributeName: &'static NSAttributedStringKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSShadowAttributeName: &'static NSAttributedStringKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTextEffectAttributeName: &'static NSAttributedStringKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAttachmentAttributeName: &'static NSAttributedStringKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSLinkAttributeName: &'static NSAttributedStringKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSBaselineOffsetAttributeName: &'static NSAttributedStringKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSUnderlineColorAttributeName: &'static NSAttributedStringKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSStrikethroughColorAttributeName: &'static NSAttributedStringKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSWritingDirectionAttributeName: &'static NSAttributedStringKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSCursorAttributeName: &'static NSAttributedStringKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSToolTipAttributeName: &'static NSAttributedStringKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMarkedClauseSegmentAttributeName: &'static NSAttributedStringKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTextAlternativesAttributeName: &'static NSAttributedStringKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSSpellingStateAttributeName: &'static NSAttributedStringKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSSuperscriptAttributeName: &'static NSAttributedStringKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSGlyphInfoAttributeName: &'static NSAttributedStringKey);
 
 ns_options!(
@@ -91,10 +117,12 @@ ns_enum!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type NSTextEffectStyle = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTextEffectLetterpressStyle: &'static NSTextEffectStyle);
 
 ns_enum!(
@@ -128,36 +156,50 @@ extern_category!(
     unsafe impl NSAttributedStringAttributeFixing for NSMutableAttributedString {}
 );
 
+#[cfg(feature = "Foundation_NSString")]
 typed_extensible_enum!(
     pub type NSAttributedStringDocumentType = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSPlainTextDocumentType: &'static NSAttributedStringDocumentType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSRTFTextDocumentType: &'static NSAttributedStringDocumentType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSRTFDTextDocumentType: &'static NSAttributedStringDocumentType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSHTMLTextDocumentType: &'static NSAttributedStringDocumentType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMacSimpleTextDocumentType: &'static NSAttributedStringDocumentType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSDocFormatTextDocumentType: &'static NSAttributedStringDocumentType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSWordMLTextDocumentType: &'static NSAttributedStringDocumentType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSWebArchiveTextDocumentType: &'static NSAttributedStringDocumentType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSOfficeOpenXMLTextDocumentType: &'static NSAttributedStringDocumentType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSOpenDocumentTextDocumentType: &'static NSAttributedStringDocumentType);
 
+#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type NSTextLayoutSectionKey = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTextLayoutSectionOrientation: &'static NSTextLayoutSectionKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTextLayoutSectionRange: &'static NSTextLayoutSectionKey);
 
 ns_enum!(
@@ -168,112 +210,164 @@ ns_enum!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 typed_extensible_enum!(
     pub type NSAttributedStringDocumentAttributeKey = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSDocumentTypeDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSConvertedDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSCocoaVersionDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFileTypeDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTitleDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSCompanyDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSCopyrightDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSSubjectDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAuthorDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSKeywordsDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSCommentDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSEditorDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSCreationTimeDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSModificationTimeDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSManagerDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSCategoryDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAppearanceDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSCharacterEncodingDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSDefaultAttributesDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSPaperSizeDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSLeftMarginDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSRightMarginDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTopMarginDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSBottomMarginDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSViewSizeDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSViewZoomDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSViewModeDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSReadOnlyDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSBackgroundColorDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSHyphenationFactorDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSDefaultTabIntervalDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTextLayoutSectionsAttribute: &'static NSAttributedStringDocumentAttributeKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSExcludedElementsDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTextEncodingNameDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSPrefixSpacesDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSDefaultFontExcludedDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTextScalingDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSSourceTextScalingDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey);
 
+#[cfg(feature = "Foundation_NSString")]
 typed_extensible_enum!(
     pub type NSAttributedStringDocumentReadingOptionKey = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSDocumentTypeDocumentOption: &'static NSAttributedStringDocumentReadingOptionKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSDefaultAttributesDocumentOption: &'static NSAttributedStringDocumentReadingOptionKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSCharacterEncodingDocumentOption: &'static NSAttributedStringDocumentReadingOptionKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTextEncodingNameDocumentOption: &'static NSAttributedStringDocumentReadingOptionKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSBaseURLDocumentOption: &'static NSAttributedStringDocumentReadingOptionKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTimeoutDocumentOption: &'static NSAttributedStringDocumentReadingOptionKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSWebPreferencesDocumentOption: &'static NSAttributedStringDocumentReadingOptionKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSWebResourceLoadDelegateDocumentOption: &'static NSAttributedStringDocumentReadingOptionKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTextSizeMultiplierDocumentOption: &'static NSAttributedStringDocumentReadingOptionKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFileTypeDocumentOption: &'static NSAttributedStringDocumentReadingOptionKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTargetTextScalingDocumentOption: &'static NSAttributedStringDocumentReadingOptionKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSSourceTextScalingDocumentOption: &'static NSAttributedStringDocumentReadingOptionKey);
 
 extern_category!(
@@ -283,6 +377,7 @@ extern_category!(
         #[cfg(all(
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSError",
+            feature = "Foundation_NSString",
             feature = "Foundation_NSURL"
         ))]
         #[method_id(@__retain_semantics Init initWithURL:options:documentAttributes:error:_)]
@@ -298,7 +393,8 @@ extern_category!(
         #[cfg(all(
             feature = "Foundation_NSData",
             feature = "Foundation_NSDictionary",
-            feature = "Foundation_NSError"
+            feature = "Foundation_NSError",
+            feature = "Foundation_NSString"
         ))]
         #[method_id(@__retain_semantics Init initWithData:options:documentAttributes:error:_)]
         unsafe fn initWithData_options_documentAttributes_error(
@@ -313,7 +409,8 @@ extern_category!(
         #[cfg(all(
             feature = "Foundation_NSData",
             feature = "Foundation_NSDictionary",
-            feature = "Foundation_NSError"
+            feature = "Foundation_NSError",
+            feature = "Foundation_NSString"
         ))]
         #[method_id(@__retain_semantics Other dataFromRange:documentAttributes:error:_)]
         unsafe fn dataFromRange_documentAttributes_error(
@@ -325,7 +422,8 @@ extern_category!(
         #[cfg(all(
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSError",
-            feature = "Foundation_NSFileWrapper"
+            feature = "Foundation_NSFileWrapper",
+            feature = "Foundation_NSString"
         ))]
         #[method_id(@__retain_semantics Other fileWrapperFromRange:documentAttributes:error:_)]
         unsafe fn fileWrapperFromRange_documentAttributes_error(
@@ -334,7 +432,11 @@ extern_category!(
             dict: &NSDictionary<NSAttributedStringDocumentAttributeKey, AnyObject>,
         ) -> Result<Id<NSFileWrapper>, Id<NSError>>;
 
-        #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSDictionary"))]
+        #[cfg(all(
+            feature = "Foundation_NSData",
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Init initWithRTF:documentAttributes:)]
         unsafe fn initWithRTF_documentAttributes(
             this: Allocated<Self>,
@@ -344,7 +446,11 @@ extern_category!(
             >,
         ) -> Option<Id<Self>>;
 
-        #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSDictionary"))]
+        #[cfg(all(
+            feature = "Foundation_NSData",
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Init initWithRTFD:documentAttributes:)]
         unsafe fn initWithRTFD_documentAttributes(
             this: Allocated<Self>,
@@ -354,7 +460,11 @@ extern_category!(
             >,
         ) -> Option<Id<Self>>;
 
-        #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSDictionary"))]
+        #[cfg(all(
+            feature = "Foundation_NSData",
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Init initWithHTML:documentAttributes:)]
         unsafe fn initWithHTML_documentAttributes(
             this: Allocated<Self>,
@@ -367,6 +477,7 @@ extern_category!(
         #[cfg(all(
             feature = "Foundation_NSData",
             feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSString",
             feature = "Foundation_NSURL"
         ))]
         #[method_id(@__retain_semantics Init initWithHTML:baseURL:documentAttributes:)]
@@ -379,7 +490,11 @@ extern_category!(
             >,
         ) -> Option<Id<Self>>;
 
-        #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSDictionary"))]
+        #[cfg(all(
+            feature = "Foundation_NSData",
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Init initWithDocFormat:documentAttributes:)]
         unsafe fn initWithDocFormat_documentAttributes(
             this: Allocated<Self>,
@@ -389,7 +504,11 @@ extern_category!(
             >,
         ) -> Option<Id<Self>>;
 
-        #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSDictionary"))]
+        #[cfg(all(
+            feature = "Foundation_NSData",
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Init initWithHTML:options:documentAttributes:)]
         unsafe fn initWithHTML_options_documentAttributes(
             this: Allocated<Self>,
@@ -402,7 +521,8 @@ extern_category!(
 
         #[cfg(all(
             feature = "Foundation_NSDictionary",
-            feature = "Foundation_NSFileWrapper"
+            feature = "Foundation_NSFileWrapper",
+            feature = "Foundation_NSString"
         ))]
         #[method_id(@__retain_semantics Init initWithRTFDFileWrapper:documentAttributes:)]
         unsafe fn initWithRTFDFileWrapper_documentAttributes(
@@ -413,7 +533,11 @@ extern_category!(
             >,
         ) -> Option<Id<Self>>;
 
-        #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSDictionary"))]
+        #[cfg(all(
+            feature = "Foundation_NSData",
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Other RTFFromRange:documentAttributes:)]
         unsafe fn RTFFromRange_documentAttributes(
             &self,
@@ -421,7 +545,11 @@ extern_category!(
             dict: &NSDictionary<NSAttributedStringDocumentAttributeKey, AnyObject>,
         ) -> Option<Id<NSData>>;
 
-        #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSDictionary"))]
+        #[cfg(all(
+            feature = "Foundation_NSData",
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Other RTFDFromRange:documentAttributes:)]
         unsafe fn RTFDFromRange_documentAttributes(
             &self,
@@ -431,7 +559,8 @@ extern_category!(
 
         #[cfg(all(
             feature = "Foundation_NSDictionary",
-            feature = "Foundation_NSFileWrapper"
+            feature = "Foundation_NSFileWrapper",
+            feature = "Foundation_NSString"
         ))]
         #[method_id(@__retain_semantics Other RTFDFileWrapperFromRange:documentAttributes:)]
         unsafe fn RTFDFileWrapperFromRange_documentAttributes(
@@ -440,7 +569,11 @@ extern_category!(
             dict: &NSDictionary<NSAttributedStringDocumentAttributeKey, AnyObject>,
         ) -> Option<Id<NSFileWrapper>>;
 
-        #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSDictionary"))]
+        #[cfg(all(
+            feature = "Foundation_NSData",
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Other docFormatFromRange:documentAttributes:)]
         unsafe fn docFormatFromRange_documentAttributes(
             &self,
@@ -460,6 +593,7 @@ extern_category!(
         #[cfg(all(
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSError",
+            feature = "Foundation_NSString",
             feature = "Foundation_NSURL"
         ))]
         #[method(readFromURL:options:documentAttributes:error:_)]
@@ -475,7 +609,8 @@ extern_category!(
         #[cfg(all(
             feature = "Foundation_NSData",
             feature = "Foundation_NSDictionary",
-            feature = "Foundation_NSError"
+            feature = "Foundation_NSError",
+            feature = "Foundation_NSString"
         ))]
         #[method(readFromData:options:documentAttributes:error:_)]
         unsafe fn readFromData_options_documentAttributes_error(
@@ -496,14 +631,14 @@ extern_category!(
     /// Category on [`NSAttributedString`].
     #[cfg(feature = "Foundation_NSAttributedString")]
     pub unsafe trait NSAttributedStringKitAdditions {
-        #[cfg(feature = "Foundation_NSDictionary")]
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other fontAttributesInRange:)]
         unsafe fn fontAttributesInRange(
             &self,
             range: NSRange,
         ) -> Id<NSDictionary<NSAttributedStringKey, AnyObject>>;
 
-        #[cfg(feature = "Foundation_NSDictionary")]
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other rulerAttributesInRange:)]
         unsafe fn rulerAttributesInRange(
             &self,
@@ -640,14 +775,19 @@ extern_static!(NSUnderlinePatternDashDotDot: NSUnderlineStyle = NSUnderlineStyle
 
 extern_static!(NSUnderlineByWord: NSUnderlineStyle = NSUnderlineStyle(NSUnderlineStyle::ByWord.0));
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSCharacterShapeAttributeName: &'static NSAttributedStringKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSUsesScreenFontsDocumentAttribute: &'static NSAttributedStringKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSObliquenessAttributeName: &'static NSAttributedStringKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSExpansionAttributeName: &'static NSAttributedStringKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSVerticalGlyphFormAttributeName: &'static NSAttributedStringKey);
 
 #[deprecated = "Use NSUnderlineStyleNone instead"]

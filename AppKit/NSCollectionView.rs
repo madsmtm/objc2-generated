@@ -51,6 +51,7 @@ ns_options!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 pub type NSCollectionViewSupplementaryElementKind = NSString;
 
 extern_protocol!(
@@ -199,7 +200,7 @@ extern_methods!(
     /// Methods declared on superclass `NSViewController`
     #[cfg(feature = "AppKit_NSCollectionViewItem")]
     unsafe impl NSCollectionViewItem {
-        #[cfg(feature = "Foundation_NSBundle")]
+        #[cfg(all(feature = "Foundation_NSBundle", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Init initWithNibName:bundle:)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,
@@ -354,7 +355,8 @@ extern_methods!(
 
         #[cfg(all(
             feature = "AppKit_NSCollectionViewLayoutAttributes",
-            feature = "Foundation_NSIndexPath"
+            feature = "Foundation_NSIndexPath",
+            feature = "Foundation_NSString"
         ))]
         #[method_id(@__retain_semantics Other layoutAttributesForSupplementaryElementOfKind:atIndexPath:)]
         pub unsafe fn layoutAttributesForSupplementaryElementOfKind_atIndexPath(
@@ -442,6 +444,7 @@ extern_methods!(
         #[method(deselectAll:)]
         pub unsafe fn deselectAll(&self, sender: Option<&AnyObject>);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(registerClass:forItemWithIdentifier:)]
         pub unsafe fn registerClass_forItemWithIdentifier(
             &self,
@@ -449,7 +452,7 @@ extern_methods!(
             identifier: &NSUserInterfaceItemIdentifier,
         );
 
-        #[cfg(feature = "AppKit_NSNib")]
+        #[cfg(all(feature = "AppKit_NSNib", feature = "Foundation_NSString"))]
         #[method(registerNib:forItemWithIdentifier:)]
         pub unsafe fn registerNib_forItemWithIdentifier(
             &self,
@@ -457,6 +460,7 @@ extern_methods!(
             identifier: &NSUserInterfaceItemIdentifier,
         );
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(registerClass:forSupplementaryViewOfKind:withIdentifier:)]
         pub unsafe fn registerClass_forSupplementaryViewOfKind_withIdentifier(
             &self,
@@ -465,7 +469,7 @@ extern_methods!(
             identifier: &NSUserInterfaceItemIdentifier,
         );
 
-        #[cfg(feature = "AppKit_NSNib")]
+        #[cfg(all(feature = "AppKit_NSNib", feature = "Foundation_NSString"))]
         #[method(registerNib:forSupplementaryViewOfKind:withIdentifier:)]
         pub unsafe fn registerNib_forSupplementaryViewOfKind_withIdentifier(
             &self,
@@ -476,7 +480,8 @@ extern_methods!(
 
         #[cfg(all(
             feature = "AppKit_NSCollectionViewItem",
-            feature = "Foundation_NSIndexPath"
+            feature = "Foundation_NSIndexPath",
+            feature = "Foundation_NSString"
         ))]
         #[method_id(@__retain_semantics Other makeItemWithIdentifier:forIndexPath:)]
         pub unsafe fn makeItemWithIdentifier_forIndexPath(
@@ -485,7 +490,7 @@ extern_methods!(
             index_path: &NSIndexPath,
         ) -> Id<NSCollectionViewItem>;
 
-        #[cfg(feature = "Foundation_NSIndexPath")]
+        #[cfg(all(feature = "Foundation_NSIndexPath", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other makeSupplementaryViewOfKind:withIdentifier:forIndexPath:)]
         pub unsafe fn makeSupplementaryViewOfKind_withIdentifier_forIndexPath(
             &self,
@@ -533,7 +538,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other indexPathForItemAtPoint:)]
         pub unsafe fn indexPathForItemAtPoint(&self, point: NSPoint) -> Option<Id<NSIndexPath>>;
 
-        #[cfg(feature = "Foundation_NSIndexPath")]
+        #[cfg(all(feature = "Foundation_NSIndexPath", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other supplementaryViewForElementKind:atIndexPath:)]
         pub unsafe fn supplementaryViewForElementKind_atIndexPath(
             &self,
@@ -541,14 +546,18 @@ extern_methods!(
             index_path: &NSIndexPath,
         ) -> Option<Id<NSView>>;
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other visibleSupplementaryViewsOfKind:)]
         pub unsafe fn visibleSupplementaryViewsOfKind(
             &self,
             element_kind: &NSCollectionViewSupplementaryElementKind,
         ) -> Id<NSArray<NSView>>;
 
-        #[cfg(all(feature = "Foundation_NSIndexPath", feature = "Foundation_NSSet"))]
+        #[cfg(all(
+            feature = "Foundation_NSIndexPath",
+            feature = "Foundation_NSSet",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Other indexPathsForVisibleSupplementaryElementsOfKind:)]
         pub unsafe fn indexPathsForVisibleSupplementaryElementsOfKind(
             &self,
@@ -710,7 +719,8 @@ extern_protocol!(
         #[cfg(all(
             feature = "AppKit_NSCollectionView",
             feature = "AppKit_NSView",
-            feature = "Foundation_NSIndexPath"
+            feature = "Foundation_NSIndexPath",
+            feature = "Foundation_NSString"
         ))]
         #[optional]
         #[method_id(@__retain_semantics Other collectionView:viewForSupplementaryElementOfKind:atIndexPath:)]
@@ -1110,7 +1120,8 @@ extern_protocol!(
         #[cfg(all(
             feature = "AppKit_NSCollectionView",
             feature = "AppKit_NSView",
-            feature = "Foundation_NSIndexPath"
+            feature = "Foundation_NSIndexPath",
+            feature = "Foundation_NSString"
         ))]
         #[optional]
         #[method(collectionView:willDisplaySupplementaryView:forElementKind:atIndexPath:)]
@@ -1139,7 +1150,8 @@ extern_protocol!(
         #[cfg(all(
             feature = "AppKit_NSCollectionView",
             feature = "AppKit_NSView",
-            feature = "Foundation_NSIndexPath"
+            feature = "Foundation_NSIndexPath",
+            feature = "Foundation_NSString"
         ))]
         #[optional]
         #[method(collectionView:didEndDisplayingSupplementaryView:forElementOfKind:atIndexPath:)]

@@ -185,28 +185,39 @@ ns_enum!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type NSColorSpaceName = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSCalibratedWhiteColorSpace: &'static NSColorSpaceName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSCalibratedRGBColorSpace: &'static NSColorSpaceName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSDeviceWhiteColorSpace: &'static NSColorSpaceName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSDeviceRGBColorSpace: &'static NSColorSpaceName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSDeviceCMYKColorSpace: &'static NSColorSpaceName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSNamedColorSpace: &'static NSColorSpaceName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSPatternColorSpace: &'static NSColorSpaceName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSCustomColorSpace: &'static NSColorSpaceName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSCalibratedBlackColorSpace: &'static NSColorSpaceName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSDeviceBlackColorSpace: &'static NSColorSpaceName);
 
 ns_enum!(
@@ -222,6 +233,7 @@ ns_enum!(
 );
 
 extern_fn!(
+    #[cfg(feature = "Foundation_NSString")]
     pub unsafe fn NSBestDepth(
         color_space: &NSColorSpaceName,
         bps: NSInteger,
@@ -236,6 +248,7 @@ extern_fn!(
 );
 
 extern_fn!(
+    #[cfg(feature = "Foundation_NSString")]
     pub unsafe fn NSColorSpaceFromDepth(depth: NSWindowDepth) -> *mut NSColorSpaceName;
 );
 
@@ -248,6 +261,7 @@ extern_fn!(
 );
 
 extern_fn!(
+    #[cfg(feature = "Foundation_NSString")]
     pub unsafe fn NSNumberOfColorComponents(color_space_name: &NSColorSpaceName) -> NSInteger;
 );
 
@@ -273,20 +287,27 @@ ns_enum!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 typed_extensible_enum!(
     pub type NSDeviceDescriptionKey = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSDeviceResolution: &'static NSDeviceDescriptionKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSDeviceColorSpaceName: &'static NSDeviceDescriptionKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSDeviceBitsPerSample: &'static NSDeviceDescriptionKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSDeviceIsScreen: &'static NSDeviceDescriptionKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSDeviceIsPrinter: &'static NSDeviceDescriptionKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSDeviceSize: &'static NSDeviceDescriptionKey);
 
 extern_fn!(

@@ -5,8 +5,10 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
+#[cfg(feature = "Foundation_NSString")]
 pub type NSColorListName = NSString;
 
+#[cfg(feature = "Foundation_NSString")]
 pub type NSColorName = NSString;
 
 extern_class!(
@@ -37,9 +39,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Other availableColorLists)]
         pub unsafe fn availableColorLists() -> Id<NSArray<NSColorList>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other colorListNamed:)]
         pub unsafe fn colorListNamed(name: &NSColorListName) -> Option<Id<NSColorList>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithName:)]
         pub unsafe fn initWithName(this: Allocated<Self>, name: &NSColorListName) -> Id<Self>;
 
@@ -51,14 +55,15 @@ extern_methods!(
             path: Option<&NSString>,
         ) -> Option<Id<Self>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Option<Id<NSColorListName>>;
 
-        #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(all(feature = "AppKit_NSColor", feature = "Foundation_NSString"))]
         #[method(setColor:forKey:)]
         pub unsafe fn setColor_forKey(&self, color: &NSColor, key: &NSColorName);
 
-        #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(all(feature = "AppKit_NSColor", feature = "Foundation_NSString"))]
         #[method(insertColor:key:atIndex:)]
         pub unsafe fn insertColor_key_atIndex(
             &self,
@@ -67,14 +72,15 @@ extern_methods!(
             loc: NSUInteger,
         );
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(removeColorWithKey:)]
         pub unsafe fn removeColorWithKey(&self, key: &NSColorName);
 
-        #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(all(feature = "AppKit_NSColor", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other colorWithKey:)]
         pub unsafe fn colorWithKey(&self, key: &NSColorName) -> Option<Id<NSColor>>;
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other allKeys)]
         pub unsafe fn allKeys(&self) -> Id<NSArray<NSColorName>>;
 
@@ -107,4 +113,5 @@ extern_methods!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSColorListDidChangeNotification: &'static NSNotificationName);

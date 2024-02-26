@@ -5,6 +5,7 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::LinkPresentation::*;
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(LPErrorDomain: Option<&'static NSErrorDomain>);
 
 ns_error_enum!(

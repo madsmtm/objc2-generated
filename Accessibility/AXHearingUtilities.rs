@@ -22,6 +22,7 @@ extern_fn!(
     pub unsafe fn AXMFiHearingDeviceStreamingEar() -> AXHearingDeviceEar;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(AXMFiHearingDeviceStreamingEarDidChangeNotification: &'static NSNotificationName);
 
 extern_fn!(
@@ -33,4 +34,5 @@ extern_fn!(
     pub unsafe fn AXMFiHearingDevicePairedUUIDs() -> NonNull<NSArray<NSUUID>>;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(AXMFiHearingDevicePairedUUIDsDidChangeNotification: &'static NSNotificationName);

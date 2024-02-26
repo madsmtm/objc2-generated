@@ -5,101 +5,147 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
+#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type NSTextContentType = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTextContentTypeUsername: &'static NSTextContentType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTextContentTypePassword: &'static NSTextContentType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTextContentTypeOneTimeCode: &'static NSTextContentType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTextContentTypeNewPassword: &'static NSTextContentType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTextContentTypeName: &'static NSTextContentType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTextContentTypeNamePrefix: &'static NSTextContentType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTextContentTypeGivenName: &'static NSTextContentType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTextContentTypeMiddleName: &'static NSTextContentType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTextContentTypeFamilyName: &'static NSTextContentType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTextContentTypeNameSuffix: &'static NSTextContentType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTextContentTypeNickname: &'static NSTextContentType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTextContentTypeJobTitle: &'static NSTextContentType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTextContentTypeOrganizationName: &'static NSTextContentType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTextContentTypeLocation: &'static NSTextContentType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTextContentTypeFullStreetAddress: &'static NSTextContentType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTextContentTypeStreetAddressLine1: &'static NSTextContentType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTextContentTypeStreetAddressLine2: &'static NSTextContentType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTextContentTypeAddressCity: &'static NSTextContentType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTextContentTypeAddressState: &'static NSTextContentType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTextContentTypeAddressCityAndState: &'static NSTextContentType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTextContentTypeSublocality: &'static NSTextContentType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTextContentTypeCountryName: &'static NSTextContentType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTextContentTypePostalCode: &'static NSTextContentType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTextContentTypeTelephoneNumber: &'static NSTextContentType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTextContentTypeEmailAddress: &'static NSTextContentType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTextContentTypeURL: &'static NSTextContentType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTextContentTypeCreditCardNumber: &'static NSTextContentType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTextContentTypeCreditCardName: &'static NSTextContentType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTextContentTypeCreditCardGivenName: &'static NSTextContentType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTextContentTypeCreditCardMiddleName: &'static NSTextContentType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTextContentTypeCreditCardFamilyName: &'static NSTextContentType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTextContentTypeCreditCardSecurityCode: &'static NSTextContentType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTextContentTypeCreditCardExpiration: &'static NSTextContentType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTextContentTypeCreditCardExpirationMonth: &'static NSTextContentType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTextContentTypeCreditCardExpirationYear: &'static NSTextContentType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTextContentTypeCreditCardType: &'static NSTextContentType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTextContentTypeShipmentTrackingNumber: &'static NSTextContentType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTextContentTypeFlightNumber: &'static NSTextContentType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTextContentTypeDateTime: &'static NSTextContentType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTextContentTypeBirthdate: &'static NSTextContentType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTextContentTypeBirthdateDay: &'static NSTextContentType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTextContentTypeBirthdateMonth: &'static NSTextContentType);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTextContentTypeBirthdateYear: &'static NSTextContentType);
 
 extern_protocol!(
     pub unsafe trait NSTextContent {
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other contentType)]
         unsafe fn contentType(&self) -> Option<Id<NSTextContentType>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setContentType:)]
         unsafe fn setContentType(&self, content_type: Option<&NSTextContentType>);
     }

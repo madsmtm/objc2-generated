@@ -59,7 +59,11 @@ extern_methods!(
             posting_style: NSPostingStyle,
         );
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSNotification"))]
+        #[cfg(all(
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSNotification",
+            feature = "Foundation_NSString"
+        ))]
         #[method(enqueueNotification:postingStyle:coalesceMask:forModes:)]
         pub unsafe fn enqueueNotification_postingStyle_coalesceMask_forModes(
             &self,

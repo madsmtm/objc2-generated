@@ -107,4 +107,5 @@ extern_methods!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(MPMediaLibraryDidChangeNotification: &'static NSString);

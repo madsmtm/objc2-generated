@@ -6,6 +6,7 @@ use crate::Foundation::*;
 use crate::HealthKit::*;
 use crate::UniformTypeIdentifiers::*;
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(HKErrorDomain: &'static NSString);
 
 ns_enum!(

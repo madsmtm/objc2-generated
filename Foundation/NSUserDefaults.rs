@@ -3,10 +3,13 @@
 use crate::common::*;
 use crate::Foundation::*;
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSGlobalDomain: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSArgumentDomain: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSRegistrationDomain: &'static NSString);
 
 extern_class!(
@@ -218,64 +221,95 @@ extern_methods!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSUserDefaultsSizeLimitExceededNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSUbiquitousUserDefaultsNoCloudAccountNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSUbiquitousUserDefaultsDidChangeAccountsNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSUbiquitousUserDefaultsCompletedInitialSyncNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSUserDefaultsDidChangeNotification: &'static NSNotificationName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSWeekDayNameArray: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSShortWeekDayNameArray: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMonthNameArray: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSShortMonthNameArray: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTimeFormatString: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSDateFormatString: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTimeDateFormatString: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSShortTimeDateFormatString: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSCurrencySymbol: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSDecimalSeparator: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSThousandsSeparator: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSDecimalDigits: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAMPMDesignation: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSHourNameDesignations: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSYearMonthWeekDesignations: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSEarlierTimeDesignations: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSLaterTimeDesignations: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSThisDayDesignations: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSNextDayDesignations: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSNextNextDayDesignations: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSPriorDayDesignations: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSDateTimeOrdering: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSInternationalCurrencyString: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSShortDateFormatString: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSPositiveCurrencyFormatString: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSNegativeCurrencyFormatString: &'static NSString);

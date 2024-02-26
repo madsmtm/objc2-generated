@@ -254,6 +254,7 @@ extern_methods!(
     }
 );
 
+#[cfg(feature = "CoreData_NSAsynchronousFetchResult")]
 pub type NSPersistentStoreAsynchronousFetchResultCompletionBlock =
     *mut Block<dyn Fn(NonNull<NSAsynchronousFetchResult>)>;
 
@@ -298,6 +299,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other fetchRequest)]
         pub unsafe fn fetchRequest(&self) -> Id<NSFetchRequest<ResultType>>;
 
+        #[cfg(feature = "CoreData_NSAsynchronousFetchResult")]
         #[method(completionBlock)]
         pub unsafe fn completionBlock(
             &self,

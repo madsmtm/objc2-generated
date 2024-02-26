@@ -5,20 +5,26 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
+#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type NSGraphicsContextAttributeKey = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSGraphicsContextDestinationAttributeName: &'static NSGraphicsContextAttributeKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSGraphicsContextRepresentationFormatAttributeName: &'static NSGraphicsContextAttributeKey);
 
+#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type NSGraphicsContextRepresentationFormatName = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSGraphicsContextPSFormat: &'static NSGraphicsContextRepresentationFormatName);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSGraphicsContextPDFFormat: &'static NSGraphicsContextRepresentationFormatName);
 
 ns_enum!(
@@ -55,7 +61,7 @@ unsafe impl NSObjectProtocol for NSGraphicsContext {}
 extern_methods!(
     #[cfg(feature = "AppKit_NSGraphicsContext")]
     unsafe impl NSGraphicsContext {
-        #[cfg(feature = "Foundation_NSDictionary")]
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other graphicsContextWithAttributes:)]
         pub unsafe fn graphicsContextWithAttributes(
             attributes: &NSDictionary<NSGraphicsContextAttributeKey, AnyObject>,
@@ -86,7 +92,7 @@ extern_methods!(
         #[method(restoreGraphicsState)]
         pub unsafe fn restoreGraphicsState_class();
 
-        #[cfg(feature = "Foundation_NSDictionary")]
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other attributes)]
         pub unsafe fn attributes(
             &self,

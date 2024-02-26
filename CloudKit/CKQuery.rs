@@ -42,7 +42,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, a_decoder: &NSCoder) -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSPredicate")]
+        #[cfg(all(feature = "Foundation_NSPredicate", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Init initWithRecordType:predicate:)]
         pub unsafe fn initWithRecordType_predicate(
             this: Allocated<Self>,
@@ -50,6 +50,7 @@ extern_methods!(
             predicate: &NSPredicate,
         ) -> Id<Self>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other recordType)]
         pub unsafe fn recordType(&self) -> Id<CKRecordType>;
 

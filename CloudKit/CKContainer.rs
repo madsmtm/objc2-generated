@@ -5,8 +5,10 @@ use crate::CloudKit::*;
 use crate::CoreLocation::*;
 use crate::Foundation::*;
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CKCurrentUserDefaultName: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CKOwnerDefaultName: &'static NSString);
 
 extern_class!(
@@ -97,6 +99,7 @@ ns_enum!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CKAccountChangedNotification: &'static NSString);
 
 extern_methods!(
@@ -139,6 +142,7 @@ ns_enum!(
     }
 );
 
+#[cfg(feature = "Foundation_NSError")]
 pub type CKApplicationPermissionBlock =
     *mut Block<dyn Fn(CKApplicationPermissionStatus, *mut NSError)>;
 
@@ -146,6 +150,7 @@ extern_methods!(
     /// ApplicationPermission
     #[cfg(feature = "CloudKit_CKContainer")]
     unsafe impl CKContainer {
+        #[cfg(feature = "Foundation_NSError")]
         #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
         #[method(statusForApplicationPermission:completionHandler:)]
         pub unsafe fn statusForApplicationPermission_completionHandler(
@@ -154,6 +159,7 @@ extern_methods!(
             completion_handler: CKApplicationPermissionBlock,
         );
 
+        #[cfg(feature = "Foundation_NSError")]
         #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
         #[method(requestApplicationPermission:completionHandler:)]
         pub unsafe fn requestApplicationPermission_completionHandler(
@@ -298,14 +304,22 @@ extern_methods!(
     /// CKLongLivedOperations
     #[cfg(feature = "CloudKit_CKContainer")]
     unsafe impl CKContainer {
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSError"))]
+        #[cfg(all(
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSError",
+            feature = "Foundation_NSString"
+        ))]
         #[method(fetchAllLongLivedOperationIDsWithCompletionHandler:)]
         pub unsafe fn fetchAllLongLivedOperationIDsWithCompletionHandler(
             &self,
             completion_handler: &Block<dyn Fn(*mut NSArray<CKOperationID>, *mut NSError)>,
         );
 
-        #[cfg(all(feature = "CloudKit_CKOperation", feature = "Foundation_NSError"))]
+        #[cfg(all(
+            feature = "CloudKit_CKOperation",
+            feature = "Foundation_NSError",
+            feature = "Foundation_NSString"
+        ))]
         #[method(fetchLongLivedOperationWithID:completionHandler:)]
         pub unsafe fn fetchLongLivedOperationWithID_completionHandler(
             &self,

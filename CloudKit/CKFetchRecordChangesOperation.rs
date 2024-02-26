@@ -72,12 +72,12 @@ extern_methods!(
         #[method(setResultsLimit:)]
         pub unsafe fn setResultsLimit(&self, results_limit: NSUInteger);
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[deprecated]
         #[method_id(@__retain_semantics Other desiredKeys)]
         pub unsafe fn desiredKeys(&self) -> Option<Id<NSArray<CKRecordFieldKey>>>;
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[deprecated]
         #[method(setDesiredKeys:)]
         pub unsafe fn setDesiredKeys(&self, desired_keys: Option<&NSArray<CKRecordFieldKey>>);

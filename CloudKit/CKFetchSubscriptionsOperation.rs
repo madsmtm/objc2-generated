@@ -30,31 +30,39 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Init initWithSubscriptionIDs:)]
         pub unsafe fn initWithSubscriptionIDs(
             this: Allocated<Self>,
             subscription_i_ds: &NSArray<CKSubscriptionID>,
         ) -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other subscriptionIDs)]
         pub unsafe fn subscriptionIDs(&self) -> Option<Id<NSArray<CKSubscriptionID>>>;
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method(setSubscriptionIDs:)]
         pub unsafe fn setSubscriptionIDs(
             &self,
             subscription_i_ds: Option<&NSArray<CKSubscriptionID>>,
         );
 
-        #[cfg(all(feature = "CloudKit_CKSubscription", feature = "Foundation_NSError"))]
+        #[cfg(all(
+            feature = "CloudKit_CKSubscription",
+            feature = "Foundation_NSError",
+            feature = "Foundation_NSString"
+        ))]
         #[method(perSubscriptionCompletionBlock)]
         pub unsafe fn perSubscriptionCompletionBlock(
             &self,
         ) -> *mut Block<dyn Fn(NonNull<CKSubscriptionID>, *mut CKSubscription, *mut NSError)>;
 
-        #[cfg(all(feature = "CloudKit_CKSubscription", feature = "Foundation_NSError"))]
+        #[cfg(all(
+            feature = "CloudKit_CKSubscription",
+            feature = "Foundation_NSError",
+            feature = "Foundation_NSString"
+        ))]
         #[method(setPerSubscriptionCompletionBlock:)]
         pub unsafe fn setPerSubscriptionCompletionBlock(
             &self,
@@ -66,7 +74,8 @@ extern_methods!(
         #[cfg(all(
             feature = "CloudKit_CKSubscription",
             feature = "Foundation_NSDictionary",
-            feature = "Foundation_NSError"
+            feature = "Foundation_NSError",
+            feature = "Foundation_NSString"
         ))]
         #[method(fetchSubscriptionCompletionBlock)]
         pub unsafe fn fetchSubscriptionCompletionBlock(
@@ -76,7 +85,8 @@ extern_methods!(
         #[cfg(all(
             feature = "CloudKit_CKSubscription",
             feature = "Foundation_NSDictionary",
-            feature = "Foundation_NSError"
+            feature = "Foundation_NSError",
+            feature = "Foundation_NSString"
         ))]
         #[method(setFetchSubscriptionCompletionBlock:)]
         pub unsafe fn setFetchSubscriptionCompletionBlock(

@@ -5,6 +5,7 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
+#[cfg(feature = "Foundation_NSString")]
 typed_extensible_enum!(
     pub type NSTouchBarItemIdentifier = NSString;
 );
@@ -40,6 +41,7 @@ unsafe impl NSObjectProtocol for NSTouchBarItem {}
 extern_methods!(
     #[cfg(feature = "AppKit_NSTouchBarItem")]
     unsafe impl NSTouchBarItem {
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithIdentifier:)]
         pub unsafe fn initWithIdentifier(
             this: Allocated<Self>,
@@ -53,6 +55,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other identifier)]
         pub unsafe fn identifier(&self) -> Id<NSTouchBarItemIdentifier>;
 
@@ -88,10 +91,14 @@ extern_methods!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTouchBarItemIdentifierFixedSpaceSmall: &'static NSTouchBarItemIdentifier);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTouchBarItemIdentifierFixedSpaceLarge: &'static NSTouchBarItemIdentifier);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTouchBarItemIdentifierFlexibleSpace: &'static NSTouchBarItemIdentifier);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSTouchBarItemIdentifierOtherItemsProxy: &'static NSTouchBarItemIdentifier);

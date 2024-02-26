@@ -96,10 +96,15 @@ pub use self::__CXError::CXErrorCodeCallDirectoryManagerError;
 pub use self::__CXError::CXErrorCodeIncomingCallError;
 pub use self::__CXError::CXErrorCodeNotificationServiceExtensionError;
 pub use self::__CXError::CXErrorCodeRequestTransactionError;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__CXError::CXErrorDomain;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__CXError::CXErrorDomainCallDirectoryManager;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__CXError::CXErrorDomainIncomingCall;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__CXError::CXErrorDomainNotificationServiceExtension;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__CXError::CXErrorDomainRequestTransaction;
 #[cfg(feature = "CallKit_CXHandle")]
 pub use self::__CXHandle::CXHandle;

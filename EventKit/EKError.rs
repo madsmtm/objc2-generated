@@ -7,6 +7,7 @@ use crate::EventKit::*;
 use crate::Foundation::*;
 use crate::MapKit::*;
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(EKErrorDomain: Option<&'static NSString>);
 
 ns_enum!(

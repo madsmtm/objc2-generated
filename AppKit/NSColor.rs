@@ -140,23 +140,25 @@ extern_methods!(
             alpha: CGFloat,
         ) -> Id<NSColor>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other colorWithCatalogName:colorName:)]
         pub unsafe fn colorWithCatalogName_colorName(
             list_name: &NSColorListName,
             color_name: &NSColorName,
         ) -> Option<Id<NSColor>>;
 
-        #[cfg(feature = "Foundation_NSBundle")]
+        #[cfg(all(feature = "Foundation_NSBundle", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other colorNamed:bundle:)]
         pub unsafe fn colorNamed_bundle(
             name: &NSColorName,
             bundle: Option<&NSBundle>,
         ) -> Option<Id<NSColor>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other colorNamed:)]
         pub unsafe fn colorNamed(name: &NSColorName) -> Option<Id<NSColor>>;
 
-        #[cfg(feature = "AppKit_NSAppearance")]
+        #[cfg(all(feature = "AppKit_NSAppearance", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other colorWithName:dynamicProvider:)]
         pub unsafe fn colorWithName_dynamicProvider(
             color_name: Option<&NSColorName>,
@@ -474,9 +476,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Other colorWithAlphaComponent:)]
         pub unsafe fn colorWithAlphaComponent(&self, alpha: CGFloat) -> Id<NSColor>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other catalogNameComponent)]
         pub unsafe fn catalogNameComponent(&self) -> Id<NSColorListName>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other colorNameComponent)]
         pub unsafe fn colorNameComponent(&self) -> Id<NSColorName>;
 
@@ -656,11 +660,12 @@ extern_methods!(
         #[method_id(@__retain_semantics Other controlAlternatingRowBackgroundColors)]
         pub unsafe fn controlAlternatingRowBackgroundColors() -> Id<NSArray<NSColor>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "Use -type and NSColorType instead"]
         #[method_id(@__retain_semantics Other colorSpaceName)]
         pub unsafe fn colorSpaceName(&self) -> Id<NSColorSpaceName>;
 
-        #[cfg(feature = "Foundation_NSDictionary")]
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[deprecated = "Use -colorUsingType: or -colorUsingColorSpace: instead"]
         #[method_id(@__retain_semantics Other colorUsingColorSpaceName:device:)]
         pub unsafe fn colorUsingColorSpaceName_device(
@@ -669,6 +674,7 @@ extern_methods!(
             device_description: Option<&NSDictionary<NSDeviceDescriptionKey, AnyObject>>,
         ) -> Option<Id<NSColor>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "Use -colorUsingType: or -colorUsingColorSpace: instead"]
         #[method_id(@__retain_semantics Other colorUsingColorSpaceName:)]
         pub unsafe fn colorUsingColorSpaceName(
@@ -698,4 +704,5 @@ extern_category!(
     unsafe impl CIColorNSAppKitAdditions for CIColor {}
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSSystemColorsDidChangeNotification: &'static NSNotificationName);

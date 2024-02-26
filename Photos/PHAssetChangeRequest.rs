@@ -195,10 +195,13 @@ extern_methods!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(PHContentEditingInputResultIsInCloudKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(PHContentEditingInputCancelledKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(PHContentEditingInputErrorKey: &'static NSString);
 
 extern_methods!(

@@ -187,6 +187,7 @@ extern_methods!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSPreferredScrollerStyleDidChangeNotification: &'static NSNotificationName);
 
 ns_enum!(

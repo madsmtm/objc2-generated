@@ -5,6 +5,7 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
+#[cfg(feature = "Foundation_NSString")]
 pub type NSNibName = NSString;
 
 extern_class!(
@@ -28,7 +29,7 @@ unsafe impl NSObjectProtocol for NSNib {}
 extern_methods!(
     #[cfg(feature = "AppKit_NSNib")]
     unsafe impl NSNib {
-        #[cfg(feature = "Foundation_NSBundle")]
+        #[cfg(all(feature = "Foundation_NSBundle", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Init initWithNibNamed:bundle:)]
         pub unsafe fn initWithNibNamed_bundle(
             this: Allocated<Self>,
@@ -89,6 +90,8 @@ extern_methods!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSNibOwner: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSNibTopLevelObjects: &'static NSString);

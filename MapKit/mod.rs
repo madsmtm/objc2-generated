@@ -151,6 +151,7 @@ mod __MKZoomControl;
 mod __NSUserActivity_MKMapItem;
 
 pub use self::__MKAnnotation::MKAnnotation;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__MKAnnotationView::MKAnnotationCalloutInfoDidChangeNotification;
 #[cfg(feature = "MapKit_MKAnnotationView")]
 pub use self::__MKAnnotationView::MKAnnotationView;
@@ -175,7 +176,12 @@ pub use self::__MKClusterAnnotation::MKClusterAnnotation;
 pub use self::__MKCompassButton::MKCompassButton;
 #[cfg(feature = "MapKit_MKDirections")]
 pub use self::__MKDirections::MKDirections;
+#[cfg(all(
+    feature = "Foundation_NSError",
+    feature = "MapKit_MKDirectionsResponse"
+))]
 pub use self::__MKDirections::MKDirectionsHandler;
+#[cfg(all(feature = "Foundation_NSError", feature = "MapKit_MKETAResponse"))]
 pub use self::__MKDirections::MKETAHandler;
 #[cfg(feature = "MapKit_MKDirectionsRequest")]
 pub use self::__MKDirectionsRequest::MKDirectionsRequest;
@@ -238,6 +244,10 @@ pub use self::__MKLocalPointsOfInterestRequest::MKLocalPointsOfInterestRequest;
 pub use self::__MKLocalPointsOfInterestRequest::MKPointsOfInterestRequestMaxRadius;
 #[cfg(feature = "MapKit_MKLocalSearch")]
 pub use self::__MKLocalSearch::MKLocalSearch;
+#[cfg(all(
+    feature = "Foundation_NSError",
+    feature = "MapKit_MKLocalSearchResponse"
+))]
 pub use self::__MKLocalSearch::MKLocalSearchCompletionHandler;
 #[cfg(feature = "MapKit_MKLocalSearchCompleter")]
 pub use self::__MKLocalSearchCompleter::MKLocalSearchCompleter;
@@ -275,29 +285,43 @@ pub use self::__MKMapCameraZoomRange::MKMapCameraZoomRange;
 #[cfg(feature = "MapKit_MKMapConfiguration")]
 pub use self::__MKMapConfiguration::MKMapConfiguration;
 pub use self::__MKMapConfiguration::MKMapElevationStyle;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__MKMapItem::MKLaunchOptionsCameraKey;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__MKMapItem::MKLaunchOptionsDirectionsModeDefault;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__MKMapItem::MKLaunchOptionsDirectionsModeDriving;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__MKMapItem::MKLaunchOptionsDirectionsModeKey;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__MKMapItem::MKLaunchOptionsDirectionsModeTransit;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__MKMapItem::MKLaunchOptionsDirectionsModeWalking;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__MKMapItem::MKLaunchOptionsMapCenterKey;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__MKMapItem::MKLaunchOptionsMapSpanKey;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__MKMapItem::MKLaunchOptionsMapTypeKey;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__MKMapItem::MKLaunchOptionsShowsTrafficKey;
 #[cfg(feature = "MapKit_MKMapItem")]
 pub use self::__MKMapItem::MKMapItem;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__MKMapItem::MKMapItemTypeIdentifier;
 #[cfg(feature = "MapKit_MKMapSnapshot")]
 pub use self::__MKMapSnapshot::MKMapSnapshot;
 #[cfg(feature = "MapKit_MKMapSnapshotOptions")]
 pub use self::__MKMapSnapshotOptions::MKMapSnapshotOptions;
+#[cfg(all(feature = "Foundation_NSError", feature = "MapKit_MKMapSnapshot"))]
 pub use self::__MKMapSnapshotter::MKMapSnapshotCompletionHandler;
 #[cfg(feature = "MapKit_MKMapSnapshotter")]
 pub use self::__MKMapSnapshotter::MKMapSnapshotter;
 #[cfg(feature = "MapKit_MKMapView")]
 pub use self::__MKMapView::MKMapView;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__MKMapView::MKMapViewDefaultAnnotationViewReuseIdentifier;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__MKMapView::MKMapViewDefaultClusterAnnotationViewReuseIdentifier;
 pub use self::__MKMapView::MKMapViewDelegate;
 pub use self::__MKMapView::MKOverlayLevel;
@@ -329,46 +353,87 @@ pub use self::__MKPitchControl::MKPitchControl;
 pub use self::__MKPlacemark::MKPlacemark;
 #[cfg(feature = "MapKit_MKPointAnnotation")]
 pub use self::__MKPointAnnotation::MKPointAnnotation;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategory;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryATM;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryAirport;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryAmusementPark;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryAquarium;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryBakery;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryBank;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryBeach;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryBrewery;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryCafe;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryCampground;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryCarRental;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryEVCharger;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryFireStation;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryFitnessCenter;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryFoodMarket;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryGasStation;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryHospital;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryHotel;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryLaundry;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryLibrary;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryMarina;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryMovieTheater;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryMuseum;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryNationalPark;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryNightlife;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryPark;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryParking;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryPharmacy;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryPolice;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryPostOffice;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryPublicTransport;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryRestaurant;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryRestroom;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategorySchool;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryStadium;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryStore;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryTheater;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryUniversity;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryWinery;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryZoo;
 #[cfg(feature = "MapKit_MKPointOfInterestFilter")]
 pub use self::__MKPointOfInterestFilter::MKPointOfInterestFilter;
@@ -391,6 +456,7 @@ pub use self::__MKTileOverlay::MKTileOverlayPath;
 #[cfg(feature = "MapKit_MKTileOverlayRenderer")]
 pub use self::__MKTileOverlayRenderer::MKTileOverlayRenderer;
 pub use self::__MKTypes::MKErrorCode;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__MKTypes::MKErrorDomain;
 pub use self::__MKTypes::MKFeatureVisibility;
 pub use self::__MKTypes::MKMapType;

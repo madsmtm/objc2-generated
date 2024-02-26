@@ -55,9 +55,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Other URL)]
         pub unsafe fn URL(&self) -> Option<Id<NSURL>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other identifier)]
         pub unsafe fn identifier(&self) -> Option<Id<NSUserInterfaceItemIdentifier>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setIdentifier:)]
         pub unsafe fn setIdentifier(&self, identifier: Option<&NSUserInterfaceItemIdentifier>);
 

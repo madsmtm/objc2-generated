@@ -4,6 +4,7 @@ use crate::common::*;
 use crate::Foundation::*;
 use crate::LocalAuthentication::*;
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(LAErrorDomain: &'static NSString);
 
 ns_enum!(

@@ -10,7 +10,8 @@ extern_protocol!(
         #[cfg(all(
             feature = "AppKit_NSWindow",
             feature = "Foundation_NSCoder",
-            feature = "Foundation_NSError"
+            feature = "Foundation_NSError",
+            feature = "Foundation_NSString"
         ))]
         #[method(restoreWindowWithIdentifier:state:completionHandler:)]
         unsafe fn restoreWindowWithIdentifier_state_completionHandler(
@@ -40,7 +41,8 @@ extern_methods!(
         #[cfg(all(
             feature = "AppKit_NSWindow",
             feature = "Foundation_NSCoder",
-            feature = "Foundation_NSError"
+            feature = "Foundation_NSError",
+            feature = "Foundation_NSString"
         ))]
         #[method(restoreWindowWithIdentifier:state:completionHandler:)]
         pub unsafe fn restoreWindowWithIdentifier_state_completionHandler(
@@ -52,6 +54,7 @@ extern_methods!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSApplicationDidFinishRestoringWindowsNotification: &'static NSNotificationName);
 
 extern_methods!(
@@ -136,7 +139,8 @@ extern_methods!(
         #[cfg(all(
             feature = "AppKit_NSWindow",
             feature = "Foundation_NSCoder",
-            feature = "Foundation_NSError"
+            feature = "Foundation_NSError",
+            feature = "Foundation_NSString"
         ))]
         #[method(restoreDocumentWindowWithIdentifier:state:completionHandler:)]
         pub unsafe fn restoreDocumentWindowWithIdentifier_state_completionHandler(

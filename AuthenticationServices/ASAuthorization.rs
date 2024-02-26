@@ -5,12 +5,15 @@ use crate::AppKit::*;
 use crate::AuthenticationServices::*;
 use crate::Foundation::*;
 
+#[cfg(feature = "Foundation_NSString")]
 typed_extensible_enum!(
     pub type ASAuthorizationScope = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(ASAuthorizationScopeFullName: &'static ASAuthorizationScope);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(ASAuthorizationScopeEmail: &'static ASAuthorizationScope);
 
 extern_class!(

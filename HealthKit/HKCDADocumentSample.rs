@@ -122,12 +122,17 @@ extern_methods!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(HKPredicateKeyPathCDATitle: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(HKPredicateKeyPathCDAPatientName: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(HKPredicateKeyPathCDAAuthorName: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(HKPredicateKeyPathCDACustodianName: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(HKDetailedCDAValidationErrorKey: &'static NSString);

@@ -89,9 +89,11 @@ extern_methods!(
         #[method(setShowsHelp:)]
         pub unsafe fn setShowsHelp(&self, shows_help: bool);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other helpAnchor)]
         pub unsafe fn helpAnchor(&self) -> Option<Id<NSHelpAnchorName>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setHelpAnchor:)]
         pub unsafe fn setHelpAnchor(&self, help_anchor: Option<&NSHelpAnchorName>);
 

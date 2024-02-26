@@ -4,6 +4,7 @@ use crate::common::*;
 use crate::Contacts::*;
 use crate::Foundation::*;
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CNErrorDomain: Option<&'static NSString>);
 
 ns_enum!(
@@ -68,10 +69,14 @@ ns_enum!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CNErrorUserInfoAffectedRecordsKey: Option<&'static NSString>);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CNErrorUserInfoAffectedRecordIdentifiersKey: Option<&'static NSString>);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CNErrorUserInfoValidationErrorsKey: Option<&'static NSString>);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CNErrorUserInfoKeyPathsKey: Option<&'static NSString>);

@@ -27,7 +27,7 @@ unsafe impl NSObjectProtocol for NSGroupTouchBarItem {}
 extern_methods!(
     #[cfg(feature = "AppKit_NSGroupTouchBarItem")]
     unsafe impl NSGroupTouchBarItem {
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other groupItemWithIdentifier:items:)]
         pub unsafe fn groupItemWithIdentifier_items(
             identifier: &NSTouchBarItemIdentifier,
@@ -37,7 +37,8 @@ extern_methods!(
 
         #[cfg(all(
             feature = "AppKit_NSUserInterfaceCompressionOptions",
-            feature = "Foundation_NSArray"
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSString"
         ))]
         #[method_id(@__retain_semantics Other groupItemWithIdentifier:items:allowedCompressionOptions:)]
         pub unsafe fn groupItemWithIdentifier_items_allowedCompressionOptions(
@@ -47,6 +48,7 @@ extern_methods!(
             mtm: MainThreadMarker,
         ) -> Id<Self>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other alertStyleGroupItemWithIdentifier:)]
         pub unsafe fn alertStyleGroupItemWithIdentifier(
             identifier: &NSTouchBarItemIdentifier,
@@ -119,6 +121,7 @@ extern_methods!(
     /// Methods declared on superclass `NSTouchBarItem`
     #[cfg(feature = "AppKit_NSGroupTouchBarItem")]
     unsafe impl NSGroupTouchBarItem {
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithIdentifier:)]
         pub unsafe fn initWithIdentifier(
             this: Allocated<Self>,

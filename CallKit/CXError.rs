@@ -4,14 +4,19 @@ use crate::common::*;
 use crate::CallKit::*;
 use crate::Foundation::*;
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CXErrorDomain: &'static NSErrorDomain);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CXErrorDomainIncomingCall: &'static NSErrorDomain);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CXErrorDomainRequestTransaction: &'static NSErrorDomain);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CXErrorDomainCallDirectoryManager: &'static NSErrorDomain);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CXErrorDomainNotificationServiceExtension: &'static NSErrorDomain);
 
 ns_error_enum!(

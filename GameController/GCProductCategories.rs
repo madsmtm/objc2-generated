@@ -5,28 +5,41 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::GameController::*;
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(GCProductCategoryDualSense: Option<&'static NSString>);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(GCProductCategoryDualShock4: Option<&'static NSString>);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(GCProductCategoryMFi: Option<&'static NSString>);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(GCProductCategoryXboxOne: Option<&'static NSString>);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(GCProductCategoryHID: Option<&'static NSString>);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(GCProductCategoryArcadeStick: Option<&'static NSString>);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(GCProductCategorySiriRemote1stGen: Option<&'static NSString>);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(GCProductCategorySiriRemote2ndGen: Option<&'static NSString>);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(GCProductCategoryControlCenterRemote: Option<&'static NSString>);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(GCProductCategoryUniversalElectronicsRemote: Option<&'static NSString>);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(GCProductCategoryCoalescedRemote: Option<&'static NSString>);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(GCProductCategoryMouse: Option<&'static NSString>);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(GCProductCategoryKeyboard: Option<&'static NSString>);

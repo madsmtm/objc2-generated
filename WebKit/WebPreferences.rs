@@ -21,6 +21,7 @@ ns_enum!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(WebPreferencesChangedNotification: Option<&'static NSString>);
 
 extern_class!(

@@ -5,9 +5,11 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::GameController::*;
 
+#[cfg(feature = "GameController_GCControllerButtonInput")]
 pub type GCControllerButtonValueChangedHandler =
     *mut Block<dyn Fn(NonNull<GCControllerButtonInput>, c_float, Bool)>;
 
+#[cfg(feature = "GameController_GCControllerButtonInput")]
 pub type GCControllerButtonTouchedChangedHandler =
     *mut Block<dyn Fn(NonNull<GCControllerButtonInput>, c_float, Bool, Bool)>;
 

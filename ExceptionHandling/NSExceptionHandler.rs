@@ -4,10 +4,13 @@ use crate::common::*;
 use crate::ExceptionHandling::*;
 use crate::Foundation::*;
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSUncaughtSystemExceptionException: Option<&'static NSString>);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSUncaughtRuntimeErrorException: Option<&'static NSString>);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSStackTraceKey: Option<&'static NSString>);
 
 extern_fn!(

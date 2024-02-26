@@ -5,42 +5,61 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::OSAKit::*;
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(OSAScriptErrorMessageKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(OSAScriptErrorBriefMessageKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(OSAScriptErrorNumberKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(OSAScriptErrorPartialResultKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(OSAScriptErrorOffendingObjectKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(OSAScriptErrorExpectedTypeKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(OSAScriptErrorAppAddressKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(OSAScriptErrorAppNameKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(OSAScriptErrorRangeKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(OSAScriptErrorMessage: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(OSAScriptErrorNumber: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(OSAScriptErrorAppName: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(OSAScriptErrorBriefMessage: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(OSAScriptErrorRange: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(OSAStorageScriptType: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(OSAStorageScriptBundleType: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(OSAStorageApplicationType: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(OSAStorageApplicationBundleType: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(OSAStorageTextType: &'static NSString);
 
 ns_options!(

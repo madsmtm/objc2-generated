@@ -27,7 +27,7 @@ unsafe impl NSObjectProtocol for NSStepperTouchBarItem {}
 extern_methods!(
     #[cfg(feature = "AppKit_NSStepperTouchBarItem")]
     unsafe impl NSStepperTouchBarItem {
-        #[cfg(feature = "Foundation_NSFormatter")]
+        #[cfg(all(feature = "Foundation_NSFormatter", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other stepperTouchBarItemWithIdentifier:formatter:)]
         pub unsafe fn stepperTouchBarItemWithIdentifier_formatter(
             identifier: &NSTouchBarItemIdentifier,
@@ -35,6 +35,7 @@ extern_methods!(
             mtm: MainThreadMarker,
         ) -> Id<Self>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other stepperTouchBarItemWithIdentifier:drawingHandler:)]
         pub unsafe fn stepperTouchBarItemWithIdentifier_drawingHandler(
             identifier: &NSTouchBarItemIdentifier,
@@ -92,6 +93,7 @@ extern_methods!(
     /// Methods declared on superclass `NSTouchBarItem`
     #[cfg(feature = "AppKit_NSStepperTouchBarItem")]
     unsafe impl NSStepperTouchBarItem {
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithIdentifier:)]
         pub unsafe fn initWithIdentifier(
             this: Allocated<Self>,

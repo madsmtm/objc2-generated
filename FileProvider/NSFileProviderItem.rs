@@ -6,14 +6,18 @@ use crate::FileProvider::*;
 use crate::Foundation::*;
 use crate::UniformTypeIdentifiers::*;
 
+#[cfg(feature = "Foundation_NSString")]
 typed_extensible_enum!(
     pub type NSFileProviderItemIdentifier = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFileProviderRootContainerItemIdentifier: &'static NSFileProviderItemIdentifier);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFileProviderWorkingSetContainerItemIdentifier: &'static NSFileProviderItemIdentifier);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFileProviderTrashContainerItemIdentifier: &'static NSFileProviderItemIdentifier);
 
 extern_class!(
@@ -156,9 +160,11 @@ ns_enum!(
 
 extern_protocol!(
     pub unsafe trait NSFileProviderItemProtocol: NSObjectProtocol {
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other itemIdentifier)]
         unsafe fn itemIdentifier(&self) -> Id<NSFileProviderItemIdentifier>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other parentItemIdentifier)]
         unsafe fn parentItemIdentifier(&self) -> Id<NSFileProviderItemIdentifier>;
 

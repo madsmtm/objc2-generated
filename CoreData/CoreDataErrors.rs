@@ -4,22 +4,31 @@ use crate::common::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSDetailedErrorsKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSValidationObjectErrorKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSValidationKeyErrorKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSValidationPredicateErrorKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSValidationValueErrorKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAffectedStoresErrorKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAffectedObjectsErrorKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSPersistentStoreSaveConflictsErrorKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSSQLiteErrorDomain: &'static NSString);
 
 pub const NSManagedObjectValidationError: NSInteger = 1550;

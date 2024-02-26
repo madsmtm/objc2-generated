@@ -9,6 +9,7 @@ extern_static!(NSAppKitVersionNumberWithContinuousScrollingBrowser: NSAppKitVers
 
 extern_static!(NSAppKitVersionNumberWithColumnResizingBrowser: NSAppKitVersion = 685.0);
 
+#[cfg(feature = "Foundation_NSString")]
 pub type NSBrowserColumnsAutosaveName = NSString;
 
 ns_enum!(
@@ -419,15 +420,18 @@ extern_methods!(
         #[method(defaultColumnWidth)]
         pub unsafe fn defaultColumnWidth(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other columnsAutosaveName)]
         pub unsafe fn columnsAutosaveName(&self) -> Id<NSBrowserColumnsAutosaveName>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setColumnsAutosaveName:)]
         pub unsafe fn setColumnsAutosaveName(
             &self,
             columns_autosave_name: &NSBrowserColumnsAutosaveName,
         );
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(removeSavedColumnsWithAutosaveName:)]
         pub unsafe fn removeSavedColumnsWithAutosaveName(
             name: &NSBrowserColumnsAutosaveName,
@@ -520,6 +524,7 @@ extern_methods!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSBrowserColumnConfigurationDidChangeNotification: &'static NSNotificationName);
 
 extern_protocol!(

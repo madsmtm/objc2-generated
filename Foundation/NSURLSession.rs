@@ -1645,8 +1645,10 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn NSURLSessionWebSocketDelegate {}
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLSessionDownloadTaskResumeData: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLSessionUploadTaskResumeData: &'static NSString);
 
 extern_methods!(

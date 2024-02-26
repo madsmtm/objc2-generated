@@ -5,14 +5,17 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::StoreKit::*;
 
+#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type SKCloudServiceSetupOptionsKey = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type SKCloudServiceSetupAction = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type SKCloudServiceSetupMessageIdentifier = NSString;
 );
@@ -59,7 +62,11 @@ extern_methods!(
             delegate: Option<&ProtocolObject<dyn SKCloudServiceSetupViewControllerDelegate>>,
         );
 
-        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSError"))]
+        #[cfg(all(
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSError",
+            feature = "Foundation_NSString"
+        ))]
         #[method(loadWithOptions:completionHandler:)]
         pub unsafe fn loadWithOptions_completionHandler(
             &self,
@@ -73,7 +80,7 @@ extern_methods!(
     /// Methods declared on superclass `NSViewController`
     #[cfg(feature = "StoreKit_SKCloudServiceSetupViewController")]
     unsafe impl SKCloudServiceSetupViewController {
-        #[cfg(feature = "Foundation_NSBundle")]
+        #[cfg(all(feature = "Foundation_NSBundle", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Init initWithNibName:bundle:)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,
@@ -119,22 +126,32 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn SKCloudServiceSetupViewControllerDelegate {}
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(SKCloudServiceSetupOptionsActionKey: &'static SKCloudServiceSetupOptionsKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(SKCloudServiceSetupOptionsITunesItemIdentifierKey: &'static SKCloudServiceSetupOptionsKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(SKCloudServiceSetupOptionsAffiliateTokenKey: &'static SKCloudServiceSetupOptionsKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(SKCloudServiceSetupOptionsCampaignTokenKey: &'static SKCloudServiceSetupOptionsKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(SKCloudServiceSetupOptionsMessageIdentifierKey: &'static SKCloudServiceSetupOptionsKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(SKCloudServiceSetupActionSubscribe: &'static SKCloudServiceSetupAction);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(SKCloudServiceSetupMessageIdentifierJoin: &'static SKCloudServiceSetupMessageIdentifier);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(SKCloudServiceSetupMessageIdentifierConnect: &'static SKCloudServiceSetupMessageIdentifier);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(SKCloudServiceSetupMessageIdentifierAddMusic: &'static SKCloudServiceSetupMessageIdentifier);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(SKCloudServiceSetupMessageIdentifierPlayMusic: &'static SKCloudServiceSetupMessageIdentifier);

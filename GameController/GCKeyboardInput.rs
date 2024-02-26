@@ -5,6 +5,10 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::GameController::*;
 
+#[cfg(all(
+    feature = "GameController_GCControllerButtonInput",
+    feature = "GameController_GCKeyboardInput"
+))]
 pub type GCKeyboardValueChangedHandler =
     *mut Block<dyn Fn(NonNull<GCKeyboardInput>, NonNull<GCControllerButtonInput>, GCKeyCode, Bool)>;
 
@@ -27,9 +31,11 @@ unsafe impl NSObjectProtocol for GCKeyboardInput {}
 extern_methods!(
     #[cfg(feature = "GameController_GCKeyboardInput")]
     unsafe impl GCKeyboardInput {
+        #[cfg(feature = "GameController_GCControllerButtonInput")]
         #[method(keyChangedHandler)]
         pub unsafe fn keyChangedHandler(&self) -> GCKeyboardValueChangedHandler;
 
+        #[cfg(feature = "GameController_GCControllerButtonInput")]
         #[method(setKeyChangedHandler:)]
         pub unsafe fn setKeyChangedHandler(
             &self,

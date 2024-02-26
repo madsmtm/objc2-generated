@@ -7,6 +7,7 @@ use crate::CoreLocation::*;
 use crate::Foundation::*;
 use crate::MapKit::*;
 
+#[cfg(all(feature = "Foundation_NSError", feature = "MapKit_MKMapSnapshot"))]
 pub type MKMapSnapshotCompletionHandler = *mut Block<dyn Fn(*mut MKMapSnapshot, *mut NSError)>;
 
 extern_class!(
@@ -34,6 +35,7 @@ extern_methods!(
             options: &MKMapSnapshotOptions,
         ) -> Id<Self>;
 
+        #[cfg(all(feature = "Foundation_NSError", feature = "MapKit_MKMapSnapshot"))]
         #[method(startWithCompletionHandler:)]
         pub unsafe fn startWithCompletionHandler(
             &self,

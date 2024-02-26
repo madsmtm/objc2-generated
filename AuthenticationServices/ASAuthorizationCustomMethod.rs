@@ -5,12 +5,16 @@ use crate::AppKit::*;
 use crate::AuthenticationServices::*;
 use crate::Foundation::*;
 
+#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type ASAuthorizationCustomMethod = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(ASAuthorizationCustomMethodVideoSubscriberAccount: &'static ASAuthorizationCustomMethod);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(ASAuthorizationCustomMethodRestorePurchase: &'static ASAuthorizationCustomMethod);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(ASAuthorizationCustomMethodOther: &'static ASAuthorizationCustomMethod);

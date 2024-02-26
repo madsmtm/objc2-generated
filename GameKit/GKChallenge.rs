@@ -296,9 +296,19 @@ extern_methods!(
     }
 );
 
+#[cfg(all(
+    feature = "AppKit_NSViewController",
+    feature = "Foundation_NSArray",
+    feature = "Foundation_NSString"
+))]
 pub type GKChallengeComposeCompletionBlock =
     *mut Block<dyn Fn(NonNull<NSViewController>, Bool, *mut NSArray<NSString>)>;
 
+#[cfg(all(
+    feature = "AppKit_NSViewController",
+    feature = "Foundation_NSArray",
+    feature = "GameKit_GKPlayer"
+))]
 pub type GKChallengeComposeHandler =
     *mut Block<dyn Fn(NonNull<NSViewController>, Bool, *mut NSArray<GKPlayer>)>;
 

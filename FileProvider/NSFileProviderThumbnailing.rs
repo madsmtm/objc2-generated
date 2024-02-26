@@ -14,7 +14,8 @@ extern_methods!(
             feature = "Foundation_NSArray",
             feature = "Foundation_NSData",
             feature = "Foundation_NSError",
-            feature = "Foundation_NSProgress"
+            feature = "Foundation_NSProgress",
+            feature = "Foundation_NSString"
         ))]
         #[method_id(@__retain_semantics Other fetchThumbnailsForItemIdentifiers:requestedSize:perThumbnailCompletionHandler:completionHandler:)]
         pub unsafe fn fetchThumbnailsForItemIdentifiers_requestedSize_perThumbnailCompletionHandler_completionHandler(

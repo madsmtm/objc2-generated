@@ -6,12 +6,16 @@ use crate::FileProvider::*;
 use crate::Foundation::*;
 use crate::UniformTypeIdentifiers::*;
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFileProviderErrorDomain: &'static NSErrorDomain);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFileProviderErrorCollidingItemKey: &'static NSErrorUserInfoKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFileProviderErrorItemKey: &'static NSErrorUserInfoKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFileProviderErrorNonExistentItemIdentifierKey: &'static NSErrorUserInfoKey);
 
 ns_error_enum!(
@@ -51,6 +55,7 @@ extern_category!(
             existing_item: &NSFileProviderItem,
         ) -> Id<Self>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other fileProviderErrorForNonExistentItemWithIdentifier:)]
         unsafe fn fileProviderErrorForNonExistentItemWithIdentifier(
             item_identifier: &NSFileProviderItemIdentifier,

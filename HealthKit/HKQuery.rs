@@ -418,7 +418,7 @@ extern_methods!(
     /// HKClinicalRecordPredicates
     #[cfg(feature = "HealthKit_HKQuery")]
     unsafe impl HKQuery {
-        #[cfg(feature = "Foundation_NSPredicate")]
+        #[cfg(all(feature = "Foundation_NSPredicate", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other predicateForClinicalRecordsWithFHIRResourceType:)]
         pub unsafe fn predicateForClinicalRecordsWithFHIRResourceType(
             resource_type: &HKFHIRResourceType,

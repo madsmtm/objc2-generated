@@ -5,6 +5,7 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::GameKit::*;
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(GKPlayerIDNoLongerAvailable: &'static NSString);
 
 extern_class!(
@@ -94,6 +95,7 @@ extern_methods!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(GKPlayerDidChangeNotificationName: &'static NSNotificationName);
 
 extern_methods!(

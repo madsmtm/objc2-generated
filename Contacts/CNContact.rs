@@ -261,64 +261,95 @@ extern_methods!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CNContactPropertyNotFetchedExceptionName: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CNContactIdentifierKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CNContactNamePrefixKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CNContactGivenNameKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CNContactMiddleNameKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CNContactFamilyNameKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CNContactPreviousFamilyNameKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CNContactNameSuffixKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CNContactNicknameKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CNContactOrganizationNameKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CNContactDepartmentNameKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CNContactJobTitleKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CNContactPhoneticGivenNameKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CNContactPhoneticMiddleNameKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CNContactPhoneticFamilyNameKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CNContactPhoneticOrganizationNameKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CNContactBirthdayKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CNContactNonGregorianBirthdayKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CNContactNoteKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CNContactImageDataKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CNContactThumbnailImageDataKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CNContactImageDataAvailableKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CNContactTypeKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CNContactPhoneNumbersKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CNContactEmailAddressesKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CNContactPostalAddressesKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CNContactDatesKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CNContactUrlAddressesKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CNContactRelationsKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CNContactSocialProfilesKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(CNContactInstantMessageAddressesKey: &'static NSString);

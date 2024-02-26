@@ -4,6 +4,7 @@ use crate::common::*;
 use crate::Foundation::*;
 use crate::QuartzCore::*;
 
+#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type CAScrollLayerScrollMode = NSString;
 );
@@ -42,9 +43,11 @@ extern_methods!(
         #[method(scrollToRect:)]
         pub unsafe fn scrollToRect(&self, r: CGRect);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other scrollMode)]
         pub unsafe fn scrollMode(&self) -> Id<CAScrollLayerScrollMode>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setScrollMode:)]
         pub unsafe fn setScrollMode(&self, scroll_mode: &CAScrollLayerScrollMode);
     }
@@ -89,10 +92,14 @@ extern_methods!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(kCAScrollNone: &'static CAScrollLayerScrollMode);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(kCAScrollVertically: &'static CAScrollLayerScrollMode);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(kCAScrollHorizontally: &'static CAScrollLayerScrollMode);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(kCAScrollBoth: &'static CAScrollLayerScrollMode);

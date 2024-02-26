@@ -5,32 +5,46 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::WebKit::*;
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(WKWebsiteDataTypeFetchCache: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(WKWebsiteDataTypeDiskCache: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(WKWebsiteDataTypeMemoryCache: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(WKWebsiteDataTypeOfflineWebApplicationCache: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(WKWebsiteDataTypeCookies: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(WKWebsiteDataTypeSessionStorage: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(WKWebsiteDataTypeLocalStorage: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(WKWebsiteDataTypeWebSQLDatabases: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(WKWebsiteDataTypeIndexedDBDatabases: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(WKWebsiteDataTypeServiceWorkerRegistrations: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(WKWebsiteDataTypeFileSystem: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(WKWebsiteDataTypeSearchFieldRecentSearches: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(WKWebsiteDataTypeMediaKeys: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(WKWebsiteDataTypeHashSalt: &'static NSString);
 
 extern_class!(

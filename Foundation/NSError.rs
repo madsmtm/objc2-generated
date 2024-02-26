@@ -3,42 +3,61 @@
 use crate::common::*;
 use crate::Foundation::*;
 
+#[cfg(feature = "Foundation_NSString")]
 pub type NSErrorDomain = NSString;
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSCocoaErrorDomain: &'static NSErrorDomain);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSPOSIXErrorDomain: &'static NSErrorDomain);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSOSStatusErrorDomain: &'static NSErrorDomain);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMachErrorDomain: &'static NSErrorDomain);
 
+#[cfg(feature = "Foundation_NSString")]
 pub type NSErrorUserInfoKey = NSString;
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSUnderlyingErrorKey: &'static NSErrorUserInfoKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSMultipleUnderlyingErrorsKey: &'static NSErrorUserInfoKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSLocalizedDescriptionKey: &'static NSErrorUserInfoKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSLocalizedFailureReasonErrorKey: &'static NSErrorUserInfoKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSLocalizedRecoverySuggestionErrorKey: &'static NSErrorUserInfoKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSLocalizedRecoveryOptionsErrorKey: &'static NSErrorUserInfoKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSRecoveryAttempterErrorKey: &'static NSErrorUserInfoKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSHelpAnchorErrorKey: &'static NSErrorUserInfoKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSDebugDescriptionErrorKey: &'static NSErrorUserInfoKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSLocalizedFailureErrorKey: &'static NSErrorUserInfoKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSStringEncodingErrorKey: &'static NSErrorUserInfoKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSURLErrorKey: &'static NSErrorUserInfoKey);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFilePathErrorKey: &'static NSErrorUserInfoKey);
 
 extern_class!(
@@ -74,7 +93,7 @@ unsafe impl NSSecureCoding for NSError {}
 extern_methods!(
     #[cfg(feature = "Foundation_NSError")]
     unsafe impl NSError {
-        #[cfg(feature = "Foundation_NSDictionary")]
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Init initWithDomain:code:userInfo:)]
         pub unsafe fn initWithDomain_code_userInfo(
             this: Allocated<Self>,
@@ -83,7 +102,7 @@ extern_methods!(
             dict: Option<&NSDictionary<NSErrorUserInfoKey, AnyObject>>,
         ) -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSDictionary")]
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other errorWithDomain:code:userInfo:)]
         pub unsafe fn errorWithDomain_code_userInfo(
             domain: &NSErrorDomain,
@@ -91,13 +110,14 @@ extern_methods!(
             dict: Option<&NSDictionary<NSErrorUserInfoKey, AnyObject>>,
         ) -> Id<Self>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other domain)]
         pub fn domain(&self) -> Id<NSErrorDomain>;
 
         #[method(code)]
         pub fn code(&self) -> NSInteger;
 
-        #[cfg(feature = "Foundation_NSDictionary")]
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other userInfo)]
         pub fn userInfo(&self) -> Id<NSDictionary<NSErrorUserInfoKey, AnyObject>>;
 
@@ -128,6 +148,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other underlyingErrors)]
         pub unsafe fn underlyingErrors(&self) -> Id<NSArray<NSError>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setUserInfoValueProviderForDomain:provider:)]
         pub unsafe fn setUserInfoValueProviderForDomain_provider(
             error_domain: &NSErrorDomain,
@@ -136,6 +157,7 @@ extern_methods!(
             >,
         );
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(userInfoValueProviderForDomain:)]
         pub unsafe fn userInfoValueProviderForDomain(
             error_domain: &NSErrorDomain,

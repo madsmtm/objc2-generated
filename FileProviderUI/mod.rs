@@ -26,7 +26,9 @@ mod __FPUIBase;
 
 #[cfg(feature = "FileProviderUI_FPUIActionExtensionContext")]
 pub use self::__FPUIActionExtensionContext::FPUIActionExtensionContext;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__FPUIActionExtensionContext::FPUIActionIdentifier;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__FPUIActionExtensionContext::FPUIErrorDomain;
 pub use self::__FPUIActionExtensionContext::FPUIExtensionErrorCode;
 #[cfg(feature = "FileProviderUI_FPUIActionExtensionViewController")]

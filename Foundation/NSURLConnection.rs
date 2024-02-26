@@ -62,7 +62,7 @@ extern_methods!(
         #[method(cancel)]
         pub unsafe fn cancel(&self);
 
-        #[cfg(feature = "Foundation_NSRunLoop")]
+        #[cfg(all(feature = "Foundation_NSRunLoop", feature = "Foundation_NSString"))]
         #[method(scheduleInRunLoop:forMode:)]
         pub unsafe fn scheduleInRunLoop_forMode(
             &self,
@@ -70,7 +70,7 @@ extern_methods!(
             mode: &NSRunLoopMode,
         );
 
-        #[cfg(feature = "Foundation_NSRunLoop")]
+        #[cfg(all(feature = "Foundation_NSRunLoop", feature = "Foundation_NSString"))]
         #[method(unscheduleFromRunLoop:forMode:)]
         pub unsafe fn unscheduleFromRunLoop_forMode(
             &self,

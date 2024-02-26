@@ -4,38 +4,55 @@ use crate::common::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSManagedObjectContextWillSaveNotification: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSManagedObjectContextDidSaveNotification: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSManagedObjectContextObjectsDidChangeNotification: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSManagedObjectContextDidSaveObjectIDsNotification: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSManagedObjectContextDidMergeChangesObjectIDsNotification: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSInsertedObjectsKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSUpdatedObjectsKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSDeletedObjectsKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSRefreshedObjectsKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSInvalidatedObjectsKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSManagedObjectContextQueryGenerationKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSInvalidatedAllObjectsKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSInsertedObjectIDsKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSUpdatedObjectIDsKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSDeletedObjectIDsKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSRefreshedObjectIDsKey: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSInvalidatedObjectIDsKey: &'static NSString);
 
 ns_enum!(

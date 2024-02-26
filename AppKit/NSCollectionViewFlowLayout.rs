@@ -15,8 +15,10 @@ ns_enum!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSCollectionElementKindSectionHeader: &'static NSCollectionViewSupplementaryElementKind);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSCollectionElementKindSectionFooter: &'static NSCollectionViewSupplementaryElementKind);
 
 extern_class!(

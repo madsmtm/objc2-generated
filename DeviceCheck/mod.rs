@@ -29,4 +29,5 @@ pub use self::__DCAppAttestService::DCAppAttestService;
 #[cfg(feature = "DeviceCheck_DCDevice")]
 pub use self::__DCDevice::DCDevice;
 pub use self::__DCError::DCError;
+#[cfg(feature = "Foundation_NSString")]
 pub use self::__DCError::DCErrorDomain;

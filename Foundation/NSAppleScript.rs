@@ -3,14 +3,19 @@
 use crate::common::*;
 use crate::Foundation::*;
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAppleScriptErrorMessage: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAppleScriptErrorNumber: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAppleScriptErrorAppName: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAppleScriptErrorBriefMessage: &'static NSString);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAppleScriptErrorRange: &'static NSString);
 
 extern_class!(

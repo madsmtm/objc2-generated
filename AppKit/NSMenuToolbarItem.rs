@@ -47,6 +47,7 @@ extern_methods!(
     /// Methods declared on superclass `NSToolbarItem`
     #[cfg(feature = "AppKit_NSMenuToolbarItem")]
     unsafe impl NSMenuToolbarItem {
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithItemIdentifier:)]
         pub unsafe fn initWithItemIdentifier(
             this: Allocated<Self>,

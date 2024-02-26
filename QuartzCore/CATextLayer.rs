@@ -4,10 +4,12 @@ use crate::common::*;
 use crate::Foundation::*;
 use crate::QuartzCore::*;
 
+#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type CATextLayerTruncationMode = NSString;
 );
 
+#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type CATextLayerAlignmentMode = NSString;
 );
@@ -58,15 +60,19 @@ extern_methods!(
         #[method(setWrapped:)]
         pub unsafe fn setWrapped(&self, wrapped: bool);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other truncationMode)]
         pub unsafe fn truncationMode(&self) -> Id<CATextLayerTruncationMode>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setTruncationMode:)]
         pub unsafe fn setTruncationMode(&self, truncation_mode: &CATextLayerTruncationMode);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other alignmentMode)]
         pub unsafe fn alignmentMode(&self) -> Id<CATextLayerAlignmentMode>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setAlignmentMode:)]
         pub unsafe fn setAlignmentMode(&self, alignment_mode: &CATextLayerAlignmentMode);
 
@@ -105,20 +111,29 @@ extern_methods!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(kCATruncationNone: &'static CATextLayerTruncationMode);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(kCATruncationStart: &'static CATextLayerTruncationMode);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(kCATruncationEnd: &'static CATextLayerTruncationMode);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(kCATruncationMiddle: &'static CATextLayerTruncationMode);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(kCAAlignmentNatural: &'static CATextLayerAlignmentMode);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(kCAAlignmentLeft: &'static CATextLayerAlignmentMode);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(kCAAlignmentRight: &'static CATextLayerAlignmentMode);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(kCAAlignmentCenter: &'static CATextLayerAlignmentMode);
 
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(kCAAlignmentJustified: &'static CATextLayerAlignmentMode);
