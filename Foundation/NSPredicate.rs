@@ -106,7 +106,7 @@ extern_methods!(
     #[cfg(feature = "NSArray")]
     unsafe impl<ObjectType: Message> NSMutableArray<ObjectType> {
         #[method(filterUsingPredicate:)]
-        pub unsafe fn filterUsingPredicate(&mut self, predicate: &NSPredicate);
+        pub unsafe fn filterUsingPredicate(&self, predicate: &NSPredicate);
     }
 );
 
@@ -127,7 +127,7 @@ extern_methods!(
     #[cfg(feature = "NSSet")]
     unsafe impl<ObjectType: Message> NSMutableSet<ObjectType> {
         #[method(filterUsingPredicate:)]
-        pub unsafe fn filterUsingPredicate(&mut self, predicate: &NSPredicate);
+        pub unsafe fn filterUsingPredicate(&self, predicate: &NSPredicate);
     }
 );
 
@@ -148,6 +148,6 @@ extern_methods!(
     #[cfg(feature = "NSOrderedSet")]
     unsafe impl<ObjectType: Message> NSMutableOrderedSet<ObjectType> {
         #[method(filterUsingPredicate:)]
-        pub unsafe fn filterUsingPredicate(&mut self, p: &NSPredicate);
+        pub unsafe fn filterUsingPredicate(&self, p: &NSPredicate);
     }
 );

@@ -4,6 +4,28 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
+__inner_extern_class!(
+    #[derive(PartialEq, Eq, Hash)]
+    pub struct NSSet<ObjectType: ?Sized = AnyObject> {
+        __superclass: NSObject,
+        _inner0: PhantomData<*mut ObjectType>,
+        notunwindsafe: PhantomData<&'static mut ()>,
+    }
+
+    unsafe impl<ObjectType: ?Sized + Message> ClassType for NSSet<ObjectType> {
+        type Super = NSObject;
+        type Mutability = InteriorMutableWithSubclass<NSMutableSet<ObjectType>>;
+
+        fn as_super(&self) -> &Self::Super {
+            &self.__superclass
+        }
+
+        fn as_super_mut(&mut self) -> &mut Self::Super {
+            &mut self.__superclass
+        }
+    }
+);
+
 #[cfg(feature = "NSObject")]
 unsafe impl<ObjectType: ?Sized + NSCoding> NSCoding for NSSet<ObjectType> {}
 
@@ -27,7 +49,7 @@ extern_methods!(
         pub fn count(&self) -> NSUInteger;
 
         #[method_id(@__retain_semantics Other member:)]
-        pub unsafe fn member(&self, object: &ObjectType) -> Option<Retained<ObjectType>>;
+        pub fn member(&self, object: &ObjectType) -> Option<Retained<ObjectType>>;
 
         #[cfg(feature = "NSEnumerator")]
         #[method_id(@__retain_semantics Other objectEnumerator)]
@@ -72,10 +94,10 @@ extern_methods!(
     unsafe impl<ObjectType: Message> NSSet<ObjectType> {
         #[cfg(feature = "NSArray")]
         #[method_id(@__retain_semantics Other allObjects)]
-        pub unsafe fn allObjects(&self) -> Retained<NSArray<ObjectType>>;
+        pub fn allObjects(&self) -> Retained<NSArray<ObjectType>>;
 
         #[method_id(@__retain_semantics Other anyObject)]
-        pub unsafe fn anyObject(&self) -> Option<Retained<ObjectType>>;
+        pub fn anyObject(&self) -> Option<Retained<ObjectType>>;
 
         #[method(containsObject:)]
         pub fn containsObject(&self, an_object: &ObjectType) -> bool;
@@ -247,6 +269,29 @@ extern_methods!(
     }
 );
 
+__inner_extern_class!(
+    #[derive(PartialEq, Eq, Hash)]
+    pub struct NSMutableSet<ObjectType: ?Sized = AnyObject> {
+        __superclass: NSSet<ObjectType>,
+        _inner0: PhantomData<*mut ObjectType>,
+        notunwindsafe: PhantomData<&'static mut ()>,
+    }
+
+    unsafe impl<ObjectType: ?Sized + Message> ClassType for NSMutableSet<ObjectType> {
+        #[inherits(NSObject)]
+        type Super = NSSet<ObjectType>;
+        type Mutability = InteriorMutableWithSuperclass<NSSet<ObjectType>>;
+
+        fn as_super(&self) -> &Self::Super {
+            &self.__superclass
+        }
+
+        fn as_super_mut(&mut self) -> &mut Self::Super {
+            &mut self.__superclass
+        }
+    }
+);
+
 #[cfg(feature = "NSObject")]
 unsafe impl<ObjectType: ?Sized + NSCoding> NSCoding for NSMutableSet<ObjectType> {}
 
@@ -267,10 +312,10 @@ unsafe impl<ObjectType: ?Sized + NSSecureCoding> NSSecureCoding for NSMutableSet
 extern_methods!(
     unsafe impl<ObjectType: Message> NSMutableSet<ObjectType> {
         #[method(addObject:)]
-        pub unsafe fn addObject(&mut self, object: &ObjectType);
+        pub fn addObject(&self, object: &ObjectType);
 
         #[method(removeObject:)]
-        pub unsafe fn removeObject(&mut self, object: &ObjectType);
+        pub fn removeObject(&self, object: &ObjectType);
 
         #[cfg(feature = "NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
@@ -283,10 +328,7 @@ extern_methods!(
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCapacity:)]
-        pub unsafe fn initWithCapacity(
-            this: Allocated<Self>,
-            num_items: NSUInteger,
-        ) -> Retained<Self>;
+        pub fn initWithCapacity(this: Allocated<Self>, num_items: NSUInteger) -> Retained<Self>;
     }
 );
 
@@ -322,22 +364,22 @@ extern_methods!(
     unsafe impl<ObjectType: Message> NSMutableSet<ObjectType> {
         #[cfg(feature = "NSArray")]
         #[method(addObjectsFromArray:)]
-        pub unsafe fn addObjectsFromArray(&mut self, array: &NSArray<ObjectType>);
+        pub unsafe fn addObjectsFromArray(&self, array: &NSArray<ObjectType>);
 
         #[method(intersectSet:)]
-        pub unsafe fn intersectSet(&mut self, other_set: &NSSet<ObjectType>);
+        pub unsafe fn intersectSet(&self, other_set: &NSSet<ObjectType>);
 
         #[method(minusSet:)]
-        pub unsafe fn minusSet(&mut self, other_set: &NSSet<ObjectType>);
+        pub unsafe fn minusSet(&self, other_set: &NSSet<ObjectType>);
 
         #[method(removeAllObjects)]
-        pub fn removeAllObjects(&mut self);
+        pub fn removeAllObjects(&self);
 
         #[method(unionSet:)]
-        pub unsafe fn unionSet(&mut self, other_set: &NSSet<ObjectType>);
+        pub unsafe fn unionSet(&self, other_set: &NSSet<ObjectType>);
 
         #[method(setSet:)]
-        pub unsafe fn setSet(&mut self, other_set: &NSSet<ObjectType>);
+        pub unsafe fn setSet(&self, other_set: &NSSet<ObjectType>);
     }
 );
 
@@ -346,6 +388,29 @@ extern_methods!(
     unsafe impl<ObjectType: Message> NSMutableSet<ObjectType> {
         #[method_id(@__retain_semantics Other setWithCapacity:)]
         pub unsafe fn setWithCapacity(num_items: NSUInteger) -> Retained<Self>;
+    }
+);
+
+__inner_extern_class!(
+    #[derive(PartialEq, Eq, Hash)]
+    pub struct NSCountedSet<ObjectType: ?Sized = AnyObject> {
+        __superclass: NSMutableSet<ObjectType>,
+        _inner0: PhantomData<*mut ObjectType>,
+        notunwindsafe: PhantomData<&'static mut ()>,
+    }
+
+    unsafe impl<ObjectType: ?Sized + Message> ClassType for NSCountedSet<ObjectType> {
+        #[inherits(NSSet<ObjectType, >, NSObject)]
+        type Super = NSMutableSet<ObjectType>;
+        type Mutability = InteriorMutable;
+
+        fn as_super(&self) -> &Self::Super {
+            &self.__superclass
+        }
+
+        fn as_super_mut(&mut self) -> &mut Self::Super {
+            &mut self.__superclass
+        }
     }
 );
 

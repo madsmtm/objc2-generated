@@ -18,6 +18,28 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn NSFastEnumeration {}
 );
 
+__inner_extern_class!(
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct NSEnumerator<ObjectType: ?Sized = AnyObject> {
+        __superclass: NSObject,
+        _inner0: PhantomData<*mut ObjectType>,
+        notunwindsafe: PhantomData<&'static mut ()>,
+    }
+
+    unsafe impl<ObjectType: ?Sized + Message> ClassType for NSEnumerator<ObjectType> {
+        type Super = NSObject;
+        type Mutability = InteriorMutable;
+
+        fn as_super(&self) -> &Self::Super {
+            &self.__superclass
+        }
+
+        fn as_super_mut(&mut self) -> &mut Self::Super {
+            &mut self.__superclass
+        }
+    }
+);
+
 unsafe impl<ObjectType: ?Sized> NSFastEnumeration for NSEnumerator<ObjectType> {}
 
 unsafe impl<ObjectType: ?Sized> NSObjectProtocol for NSEnumerator<ObjectType> {}
@@ -25,7 +47,7 @@ unsafe impl<ObjectType: ?Sized> NSObjectProtocol for NSEnumerator<ObjectType> {}
 extern_methods!(
     unsafe impl<ObjectType: Message> NSEnumerator<ObjectType> {
         #[method_id(@__retain_semantics Other nextObject)]
-        pub fn nextObject(&mut self) -> Option<Retained<ObjectType>>;
+        pub fn nextObject(&self) -> Option<Retained<ObjectType>>;
     }
 );
 

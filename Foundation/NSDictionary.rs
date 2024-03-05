@@ -4,6 +4,31 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
+__inner_extern_class!(
+    #[derive(PartialEq, Eq, Hash)]
+    pub struct NSDictionary<KeyType: ?Sized = AnyObject, ObjectType: ?Sized = AnyObject> {
+        __superclass: NSObject,
+        _inner0: PhantomData<*mut KeyType>,
+        _inner1: PhantomData<*mut ObjectType>,
+        notunwindsafe: PhantomData<&'static mut ()>,
+    }
+
+    unsafe impl<KeyType: ?Sized + Message, ObjectType: ?Sized + Message> ClassType
+        for NSDictionary<KeyType, ObjectType>
+    {
+        type Super = NSObject;
+        type Mutability = InteriorMutableWithSubclass<NSMutableDictionary<KeyType, ObjectType>>;
+
+        fn as_super(&self) -> &Self::Super {
+            &self.__superclass
+        }
+
+        fn as_super_mut(&mut self) -> &mut Self::Super {
+            &mut self.__superclass
+        }
+    }
+);
+
 #[cfg(feature = "NSObject")]
 unsafe impl<KeyType: ?Sized + NSCoding, ObjectType: ?Sized + NSCoding> NSCoding
     for NSDictionary<KeyType, ObjectType>
@@ -45,7 +70,7 @@ extern_methods!(
         pub fn count(&self) -> NSUInteger;
 
         #[method_id(@__retain_semantics Other objectForKey:)]
-        pub unsafe fn objectForKey(&self, a_key: &KeyType) -> Option<Retained<ObjectType>>;
+        pub fn objectForKey(&self, a_key: &KeyType) -> Option<Retained<ObjectType>>;
 
         #[cfg(feature = "NSEnumerator")]
         #[method_id(@__retain_semantics Other keyEnumerator)]
@@ -92,7 +117,7 @@ extern_methods!(
     unsafe impl<KeyType: Message, ObjectType: Message> NSDictionary<KeyType, ObjectType> {
         #[cfg(feature = "NSArray")]
         #[method_id(@__retain_semantics Other allKeys)]
-        pub unsafe fn allKeys(&self) -> Retained<NSArray<KeyType>>;
+        pub fn allKeys(&self) -> Retained<NSArray<KeyType>>;
 
         #[cfg(feature = "NSArray")]
         #[method_id(@__retain_semantics Other allKeysForObject:)]
@@ -101,7 +126,7 @@ extern_methods!(
 
         #[cfg(feature = "NSArray")]
         #[method_id(@__retain_semantics Other allValues)]
-        pub unsafe fn allValues(&self) -> Retained<NSArray<ObjectType>>;
+        pub fn allValues(&self) -> Retained<NSArray<ObjectType>>;
 
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other description)]
@@ -393,6 +418,32 @@ extern_methods!(
     }
 );
 
+__inner_extern_class!(
+    #[derive(PartialEq, Eq, Hash)]
+    pub struct NSMutableDictionary<KeyType: ?Sized = AnyObject, ObjectType: ?Sized = AnyObject> {
+        __superclass: NSDictionary<KeyType, ObjectType>,
+        _inner0: PhantomData<*mut KeyType>,
+        _inner1: PhantomData<*mut ObjectType>,
+        notunwindsafe: PhantomData<&'static mut ()>,
+    }
+
+    unsafe impl<KeyType: ?Sized + Message, ObjectType: ?Sized + Message> ClassType
+        for NSMutableDictionary<KeyType, ObjectType>
+    {
+        #[inherits(NSObject)]
+        type Super = NSDictionary<KeyType, ObjectType>;
+        type Mutability = InteriorMutableWithSuperclass<NSDictionary<KeyType, ObjectType>>;
+
+        fn as_super(&self) -> &Self::Super {
+            &self.__superclass
+        }
+
+        fn as_super_mut(&mut self) -> &mut Self::Super {
+            &mut self.__superclass
+        }
+    }
+);
+
 #[cfg(feature = "NSObject")]
 unsafe impl<KeyType: ?Sized + NSCoding, ObjectType: ?Sized + NSCoding> NSCoding
     for NSMutableDictionary<KeyType, ObjectType>
@@ -431,12 +482,12 @@ unsafe impl<KeyType: ?Sized + NSSecureCoding, ObjectType: ?Sized + NSSecureCodin
 extern_methods!(
     unsafe impl<KeyType: Message, ObjectType: Message> NSMutableDictionary<KeyType, ObjectType> {
         #[method(removeObjectForKey:)]
-        pub fn removeObjectForKey(&mut self, a_key: &KeyType);
+        pub fn removeObjectForKey(&self, a_key: &KeyType);
 
         #[cfg(feature = "NSObject")]
         #[method(setObject:forKey:)]
         pub unsafe fn setObject_forKey(
-            &mut self,
+            &self,
             an_object: &ObjectType,
             a_key: &ProtocolObject<dyn NSCopying>,
         );
@@ -445,10 +496,7 @@ extern_methods!(
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init initWithCapacity:)]
-        pub unsafe fn initWithCapacity(
-            this: Allocated<Self>,
-            num_items: NSUInteger,
-        ) -> Retained<Self>;
+        pub fn initWithCapacity(this: Allocated<Self>, num_items: NSUInteger) -> Retained<Self>;
 
         #[cfg(feature = "NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
@@ -495,27 +543,24 @@ extern_methods!(
     unsafe impl<KeyType: Message, ObjectType: Message> NSMutableDictionary<KeyType, ObjectType> {
         #[method(addEntriesFromDictionary:)]
         pub unsafe fn addEntriesFromDictionary(
-            &mut self,
+            &self,
             other_dictionary: &NSDictionary<KeyType, ObjectType>,
         );
 
         #[method(removeAllObjects)]
-        pub fn removeAllObjects(&mut self);
+        pub fn removeAllObjects(&self);
 
         #[cfg(feature = "NSArray")]
         #[method(removeObjectsForKeys:)]
-        pub unsafe fn removeObjectsForKeys(&mut self, key_array: &NSArray<KeyType>);
+        pub unsafe fn removeObjectsForKeys(&self, key_array: &NSArray<KeyType>);
 
         #[method(setDictionary:)]
-        pub unsafe fn setDictionary(
-            &mut self,
-            other_dictionary: &NSDictionary<KeyType, ObjectType>,
-        );
+        pub unsafe fn setDictionary(&self, other_dictionary: &NSDictionary<KeyType, ObjectType>);
 
         #[cfg(feature = "NSObject")]
         #[method(setObject:forKeyedSubscript:)]
         pub unsafe fn setObject_forKeyedSubscript(
-            &mut self,
+            &self,
             obj: Option<&ObjectType>,
             key: &ProtocolObject<dyn NSCopying>,
         );

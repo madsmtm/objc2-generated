@@ -727,7 +727,11 @@ pub use self::__NSArchiver::NSObjectNSArchiverCallback;
 #[cfg(all(feature = "NSArchiver", feature = "NSCoder"))]
 pub use self::__NSArchiver::NSUnarchiver;
 #[cfg(feature = "NSArray")]
+pub use self::__NSArray::NSArray;
+#[cfg(feature = "NSArray")]
 pub use self::__NSArray::NSBinarySearchingOptions;
+#[cfg(feature = "NSArray")]
+pub use self::__NSArray::NSMutableArray;
 #[cfg(all(feature = "NSAttributedString", feature = "NSString"))]
 pub use self::__NSAttributedString::NSAlternateDescriptionAttributeName;
 #[cfg(feature = "NSAttributedString")]
@@ -1030,6 +1034,10 @@ pub use self::__NSDecimalNumber::NSDecimalNumberOverflowException;
     feature = "NSString"
 ))]
 pub use self::__NSDecimalNumber::NSDecimalNumberUnderflowException;
+#[cfg(feature = "NSDictionary")]
+pub use self::__NSDictionary::NSDictionary;
+#[cfg(feature = "NSDictionary")]
+pub use self::__NSDictionary::NSMutableDictionary;
 #[cfg(all(feature = "NSDistantObject", feature = "NSProxy"))]
 pub use self::__NSDistantObject::NSDistantObject;
 #[cfg(feature = "NSDistributedLock")]
@@ -1055,6 +1063,8 @@ pub use self::__NSDistributedNotificationCenter::NSNotificationSuspensionBehavio
 pub use self::__NSEnergyFormatter::NSEnergyFormatter;
 #[cfg(feature = "NSEnergyFormatter")]
 pub use self::__NSEnergyFormatter::NSEnergyFormatterUnit;
+#[cfg(feature = "NSEnumerator")]
+pub use self::__NSEnumerator::NSEnumerator;
 #[cfg(feature = "NSEnumerator")]
 pub use self::__NSEnumerator::NSFastEnumeration;
 #[cfg(all(feature = "NSError", feature = "NSString"))]
@@ -2576,6 +2586,10 @@ pub use self::__NSOrderedCollectionChange::NSOrderedCollectionChange;
 pub use self::__NSOrderedCollectionDifference::NSOrderedCollectionDifference;
 #[cfg(feature = "NSOrderedCollectionDifference")]
 pub use self::__NSOrderedCollectionDifference::NSOrderedCollectionDifferenceCalculationOptions;
+#[cfg(feature = "NSOrderedSet")]
+pub use self::__NSOrderedSet::NSMutableOrderedSet;
+#[cfg(feature = "NSOrderedSet")]
+pub use self::__NSOrderedSet::NSOrderedSet;
 #[cfg(feature = "NSOrthography")]
 pub use self::__NSOrthography::NSOrthography;
 #[cfg(all(feature = "NSPathUtilities", feature = "NSString"))]
@@ -2904,6 +2918,12 @@ pub use self::__NSScriptWhoseTests::NSScriptWhoseTest;
 pub use self::__NSScriptWhoseTests::NSSpecifierTest;
 #[cfg(feature = "NSScriptWhoseTests")]
 pub use self::__NSScriptWhoseTests::NSTestComparisonOperation;
+#[cfg(feature = "NSSet")]
+pub use self::__NSSet::NSCountedSet;
+#[cfg(feature = "NSSet")]
+pub use self::__NSSet::NSMutableSet;
+#[cfg(feature = "NSSet")]
+pub use self::__NSSet::NSSet;
 #[cfg(feature = "NSSortDescriptor")]
 pub use self::__NSSortDescriptor::NSSortDescriptor;
 #[cfg(all(feature = "NSSpellServer", feature = "NSString"))]

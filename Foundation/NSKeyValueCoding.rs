@@ -200,7 +200,7 @@ extern_methods!(
     unsafe impl<KeyType: Message, ObjectType: Message> NSMutableDictionary<KeyType, ObjectType> {
         #[cfg(feature = "NSString")]
         #[method(setValue:forKey:)]
-        pub unsafe fn setValue_forKey(&mut self, value: Option<&ObjectType>, key: &NSString);
+        pub unsafe fn setValue_forKey(&self, value: Option<&ObjectType>, key: &NSString);
     }
 );
 

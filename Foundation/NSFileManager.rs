@@ -876,7 +876,7 @@ __inner_extern_class!(
     unsafe impl<ObjectType: ?Sized + Message> ClassType for NSDirectoryEnumerator<ObjectType> {
         #[inherits(NSObject)]
         type Super = NSEnumerator<ObjectType>;
-        type Mutability = Mutable;
+        type Mutability = InteriorMutable;
 
         fn as_super(&self) -> &Self::Super {
             &self.__superclass
@@ -913,13 +913,13 @@ extern_methods!(
         pub unsafe fn isEnumeratingDirectoryPostOrder(&self) -> bool;
 
         #[method(skipDescendents)]
-        pub unsafe fn skipDescendents(&mut self);
+        pub unsafe fn skipDescendents(&self);
 
         #[method(level)]
         pub unsafe fn level(&self) -> NSUInteger;
 
         #[method(skipDescendants)]
-        pub unsafe fn skipDescendants(&mut self);
+        pub unsafe fn skipDescendants(&self);
     }
 );
 
