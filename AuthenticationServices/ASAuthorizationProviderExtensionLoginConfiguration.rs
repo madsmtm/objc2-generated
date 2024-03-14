@@ -103,6 +103,30 @@ ns_enum!(
     }
 );
 
+ns_options!(
+    #[underlying(NSUInteger)]
+    pub enum ASAuthorizationProviderExtensionUserSecureEnclaveKeyBiometricPolicy {
+        #[doc(alias = "ASAuthorizationProviderExtensionUserSecureEnclaveKeyBiometricPolicyNone")]
+        None = 0,
+        #[doc(
+            alias = "ASAuthorizationProviderExtensionUserSecureEnclaveKeyBiometricPolicyTouchIDOrWatchCurrentSet"
+        )]
+        TouchIDOrWatchCurrentSet = 1 << 0,
+        #[doc(
+            alias = "ASAuthorizationProviderExtensionUserSecureEnclaveKeyBiometricPolicyTouchIDOrWatchAny"
+        )]
+        TouchIDOrWatchAny = 1 << 1,
+        #[doc(
+            alias = "ASAuthorizationProviderExtensionUserSecureEnclaveKeyBiometricPolicyReuseDuringUnlock"
+        )]
+        ReuseDuringUnlock = 1 << 2,
+        #[doc(
+            alias = "ASAuthorizationProviderExtensionUserSecureEnclaveKeyBiometricPolicyPasswordFallback"
+        )]
+        PasswordFallback = 1 << 3,
+    }
+);
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ASAuthorizationProviderExtensionLoginConfiguration;
@@ -218,6 +242,17 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSData")]
         #[method(setDeviceContext:)]
         pub unsafe fn setDeviceContext(&self, device_context: Option<&NSData>);
+
+        #[method(userSecureEnclaveKeyBiometricPolicy)]
+        pub unsafe fn userSecureEnclaveKeyBiometricPolicy(
+            &self,
+        ) -> ASAuthorizationProviderExtensionUserSecureEnclaveKeyBiometricPolicy;
+
+        #[method(setUserSecureEnclaveKeyBiometricPolicy:)]
+        pub unsafe fn setUserSecureEnclaveKeyBiometricPolicy(
+            &self,
+            user_secure_enclave_key_biometric_policy: ASAuthorizationProviderExtensionUserSecureEnclaveKeyBiometricPolicy,
+        );
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other nonceEndpointURL)]

@@ -42,6 +42,9 @@ ns_error_enum!(
         NSFileProviderErrorVersionNoLongerAvailable = -2009,
         NSFileProviderErrorExcludedFromSync = -2010,
         NSFileProviderErrorDomainDisabled = -2011,
+        NSFileProviderErrorProviderDomainTemporarilyUnavailable = -2012,
+        NSFileProviderErrorProviderDomainNotFound = -2013,
+        NSFileProviderErrorApplicationExtensionNotFound = -2014,
     }
 );
 

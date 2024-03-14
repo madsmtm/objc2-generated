@@ -8,6 +8,10 @@ use crate::GameController::*;
 extern_protocol!(
     #[cfg(feature = "GameController_GCPhysicalInputElement")]
     pub unsafe trait GCDirectionPadElement: GCPhysicalInputElement {
+        #[cfg(feature = "GameController_GCAxis2DInput")]
+        #[method_id(@__retain_semantics Other xyAxes)]
+        unsafe fn xyAxes(&self) -> Id<ProtocolObject<dyn GCAxis2DInput>>;
+
         #[cfg(feature = "GameController_GCAxisInput")]
         #[method_id(@__retain_semantics Other xAxis)]
         unsafe fn xAxis(&self) -> Id<ProtocolObject<dyn GCAxisInput>>;

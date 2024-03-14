@@ -215,6 +215,21 @@ mod __ASAuthorizationWebBrowserPlatformPublicKeyCredentialRegistrationRequest;
 #[cfg(feature = "AuthenticationServices_ASAuthorizationWebBrowserPublicKeyCredentialManager")]
 #[path = "ASAuthorizationWebBrowserPublicKeyCredentialManager.rs"]
 mod __ASAuthorizationWebBrowserPublicKeyCredentialManager;
+#[cfg(
+    feature = "AuthenticationServices_ASAuthorizationWebBrowserSecurityKeyPublicKeyCredentialAssertionRequest"
+)]
+#[path = "ASAuthorizationWebBrowserSecurityKeyPublicKeyCredentialAssertionRequest.rs"]
+mod __ASAuthorizationWebBrowserSecurityKeyPublicKeyCredentialAssertionRequest;
+#[cfg(
+    feature = "AuthenticationServices_ASAuthorizationWebBrowserSecurityKeyPublicKeyCredentialProvider"
+)]
+#[path = "ASAuthorizationWebBrowserSecurityKeyPublicKeyCredentialProvider.rs"]
+mod __ASAuthorizationWebBrowserSecurityKeyPublicKeyCredentialProvider;
+#[cfg(
+    feature = "AuthenticationServices_ASAuthorizationWebBrowserSecurityKeyPublicKeyCredentialRegistrationRequest"
+)]
+#[path = "ASAuthorizationWebBrowserSecurityKeyPublicKeyCredentialRegistrationRequest.rs"]
+mod __ASAuthorizationWebBrowserSecurityKeyPublicKeyCredentialRegistrationRequest;
 #[cfg(feature = "AuthenticationServices_ASCOSEConstants")]
 #[path = "ASCOSEConstants.rs"]
 mod __ASCOSEConstants;
@@ -281,6 +296,9 @@ mod __ASSettingsHelper;
 #[cfg(feature = "AuthenticationServices_ASWebAuthenticationSession")]
 #[path = "ASWebAuthenticationSession.rs"]
 mod __ASWebAuthenticationSession;
+#[cfg(feature = "AuthenticationServices_ASWebAuthenticationSessionCallback")]
+#[path = "ASWebAuthenticationSessionCallback.rs"]
+mod __ASWebAuthenticationSessionCallback;
 #[cfg(feature = "AuthenticationServices_ASWebAuthenticationSessionRequest")]
 #[path = "ASWebAuthenticationSessionRequest.rs"]
 mod __ASWebAuthenticationSessionRequest;
@@ -337,6 +355,8 @@ pub use self::__ASAuthorizationAppleIDButton::ASAuthorizationAppleIDButtonStyle;
 pub use self::__ASAuthorizationAppleIDButton::ASAuthorizationAppleIDButtonType;
 #[cfg(feature = "AuthenticationServices_ASAuthorizationAppleIDCredential")]
 pub use self::__ASAuthorizationAppleIDCredential::ASAuthorizationAppleIDCredential;
+#[cfg(feature = "AuthenticationServices_ASAuthorizationAppleIDCredential")]
+pub use self::__ASAuthorizationAppleIDCredential::ASUserAgeRange;
 #[cfg(feature = "AuthenticationServices_ASAuthorizationAppleIDCredential")]
 pub use self::__ASAuthorizationAppleIDCredential::ASUserDetectionStatus;
 #[cfg(feature = "AuthenticationServices_ASAuthorizationAppleIDProvider")]
@@ -482,6 +502,8 @@ pub use self::__ASAuthorizationProviderExtensionLoginConfiguration::ASAuthorizat
 pub use self::__ASAuthorizationProviderExtensionLoginConfiguration::ASAuthorizationProviderExtensionKerberosMapping;
 #[cfg(feature = "AuthenticationServices_ASAuthorizationProviderExtensionLoginConfiguration")]
 pub use self::__ASAuthorizationProviderExtensionLoginConfiguration::ASAuthorizationProviderExtensionLoginConfiguration;
+#[cfg(feature = "AuthenticationServices_ASAuthorizationProviderExtensionLoginConfiguration")]
+pub use self::__ASAuthorizationProviderExtensionLoginConfiguration::ASAuthorizationProviderExtensionUserSecureEnclaveKeyBiometricPolicy;
 #[cfg(feature = "AuthenticationServices_ASAuthorizationProviderExtensionLoginManager")]
 pub use self::__ASAuthorizationProviderExtensionLoginManager::ASAuthorizationProviderExtensionKeyType;
 #[cfg(feature = "AuthenticationServices_ASAuthorizationProviderExtensionLoginManager")]
@@ -710,6 +732,18 @@ pub use self::__ASAuthorizationWebBrowserPlatformPublicKeyCredentialRegistration
 pub use self::__ASAuthorizationWebBrowserPublicKeyCredentialManager::ASAuthorizationWebBrowserPublicKeyCredentialManager;
 #[cfg(feature = "AuthenticationServices_ASAuthorizationWebBrowserPublicKeyCredentialManager")]
 pub use self::__ASAuthorizationWebBrowserPublicKeyCredentialManager::ASAuthorizationWebBrowserPublicKeyCredentialManagerAuthorizationState;
+#[cfg(
+    feature = "AuthenticationServices_ASAuthorizationWebBrowserSecurityKeyPublicKeyCredentialAssertionRequest"
+)]
+pub use self::__ASAuthorizationWebBrowserSecurityKeyPublicKeyCredentialAssertionRequest::ASAuthorizationWebBrowserSecurityKeyPublicKeyCredentialAssertionRequest;
+#[cfg(
+    feature = "AuthenticationServices_ASAuthorizationWebBrowserSecurityKeyPublicKeyCredentialProvider"
+)]
+pub use self::__ASAuthorizationWebBrowserSecurityKeyPublicKeyCredentialProvider::ASAuthorizationWebBrowserSecurityKeyPublicKeyCredentialProvider;
+#[cfg(
+    feature = "AuthenticationServices_ASAuthorizationWebBrowserSecurityKeyPublicKeyCredentialRegistrationRequest"
+)]
+pub use self::__ASAuthorizationWebBrowserSecurityKeyPublicKeyCredentialRegistrationRequest::ASAuthorizationWebBrowserSecurityKeyPublicKeyCredentialRegistrationRequest;
 #[cfg(feature = "AuthenticationServices_ASCOSEConstants")]
 pub use self::__ASCOSEConstants::ASCOSEAlgorithmIdentifier;
 #[cfg(feature = "AuthenticationServices_ASCOSEConstants")]
@@ -730,6 +764,8 @@ pub use self::__ASCredentialIdentityStore::ASCredentialIdentityStoreErrorCode;
     feature = "Foundation_NSString"
 ))]
 pub use self::__ASCredentialIdentityStore::ASCredentialIdentityStoreErrorDomain;
+#[cfg(feature = "AuthenticationServices_ASCredentialIdentityStore")]
+pub use self::__ASCredentialIdentityStore::ASCredentialIdentityTypes;
 #[cfg(feature = "AuthenticationServices_ASCredentialIdentityStoreState")]
 pub use self::__ASCredentialIdentityStoreState::ASCredentialIdentityStoreState;
 #[cfg(all(
@@ -808,6 +844,8 @@ pub use self::__ASWebAuthenticationSession::ASWebAuthenticationSessionErrorCode;
     feature = "Foundation_NSString"
 ))]
 pub use self::__ASWebAuthenticationSession::ASWebAuthenticationSessionErrorDomain;
+#[cfg(feature = "AuthenticationServices_ASWebAuthenticationSessionCallback")]
+pub use self::__ASWebAuthenticationSessionCallback::ASWebAuthenticationSessionCallback;
 #[cfg(feature = "AuthenticationServices_ASWebAuthenticationSessionRequest")]
 pub use self::__ASWebAuthenticationSessionRequest::ASWebAuthenticationSessionRequest;
 #[cfg(feature = "AuthenticationServices_ASWebAuthenticationSessionRequest")]

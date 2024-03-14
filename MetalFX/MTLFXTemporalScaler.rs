@@ -105,6 +105,23 @@ extern_methods!(
         #[method(setInputContentMaxScale:)]
         pub unsafe fn setInputContentMaxScale(&self, input_content_max_scale: c_float);
 
+        #[method(isReactiveMaskTextureEnabled)]
+        pub unsafe fn isReactiveMaskTextureEnabled(&self) -> bool;
+
+        #[method(setReactiveMaskTextureEnabled:)]
+        pub unsafe fn setReactiveMaskTextureEnabled(&self, reactive_mask_texture_enabled: bool);
+
+        #[cfg(feature = "Metal_MTLPixelFormat")]
+        #[method(reactiveMaskTextureFormat)]
+        pub unsafe fn reactiveMaskTextureFormat(&self) -> MTLPixelFormat;
+
+        #[cfg(feature = "Metal_MTLPixelFormat")]
+        #[method(setReactiveMaskTextureFormat:)]
+        pub unsafe fn setReactiveMaskTextureFormat(
+            &self,
+            reactive_mask_texture_format: MTLPixelFormat,
+        );
+
         #[cfg(feature = "Metal_MTLDevice")]
         #[method_id(@__retain_semantics New newTemporalScalerWithDevice:)]
         pub unsafe fn newTemporalScalerWithDevice(
@@ -154,6 +171,10 @@ extern_protocol!(
         #[cfg(feature = "Metal_MTLTexture")]
         #[method(motionTextureUsage)]
         unsafe fn motionTextureUsage(&self) -> MTLTextureUsage;
+
+        #[cfg(feature = "Metal_MTLTexture")]
+        #[method(reactiveTextureUsage)]
+        unsafe fn reactiveTextureUsage(&self) -> MTLTextureUsage;
 
         #[cfg(feature = "Metal_MTLTexture")]
         #[method(outputTextureUsage)]
@@ -212,6 +233,17 @@ extern_protocol!(
         unsafe fn setExposureTexture(
             &self,
             exposure_texture: Option<&ProtocolObject<dyn MTLTexture>>,
+        );
+
+        #[cfg(all(feature = "Metal_MTLResource", feature = "Metal_MTLTexture"))]
+        #[method_id(@__retain_semantics Other reactiveMaskTexture)]
+        unsafe fn reactiveMaskTexture(&self) -> Option<Id<ProtocolObject<dyn MTLTexture>>>;
+
+        #[cfg(all(feature = "Metal_MTLResource", feature = "Metal_MTLTexture"))]
+        #[method(setReactiveMaskTexture:)]
+        unsafe fn setReactiveMaskTexture(
+            &self,
+            reactive_mask_texture: Option<&ProtocolObject<dyn MTLTexture>>,
         );
 
         #[method(preExposure)]

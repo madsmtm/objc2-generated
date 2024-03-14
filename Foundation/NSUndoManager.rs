@@ -83,6 +83,12 @@ extern_methods!(
         #[method(canRedo)]
         pub unsafe fn canRedo(&self) -> bool;
 
+        #[method(undoCount)]
+        pub unsafe fn undoCount(&self) -> NSUInteger;
+
+        #[method(redoCount)]
+        pub unsafe fn redoCount(&self) -> NSUInteger;
+
         #[method(isUndoing)]
         pub unsafe fn isUndoing(&self) -> bool;
 
@@ -100,7 +106,7 @@ extern_methods!(
             &self,
             target: &AnyObject,
             selector: Sel,
-            an_object: Option<&AnyObject>,
+            object: Option<&AnyObject>,
         );
 
         #[method_id(@__retain_semantics Other prepareWithInvocationTarget:)]

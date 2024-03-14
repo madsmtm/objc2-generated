@@ -20,6 +20,18 @@ ns_error_enum!(
     }
 );
 
+ns_options!(
+    #[underlying(NSUInteger)]
+    pub enum ASCredentialIdentityTypes {
+        #[doc(alias = "ASCredentialIdentityTypesAll")]
+        All = 0,
+        #[doc(alias = "ASCredentialIdentityTypesPassword")]
+        Password = 1,
+        #[doc(alias = "ASCredentialIdentityTypesPasskey")]
+        Passkey = 1 << 1,
+    }
+);
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ASCredentialIdentityStore;
@@ -45,6 +57,21 @@ extern_methods!(
         pub unsafe fn getCredentialIdentityStoreStateWithCompletion(
             &self,
             completion: &Block<dyn Fn(NonNull<ASCredentialIdentityStoreState>)>,
+        );
+
+        #[cfg(all(
+            feature = "AuthenticationServices_ASCredentialIdentity",
+            feature = "AuthenticationServices_ASCredentialServiceIdentifier",
+            feature = "Foundation_NSArray"
+        ))]
+        #[method(getCredentialIdentitiesForService:credentialIdentityTypes:completionHandler:)]
+        pub unsafe fn getCredentialIdentitiesForService_credentialIdentityTypes_completionHandler(
+            &self,
+            service_identifier: Option<&ASCredentialServiceIdentifier>,
+            credential_identity_types: ASCredentialIdentityTypes,
+            completion_handler: &Block<
+                dyn Fn(NonNull<NSArray<ProtocolObject<dyn ASCredentialIdentity>>>),
+            >,
         );
 
         #[cfg(all(

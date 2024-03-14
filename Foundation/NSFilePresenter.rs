@@ -48,6 +48,14 @@ extern_protocol!(
             completion_handler: &Block<dyn Fn(*mut NSError)>,
         );
 
+        #[cfg(feature = "Foundation_NSError")]
+        #[optional]
+        #[method(accommodatePresentedItemEvictionWithCompletionHandler:)]
+        unsafe fn accommodatePresentedItemEvictionWithCompletionHandler(
+            &self,
+            completion_handler: &Block<dyn Fn(*mut NSError)>,
+        );
+
         #[cfg(feature = "Foundation_NSURL")]
         #[optional]
         #[method(presentedItemDidMoveToURL:)]

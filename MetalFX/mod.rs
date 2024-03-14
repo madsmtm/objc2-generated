@@ -17,6 +17,9 @@
 #[link(name = "MetalFX", kind = "framework")]
 extern "C" {}
 
+#[cfg(feature = "MetalFX_MTLFXDefines")]
+#[path = "MTLFXDefines.rs"]
+mod __MTLFXDefines;
 #[cfg(feature = "MetalFX_MTLFXSpatialScaler")]
 #[path = "MTLFXSpatialScaler.rs"]
 mod __MTLFXSpatialScaler;

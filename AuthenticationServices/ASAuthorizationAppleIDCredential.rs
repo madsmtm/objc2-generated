@@ -17,6 +17,18 @@ ns_enum!(
     }
 );
 
+ns_enum!(
+    #[underlying(NSInteger)]
+    pub enum ASUserAgeRange {
+        #[doc(alias = "ASUserAgeRangeUnknown")]
+        Unknown = 0,
+        #[doc(alias = "ASUserAgeRangeChild")]
+        Child = 1,
+        #[doc(alias = "ASUserAgeRangeNotChild")]
+        NotChild = 2,
+    }
+);
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ASAuthorizationAppleIDCredential;
@@ -80,6 +92,9 @@ extern_methods!(
 
         #[method(realUserStatus)]
         pub unsafe fn realUserStatus(&self) -> ASUserDetectionStatus;
+
+        #[method(userAgeRange)]
+        pub unsafe fn userAgeRange(&self) -> ASUserAgeRange;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

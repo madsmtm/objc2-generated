@@ -61,6 +61,7 @@ extern_methods!(
         pub unsafe fn URL(&self) -> Id<NSURL>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated = "Use `callback` to match all callback types."]
         #[method_id(@__retain_semantics Other callbackURLScheme)]
         pub unsafe fn callbackURLScheme(&self) -> Option<Id<NSString>>;
 
@@ -77,6 +78,15 @@ extern_methods!(
             &self,
             delegate: Option<&ProtocolObject<dyn ASWebAuthenticationSessionRequestDelegate>>,
         );
+
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
+        #[method_id(@__retain_semantics Other additionalHeaderFields)]
+        pub unsafe fn additionalHeaderFields(&self)
+            -> Option<Id<NSDictionary<NSString, NSString>>>;
+
+        #[cfg(feature = "AuthenticationServices_ASWebAuthenticationSessionCallback")]
+        #[method_id(@__retain_semantics Other callback)]
+        pub unsafe fn callback(&self) -> Option<Id<ASWebAuthenticationSessionCallback>>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

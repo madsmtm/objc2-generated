@@ -102,6 +102,26 @@ extern_methods!(
             map_items: &NSArray<MKMapItem>,
             launch_options: Option<&NSDictionary<NSString, AnyObject>>,
         ) -> bool;
+
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
+        #[method(openInMapsWithLaunchOptions:completionHandler:)]
+        pub unsafe fn openInMapsWithLaunchOptions_completionHandler(
+            &self,
+            launch_options: Option<&NSDictionary<NSString, AnyObject>>,
+            completion: Option<&Block<dyn Fn(Bool)>>,
+        );
+
+        #[cfg(all(
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSString"
+        ))]
+        #[method(openMapsWithItems:launchOptions:completionHandler:)]
+        pub unsafe fn openMapsWithItems_launchOptions_completionHandler(
+            map_items: &NSArray<MKMapItem>,
+            launch_options: Option<&NSDictionary<NSString, AnyObject>>,
+            completion: Option<&Block<dyn Fn(Bool)>>,
+        );
     }
 );
 

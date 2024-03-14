@@ -17,6 +17,9 @@
 #[link(name = "GameController", kind = "framework")]
 extern "C" {}
 
+#[cfg(feature = "GameController_GCAxis2DInput")]
+#[path = "GCAxis2DInput.rs"]
+mod __GCAxis2DInput;
 #[cfg(feature = "GameController_GCAxisElement")]
 #[path = "GCAxisElement.rs"]
 mod __GCAxisElement;
@@ -182,10 +185,15 @@ mod __GCSyntheticDeviceKeys;
 #[cfg(feature = "GameController_GCTouchedStateInput")]
 #[path = "GCTouchedStateInput.rs"]
 mod __GCTouchedStateInput;
+#[cfg(feature = "GameController_GCTypes")]
+#[path = "GCTypes.rs"]
+mod __GCTypes;
 #[cfg(feature = "GameController_GCXboxGamepad")]
 #[path = "GCXboxGamepad.rs"]
 mod __GCXboxGamepad;
 
+#[cfg(feature = "GameController_GCAxis2DInput")]
+pub use self::__GCAxis2DInput::GCAxis2DInput;
 #[cfg(all(
     feature = "GameController_GCAxisElement",
     feature = "GameController_GCPhysicalInputElement"
@@ -503,6 +511,26 @@ pub use self::__GCInputNames::GCAxisElementName;
 pub use self::__GCInputNames::GCButtonElementName;
 #[cfg(feature = "GameController_GCInputNames")]
 pub use self::__GCInputNames::GCDirectionPadElementName;
+#[cfg(all(
+    feature = "Foundation_NSString",
+    feature = "GameController_GCInputNames"
+))]
+pub use self::__GCInputNames::GCInputBackLeftButton;
+#[cfg(all(
+    feature = "Foundation_NSString",
+    feature = "GameController_GCInputNames"
+))]
+pub use self::__GCInputNames::GCInputBackRightButton;
+#[cfg(all(
+    feature = "Foundation_NSString",
+    feature = "GameController_GCInputNames"
+))]
+pub use self::__GCInputNames::GCInputLeftBumper;
+#[cfg(all(
+    feature = "Foundation_NSString",
+    feature = "GameController_GCInputNames"
+))]
+pub use self::__GCInputNames::GCInputRightBumper;
 #[cfg(feature = "GameController_GCInputNames")]
 pub use self::__GCInputNames::GCPhysicalInputElementName;
 #[cfg(feature = "GameController_GCInputNames")]
@@ -1670,6 +1698,14 @@ pub use self::__GCSwitchElement::GCSwitchElement;
 pub use self::__GCSwitchPositionInput::GCSwitchPositionInput;
 #[cfg(feature = "GameController_GCTouchedStateInput")]
 pub use self::__GCTouchedStateInput::GCTouchedStateInput;
+#[cfg(feature = "GameController_GCTypes")]
+pub use self::__GCTypes::GCPoint2;
+#[cfg(feature = "GameController_GCTypes")]
+pub use self::__GCTypes::GCPoint2Zero;
+#[cfg(all(feature = "Foundation_NSString", feature = "GameController_GCTypes"))]
+pub use self::__GCTypes::NSStringFromGCPoint2;
+#[cfg(feature = "GameController_GCTypes")]
+pub use self::__GCTypes::NSValueGCTypes;
 #[cfg(all(
     feature = "GameController_GCExtendedGamepad",
     feature = "GameController_GCPhysicalInputProfile",

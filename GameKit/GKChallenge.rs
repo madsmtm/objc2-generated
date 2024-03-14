@@ -121,8 +121,13 @@ unsafe impl NSSecureCoding for GKScoreChallenge {}
 extern_methods!(
     unsafe impl GKScoreChallenge {
         #[cfg(feature = "GameKit_GKScore")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other score)]
         pub unsafe fn score(&self) -> Option<Id<GKScore>>;
+
+        #[cfg(feature = "GameKit_GKLeaderboardEntry")]
+        #[method_id(@__retain_semantics Other leaderboardEntry)]
+        pub unsafe fn leaderboardEntry(&self) -> Option<Id<GKLeaderboardEntry>>;
     }
 );
 

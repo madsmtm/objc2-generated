@@ -42,11 +42,25 @@ extern_methods!(
             feature = "Foundation_NSString",
             feature = "Foundation_NSURL"
         ))]
+        #[deprecated = "Use initWithURL:callback:completionHandler: instead"]
         #[method_id(@__retain_semantics Init initWithURL:callbackURLScheme:completionHandler:)]
         pub unsafe fn initWithURL_callbackURLScheme_completionHandler(
             this: Allocated<Self>,
             url: &NSURL,
             callback_url_scheme: Option<&NSString>,
+            completion_handler: ASWebAuthenticationSessionCompletionHandler,
+        ) -> Id<Self>;
+
+        #[cfg(all(
+            feature = "AuthenticationServices_ASWebAuthenticationSessionCallback",
+            feature = "Foundation_NSError",
+            feature = "Foundation_NSURL"
+        ))]
+        #[method_id(@__retain_semantics Init initWithURL:callback:completionHandler:)]
+        pub unsafe fn initWithURL_callback_completionHandler(
+            this: Allocated<Self>,
+            url: &NSURL,
+            callback: &ASWebAuthenticationSessionCallback,
             completion_handler: ASWebAuthenticationSessionCompletionHandler,
         ) -> Id<Self>;
 
@@ -70,6 +84,18 @@ extern_methods!(
         pub unsafe fn setPrefersEphemeralWebBrowserSession(
             &self,
             prefers_ephemeral_web_browser_session: bool,
+        );
+
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
+        #[method_id(@__retain_semantics Other additionalHeaderFields)]
+        pub unsafe fn additionalHeaderFields(&self)
+            -> Option<Id<NSDictionary<NSString, NSString>>>;
+
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
+        #[method(setAdditionalHeaderFields:)]
+        pub unsafe fn setAdditionalHeaderFields(
+            &self,
+            additional_header_fields: Option<&NSDictionary<NSString, NSString>>,
         );
 
         #[method(canStart)]

@@ -66,6 +66,14 @@ extern_methods!(
         #[method(setCurrentDirectoryURL:)]
         pub unsafe fn setCurrentDirectoryURL(&self, current_directory_url: Option<&NSURL>);
 
+        #[cfg(feature = "Foundation_NSData")]
+        #[method_id(@__retain_semantics Other launchRequirementData)]
+        pub unsafe fn launchRequirementData(&self) -> Option<Id<NSData>>;
+
+        #[cfg(feature = "Foundation_NSData")]
+        #[method(setLaunchRequirementData:)]
+        pub unsafe fn setLaunchRequirementData(&self, launch_requirement_data: Option<&NSData>);
+
         #[method_id(@__retain_semantics Other standardInput)]
         pub unsafe fn standardInput(&self) -> Option<Id<AnyObject>>;
 

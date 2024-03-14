@@ -72,6 +72,9 @@ extern_protocol!(
         #[method_id(@__retain_semantics New newSharedEventHandle)]
         unsafe fn newSharedEventHandle(&self) -> Id<MTLSharedEventHandle>;
 
+        #[method(waitUntilSignaledValue:timeoutMS:)]
+        unsafe fn waitUntilSignaledValue_timeoutMS(&self, value: u64, milliseconds: u64) -> bool;
+
         #[method(signaledValue)]
         unsafe fn signaledValue(&self) -> u64;
 

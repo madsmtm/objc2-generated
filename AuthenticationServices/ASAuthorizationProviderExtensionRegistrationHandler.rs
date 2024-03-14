@@ -34,6 +34,8 @@ ns_options!(
             alias = "ASAuthorizationProviderExtensionRequestOptionsRegistrationDeviceKeyMigration"
         )]
         RegistrationDeviceKeyMigration = 1 << 3,
+        #[doc(alias = "ASAuthorizationProviderExtensionRequestOptionsUserKeyInvalid")]
+        UserKeyInvalid = 1 << 5,
     }
 );
 

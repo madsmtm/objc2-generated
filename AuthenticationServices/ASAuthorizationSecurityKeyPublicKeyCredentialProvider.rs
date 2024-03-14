@@ -66,3 +66,15 @@ extern_methods!(
         pub unsafe fn new() -> Id<Self>;
     }
 );
+
+extern_methods!(
+    unsafe impl ASAuthorizationSecurityKeyPublicKeyCredentialProvider {}
+);
+
+#[cfg(
+    feature = "AuthenticationServices_ASAuthorizationWebBrowserSecurityKeyPublicKeyCredentialProvider"
+)]
+unsafe impl ASAuthorizationWebBrowserSecurityKeyPublicKeyCredentialProvider
+    for ASAuthorizationSecurityKeyPublicKeyCredentialProvider
+{
+}
