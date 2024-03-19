@@ -5,47 +5,31 @@ use crate::Foundation::*;
 
 pub type NSRangePointer = *mut NSRange;
 
-inline_fn!(
-    pub unsafe fn NSMakeRange(loc: NSUInteger, len: NSUInteger) -> NSRange {
-        todo!()
-    }
-);
+// TODO: pub fn NSMakeRange(loc: NSUInteger,len: NSUInteger,) -> NSRange;
 
-inline_fn!(
-    pub unsafe fn NSMaxRange(range: NSRange) -> NSUInteger {
-        todo!()
-    }
-);
+// TODO: pub fn NSMaxRange(range: NSRange,) -> NSUInteger;
 
-inline_fn!(
-    pub unsafe fn NSLocationInRange(loc: NSUInteger, range: NSRange) -> Bool {
-        todo!()
-    }
-);
+// TODO: pub fn NSLocationInRange(loc: NSUInteger,range: NSRange,) -> Bool;
 
-inline_fn!(
-    pub unsafe fn NSEqualRanges(range1: NSRange, range2: NSRange) -> Bool {
-        todo!()
-    }
-);
+// TODO: pub fn NSEqualRanges(range1: NSRange,range2: NSRange,) -> Bool;
 
-extern_fn!(
-    pub unsafe fn NSUnionRange(range1: NSRange, range2: NSRange) -> NSRange;
-);
+extern "C" {
+    pub fn NSUnionRange(range1: NSRange, range2: NSRange) -> NSRange;
+}
 
-extern_fn!(
-    pub unsafe fn NSIntersectionRange(range1: NSRange, range2: NSRange) -> NSRange;
-);
+extern "C" {
+    pub fn NSIntersectionRange(range1: NSRange, range2: NSRange) -> NSRange;
+}
 
-extern_fn!(
+extern "C" {
     #[cfg(feature = "Foundation_NSString")]
-    pub unsafe fn NSStringFromRange(range: NSRange) -> NonNull<NSString>;
-);
+    pub fn NSStringFromRange(range: NSRange) -> NonNull<NSString>;
+}
 
-extern_fn!(
+extern "C" {
     #[cfg(feature = "Foundation_NSString")]
-    pub unsafe fn NSRangeFromString(a_string: &NSString) -> NSRange;
-);
+    pub fn NSRangeFromString(a_string: &NSString) -> NSRange;
+}
 
 extern_methods!(
     /// NSValueRangeExtensions

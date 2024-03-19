@@ -3,108 +3,100 @@
 use crate::common::*;
 use crate::Foundation::*;
 
-extern_fn!(
-    pub unsafe fn NSDefaultMallocZone() -> NonNull<NSZone>;
-);
+extern "C" {
+    pub fn NSDefaultMallocZone() -> NonNull<NSZone>;
+}
 
-extern_fn!(
-    pub unsafe fn NSCreateZone(
+extern "C" {
+    pub fn NSCreateZone(
         start_size: NSUInteger,
         granularity: NSUInteger,
         can_free: Bool,
     ) -> NonNull<NSZone>;
-);
+}
 
-extern_fn!(
-    pub unsafe fn NSRecycleZone(zone: NonNull<NSZone>);
-);
+extern "C" {
+    pub fn NSRecycleZone(zone: NonNull<NSZone>);
+}
 
-extern_fn!(
+extern "C" {
     #[cfg(feature = "Foundation_NSString")]
-    pub unsafe fn NSSetZoneName(zone: *mut NSZone, name: &NSString);
-);
+    pub fn NSSetZoneName(zone: *mut NSZone, name: &NSString);
+}
 
-extern_fn!(
+extern "C" {
     #[cfg(feature = "Foundation_NSString")]
-    pub unsafe fn NSZoneName(zone: *mut NSZone) -> NonNull<NSString>;
-);
+    pub fn NSZoneName(zone: *mut NSZone) -> NonNull<NSString>;
+}
 
-extern_fn!(
-    pub unsafe fn NSZoneFromPointer(ptr: NonNull<c_void>) -> *mut NSZone;
-);
+extern "C" {
+    pub fn NSZoneFromPointer(ptr: NonNull<c_void>) -> *mut NSZone;
+}
 
-extern_fn!(
-    pub unsafe fn NSZoneMalloc(zone: *mut NSZone, size: NSUInteger) -> NonNull<c_void>;
-);
+extern "C" {
+    pub fn NSZoneMalloc(zone: *mut NSZone, size: NSUInteger) -> NonNull<c_void>;
+}
 
-extern_fn!(
-    pub unsafe fn NSZoneCalloc(
+extern "C" {
+    pub fn NSZoneCalloc(
         zone: *mut NSZone,
         num_elems: NSUInteger,
         byte_size: NSUInteger,
     ) -> NonNull<c_void>;
-);
+}
 
-extern_fn!(
-    pub unsafe fn NSZoneRealloc(
-        zone: *mut NSZone,
-        ptr: *mut c_void,
-        size: NSUInteger,
-    ) -> NonNull<c_void>;
-);
+extern "C" {
+    pub fn NSZoneRealloc(zone: *mut NSZone, ptr: *mut c_void, size: NSUInteger) -> NonNull<c_void>;
+}
 
-extern_fn!(
-    pub unsafe fn NSZoneFree(zone: *mut NSZone, ptr: NonNull<c_void>);
-);
+extern "C" {
+    pub fn NSZoneFree(zone: *mut NSZone, ptr: NonNull<c_void>);
+}
 
 pub const NSScannedOption: NSUInteger = 1 << 0;
 pub const NSCollectorDisabledOption: NSUInteger = 1 << 1;
 
-extern_fn!(
-    pub unsafe fn NSAllocateCollectable(size: NSUInteger, options: NSUInteger) -> NonNull<c_void>;
-);
+extern "C" {
+    pub fn NSAllocateCollectable(size: NSUInteger, options: NSUInteger) -> NonNull<c_void>;
+}
 
-extern_fn!(
-    pub unsafe fn NSReallocateCollectable(
+extern "C" {
+    pub fn NSReallocateCollectable(
         ptr: *mut c_void,
         size: NSUInteger,
         options: NSUInteger,
     ) -> NonNull<c_void>;
-);
+}
 
-extern_fn!(
-    pub unsafe fn NSPageSize() -> NSUInteger;
-);
+extern "C" {
+    pub fn NSPageSize() -> NSUInteger;
+}
 
-extern_fn!(
-    pub unsafe fn NSLogPageSize() -> NSUInteger;
-);
+extern "C" {
+    pub fn NSLogPageSize() -> NSUInteger;
+}
 
-extern_fn!(
-    pub unsafe fn NSRoundUpToMultipleOfPageSize(bytes: NSUInteger) -> NSUInteger;
-);
+extern "C" {
+    pub fn NSRoundUpToMultipleOfPageSize(bytes: NSUInteger) -> NSUInteger;
+}
 
-extern_fn!(
-    pub unsafe fn NSRoundDownToMultipleOfPageSize(bytes: NSUInteger) -> NSUInteger;
-);
+extern "C" {
+    pub fn NSRoundDownToMultipleOfPageSize(bytes: NSUInteger) -> NSUInteger;
+}
 
-extern_fn!(
-    pub unsafe fn NSAllocateMemoryPages(bytes: NSUInteger) -> NonNull<c_void>;
-);
+extern "C" {
+    pub fn NSAllocateMemoryPages(bytes: NSUInteger) -> NonNull<c_void>;
+}
 
-extern_fn!(
-    pub unsafe fn NSDeallocateMemoryPages(ptr: NonNull<c_void>, bytes: NSUInteger);
-);
+extern "C" {
+    pub fn NSDeallocateMemoryPages(ptr: NonNull<c_void>, bytes: NSUInteger);
+}
 
-extern_fn!(
-    pub unsafe fn NSCopyMemoryPages(
-        source: NonNull<c_void>,
-        dest: NonNull<c_void>,
-        bytes: NSUInteger,
-    );
-);
+extern "C" {
+    pub fn NSCopyMemoryPages(source: NonNull<c_void>, dest: NonNull<c_void>, bytes: NSUInteger);
+}
 
-extern_fn!(
+extern "C" {
     #[deprecated = "Use NSProcessInfo instead"]
-    pub unsafe fn NSRealMemoryAvailable() -> NSUInteger;
-);
+    pub fn NSRealMemoryAvailable() -> NSUInteger;
+}

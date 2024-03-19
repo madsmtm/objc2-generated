@@ -91,22 +91,22 @@ ns_enum!(
 
 extern_static!(GCCurrentExtendedGamepadSnapshotDataVersion: GCExtendedGamepadSnapshotDataVersion);
 
-extern_fn!(
+extern "C" {
     #[cfg(feature = "Foundation_NSData")]
     #[deprecated = "GCExtendedGamepadSnapshot has been deprecated, use [GCController controllerWithExtendedGamepad] instead"]
-    pub unsafe fn GCExtendedGamepadSnapshotDataFromNSData(
+    pub fn GCExtendedGamepadSnapshotDataFromNSData(
         snapshot_data: *mut GCExtendedGamepadSnapshotData,
         data: Option<&NSData>,
     ) -> Bool;
-);
+}
 
-extern_fn!(
+extern "C" {
     #[cfg(feature = "Foundation_NSData")]
     #[deprecated = "GCExtendedGamepadSnapshot has been deprecated, use [GCController controllerWithExtendedGamepad] instead"]
-    pub unsafe fn NSDataFromGCExtendedGamepadSnapshotData(
+    pub fn NSDataFromGCExtendedGamepadSnapshotData(
         snapshot_data: *mut GCExtendedGamepadSnapshotData,
     ) -> *mut NSData;
-);
+}
 
 extern_struct!(
     #[encoding_name("?")]
@@ -130,19 +130,19 @@ extern_struct!(
     }
 );
 
-extern_fn!(
+extern "C" {
     #[cfg(feature = "Foundation_NSData")]
     #[deprecated = "GCExtendedGamepadSnapshot has been deprecated, use [GCController controllerWithExtendedGamepad] instead"]
-    pub unsafe fn GCExtendedGamepadSnapShotDataV100FromNSData(
+    pub fn GCExtendedGamepadSnapShotDataV100FromNSData(
         snapshot_data: *mut GCExtendedGamepadSnapShotDataV100,
         data: Option<&NSData>,
     ) -> Bool;
-);
+}
 
-extern_fn!(
+extern "C" {
     #[cfg(feature = "Foundation_NSData")]
     #[deprecated = "GCExtendedGamepadSnapshot has been deprecated, use [GCController controllerWithExtendedGamepad] instead"]
-    pub unsafe fn NSDataFromGCExtendedGamepadSnapShotDataV100(
+    pub fn NSDataFromGCExtendedGamepadSnapShotDataV100(
         snapshot_data: *mut GCExtendedGamepadSnapShotDataV100,
     ) -> *mut NSData;
-);
+}

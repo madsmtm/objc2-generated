@@ -18,21 +18,21 @@ ns_options!(
     }
 );
 
-extern_fn!(
-    pub unsafe fn AXMFiHearingDeviceStreamingEar() -> AXHearingDeviceEar;
-);
+extern "C" {
+    pub fn AXMFiHearingDeviceStreamingEar() -> AXHearingDeviceEar;
+}
 
 #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(AXMFiHearingDeviceStreamingEarDidChangeNotification: &'static NSNotificationName);
 
-extern_fn!(
-    pub unsafe fn AXSupportsBidirectionalAXMFiHearingDeviceStreaming() -> Bool;
-);
+extern "C" {
+    pub fn AXSupportsBidirectionalAXMFiHearingDeviceStreaming() -> Bool;
+}
 
-extern_fn!(
+extern "C" {
     #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSUUID"))]
-    pub unsafe fn AXMFiHearingDevicePairedUUIDs() -> NonNull<NSArray<NSUUID>>;
-);
+    pub fn AXMFiHearingDevicePairedUUIDs() -> NonNull<NSArray<NSUUID>>;
+}
 
 #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(AXMFiHearingDevicePairedUUIDsDidChangeNotification: &'static NSNotificationName);

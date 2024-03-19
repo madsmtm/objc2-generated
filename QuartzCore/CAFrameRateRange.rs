@@ -14,17 +14,15 @@ extern_struct!(
 
 extern_static!(CAFrameRateRangeDefault: CAFrameRateRange);
 
-extern_fn!(
-    pub unsafe fn CAFrameRateRangeMake(
+extern "C" {
+    pub fn CAFrameRateRangeMake(
         minimum: c_float,
         maximum: c_float,
         preferred: c_float,
     ) -> CAFrameRateRange;
-);
+}
 
-extern_fn!(
-    pub unsafe fn CAFrameRateRangeIsEqualToRange(
-        range: CAFrameRateRange,
-        other: CAFrameRateRange,
-    ) -> bool;
-);
+extern "C" {
+    pub fn CAFrameRateRangeIsEqualToRange(range: CAFrameRateRange, other: CAFrameRateRange)
+        -> bool;
+}

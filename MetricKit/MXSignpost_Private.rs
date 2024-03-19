@@ -4,6 +4,6 @@ use crate::common::*;
 use crate::Foundation::*;
 use crate::MetricKit::*;
 
-extern_fn!(
-    pub unsafe fn _MXSignpostMetricsSnapshot() -> NonNull<c_void>;
-);
+extern "C" {
+    pub fn _MXSignpostMetricsSnapshot() -> NonNull<c_void>;
+}

@@ -24,103 +24,99 @@ ns_enum!(
     }
 );
 
-inline_fn!(
-    pub unsafe fn NSDecimalIsNotANumber(dcm: NonNull<NSDecimal>) -> Bool {
-        todo!()
-    }
-);
+// TODO: pub fn NSDecimalIsNotANumber(dcm: NonNull<NSDecimal>,) -> Bool;
 
-extern_fn!(
-    pub unsafe fn NSDecimalCopy(destination: NonNull<NSDecimal>, source: NonNull<NSDecimal>);
-);
+extern "C" {
+    pub fn NSDecimalCopy(destination: NonNull<NSDecimal>, source: NonNull<NSDecimal>);
+}
 
-extern_fn!(
-    pub unsafe fn NSDecimalCompact(number: NonNull<NSDecimal>);
-);
+extern "C" {
+    pub fn NSDecimalCompact(number: NonNull<NSDecimal>);
+}
 
-extern_fn!(
+extern "C" {
     #[cfg(feature = "Foundation_NSObjCRuntime")]
-    pub unsafe fn NSDecimalCompare(
+    pub fn NSDecimalCompare(
         left_operand: NonNull<NSDecimal>,
         right_operand: NonNull<NSDecimal>,
     ) -> NSComparisonResult;
-);
+}
 
-extern_fn!(
-    pub unsafe fn NSDecimalRound(
+extern "C" {
+    pub fn NSDecimalRound(
         result: NonNull<NSDecimal>,
         number: NonNull<NSDecimal>,
         scale: NSInteger,
         rounding_mode: NSRoundingMode,
     );
-);
+}
 
-extern_fn!(
-    pub unsafe fn NSDecimalNormalize(
+extern "C" {
+    pub fn NSDecimalNormalize(
         number1: NonNull<NSDecimal>,
         number2: NonNull<NSDecimal>,
         rounding_mode: NSRoundingMode,
     ) -> NSCalculationError;
-);
+}
 
-extern_fn!(
-    pub unsafe fn NSDecimalAdd(
+extern "C" {
+    pub fn NSDecimalAdd(
         result: NonNull<NSDecimal>,
         left_operand: NonNull<NSDecimal>,
         right_operand: NonNull<NSDecimal>,
         rounding_mode: NSRoundingMode,
     ) -> NSCalculationError;
-);
+}
 
-extern_fn!(
-    pub unsafe fn NSDecimalSubtract(
+extern "C" {
+    pub fn NSDecimalSubtract(
         result: NonNull<NSDecimal>,
         left_operand: NonNull<NSDecimal>,
         right_operand: NonNull<NSDecimal>,
         rounding_mode: NSRoundingMode,
     ) -> NSCalculationError;
-);
+}
 
-extern_fn!(
-    pub unsafe fn NSDecimalMultiply(
+extern "C" {
+    pub fn NSDecimalMultiply(
         result: NonNull<NSDecimal>,
         left_operand: NonNull<NSDecimal>,
         right_operand: NonNull<NSDecimal>,
         rounding_mode: NSRoundingMode,
     ) -> NSCalculationError;
-);
+}
 
-extern_fn!(
-    pub unsafe fn NSDecimalDivide(
+extern "C" {
+    pub fn NSDecimalDivide(
         result: NonNull<NSDecimal>,
         left_operand: NonNull<NSDecimal>,
         right_operand: NonNull<NSDecimal>,
         rounding_mode: NSRoundingMode,
     ) -> NSCalculationError;
-);
+}
 
-extern_fn!(
-    pub unsafe fn NSDecimalPower(
+extern "C" {
+    pub fn NSDecimalPower(
         result: NonNull<NSDecimal>,
         number: NonNull<NSDecimal>,
         power: NSUInteger,
         rounding_mode: NSRoundingMode,
     ) -> NSCalculationError;
-);
+}
 
-extern_fn!(
-    pub unsafe fn NSDecimalMultiplyByPowerOf10(
+extern "C" {
+    pub fn NSDecimalMultiplyByPowerOf10(
         result: NonNull<NSDecimal>,
         number: NonNull<NSDecimal>,
         power: c_short,
         rounding_mode: NSRoundingMode,
     ) -> NSCalculationError;
-);
+}
 
-extern_fn!(
+extern "C" {
     #[cfg(feature = "Foundation_NSString")]
-    pub unsafe fn NSDecimalString(
+    pub fn NSDecimalString(
         dcm: NonNull<NSDecimal>,
         locale: Option<&AnyObject>,
     ) -> NonNull<NSString>;
-);
+}

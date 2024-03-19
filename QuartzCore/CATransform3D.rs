@@ -29,81 +29,150 @@ extern_struct!(
 #[cfg(feature = "Foundation_NSGeometry")]
 extern_static!(CATransform3DIdentity: CATransform3D);
 
-extern_fn!(
-    #[cfg(feature = "Foundation_NSGeometry")]
-    pub fn CATransform3DIsIdentity(t: CATransform3D) -> bool;
-);
+#[cfg(feature = "Foundation_NSGeometry")]
+#[inline]
+pub extern "C" fn CATransform3DIsIdentity(t: CATransform3D) -> bool {
+    extern "C" {
+        fn CATransform3DIsIdentity(t: CATransform3D) -> bool;
+    }
+    unsafe { CATransform3DIsIdentity(t) }
+}
 
-extern_fn!(
-    #[cfg(feature = "Foundation_NSGeometry")]
-    pub fn CATransform3DEqualToTransform(a: CATransform3D, b: CATransform3D) -> bool;
-);
+#[cfg(feature = "Foundation_NSGeometry")]
+#[inline]
+pub extern "C" fn CATransform3DEqualToTransform(a: CATransform3D, b: CATransform3D) -> bool {
+    extern "C" {
+        fn CATransform3DEqualToTransform(a: CATransform3D, b: CATransform3D) -> bool;
+    }
+    unsafe { CATransform3DEqualToTransform(a, b) }
+}
 
-extern_fn!(
-    #[cfg(feature = "Foundation_NSGeometry")]
-    pub fn CATransform3DMakeTranslation(tx: CGFloat, ty: CGFloat, tz: CGFloat) -> CATransform3D;
-);
+#[cfg(feature = "Foundation_NSGeometry")]
+#[inline]
+pub extern "C" fn CATransform3DMakeTranslation(
+    tx: CGFloat,
+    ty: CGFloat,
+    tz: CGFloat,
+) -> CATransform3D {
+    extern "C" {
+        fn CATransform3DMakeTranslation(tx: CGFloat, ty: CGFloat, tz: CGFloat) -> CATransform3D;
+    }
+    unsafe { CATransform3DMakeTranslation(tx, ty, tz) }
+}
 
-extern_fn!(
-    #[cfg(feature = "Foundation_NSGeometry")]
-    pub fn CATransform3DMakeScale(sx: CGFloat, sy: CGFloat, sz: CGFloat) -> CATransform3D;
-);
+#[cfg(feature = "Foundation_NSGeometry")]
+#[inline]
+pub extern "C" fn CATransform3DMakeScale(sx: CGFloat, sy: CGFloat, sz: CGFloat) -> CATransform3D {
+    extern "C" {
+        fn CATransform3DMakeScale(sx: CGFloat, sy: CGFloat, sz: CGFloat) -> CATransform3D;
+    }
+    unsafe { CATransform3DMakeScale(sx, sy, sz) }
+}
 
-extern_fn!(
-    #[cfg(feature = "Foundation_NSGeometry")]
-    pub fn CATransform3DMakeRotation(
-        angle: CGFloat,
-        x: CGFloat,
-        y: CGFloat,
-        z: CGFloat,
-    ) -> CATransform3D;
-);
+#[cfg(feature = "Foundation_NSGeometry")]
+#[inline]
+pub extern "C" fn CATransform3DMakeRotation(
+    angle: CGFloat,
+    x: CGFloat,
+    y: CGFloat,
+    z: CGFloat,
+) -> CATransform3D {
+    extern "C" {
+        fn CATransform3DMakeRotation(
+            angle: CGFloat,
+            x: CGFloat,
+            y: CGFloat,
+            z: CGFloat,
+        ) -> CATransform3D;
+    }
+    unsafe { CATransform3DMakeRotation(angle, x, y, z) }
+}
 
-extern_fn!(
-    #[cfg(feature = "Foundation_NSGeometry")]
-    pub fn CATransform3DTranslate(
-        t: CATransform3D,
-        tx: CGFloat,
-        ty: CGFloat,
-        tz: CGFloat,
-    ) -> CATransform3D;
-);
+#[cfg(feature = "Foundation_NSGeometry")]
+#[inline]
+pub extern "C" fn CATransform3DTranslate(
+    t: CATransform3D,
+    tx: CGFloat,
+    ty: CGFloat,
+    tz: CGFloat,
+) -> CATransform3D {
+    extern "C" {
+        fn CATransform3DTranslate(
+            t: CATransform3D,
+            tx: CGFloat,
+            ty: CGFloat,
+            tz: CGFloat,
+        ) -> CATransform3D;
+    }
+    unsafe { CATransform3DTranslate(t, tx, ty, tz) }
+}
 
-extern_fn!(
-    #[cfg(feature = "Foundation_NSGeometry")]
-    pub fn CATransform3DScale(
-        t: CATransform3D,
-        sx: CGFloat,
-        sy: CGFloat,
-        sz: CGFloat,
-    ) -> CATransform3D;
-);
+#[cfg(feature = "Foundation_NSGeometry")]
+#[inline]
+pub extern "C" fn CATransform3DScale(
+    t: CATransform3D,
+    sx: CGFloat,
+    sy: CGFloat,
+    sz: CGFloat,
+) -> CATransform3D {
+    extern "C" {
+        fn CATransform3DScale(
+            t: CATransform3D,
+            sx: CGFloat,
+            sy: CGFloat,
+            sz: CGFloat,
+        ) -> CATransform3D;
+    }
+    unsafe { CATransform3DScale(t, sx, sy, sz) }
+}
 
-extern_fn!(
-    #[cfg(feature = "Foundation_NSGeometry")]
-    pub fn CATransform3DRotate(
-        t: CATransform3D,
-        angle: CGFloat,
-        x: CGFloat,
-        y: CGFloat,
-        z: CGFloat,
-    ) -> CATransform3D;
-);
+#[cfg(feature = "Foundation_NSGeometry")]
+#[inline]
+pub extern "C" fn CATransform3DRotate(
+    t: CATransform3D,
+    angle: CGFloat,
+    x: CGFloat,
+    y: CGFloat,
+    z: CGFloat,
+) -> CATransform3D {
+    extern "C" {
+        fn CATransform3DRotate(
+            t: CATransform3D,
+            angle: CGFloat,
+            x: CGFloat,
+            y: CGFloat,
+            z: CGFloat,
+        ) -> CATransform3D;
+    }
+    unsafe { CATransform3DRotate(t, angle, x, y, z) }
+}
 
-extern_fn!(
-    #[cfg(feature = "Foundation_NSGeometry")]
-    pub fn CATransform3DConcat(a: CATransform3D, b: CATransform3D) -> CATransform3D;
-);
+#[cfg(feature = "Foundation_NSGeometry")]
+#[inline]
+pub extern "C" fn CATransform3DConcat(a: CATransform3D, b: CATransform3D) -> CATransform3D {
+    extern "C" {
+        fn CATransform3DConcat(a: CATransform3D, b: CATransform3D) -> CATransform3D;
+    }
+    unsafe { CATransform3DConcat(a, b) }
+}
 
-extern_fn!(
-    #[cfg(feature = "Foundation_NSGeometry")]
-    pub fn CATransform3DInvert(t: CATransform3D) -> CATransform3D;
-);
+#[cfg(feature = "Foundation_NSGeometry")]
+#[inline]
+pub extern "C" fn CATransform3DInvert(t: CATransform3D) -> CATransform3D {
+    extern "C" {
+        fn CATransform3DInvert(t: CATransform3D) -> CATransform3D;
+    }
+    unsafe { CATransform3DInvert(t) }
+}
 
-extern_fn!(
-    #[cfg(feature = "Foundation_NSGeometry")]
-    pub fn CATransform3DIsAffine(t: CATransform3D) -> bool;
-);
+#[cfg(feature = "Foundation_NSGeometry")]
+#[inline]
+pub extern "C" fn CATransform3DIsAffine(t: CATransform3D) -> bool {
+    extern "C" {
+        fn CATransform3DIsAffine(t: CATransform3D) -> bool;
+    }
+    unsafe { CATransform3DIsAffine(t) }
+}
 
 extern_category!(
     /// Category "CATransform3DAdditions" on [`NSValue`].

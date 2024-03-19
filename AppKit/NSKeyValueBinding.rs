@@ -77,9 +77,9 @@ extern_static!(NSNoSelectionMarker: &'static AnyObject);
 
 extern_static!(NSNotApplicableMarker: &'static AnyObject);
 
-extern_fn!(
-    pub unsafe fn NSIsControllerMarker(object: Option<&AnyObject>) -> Bool;
-);
+extern "C" {
+    pub fn NSIsControllerMarker(object: Option<&AnyObject>) -> Bool;
+}
 
 #[cfg(feature = "Foundation_NSString")]
 typed_enum!(

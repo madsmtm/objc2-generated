@@ -25,32 +25,18 @@ extern_struct!(
     }
 );
 
-inline_fn!(
-    pub unsafe fn MKCoordinateSpanMake(
-        latitude_delta: CLLocationDegrees,
-        longitude_delta: CLLocationDegrees,
-    ) -> MKCoordinateSpan {
-        todo!()
-    }
-);
+// TODO: pub fn MKCoordinateSpanMake(latitude_delta: CLLocationDegrees,longitude_delta: CLLocationDegrees,) -> MKCoordinateSpan;
 
-inline_fn!(
-    pub unsafe fn MKCoordinateRegionMake(
-        center_coordinate: CLLocationCoordinate2D,
-        span: MKCoordinateSpan,
-    ) -> MKCoordinateRegion {
-        todo!()
-    }
-);
+// TODO: pub fn MKCoordinateRegionMake(center_coordinate: CLLocationCoordinate2D,span: MKCoordinateSpan,) -> MKCoordinateRegion;
 
-extern_fn!(
+extern "C" {
     #[cfg(feature = "CoreLocation_CLLocation")]
-    pub unsafe fn MKCoordinateRegionMakeWithDistance(
+    pub fn MKCoordinateRegionMakeWithDistance(
         center_coordinate: CLLocationCoordinate2D,
         latitudinal_meters: CLLocationDistance,
         longitudinal_meters: CLLocationDistance,
     ) -> MKCoordinateRegion;
-);
+}
 
 extern_struct!(
     #[encoding_name("?")]
@@ -83,192 +69,111 @@ extern_static!(MKMapSizeWorld: MKMapSize);
 
 extern_static!(MKMapRectWorld: MKMapRect);
 
-extern_fn!(
+extern "C" {
     #[cfg(feature = "CoreLocation_CLLocation")]
-    pub unsafe fn MKMapPointForCoordinate(coordinate: CLLocationCoordinate2D) -> MKMapPoint;
-);
+    pub fn MKMapPointForCoordinate(coordinate: CLLocationCoordinate2D) -> MKMapPoint;
+}
 
-extern_fn!(
+extern "C" {
     #[cfg(feature = "CoreLocation_CLLocation")]
-    pub unsafe fn MKCoordinateForMapPoint(map_point: MKMapPoint) -> CLLocationCoordinate2D;
-);
+    pub fn MKCoordinateForMapPoint(map_point: MKMapPoint) -> CLLocationCoordinate2D;
+}
 
-extern_fn!(
+extern "C" {
     #[cfg(feature = "CoreLocation_CLLocation")]
-    pub unsafe fn MKMetersPerMapPointAtLatitude(latitude: CLLocationDegrees) -> CLLocationDistance;
-);
+    pub fn MKMetersPerMapPointAtLatitude(latitude: CLLocationDegrees) -> CLLocationDistance;
+}
 
-extern_fn!(
+extern "C" {
     #[cfg(feature = "CoreLocation_CLLocation")]
-    pub unsafe fn MKMapPointsPerMeterAtLatitude(latitude: CLLocationDegrees) -> c_double;
-);
+    pub fn MKMapPointsPerMeterAtLatitude(latitude: CLLocationDegrees) -> c_double;
+}
 
-extern_fn!(
+extern "C" {
     #[cfg(feature = "CoreLocation_CLLocation")]
-    pub unsafe fn MKMetersBetweenMapPoints(a: MKMapPoint, b: MKMapPoint) -> CLLocationDistance;
-);
+    pub fn MKMetersBetweenMapPoints(a: MKMapPoint, b: MKMapPoint) -> CLLocationDistance;
+}
 
 extern_static!(MKMapRectNull: MKMapRect);
 
-inline_fn!(
-    pub unsafe fn MKMapPointMake(x: c_double, y: c_double) -> MKMapPoint {
-        todo!()
-    }
-);
+// TODO: pub fn MKMapPointMake(x: c_double,y: c_double,) -> MKMapPoint;
 
-inline_fn!(
-    pub unsafe fn MKMapSizeMake(width: c_double, height: c_double) -> MKMapSize {
-        todo!()
-    }
-);
+// TODO: pub fn MKMapSizeMake(width: c_double,height: c_double,) -> MKMapSize;
 
-inline_fn!(
-    pub unsafe fn MKMapRectMake(
-        x: c_double,
-        y: c_double,
-        width: c_double,
-        height: c_double,
-    ) -> MKMapRect {
-        todo!()
-    }
-);
+// TODO: pub fn MKMapRectMake(x: c_double,y: c_double,width: c_double,height: c_double,) -> MKMapRect;
 
-inline_fn!(
-    pub unsafe fn MKMapRectGetMinX(rect: MKMapRect) -> c_double {
-        todo!()
-    }
-);
+// TODO: pub fn MKMapRectGetMinX(rect: MKMapRect,) -> c_double;
 
-inline_fn!(
-    pub unsafe fn MKMapRectGetMinY(rect: MKMapRect) -> c_double {
-        todo!()
-    }
-);
+// TODO: pub fn MKMapRectGetMinY(rect: MKMapRect,) -> c_double;
 
-inline_fn!(
-    pub unsafe fn MKMapRectGetMidX(rect: MKMapRect) -> c_double {
-        todo!()
-    }
-);
+// TODO: pub fn MKMapRectGetMidX(rect: MKMapRect,) -> c_double;
 
-inline_fn!(
-    pub unsafe fn MKMapRectGetMidY(rect: MKMapRect) -> c_double {
-        todo!()
-    }
-);
+// TODO: pub fn MKMapRectGetMidY(rect: MKMapRect,) -> c_double;
 
-inline_fn!(
-    pub unsafe fn MKMapRectGetMaxX(rect: MKMapRect) -> c_double {
-        todo!()
-    }
-);
+// TODO: pub fn MKMapRectGetMaxX(rect: MKMapRect,) -> c_double;
 
-inline_fn!(
-    pub unsafe fn MKMapRectGetMaxY(rect: MKMapRect) -> c_double {
-        todo!()
-    }
-);
+// TODO: pub fn MKMapRectGetMaxY(rect: MKMapRect,) -> c_double;
 
-inline_fn!(
-    pub unsafe fn MKMapRectGetWidth(rect: MKMapRect) -> c_double {
-        todo!()
-    }
-);
+// TODO: pub fn MKMapRectGetWidth(rect: MKMapRect,) -> c_double;
 
-inline_fn!(
-    pub unsafe fn MKMapRectGetHeight(rect: MKMapRect) -> c_double {
-        todo!()
-    }
-);
+// TODO: pub fn MKMapRectGetHeight(rect: MKMapRect,) -> c_double;
 
-inline_fn!(
-    pub unsafe fn MKMapPointEqualToPoint(point1: MKMapPoint, point2: MKMapPoint) -> Bool {
-        todo!()
-    }
-);
+// TODO: pub fn MKMapPointEqualToPoint(point1: MKMapPoint,point2: MKMapPoint,) -> Bool;
 
-inline_fn!(
-    pub unsafe fn MKMapSizeEqualToSize(size1: MKMapSize, size2: MKMapSize) -> Bool {
-        todo!()
-    }
-);
+// TODO: pub fn MKMapSizeEqualToSize(size1: MKMapSize,size2: MKMapSize,) -> Bool;
 
-inline_fn!(
-    pub unsafe fn MKMapRectEqualToRect(rect1: MKMapRect, rect2: MKMapRect) -> Bool {
-        todo!()
-    }
-);
+// TODO: pub fn MKMapRectEqualToRect(rect1: MKMapRect,rect2: MKMapRect,) -> Bool;
 
-inline_fn!(
-    pub unsafe fn MKMapRectIsNull(rect: MKMapRect) -> Bool {
-        todo!()
-    }
-);
+// TODO: pub fn MKMapRectIsNull(rect: MKMapRect,) -> Bool;
 
-inline_fn!(
-    pub unsafe fn MKMapRectIsEmpty(rect: MKMapRect) -> Bool {
-        todo!()
-    }
-);
+// TODO: pub fn MKMapRectIsEmpty(rect: MKMapRect,) -> Bool;
 
-inline_fn!(
-    pub unsafe fn MKStringFromMapPoint(point: MKMapPoint) -> NonNull<NSString> {
-        todo!()
-    }
-);
+// TODO: pub fn MKStringFromMapPoint(point: MKMapPoint,) -> NonNull<NSString>;
 
-inline_fn!(
-    pub unsafe fn MKStringFromMapSize(size: MKMapSize) -> NonNull<NSString> {
-        todo!()
-    }
-);
+// TODO: pub fn MKStringFromMapSize(size: MKMapSize,) -> NonNull<NSString>;
 
-inline_fn!(
-    pub unsafe fn MKStringFromMapRect(rect: MKMapRect) -> NonNull<NSString> {
-        todo!()
-    }
-);
+// TODO: pub fn MKStringFromMapRect(rect: MKMapRect,) -> NonNull<NSString>;
 
-extern_fn!(
-    pub unsafe fn MKMapRectUnion(rect1: MKMapRect, rect2: MKMapRect) -> MKMapRect;
-);
+extern "C" {
+    pub fn MKMapRectUnion(rect1: MKMapRect, rect2: MKMapRect) -> MKMapRect;
+}
 
-extern_fn!(
-    pub unsafe fn MKMapRectIntersection(rect1: MKMapRect, rect2: MKMapRect) -> MKMapRect;
-);
+extern "C" {
+    pub fn MKMapRectIntersection(rect1: MKMapRect, rect2: MKMapRect) -> MKMapRect;
+}
 
-extern_fn!(
-    pub unsafe fn MKMapRectInset(rect: MKMapRect, dx: c_double, dy: c_double) -> MKMapRect;
-);
+extern "C" {
+    pub fn MKMapRectInset(rect: MKMapRect, dx: c_double, dy: c_double) -> MKMapRect;
+}
 
-extern_fn!(
-    pub unsafe fn MKMapRectOffset(rect: MKMapRect, dx: c_double, dy: c_double) -> MKMapRect;
-);
+extern "C" {
+    pub fn MKMapRectOffset(rect: MKMapRect, dx: c_double, dy: c_double) -> MKMapRect;
+}
 
-extern_fn!(
-    pub unsafe fn MKMapRectContainsPoint(rect: MKMapRect, point: MKMapPoint) -> Bool;
-);
+extern "C" {
+    pub fn MKMapRectContainsPoint(rect: MKMapRect, point: MKMapPoint) -> Bool;
+}
 
-extern_fn!(
-    pub unsafe fn MKMapRectContainsRect(rect1: MKMapRect, rect2: MKMapRect) -> Bool;
-);
+extern "C" {
+    pub fn MKMapRectContainsRect(rect1: MKMapRect, rect2: MKMapRect) -> Bool;
+}
 
-extern_fn!(
-    pub unsafe fn MKMapRectIntersectsRect(rect1: MKMapRect, rect2: MKMapRect) -> Bool;
-);
+extern "C" {
+    pub fn MKMapRectIntersectsRect(rect1: MKMapRect, rect2: MKMapRect) -> Bool;
+}
 
-extern_fn!(
+extern "C" {
     #[cfg(feature = "CoreLocation_CLLocation")]
-    pub unsafe fn MKCoordinateRegionForMapRect(rect: MKMapRect) -> MKCoordinateRegion;
-);
+    pub fn MKCoordinateRegionForMapRect(rect: MKMapRect) -> MKCoordinateRegion;
+}
 
-extern_fn!(
-    pub unsafe fn MKMapRectSpans180thMeridian(rect: MKMapRect) -> Bool;
-);
+extern "C" {
+    pub fn MKMapRectSpans180thMeridian(rect: MKMapRect) -> Bool;
+}
 
-extern_fn!(
-    pub unsafe fn MKMapRectRemainder(rect: MKMapRect) -> MKMapRect;
-);
+extern "C" {
+    pub fn MKMapRectRemainder(rect: MKMapRect) -> MKMapRect;
+}
 
 extern_category!(
     /// Category on [`NSValue`].

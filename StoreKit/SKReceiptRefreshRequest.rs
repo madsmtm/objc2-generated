@@ -49,9 +49,9 @@ extern_methods!(
     }
 );
 
-extern_fn!(
-    pub unsafe fn SKTerminateForInvalidReceipt();
-);
+extern "C" {
+    pub fn SKTerminateForInvalidReceipt();
+}
 
 #[cfg(feature = "Foundation_NSString")]
 extern_static!(SKReceiptPropertyIsExpired: &'static NSString);

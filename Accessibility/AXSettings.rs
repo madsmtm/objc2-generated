@@ -4,16 +4,16 @@ use crate::common::*;
 use crate::Accessibility::*;
 use crate::Foundation::*;
 
-extern_fn!(
-    pub unsafe fn AXPrefersHorizontalTextLayout() -> Bool;
-);
+extern "C" {
+    pub fn AXPrefersHorizontalTextLayout() -> Bool;
+}
 
 #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(AXPrefersHorizontalTextLayoutDidChangeNotification: &'static NSNotificationName);
 
-extern_fn!(
-    pub unsafe fn AXAnimatedImagesEnabled() -> Bool;
-);
+extern "C" {
+    pub fn AXAnimatedImagesEnabled() -> Bool;
+}
 
 #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(AXAnimatedImagesEnabledDidChangeNotification: &'static NSNotificationName);

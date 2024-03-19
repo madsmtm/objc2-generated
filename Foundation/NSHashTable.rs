@@ -164,71 +164,68 @@ extern_struct!(
     }
 );
 
-extern_fn!(
-    pub unsafe fn NSFreeHashTable(table: &NSHashTable);
-);
+extern "C" {
+    pub fn NSFreeHashTable(table: &NSHashTable);
+}
 
-extern_fn!(
-    pub unsafe fn NSResetHashTable(table: &NSHashTable);
-);
+extern "C" {
+    pub fn NSResetHashTable(table: &NSHashTable);
+}
 
-extern_fn!(
-    pub unsafe fn NSCompareHashTables(table1: &NSHashTable, table2: &NSHashTable) -> Bool;
-);
+extern "C" {
+    pub fn NSCompareHashTables(table1: &NSHashTable, table2: &NSHashTable) -> Bool;
+}
 
-extern_fn!(
+extern "C" {
     #[cfg(feature = "Foundation_NSZone")]
-    pub unsafe fn NSCopyHashTableWithZone(
-        table: &NSHashTable,
-        zone: *mut NSZone,
-    ) -> NonNull<NSHashTable>;
-);
+    pub fn NSCopyHashTableWithZone(table: &NSHashTable, zone: *mut NSZone) -> NonNull<NSHashTable>;
+}
 
-extern_fn!(
-    pub unsafe fn NSHashGet(table: &NSHashTable, pointer: *mut c_void) -> NonNull<c_void>;
-);
+extern "C" {
+    pub fn NSHashGet(table: &NSHashTable, pointer: *mut c_void) -> NonNull<c_void>;
+}
 
-extern_fn!(
-    pub unsafe fn NSHashInsert(table: &NSHashTable, pointer: *mut c_void);
-);
+extern "C" {
+    pub fn NSHashInsert(table: &NSHashTable, pointer: *mut c_void);
+}
 
-extern_fn!(
-    pub unsafe fn NSHashInsertKnownAbsent(table: &NSHashTable, pointer: *mut c_void);
-);
+extern "C" {
+    pub fn NSHashInsertKnownAbsent(table: &NSHashTable, pointer: *mut c_void);
+}
 
-extern_fn!(
-    pub unsafe fn NSHashInsertIfAbsent(table: &NSHashTable, pointer: *mut c_void) -> *mut c_void;
-);
+extern "C" {
+    pub fn NSHashInsertIfAbsent(table: &NSHashTable, pointer: *mut c_void) -> *mut c_void;
+}
 
-extern_fn!(
-    pub unsafe fn NSHashRemove(table: &NSHashTable, pointer: *mut c_void);
-);
+extern "C" {
+    pub fn NSHashRemove(table: &NSHashTable, pointer: *mut c_void);
+}
 
-extern_fn!(
-    pub unsafe fn NSEnumerateHashTable(table: &NSHashTable) -> NSHashEnumerator;
-);
+extern "C" {
+    pub fn NSEnumerateHashTable(table: &NSHashTable) -> NSHashEnumerator;
+}
 
-extern_fn!(
-    pub unsafe fn NSNextHashEnumeratorItem(enumerator: NonNull<NSHashEnumerator>) -> *mut c_void;
-);
+extern "C" {
+    pub fn NSNextHashEnumeratorItem(enumerator: NonNull<NSHashEnumerator>) -> *mut c_void;
+}
 
-extern_fn!(
-    pub unsafe fn NSEndHashTableEnumeration(enumerator: NonNull<NSHashEnumerator>);
-);
+extern "C" {
+    pub fn NSEndHashTableEnumeration(enumerator: NonNull<NSHashEnumerator>);
+}
 
-extern_fn!(
-    pub unsafe fn NSCountHashTable(table: &NSHashTable) -> NSUInteger;
-);
+extern "C" {
+    pub fn NSCountHashTable(table: &NSHashTable) -> NSUInteger;
+}
 
-extern_fn!(
+extern "C" {
     #[cfg(feature = "Foundation_NSString")]
-    pub unsafe fn NSStringFromHashTable(table: &NSHashTable) -> NonNull<NSString>;
-);
+    pub fn NSStringFromHashTable(table: &NSHashTable) -> NonNull<NSString>;
+}
 
-extern_fn!(
+extern "C" {
     #[cfg(feature = "Foundation_NSArray")]
-    pub unsafe fn NSAllHashTableObjects(table: &NSHashTable) -> NonNull<NSArray>;
-);
+    pub fn NSAllHashTableObjects(table: &NSHashTable) -> NonNull<NSArray>;
+}
 
 extern_struct!(
     #[encoding_name("?")]
@@ -245,22 +242,22 @@ extern_struct!(
     }
 );
 
-extern_fn!(
+extern "C" {
     #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSZone"))]
-    pub unsafe fn NSCreateHashTableWithZone(
+    pub fn NSCreateHashTableWithZone(
         call_backs: NSHashTableCallBacks,
         capacity: NSUInteger,
         zone: *mut NSZone,
     ) -> NonNull<NSHashTable>;
-);
+}
 
-extern_fn!(
+extern "C" {
     #[cfg(feature = "Foundation_NSString")]
-    pub unsafe fn NSCreateHashTable(
+    pub fn NSCreateHashTable(
         call_backs: NSHashTableCallBacks,
         capacity: NSUInteger,
     ) -> NonNull<NSHashTable>;
-);
+}
 
 #[cfg(feature = "Foundation_NSString")]
 extern_static!(NSIntegerHashCallBacks: NSHashTableCallBacks);

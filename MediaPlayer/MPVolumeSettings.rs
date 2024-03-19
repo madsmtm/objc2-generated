@@ -5,17 +5,17 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::MediaPlayer::*;
 
-extern_fn!(
+extern "C" {
     #[deprecated = "Use MPVolumeView to present volume controls."]
-    pub unsafe fn MPVolumeSettingsAlertShow();
-);
+    pub fn MPVolumeSettingsAlertShow();
+}
 
-extern_fn!(
+extern "C" {
     #[deprecated = "Use MPVolumeView to present volume controls."]
-    pub unsafe fn MPVolumeSettingsAlertHide();
-);
+    pub fn MPVolumeSettingsAlertHide();
+}
 
-extern_fn!(
+extern "C" {
     #[deprecated = "Use MPVolumeView to present volume controls."]
-    pub unsafe fn MPVolumeSettingsAlertIsVisible() -> Bool;
-);
+    pub fn MPVolumeSettingsAlertIsVisible() -> Bool;
+}

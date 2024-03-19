@@ -13,9 +13,9 @@ extern_static!(NSUncaughtRuntimeErrorException: Option<&'static NSString>);
 #[cfg(feature = "Foundation_NSString")]
 extern_static!(NSStackTraceKey: Option<&'static NSString>);
 
-extern_fn!(
-    pub unsafe fn NSExceptionHandlerResume();
-);
+extern "C" {
+    pub fn NSExceptionHandlerResume();
+}
 
 pub const NSLogUncaughtExceptionMask: c_uint = 1 << 0;
 pub const NSHandleUncaughtExceptionMask: c_uint = 1 << 1;

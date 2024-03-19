@@ -1167,48 +1167,45 @@ extern_methods!(
     }
 );
 
-extern_fn!(
-    pub unsafe fn NSApplicationMain(argc: c_int, argv: NonNull<NonNull<c_char>>) -> c_int;
-);
+extern "C" {
+    pub fn NSApplicationMain(argc: c_int, argv: NonNull<NonNull<c_char>>) -> c_int;
+}
 
-extern_fn!(
-    pub unsafe fn NSApplicationLoad() -> Bool;
-);
+extern "C" {
+    pub fn NSApplicationLoad() -> Bool;
+}
 
-extern_fn!(
+extern "C" {
     #[cfg(feature = "Foundation_NSString")]
-    pub unsafe fn NSShowsServicesMenuItem(item_name: &NSString) -> Bool;
-);
+    pub fn NSShowsServicesMenuItem(item_name: &NSString) -> Bool;
+}
 
-extern_fn!(
+extern "C" {
     #[cfg(feature = "Foundation_NSString")]
-    pub unsafe fn NSSetShowsServicesMenuItem(item_name: &NSString, enabled: Bool) -> NSInteger;
-);
+    pub fn NSSetShowsServicesMenuItem(item_name: &NSString, enabled: Bool) -> NSInteger;
+}
 
-extern_fn!(
-    pub unsafe fn NSUpdateDynamicServices();
-);
+extern "C" {
+    pub fn NSUpdateDynamicServices();
+}
 
-extern_fn!(
+extern "C" {
     #[cfg(all(feature = "AppKit_NSPasteboard", feature = "Foundation_NSString"))]
-    pub unsafe fn NSPerformService(item_name: &NSString, pboard: Option<&NSPasteboard>) -> Bool;
-);
+    pub fn NSPerformService(item_name: &NSString, pboard: Option<&NSPasteboard>) -> Bool;
+}
 
 #[cfg(feature = "Foundation_NSString")]
 pub type NSServiceProviderName = NSString;
 
-extern_fn!(
+extern "C" {
     #[cfg(feature = "Foundation_NSString")]
-    pub unsafe fn NSRegisterServicesProvider(
-        provider: Option<&AnyObject>,
-        name: &NSServiceProviderName,
-    );
-);
+    pub fn NSRegisterServicesProvider(provider: Option<&AnyObject>, name: &NSServiceProviderName);
+}
 
-extern_fn!(
+extern "C" {
     #[cfg(feature = "Foundation_NSString")]
-    pub unsafe fn NSUnregisterServicesProvider(name: &NSServiceProviderName);
-);
+    pub fn NSUnregisterServicesProvider(name: &NSServiceProviderName);
+}
 
 #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSApplicationDidBecomeActiveNotification: &'static NSNotificationName);

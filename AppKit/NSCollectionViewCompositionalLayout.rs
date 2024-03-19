@@ -69,16 +69,7 @@ ns_enum!(
     }
 );
 
-inline_fn!(
-    pub unsafe fn NSDirectionalEdgeInsetsMake(
-        top: CGFloat,
-        leading: CGFloat,
-        bottom: CGFloat,
-        trailing: CGFloat,
-    ) -> NSDirectionalEdgeInsets {
-        todo!()
-    }
-);
+// TODO: pub fn NSDirectionalEdgeInsetsMake(top: CGFloat,leading: CGFloat,bottom: CGFloat,trailing: CGFloat,) -> NSDirectionalEdgeInsets;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

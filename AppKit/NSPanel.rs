@@ -159,10 +159,10 @@ extern_methods!(
     }
 );
 
-extern_fn!(
+extern "C" {
     #[deprecated = "Use NSAlert instead"]
-    pub unsafe fn NSReleaseAlertPanel(panel: Option<&AnyObject>);
-);
+    pub fn NSReleaseAlertPanel(panel: Option<&AnyObject>);
+}
 
 #[deprecated = "Use NSAlertFirstButtonReturn with an NSAlert presentation instead"]
 pub const NSAlertDefaultReturn: c_int = 1;

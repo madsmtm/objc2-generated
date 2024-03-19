@@ -16,14 +16,14 @@ pub const NSMacintoshInterfaceStyle: c_uint = 3;
 
 pub type NSInterfaceStyle = NSUInteger;
 
-extern_fn!(
+extern "C" {
     #[cfg(all(feature = "AppKit_NSResponder", feature = "Foundation_NSString"))]
     #[deprecated]
-    pub unsafe fn NSInterfaceStyleForKey(
+    pub fn NSInterfaceStyleForKey(
         key: Option<&NSString>,
         responder: Option<&NSResponder>,
     ) -> NSInterfaceStyle;
-);
+}
 
 extern_methods!(
     /// NSInterfaceStyle

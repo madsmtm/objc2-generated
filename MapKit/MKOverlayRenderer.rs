@@ -96,7 +96,7 @@ extern_methods!(
     }
 );
 
-extern_fn!(
+extern "C" {
     #[cfg(all(feature = "Foundation_NSGeometry", feature = "MapKit_MKGeometry"))]
-    pub unsafe fn MKRoadWidthAtZoomScale(zoom_scale: MKZoomScale) -> CGFloat;
-);
+    pub fn MKRoadWidthAtZoomScale(zoom_scale: MKZoomScale) -> CGFloat;
+}

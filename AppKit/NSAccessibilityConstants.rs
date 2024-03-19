@@ -1161,14 +1161,14 @@ extern_static!(NSAccessibilityPriorityKey: &'static NSAccessibilityNotificationU
 #[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityAnnouncementKey: &'static NSAccessibilityNotificationUserInfoKey);
 
-extern_fn!(
+extern "C" {
     #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
-    pub unsafe fn NSAccessibilityPostNotificationWithUserInfo(
+    pub fn NSAccessibilityPostNotificationWithUserInfo(
         element: &AnyObject,
         notification: &NSAccessibilityNotificationName,
         user_info: Option<&NSDictionary<NSAccessibilityNotificationUserInfoKey, AnyObject>>,
     );
-);
+}
 
 ns_enum!(
     #[underlying(NSInteger)]

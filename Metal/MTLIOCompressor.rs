@@ -16,29 +16,29 @@ ns_enum!(
 
 pub type MTLIOCompressionContext = *mut c_void;
 
-extern_fn!(
-    pub unsafe fn MTLIOCompressionContextDefaultChunkSize() -> usize;
-);
+extern "C" {
+    pub fn MTLIOCompressionContextDefaultChunkSize() -> usize;
+}
 
-extern_fn!(
+extern "C" {
     #[cfg(feature = "Metal_MTLDevice")]
-    pub unsafe fn MTLIOCreateCompressionContext(
+    pub fn MTLIOCreateCompressionContext(
         path: NonNull<c_char>,
         r#type: MTLIOCompressionMethod,
         chunk_size: usize,
     ) -> MTLIOCompressionContext;
-);
+}
 
-extern_fn!(
-    pub unsafe fn MTLIOCompressionContextAppendData(
+extern "C" {
+    pub fn MTLIOCompressionContextAppendData(
         context: MTLIOCompressionContext,
         data: NonNull<c_void>,
         size: usize,
     );
-);
+}
 
-extern_fn!(
-    pub unsafe fn MTLIOFlushAndDestroyCompressionContext(
+extern "C" {
+    pub fn MTLIOFlushAndDestroyCompressionContext(
         context: MTLIOCompressionContext,
     ) -> MTLIOCompressionStatus;
-);
+}

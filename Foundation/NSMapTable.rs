@@ -190,89 +190,86 @@ extern_struct!(
     }
 );
 
-extern_fn!(
-    pub unsafe fn NSResetMapTable(table: &NSMapTable);
-);
+extern "C" {
+    pub fn NSResetMapTable(table: &NSMapTable);
+}
 
-extern_fn!(
-    pub unsafe fn NSCompareMapTables(table1: &NSMapTable, table2: &NSMapTable) -> Bool;
-);
+extern "C" {
+    pub fn NSCompareMapTables(table1: &NSMapTable, table2: &NSMapTable) -> Bool;
+}
 
-extern_fn!(
+extern "C" {
     #[cfg(feature = "Foundation_NSZone")]
-    pub unsafe fn NSCopyMapTableWithZone(
-        table: &NSMapTable,
-        zone: *mut NSZone,
-    ) -> NonNull<NSMapTable>;
-);
+    pub fn NSCopyMapTableWithZone(table: &NSMapTable, zone: *mut NSZone) -> NonNull<NSMapTable>;
+}
 
-extern_fn!(
-    pub unsafe fn NSMapMember(
+extern "C" {
+    pub fn NSMapMember(
         table: &NSMapTable,
         key: NonNull<c_void>,
         original_key: *mut *mut c_void,
         value: *mut *mut c_void,
     ) -> Bool;
-);
+}
 
-extern_fn!(
-    pub unsafe fn NSMapGet(table: &NSMapTable, key: *mut c_void) -> *mut c_void;
-);
+extern "C" {
+    pub fn NSMapGet(table: &NSMapTable, key: *mut c_void) -> *mut c_void;
+}
 
-extern_fn!(
-    pub unsafe fn NSMapInsert(table: &NSMapTable, key: *mut c_void, value: *mut c_void);
-);
+extern "C" {
+    pub fn NSMapInsert(table: &NSMapTable, key: *mut c_void, value: *mut c_void);
+}
 
-extern_fn!(
-    pub unsafe fn NSMapInsertKnownAbsent(table: &NSMapTable, key: *mut c_void, value: *mut c_void);
-);
+extern "C" {
+    pub fn NSMapInsertKnownAbsent(table: &NSMapTable, key: *mut c_void, value: *mut c_void);
+}
 
-extern_fn!(
-    pub unsafe fn NSMapInsertIfAbsent(
+extern "C" {
+    pub fn NSMapInsertIfAbsent(
         table: &NSMapTable,
         key: *mut c_void,
         value: *mut c_void,
     ) -> *mut c_void;
-);
+}
 
-extern_fn!(
-    pub unsafe fn NSMapRemove(table: &NSMapTable, key: *mut c_void);
-);
+extern "C" {
+    pub fn NSMapRemove(table: &NSMapTable, key: *mut c_void);
+}
 
-extern_fn!(
-    pub unsafe fn NSEnumerateMapTable(table: &NSMapTable) -> NSMapEnumerator;
-);
+extern "C" {
+    pub fn NSEnumerateMapTable(table: &NSMapTable) -> NSMapEnumerator;
+}
 
-extern_fn!(
-    pub unsafe fn NSNextMapEnumeratorPair(
+extern "C" {
+    pub fn NSNextMapEnumeratorPair(
         enumerator: NonNull<NSMapEnumerator>,
         key: *mut *mut c_void,
         value: *mut *mut c_void,
     ) -> Bool;
-);
+}
 
-extern_fn!(
-    pub unsafe fn NSEndMapTableEnumeration(enumerator: NonNull<NSMapEnumerator>);
-);
+extern "C" {
+    pub fn NSEndMapTableEnumeration(enumerator: NonNull<NSMapEnumerator>);
+}
 
-extern_fn!(
-    pub unsafe fn NSCountMapTable(table: &NSMapTable) -> NSUInteger;
-);
+extern "C" {
+    pub fn NSCountMapTable(table: &NSMapTable) -> NSUInteger;
+}
 
-extern_fn!(
+extern "C" {
     #[cfg(feature = "Foundation_NSString")]
-    pub unsafe fn NSStringFromMapTable(table: &NSMapTable) -> NonNull<NSString>;
-);
+    pub fn NSStringFromMapTable(table: &NSMapTable) -> NonNull<NSString>;
+}
 
-extern_fn!(
+extern "C" {
     #[cfg(feature = "Foundation_NSArray")]
-    pub unsafe fn NSAllMapTableKeys(table: &NSMapTable) -> NonNull<NSArray>;
-);
+    pub fn NSAllMapTableKeys(table: &NSMapTable) -> NonNull<NSArray>;
+}
 
-extern_fn!(
+extern "C" {
     #[cfg(feature = "Foundation_NSArray")]
-    pub unsafe fn NSAllMapTableValues(table: &NSMapTable) -> NonNull<NSArray>;
-);
+    pub fn NSAllMapTableValues(table: &NSMapTable) -> NonNull<NSArray>;
+}
 
 extern_struct!(
     #[encoding_name("?")]
@@ -301,24 +298,24 @@ extern_struct!(
     }
 );
 
-extern_fn!(
+extern "C" {
     #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSZone"))]
-    pub unsafe fn NSCreateMapTableWithZone(
+    pub fn NSCreateMapTableWithZone(
         key_call_backs: NSMapTableKeyCallBacks,
         value_call_backs: NSMapTableValueCallBacks,
         capacity: NSUInteger,
         zone: *mut NSZone,
     ) -> NonNull<NSMapTable>;
-);
+}
 
-extern_fn!(
+extern "C" {
     #[cfg(feature = "Foundation_NSString")]
-    pub unsafe fn NSCreateMapTable(
+    pub fn NSCreateMapTable(
         key_call_backs: NSMapTableKeyCallBacks,
         value_call_backs: NSMapTableValueCallBacks,
         capacity: NSUInteger,
     ) -> NonNull<NSMapTable>;
-);
+}
 
 #[cfg(feature = "Foundation_NSString")]
 extern_static!(NSIntegerMapKeyCallBacks: NSMapTableKeyCallBacks);

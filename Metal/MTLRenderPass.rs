@@ -14,16 +14,7 @@ extern_struct!(
     }
 );
 
-inline_fn!(
-    pub unsafe fn MTLClearColorMake(
-        red: c_double,
-        green: c_double,
-        blue: c_double,
-        alpha: c_double,
-    ) -> MTLClearColor {
-        todo!()
-    }
-);
+// TODO: pub fn MTLClearColorMake(red: c_double,green: c_double,blue: c_double,alpha: c_double,) -> MTLClearColor;
 
 ns_enum!(
     #[underlying(NSUInteger)]
@@ -613,13 +604,4 @@ extern_methods!(
     }
 );
 
-inline_fn!(
-    pub unsafe fn MTLClearColorMake(
-        red: c_double,
-        green: c_double,
-        blue: c_double,
-        alpha: c_double,
-    ) -> MTLClearColor {
-        todo!()
-    }
-);
+// TODO: pub fn MTLClearColorMake(red: c_double,green: c_double,blue: c_double,alpha: c_double,) -> MTLClearColor;

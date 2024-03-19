@@ -183,95 +183,92 @@ extern_methods!(
 #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSWorkspaceAccessibilityDisplayOptionsDidChangeNotification: &'static NSNotificationName);
 
-extern_fn!(
+extern "C" {
     #[cfg(all(
         feature = "AppKit_NSResponder",
         feature = "AppKit_NSView",
         feature = "Foundation_NSGeometry"
     ))]
-    pub unsafe fn NSAccessibilityFrameInView(parent_view: &NSView, frame: NSRect) -> NSRect;
-);
+    pub fn NSAccessibilityFrameInView(parent_view: &NSView, frame: NSRect) -> NSRect;
+}
 
-extern_fn!(
+extern "C" {
     #[cfg(all(
         feature = "AppKit_NSResponder",
         feature = "AppKit_NSView",
         feature = "Foundation_NSGeometry"
     ))]
-    pub unsafe fn NSAccessibilityPointInView(parent_view: &NSView, point: NSPoint) -> NSPoint;
-);
+    pub fn NSAccessibilityPointInView(parent_view: &NSView, point: NSPoint) -> NSPoint;
+}
 
-extern_fn!(
-    pub unsafe fn NSAccessibilitySetMayContainProtectedContent(flag: Bool) -> Bool;
-);
+extern "C" {
+    pub fn NSAccessibilitySetMayContainProtectedContent(flag: Bool) -> Bool;
+}
 
-extern_fn!(
+extern "C" {
     #[cfg(all(
         feature = "AppKit_NSAccessibilityConstants",
         feature = "Foundation_NSString"
     ))]
-    pub unsafe fn NSAccessibilityRoleDescription(
+    pub fn NSAccessibilityRoleDescription(
         role: &NSAccessibilityRole,
         subrole: Option<&NSAccessibilitySubrole>,
     ) -> *mut NSString;
-);
+}
 
-extern_fn!(
+extern "C" {
     #[cfg(feature = "Foundation_NSString")]
-    pub unsafe fn NSAccessibilityRoleDescriptionForUIElement(element: &AnyObject) -> *mut NSString;
-);
+    pub fn NSAccessibilityRoleDescriptionForUIElement(element: &AnyObject) -> *mut NSString;
+}
 
-extern_fn!(
+extern "C" {
     #[cfg(all(
         feature = "AppKit_NSAccessibilityConstants",
         feature = "Foundation_NSString"
     ))]
-    pub unsafe fn NSAccessibilityActionDescription(
-        action: &NSAccessibilityActionName,
-    ) -> *mut NSString;
-);
+    pub fn NSAccessibilityActionDescription(action: &NSAccessibilityActionName) -> *mut NSString;
+}
 
-extern_fn!(
+extern "C" {
     #[cfg(all(
         feature = "AppKit_NSAccessibilityConstants",
         feature = "Foundation_NSString"
     ))]
     #[deprecated = "Exceptions are no longer appropriate for indicating errors in accessibility API. Unexpected values should be handled through appropriate type checking."]
-    pub unsafe fn NSAccessibilityRaiseBadArgumentException(
+    pub fn NSAccessibilityRaiseBadArgumentException(
         element: Option<&AnyObject>,
         attribute: Option<&NSAccessibilityAttributeName>,
         value: Option<&AnyObject>,
     );
-);
+}
 
-extern_fn!(
-    pub unsafe fn NSAccessibilityUnignoredAncestor(element: &AnyObject) -> *mut AnyObject;
-);
+extern "C" {
+    pub fn NSAccessibilityUnignoredAncestor(element: &AnyObject) -> *mut AnyObject;
+}
 
-extern_fn!(
-    pub unsafe fn NSAccessibilityUnignoredDescendant(element: &AnyObject) -> *mut AnyObject;
-);
+extern "C" {
+    pub fn NSAccessibilityUnignoredDescendant(element: &AnyObject) -> *mut AnyObject;
+}
 
-extern_fn!(
+extern "C" {
     #[cfg(feature = "Foundation_NSArray")]
-    pub unsafe fn NSAccessibilityUnignoredChildren(original_children: &NSArray)
-        -> NonNull<NSArray>;
-);
+    pub fn NSAccessibilityUnignoredChildren(original_children: &NSArray) -> NonNull<NSArray>;
+}
 
-extern_fn!(
+extern "C" {
     #[cfg(feature = "Foundation_NSArray")]
-    pub unsafe fn NSAccessibilityUnignoredChildrenForOnlyChild(
+    pub fn NSAccessibilityUnignoredChildrenForOnlyChild(
         original_child: &AnyObject,
     ) -> NonNull<NSArray>;
-);
+}
 
-extern_fn!(
+extern "C" {
     #[cfg(all(
         feature = "AppKit_NSAccessibilityConstants",
         feature = "Foundation_NSString"
     ))]
-    pub unsafe fn NSAccessibilityPostNotification(
+    pub fn NSAccessibilityPostNotification(
         element: &AnyObject,
         notification: &NSAccessibilityNotificationName,
     );
-);
+}

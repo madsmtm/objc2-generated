@@ -34,14 +34,7 @@ extern_struct!(
     }
 );
 
-inline_fn!(
-    pub unsafe fn MTLIndirectCommandBufferExecutionRangeMake(
-        location: u32,
-        length: u32,
-    ) -> MTLIndirectCommandBufferExecutionRange {
-        todo!()
-    }
-);
+// TODO: pub fn MTLIndirectCommandBufferExecutionRangeMake(location: u32,length: u32,) -> MTLIndirectCommandBufferExecutionRange;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

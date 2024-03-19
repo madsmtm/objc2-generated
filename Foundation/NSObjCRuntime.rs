@@ -15,43 +15,43 @@ typed_extensible_enum!(
     pub type NSRunLoopMode = NSString;
 );
 
-extern_fn!(
+extern "C" {
     #[cfg(feature = "Foundation_NSString")]
-    pub unsafe fn NSStringFromSelector(a_selector: Sel) -> NonNull<NSString>;
-);
+    pub fn NSStringFromSelector(a_selector: Sel) -> NonNull<NSString>;
+}
 
-extern_fn!(
+extern "C" {
     #[cfg(feature = "Foundation_NSString")]
-    pub unsafe fn NSSelectorFromString(a_selector_name: &NSString) -> Sel;
-);
+    pub fn NSSelectorFromString(a_selector_name: &NSString) -> Sel;
+}
 
-extern_fn!(
+extern "C" {
     #[cfg(feature = "Foundation_NSString")]
-    pub unsafe fn NSStringFromClass(a_class: &AnyClass) -> NonNull<NSString>;
-);
+    pub fn NSStringFromClass(a_class: &AnyClass) -> NonNull<NSString>;
+}
 
-extern_fn!(
+extern "C" {
     #[cfg(feature = "Foundation_NSString")]
-    pub unsafe fn NSClassFromString(a_class_name: &NSString) -> *const AnyClass;
-);
+    pub fn NSClassFromString(a_class_name: &NSString) -> *const AnyClass;
+}
 
-extern_fn!(
+extern "C" {
     #[cfg(feature = "Foundation_NSString")]
-    pub unsafe fn NSStringFromProtocol(proto: &AnyProtocol) -> NonNull<NSString>;
-);
+    pub fn NSStringFromProtocol(proto: &AnyProtocol) -> NonNull<NSString>;
+}
 
-extern_fn!(
+extern "C" {
     #[cfg(feature = "Foundation_NSString")]
-    pub unsafe fn NSProtocolFromString(namestr: &NSString) -> *mut AnyProtocol;
-);
+    pub fn NSProtocolFromString(namestr: &NSString) -> *mut AnyProtocol;
+}
 
-extern_fn!(
-    pub unsafe fn NSGetSizeAndAlignment(
+extern "C" {
+    pub fn NSGetSizeAndAlignment(
         type_ptr: NonNull<c_char>,
         sizep: *mut NSUInteger,
         alignp: *mut NSUInteger,
     ) -> NonNull<c_char>;
-);
+}
 
 pub type NSComparator =
     *mut Block<dyn Fn(NonNull<AnyObject>, NonNull<AnyObject>) -> NSComparisonResult>;

@@ -49,16 +49,16 @@ extern_static!(CLTimeIntervalMax: NSTimeInterval);
 
 extern_static!(kCLLocationCoordinate2DInvalid: CLLocationCoordinate2D);
 
-extern_fn!(
-    pub unsafe fn CLLocationCoordinate2DIsValid(coord: CLLocationCoordinate2D) -> Bool;
-);
+extern "C" {
+    pub fn CLLocationCoordinate2DIsValid(coord: CLLocationCoordinate2D) -> Bool;
+}
 
-extern_fn!(
-    pub unsafe fn CLLocationCoordinate2DMake(
+extern "C" {
+    pub fn CLLocationCoordinate2DMake(
         latitude: CLLocationDegrees,
         longitude: CLLocationDegrees,
     ) -> CLLocationCoordinate2D;
-);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

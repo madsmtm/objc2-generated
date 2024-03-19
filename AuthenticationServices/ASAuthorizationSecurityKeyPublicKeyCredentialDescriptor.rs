@@ -19,11 +19,11 @@ extern_static!(ASAuthorizationSecurityKeyPublicKeyCredentialDescriptorTransportN
 #[cfg(feature = "Foundation_NSString")]
 extern_static!(ASAuthorizationSecurityKeyPublicKeyCredentialDescriptorTransportBluetooth: &'static ASAuthorizationSecurityKeyPublicKeyCredentialDescriptorTransport);
 
-extern_fn!(
+extern "C" {
     #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
-    pub unsafe fn ASAuthorizationAllSupportedPublicKeyCredentialDescriptorTransports(
+    pub fn ASAuthorizationAllSupportedPublicKeyCredentialDescriptorTransports(
     ) -> NonNull<NSArray<ASAuthorizationSecurityKeyPublicKeyCredentialDescriptorTransport>>;
-);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

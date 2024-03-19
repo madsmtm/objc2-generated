@@ -41,12 +41,12 @@ extern_static!(GCInputLeftBumper: Option<&'static GCInputButtonName>);
 #[cfg(feature = "Foundation_NSString")]
 extern_static!(GCInputRightBumper: Option<&'static GCInputButtonName>);
 
-extern_fn!(
+extern "C" {
     #[cfg(feature = "Foundation_NSString")]
-    pub unsafe fn GCInputBackLeftButton(position: NSInteger) -> *mut GCInputButtonName;
-);
+    pub fn GCInputBackLeftButton(position: NSInteger) -> *mut GCInputButtonName;
+}
 
-extern_fn!(
+extern "C" {
     #[cfg(feature = "Foundation_NSString")]
-    pub unsafe fn GCInputBackRightButton(position: NSInteger) -> *mut GCInputButtonName;
-);
+    pub fn GCInputBackRightButton(position: NSInteger) -> *mut GCInputButtonName;
+}

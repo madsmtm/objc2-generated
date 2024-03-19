@@ -20,14 +20,14 @@ ns_enum!(
     }
 );
 
-extern_fn!(
-    pub unsafe fn MTLCreateSystemDefaultDevice() -> *mut ProtocolObject<dyn MTLDevice>;
-);
+extern "C" {
+    pub fn MTLCreateSystemDefaultDevice() -> *mut ProtocolObject<dyn MTLDevice>;
+}
 
-extern_fn!(
+extern "C" {
     #[cfg(feature = "Foundation_NSArray")]
-    pub unsafe fn MTLCopyAllDevices() -> NonNull<NSArray<ProtocolObject<dyn MTLDevice>>>;
-);
+    pub fn MTLCopyAllDevices() -> NonNull<NSArray<ProtocolObject<dyn MTLDevice>>>;
+}
 
 #[cfg(feature = "Foundation_NSString")]
 typed_enum!(
@@ -47,9 +47,9 @@ extern_static!(MTLDeviceWasRemovedNotification: &'static MTLDeviceNotificationNa
 pub type MTLDeviceNotificationHandler =
     *mut Block<dyn Fn(NonNull<ProtocolObject<dyn MTLDevice>>, NonNull<MTLDeviceNotificationName>)>;
 
-extern_fn!(
-    pub unsafe fn MTLRemoveDeviceObserver(observer: &NSObject);
-);
+extern "C" {
+    pub fn MTLRemoveDeviceObserver(observer: &NSObject);
+}
 
 ns_enum!(
     #[underlying(NSUInteger)]

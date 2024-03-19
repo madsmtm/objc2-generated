@@ -76,45 +76,42 @@ extern_category!(
     unsafe impl NSObjectNSDiscardableContentProxy for NSObject {}
 );
 
-extern_fn!(
+extern "C" {
     #[cfg(feature = "Foundation_NSZone")]
-    pub unsafe fn NSAllocateObject(
+    pub fn NSAllocateObject(
         a_class: &AnyClass,
         extra_bytes: NSUInteger,
         zone: *mut NSZone,
     ) -> NonNull<AnyObject>;
-);
+}
 
-extern_fn!(
-    pub unsafe fn NSDeallocateObject(object: &AnyObject);
-);
+extern "C" {
+    pub fn NSDeallocateObject(object: &AnyObject);
+}
 
-extern_fn!(
+extern "C" {
     #[cfg(feature = "Foundation_NSZone")]
     #[deprecated = "Not supported"]
-    pub unsafe fn NSCopyObject(
+    pub fn NSCopyObject(
         object: &AnyObject,
         extra_bytes: NSUInteger,
         zone: *mut NSZone,
     ) -> NonNull<AnyObject>;
-);
+}
 
-extern_fn!(
+extern "C" {
     #[cfg(feature = "Foundation_NSZone")]
-    pub unsafe fn NSShouldRetainWithZone(
-        an_object: &AnyObject,
-        requested_zone: *mut NSZone,
-    ) -> Bool;
-);
+    pub fn NSShouldRetainWithZone(an_object: &AnyObject, requested_zone: *mut NSZone) -> Bool;
+}
 
-extern_fn!(
-    pub unsafe fn NSIncrementExtraRefCount(object: &AnyObject);
-);
+extern "C" {
+    pub fn NSIncrementExtraRefCount(object: &AnyObject);
+}
 
-extern_fn!(
-    pub unsafe fn NSDecrementExtraRefCountWasZero(object: &AnyObject) -> Bool;
-);
+extern "C" {
+    pub fn NSDecrementExtraRefCountWasZero(object: &AnyObject) -> Bool;
+}
 
-extern_fn!(
-    pub unsafe fn NSExtraRefCount(object: &AnyObject) -> NSUInteger;
-);
+extern "C" {
+    pub fn NSExtraRefCount(object: &AnyObject) -> NSUInteger;
+}

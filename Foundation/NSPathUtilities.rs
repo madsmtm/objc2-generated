@@ -91,35 +91,35 @@ extern_methods!(
     }
 );
 
-extern_fn!(
+extern "C" {
     #[cfg(feature = "Foundation_NSString")]
-    pub unsafe fn NSUserName() -> NonNull<NSString>;
-);
+    pub fn NSUserName() -> NonNull<NSString>;
+}
 
-extern_fn!(
+extern "C" {
     #[cfg(feature = "Foundation_NSString")]
-    pub unsafe fn NSFullUserName() -> NonNull<NSString>;
-);
+    pub fn NSFullUserName() -> NonNull<NSString>;
+}
 
-extern_fn!(
+extern "C" {
     #[cfg(feature = "Foundation_NSString")]
-    pub unsafe fn NSHomeDirectory() -> NonNull<NSString>;
-);
+    pub fn NSHomeDirectory() -> NonNull<NSString>;
+}
 
-extern_fn!(
+extern "C" {
     #[cfg(feature = "Foundation_NSString")]
-    pub unsafe fn NSHomeDirectoryForUser(user_name: Option<&NSString>) -> *mut NSString;
-);
+    pub fn NSHomeDirectoryForUser(user_name: Option<&NSString>) -> *mut NSString;
+}
 
-extern_fn!(
+extern "C" {
     #[cfg(feature = "Foundation_NSString")]
-    pub unsafe fn NSTemporaryDirectory() -> NonNull<NSString>;
-);
+    pub fn NSTemporaryDirectory() -> NonNull<NSString>;
+}
 
-extern_fn!(
+extern "C" {
     #[cfg(feature = "Foundation_NSString")]
-    pub unsafe fn NSOpenStepRootDirectory() -> NonNull<NSString>;
-);
+    pub fn NSOpenStepRootDirectory() -> NonNull<NSString>;
+}
 
 ns_enum!(
     #[underlying(NSUInteger)]
@@ -165,11 +165,11 @@ ns_options!(
     }
 );
 
-extern_fn!(
+extern "C" {
     #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
-    pub unsafe fn NSSearchPathForDirectoriesInDomains(
+    pub fn NSSearchPathForDirectoriesInDomains(
         directory: NSSearchPathDirectory,
         domain_mask: NSSearchPathDomainMask,
         expand_tilde: Bool,
     ) -> NonNull<NSArray<NSString>>;
-);
+}

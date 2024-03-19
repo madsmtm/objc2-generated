@@ -45,11 +45,7 @@ ns_options!(
     }
 );
 
-inline_fn!(
-    pub unsafe fn NSTouchTypeMaskFromType(r#type: NSTouchType) -> NSTouchTypeMask {
-        todo!()
-    }
-);
+// TODO: pub fn NSTouchTypeMaskFromType(r#type: NSTouchType,) -> NSTouchTypeMask;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

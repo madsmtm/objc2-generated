@@ -3,131 +3,47 @@
 use crate::common::*;
 use crate::Foundation::*;
 
-inline_fn!(
-    pub unsafe fn NSHostByteOrder() -> c_long {
-        todo!()
-    }
-);
+// TODO: pub fn NSHostByteOrder() -> c_long;
 
-inline_fn!(
-    pub unsafe fn NSSwapShort(inv: c_ushort) -> c_ushort {
-        todo!()
-    }
-);
+// TODO: pub fn NSSwapShort(inv: c_ushort,) -> c_ushort;
 
-inline_fn!(
-    pub unsafe fn NSSwapInt(inv: c_uint) -> c_uint {
-        todo!()
-    }
-);
+// TODO: pub fn NSSwapInt(inv: c_uint,) -> c_uint;
 
-inline_fn!(
-    pub unsafe fn NSSwapLong(inv: c_ulong) -> c_ulong {
-        todo!()
-    }
-);
+// TODO: pub fn NSSwapLong(inv: c_ulong,) -> c_ulong;
 
-inline_fn!(
-    pub unsafe fn NSSwapLongLong(inv: c_ulonglong) -> c_ulonglong {
-        todo!()
-    }
-);
+// TODO: pub fn NSSwapLongLong(inv: c_ulonglong,) -> c_ulonglong;
 
-inline_fn!(
-    pub unsafe fn NSSwapBigShortToHost(x: c_ushort) -> c_ushort {
-        todo!()
-    }
-);
+// TODO: pub fn NSSwapBigShortToHost(x: c_ushort,) -> c_ushort;
 
-inline_fn!(
-    pub unsafe fn NSSwapBigIntToHost(x: c_uint) -> c_uint {
-        todo!()
-    }
-);
+// TODO: pub fn NSSwapBigIntToHost(x: c_uint,) -> c_uint;
 
-inline_fn!(
-    pub unsafe fn NSSwapBigLongToHost(x: c_ulong) -> c_ulong {
-        todo!()
-    }
-);
+// TODO: pub fn NSSwapBigLongToHost(x: c_ulong,) -> c_ulong;
 
-inline_fn!(
-    pub unsafe fn NSSwapBigLongLongToHost(x: c_ulonglong) -> c_ulonglong {
-        todo!()
-    }
-);
+// TODO: pub fn NSSwapBigLongLongToHost(x: c_ulonglong,) -> c_ulonglong;
 
-inline_fn!(
-    pub unsafe fn NSSwapHostShortToBig(x: c_ushort) -> c_ushort {
-        todo!()
-    }
-);
+// TODO: pub fn NSSwapHostShortToBig(x: c_ushort,) -> c_ushort;
 
-inline_fn!(
-    pub unsafe fn NSSwapHostIntToBig(x: c_uint) -> c_uint {
-        todo!()
-    }
-);
+// TODO: pub fn NSSwapHostIntToBig(x: c_uint,) -> c_uint;
 
-inline_fn!(
-    pub unsafe fn NSSwapHostLongToBig(x: c_ulong) -> c_ulong {
-        todo!()
-    }
-);
+// TODO: pub fn NSSwapHostLongToBig(x: c_ulong,) -> c_ulong;
 
-inline_fn!(
-    pub unsafe fn NSSwapHostLongLongToBig(x: c_ulonglong) -> c_ulonglong {
-        todo!()
-    }
-);
+// TODO: pub fn NSSwapHostLongLongToBig(x: c_ulonglong,) -> c_ulonglong;
 
-inline_fn!(
-    pub unsafe fn NSSwapLittleShortToHost(x: c_ushort) -> c_ushort {
-        todo!()
-    }
-);
+// TODO: pub fn NSSwapLittleShortToHost(x: c_ushort,) -> c_ushort;
 
-inline_fn!(
-    pub unsafe fn NSSwapLittleIntToHost(x: c_uint) -> c_uint {
-        todo!()
-    }
-);
+// TODO: pub fn NSSwapLittleIntToHost(x: c_uint,) -> c_uint;
 
-inline_fn!(
-    pub unsafe fn NSSwapLittleLongToHost(x: c_ulong) -> c_ulong {
-        todo!()
-    }
-);
+// TODO: pub fn NSSwapLittleLongToHost(x: c_ulong,) -> c_ulong;
 
-inline_fn!(
-    pub unsafe fn NSSwapLittleLongLongToHost(x: c_ulonglong) -> c_ulonglong {
-        todo!()
-    }
-);
+// TODO: pub fn NSSwapLittleLongLongToHost(x: c_ulonglong,) -> c_ulonglong;
 
-inline_fn!(
-    pub unsafe fn NSSwapHostShortToLittle(x: c_ushort) -> c_ushort {
-        todo!()
-    }
-);
+// TODO: pub fn NSSwapHostShortToLittle(x: c_ushort,) -> c_ushort;
 
-inline_fn!(
-    pub unsafe fn NSSwapHostIntToLittle(x: c_uint) -> c_uint {
-        todo!()
-    }
-);
+// TODO: pub fn NSSwapHostIntToLittle(x: c_uint,) -> c_uint;
 
-inline_fn!(
-    pub unsafe fn NSSwapHostLongToLittle(x: c_ulong) -> c_ulong {
-        todo!()
-    }
-);
+// TODO: pub fn NSSwapHostLongToLittle(x: c_ulong,) -> c_ulong;
 
-inline_fn!(
-    pub unsafe fn NSSwapHostLongLongToLittle(x: c_ulonglong) -> c_ulonglong {
-        todo!()
-    }
-);
+// TODO: pub fn NSSwapHostLongLongToLittle(x: c_ulonglong,) -> c_ulonglong;
 
 extern_struct!(
     #[encoding_name("?")]
@@ -151,86 +67,30 @@ unsafe impl Send for NSSwappedDouble {}
 
 unsafe impl Sync for NSSwappedDouble {}
 
-inline_fn!(
-    pub unsafe fn NSConvertHostFloatToSwapped(x: c_float) -> NSSwappedFloat {
-        todo!()
-    }
-);
+// TODO: pub fn NSConvertHostFloatToSwapped(x: c_float,) -> NSSwappedFloat;
 
-inline_fn!(
-    pub unsafe fn NSConvertSwappedFloatToHost(x: NSSwappedFloat) -> c_float {
-        todo!()
-    }
-);
+// TODO: pub fn NSConvertSwappedFloatToHost(x: NSSwappedFloat,) -> c_float;
 
-inline_fn!(
-    pub unsafe fn NSConvertHostDoubleToSwapped(x: c_double) -> NSSwappedDouble {
-        todo!()
-    }
-);
+// TODO: pub fn NSConvertHostDoubleToSwapped(x: c_double,) -> NSSwappedDouble;
 
-inline_fn!(
-    pub unsafe fn NSConvertSwappedDoubleToHost(x: NSSwappedDouble) -> c_double {
-        todo!()
-    }
-);
+// TODO: pub fn NSConvertSwappedDoubleToHost(x: NSSwappedDouble,) -> c_double;
 
-inline_fn!(
-    pub unsafe fn NSSwapFloat(x: NSSwappedFloat) -> NSSwappedFloat {
-        todo!()
-    }
-);
+// TODO: pub fn NSSwapFloat(x: NSSwappedFloat,) -> NSSwappedFloat;
 
-inline_fn!(
-    pub unsafe fn NSSwapDouble(x: NSSwappedDouble) -> NSSwappedDouble {
-        todo!()
-    }
-);
+// TODO: pub fn NSSwapDouble(x: NSSwappedDouble,) -> NSSwappedDouble;
 
-inline_fn!(
-    pub unsafe fn NSSwapBigDoubleToHost(x: NSSwappedDouble) -> c_double {
-        todo!()
-    }
-);
+// TODO: pub fn NSSwapBigDoubleToHost(x: NSSwappedDouble,) -> c_double;
 
-inline_fn!(
-    pub unsafe fn NSSwapBigFloatToHost(x: NSSwappedFloat) -> c_float {
-        todo!()
-    }
-);
+// TODO: pub fn NSSwapBigFloatToHost(x: NSSwappedFloat,) -> c_float;
 
-inline_fn!(
-    pub unsafe fn NSSwapHostDoubleToBig(x: c_double) -> NSSwappedDouble {
-        todo!()
-    }
-);
+// TODO: pub fn NSSwapHostDoubleToBig(x: c_double,) -> NSSwappedDouble;
 
-inline_fn!(
-    pub unsafe fn NSSwapHostFloatToBig(x: c_float) -> NSSwappedFloat {
-        todo!()
-    }
-);
+// TODO: pub fn NSSwapHostFloatToBig(x: c_float,) -> NSSwappedFloat;
 
-inline_fn!(
-    pub unsafe fn NSSwapLittleDoubleToHost(x: NSSwappedDouble) -> c_double {
-        todo!()
-    }
-);
+// TODO: pub fn NSSwapLittleDoubleToHost(x: NSSwappedDouble,) -> c_double;
 
-inline_fn!(
-    pub unsafe fn NSSwapLittleFloatToHost(x: NSSwappedFloat) -> c_float {
-        todo!()
-    }
-);
+// TODO: pub fn NSSwapLittleFloatToHost(x: NSSwappedFloat,) -> c_float;
 
-inline_fn!(
-    pub unsafe fn NSSwapHostDoubleToLittle(x: c_double) -> NSSwappedDouble {
-        todo!()
-    }
-);
+// TODO: pub fn NSSwapHostDoubleToLittle(x: c_double,) -> NSSwappedDouble;
 
-inline_fn!(
-    pub unsafe fn NSSwapHostFloatToLittle(x: c_float) -> NSSwappedFloat {
-        todo!()
-    }
-);
+// TODO: pub fn NSSwapHostFloatToLittle(x: c_float,) -> NSSwappedFloat;

@@ -341,10 +341,10 @@ extern_methods!(
     }
 );
 
-extern_fn!(
+extern "C" {
     #[deprecated = "Not supported"]
-    pub unsafe fn NXReadNSObjectFromCoder(decoder: &NSCoder) -> *mut NSObject;
-);
+    pub fn NXReadNSObjectFromCoder(decoder: &NSCoder) -> *mut NSObject;
+}
 
 extern_methods!(
     /// NSTypedstreamCompatibility

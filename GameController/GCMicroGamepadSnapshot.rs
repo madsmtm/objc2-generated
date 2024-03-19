@@ -101,22 +101,22 @@ extern_struct!(
     }
 );
 
-extern_fn!(
+extern "C" {
     #[cfg(feature = "Foundation_NSData")]
     #[deprecated = "GCMicroGamepadSnapshot has been deprecated, use [GCController controllerWithMicroGamepad] instead"]
-    pub unsafe fn GCMicroGamepadSnapshotDataFromNSData(
+    pub fn GCMicroGamepadSnapshotDataFromNSData(
         snapshot_data: *mut GCMicroGamepadSnapshotData,
         data: Option<&NSData>,
     ) -> Bool;
-);
+}
 
-extern_fn!(
+extern "C" {
     #[cfg(feature = "Foundation_NSData")]
     #[deprecated = "GCMicroGamepadSnapshot has been deprecated, use [GCController controllerWithMicroGamepad] instead"]
-    pub unsafe fn NSDataFromGCMicroGamepadSnapshotData(
+    pub fn NSDataFromGCMicroGamepadSnapshotData(
         snapshot_data: *mut GCMicroGamepadSnapshotData,
     ) -> *mut NSData;
-);
+}
 
 extern_struct!(
     #[encoding_name("?")]
@@ -130,19 +130,19 @@ extern_struct!(
     }
 );
 
-extern_fn!(
+extern "C" {
     #[cfg(feature = "Foundation_NSData")]
     #[deprecated = "GCMicroGamepadSnapshot has been deprecated, use [GCController controllerWithMicroGamepad] instead"]
-    pub unsafe fn GCMicroGamepadSnapShotDataV100FromNSData(
+    pub fn GCMicroGamepadSnapShotDataV100FromNSData(
         snapshot_data: *mut GCMicroGamepadSnapShotDataV100,
         data: Option<&NSData>,
     ) -> Bool;
-);
+}
 
-extern_fn!(
+extern "C" {
     #[cfg(feature = "Foundation_NSData")]
     #[deprecated = "GCMicroGamepadSnapshot has been deprecated, use [GCController controllerWithMicroGamepad] instead"]
-    pub unsafe fn NSDataFromGCMicroGamepadSnapShotDataV100(
+    pub fn NSDataFromGCMicroGamepadSnapShotDataV100(
         snapshot_data: *mut GCMicroGamepadSnapShotDataV100,
     ) -> *mut NSData;
-);
+}

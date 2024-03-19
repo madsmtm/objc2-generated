@@ -247,11 +247,7 @@ extern_static!(NSOtherMouseDraggedMask: NSEventMask = NSEventMask(NSEventMask::O
 
 extern_static!(NSAnyEventMask: NSEventMask = NSEventMask(NSUIntegerMax as _));
 
-inline_fn!(
-    pub unsafe fn NSEventMaskFromType(r#type: NSEventType) -> NSEventMask {
-        todo!()
-    }
-);
+// TODO: pub fn NSEventMaskFromType(r#type: NSEventType,) -> NSEventMask;
 
 ns_options!(
     #[underlying(NSUInteger)]

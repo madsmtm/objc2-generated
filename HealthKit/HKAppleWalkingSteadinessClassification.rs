@@ -18,25 +18,25 @@ ns_enum!(
     }
 );
 
-extern_fn!(
+extern "C" {
     #[cfg(all(feature = "Foundation_NSError", feature = "HealthKit_HKQuantity"))]
-    pub unsafe fn HKAppleWalkingSteadinessClassificationForQuantity(
+    pub fn HKAppleWalkingSteadinessClassificationForQuantity(
         value: &HKQuantity,
         classification_out: NonNull<HKAppleWalkingSteadinessClassification>,
         error_out: *mut *mut NSError,
     ) -> Bool;
-);
+}
 
-extern_fn!(
+extern "C" {
     #[cfg(feature = "HealthKit_HKQuantity")]
-    pub unsafe fn HKAppleWalkingSteadinessMinimumQuantityForClassification(
+    pub fn HKAppleWalkingSteadinessMinimumQuantityForClassification(
         classification: HKAppleWalkingSteadinessClassification,
     ) -> NonNull<HKQuantity>;
-);
+}
 
-extern_fn!(
+extern "C" {
     #[cfg(feature = "HealthKit_HKQuantity")]
-    pub unsafe fn HKAppleWalkingSteadinessMaximumQuantityForClassification(
+    pub fn HKAppleWalkingSteadinessMaximumQuantityForClassification(
         classification: HKAppleWalkingSteadinessClassification,
     ) -> NonNull<HKQuantity>;
-);
+}

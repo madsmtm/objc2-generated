@@ -4,6 +4,10 @@ use crate::common::*;
 use crate::Foundation::*;
 use crate::QuartzCore::*;
 
-extern_fn!(
-    pub fn CACurrentMediaTime() -> CFTimeInterval;
-);
+#[inline]
+pub extern "C" fn CACurrentMediaTime() -> CFTimeInterval {
+    extern "C" {
+        fn CACurrentMediaTime() -> CFTimeInterval;
+    }
+    unsafe { CACurrentMediaTime() }
+}

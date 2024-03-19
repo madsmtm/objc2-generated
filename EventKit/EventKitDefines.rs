@@ -7,23 +7,8 @@ use crate::EventKit::*;
 use crate::Foundation::*;
 use crate::MapKit::*;
 
-inline_fn!(
-    #[deprecated]
-    pub unsafe fn EK_LOSE_FRACTIONAL_SECONDS_DO_NOT_USE() {
-        todo!()
-    }
-);
+// TODO: pub fn EK_LOSE_FRACTIONAL_SECONDS_DO_NOT_USE();
 
-inline_fn!(
-    #[deprecated]
-    pub unsafe fn DATE_COMPONENTS_DO_NOT_USE() {
-        todo!()
-    }
-);
+// TODO: pub fn DATE_COMPONENTS_DO_NOT_USE();
 
-inline_fn!(
-    #[deprecated]
-    pub unsafe fn DATETIME_COMPONENTS_DO_NOT_USE() {
-        todo!()
-    }
-);
+// TODO: pub fn DATETIME_COMPONENTS_DO_NOT_USE();

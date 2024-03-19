@@ -303,15 +303,15 @@ ns_enum!(
     }
 );
 
-extern_fn!(
+extern "C" {
     #[deprecated]
-    pub unsafe fn NSConvertGlyphsToPackedGlyphs(
+    pub fn NSConvertGlyphsToPackedGlyphs(
         gl_buf: NonNull<NSGlyph>,
         count: NSInteger,
         packing: NSMultibyteGlyphPacking,
         packed_glyphs: NonNull<c_char>,
     ) -> NSInteger;
-);
+}
 
 extern_methods!(
     /// NSFont_Deprecated

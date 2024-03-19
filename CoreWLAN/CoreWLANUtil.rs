@@ -4,7 +4,7 @@ use crate::common::*;
 use crate::CoreWLAN::*;
 use crate::Foundation::*;
 
-extern_fn!(
+extern "C" {
     #[cfg(all(feature = "CoreWLAN_CWNetwork", feature = "Foundation_NSSet"))]
-    pub unsafe fn CWMergeNetworks(networks: &NSSet<CWNetwork>) -> NonNull<NSSet<CWNetwork>>;
-);
+    pub fn CWMergeNetworks(networks: &NSSet<CWNetwork>) -> NonNull<NSSet<CWNetwork>>;
+}

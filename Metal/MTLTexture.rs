@@ -51,16 +51,7 @@ extern_struct!(
     }
 );
 
-inline_fn!(
-    pub unsafe fn MTLTextureSwizzleChannelsMake(
-        r: MTLTextureSwizzle,
-        g: MTLTextureSwizzle,
-        b: MTLTextureSwizzle,
-        a: MTLTextureSwizzle,
-    ) -> MTLTextureSwizzleChannels {
-        todo!()
-    }
-);
+// TODO: pub fn MTLTextureSwizzleChannelsMake(r: MTLTextureSwizzle,g: MTLTextureSwizzle,b: MTLTextureSwizzle,a: MTLTextureSwizzle,) -> MTLTextureSwizzleChannels;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

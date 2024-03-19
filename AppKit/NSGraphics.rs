@@ -232,42 +232,42 @@ ns_enum!(
     }
 );
 
-extern_fn!(
+extern "C" {
     #[cfg(feature = "Foundation_NSString")]
-    pub unsafe fn NSBestDepth(
+    pub fn NSBestDepth(
         color_space: &NSColorSpaceName,
         bps: NSInteger,
         bpp: NSInteger,
         planar: Bool,
         exact_match: *mut Bool,
     ) -> NSWindowDepth;
-);
+}
 
-extern_fn!(
-    pub unsafe fn NSPlanarFromDepth(depth: NSWindowDepth) -> Bool;
-);
+extern "C" {
+    pub fn NSPlanarFromDepth(depth: NSWindowDepth) -> Bool;
+}
 
-extern_fn!(
+extern "C" {
     #[cfg(feature = "Foundation_NSString")]
-    pub unsafe fn NSColorSpaceFromDepth(depth: NSWindowDepth) -> *mut NSColorSpaceName;
-);
+    pub fn NSColorSpaceFromDepth(depth: NSWindowDepth) -> *mut NSColorSpaceName;
+}
 
-extern_fn!(
-    pub unsafe fn NSBitsPerSampleFromDepth(depth: NSWindowDepth) -> NSInteger;
-);
+extern "C" {
+    pub fn NSBitsPerSampleFromDepth(depth: NSWindowDepth) -> NSInteger;
+}
 
-extern_fn!(
-    pub unsafe fn NSBitsPerPixelFromDepth(depth: NSWindowDepth) -> NSInteger;
-);
+extern "C" {
+    pub fn NSBitsPerPixelFromDepth(depth: NSWindowDepth) -> NSInteger;
+}
 
-extern_fn!(
+extern "C" {
     #[cfg(feature = "Foundation_NSString")]
-    pub unsafe fn NSNumberOfColorComponents(color_space_name: &NSColorSpaceName) -> NSInteger;
-);
+    pub fn NSNumberOfColorComponents(color_space_name: &NSColorSpaceName) -> NSInteger;
+}
 
-extern_fn!(
-    pub unsafe fn NSAvailableWindowDepths() -> NonNull<NSWindowDepth>;
-);
+extern "C" {
+    pub fn NSAvailableWindowDepths() -> NonNull<NSWindowDepth>;
+}
 
 #[cfg(feature = "Foundation_NSGeometry")]
 extern_static!(NSWhite: CGFloat);
@@ -314,194 +314,190 @@ extern_static!(NSDeviceIsPrinter: &'static NSDeviceDescriptionKey);
 #[cfg(feature = "Foundation_NSString")]
 extern_static!(NSDeviceSize: &'static NSDeviceDescriptionKey);
 
-extern_fn!(
+extern "C" {
     #[cfg(feature = "Foundation_NSGeometry")]
-    pub unsafe fn NSRectFill(rect: NSRect);
-);
+    pub fn NSRectFill(rect: NSRect);
+}
 
-extern_fn!(
+extern "C" {
     #[cfg(feature = "Foundation_NSGeometry")]
-    pub unsafe fn NSRectFillList(rects: NonNull<NSRect>, count: NSInteger);
-);
+    pub fn NSRectFillList(rects: NonNull<NSRect>, count: NSInteger);
+}
 
-extern_fn!(
+extern "C" {
     #[cfg(feature = "Foundation_NSGeometry")]
-    pub unsafe fn NSRectFillListWithGrays(
-        rects: NonNull<NSRect>,
-        grays: NonNull<CGFloat>,
-        num: NSInteger,
-    );
-);
+    pub fn NSRectFillListWithGrays(rects: NonNull<NSRect>, grays: NonNull<CGFloat>, num: NSInteger);
+}
 
-extern_fn!(
+extern "C" {
     #[cfg(all(feature = "AppKit_NSColor", feature = "Foundation_NSGeometry"))]
-    pub unsafe fn NSRectFillListWithColors(
+    pub fn NSRectFillListWithColors(
         rects: NonNull<NSRect>,
         colors: NonNull<NonNull<NSColor>>,
         num: NSInteger,
     );
-);
+}
 
-extern_fn!(
+extern "C" {
     #[cfg(feature = "Foundation_NSGeometry")]
-    pub unsafe fn NSRectFillUsingOperation(rect: NSRect, op: NSCompositingOperation);
-);
+    pub fn NSRectFillUsingOperation(rect: NSRect, op: NSCompositingOperation);
+}
 
-extern_fn!(
+extern "C" {
     #[cfg(feature = "Foundation_NSGeometry")]
-    pub unsafe fn NSRectFillListUsingOperation(
+    pub fn NSRectFillListUsingOperation(
         rects: NonNull<NSRect>,
         count: NSInteger,
         op: NSCompositingOperation,
     );
-);
+}
 
-extern_fn!(
+extern "C" {
     #[cfg(all(feature = "AppKit_NSColor", feature = "Foundation_NSGeometry"))]
-    pub unsafe fn NSRectFillListWithColorsUsingOperation(
+    pub fn NSRectFillListWithColorsUsingOperation(
         rects: NonNull<NSRect>,
         colors: NonNull<NonNull<NSColor>>,
         num: NSInteger,
         op: NSCompositingOperation,
     );
-);
+}
 
-extern_fn!(
+extern "C" {
     #[cfg(feature = "Foundation_NSGeometry")]
-    pub unsafe fn NSFrameRect(rect: NSRect);
-);
+    pub fn NSFrameRect(rect: NSRect);
+}
 
-extern_fn!(
+extern "C" {
     #[cfg(feature = "Foundation_NSGeometry")]
-    pub unsafe fn NSFrameRectWithWidth(rect: NSRect, frame_width: CGFloat);
-);
+    pub fn NSFrameRectWithWidth(rect: NSRect, frame_width: CGFloat);
+}
 
-extern_fn!(
+extern "C" {
     #[cfg(feature = "Foundation_NSGeometry")]
-    pub unsafe fn NSFrameRectWithWidthUsingOperation(
+    pub fn NSFrameRectWithWidthUsingOperation(
         rect: NSRect,
         frame_width: CGFloat,
         op: NSCompositingOperation,
     );
-);
+}
 
-extern_fn!(
+extern "C" {
     #[cfg(feature = "Foundation_NSGeometry")]
-    pub unsafe fn NSRectClip(rect: NSRect);
-);
+    pub fn NSRectClip(rect: NSRect);
+}
 
-extern_fn!(
+extern "C" {
     #[cfg(feature = "Foundation_NSGeometry")]
-    pub unsafe fn NSRectClipList(rects: NonNull<NSRect>, count: NSInteger);
-);
+    pub fn NSRectClipList(rects: NonNull<NSRect>, count: NSInteger);
+}
 
-extern_fn!(
+extern "C" {
     #[cfg(feature = "Foundation_NSGeometry")]
-    pub unsafe fn NSDrawTiledRects(
+    pub fn NSDrawTiledRects(
         bounds_rect: NSRect,
         clip_rect: NSRect,
         sides: NonNull<NSRectEdge>,
         grays: NonNull<CGFloat>,
         count: NSInteger,
     ) -> NSRect;
-);
+}
 
-extern_fn!(
+extern "C" {
     #[cfg(feature = "Foundation_NSGeometry")]
-    pub unsafe fn NSDrawGrayBezel(rect: NSRect, clip_rect: NSRect);
-);
+    pub fn NSDrawGrayBezel(rect: NSRect, clip_rect: NSRect);
+}
 
-extern_fn!(
+extern "C" {
     #[cfg(feature = "Foundation_NSGeometry")]
-    pub unsafe fn NSDrawGroove(rect: NSRect, clip_rect: NSRect);
-);
+    pub fn NSDrawGroove(rect: NSRect, clip_rect: NSRect);
+}
 
-extern_fn!(
+extern "C" {
     #[cfg(feature = "Foundation_NSGeometry")]
-    pub unsafe fn NSDrawWhiteBezel(rect: NSRect, clip_rect: NSRect);
-);
+    pub fn NSDrawWhiteBezel(rect: NSRect, clip_rect: NSRect);
+}
 
-extern_fn!(
+extern "C" {
     #[cfg(feature = "Foundation_NSGeometry")]
-    pub unsafe fn NSDrawButton(rect: NSRect, clip_rect: NSRect);
-);
+    pub fn NSDrawButton(rect: NSRect, clip_rect: NSRect);
+}
 
-extern_fn!(
+extern "C" {
     #[cfg(feature = "Foundation_NSGeometry")]
-    pub unsafe fn NSEraseRect(rect: NSRect);
-);
+    pub fn NSEraseRect(rect: NSRect);
+}
 
-extern_fn!(
+extern "C" {
     #[cfg(all(feature = "AppKit_NSColor", feature = "Foundation_NSGeometry"))]
     #[deprecated = "Use -[NSBitmapImageRep colorAtX:y:] to interrogate pixel values.  If necessary, use -[NSView cacheDisplayInRect:toBitmapImageRep:] to snapshot a view hierarchy into an NSBitmapImageRep."]
-    pub unsafe fn NSReadPixel(passed_point: NSPoint) -> *mut NSColor;
-);
+    pub fn NSReadPixel(passed_point: NSPoint) -> *mut NSColor;
+}
 
-extern_fn!(
+extern "C" {
     #[cfg(feature = "Foundation_NSGeometry")]
     #[deprecated]
-    pub unsafe fn NSHighlightRect(rect: NSRect);
-);
+    pub fn NSHighlightRect(rect: NSRect);
+}
 
-extern_fn!(
-    pub unsafe fn NSBeep();
-);
+extern "C" {
+    pub fn NSBeep();
+}
 
-extern_fn!(
+extern "C" {
     #[cfg(feature = "Foundation_NSString")]
     #[deprecated = "Doesn't return anything useful since 10.0"]
-    pub unsafe fn NSGetWindowServerMemory(
+    pub fn NSGetWindowServerMemory(
         context: NSInteger,
         virtual_memory: NonNull<NSInteger>,
         window_backing_memory: NonNull<NSInteger>,
         window_dump_string: NonNull<NonNull<NSString>>,
     ) -> NSInteger;
-);
+}
 
-extern_fn!(
+extern "C" {
     #[cfg(all(feature = "AppKit_NSColor", feature = "Foundation_NSGeometry"))]
-    pub unsafe fn NSDrawColorTiledRects(
+    pub fn NSDrawColorTiledRects(
         bounds_rect: NSRect,
         clip_rect: NSRect,
         sides: NonNull<NSRectEdge>,
         colors: NonNull<NonNull<NSColor>>,
         count: NSInteger,
     ) -> NSRect;
-);
+}
 
-extern_fn!(
+extern "C" {
     #[cfg(feature = "Foundation_NSGeometry")]
-    pub unsafe fn NSDrawDarkBezel(rect: NSRect, clip_rect: NSRect);
-);
+    pub fn NSDrawDarkBezel(rect: NSRect, clip_rect: NSRect);
+}
 
-extern_fn!(
+extern "C" {
     #[cfg(feature = "Foundation_NSGeometry")]
-    pub unsafe fn NSDrawLightBezel(rect: NSRect, clip_rect: NSRect);
-);
+    pub fn NSDrawLightBezel(rect: NSRect, clip_rect: NSRect);
+}
 
-extern_fn!(
+extern "C" {
     #[cfg(feature = "Foundation_NSGeometry")]
-    pub unsafe fn NSDottedFrameRect(rect: NSRect);
-);
+    pub fn NSDottedFrameRect(rect: NSRect);
+}
 
-extern_fn!(
+extern "C" {
     #[cfg(feature = "Foundation_NSGeometry")]
-    pub unsafe fn NSDrawWindowBackground(rect: NSRect);
-);
+    pub fn NSDrawWindowBackground(rect: NSRect);
+}
 
-extern_fn!(
-    pub unsafe fn NSSetFocusRingStyle(placement: NSFocusRingPlacement);
-);
+extern "C" {
+    pub fn NSSetFocusRingStyle(placement: NSFocusRingPlacement);
+}
 
-extern_fn!(
+extern "C" {
     #[deprecated = "As of 10.11 it is not generally necessary to take explicit action to achieve visual atomicity. +[NSAnimationContext runAnimationGroup:] and other similar methods can be used when a stronger than normal need for visual atomicity is required. The NSAnimationContext methods do not suffer from the same performance problems as NSDisableScreenUpdates."]
-    pub unsafe fn NSDisableScreenUpdates();
-);
+    pub fn NSDisableScreenUpdates();
+}
 
-extern_fn!(
+extern "C" {
     #[deprecated = "As of 10.11 it is not generally necessary to take explicit action to achieve visual atomicity. +[NSAnimationContext runAnimationGroup:] and other similar methods can be used when a stronger than normal need for visual atomicity is required. The NSAnimationContext methods do not suffer from the same performance problems as NSEnableScreenUpdates."]
-    pub unsafe fn NSEnableScreenUpdates();
-);
+    pub fn NSEnableScreenUpdates();
+}
 
 ns_enum!(
     #[underlying(NSUInteger)]
@@ -514,10 +510,10 @@ ns_enum!(
     }
 );
 
-extern_fn!(
+extern "C" {
     #[cfg(feature = "Foundation_NSGeometry")]
     #[deprecated = "Use +[NSCursor disappearingItemCursor] instead"]
-    pub unsafe fn NSShowAnimationEffect(
+    pub fn NSShowAnimationEffect(
         animation_effect: NSAnimationEffect,
         center_location: NSPoint,
         size: NSSize,
@@ -525,34 +521,30 @@ extern_fn!(
         did_end_selector: Option<Sel>,
         context_info: *mut c_void,
     );
-);
+}
 
-extern_fn!(
+extern "C" {
     #[deprecated = "Use +[NSWindow windowNumbersWithOptions:] instead"]
-    pub unsafe fn NSCountWindows(count: NonNull<NSInteger>);
-);
+    pub fn NSCountWindows(count: NonNull<NSInteger>);
+}
 
-extern_fn!(
+extern "C" {
     #[deprecated = "Use +[NSWindow windowNumbersWithOptions:] instead"]
-    pub unsafe fn NSWindowList(size: NSInteger, list: NonNull<NSInteger>);
-);
+    pub fn NSWindowList(size: NSInteger, list: NonNull<NSInteger>);
+}
 
-extern_fn!(
+extern "C" {
     #[deprecated = "Use +[NSWindow windowNumbersWithOptions:] instead"]
-    pub unsafe fn NSCountWindowsForContext(context: NSInteger, count: NonNull<NSInteger>);
-);
+    pub fn NSCountWindowsForContext(context: NSInteger, count: NonNull<NSInteger>);
+}
 
-extern_fn!(
+extern "C" {
     #[deprecated = "Use +[NSWindow windowNumbersWithOptions:] instead"]
-    pub unsafe fn NSWindowListForContext(
-        context: NSInteger,
-        size: NSInteger,
-        list: NonNull<NSInteger>,
-    );
-);
+    pub fn NSWindowListForContext(context: NSInteger, size: NSInteger, list: NonNull<NSInteger>);
+}
 
-extern_fn!(
+extern "C" {
     #[cfg(feature = "Foundation_NSGeometry")]
     #[deprecated]
-    pub unsafe fn NSCopyBits(src_g_state: NSInteger, src_rect: NSRect, dest_point: NSPoint);
-);
+    pub fn NSCopyBits(src_g_state: NSInteger, src_rect: NSRect, dest_point: NSPoint);
+}

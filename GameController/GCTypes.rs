@@ -14,22 +14,14 @@ extern_struct!(
 
 extern_static!(GCPoint2Zero: GCPoint2);
 
-inline_fn!(
-    pub unsafe fn GCPoint2Make(x: c_float, y: c_float) -> GCPoint2 {
-        todo!()
-    }
-);
+// TODO: pub fn GCPoint2Make(x: c_float,y: c_float,) -> GCPoint2;
 
-inline_fn!(
-    pub unsafe fn GCPoint2Equal(point1: GCPoint2, point2: GCPoint2) -> bool {
-        todo!()
-    }
-);
+// TODO: pub fn GCPoint2Equal(point1: GCPoint2,point2: GCPoint2,) -> bool;
 
-extern_fn!(
+extern "C" {
     #[cfg(feature = "Foundation_NSString")]
-    pub unsafe fn NSStringFromGCPoint2(point: GCPoint2) -> NonNull<NSString>;
-);
+    pub fn NSStringFromGCPoint2(point: GCPoint2) -> NonNull<NSString>;
+}
 
 extern_category!(
     /// Category "GCTypes" on [`NSValue`].

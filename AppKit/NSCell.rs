@@ -873,13 +873,13 @@ extern_methods!(
     }
 );
 
-extern_fn!(
+extern "C" {
     #[cfg(all(
         feature = "AppKit_NSGraphics",
         feature = "AppKit_NSImage",
         feature = "Foundation_NSGeometry"
     ))]
-    pub unsafe fn NSDrawThreePartImage(
+    pub fn NSDrawThreePartImage(
         frame: NSRect,
         start_cap: Option<&NSImage>,
         center_fill: Option<&NSImage>,
@@ -889,15 +889,15 @@ extern_fn!(
         alpha_fraction: CGFloat,
         flipped: Bool,
     );
-);
+}
 
-extern_fn!(
+extern "C" {
     #[cfg(all(
         feature = "AppKit_NSGraphics",
         feature = "AppKit_NSImage",
         feature = "Foundation_NSGeometry"
     ))]
-    pub unsafe fn NSDrawNinePartImage(
+    pub fn NSDrawNinePartImage(
         frame: NSRect,
         top_left_corner: Option<&NSImage>,
         top_edge_fill: Option<&NSImage>,
@@ -912,7 +912,7 @@ extern_fn!(
         alpha_fraction: CGFloat,
         flipped: Bool,
     );
-);
+}
 
 extern_methods!(
     /// NSDeprecated

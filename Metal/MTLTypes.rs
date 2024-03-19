@@ -13,11 +13,7 @@ extern_struct!(
     }
 );
 
-inline_fn!(
-    pub unsafe fn MTLOriginMake(x: NSUInteger, y: NSUInteger, z: NSUInteger) -> MTLOrigin {
-        todo!()
-    }
-);
+// TODO: pub fn MTLOriginMake(x: NSUInteger,y: NSUInteger,z: NSUInteger,) -> MTLOrigin;
 
 extern_struct!(
     #[encoding_name("?")]
@@ -28,11 +24,7 @@ extern_struct!(
     }
 );
 
-inline_fn!(
-    pub unsafe fn MTLSizeMake(width: NSUInteger, height: NSUInteger, depth: NSUInteger) -> MTLSize {
-        todo!()
-    }
-);
+// TODO: pub fn MTLSizeMake(width: NSUInteger,height: NSUInteger,depth: NSUInteger,) -> MTLSize;
 
 extern_struct!(
     #[encoding_name("?")]
@@ -42,35 +34,11 @@ extern_struct!(
     }
 );
 
-inline_fn!(
-    pub unsafe fn MTLRegionMake1D(x: NSUInteger, width: NSUInteger) -> MTLRegion {
-        todo!()
-    }
-);
+// TODO: pub fn MTLRegionMake1D(x: NSUInteger,width: NSUInteger,) -> MTLRegion;
 
-inline_fn!(
-    pub unsafe fn MTLRegionMake2D(
-        x: NSUInteger,
-        y: NSUInteger,
-        width: NSUInteger,
-        height: NSUInteger,
-    ) -> MTLRegion {
-        todo!()
-    }
-);
+// TODO: pub fn MTLRegionMake2D(x: NSUInteger,y: NSUInteger,width: NSUInteger,height: NSUInteger,) -> MTLRegion;
 
-inline_fn!(
-    pub unsafe fn MTLRegionMake3D(
-        x: NSUInteger,
-        y: NSUInteger,
-        z: NSUInteger,
-        width: NSUInteger,
-        height: NSUInteger,
-        depth: NSUInteger,
-    ) -> MTLRegion {
-        todo!()
-    }
-);
+// TODO: pub fn MTLRegionMake3D(x: NSUInteger,y: NSUInteger,z: NSUInteger,width: NSUInteger,height: NSUInteger,depth: NSUInteger,) -> MTLRegion;
 
 extern_struct!(
     #[encoding_name("?")]
@@ -80,19 +48,11 @@ extern_struct!(
     }
 );
 
-inline_fn!(
-    pub unsafe fn MTLSamplePositionMake(x: c_float, y: c_float) -> MTLSamplePosition {
-        todo!()
-    }
-);
+// TODO: pub fn MTLSamplePositionMake(x: c_float,y: c_float,) -> MTLSamplePosition;
 
 pub type MTLCoordinate2D = MTLSamplePosition;
 
-inline_fn!(
-    pub unsafe fn MTLCoordinate2DMake(x: c_float, y: c_float) -> MTLCoordinate2D {
-        todo!()
-    }
-);
+// TODO: pub fn MTLCoordinate2DMake(x: c_float,y: c_float,) -> MTLCoordinate2D;
 
 extern_struct!(
     pub struct MTLResourceID {

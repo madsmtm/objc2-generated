@@ -94,19 +94,19 @@ extern_struct!(
     }
 );
 
-extern_fn!(
+extern "C" {
     #[cfg(feature = "Foundation_NSData")]
     #[deprecated = "GCGamepad has been deprecated, use GCExtendedGamepad instead"]
-    pub unsafe fn GCGamepadSnapShotDataV100FromNSData(
+    pub fn GCGamepadSnapShotDataV100FromNSData(
         snapshot_data: *mut GCGamepadSnapShotDataV100,
         data: Option<&NSData>,
     ) -> Bool;
-);
+}
 
-extern_fn!(
+extern "C" {
     #[cfg(feature = "Foundation_NSData")]
     #[deprecated = "GCGamepad has been deprecated, use GCExtendedGamepad instead"]
-    pub unsafe fn NSDataFromGCGamepadSnapShotDataV100(
+    pub fn NSDataFromGCGamepadSnapShotDataV100(
         snapshot_data: *mut GCGamepadSnapShotDataV100,
     ) -> *mut NSData;
-);
+}

@@ -437,27 +437,25 @@ extern_methods!(
 #[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFileContentsPboardType: &'static NSPasteboardType);
 
-extern_fn!(
+extern "C" {
     #[cfg(feature = "Foundation_NSString")]
-    pub unsafe fn NSCreateFilenamePboardType(file_type: &NSString) -> *mut NSPasteboardType;
-);
+    pub fn NSCreateFilenamePboardType(file_type: &NSString) -> *mut NSPasteboardType;
+}
 
-extern_fn!(
+extern "C" {
     #[cfg(feature = "Foundation_NSString")]
-    pub unsafe fn NSCreateFileContentsPboardType(file_type: &NSString) -> *mut NSPasteboardType;
-);
+    pub fn NSCreateFileContentsPboardType(file_type: &NSString) -> *mut NSPasteboardType;
+}
 
-extern_fn!(
+extern "C" {
     #[cfg(feature = "Foundation_NSString")]
-    pub unsafe fn NSGetFileType(pboard_type: &NSPasteboardType) -> *mut NSString;
-);
+    pub fn NSGetFileType(pboard_type: &NSPasteboardType) -> *mut NSString;
+}
 
-extern_fn!(
+extern "C" {
     #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
-    pub unsafe fn NSGetFileTypes(
-        pboard_types: &NSArray<NSPasteboardType>,
-    ) -> *mut NSArray<NSString>;
-);
+    pub fn NSGetFileTypes(pboard_types: &NSArray<NSPasteboardType>) -> *mut NSArray<NSString>;
+}
 
 #[cfg(feature = "Foundation_NSString")]
 extern_static!(NSStringPboardType: &'static NSPasteboardType);
