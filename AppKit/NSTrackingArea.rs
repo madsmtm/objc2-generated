@@ -5,21 +5,32 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSTrackingAreaOptions {
-        NSTrackingMouseEnteredAndExited = 0x01,
-        NSTrackingMouseMoved = 0x02,
-        NSTrackingCursorUpdate = 0x04,
-        NSTrackingActiveWhenFirstResponder = 0x10,
-        NSTrackingActiveInKeyWindow = 0x20,
-        NSTrackingActiveInActiveApp = 0x40,
-        NSTrackingActiveAlways = 0x80,
-        NSTrackingAssumeInside = 0x100,
-        NSTrackingInVisibleRect = 0x200,
-        NSTrackingEnabledDuringMouseDrag = 0x400,
-    }
-);
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSTrackingAreaOptions(pub NSUInteger);
+impl NSTrackingAreaOptions {
+    pub const NSTrackingMouseEnteredAndExited: Self = Self(0x01);
+    pub const NSTrackingMouseMoved: Self = Self(0x02);
+    pub const NSTrackingCursorUpdate: Self = Self(0x04);
+    pub const NSTrackingActiveWhenFirstResponder: Self = Self(0x10);
+    pub const NSTrackingActiveInKeyWindow: Self = Self(0x20);
+    pub const NSTrackingActiveInActiveApp: Self = Self(0x40);
+    pub const NSTrackingActiveAlways: Self = Self(0x80);
+    pub const NSTrackingAssumeInside: Self = Self(0x100);
+    pub const NSTrackingInVisibleRect: Self = Self(0x200);
+    pub const NSTrackingEnabledDuringMouseDrag: Self = Self(0x400);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSTrackingAreaOptions {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSTrackingAreaOptions {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

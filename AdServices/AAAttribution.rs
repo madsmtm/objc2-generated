@@ -9,17 +9,28 @@ extern "C" {
     pub static AAAttributionErrorDomain: &'static NSErrorDomain;
 }
 
-ns_error_enum!(
-    #[underlying(NSInteger)]
-    pub enum AAAttributionErrorCode {
-        #[doc(alias = "AAAttributionErrorCodeNetworkError")]
-        NetworkError = 1,
-        #[doc(alias = "AAAttributionErrorCodeInternalError")]
-        InternalError = 2,
-        #[doc(alias = "AAAttributionErrorCodePlatformNotSupported")]
-        PlatformNotSupported = 3,
-    }
-);
+// NS_ERROR_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct AAAttributionErrorCode(pub NSInteger);
+impl AAAttributionErrorCode {
+    #[doc(alias = "AAAttributionErrorCodeNetworkError")]
+    pub const NetworkError: Self = Self(1);
+    #[doc(alias = "AAAttributionErrorCodeInternalError")]
+    pub const InternalError: Self = Self(2);
+    #[doc(alias = "AAAttributionErrorCodePlatformNotSupported")]
+    pub const PlatformNotSupported: Self = Self(3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for AAAttributionErrorCode {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for AAAttributionErrorCode {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

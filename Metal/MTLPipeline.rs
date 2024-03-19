@@ -4,17 +4,28 @@ use crate::common::*;
 use crate::Foundation::*;
 use crate::Metal::*;
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum MTLMutability {
-        #[doc(alias = "MTLMutabilityDefault")]
-        Default = 0,
-        #[doc(alias = "MTLMutabilityMutable")]
-        Mutable = 1,
-        #[doc(alias = "MTLMutabilityImmutable")]
-        Immutable = 2,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MTLMutability(pub NSUInteger);
+impl MTLMutability {
+    #[doc(alias = "MTLMutabilityDefault")]
+    pub const Default: Self = Self(0);
+    #[doc(alias = "MTLMutabilityMutable")]
+    pub const Mutable: Self = Self(1);
+    #[doc(alias = "MTLMutabilityImmutable")]
+    pub const Immutable: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLMutability {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLMutability {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

@@ -3,15 +3,26 @@
 use crate::common::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSBackgroundActivityResult {
-        #[doc(alias = "NSBackgroundActivityResultFinished")]
-        Finished = 1,
-        #[doc(alias = "NSBackgroundActivityResultDeferred")]
-        Deferred = 2,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSBackgroundActivityResult(pub NSInteger);
+impl NSBackgroundActivityResult {
+    #[doc(alias = "NSBackgroundActivityResultFinished")]
+    pub const Finished: Self = Self(1);
+    #[doc(alias = "NSBackgroundActivityResultDeferred")]
+    pub const Deferred: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSBackgroundActivityResult {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSBackgroundActivityResult {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 pub type NSBackgroundActivityCompletionHandler = *mut Block<dyn Fn(NSBackgroundActivityResult)>;
 

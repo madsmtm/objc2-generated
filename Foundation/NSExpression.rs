@@ -3,24 +3,35 @@
 use crate::common::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSExpressionType {
-        NSConstantValueExpressionType = 0,
-        NSEvaluatedObjectExpressionType = 1,
-        NSVariableExpressionType = 2,
-        NSKeyPathExpressionType = 3,
-        NSFunctionExpressionType = 4,
-        NSUnionSetExpressionType = 5,
-        NSIntersectSetExpressionType = 6,
-        NSMinusSetExpressionType = 7,
-        NSSubqueryExpressionType = 13,
-        NSAggregateExpressionType = 14,
-        NSAnyKeyExpressionType = 15,
-        NSBlockExpressionType = 19,
-        NSConditionalExpressionType = 20,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSExpressionType(pub NSUInteger);
+impl NSExpressionType {
+    pub const NSConstantValueExpressionType: Self = Self(0);
+    pub const NSEvaluatedObjectExpressionType: Self = Self(1);
+    pub const NSVariableExpressionType: Self = Self(2);
+    pub const NSKeyPathExpressionType: Self = Self(3);
+    pub const NSFunctionExpressionType: Self = Self(4);
+    pub const NSUnionSetExpressionType: Self = Self(5);
+    pub const NSIntersectSetExpressionType: Self = Self(6);
+    pub const NSMinusSetExpressionType: Self = Self(7);
+    pub const NSSubqueryExpressionType: Self = Self(13);
+    pub const NSAggregateExpressionType: Self = Self(14);
+    pub const NSAnyKeyExpressionType: Self = Self(15);
+    pub const NSBlockExpressionType: Self = Self(19);
+    pub const NSConditionalExpressionType: Self = Self(20);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSExpressionType {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSExpressionType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

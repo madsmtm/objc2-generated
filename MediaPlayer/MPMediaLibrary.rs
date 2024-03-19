@@ -5,19 +5,30 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::MediaPlayer::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum MPMediaLibraryAuthorizationStatus {
-        #[doc(alias = "MPMediaLibraryAuthorizationStatusNotDetermined")]
-        NotDetermined = 0,
-        #[doc(alias = "MPMediaLibraryAuthorizationStatusDenied")]
-        Denied = 1,
-        #[doc(alias = "MPMediaLibraryAuthorizationStatusRestricted")]
-        Restricted = 2,
-        #[doc(alias = "MPMediaLibraryAuthorizationStatusAuthorized")]
-        Authorized = 3,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MPMediaLibraryAuthorizationStatus(pub NSInteger);
+impl MPMediaLibraryAuthorizationStatus {
+    #[doc(alias = "MPMediaLibraryAuthorizationStatusNotDetermined")]
+    pub const NotDetermined: Self = Self(0);
+    #[doc(alias = "MPMediaLibraryAuthorizationStatusDenied")]
+    pub const Denied: Self = Self(1);
+    #[doc(alias = "MPMediaLibraryAuthorizationStatusRestricted")]
+    pub const Restricted: Self = Self(2);
+    #[doc(alias = "MPMediaLibraryAuthorizationStatusAuthorized")]
+    pub const Authorized: Self = Self(3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MPMediaLibraryAuthorizationStatus {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MPMediaLibraryAuthorizationStatus {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

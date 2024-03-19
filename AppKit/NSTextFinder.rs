@@ -5,42 +5,52 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSTextFinderAction {
-        #[doc(alias = "NSTextFinderActionShowFindInterface")]
-        ShowFindInterface = 1,
-        #[doc(alias = "NSTextFinderActionNextMatch")]
-        NextMatch = 2,
-        #[doc(alias = "NSTextFinderActionPreviousMatch")]
-        PreviousMatch = 3,
-        #[doc(alias = "NSTextFinderActionReplaceAll")]
-        ReplaceAll = 4,
-        #[doc(alias = "NSTextFinderActionReplace")]
-        Replace = 5,
-        #[doc(alias = "NSTextFinderActionReplaceAndFind")]
-        ReplaceAndFind = 6,
-        #[doc(alias = "NSTextFinderActionSetSearchString")]
-        SetSearchString = 7,
-        #[doc(alias = "NSTextFinderActionReplaceAllInSelection")]
-        ReplaceAllInSelection = 8,
-        #[doc(alias = "NSTextFinderActionSelectAll")]
-        SelectAll = 9,
-        #[doc(alias = "NSTextFinderActionSelectAllInSelection")]
-        SelectAllInSelection = 10,
-        #[doc(alias = "NSTextFinderActionHideFindInterface")]
-        HideFindInterface = 11,
-        #[doc(alias = "NSTextFinderActionShowReplaceInterface")]
-        ShowReplaceInterface = 12,
-        #[doc(alias = "NSTextFinderActionHideReplaceInterface")]
-        HideReplaceInterface = 13,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSTextFinderAction(pub NSInteger);
+impl NSTextFinderAction {
+    #[doc(alias = "NSTextFinderActionShowFindInterface")]
+    pub const ShowFindInterface: Self = Self(1);
+    #[doc(alias = "NSTextFinderActionNextMatch")]
+    pub const NextMatch: Self = Self(2);
+    #[doc(alias = "NSTextFinderActionPreviousMatch")]
+    pub const PreviousMatch: Self = Self(3);
+    #[doc(alias = "NSTextFinderActionReplaceAll")]
+    pub const ReplaceAll: Self = Self(4);
+    #[doc(alias = "NSTextFinderActionReplace")]
+    pub const Replace: Self = Self(5);
+    #[doc(alias = "NSTextFinderActionReplaceAndFind")]
+    pub const ReplaceAndFind: Self = Self(6);
+    #[doc(alias = "NSTextFinderActionSetSearchString")]
+    pub const SetSearchString: Self = Self(7);
+    #[doc(alias = "NSTextFinderActionReplaceAllInSelection")]
+    pub const ReplaceAllInSelection: Self = Self(8);
+    #[doc(alias = "NSTextFinderActionSelectAll")]
+    pub const SelectAll: Self = Self(9);
+    #[doc(alias = "NSTextFinderActionSelectAllInSelection")]
+    pub const SelectAllInSelection: Self = Self(10);
+    #[doc(alias = "NSTextFinderActionHideFindInterface")]
+    pub const HideFindInterface: Self = Self(11);
+    #[doc(alias = "NSTextFinderActionShowReplaceInterface")]
+    pub const ShowReplaceInterface: Self = Self(12);
+    #[doc(alias = "NSTextFinderActionHideReplaceInterface")]
+    pub const HideReplaceInterface: Self = Self(13);
+}
 
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSTextFinderAction {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSTextFinderAction {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type NSPasteboardTypeTextFinderOptionKey = NSString;
-);
+pub type NSPasteboardTypeTextFinderOptionKey = NSString;
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]
@@ -52,19 +62,30 @@ extern "C" {
     pub static NSTextFinderMatchingTypeKey: &'static NSPasteboardTypeTextFinderOptionKey;
 }
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSTextFinderMatchingType {
-        #[doc(alias = "NSTextFinderMatchingTypeContains")]
-        Contains = 0,
-        #[doc(alias = "NSTextFinderMatchingTypeStartsWith")]
-        StartsWith = 1,
-        #[doc(alias = "NSTextFinderMatchingTypeFullWord")]
-        FullWord = 2,
-        #[doc(alias = "NSTextFinderMatchingTypeEndsWith")]
-        EndsWith = 3,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSTextFinderMatchingType(pub NSInteger);
+impl NSTextFinderMatchingType {
+    #[doc(alias = "NSTextFinderMatchingTypeContains")]
+    pub const Contains: Self = Self(0);
+    #[doc(alias = "NSTextFinderMatchingTypeStartsWith")]
+    pub const StartsWith: Self = Self(1);
+    #[doc(alias = "NSTextFinderMatchingTypeFullWord")]
+    pub const FullWord: Self = Self(2);
+    #[doc(alias = "NSTextFinderMatchingTypeEndsWith")]
+    pub const EndsWith: Self = Self(3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSTextFinderMatchingType {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSTextFinderMatchingType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

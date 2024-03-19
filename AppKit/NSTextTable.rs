@@ -5,52 +5,107 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSTextBlockValueType {
-        NSTextBlockAbsoluteValueType = 0,
-        NSTextBlockPercentageValueType = 1,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSTextBlockValueType(pub NSUInteger);
+impl NSTextBlockValueType {
+    pub const NSTextBlockAbsoluteValueType: Self = Self(0);
+    pub const NSTextBlockPercentageValueType: Self = Self(1);
+}
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSTextBlockDimension {
-        NSTextBlockWidth = 0,
-        NSTextBlockMinimumWidth = 1,
-        NSTextBlockMaximumWidth = 2,
-        NSTextBlockHeight = 4,
-        NSTextBlockMinimumHeight = 5,
-        NSTextBlockMaximumHeight = 6,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSTextBlockValueType {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSTextBlockLayer {
-        NSTextBlockPadding = -1,
-        NSTextBlockBorder = 0,
-        NSTextBlockMargin = 1,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSTextBlockValueType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSTextBlockVerticalAlignment {
-        NSTextBlockTopAlignment = 0,
-        NSTextBlockMiddleAlignment = 1,
-        NSTextBlockBottomAlignment = 2,
-        NSTextBlockBaselineAlignment = 3,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSTextBlockDimension(pub NSUInteger);
+impl NSTextBlockDimension {
+    pub const NSTextBlockWidth: Self = Self(0);
+    pub const NSTextBlockMinimumWidth: Self = Self(1);
+    pub const NSTextBlockMaximumWidth: Self = Self(2);
+    pub const NSTextBlockHeight: Self = Self(4);
+    pub const NSTextBlockMinimumHeight: Self = Self(5);
+    pub const NSTextBlockMaximumHeight: Self = Self(6);
+}
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSTextTableLayoutAlgorithm {
-        NSTextTableAutomaticLayoutAlgorithm = 0,
-        NSTextTableFixedLayoutAlgorithm = 1,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSTextBlockDimension {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSTextBlockDimension {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSTextBlockLayer(pub NSInteger);
+impl NSTextBlockLayer {
+    pub const NSTextBlockPadding: Self = Self(-1);
+    pub const NSTextBlockBorder: Self = Self(0);
+    pub const NSTextBlockMargin: Self = Self(1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSTextBlockLayer {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSTextBlockLayer {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSTextBlockVerticalAlignment(pub NSUInteger);
+impl NSTextBlockVerticalAlignment {
+    pub const NSTextBlockTopAlignment: Self = Self(0);
+    pub const NSTextBlockMiddleAlignment: Self = Self(1);
+    pub const NSTextBlockBottomAlignment: Self = Self(2);
+    pub const NSTextBlockBaselineAlignment: Self = Self(3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSTextBlockVerticalAlignment {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSTextBlockVerticalAlignment {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSTextTableLayoutAlgorithm(pub NSUInteger);
+impl NSTextTableLayoutAlgorithm {
+    pub const NSTextTableAutomaticLayoutAlgorithm: Self = Self(0);
+    pub const NSTextTableFixedLayoutAlgorithm: Self = Self(1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSTextTableLayoutAlgorithm {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSTextTableLayoutAlgorithm {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

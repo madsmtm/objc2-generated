@@ -115,19 +115,30 @@ extern_category!(
     unsafe impl NSAttributedStringNSStringDrawing for NSAttributedString {}
 );
 
-ns_options!(
-    #[underlying(NSInteger)]
-    pub enum NSStringDrawingOptions {
-        NSStringDrawingUsesLineFragmentOrigin = 1 << 0,
-        NSStringDrawingUsesFontLeading = 1 << 1,
-        NSStringDrawingUsesDeviceMetrics = 1 << 3,
-        NSStringDrawingTruncatesLastVisibleLine = 1 << 5,
-        #[deprecated]
-        NSStringDrawingDisableScreenFontSubstitution = 1 << 2,
-        #[deprecated]
-        NSStringDrawingOneShot = 1 << 4,
-    }
-);
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSStringDrawingOptions(pub NSInteger);
+impl NSStringDrawingOptions {
+    pub const NSStringDrawingUsesLineFragmentOrigin: Self = Self(1 << 0);
+    pub const NSStringDrawingUsesFontLeading: Self = Self(1 << 1);
+    pub const NSStringDrawingUsesDeviceMetrics: Self = Self(1 << 3);
+    pub const NSStringDrawingTruncatesLastVisibleLine: Self = Self(1 << 5);
+    #[deprecated]
+    pub const NSStringDrawingDisableScreenFontSubstitution: Self = Self(1 << 2);
+    #[deprecated]
+    pub const NSStringDrawingOneShot: Self = Self(1 << 4);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSStringDrawingOptions {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSStringDrawingOptions {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_category!(
     /// Category "NSExtendedStringDrawing" on [`NSString`].

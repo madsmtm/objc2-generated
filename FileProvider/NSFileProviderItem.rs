@@ -6,10 +6,9 @@ use crate::FileProvider::*;
 use crate::Foundation::*;
 use crate::UniformTypeIdentifiers::*;
 
+// NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_extensible_enum!(
-    pub type NSFileProviderItemIdentifier = NSString;
-);
+pub type NSFileProviderItemIdentifier = NSString;
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]
@@ -78,68 +77,104 @@ extern "C" {
     pub static NSFileProviderFavoriteRankUnranked: c_ulonglong;
 }
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSFileProviderItemCapabilities {
-        #[doc(alias = "NSFileProviderItemCapabilitiesAllowsReading")]
-        AllowsReading = 1 << 0,
-        #[doc(alias = "NSFileProviderItemCapabilitiesAllowsWriting")]
-        AllowsWriting = 1 << 1,
-        #[doc(alias = "NSFileProviderItemCapabilitiesAllowsReparenting")]
-        AllowsReparenting = 1 << 2,
-        #[doc(alias = "NSFileProviderItemCapabilitiesAllowsRenaming")]
-        AllowsRenaming = 1 << 3,
-        #[doc(alias = "NSFileProviderItemCapabilitiesAllowsTrashing")]
-        AllowsTrashing = 1 << 4,
-        #[doc(alias = "NSFileProviderItemCapabilitiesAllowsDeleting")]
-        AllowsDeleting = 1 << 5,
-        #[deprecated = "use NSFileProviderContentPolicy instead"]
-        #[doc(alias = "NSFileProviderItemCapabilitiesAllowsEvicting")]
-        AllowsEvicting = 1 << 6,
-        #[doc(alias = "NSFileProviderItemCapabilitiesAllowsExcludingFromSync")]
-        AllowsExcludingFromSync = 1 << 7,
-        #[doc(alias = "NSFileProviderItemCapabilitiesAllowsAddingSubItems")]
-        AllowsAddingSubItems = NSFileProviderItemCapabilities::AllowsWriting.0,
-        #[doc(alias = "NSFileProviderItemCapabilitiesAllowsContentEnumerating")]
-        AllowsContentEnumerating = NSFileProviderItemCapabilities::AllowsReading.0,
-        #[deprecated = "This capability is no longer supported, and does not contain all capabilities. Please migrate to directly specifying each of the individual capabilities that should be allowed for the item."]
-        #[doc(alias = "NSFileProviderItemCapabilitiesAllowsAll")]
-        AllowsAll = NSFileProviderItemCapabilities::AllowsReading.0
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSFileProviderItemCapabilities(pub NSUInteger);
+impl NSFileProviderItemCapabilities {
+    #[doc(alias = "NSFileProviderItemCapabilitiesAllowsReading")]
+    pub const AllowsReading: Self = Self(1 << 0);
+    #[doc(alias = "NSFileProviderItemCapabilitiesAllowsWriting")]
+    pub const AllowsWriting: Self = Self(1 << 1);
+    #[doc(alias = "NSFileProviderItemCapabilitiesAllowsReparenting")]
+    pub const AllowsReparenting: Self = Self(1 << 2);
+    #[doc(alias = "NSFileProviderItemCapabilitiesAllowsRenaming")]
+    pub const AllowsRenaming: Self = Self(1 << 3);
+    #[doc(alias = "NSFileProviderItemCapabilitiesAllowsTrashing")]
+    pub const AllowsTrashing: Self = Self(1 << 4);
+    #[doc(alias = "NSFileProviderItemCapabilitiesAllowsDeleting")]
+    pub const AllowsDeleting: Self = Self(1 << 5);
+    #[deprecated = "use NSFileProviderContentPolicy instead"]
+    #[doc(alias = "NSFileProviderItemCapabilitiesAllowsEvicting")]
+    pub const AllowsEvicting: Self = Self(1 << 6);
+    #[doc(alias = "NSFileProviderItemCapabilitiesAllowsExcludingFromSync")]
+    pub const AllowsExcludingFromSync: Self = Self(1 << 7);
+    #[doc(alias = "NSFileProviderItemCapabilitiesAllowsAddingSubItems")]
+    pub const AllowsAddingSubItems: Self = Self(NSFileProviderItemCapabilities::AllowsWriting.0);
+    #[doc(alias = "NSFileProviderItemCapabilitiesAllowsContentEnumerating")]
+    pub const AllowsContentEnumerating: Self =
+        Self(NSFileProviderItemCapabilities::AllowsReading.0);
+    #[deprecated = "This capability is no longer supported, and does not contain all capabilities. Please migrate to directly specifying each of the individual capabilities that should be allowed for the item."]
+    #[doc(alias = "NSFileProviderItemCapabilitiesAllowsAll")]
+    pub const AllowsAll: Self = Self(
+        NSFileProviderItemCapabilities::AllowsReading.0
             | NSFileProviderItemCapabilities::AllowsWriting.0
             | NSFileProviderItemCapabilities::AllowsReparenting.0
             | NSFileProviderItemCapabilities::AllowsRenaming.0
             | NSFileProviderItemCapabilities::AllowsTrashing.0
             | NSFileProviderItemCapabilities::AllowsDeleting.0,
-    }
-);
+    );
+}
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSFileProviderItemFields {
-        NSFileProviderItemContents = 1 << 0,
-        NSFileProviderItemFilename = 1 << 1,
-        NSFileProviderItemParentItemIdentifier = 1 << 2,
-        NSFileProviderItemLastUsedDate = 1 << 3,
-        NSFileProviderItemTagData = 1 << 4,
-        NSFileProviderItemFavoriteRank = 1 << 5,
-        NSFileProviderItemCreationDate = 1 << 6,
-        NSFileProviderItemContentModificationDate = 1 << 7,
-        NSFileProviderItemFileSystemFlags = 1 << 8,
-        NSFileProviderItemExtendedAttributes = 1 << 9,
-        NSFileProviderItemTypeAndCreator = 1 << 10,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSFileProviderItemCapabilities {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSFileProviderFileSystemFlags {
-        NSFileProviderFileSystemUserExecutable = 1 << 0,
-        NSFileProviderFileSystemUserReadable = 1 << 1,
-        NSFileProviderFileSystemUserWritable = 1 << 2,
-        NSFileProviderFileSystemHidden = 1 << 3,
-        NSFileProviderFileSystemPathExtensionHidden = 1 << 4,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSFileProviderItemCapabilities {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSFileProviderItemFields(pub NSUInteger);
+impl NSFileProviderItemFields {
+    pub const NSFileProviderItemContents: Self = Self(1 << 0);
+    pub const NSFileProviderItemFilename: Self = Self(1 << 1);
+    pub const NSFileProviderItemParentItemIdentifier: Self = Self(1 << 2);
+    pub const NSFileProviderItemLastUsedDate: Self = Self(1 << 3);
+    pub const NSFileProviderItemTagData: Self = Self(1 << 4);
+    pub const NSFileProviderItemFavoriteRank: Self = Self(1 << 5);
+    pub const NSFileProviderItemCreationDate: Self = Self(1 << 6);
+    pub const NSFileProviderItemContentModificationDate: Self = Self(1 << 7);
+    pub const NSFileProviderItemFileSystemFlags: Self = Self(1 << 8);
+    pub const NSFileProviderItemExtendedAttributes: Self = Self(1 << 9);
+    pub const NSFileProviderItemTypeAndCreator: Self = Self(1 << 10);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSFileProviderItemFields {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSFileProviderItemFields {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSFileProviderFileSystemFlags(pub NSUInteger);
+impl NSFileProviderFileSystemFlags {
+    pub const NSFileProviderFileSystemUserExecutable: Self = Self(1 << 0);
+    pub const NSFileProviderFileSystemUserReadable: Self = Self(1 << 1);
+    pub const NSFileProviderFileSystemUserWritable: Self = Self(1 << 2);
+    pub const NSFileProviderFileSystemHidden: Self = Self(1 << 3);
+    pub const NSFileProviderFileSystemPathExtensionHidden: Self = Self(1 << 4);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSFileProviderFileSystemFlags {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSFileProviderFileSystemFlags {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_struct!(
     pub struct NSFileProviderTypeAndCreator {
@@ -148,19 +183,30 @@ extern_struct!(
     }
 );
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSFileProviderContentPolicy {
-        #[doc(alias = "NSFileProviderContentPolicyInherited")]
-        Inherited = 0,
-        #[doc(alias = "NSFileProviderContentPolicyDownloadLazily")]
-        DownloadLazily = 1,
-        #[doc(alias = "NSFileProviderContentPolicyDownloadLazilyAndEvictOnRemoteUpdate")]
-        DownloadLazilyAndEvictOnRemoteUpdate = 2,
-        #[doc(alias = "NSFileProviderContentPolicyDownloadEagerlyAndKeepDownloaded")]
-        DownloadEagerlyAndKeepDownloaded = 3,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSFileProviderContentPolicy(pub NSInteger);
+impl NSFileProviderContentPolicy {
+    #[doc(alias = "NSFileProviderContentPolicyInherited")]
+    pub const Inherited: Self = Self(0);
+    #[doc(alias = "NSFileProviderContentPolicyDownloadLazily")]
+    pub const DownloadLazily: Self = Self(1);
+    #[doc(alias = "NSFileProviderContentPolicyDownloadLazilyAndEvictOnRemoteUpdate")]
+    pub const DownloadLazilyAndEvictOnRemoteUpdate: Self = Self(2);
+    #[doc(alias = "NSFileProviderContentPolicyDownloadEagerlyAndKeepDownloaded")]
+    pub const DownloadEagerlyAndKeepDownloaded: Self = Self(3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSFileProviderContentPolicy {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSFileProviderContentPolicy {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_protocol!(
     pub unsafe trait NSFileProviderItemProtocol: NSObjectProtocol {

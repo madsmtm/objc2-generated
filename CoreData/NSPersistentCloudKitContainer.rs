@@ -4,17 +4,28 @@ use crate::common::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSPersistentCloudKitContainerSchemaInitializationOptions {
-        #[doc(alias = "NSPersistentCloudKitContainerSchemaInitializationOptionsNone")]
-        None = 0,
-        #[doc(alias = "NSPersistentCloudKitContainerSchemaInitializationOptionsDryRun")]
-        DryRun = 1 << 1,
-        #[doc(alias = "NSPersistentCloudKitContainerSchemaInitializationOptionsPrintSchema")]
-        PrintSchema = 1 << 2,
-    }
-);
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSPersistentCloudKitContainerSchemaInitializationOptions(pub NSUInteger);
+impl NSPersistentCloudKitContainerSchemaInitializationOptions {
+    #[doc(alias = "NSPersistentCloudKitContainerSchemaInitializationOptionsNone")]
+    pub const None: Self = Self(0);
+    #[doc(alias = "NSPersistentCloudKitContainerSchemaInitializationOptionsDryRun")]
+    pub const DryRun: Self = Self(1 << 1);
+    #[doc(alias = "NSPersistentCloudKitContainerSchemaInitializationOptionsPrintSchema")]
+    pub const PrintSchema: Self = Self(1 << 2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSPersistentCloudKitContainerSchemaInitializationOptions {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSPersistentCloudKitContainerSchemaInitializationOptions {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

@@ -3,45 +3,69 @@
 use crate::common::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSDateComponentsFormatterUnitsStyle {
-        #[doc(alias = "NSDateComponentsFormatterUnitsStylePositional")]
-        Positional = 0,
-        #[doc(alias = "NSDateComponentsFormatterUnitsStyleAbbreviated")]
-        Abbreviated = 1,
-        #[doc(alias = "NSDateComponentsFormatterUnitsStyleShort")]
-        Short = 2,
-        #[doc(alias = "NSDateComponentsFormatterUnitsStyleFull")]
-        Full = 3,
-        #[doc(alias = "NSDateComponentsFormatterUnitsStyleSpellOut")]
-        SpellOut = 4,
-        #[doc(alias = "NSDateComponentsFormatterUnitsStyleBrief")]
-        Brief = 5,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSDateComponentsFormatterUnitsStyle(pub NSInteger);
+impl NSDateComponentsFormatterUnitsStyle {
+    #[doc(alias = "NSDateComponentsFormatterUnitsStylePositional")]
+    pub const Positional: Self = Self(0);
+    #[doc(alias = "NSDateComponentsFormatterUnitsStyleAbbreviated")]
+    pub const Abbreviated: Self = Self(1);
+    #[doc(alias = "NSDateComponentsFormatterUnitsStyleShort")]
+    pub const Short: Self = Self(2);
+    #[doc(alias = "NSDateComponentsFormatterUnitsStyleFull")]
+    pub const Full: Self = Self(3);
+    #[doc(alias = "NSDateComponentsFormatterUnitsStyleSpellOut")]
+    pub const SpellOut: Self = Self(4);
+    #[doc(alias = "NSDateComponentsFormatterUnitsStyleBrief")]
+    pub const Brief: Self = Self(5);
+}
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSDateComponentsFormatterZeroFormattingBehavior {
-        #[doc(alias = "NSDateComponentsFormatterZeroFormattingBehaviorNone")]
-        None = 0,
-        #[doc(alias = "NSDateComponentsFormatterZeroFormattingBehaviorDefault")]
-        Default = 1 << 0,
-        #[doc(alias = "NSDateComponentsFormatterZeroFormattingBehaviorDropLeading")]
-        DropLeading = 1 << 1,
-        #[doc(alias = "NSDateComponentsFormatterZeroFormattingBehaviorDropMiddle")]
-        DropMiddle = 1 << 2,
-        #[doc(alias = "NSDateComponentsFormatterZeroFormattingBehaviorDropTrailing")]
-        DropTrailing = 1 << 3,
-        #[doc(alias = "NSDateComponentsFormatterZeroFormattingBehaviorDropAll")]
-        DropAll = NSDateComponentsFormatterZeroFormattingBehavior::DropLeading.0
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSDateComponentsFormatterUnitsStyle {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSDateComponentsFormatterUnitsStyle {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSDateComponentsFormatterZeroFormattingBehavior(pub NSUInteger);
+impl NSDateComponentsFormatterZeroFormattingBehavior {
+    #[doc(alias = "NSDateComponentsFormatterZeroFormattingBehaviorNone")]
+    pub const None: Self = Self(0);
+    #[doc(alias = "NSDateComponentsFormatterZeroFormattingBehaviorDefault")]
+    pub const Default: Self = Self(1 << 0);
+    #[doc(alias = "NSDateComponentsFormatterZeroFormattingBehaviorDropLeading")]
+    pub const DropLeading: Self = Self(1 << 1);
+    #[doc(alias = "NSDateComponentsFormatterZeroFormattingBehaviorDropMiddle")]
+    pub const DropMiddle: Self = Self(1 << 2);
+    #[doc(alias = "NSDateComponentsFormatterZeroFormattingBehaviorDropTrailing")]
+    pub const DropTrailing: Self = Self(1 << 3);
+    #[doc(alias = "NSDateComponentsFormatterZeroFormattingBehaviorDropAll")]
+    pub const DropAll: Self = Self(
+        NSDateComponentsFormatterZeroFormattingBehavior::DropLeading.0
             | NSDateComponentsFormatterZeroFormattingBehavior::DropMiddle.0
             | NSDateComponentsFormatterZeroFormattingBehavior::DropTrailing.0,
-        #[doc(alias = "NSDateComponentsFormatterZeroFormattingBehaviorPad")]
-        Pad = 1 << 16,
-    }
-);
+    );
+    #[doc(alias = "NSDateComponentsFormatterZeroFormattingBehaviorPad")]
+    pub const Pad: Self = Self(1 << 16);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSDateComponentsFormatterZeroFormattingBehavior {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSDateComponentsFormatterZeroFormattingBehavior {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

@@ -9,27 +9,49 @@ extern "C" {
     pub static MTLCaptureErrorDomain: &'static NSErrorDomain;
 }
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum MTLCaptureError {
-        #[doc(alias = "MTLCaptureErrorNotSupported")]
-        NotSupported = 1,
-        #[doc(alias = "MTLCaptureErrorAlreadyCapturing")]
-        AlreadyCapturing = 2,
-        #[doc(alias = "MTLCaptureErrorInvalidDescriptor")]
-        InvalidDescriptor = 3,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MTLCaptureError(pub NSInteger);
+impl MTLCaptureError {
+    #[doc(alias = "MTLCaptureErrorNotSupported")]
+    pub const NotSupported: Self = Self(1);
+    #[doc(alias = "MTLCaptureErrorAlreadyCapturing")]
+    pub const AlreadyCapturing: Self = Self(2);
+    #[doc(alias = "MTLCaptureErrorInvalidDescriptor")]
+    pub const InvalidDescriptor: Self = Self(3);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum MTLCaptureDestination {
-        #[doc(alias = "MTLCaptureDestinationDeveloperTools")]
-        DeveloperTools = 1,
-        #[doc(alias = "MTLCaptureDestinationGPUTraceDocument")]
-        GPUTraceDocument = 2,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLCaptureError {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLCaptureError {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MTLCaptureDestination(pub NSInteger);
+impl MTLCaptureDestination {
+    #[doc(alias = "MTLCaptureDestinationDeveloperTools")]
+    pub const DeveloperTools: Self = Self(1);
+    #[doc(alias = "MTLCaptureDestinationGPUTraceDocument")]
+    pub const GPUTraceDocument: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLCaptureDestination {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLCaptureDestination {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

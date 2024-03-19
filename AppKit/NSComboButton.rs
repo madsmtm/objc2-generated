@@ -5,15 +5,26 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSComboButtonStyle {
-        #[doc(alias = "NSComboButtonStyleSplit")]
-        Split = 0,
-        #[doc(alias = "NSComboButtonStyleUnified")]
-        Unified = 1,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSComboButtonStyle(pub NSInteger);
+impl NSComboButtonStyle {
+    #[doc(alias = "NSComboButtonStyleSplit")]
+    pub const Split: Self = Self(0);
+    #[doc(alias = "NSComboButtonStyleUnified")]
+    pub const Unified: Self = Self(1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSComboButtonStyle {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSComboButtonStyle {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

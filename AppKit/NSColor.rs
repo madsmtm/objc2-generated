@@ -8,33 +8,55 @@ use crate::Foundation::*;
 #[cfg(feature = "AppKit_NSApplication")]
 pub static NSAppKitVersionNumberWithPatternColorLeakFix: NSAppKitVersion = 641.0 as _;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSColorType {
-        #[doc(alias = "NSColorTypeComponentBased")]
-        ComponentBased = 0,
-        #[doc(alias = "NSColorTypePattern")]
-        Pattern = 1,
-        #[doc(alias = "NSColorTypeCatalog")]
-        Catalog = 2,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSColorType(pub NSInteger);
+impl NSColorType {
+    #[doc(alias = "NSColorTypeComponentBased")]
+    pub const ComponentBased: Self = Self(0);
+    #[doc(alias = "NSColorTypePattern")]
+    pub const Pattern: Self = Self(1);
+    #[doc(alias = "NSColorTypeCatalog")]
+    pub const Catalog: Self = Self(2);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSColorSystemEffect {
-        #[doc(alias = "NSColorSystemEffectNone")]
-        None = 0,
-        #[doc(alias = "NSColorSystemEffectPressed")]
-        Pressed = 1,
-        #[doc(alias = "NSColorSystemEffectDeepPressed")]
-        DeepPressed = 2,
-        #[doc(alias = "NSColorSystemEffectDisabled")]
-        Disabled = 3,
-        #[doc(alias = "NSColorSystemEffectRollover")]
-        Rollover = 4,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSColorType {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSColorType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSColorSystemEffect(pub NSInteger);
+impl NSColorSystemEffect {
+    #[doc(alias = "NSColorSystemEffectNone")]
+    pub const None: Self = Self(0);
+    #[doc(alias = "NSColorSystemEffectPressed")]
+    pub const Pressed: Self = Self(1);
+    #[doc(alias = "NSColorSystemEffectDeepPressed")]
+    pub const DeepPressed: Self = Self(2);
+    #[doc(alias = "NSColorSystemEffectDisabled")]
+    pub const Disabled: Self = Self(3);
+    #[doc(alias = "NSColorSystemEffectRollover")]
+    pub const Rollover: Self = Self(4);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSColorSystemEffect {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSColorSystemEffect {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

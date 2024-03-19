@@ -5,38 +5,71 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::MediaPlayer::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum MPShuffleType {
-        #[doc(alias = "MPShuffleTypeOff")]
-        Off = 0,
-        #[doc(alias = "MPShuffleTypeItems")]
-        Items = 1,
-        #[doc(alias = "MPShuffleTypeCollections")]
-        Collections = 2,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MPShuffleType(pub NSInteger);
+impl MPShuffleType {
+    #[doc(alias = "MPShuffleTypeOff")]
+    pub const Off: Self = Self(0);
+    #[doc(alias = "MPShuffleTypeItems")]
+    pub const Items: Self = Self(1);
+    #[doc(alias = "MPShuffleTypeCollections")]
+    pub const Collections: Self = Self(2);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum MPRepeatType {
-        #[doc(alias = "MPRepeatTypeOff")]
-        Off = 0,
-        #[doc(alias = "MPRepeatTypeOne")]
-        One = 1,
-        #[doc(alias = "MPRepeatTypeAll")]
-        All = 2,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MPShuffleType {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum MPChangeLanguageOptionSetting {
-        #[doc(alias = "MPChangeLanguageOptionSettingNone")]
-        None = 0,
-        #[doc(alias = "MPChangeLanguageOptionSettingNowPlayingItemOnly")]
-        NowPlayingItemOnly = 1,
-        #[doc(alias = "MPChangeLanguageOptionSettingPermanent")]
-        Permanent = 2,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MPShuffleType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MPRepeatType(pub NSInteger);
+impl MPRepeatType {
+    #[doc(alias = "MPRepeatTypeOff")]
+    pub const Off: Self = Self(0);
+    #[doc(alias = "MPRepeatTypeOne")]
+    pub const One: Self = Self(1);
+    #[doc(alias = "MPRepeatTypeAll")]
+    pub const All: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MPRepeatType {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MPRepeatType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MPChangeLanguageOptionSetting(pub NSInteger);
+impl MPChangeLanguageOptionSetting {
+    #[doc(alias = "MPChangeLanguageOptionSettingNone")]
+    pub const None: Self = Self(0);
+    #[doc(alias = "MPChangeLanguageOptionSettingNowPlayingItemOnly")]
+    pub const NowPlayingItemOnly: Self = Self(1);
+    #[doc(alias = "MPChangeLanguageOptionSettingPermanent")]
+    pub const Permanent: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MPChangeLanguageOptionSetting {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MPChangeLanguageOptionSetting {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}

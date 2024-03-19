@@ -53,17 +53,28 @@ extern "C" {
     pub static MEComposeSessionErrorDomain: &'static NSErrorDomain;
 }
 
-ns_error_enum!(
-    #[underlying(NSInteger)]
-    pub enum MEComposeSessionErrorCode {
-        #[doc(alias = "MEComposeSessionErrorCodeInvalidRecipients")]
-        InvalidRecipients = 0,
-        #[doc(alias = "MEComposeSessionErrorCodeInvalidHeaders")]
-        InvalidHeaders = 1,
-        #[doc(alias = "MEComposeSessionErrorCodeInvalidBody")]
-        InvalidBody = 2,
-    }
-);
+// NS_ERROR_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MEComposeSessionErrorCode(pub NSInteger);
+impl MEComposeSessionErrorCode {
+    #[doc(alias = "MEComposeSessionErrorCodeInvalidRecipients")]
+    pub const InvalidRecipients: Self = Self(0);
+    #[doc(alias = "MEComposeSessionErrorCodeInvalidHeaders")]
+    pub const InvalidHeaders: Self = Self(1);
+    #[doc(alias = "MEComposeSessionErrorCodeInvalidBody")]
+    pub const InvalidBody: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MEComposeSessionErrorCode {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MEComposeSessionErrorCode {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_protocol!(
     pub unsafe trait MEComposeSessionHandler: NSObjectProtocol {

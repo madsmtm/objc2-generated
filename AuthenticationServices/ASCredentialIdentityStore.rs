@@ -10,29 +10,51 @@ extern "C" {
     pub static ASCredentialIdentityStoreErrorDomain: &'static NSErrorDomain;
 }
 
-ns_error_enum!(
-    #[underlying(NSInteger)]
-    pub enum ASCredentialIdentityStoreErrorCode {
-        #[doc(alias = "ASCredentialIdentityStoreErrorCodeInternalError")]
-        InternalError = 0,
-        #[doc(alias = "ASCredentialIdentityStoreErrorCodeStoreDisabled")]
-        StoreDisabled = 1,
-        #[doc(alias = "ASCredentialIdentityStoreErrorCodeStoreBusy")]
-        StoreBusy = 2,
-    }
-);
+// NS_ERROR_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct ASCredentialIdentityStoreErrorCode(pub NSInteger);
+impl ASCredentialIdentityStoreErrorCode {
+    #[doc(alias = "ASCredentialIdentityStoreErrorCodeInternalError")]
+    pub const InternalError: Self = Self(0);
+    #[doc(alias = "ASCredentialIdentityStoreErrorCodeStoreDisabled")]
+    pub const StoreDisabled: Self = Self(1);
+    #[doc(alias = "ASCredentialIdentityStoreErrorCodeStoreBusy")]
+    pub const StoreBusy: Self = Self(2);
+}
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum ASCredentialIdentityTypes {
-        #[doc(alias = "ASCredentialIdentityTypesAll")]
-        All = 0,
-        #[doc(alias = "ASCredentialIdentityTypesPassword")]
-        Password = 1,
-        #[doc(alias = "ASCredentialIdentityTypesPasskey")]
-        Passkey = 1 << 1,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for ASCredentialIdentityStoreErrorCode {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for ASCredentialIdentityStoreErrorCode {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct ASCredentialIdentityTypes(pub NSUInteger);
+impl ASCredentialIdentityTypes {
+    #[doc(alias = "ASCredentialIdentityTypesAll")]
+    pub const All: Self = Self(0);
+    #[doc(alias = "ASCredentialIdentityTypesPassword")]
+    pub const Password: Self = Self(1);
+    #[doc(alias = "ASCredentialIdentityTypesPasskey")]
+    pub const Passkey: Self = Self(1 << 1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for ASCredentialIdentityTypes {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for ASCredentialIdentityTypes {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

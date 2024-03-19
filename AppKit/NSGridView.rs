@@ -5,41 +5,63 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSGridCellPlacement {
-        #[doc(alias = "NSGridCellPlacementInherited")]
-        Inherited = 0,
-        #[doc(alias = "NSGridCellPlacementNone")]
-        None = 1,
-        #[doc(alias = "NSGridCellPlacementLeading")]
-        Leading = 2,
-        #[doc(alias = "NSGridCellPlacementTop")]
-        Top = NSGridCellPlacement::Leading.0,
-        #[doc(alias = "NSGridCellPlacementTrailing")]
-        Trailing = 3,
-        #[doc(alias = "NSGridCellPlacementBottom")]
-        Bottom = NSGridCellPlacement::Trailing.0,
-        #[doc(alias = "NSGridCellPlacementCenter")]
-        Center = 4,
-        #[doc(alias = "NSGridCellPlacementFill")]
-        Fill = 5,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSGridCellPlacement(pub NSInteger);
+impl NSGridCellPlacement {
+    #[doc(alias = "NSGridCellPlacementInherited")]
+    pub const Inherited: Self = Self(0);
+    #[doc(alias = "NSGridCellPlacementNone")]
+    pub const None: Self = Self(1);
+    #[doc(alias = "NSGridCellPlacementLeading")]
+    pub const Leading: Self = Self(2);
+    #[doc(alias = "NSGridCellPlacementTop")]
+    pub const Top: Self = Self(NSGridCellPlacement::Leading.0);
+    #[doc(alias = "NSGridCellPlacementTrailing")]
+    pub const Trailing: Self = Self(3);
+    #[doc(alias = "NSGridCellPlacementBottom")]
+    pub const Bottom: Self = Self(NSGridCellPlacement::Trailing.0);
+    #[doc(alias = "NSGridCellPlacementCenter")]
+    pub const Center: Self = Self(4);
+    #[doc(alias = "NSGridCellPlacementFill")]
+    pub const Fill: Self = Self(5);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSGridRowAlignment {
-        #[doc(alias = "NSGridRowAlignmentInherited")]
-        Inherited = 0,
-        #[doc(alias = "NSGridRowAlignmentNone")]
-        None = 1,
-        #[doc(alias = "NSGridRowAlignmentFirstBaseline")]
-        FirstBaseline = 2,
-        #[doc(alias = "NSGridRowAlignmentLastBaseline")]
-        LastBaseline = 3,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSGridCellPlacement {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSGridCellPlacement {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSGridRowAlignment(pub NSInteger);
+impl NSGridRowAlignment {
+    #[doc(alias = "NSGridRowAlignmentInherited")]
+    pub const Inherited: Self = Self(0);
+    #[doc(alias = "NSGridRowAlignmentNone")]
+    pub const None: Self = Self(1);
+    #[doc(alias = "NSGridRowAlignmentFirstBaseline")]
+    pub const FirstBaseline: Self = Self(2);
+    #[doc(alias = "NSGridRowAlignmentLastBaseline")]
+    pub const LastBaseline: Self = Self(3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSGridRowAlignment {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSGridRowAlignment {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern "C" {
     #[cfg(feature = "Foundation_NSGeometry")]

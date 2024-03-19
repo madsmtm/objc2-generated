@@ -9,14 +9,25 @@ extern "C" {
     pub static MXErrorDomain: Option<&'static NSErrorDomain>;
 }
 
-ns_error_enum!(
-    #[underlying(NSInteger)]
-    pub enum MXErrorCode {
-        MXErrorLaunchTaskInvalidID = 0,
-        MXErrorLaunchTaskMaxCount = 1,
-        MXErrorLaunchTaskPastDeadline = 2,
-        MXErrorLaunchTaskDuplicated = 3,
-        MXErrorLaunchTaskUnknown = 4,
-        MXErrorLaunchTaskInternalFailure = 5,
-    }
-);
+// NS_ERROR_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MXErrorCode(pub NSInteger);
+impl MXErrorCode {
+    pub const MXErrorLaunchTaskInvalidID: Self = Self(0);
+    pub const MXErrorLaunchTaskMaxCount: Self = Self(1);
+    pub const MXErrorLaunchTaskPastDeadline: Self = Self(2);
+    pub const MXErrorLaunchTaskDuplicated: Self = Self(3);
+    pub const MXErrorLaunchTaskUnknown: Self = Self(4);
+    pub const MXErrorLaunchTaskInternalFailure: Self = Self(5);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MXErrorCode {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MXErrorCode {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}

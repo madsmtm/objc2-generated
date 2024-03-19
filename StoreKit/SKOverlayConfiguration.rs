@@ -5,15 +5,26 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::StoreKit::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum SKOverlayPosition {
-        #[doc(alias = "SKOverlayPositionBottom")]
-        Bottom = 0,
-        #[doc(alias = "SKOverlayPositionBottomRaised")]
-        BottomRaised = 1,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct SKOverlayPosition(pub NSInteger);
+impl SKOverlayPosition {
+    #[doc(alias = "SKOverlayPositionBottom")]
+    pub const Bottom: Self = Self(0);
+    #[doc(alias = "SKOverlayPositionBottomRaised")]
+    pub const BottomRaised: Self = Self(1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for SKOverlayPosition {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for SKOverlayPosition {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

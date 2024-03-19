@@ -5,88 +5,131 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSTIFFCompression {
-        #[doc(alias = "NSTIFFCompressionNone")]
-        None = 1,
-        #[doc(alias = "NSTIFFCompressionCCITTFAX3")]
-        CCITTFAX3 = 3,
-        #[doc(alias = "NSTIFFCompressionCCITTFAX4")]
-        CCITTFAX4 = 4,
-        #[doc(alias = "NSTIFFCompressionLZW")]
-        LZW = 5,
-        #[doc(alias = "NSTIFFCompressionJPEG")]
-        JPEG = 6,
-        #[doc(alias = "NSTIFFCompressionNEXT")]
-        NEXT = 32766,
-        #[doc(alias = "NSTIFFCompressionPackBits")]
-        PackBits = 32773,
-        #[doc(alias = "NSTIFFCompressionOldJPEG")]
-        OldJPEG = 32865,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSTIFFCompression(pub NSUInteger);
+impl NSTIFFCompression {
+    #[doc(alias = "NSTIFFCompressionNone")]
+    pub const None: Self = Self(1);
+    #[doc(alias = "NSTIFFCompressionCCITTFAX3")]
+    pub const CCITTFAX3: Self = Self(3);
+    #[doc(alias = "NSTIFFCompressionCCITTFAX4")]
+    pub const CCITTFAX4: Self = Self(4);
+    #[doc(alias = "NSTIFFCompressionLZW")]
+    pub const LZW: Self = Self(5);
+    #[doc(alias = "NSTIFFCompressionJPEG")]
+    pub const JPEG: Self = Self(6);
+    #[doc(alias = "NSTIFFCompressionNEXT")]
+    pub const NEXT: Self = Self(32766);
+    #[doc(alias = "NSTIFFCompressionPackBits")]
+    pub const PackBits: Self = Self(32773);
+    #[doc(alias = "NSTIFFCompressionOldJPEG")]
+    pub const OldJPEG: Self = Self(32865);
+}
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSBitmapImageFileType {
-        #[doc(alias = "NSBitmapImageFileTypeTIFF")]
-        TIFF = 0,
-        #[doc(alias = "NSBitmapImageFileTypeBMP")]
-        BMP = 1,
-        #[doc(alias = "NSBitmapImageFileTypeGIF")]
-        GIF = 2,
-        #[doc(alias = "NSBitmapImageFileTypeJPEG")]
-        JPEG = 3,
-        #[doc(alias = "NSBitmapImageFileTypePNG")]
-        PNG = 4,
-        #[doc(alias = "NSBitmapImageFileTypeJPEG2000")]
-        JPEG2000 = 5,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSTIFFCompression {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSImageRepLoadStatus {
-        #[doc(alias = "NSImageRepLoadStatusUnknownType")]
-        UnknownType = -1,
-        #[doc(alias = "NSImageRepLoadStatusReadingHeader")]
-        ReadingHeader = -2,
-        #[doc(alias = "NSImageRepLoadStatusWillNeedAllData")]
-        WillNeedAllData = -3,
-        #[doc(alias = "NSImageRepLoadStatusInvalidData")]
-        InvalidData = -4,
-        #[doc(alias = "NSImageRepLoadStatusUnexpectedEOF")]
-        UnexpectedEOF = -5,
-        #[doc(alias = "NSImageRepLoadStatusCompleted")]
-        Completed = -6,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSTIFFCompression {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSBitmapFormat {
-        #[doc(alias = "NSBitmapFormatAlphaFirst")]
-        AlphaFirst = 1 << 0,
-        #[doc(alias = "NSBitmapFormatAlphaNonpremultiplied")]
-        AlphaNonpremultiplied = 1 << 1,
-        #[doc(alias = "NSBitmapFormatFloatingPointSamples")]
-        FloatingPointSamples = 1 << 2,
-        #[doc(alias = "NSBitmapFormatSixteenBitLittleEndian")]
-        SixteenBitLittleEndian = 1 << 8,
-        #[doc(alias = "NSBitmapFormatThirtyTwoBitLittleEndian")]
-        ThirtyTwoBitLittleEndian = 1 << 9,
-        #[doc(alias = "NSBitmapFormatSixteenBitBigEndian")]
-        SixteenBitBigEndian = 1 << 10,
-        #[doc(alias = "NSBitmapFormatThirtyTwoBitBigEndian")]
-        ThirtyTwoBitBigEndian = 1 << 11,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSBitmapImageFileType(pub NSUInteger);
+impl NSBitmapImageFileType {
+    #[doc(alias = "NSBitmapImageFileTypeTIFF")]
+    pub const TIFF: Self = Self(0);
+    #[doc(alias = "NSBitmapImageFileTypeBMP")]
+    pub const BMP: Self = Self(1);
+    #[doc(alias = "NSBitmapImageFileTypeGIF")]
+    pub const GIF: Self = Self(2);
+    #[doc(alias = "NSBitmapImageFileTypeJPEG")]
+    pub const JPEG: Self = Self(3);
+    #[doc(alias = "NSBitmapImageFileTypePNG")]
+    pub const PNG: Self = Self(4);
+    #[doc(alias = "NSBitmapImageFileTypeJPEG2000")]
+    pub const JPEG2000: Self = Self(5);
+}
 
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSBitmapImageFileType {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSBitmapImageFileType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSImageRepLoadStatus(pub NSInteger);
+impl NSImageRepLoadStatus {
+    #[doc(alias = "NSImageRepLoadStatusUnknownType")]
+    pub const UnknownType: Self = Self(-1);
+    #[doc(alias = "NSImageRepLoadStatusReadingHeader")]
+    pub const ReadingHeader: Self = Self(-2);
+    #[doc(alias = "NSImageRepLoadStatusWillNeedAllData")]
+    pub const WillNeedAllData: Self = Self(-3);
+    #[doc(alias = "NSImageRepLoadStatusInvalidData")]
+    pub const InvalidData: Self = Self(-4);
+    #[doc(alias = "NSImageRepLoadStatusUnexpectedEOF")]
+    pub const UnexpectedEOF: Self = Self(-5);
+    #[doc(alias = "NSImageRepLoadStatusCompleted")]
+    pub const Completed: Self = Self(-6);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSImageRepLoadStatus {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSImageRepLoadStatus {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSBitmapFormat(pub NSUInteger);
+impl NSBitmapFormat {
+    #[doc(alias = "NSBitmapFormatAlphaFirst")]
+    pub const AlphaFirst: Self = Self(1 << 0);
+    #[doc(alias = "NSBitmapFormatAlphaNonpremultiplied")]
+    pub const AlphaNonpremultiplied: Self = Self(1 << 1);
+    #[doc(alias = "NSBitmapFormatFloatingPointSamples")]
+    pub const FloatingPointSamples: Self = Self(1 << 2);
+    #[doc(alias = "NSBitmapFormatSixteenBitLittleEndian")]
+    pub const SixteenBitLittleEndian: Self = Self(1 << 8);
+    #[doc(alias = "NSBitmapFormatThirtyTwoBitLittleEndian")]
+    pub const ThirtyTwoBitLittleEndian: Self = Self(1 << 9);
+    #[doc(alias = "NSBitmapFormatSixteenBitBigEndian")]
+    pub const SixteenBitBigEndian: Self = Self(1 << 10);
+    #[doc(alias = "NSBitmapFormatThirtyTwoBitBigEndian")]
+    pub const ThirtyTwoBitBigEndian: Self = Self(1 << 11);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSBitmapFormat {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSBitmapFormat {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_extensible_enum!(
-    pub type NSBitmapImageRepPropertyKey = NSString;
-);
+pub type NSBitmapImageRepPropertyKey = NSString;
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]

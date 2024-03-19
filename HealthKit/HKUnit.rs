@@ -83,39 +83,50 @@ extern_methods!(
     }
 );
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum HKMetricPrefix {
-        #[doc(alias = "HKMetricPrefixNone")]
-        None = 0,
-        #[doc(alias = "HKMetricPrefixFemto")]
-        Femto = 13,
-        #[doc(alias = "HKMetricPrefixPico")]
-        Pico = 1,
-        #[doc(alias = "HKMetricPrefixNano")]
-        Nano = 2,
-        #[doc(alias = "HKMetricPrefixMicro")]
-        Micro = 3,
-        #[doc(alias = "HKMetricPrefixMilli")]
-        Milli = 4,
-        #[doc(alias = "HKMetricPrefixCenti")]
-        Centi = 5,
-        #[doc(alias = "HKMetricPrefixDeci")]
-        Deci = 6,
-        #[doc(alias = "HKMetricPrefixDeca")]
-        Deca = 7,
-        #[doc(alias = "HKMetricPrefixHecto")]
-        Hecto = 8,
-        #[doc(alias = "HKMetricPrefixKilo")]
-        Kilo = 9,
-        #[doc(alias = "HKMetricPrefixMega")]
-        Mega = 10,
-        #[doc(alias = "HKMetricPrefixGiga")]
-        Giga = 11,
-        #[doc(alias = "HKMetricPrefixTera")]
-        Tera = 12,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct HKMetricPrefix(pub NSInteger);
+impl HKMetricPrefix {
+    #[doc(alias = "HKMetricPrefixNone")]
+    pub const None: Self = Self(0);
+    #[doc(alias = "HKMetricPrefixFemto")]
+    pub const Femto: Self = Self(13);
+    #[doc(alias = "HKMetricPrefixPico")]
+    pub const Pico: Self = Self(1);
+    #[doc(alias = "HKMetricPrefixNano")]
+    pub const Nano: Self = Self(2);
+    #[doc(alias = "HKMetricPrefixMicro")]
+    pub const Micro: Self = Self(3);
+    #[doc(alias = "HKMetricPrefixMilli")]
+    pub const Milli: Self = Self(4);
+    #[doc(alias = "HKMetricPrefixCenti")]
+    pub const Centi: Self = Self(5);
+    #[doc(alias = "HKMetricPrefixDeci")]
+    pub const Deci: Self = Self(6);
+    #[doc(alias = "HKMetricPrefixDeca")]
+    pub const Deca: Self = Self(7);
+    #[doc(alias = "HKMetricPrefixHecto")]
+    pub const Hecto: Self = Self(8);
+    #[doc(alias = "HKMetricPrefixKilo")]
+    pub const Kilo: Self = Self(9);
+    #[doc(alias = "HKMetricPrefixMega")]
+    pub const Mega: Self = Self(10);
+    #[doc(alias = "HKMetricPrefixGiga")]
+    pub const Giga: Self = Self(11);
+    #[doc(alias = "HKMetricPrefixTera")]
+    pub const Tera: Self = Self(12);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for HKMetricPrefix {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for HKMetricPrefix {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_methods!(
     /// Mass

@@ -4,25 +4,35 @@ use crate::common::*;
 use crate::BackgroundAssets::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum BADownloadState {
-        #[doc(alias = "BADownloadStateFailed")]
-        Failed = -1,
-        #[doc(alias = "BADownloadStateCreated")]
-        Created = 0,
-        #[doc(alias = "BADownloadStateWaiting")]
-        Waiting = 1,
-        #[doc(alias = "BADownloadStateDownloading")]
-        Downloading = 2,
-        #[doc(alias = "BADownloadStateFinished")]
-        Finished = 3,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct BADownloadState(pub NSInteger);
+impl BADownloadState {
+    #[doc(alias = "BADownloadStateFailed")]
+    pub const Failed: Self = Self(-1);
+    #[doc(alias = "BADownloadStateCreated")]
+    pub const Created: Self = Self(0);
+    #[doc(alias = "BADownloadStateWaiting")]
+    pub const Waiting: Self = Self(1);
+    #[doc(alias = "BADownloadStateDownloading")]
+    pub const Downloading: Self = Self(2);
+    #[doc(alias = "BADownloadStateFinished")]
+    pub const Finished: Self = Self(3);
+}
 
-typed_extensible_enum!(
-    pub type BADownloaderPriority = NSInteger;
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for BADownloadState {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for BADownloadState {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_TYPED_EXTENSIBLE_ENUM
+pub type BADownloaderPriority = NSInteger;
 
 extern "C" {
     pub static BADownloaderPriorityMin: BADownloaderPriority;

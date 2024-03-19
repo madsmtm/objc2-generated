@@ -3,21 +3,43 @@
 use crate::common::*;
 use crate::Foundation::*;
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSFileWrapperReadingOptions {
-        NSFileWrapperReadingImmediate = 1 << 0,
-        NSFileWrapperReadingWithoutMapping = 1 << 1,
-    }
-);
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSFileWrapperReadingOptions(pub NSUInteger);
+impl NSFileWrapperReadingOptions {
+    pub const NSFileWrapperReadingImmediate: Self = Self(1 << 0);
+    pub const NSFileWrapperReadingWithoutMapping: Self = Self(1 << 1);
+}
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSFileWrapperWritingOptions {
-        NSFileWrapperWritingAtomic = 1 << 0,
-        NSFileWrapperWritingWithNameUpdating = 1 << 1,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSFileWrapperReadingOptions {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSFileWrapperReadingOptions {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSFileWrapperWritingOptions(pub NSUInteger);
+impl NSFileWrapperWritingOptions {
+    pub const NSFileWrapperWritingAtomic: Self = Self(1 << 0);
+    pub const NSFileWrapperWritingWithNameUpdating: Self = Self(1 << 1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSFileWrapperWritingOptions {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSFileWrapperWritingOptions {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

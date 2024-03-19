@@ -5,77 +5,128 @@ use crate::AppKit::*;
 use crate::AuthenticationServices::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum ASAuthorizationProviderExtensionAuthenticationMethod {
-        #[doc(alias = "ASAuthorizationProviderExtensionAuthenticationMethodPassword")]
-        Password = 1,
-        #[doc(alias = "ASAuthorizationProviderExtensionAuthenticationMethodUserSecureEnclaveKey")]
-        UserSecureEnclaveKey = 2,
-        #[doc(alias = "ASAuthorizationProviderExtensionAuthenticationMethodSmartCard")]
-        SmartCard = 3,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct ASAuthorizationProviderExtensionAuthenticationMethod(pub NSInteger);
+impl ASAuthorizationProviderExtensionAuthenticationMethod {
+    #[doc(alias = "ASAuthorizationProviderExtensionAuthenticationMethodPassword")]
+    pub const Password: Self = Self(1);
+    #[doc(alias = "ASAuthorizationProviderExtensionAuthenticationMethodUserSecureEnclaveKey")]
+    pub const UserSecureEnclaveKey: Self = Self(2);
+    #[doc(alias = "ASAuthorizationProviderExtensionAuthenticationMethodSmartCard")]
+    pub const SmartCard: Self = Self(3);
+}
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum ASAuthorizationProviderExtensionRequestOptions {
-        #[doc(alias = "ASAuthorizationProviderExtensionRequestOptionsNone")]
-        None = 0,
-        #[doc(alias = "ASAuthorizationProviderExtensionRequestOptionsUserInteractionEnabled")]
-        UserInteractionEnabled = 1 << 0,
-        #[doc(alias = "ASAuthorizationProviderExtensionRequestOptionsRegistrationRepair")]
-        RegistrationRepair = 1 << 1,
-        #[doc(
-            alias = "ASAuthorizationProviderExtensionRequestOptionsRegistrationSharedDeviceKeys"
-        )]
-        RegistrationSharedDeviceKeys = 1 << 2,
-        #[doc(
-            alias = "ASAuthorizationProviderExtensionRequestOptionsRegistrationDeviceKeyMigration"
-        )]
-        RegistrationDeviceKeyMigration = 1 << 3,
-        #[doc(alias = "ASAuthorizationProviderExtensionRequestOptionsUserKeyInvalid")]
-        UserKeyInvalid = 1 << 5,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for ASAuthorizationProviderExtensionAuthenticationMethod {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum ASAuthorizationProviderExtensionRegistrationResult {
-        #[doc(alias = "ASAuthorizationProviderExtensionRegistrationResultSuccess")]
-        Success = 0,
-        #[doc(alias = "ASAuthorizationProviderExtensionRegistrationResultFailed")]
-        Failed = 1,
-        #[doc(alias = "ASAuthorizationProviderExtensionRegistrationResultUserInterfaceRequired")]
-        UserInterfaceRequired = 2,
-        #[doc(alias = "ASAuthorizationProviderExtensionRegistrationResultFailedNoRetry")]
-        FailedNoRetry = 3,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for ASAuthorizationProviderExtensionAuthenticationMethod {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
-ns_options!(
-    #[underlying(NSInteger)]
-    pub enum ASAuthorizationProviderExtensionSupportedGrantTypes {
-        #[doc(alias = "ASAuthorizationProviderExtensionSupportedGrantTypesNone")]
-        None = 0,
-        #[doc(alias = "ASAuthorizationProviderExtensionSupportedGrantTypesPassword")]
-        Password = 1 << 0,
-        #[doc(alias = "ASAuthorizationProviderExtensionSupportedGrantTypesJWTBearer")]
-        JWTBearer = 1 << 1,
-        #[doc(alias = "ASAuthorizationProviderExtensionSupportedGrantTypesSAML1_1")]
-        SAML1_1 = 1 << 2,
-        #[doc(alias = "ASAuthorizationProviderExtensionSupportedGrantTypesSAML2_0")]
-        SAML2_0 = 1 << 3,
-    }
-);
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct ASAuthorizationProviderExtensionRequestOptions(pub NSUInteger);
+impl ASAuthorizationProviderExtensionRequestOptions {
+    #[doc(alias = "ASAuthorizationProviderExtensionRequestOptionsNone")]
+    pub const None: Self = Self(0);
+    #[doc(alias = "ASAuthorizationProviderExtensionRequestOptionsUserInteractionEnabled")]
+    pub const UserInteractionEnabled: Self = Self(1 << 0);
+    #[doc(alias = "ASAuthorizationProviderExtensionRequestOptionsRegistrationRepair")]
+    pub const RegistrationRepair: Self = Self(1 << 1);
+    #[doc(alias = "ASAuthorizationProviderExtensionRequestOptionsRegistrationSharedDeviceKeys")]
+    pub const RegistrationSharedDeviceKeys: Self = Self(1 << 2);
+    #[doc(alias = "ASAuthorizationProviderExtensionRequestOptionsRegistrationDeviceKeyMigration")]
+    pub const RegistrationDeviceKeyMigration: Self = Self(1 << 3);
+    #[doc(alias = "ASAuthorizationProviderExtensionRequestOptionsUserKeyInvalid")]
+    pub const UserKeyInvalid: Self = Self(1 << 5);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum ASAuthorizationProviderExtensionPlatformSSOProtocolVersion {
-        ASAuthorizationProviderExtensionPlatformSSOProtocolVersion1_0 = 0,
-        ASAuthorizationProviderExtensionPlatformSSOProtocolVersion2_0 = 1,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for ASAuthorizationProviderExtensionRequestOptions {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for ASAuthorizationProviderExtensionRequestOptions {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct ASAuthorizationProviderExtensionRegistrationResult(pub NSInteger);
+impl ASAuthorizationProviderExtensionRegistrationResult {
+    #[doc(alias = "ASAuthorizationProviderExtensionRegistrationResultSuccess")]
+    pub const Success: Self = Self(0);
+    #[doc(alias = "ASAuthorizationProviderExtensionRegistrationResultFailed")]
+    pub const Failed: Self = Self(1);
+    #[doc(alias = "ASAuthorizationProviderExtensionRegistrationResultUserInterfaceRequired")]
+    pub const UserInterfaceRequired: Self = Self(2);
+    #[doc(alias = "ASAuthorizationProviderExtensionRegistrationResultFailedNoRetry")]
+    pub const FailedNoRetry: Self = Self(3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for ASAuthorizationProviderExtensionRegistrationResult {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for ASAuthorizationProviderExtensionRegistrationResult {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct ASAuthorizationProviderExtensionSupportedGrantTypes(pub NSInteger);
+impl ASAuthorizationProviderExtensionSupportedGrantTypes {
+    #[doc(alias = "ASAuthorizationProviderExtensionSupportedGrantTypesNone")]
+    pub const None: Self = Self(0);
+    #[doc(alias = "ASAuthorizationProviderExtensionSupportedGrantTypesPassword")]
+    pub const Password: Self = Self(1 << 0);
+    #[doc(alias = "ASAuthorizationProviderExtensionSupportedGrantTypesJWTBearer")]
+    pub const JWTBearer: Self = Self(1 << 1);
+    #[doc(alias = "ASAuthorizationProviderExtensionSupportedGrantTypesSAML1_1")]
+    pub const SAML1_1: Self = Self(1 << 2);
+    #[doc(alias = "ASAuthorizationProviderExtensionSupportedGrantTypesSAML2_0")]
+    pub const SAML2_0: Self = Self(1 << 3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for ASAuthorizationProviderExtensionSupportedGrantTypes {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for ASAuthorizationProviderExtensionSupportedGrantTypes {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct ASAuthorizationProviderExtensionPlatformSSOProtocolVersion(pub NSInteger);
+impl ASAuthorizationProviderExtensionPlatformSSOProtocolVersion {
+    pub const ASAuthorizationProviderExtensionPlatformSSOProtocolVersion1_0: Self = Self(0);
+    pub const ASAuthorizationProviderExtensionPlatformSSOProtocolVersion2_0: Self = Self(1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for ASAuthorizationProviderExtensionPlatformSSOProtocolVersion {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for ASAuthorizationProviderExtensionPlatformSSOProtocolVersion {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_protocol!(
     pub unsafe trait ASAuthorizationProviderExtensionRegistrationHandler:

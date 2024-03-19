@@ -5,36 +5,57 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSLineBreakMode {
-        NSLineBreakByWordWrapping = 0,
-        NSLineBreakByCharWrapping = 1,
-        NSLineBreakByClipping = 2,
-        NSLineBreakByTruncatingHead = 3,
-        NSLineBreakByTruncatingTail = 4,
-        NSLineBreakByTruncatingMiddle = 5,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSLineBreakMode(pub NSUInteger);
+impl NSLineBreakMode {
+    pub const NSLineBreakByWordWrapping: Self = Self(0);
+    pub const NSLineBreakByCharWrapping: Self = Self(1);
+    pub const NSLineBreakByClipping: Self = Self(2);
+    pub const NSLineBreakByTruncatingHead: Self = Self(3);
+    pub const NSLineBreakByTruncatingTail: Self = Self(4);
+    pub const NSLineBreakByTruncatingMiddle: Self = Self(5);
+}
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSLineBreakStrategy {
-        #[doc(alias = "NSLineBreakStrategyNone")]
-        None = 0,
-        #[doc(alias = "NSLineBreakStrategyPushOut")]
-        PushOut = 1 << 0,
-        #[doc(alias = "NSLineBreakStrategyHangulWordPriority")]
-        HangulWordPriority = 1 << 1,
-        #[doc(alias = "NSLineBreakStrategyStandard")]
-        Standard = 0xFFFF,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSLineBreakMode {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
 
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSLineBreakMode {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSLineBreakStrategy(pub NSUInteger);
+impl NSLineBreakStrategy {
+    #[doc(alias = "NSLineBreakStrategyNone")]
+    pub const None: Self = Self(0);
+    #[doc(alias = "NSLineBreakStrategyPushOut")]
+    pub const PushOut: Self = Self(1 << 0);
+    #[doc(alias = "NSLineBreakStrategyHangulWordPriority")]
+    pub const HangulWordPriority: Self = Self(1 << 1);
+    #[doc(alias = "NSLineBreakStrategyStandard")]
+    pub const Standard: Self = Self(0xFFFF);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSLineBreakStrategy {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSLineBreakStrategy {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type NSTextTabOptionKey = NSString;
-);
+pub type NSTextTabOptionKey = NSString;
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]
@@ -454,15 +475,26 @@ extern_methods!(
     }
 );
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSTextTabType {
-        NSLeftTabStopType = 0,
-        NSRightTabStopType = 1,
-        NSCenterTabStopType = 2,
-        NSDecimalTabStopType = 3,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSTextTabType(pub NSUInteger);
+impl NSTextTabType {
+    pub const NSLeftTabStopType: Self = Self(0);
+    pub const NSRightTabStopType: Self = Self(1);
+    pub const NSCenterTabStopType: Self = Self(2);
+    pub const NSDecimalTabStopType: Self = Self(3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSTextTabType {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSTextTabType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_methods!(
     /// NSTextTabDeprecated

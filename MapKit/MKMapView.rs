@@ -7,27 +7,49 @@ use crate::CoreLocation::*;
 use crate::Foundation::*;
 use crate::MapKit::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum MKOverlayLevel {
-        #[doc(alias = "MKOverlayLevelAboveRoads")]
-        AboveRoads = 0,
-        #[doc(alias = "MKOverlayLevelAboveLabels")]
-        AboveLabels = 1,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MKOverlayLevel(pub NSInteger);
+impl MKOverlayLevel {
+    #[doc(alias = "MKOverlayLevelAboveRoads")]
+    pub const AboveRoads: Self = Self(0);
+    #[doc(alias = "MKOverlayLevelAboveLabels")]
+    pub const AboveLabels: Self = Self(1);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum MKUserTrackingMode {
-        #[doc(alias = "MKUserTrackingModeNone")]
-        None = 0,
-        #[doc(alias = "MKUserTrackingModeFollow")]
-        Follow = 1,
-        #[doc(alias = "MKUserTrackingModeFollowWithHeading")]
-        FollowWithHeading = 2,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MKOverlayLevel {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MKOverlayLevel {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MKUserTrackingMode(pub NSInteger);
+impl MKUserTrackingMode {
+    #[doc(alias = "MKUserTrackingModeNone")]
+    pub const None: Self = Self(0);
+    #[doc(alias = "MKUserTrackingModeFollow")]
+    pub const Follow: Self = Self(1);
+    #[doc(alias = "MKUserTrackingModeFollowWithHeading")]
+    pub const FollowWithHeading: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MKUserTrackingMode {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MKUserTrackingMode {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]

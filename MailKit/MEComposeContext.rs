@@ -5,19 +5,30 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::MailKit::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum MEComposeUserAction {
-        #[doc(alias = "MEComposeUserActionNewMessage")]
-        NewMessage = 1,
-        #[doc(alias = "MEComposeUserActionReply")]
-        Reply = 2,
-        #[doc(alias = "MEComposeUserActionReplyAll")]
-        ReplyAll = 3,
-        #[doc(alias = "MEComposeUserActionForward")]
-        Forward = 4,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MEComposeUserAction(pub NSInteger);
+impl MEComposeUserAction {
+    #[doc(alias = "MEComposeUserActionNewMessage")]
+    pub const NewMessage: Self = Self(1);
+    #[doc(alias = "MEComposeUserActionReply")]
+    pub const Reply: Self = Self(2);
+    #[doc(alias = "MEComposeUserActionReplyAll")]
+    pub const ReplyAll: Self = Self(3);
+    #[doc(alias = "MEComposeUserActionForward")]
+    pub const Forward: Self = Self(4);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MEComposeUserAction {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MEComposeUserAction {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

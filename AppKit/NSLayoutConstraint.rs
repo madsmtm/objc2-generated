@@ -5,9 +5,8 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-typed_extensible_enum!(
-    pub type NSLayoutPriority = c_float;
-);
+// NS_TYPED_EXTENSIBLE_ENUM
+pub type NSLayoutPriority = c_float;
 
 pub static NSLayoutPriorityRequired: NSLayoutPriority = 1000 as _;
 
@@ -23,84 +22,130 @@ pub static NSLayoutPriorityDefaultLow: NSLayoutPriority = 250 as _;
 
 pub static NSLayoutPriorityFittingSizeCompression: NSLayoutPriority = 50 as _;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSLayoutConstraintOrientation {
-        #[doc(alias = "NSLayoutConstraintOrientationHorizontal")]
-        Horizontal = 0,
-        #[doc(alias = "NSLayoutConstraintOrientationVertical")]
-        Vertical = 1,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSLayoutConstraintOrientation(pub NSInteger);
+impl NSLayoutConstraintOrientation {
+    #[doc(alias = "NSLayoutConstraintOrientationHorizontal")]
+    pub const Horizontal: Self = Self(0);
+    #[doc(alias = "NSLayoutConstraintOrientationVertical")]
+    pub const Vertical: Self = Self(1);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSLayoutRelation {
-        #[doc(alias = "NSLayoutRelationLessThanOrEqual")]
-        LessThanOrEqual = -1,
-        #[doc(alias = "NSLayoutRelationEqual")]
-        Equal = 0,
-        #[doc(alias = "NSLayoutRelationGreaterThanOrEqual")]
-        GreaterThanOrEqual = 1,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSLayoutConstraintOrientation {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSLayoutAttribute {
-        #[doc(alias = "NSLayoutAttributeLeft")]
-        Left = 1,
-        #[doc(alias = "NSLayoutAttributeRight")]
-        Right = 2,
-        #[doc(alias = "NSLayoutAttributeTop")]
-        Top = 3,
-        #[doc(alias = "NSLayoutAttributeBottom")]
-        Bottom = 4,
-        #[doc(alias = "NSLayoutAttributeLeading")]
-        Leading = 5,
-        #[doc(alias = "NSLayoutAttributeTrailing")]
-        Trailing = 6,
-        #[doc(alias = "NSLayoutAttributeWidth")]
-        Width = 7,
-        #[doc(alias = "NSLayoutAttributeHeight")]
-        Height = 8,
-        #[doc(alias = "NSLayoutAttributeCenterX")]
-        CenterX = 9,
-        #[doc(alias = "NSLayoutAttributeCenterY")]
-        CenterY = 10,
-        #[doc(alias = "NSLayoutAttributeLastBaseline")]
-        LastBaseline = 11,
-        #[doc(alias = "NSLayoutAttributeBaseline")]
-        Baseline = NSLayoutAttribute::LastBaseline.0,
-        #[doc(alias = "NSLayoutAttributeFirstBaseline")]
-        FirstBaseline = 12,
-        #[doc(alias = "NSLayoutAttributeNotAnAttribute")]
-        NotAnAttribute = 0,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSLayoutConstraintOrientation {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSLayoutFormatOptions {
-        NSLayoutFormatAlignAllLeft = 1 << NSLayoutAttribute::Left.0,
-        NSLayoutFormatAlignAllRight = 1 << NSLayoutAttribute::Right.0,
-        NSLayoutFormatAlignAllTop = 1 << NSLayoutAttribute::Top.0,
-        NSLayoutFormatAlignAllBottom = 1 << NSLayoutAttribute::Bottom.0,
-        NSLayoutFormatAlignAllLeading = 1 << NSLayoutAttribute::Leading.0,
-        NSLayoutFormatAlignAllTrailing = 1 << NSLayoutAttribute::Trailing.0,
-        NSLayoutFormatAlignAllCenterX = 1 << NSLayoutAttribute::CenterX.0,
-        NSLayoutFormatAlignAllCenterY = 1 << NSLayoutAttribute::CenterY.0,
-        NSLayoutFormatAlignAllLastBaseline = 1 << NSLayoutAttribute::LastBaseline.0,
-        NSLayoutFormatAlignAllFirstBaseline = 1 << NSLayoutAttribute::FirstBaseline.0,
-        NSLayoutFormatAlignAllBaseline =
-            NSLayoutFormatOptions::NSLayoutFormatAlignAllLastBaseline.0,
-        NSLayoutFormatAlignmentMask = 0xFFFF,
-        NSLayoutFormatDirectionLeadingToTrailing = 0 << 16,
-        NSLayoutFormatDirectionLeftToRight = 1 << 16,
-        NSLayoutFormatDirectionRightToLeft = 2 << 16,
-        NSLayoutFormatDirectionMask = 0x3 << 16,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSLayoutRelation(pub NSInteger);
+impl NSLayoutRelation {
+    #[doc(alias = "NSLayoutRelationLessThanOrEqual")]
+    pub const LessThanOrEqual: Self = Self(-1);
+    #[doc(alias = "NSLayoutRelationEqual")]
+    pub const Equal: Self = Self(0);
+    #[doc(alias = "NSLayoutRelationGreaterThanOrEqual")]
+    pub const GreaterThanOrEqual: Self = Self(1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSLayoutRelation {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSLayoutRelation {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSLayoutAttribute(pub NSInteger);
+impl NSLayoutAttribute {
+    #[doc(alias = "NSLayoutAttributeLeft")]
+    pub const Left: Self = Self(1);
+    #[doc(alias = "NSLayoutAttributeRight")]
+    pub const Right: Self = Self(2);
+    #[doc(alias = "NSLayoutAttributeTop")]
+    pub const Top: Self = Self(3);
+    #[doc(alias = "NSLayoutAttributeBottom")]
+    pub const Bottom: Self = Self(4);
+    #[doc(alias = "NSLayoutAttributeLeading")]
+    pub const Leading: Self = Self(5);
+    #[doc(alias = "NSLayoutAttributeTrailing")]
+    pub const Trailing: Self = Self(6);
+    #[doc(alias = "NSLayoutAttributeWidth")]
+    pub const Width: Self = Self(7);
+    #[doc(alias = "NSLayoutAttributeHeight")]
+    pub const Height: Self = Self(8);
+    #[doc(alias = "NSLayoutAttributeCenterX")]
+    pub const CenterX: Self = Self(9);
+    #[doc(alias = "NSLayoutAttributeCenterY")]
+    pub const CenterY: Self = Self(10);
+    #[doc(alias = "NSLayoutAttributeLastBaseline")]
+    pub const LastBaseline: Self = Self(11);
+    #[doc(alias = "NSLayoutAttributeBaseline")]
+    pub const Baseline: Self = Self(NSLayoutAttribute::LastBaseline.0);
+    #[doc(alias = "NSLayoutAttributeFirstBaseline")]
+    pub const FirstBaseline: Self = Self(12);
+    #[doc(alias = "NSLayoutAttributeNotAnAttribute")]
+    pub const NotAnAttribute: Self = Self(0);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSLayoutAttribute {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSLayoutAttribute {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSLayoutFormatOptions(pub NSUInteger);
+impl NSLayoutFormatOptions {
+    pub const NSLayoutFormatAlignAllLeft: Self = Self(1 << NSLayoutAttribute::Left.0);
+    pub const NSLayoutFormatAlignAllRight: Self = Self(1 << NSLayoutAttribute::Right.0);
+    pub const NSLayoutFormatAlignAllTop: Self = Self(1 << NSLayoutAttribute::Top.0);
+    pub const NSLayoutFormatAlignAllBottom: Self = Self(1 << NSLayoutAttribute::Bottom.0);
+    pub const NSLayoutFormatAlignAllLeading: Self = Self(1 << NSLayoutAttribute::Leading.0);
+    pub const NSLayoutFormatAlignAllTrailing: Self = Self(1 << NSLayoutAttribute::Trailing.0);
+    pub const NSLayoutFormatAlignAllCenterX: Self = Self(1 << NSLayoutAttribute::CenterX.0);
+    pub const NSLayoutFormatAlignAllCenterY: Self = Self(1 << NSLayoutAttribute::CenterY.0);
+    pub const NSLayoutFormatAlignAllLastBaseline: Self =
+        Self(1 << NSLayoutAttribute::LastBaseline.0);
+    pub const NSLayoutFormatAlignAllFirstBaseline: Self =
+        Self(1 << NSLayoutAttribute::FirstBaseline.0);
+    pub const NSLayoutFormatAlignAllBaseline: Self =
+        Self(NSLayoutFormatOptions::NSLayoutFormatAlignAllLastBaseline.0);
+    pub const NSLayoutFormatAlignmentMask: Self = Self(0xFFFF);
+    pub const NSLayoutFormatDirectionLeadingToTrailing: Self = Self(0 << 16);
+    pub const NSLayoutFormatDirectionLeftToRight: Self = Self(1 << 16);
+    pub const NSLayoutFormatDirectionRightToLeft: Self = Self(2 << 16);
+    pub const NSLayoutFormatDirectionMask: Self = Self(0x3 << 16);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSLayoutFormatOptions {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSLayoutFormatOptions {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

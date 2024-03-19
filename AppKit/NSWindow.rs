@@ -11,38 +11,49 @@ pub static NSAppKitVersionNumberWithCustomSheetPosition: NSAppKitVersion = 686.0
 #[cfg(feature = "AppKit_NSApplication")]
 pub static NSAppKitVersionNumberWithDeferredWindowDisplaySupport: NSAppKitVersion = 1019.0 as _;
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSWindowStyleMask {
-        #[doc(alias = "NSWindowStyleMaskBorderless")]
-        Borderless = 0,
-        #[doc(alias = "NSWindowStyleMaskTitled")]
-        Titled = 1 << 0,
-        #[doc(alias = "NSWindowStyleMaskClosable")]
-        Closable = 1 << 1,
-        #[doc(alias = "NSWindowStyleMaskMiniaturizable")]
-        Miniaturizable = 1 << 2,
-        #[doc(alias = "NSWindowStyleMaskResizable")]
-        Resizable = 1 << 3,
-        #[deprecated = "Textured window style should no longer be used"]
-        #[doc(alias = "NSWindowStyleMaskTexturedBackground")]
-        TexturedBackground = 1 << 8,
-        #[doc(alias = "NSWindowStyleMaskUnifiedTitleAndToolbar")]
-        UnifiedTitleAndToolbar = 1 << 12,
-        #[doc(alias = "NSWindowStyleMaskFullScreen")]
-        FullScreen = 1 << 14,
-        #[doc(alias = "NSWindowStyleMaskFullSizeContentView")]
-        FullSizeContentView = 1 << 15,
-        #[doc(alias = "NSWindowStyleMaskUtilityWindow")]
-        UtilityWindow = 1 << 4,
-        #[doc(alias = "NSWindowStyleMaskDocModalWindow")]
-        DocModalWindow = 1 << 6,
-        #[doc(alias = "NSWindowStyleMaskNonactivatingPanel")]
-        NonactivatingPanel = 1 << 7,
-        #[doc(alias = "NSWindowStyleMaskHUDWindow")]
-        HUDWindow = 1 << 13,
-    }
-);
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSWindowStyleMask(pub NSUInteger);
+impl NSWindowStyleMask {
+    #[doc(alias = "NSWindowStyleMaskBorderless")]
+    pub const Borderless: Self = Self(0);
+    #[doc(alias = "NSWindowStyleMaskTitled")]
+    pub const Titled: Self = Self(1 << 0);
+    #[doc(alias = "NSWindowStyleMaskClosable")]
+    pub const Closable: Self = Self(1 << 1);
+    #[doc(alias = "NSWindowStyleMaskMiniaturizable")]
+    pub const Miniaturizable: Self = Self(1 << 2);
+    #[doc(alias = "NSWindowStyleMaskResizable")]
+    pub const Resizable: Self = Self(1 << 3);
+    #[deprecated = "Textured window style should no longer be used"]
+    #[doc(alias = "NSWindowStyleMaskTexturedBackground")]
+    pub const TexturedBackground: Self = Self(1 << 8);
+    #[doc(alias = "NSWindowStyleMaskUnifiedTitleAndToolbar")]
+    pub const UnifiedTitleAndToolbar: Self = Self(1 << 12);
+    #[doc(alias = "NSWindowStyleMaskFullScreen")]
+    pub const FullScreen: Self = Self(1 << 14);
+    #[doc(alias = "NSWindowStyleMaskFullSizeContentView")]
+    pub const FullSizeContentView: Self = Self(1 << 15);
+    #[doc(alias = "NSWindowStyleMaskUtilityWindow")]
+    pub const UtilityWindow: Self = Self(1 << 4);
+    #[doc(alias = "NSWindowStyleMaskDocModalWindow")]
+    pub const DocModalWindow: Self = Self(1 << 6);
+    #[doc(alias = "NSWindowStyleMaskNonactivatingPanel")]
+    pub const NonactivatingPanel: Self = Self(1 << 7);
+    #[doc(alias = "NSWindowStyleMaskHUDWindow")]
+    pub const HUDWindow: Self = Self(1 << 13);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSWindowStyleMask {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSWindowStyleMask {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 #[cfg(feature = "AppKit_NSApplication")]
 pub static NSModalResponseOK: NSModalResponse = 1;
@@ -53,88 +64,142 @@ pub static NSModalResponseCancel: NSModalResponse = 0;
 pub const NSDisplayWindowRunLoopOrdering: c_uint = 600000;
 pub const NSResetCursorRectsRunLoopOrdering: c_uint = 700000;
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSWindowSharingType {
-        NSWindowSharingNone = 0,
-        NSWindowSharingReadOnly = 1,
-        NSWindowSharingReadWrite = 2,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSWindowSharingType(pub NSUInteger);
+impl NSWindowSharingType {
+    pub const NSWindowSharingNone: Self = Self(0);
+    pub const NSWindowSharingReadOnly: Self = Self(1);
+    pub const NSWindowSharingReadWrite: Self = Self(2);
+}
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSWindowCollectionBehavior {
-        #[doc(alias = "NSWindowCollectionBehaviorDefault")]
-        Default = 0,
-        #[doc(alias = "NSWindowCollectionBehaviorCanJoinAllSpaces")]
-        CanJoinAllSpaces = 1 << 0,
-        #[doc(alias = "NSWindowCollectionBehaviorMoveToActiveSpace")]
-        MoveToActiveSpace = 1 << 1,
-        #[doc(alias = "NSWindowCollectionBehaviorManaged")]
-        Managed = 1 << 2,
-        #[doc(alias = "NSWindowCollectionBehaviorTransient")]
-        Transient = 1 << 3,
-        #[doc(alias = "NSWindowCollectionBehaviorStationary")]
-        Stationary = 1 << 4,
-        #[doc(alias = "NSWindowCollectionBehaviorParticipatesInCycle")]
-        ParticipatesInCycle = 1 << 5,
-        #[doc(alias = "NSWindowCollectionBehaviorIgnoresCycle")]
-        IgnoresCycle = 1 << 6,
-        #[doc(alias = "NSWindowCollectionBehaviorFullScreenPrimary")]
-        FullScreenPrimary = 1 << 7,
-        #[doc(alias = "NSWindowCollectionBehaviorFullScreenAuxiliary")]
-        FullScreenAuxiliary = 1 << 8,
-        #[doc(alias = "NSWindowCollectionBehaviorFullScreenNone")]
-        FullScreenNone = 1 << 9,
-        #[doc(alias = "NSWindowCollectionBehaviorFullScreenAllowsTiling")]
-        FullScreenAllowsTiling = 1 << 11,
-        #[doc(alias = "NSWindowCollectionBehaviorFullScreenDisallowsTiling")]
-        FullScreenDisallowsTiling = 1 << 12,
-        #[doc(alias = "NSWindowCollectionBehaviorPrimary")]
-        Primary = 1 << 16,
-        #[doc(alias = "NSWindowCollectionBehaviorAuxiliary")]
-        Auxiliary = 1 << 17,
-        #[doc(alias = "NSWindowCollectionBehaviorCanJoinAllApplications")]
-        CanJoinAllApplications = 1 << 18,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSWindowSharingType {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSWindowAnimationBehavior {
-        #[doc(alias = "NSWindowAnimationBehaviorDefault")]
-        Default = 0,
-        #[doc(alias = "NSWindowAnimationBehaviorNone")]
-        None = 2,
-        #[doc(alias = "NSWindowAnimationBehaviorDocumentWindow")]
-        DocumentWindow = 3,
-        #[doc(alias = "NSWindowAnimationBehaviorUtilityWindow")]
-        UtilityWindow = 4,
-        #[doc(alias = "NSWindowAnimationBehaviorAlertPanel")]
-        AlertPanel = 5,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSWindowSharingType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSWindowNumberListOptions {
-        NSWindowNumberListAllApplications = 1 << 0,
-        NSWindowNumberListAllSpaces = 1 << 4,
-    }
-);
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSWindowCollectionBehavior(pub NSUInteger);
+impl NSWindowCollectionBehavior {
+    #[doc(alias = "NSWindowCollectionBehaviorDefault")]
+    pub const Default: Self = Self(0);
+    #[doc(alias = "NSWindowCollectionBehaviorCanJoinAllSpaces")]
+    pub const CanJoinAllSpaces: Self = Self(1 << 0);
+    #[doc(alias = "NSWindowCollectionBehaviorMoveToActiveSpace")]
+    pub const MoveToActiveSpace: Self = Self(1 << 1);
+    #[doc(alias = "NSWindowCollectionBehaviorManaged")]
+    pub const Managed: Self = Self(1 << 2);
+    #[doc(alias = "NSWindowCollectionBehaviorTransient")]
+    pub const Transient: Self = Self(1 << 3);
+    #[doc(alias = "NSWindowCollectionBehaviorStationary")]
+    pub const Stationary: Self = Self(1 << 4);
+    #[doc(alias = "NSWindowCollectionBehaviorParticipatesInCycle")]
+    pub const ParticipatesInCycle: Self = Self(1 << 5);
+    #[doc(alias = "NSWindowCollectionBehaviorIgnoresCycle")]
+    pub const IgnoresCycle: Self = Self(1 << 6);
+    #[doc(alias = "NSWindowCollectionBehaviorFullScreenPrimary")]
+    pub const FullScreenPrimary: Self = Self(1 << 7);
+    #[doc(alias = "NSWindowCollectionBehaviorFullScreenAuxiliary")]
+    pub const FullScreenAuxiliary: Self = Self(1 << 8);
+    #[doc(alias = "NSWindowCollectionBehaviorFullScreenNone")]
+    pub const FullScreenNone: Self = Self(1 << 9);
+    #[doc(alias = "NSWindowCollectionBehaviorFullScreenAllowsTiling")]
+    pub const FullScreenAllowsTiling: Self = Self(1 << 11);
+    #[doc(alias = "NSWindowCollectionBehaviorFullScreenDisallowsTiling")]
+    pub const FullScreenDisallowsTiling: Self = Self(1 << 12);
+    #[doc(alias = "NSWindowCollectionBehaviorPrimary")]
+    pub const Primary: Self = Self(1 << 16);
+    #[doc(alias = "NSWindowCollectionBehaviorAuxiliary")]
+    pub const Auxiliary: Self = Self(1 << 17);
+    #[doc(alias = "NSWindowCollectionBehaviorCanJoinAllApplications")]
+    pub const CanJoinAllApplications: Self = Self(1 << 18);
+}
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSWindowOcclusionState {
-        #[doc(alias = "NSWindowOcclusionStateVisible")]
-        Visible = 1 << 1,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSWindowCollectionBehavior {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
 
-typed_extensible_enum!(
-    pub type NSWindowLevel = NSInteger;
-);
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSWindowCollectionBehavior {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSWindowAnimationBehavior(pub NSInteger);
+impl NSWindowAnimationBehavior {
+    #[doc(alias = "NSWindowAnimationBehaviorDefault")]
+    pub const Default: Self = Self(0);
+    #[doc(alias = "NSWindowAnimationBehaviorNone")]
+    pub const None: Self = Self(2);
+    #[doc(alias = "NSWindowAnimationBehaviorDocumentWindow")]
+    pub const DocumentWindow: Self = Self(3);
+    #[doc(alias = "NSWindowAnimationBehaviorUtilityWindow")]
+    pub const UtilityWindow: Self = Self(4);
+    #[doc(alias = "NSWindowAnimationBehaviorAlertPanel")]
+    pub const AlertPanel: Self = Self(5);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSWindowAnimationBehavior {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSWindowAnimationBehavior {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSWindowNumberListOptions(pub NSUInteger);
+impl NSWindowNumberListOptions {
+    pub const NSWindowNumberListAllApplications: Self = Self(1 << 0);
+    pub const NSWindowNumberListAllSpaces: Self = Self(1 << 4);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSWindowNumberListOptions {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSWindowNumberListOptions {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSWindowOcclusionState(pub NSUInteger);
+impl NSWindowOcclusionState {
+    #[doc(alias = "NSWindowOcclusionStateVisible")]
+    pub const Visible: Self = Self(1 << 1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSWindowOcclusionState {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSWindowOcclusionState {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_TYPED_EXTENSIBLE_ENUM
+pub type NSWindowLevel = NSInteger;
 
 pub static NSNormalWindowLevel: NSWindowLevel = 0;
 
@@ -154,91 +219,168 @@ pub static NSPopUpMenuWindowLevel: NSWindowLevel = 101;
 
 pub static NSScreenSaverWindowLevel: NSWindowLevel = 1000;
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSSelectionDirection {
-        NSDirectSelection = 0,
-        NSSelectingNext = 1,
-        NSSelectingPrevious = 2,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSSelectionDirection(pub NSUInteger);
+impl NSSelectionDirection {
+    pub const NSDirectSelection: Self = Self(0);
+    pub const NSSelectingNext: Self = Self(1);
+    pub const NSSelectingPrevious: Self = Self(2);
+}
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSWindowButton {
-        NSWindowCloseButton = 0,
-        NSWindowMiniaturizeButton = 1,
-        NSWindowZoomButton = 2,
-        NSWindowToolbarButton = 3,
-        NSWindowDocumentIconButton = 4,
-        NSWindowDocumentVersionsButton = 6,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSSelectionDirection {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSWindowTitleVisibility {
-        NSWindowTitleVisible = 0,
-        NSWindowTitleHidden = 1,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSSelectionDirection {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSWindowToolbarStyle {
-        #[doc(alias = "NSWindowToolbarStyleAutomatic")]
-        Automatic = 0,
-        #[doc(alias = "NSWindowToolbarStyleExpanded")]
-        Expanded = 1,
-        #[doc(alias = "NSWindowToolbarStylePreference")]
-        Preference = 2,
-        #[doc(alias = "NSWindowToolbarStyleUnified")]
-        Unified = 3,
-        #[doc(alias = "NSWindowToolbarStyleUnifiedCompact")]
-        UnifiedCompact = 4,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSWindowButton(pub NSUInteger);
+impl NSWindowButton {
+    pub const NSWindowCloseButton: Self = Self(0);
+    pub const NSWindowMiniaturizeButton: Self = Self(1);
+    pub const NSWindowZoomButton: Self = Self(2);
+    pub const NSWindowToolbarButton: Self = Self(3);
+    pub const NSWindowDocumentIconButton: Self = Self(4);
+    pub const NSWindowDocumentVersionsButton: Self = Self(6);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSWindowButton {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSWindowButton {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSWindowTitleVisibility(pub NSInteger);
+impl NSWindowTitleVisibility {
+    pub const NSWindowTitleVisible: Self = Self(0);
+    pub const NSWindowTitleHidden: Self = Self(1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSWindowTitleVisibility {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSWindowTitleVisibility {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSWindowToolbarStyle(pub NSInteger);
+impl NSWindowToolbarStyle {
+    #[doc(alias = "NSWindowToolbarStyleAutomatic")]
+    pub const Automatic: Self = Self(0);
+    #[doc(alias = "NSWindowToolbarStyleExpanded")]
+    pub const Expanded: Self = Self(1);
+    #[doc(alias = "NSWindowToolbarStylePreference")]
+    pub const Preference: Self = Self(2);
+    #[doc(alias = "NSWindowToolbarStyleUnified")]
+    pub const Unified: Self = Self(3);
+    #[doc(alias = "NSWindowToolbarStyleUnifiedCompact")]
+    pub const UnifiedCompact: Self = Self(4);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSWindowToolbarStyle {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSWindowToolbarStyle {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 #[cfg(feature = "Foundation_NSDate")]
 pub static NSEventDurationForever: NSTimeInterval = c_double::MAX as _;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSWindowUserTabbingPreference {
-        #[doc(alias = "NSWindowUserTabbingPreferenceManual")]
-        Manual = 0,
-        #[doc(alias = "NSWindowUserTabbingPreferenceAlways")]
-        Always = 1,
-        #[doc(alias = "NSWindowUserTabbingPreferenceInFullScreen")]
-        InFullScreen = 2,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSWindowUserTabbingPreference(pub NSInteger);
+impl NSWindowUserTabbingPreference {
+    #[doc(alias = "NSWindowUserTabbingPreferenceManual")]
+    pub const Manual: Self = Self(0);
+    #[doc(alias = "NSWindowUserTabbingPreferenceAlways")]
+    pub const Always: Self = Self(1);
+    #[doc(alias = "NSWindowUserTabbingPreferenceInFullScreen")]
+    pub const InFullScreen: Self = Self(2);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSWindowTabbingMode {
-        #[doc(alias = "NSWindowTabbingModeAutomatic")]
-        Automatic = 0,
-        #[doc(alias = "NSWindowTabbingModePreferred")]
-        Preferred = 1,
-        #[doc(alias = "NSWindowTabbingModeDisallowed")]
-        Disallowed = 2,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSWindowUserTabbingPreference {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSTitlebarSeparatorStyle {
-        #[doc(alias = "NSTitlebarSeparatorStyleAutomatic")]
-        Automatic = 0,
-        #[doc(alias = "NSTitlebarSeparatorStyleNone")]
-        None = 1,
-        #[doc(alias = "NSTitlebarSeparatorStyleLine")]
-        Line = 2,
-        #[doc(alias = "NSTitlebarSeparatorStyleShadow")]
-        Shadow = 3,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSWindowUserTabbingPreference {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSWindowTabbingMode(pub NSInteger);
+impl NSWindowTabbingMode {
+    #[doc(alias = "NSWindowTabbingModeAutomatic")]
+    pub const Automatic: Self = Self(0);
+    #[doc(alias = "NSWindowTabbingModePreferred")]
+    pub const Preferred: Self = Self(1);
+    #[doc(alias = "NSWindowTabbingModeDisallowed")]
+    pub const Disallowed: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSWindowTabbingMode {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSWindowTabbingMode {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSTitlebarSeparatorStyle(pub NSInteger);
+impl NSTitlebarSeparatorStyle {
+    #[doc(alias = "NSTitlebarSeparatorStyleAutomatic")]
+    pub const Automatic: Self = Self(0);
+    #[doc(alias = "NSTitlebarSeparatorStyleNone")]
+    pub const None: Self = Self(1);
+    #[doc(alias = "NSTitlebarSeparatorStyleLine")]
+    pub const Line: Self = Self(2);
+    #[doc(alias = "NSTitlebarSeparatorStyleShadow")]
+    pub const Shadow: Self = Self(3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSTitlebarSeparatorStyle {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSTitlebarSeparatorStyle {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 #[cfg(feature = "Foundation_NSString")]
 pub type NSWindowFrameAutosaveName = NSString;
@@ -2092,18 +2234,29 @@ extern "C" {
     pub static NSWindowDidChangeOcclusionStateNotification: &'static NSNotificationName;
 }
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    #[deprecated]
-    pub enum NSWindowBackingLocation {
-        #[doc(alias = "NSWindowBackingLocationDefault")]
-        Default = 0,
-        #[doc(alias = "NSWindowBackingLocationVideoMemory")]
-        VideoMemory = 1,
-        #[doc(alias = "NSWindowBackingLocationMainMemory")]
-        MainMemory = 2,
-    }
-);
+// NS_ENUM
+#[deprecated]
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSWindowBackingLocation(pub NSUInteger);
+impl NSWindowBackingLocation {
+    #[doc(alias = "NSWindowBackingLocationDefault")]
+    pub const Default: Self = Self(0);
+    #[doc(alias = "NSWindowBackingLocationVideoMemory")]
+    pub const VideoMemory: Self = Self(1);
+    #[doc(alias = "NSWindowBackingLocationMainMemory")]
+    pub const MainMemory: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSWindowBackingLocation {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSWindowBackingLocation {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_methods!(
     /// NSDeprecated

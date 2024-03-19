@@ -4,49 +4,71 @@ use crate::common::*;
 use crate::Foundation::*;
 use crate::Metal::*;
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum MTLCompareFunction {
-        #[doc(alias = "MTLCompareFunctionNever")]
-        Never = 0,
-        #[doc(alias = "MTLCompareFunctionLess")]
-        Less = 1,
-        #[doc(alias = "MTLCompareFunctionEqual")]
-        Equal = 2,
-        #[doc(alias = "MTLCompareFunctionLessEqual")]
-        LessEqual = 3,
-        #[doc(alias = "MTLCompareFunctionGreater")]
-        Greater = 4,
-        #[doc(alias = "MTLCompareFunctionNotEqual")]
-        NotEqual = 5,
-        #[doc(alias = "MTLCompareFunctionGreaterEqual")]
-        GreaterEqual = 6,
-        #[doc(alias = "MTLCompareFunctionAlways")]
-        Always = 7,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MTLCompareFunction(pub NSUInteger);
+impl MTLCompareFunction {
+    #[doc(alias = "MTLCompareFunctionNever")]
+    pub const Never: Self = Self(0);
+    #[doc(alias = "MTLCompareFunctionLess")]
+    pub const Less: Self = Self(1);
+    #[doc(alias = "MTLCompareFunctionEqual")]
+    pub const Equal: Self = Self(2);
+    #[doc(alias = "MTLCompareFunctionLessEqual")]
+    pub const LessEqual: Self = Self(3);
+    #[doc(alias = "MTLCompareFunctionGreater")]
+    pub const Greater: Self = Self(4);
+    #[doc(alias = "MTLCompareFunctionNotEqual")]
+    pub const NotEqual: Self = Self(5);
+    #[doc(alias = "MTLCompareFunctionGreaterEqual")]
+    pub const GreaterEqual: Self = Self(6);
+    #[doc(alias = "MTLCompareFunctionAlways")]
+    pub const Always: Self = Self(7);
+}
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum MTLStencilOperation {
-        #[doc(alias = "MTLStencilOperationKeep")]
-        Keep = 0,
-        #[doc(alias = "MTLStencilOperationZero")]
-        Zero = 1,
-        #[doc(alias = "MTLStencilOperationReplace")]
-        Replace = 2,
-        #[doc(alias = "MTLStencilOperationIncrementClamp")]
-        IncrementClamp = 3,
-        #[doc(alias = "MTLStencilOperationDecrementClamp")]
-        DecrementClamp = 4,
-        #[doc(alias = "MTLStencilOperationInvert")]
-        Invert = 5,
-        #[doc(alias = "MTLStencilOperationIncrementWrap")]
-        IncrementWrap = 6,
-        #[doc(alias = "MTLStencilOperationDecrementWrap")]
-        DecrementWrap = 7,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLCompareFunction {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLCompareFunction {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MTLStencilOperation(pub NSUInteger);
+impl MTLStencilOperation {
+    #[doc(alias = "MTLStencilOperationKeep")]
+    pub const Keep: Self = Self(0);
+    #[doc(alias = "MTLStencilOperationZero")]
+    pub const Zero: Self = Self(1);
+    #[doc(alias = "MTLStencilOperationReplace")]
+    pub const Replace: Self = Self(2);
+    #[doc(alias = "MTLStencilOperationIncrementClamp")]
+    pub const IncrementClamp: Self = Self(3);
+    #[doc(alias = "MTLStencilOperationDecrementClamp")]
+    pub const DecrementClamp: Self = Self(4);
+    #[doc(alias = "MTLStencilOperationInvert")]
+    pub const Invert: Self = Self(5);
+    #[doc(alias = "MTLStencilOperationIncrementWrap")]
+    pub const IncrementWrap: Self = Self(6);
+    #[doc(alias = "MTLStencilOperationDecrementWrap")]
+    pub const DecrementWrap: Self = Self(7);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLStencilOperation {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLStencilOperation {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

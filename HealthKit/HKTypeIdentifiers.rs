@@ -6,10 +6,9 @@ use crate::Foundation::*;
 use crate::HealthKit::*;
 use crate::UniformTypeIdentifiers::*;
 
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type HKQuantityTypeIdentifier = NSString;
-);
+pub type HKQuantityTypeIdentifier = NSString;
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]
@@ -571,10 +570,9 @@ extern "C" {
     pub static HKQuantityTypeIdentifierBodyTemperature: &'static HKQuantityTypeIdentifier;
 }
 
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type HKCategoryTypeIdentifier = NSString;
-);
+pub type HKCategoryTypeIdentifier = NSString;
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]
@@ -906,10 +904,9 @@ extern "C" {
     pub static HKCategoryTypeIdentifierWheezing: &'static HKCategoryTypeIdentifier;
 }
 
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type HKCharacteristicTypeIdentifier = NSString;
-);
+pub type HKCharacteristicTypeIdentifier = NSString;
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]
@@ -943,10 +940,9 @@ extern "C" {
         &'static HKCharacteristicTypeIdentifier;
 }
 
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type HKCorrelationTypeIdentifier = NSString;
-);
+pub type HKCorrelationTypeIdentifier = NSString;
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]
@@ -958,10 +954,9 @@ extern "C" {
     pub static HKCorrelationTypeIdentifierFood: &'static HKCorrelationTypeIdentifier;
 }
 
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type HKDocumentTypeIdentifier = NSString;
-);
+pub type HKDocumentTypeIdentifier = NSString;
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]

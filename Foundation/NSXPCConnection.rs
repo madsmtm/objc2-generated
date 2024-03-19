@@ -27,12 +27,23 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn NSXPCProxyCreating {}
 );
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSXPCConnectionOptions {
-        NSXPCConnectionPrivileged = 1 << 12,
-    }
-);
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSXPCConnectionOptions(pub NSUInteger);
+impl NSXPCConnectionOptions {
+    pub const NSXPCConnectionPrivileged: Self = Self(1 << 12);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSXPCConnectionOptions {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSXPCConnectionOptions {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

@@ -6,33 +6,55 @@ use crate::Foundation::*;
 use crate::HealthKit::*;
 use crate::UniformTypeIdentifiers::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum HKWorkoutSessionState {
-        #[doc(alias = "HKWorkoutSessionStateNotStarted")]
-        NotStarted = 1,
-        #[doc(alias = "HKWorkoutSessionStateRunning")]
-        Running = 2,
-        #[doc(alias = "HKWorkoutSessionStateEnded")]
-        Ended = 3,
-        #[doc(alias = "HKWorkoutSessionStatePaused")]
-        Paused = 4,
-        #[doc(alias = "HKWorkoutSessionStatePrepared")]
-        Prepared = 5,
-        #[doc(alias = "HKWorkoutSessionStateStopped")]
-        Stopped = 6,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct HKWorkoutSessionState(pub NSInteger);
+impl HKWorkoutSessionState {
+    #[doc(alias = "HKWorkoutSessionStateNotStarted")]
+    pub const NotStarted: Self = Self(1);
+    #[doc(alias = "HKWorkoutSessionStateRunning")]
+    pub const Running: Self = Self(2);
+    #[doc(alias = "HKWorkoutSessionStateEnded")]
+    pub const Ended: Self = Self(3);
+    #[doc(alias = "HKWorkoutSessionStatePaused")]
+    pub const Paused: Self = Self(4);
+    #[doc(alias = "HKWorkoutSessionStatePrepared")]
+    pub const Prepared: Self = Self(5);
+    #[doc(alias = "HKWorkoutSessionStateStopped")]
+    pub const Stopped: Self = Self(6);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum HKWorkoutSessionType {
-        #[doc(alias = "HKWorkoutSessionTypePrimary")]
-        Primary = 0,
-        #[doc(alias = "HKWorkoutSessionTypeMirrored")]
-        Mirrored = 1,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for HKWorkoutSessionState {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for HKWorkoutSessionState {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct HKWorkoutSessionType(pub NSInteger);
+impl HKWorkoutSessionType {
+    #[doc(alias = "HKWorkoutSessionTypePrimary")]
+    pub const Primary: Self = Self(0);
+    #[doc(alias = "HKWorkoutSessionTypeMirrored")]
+    pub const Mirrored: Self = Self(1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for HKWorkoutSessionType {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for HKWorkoutSessionType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

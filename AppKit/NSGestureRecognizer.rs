@@ -5,25 +5,36 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSGestureRecognizerState {
-        #[doc(alias = "NSGestureRecognizerStatePossible")]
-        Possible = 0,
-        #[doc(alias = "NSGestureRecognizerStateBegan")]
-        Began = 1,
-        #[doc(alias = "NSGestureRecognizerStateChanged")]
-        Changed = 2,
-        #[doc(alias = "NSGestureRecognizerStateEnded")]
-        Ended = 3,
-        #[doc(alias = "NSGestureRecognizerStateCancelled")]
-        Cancelled = 4,
-        #[doc(alias = "NSGestureRecognizerStateFailed")]
-        Failed = 5,
-        #[doc(alias = "NSGestureRecognizerStateRecognized")]
-        Recognized = NSGestureRecognizerState::Ended.0,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSGestureRecognizerState(pub NSInteger);
+impl NSGestureRecognizerState {
+    #[doc(alias = "NSGestureRecognizerStatePossible")]
+    pub const Possible: Self = Self(0);
+    #[doc(alias = "NSGestureRecognizerStateBegan")]
+    pub const Began: Self = Self(1);
+    #[doc(alias = "NSGestureRecognizerStateChanged")]
+    pub const Changed: Self = Self(2);
+    #[doc(alias = "NSGestureRecognizerStateEnded")]
+    pub const Ended: Self = Self(3);
+    #[doc(alias = "NSGestureRecognizerStateCancelled")]
+    pub const Cancelled: Self = Self(4);
+    #[doc(alias = "NSGestureRecognizerStateFailed")]
+    pub const Failed: Self = Self(5);
+    #[doc(alias = "NSGestureRecognizerStateRecognized")]
+    pub const Recognized: Self = Self(NSGestureRecognizerState::Ended.0);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSGestureRecognizerState {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSGestureRecognizerState {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

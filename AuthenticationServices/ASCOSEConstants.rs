@@ -5,14 +5,12 @@ use crate::AppKit::*;
 use crate::AuthenticationServices::*;
 use crate::Foundation::*;
 
-typed_extensible_enum!(
-    pub type ASCOSEAlgorithmIdentifier = NSInteger;
-);
+// NS_TYPED_EXTENSIBLE_ENUM
+pub type ASCOSEAlgorithmIdentifier = NSInteger;
 
 pub static ASCOSEAlgorithmIdentifierES256: ASCOSEAlgorithmIdentifier = -7;
 
-typed_extensible_enum!(
-    pub type ASCOSEEllipticCurveIdentifier = NSInteger;
-);
+// NS_TYPED_EXTENSIBLE_ENUM
+pub type ASCOSEEllipticCurveIdentifier = NSInteger;
 
 pub static ASCOSEEllipticCurveIdentifierP256: ASCOSEEllipticCurveIdentifier = 1;

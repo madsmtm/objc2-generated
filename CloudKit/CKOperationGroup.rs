@@ -5,27 +5,38 @@ use crate::CloudKit::*;
 use crate::CoreLocation::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum CKOperationGroupTransferSize {
-        #[doc(alias = "CKOperationGroupTransferSizeUnknown")]
-        Unknown = 0,
-        #[doc(alias = "CKOperationGroupTransferSizeKilobytes")]
-        Kilobytes = 1,
-        #[doc(alias = "CKOperationGroupTransferSizeMegabytes")]
-        Megabytes = 2,
-        #[doc(alias = "CKOperationGroupTransferSizeTensOfMegabytes")]
-        TensOfMegabytes = 3,
-        #[doc(alias = "CKOperationGroupTransferSizeHundredsOfMegabytes")]
-        HundredsOfMegabytes = 4,
-        #[doc(alias = "CKOperationGroupTransferSizeGigabytes")]
-        Gigabytes = 5,
-        #[doc(alias = "CKOperationGroupTransferSizeTensOfGigabytes")]
-        TensOfGigabytes = 6,
-        #[doc(alias = "CKOperationGroupTransferSizeHundredsOfGigabytes")]
-        HundredsOfGigabytes = 7,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct CKOperationGroupTransferSize(pub NSInteger);
+impl CKOperationGroupTransferSize {
+    #[doc(alias = "CKOperationGroupTransferSizeUnknown")]
+    pub const Unknown: Self = Self(0);
+    #[doc(alias = "CKOperationGroupTransferSizeKilobytes")]
+    pub const Kilobytes: Self = Self(1);
+    #[doc(alias = "CKOperationGroupTransferSizeMegabytes")]
+    pub const Megabytes: Self = Self(2);
+    #[doc(alias = "CKOperationGroupTransferSizeTensOfMegabytes")]
+    pub const TensOfMegabytes: Self = Self(3);
+    #[doc(alias = "CKOperationGroupTransferSizeHundredsOfMegabytes")]
+    pub const HundredsOfMegabytes: Self = Self(4);
+    #[doc(alias = "CKOperationGroupTransferSizeGigabytes")]
+    pub const Gigabytes: Self = Self(5);
+    #[doc(alias = "CKOperationGroupTransferSizeTensOfGigabytes")]
+    pub const TensOfGigabytes: Self = Self(6);
+    #[doc(alias = "CKOperationGroupTransferSizeHundredsOfGigabytes")]
+    pub const HundredsOfGigabytes: Self = Self(7);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for CKOperationGroupTransferSize {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for CKOperationGroupTransferSize {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

@@ -5,19 +5,30 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::GameKit::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum GKAccessPointLocation {
-        #[doc(alias = "GKAccessPointLocationTopLeading")]
-        TopLeading = 0,
-        #[doc(alias = "GKAccessPointLocationTopTrailing")]
-        TopTrailing = 1,
-        #[doc(alias = "GKAccessPointLocationBottomLeading")]
-        BottomLeading = 2,
-        #[doc(alias = "GKAccessPointLocationBottomTrailing")]
-        BottomTrailing = 3,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct GKAccessPointLocation(pub NSInteger);
+impl GKAccessPointLocation {
+    #[doc(alias = "GKAccessPointLocationTopLeading")]
+    pub const TopLeading: Self = Self(0);
+    #[doc(alias = "GKAccessPointLocationTopTrailing")]
+    pub const TopTrailing: Self = Self(1);
+    #[doc(alias = "GKAccessPointLocationBottomLeading")]
+    pub const BottomLeading: Self = Self(2);
+    #[doc(alias = "GKAccessPointLocationBottomTrailing")]
+    pub const BottomTrailing: Self = Self(3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for GKAccessPointLocation {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for GKAccessPointLocation {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

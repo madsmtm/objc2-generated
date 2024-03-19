@@ -5,15 +5,26 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSCollectionViewScrollDirection {
-        #[doc(alias = "NSCollectionViewScrollDirectionVertical")]
-        Vertical = 0,
-        #[doc(alias = "NSCollectionViewScrollDirectionHorizontal")]
-        Horizontal = 1,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSCollectionViewScrollDirection(pub NSInteger);
+impl NSCollectionViewScrollDirection {
+    #[doc(alias = "NSCollectionViewScrollDirectionVertical")]
+    pub const Vertical: Self = Self(0);
+    #[doc(alias = "NSCollectionViewScrollDirectionHorizontal")]
+    pub const Horizontal: Self = Self(1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSCollectionViewScrollDirection {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSCollectionViewScrollDirection {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern "C" {
     #[cfg(all(feature = "AppKit_NSCollectionView", feature = "Foundation_NSString"))]

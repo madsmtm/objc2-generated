@@ -4,17 +4,28 @@ use crate::common::*;
 use crate::Foundation::*;
 use crate::Metal::*;
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum MTLPatchType {
-        #[doc(alias = "MTLPatchTypeNone")]
-        None = 0,
-        #[doc(alias = "MTLPatchTypeTriangle")]
-        Triangle = 1,
-        #[doc(alias = "MTLPatchTypeQuad")]
-        Quad = 2,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MTLPatchType(pub NSUInteger);
+impl MTLPatchType {
+    #[doc(alias = "MTLPatchTypeNone")]
+    pub const None: Self = Self(0);
+    #[doc(alias = "MTLPatchTypeTriangle")]
+    pub const Triangle: Self = Self(1);
+    #[doc(alias = "MTLPatchTypeQuad")]
+    pub const Quad: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLPatchType {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLPatchType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -110,25 +121,36 @@ extern_methods!(
     }
 );
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum MTLFunctionType {
-        #[doc(alias = "MTLFunctionTypeVertex")]
-        Vertex = 1,
-        #[doc(alias = "MTLFunctionTypeFragment")]
-        Fragment = 2,
-        #[doc(alias = "MTLFunctionTypeKernel")]
-        Kernel = 3,
-        #[doc(alias = "MTLFunctionTypeVisible")]
-        Visible = 5,
-        #[doc(alias = "MTLFunctionTypeIntersection")]
-        Intersection = 6,
-        #[doc(alias = "MTLFunctionTypeMesh")]
-        Mesh = 7,
-        #[doc(alias = "MTLFunctionTypeObject")]
-        Object = 8,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MTLFunctionType(pub NSUInteger);
+impl MTLFunctionType {
+    #[doc(alias = "MTLFunctionTypeVertex")]
+    pub const Vertex: Self = Self(1);
+    #[doc(alias = "MTLFunctionTypeFragment")]
+    pub const Fragment: Self = Self(2);
+    #[doc(alias = "MTLFunctionTypeKernel")]
+    pub const Kernel: Self = Self(3);
+    #[doc(alias = "MTLFunctionTypeVisible")]
+    pub const Visible: Self = Self(5);
+    #[doc(alias = "MTLFunctionTypeIntersection")]
+    pub const Intersection: Self = Self(6);
+    #[doc(alias = "MTLFunctionTypeMesh")]
+    pub const Mesh: Self = Self(7);
+    #[doc(alias = "MTLFunctionTypeObject")]
+    pub const Object: Self = Self(8);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLFunctionType {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLFunctionType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -225,52 +247,96 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn MTLFunction {}
 );
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum MTLLanguageVersion {
-        #[deprecated = "Use a newer language standard"]
-        MTLLanguageVersion1_0 = 1 << 16,
-        MTLLanguageVersion1_1 = (1 << 16) + 1,
-        MTLLanguageVersion1_2 = (1 << 16) + 2,
-        MTLLanguageVersion2_0 = 2 << 16,
-        MTLLanguageVersion2_1 = (2 << 16) + 1,
-        MTLLanguageVersion2_2 = (2 << 16) + 2,
-        MTLLanguageVersion2_3 = (2 << 16) + 3,
-        MTLLanguageVersion2_4 = (2 << 16) + 4,
-        MTLLanguageVersion3_0 = (3 << 16) + 0,
-        MTLLanguageVersion3_1 = (3 << 16) + 1,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MTLLanguageVersion(pub NSUInteger);
+impl MTLLanguageVersion {
+    #[deprecated = "Use a newer language standard"]
+    pub const MTLLanguageVersion1_0: Self = Self(1 << 16);
+    pub const MTLLanguageVersion1_1: Self = Self((1 << 16) + 1);
+    pub const MTLLanguageVersion1_2: Self = Self((1 << 16) + 2);
+    pub const MTLLanguageVersion2_0: Self = Self(2 << 16);
+    pub const MTLLanguageVersion2_1: Self = Self((2 << 16) + 1);
+    pub const MTLLanguageVersion2_2: Self = Self((2 << 16) + 2);
+    pub const MTLLanguageVersion2_3: Self = Self((2 << 16) + 3);
+    pub const MTLLanguageVersion2_4: Self = Self((2 << 16) + 4);
+    pub const MTLLanguageVersion3_0: Self = Self((3 << 16) + 0);
+    pub const MTLLanguageVersion3_1: Self = Self((3 << 16) + 1);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum MTLLibraryType {
-        #[doc(alias = "MTLLibraryTypeExecutable")]
-        Executable = 0,
-        #[doc(alias = "MTLLibraryTypeDynamic")]
-        Dynamic = 1,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLLanguageVersion {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum MTLLibraryOptimizationLevel {
-        #[doc(alias = "MTLLibraryOptimizationLevelDefault")]
-        Default = 0,
-        #[doc(alias = "MTLLibraryOptimizationLevelSize")]
-        Size = 1,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLLanguageVersion {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum MTLCompileSymbolVisibility {
-        #[doc(alias = "MTLCompileSymbolVisibilityDefault")]
-        Default = 0,
-        #[doc(alias = "MTLCompileSymbolVisibilityHidden")]
-        Hidden = 1,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MTLLibraryType(pub NSInteger);
+impl MTLLibraryType {
+    #[doc(alias = "MTLLibraryTypeExecutable")]
+    pub const Executable: Self = Self(0);
+    #[doc(alias = "MTLLibraryTypeDynamic")]
+    pub const Dynamic: Self = Self(1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLLibraryType {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLLibraryType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MTLLibraryOptimizationLevel(pub NSInteger);
+impl MTLLibraryOptimizationLevel {
+    #[doc(alias = "MTLLibraryOptimizationLevelDefault")]
+    pub const Default: Self = Self(0);
+    #[doc(alias = "MTLLibraryOptimizationLevelSize")]
+    pub const Size: Self = Self(1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLLibraryOptimizationLevel {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLLibraryOptimizationLevel {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MTLCompileSymbolVisibility(pub NSInteger);
+impl MTLCompileSymbolVisibility {
+    #[doc(alias = "MTLCompileSymbolVisibilityDefault")]
+    pub const Default: Self = Self(0);
+    #[doc(alias = "MTLCompileSymbolVisibilityHidden")]
+    pub const Hidden: Self = Self(1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLCompileSymbolVisibility {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLCompileSymbolVisibility {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -401,23 +467,34 @@ extern "C" {
     pub static MTLLibraryErrorDomain: &'static NSErrorDomain;
 }
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum MTLLibraryError {
-        #[doc(alias = "MTLLibraryErrorUnsupported")]
-        Unsupported = 1,
-        #[doc(alias = "MTLLibraryErrorInternal")]
-        Internal = 2,
-        #[doc(alias = "MTLLibraryErrorCompileFailure")]
-        CompileFailure = 3,
-        #[doc(alias = "MTLLibraryErrorCompileWarning")]
-        CompileWarning = 4,
-        #[doc(alias = "MTLLibraryErrorFunctionNotFound")]
-        FunctionNotFound = 5,
-        #[doc(alias = "MTLLibraryErrorFileNotFound")]
-        FileNotFound = 6,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MTLLibraryError(pub NSUInteger);
+impl MTLLibraryError {
+    #[doc(alias = "MTLLibraryErrorUnsupported")]
+    pub const Unsupported: Self = Self(1);
+    #[doc(alias = "MTLLibraryErrorInternal")]
+    pub const Internal: Self = Self(2);
+    #[doc(alias = "MTLLibraryErrorCompileFailure")]
+    pub const CompileFailure: Self = Self(3);
+    #[doc(alias = "MTLLibraryErrorCompileWarning")]
+    pub const CompileWarning: Self = Self(4);
+    #[doc(alias = "MTLLibraryErrorFunctionNotFound")]
+    pub const FunctionNotFound: Self = Self(5);
+    #[doc(alias = "MTLLibraryErrorFileNotFound")]
+    pub const FileNotFound: Self = Self(6);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLLibraryError {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLLibraryError {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_protocol!(
     pub unsafe trait MTLLibrary: NSObjectProtocol {

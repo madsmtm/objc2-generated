@@ -5,10 +5,9 @@ use crate::AppKit::*;
 use crate::AuthenticationServices::*;
 use crate::Foundation::*;
 
+// NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_extensible_enum!(
-    pub type ASAuthorizationScope = NSString;
-);
+pub type ASAuthorizationScope = NSString;
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]

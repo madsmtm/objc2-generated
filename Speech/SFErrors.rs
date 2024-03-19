@@ -9,14 +9,25 @@ extern "C" {
     pub static SFSpeechErrorDomain: &'static NSErrorDomain;
 }
 
-ns_error_enum!(
-    #[underlying(NSInteger)]
-    pub enum SFSpeechErrorCode {
-        #[doc(alias = "SFSpeechErrorCodeInternalServiceError")]
-        InternalServiceError = 1,
-        #[doc(alias = "SFSpeechErrorCodeUndefinedTemplateClassName")]
-        UndefinedTemplateClassName = 7,
-        #[doc(alias = "SFSpeechErrorCodeMalformedSupplementalModel")]
-        MalformedSupplementalModel = 8,
-    }
-);
+// NS_ERROR_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct SFSpeechErrorCode(pub NSInteger);
+impl SFSpeechErrorCode {
+    #[doc(alias = "SFSpeechErrorCodeInternalServiceError")]
+    pub const InternalServiceError: Self = Self(1);
+    #[doc(alias = "SFSpeechErrorCodeUndefinedTemplateClassName")]
+    pub const UndefinedTemplateClassName: Self = Self(7);
+    #[doc(alias = "SFSpeechErrorCodeMalformedSupplementalModel")]
+    pub const MalformedSupplementalModel: Self = Self(8);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for SFSpeechErrorCode {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for SFSpeechErrorCode {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}

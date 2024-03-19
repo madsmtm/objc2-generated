@@ -3,26 +3,48 @@
 use crate::common::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSItemProviderRepresentationVisibility {
-        #[doc(alias = "NSItemProviderRepresentationVisibilityAll")]
-        All = 0,
-        #[doc(alias = "NSItemProviderRepresentationVisibilityTeam")]
-        Team = 1,
-        #[doc(alias = "NSItemProviderRepresentationVisibilityGroup")]
-        Group = 2,
-        #[doc(alias = "NSItemProviderRepresentationVisibilityOwnProcess")]
-        OwnProcess = 3,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSItemProviderRepresentationVisibility(pub NSInteger);
+impl NSItemProviderRepresentationVisibility {
+    #[doc(alias = "NSItemProviderRepresentationVisibilityAll")]
+    pub const All: Self = Self(0);
+    #[doc(alias = "NSItemProviderRepresentationVisibilityTeam")]
+    pub const Team: Self = Self(1);
+    #[doc(alias = "NSItemProviderRepresentationVisibilityGroup")]
+    pub const Group: Self = Self(2);
+    #[doc(alias = "NSItemProviderRepresentationVisibilityOwnProcess")]
+    pub const OwnProcess: Self = Self(3);
+}
 
-ns_options!(
-    #[underlying(NSInteger)]
-    pub enum NSItemProviderFileOptions {
-        NSItemProviderFileOptionOpenInPlace = 1,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSItemProviderRepresentationVisibility {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSItemProviderRepresentationVisibility {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSItemProviderFileOptions(pub NSInteger);
+impl NSItemProviderFileOptions {
+    pub const NSItemProviderFileOptionOpenInPlace: Self = Self(1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSItemProviderFileOptions {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSItemProviderFileOptions {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_protocol!(
     pub unsafe trait NSItemProviderWriting: NSObjectProtocol {
@@ -344,12 +366,23 @@ extern "C" {
     pub static NSItemProviderErrorDomain: &'static NSString;
 }
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSItemProviderErrorCode {
-        NSItemProviderUnknownError = -1,
-        NSItemProviderItemUnavailableError = -1000,
-        NSItemProviderUnexpectedValueClassError = -1100,
-        NSItemProviderUnavailableCoercionError = -1200,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSItemProviderErrorCode(pub NSInteger);
+impl NSItemProviderErrorCode {
+    pub const NSItemProviderUnknownError: Self = Self(-1);
+    pub const NSItemProviderItemUnavailableError: Self = Self(-1000);
+    pub const NSItemProviderUnexpectedValueClassError: Self = Self(-1100);
+    pub const NSItemProviderUnavailableCoercionError: Self = Self(-1200);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSItemProviderErrorCode {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSItemProviderErrorCode {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}

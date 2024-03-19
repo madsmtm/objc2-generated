@@ -7,41 +7,74 @@ use crate::Foundation::*;
 use crate::Photos::*;
 use crate::UniformTypeIdentifiers::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum PHImageRequestOptionsVersion {
-        #[doc(alias = "PHImageRequestOptionsVersionCurrent")]
-        Current = 0,
-        #[doc(alias = "PHImageRequestOptionsVersionUnadjusted")]
-        Unadjusted = 1,
-        #[doc(alias = "PHImageRequestOptionsVersionOriginal")]
-        Original = 2,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct PHImageRequestOptionsVersion(pub NSInteger);
+impl PHImageRequestOptionsVersion {
+    #[doc(alias = "PHImageRequestOptionsVersionCurrent")]
+    pub const Current: Self = Self(0);
+    #[doc(alias = "PHImageRequestOptionsVersionUnadjusted")]
+    pub const Unadjusted: Self = Self(1);
+    #[doc(alias = "PHImageRequestOptionsVersionOriginal")]
+    pub const Original: Self = Self(2);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum PHImageRequestOptionsDeliveryMode {
-        #[doc(alias = "PHImageRequestOptionsDeliveryModeOpportunistic")]
-        Opportunistic = 0,
-        #[doc(alias = "PHImageRequestOptionsDeliveryModeHighQualityFormat")]
-        HighQualityFormat = 1,
-        #[doc(alias = "PHImageRequestOptionsDeliveryModeFastFormat")]
-        FastFormat = 2,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for PHImageRequestOptionsVersion {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum PHImageRequestOptionsResizeMode {
-        #[doc(alias = "PHImageRequestOptionsResizeModeNone")]
-        None = 0,
-        #[doc(alias = "PHImageRequestOptionsResizeModeFast")]
-        Fast = 1,
-        #[doc(alias = "PHImageRequestOptionsResizeModeExact")]
-        Exact = 2,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for PHImageRequestOptionsVersion {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct PHImageRequestOptionsDeliveryMode(pub NSInteger);
+impl PHImageRequestOptionsDeliveryMode {
+    #[doc(alias = "PHImageRequestOptionsDeliveryModeOpportunistic")]
+    pub const Opportunistic: Self = Self(0);
+    #[doc(alias = "PHImageRequestOptionsDeliveryModeHighQualityFormat")]
+    pub const HighQualityFormat: Self = Self(1);
+    #[doc(alias = "PHImageRequestOptionsDeliveryModeFastFormat")]
+    pub const FastFormat: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for PHImageRequestOptionsDeliveryMode {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for PHImageRequestOptionsDeliveryMode {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct PHImageRequestOptionsResizeMode(pub NSInteger);
+impl PHImageRequestOptionsResizeMode {
+    #[doc(alias = "PHImageRequestOptionsResizeModeNone")]
+    pub const None: Self = Self(0);
+    #[doc(alias = "PHImageRequestOptionsResizeModeFast")]
+    pub const Fast: Self = Self(1);
+    #[doc(alias = "PHImageRequestOptionsResizeModeExact")]
+    pub const Exact: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for PHImageRequestOptionsResizeMode {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for PHImageRequestOptionsResizeMode {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSError"))]
 pub type PHAssetImageProgressHandler =
@@ -185,29 +218,51 @@ extern_methods!(
     }
 );
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum PHVideoRequestOptionsVersion {
-        #[doc(alias = "PHVideoRequestOptionsVersionCurrent")]
-        Current = 0,
-        #[doc(alias = "PHVideoRequestOptionsVersionOriginal")]
-        Original = 1,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct PHVideoRequestOptionsVersion(pub NSInteger);
+impl PHVideoRequestOptionsVersion {
+    #[doc(alias = "PHVideoRequestOptionsVersionCurrent")]
+    pub const Current: Self = Self(0);
+    #[doc(alias = "PHVideoRequestOptionsVersionOriginal")]
+    pub const Original: Self = Self(1);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum PHVideoRequestOptionsDeliveryMode {
-        #[doc(alias = "PHVideoRequestOptionsDeliveryModeAutomatic")]
-        Automatic = 0,
-        #[doc(alias = "PHVideoRequestOptionsDeliveryModeHighQualityFormat")]
-        HighQualityFormat = 1,
-        #[doc(alias = "PHVideoRequestOptionsDeliveryModeMediumQualityFormat")]
-        MediumQualityFormat = 2,
-        #[doc(alias = "PHVideoRequestOptionsDeliveryModeFastFormat")]
-        FastFormat = 3,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for PHVideoRequestOptionsVersion {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for PHVideoRequestOptionsVersion {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct PHVideoRequestOptionsDeliveryMode(pub NSInteger);
+impl PHVideoRequestOptionsDeliveryMode {
+    #[doc(alias = "PHVideoRequestOptionsDeliveryModeAutomatic")]
+    pub const Automatic: Self = Self(0);
+    #[doc(alias = "PHVideoRequestOptionsDeliveryModeHighQualityFormat")]
+    pub const HighQualityFormat: Self = Self(1);
+    #[doc(alias = "PHVideoRequestOptionsDeliveryModeMediumQualityFormat")]
+    pub const MediumQualityFormat: Self = Self(2);
+    #[doc(alias = "PHVideoRequestOptionsDeliveryModeFastFormat")]
+    pub const FastFormat: Self = Self(3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for PHVideoRequestOptionsDeliveryMode {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for PHVideoRequestOptionsDeliveryMode {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSError"))]
 pub type PHAssetVideoProgressHandler =

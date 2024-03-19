@@ -9,21 +9,32 @@ extern "C" {
     pub static MTLBinaryArchiveDomain: &'static NSErrorDomain;
 }
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum MTLBinaryArchiveError {
-        #[doc(alias = "MTLBinaryArchiveErrorNone")]
-        None = 0,
-        #[doc(alias = "MTLBinaryArchiveErrorInvalidFile")]
-        InvalidFile = 1,
-        #[doc(alias = "MTLBinaryArchiveErrorUnexpectedElement")]
-        UnexpectedElement = 2,
-        #[doc(alias = "MTLBinaryArchiveErrorCompilationFailure")]
-        CompilationFailure = 3,
-        #[doc(alias = "MTLBinaryArchiveErrorInternalError")]
-        InternalError = 4,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MTLBinaryArchiveError(pub NSUInteger);
+impl MTLBinaryArchiveError {
+    #[doc(alias = "MTLBinaryArchiveErrorNone")]
+    pub const None: Self = Self(0);
+    #[doc(alias = "MTLBinaryArchiveErrorInvalidFile")]
+    pub const InvalidFile: Self = Self(1);
+    #[doc(alias = "MTLBinaryArchiveErrorUnexpectedElement")]
+    pub const UnexpectedElement: Self = Self(2);
+    #[doc(alias = "MTLBinaryArchiveErrorCompilationFailure")]
+    pub const CompilationFailure: Self = Self(3);
+    #[doc(alias = "MTLBinaryArchiveErrorInternalError")]
+    pub const InternalError: Self = Self(4);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLBinaryArchiveError {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLBinaryArchiveError {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

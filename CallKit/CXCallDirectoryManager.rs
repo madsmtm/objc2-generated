@@ -4,17 +4,28 @@ use crate::common::*;
 use crate::CallKit::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum CXCallDirectoryEnabledStatus {
-        #[doc(alias = "CXCallDirectoryEnabledStatusUnknown")]
-        Unknown = 0,
-        #[doc(alias = "CXCallDirectoryEnabledStatusDisabled")]
-        Disabled = 1,
-        #[doc(alias = "CXCallDirectoryEnabledStatusEnabled")]
-        Enabled = 2,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct CXCallDirectoryEnabledStatus(pub NSInteger);
+impl CXCallDirectoryEnabledStatus {
+    #[doc(alias = "CXCallDirectoryEnabledStatusUnknown")]
+    pub const Unknown: Self = Self(0);
+    #[doc(alias = "CXCallDirectoryEnabledStatusDisabled")]
+    pub const Disabled: Self = Self(1);
+    #[doc(alias = "CXCallDirectoryEnabledStatusEnabled")]
+    pub const Enabled: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for CXCallDirectoryEnabledStatus {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for CXCallDirectoryEnabledStatus {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

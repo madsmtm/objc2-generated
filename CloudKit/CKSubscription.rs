@@ -5,17 +5,28 @@ use crate::CloudKit::*;
 use crate::CoreLocation::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum CKSubscriptionType {
-        #[doc(alias = "CKSubscriptionTypeQuery")]
-        Query = 1,
-        #[doc(alias = "CKSubscriptionTypeRecordZone")]
-        RecordZone = 2,
-        #[doc(alias = "CKSubscriptionTypeDatabase")]
-        Database = 3,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct CKSubscriptionType(pub NSInteger);
+impl CKSubscriptionType {
+    #[doc(alias = "CKSubscriptionTypeQuery")]
+    pub const Query: Self = Self(1);
+    #[doc(alias = "CKSubscriptionTypeRecordZone")]
+    pub const RecordZone: Self = Self(2);
+    #[doc(alias = "CKSubscriptionTypeDatabase")]
+    pub const Database: Self = Self(3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for CKSubscriptionType {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for CKSubscriptionType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 #[cfg(feature = "Foundation_NSString")]
 pub type CKSubscriptionID = NSString;
@@ -64,19 +75,30 @@ extern_methods!(
     }
 );
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum CKQuerySubscriptionOptions {
-        #[doc(alias = "CKQuerySubscriptionOptionsFiresOnRecordCreation")]
-        FiresOnRecordCreation = 1 << 0,
-        #[doc(alias = "CKQuerySubscriptionOptionsFiresOnRecordUpdate")]
-        FiresOnRecordUpdate = 1 << 1,
-        #[doc(alias = "CKQuerySubscriptionOptionsFiresOnRecordDeletion")]
-        FiresOnRecordDeletion = 1 << 2,
-        #[doc(alias = "CKQuerySubscriptionOptionsFiresOnce")]
-        FiresOnce = 1 << 3,
-    }
-);
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct CKQuerySubscriptionOptions(pub NSUInteger);
+impl CKQuerySubscriptionOptions {
+    #[doc(alias = "CKQuerySubscriptionOptionsFiresOnRecordCreation")]
+    pub const FiresOnRecordCreation: Self = Self(1 << 0);
+    #[doc(alias = "CKQuerySubscriptionOptionsFiresOnRecordUpdate")]
+    pub const FiresOnRecordUpdate: Self = Self(1 << 1);
+    #[doc(alias = "CKQuerySubscriptionOptionsFiresOnRecordDeletion")]
+    pub const FiresOnRecordDeletion: Self = Self(1 << 2);
+    #[doc(alias = "CKQuerySubscriptionOptionsFiresOnce")]
+    pub const FiresOnce: Self = Self(1 << 3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for CKQuerySubscriptionOptions {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for CKQuerySubscriptionOptions {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

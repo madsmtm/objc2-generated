@@ -5,31 +5,52 @@ use crate::Contacts::*;
 use crate::CoreLocation::*;
 use crate::Foundation::*;
 
-ns_closed_enum!(
-    #[underlying(NSInteger)]
-    pub enum CLRegionState {
-        #[doc(alias = "CLRegionStateUnknown")]
-        Unknown = 0,
-        #[doc(alias = "CLRegionStateInside")]
-        Inside = 1,
-        #[doc(alias = "CLRegionStateOutside")]
-        Outside = 2,
-    }
-);
+// NS_CLOSED_ENUM
+#[repr(isize)] // NSInteger
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub enum CLRegionState {
+    #[doc(alias = "CLRegionStateUnknown")]
+    Unknown = 0,
+    #[doc(alias = "CLRegionStateInside")]
+    Inside = 1,
+    #[doc(alias = "CLRegionStateOutside")]
+    Outside = 2,
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum CLProximity {
-        #[doc(alias = "CLProximityUnknown")]
-        Unknown = 0,
-        #[doc(alias = "CLProximityImmediate")]
-        Immediate = 1,
-        #[doc(alias = "CLProximityNear")]
-        Near = 2,
-        #[doc(alias = "CLProximityFar")]
-        Far = 3,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for CLRegionState {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for CLRegionState {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct CLProximity(pub NSInteger);
+impl CLProximity {
+    #[doc(alias = "CLProximityUnknown")]
+    pub const Unknown: Self = Self(0);
+    #[doc(alias = "CLProximityImmediate")]
+    pub const Immediate: Self = Self(1);
+    #[doc(alias = "CLProximityNear")]
+    pub const Near: Self = Self(2);
+    #[doc(alias = "CLProximityFar")]
+    pub const Far: Self = Self(3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for CLProximity {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for CLProximity {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

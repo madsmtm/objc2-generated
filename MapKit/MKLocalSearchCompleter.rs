@@ -7,30 +7,52 @@ use crate::CoreLocation::*;
 use crate::Foundation::*;
 use crate::MapKit::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
+// NS_ENUM
+#[deprecated = "Use MKLocalSearchCompleterResultType"]
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MKSearchCompletionFilterType(pub NSInteger);
+impl MKSearchCompletionFilterType {
     #[deprecated = "Use MKLocalSearchCompleterResultType"]
-    pub enum MKSearchCompletionFilterType {
-        #[deprecated = "Use MKLocalSearchCompleterResultType"]
-        #[doc(alias = "MKSearchCompletionFilterTypeLocationsAndQueries")]
-        LocationsAndQueries = 0,
-        #[deprecated = "Use MKLocalSearchCompleterResultType"]
-        #[doc(alias = "MKSearchCompletionFilterTypeLocationsOnly")]
-        LocationsOnly = 1,
-    }
-);
+    #[doc(alias = "MKSearchCompletionFilterTypeLocationsAndQueries")]
+    pub const LocationsAndQueries: Self = Self(0);
+    #[deprecated = "Use MKLocalSearchCompleterResultType"]
+    #[doc(alias = "MKSearchCompletionFilterTypeLocationsOnly")]
+    pub const LocationsOnly: Self = Self(1);
+}
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum MKLocalSearchCompleterResultType {
-        #[doc(alias = "MKLocalSearchCompleterResultTypeAddress")]
-        Address = 1 << 0,
-        #[doc(alias = "MKLocalSearchCompleterResultTypePointOfInterest")]
-        PointOfInterest = 1 << 1,
-        #[doc(alias = "MKLocalSearchCompleterResultTypeQuery")]
-        Query = 1 << 2,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MKSearchCompletionFilterType {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MKSearchCompletionFilterType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MKLocalSearchCompleterResultType(pub NSUInteger);
+impl MKLocalSearchCompleterResultType {
+    #[doc(alias = "MKLocalSearchCompleterResultTypeAddress")]
+    pub const Address: Self = Self(1 << 0);
+    #[doc(alias = "MKLocalSearchCompleterResultTypePointOfInterest")]
+    pub const PointOfInterest: Self = Self(1 << 1);
+    #[doc(alias = "MKLocalSearchCompleterResultTypeQuery")]
+    pub const Query: Self = Self(1 << 2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MKLocalSearchCompleterResultType {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MKLocalSearchCompleterResultType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

@@ -3,19 +3,30 @@
 use crate::common::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSURLCredentialPersistence {
-        #[doc(alias = "NSURLCredentialPersistenceNone")]
-        None = 0,
-        #[doc(alias = "NSURLCredentialPersistenceForSession")]
-        ForSession = 1,
-        #[doc(alias = "NSURLCredentialPersistencePermanent")]
-        Permanent = 2,
-        #[doc(alias = "NSURLCredentialPersistenceSynchronizable")]
-        Synchronizable = 3,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSURLCredentialPersistence(pub NSUInteger);
+impl NSURLCredentialPersistence {
+    #[doc(alias = "NSURLCredentialPersistenceNone")]
+    pub const None: Self = Self(0);
+    #[doc(alias = "NSURLCredentialPersistenceForSession")]
+    pub const ForSession: Self = Self(1);
+    #[doc(alias = "NSURLCredentialPersistencePermanent")]
+    pub const Permanent: Self = Self(2);
+    #[doc(alias = "NSURLCredentialPersistenceSynchronizable")]
+    pub const Synchronizable: Self = Self(3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSURLCredentialPersistence {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSURLCredentialPersistence {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

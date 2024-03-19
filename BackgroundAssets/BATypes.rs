@@ -4,14 +4,25 @@ use crate::common::*;
 use crate::BackgroundAssets::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum BAContentRequest {
-        #[doc(alias = "BAContentRequestInstall")]
-        Install = 1,
-        #[doc(alias = "BAContentRequestUpdate")]
-        Update = 2,
-        #[doc(alias = "BAContentRequestPeriodic")]
-        Periodic = 3,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct BAContentRequest(pub NSInteger);
+impl BAContentRequest {
+    #[doc(alias = "BAContentRequestInstall")]
+    pub const Install: Self = Self(1);
+    #[doc(alias = "BAContentRequestUpdate")]
+    pub const Update: Self = Self(2);
+    #[doc(alias = "BAContentRequestPeriodic")]
+    pub const Periodic: Self = Self(3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for BAContentRequest {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for BAContentRequest {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}

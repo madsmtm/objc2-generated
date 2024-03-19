@@ -7,10 +7,9 @@ use crate::Foundation::*;
 use crate::Photos::*;
 use crate::UniformTypeIdentifiers::*;
 
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type PHLivePhotoEditingOption = NSString;
-);
+pub type PHLivePhotoEditingOption = NSString;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -84,15 +83,26 @@ extern_methods!(
     }
 );
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum PHLivePhotoFrameType {
-        #[doc(alias = "PHLivePhotoFrameTypePhoto")]
-        Photo = 0,
-        #[doc(alias = "PHLivePhotoFrameTypeVideo")]
-        Video = 1,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct PHLivePhotoFrameType(pub NSInteger);
+impl PHLivePhotoFrameType {
+    #[doc(alias = "PHLivePhotoFrameTypePhoto")]
+    pub const Photo: Self = Self(0);
+    #[doc(alias = "PHLivePhotoFrameTypeVideo")]
+    pub const Video: Self = Self(1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for PHLivePhotoFrameType {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for PHLivePhotoFrameType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_protocol!(
     pub unsafe trait PHLivePhotoFrame {
@@ -117,14 +127,25 @@ extern "C" {
     pub static PHLivePhotoEditingErrorDomain: &'static NSString;
 }
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum PHLivePhotoEditingErrorCode {
-        #[deprecated]
-        #[doc(alias = "PHLivePhotoEditingErrorCodeUnknown")]
-        Unknown = 0,
-        #[deprecated]
-        #[doc(alias = "PHLivePhotoEditingErrorCodeAborted")]
-        Aborted = 1,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct PHLivePhotoEditingErrorCode(pub NSInteger);
+impl PHLivePhotoEditingErrorCode {
+    #[deprecated]
+    #[doc(alias = "PHLivePhotoEditingErrorCodeUnknown")]
+    pub const Unknown: Self = Self(0);
+    #[deprecated]
+    #[doc(alias = "PHLivePhotoEditingErrorCodeAborted")]
+    pub const Aborted: Self = Self(1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for PHLivePhotoEditingErrorCode {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for PHLivePhotoEditingErrorCode {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}

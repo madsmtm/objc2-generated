@@ -5,33 +5,55 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSSplitViewItemBehavior {
-        #[doc(alias = "NSSplitViewItemBehaviorDefault")]
-        Default = 0,
-        #[doc(alias = "NSSplitViewItemBehaviorSidebar")]
-        Sidebar = 1,
-        #[doc(alias = "NSSplitViewItemBehaviorContentList")]
-        ContentList = 2,
-        #[doc(alias = "NSSplitViewItemBehaviorInspector")]
-        Inspector = 3,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSSplitViewItemBehavior(pub NSInteger);
+impl NSSplitViewItemBehavior {
+    #[doc(alias = "NSSplitViewItemBehaviorDefault")]
+    pub const Default: Self = Self(0);
+    #[doc(alias = "NSSplitViewItemBehaviorSidebar")]
+    pub const Sidebar: Self = Self(1);
+    #[doc(alias = "NSSplitViewItemBehaviorContentList")]
+    pub const ContentList: Self = Self(2);
+    #[doc(alias = "NSSplitViewItemBehaviorInspector")]
+    pub const Inspector: Self = Self(3);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSSplitViewItemCollapseBehavior {
-        #[doc(alias = "NSSplitViewItemCollapseBehaviorDefault")]
-        Default = 0,
-        #[doc(alias = "NSSplitViewItemCollapseBehaviorPreferResizingSplitViewWithFixedSiblings")]
-        PreferResizingSplitViewWithFixedSiblings = 1,
-        #[doc(alias = "NSSplitViewItemCollapseBehaviorPreferResizingSiblingsWithFixedSplitView")]
-        PreferResizingSiblingsWithFixedSplitView = 2,
-        #[doc(alias = "NSSplitViewItemCollapseBehaviorUseConstraints")]
-        UseConstraints = 3,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSSplitViewItemBehavior {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSSplitViewItemBehavior {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSSplitViewItemCollapseBehavior(pub NSInteger);
+impl NSSplitViewItemCollapseBehavior {
+    #[doc(alias = "NSSplitViewItemCollapseBehaviorDefault")]
+    pub const Default: Self = Self(0);
+    #[doc(alias = "NSSplitViewItemCollapseBehaviorPreferResizingSplitViewWithFixedSiblings")]
+    pub const PreferResizingSplitViewWithFixedSiblings: Self = Self(1);
+    #[doc(alias = "NSSplitViewItemCollapseBehaviorPreferResizingSiblingsWithFixedSplitView")]
+    pub const PreferResizingSiblingsWithFixedSplitView: Self = Self(2);
+    #[doc(alias = "NSSplitViewItemCollapseBehaviorUseConstraints")]
+    pub const UseConstraints: Self = Self(3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSSplitViewItemCollapseBehavior {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSSplitViewItemCollapseBehavior {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern "C" {
     #[cfg(feature = "Foundation_NSGeometry")]

@@ -3,10 +3,9 @@
 use crate::common::*;
 use crate::Foundation::*;
 
+// NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_extensible_enum!(
-    pub type NSNotificationName = NSString;
-);
+pub type NSNotificationName = NSString;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

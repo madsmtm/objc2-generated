@@ -42,17 +42,28 @@ extern "C" {
     pub static NSURLErrorNetworkUnavailableReasonKey: &'static NSErrorUserInfoKey;
 }
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSURLErrorNetworkUnavailableReason {
-        #[doc(alias = "NSURLErrorNetworkUnavailableReasonCellular")]
-        Cellular = 0,
-        #[doc(alias = "NSURLErrorNetworkUnavailableReasonExpensive")]
-        Expensive = 1,
-        #[doc(alias = "NSURLErrorNetworkUnavailableReasonConstrained")]
-        Constrained = 2,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSURLErrorNetworkUnavailableReason(pub NSInteger);
+impl NSURLErrorNetworkUnavailableReason {
+    #[doc(alias = "NSURLErrorNetworkUnavailableReasonCellular")]
+    pub const Cellular: Self = Self(0);
+    #[doc(alias = "NSURLErrorNetworkUnavailableReasonExpensive")]
+    pub const Expensive: Self = Self(1);
+    #[doc(alias = "NSURLErrorNetworkUnavailableReasonConstrained")]
+    pub const Constrained: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSURLErrorNetworkUnavailableReason {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSURLErrorNetworkUnavailableReason {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 pub const NSURLErrorUnknown: NSInteger = -1;
 pub const NSURLErrorCancelled: NSInteger = -999;

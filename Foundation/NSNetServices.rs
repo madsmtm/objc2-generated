@@ -13,28 +13,50 @@ extern "C" {
     pub static NSNetServicesErrorDomain: &'static NSErrorDomain;
 }
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSNetServicesError {
-        NSNetServicesUnknownError = -72000,
-        NSNetServicesCollisionError = -72001,
-        NSNetServicesNotFoundError = -72002,
-        NSNetServicesActivityInProgress = -72003,
-        NSNetServicesBadArgumentError = -72004,
-        NSNetServicesCancelledError = -72005,
-        NSNetServicesInvalidError = -72006,
-        NSNetServicesTimeoutError = -72007,
-        NSNetServicesMissingRequiredConfigurationError = -72008,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSNetServicesError(pub NSInteger);
+impl NSNetServicesError {
+    pub const NSNetServicesUnknownError: Self = Self(-72000);
+    pub const NSNetServicesCollisionError: Self = Self(-72001);
+    pub const NSNetServicesNotFoundError: Self = Self(-72002);
+    pub const NSNetServicesActivityInProgress: Self = Self(-72003);
+    pub const NSNetServicesBadArgumentError: Self = Self(-72004);
+    pub const NSNetServicesCancelledError: Self = Self(-72005);
+    pub const NSNetServicesInvalidError: Self = Self(-72006);
+    pub const NSNetServicesTimeoutError: Self = Self(-72007);
+    pub const NSNetServicesMissingRequiredConfigurationError: Self = Self(-72008);
+}
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSNetServiceOptions {
-        NSNetServiceNoAutoRename = 1 << 0,
-        NSNetServiceListenForConnections = 1 << 1,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSNetServicesError {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSNetServicesError {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSNetServiceOptions(pub NSUInteger);
+impl NSNetServiceOptions {
+    pub const NSNetServiceNoAutoRename: Self = Self(1 << 0);
+    pub const NSNetServiceListenForConnections: Self = Self(1 << 1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSNetServiceOptions {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSNetServiceOptions {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

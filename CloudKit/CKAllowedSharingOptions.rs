@@ -5,31 +5,57 @@ use crate::CloudKit::*;
 use crate::CoreLocation::*;
 use crate::Foundation::*;
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum CKSharingParticipantAccessOption {
-        #[doc(alias = "CKSharingParticipantAccessOptionAnyoneWithLink")]
-        AnyoneWithLink = 1 << 0,
-        #[doc(alias = "CKSharingParticipantAccessOptionSpecifiedRecipientsOnly")]
-        SpecifiedRecipientsOnly = 1 << 1,
-        #[doc(alias = "CKSharingParticipantAccessOptionAny")]
-        Any = CKSharingParticipantAccessOption::AnyoneWithLink.0
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct CKSharingParticipantAccessOption(pub NSUInteger);
+impl CKSharingParticipantAccessOption {
+    #[doc(alias = "CKSharingParticipantAccessOptionAnyoneWithLink")]
+    pub const AnyoneWithLink: Self = Self(1 << 0);
+    #[doc(alias = "CKSharingParticipantAccessOptionSpecifiedRecipientsOnly")]
+    pub const SpecifiedRecipientsOnly: Self = Self(1 << 1);
+    #[doc(alias = "CKSharingParticipantAccessOptionAny")]
+    pub const Any: Self = Self(
+        CKSharingParticipantAccessOption::AnyoneWithLink.0
             | CKSharingParticipantAccessOption::SpecifiedRecipientsOnly.0,
-    }
-);
+    );
+}
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum CKSharingParticipantPermissionOption {
-        #[doc(alias = "CKSharingParticipantPermissionOptionReadOnly")]
-        ReadOnly = 1 << 0,
-        #[doc(alias = "CKSharingParticipantPermissionOptionReadWrite")]
-        ReadWrite = 1 << 1,
-        #[doc(alias = "CKSharingParticipantPermissionOptionAny")]
-        Any = CKSharingParticipantPermissionOption::ReadOnly.0
+#[cfg(feature = "objc2")]
+unsafe impl Encode for CKSharingParticipantAccessOption {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for CKSharingParticipantAccessOption {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct CKSharingParticipantPermissionOption(pub NSUInteger);
+impl CKSharingParticipantPermissionOption {
+    #[doc(alias = "CKSharingParticipantPermissionOptionReadOnly")]
+    pub const ReadOnly: Self = Self(1 << 0);
+    #[doc(alias = "CKSharingParticipantPermissionOptionReadWrite")]
+    pub const ReadWrite: Self = Self(1 << 1);
+    #[doc(alias = "CKSharingParticipantPermissionOptionAny")]
+    pub const Any: Self = Self(
+        CKSharingParticipantPermissionOption::ReadOnly.0
             | CKSharingParticipantPermissionOption::ReadWrite.0,
-    }
-);
+    );
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for CKSharingParticipantPermissionOption {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for CKSharingParticipantPermissionOption {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

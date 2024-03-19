@@ -5,33 +5,55 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::MediaPlayer::*;
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum MPNowPlayingInfoMediaType {
-        #[doc(alias = "MPNowPlayingInfoMediaTypeNone")]
-        None = 0,
-        #[doc(alias = "MPNowPlayingInfoMediaTypeAudio")]
-        Audio = 1,
-        #[doc(alias = "MPNowPlayingInfoMediaTypeVideo")]
-        Video = 2,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MPNowPlayingInfoMediaType(pub NSUInteger);
+impl MPNowPlayingInfoMediaType {
+    #[doc(alias = "MPNowPlayingInfoMediaTypeNone")]
+    pub const None: Self = Self(0);
+    #[doc(alias = "MPNowPlayingInfoMediaTypeAudio")]
+    pub const Audio: Self = Self(1);
+    #[doc(alias = "MPNowPlayingInfoMediaTypeVideo")]
+    pub const Video: Self = Self(2);
+}
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum MPNowPlayingPlaybackState {
-        #[doc(alias = "MPNowPlayingPlaybackStateUnknown")]
-        Unknown = 0,
-        #[doc(alias = "MPNowPlayingPlaybackStatePlaying")]
-        Playing = 1,
-        #[doc(alias = "MPNowPlayingPlaybackStatePaused")]
-        Paused = 2,
-        #[doc(alias = "MPNowPlayingPlaybackStateStopped")]
-        Stopped = 3,
-        #[doc(alias = "MPNowPlayingPlaybackStateInterrupted")]
-        Interrupted = 4,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MPNowPlayingInfoMediaType {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MPNowPlayingInfoMediaType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MPNowPlayingPlaybackState(pub NSUInteger);
+impl MPNowPlayingPlaybackState {
+    #[doc(alias = "MPNowPlayingPlaybackStateUnknown")]
+    pub const Unknown: Self = Self(0);
+    #[doc(alias = "MPNowPlayingPlaybackStatePlaying")]
+    pub const Playing: Self = Self(1);
+    #[doc(alias = "MPNowPlayingPlaybackStatePaused")]
+    pub const Paused: Self = Self(2);
+    #[doc(alias = "MPNowPlayingPlaybackStateStopped")]
+    pub const Stopped: Self = Self(3);
+    #[doc(alias = "MPNowPlayingPlaybackStateInterrupted")]
+    pub const Interrupted: Self = Self(4);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MPNowPlayingPlaybackState {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MPNowPlayingPlaybackState {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

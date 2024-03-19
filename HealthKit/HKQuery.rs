@@ -46,14 +46,25 @@ extern_methods!(
     }
 );
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum HKQueryOptions {
-        HKQueryOptionNone = 0,
-        HKQueryOptionStrictStartDate = 1 << 0,
-        HKQueryOptionStrictEndDate = 1 << 1,
-    }
-);
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct HKQueryOptions(pub NSUInteger);
+impl HKQueryOptions {
+    pub const HKQueryOptionNone: Self = Self(0);
+    pub const HKQueryOptionStrictStartDate: Self = Self(1 << 0);
+    pub const HKQueryOptionStrictEndDate: Self = Self(1 << 1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for HKQueryOptions {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for HKQueryOptions {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_methods!(
     /// HKObjectPredicates

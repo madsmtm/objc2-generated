@@ -5,29 +5,51 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::MailKit::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum MEMessageState {
-        #[doc(alias = "MEMessageStateReceived")]
-        Received = 0,
-        #[doc(alias = "MEMessageStateDraft")]
-        Draft = 1,
-        #[doc(alias = "MEMessageStateSending")]
-        Sending = 2,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MEMessageState(pub NSInteger);
+impl MEMessageState {
+    #[doc(alias = "MEMessageStateReceived")]
+    pub const Received: Self = Self(0);
+    #[doc(alias = "MEMessageStateDraft")]
+    pub const Draft: Self = Self(1);
+    #[doc(alias = "MEMessageStateSending")]
+    pub const Sending: Self = Self(2);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum MEMessageEncryptionState {
-        #[doc(alias = "MEMessageEncryptionStateUnknown")]
-        Unknown = 0,
-        #[doc(alias = "MEMessageEncryptionStateNotEncrypted")]
-        NotEncrypted = 1,
-        #[doc(alias = "MEMessageEncryptionStateEncrypted")]
-        Encrypted = 2,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MEMessageState {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MEMessageState {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MEMessageEncryptionState(pub NSInteger);
+impl MEMessageEncryptionState {
+    #[doc(alias = "MEMessageEncryptionStateUnknown")]
+    pub const Unknown: Self = Self(0);
+    #[doc(alias = "MEMessageEncryptionStateNotEncrypted")]
+    pub const NotEncrypted: Self = Self(1);
+    #[doc(alias = "MEMessageEncryptionStateEncrypted")]
+    pub const Encrypted: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MEMessageEncryptionState {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MEMessageEncryptionState {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

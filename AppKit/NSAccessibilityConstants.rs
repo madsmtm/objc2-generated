@@ -10,10 +10,9 @@ extern "C" {
     pub static NSAccessibilityErrorCodeExceptionInfo: &'static NSString;
 }
 
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type NSAccessibilityAttributeName = NSString;
-);
+pub type NSAccessibilityAttributeName = NSString;
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]
@@ -323,10 +322,9 @@ extern "C" {
     pub static NSAccessibilitySelectedTextRangesAttribute: &'static NSAccessibilityAttributeName;
 }
 
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type NSAccessibilityParameterizedAttributeName = NSString;
-);
+pub type NSAccessibilityParameterizedAttributeName = NSString;
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]
@@ -550,10 +548,9 @@ extern "C" {
     pub static NSAccessibilityAnnotationTextAttribute: &'static NSAttributedStringKey;
 }
 
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type NSAccessibilityAnnotationAttributeKey = NSString;
-);
+pub type NSAccessibilityAnnotationAttributeKey = NSString;
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]
@@ -570,22 +567,32 @@ extern "C" {
     pub static NSAccessibilityAnnotationLocation: &'static NSAccessibilityAnnotationAttributeKey;
 }
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSAccessibilityAnnotationPosition {
-        #[doc(alias = "NSAccessibilityAnnotationPositionFullRange")]
-        FullRange = 0,
-        #[doc(alias = "NSAccessibilityAnnotationPositionStart")]
-        Start = 1,
-        #[doc(alias = "NSAccessibilityAnnotationPositionEnd")]
-        End = 2,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSAccessibilityAnnotationPosition(pub NSInteger);
+impl NSAccessibilityAnnotationPosition {
+    #[doc(alias = "NSAccessibilityAnnotationPositionFullRange")]
+    pub const FullRange: Self = Self(0);
+    #[doc(alias = "NSAccessibilityAnnotationPositionStart")]
+    pub const Start: Self = Self(1);
+    #[doc(alias = "NSAccessibilityAnnotationPositionEnd")]
+    pub const End: Self = Self(2);
+}
 
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSAccessibilityAnnotationPosition {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSAccessibilityAnnotationPosition {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type NSAccessibilityFontAttributeKey = NSString;
-);
+pub type NSAccessibilityFontAttributeKey = NSString;
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]
@@ -707,27 +714,37 @@ extern "C" {
     pub static NSAccessibilityExtrasMenuBarAttribute: &'static NSAccessibilityAttributeName;
 }
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSAccessibilityOrientation {
-        #[doc(alias = "NSAccessibilityOrientationUnknown")]
-        Unknown = 0,
-        #[doc(alias = "NSAccessibilityOrientationVertical")]
-        Vertical = 1,
-        #[doc(alias = "NSAccessibilityOrientationHorizontal")]
-        Horizontal = 2,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSAccessibilityOrientation(pub NSInteger);
+impl NSAccessibilityOrientation {
+    #[doc(alias = "NSAccessibilityOrientationUnknown")]
+    pub const Unknown: Self = Self(0);
+    #[doc(alias = "NSAccessibilityOrientationVertical")]
+    pub const Vertical: Self = Self(1);
+    #[doc(alias = "NSAccessibilityOrientationHorizontal")]
+    pub const Horizontal: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSAccessibilityOrientation {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSAccessibilityOrientation {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]
     pub static NSAccessibilityOrientationAttribute: &'static NSAccessibilityAttributeName;
 }
 
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type NSAccessibilityOrientationValue = NSString;
-);
+pub type NSAccessibilityOrientationValue = NSString;
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]
@@ -887,10 +904,9 @@ extern "C" {
     pub static NSAccessibilityHandlesAttribute: &'static NSAccessibilityAttributeName;
 }
 
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type NSAccessibilitySortDirectionValue = NSString;
-);
+pub type NSAccessibilitySortDirectionValue = NSString;
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]
@@ -909,17 +925,28 @@ extern "C" {
     pub static NSAccessibilityUnknownSortDirectionValue: &'static NSAccessibilitySortDirectionValue;
 }
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSAccessibilitySortDirection {
-        #[doc(alias = "NSAccessibilitySortDirectionUnknown")]
-        Unknown = 0,
-        #[doc(alias = "NSAccessibilitySortDirectionAscending")]
-        Ascending = 1,
-        #[doc(alias = "NSAccessibilitySortDirectionDescending")]
-        Descending = 2,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSAccessibilitySortDirection(pub NSInteger);
+impl NSAccessibilitySortDirection {
+    #[doc(alias = "NSAccessibilitySortDirectionUnknown")]
+    pub const Unknown: Self = Self(0);
+    #[doc(alias = "NSAccessibilitySortDirectionAscending")]
+    pub const Ascending: Self = Self(1);
+    #[doc(alias = "NSAccessibilitySortDirectionDescending")]
+    pub const Descending: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSAccessibilitySortDirection {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSAccessibilitySortDirection {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]
@@ -1006,10 +1033,9 @@ extern "C" {
     pub static NSAccessibilityIdentifierAttribute: &'static NSAccessibilityAttributeName;
 }
 
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type NSAccessibilityRulerMarkerTypeValue = NSString;
-);
+pub type NSAccessibilityRulerMarkerTypeValue = NSString;
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]
@@ -1058,32 +1084,42 @@ extern "C" {
     pub static NSAccessibilityUnknownMarkerTypeValue: &'static NSAccessibilityRulerMarkerTypeValue;
 }
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSAccessibilityRulerMarkerType {
-        #[doc(alias = "NSAccessibilityRulerMarkerTypeUnknown")]
-        Unknown = 0,
-        #[doc(alias = "NSAccessibilityRulerMarkerTypeTabStopLeft")]
-        TabStopLeft = 1,
-        #[doc(alias = "NSAccessibilityRulerMarkerTypeTabStopRight")]
-        TabStopRight = 2,
-        #[doc(alias = "NSAccessibilityRulerMarkerTypeTabStopCenter")]
-        TabStopCenter = 3,
-        #[doc(alias = "NSAccessibilityRulerMarkerTypeTabStopDecimal")]
-        TabStopDecimal = 4,
-        #[doc(alias = "NSAccessibilityRulerMarkerTypeIndentHead")]
-        IndentHead = 5,
-        #[doc(alias = "NSAccessibilityRulerMarkerTypeIndentTail")]
-        IndentTail = 6,
-        #[doc(alias = "NSAccessibilityRulerMarkerTypeIndentFirstLine")]
-        IndentFirstLine = 7,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSAccessibilityRulerMarkerType(pub NSInteger);
+impl NSAccessibilityRulerMarkerType {
+    #[doc(alias = "NSAccessibilityRulerMarkerTypeUnknown")]
+    pub const Unknown: Self = Self(0);
+    #[doc(alias = "NSAccessibilityRulerMarkerTypeTabStopLeft")]
+    pub const TabStopLeft: Self = Self(1);
+    #[doc(alias = "NSAccessibilityRulerMarkerTypeTabStopRight")]
+    pub const TabStopRight: Self = Self(2);
+    #[doc(alias = "NSAccessibilityRulerMarkerTypeTabStopCenter")]
+    pub const TabStopCenter: Self = Self(3);
+    #[doc(alias = "NSAccessibilityRulerMarkerTypeTabStopDecimal")]
+    pub const TabStopDecimal: Self = Self(4);
+    #[doc(alias = "NSAccessibilityRulerMarkerTypeIndentHead")]
+    pub const IndentHead: Self = Self(5);
+    #[doc(alias = "NSAccessibilityRulerMarkerTypeIndentTail")]
+    pub const IndentTail: Self = Self(6);
+    #[doc(alias = "NSAccessibilityRulerMarkerTypeIndentFirstLine")]
+    pub const IndentFirstLine: Self = Self(7);
+}
 
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSAccessibilityRulerMarkerType {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSAccessibilityRulerMarkerType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type NSAccessibilityRulerUnitValue = NSString;
-);
+pub type NSAccessibilityRulerUnitValue = NSString;
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]
@@ -1110,26 +1146,36 @@ extern "C" {
     pub static NSAccessibilityUnknownUnitValue: &'static NSAccessibilityRulerUnitValue;
 }
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSAccessibilityUnits {
-        #[doc(alias = "NSAccessibilityUnitsUnknown")]
-        Unknown = 0,
-        #[doc(alias = "NSAccessibilityUnitsInches")]
-        Inches = 1,
-        #[doc(alias = "NSAccessibilityUnitsCentimeters")]
-        Centimeters = 2,
-        #[doc(alias = "NSAccessibilityUnitsPoints")]
-        Points = 3,
-        #[doc(alias = "NSAccessibilityUnitsPicas")]
-        Picas = 4,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSAccessibilityUnits(pub NSInteger);
+impl NSAccessibilityUnits {
+    #[doc(alias = "NSAccessibilityUnitsUnknown")]
+    pub const Unknown: Self = Self(0);
+    #[doc(alias = "NSAccessibilityUnitsInches")]
+    pub const Inches: Self = Self(1);
+    #[doc(alias = "NSAccessibilityUnitsCentimeters")]
+    pub const Centimeters: Self = Self(2);
+    #[doc(alias = "NSAccessibilityUnitsPoints")]
+    pub const Points: Self = Self(3);
+    #[doc(alias = "NSAccessibilityUnitsPicas")]
+    pub const Picas: Self = Self(4);
+}
 
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSAccessibilityUnits {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSAccessibilityUnits {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_extensible_enum!(
-    pub type NSAccessibilityActionName = NSString;
-);
+pub type NSAccessibilityActionName = NSString;
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]
@@ -1186,10 +1232,9 @@ extern "C" {
     pub static NSAccessibilityShowDefaultUIAction: &'static NSAccessibilityActionName;
 }
 
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type NSAccessibilityNotificationName = NSString;
-);
+pub type NSAccessibilityNotificationName = NSString;
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]
@@ -1373,10 +1418,9 @@ extern "C" {
         &'static NSAccessibilityNotificationName;
 }
 
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type NSAccessibilityRole = NSString;
-);
+pub type NSAccessibilityRole = NSString;
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]
@@ -1658,10 +1702,9 @@ extern "C" {
     pub static NSAccessibilityHandleRole: &'static NSAccessibilityRole;
 }
 
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type NSAccessibilitySubrole = NSString;
-);
+pub type NSAccessibilitySubrole = NSString;
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]
@@ -1823,10 +1866,9 @@ extern "C" {
     pub static NSAccessibilitySectionListSubrole: &'static NSAccessibilitySubrole;
 }
 
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type NSAccessibilityNotificationUserInfoKey = NSString;
-);
+pub type NSAccessibilityNotificationUserInfoKey = NSString;
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]
@@ -1852,14 +1894,25 @@ extern "C" {
     );
 }
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSAccessibilityPriorityLevel {
-        NSAccessibilityPriorityLow = 10,
-        NSAccessibilityPriorityMedium = 50,
-        NSAccessibilityPriorityHigh = 90,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSAccessibilityPriorityLevel(pub NSInteger);
+impl NSAccessibilityPriorityLevel {
+    pub const NSAccessibilityPriorityLow: Self = Self(10);
+    pub const NSAccessibilityPriorityMedium: Self = Self(50);
+    pub const NSAccessibilityPriorityHigh: Self = Self(90);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSAccessibilityPriorityLevel {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSAccessibilityPriorityLevel {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 #[cfg(feature = "Foundation_NSObject")]
 pub type NSAccessibilityLoadingToken = TodoProtocols;

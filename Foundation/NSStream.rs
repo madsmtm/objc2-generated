@@ -3,50 +3,71 @@
 use crate::common::*;
 use crate::Foundation::*;
 
+// NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_extensible_enum!(
-    pub type NSStreamPropertyKey = NSString;
-);
+pub type NSStreamPropertyKey = NSString;
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSStreamStatus {
-        #[doc(alias = "NSStreamStatusNotOpen")]
-        NotOpen = 0,
-        #[doc(alias = "NSStreamStatusOpening")]
-        Opening = 1,
-        #[doc(alias = "NSStreamStatusOpen")]
-        Open = 2,
-        #[doc(alias = "NSStreamStatusReading")]
-        Reading = 3,
-        #[doc(alias = "NSStreamStatusWriting")]
-        Writing = 4,
-        #[doc(alias = "NSStreamStatusAtEnd")]
-        AtEnd = 5,
-        #[doc(alias = "NSStreamStatusClosed")]
-        Closed = 6,
-        #[doc(alias = "NSStreamStatusError")]
-        Error = 7,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSStreamStatus(pub NSUInteger);
+impl NSStreamStatus {
+    #[doc(alias = "NSStreamStatusNotOpen")]
+    pub const NotOpen: Self = Self(0);
+    #[doc(alias = "NSStreamStatusOpening")]
+    pub const Opening: Self = Self(1);
+    #[doc(alias = "NSStreamStatusOpen")]
+    pub const Open: Self = Self(2);
+    #[doc(alias = "NSStreamStatusReading")]
+    pub const Reading: Self = Self(3);
+    #[doc(alias = "NSStreamStatusWriting")]
+    pub const Writing: Self = Self(4);
+    #[doc(alias = "NSStreamStatusAtEnd")]
+    pub const AtEnd: Self = Self(5);
+    #[doc(alias = "NSStreamStatusClosed")]
+    pub const Closed: Self = Self(6);
+    #[doc(alias = "NSStreamStatusError")]
+    pub const Error: Self = Self(7);
+}
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSStreamEvent {
-        #[doc(alias = "NSStreamEventNone")]
-        None = 0,
-        #[doc(alias = "NSStreamEventOpenCompleted")]
-        OpenCompleted = 1 << 0,
-        #[doc(alias = "NSStreamEventHasBytesAvailable")]
-        HasBytesAvailable = 1 << 1,
-        #[doc(alias = "NSStreamEventHasSpaceAvailable")]
-        HasSpaceAvailable = 1 << 2,
-        #[doc(alias = "NSStreamEventErrorOccurred")]
-        ErrorOccurred = 1 << 3,
-        #[doc(alias = "NSStreamEventEndEncountered")]
-        EndEncountered = 1 << 4,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSStreamStatus {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSStreamStatus {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSStreamEvent(pub NSUInteger);
+impl NSStreamEvent {
+    #[doc(alias = "NSStreamEventNone")]
+    pub const None: Self = Self(0);
+    #[doc(alias = "NSStreamEventOpenCompleted")]
+    pub const OpenCompleted: Self = Self(1 << 0);
+    #[doc(alias = "NSStreamEventHasBytesAvailable")]
+    pub const HasBytesAvailable: Self = Self(1 << 1);
+    #[doc(alias = "NSStreamEventHasSpaceAvailable")]
+    pub const HasSpaceAvailable: Self = Self(1 << 2);
+    #[doc(alias = "NSStreamEventErrorOccurred")]
+    pub const ErrorOccurred: Self = Self(1 << 3);
+    #[doc(alias = "NSStreamEventEndEncountered")]
+    pub const EndEncountered: Self = Self(1 << 4);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSStreamEvent {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSStreamEvent {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -343,10 +364,9 @@ extern "C" {
     pub static NSStreamSocketSecurityLevelKey: &'static NSStreamPropertyKey;
 }
 
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type NSStreamSocketSecurityLevel = NSString;
-);
+pub type NSStreamSocketSecurityLevel = NSString;
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]
@@ -378,10 +398,9 @@ extern "C" {
     pub static NSStreamSOCKSProxyConfigurationKey: &'static NSStreamPropertyKey;
 }
 
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type NSStreamSOCKSProxyConfiguration = NSString;
-);
+pub type NSStreamSOCKSProxyConfiguration = NSString;
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]
@@ -408,10 +427,9 @@ extern "C" {
     pub static NSStreamSOCKSProxyPasswordKey: &'static NSStreamSOCKSProxyConfiguration;
 }
 
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type NSStreamSOCKSProxyVersion = NSString;
-);
+pub type NSStreamSOCKSProxyVersion = NSString;
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]
@@ -448,10 +466,9 @@ extern "C" {
     pub static NSStreamNetworkServiceType: &'static NSStreamPropertyKey;
 }
 
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type NSStreamNetworkServiceTypeValue = NSString;
-);
+pub type NSStreamNetworkServiceTypeValue = NSString;
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]

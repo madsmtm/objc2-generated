@@ -5,21 +5,32 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::GameController::*;
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum GCPhysicalInputSourceDirection {
-        #[doc(alias = "GCPhysicalInputSourceDirectionNotApplicable")]
-        NotApplicable = 0,
-        #[doc(alias = "GCPhysicalInputSourceDirectionUp")]
-        Up = 1 << 0,
-        #[doc(alias = "GCPhysicalInputSourceDirectionRight")]
-        Right = 1 << 1,
-        #[doc(alias = "GCPhysicalInputSourceDirectionDown")]
-        Down = 1 << 2,
-        #[doc(alias = "GCPhysicalInputSourceDirectionLeft")]
-        Left = 1 << 3,
-    }
-);
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct GCPhysicalInputSourceDirection(pub NSUInteger);
+impl GCPhysicalInputSourceDirection {
+    #[doc(alias = "GCPhysicalInputSourceDirectionNotApplicable")]
+    pub const NotApplicable: Self = Self(0);
+    #[doc(alias = "GCPhysicalInputSourceDirectionUp")]
+    pub const Up: Self = Self(1 << 0);
+    #[doc(alias = "GCPhysicalInputSourceDirectionRight")]
+    pub const Right: Self = Self(1 << 1);
+    #[doc(alias = "GCPhysicalInputSourceDirectionDown")]
+    pub const Down: Self = Self(1 << 2);
+    #[doc(alias = "GCPhysicalInputSourceDirectionLeft")]
+    pub const Left: Self = Self(1 << 3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for GCPhysicalInputSourceDirection {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for GCPhysicalInputSourceDirection {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_protocol!(
     pub unsafe trait GCPhysicalInputSource: NSObjectProtocol {

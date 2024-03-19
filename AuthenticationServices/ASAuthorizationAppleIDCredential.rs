@@ -5,29 +5,51 @@ use crate::AppKit::*;
 use crate::AuthenticationServices::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum ASUserDetectionStatus {
-        #[doc(alias = "ASUserDetectionStatusUnsupported")]
-        Unsupported = 0,
-        #[doc(alias = "ASUserDetectionStatusUnknown")]
-        Unknown = 1,
-        #[doc(alias = "ASUserDetectionStatusLikelyReal")]
-        LikelyReal = 2,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct ASUserDetectionStatus(pub NSInteger);
+impl ASUserDetectionStatus {
+    #[doc(alias = "ASUserDetectionStatusUnsupported")]
+    pub const Unsupported: Self = Self(0);
+    #[doc(alias = "ASUserDetectionStatusUnknown")]
+    pub const Unknown: Self = Self(1);
+    #[doc(alias = "ASUserDetectionStatusLikelyReal")]
+    pub const LikelyReal: Self = Self(2);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum ASUserAgeRange {
-        #[doc(alias = "ASUserAgeRangeUnknown")]
-        Unknown = 0,
-        #[doc(alias = "ASUserAgeRangeChild")]
-        Child = 1,
-        #[doc(alias = "ASUserAgeRangeNotChild")]
-        NotChild = 2,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for ASUserDetectionStatus {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for ASUserDetectionStatus {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct ASUserAgeRange(pub NSInteger);
+impl ASUserAgeRange {
+    #[doc(alias = "ASUserAgeRangeUnknown")]
+    pub const Unknown: Self = Self(0);
+    #[doc(alias = "ASUserAgeRangeChild")]
+    pub const Child: Self = Self(1);
+    #[doc(alias = "ASUserAgeRangeNotChild")]
+    pub const NotChild: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for ASUserAgeRange {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for ASUserAgeRange {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

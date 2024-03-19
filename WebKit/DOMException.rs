@@ -10,39 +10,49 @@ extern "C" {
     pub static DOMException: Option<&'static NSString>;
 }
 
-extern_enum!(
-    #[underlying(c_uint)]
+#[deprecated]
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct DOMExceptionCode(pub c_uint);
+impl DOMExceptionCode {
     #[deprecated]
-    pub enum DOMExceptionCode {
-        #[deprecated]
-        DOM_INDEX_SIZE_ERR = 1,
-        #[deprecated]
-        DOM_DOMSTRING_SIZE_ERR = 2,
-        #[deprecated]
-        DOM_HIERARCHY_REQUEST_ERR = 3,
-        #[deprecated]
-        DOM_WRONG_DOCUMENT_ERR = 4,
-        #[deprecated]
-        DOM_INVALID_CHARACTER_ERR = 5,
-        #[deprecated]
-        DOM_NO_DATA_ALLOWED_ERR = 6,
-        #[deprecated]
-        DOM_NO_MODIFICATION_ALLOWED_ERR = 7,
-        #[deprecated]
-        DOM_NOT_FOUND_ERR = 8,
-        #[deprecated]
-        DOM_NOT_SUPPORTED_ERR = 9,
-        #[deprecated]
-        DOM_INUSE_ATTRIBUTE_ERR = 10,
-        #[deprecated]
-        DOM_INVALID_STATE_ERR = 11,
-        #[deprecated]
-        DOM_SYNTAX_ERR = 12,
-        #[deprecated]
-        DOM_INVALID_MODIFICATION_ERR = 13,
-        #[deprecated]
-        DOM_NAMESPACE_ERR = 14,
-        #[deprecated]
-        DOM_INVALID_ACCESS_ERR = 15,
-    }
-);
+    pub const DOM_INDEX_SIZE_ERR: Self = Self(1);
+    #[deprecated]
+    pub const DOM_DOMSTRING_SIZE_ERR: Self = Self(2);
+    #[deprecated]
+    pub const DOM_HIERARCHY_REQUEST_ERR: Self = Self(3);
+    #[deprecated]
+    pub const DOM_WRONG_DOCUMENT_ERR: Self = Self(4);
+    #[deprecated]
+    pub const DOM_INVALID_CHARACTER_ERR: Self = Self(5);
+    #[deprecated]
+    pub const DOM_NO_DATA_ALLOWED_ERR: Self = Self(6);
+    #[deprecated]
+    pub const DOM_NO_MODIFICATION_ALLOWED_ERR: Self = Self(7);
+    #[deprecated]
+    pub const DOM_NOT_FOUND_ERR: Self = Self(8);
+    #[deprecated]
+    pub const DOM_NOT_SUPPORTED_ERR: Self = Self(9);
+    #[deprecated]
+    pub const DOM_INUSE_ATTRIBUTE_ERR: Self = Self(10);
+    #[deprecated]
+    pub const DOM_INVALID_STATE_ERR: Self = Self(11);
+    #[deprecated]
+    pub const DOM_SYNTAX_ERR: Self = Self(12);
+    #[deprecated]
+    pub const DOM_INVALID_MODIFICATION_ERR: Self = Self(13);
+    #[deprecated]
+    pub const DOM_NAMESPACE_ERR: Self = Self(14);
+    #[deprecated]
+    pub const DOM_INVALID_ACCESS_ERR: Self = Self(15);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for DOMExceptionCode {
+    const ENCODING: Encoding = c_uint::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for DOMExceptionCode {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}

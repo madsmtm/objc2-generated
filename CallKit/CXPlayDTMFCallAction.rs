@@ -4,17 +4,28 @@ use crate::common::*;
 use crate::CallKit::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum CXPlayDTMFCallActionType {
-        #[doc(alias = "CXPlayDTMFCallActionTypeSingleTone")]
-        SingleTone = 1,
-        #[doc(alias = "CXPlayDTMFCallActionTypeSoftPause")]
-        SoftPause = 2,
-        #[doc(alias = "CXPlayDTMFCallActionTypeHardPause")]
-        HardPause = 3,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct CXPlayDTMFCallActionType(pub NSInteger);
+impl CXPlayDTMFCallActionType {
+    #[doc(alias = "CXPlayDTMFCallActionTypeSingleTone")]
+    pub const SingleTone: Self = Self(1);
+    #[doc(alias = "CXPlayDTMFCallActionTypeSoftPause")]
+    pub const SoftPause: Self = Self(2);
+    #[doc(alias = "CXPlayDTMFCallActionTypeHardPause")]
+    pub const HardPause: Self = Self(3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for CXPlayDTMFCallActionType {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for CXPlayDTMFCallActionType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

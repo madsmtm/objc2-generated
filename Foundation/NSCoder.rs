@@ -3,15 +3,26 @@
 use crate::common::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSDecodingFailurePolicy {
-        #[doc(alias = "NSDecodingFailurePolicyRaiseException")]
-        RaiseException = 0,
-        #[doc(alias = "NSDecodingFailurePolicySetErrorAndReturn")]
-        SetErrorAndReturn = 1,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSDecodingFailurePolicy(pub NSInteger);
+impl NSDecodingFailurePolicy {
+    #[doc(alias = "NSDecodingFailurePolicyRaiseException")]
+    pub const RaiseException: Self = Self(0);
+    #[doc(alias = "NSDecodingFailurePolicySetErrorAndReturn")]
+    pub const SetErrorAndReturn: Self = Self(1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSDecodingFailurePolicy {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSDecodingFailurePolicy {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

@@ -5,14 +5,25 @@ use crate::CoreLocation::*;
 use crate::Foundation::*;
 use crate::UserNotifications::*;
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum UNNotificationActionOptions {
-        UNNotificationActionOptionAuthenticationRequired = 1 << 0,
-        UNNotificationActionOptionDestructive = 1 << 1,
-        UNNotificationActionOptionForeground = 1 << 2,
-    }
-);
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct UNNotificationActionOptions(pub NSUInteger);
+impl UNNotificationActionOptions {
+    pub const UNNotificationActionOptionAuthenticationRequired: Self = Self(1 << 0);
+    pub const UNNotificationActionOptionDestructive: Self = Self(1 << 1);
+    pub const UNNotificationActionOptionForeground: Self = Self(1 << 2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for UNNotificationActionOptions {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for UNNotificationActionOptions {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 pub static UNNotificationActionOptionNone: UNNotificationActionOptions =
     UNNotificationActionOptions(0);

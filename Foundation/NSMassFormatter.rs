@@ -3,21 +3,32 @@
 use crate::common::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSMassFormatterUnit {
-        #[doc(alias = "NSMassFormatterUnitGram")]
-        Gram = 11,
-        #[doc(alias = "NSMassFormatterUnitKilogram")]
-        Kilogram = 14,
-        #[doc(alias = "NSMassFormatterUnitOunce")]
-        Ounce = (6 << 8) + 1,
-        #[doc(alias = "NSMassFormatterUnitPound")]
-        Pound = (6 << 8) + 2,
-        #[doc(alias = "NSMassFormatterUnitStone")]
-        Stone = (6 << 8) + 3,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSMassFormatterUnit(pub NSInteger);
+impl NSMassFormatterUnit {
+    #[doc(alias = "NSMassFormatterUnitGram")]
+    pub const Gram: Self = Self(11);
+    #[doc(alias = "NSMassFormatterUnitKilogram")]
+    pub const Kilogram: Self = Self(14);
+    #[doc(alias = "NSMassFormatterUnitOunce")]
+    pub const Ounce: Self = Self((6 << 8) + 1);
+    #[doc(alias = "NSMassFormatterUnitPound")]
+    pub const Pound: Self = Self((6 << 8) + 2);
+    #[doc(alias = "NSMassFormatterUnitStone")]
+    pub const Stone: Self = Self((6 << 8) + 3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSMassFormatterUnit {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSMassFormatterUnit {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

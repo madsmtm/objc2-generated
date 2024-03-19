@@ -9,10 +9,21 @@ extern "C" {
     pub static AEAssessmentErrorDomain: &'static NSErrorDomain;
 }
 
-ns_error_enum!(
-    #[underlying(NSInteger)]
-    pub enum AEAssessmentErrorCode {
-        AEAssessmentErrorUnknown = 1,
-        AEAssessmentErrorUnsupportedPlatform = 2,
-    }
-);
+// NS_ERROR_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct AEAssessmentErrorCode(pub NSInteger);
+impl AEAssessmentErrorCode {
+    pub const AEAssessmentErrorUnknown: Self = Self(1);
+    pub const AEAssessmentErrorUnsupportedPlatform: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for AEAssessmentErrorCode {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for AEAssessmentErrorCode {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}

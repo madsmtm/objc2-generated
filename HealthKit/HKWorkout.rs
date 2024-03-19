@@ -6,204 +6,226 @@ use crate::Foundation::*;
 use crate::HealthKit::*;
 use crate::UniformTypeIdentifiers::*;
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum HKWorkoutActivityType {
-        #[doc(alias = "HKWorkoutActivityTypeAmericanFootball")]
-        AmericanFootball = 1,
-        #[doc(alias = "HKWorkoutActivityTypeArchery")]
-        Archery = 2,
-        #[doc(alias = "HKWorkoutActivityTypeAustralianFootball")]
-        AustralianFootball = 3,
-        #[doc(alias = "HKWorkoutActivityTypeBadminton")]
-        Badminton = 4,
-        #[doc(alias = "HKWorkoutActivityTypeBaseball")]
-        Baseball = 5,
-        #[doc(alias = "HKWorkoutActivityTypeBasketball")]
-        Basketball = 6,
-        #[doc(alias = "HKWorkoutActivityTypeBowling")]
-        Bowling = 7,
-        #[doc(alias = "HKWorkoutActivityTypeBoxing")]
-        Boxing = 8,
-        #[doc(alias = "HKWorkoutActivityTypeClimbing")]
-        Climbing = 9,
-        #[doc(alias = "HKWorkoutActivityTypeCricket")]
-        Cricket = 10,
-        #[doc(alias = "HKWorkoutActivityTypeCrossTraining")]
-        CrossTraining = 11,
-        #[doc(alias = "HKWorkoutActivityTypeCurling")]
-        Curling = 12,
-        #[doc(alias = "HKWorkoutActivityTypeCycling")]
-        Cycling = 13,
-        #[deprecated = "Use HKWorkoutActivityTypeSocialDance or HKWorkoutActivityTypeCardioDance"]
-        #[doc(alias = "HKWorkoutActivityTypeDance")]
-        Dance = 14,
-        #[deprecated = "Use HKWorkoutActivityTypeSocialDance, HKWorkoutActivityTypeCardioDance, HKWorkoutActivityTypeBarre or HKWorkoutActivityTypePilates"]
-        #[doc(alias = "HKWorkoutActivityTypeDanceInspiredTraining")]
-        DanceInspiredTraining = 15,
-        #[doc(alias = "HKWorkoutActivityTypeElliptical")]
-        Elliptical = 16,
-        #[doc(alias = "HKWorkoutActivityTypeEquestrianSports")]
-        EquestrianSports = 17,
-        #[doc(alias = "HKWorkoutActivityTypeFencing")]
-        Fencing = 18,
-        #[doc(alias = "HKWorkoutActivityTypeFishing")]
-        Fishing = 19,
-        #[doc(alias = "HKWorkoutActivityTypeFunctionalStrengthTraining")]
-        FunctionalStrengthTraining = 20,
-        #[doc(alias = "HKWorkoutActivityTypeGolf")]
-        Golf = 21,
-        #[doc(alias = "HKWorkoutActivityTypeGymnastics")]
-        Gymnastics = 22,
-        #[doc(alias = "HKWorkoutActivityTypeHandball")]
-        Handball = 23,
-        #[doc(alias = "HKWorkoutActivityTypeHiking")]
-        Hiking = 24,
-        #[doc(alias = "HKWorkoutActivityTypeHockey")]
-        Hockey = 25,
-        #[doc(alias = "HKWorkoutActivityTypeHunting")]
-        Hunting = 26,
-        #[doc(alias = "HKWorkoutActivityTypeLacrosse")]
-        Lacrosse = 27,
-        #[doc(alias = "HKWorkoutActivityTypeMartialArts")]
-        MartialArts = 28,
-        #[doc(alias = "HKWorkoutActivityTypeMindAndBody")]
-        MindAndBody = 29,
-        #[deprecated = "Use HKWorkoutActivityTypeMixedCardio or HKWorkoutActivityTypeHighIntensityIntervalTraining"]
-        #[doc(alias = "HKWorkoutActivityTypeMixedMetabolicCardioTraining")]
-        MixedMetabolicCardioTraining = 30,
-        #[doc(alias = "HKWorkoutActivityTypePaddleSports")]
-        PaddleSports = 31,
-        #[doc(alias = "HKWorkoutActivityTypePlay")]
-        Play = 32,
-        #[doc(alias = "HKWorkoutActivityTypePreparationAndRecovery")]
-        PreparationAndRecovery = 33,
-        #[doc(alias = "HKWorkoutActivityTypeRacquetball")]
-        Racquetball = 34,
-        #[doc(alias = "HKWorkoutActivityTypeRowing")]
-        Rowing = 35,
-        #[doc(alias = "HKWorkoutActivityTypeRugby")]
-        Rugby = 36,
-        #[doc(alias = "HKWorkoutActivityTypeRunning")]
-        Running = 37,
-        #[doc(alias = "HKWorkoutActivityTypeSailing")]
-        Sailing = 38,
-        #[doc(alias = "HKWorkoutActivityTypeSkatingSports")]
-        SkatingSports = 39,
-        #[doc(alias = "HKWorkoutActivityTypeSnowSports")]
-        SnowSports = 40,
-        #[doc(alias = "HKWorkoutActivityTypeSoccer")]
-        Soccer = 41,
-        #[doc(alias = "HKWorkoutActivityTypeSoftball")]
-        Softball = 42,
-        #[doc(alias = "HKWorkoutActivityTypeSquash")]
-        Squash = 43,
-        #[doc(alias = "HKWorkoutActivityTypeStairClimbing")]
-        StairClimbing = 44,
-        #[doc(alias = "HKWorkoutActivityTypeSurfingSports")]
-        SurfingSports = 45,
-        #[doc(alias = "HKWorkoutActivityTypeSwimming")]
-        Swimming = 46,
-        #[doc(alias = "HKWorkoutActivityTypeTableTennis")]
-        TableTennis = 47,
-        #[doc(alias = "HKWorkoutActivityTypeTennis")]
-        Tennis = 48,
-        #[doc(alias = "HKWorkoutActivityTypeTrackAndField")]
-        TrackAndField = 49,
-        #[doc(alias = "HKWorkoutActivityTypeTraditionalStrengthTraining")]
-        TraditionalStrengthTraining = 50,
-        #[doc(alias = "HKWorkoutActivityTypeVolleyball")]
-        Volleyball = 51,
-        #[doc(alias = "HKWorkoutActivityTypeWalking")]
-        Walking = 52,
-        #[doc(alias = "HKWorkoutActivityTypeWaterFitness")]
-        WaterFitness = 53,
-        #[doc(alias = "HKWorkoutActivityTypeWaterPolo")]
-        WaterPolo = 54,
-        #[doc(alias = "HKWorkoutActivityTypeWaterSports")]
-        WaterSports = 55,
-        #[doc(alias = "HKWorkoutActivityTypeWrestling")]
-        Wrestling = 56,
-        #[doc(alias = "HKWorkoutActivityTypeYoga")]
-        Yoga = 57,
-        #[doc(alias = "HKWorkoutActivityTypeBarre")]
-        Barre = 58,
-        #[doc(alias = "HKWorkoutActivityTypeCoreTraining")]
-        CoreTraining = 59,
-        #[doc(alias = "HKWorkoutActivityTypeCrossCountrySkiing")]
-        CrossCountrySkiing = 60,
-        #[doc(alias = "HKWorkoutActivityTypeDownhillSkiing")]
-        DownhillSkiing = 61,
-        #[doc(alias = "HKWorkoutActivityTypeFlexibility")]
-        Flexibility = 62,
-        #[doc(alias = "HKWorkoutActivityTypeHighIntensityIntervalTraining")]
-        HighIntensityIntervalTraining = 63,
-        #[doc(alias = "HKWorkoutActivityTypeJumpRope")]
-        JumpRope = 64,
-        #[doc(alias = "HKWorkoutActivityTypeKickboxing")]
-        Kickboxing = 65,
-        #[doc(alias = "HKWorkoutActivityTypePilates")]
-        Pilates = 66,
-        #[doc(alias = "HKWorkoutActivityTypeSnowboarding")]
-        Snowboarding = 67,
-        #[doc(alias = "HKWorkoutActivityTypeStairs")]
-        Stairs = 68,
-        #[doc(alias = "HKWorkoutActivityTypeStepTraining")]
-        StepTraining = 69,
-        #[doc(alias = "HKWorkoutActivityTypeWheelchairWalkPace")]
-        WheelchairWalkPace = 70,
-        #[doc(alias = "HKWorkoutActivityTypeWheelchairRunPace")]
-        WheelchairRunPace = 71,
-        #[doc(alias = "HKWorkoutActivityTypeTaiChi")]
-        TaiChi = 72,
-        #[doc(alias = "HKWorkoutActivityTypeMixedCardio")]
-        MixedCardio = 73,
-        #[doc(alias = "HKWorkoutActivityTypeHandCycling")]
-        HandCycling = 74,
-        #[doc(alias = "HKWorkoutActivityTypeDiscSports")]
-        DiscSports = 75,
-        #[doc(alias = "HKWorkoutActivityTypeFitnessGaming")]
-        FitnessGaming = 76,
-        #[doc(alias = "HKWorkoutActivityTypeCardioDance")]
-        CardioDance = 77,
-        #[doc(alias = "HKWorkoutActivityTypeSocialDance")]
-        SocialDance = 78,
-        #[doc(alias = "HKWorkoutActivityTypePickleball")]
-        Pickleball = 79,
-        #[doc(alias = "HKWorkoutActivityTypeCooldown")]
-        Cooldown = 80,
-        #[doc(alias = "HKWorkoutActivityTypeSwimBikeRun")]
-        SwimBikeRun = 82,
-        #[doc(alias = "HKWorkoutActivityTypeTransition")]
-        Transition = 83,
-        #[doc(alias = "HKWorkoutActivityTypeUnderwaterDiving")]
-        UnderwaterDiving = 84,
-        #[doc(alias = "HKWorkoutActivityTypeOther")]
-        Other = 3000,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct HKWorkoutActivityType(pub NSUInteger);
+impl HKWorkoutActivityType {
+    #[doc(alias = "HKWorkoutActivityTypeAmericanFootball")]
+    pub const AmericanFootball: Self = Self(1);
+    #[doc(alias = "HKWorkoutActivityTypeArchery")]
+    pub const Archery: Self = Self(2);
+    #[doc(alias = "HKWorkoutActivityTypeAustralianFootball")]
+    pub const AustralianFootball: Self = Self(3);
+    #[doc(alias = "HKWorkoutActivityTypeBadminton")]
+    pub const Badminton: Self = Self(4);
+    #[doc(alias = "HKWorkoutActivityTypeBaseball")]
+    pub const Baseball: Self = Self(5);
+    #[doc(alias = "HKWorkoutActivityTypeBasketball")]
+    pub const Basketball: Self = Self(6);
+    #[doc(alias = "HKWorkoutActivityTypeBowling")]
+    pub const Bowling: Self = Self(7);
+    #[doc(alias = "HKWorkoutActivityTypeBoxing")]
+    pub const Boxing: Self = Self(8);
+    #[doc(alias = "HKWorkoutActivityTypeClimbing")]
+    pub const Climbing: Self = Self(9);
+    #[doc(alias = "HKWorkoutActivityTypeCricket")]
+    pub const Cricket: Self = Self(10);
+    #[doc(alias = "HKWorkoutActivityTypeCrossTraining")]
+    pub const CrossTraining: Self = Self(11);
+    #[doc(alias = "HKWorkoutActivityTypeCurling")]
+    pub const Curling: Self = Self(12);
+    #[doc(alias = "HKWorkoutActivityTypeCycling")]
+    pub const Cycling: Self = Self(13);
+    #[deprecated = "Use HKWorkoutActivityTypeSocialDance or HKWorkoutActivityTypeCardioDance"]
+    #[doc(alias = "HKWorkoutActivityTypeDance")]
+    pub const Dance: Self = Self(14);
+    #[deprecated = "Use HKWorkoutActivityTypeSocialDance, HKWorkoutActivityTypeCardioDance, HKWorkoutActivityTypeBarre or HKWorkoutActivityTypePilates"]
+    #[doc(alias = "HKWorkoutActivityTypeDanceInspiredTraining")]
+    pub const DanceInspiredTraining: Self = Self(15);
+    #[doc(alias = "HKWorkoutActivityTypeElliptical")]
+    pub const Elliptical: Self = Self(16);
+    #[doc(alias = "HKWorkoutActivityTypeEquestrianSports")]
+    pub const EquestrianSports: Self = Self(17);
+    #[doc(alias = "HKWorkoutActivityTypeFencing")]
+    pub const Fencing: Self = Self(18);
+    #[doc(alias = "HKWorkoutActivityTypeFishing")]
+    pub const Fishing: Self = Self(19);
+    #[doc(alias = "HKWorkoutActivityTypeFunctionalStrengthTraining")]
+    pub const FunctionalStrengthTraining: Self = Self(20);
+    #[doc(alias = "HKWorkoutActivityTypeGolf")]
+    pub const Golf: Self = Self(21);
+    #[doc(alias = "HKWorkoutActivityTypeGymnastics")]
+    pub const Gymnastics: Self = Self(22);
+    #[doc(alias = "HKWorkoutActivityTypeHandball")]
+    pub const Handball: Self = Self(23);
+    #[doc(alias = "HKWorkoutActivityTypeHiking")]
+    pub const Hiking: Self = Self(24);
+    #[doc(alias = "HKWorkoutActivityTypeHockey")]
+    pub const Hockey: Self = Self(25);
+    #[doc(alias = "HKWorkoutActivityTypeHunting")]
+    pub const Hunting: Self = Self(26);
+    #[doc(alias = "HKWorkoutActivityTypeLacrosse")]
+    pub const Lacrosse: Self = Self(27);
+    #[doc(alias = "HKWorkoutActivityTypeMartialArts")]
+    pub const MartialArts: Self = Self(28);
+    #[doc(alias = "HKWorkoutActivityTypeMindAndBody")]
+    pub const MindAndBody: Self = Self(29);
+    #[deprecated = "Use HKWorkoutActivityTypeMixedCardio or HKWorkoutActivityTypeHighIntensityIntervalTraining"]
+    #[doc(alias = "HKWorkoutActivityTypeMixedMetabolicCardioTraining")]
+    pub const MixedMetabolicCardioTraining: Self = Self(30);
+    #[doc(alias = "HKWorkoutActivityTypePaddleSports")]
+    pub const PaddleSports: Self = Self(31);
+    #[doc(alias = "HKWorkoutActivityTypePlay")]
+    pub const Play: Self = Self(32);
+    #[doc(alias = "HKWorkoutActivityTypePreparationAndRecovery")]
+    pub const PreparationAndRecovery: Self = Self(33);
+    #[doc(alias = "HKWorkoutActivityTypeRacquetball")]
+    pub const Racquetball: Self = Self(34);
+    #[doc(alias = "HKWorkoutActivityTypeRowing")]
+    pub const Rowing: Self = Self(35);
+    #[doc(alias = "HKWorkoutActivityTypeRugby")]
+    pub const Rugby: Self = Self(36);
+    #[doc(alias = "HKWorkoutActivityTypeRunning")]
+    pub const Running: Self = Self(37);
+    #[doc(alias = "HKWorkoutActivityTypeSailing")]
+    pub const Sailing: Self = Self(38);
+    #[doc(alias = "HKWorkoutActivityTypeSkatingSports")]
+    pub const SkatingSports: Self = Self(39);
+    #[doc(alias = "HKWorkoutActivityTypeSnowSports")]
+    pub const SnowSports: Self = Self(40);
+    #[doc(alias = "HKWorkoutActivityTypeSoccer")]
+    pub const Soccer: Self = Self(41);
+    #[doc(alias = "HKWorkoutActivityTypeSoftball")]
+    pub const Softball: Self = Self(42);
+    #[doc(alias = "HKWorkoutActivityTypeSquash")]
+    pub const Squash: Self = Self(43);
+    #[doc(alias = "HKWorkoutActivityTypeStairClimbing")]
+    pub const StairClimbing: Self = Self(44);
+    #[doc(alias = "HKWorkoutActivityTypeSurfingSports")]
+    pub const SurfingSports: Self = Self(45);
+    #[doc(alias = "HKWorkoutActivityTypeSwimming")]
+    pub const Swimming: Self = Self(46);
+    #[doc(alias = "HKWorkoutActivityTypeTableTennis")]
+    pub const TableTennis: Self = Self(47);
+    #[doc(alias = "HKWorkoutActivityTypeTennis")]
+    pub const Tennis: Self = Self(48);
+    #[doc(alias = "HKWorkoutActivityTypeTrackAndField")]
+    pub const TrackAndField: Self = Self(49);
+    #[doc(alias = "HKWorkoutActivityTypeTraditionalStrengthTraining")]
+    pub const TraditionalStrengthTraining: Self = Self(50);
+    #[doc(alias = "HKWorkoutActivityTypeVolleyball")]
+    pub const Volleyball: Self = Self(51);
+    #[doc(alias = "HKWorkoutActivityTypeWalking")]
+    pub const Walking: Self = Self(52);
+    #[doc(alias = "HKWorkoutActivityTypeWaterFitness")]
+    pub const WaterFitness: Self = Self(53);
+    #[doc(alias = "HKWorkoutActivityTypeWaterPolo")]
+    pub const WaterPolo: Self = Self(54);
+    #[doc(alias = "HKWorkoutActivityTypeWaterSports")]
+    pub const WaterSports: Self = Self(55);
+    #[doc(alias = "HKWorkoutActivityTypeWrestling")]
+    pub const Wrestling: Self = Self(56);
+    #[doc(alias = "HKWorkoutActivityTypeYoga")]
+    pub const Yoga: Self = Self(57);
+    #[doc(alias = "HKWorkoutActivityTypeBarre")]
+    pub const Barre: Self = Self(58);
+    #[doc(alias = "HKWorkoutActivityTypeCoreTraining")]
+    pub const CoreTraining: Self = Self(59);
+    #[doc(alias = "HKWorkoutActivityTypeCrossCountrySkiing")]
+    pub const CrossCountrySkiing: Self = Self(60);
+    #[doc(alias = "HKWorkoutActivityTypeDownhillSkiing")]
+    pub const DownhillSkiing: Self = Self(61);
+    #[doc(alias = "HKWorkoutActivityTypeFlexibility")]
+    pub const Flexibility: Self = Self(62);
+    #[doc(alias = "HKWorkoutActivityTypeHighIntensityIntervalTraining")]
+    pub const HighIntensityIntervalTraining: Self = Self(63);
+    #[doc(alias = "HKWorkoutActivityTypeJumpRope")]
+    pub const JumpRope: Self = Self(64);
+    #[doc(alias = "HKWorkoutActivityTypeKickboxing")]
+    pub const Kickboxing: Self = Self(65);
+    #[doc(alias = "HKWorkoutActivityTypePilates")]
+    pub const Pilates: Self = Self(66);
+    #[doc(alias = "HKWorkoutActivityTypeSnowboarding")]
+    pub const Snowboarding: Self = Self(67);
+    #[doc(alias = "HKWorkoutActivityTypeStairs")]
+    pub const Stairs: Self = Self(68);
+    #[doc(alias = "HKWorkoutActivityTypeStepTraining")]
+    pub const StepTraining: Self = Self(69);
+    #[doc(alias = "HKWorkoutActivityTypeWheelchairWalkPace")]
+    pub const WheelchairWalkPace: Self = Self(70);
+    #[doc(alias = "HKWorkoutActivityTypeWheelchairRunPace")]
+    pub const WheelchairRunPace: Self = Self(71);
+    #[doc(alias = "HKWorkoutActivityTypeTaiChi")]
+    pub const TaiChi: Self = Self(72);
+    #[doc(alias = "HKWorkoutActivityTypeMixedCardio")]
+    pub const MixedCardio: Self = Self(73);
+    #[doc(alias = "HKWorkoutActivityTypeHandCycling")]
+    pub const HandCycling: Self = Self(74);
+    #[doc(alias = "HKWorkoutActivityTypeDiscSports")]
+    pub const DiscSports: Self = Self(75);
+    #[doc(alias = "HKWorkoutActivityTypeFitnessGaming")]
+    pub const FitnessGaming: Self = Self(76);
+    #[doc(alias = "HKWorkoutActivityTypeCardioDance")]
+    pub const CardioDance: Self = Self(77);
+    #[doc(alias = "HKWorkoutActivityTypeSocialDance")]
+    pub const SocialDance: Self = Self(78);
+    #[doc(alias = "HKWorkoutActivityTypePickleball")]
+    pub const Pickleball: Self = Self(79);
+    #[doc(alias = "HKWorkoutActivityTypeCooldown")]
+    pub const Cooldown: Self = Self(80);
+    #[doc(alias = "HKWorkoutActivityTypeSwimBikeRun")]
+    pub const SwimBikeRun: Self = Self(82);
+    #[doc(alias = "HKWorkoutActivityTypeTransition")]
+    pub const Transition: Self = Self(83);
+    #[doc(alias = "HKWorkoutActivityTypeUnderwaterDiving")]
+    pub const UnderwaterDiving: Self = Self(84);
+    #[doc(alias = "HKWorkoutActivityTypeOther")]
+    pub const Other: Self = Self(3000);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum HKWorkoutEventType {
-        #[doc(alias = "HKWorkoutEventTypePause")]
-        Pause = 1,
-        #[doc(alias = "HKWorkoutEventTypeResume")]
-        Resume = 2,
-        #[doc(alias = "HKWorkoutEventTypeLap")]
-        Lap = 3,
-        #[doc(alias = "HKWorkoutEventTypeMarker")]
-        Marker = 4,
-        #[doc(alias = "HKWorkoutEventTypeMotionPaused")]
-        MotionPaused = 5,
-        #[doc(alias = "HKWorkoutEventTypeMotionResumed")]
-        MotionResumed = 6,
-        #[doc(alias = "HKWorkoutEventTypeSegment")]
-        Segment = 7,
-        #[doc(alias = "HKWorkoutEventTypePauseOrResumeRequest")]
-        PauseOrResumeRequest = 8,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for HKWorkoutActivityType {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for HKWorkoutActivityType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct HKWorkoutEventType(pub NSInteger);
+impl HKWorkoutEventType {
+    #[doc(alias = "HKWorkoutEventTypePause")]
+    pub const Pause: Self = Self(1);
+    #[doc(alias = "HKWorkoutEventTypeResume")]
+    pub const Resume: Self = Self(2);
+    #[doc(alias = "HKWorkoutEventTypeLap")]
+    pub const Lap: Self = Self(3);
+    #[doc(alias = "HKWorkoutEventTypeMarker")]
+    pub const Marker: Self = Self(4);
+    #[doc(alias = "HKWorkoutEventTypeMotionPaused")]
+    pub const MotionPaused: Self = Self(5);
+    #[doc(alias = "HKWorkoutEventTypeMotionResumed")]
+    pub const MotionResumed: Self = Self(6);
+    #[doc(alias = "HKWorkoutEventTypeSegment")]
+    pub const Segment: Self = Self(7);
+    #[doc(alias = "HKWorkoutEventTypePauseOrResumeRequest")]
+    pub const PauseOrResumeRequest: Self = Self(8);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for HKWorkoutEventType {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for HKWorkoutEventType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

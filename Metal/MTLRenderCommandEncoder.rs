@@ -4,33 +4,55 @@ use crate::common::*;
 use crate::Foundation::*;
 use crate::Metal::*;
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum MTLPrimitiveType {
-        #[doc(alias = "MTLPrimitiveTypePoint")]
-        Point = 0,
-        #[doc(alias = "MTLPrimitiveTypeLine")]
-        Line = 1,
-        #[doc(alias = "MTLPrimitiveTypeLineStrip")]
-        LineStrip = 2,
-        #[doc(alias = "MTLPrimitiveTypeTriangle")]
-        Triangle = 3,
-        #[doc(alias = "MTLPrimitiveTypeTriangleStrip")]
-        TriangleStrip = 4,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MTLPrimitiveType(pub NSUInteger);
+impl MTLPrimitiveType {
+    #[doc(alias = "MTLPrimitiveTypePoint")]
+    pub const Point: Self = Self(0);
+    #[doc(alias = "MTLPrimitiveTypeLine")]
+    pub const Line: Self = Self(1);
+    #[doc(alias = "MTLPrimitiveTypeLineStrip")]
+    pub const LineStrip: Self = Self(2);
+    #[doc(alias = "MTLPrimitiveTypeTriangle")]
+    pub const Triangle: Self = Self(3);
+    #[doc(alias = "MTLPrimitiveTypeTriangleStrip")]
+    pub const TriangleStrip: Self = Self(4);
+}
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum MTLVisibilityResultMode {
-        #[doc(alias = "MTLVisibilityResultModeDisabled")]
-        Disabled = 0,
-        #[doc(alias = "MTLVisibilityResultModeBoolean")]
-        Boolean = 1,
-        #[doc(alias = "MTLVisibilityResultModeCounting")]
-        Counting = 2,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLPrimitiveType {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLPrimitiveType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MTLVisibilityResultMode(pub NSUInteger);
+impl MTLVisibilityResultMode {
+    #[doc(alias = "MTLVisibilityResultModeDisabled")]
+    pub const Disabled: Self = Self(0);
+    #[doc(alias = "MTLVisibilityResultModeBoolean")]
+    pub const Boolean: Self = Self(1);
+    #[doc(alias = "MTLVisibilityResultModeCounting")]
+    pub const Counting: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLVisibilityResultMode {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLVisibilityResultMode {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_struct!(
     #[encoding_name("?")]
@@ -54,47 +76,91 @@ extern_struct!(
     }
 );
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum MTLCullMode {
-        #[doc(alias = "MTLCullModeNone")]
-        None = 0,
-        #[doc(alias = "MTLCullModeFront")]
-        Front = 1,
-        #[doc(alias = "MTLCullModeBack")]
-        Back = 2,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MTLCullMode(pub NSUInteger);
+impl MTLCullMode {
+    #[doc(alias = "MTLCullModeNone")]
+    pub const None: Self = Self(0);
+    #[doc(alias = "MTLCullModeFront")]
+    pub const Front: Self = Self(1);
+    #[doc(alias = "MTLCullModeBack")]
+    pub const Back: Self = Self(2);
+}
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum MTLWinding {
-        #[doc(alias = "MTLWindingClockwise")]
-        Clockwise = 0,
-        #[doc(alias = "MTLWindingCounterClockwise")]
-        CounterClockwise = 1,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLCullMode {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum MTLDepthClipMode {
-        #[doc(alias = "MTLDepthClipModeClip")]
-        Clip = 0,
-        #[doc(alias = "MTLDepthClipModeClamp")]
-        Clamp = 1,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLCullMode {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum MTLTriangleFillMode {
-        #[doc(alias = "MTLTriangleFillModeFill")]
-        Fill = 0,
-        #[doc(alias = "MTLTriangleFillModeLines")]
-        Lines = 1,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MTLWinding(pub NSUInteger);
+impl MTLWinding {
+    #[doc(alias = "MTLWindingClockwise")]
+    pub const Clockwise: Self = Self(0);
+    #[doc(alias = "MTLWindingCounterClockwise")]
+    pub const CounterClockwise: Self = Self(1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLWinding {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLWinding {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MTLDepthClipMode(pub NSUInteger);
+impl MTLDepthClipMode {
+    #[doc(alias = "MTLDepthClipModeClip")]
+    pub const Clip: Self = Self(0);
+    #[doc(alias = "MTLDepthClipModeClamp")]
+    pub const Clamp: Self = Self(1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLDepthClipMode {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLDepthClipMode {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MTLTriangleFillMode(pub NSUInteger);
+impl MTLTriangleFillMode {
+    #[doc(alias = "MTLTriangleFillModeFill")]
+    pub const Fill: Self = Self(0);
+    #[doc(alias = "MTLTriangleFillModeLines")]
+    pub const Lines: Self = Self(1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLTriangleFillMode {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLTriangleFillMode {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_struct!(
     #[encoding_name("?")]
@@ -151,16 +217,27 @@ extern_struct!(
     }
 );
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum MTLRenderStages {
-        MTLRenderStageVertex = 1 << 0,
-        MTLRenderStageFragment = 1 << 1,
-        MTLRenderStageTile = 1 << 2,
-        MTLRenderStageObject = 1 << 3,
-        MTLRenderStageMesh = 1 << 4,
-    }
-);
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MTLRenderStages(pub NSUInteger);
+impl MTLRenderStages {
+    pub const MTLRenderStageVertex: Self = Self(1 << 0);
+    pub const MTLRenderStageFragment: Self = Self(1 << 1);
+    pub const MTLRenderStageTile: Self = Self(1 << 2);
+    pub const MTLRenderStageObject: Self = Self(1 << 3);
+    pub const MTLRenderStageMesh: Self = Self(1 << 4);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLRenderStages {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLRenderStages {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_protocol!(
     #[cfg(feature = "Metal_MTLCommandEncoder")]

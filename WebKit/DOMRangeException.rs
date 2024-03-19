@@ -10,13 +10,23 @@ extern "C" {
     pub static DOMRangeException: Option<&'static NSString>;
 }
 
-extern_enum!(
-    #[underlying(c_uint)]
+#[deprecated]
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct DOMRangeExceptionCode(pub c_uint);
+impl DOMRangeExceptionCode {
     #[deprecated]
-    pub enum DOMRangeExceptionCode {
-        #[deprecated]
-        DOM_BAD_BOUNDARYPOINTS_ERR = 1,
-        #[deprecated]
-        DOM_INVALID_NODE_TYPE_ERR = 2,
-    }
-);
+    pub const DOM_BAD_BOUNDARYPOINTS_ERR: Self = Self(1);
+    #[deprecated]
+    pub const DOM_INVALID_NODE_TYPE_ERR: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for DOMRangeExceptionCode {
+    const ENCODING: Encoding = c_uint::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for DOMRangeExceptionCode {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}

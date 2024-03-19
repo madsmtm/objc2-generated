@@ -5,22 +5,32 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSFontCollectionVisibility {
-        #[doc(alias = "NSFontCollectionVisibilityProcess")]
-        Process = 1 << 0,
-        #[doc(alias = "NSFontCollectionVisibilityUser")]
-        User = 1 << 1,
-        #[doc(alias = "NSFontCollectionVisibilityComputer")]
-        Computer = 1 << 2,
-    }
-);
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSFontCollectionVisibility(pub NSUInteger);
+impl NSFontCollectionVisibility {
+    #[doc(alias = "NSFontCollectionVisibilityProcess")]
+    pub const Process: Self = Self(1 << 0);
+    #[doc(alias = "NSFontCollectionVisibilityUser")]
+    pub const User: Self = Self(1 << 1);
+    #[doc(alias = "NSFontCollectionVisibilityComputer")]
+    pub const Computer: Self = Self(1 << 2);
+}
 
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSFontCollectionVisibility {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSFontCollectionVisibility {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type NSFontCollectionMatchingOptionKey = NSString;
-);
+pub type NSFontCollectionMatchingOptionKey = NSString;
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]
@@ -39,10 +49,9 @@ extern "C" {
         &'static NSFontCollectionMatchingOptionKey;
 }
 
+// NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_extensible_enum!(
-    pub type NSFontCollectionName = NSString;
-);
+pub type NSFontCollectionName = NSString;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -281,10 +290,9 @@ extern "C" {
     pub static NSFontCollectionDidChangeNotification: &'static NSNotificationName;
 }
 
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type NSFontCollectionUserInfoKey = NSString;
-);
+pub type NSFontCollectionUserInfoKey = NSString;
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]
@@ -306,10 +314,9 @@ extern "C" {
     pub static NSFontCollectionVisibilityKey: &'static NSFontCollectionUserInfoKey;
 }
 
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type NSFontCollectionActionTypeKey = NSString;
-);
+pub type NSFontCollectionActionTypeKey = NSString;
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]

@@ -9,40 +9,51 @@ extern "C" {
     pub static BAErrorDomain: &'static NSString;
 }
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum BAErrorCode {
-        #[doc(alias = "BAErrorCodeDownloadInvalid")]
-        DownloadInvalid = 0,
-        #[doc(alias = "BAErrorCodeCallFromExtensionNotAllowed")]
-        CallFromExtensionNotAllowed = 50,
-        #[doc(alias = "BAErrorCodeCallFromInactiveProcessNotAllowed")]
-        CallFromInactiveProcessNotAllowed = 51,
-        #[doc(alias = "BAErrorCodeCallerConnectionNotAccepted")]
-        CallerConnectionNotAccepted = 55,
-        #[doc(alias = "BAErrorCodeCallerConnectionInvalid")]
-        CallerConnectionInvalid = 56,
-        #[doc(alias = "BAErrorCodeDownloadAlreadyScheduled")]
-        DownloadAlreadyScheduled = 100,
-        #[doc(alias = "BAErrorCodeDownloadNotScheduled")]
-        DownloadNotScheduled = 101,
-        #[doc(alias = "BAErrorCodeDownloadFailedToStart")]
-        DownloadFailedToStart = 102,
-        #[doc(alias = "BAErrorCodeDownloadAlreadyFailed")]
-        DownloadAlreadyFailed = 103,
-        #[doc(alias = "BAErrorCodeDownloadEssentialDownloadNotPermitted")]
-        DownloadEssentialDownloadNotPermitted = 109,
-        #[doc(alias = "BAErrorCodeDownloadBackgroundActivityProhibited")]
-        DownloadBackgroundActivityProhibited = 111,
-        #[doc(alias = "BAErrorCodeDownloadWouldExceedAllowance")]
-        DownloadWouldExceedAllowance = 112,
-        #[doc(alias = "BAErrorCodeSessionDownloadDisallowedByDomain")]
-        SessionDownloadDisallowedByDomain = 202,
-        #[doc(alias = "BAErrorCodeSessionDownloadDisallowedByAllowance")]
-        SessionDownloadDisallowedByAllowance = 203,
-        #[doc(alias = "BAErrorCodeSessionDownloadAllowanceExceeded")]
-        SessionDownloadAllowanceExceeded = 204,
-        #[doc(alias = "BAErrorCodeSessionDownloadNotPermittedBeforeAppLaunch")]
-        SessionDownloadNotPermittedBeforeAppLaunch = 206,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct BAErrorCode(pub NSInteger);
+impl BAErrorCode {
+    #[doc(alias = "BAErrorCodeDownloadInvalid")]
+    pub const DownloadInvalid: Self = Self(0);
+    #[doc(alias = "BAErrorCodeCallFromExtensionNotAllowed")]
+    pub const CallFromExtensionNotAllowed: Self = Self(50);
+    #[doc(alias = "BAErrorCodeCallFromInactiveProcessNotAllowed")]
+    pub const CallFromInactiveProcessNotAllowed: Self = Self(51);
+    #[doc(alias = "BAErrorCodeCallerConnectionNotAccepted")]
+    pub const CallerConnectionNotAccepted: Self = Self(55);
+    #[doc(alias = "BAErrorCodeCallerConnectionInvalid")]
+    pub const CallerConnectionInvalid: Self = Self(56);
+    #[doc(alias = "BAErrorCodeDownloadAlreadyScheduled")]
+    pub const DownloadAlreadyScheduled: Self = Self(100);
+    #[doc(alias = "BAErrorCodeDownloadNotScheduled")]
+    pub const DownloadNotScheduled: Self = Self(101);
+    #[doc(alias = "BAErrorCodeDownloadFailedToStart")]
+    pub const DownloadFailedToStart: Self = Self(102);
+    #[doc(alias = "BAErrorCodeDownloadAlreadyFailed")]
+    pub const DownloadAlreadyFailed: Self = Self(103);
+    #[doc(alias = "BAErrorCodeDownloadEssentialDownloadNotPermitted")]
+    pub const DownloadEssentialDownloadNotPermitted: Self = Self(109);
+    #[doc(alias = "BAErrorCodeDownloadBackgroundActivityProhibited")]
+    pub const DownloadBackgroundActivityProhibited: Self = Self(111);
+    #[doc(alias = "BAErrorCodeDownloadWouldExceedAllowance")]
+    pub const DownloadWouldExceedAllowance: Self = Self(112);
+    #[doc(alias = "BAErrorCodeSessionDownloadDisallowedByDomain")]
+    pub const SessionDownloadDisallowedByDomain: Self = Self(202);
+    #[doc(alias = "BAErrorCodeSessionDownloadDisallowedByAllowance")]
+    pub const SessionDownloadDisallowedByAllowance: Self = Self(203);
+    #[doc(alias = "BAErrorCodeSessionDownloadAllowanceExceeded")]
+    pub const SessionDownloadAllowanceExceeded: Self = Self(204);
+    #[doc(alias = "BAErrorCodeSessionDownloadNotPermittedBeforeAppLaunch")]
+    pub const SessionDownloadNotPermittedBeforeAppLaunch: Self = Self(206);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for BAErrorCode {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for BAErrorCode {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}

@@ -4,21 +4,32 @@ use crate::common::*;
 use crate::Foundation::*;
 use crate::Metal::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum MTLIOCompressionMethod {
-        #[doc(alias = "MTLIOCompressionMethodZlib")]
-        Zlib = 0,
-        #[doc(alias = "MTLIOCompressionMethodLZFSE")]
-        LZFSE = 1,
-        #[doc(alias = "MTLIOCompressionMethodLZ4")]
-        LZ4 = 2,
-        #[doc(alias = "MTLIOCompressionMethodLZMA")]
-        LZMA = 3,
-        #[doc(alias = "MTLIOCompressionMethodLZBitmap")]
-        LZBitmap = 4,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MTLIOCompressionMethod(pub NSInteger);
+impl MTLIOCompressionMethod {
+    #[doc(alias = "MTLIOCompressionMethodZlib")]
+    pub const Zlib: Self = Self(0);
+    #[doc(alias = "MTLIOCompressionMethodLZFSE")]
+    pub const LZFSE: Self = Self(1);
+    #[doc(alias = "MTLIOCompressionMethodLZ4")]
+    pub const LZ4: Self = Self(2);
+    #[doc(alias = "MTLIOCompressionMethodLZMA")]
+    pub const LZMA: Self = Self(3);
+    #[doc(alias = "MTLIOCompressionMethodLZBitmap")]
+    pub const LZBitmap: Self = Self(4);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLIOCompressionMethod {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLIOCompressionMethod {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern "C" {
     pub fn MTLCreateSystemDefaultDevice() -> *mut ProtocolObject<dyn MTLDevice>;
@@ -29,10 +40,9 @@ extern "C" {
     pub fn MTLCopyAllDevices() -> NonNull<NSArray<ProtocolObject<dyn MTLDevice>>>;
 }
 
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type MTLDeviceNotificationName = NSString;
-);
+pub type MTLDeviceNotificationName = NSString;
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]
@@ -57,186 +67,275 @@ extern "C" {
     pub fn MTLRemoveDeviceObserver(observer: &NSObject);
 }
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    #[deprecated = "Use MTLGPUFamily instead"]
-    pub enum MTLFeatureSet {
-        #[doc(alias = "MTLFeatureSet_iOS_GPUFamily1_v1")]
-        _iOS_GPUFamily1_v1 = 0,
-        #[doc(alias = "MTLFeatureSet_iOS_GPUFamily2_v1")]
-        _iOS_GPUFamily2_v1 = 1,
-        #[doc(alias = "MTLFeatureSet_iOS_GPUFamily1_v2")]
-        _iOS_GPUFamily1_v2 = 2,
-        #[doc(alias = "MTLFeatureSet_iOS_GPUFamily2_v2")]
-        _iOS_GPUFamily2_v2 = 3,
-        #[doc(alias = "MTLFeatureSet_iOS_GPUFamily3_v1")]
-        _iOS_GPUFamily3_v1 = 4,
-        #[doc(alias = "MTLFeatureSet_iOS_GPUFamily1_v3")]
-        _iOS_GPUFamily1_v3 = 5,
-        #[doc(alias = "MTLFeatureSet_iOS_GPUFamily2_v3")]
-        _iOS_GPUFamily2_v3 = 6,
-        #[doc(alias = "MTLFeatureSet_iOS_GPUFamily3_v2")]
-        _iOS_GPUFamily3_v2 = 7,
-        #[doc(alias = "MTLFeatureSet_iOS_GPUFamily1_v4")]
-        _iOS_GPUFamily1_v4 = 8,
-        #[doc(alias = "MTLFeatureSet_iOS_GPUFamily2_v4")]
-        _iOS_GPUFamily2_v4 = 9,
-        #[doc(alias = "MTLFeatureSet_iOS_GPUFamily3_v3")]
-        _iOS_GPUFamily3_v3 = 10,
-        #[doc(alias = "MTLFeatureSet_iOS_GPUFamily4_v1")]
-        _iOS_GPUFamily4_v1 = 11,
-        #[doc(alias = "MTLFeatureSet_iOS_GPUFamily1_v5")]
-        _iOS_GPUFamily1_v5 = 12,
-        #[doc(alias = "MTLFeatureSet_iOS_GPUFamily2_v5")]
-        _iOS_GPUFamily2_v5 = 13,
-        #[doc(alias = "MTLFeatureSet_iOS_GPUFamily3_v4")]
-        _iOS_GPUFamily3_v4 = 14,
-        #[doc(alias = "MTLFeatureSet_iOS_GPUFamily4_v2")]
-        _iOS_GPUFamily4_v2 = 15,
-        #[doc(alias = "MTLFeatureSet_iOS_GPUFamily5_v1")]
-        _iOS_GPUFamily5_v1 = 16,
-        #[doc(alias = "MTLFeatureSet_macOS_GPUFamily1_v1")]
-        _macOS_GPUFamily1_v1 = 10000,
-        #[doc(alias = "MTLFeatureSet_OSX_GPUFamily1_v1")]
-        _OSX_GPUFamily1_v1 = MTLFeatureSet::_macOS_GPUFamily1_v1.0,
-        #[doc(alias = "MTLFeatureSet_macOS_GPUFamily1_v2")]
-        _macOS_GPUFamily1_v2 = 10001,
-        #[doc(alias = "MTLFeatureSet_OSX_GPUFamily1_v2")]
-        _OSX_GPUFamily1_v2 = MTLFeatureSet::_macOS_GPUFamily1_v2.0,
-        #[doc(alias = "MTLFeatureSet_macOS_ReadWriteTextureTier2")]
-        _macOS_ReadWriteTextureTier2 = 10002,
-        #[doc(alias = "MTLFeatureSet_OSX_ReadWriteTextureTier2")]
-        _OSX_ReadWriteTextureTier2 = MTLFeatureSet::_macOS_ReadWriteTextureTier2.0,
-        #[doc(alias = "MTLFeatureSet_macOS_GPUFamily1_v3")]
-        _macOS_GPUFamily1_v3 = 10003,
-        #[doc(alias = "MTLFeatureSet_macOS_GPUFamily1_v4")]
-        _macOS_GPUFamily1_v4 = 10004,
-        #[doc(alias = "MTLFeatureSet_macOS_GPUFamily2_v1")]
-        _macOS_GPUFamily2_v1 = 10005,
-        #[doc(alias = "MTLFeatureSet_tvOS_GPUFamily1_v1")]
-        _tvOS_GPUFamily1_v1 = 30000,
-        #[doc(alias = "MTLFeatureSet_TVOS_GPUFamily1_v1")]
-        _TVOS_GPUFamily1_v1 = MTLFeatureSet::_tvOS_GPUFamily1_v1.0,
-        #[doc(alias = "MTLFeatureSet_tvOS_GPUFamily1_v2")]
-        _tvOS_GPUFamily1_v2 = 30001,
-        #[doc(alias = "MTLFeatureSet_tvOS_GPUFamily1_v3")]
-        _tvOS_GPUFamily1_v3 = 30002,
-        #[doc(alias = "MTLFeatureSet_tvOS_GPUFamily2_v1")]
-        _tvOS_GPUFamily2_v1 = 30003,
-        #[doc(alias = "MTLFeatureSet_tvOS_GPUFamily1_v4")]
-        _tvOS_GPUFamily1_v4 = 30004,
-        #[doc(alias = "MTLFeatureSet_tvOS_GPUFamily2_v2")]
-        _tvOS_GPUFamily2_v2 = 30005,
-    }
-);
+// NS_ENUM
+#[deprecated = "Use MTLGPUFamily instead"]
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MTLFeatureSet(pub NSUInteger);
+impl MTLFeatureSet {
+    #[doc(alias = "MTLFeatureSet_iOS_GPUFamily1_v1")]
+    pub const _iOS_GPUFamily1_v1: Self = Self(0);
+    #[doc(alias = "MTLFeatureSet_iOS_GPUFamily2_v1")]
+    pub const _iOS_GPUFamily2_v1: Self = Self(1);
+    #[doc(alias = "MTLFeatureSet_iOS_GPUFamily1_v2")]
+    pub const _iOS_GPUFamily1_v2: Self = Self(2);
+    #[doc(alias = "MTLFeatureSet_iOS_GPUFamily2_v2")]
+    pub const _iOS_GPUFamily2_v2: Self = Self(3);
+    #[doc(alias = "MTLFeatureSet_iOS_GPUFamily3_v1")]
+    pub const _iOS_GPUFamily3_v1: Self = Self(4);
+    #[doc(alias = "MTLFeatureSet_iOS_GPUFamily1_v3")]
+    pub const _iOS_GPUFamily1_v3: Self = Self(5);
+    #[doc(alias = "MTLFeatureSet_iOS_GPUFamily2_v3")]
+    pub const _iOS_GPUFamily2_v3: Self = Self(6);
+    #[doc(alias = "MTLFeatureSet_iOS_GPUFamily3_v2")]
+    pub const _iOS_GPUFamily3_v2: Self = Self(7);
+    #[doc(alias = "MTLFeatureSet_iOS_GPUFamily1_v4")]
+    pub const _iOS_GPUFamily1_v4: Self = Self(8);
+    #[doc(alias = "MTLFeatureSet_iOS_GPUFamily2_v4")]
+    pub const _iOS_GPUFamily2_v4: Self = Self(9);
+    #[doc(alias = "MTLFeatureSet_iOS_GPUFamily3_v3")]
+    pub const _iOS_GPUFamily3_v3: Self = Self(10);
+    #[doc(alias = "MTLFeatureSet_iOS_GPUFamily4_v1")]
+    pub const _iOS_GPUFamily4_v1: Self = Self(11);
+    #[doc(alias = "MTLFeatureSet_iOS_GPUFamily1_v5")]
+    pub const _iOS_GPUFamily1_v5: Self = Self(12);
+    #[doc(alias = "MTLFeatureSet_iOS_GPUFamily2_v5")]
+    pub const _iOS_GPUFamily2_v5: Self = Self(13);
+    #[doc(alias = "MTLFeatureSet_iOS_GPUFamily3_v4")]
+    pub const _iOS_GPUFamily3_v4: Self = Self(14);
+    #[doc(alias = "MTLFeatureSet_iOS_GPUFamily4_v2")]
+    pub const _iOS_GPUFamily4_v2: Self = Self(15);
+    #[doc(alias = "MTLFeatureSet_iOS_GPUFamily5_v1")]
+    pub const _iOS_GPUFamily5_v1: Self = Self(16);
+    #[doc(alias = "MTLFeatureSet_macOS_GPUFamily1_v1")]
+    pub const _macOS_GPUFamily1_v1: Self = Self(10000);
+    #[doc(alias = "MTLFeatureSet_OSX_GPUFamily1_v1")]
+    pub const _OSX_GPUFamily1_v1: Self = Self(MTLFeatureSet::_macOS_GPUFamily1_v1.0);
+    #[doc(alias = "MTLFeatureSet_macOS_GPUFamily1_v2")]
+    pub const _macOS_GPUFamily1_v2: Self = Self(10001);
+    #[doc(alias = "MTLFeatureSet_OSX_GPUFamily1_v2")]
+    pub const _OSX_GPUFamily1_v2: Self = Self(MTLFeatureSet::_macOS_GPUFamily1_v2.0);
+    #[doc(alias = "MTLFeatureSet_macOS_ReadWriteTextureTier2")]
+    pub const _macOS_ReadWriteTextureTier2: Self = Self(10002);
+    #[doc(alias = "MTLFeatureSet_OSX_ReadWriteTextureTier2")]
+    pub const _OSX_ReadWriteTextureTier2: Self =
+        Self(MTLFeatureSet::_macOS_ReadWriteTextureTier2.0);
+    #[doc(alias = "MTLFeatureSet_macOS_GPUFamily1_v3")]
+    pub const _macOS_GPUFamily1_v3: Self = Self(10003);
+    #[doc(alias = "MTLFeatureSet_macOS_GPUFamily1_v4")]
+    pub const _macOS_GPUFamily1_v4: Self = Self(10004);
+    #[doc(alias = "MTLFeatureSet_macOS_GPUFamily2_v1")]
+    pub const _macOS_GPUFamily2_v1: Self = Self(10005);
+    #[doc(alias = "MTLFeatureSet_tvOS_GPUFamily1_v1")]
+    pub const _tvOS_GPUFamily1_v1: Self = Self(30000);
+    #[doc(alias = "MTLFeatureSet_TVOS_GPUFamily1_v1")]
+    pub const _TVOS_GPUFamily1_v1: Self = Self(MTLFeatureSet::_tvOS_GPUFamily1_v1.0);
+    #[doc(alias = "MTLFeatureSet_tvOS_GPUFamily1_v2")]
+    pub const _tvOS_GPUFamily1_v2: Self = Self(30001);
+    #[doc(alias = "MTLFeatureSet_tvOS_GPUFamily1_v3")]
+    pub const _tvOS_GPUFamily1_v3: Self = Self(30002);
+    #[doc(alias = "MTLFeatureSet_tvOS_GPUFamily2_v1")]
+    pub const _tvOS_GPUFamily2_v1: Self = Self(30003);
+    #[doc(alias = "MTLFeatureSet_tvOS_GPUFamily1_v4")]
+    pub const _tvOS_GPUFamily1_v4: Self = Self(30004);
+    #[doc(alias = "MTLFeatureSet_tvOS_GPUFamily2_v2")]
+    pub const _tvOS_GPUFamily2_v2: Self = Self(30005);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum MTLGPUFamily {
-        #[doc(alias = "MTLGPUFamilyApple1")]
-        Apple1 = 1001,
-        #[doc(alias = "MTLGPUFamilyApple2")]
-        Apple2 = 1002,
-        #[doc(alias = "MTLGPUFamilyApple3")]
-        Apple3 = 1003,
-        #[doc(alias = "MTLGPUFamilyApple4")]
-        Apple4 = 1004,
-        #[doc(alias = "MTLGPUFamilyApple5")]
-        Apple5 = 1005,
-        #[doc(alias = "MTLGPUFamilyApple6")]
-        Apple6 = 1006,
-        #[doc(alias = "MTLGPUFamilyApple7")]
-        Apple7 = 1007,
-        #[doc(alias = "MTLGPUFamilyApple8")]
-        Apple8 = 1008,
-        #[doc(alias = "MTLGPUFamilyApple9")]
-        Apple9 = 1009,
-        #[deprecated]
-        #[doc(alias = "MTLGPUFamilyMac1")]
-        Mac1 = 2001,
-        #[doc(alias = "MTLGPUFamilyMac2")]
-        Mac2 = 2002,
-        #[doc(alias = "MTLGPUFamilyCommon1")]
-        Common1 = 3001,
-        #[doc(alias = "MTLGPUFamilyCommon2")]
-        Common2 = 3002,
-        #[doc(alias = "MTLGPUFamilyCommon3")]
-        Common3 = 3003,
-        #[deprecated]
-        #[doc(alias = "MTLGPUFamilyMacCatalyst1")]
-        MacCatalyst1 = 4001,
-        #[deprecated]
-        #[doc(alias = "MTLGPUFamilyMacCatalyst2")]
-        MacCatalyst2 = 4002,
-        #[doc(alias = "MTLGPUFamilyMetal3")]
-        Metal3 = 5001,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLFeatureSet {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum MTLDeviceLocation {
-        #[doc(alias = "MTLDeviceLocationBuiltIn")]
-        BuiltIn = 0,
-        #[doc(alias = "MTLDeviceLocationSlot")]
-        Slot = 1,
-        #[doc(alias = "MTLDeviceLocationExternal")]
-        External = 2,
-        #[doc(alias = "MTLDeviceLocationUnspecified")]
-        Unspecified = NSUIntegerMax as _,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLFeatureSet {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum MTLPipelineOption {
-        #[doc(alias = "MTLPipelineOptionNone")]
-        None = 0,
-        #[doc(alias = "MTLPipelineOptionArgumentInfo")]
-        ArgumentInfo = 1 << 0,
-        #[doc(alias = "MTLPipelineOptionBufferTypeInfo")]
-        BufferTypeInfo = 1 << 1,
-        #[doc(alias = "MTLPipelineOptionFailOnBinaryArchiveMiss")]
-        FailOnBinaryArchiveMiss = 1 << 2,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MTLGPUFamily(pub NSInteger);
+impl MTLGPUFamily {
+    #[doc(alias = "MTLGPUFamilyApple1")]
+    pub const Apple1: Self = Self(1001);
+    #[doc(alias = "MTLGPUFamilyApple2")]
+    pub const Apple2: Self = Self(1002);
+    #[doc(alias = "MTLGPUFamilyApple3")]
+    pub const Apple3: Self = Self(1003);
+    #[doc(alias = "MTLGPUFamilyApple4")]
+    pub const Apple4: Self = Self(1004);
+    #[doc(alias = "MTLGPUFamilyApple5")]
+    pub const Apple5: Self = Self(1005);
+    #[doc(alias = "MTLGPUFamilyApple6")]
+    pub const Apple6: Self = Self(1006);
+    #[doc(alias = "MTLGPUFamilyApple7")]
+    pub const Apple7: Self = Self(1007);
+    #[doc(alias = "MTLGPUFamilyApple8")]
+    pub const Apple8: Self = Self(1008);
+    #[doc(alias = "MTLGPUFamilyApple9")]
+    pub const Apple9: Self = Self(1009);
+    #[deprecated]
+    #[doc(alias = "MTLGPUFamilyMac1")]
+    pub const Mac1: Self = Self(2001);
+    #[doc(alias = "MTLGPUFamilyMac2")]
+    pub const Mac2: Self = Self(2002);
+    #[doc(alias = "MTLGPUFamilyCommon1")]
+    pub const Common1: Self = Self(3001);
+    #[doc(alias = "MTLGPUFamilyCommon2")]
+    pub const Common2: Self = Self(3002);
+    #[doc(alias = "MTLGPUFamilyCommon3")]
+    pub const Common3: Self = Self(3003);
+    #[deprecated]
+    #[doc(alias = "MTLGPUFamilyMacCatalyst1")]
+    pub const MacCatalyst1: Self = Self(4001);
+    #[deprecated]
+    #[doc(alias = "MTLGPUFamilyMacCatalyst2")]
+    pub const MacCatalyst2: Self = Self(4002);
+    #[doc(alias = "MTLGPUFamilyMetal3")]
+    pub const Metal3: Self = Self(5001);
+}
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum MTLReadWriteTextureTier {
-        #[doc(alias = "MTLReadWriteTextureTierNone")]
-        None = 0,
-        MTLReadWriteTextureTier1 = 1,
-        MTLReadWriteTextureTier2 = 2,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLGPUFamily {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum MTLArgumentBuffersTier {
-        MTLArgumentBuffersTier1 = 0,
-        MTLArgumentBuffersTier2 = 1,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLGPUFamily {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum MTLSparseTextureRegionAlignmentMode {
-        #[doc(alias = "MTLSparseTextureRegionAlignmentModeOutward")]
-        Outward = 0,
-        #[doc(alias = "MTLSparseTextureRegionAlignmentModeInward")]
-        Inward = 1,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MTLDeviceLocation(pub NSUInteger);
+impl MTLDeviceLocation {
+    #[doc(alias = "MTLDeviceLocationBuiltIn")]
+    pub const BuiltIn: Self = Self(0);
+    #[doc(alias = "MTLDeviceLocationSlot")]
+    pub const Slot: Self = Self(1);
+    #[doc(alias = "MTLDeviceLocationExternal")]
+    pub const External: Self = Self(2);
+    #[doc(alias = "MTLDeviceLocationUnspecified")]
+    pub const Unspecified: Self = Self(NSUIntegerMax as _);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum MTLSparsePageSize {
-        MTLSparsePageSize16 = 101,
-        MTLSparsePageSize64 = 102,
-        MTLSparsePageSize256 = 103,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLDeviceLocation {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLDeviceLocation {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MTLPipelineOption(pub NSUInteger);
+impl MTLPipelineOption {
+    #[doc(alias = "MTLPipelineOptionNone")]
+    pub const None: Self = Self(0);
+    #[doc(alias = "MTLPipelineOptionArgumentInfo")]
+    pub const ArgumentInfo: Self = Self(1 << 0);
+    #[doc(alias = "MTLPipelineOptionBufferTypeInfo")]
+    pub const BufferTypeInfo: Self = Self(1 << 1);
+    #[doc(alias = "MTLPipelineOptionFailOnBinaryArchiveMiss")]
+    pub const FailOnBinaryArchiveMiss: Self = Self(1 << 2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLPipelineOption {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLPipelineOption {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MTLReadWriteTextureTier(pub NSUInteger);
+impl MTLReadWriteTextureTier {
+    #[doc(alias = "MTLReadWriteTextureTierNone")]
+    pub const None: Self = Self(0);
+    pub const MTLReadWriteTextureTier1: Self = Self(1);
+    pub const MTLReadWriteTextureTier2: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLReadWriteTextureTier {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLReadWriteTextureTier {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MTLArgumentBuffersTier(pub NSUInteger);
+impl MTLArgumentBuffersTier {
+    pub const MTLArgumentBuffersTier1: Self = Self(0);
+    pub const MTLArgumentBuffersTier2: Self = Self(1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLArgumentBuffersTier {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLArgumentBuffersTier {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MTLSparseTextureRegionAlignmentMode(pub NSUInteger);
+impl MTLSparseTextureRegionAlignmentMode {
+    #[doc(alias = "MTLSparseTextureRegionAlignmentModeOutward")]
+    pub const Outward: Self = Self(0);
+    #[doc(alias = "MTLSparseTextureRegionAlignmentModeInward")]
+    pub const Inward: Self = Self(1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLSparseTextureRegionAlignmentMode {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLSparseTextureRegionAlignmentMode {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MTLSparsePageSize(pub NSInteger);
+impl MTLSparsePageSize {
+    pub const MTLSparsePageSize16: Self = Self(101);
+    pub const MTLSparsePageSize64: Self = Self(102);
+    pub const MTLSparsePageSize256: Self = Self(103);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLSparsePageSize {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLSparsePageSize {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_struct!(
     #[encoding_name("?")]
@@ -247,21 +346,32 @@ extern_struct!(
     }
 );
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum MTLCounterSamplingPoint {
-        #[doc(alias = "MTLCounterSamplingPointAtStageBoundary")]
-        AtStageBoundary = 0,
-        #[doc(alias = "MTLCounterSamplingPointAtDrawBoundary")]
-        AtDrawBoundary = 1,
-        #[doc(alias = "MTLCounterSamplingPointAtDispatchBoundary")]
-        AtDispatchBoundary = 2,
-        #[doc(alias = "MTLCounterSamplingPointAtTileDispatchBoundary")]
-        AtTileDispatchBoundary = 3,
-        #[doc(alias = "MTLCounterSamplingPointAtBlitBoundary")]
-        AtBlitBoundary = 4,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MTLCounterSamplingPoint(pub NSUInteger);
+impl MTLCounterSamplingPoint {
+    #[doc(alias = "MTLCounterSamplingPointAtStageBoundary")]
+    pub const AtStageBoundary: Self = Self(0);
+    #[doc(alias = "MTLCounterSamplingPointAtDrawBoundary")]
+    pub const AtDrawBoundary: Self = Self(1);
+    #[doc(alias = "MTLCounterSamplingPointAtDispatchBoundary")]
+    pub const AtDispatchBoundary: Self = Self(2);
+    #[doc(alias = "MTLCounterSamplingPointAtTileDispatchBoundary")]
+    pub const AtTileDispatchBoundary: Self = Self(3);
+    #[doc(alias = "MTLCounterSamplingPointAtBlitBoundary")]
+    pub const AtBlitBoundary: Self = Self(4);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLCounterSamplingPoint {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLCounterSamplingPoint {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_struct!(
     #[encoding_name("?")]

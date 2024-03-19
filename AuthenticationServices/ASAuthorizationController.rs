@@ -61,12 +61,24 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn ASAuthorizationControllerPresentationContextProviding {}
 );
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum ASAuthorizationControllerRequestOptions {
-        ASAuthorizationControllerRequestOptionPreferImmediatelyAvailableCredentials = 1 << 0,
-    }
-);
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct ASAuthorizationControllerRequestOptions(pub NSUInteger);
+impl ASAuthorizationControllerRequestOptions {
+    pub const ASAuthorizationControllerRequestOptionPreferImmediatelyAvailableCredentials: Self =
+        Self(1 << 0);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for ASAuthorizationControllerRequestOptions {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for ASAuthorizationControllerRequestOptions {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

@@ -10,17 +10,28 @@ extern "C" {
     pub static ASWebAuthenticationSessionErrorDomain: &'static NSErrorDomain;
 }
 
-ns_error_enum!(
-    #[underlying(NSInteger)]
-    pub enum ASWebAuthenticationSessionErrorCode {
-        #[doc(alias = "ASWebAuthenticationSessionErrorCodeCanceledLogin")]
-        CanceledLogin = 1,
-        #[doc(alias = "ASWebAuthenticationSessionErrorCodePresentationContextNotProvided")]
-        PresentationContextNotProvided = 2,
-        #[doc(alias = "ASWebAuthenticationSessionErrorCodePresentationContextInvalid")]
-        PresentationContextInvalid = 3,
-    }
-);
+// NS_ERROR_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct ASWebAuthenticationSessionErrorCode(pub NSInteger);
+impl ASWebAuthenticationSessionErrorCode {
+    #[doc(alias = "ASWebAuthenticationSessionErrorCodeCanceledLogin")]
+    pub const CanceledLogin: Self = Self(1);
+    #[doc(alias = "ASWebAuthenticationSessionErrorCodePresentationContextNotProvided")]
+    pub const PresentationContextNotProvided: Self = Self(2);
+    #[doc(alias = "ASWebAuthenticationSessionErrorCodePresentationContextInvalid")]
+    pub const PresentationContextInvalid: Self = Self(3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for ASWebAuthenticationSessionErrorCode {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for ASWebAuthenticationSessionErrorCode {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
 pub type ASWebAuthenticationSessionCompletionHandler = *mut Block<dyn Fn(*mut NSURL, *mut NSError)>;

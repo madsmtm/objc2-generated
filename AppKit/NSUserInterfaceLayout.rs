@@ -5,22 +5,44 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSUserInterfaceLayoutDirection {
-        #[doc(alias = "NSUserInterfaceLayoutDirectionLeftToRight")]
-        LeftToRight = 0,
-        #[doc(alias = "NSUserInterfaceLayoutDirectionRightToLeft")]
-        RightToLeft = 1,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSUserInterfaceLayoutDirection(pub NSInteger);
+impl NSUserInterfaceLayoutDirection {
+    #[doc(alias = "NSUserInterfaceLayoutDirectionLeftToRight")]
+    pub const LeftToRight: Self = Self(0);
+    #[doc(alias = "NSUserInterfaceLayoutDirectionRightToLeft")]
+    pub const RightToLeft: Self = Self(1);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSUserInterfaceLayoutOrientation {
-        #[doc(alias = "NSUserInterfaceLayoutOrientationHorizontal")]
-        Horizontal = 0,
-        #[doc(alias = "NSUserInterfaceLayoutOrientationVertical")]
-        Vertical = 1,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSUserInterfaceLayoutDirection {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSUserInterfaceLayoutDirection {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSUserInterfaceLayoutOrientation(pub NSInteger);
+impl NSUserInterfaceLayoutOrientation {
+    #[doc(alias = "NSUserInterfaceLayoutOrientationHorizontal")]
+    pub const Horizontal: Self = Self(0);
+    #[doc(alias = "NSUserInterfaceLayoutOrientationVertical")]
+    pub const Vertical: Self = Self(1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSUserInterfaceLayoutOrientation {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSUserInterfaceLayoutOrientation {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}

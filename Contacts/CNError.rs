@@ -9,67 +9,78 @@ extern "C" {
     pub static CNErrorDomain: Option<&'static NSString>;
 }
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum CNErrorCode {
-        #[doc(alias = "CNErrorCodeCommunicationError")]
-        CommunicationError = 1,
-        #[doc(alias = "CNErrorCodeDataAccessError")]
-        DataAccessError = 2,
-        #[doc(alias = "CNErrorCodeAuthorizationDenied")]
-        AuthorizationDenied = 100,
-        #[doc(alias = "CNErrorCodeNoAccessableWritableContainers")]
-        NoAccessableWritableContainers = 101,
-        #[doc(alias = "CNErrorCodeUnauthorizedKeys")]
-        UnauthorizedKeys = 102,
-        #[doc(alias = "CNErrorCodeFeatureDisabledByUser")]
-        FeatureDisabledByUser = 103,
-        #[doc(alias = "CNErrorCodeFeatureNotAvailable")]
-        FeatureNotAvailable = 104,
-        #[doc(alias = "CNErrorCodeRecordDoesNotExist")]
-        RecordDoesNotExist = 200,
-        #[doc(alias = "CNErrorCodeInsertedRecordAlreadyExists")]
-        InsertedRecordAlreadyExists = 201,
-        #[doc(alias = "CNErrorCodeContainmentCycle")]
-        ContainmentCycle = 202,
-        #[doc(alias = "CNErrorCodeContainmentScope")]
-        ContainmentScope = 203,
-        #[doc(alias = "CNErrorCodeParentRecordDoesNotExist")]
-        ParentRecordDoesNotExist = 204,
-        #[doc(alias = "CNErrorCodeRecordIdentifierInvalid")]
-        RecordIdentifierInvalid = 205,
-        #[doc(alias = "CNErrorCodeRecordNotWritable")]
-        RecordNotWritable = 206,
-        #[doc(alias = "CNErrorCodeParentContainerNotWritable")]
-        ParentContainerNotWritable = 207,
-        #[doc(alias = "CNErrorCodeValidationMultipleErrors")]
-        ValidationMultipleErrors = 300,
-        #[doc(alias = "CNErrorCodeValidationTypeMismatch")]
-        ValidationTypeMismatch = 301,
-        #[doc(alias = "CNErrorCodeValidationConfigurationError")]
-        ValidationConfigurationError = 302,
-        #[doc(alias = "CNErrorCodePredicateInvalid")]
-        PredicateInvalid = 400,
-        #[doc(alias = "CNErrorCodePolicyViolation")]
-        PolicyViolation = 500,
-        #[doc(alias = "CNErrorCodeClientIdentifierInvalid")]
-        ClientIdentifierInvalid = 600,
-        #[doc(alias = "CNErrorCodeClientIdentifierDoesNotExist")]
-        ClientIdentifierDoesNotExist = 601,
-        #[doc(alias = "CNErrorCodeClientIdentifierCollision")]
-        ClientIdentifierCollision = 602,
-        #[doc(alias = "CNErrorCodeChangeHistoryExpired")]
-        ChangeHistoryExpired = 603,
-        #[doc(alias = "CNErrorCodeChangeHistoryInvalidAnchor")]
-        ChangeHistoryInvalidAnchor = 604,
-        #[doc(alias = "CNErrorCodeChangeHistoryInvalidFetchRequest")]
-        ChangeHistoryInvalidFetchRequest = 605,
-        #[doc(alias = "CNErrorCodeVCardMalformed")]
-        VCardMalformed = 700,
-        #[doc(alias = "CNErrorCodeVCardSummarizationError")]
-        VCardSummarizationError = 701,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct CNErrorCode(pub NSInteger);
+impl CNErrorCode {
+    #[doc(alias = "CNErrorCodeCommunicationError")]
+    pub const CommunicationError: Self = Self(1);
+    #[doc(alias = "CNErrorCodeDataAccessError")]
+    pub const DataAccessError: Self = Self(2);
+    #[doc(alias = "CNErrorCodeAuthorizationDenied")]
+    pub const AuthorizationDenied: Self = Self(100);
+    #[doc(alias = "CNErrorCodeNoAccessableWritableContainers")]
+    pub const NoAccessableWritableContainers: Self = Self(101);
+    #[doc(alias = "CNErrorCodeUnauthorizedKeys")]
+    pub const UnauthorizedKeys: Self = Self(102);
+    #[doc(alias = "CNErrorCodeFeatureDisabledByUser")]
+    pub const FeatureDisabledByUser: Self = Self(103);
+    #[doc(alias = "CNErrorCodeFeatureNotAvailable")]
+    pub const FeatureNotAvailable: Self = Self(104);
+    #[doc(alias = "CNErrorCodeRecordDoesNotExist")]
+    pub const RecordDoesNotExist: Self = Self(200);
+    #[doc(alias = "CNErrorCodeInsertedRecordAlreadyExists")]
+    pub const InsertedRecordAlreadyExists: Self = Self(201);
+    #[doc(alias = "CNErrorCodeContainmentCycle")]
+    pub const ContainmentCycle: Self = Self(202);
+    #[doc(alias = "CNErrorCodeContainmentScope")]
+    pub const ContainmentScope: Self = Self(203);
+    #[doc(alias = "CNErrorCodeParentRecordDoesNotExist")]
+    pub const ParentRecordDoesNotExist: Self = Self(204);
+    #[doc(alias = "CNErrorCodeRecordIdentifierInvalid")]
+    pub const RecordIdentifierInvalid: Self = Self(205);
+    #[doc(alias = "CNErrorCodeRecordNotWritable")]
+    pub const RecordNotWritable: Self = Self(206);
+    #[doc(alias = "CNErrorCodeParentContainerNotWritable")]
+    pub const ParentContainerNotWritable: Self = Self(207);
+    #[doc(alias = "CNErrorCodeValidationMultipleErrors")]
+    pub const ValidationMultipleErrors: Self = Self(300);
+    #[doc(alias = "CNErrorCodeValidationTypeMismatch")]
+    pub const ValidationTypeMismatch: Self = Self(301);
+    #[doc(alias = "CNErrorCodeValidationConfigurationError")]
+    pub const ValidationConfigurationError: Self = Self(302);
+    #[doc(alias = "CNErrorCodePredicateInvalid")]
+    pub const PredicateInvalid: Self = Self(400);
+    #[doc(alias = "CNErrorCodePolicyViolation")]
+    pub const PolicyViolation: Self = Self(500);
+    #[doc(alias = "CNErrorCodeClientIdentifierInvalid")]
+    pub const ClientIdentifierInvalid: Self = Self(600);
+    #[doc(alias = "CNErrorCodeClientIdentifierDoesNotExist")]
+    pub const ClientIdentifierDoesNotExist: Self = Self(601);
+    #[doc(alias = "CNErrorCodeClientIdentifierCollision")]
+    pub const ClientIdentifierCollision: Self = Self(602);
+    #[doc(alias = "CNErrorCodeChangeHistoryExpired")]
+    pub const ChangeHistoryExpired: Self = Self(603);
+    #[doc(alias = "CNErrorCodeChangeHistoryInvalidAnchor")]
+    pub const ChangeHistoryInvalidAnchor: Self = Self(604);
+    #[doc(alias = "CNErrorCodeChangeHistoryInvalidFetchRequest")]
+    pub const ChangeHistoryInvalidFetchRequest: Self = Self(605);
+    #[doc(alias = "CNErrorCodeVCardMalformed")]
+    pub const VCardMalformed: Self = Self(700);
+    #[doc(alias = "CNErrorCodeVCardSummarizationError")]
+    pub const VCardSummarizationError: Self = Self(701);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for CNErrorCode {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for CNErrorCode {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]

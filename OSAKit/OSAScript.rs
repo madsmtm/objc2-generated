@@ -100,17 +100,28 @@ extern "C" {
     pub static OSAStorageTextType: &'static NSString;
 }
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum OSAStorageOptions {
-        OSANull = 0x00000000,
-        OSAPreventGetSource = 0x00000001,
-        OSACompileIntoContext = 0x00000002,
-        OSADontSetScriptLocation = 0x01000000,
-        OSAStayOpenApplet = 0x10000000,
-        OSAShowStartupScreen = 0x20000000,
-    }
-);
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct OSAStorageOptions(pub NSUInteger);
+impl OSAStorageOptions {
+    pub const OSANull: Self = Self(0x00000000);
+    pub const OSAPreventGetSource: Self = Self(0x00000001);
+    pub const OSACompileIntoContext: Self = Self(0x00000002);
+    pub const OSADontSetScriptLocation: Self = Self(0x01000000);
+    pub const OSAStayOpenApplet: Self = Self(0x10000000);
+    pub const OSAShowStartupScreen: Self = Self(0x20000000);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for OSAStorageOptions {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for OSAStorageOptions {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

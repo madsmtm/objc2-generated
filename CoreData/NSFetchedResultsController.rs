@@ -154,15 +154,26 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn NSFetchedResultsSectionInfo {}
 );
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSFetchedResultsChangeType {
-        NSFetchedResultsChangeInsert = 1,
-        NSFetchedResultsChangeDelete = 2,
-        NSFetchedResultsChangeMove = 3,
-        NSFetchedResultsChangeUpdate = 4,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSFetchedResultsChangeType(pub NSUInteger);
+impl NSFetchedResultsChangeType {
+    pub const NSFetchedResultsChangeInsert: Self = Self(1);
+    pub const NSFetchedResultsChangeDelete: Self = Self(2);
+    pub const NSFetchedResultsChangeMove: Self = Self(3);
+    pub const NSFetchedResultsChangeUpdate: Self = Self(4);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSFetchedResultsChangeType {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSFetchedResultsChangeType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_protocol!(
     pub unsafe trait NSFetchedResultsControllerDelegate: NSObjectProtocol {

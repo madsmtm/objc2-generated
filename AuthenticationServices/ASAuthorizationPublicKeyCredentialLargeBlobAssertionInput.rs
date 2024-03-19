@@ -5,15 +5,26 @@ use crate::AppKit::*;
 use crate::AuthenticationServices::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum ASAuthorizationPublicKeyCredentialLargeBlobAssertionOperation {
-        #[doc(alias = "ASAuthorizationPublicKeyCredentialLargeBlobAssertionOperationRead")]
-        Read = 0,
-        #[doc(alias = "ASAuthorizationPublicKeyCredentialLargeBlobAssertionOperationWrite")]
-        Write = 1,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct ASAuthorizationPublicKeyCredentialLargeBlobAssertionOperation(pub NSInteger);
+impl ASAuthorizationPublicKeyCredentialLargeBlobAssertionOperation {
+    #[doc(alias = "ASAuthorizationPublicKeyCredentialLargeBlobAssertionOperationRead")]
+    pub const Read: Self = Self(0);
+    #[doc(alias = "ASAuthorizationPublicKeyCredentialLargeBlobAssertionOperationWrite")]
+    pub const Write: Self = Self(1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for ASAuthorizationPublicKeyCredentialLargeBlobAssertionOperation {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for ASAuthorizationPublicKeyCredentialLargeBlobAssertionOperation {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

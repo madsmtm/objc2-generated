@@ -4,29 +4,51 @@ use crate::common::*;
 use crate::Contacts::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum CNContactType {
-        #[doc(alias = "CNContactTypePerson")]
-        Person = 0,
-        #[doc(alias = "CNContactTypeOrganization")]
-        Organization = 1,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct CNContactType(pub NSInteger);
+impl CNContactType {
+    #[doc(alias = "CNContactTypePerson")]
+    pub const Person: Self = Self(0);
+    #[doc(alias = "CNContactTypeOrganization")]
+    pub const Organization: Self = Self(1);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum CNContactSortOrder {
-        #[doc(alias = "CNContactSortOrderNone")]
-        None = 0,
-        #[doc(alias = "CNContactSortOrderUserDefault")]
-        UserDefault = 1,
-        #[doc(alias = "CNContactSortOrderGivenName")]
-        GivenName = 2,
-        #[doc(alias = "CNContactSortOrderFamilyName")]
-        FamilyName = 3,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for CNContactType {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for CNContactType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct CNContactSortOrder(pub NSInteger);
+impl CNContactSortOrder {
+    #[doc(alias = "CNContactSortOrderNone")]
+    pub const None: Self = Self(0);
+    #[doc(alias = "CNContactSortOrderUserDefault")]
+    pub const UserDefault: Self = Self(1);
+    #[doc(alias = "CNContactSortOrderGivenName")]
+    pub const GivenName: Self = Self(2);
+    #[doc(alias = "CNContactSortOrderFamilyName")]
+    pub const FamilyName: Self = Self(3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for CNContactSortOrder {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for CNContactSortOrder {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_protocol!(
     #[cfg(feature = "Foundation_NSObject")]

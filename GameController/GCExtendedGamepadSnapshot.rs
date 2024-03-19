@@ -78,16 +78,27 @@ extern_methods!(
     }
 );
 
-ns_enum!(
-    #[underlying(NSInteger)]
+// NS_ENUM
+#[deprecated = "GCExtendedGamepadSnapshot has been deprecated, use [GCController controllerWithExtendedGamepad] instead"]
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct GCExtendedGamepadSnapshotDataVersion(pub NSInteger);
+impl GCExtendedGamepadSnapshotDataVersion {
     #[deprecated = "GCExtendedGamepadSnapshot has been deprecated, use [GCController controllerWithExtendedGamepad] instead"]
-    pub enum GCExtendedGamepadSnapshotDataVersion {
-        #[deprecated = "GCExtendedGamepadSnapshot has been deprecated, use [GCController controllerWithExtendedGamepad] instead"]
-        GCExtendedGamepadSnapshotDataVersion1 = 0x0100,
-        #[deprecated = "GCExtendedGamepadSnapshot has been deprecated, use [GCController controllerWithExtendedGamepad] instead"]
-        GCExtendedGamepadSnapshotDataVersion2 = 0x0101,
-    }
-);
+    pub const GCExtendedGamepadSnapshotDataVersion1: Self = Self(0x0100);
+    #[deprecated = "GCExtendedGamepadSnapshot has been deprecated, use [GCController controllerWithExtendedGamepad] instead"]
+    pub const GCExtendedGamepadSnapshotDataVersion2: Self = Self(0x0101);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for GCExtendedGamepadSnapshotDataVersion {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for GCExtendedGamepadSnapshotDataVersion {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern "C" {
     pub static GCCurrentExtendedGamepadSnapshotDataVersion: GCExtendedGamepadSnapshotDataVersion;

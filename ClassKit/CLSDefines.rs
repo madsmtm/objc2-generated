@@ -9,38 +9,48 @@ extern "C" {
     pub static CLSErrorCodeDomain: Option<&'static NSString>;
 }
 
-ns_error_enum!(
-    #[underlying(NSInteger)]
-    pub enum CLSErrorCode {
-        #[doc(alias = "CLSErrorCodeNone")]
-        None = 0,
-        #[doc(alias = "CLSErrorCodeClassKitUnavailable")]
-        ClassKitUnavailable = 1,
-        #[doc(alias = "CLSErrorCodeInvalidArgument")]
-        InvalidArgument = 2,
-        #[doc(alias = "CLSErrorCodeInvalidModification")]
-        InvalidModification = 3,
-        #[doc(alias = "CLSErrorCodeAuthorizationDenied")]
-        AuthorizationDenied = 4,
-        #[doc(alias = "CLSErrorCodeDatabaseInaccessible")]
-        DatabaseInaccessible = 5,
-        #[doc(alias = "CLSErrorCodeLimits")]
-        Limits = 6,
-        #[doc(alias = "CLSErrorCodeInvalidCreate")]
-        InvalidCreate = 7,
-        #[doc(alias = "CLSErrorCodeInvalidUpdate")]
-        InvalidUpdate = 8,
-        #[doc(alias = "CLSErrorCodePartialFailure")]
-        PartialFailure = 9,
-        #[doc(alias = "CLSErrorCodeInvalidAccountCredentials")]
-        InvalidAccountCredentials = 10,
-    }
-);
+// NS_ERROR_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct CLSErrorCode(pub NSInteger);
+impl CLSErrorCode {
+    #[doc(alias = "CLSErrorCodeNone")]
+    pub const None: Self = Self(0);
+    #[doc(alias = "CLSErrorCodeClassKitUnavailable")]
+    pub const ClassKitUnavailable: Self = Self(1);
+    #[doc(alias = "CLSErrorCodeInvalidArgument")]
+    pub const InvalidArgument: Self = Self(2);
+    #[doc(alias = "CLSErrorCodeInvalidModification")]
+    pub const InvalidModification: Self = Self(3);
+    #[doc(alias = "CLSErrorCodeAuthorizationDenied")]
+    pub const AuthorizationDenied: Self = Self(4);
+    #[doc(alias = "CLSErrorCodeDatabaseInaccessible")]
+    pub const DatabaseInaccessible: Self = Self(5);
+    #[doc(alias = "CLSErrorCodeLimits")]
+    pub const Limits: Self = Self(6);
+    #[doc(alias = "CLSErrorCodeInvalidCreate")]
+    pub const InvalidCreate: Self = Self(7);
+    #[doc(alias = "CLSErrorCodeInvalidUpdate")]
+    pub const InvalidUpdate: Self = Self(8);
+    #[doc(alias = "CLSErrorCodePartialFailure")]
+    pub const PartialFailure: Self = Self(9);
+    #[doc(alias = "CLSErrorCodeInvalidAccountCredentials")]
+    pub const InvalidAccountCredentials: Self = Self(10);
+}
 
+#[cfg(feature = "objc2")]
+unsafe impl Encode for CLSErrorCode {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for CLSErrorCode {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_extensible_enum!(
-    pub type CLSErrorUserInfoKey = NSString;
-);
+pub type CLSErrorUserInfoKey = NSString;
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]
@@ -57,10 +67,9 @@ extern "C" {
     pub static CLSErrorSuccessfulObjectsKey: Option<&'static CLSErrorUserInfoKey>;
 }
 
+// NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_extensible_enum!(
-    pub type CLSPredicateKeyPath = NSString;
-);
+pub type CLSPredicateKeyPath = NSString;
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]

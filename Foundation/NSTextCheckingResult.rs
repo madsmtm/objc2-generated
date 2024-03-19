@@ -3,37 +3,48 @@
 use crate::common::*;
 use crate::Foundation::*;
 
-ns_options!(
-    #[underlying(u64)]
-    pub enum NSTextCheckingType {
-        #[doc(alias = "NSTextCheckingTypeOrthography")]
-        Orthography = 1 << 0,
-        #[doc(alias = "NSTextCheckingTypeSpelling")]
-        Spelling = 1 << 1,
-        #[doc(alias = "NSTextCheckingTypeGrammar")]
-        Grammar = 1 << 2,
-        #[doc(alias = "NSTextCheckingTypeDate")]
-        Date = 1 << 3,
-        #[doc(alias = "NSTextCheckingTypeAddress")]
-        Address = 1 << 4,
-        #[doc(alias = "NSTextCheckingTypeLink")]
-        Link = 1 << 5,
-        #[doc(alias = "NSTextCheckingTypeQuote")]
-        Quote = 1 << 6,
-        #[doc(alias = "NSTextCheckingTypeDash")]
-        Dash = 1 << 7,
-        #[doc(alias = "NSTextCheckingTypeReplacement")]
-        Replacement = 1 << 8,
-        #[doc(alias = "NSTextCheckingTypeCorrection")]
-        Correction = 1 << 9,
-        #[doc(alias = "NSTextCheckingTypeRegularExpression")]
-        RegularExpression = 1 << 10,
-        #[doc(alias = "NSTextCheckingTypePhoneNumber")]
-        PhoneNumber = 1 << 11,
-        #[doc(alias = "NSTextCheckingTypeTransitInformation")]
-        TransitInformation = 1 << 12,
-    }
-);
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSTextCheckingType(pub u64);
+impl NSTextCheckingType {
+    #[doc(alias = "NSTextCheckingTypeOrthography")]
+    pub const Orthography: Self = Self(1 << 0);
+    #[doc(alias = "NSTextCheckingTypeSpelling")]
+    pub const Spelling: Self = Self(1 << 1);
+    #[doc(alias = "NSTextCheckingTypeGrammar")]
+    pub const Grammar: Self = Self(1 << 2);
+    #[doc(alias = "NSTextCheckingTypeDate")]
+    pub const Date: Self = Self(1 << 3);
+    #[doc(alias = "NSTextCheckingTypeAddress")]
+    pub const Address: Self = Self(1 << 4);
+    #[doc(alias = "NSTextCheckingTypeLink")]
+    pub const Link: Self = Self(1 << 5);
+    #[doc(alias = "NSTextCheckingTypeQuote")]
+    pub const Quote: Self = Self(1 << 6);
+    #[doc(alias = "NSTextCheckingTypeDash")]
+    pub const Dash: Self = Self(1 << 7);
+    #[doc(alias = "NSTextCheckingTypeReplacement")]
+    pub const Replacement: Self = Self(1 << 8);
+    #[doc(alias = "NSTextCheckingTypeCorrection")]
+    pub const Correction: Self = Self(1 << 9);
+    #[doc(alias = "NSTextCheckingTypeRegularExpression")]
+    pub const RegularExpression: Self = Self(1 << 10);
+    #[doc(alias = "NSTextCheckingTypePhoneNumber")]
+    pub const PhoneNumber: Self = Self(1 << 11);
+    #[doc(alias = "NSTextCheckingTypeTransitInformation")]
+    pub const TransitInformation: Self = Self(1 << 12);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSTextCheckingType {
+    const ENCODING: Encoding = u64::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSTextCheckingType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 pub type NSTextCheckingTypes = u64;
 
@@ -42,10 +53,9 @@ pub const NSTextCheckingAllCustomTypes: NSTextCheckingTypes = 0xffffffff << 32;
 pub const NSTextCheckingAllTypes: NSTextCheckingTypes =
     NSTextCheckingAllSystemTypes | NSTextCheckingAllCustomTypes;
 
+// NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_extensible_enum!(
-    pub type NSTextCheckingKey = NSString;
-);
+pub type NSTextCheckingKey = NSString;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

@@ -5,45 +5,78 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::WebKit::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum WKMediaPlaybackState {
-        #[doc(alias = "WKMediaPlaybackStateNone")]
-        None = 0,
-        #[doc(alias = "WKMediaPlaybackStatePlaying")]
-        Playing = 1,
-        #[doc(alias = "WKMediaPlaybackStatePaused")]
-        Paused = 2,
-        #[doc(alias = "WKMediaPlaybackStateSuspended")]
-        Suspended = 3,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct WKMediaPlaybackState(pub NSInteger);
+impl WKMediaPlaybackState {
+    #[doc(alias = "WKMediaPlaybackStateNone")]
+    pub const None: Self = Self(0);
+    #[doc(alias = "WKMediaPlaybackStatePlaying")]
+    pub const Playing: Self = Self(1);
+    #[doc(alias = "WKMediaPlaybackStatePaused")]
+    pub const Paused: Self = Self(2);
+    #[doc(alias = "WKMediaPlaybackStateSuspended")]
+    pub const Suspended: Self = Self(3);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum WKMediaCaptureState {
-        #[doc(alias = "WKMediaCaptureStateNone")]
-        None = 0,
-        #[doc(alias = "WKMediaCaptureStateActive")]
-        Active = 1,
-        #[doc(alias = "WKMediaCaptureStateMuted")]
-        Muted = 2,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for WKMediaPlaybackState {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum WKFullscreenState {
-        #[doc(alias = "WKFullscreenStateNotInFullscreen")]
-        NotInFullscreen = 0,
-        #[doc(alias = "WKFullscreenStateEnteringFullscreen")]
-        EnteringFullscreen = 1,
-        #[doc(alias = "WKFullscreenStateInFullscreen")]
-        InFullscreen = 2,
-        #[doc(alias = "WKFullscreenStateExitingFullscreen")]
-        ExitingFullscreen = 3,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for WKMediaPlaybackState {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct WKMediaCaptureState(pub NSInteger);
+impl WKMediaCaptureState {
+    #[doc(alias = "WKMediaCaptureStateNone")]
+    pub const None: Self = Self(0);
+    #[doc(alias = "WKMediaCaptureStateActive")]
+    pub const Active: Self = Self(1);
+    #[doc(alias = "WKMediaCaptureStateMuted")]
+    pub const Muted: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for WKMediaCaptureState {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for WKMediaCaptureState {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct WKFullscreenState(pub NSInteger);
+impl WKFullscreenState {
+    #[doc(alias = "WKFullscreenStateNotInFullscreen")]
+    pub const NotInFullscreen: Self = Self(0);
+    #[doc(alias = "WKFullscreenStateEnteringFullscreen")]
+    pub const EnteringFullscreen: Self = Self(1);
+    #[doc(alias = "WKFullscreenStateInFullscreen")]
+    pub const InFullscreen: Self = Self(2);
+    #[doc(alias = "WKFullscreenStateExitingFullscreen")]
+    pub const ExitingFullscreen: Self = Self(3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for WKFullscreenState {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for WKFullscreenState {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

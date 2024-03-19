@@ -9,17 +9,28 @@ extern "C" {
     pub static BGTaskSchedulerErrorDomain: &'static NSErrorDomain;
 }
 
-ns_error_enum!(
-    #[underlying(NSInteger)]
-    pub enum BGTaskSchedulerErrorCode {
-        #[doc(alias = "BGTaskSchedulerErrorCodeUnavailable")]
-        Unavailable = 1,
-        #[doc(alias = "BGTaskSchedulerErrorCodeTooManyPendingTaskRequests")]
-        TooManyPendingTaskRequests = 2,
-        #[doc(alias = "BGTaskSchedulerErrorCodeNotPermitted")]
-        NotPermitted = 3,
-    }
-);
+// NS_ERROR_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct BGTaskSchedulerErrorCode(pub NSInteger);
+impl BGTaskSchedulerErrorCode {
+    #[doc(alias = "BGTaskSchedulerErrorCodeUnavailable")]
+    pub const Unavailable: Self = Self(1);
+    #[doc(alias = "BGTaskSchedulerErrorCodeTooManyPendingTaskRequests")]
+    pub const TooManyPendingTaskRequests: Self = Self(2);
+    #[doc(alias = "BGTaskSchedulerErrorCodeNotPermitted")]
+    pub const NotPermitted: Self = Self(3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for BGTaskSchedulerErrorCode {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for BGTaskSchedulerErrorCode {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

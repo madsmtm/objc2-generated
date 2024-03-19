@@ -4,52 +4,62 @@ use crate::common::*;
 use crate::ClassKit::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum CLSContextType {
-        #[doc(alias = "CLSContextTypeNone")]
-        None = 0,
-        #[doc(alias = "CLSContextTypeApp")]
-        App = 1,
-        #[doc(alias = "CLSContextTypeChapter")]
-        Chapter = 2,
-        #[doc(alias = "CLSContextTypeSection")]
-        Section = 3,
-        #[doc(alias = "CLSContextTypeLevel")]
-        Level = 4,
-        #[doc(alias = "CLSContextTypePage")]
-        Page = 5,
-        #[doc(alias = "CLSContextTypeTask")]
-        Task = 6,
-        #[doc(alias = "CLSContextTypeChallenge")]
-        Challenge = 7,
-        #[doc(alias = "CLSContextTypeQuiz")]
-        Quiz = 8,
-        #[doc(alias = "CLSContextTypeExercise")]
-        Exercise = 9,
-        #[doc(alias = "CLSContextTypeLesson")]
-        Lesson = 10,
-        #[doc(alias = "CLSContextTypeBook")]
-        Book = 11,
-        #[doc(alias = "CLSContextTypeGame")]
-        Game = 12,
-        #[doc(alias = "CLSContextTypeDocument")]
-        Document = 13,
-        #[doc(alias = "CLSContextTypeAudio")]
-        Audio = 14,
-        #[doc(alias = "CLSContextTypeVideo")]
-        Video = 15,
-        #[doc(alias = "CLSContextTypeCourse")]
-        Course = 16,
-        #[doc(alias = "CLSContextTypeCustom")]
-        Custom = 17,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct CLSContextType(pub NSInteger);
+impl CLSContextType {
+    #[doc(alias = "CLSContextTypeNone")]
+    pub const None: Self = Self(0);
+    #[doc(alias = "CLSContextTypeApp")]
+    pub const App: Self = Self(1);
+    #[doc(alias = "CLSContextTypeChapter")]
+    pub const Chapter: Self = Self(2);
+    #[doc(alias = "CLSContextTypeSection")]
+    pub const Section: Self = Self(3);
+    #[doc(alias = "CLSContextTypeLevel")]
+    pub const Level: Self = Self(4);
+    #[doc(alias = "CLSContextTypePage")]
+    pub const Page: Self = Self(5);
+    #[doc(alias = "CLSContextTypeTask")]
+    pub const Task: Self = Self(6);
+    #[doc(alias = "CLSContextTypeChallenge")]
+    pub const Challenge: Self = Self(7);
+    #[doc(alias = "CLSContextTypeQuiz")]
+    pub const Quiz: Self = Self(8);
+    #[doc(alias = "CLSContextTypeExercise")]
+    pub const Exercise: Self = Self(9);
+    #[doc(alias = "CLSContextTypeLesson")]
+    pub const Lesson: Self = Self(10);
+    #[doc(alias = "CLSContextTypeBook")]
+    pub const Book: Self = Self(11);
+    #[doc(alias = "CLSContextTypeGame")]
+    pub const Game: Self = Self(12);
+    #[doc(alias = "CLSContextTypeDocument")]
+    pub const Document: Self = Self(13);
+    #[doc(alias = "CLSContextTypeAudio")]
+    pub const Audio: Self = Self(14);
+    #[doc(alias = "CLSContextTypeVideo")]
+    pub const Video: Self = Self(15);
+    #[doc(alias = "CLSContextTypeCourse")]
+    pub const Course: Self = Self(16);
+    #[doc(alias = "CLSContextTypeCustom")]
+    pub const Custom: Self = Self(17);
+}
 
+#[cfg(feature = "objc2")]
+unsafe impl Encode for CLSContextType {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for CLSContextType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type CLSContextTopic = NSString;
-);
+pub type CLSContextTopic = NSString;
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]

@@ -3,10 +3,9 @@
 use crate::common::*;
 use crate::Foundation::*;
 
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type NSLocaleKey = NSString;
-);
+pub type NSLocaleKey = NSString;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -226,21 +225,32 @@ extern_methods!(
     }
 );
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSLocaleLanguageDirection {
-        #[doc(alias = "NSLocaleLanguageDirectionUnknown")]
-        Unknown = 0,
-        #[doc(alias = "NSLocaleLanguageDirectionLeftToRight")]
-        LeftToRight = 1,
-        #[doc(alias = "NSLocaleLanguageDirectionRightToLeft")]
-        RightToLeft = 2,
-        #[doc(alias = "NSLocaleLanguageDirectionTopToBottom")]
-        TopToBottom = 3,
-        #[doc(alias = "NSLocaleLanguageDirectionBottomToTop")]
-        BottomToTop = 4,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSLocaleLanguageDirection(pub NSUInteger);
+impl NSLocaleLanguageDirection {
+    #[doc(alias = "NSLocaleLanguageDirectionUnknown")]
+    pub const Unknown: Self = Self(0);
+    #[doc(alias = "NSLocaleLanguageDirectionLeftToRight")]
+    pub const LeftToRight: Self = Self(1);
+    #[doc(alias = "NSLocaleLanguageDirectionRightToLeft")]
+    pub const RightToLeft: Self = Self(2);
+    #[doc(alias = "NSLocaleLanguageDirectionTopToBottom")]
+    pub const TopToBottom: Self = Self(3);
+    #[doc(alias = "NSLocaleLanguageDirectionBottomToTop")]
+    pub const BottomToTop: Self = Self(4);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSLocaleLanguageDirection {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSLocaleLanguageDirection {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_methods!(
     /// NSLocaleGeneralInfo

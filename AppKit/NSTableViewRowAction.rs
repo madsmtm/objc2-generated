@@ -5,15 +5,26 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSTableViewRowActionStyle {
-        #[doc(alias = "NSTableViewRowActionStyleRegular")]
-        Regular = 0,
-        #[doc(alias = "NSTableViewRowActionStyleDestructive")]
-        Destructive = 1,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSTableViewRowActionStyle(pub NSInteger);
+impl NSTableViewRowActionStyle {
+    #[doc(alias = "NSTableViewRowActionStyleRegular")]
+    pub const Regular: Self = Self(0);
+    #[doc(alias = "NSTableViewRowActionStyleDestructive")]
+    pub const Destructive: Self = Self(1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSTableViewRowActionStyle {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSTableViewRowActionStyle {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

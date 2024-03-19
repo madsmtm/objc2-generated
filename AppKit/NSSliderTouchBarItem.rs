@@ -5,10 +5,9 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
+// NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "Foundation_NSGeometry")]
-typed_extensible_enum!(
-    pub type NSSliderAccessoryWidth = CGFloat;
-);
+pub type NSSliderAccessoryWidth = CGFloat;
 
 extern "C" {
     #[cfg(feature = "Foundation_NSGeometry")]

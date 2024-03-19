@@ -5,75 +5,130 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSTextSelectionNavigationDirection {
-        #[doc(alias = "NSTextSelectionNavigationDirectionForward")]
-        Forward = 0,
-        #[doc(alias = "NSTextSelectionNavigationDirectionBackward")]
-        Backward = 1,
-        #[doc(alias = "NSTextSelectionNavigationDirectionRight")]
-        Right = 2,
-        #[doc(alias = "NSTextSelectionNavigationDirectionLeft")]
-        Left = 3,
-        #[doc(alias = "NSTextSelectionNavigationDirectionUp")]
-        Up = 4,
-        #[doc(alias = "NSTextSelectionNavigationDirectionDown")]
-        Down = 5,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSTextSelectionNavigationDirection(pub NSInteger);
+impl NSTextSelectionNavigationDirection {
+    #[doc(alias = "NSTextSelectionNavigationDirectionForward")]
+    pub const Forward: Self = Self(0);
+    #[doc(alias = "NSTextSelectionNavigationDirectionBackward")]
+    pub const Backward: Self = Self(1);
+    #[doc(alias = "NSTextSelectionNavigationDirectionRight")]
+    pub const Right: Self = Self(2);
+    #[doc(alias = "NSTextSelectionNavigationDirectionLeft")]
+    pub const Left: Self = Self(3);
+    #[doc(alias = "NSTextSelectionNavigationDirectionUp")]
+    pub const Up: Self = Self(4);
+    #[doc(alias = "NSTextSelectionNavigationDirectionDown")]
+    pub const Down: Self = Self(5);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSTextSelectionNavigationDestination {
-        #[doc(alias = "NSTextSelectionNavigationDestinationCharacter")]
-        Character = 0,
-        #[doc(alias = "NSTextSelectionNavigationDestinationWord")]
-        Word = 1,
-        #[doc(alias = "NSTextSelectionNavigationDestinationLine")]
-        Line = 2,
-        #[doc(alias = "NSTextSelectionNavigationDestinationSentence")]
-        Sentence = 3,
-        #[doc(alias = "NSTextSelectionNavigationDestinationParagraph")]
-        Paragraph = 4,
-        #[doc(alias = "NSTextSelectionNavigationDestinationContainer")]
-        Container = 5,
-        #[doc(alias = "NSTextSelectionNavigationDestinationDocument")]
-        Document = 6,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSTextSelectionNavigationDirection {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSTextSelectionNavigationModifier {
-        #[doc(alias = "NSTextSelectionNavigationModifierExtend")]
-        Extend = 1 << 0,
-        #[doc(alias = "NSTextSelectionNavigationModifierVisual")]
-        Visual = 1 << 1,
-        #[doc(alias = "NSTextSelectionNavigationModifierMultiple")]
-        Multiple = 1 << 2,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSTextSelectionNavigationDirection {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSTextSelectionNavigationWritingDirection {
-        #[doc(alias = "NSTextSelectionNavigationWritingDirectionLeftToRight")]
-        LeftToRight = 0,
-        #[doc(alias = "NSTextSelectionNavigationWritingDirectionRightToLeft")]
-        RightToLeft = 1,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSTextSelectionNavigationDestination(pub NSInteger);
+impl NSTextSelectionNavigationDestination {
+    #[doc(alias = "NSTextSelectionNavigationDestinationCharacter")]
+    pub const Character: Self = Self(0);
+    #[doc(alias = "NSTextSelectionNavigationDestinationWord")]
+    pub const Word: Self = Self(1);
+    #[doc(alias = "NSTextSelectionNavigationDestinationLine")]
+    pub const Line: Self = Self(2);
+    #[doc(alias = "NSTextSelectionNavigationDestinationSentence")]
+    pub const Sentence: Self = Self(3);
+    #[doc(alias = "NSTextSelectionNavigationDestinationParagraph")]
+    pub const Paragraph: Self = Self(4);
+    #[doc(alias = "NSTextSelectionNavigationDestinationContainer")]
+    pub const Container: Self = Self(5);
+    #[doc(alias = "NSTextSelectionNavigationDestinationDocument")]
+    pub const Document: Self = Self(6);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSTextSelectionNavigationLayoutOrientation {
-        #[doc(alias = "NSTextSelectionNavigationLayoutOrientationHorizontal")]
-        Horizontal = 0,
-        #[doc(alias = "NSTextSelectionNavigationLayoutOrientationVertical")]
-        Vertical = 1,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSTextSelectionNavigationDestination {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSTextSelectionNavigationDestination {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSTextSelectionNavigationModifier(pub NSUInteger);
+impl NSTextSelectionNavigationModifier {
+    #[doc(alias = "NSTextSelectionNavigationModifierExtend")]
+    pub const Extend: Self = Self(1 << 0);
+    #[doc(alias = "NSTextSelectionNavigationModifierVisual")]
+    pub const Visual: Self = Self(1 << 1);
+    #[doc(alias = "NSTextSelectionNavigationModifierMultiple")]
+    pub const Multiple: Self = Self(1 << 2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSTextSelectionNavigationModifier {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSTextSelectionNavigationModifier {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSTextSelectionNavigationWritingDirection(pub NSInteger);
+impl NSTextSelectionNavigationWritingDirection {
+    #[doc(alias = "NSTextSelectionNavigationWritingDirectionLeftToRight")]
+    pub const LeftToRight: Self = Self(0);
+    #[doc(alias = "NSTextSelectionNavigationWritingDirectionRightToLeft")]
+    pub const RightToLeft: Self = Self(1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSTextSelectionNavigationWritingDirection {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSTextSelectionNavigationWritingDirection {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSTextSelectionNavigationLayoutOrientation(pub NSInteger);
+impl NSTextSelectionNavigationLayoutOrientation {
+    #[doc(alias = "NSTextSelectionNavigationLayoutOrientationHorizontal")]
+    pub const Horizontal: Self = Self(0);
+    #[doc(alias = "NSTextSelectionNavigationLayoutOrientationVertical")]
+    pub const Vertical: Self = Self(1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSTextSelectionNavigationLayoutOrientation {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSTextSelectionNavigationLayoutOrientation {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

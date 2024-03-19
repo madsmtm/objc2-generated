@@ -5,14 +5,25 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSTabState {
-        NSSelectedTab = 0,
-        NSBackgroundTab = 1,
-        NSPressedTab = 2,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSTabState(pub NSUInteger);
+impl NSTabState {
+    pub const NSSelectedTab: Self = Self(0);
+    pub const NSBackgroundTab: Self = Self(1);
+    pub const NSPressedTab: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSTabState {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSTabState {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

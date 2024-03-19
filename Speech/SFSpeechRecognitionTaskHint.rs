@@ -4,16 +4,27 @@ use crate::common::*;
 use crate::Foundation::*;
 use crate::Speech::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum SFSpeechRecognitionTaskHint {
-        #[doc(alias = "SFSpeechRecognitionTaskHintUnspecified")]
-        Unspecified = 0,
-        #[doc(alias = "SFSpeechRecognitionTaskHintDictation")]
-        Dictation = 1,
-        #[doc(alias = "SFSpeechRecognitionTaskHintSearch")]
-        Search = 2,
-        #[doc(alias = "SFSpeechRecognitionTaskHintConfirmation")]
-        Confirmation = 3,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct SFSpeechRecognitionTaskHint(pub NSInteger);
+impl SFSpeechRecognitionTaskHint {
+    #[doc(alias = "SFSpeechRecognitionTaskHintUnspecified")]
+    pub const Unspecified: Self = Self(0);
+    #[doc(alias = "SFSpeechRecognitionTaskHintDictation")]
+    pub const Dictation: Self = Self(1);
+    #[doc(alias = "SFSpeechRecognitionTaskHintSearch")]
+    pub const Search: Self = Self(2);
+    #[doc(alias = "SFSpeechRecognitionTaskHintConfirmation")]
+    pub const Confirmation: Self = Self(3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for SFSpeechRecognitionTaskHint {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for SFSpeechRecognitionTaskHint {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}

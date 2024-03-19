@@ -5,14 +5,25 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSPopUpArrowPosition {
-        NSPopUpNoArrow = 0,
-        NSPopUpArrowAtCenter = 1,
-        NSPopUpArrowAtBottom = 2,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSPopUpArrowPosition(pub NSUInteger);
+impl NSPopUpArrowPosition {
+    pub const NSPopUpNoArrow: Self = Self(0);
+    pub const NSPopUpArrowAtCenter: Self = Self(1);
+    pub const NSPopUpArrowAtBottom: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSPopUpArrowPosition {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSPopUpArrowPosition {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

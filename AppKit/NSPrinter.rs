@@ -5,24 +5,33 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSPrinterTableStatus {
-        NSPrinterTableOK = 0,
-        NSPrinterTableNotFound = 1,
-        NSPrinterTableError = 2,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSPrinterTableStatus(pub NSUInteger);
+impl NSPrinterTableStatus {
+    pub const NSPrinterTableOK: Self = Self(0);
+    pub const NSPrinterTableNotFound: Self = Self(1);
+    pub const NSPrinterTableError: Self = Self(2);
+}
 
-#[cfg(feature = "Foundation_NSString")]
-typed_extensible_enum!(
-    pub type NSPrinterTypeName = NSString;
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSPrinterTableStatus {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
 
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSPrinterTableStatus {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_extensible_enum!(
-    pub type NSPrinterPaperName = NSString;
-);
+pub type NSPrinterTypeName = NSString;
+
+// NS_TYPED_EXTENSIBLE_ENUM
+#[cfg(feature = "Foundation_NSString")]
+pub type NSPrinterPaperName = NSString;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

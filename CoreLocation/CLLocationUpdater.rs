@@ -5,21 +5,32 @@ use crate::Contacts::*;
 use crate::CoreLocation::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum CLLiveUpdateConfiguration {
-        #[doc(alias = "CLLiveUpdateConfigurationDefault")]
-        Default = 0,
-        #[doc(alias = "CLLiveUpdateConfigurationAutomotiveNavigation")]
-        AutomotiveNavigation = 1,
-        #[doc(alias = "CLLiveUpdateConfigurationOtherNavigation")]
-        OtherNavigation = 2,
-        #[doc(alias = "CLLiveUpdateConfigurationFitness")]
-        Fitness = 3,
-        #[doc(alias = "CLLiveUpdateConfigurationAirborne")]
-        Airborne = 4,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct CLLiveUpdateConfiguration(pub NSInteger);
+impl CLLiveUpdateConfiguration {
+    #[doc(alias = "CLLiveUpdateConfigurationDefault")]
+    pub const Default: Self = Self(0);
+    #[doc(alias = "CLLiveUpdateConfigurationAutomotiveNavigation")]
+    pub const AutomotiveNavigation: Self = Self(1);
+    #[doc(alias = "CLLiveUpdateConfigurationOtherNavigation")]
+    pub const OtherNavigation: Self = Self(2);
+    #[doc(alias = "CLLiveUpdateConfigurationFitness")]
+    pub const Fitness: Self = Self(3);
+    #[doc(alias = "CLLiveUpdateConfigurationAirborne")]
+    pub const Airborne: Self = Self(4);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for CLLiveUpdateConfiguration {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for CLLiveUpdateConfiguration {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

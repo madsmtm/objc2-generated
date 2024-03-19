@@ -11,66 +11,110 @@ extern "C" {
     pub static HKErrorDomain: &'static NSString;
 }
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum HKErrorCode {
-        HKUnknownError = 0,
-        #[deprecated]
-        HKNoError = HKErrorCode::HKUnknownError.0,
-        HKErrorHealthDataUnavailable = 1,
-        HKErrorHealthDataRestricted = 2,
-        HKErrorInvalidArgument = 3,
-        HKErrorAuthorizationDenied = 4,
-        HKErrorAuthorizationNotDetermined = 5,
-        HKErrorDatabaseInaccessible = 6,
-        HKErrorUserCanceled = 7,
-        HKErrorAnotherWorkoutSessionStarted = 8,
-        HKErrorUserExitedWorkoutSession = 9,
-        HKErrorRequiredAuthorizationDenied = 10,
-        HKErrorNoData = 11,
-        HKErrorWorkoutActivityNotAllowed = 12,
-        HKErrorDataSizeExceeded = 13,
-        HKErrorBackgroundWorkoutSessionNotAllowed = 14,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct HKErrorCode(pub NSInteger);
+impl HKErrorCode {
+    pub const HKUnknownError: Self = Self(0);
+    #[deprecated]
+    pub const HKNoError: Self = Self(HKErrorCode::HKUnknownError.0);
+    pub const HKErrorHealthDataUnavailable: Self = Self(1);
+    pub const HKErrorHealthDataRestricted: Self = Self(2);
+    pub const HKErrorInvalidArgument: Self = Self(3);
+    pub const HKErrorAuthorizationDenied: Self = Self(4);
+    pub const HKErrorAuthorizationNotDetermined: Self = Self(5);
+    pub const HKErrorDatabaseInaccessible: Self = Self(6);
+    pub const HKErrorUserCanceled: Self = Self(7);
+    pub const HKErrorAnotherWorkoutSessionStarted: Self = Self(8);
+    pub const HKErrorUserExitedWorkoutSession: Self = Self(9);
+    pub const HKErrorRequiredAuthorizationDenied: Self = Self(10);
+    pub const HKErrorNoData: Self = Self(11);
+    pub const HKErrorWorkoutActivityNotAllowed: Self = Self(12);
+    pub const HKErrorDataSizeExceeded: Self = Self(13);
+    pub const HKErrorBackgroundWorkoutSessionNotAllowed: Self = Self(14);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum HKUpdateFrequency {
-        #[doc(alias = "HKUpdateFrequencyImmediate")]
-        Immediate = 1,
-        #[doc(alias = "HKUpdateFrequencyHourly")]
-        Hourly = 2,
-        #[doc(alias = "HKUpdateFrequencyDaily")]
-        Daily = 3,
-        #[doc(alias = "HKUpdateFrequencyWeekly")]
-        Weekly = 4,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for HKErrorCode {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum HKAuthorizationStatus {
-        #[doc(alias = "HKAuthorizationStatusNotDetermined")]
-        NotDetermined = 0,
-        #[doc(alias = "HKAuthorizationStatusSharingDenied")]
-        SharingDenied = 1,
-        #[doc(alias = "HKAuthorizationStatusSharingAuthorized")]
-        SharingAuthorized = 2,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for HKErrorCode {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum HKAuthorizationRequestStatus {
-        #[doc(alias = "HKAuthorizationRequestStatusUnknown")]
-        Unknown = 0,
-        #[doc(alias = "HKAuthorizationRequestStatusShouldRequest")]
-        ShouldRequest = 1,
-        #[doc(alias = "HKAuthorizationRequestStatusUnnecessary")]
-        Unnecessary = 2,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct HKUpdateFrequency(pub NSInteger);
+impl HKUpdateFrequency {
+    #[doc(alias = "HKUpdateFrequencyImmediate")]
+    pub const Immediate: Self = Self(1);
+    #[doc(alias = "HKUpdateFrequencyHourly")]
+    pub const Hourly: Self = Self(2);
+    #[doc(alias = "HKUpdateFrequencyDaily")]
+    pub const Daily: Self = Self(3);
+    #[doc(alias = "HKUpdateFrequencyWeekly")]
+    pub const Weekly: Self = Self(4);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for HKUpdateFrequency {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for HKUpdateFrequency {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct HKAuthorizationStatus(pub NSInteger);
+impl HKAuthorizationStatus {
+    #[doc(alias = "HKAuthorizationStatusNotDetermined")]
+    pub const NotDetermined: Self = Self(0);
+    #[doc(alias = "HKAuthorizationStatusSharingDenied")]
+    pub const SharingDenied: Self = Self(1);
+    #[doc(alias = "HKAuthorizationStatusSharingAuthorized")]
+    pub const SharingAuthorized: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for HKAuthorizationStatus {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for HKAuthorizationStatus {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct HKAuthorizationRequestStatus(pub NSInteger);
+impl HKAuthorizationRequestStatus {
+    #[doc(alias = "HKAuthorizationRequestStatusUnknown")]
+    pub const Unknown: Self = Self(0);
+    #[doc(alias = "HKAuthorizationRequestStatusShouldRequest")]
+    pub const ShouldRequest: Self = Self(1);
+    #[doc(alias = "HKAuthorizationRequestStatusUnnecessary")]
+    pub const Unnecessary: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for HKAuthorizationRequestStatus {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for HKAuthorizationRequestStatus {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern "C" {
     #[cfg(all(feature = "Foundation_NSSet", feature = "Foundation_NSValue"))]

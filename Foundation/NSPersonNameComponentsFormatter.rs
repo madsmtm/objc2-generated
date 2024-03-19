@@ -3,28 +3,50 @@
 use crate::common::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSPersonNameComponentsFormatterStyle {
-        #[doc(alias = "NSPersonNameComponentsFormatterStyleDefault")]
-        Default = 0,
-        #[doc(alias = "NSPersonNameComponentsFormatterStyleShort")]
-        Short = 1,
-        #[doc(alias = "NSPersonNameComponentsFormatterStyleMedium")]
-        Medium = 2,
-        #[doc(alias = "NSPersonNameComponentsFormatterStyleLong")]
-        Long = 3,
-        #[doc(alias = "NSPersonNameComponentsFormatterStyleAbbreviated")]
-        Abbreviated = 4,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSPersonNameComponentsFormatterStyle(pub NSInteger);
+impl NSPersonNameComponentsFormatterStyle {
+    #[doc(alias = "NSPersonNameComponentsFormatterStyleDefault")]
+    pub const Default: Self = Self(0);
+    #[doc(alias = "NSPersonNameComponentsFormatterStyleShort")]
+    pub const Short: Self = Self(1);
+    #[doc(alias = "NSPersonNameComponentsFormatterStyleMedium")]
+    pub const Medium: Self = Self(2);
+    #[doc(alias = "NSPersonNameComponentsFormatterStyleLong")]
+    pub const Long: Self = Self(3);
+    #[doc(alias = "NSPersonNameComponentsFormatterStyleAbbreviated")]
+    pub const Abbreviated: Self = Self(4);
+}
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSPersonNameComponentsFormatterOptions {
-        NSPersonNameComponentsFormatterPhonetic = 1 << 1,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSPersonNameComponentsFormatterStyle {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSPersonNameComponentsFormatterStyle {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSPersonNameComponentsFormatterOptions(pub NSUInteger);
+impl NSPersonNameComponentsFormatterOptions {
+    pub const NSPersonNameComponentsFormatterPhonetic: Self = Self(1 << 1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSPersonNameComponentsFormatterOptions {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSPersonNameComponentsFormatterOptions {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

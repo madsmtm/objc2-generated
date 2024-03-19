@@ -3,15 +3,26 @@
 use crate::common::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSXMLDocumentContentKind {
-        NSXMLDocumentXMLKind = 0,
-        NSXMLDocumentXHTMLKind = 1,
-        NSXMLDocumentHTMLKind = 2,
-        NSXMLDocumentTextKind = 3,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSXMLDocumentContentKind(pub NSUInteger);
+impl NSXMLDocumentContentKind {
+    pub const NSXMLDocumentXMLKind: Self = Self(0);
+    pub const NSXMLDocumentXHTMLKind: Self = Self(1);
+    pub const NSXMLDocumentHTMLKind: Self = Self(2);
+    pub const NSXMLDocumentTextKind: Self = Self(3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSXMLDocumentContentKind {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSXMLDocumentContentKind {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

@@ -5,9 +5,8 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-typed_extensible_enum!(
-    pub type NSAppKitVersion = c_double;
-);
+// NS_TYPED_EXTENSIBLE_ENUM
+pub type NSAppKitVersion = c_double;
 
 extern "C" {
     pub static NSAppKitVersionNumber: NSAppKitVersion;
@@ -175,9 +174,8 @@ extern "C" {
     pub static NSEventTrackingRunLoopMode: &'static NSRunLoopMode;
 }
 
-typed_extensible_enum!(
-    pub type NSModalResponse = NSInteger;
-);
+// NS_TYPED_EXTENSIBLE_ENUM
+pub type NSModalResponse = NSInteger;
 
 pub static NSModalResponseStop: NSModalResponse = -1000;
 
@@ -187,62 +185,117 @@ pub static NSModalResponseContinue: NSModalResponse = -1002;
 
 pub const NSUpdateWindowsRunLoopOrdering: c_uint = 500000;
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSApplicationPresentationOptions {
-        NSApplicationPresentationDefault = 0,
-        NSApplicationPresentationAutoHideDock = 1 << 0,
-        NSApplicationPresentationHideDock = 1 << 1,
-        NSApplicationPresentationAutoHideMenuBar = 1 << 2,
-        NSApplicationPresentationHideMenuBar = 1 << 3,
-        NSApplicationPresentationDisableAppleMenu = 1 << 4,
-        NSApplicationPresentationDisableProcessSwitching = 1 << 5,
-        NSApplicationPresentationDisableForceQuit = 1 << 6,
-        NSApplicationPresentationDisableSessionTermination = 1 << 7,
-        NSApplicationPresentationDisableHideApplication = 1 << 8,
-        NSApplicationPresentationDisableMenuBarTransparency = 1 << 9,
-        NSApplicationPresentationFullScreen = 1 << 10,
-        NSApplicationPresentationAutoHideToolbar = 1 << 11,
-        NSApplicationPresentationDisableCursorLocationAssistance = 1 << 12,
-    }
-);
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSApplicationPresentationOptions(pub NSUInteger);
+impl NSApplicationPresentationOptions {
+    pub const NSApplicationPresentationDefault: Self = Self(0);
+    pub const NSApplicationPresentationAutoHideDock: Self = Self(1 << 0);
+    pub const NSApplicationPresentationHideDock: Self = Self(1 << 1);
+    pub const NSApplicationPresentationAutoHideMenuBar: Self = Self(1 << 2);
+    pub const NSApplicationPresentationHideMenuBar: Self = Self(1 << 3);
+    pub const NSApplicationPresentationDisableAppleMenu: Self = Self(1 << 4);
+    pub const NSApplicationPresentationDisableProcessSwitching: Self = Self(1 << 5);
+    pub const NSApplicationPresentationDisableForceQuit: Self = Self(1 << 6);
+    pub const NSApplicationPresentationDisableSessionTermination: Self = Self(1 << 7);
+    pub const NSApplicationPresentationDisableHideApplication: Self = Self(1 << 8);
+    pub const NSApplicationPresentationDisableMenuBarTransparency: Self = Self(1 << 9);
+    pub const NSApplicationPresentationFullScreen: Self = Self(1 << 10);
+    pub const NSApplicationPresentationAutoHideToolbar: Self = Self(1 << 11);
+    pub const NSApplicationPresentationDisableCursorLocationAssistance: Self = Self(1 << 12);
+}
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSApplicationOcclusionState {
-        #[doc(alias = "NSApplicationOcclusionStateVisible")]
-        Visible = 1 << 1,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSApplicationPresentationOptions {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
 
-ns_options!(
-    #[underlying(NSInteger)]
-    pub enum NSWindowListOptions {
-        NSWindowListOrderedFrontToBack = 1 << 0,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSApplicationPresentationOptions {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSApplicationOcclusionState(pub NSUInteger);
+impl NSApplicationOcclusionState {
+    #[doc(alias = "NSApplicationOcclusionStateVisible")]
+    pub const Visible: Self = Self(1 << 1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSApplicationOcclusionState {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSApplicationOcclusionState {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSWindowListOptions(pub NSInteger);
+impl NSWindowListOptions {
+    pub const NSWindowListOrderedFrontToBack: Self = Self(1 << 0);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSWindowListOptions {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSWindowListOptions {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 pub type NSModalSession = *mut c_void;
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSRequestUserAttentionType {
-        NSCriticalRequest = 0,
-        NSInformationalRequest = 10,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSRequestUserAttentionType(pub NSUInteger);
+impl NSRequestUserAttentionType {
+    pub const NSCriticalRequest: Self = Self(0);
+    pub const NSInformationalRequest: Self = Self(10);
+}
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSApplicationDelegateReply {
-        #[doc(alias = "NSApplicationDelegateReplySuccess")]
-        Success = 0,
-        #[doc(alias = "NSApplicationDelegateReplyCancel")]
-        Cancel = 1,
-        #[doc(alias = "NSApplicationDelegateReplyFailure")]
-        Failure = 2,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSRequestUserAttentionType {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSRequestUserAttentionType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSApplicationDelegateReply(pub NSUInteger);
+impl NSApplicationDelegateReply {
+    #[doc(alias = "NSApplicationDelegateReplySuccess")]
+    pub const Success: Self = Self(0);
+    #[doc(alias = "NSApplicationDelegateReplyCancel")]
+    pub const Cancel: Self = Self(1);
+    #[doc(alias = "NSApplicationDelegateReplyFailure")]
+    pub const Failure: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSApplicationDelegateReply {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSApplicationDelegateReply {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -672,24 +725,46 @@ extern_methods!(
     }
 );
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSApplicationTerminateReply {
-        NSTerminateCancel = 0,
-        NSTerminateNow = 1,
-        NSTerminateLater = 2,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSApplicationTerminateReply(pub NSUInteger);
+impl NSApplicationTerminateReply {
+    pub const NSTerminateCancel: Self = Self(0);
+    pub const NSTerminateNow: Self = Self(1);
+    pub const NSTerminateLater: Self = Self(2);
+}
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSApplicationPrintReply {
-        NSPrintingCancelled = 0,
-        NSPrintingSuccess = 1,
-        NSPrintingReplyLater = 2,
-        NSPrintingFailure = 3,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSApplicationTerminateReply {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSApplicationTerminateReply {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSApplicationPrintReply(pub NSUInteger);
+impl NSApplicationPrintReply {
+    pub const NSPrintingCancelled: Self = Self(0);
+    pub const NSPrintingSuccess: Self = Self(1);
+    pub const NSPrintingReplyLater: Self = Self(2);
+    pub const NSPrintingFailure: Self = Self(3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSApplicationPrintReply {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSApplicationPrintReply {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_protocol!(
     pub unsafe trait NSApplicationDelegate: NSObjectProtocol + IsMainThreadOnly {
@@ -1080,10 +1155,9 @@ extern_methods!(
     }
 );
 
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type NSAboutPanelOptionKey = NSString;
-);
+pub type NSAboutPanelOptionKey = NSString;
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]
@@ -1148,19 +1222,30 @@ extern_methods!(
     }
 );
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSRemoteNotificationType {
-        #[doc(alias = "NSRemoteNotificationTypeNone")]
-        None = 0,
-        #[doc(alias = "NSRemoteNotificationTypeBadge")]
-        Badge = 1 << 0,
-        #[doc(alias = "NSRemoteNotificationTypeSound")]
-        Sound = 1 << 1,
-        #[doc(alias = "NSRemoteNotificationTypeAlert")]
-        Alert = 1 << 2,
-    }
-);
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSRemoteNotificationType(pub NSUInteger);
+impl NSRemoteNotificationType {
+    #[doc(alias = "NSRemoteNotificationTypeNone")]
+    pub const None: Self = Self(0);
+    #[doc(alias = "NSRemoteNotificationTypeBadge")]
+    pub const Badge: Self = Self(1 << 0);
+    #[doc(alias = "NSRemoteNotificationTypeSound")]
+    pub const Sound: Self = Self(1 << 1);
+    #[doc(alias = "NSRemoteNotificationTypeAlert")]
+    pub const Alert: Self = Self(1 << 2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSRemoteNotificationType {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSRemoteNotificationType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_methods!(
     /// NSRemoteNotifications

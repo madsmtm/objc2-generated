@@ -5,19 +5,30 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::GameKit::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum GKChallengeState {
-        #[doc(alias = "GKChallengeStateInvalid")]
-        Invalid = 0,
-        #[doc(alias = "GKChallengeStatePending")]
-        Pending = 1,
-        #[doc(alias = "GKChallengeStateCompleted")]
-        Completed = 2,
-        #[doc(alias = "GKChallengeStateDeclined")]
-        Declined = 3,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct GKChallengeState(pub NSInteger);
+impl GKChallengeState {
+    #[doc(alias = "GKChallengeStateInvalid")]
+    pub const Invalid: Self = Self(0);
+    #[doc(alias = "GKChallengeStatePending")]
+    pub const Pending: Self = Self(1);
+    #[doc(alias = "GKChallengeStateCompleted")]
+    pub const Completed: Self = Self(2);
+    #[doc(alias = "GKChallengeStateDeclined")]
+    pub const Declined: Self = Self(3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for GKChallengeState {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for GKChallengeState {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

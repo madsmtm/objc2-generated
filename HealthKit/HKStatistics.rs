@@ -6,21 +6,33 @@ use crate::Foundation::*;
 use crate::HealthKit::*;
 use crate::UniformTypeIdentifiers::*;
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum HKStatisticsOptions {
-        HKStatisticsOptionNone = 0,
-        HKStatisticsOptionSeparateBySource = 1 << 0,
-        HKStatisticsOptionDiscreteAverage = 1 << 1,
-        HKStatisticsOptionDiscreteMin = 1 << 2,
-        HKStatisticsOptionDiscreteMax = 1 << 3,
-        HKStatisticsOptionCumulativeSum = 1 << 4,
-        HKStatisticsOptionMostRecent = 1 << 5,
-        #[deprecated]
-        HKStatisticsOptionDiscreteMostRecent = HKStatisticsOptions::HKStatisticsOptionMostRecent.0,
-        HKStatisticsOptionDuration = 1 << 6,
-    }
-);
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct HKStatisticsOptions(pub NSUInteger);
+impl HKStatisticsOptions {
+    pub const HKStatisticsOptionNone: Self = Self(0);
+    pub const HKStatisticsOptionSeparateBySource: Self = Self(1 << 0);
+    pub const HKStatisticsOptionDiscreteAverage: Self = Self(1 << 1);
+    pub const HKStatisticsOptionDiscreteMin: Self = Self(1 << 2);
+    pub const HKStatisticsOptionDiscreteMax: Self = Self(1 << 3);
+    pub const HKStatisticsOptionCumulativeSum: Self = Self(1 << 4);
+    pub const HKStatisticsOptionMostRecent: Self = Self(1 << 5);
+    #[deprecated]
+    pub const HKStatisticsOptionDiscreteMostRecent: Self =
+        Self(HKStatisticsOptions::HKStatisticsOptionMostRecent.0);
+    pub const HKStatisticsOptionDuration: Self = Self(1 << 6);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for HKStatisticsOptions {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for HKStatisticsOptions {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

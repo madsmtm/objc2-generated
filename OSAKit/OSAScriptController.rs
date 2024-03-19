@@ -5,14 +5,25 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::OSAKit::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum OSAScriptState {
-        OSAScriptStopped = 0,
-        OSAScriptRunning = 1,
-        OSAScriptRecording = 2,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct OSAScriptState(pub NSInteger);
+impl OSAScriptState {
+    pub const OSAScriptStopped: Self = Self(0);
+    pub const OSAScriptRunning: Self = Self(1);
+    pub const OSAScriptRecording: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for OSAScriptState {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for OSAScriptState {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

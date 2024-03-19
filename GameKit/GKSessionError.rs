@@ -10,24 +10,35 @@ extern "C" {
     pub static GKSessionErrorDomain: &'static NSString;
 }
 
-ns_enum!(
-    #[underlying(c_int)]
-    pub enum GKSessionError {
-        GKSessionInvalidParameterError = 30500,
-        GKSessionPeerNotFoundError = 30501,
-        GKSessionDeclinedError = 30502,
-        GKSessionTimedOutError = 30503,
-        GKSessionCancelledError = 30504,
-        GKSessionConnectionFailedError = 30505,
-        GKSessionConnectionClosedError = 30506,
-        GKSessionDataTooBigError = 30507,
-        GKSessionNotConnectedError = 30508,
-        GKSessionCannotEnableError = 30509,
-        GKSessionInProgressError = 30510,
-        GKSessionConnectivityError = 30201,
-        GKSessionTransportError = 30202,
-        GKSessionInternalError = 30203,
-        GKSessionUnknownError = 30204,
-        GKSessionSystemError = 30205,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct GKSessionError(pub c_int);
+impl GKSessionError {
+    pub const GKSessionInvalidParameterError: Self = Self(30500);
+    pub const GKSessionPeerNotFoundError: Self = Self(30501);
+    pub const GKSessionDeclinedError: Self = Self(30502);
+    pub const GKSessionTimedOutError: Self = Self(30503);
+    pub const GKSessionCancelledError: Self = Self(30504);
+    pub const GKSessionConnectionFailedError: Self = Self(30505);
+    pub const GKSessionConnectionClosedError: Self = Self(30506);
+    pub const GKSessionDataTooBigError: Self = Self(30507);
+    pub const GKSessionNotConnectedError: Self = Self(30508);
+    pub const GKSessionCannotEnableError: Self = Self(30509);
+    pub const GKSessionInProgressError: Self = Self(30510);
+    pub const GKSessionConnectivityError: Self = Self(30201);
+    pub const GKSessionTransportError: Self = Self(30202);
+    pub const GKSessionInternalError: Self = Self(30203);
+    pub const GKSessionUnknownError: Self = Self(30204);
+    pub const GKSessionSystemError: Self = Self(30205);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for GKSessionError {
+    const ENCODING: Encoding = c_int::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for GKSessionError {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}

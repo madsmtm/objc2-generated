@@ -6,17 +6,28 @@ use crate::Foundation::*;
 use crate::HealthKit::*;
 use crate::UniformTypeIdentifiers::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum HKAppleWalkingSteadinessClassification {
-        #[doc(alias = "HKAppleWalkingSteadinessClassificationOK")]
-        OK = 1,
-        #[doc(alias = "HKAppleWalkingSteadinessClassificationLow")]
-        Low = 2,
-        #[doc(alias = "HKAppleWalkingSteadinessClassificationVeryLow")]
-        VeryLow = 3,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct HKAppleWalkingSteadinessClassification(pub NSInteger);
+impl HKAppleWalkingSteadinessClassification {
+    #[doc(alias = "HKAppleWalkingSteadinessClassificationOK")]
+    pub const OK: Self = Self(1);
+    #[doc(alias = "HKAppleWalkingSteadinessClassificationLow")]
+    pub const Low: Self = Self(2);
+    #[doc(alias = "HKAppleWalkingSteadinessClassificationVeryLow")]
+    pub const VeryLow: Self = Self(3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for HKAppleWalkingSteadinessClassification {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for HKAppleWalkingSteadinessClassification {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern "C" {
     #[cfg(all(feature = "Foundation_NSError", feature = "HealthKit_HKQuantity"))]

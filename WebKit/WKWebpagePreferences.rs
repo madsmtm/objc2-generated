@@ -5,17 +5,28 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::WebKit::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum WKContentMode {
-        #[doc(alias = "WKContentModeRecommended")]
-        Recommended = 0,
-        #[doc(alias = "WKContentModeMobile")]
-        Mobile = 1,
-        #[doc(alias = "WKContentModeDesktop")]
-        Desktop = 2,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct WKContentMode(pub NSInteger);
+impl WKContentMode {
+    #[doc(alias = "WKContentModeRecommended")]
+    pub const Recommended: Self = Self(0);
+    #[doc(alias = "WKContentModeMobile")]
+    pub const Mobile: Self = Self(1);
+    #[doc(alias = "WKContentModeDesktop")]
+    pub const Desktop: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for WKContentMode {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for WKContentMode {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

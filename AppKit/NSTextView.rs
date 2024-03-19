@@ -5,24 +5,46 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSSelectionGranularity {
-        NSSelectByCharacter = 0,
-        NSSelectByWord = 1,
-        NSSelectByParagraph = 2,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSSelectionGranularity(pub NSUInteger);
+impl NSSelectionGranularity {
+    pub const NSSelectByCharacter: Self = Self(0);
+    pub const NSSelectByWord: Self = Self(1);
+    pub const NSSelectByParagraph: Self = Self(2);
+}
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSSelectionAffinity {
-        #[doc(alias = "NSSelectionAffinityUpstream")]
-        Upstream = 0,
-        #[doc(alias = "NSSelectionAffinityDownstream")]
-        Downstream = 1,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSSelectionGranularity {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSSelectionGranularity {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSSelectionAffinity(pub NSUInteger);
+impl NSSelectionAffinity {
+    #[doc(alias = "NSSelectionAffinityUpstream")]
+    pub const Upstream: Self = Self(0);
+    #[doc(alias = "NSSelectionAffinityDownstream")]
+    pub const Downstream: Self = Self(1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSSelectionAffinity {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSSelectionAffinity {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]
@@ -1946,41 +1968,51 @@ extern "C" {
     pub static NSTextViewDidSwitchToNSLayoutManagerNotification: &'static NSNotificationName;
 }
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSFindPanelAction {
-        #[doc(alias = "NSFindPanelActionShowFindPanel")]
-        ShowFindPanel = 1,
-        #[doc(alias = "NSFindPanelActionNext")]
-        Next = 2,
-        #[doc(alias = "NSFindPanelActionPrevious")]
-        Previous = 3,
-        #[doc(alias = "NSFindPanelActionReplaceAll")]
-        ReplaceAll = 4,
-        #[doc(alias = "NSFindPanelActionReplace")]
-        Replace = 5,
-        #[doc(alias = "NSFindPanelActionReplaceAndFind")]
-        ReplaceAndFind = 6,
-        #[doc(alias = "NSFindPanelActionSetFindString")]
-        SetFindString = 7,
-        #[doc(alias = "NSFindPanelActionReplaceAllInSelection")]
-        ReplaceAllInSelection = 8,
-        #[doc(alias = "NSFindPanelActionSelectAll")]
-        SelectAll = 9,
-        #[doc(alias = "NSFindPanelActionSelectAllInSelection")]
-        SelectAllInSelection = 10,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSFindPanelAction(pub NSUInteger);
+impl NSFindPanelAction {
+    #[doc(alias = "NSFindPanelActionShowFindPanel")]
+    pub const ShowFindPanel: Self = Self(1);
+    #[doc(alias = "NSFindPanelActionNext")]
+    pub const Next: Self = Self(2);
+    #[doc(alias = "NSFindPanelActionPrevious")]
+    pub const Previous: Self = Self(3);
+    #[doc(alias = "NSFindPanelActionReplaceAll")]
+    pub const ReplaceAll: Self = Self(4);
+    #[doc(alias = "NSFindPanelActionReplace")]
+    pub const Replace: Self = Self(5);
+    #[doc(alias = "NSFindPanelActionReplaceAndFind")]
+    pub const ReplaceAndFind: Self = Self(6);
+    #[doc(alias = "NSFindPanelActionSetFindString")]
+    pub const SetFindString: Self = Self(7);
+    #[doc(alias = "NSFindPanelActionReplaceAllInSelection")]
+    pub const ReplaceAllInSelection: Self = Self(8);
+    #[doc(alias = "NSFindPanelActionSelectAll")]
+    pub const SelectAll: Self = Self(9);
+    #[doc(alias = "NSFindPanelActionSelectAllInSelection")]
+    pub const SelectAllInSelection: Self = Self(10);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSFindPanelAction {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSFindPanelAction {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern "C" {
     #[cfg(all(feature = "AppKit_NSPasteboard", feature = "Foundation_NSString"))]
     pub static NSFindPanelSearchOptionsPboardType: &'static NSPasteboardType;
 }
 
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type NSPasteboardTypeFindPanelSearchOptionKey = NSString;
-);
+pub type NSPasteboardTypeFindPanelSearchOptionKey = NSString;
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]
@@ -1992,16 +2024,27 @@ extern "C" {
     pub static NSFindPanelSubstringMatch: &'static NSPasteboardTypeFindPanelSearchOptionKey;
 }
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSFindPanelSubstringMatchType {
-        #[doc(alias = "NSFindPanelSubstringMatchTypeContains")]
-        Contains = 0,
-        #[doc(alias = "NSFindPanelSubstringMatchTypeStartsWith")]
-        StartsWith = 1,
-        #[doc(alias = "NSFindPanelSubstringMatchTypeFullWord")]
-        FullWord = 2,
-        #[doc(alias = "NSFindPanelSubstringMatchTypeEndsWith")]
-        EndsWith = 3,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSFindPanelSubstringMatchType(pub NSUInteger);
+impl NSFindPanelSubstringMatchType {
+    #[doc(alias = "NSFindPanelSubstringMatchTypeContains")]
+    pub const Contains: Self = Self(0);
+    #[doc(alias = "NSFindPanelSubstringMatchTypeStartsWith")]
+    pub const StartsWith: Self = Self(1);
+    #[doc(alias = "NSFindPanelSubstringMatchTypeFullWord")]
+    pub const FullWord: Self = Self(2);
+    #[doc(alias = "NSFindPanelSubstringMatchTypeEndsWith")]
+    pub const EndsWith: Self = Self(3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSFindPanelSubstringMatchType {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSFindPanelSubstringMatchType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}

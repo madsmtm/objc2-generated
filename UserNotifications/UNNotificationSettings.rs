@@ -5,57 +5,101 @@ use crate::CoreLocation::*;
 use crate::Foundation::*;
 use crate::UserNotifications::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum UNAuthorizationStatus {
-        #[doc(alias = "UNAuthorizationStatusNotDetermined")]
-        NotDetermined = 0,
-        #[doc(alias = "UNAuthorizationStatusDenied")]
-        Denied = 1,
-        #[doc(alias = "UNAuthorizationStatusAuthorized")]
-        Authorized = 2,
-        #[doc(alias = "UNAuthorizationStatusProvisional")]
-        Provisional = 3,
-        #[doc(alias = "UNAuthorizationStatusEphemeral")]
-        Ephemeral = 4,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct UNAuthorizationStatus(pub NSInteger);
+impl UNAuthorizationStatus {
+    #[doc(alias = "UNAuthorizationStatusNotDetermined")]
+    pub const NotDetermined: Self = Self(0);
+    #[doc(alias = "UNAuthorizationStatusDenied")]
+    pub const Denied: Self = Self(1);
+    #[doc(alias = "UNAuthorizationStatusAuthorized")]
+    pub const Authorized: Self = Self(2);
+    #[doc(alias = "UNAuthorizationStatusProvisional")]
+    pub const Provisional: Self = Self(3);
+    #[doc(alias = "UNAuthorizationStatusEphemeral")]
+    pub const Ephemeral: Self = Self(4);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum UNShowPreviewsSetting {
-        #[doc(alias = "UNShowPreviewsSettingAlways")]
-        Always = 0,
-        #[doc(alias = "UNShowPreviewsSettingWhenAuthenticated")]
-        WhenAuthenticated = 1,
-        #[doc(alias = "UNShowPreviewsSettingNever")]
-        Never = 2,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for UNAuthorizationStatus {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum UNNotificationSetting {
-        #[doc(alias = "UNNotificationSettingNotSupported")]
-        NotSupported = 0,
-        #[doc(alias = "UNNotificationSettingDisabled")]
-        Disabled = 1,
-        #[doc(alias = "UNNotificationSettingEnabled")]
-        Enabled = 2,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for UNAuthorizationStatus {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum UNAlertStyle {
-        #[doc(alias = "UNAlertStyleNone")]
-        None = 0,
-        #[doc(alias = "UNAlertStyleBanner")]
-        Banner = 1,
-        #[doc(alias = "UNAlertStyleAlert")]
-        Alert = 2,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct UNShowPreviewsSetting(pub NSInteger);
+impl UNShowPreviewsSetting {
+    #[doc(alias = "UNShowPreviewsSettingAlways")]
+    pub const Always: Self = Self(0);
+    #[doc(alias = "UNShowPreviewsSettingWhenAuthenticated")]
+    pub const WhenAuthenticated: Self = Self(1);
+    #[doc(alias = "UNShowPreviewsSettingNever")]
+    pub const Never: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for UNShowPreviewsSetting {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for UNShowPreviewsSetting {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct UNNotificationSetting(pub NSInteger);
+impl UNNotificationSetting {
+    #[doc(alias = "UNNotificationSettingNotSupported")]
+    pub const NotSupported: Self = Self(0);
+    #[doc(alias = "UNNotificationSettingDisabled")]
+    pub const Disabled: Self = Self(1);
+    #[doc(alias = "UNNotificationSettingEnabled")]
+    pub const Enabled: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for UNNotificationSetting {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for UNNotificationSetting {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct UNAlertStyle(pub NSInteger);
+impl UNAlertStyle {
+    #[doc(alias = "UNAlertStyleNone")]
+    pub const None: Self = Self(0);
+    #[doc(alias = "UNAlertStyleBanner")]
+    pub const Banner: Self = Self(1);
+    #[doc(alias = "UNAlertStyleAlert")]
+    pub const Alert: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for UNAlertStyle {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for UNAlertStyle {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

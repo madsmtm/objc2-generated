@@ -3,36 +3,58 @@
 use crate::common::*;
 use crate::Foundation::*;
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSByteCountFormatterUnits {
-        NSByteCountFormatterUseDefault = 0,
-        NSByteCountFormatterUseBytes = 1 << 0,
-        NSByteCountFormatterUseKB = 1 << 1,
-        NSByteCountFormatterUseMB = 1 << 2,
-        NSByteCountFormatterUseGB = 1 << 3,
-        NSByteCountFormatterUseTB = 1 << 4,
-        NSByteCountFormatterUsePB = 1 << 5,
-        NSByteCountFormatterUseEB = 1 << 6,
-        NSByteCountFormatterUseZB = 1 << 7,
-        NSByteCountFormatterUseYBOrHigher = 0x0FF << 8,
-        NSByteCountFormatterUseAll = 0x0FFFF,
-    }
-);
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSByteCountFormatterUnits(pub NSUInteger);
+impl NSByteCountFormatterUnits {
+    pub const NSByteCountFormatterUseDefault: Self = Self(0);
+    pub const NSByteCountFormatterUseBytes: Self = Self(1 << 0);
+    pub const NSByteCountFormatterUseKB: Self = Self(1 << 1);
+    pub const NSByteCountFormatterUseMB: Self = Self(1 << 2);
+    pub const NSByteCountFormatterUseGB: Self = Self(1 << 3);
+    pub const NSByteCountFormatterUseTB: Self = Self(1 << 4);
+    pub const NSByteCountFormatterUsePB: Self = Self(1 << 5);
+    pub const NSByteCountFormatterUseEB: Self = Self(1 << 6);
+    pub const NSByteCountFormatterUseZB: Self = Self(1 << 7);
+    pub const NSByteCountFormatterUseYBOrHigher: Self = Self(0x0FF << 8);
+    pub const NSByteCountFormatterUseAll: Self = Self(0x0FFFF);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSByteCountFormatterCountStyle {
-        #[doc(alias = "NSByteCountFormatterCountStyleFile")]
-        File = 0,
-        #[doc(alias = "NSByteCountFormatterCountStyleMemory")]
-        Memory = 1,
-        #[doc(alias = "NSByteCountFormatterCountStyleDecimal")]
-        Decimal = 2,
-        #[doc(alias = "NSByteCountFormatterCountStyleBinary")]
-        Binary = 3,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSByteCountFormatterUnits {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSByteCountFormatterUnits {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSByteCountFormatterCountStyle(pub NSInteger);
+impl NSByteCountFormatterCountStyle {
+    #[doc(alias = "NSByteCountFormatterCountStyleFile")]
+    pub const File: Self = Self(0);
+    #[doc(alias = "NSByteCountFormatterCountStyleMemory")]
+    pub const Memory: Self = Self(1);
+    #[doc(alias = "NSByteCountFormatterCountStyleDecimal")]
+    pub const Decimal: Self = Self(2);
+    #[doc(alias = "NSByteCountFormatterCountStyleBinary")]
+    pub const Binary: Self = Self(3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSByteCountFormatterCountStyle {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSByteCountFormatterCountStyle {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

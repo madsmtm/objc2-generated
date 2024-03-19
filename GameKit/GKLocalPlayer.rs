@@ -240,19 +240,30 @@ extern_methods!(
     }
 );
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum GKFriendsAuthorizationStatus {
-        #[doc(alias = "GKFriendsAuthorizationStatusNotDetermined")]
-        NotDetermined = 0,
-        #[doc(alias = "GKFriendsAuthorizationStatusRestricted")]
-        Restricted = 1,
-        #[doc(alias = "GKFriendsAuthorizationStatusDenied")]
-        Denied = 2,
-        #[doc(alias = "GKFriendsAuthorizationStatusAuthorized")]
-        Authorized = 3,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct GKFriendsAuthorizationStatus(pub NSInteger);
+impl GKFriendsAuthorizationStatus {
+    #[doc(alias = "GKFriendsAuthorizationStatusNotDetermined")]
+    pub const NotDetermined: Self = Self(0);
+    #[doc(alias = "GKFriendsAuthorizationStatusRestricted")]
+    pub const Restricted: Self = Self(1);
+    #[doc(alias = "GKFriendsAuthorizationStatusDenied")]
+    pub const Denied: Self = Self(2);
+    #[doc(alias = "GKFriendsAuthorizationStatusAuthorized")]
+    pub const Authorized: Self = Self(3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for GKFriendsAuthorizationStatus {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for GKFriendsAuthorizationStatus {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_methods!(
     /// FriendsList

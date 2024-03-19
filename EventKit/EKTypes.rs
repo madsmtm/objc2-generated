@@ -7,252 +7,417 @@ use crate::EventKit::*;
 use crate::Foundation::*;
 use crate::MapKit::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum EKAuthorizationStatus {
-        #[doc(alias = "EKAuthorizationStatusNotDetermined")]
-        NotDetermined = 0,
-        #[doc(alias = "EKAuthorizationStatusRestricted")]
-        Restricted = 1,
-        #[doc(alias = "EKAuthorizationStatusDenied")]
-        Denied = 2,
-        #[doc(alias = "EKAuthorizationStatusFullAccess")]
-        FullAccess = 3,
-        #[doc(alias = "EKAuthorizationStatusWriteOnly")]
-        WriteOnly = 4,
-        #[deprecated = "Check for full access or write only access"]
-        #[doc(alias = "EKAuthorizationStatusAuthorized")]
-        Authorized = EKAuthorizationStatus::FullAccess.0,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct EKAuthorizationStatus(pub NSInteger);
+impl EKAuthorizationStatus {
+    #[doc(alias = "EKAuthorizationStatusNotDetermined")]
+    pub const NotDetermined: Self = Self(0);
+    #[doc(alias = "EKAuthorizationStatusRestricted")]
+    pub const Restricted: Self = Self(1);
+    #[doc(alias = "EKAuthorizationStatusDenied")]
+    pub const Denied: Self = Self(2);
+    #[doc(alias = "EKAuthorizationStatusFullAccess")]
+    pub const FullAccess: Self = Self(3);
+    #[doc(alias = "EKAuthorizationStatusWriteOnly")]
+    pub const WriteOnly: Self = Self(4);
+    #[deprecated = "Check for full access or write only access"]
+    #[doc(alias = "EKAuthorizationStatusAuthorized")]
+    pub const Authorized: Self = Self(EKAuthorizationStatus::FullAccess.0);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum EKWeekday {
-        #[doc(alias = "EKWeekdaySunday")]
-        Sunday = 1,
-        #[doc(alias = "EKWeekdayMonday")]
-        Monday = 2,
-        #[doc(alias = "EKWeekdayTuesday")]
-        Tuesday = 3,
-        #[doc(alias = "EKWeekdayWednesday")]
-        Wednesday = 4,
-        #[doc(alias = "EKWeekdayThursday")]
-        Thursday = 5,
-        #[doc(alias = "EKWeekdayFriday")]
-        Friday = 6,
-        #[doc(alias = "EKWeekdaySaturday")]
-        Saturday = 7,
-        #[deprecated = "Use EKWeekdaySunday instead"]
-        EKSunday = EKWeekday::Sunday.0,
-        #[deprecated = "Use EKWeekdayMonday instead"]
-        EKMonday = EKWeekday::Monday.0,
-        #[deprecated = "Use EKWeekdayTuesday instead"]
-        EKTuesday = EKWeekday::Tuesday.0,
-        #[deprecated = "Use EKWeekdayWednesday instead"]
-        EKWednesday = EKWeekday::Wednesday.0,
-        #[deprecated = "Use EKWeekdayThursday instead"]
-        EKThursday = EKWeekday::Thursday.0,
-        #[deprecated = "Use EKWeekdayFriday instead"]
-        EKFriday = EKWeekday::Friday.0,
-        #[deprecated = "Use EKWeekdaySaturday instead"]
-        EKSaturday = EKWeekday::Saturday.0,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for EKAuthorizationStatus {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum EKRecurrenceFrequency {
-        #[doc(alias = "EKRecurrenceFrequencyDaily")]
-        Daily = 0,
-        #[doc(alias = "EKRecurrenceFrequencyWeekly")]
-        Weekly = 1,
-        #[doc(alias = "EKRecurrenceFrequencyMonthly")]
-        Monthly = 2,
-        #[doc(alias = "EKRecurrenceFrequencyYearly")]
-        Yearly = 3,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for EKAuthorizationStatus {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum EKParticipantType {
-        #[doc(alias = "EKParticipantTypeUnknown")]
-        Unknown = 0,
-        #[doc(alias = "EKParticipantTypePerson")]
-        Person = 1,
-        #[doc(alias = "EKParticipantTypeRoom")]
-        Room = 2,
-        #[doc(alias = "EKParticipantTypeResource")]
-        Resource = 3,
-        #[doc(alias = "EKParticipantTypeGroup")]
-        Group = 4,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct EKWeekday(pub NSInteger);
+impl EKWeekday {
+    #[doc(alias = "EKWeekdaySunday")]
+    pub const Sunday: Self = Self(1);
+    #[doc(alias = "EKWeekdayMonday")]
+    pub const Monday: Self = Self(2);
+    #[doc(alias = "EKWeekdayTuesday")]
+    pub const Tuesday: Self = Self(3);
+    #[doc(alias = "EKWeekdayWednesday")]
+    pub const Wednesday: Self = Self(4);
+    #[doc(alias = "EKWeekdayThursday")]
+    pub const Thursday: Self = Self(5);
+    #[doc(alias = "EKWeekdayFriday")]
+    pub const Friday: Self = Self(6);
+    #[doc(alias = "EKWeekdaySaturday")]
+    pub const Saturday: Self = Self(7);
+    #[deprecated = "Use EKWeekdaySunday instead"]
+    pub const EKSunday: Self = Self(EKWeekday::Sunday.0);
+    #[deprecated = "Use EKWeekdayMonday instead"]
+    pub const EKMonday: Self = Self(EKWeekday::Monday.0);
+    #[deprecated = "Use EKWeekdayTuesday instead"]
+    pub const EKTuesday: Self = Self(EKWeekday::Tuesday.0);
+    #[deprecated = "Use EKWeekdayWednesday instead"]
+    pub const EKWednesday: Self = Self(EKWeekday::Wednesday.0);
+    #[deprecated = "Use EKWeekdayThursday instead"]
+    pub const EKThursday: Self = Self(EKWeekday::Thursday.0);
+    #[deprecated = "Use EKWeekdayFriday instead"]
+    pub const EKFriday: Self = Self(EKWeekday::Friday.0);
+    #[deprecated = "Use EKWeekdaySaturday instead"]
+    pub const EKSaturday: Self = Self(EKWeekday::Saturday.0);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum EKParticipantRole {
-        #[doc(alias = "EKParticipantRoleUnknown")]
-        Unknown = 0,
-        #[doc(alias = "EKParticipantRoleRequired")]
-        Required = 1,
-        #[doc(alias = "EKParticipantRoleOptional")]
-        Optional = 2,
-        #[doc(alias = "EKParticipantRoleChair")]
-        Chair = 3,
-        #[doc(alias = "EKParticipantRoleNonParticipant")]
-        NonParticipant = 4,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for EKWeekday {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum EKParticipantScheduleStatus {
-        #[doc(alias = "EKParticipantScheduleStatusNone")]
-        None = 0,
-        #[doc(alias = "EKParticipantScheduleStatusPending")]
-        Pending = 1,
-        #[doc(alias = "EKParticipantScheduleStatusSent")]
-        Sent = 2,
-        #[doc(alias = "EKParticipantScheduleStatusDelivered")]
-        Delivered = 3,
-        #[doc(alias = "EKParticipantScheduleStatusRecipientNotRecognized")]
-        RecipientNotRecognized = 4,
-        #[doc(alias = "EKParticipantScheduleStatusNoPrivileges")]
-        NoPrivileges = 5,
-        #[doc(alias = "EKParticipantScheduleStatusDeliveryFailed")]
-        DeliveryFailed = 6,
-        #[doc(alias = "EKParticipantScheduleStatusCannotDeliver")]
-        CannotDeliver = 7,
-        #[doc(alias = "EKParticipantScheduleStatusRecipientNotAllowed")]
-        RecipientNotAllowed = 8,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for EKWeekday {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum EKParticipantStatus {
-        #[doc(alias = "EKParticipantStatusUnknown")]
-        Unknown = 0,
-        #[doc(alias = "EKParticipantStatusPending")]
-        Pending = 1,
-        #[doc(alias = "EKParticipantStatusAccepted")]
-        Accepted = 2,
-        #[doc(alias = "EKParticipantStatusDeclined")]
-        Declined = 3,
-        #[doc(alias = "EKParticipantStatusTentative")]
-        Tentative = 4,
-        #[doc(alias = "EKParticipantStatusDelegated")]
-        Delegated = 5,
-        #[doc(alias = "EKParticipantStatusCompleted")]
-        Completed = 6,
-        #[doc(alias = "EKParticipantStatusInProcess")]
-        InProcess = 7,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct EKRecurrenceFrequency(pub NSInteger);
+impl EKRecurrenceFrequency {
+    #[doc(alias = "EKRecurrenceFrequencyDaily")]
+    pub const Daily: Self = Self(0);
+    #[doc(alias = "EKRecurrenceFrequencyWeekly")]
+    pub const Weekly: Self = Self(1);
+    #[doc(alias = "EKRecurrenceFrequencyMonthly")]
+    pub const Monthly: Self = Self(2);
+    #[doc(alias = "EKRecurrenceFrequencyYearly")]
+    pub const Yearly: Self = Self(3);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum EKCalendarType {
-        #[doc(alias = "EKCalendarTypeLocal")]
-        Local = 0,
-        #[doc(alias = "EKCalendarTypeCalDAV")]
-        CalDAV = 1,
-        #[doc(alias = "EKCalendarTypeExchange")]
-        Exchange = 2,
-        #[doc(alias = "EKCalendarTypeSubscription")]
-        Subscription = 3,
-        #[doc(alias = "EKCalendarTypeBirthday")]
-        Birthday = 4,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for EKRecurrenceFrequency {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum EKCalendarEventAvailabilityMask {
-        EKCalendarEventAvailabilityNone = 0,
-        EKCalendarEventAvailabilityBusy = 1 << 0,
-        EKCalendarEventAvailabilityFree = 1 << 1,
-        EKCalendarEventAvailabilityTentative = 1 << 2,
-        EKCalendarEventAvailabilityUnavailable = 1 << 3,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for EKRecurrenceFrequency {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum EKSourceType {
-        #[doc(alias = "EKSourceTypeLocal")]
-        Local = 0,
-        #[doc(alias = "EKSourceTypeExchange")]
-        Exchange = 1,
-        #[doc(alias = "EKSourceTypeCalDAV")]
-        CalDAV = 2,
-        #[doc(alias = "EKSourceTypeMobileMe")]
-        MobileMe = 3,
-        #[doc(alias = "EKSourceTypeSubscribed")]
-        Subscribed = 4,
-        #[doc(alias = "EKSourceTypeBirthdays")]
-        Birthdays = 5,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct EKParticipantType(pub NSInteger);
+impl EKParticipantType {
+    #[doc(alias = "EKParticipantTypeUnknown")]
+    pub const Unknown: Self = Self(0);
+    #[doc(alias = "EKParticipantTypePerson")]
+    pub const Person: Self = Self(1);
+    #[doc(alias = "EKParticipantTypeRoom")]
+    pub const Room: Self = Self(2);
+    #[doc(alias = "EKParticipantTypeResource")]
+    pub const Resource: Self = Self(3);
+    #[doc(alias = "EKParticipantTypeGroup")]
+    pub const Group: Self = Self(4);
+}
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum EKEntityType {
-        #[doc(alias = "EKEntityTypeEvent")]
-        Event = 0,
-        #[doc(alias = "EKEntityTypeReminder")]
-        Reminder = 1,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for EKParticipantType {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum EKEntityMask {
-        #[doc(alias = "EKEntityMaskEvent")]
-        Event = 1 << EKEntityType::Event.0,
-        #[doc(alias = "EKEntityMaskReminder")]
-        Reminder = 1 << EKEntityType::Reminder.0,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for EKParticipantType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum EKAlarmProximity {
-        #[doc(alias = "EKAlarmProximityNone")]
-        None = 0,
-        #[doc(alias = "EKAlarmProximityEnter")]
-        Enter = 1,
-        #[doc(alias = "EKAlarmProximityLeave")]
-        Leave = 2,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct EKParticipantRole(pub NSInteger);
+impl EKParticipantRole {
+    #[doc(alias = "EKParticipantRoleUnknown")]
+    pub const Unknown: Self = Self(0);
+    #[doc(alias = "EKParticipantRoleRequired")]
+    pub const Required: Self = Self(1);
+    #[doc(alias = "EKParticipantRoleOptional")]
+    pub const Optional: Self = Self(2);
+    #[doc(alias = "EKParticipantRoleChair")]
+    pub const Chair: Self = Self(3);
+    #[doc(alias = "EKParticipantRoleNonParticipant")]
+    pub const NonParticipant: Self = Self(4);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum EKAlarmType {
-        #[doc(alias = "EKAlarmTypeDisplay")]
-        Display = 0,
-        #[doc(alias = "EKAlarmTypeAudio")]
-        Audio = 1,
-        #[doc(alias = "EKAlarmTypeProcedure")]
-        Procedure = 2,
-        #[doc(alias = "EKAlarmTypeEmail")]
-        Email = 3,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for EKParticipantRole {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum EKReminderPriority {
-        #[doc(alias = "EKReminderPriorityNone")]
-        None = 0,
-        #[doc(alias = "EKReminderPriorityHigh")]
-        High = 1,
-        #[doc(alias = "EKReminderPriorityMedium")]
-        Medium = 5,
-        #[doc(alias = "EKReminderPriorityLow")]
-        Low = 9,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for EKParticipantRole {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct EKParticipantScheduleStatus(pub NSInteger);
+impl EKParticipantScheduleStatus {
+    #[doc(alias = "EKParticipantScheduleStatusNone")]
+    pub const None: Self = Self(0);
+    #[doc(alias = "EKParticipantScheduleStatusPending")]
+    pub const Pending: Self = Self(1);
+    #[doc(alias = "EKParticipantScheduleStatusSent")]
+    pub const Sent: Self = Self(2);
+    #[doc(alias = "EKParticipantScheduleStatusDelivered")]
+    pub const Delivered: Self = Self(3);
+    #[doc(alias = "EKParticipantScheduleStatusRecipientNotRecognized")]
+    pub const RecipientNotRecognized: Self = Self(4);
+    #[doc(alias = "EKParticipantScheduleStatusNoPrivileges")]
+    pub const NoPrivileges: Self = Self(5);
+    #[doc(alias = "EKParticipantScheduleStatusDeliveryFailed")]
+    pub const DeliveryFailed: Self = Self(6);
+    #[doc(alias = "EKParticipantScheduleStatusCannotDeliver")]
+    pub const CannotDeliver: Self = Self(7);
+    #[doc(alias = "EKParticipantScheduleStatusRecipientNotAllowed")]
+    pub const RecipientNotAllowed: Self = Self(8);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for EKParticipantScheduleStatus {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for EKParticipantScheduleStatus {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct EKParticipantStatus(pub NSInteger);
+impl EKParticipantStatus {
+    #[doc(alias = "EKParticipantStatusUnknown")]
+    pub const Unknown: Self = Self(0);
+    #[doc(alias = "EKParticipantStatusPending")]
+    pub const Pending: Self = Self(1);
+    #[doc(alias = "EKParticipantStatusAccepted")]
+    pub const Accepted: Self = Self(2);
+    #[doc(alias = "EKParticipantStatusDeclined")]
+    pub const Declined: Self = Self(3);
+    #[doc(alias = "EKParticipantStatusTentative")]
+    pub const Tentative: Self = Self(4);
+    #[doc(alias = "EKParticipantStatusDelegated")]
+    pub const Delegated: Self = Self(5);
+    #[doc(alias = "EKParticipantStatusCompleted")]
+    pub const Completed: Self = Self(6);
+    #[doc(alias = "EKParticipantStatusInProcess")]
+    pub const InProcess: Self = Self(7);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for EKParticipantStatus {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for EKParticipantStatus {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct EKCalendarType(pub NSInteger);
+impl EKCalendarType {
+    #[doc(alias = "EKCalendarTypeLocal")]
+    pub const Local: Self = Self(0);
+    #[doc(alias = "EKCalendarTypeCalDAV")]
+    pub const CalDAV: Self = Self(1);
+    #[doc(alias = "EKCalendarTypeExchange")]
+    pub const Exchange: Self = Self(2);
+    #[doc(alias = "EKCalendarTypeSubscription")]
+    pub const Subscription: Self = Self(3);
+    #[doc(alias = "EKCalendarTypeBirthday")]
+    pub const Birthday: Self = Self(4);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for EKCalendarType {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for EKCalendarType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct EKCalendarEventAvailabilityMask(pub NSUInteger);
+impl EKCalendarEventAvailabilityMask {
+    pub const EKCalendarEventAvailabilityNone: Self = Self(0);
+    pub const EKCalendarEventAvailabilityBusy: Self = Self(1 << 0);
+    pub const EKCalendarEventAvailabilityFree: Self = Self(1 << 1);
+    pub const EKCalendarEventAvailabilityTentative: Self = Self(1 << 2);
+    pub const EKCalendarEventAvailabilityUnavailable: Self = Self(1 << 3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for EKCalendarEventAvailabilityMask {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for EKCalendarEventAvailabilityMask {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct EKSourceType(pub NSInteger);
+impl EKSourceType {
+    #[doc(alias = "EKSourceTypeLocal")]
+    pub const Local: Self = Self(0);
+    #[doc(alias = "EKSourceTypeExchange")]
+    pub const Exchange: Self = Self(1);
+    #[doc(alias = "EKSourceTypeCalDAV")]
+    pub const CalDAV: Self = Self(2);
+    #[doc(alias = "EKSourceTypeMobileMe")]
+    pub const MobileMe: Self = Self(3);
+    #[doc(alias = "EKSourceTypeSubscribed")]
+    pub const Subscribed: Self = Self(4);
+    #[doc(alias = "EKSourceTypeBirthdays")]
+    pub const Birthdays: Self = Self(5);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for EKSourceType {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for EKSourceType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct EKEntityType(pub NSUInteger);
+impl EKEntityType {
+    #[doc(alias = "EKEntityTypeEvent")]
+    pub const Event: Self = Self(0);
+    #[doc(alias = "EKEntityTypeReminder")]
+    pub const Reminder: Self = Self(1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for EKEntityType {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for EKEntityType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct EKEntityMask(pub NSUInteger);
+impl EKEntityMask {
+    #[doc(alias = "EKEntityMaskEvent")]
+    pub const Event: Self = Self(1 << EKEntityType::Event.0);
+    #[doc(alias = "EKEntityMaskReminder")]
+    pub const Reminder: Self = Self(1 << EKEntityType::Reminder.0);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for EKEntityMask {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for EKEntityMask {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct EKAlarmProximity(pub NSInteger);
+impl EKAlarmProximity {
+    #[doc(alias = "EKAlarmProximityNone")]
+    pub const None: Self = Self(0);
+    #[doc(alias = "EKAlarmProximityEnter")]
+    pub const Enter: Self = Self(1);
+    #[doc(alias = "EKAlarmProximityLeave")]
+    pub const Leave: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for EKAlarmProximity {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for EKAlarmProximity {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct EKAlarmType(pub NSInteger);
+impl EKAlarmType {
+    #[doc(alias = "EKAlarmTypeDisplay")]
+    pub const Display: Self = Self(0);
+    #[doc(alias = "EKAlarmTypeAudio")]
+    pub const Audio: Self = Self(1);
+    #[doc(alias = "EKAlarmTypeProcedure")]
+    pub const Procedure: Self = Self(2);
+    #[doc(alias = "EKAlarmTypeEmail")]
+    pub const Email: Self = Self(3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for EKAlarmType {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for EKAlarmType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct EKReminderPriority(pub NSUInteger);
+impl EKReminderPriority {
+    #[doc(alias = "EKReminderPriorityNone")]
+    pub const None: Self = Self(0);
+    #[doc(alias = "EKReminderPriorityHigh")]
+    pub const High: Self = Self(1);
+    #[doc(alias = "EKReminderPriorityMedium")]
+    pub const Medium: Self = Self(5);
+    #[doc(alias = "EKReminderPriorityLow")]
+    pub const Low: Self = Self(9);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for EKReminderPriority {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for EKReminderPriority {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}

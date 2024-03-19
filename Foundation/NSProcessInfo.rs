@@ -146,26 +146,40 @@ extern_methods!(
     }
 );
 
-ns_options!(
-    #[underlying(u64)]
-    pub enum NSActivityOptions {
-        NSActivityIdleDisplaySleepDisabled = 1 << 40,
-        NSActivityIdleSystemSleepDisabled = 1 << 20,
-        NSActivitySuddenTerminationDisabled = 1 << 14,
-        NSActivityAutomaticTerminationDisabled = 1 << 15,
-        NSActivityAnimationTrackingEnabled = 1 << 45,
-        NSActivityTrackingEnabled = 1 << 46,
-        NSActivityUserInitiated =
-            0x00FFFFFF | NSActivityOptions::NSActivityIdleSystemSleepDisabled.0,
-        NSActivityUserInitiatedAllowingIdleSystemSleep = NSActivityOptions::NSActivityUserInitiated
-            .0
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSActivityOptions(pub u64);
+impl NSActivityOptions {
+    pub const NSActivityIdleDisplaySleepDisabled: Self = Self(1 << 40);
+    pub const NSActivityIdleSystemSleepDisabled: Self = Self(1 << 20);
+    pub const NSActivitySuddenTerminationDisabled: Self = Self(1 << 14);
+    pub const NSActivityAutomaticTerminationDisabled: Self = Self(1 << 15);
+    pub const NSActivityAnimationTrackingEnabled: Self = Self(1 << 45);
+    pub const NSActivityTrackingEnabled: Self = Self(1 << 46);
+    pub const NSActivityUserInitiated: Self =
+        Self(0x00FFFFFF | NSActivityOptions::NSActivityIdleSystemSleepDisabled.0);
+    pub const NSActivityUserInitiatedAllowingIdleSystemSleep: Self = Self(
+        NSActivityOptions::NSActivityUserInitiated.0
             & !NSActivityOptions::NSActivityIdleSystemSleepDisabled.0,
-        NSActivityBackground = 0x000000FF,
-        NSActivityLatencyCritical = 0xFF00000000,
-        NSActivityUserInteractive = NSActivityOptions::NSActivityUserInitiated.0
+    );
+    pub const NSActivityBackground: Self = Self(0x000000FF);
+    pub const NSActivityLatencyCritical: Self = Self(0xFF00000000);
+    pub const NSActivityUserInteractive: Self = Self(
+        NSActivityOptions::NSActivityUserInitiated.0
             | NSActivityOptions::NSActivityLatencyCritical.0,
-    }
-);
+    );
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSActivityOptions {
+    const ENCODING: Encoding = u64::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSActivityOptions {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_methods!(
     /// NSProcessInfoActivity
@@ -213,19 +227,30 @@ extern_methods!(
     }
 );
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSProcessInfoThermalState {
-        #[doc(alias = "NSProcessInfoThermalStateNominal")]
-        Nominal = 0,
-        #[doc(alias = "NSProcessInfoThermalStateFair")]
-        Fair = 1,
-        #[doc(alias = "NSProcessInfoThermalStateSerious")]
-        Serious = 2,
-        #[doc(alias = "NSProcessInfoThermalStateCritical")]
-        Critical = 3,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSProcessInfoThermalState(pub NSInteger);
+impl NSProcessInfoThermalState {
+    #[doc(alias = "NSProcessInfoThermalStateNominal")]
+    pub const Nominal: Self = Self(0);
+    #[doc(alias = "NSProcessInfoThermalStateFair")]
+    pub const Fair: Self = Self(1);
+    #[doc(alias = "NSProcessInfoThermalStateSerious")]
+    pub const Serious: Self = Self(2);
+    #[doc(alias = "NSProcessInfoThermalStateCritical")]
+    pub const Critical: Self = Self(3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSProcessInfoThermalState {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSProcessInfoThermalState {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_methods!(
     /// NSProcessInfoThermalState

@@ -5,18 +5,29 @@ use crate::AppKit::*;
 use crate::BusinessChat::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
+// NS_ENUM
+#[deprecated]
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct BCChatButtonStyle(pub NSInteger);
+impl BCChatButtonStyle {
     #[deprecated]
-    pub enum BCChatButtonStyle {
-        #[deprecated]
-        #[doc(alias = "BCChatButtonStyleLight")]
-        Light = 0,
-        #[deprecated]
-        #[doc(alias = "BCChatButtonStyleDark")]
-        Dark = 1,
-    }
-);
+    #[doc(alias = "BCChatButtonStyleLight")]
+    pub const Light: Self = Self(0);
+    #[deprecated]
+    #[doc(alias = "BCChatButtonStyleDark")]
+    pub const Dark: Self = Self(1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for BCChatButtonStyle {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for BCChatButtonStyle {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

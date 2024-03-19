@@ -5,20 +5,31 @@ use crate::Foundation::*;
 
 pub type unichar = c_ushort;
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSStringCompareOptions {
-        NSCaseInsensitiveSearch = 1,
-        NSLiteralSearch = 2,
-        NSBackwardsSearch = 4,
-        NSAnchoredSearch = 8,
-        NSNumericSearch = 64,
-        NSDiacriticInsensitiveSearch = 128,
-        NSWidthInsensitiveSearch = 256,
-        NSForcedOrderingSearch = 512,
-        NSRegularExpressionSearch = 1024,
-    }
-);
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSStringCompareOptions(pub NSUInteger);
+impl NSStringCompareOptions {
+    pub const NSCaseInsensitiveSearch: Self = Self(1);
+    pub const NSLiteralSearch: Self = Self(2);
+    pub const NSBackwardsSearch: Self = Self(4);
+    pub const NSAnchoredSearch: Self = Self(8);
+    pub const NSNumericSearch: Self = Self(64);
+    pub const NSDiacriticInsensitiveSearch: Self = Self(128);
+    pub const NSWidthInsensitiveSearch: Self = Self(256);
+    pub const NSForcedOrderingSearch: Self = Self(512);
+    pub const NSRegularExpressionSearch: Self = Self(1024);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSStringCompareOptions {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSStringCompareOptions {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 pub type NSStringEncoding = NSUInteger;
 
@@ -46,13 +57,24 @@ pub const NSUTF32StringEncoding: NSStringEncoding = 0x8c000100;
 pub const NSUTF32BigEndianStringEncoding: NSStringEncoding = 0x98000100;
 pub const NSUTF32LittleEndianStringEncoding: NSStringEncoding = 0x9c000100;
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSStringEncodingConversionOptions {
-        NSStringEncodingConversionAllowLossy = 1,
-        NSStringEncodingConversionExternalRepresentation = 2,
-    }
-);
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSStringEncodingConversionOptions(pub NSUInteger);
+impl NSStringEncodingConversionOptions {
+    pub const NSStringEncodingConversionAllowLossy: Self = Self(1);
+    pub const NSStringEncodingConversionExternalRepresentation: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSStringEncodingConversionOptions {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSStringEncodingConversionOptions {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(PartialEq, Eq, Hash)]
@@ -110,25 +132,35 @@ impl DefaultId for NSString {
     }
 }
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSStringEnumerationOptions {
-        NSStringEnumerationByLines = 0,
-        NSStringEnumerationByParagraphs = 1,
-        NSStringEnumerationByComposedCharacterSequences = 2,
-        NSStringEnumerationByWords = 3,
-        NSStringEnumerationBySentences = 4,
-        NSStringEnumerationByCaretPositions = 5,
-        NSStringEnumerationByDeletionClusters = 6,
-        NSStringEnumerationReverse = 1 << 8,
-        NSStringEnumerationSubstringNotRequired = 1 << 9,
-        NSStringEnumerationLocalized = 1 << 10,
-    }
-);
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSStringEnumerationOptions(pub NSUInteger);
+impl NSStringEnumerationOptions {
+    pub const NSStringEnumerationByLines: Self = Self(0);
+    pub const NSStringEnumerationByParagraphs: Self = Self(1);
+    pub const NSStringEnumerationByComposedCharacterSequences: Self = Self(2);
+    pub const NSStringEnumerationByWords: Self = Self(3);
+    pub const NSStringEnumerationBySentences: Self = Self(4);
+    pub const NSStringEnumerationByCaretPositions: Self = Self(5);
+    pub const NSStringEnumerationByDeletionClusters: Self = Self(6);
+    pub const NSStringEnumerationReverse: Self = Self(1 << 8);
+    pub const NSStringEnumerationSubstringNotRequired: Self = Self(1 << 9);
+    pub const NSStringEnumerationLocalized: Self = Self(1 << 10);
+}
 
-typed_extensible_enum!(
-    pub type NSStringTransform = NSString;
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSStringEnumerationOptions {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSStringEnumerationOptions {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_TYPED_EXTENSIBLE_ENUM
+pub type NSStringTransform = NSString;
 
 extern "C" {
     pub static NSStringTransformLatinToKatakana: &'static NSStringTransform;
@@ -932,9 +964,8 @@ extern_methods!(
     }
 );
 
-typed_enum!(
-    pub type NSStringEncodingDetectionOptionsKey = NSString;
-);
+// NS_TYPED_ENUM
+pub type NSStringEncodingDetectionOptionsKey = NSString;
 
 extern "C" {
     pub static NSStringEncodingDetectionSuggestedEncodingsKey:

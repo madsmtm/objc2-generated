@@ -5,17 +5,28 @@ use crate::CoreLocation::*;
 use crate::Foundation::*;
 use crate::UserNotifications::*;
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum UNNotificationCategoryOptions {
-        UNNotificationCategoryOptionCustomDismissAction = 1 << 0,
-        UNNotificationCategoryOptionAllowInCarPlay = 1 << 1,
-        UNNotificationCategoryOptionHiddenPreviewsShowTitle = 1 << 2,
-        UNNotificationCategoryOptionHiddenPreviewsShowSubtitle = 1 << 3,
-        #[deprecated = "Announcement option is ignored"]
-        UNNotificationCategoryOptionAllowAnnouncement = 1 << 4,
-    }
-);
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct UNNotificationCategoryOptions(pub NSUInteger);
+impl UNNotificationCategoryOptions {
+    pub const UNNotificationCategoryOptionCustomDismissAction: Self = Self(1 << 0);
+    pub const UNNotificationCategoryOptionAllowInCarPlay: Self = Self(1 << 1);
+    pub const UNNotificationCategoryOptionHiddenPreviewsShowTitle: Self = Self(1 << 2);
+    pub const UNNotificationCategoryOptionHiddenPreviewsShowSubtitle: Self = Self(1 << 3);
+    #[deprecated = "Announcement option is ignored"]
+    pub const UNNotificationCategoryOptionAllowAnnouncement: Self = Self(1 << 4);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for UNNotificationCategoryOptions {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for UNNotificationCategoryOptions {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 pub static UNNotificationCategoryOptionNone: UNNotificationCategoryOptions =
     UNNotificationCategoryOptions(0);

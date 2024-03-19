@@ -16,111 +16,166 @@ extern "C" {
     pub static HKMetadataKeyBodyTemperatureSensorLocation: &'static NSString;
 }
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum HKBodyTemperatureSensorLocation {
-        #[doc(alias = "HKBodyTemperatureSensorLocationOther")]
-        Other = 0,
-        #[doc(alias = "HKBodyTemperatureSensorLocationArmpit")]
-        Armpit = 1,
-        #[doc(alias = "HKBodyTemperatureSensorLocationBody")]
-        Body = 2,
-        #[doc(alias = "HKBodyTemperatureSensorLocationEar")]
-        Ear = 3,
-        #[doc(alias = "HKBodyTemperatureSensorLocationFinger")]
-        Finger = 4,
-        #[doc(alias = "HKBodyTemperatureSensorLocationGastroIntestinal")]
-        GastroIntestinal = 5,
-        #[doc(alias = "HKBodyTemperatureSensorLocationMouth")]
-        Mouth = 6,
-        #[doc(alias = "HKBodyTemperatureSensorLocationRectum")]
-        Rectum = 7,
-        #[doc(alias = "HKBodyTemperatureSensorLocationToe")]
-        Toe = 8,
-        #[doc(alias = "HKBodyTemperatureSensorLocationEarDrum")]
-        EarDrum = 9,
-        #[doc(alias = "HKBodyTemperatureSensorLocationTemporalArtery")]
-        TemporalArtery = 10,
-        #[doc(alias = "HKBodyTemperatureSensorLocationForehead")]
-        Forehead = 11,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct HKBodyTemperatureSensorLocation(pub NSInteger);
+impl HKBodyTemperatureSensorLocation {
+    #[doc(alias = "HKBodyTemperatureSensorLocationOther")]
+    pub const Other: Self = Self(0);
+    #[doc(alias = "HKBodyTemperatureSensorLocationArmpit")]
+    pub const Armpit: Self = Self(1);
+    #[doc(alias = "HKBodyTemperatureSensorLocationBody")]
+    pub const Body: Self = Self(2);
+    #[doc(alias = "HKBodyTemperatureSensorLocationEar")]
+    pub const Ear: Self = Self(3);
+    #[doc(alias = "HKBodyTemperatureSensorLocationFinger")]
+    pub const Finger: Self = Self(4);
+    #[doc(alias = "HKBodyTemperatureSensorLocationGastroIntestinal")]
+    pub const GastroIntestinal: Self = Self(5);
+    #[doc(alias = "HKBodyTemperatureSensorLocationMouth")]
+    pub const Mouth: Self = Self(6);
+    #[doc(alias = "HKBodyTemperatureSensorLocationRectum")]
+    pub const Rectum: Self = Self(7);
+    #[doc(alias = "HKBodyTemperatureSensorLocationToe")]
+    pub const Toe: Self = Self(8);
+    #[doc(alias = "HKBodyTemperatureSensorLocationEarDrum")]
+    pub const EarDrum: Self = Self(9);
+    #[doc(alias = "HKBodyTemperatureSensorLocationTemporalArtery")]
+    pub const TemporalArtery: Self = Self(10);
+    #[doc(alias = "HKBodyTemperatureSensorLocationForehead")]
+    pub const Forehead: Self = Self(11);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for HKBodyTemperatureSensorLocation {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for HKBodyTemperatureSensorLocation {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]
     pub static HKMetadataKeyHeartRateSensorLocation: &'static NSString;
 }
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum HKHeartRateSensorLocation {
-        #[doc(alias = "HKHeartRateSensorLocationOther")]
-        Other = 0,
-        #[doc(alias = "HKHeartRateSensorLocationChest")]
-        Chest = 1,
-        #[doc(alias = "HKHeartRateSensorLocationWrist")]
-        Wrist = 2,
-        #[doc(alias = "HKHeartRateSensorLocationFinger")]
-        Finger = 3,
-        #[doc(alias = "HKHeartRateSensorLocationHand")]
-        Hand = 4,
-        #[doc(alias = "HKHeartRateSensorLocationEarLobe")]
-        EarLobe = 5,
-        #[doc(alias = "HKHeartRateSensorLocationFoot")]
-        Foot = 6,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct HKHeartRateSensorLocation(pub NSInteger);
+impl HKHeartRateSensorLocation {
+    #[doc(alias = "HKHeartRateSensorLocationOther")]
+    pub const Other: Self = Self(0);
+    #[doc(alias = "HKHeartRateSensorLocationChest")]
+    pub const Chest: Self = Self(1);
+    #[doc(alias = "HKHeartRateSensorLocationWrist")]
+    pub const Wrist: Self = Self(2);
+    #[doc(alias = "HKHeartRateSensorLocationFinger")]
+    pub const Finger: Self = Self(3);
+    #[doc(alias = "HKHeartRateSensorLocationHand")]
+    pub const Hand: Self = Self(4);
+    #[doc(alias = "HKHeartRateSensorLocationEarLobe")]
+    pub const EarLobe: Self = Self(5);
+    #[doc(alias = "HKHeartRateSensorLocationFoot")]
+    pub const Foot: Self = Self(6);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for HKHeartRateSensorLocation {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for HKHeartRateSensorLocation {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]
     pub static HKMetadataKeyHeartRateMotionContext: &'static NSString;
 }
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum HKHeartRateMotionContext {
-        #[doc(alias = "HKHeartRateMotionContextNotSet")]
-        NotSet = 0,
-        #[doc(alias = "HKHeartRateMotionContextSedentary")]
-        Sedentary = 1,
-        #[doc(alias = "HKHeartRateMotionContextActive")]
-        Active = 2,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct HKHeartRateMotionContext(pub NSInteger);
+impl HKHeartRateMotionContext {
+    #[doc(alias = "HKHeartRateMotionContextNotSet")]
+    pub const NotSet: Self = Self(0);
+    #[doc(alias = "HKHeartRateMotionContextSedentary")]
+    pub const Sedentary: Self = Self(1);
+    #[doc(alias = "HKHeartRateMotionContextActive")]
+    pub const Active: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for HKHeartRateMotionContext {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for HKHeartRateMotionContext {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]
     pub static HKMetadataKeyUserMotionContext: &'static NSString;
 }
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum HKUserMotionContext {
-        #[doc(alias = "HKUserMotionContextNotSet")]
-        NotSet = 0,
-        #[doc(alias = "HKUserMotionContextStationary")]
-        Stationary = 1,
-        #[doc(alias = "HKUserMotionContextActive")]
-        Active = 2,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct HKUserMotionContext(pub NSInteger);
+impl HKUserMotionContext {
+    #[doc(alias = "HKUserMotionContextNotSet")]
+    pub const NotSet: Self = Self(0);
+    #[doc(alias = "HKUserMotionContextStationary")]
+    pub const Stationary: Self = Self(1);
+    #[doc(alias = "HKUserMotionContextActive")]
+    pub const Active: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for HKUserMotionContext {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for HKUserMotionContext {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]
     pub static HKMetadataKeySessionEstimate: &'static NSString;
 }
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum HKHeartRateRecoveryTestType {
-        #[doc(alias = "HKHeartRateRecoveryTestTypeMaxExercise")]
-        MaxExercise = 1,
-        #[doc(alias = "HKHeartRateRecoveryTestTypePredictionSubMaxExercise")]
-        PredictionSubMaxExercise = 2,
-        #[doc(alias = "HKHeartRateRecoveryTestTypePredictionNonExercise")]
-        PredictionNonExercise = 3,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct HKHeartRateRecoveryTestType(pub NSInteger);
+impl HKHeartRateRecoveryTestType {
+    #[doc(alias = "HKHeartRateRecoveryTestTypeMaxExercise")]
+    pub const MaxExercise: Self = Self(1);
+    #[doc(alias = "HKHeartRateRecoveryTestTypePredictionSubMaxExercise")]
+    pub const PredictionSubMaxExercise: Self = Self(2);
+    #[doc(alias = "HKHeartRateRecoveryTestTypePredictionNonExercise")]
+    pub const PredictionNonExercise: Self = Self(3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for HKHeartRateRecoveryTestType {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for HKHeartRateRecoveryTestType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]
@@ -237,67 +292,78 @@ extern "C" {
     pub static HKMetadataKeyCoachedWorkout: &'static NSString;
 }
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum HKWeatherCondition {
-        #[doc(alias = "HKWeatherConditionNone")]
-        None = 0,
-        #[doc(alias = "HKWeatherConditionClear")]
-        Clear = 1,
-        #[doc(alias = "HKWeatherConditionFair")]
-        Fair = 2,
-        #[doc(alias = "HKWeatherConditionPartlyCloudy")]
-        PartlyCloudy = 3,
-        #[doc(alias = "HKWeatherConditionMostlyCloudy")]
-        MostlyCloudy = 4,
-        #[doc(alias = "HKWeatherConditionCloudy")]
-        Cloudy = 5,
-        #[doc(alias = "HKWeatherConditionFoggy")]
-        Foggy = 6,
-        #[doc(alias = "HKWeatherConditionHaze")]
-        Haze = 7,
-        #[doc(alias = "HKWeatherConditionWindy")]
-        Windy = 8,
-        #[doc(alias = "HKWeatherConditionBlustery")]
-        Blustery = 9,
-        #[doc(alias = "HKWeatherConditionSmoky")]
-        Smoky = 10,
-        #[doc(alias = "HKWeatherConditionDust")]
-        Dust = 11,
-        #[doc(alias = "HKWeatherConditionSnow")]
-        Snow = 12,
-        #[doc(alias = "HKWeatherConditionHail")]
-        Hail = 13,
-        #[doc(alias = "HKWeatherConditionSleet")]
-        Sleet = 14,
-        #[doc(alias = "HKWeatherConditionFreezingDrizzle")]
-        FreezingDrizzle = 15,
-        #[doc(alias = "HKWeatherConditionFreezingRain")]
-        FreezingRain = 16,
-        #[doc(alias = "HKWeatherConditionMixedRainAndHail")]
-        MixedRainAndHail = 17,
-        #[doc(alias = "HKWeatherConditionMixedRainAndSnow")]
-        MixedRainAndSnow = 18,
-        #[doc(alias = "HKWeatherConditionMixedRainAndSleet")]
-        MixedRainAndSleet = 19,
-        #[doc(alias = "HKWeatherConditionMixedSnowAndSleet")]
-        MixedSnowAndSleet = 20,
-        #[doc(alias = "HKWeatherConditionDrizzle")]
-        Drizzle = 21,
-        #[doc(alias = "HKWeatherConditionScatteredShowers")]
-        ScatteredShowers = 22,
-        #[doc(alias = "HKWeatherConditionShowers")]
-        Showers = 23,
-        #[doc(alias = "HKWeatherConditionThunderstorms")]
-        Thunderstorms = 24,
-        #[doc(alias = "HKWeatherConditionTropicalStorm")]
-        TropicalStorm = 25,
-        #[doc(alias = "HKWeatherConditionHurricane")]
-        Hurricane = 26,
-        #[doc(alias = "HKWeatherConditionTornado")]
-        Tornado = 27,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct HKWeatherCondition(pub NSInteger);
+impl HKWeatherCondition {
+    #[doc(alias = "HKWeatherConditionNone")]
+    pub const None: Self = Self(0);
+    #[doc(alias = "HKWeatherConditionClear")]
+    pub const Clear: Self = Self(1);
+    #[doc(alias = "HKWeatherConditionFair")]
+    pub const Fair: Self = Self(2);
+    #[doc(alias = "HKWeatherConditionPartlyCloudy")]
+    pub const PartlyCloudy: Self = Self(3);
+    #[doc(alias = "HKWeatherConditionMostlyCloudy")]
+    pub const MostlyCloudy: Self = Self(4);
+    #[doc(alias = "HKWeatherConditionCloudy")]
+    pub const Cloudy: Self = Self(5);
+    #[doc(alias = "HKWeatherConditionFoggy")]
+    pub const Foggy: Self = Self(6);
+    #[doc(alias = "HKWeatherConditionHaze")]
+    pub const Haze: Self = Self(7);
+    #[doc(alias = "HKWeatherConditionWindy")]
+    pub const Windy: Self = Self(8);
+    #[doc(alias = "HKWeatherConditionBlustery")]
+    pub const Blustery: Self = Self(9);
+    #[doc(alias = "HKWeatherConditionSmoky")]
+    pub const Smoky: Self = Self(10);
+    #[doc(alias = "HKWeatherConditionDust")]
+    pub const Dust: Self = Self(11);
+    #[doc(alias = "HKWeatherConditionSnow")]
+    pub const Snow: Self = Self(12);
+    #[doc(alias = "HKWeatherConditionHail")]
+    pub const Hail: Self = Self(13);
+    #[doc(alias = "HKWeatherConditionSleet")]
+    pub const Sleet: Self = Self(14);
+    #[doc(alias = "HKWeatherConditionFreezingDrizzle")]
+    pub const FreezingDrizzle: Self = Self(15);
+    #[doc(alias = "HKWeatherConditionFreezingRain")]
+    pub const FreezingRain: Self = Self(16);
+    #[doc(alias = "HKWeatherConditionMixedRainAndHail")]
+    pub const MixedRainAndHail: Self = Self(17);
+    #[doc(alias = "HKWeatherConditionMixedRainAndSnow")]
+    pub const MixedRainAndSnow: Self = Self(18);
+    #[doc(alias = "HKWeatherConditionMixedRainAndSleet")]
+    pub const MixedRainAndSleet: Self = Self(19);
+    #[doc(alias = "HKWeatherConditionMixedSnowAndSleet")]
+    pub const MixedSnowAndSleet: Self = Self(20);
+    #[doc(alias = "HKWeatherConditionDrizzle")]
+    pub const Drizzle: Self = Self(21);
+    #[doc(alias = "HKWeatherConditionScatteredShowers")]
+    pub const ScatteredShowers: Self = Self(22);
+    #[doc(alias = "HKWeatherConditionShowers")]
+    pub const Showers: Self = Self(23);
+    #[doc(alias = "HKWeatherConditionThunderstorms")]
+    pub const Thunderstorms: Self = Self(24);
+    #[doc(alias = "HKWeatherConditionTropicalStorm")]
+    pub const TropicalStorm: Self = Self(25);
+    #[doc(alias = "HKWeatherConditionHurricane")]
+    pub const Hurricane: Self = Self(26);
+    #[doc(alias = "HKWeatherConditionTornado")]
+    pub const Tornado: Self = Self(27);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for HKWeatherCondition {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for HKWeatherCondition {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]
@@ -329,89 +395,144 @@ extern "C" {
     pub static HKMetadataKeyLapLength: &'static NSString;
 }
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum HKWorkoutSwimmingLocationType {
-        #[doc(alias = "HKWorkoutSwimmingLocationTypeUnknown")]
-        Unknown = 0,
-        #[doc(alias = "HKWorkoutSwimmingLocationTypePool")]
-        Pool = 1,
-        #[doc(alias = "HKWorkoutSwimmingLocationTypeOpenWater")]
-        OpenWater = 2,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct HKWorkoutSwimmingLocationType(pub NSInteger);
+impl HKWorkoutSwimmingLocationType {
+    #[doc(alias = "HKWorkoutSwimmingLocationTypeUnknown")]
+    pub const Unknown: Self = Self(0);
+    #[doc(alias = "HKWorkoutSwimmingLocationTypePool")]
+    pub const Pool: Self = Self(1);
+    #[doc(alias = "HKWorkoutSwimmingLocationTypeOpenWater")]
+    pub const OpenWater: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for HKWorkoutSwimmingLocationType {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for HKWorkoutSwimmingLocationType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]
     pub static HKMetadataKeySwimmingLocationType: &'static NSString;
 }
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum HKSwimmingStrokeStyle {
-        #[doc(alias = "HKSwimmingStrokeStyleUnknown")]
-        Unknown = 0,
-        #[doc(alias = "HKSwimmingStrokeStyleMixed")]
-        Mixed = 1,
-        #[doc(alias = "HKSwimmingStrokeStyleFreestyle")]
-        Freestyle = 2,
-        #[doc(alias = "HKSwimmingStrokeStyleBackstroke")]
-        Backstroke = 3,
-        #[doc(alias = "HKSwimmingStrokeStyleBreaststroke")]
-        Breaststroke = 4,
-        #[doc(alias = "HKSwimmingStrokeStyleButterfly")]
-        Butterfly = 5,
-        #[doc(alias = "HKSwimmingStrokeStyleKickboard")]
-        Kickboard = 6,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct HKSwimmingStrokeStyle(pub NSInteger);
+impl HKSwimmingStrokeStyle {
+    #[doc(alias = "HKSwimmingStrokeStyleUnknown")]
+    pub const Unknown: Self = Self(0);
+    #[doc(alias = "HKSwimmingStrokeStyleMixed")]
+    pub const Mixed: Self = Self(1);
+    #[doc(alias = "HKSwimmingStrokeStyleFreestyle")]
+    pub const Freestyle: Self = Self(2);
+    #[doc(alias = "HKSwimmingStrokeStyleBackstroke")]
+    pub const Backstroke: Self = Self(3);
+    #[doc(alias = "HKSwimmingStrokeStyleBreaststroke")]
+    pub const Breaststroke: Self = Self(4);
+    #[doc(alias = "HKSwimmingStrokeStyleButterfly")]
+    pub const Butterfly: Self = Self(5);
+    #[doc(alias = "HKSwimmingStrokeStyleKickboard")]
+    pub const Kickboard: Self = Self(6);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for HKSwimmingStrokeStyle {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for HKSwimmingStrokeStyle {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]
     pub static HKMetadataKeySwimmingStrokeStyle: &'static NSString;
 }
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum HKInsulinDeliveryReason {
-        #[doc(alias = "HKInsulinDeliveryReasonBasal")]
-        Basal = 1,
-        #[doc(alias = "HKInsulinDeliveryReasonBolus")]
-        Bolus = 2,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct HKInsulinDeliveryReason(pub NSInteger);
+impl HKInsulinDeliveryReason {
+    #[doc(alias = "HKInsulinDeliveryReasonBasal")]
+    pub const Basal: Self = Self(1);
+    #[doc(alias = "HKInsulinDeliveryReasonBolus")]
+    pub const Bolus: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for HKInsulinDeliveryReason {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for HKInsulinDeliveryReason {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]
     pub static HKMetadataKeyInsulinDeliveryReason: &'static NSString;
 }
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum HKBloodGlucoseMealTime {
-        #[doc(alias = "HKBloodGlucoseMealTimePreprandial")]
-        Preprandial = 1,
-        #[doc(alias = "HKBloodGlucoseMealTimePostprandial")]
-        Postprandial = 2,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct HKBloodGlucoseMealTime(pub NSInteger);
+impl HKBloodGlucoseMealTime {
+    #[doc(alias = "HKBloodGlucoseMealTimePreprandial")]
+    pub const Preprandial: Self = Self(1);
+    #[doc(alias = "HKBloodGlucoseMealTimePostprandial")]
+    pub const Postprandial: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for HKBloodGlucoseMealTime {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for HKBloodGlucoseMealTime {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]
     pub static HKMetadataKeyBloodGlucoseMealTime: &'static NSString;
 }
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum HKVO2MaxTestType {
-        #[doc(alias = "HKVO2MaxTestTypeMaxExercise")]
-        MaxExercise = 1,
-        #[doc(alias = "HKVO2MaxTestTypePredictionSubMaxExercise")]
-        PredictionSubMaxExercise = 2,
-        #[doc(alias = "HKVO2MaxTestTypePredictionNonExercise")]
-        PredictionNonExercise = 3,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct HKVO2MaxTestType(pub NSInteger);
+impl HKVO2MaxTestType {
+    #[doc(alias = "HKVO2MaxTestTypeMaxExercise")]
+    pub const MaxExercise: Self = Self(1);
+    #[doc(alias = "HKVO2MaxTestTypePredictionSubMaxExercise")]
+    pub const PredictionSubMaxExercise: Self = Self(2);
+    #[doc(alias = "HKVO2MaxTestTypePredictionNonExercise")]
+    pub const PredictionNonExercise: Self = Self(3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for HKVO2MaxTestType {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for HKVO2MaxTestType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]
@@ -478,32 +599,54 @@ extern "C" {
     pub static HKMetadataKeyAudioExposureDuration: &'static NSString;
 }
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum HKAppleECGAlgorithmVersion {
-        HKAppleECGAlgorithmVersion1 = 1,
-        HKAppleECGAlgorithmVersion2 = 2,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct HKAppleECGAlgorithmVersion(pub NSInteger);
+impl HKAppleECGAlgorithmVersion {
+    pub const HKAppleECGAlgorithmVersion1: Self = Self(1);
+    pub const HKAppleECGAlgorithmVersion2: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for HKAppleECGAlgorithmVersion {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for HKAppleECGAlgorithmVersion {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]
     pub static HKMetadataKeyAppleECGAlgorithmVersion: &'static NSString;
 }
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum HKDevicePlacementSide {
-        #[doc(alias = "HKDevicePlacementSideUnknown")]
-        Unknown = 0,
-        #[doc(alias = "HKDevicePlacementSideLeft")]
-        Left = 1,
-        #[doc(alias = "HKDevicePlacementSideRight")]
-        Right = 2,
-        #[doc(alias = "HKDevicePlacementSideCentral")]
-        Central = 3,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct HKDevicePlacementSide(pub NSInteger);
+impl HKDevicePlacementSide {
+    #[doc(alias = "HKDevicePlacementSideUnknown")]
+    pub const Unknown: Self = Self(0);
+    #[doc(alias = "HKDevicePlacementSideLeft")]
+    pub const Left: Self = Self(1);
+    #[doc(alias = "HKDevicePlacementSideRight")]
+    pub const Right: Self = Self(2);
+    #[doc(alias = "HKDevicePlacementSideCentral")]
+    pub const Central: Self = Self(3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for HKDevicePlacementSide {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for HKDevicePlacementSide {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]
@@ -560,15 +703,26 @@ extern "C" {
     pub static HKMetadataKeyGlassesPrescriptionDescription: &'static NSString;
 }
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum HKWaterSalinity {
-        #[doc(alias = "HKWaterSalinityFreshWater")]
-        FreshWater = 1,
-        #[doc(alias = "HKWaterSalinitySaltWater")]
-        SaltWater = 2,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct HKWaterSalinity(pub NSInteger);
+impl HKWaterSalinity {
+    #[doc(alias = "HKWaterSalinityFreshWater")]
+    pub const FreshWater: Self = Self(1);
+    #[doc(alias = "HKWaterSalinitySaltWater")]
+    pub const SaltWater: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for HKWaterSalinity {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for HKWaterSalinity {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]
@@ -585,19 +739,30 @@ extern "C" {
     pub static HKMetadataKeyCyclingFunctionalThresholdPowerTestType: &'static NSString;
 }
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum HKCyclingFunctionalThresholdPowerTestType {
-        #[doc(alias = "HKCyclingFunctionalThresholdPowerTestTypeMaxExercise60Minute")]
-        MaxExercise60Minute = 1,
-        #[doc(alias = "HKCyclingFunctionalThresholdPowerTestTypeMaxExercise20Minute")]
-        MaxExercise20Minute = 2,
-        #[doc(alias = "HKCyclingFunctionalThresholdPowerTestTypeRampTest")]
-        RampTest = 3,
-        #[doc(alias = "HKCyclingFunctionalThresholdPowerTestTypePredictionExercise")]
-        PredictionExercise = 4,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct HKCyclingFunctionalThresholdPowerTestType(pub NSInteger);
+impl HKCyclingFunctionalThresholdPowerTestType {
+    #[doc(alias = "HKCyclingFunctionalThresholdPowerTestTypeMaxExercise60Minute")]
+    pub const MaxExercise60Minute: Self = Self(1);
+    #[doc(alias = "HKCyclingFunctionalThresholdPowerTestTypeMaxExercise20Minute")]
+    pub const MaxExercise20Minute: Self = Self(2);
+    #[doc(alias = "HKCyclingFunctionalThresholdPowerTestTypeRampTest")]
+    pub const RampTest: Self = Self(3);
+    #[doc(alias = "HKCyclingFunctionalThresholdPowerTestTypePredictionExercise")]
+    pub const PredictionExercise: Self = Self(4);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for HKCyclingFunctionalThresholdPowerTestType {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for HKCyclingFunctionalThresholdPowerTestType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]
@@ -609,15 +774,26 @@ extern "C" {
     pub static HKMetadataKeyPhysicalEffortEstimationType: &'static NSString;
 }
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum HKPhysicalEffortEstimationType {
-        #[doc(alias = "HKPhysicalEffortEstimationTypeActivityLookup")]
-        ActivityLookup = 1,
-        #[doc(alias = "HKPhysicalEffortEstimationTypeDeviceSensed")]
-        DeviceSensed = 2,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct HKPhysicalEffortEstimationType(pub NSInteger);
+impl HKPhysicalEffortEstimationType {
+    #[doc(alias = "HKPhysicalEffortEstimationTypeActivityLookup")]
+    pub const ActivityLookup: Self = Self(1);
+    #[doc(alias = "HKPhysicalEffortEstimationTypeDeviceSensed")]
+    pub const DeviceSensed: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for HKPhysicalEffortEstimationType {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for HKPhysicalEffortEstimationType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]

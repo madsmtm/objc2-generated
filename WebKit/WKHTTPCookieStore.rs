@@ -5,15 +5,26 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::WebKit::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum WKCookiePolicy {
-        #[doc(alias = "WKCookiePolicyAllow")]
-        Allow = 0,
-        #[doc(alias = "WKCookiePolicyDisallow")]
-        Disallow = 1,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct WKCookiePolicy(pub NSInteger);
+impl WKCookiePolicy {
+    #[doc(alias = "WKCookiePolicyAllow")]
+    pub const Allow: Self = Self(0);
+    #[doc(alias = "WKCookiePolicyDisallow")]
+    pub const Disallow: Self = Self(1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for WKCookiePolicy {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for WKCookiePolicy {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_protocol!(
     pub unsafe trait WKHTTPCookieStoreObserver: NSObjectProtocol {

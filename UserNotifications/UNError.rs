@@ -10,32 +10,43 @@ extern "C" {
     pub static UNErrorDomain: Option<&'static NSString>;
 }
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum UNErrorCode {
-        #[doc(alias = "UNErrorCodeNotificationsNotAllowed")]
-        NotificationsNotAllowed = 1,
-        #[doc(alias = "UNErrorCodeAttachmentInvalidURL")]
-        AttachmentInvalidURL = 100,
-        #[doc(alias = "UNErrorCodeAttachmentUnrecognizedType")]
-        AttachmentUnrecognizedType = 101,
-        #[doc(alias = "UNErrorCodeAttachmentInvalidFileSize")]
-        AttachmentInvalidFileSize = 102,
-        #[doc(alias = "UNErrorCodeAttachmentNotInDataStore")]
-        AttachmentNotInDataStore = 103,
-        #[doc(alias = "UNErrorCodeAttachmentMoveIntoDataStoreFailed")]
-        AttachmentMoveIntoDataStoreFailed = 104,
-        #[doc(alias = "UNErrorCodeAttachmentCorrupt")]
-        AttachmentCorrupt = 105,
-        #[doc(alias = "UNErrorCodeNotificationInvalidNoDate")]
-        NotificationInvalidNoDate = 1400,
-        #[doc(alias = "UNErrorCodeNotificationInvalidNoContent")]
-        NotificationInvalidNoContent = 1401,
-        #[doc(alias = "UNErrorCodeContentProvidingObjectNotAllowed")]
-        ContentProvidingObjectNotAllowed = 1500,
-        #[doc(alias = "UNErrorCodeContentProvidingInvalid")]
-        ContentProvidingInvalid = 1501,
-        #[doc(alias = "UNErrorCodeBadgeInputInvalid")]
-        BadgeInputInvalid = 1600,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct UNErrorCode(pub NSInteger);
+impl UNErrorCode {
+    #[doc(alias = "UNErrorCodeNotificationsNotAllowed")]
+    pub const NotificationsNotAllowed: Self = Self(1);
+    #[doc(alias = "UNErrorCodeAttachmentInvalidURL")]
+    pub const AttachmentInvalidURL: Self = Self(100);
+    #[doc(alias = "UNErrorCodeAttachmentUnrecognizedType")]
+    pub const AttachmentUnrecognizedType: Self = Self(101);
+    #[doc(alias = "UNErrorCodeAttachmentInvalidFileSize")]
+    pub const AttachmentInvalidFileSize: Self = Self(102);
+    #[doc(alias = "UNErrorCodeAttachmentNotInDataStore")]
+    pub const AttachmentNotInDataStore: Self = Self(103);
+    #[doc(alias = "UNErrorCodeAttachmentMoveIntoDataStoreFailed")]
+    pub const AttachmentMoveIntoDataStoreFailed: Self = Self(104);
+    #[doc(alias = "UNErrorCodeAttachmentCorrupt")]
+    pub const AttachmentCorrupt: Self = Self(105);
+    #[doc(alias = "UNErrorCodeNotificationInvalidNoDate")]
+    pub const NotificationInvalidNoDate: Self = Self(1400);
+    #[doc(alias = "UNErrorCodeNotificationInvalidNoContent")]
+    pub const NotificationInvalidNoContent: Self = Self(1401);
+    #[doc(alias = "UNErrorCodeContentProvidingObjectNotAllowed")]
+    pub const ContentProvidingObjectNotAllowed: Self = Self(1500);
+    #[doc(alias = "UNErrorCodeContentProvidingInvalid")]
+    pub const ContentProvidingInvalid: Self = Self(1501);
+    #[doc(alias = "UNErrorCodeBadgeInputInvalid")]
+    pub const BadgeInputInvalid: Self = Self(1600);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for UNErrorCode {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for UNErrorCode {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}

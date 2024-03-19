@@ -5,25 +5,47 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSPrintingPageOrder {
-        NSDescendingPageOrder = -1,
-        NSSpecialPageOrder = 0,
-        NSAscendingPageOrder = 1,
-        NSUnknownPageOrder = 2,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSPrintingPageOrder(pub NSInteger);
+impl NSPrintingPageOrder {
+    pub const NSDescendingPageOrder: Self = Self(-1);
+    pub const NSSpecialPageOrder: Self = Self(0);
+    pub const NSAscendingPageOrder: Self = Self(1);
+    pub const NSUnknownPageOrder: Self = Self(2);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSPrintRenderingQuality {
-        #[doc(alias = "NSPrintRenderingQualityBest")]
-        Best = 0,
-        #[doc(alias = "NSPrintRenderingQualityResponsive")]
-        Responsive = 1,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSPrintingPageOrder {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSPrintingPageOrder {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSPrintRenderingQuality(pub NSInteger);
+impl NSPrintRenderingQuality {
+    #[doc(alias = "NSPrintRenderingQualityBest")]
+    pub const Best: Self = Self(0);
+    #[doc(alias = "NSPrintRenderingQualityResponsive")]
+    pub const Responsive: Self = Self(1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSPrintRenderingQuality {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSPrintRenderingQuality {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern "C" {
     #[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]

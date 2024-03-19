@@ -5,27 +5,49 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::StoreKit::*;
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum SKProductDiscountPaymentMode {
-        #[doc(alias = "SKProductDiscountPaymentModePayAsYouGo")]
-        PayAsYouGo = 0,
-        #[doc(alias = "SKProductDiscountPaymentModePayUpFront")]
-        PayUpFront = 1,
-        #[doc(alias = "SKProductDiscountPaymentModeFreeTrial")]
-        FreeTrial = 2,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct SKProductDiscountPaymentMode(pub NSUInteger);
+impl SKProductDiscountPaymentMode {
+    #[doc(alias = "SKProductDiscountPaymentModePayAsYouGo")]
+    pub const PayAsYouGo: Self = Self(0);
+    #[doc(alias = "SKProductDiscountPaymentModePayUpFront")]
+    pub const PayUpFront: Self = Self(1);
+    #[doc(alias = "SKProductDiscountPaymentModeFreeTrial")]
+    pub const FreeTrial: Self = Self(2);
+}
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum SKProductDiscountType {
-        #[doc(alias = "SKProductDiscountTypeIntroductory")]
-        Introductory = 0,
-        #[doc(alias = "SKProductDiscountTypeSubscription")]
-        Subscription = 1,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for SKProductDiscountPaymentMode {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for SKProductDiscountPaymentMode {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct SKProductDiscountType(pub NSUInteger);
+impl SKProductDiscountType {
+    #[doc(alias = "SKProductDiscountTypeIntroductory")]
+    pub const Introductory: Self = Self(0);
+    #[doc(alias = "SKProductDiscountTypeSubscription")]
+    pub const Subscription: Self = Self(1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for SKProductDiscountType {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for SKProductDiscountType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

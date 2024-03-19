@@ -7,15 +7,26 @@ use crate::CoreLocation::*;
 use crate::Foundation::*;
 use crate::MapKit::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum MKStandardMapEmphasisStyle {
-        #[doc(alias = "MKStandardMapEmphasisStyleDefault")]
-        Default = 0,
-        #[doc(alias = "MKStandardMapEmphasisStyleMuted")]
-        Muted = 1,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MKStandardMapEmphasisStyle(pub NSInteger);
+impl MKStandardMapEmphasisStyle {
+    #[doc(alias = "MKStandardMapEmphasisStyleDefault")]
+    pub const Default: Self = Self(0);
+    #[doc(alias = "MKStandardMapEmphasisStyleMuted")]
+    pub const Muted: Self = Self(1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MKStandardMapEmphasisStyle {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MKStandardMapEmphasisStyle {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

@@ -5,65 +5,87 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSAccessibilityCustomRotorSearchDirection {
-        #[doc(alias = "NSAccessibilityCustomRotorSearchDirectionPrevious")]
-        Previous = 0,
-        #[doc(alias = "NSAccessibilityCustomRotorSearchDirectionNext")]
-        Next = 1,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSAccessibilityCustomRotorSearchDirection(pub NSInteger);
+impl NSAccessibilityCustomRotorSearchDirection {
+    #[doc(alias = "NSAccessibilityCustomRotorSearchDirectionPrevious")]
+    pub const Previous: Self = Self(0);
+    #[doc(alias = "NSAccessibilityCustomRotorSearchDirectionNext")]
+    pub const Next: Self = Self(1);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSAccessibilityCustomRotorType {
-        #[doc(alias = "NSAccessibilityCustomRotorTypeCustom")]
-        Custom = 0,
-        #[doc(alias = "NSAccessibilityCustomRotorTypeAny")]
-        Any = 1,
-        #[doc(alias = "NSAccessibilityCustomRotorTypeAnnotation")]
-        Annotation = 2,
-        #[doc(alias = "NSAccessibilityCustomRotorTypeBoldText")]
-        BoldText = 3,
-        #[doc(alias = "NSAccessibilityCustomRotorTypeHeading")]
-        Heading = 4,
-        #[doc(alias = "NSAccessibilityCustomRotorTypeHeadingLevel1")]
-        HeadingLevel1 = 5,
-        #[doc(alias = "NSAccessibilityCustomRotorTypeHeadingLevel2")]
-        HeadingLevel2 = 6,
-        #[doc(alias = "NSAccessibilityCustomRotorTypeHeadingLevel3")]
-        HeadingLevel3 = 7,
-        #[doc(alias = "NSAccessibilityCustomRotorTypeHeadingLevel4")]
-        HeadingLevel4 = 8,
-        #[doc(alias = "NSAccessibilityCustomRotorTypeHeadingLevel5")]
-        HeadingLevel5 = 9,
-        #[doc(alias = "NSAccessibilityCustomRotorTypeHeadingLevel6")]
-        HeadingLevel6 = 10,
-        #[doc(alias = "NSAccessibilityCustomRotorTypeImage")]
-        Image = 11,
-        #[doc(alias = "NSAccessibilityCustomRotorTypeItalicText")]
-        ItalicText = 12,
-        #[doc(alias = "NSAccessibilityCustomRotorTypeLandmark")]
-        Landmark = 13,
-        #[doc(alias = "NSAccessibilityCustomRotorTypeLink")]
-        Link = 14,
-        #[doc(alias = "NSAccessibilityCustomRotorTypeList")]
-        List = 15,
-        #[doc(alias = "NSAccessibilityCustomRotorTypeMisspelledWord")]
-        MisspelledWord = 16,
-        #[doc(alias = "NSAccessibilityCustomRotorTypeTable")]
-        Table = 17,
-        #[doc(alias = "NSAccessibilityCustomRotorTypeTextField")]
-        TextField = 18,
-        #[doc(alias = "NSAccessibilityCustomRotorTypeUnderlinedText")]
-        UnderlinedText = 19,
-        #[doc(alias = "NSAccessibilityCustomRotorTypeVisitedLink")]
-        VisitedLink = 20,
-        #[doc(alias = "NSAccessibilityCustomRotorTypeAudiograph")]
-        Audiograph = 21,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSAccessibilityCustomRotorSearchDirection {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSAccessibilityCustomRotorSearchDirection {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSAccessibilityCustomRotorType(pub NSInteger);
+impl NSAccessibilityCustomRotorType {
+    #[doc(alias = "NSAccessibilityCustomRotorTypeCustom")]
+    pub const Custom: Self = Self(0);
+    #[doc(alias = "NSAccessibilityCustomRotorTypeAny")]
+    pub const Any: Self = Self(1);
+    #[doc(alias = "NSAccessibilityCustomRotorTypeAnnotation")]
+    pub const Annotation: Self = Self(2);
+    #[doc(alias = "NSAccessibilityCustomRotorTypeBoldText")]
+    pub const BoldText: Self = Self(3);
+    #[doc(alias = "NSAccessibilityCustomRotorTypeHeading")]
+    pub const Heading: Self = Self(4);
+    #[doc(alias = "NSAccessibilityCustomRotorTypeHeadingLevel1")]
+    pub const HeadingLevel1: Self = Self(5);
+    #[doc(alias = "NSAccessibilityCustomRotorTypeHeadingLevel2")]
+    pub const HeadingLevel2: Self = Self(6);
+    #[doc(alias = "NSAccessibilityCustomRotorTypeHeadingLevel3")]
+    pub const HeadingLevel3: Self = Self(7);
+    #[doc(alias = "NSAccessibilityCustomRotorTypeHeadingLevel4")]
+    pub const HeadingLevel4: Self = Self(8);
+    #[doc(alias = "NSAccessibilityCustomRotorTypeHeadingLevel5")]
+    pub const HeadingLevel5: Self = Self(9);
+    #[doc(alias = "NSAccessibilityCustomRotorTypeHeadingLevel6")]
+    pub const HeadingLevel6: Self = Self(10);
+    #[doc(alias = "NSAccessibilityCustomRotorTypeImage")]
+    pub const Image: Self = Self(11);
+    #[doc(alias = "NSAccessibilityCustomRotorTypeItalicText")]
+    pub const ItalicText: Self = Self(12);
+    #[doc(alias = "NSAccessibilityCustomRotorTypeLandmark")]
+    pub const Landmark: Self = Self(13);
+    #[doc(alias = "NSAccessibilityCustomRotorTypeLink")]
+    pub const Link: Self = Self(14);
+    #[doc(alias = "NSAccessibilityCustomRotorTypeList")]
+    pub const List: Self = Self(15);
+    #[doc(alias = "NSAccessibilityCustomRotorTypeMisspelledWord")]
+    pub const MisspelledWord: Self = Self(16);
+    #[doc(alias = "NSAccessibilityCustomRotorTypeTable")]
+    pub const Table: Self = Self(17);
+    #[doc(alias = "NSAccessibilityCustomRotorTypeTextField")]
+    pub const TextField: Self = Self(18);
+    #[doc(alias = "NSAccessibilityCustomRotorTypeUnderlinedText")]
+    pub const UnderlinedText: Self = Self(19);
+    #[doc(alias = "NSAccessibilityCustomRotorTypeVisitedLink")]
+    pub const VisitedLink: Self = Self(20);
+    #[doc(alias = "NSAccessibilityCustomRotorTypeAudiograph")]
+    pub const Audiograph: Self = Self(21);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSAccessibilityCustomRotorType {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSAccessibilityCustomRotorType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

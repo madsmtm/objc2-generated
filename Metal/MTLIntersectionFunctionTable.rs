@@ -4,29 +4,40 @@ use crate::common::*;
 use crate::Foundation::*;
 use crate::Metal::*;
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum MTLIntersectionFunctionSignature {
-        #[doc(alias = "MTLIntersectionFunctionSignatureNone")]
-        None = 0,
-        #[doc(alias = "MTLIntersectionFunctionSignatureInstancing")]
-        Instancing = 1 << 0,
-        #[doc(alias = "MTLIntersectionFunctionSignatureTriangleData")]
-        TriangleData = 1 << 1,
-        #[doc(alias = "MTLIntersectionFunctionSignatureWorldSpaceData")]
-        WorldSpaceData = 1 << 2,
-        #[doc(alias = "MTLIntersectionFunctionSignatureInstanceMotion")]
-        InstanceMotion = 1 << 3,
-        #[doc(alias = "MTLIntersectionFunctionSignaturePrimitiveMotion")]
-        PrimitiveMotion = 1 << 4,
-        #[doc(alias = "MTLIntersectionFunctionSignatureExtendedLimits")]
-        ExtendedLimits = 1 << 5,
-        #[doc(alias = "MTLIntersectionFunctionSignatureMaxLevels")]
-        MaxLevels = 1 << 6,
-        #[doc(alias = "MTLIntersectionFunctionSignatureCurveData")]
-        CurveData = 1 << 7,
-    }
-);
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MTLIntersectionFunctionSignature(pub NSUInteger);
+impl MTLIntersectionFunctionSignature {
+    #[doc(alias = "MTLIntersectionFunctionSignatureNone")]
+    pub const None: Self = Self(0);
+    #[doc(alias = "MTLIntersectionFunctionSignatureInstancing")]
+    pub const Instancing: Self = Self(1 << 0);
+    #[doc(alias = "MTLIntersectionFunctionSignatureTriangleData")]
+    pub const TriangleData: Self = Self(1 << 1);
+    #[doc(alias = "MTLIntersectionFunctionSignatureWorldSpaceData")]
+    pub const WorldSpaceData: Self = Self(1 << 2);
+    #[doc(alias = "MTLIntersectionFunctionSignatureInstanceMotion")]
+    pub const InstanceMotion: Self = Self(1 << 3);
+    #[doc(alias = "MTLIntersectionFunctionSignaturePrimitiveMotion")]
+    pub const PrimitiveMotion: Self = Self(1 << 4);
+    #[doc(alias = "MTLIntersectionFunctionSignatureExtendedLimits")]
+    pub const ExtendedLimits: Self = Self(1 << 5);
+    #[doc(alias = "MTLIntersectionFunctionSignatureMaxLevels")]
+    pub const MaxLevels: Self = Self(1 << 6);
+    #[doc(alias = "MTLIntersectionFunctionSignatureCurveData")]
+    pub const CurveData: Self = Self(1 << 7);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLIntersectionFunctionSignature {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLIntersectionFunctionSignature {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

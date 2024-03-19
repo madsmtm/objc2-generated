@@ -4,15 +4,26 @@ use crate::common::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSFetchIndexElementType {
-        #[doc(alias = "NSFetchIndexElementTypeBinary")]
-        Binary = 0,
-        #[doc(alias = "NSFetchIndexElementTypeRTree")]
-        RTree = 1,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSFetchIndexElementType(pub NSUInteger);
+impl NSFetchIndexElementType {
+    #[doc(alias = "NSFetchIndexElementTypeBinary")]
+    pub const Binary: Self = Self(0);
+    #[doc(alias = "NSFetchIndexElementTypeRTree")]
+    pub const RTree: Self = Self(1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSFetchIndexElementType {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSFetchIndexElementType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

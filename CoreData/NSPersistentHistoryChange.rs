@@ -4,17 +4,28 @@ use crate::common::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSPersistentHistoryChangeType {
-        #[doc(alias = "NSPersistentHistoryChangeTypeInsert")]
-        Insert = 0,
-        #[doc(alias = "NSPersistentHistoryChangeTypeUpdate")]
-        Update = 1,
-        #[doc(alias = "NSPersistentHistoryChangeTypeDelete")]
-        Delete = 2,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSPersistentHistoryChangeType(pub NSInteger);
+impl NSPersistentHistoryChangeType {
+    #[doc(alias = "NSPersistentHistoryChangeTypeInsert")]
+    pub const Insert: Self = Self(0);
+    #[doc(alias = "NSPersistentHistoryChangeTypeUpdate")]
+    pub const Update: Self = Self(1);
+    #[doc(alias = "NSPersistentHistoryChangeTypeDelete")]
+    pub const Delete: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSPersistentHistoryChangeType {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSPersistentHistoryChangeType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

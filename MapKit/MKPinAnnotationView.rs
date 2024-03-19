@@ -7,21 +7,32 @@ use crate::CoreLocation::*;
 use crate::Foundation::*;
 use crate::MapKit::*;
 
-ns_enum!(
-    #[underlying(NSUInteger)]
+// NS_ENUM
+#[deprecated = "Use MKPinAnnotationView's pinTintColor instead"]
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MKPinAnnotationColor(pub NSUInteger);
+impl MKPinAnnotationColor {
     #[deprecated = "Use MKPinAnnotationView's pinTintColor instead"]
-    pub enum MKPinAnnotationColor {
-        #[deprecated = "Use MKPinAnnotationView's pinTintColor instead"]
-        #[doc(alias = "MKPinAnnotationColorRed")]
-        Red = 0,
-        #[deprecated = "Use MKPinAnnotationView's pinTintColor instead"]
-        #[doc(alias = "MKPinAnnotationColorGreen")]
-        Green = 1,
-        #[deprecated = "Use MKPinAnnotationView's pinTintColor instead"]
-        #[doc(alias = "MKPinAnnotationColorPurple")]
-        Purple = 2,
-    }
-);
+    #[doc(alias = "MKPinAnnotationColorRed")]
+    pub const Red: Self = Self(0);
+    #[deprecated = "Use MKPinAnnotationView's pinTintColor instead"]
+    #[doc(alias = "MKPinAnnotationColorGreen")]
+    pub const Green: Self = Self(1);
+    #[deprecated = "Use MKPinAnnotationView's pinTintColor instead"]
+    #[doc(alias = "MKPinAnnotationColorPurple")]
+    pub const Purple: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MKPinAnnotationColor {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MKPinAnnotationColor {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

@@ -7,35 +7,57 @@ use crate::EventKit::*;
 use crate::Foundation::*;
 use crate::MapKit::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum EKEventAvailability {
-        #[doc(alias = "EKEventAvailabilityNotSupported")]
-        NotSupported = -1,
-        #[doc(alias = "EKEventAvailabilityBusy")]
-        Busy = 0,
-        #[doc(alias = "EKEventAvailabilityFree")]
-        Free = 1,
-        #[doc(alias = "EKEventAvailabilityTentative")]
-        Tentative = 2,
-        #[doc(alias = "EKEventAvailabilityUnavailable")]
-        Unavailable = 3,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct EKEventAvailability(pub NSInteger);
+impl EKEventAvailability {
+    #[doc(alias = "EKEventAvailabilityNotSupported")]
+    pub const NotSupported: Self = Self(-1);
+    #[doc(alias = "EKEventAvailabilityBusy")]
+    pub const Busy: Self = Self(0);
+    #[doc(alias = "EKEventAvailabilityFree")]
+    pub const Free: Self = Self(1);
+    #[doc(alias = "EKEventAvailabilityTentative")]
+    pub const Tentative: Self = Self(2);
+    #[doc(alias = "EKEventAvailabilityUnavailable")]
+    pub const Unavailable: Self = Self(3);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum EKEventStatus {
-        #[doc(alias = "EKEventStatusNone")]
-        None = 0,
-        #[doc(alias = "EKEventStatusConfirmed")]
-        Confirmed = 1,
-        #[doc(alias = "EKEventStatusTentative")]
-        Tentative = 2,
-        #[doc(alias = "EKEventStatusCanceled")]
-        Canceled = 3,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for EKEventAvailability {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for EKEventAvailability {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct EKEventStatus(pub NSInteger);
+impl EKEventStatus {
+    #[doc(alias = "EKEventStatusNone")]
+    pub const None: Self = Self(0);
+    #[doc(alias = "EKEventStatusConfirmed")]
+    pub const Confirmed: Self = Self(1);
+    #[doc(alias = "EKEventStatusTentative")]
+    pub const Tentative: Self = Self(2);
+    #[doc(alias = "EKEventStatusCanceled")]
+    pub const Canceled: Self = Self(3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for EKEventStatus {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for EKEventStatus {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

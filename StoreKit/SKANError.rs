@@ -10,32 +10,43 @@ extern "C" {
     pub static SKANErrorDomain: &'static NSString;
 }
 
-ns_error_enum!(
-    #[underlying(NSInteger)]
-    pub enum SKANError {
-        #[doc(alias = "SKANErrorImpressionMissingRequiredValue")]
-        ImpressionMissingRequiredValue = 0,
-        #[doc(alias = "SKANErrorUnsupported")]
-        Unsupported = 1,
-        #[doc(alias = "SKANErrorAdNetworkIdMissing")]
-        AdNetworkIdMissing = 2,
-        #[doc(alias = "SKANErrorMismatchedSourceAppId")]
-        MismatchedSourceAppId = 3,
-        #[doc(alias = "SKANErrorImpressionNotFound")]
-        ImpressionNotFound = 4,
-        #[doc(alias = "SKANErrorInvalidCampaignId")]
-        InvalidCampaignId = 5,
-        #[doc(alias = "SKANErrorInvalidConversionValue")]
-        InvalidConversionValue = 6,
-        #[doc(alias = "SKANErrorInvalidSourceAppId")]
-        InvalidSourceAppId = 7,
-        #[doc(alias = "SKANErrorInvalidAdvertisedAppId")]
-        InvalidAdvertisedAppId = 8,
-        #[doc(alias = "SKANErrorInvalidVersion")]
-        InvalidVersion = 9,
-        #[doc(alias = "SKANErrorUnknown")]
-        Unknown = 10,
-        #[doc(alias = "SKANErrorImpressionTooShort")]
-        ImpressionTooShort = 11,
-    }
-);
+// NS_ERROR_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct SKANError(pub NSInteger);
+impl SKANError {
+    #[doc(alias = "SKANErrorImpressionMissingRequiredValue")]
+    pub const ImpressionMissingRequiredValue: Self = Self(0);
+    #[doc(alias = "SKANErrorUnsupported")]
+    pub const Unsupported: Self = Self(1);
+    #[doc(alias = "SKANErrorAdNetworkIdMissing")]
+    pub const AdNetworkIdMissing: Self = Self(2);
+    #[doc(alias = "SKANErrorMismatchedSourceAppId")]
+    pub const MismatchedSourceAppId: Self = Self(3);
+    #[doc(alias = "SKANErrorImpressionNotFound")]
+    pub const ImpressionNotFound: Self = Self(4);
+    #[doc(alias = "SKANErrorInvalidCampaignId")]
+    pub const InvalidCampaignId: Self = Self(5);
+    #[doc(alias = "SKANErrorInvalidConversionValue")]
+    pub const InvalidConversionValue: Self = Self(6);
+    #[doc(alias = "SKANErrorInvalidSourceAppId")]
+    pub const InvalidSourceAppId: Self = Self(7);
+    #[doc(alias = "SKANErrorInvalidAdvertisedAppId")]
+    pub const InvalidAdvertisedAppId: Self = Self(8);
+    #[doc(alias = "SKANErrorInvalidVersion")]
+    pub const InvalidVersion: Self = Self(9);
+    #[doc(alias = "SKANErrorUnknown")]
+    pub const Unknown: Self = Self(10);
+    #[doc(alias = "SKANErrorImpressionTooShort")]
+    pub const ImpressionTooShort: Self = Self(11);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for SKANError {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for SKANError {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}

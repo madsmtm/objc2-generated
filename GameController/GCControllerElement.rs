@@ -5,17 +5,28 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::GameController::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum GCSystemGestureState {
-        #[doc(alias = "GCSystemGestureStateEnabled")]
-        Enabled = 0,
-        #[doc(alias = "GCSystemGestureStateAlwaysReceive")]
-        AlwaysReceive = 1,
-        #[doc(alias = "GCSystemGestureStateDisabled")]
-        Disabled = 2,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct GCSystemGestureState(pub NSInteger);
+impl GCSystemGestureState {
+    #[doc(alias = "GCSystemGestureStateEnabled")]
+    pub const Enabled: Self = Self(0);
+    #[doc(alias = "GCSystemGestureStateAlwaysReceive")]
+    pub const AlwaysReceive: Self = Self(1);
+    #[doc(alias = "GCSystemGestureStateDisabled")]
+    pub const Disabled: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for GCSystemGestureState {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for GCSystemGestureState {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

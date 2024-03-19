@@ -10,20 +10,31 @@ extern "C" {
     pub static ASAuthorizationErrorDomain: &'static NSErrorDomain;
 }
 
-ns_error_enum!(
-    #[underlying(NSInteger)]
-    pub enum ASAuthorizationError {
-        #[doc(alias = "ASAuthorizationErrorUnknown")]
-        Unknown = 1000,
-        #[doc(alias = "ASAuthorizationErrorCanceled")]
-        Canceled = 1001,
-        #[doc(alias = "ASAuthorizationErrorInvalidResponse")]
-        InvalidResponse = 1002,
-        #[doc(alias = "ASAuthorizationErrorNotHandled")]
-        NotHandled = 1003,
-        #[doc(alias = "ASAuthorizationErrorFailed")]
-        Failed = 1004,
-        #[doc(alias = "ASAuthorizationErrorNotInteractive")]
-        NotInteractive = 1005,
-    }
-);
+// NS_ERROR_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct ASAuthorizationError(pub NSInteger);
+impl ASAuthorizationError {
+    #[doc(alias = "ASAuthorizationErrorUnknown")]
+    pub const Unknown: Self = Self(1000);
+    #[doc(alias = "ASAuthorizationErrorCanceled")]
+    pub const Canceled: Self = Self(1001);
+    #[doc(alias = "ASAuthorizationErrorInvalidResponse")]
+    pub const InvalidResponse: Self = Self(1002);
+    #[doc(alias = "ASAuthorizationErrorNotHandled")]
+    pub const NotHandled: Self = Self(1003);
+    #[doc(alias = "ASAuthorizationErrorFailed")]
+    pub const Failed: Self = Self(1004);
+    #[doc(alias = "ASAuthorizationErrorNotInteractive")]
+    pub const NotInteractive: Self = Self(1005);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for ASAuthorizationError {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for ASAuthorizationError {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}

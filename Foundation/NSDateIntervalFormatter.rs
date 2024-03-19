@@ -3,16 +3,27 @@
 use crate::common::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSDateIntervalFormatterStyle {
-        NSDateIntervalFormatterNoStyle = 0,
-        NSDateIntervalFormatterShortStyle = 1,
-        NSDateIntervalFormatterMediumStyle = 2,
-        NSDateIntervalFormatterLongStyle = 3,
-        NSDateIntervalFormatterFullStyle = 4,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSDateIntervalFormatterStyle(pub NSUInteger);
+impl NSDateIntervalFormatterStyle {
+    pub const NSDateIntervalFormatterNoStyle: Self = Self(0);
+    pub const NSDateIntervalFormatterShortStyle: Self = Self(1);
+    pub const NSDateIntervalFormatterMediumStyle: Self = Self(2);
+    pub const NSDateIntervalFormatterLongStyle: Self = Self(3);
+    pub const NSDateIntervalFormatterFullStyle: Self = Self(4);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSDateIntervalFormatterStyle {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSDateIntervalFormatterStyle {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

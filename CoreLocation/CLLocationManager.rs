@@ -5,65 +5,109 @@ use crate::Contacts::*;
 use crate::CoreLocation::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(c_int)]
-    pub enum CLDeviceOrientation {
-        #[doc(alias = "CLDeviceOrientationUnknown")]
-        Unknown = 0,
-        #[doc(alias = "CLDeviceOrientationPortrait")]
-        Portrait = 1,
-        #[doc(alias = "CLDeviceOrientationPortraitUpsideDown")]
-        PortraitUpsideDown = 2,
-        #[doc(alias = "CLDeviceOrientationLandscapeLeft")]
-        LandscapeLeft = 3,
-        #[doc(alias = "CLDeviceOrientationLandscapeRight")]
-        LandscapeRight = 4,
-        #[doc(alias = "CLDeviceOrientationFaceUp")]
-        FaceUp = 5,
-        #[doc(alias = "CLDeviceOrientationFaceDown")]
-        FaceDown = 6,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct CLDeviceOrientation(pub c_int);
+impl CLDeviceOrientation {
+    #[doc(alias = "CLDeviceOrientationUnknown")]
+    pub const Unknown: Self = Self(0);
+    #[doc(alias = "CLDeviceOrientationPortrait")]
+    pub const Portrait: Self = Self(1);
+    #[doc(alias = "CLDeviceOrientationPortraitUpsideDown")]
+    pub const PortraitUpsideDown: Self = Self(2);
+    #[doc(alias = "CLDeviceOrientationLandscapeLeft")]
+    pub const LandscapeLeft: Self = Self(3);
+    #[doc(alias = "CLDeviceOrientationLandscapeRight")]
+    pub const LandscapeRight: Self = Self(4);
+    #[doc(alias = "CLDeviceOrientationFaceUp")]
+    pub const FaceUp: Self = Self(5);
+    #[doc(alias = "CLDeviceOrientationFaceDown")]
+    pub const FaceDown: Self = Self(6);
+}
 
-ns_enum!(
-    #[underlying(c_int)]
-    pub enum CLAuthorizationStatus {
-        kCLAuthorizationStatusNotDetermined = 0,
-        kCLAuthorizationStatusRestricted = 1,
-        kCLAuthorizationStatusDenied = 2,
-        kCLAuthorizationStatusAuthorizedAlways = 3,
-        kCLAuthorizationStatusAuthorizedWhenInUse = 4,
-        #[deprecated = "Use kCLAuthorizationStatusAuthorizedAlways"]
-        kCLAuthorizationStatusAuthorized =
-            CLAuthorizationStatus::kCLAuthorizationStatusAuthorizedAlways.0,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for CLDeviceOrientation {
+    const ENCODING: Encoding = c_int::ENCODING;
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum CLAccuracyAuthorization {
-        #[doc(alias = "CLAccuracyAuthorizationFullAccuracy")]
-        FullAccuracy = 0,
-        #[doc(alias = "CLAccuracyAuthorizationReducedAccuracy")]
-        ReducedAccuracy = 1,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for CLDeviceOrientation {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum CLActivityType {
-        #[doc(alias = "CLActivityTypeOther")]
-        Other = 1,
-        #[doc(alias = "CLActivityTypeAutomotiveNavigation")]
-        AutomotiveNavigation = 2,
-        #[doc(alias = "CLActivityTypeFitness")]
-        Fitness = 3,
-        #[doc(alias = "CLActivityTypeOtherNavigation")]
-        OtherNavigation = 4,
-        #[doc(alias = "CLActivityTypeAirborne")]
-        Airborne = 5,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct CLAuthorizationStatus(pub c_int);
+impl CLAuthorizationStatus {
+    pub const kCLAuthorizationStatusNotDetermined: Self = Self(0);
+    pub const kCLAuthorizationStatusRestricted: Self = Self(1);
+    pub const kCLAuthorizationStatusDenied: Self = Self(2);
+    pub const kCLAuthorizationStatusAuthorizedAlways: Self = Self(3);
+    pub const kCLAuthorizationStatusAuthorizedWhenInUse: Self = Self(4);
+    #[deprecated = "Use kCLAuthorizationStatusAuthorizedAlways"]
+    pub const kCLAuthorizationStatusAuthorized: Self =
+        Self(CLAuthorizationStatus::kCLAuthorizationStatusAuthorizedAlways.0);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for CLAuthorizationStatus {
+    const ENCODING: Encoding = c_int::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for CLAuthorizationStatus {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct CLAccuracyAuthorization(pub NSInteger);
+impl CLAccuracyAuthorization {
+    #[doc(alias = "CLAccuracyAuthorizationFullAccuracy")]
+    pub const FullAccuracy: Self = Self(0);
+    #[doc(alias = "CLAccuracyAuthorizationReducedAccuracy")]
+    pub const ReducedAccuracy: Self = Self(1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for CLAccuracyAuthorization {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for CLAccuracyAuthorization {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct CLActivityType(pub NSInteger);
+impl CLActivityType {
+    #[doc(alias = "CLActivityTypeOther")]
+    pub const Other: Self = Self(1);
+    #[doc(alias = "CLActivityTypeAutomotiveNavigation")]
+    pub const AutomotiveNavigation: Self = Self(2);
+    #[doc(alias = "CLActivityTypeFitness")]
+    pub const Fitness: Self = Self(3);
+    #[doc(alias = "CLActivityTypeOtherNavigation")]
+    pub const OtherNavigation: Self = Self(4);
+    #[doc(alias = "CLActivityTypeAirborne")]
+    pub const Airborne: Self = Self(5);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for CLActivityType {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for CLActivityType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

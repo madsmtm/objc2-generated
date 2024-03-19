@@ -5,65 +5,98 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::GameKit::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum GKTurnBasedMatchStatus {
-        #[doc(alias = "GKTurnBasedMatchStatusUnknown")]
-        Unknown = 0,
-        #[doc(alias = "GKTurnBasedMatchStatusOpen")]
-        Open = 1,
-        #[doc(alias = "GKTurnBasedMatchStatusEnded")]
-        Ended = 2,
-        #[doc(alias = "GKTurnBasedMatchStatusMatching")]
-        Matching = 3,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct GKTurnBasedMatchStatus(pub NSInteger);
+impl GKTurnBasedMatchStatus {
+    #[doc(alias = "GKTurnBasedMatchStatusUnknown")]
+    pub const Unknown: Self = Self(0);
+    #[doc(alias = "GKTurnBasedMatchStatusOpen")]
+    pub const Open: Self = Self(1);
+    #[doc(alias = "GKTurnBasedMatchStatusEnded")]
+    pub const Ended: Self = Self(2);
+    #[doc(alias = "GKTurnBasedMatchStatusMatching")]
+    pub const Matching: Self = Self(3);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum GKTurnBasedParticipantStatus {
-        #[doc(alias = "GKTurnBasedParticipantStatusUnknown")]
-        Unknown = 0,
-        #[doc(alias = "GKTurnBasedParticipantStatusInvited")]
-        Invited = 1,
-        #[doc(alias = "GKTurnBasedParticipantStatusDeclined")]
-        Declined = 2,
-        #[doc(alias = "GKTurnBasedParticipantStatusMatching")]
-        Matching = 3,
-        #[doc(alias = "GKTurnBasedParticipantStatusActive")]
-        Active = 4,
-        #[doc(alias = "GKTurnBasedParticipantStatusDone")]
-        Done = 5,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for GKTurnBasedMatchStatus {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum GKTurnBasedMatchOutcome {
-        #[doc(alias = "GKTurnBasedMatchOutcomeNone")]
-        None = 0,
-        #[doc(alias = "GKTurnBasedMatchOutcomeQuit")]
-        Quit = 1,
-        #[doc(alias = "GKTurnBasedMatchOutcomeWon")]
-        Won = 2,
-        #[doc(alias = "GKTurnBasedMatchOutcomeLost")]
-        Lost = 3,
-        #[doc(alias = "GKTurnBasedMatchOutcomeTied")]
-        Tied = 4,
-        #[doc(alias = "GKTurnBasedMatchOutcomeTimeExpired")]
-        TimeExpired = 5,
-        #[doc(alias = "GKTurnBasedMatchOutcomeFirst")]
-        First = 6,
-        #[doc(alias = "GKTurnBasedMatchOutcomeSecond")]
-        Second = 7,
-        #[doc(alias = "GKTurnBasedMatchOutcomeThird")]
-        Third = 8,
-        #[doc(alias = "GKTurnBasedMatchOutcomeFourth")]
-        Fourth = 9,
-        #[doc(alias = "GKTurnBasedMatchOutcomeCustomRange")]
-        CustomRange = 0x00FF0000,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for GKTurnBasedMatchStatus {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct GKTurnBasedParticipantStatus(pub NSInteger);
+impl GKTurnBasedParticipantStatus {
+    #[doc(alias = "GKTurnBasedParticipantStatusUnknown")]
+    pub const Unknown: Self = Self(0);
+    #[doc(alias = "GKTurnBasedParticipantStatusInvited")]
+    pub const Invited: Self = Self(1);
+    #[doc(alias = "GKTurnBasedParticipantStatusDeclined")]
+    pub const Declined: Self = Self(2);
+    #[doc(alias = "GKTurnBasedParticipantStatusMatching")]
+    pub const Matching: Self = Self(3);
+    #[doc(alias = "GKTurnBasedParticipantStatusActive")]
+    pub const Active: Self = Self(4);
+    #[doc(alias = "GKTurnBasedParticipantStatusDone")]
+    pub const Done: Self = Self(5);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for GKTurnBasedParticipantStatus {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for GKTurnBasedParticipantStatus {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct GKTurnBasedMatchOutcome(pub NSInteger);
+impl GKTurnBasedMatchOutcome {
+    #[doc(alias = "GKTurnBasedMatchOutcomeNone")]
+    pub const None: Self = Self(0);
+    #[doc(alias = "GKTurnBasedMatchOutcomeQuit")]
+    pub const Quit: Self = Self(1);
+    #[doc(alias = "GKTurnBasedMatchOutcomeWon")]
+    pub const Won: Self = Self(2);
+    #[doc(alias = "GKTurnBasedMatchOutcomeLost")]
+    pub const Lost: Self = Self(3);
+    #[doc(alias = "GKTurnBasedMatchOutcomeTied")]
+    pub const Tied: Self = Self(4);
+    #[doc(alias = "GKTurnBasedMatchOutcomeTimeExpired")]
+    pub const TimeExpired: Self = Self(5);
+    #[doc(alias = "GKTurnBasedMatchOutcomeFirst")]
+    pub const First: Self = Self(6);
+    #[doc(alias = "GKTurnBasedMatchOutcomeSecond")]
+    pub const Second: Self = Self(7);
+    #[doc(alias = "GKTurnBasedMatchOutcomeThird")]
+    pub const Third: Self = Self(8);
+    #[doc(alias = "GKTurnBasedMatchOutcomeFourth")]
+    pub const Fourth: Self = Self(9);
+    #[doc(alias = "GKTurnBasedMatchOutcomeCustomRange")]
+    pub const CustomRange: Self = Self(0x00FF0000);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for GKTurnBasedMatchOutcome {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for GKTurnBasedMatchOutcome {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -518,21 +551,32 @@ extern_methods!(
     }
 );
 
-ns_enum!(
-    #[underlying(i8)]
-    pub enum GKTurnBasedExchangeStatus {
-        #[doc(alias = "GKTurnBasedExchangeStatusUnknown")]
-        Unknown = 0,
-        #[doc(alias = "GKTurnBasedExchangeStatusActive")]
-        Active = 1,
-        #[doc(alias = "GKTurnBasedExchangeStatusComplete")]
-        Complete = 2,
-        #[doc(alias = "GKTurnBasedExchangeStatusResolved")]
-        Resolved = 3,
-        #[doc(alias = "GKTurnBasedExchangeStatusCanceled")]
-        Canceled = 4,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct GKTurnBasedExchangeStatus(pub i8);
+impl GKTurnBasedExchangeStatus {
+    #[doc(alias = "GKTurnBasedExchangeStatusUnknown")]
+    pub const Unknown: Self = Self(0);
+    #[doc(alias = "GKTurnBasedExchangeStatusActive")]
+    pub const Active: Self = Self(1);
+    #[doc(alias = "GKTurnBasedExchangeStatusComplete")]
+    pub const Complete: Self = Self(2);
+    #[doc(alias = "GKTurnBasedExchangeStatusResolved")]
+    pub const Resolved: Self = Self(3);
+    #[doc(alias = "GKTurnBasedExchangeStatusCanceled")]
+    pub const Canceled: Self = Self(4);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for GKTurnBasedExchangeStatus {
+    const ENCODING: Encoding = i8::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for GKTurnBasedExchangeStatus {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern "C" {
     #[cfg(feature = "Foundation_NSDate")]

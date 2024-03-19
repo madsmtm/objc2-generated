@@ -4,30 +4,52 @@ use crate::common::*;
 use crate::Foundation::*;
 use crate::Metal::*;
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum MTLResourceUsage {
-        #[doc(alias = "MTLResourceUsageRead")]
-        Read = 1 << 0,
-        #[doc(alias = "MTLResourceUsageWrite")]
-        Write = 1 << 1,
-        #[deprecated]
-        #[doc(alias = "MTLResourceUsageSample")]
-        Sample = 1 << 2,
-    }
-);
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MTLResourceUsage(pub NSUInteger);
+impl MTLResourceUsage {
+    #[doc(alias = "MTLResourceUsageRead")]
+    pub const Read: Self = Self(1 << 0);
+    #[doc(alias = "MTLResourceUsageWrite")]
+    pub const Write: Self = Self(1 << 1);
+    #[deprecated]
+    #[doc(alias = "MTLResourceUsageSample")]
+    pub const Sample: Self = Self(1 << 2);
+}
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum MTLBarrierScope {
-        #[doc(alias = "MTLBarrierScopeBuffers")]
-        Buffers = 1 << 0,
-        #[doc(alias = "MTLBarrierScopeTextures")]
-        Textures = 1 << 1,
-        #[doc(alias = "MTLBarrierScopeRenderTargets")]
-        RenderTargets = 1 << 2,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLResourceUsage {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLResourceUsage {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MTLBarrierScope(pub NSUInteger);
+impl MTLBarrierScope {
+    #[doc(alias = "MTLBarrierScopeBuffers")]
+    pub const Buffers: Self = Self(1 << 0);
+    #[doc(alias = "MTLBarrierScopeTextures")]
+    pub const Textures: Self = Self(1 << 1);
+    #[doc(alias = "MTLBarrierScopeRenderTargets")]
+    pub const RenderTargets: Self = Self(1 << 2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLBarrierScope {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLBarrierScope {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_protocol!(
     pub unsafe trait MTLCommandEncoder: NSObjectProtocol {

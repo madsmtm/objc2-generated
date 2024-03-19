@@ -3,24 +3,35 @@
 use crate::common::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSXMLNodeKind {
-        NSXMLInvalidKind = 0,
-        NSXMLDocumentKind = 1,
-        NSXMLElementKind = 2,
-        NSXMLAttributeKind = 3,
-        NSXMLNamespaceKind = 4,
-        NSXMLProcessingInstructionKind = 5,
-        NSXMLCommentKind = 6,
-        NSXMLTextKind = 7,
-        NSXMLDTDKind = 8,
-        NSXMLEntityDeclarationKind = 9,
-        NSXMLAttributeDeclarationKind = 10,
-        NSXMLElementDeclarationKind = 11,
-        NSXMLNotationDeclarationKind = 12,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSXMLNodeKind(pub NSUInteger);
+impl NSXMLNodeKind {
+    pub const NSXMLInvalidKind: Self = Self(0);
+    pub const NSXMLDocumentKind: Self = Self(1);
+    pub const NSXMLElementKind: Self = Self(2);
+    pub const NSXMLAttributeKind: Self = Self(3);
+    pub const NSXMLNamespaceKind: Self = Self(4);
+    pub const NSXMLProcessingInstructionKind: Self = Self(5);
+    pub const NSXMLCommentKind: Self = Self(6);
+    pub const NSXMLTextKind: Self = Self(7);
+    pub const NSXMLDTDKind: Self = Self(8);
+    pub const NSXMLEntityDeclarationKind: Self = Self(9);
+    pub const NSXMLAttributeDeclarationKind: Self = Self(10);
+    pub const NSXMLElementDeclarationKind: Self = Self(11);
+    pub const NSXMLNotationDeclarationKind: Self = Self(12);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSXMLNodeKind {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSXMLNodeKind {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

@@ -3,43 +3,76 @@
 use crate::common::*;
 use crate::Foundation::*;
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSComparisonPredicateOptions {
-        NSCaseInsensitivePredicateOption = 0x01,
-        NSDiacriticInsensitivePredicateOption = 0x02,
-        NSNormalizedPredicateOption = 0x04,
-    }
-);
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSComparisonPredicateOptions(pub NSUInteger);
+impl NSComparisonPredicateOptions {
+    pub const NSCaseInsensitivePredicateOption: Self = Self(0x01);
+    pub const NSDiacriticInsensitivePredicateOption: Self = Self(0x02);
+    pub const NSNormalizedPredicateOption: Self = Self(0x04);
+}
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSComparisonPredicateModifier {
-        NSDirectPredicateModifier = 0,
-        NSAllPredicateModifier = 1,
-        NSAnyPredicateModifier = 2,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSComparisonPredicateOptions {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSPredicateOperatorType {
-        NSLessThanPredicateOperatorType = 0,
-        NSLessThanOrEqualToPredicateOperatorType = 1,
-        NSGreaterThanPredicateOperatorType = 2,
-        NSGreaterThanOrEqualToPredicateOperatorType = 3,
-        NSEqualToPredicateOperatorType = 4,
-        NSNotEqualToPredicateOperatorType = 5,
-        NSMatchesPredicateOperatorType = 6,
-        NSLikePredicateOperatorType = 7,
-        NSBeginsWithPredicateOperatorType = 8,
-        NSEndsWithPredicateOperatorType = 9,
-        NSInPredicateOperatorType = 10,
-        NSCustomSelectorPredicateOperatorType = 11,
-        NSContainsPredicateOperatorType = 99,
-        NSBetweenPredicateOperatorType = 100,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSComparisonPredicateOptions {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSComparisonPredicateModifier(pub NSUInteger);
+impl NSComparisonPredicateModifier {
+    pub const NSDirectPredicateModifier: Self = Self(0);
+    pub const NSAllPredicateModifier: Self = Self(1);
+    pub const NSAnyPredicateModifier: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSComparisonPredicateModifier {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSComparisonPredicateModifier {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSPredicateOperatorType(pub NSUInteger);
+impl NSPredicateOperatorType {
+    pub const NSLessThanPredicateOperatorType: Self = Self(0);
+    pub const NSLessThanOrEqualToPredicateOperatorType: Self = Self(1);
+    pub const NSGreaterThanPredicateOperatorType: Self = Self(2);
+    pub const NSGreaterThanOrEqualToPredicateOperatorType: Self = Self(3);
+    pub const NSEqualToPredicateOperatorType: Self = Self(4);
+    pub const NSNotEqualToPredicateOperatorType: Self = Self(5);
+    pub const NSMatchesPredicateOperatorType: Self = Self(6);
+    pub const NSLikePredicateOperatorType: Self = Self(7);
+    pub const NSBeginsWithPredicateOperatorType: Self = Self(8);
+    pub const NSEndsWithPredicateOperatorType: Self = Self(9);
+    pub const NSInPredicateOperatorType: Self = Self(10);
+    pub const NSCustomSelectorPredicateOperatorType: Self = Self(11);
+    pub const NSContainsPredicateOperatorType: Self = Self(99);
+    pub const NSBetweenPredicateOperatorType: Self = Self(100);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSPredicateOperatorType {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSPredicateOperatorType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

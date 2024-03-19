@@ -5,25 +5,36 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::GameKit::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum GKGameCenterViewControllerState {
-        #[doc(alias = "GKGameCenterViewControllerStateDefault")]
-        Default = -1,
-        #[doc(alias = "GKGameCenterViewControllerStateLeaderboards")]
-        Leaderboards = 0,
-        #[doc(alias = "GKGameCenterViewControllerStateAchievements")]
-        Achievements = 1,
-        #[doc(alias = "GKGameCenterViewControllerStateChallenges")]
-        Challenges = 2,
-        #[doc(alias = "GKGameCenterViewControllerStateLocalPlayerProfile")]
-        LocalPlayerProfile = 3,
-        #[doc(alias = "GKGameCenterViewControllerStateDashboard")]
-        Dashboard = 4,
-        #[doc(alias = "GKGameCenterViewControllerStateLocalPlayerFriendsList")]
-        LocalPlayerFriendsList = 5,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct GKGameCenterViewControllerState(pub NSInteger);
+impl GKGameCenterViewControllerState {
+    #[doc(alias = "GKGameCenterViewControllerStateDefault")]
+    pub const Default: Self = Self(-1);
+    #[doc(alias = "GKGameCenterViewControllerStateLeaderboards")]
+    pub const Leaderboards: Self = Self(0);
+    #[doc(alias = "GKGameCenterViewControllerStateAchievements")]
+    pub const Achievements: Self = Self(1);
+    #[doc(alias = "GKGameCenterViewControllerStateChallenges")]
+    pub const Challenges: Self = Self(2);
+    #[doc(alias = "GKGameCenterViewControllerStateLocalPlayerProfile")]
+    pub const LocalPlayerProfile: Self = Self(3);
+    #[doc(alias = "GKGameCenterViewControllerStateDashboard")]
+    pub const Dashboard: Self = Self(4);
+    #[doc(alias = "GKGameCenterViewControllerStateLocalPlayerFriendsList")]
+    pub const LocalPlayerFriendsList: Self = Self(5);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for GKGameCenterViewControllerState {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for GKGameCenterViewControllerState {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

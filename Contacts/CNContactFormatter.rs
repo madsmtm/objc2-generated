@@ -4,27 +4,49 @@ use crate::common::*;
 use crate::Contacts::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum CNContactFormatterStyle {
-        #[doc(alias = "CNContactFormatterStyleFullName")]
-        FullName = 0,
-        #[doc(alias = "CNContactFormatterStylePhoneticFullName")]
-        PhoneticFullName = 1,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct CNContactFormatterStyle(pub NSInteger);
+impl CNContactFormatterStyle {
+    #[doc(alias = "CNContactFormatterStyleFullName")]
+    pub const FullName: Self = Self(0);
+    #[doc(alias = "CNContactFormatterStylePhoneticFullName")]
+    pub const PhoneticFullName: Self = Self(1);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum CNContactDisplayNameOrder {
-        #[doc(alias = "CNContactDisplayNameOrderUserDefault")]
-        UserDefault = 0,
-        #[doc(alias = "CNContactDisplayNameOrderGivenNameFirst")]
-        GivenNameFirst = 1,
-        #[doc(alias = "CNContactDisplayNameOrderFamilyNameFirst")]
-        FamilyNameFirst = 2,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for CNContactFormatterStyle {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for CNContactFormatterStyle {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct CNContactDisplayNameOrder(pub NSInteger);
+impl CNContactDisplayNameOrder {
+    #[doc(alias = "CNContactDisplayNameOrderUserDefault")]
+    pub const UserDefault: Self = Self(0);
+    #[doc(alias = "CNContactDisplayNameOrderGivenNameFirst")]
+    pub const GivenNameFirst: Self = Self(1);
+    #[doc(alias = "CNContactDisplayNameOrderFamilyNameFirst")]
+    pub const FamilyNameFirst: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for CNContactDisplayNameOrder {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for CNContactDisplayNameOrder {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

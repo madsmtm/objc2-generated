@@ -7,15 +7,13 @@ extern "C" {
     pub static NSFoundationVersionNumber: c_double;
 }
 
+// NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_extensible_enum!(
-    pub type NSExceptionName = NSString;
-);
+pub type NSExceptionName = NSString;
 
+// NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_extensible_enum!(
-    pub type NSRunLoopMode = NSString;
-);
+pub type NSRunLoopMode = NSString;
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]
@@ -58,36 +56,69 @@ extern "C" {
 pub type NSComparator =
     *mut Block<dyn Fn(NonNull<AnyObject>, NonNull<AnyObject>) -> NSComparisonResult>;
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSEnumerationOptions {
-        NSEnumerationConcurrent = 1 << 0,
-        NSEnumerationReverse = 1 << 1,
-    }
-);
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSEnumerationOptions(pub NSUInteger);
+impl NSEnumerationOptions {
+    pub const NSEnumerationConcurrent: Self = Self(1 << 0);
+    pub const NSEnumerationReverse: Self = Self(1 << 1);
+}
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSSortOptions {
-        NSSortConcurrent = 1 << 0,
-        NSSortStable = 1 << 4,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSEnumerationOptions {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSQualityOfService {
-        #[doc(alias = "NSQualityOfServiceUserInteractive")]
-        UserInteractive = 0x21,
-        #[doc(alias = "NSQualityOfServiceUserInitiated")]
-        UserInitiated = 0x19,
-        #[doc(alias = "NSQualityOfServiceUtility")]
-        Utility = 0x11,
-        #[doc(alias = "NSQualityOfServiceBackground")]
-        Background = 0x09,
-        #[doc(alias = "NSQualityOfServiceDefault")]
-        Default = -1,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSEnumerationOptions {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSSortOptions(pub NSUInteger);
+impl NSSortOptions {
+    pub const NSSortConcurrent: Self = Self(1 << 0);
+    pub const NSSortStable: Self = Self(1 << 4);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSSortOptions {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSSortOptions {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSQualityOfService(pub NSInteger);
+impl NSQualityOfService {
+    #[doc(alias = "NSQualityOfServiceUserInteractive")]
+    pub const UserInteractive: Self = Self(0x21);
+    #[doc(alias = "NSQualityOfServiceUserInitiated")]
+    pub const UserInitiated: Self = Self(0x19);
+    #[doc(alias = "NSQualityOfServiceUtility")]
+    pub const Utility: Self = Self(0x11);
+    #[doc(alias = "NSQualityOfServiceBackground")]
+    pub const Background: Self = Self(0x09);
+    #[doc(alias = "NSQualityOfServiceDefault")]
+    pub const Default: Self = Self(-1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSQualityOfService {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSQualityOfService {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 pub static NSNotFound: NSInteger = NSIntegerMax as _;

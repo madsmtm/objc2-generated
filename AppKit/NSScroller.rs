@@ -5,52 +5,96 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSUsableScrollerParts {
-        NSNoScrollerParts = 0,
-        #[deprecated = "Scroller arrows are not used anymore."]
-        NSOnlyScrollerArrows = 1,
-        NSAllScrollerParts = 2,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSUsableScrollerParts(pub NSUInteger);
+impl NSUsableScrollerParts {
+    pub const NSNoScrollerParts: Self = Self(0);
+    #[deprecated = "Scroller arrows are not used anymore."]
+    pub const NSOnlyScrollerArrows: Self = Self(1);
+    pub const NSAllScrollerParts: Self = Self(2);
+}
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSScrollerPart {
-        NSScrollerNoPart = 0,
-        NSScrollerDecrementPage = 1,
-        NSScrollerKnob = 2,
-        NSScrollerIncrementPage = 3,
-        #[deprecated = "Scroller arrows are not used anymore."]
-        NSScrollerDecrementLine = 4,
-        #[deprecated = "Scroller arrows are not used anymore."]
-        NSScrollerIncrementLine = 5,
-        NSScrollerKnobSlot = 6,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSUsableScrollerParts {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSScrollerStyle {
-        #[doc(alias = "NSScrollerStyleLegacy")]
-        Legacy = 0,
-        #[doc(alias = "NSScrollerStyleOverlay")]
-        Overlay = 1,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSUsableScrollerParts {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSScrollerKnobStyle {
-        #[doc(alias = "NSScrollerKnobStyleDefault")]
-        Default = 0,
-        #[doc(alias = "NSScrollerKnobStyleDark")]
-        Dark = 1,
-        #[doc(alias = "NSScrollerKnobStyleLight")]
-        Light = 2,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSScrollerPart(pub NSUInteger);
+impl NSScrollerPart {
+    pub const NSScrollerNoPart: Self = Self(0);
+    pub const NSScrollerDecrementPage: Self = Self(1);
+    pub const NSScrollerKnob: Self = Self(2);
+    pub const NSScrollerIncrementPage: Self = Self(3);
+    #[deprecated = "Scroller arrows are not used anymore."]
+    pub const NSScrollerDecrementLine: Self = Self(4);
+    #[deprecated = "Scroller arrows are not used anymore."]
+    pub const NSScrollerIncrementLine: Self = Self(5);
+    pub const NSScrollerKnobSlot: Self = Self(6);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSScrollerPart {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSScrollerPart {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSScrollerStyle(pub NSInteger);
+impl NSScrollerStyle {
+    #[doc(alias = "NSScrollerStyleLegacy")]
+    pub const Legacy: Self = Self(0);
+    #[doc(alias = "NSScrollerStyleOverlay")]
+    pub const Overlay: Self = Self(1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSScrollerStyle {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSScrollerStyle {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSScrollerKnobStyle(pub NSInteger);
+impl NSScrollerKnobStyle {
+    #[doc(alias = "NSScrollerKnobStyleDefault")]
+    pub const Default: Self = Self(0);
+    #[doc(alias = "NSScrollerKnobStyleDark")]
+    pub const Dark: Self = Self(1);
+    #[doc(alias = "NSScrollerKnobStyleLight")]
+    pub const Light: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSScrollerKnobStyle {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSScrollerKnobStyle {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -264,25 +308,47 @@ extern "C" {
     pub static NSPreferredScrollerStyleDidChangeNotification: &'static NSNotificationName;
 }
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    #[deprecated = "Scroller arrows are not used anymore."]
-    pub enum NSScrollArrowPosition {
-        NSScrollerArrowsMaxEnd = 0,
-        NSScrollerArrowsMinEnd = 1,
-        NSScrollerArrowsDefaultSetting = 0,
-        NSScrollerArrowsNone = 2,
-    }
-);
+// NS_ENUM
+#[deprecated = "Scroller arrows are not used anymore."]
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSScrollArrowPosition(pub NSUInteger);
+impl NSScrollArrowPosition {
+    pub const NSScrollerArrowsMaxEnd: Self = Self(0);
+    pub const NSScrollerArrowsMinEnd: Self = Self(1);
+    pub const NSScrollerArrowsDefaultSetting: Self = Self(0);
+    pub const NSScrollerArrowsNone: Self = Self(2);
+}
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    #[deprecated = "Scroller arrows are not used anymore."]
-    pub enum NSScrollerArrow {
-        NSScrollerIncrementArrow = 0,
-        NSScrollerDecrementArrow = 1,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSScrollArrowPosition {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSScrollArrowPosition {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[deprecated = "Scroller arrows are not used anymore."]
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSScrollerArrow(pub NSUInteger);
+impl NSScrollerArrow {
+    pub const NSScrollerIncrementArrow: Self = Self(0);
+    pub const NSScrollerDecrementArrow: Self = Self(1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSScrollerArrow {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSScrollerArrow {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_methods!(
     /// NSDeprecated

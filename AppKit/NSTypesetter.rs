@@ -374,17 +374,28 @@ extern_methods!(
     }
 );
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSTypesetterControlCharacterAction {
-        NSTypesetterZeroAdvancementAction = 1 << 0,
-        NSTypesetterWhitespaceAction = 1 << 1,
-        NSTypesetterHorizontalTabAction = 1 << 2,
-        NSTypesetterLineBreakAction = 1 << 3,
-        NSTypesetterParagraphBreakAction = 1 << 4,
-        NSTypesetterContainerBreakAction = 1 << 5,
-    }
-);
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSTypesetterControlCharacterAction(pub NSUInteger);
+impl NSTypesetterControlCharacterAction {
+    pub const NSTypesetterZeroAdvancementAction: Self = Self(1 << 0);
+    pub const NSTypesetterWhitespaceAction: Self = Self(1 << 1);
+    pub const NSTypesetterHorizontalTabAction: Self = Self(1 << 2);
+    pub const NSTypesetterLineBreakAction: Self = Self(1 << 3);
+    pub const NSTypesetterParagraphBreakAction: Self = Self(1 << 4);
+    pub const NSTypesetterContainerBreakAction: Self = Self(1 << 5);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSTypesetterControlCharacterAction {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSTypesetterControlCharacterAction {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_methods!(
     /// NSTypesetter_Deprecated

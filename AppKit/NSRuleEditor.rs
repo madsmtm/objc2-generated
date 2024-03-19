@@ -5,10 +5,9 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type NSRuleEditorPredicatePartKey = NSString;
-);
+pub type NSRuleEditorPredicatePartKey = NSString;
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]
@@ -45,29 +44,51 @@ extern "C" {
     pub static NSRuleEditorPredicateCompoundType: &'static NSRuleEditorPredicatePartKey;
 }
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSRuleEditorNestingMode {
-        #[doc(alias = "NSRuleEditorNestingModeSingle")]
-        Single = 0,
-        #[doc(alias = "NSRuleEditorNestingModeList")]
-        List = 1,
-        #[doc(alias = "NSRuleEditorNestingModeCompound")]
-        Compound = 2,
-        #[doc(alias = "NSRuleEditorNestingModeSimple")]
-        Simple = 3,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSRuleEditorNestingMode(pub NSUInteger);
+impl NSRuleEditorNestingMode {
+    #[doc(alias = "NSRuleEditorNestingModeSingle")]
+    pub const Single: Self = Self(0);
+    #[doc(alias = "NSRuleEditorNestingModeList")]
+    pub const List: Self = Self(1);
+    #[doc(alias = "NSRuleEditorNestingModeCompound")]
+    pub const Compound: Self = Self(2);
+    #[doc(alias = "NSRuleEditorNestingModeSimple")]
+    pub const Simple: Self = Self(3);
+}
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSRuleEditorRowType {
-        #[doc(alias = "NSRuleEditorRowTypeSimple")]
-        Simple = 0,
-        #[doc(alias = "NSRuleEditorRowTypeCompound")]
-        Compound = 1,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSRuleEditorNestingMode {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSRuleEditorNestingMode {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSRuleEditorRowType(pub NSUInteger);
+impl NSRuleEditorRowType {
+    #[doc(alias = "NSRuleEditorRowTypeSimple")]
+    pub const Simple: Self = Self(0);
+    #[doc(alias = "NSRuleEditorRowTypeCompound")]
+    pub const Compound: Self = Self(1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSRuleEditorRowType {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSRuleEditorRowType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

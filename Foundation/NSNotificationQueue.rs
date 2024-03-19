@@ -3,25 +3,47 @@
 use crate::common::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSPostingStyle {
-        NSPostWhenIdle = 1,
-        NSPostASAP = 2,
-        NSPostNow = 3,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSPostingStyle(pub NSUInteger);
+impl NSPostingStyle {
+    pub const NSPostWhenIdle: Self = Self(1);
+    pub const NSPostASAP: Self = Self(2);
+    pub const NSPostNow: Self = Self(3);
+}
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSNotificationCoalescing {
-        NSNotificationNoCoalescing = 0,
-        #[doc(alias = "NSNotificationCoalescingOnName")]
-        OnName = 1,
-        #[doc(alias = "NSNotificationCoalescingOnSender")]
-        OnSender = 2,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSPostingStyle {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSPostingStyle {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSNotificationCoalescing(pub NSUInteger);
+impl NSNotificationCoalescing {
+    pub const NSNotificationNoCoalescing: Self = Self(0);
+    #[doc(alias = "NSNotificationCoalescingOnName")]
+    pub const OnName: Self = Self(1);
+    #[doc(alias = "NSNotificationCoalescingOnSender")]
+    pub const OnSender: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSNotificationCoalescing {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSNotificationCoalescing {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

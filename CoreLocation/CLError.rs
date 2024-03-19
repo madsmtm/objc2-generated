@@ -5,31 +5,42 @@ use crate::Contacts::*;
 use crate::CoreLocation::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum CLError {
-        kCLErrorLocationUnknown = 0,
-        kCLErrorDenied = 1,
-        kCLErrorNetwork = 2,
-        kCLErrorHeadingFailure = 3,
-        kCLErrorRegionMonitoringDenied = 4,
-        kCLErrorRegionMonitoringFailure = 5,
-        kCLErrorRegionMonitoringSetupDelayed = 6,
-        kCLErrorRegionMonitoringResponseDelayed = 7,
-        kCLErrorGeocodeFoundNoResult = 8,
-        kCLErrorGeocodeFoundPartialResult = 9,
-        kCLErrorGeocodeCanceled = 10,
-        kCLErrorDeferredFailed = 11,
-        kCLErrorDeferredNotUpdatingLocation = 12,
-        kCLErrorDeferredAccuracyTooLow = 13,
-        kCLErrorDeferredDistanceFiltered = 14,
-        kCLErrorDeferredCanceled = 15,
-        kCLErrorRangingUnavailable = 16,
-        kCLErrorRangingFailure = 17,
-        kCLErrorPromptDeclined = 18,
-        kCLErrorHistoricalLocationError = 19,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct CLError(pub NSInteger);
+impl CLError {
+    pub const kCLErrorLocationUnknown: Self = Self(0);
+    pub const kCLErrorDenied: Self = Self(1);
+    pub const kCLErrorNetwork: Self = Self(2);
+    pub const kCLErrorHeadingFailure: Self = Self(3);
+    pub const kCLErrorRegionMonitoringDenied: Self = Self(4);
+    pub const kCLErrorRegionMonitoringFailure: Self = Self(5);
+    pub const kCLErrorRegionMonitoringSetupDelayed: Self = Self(6);
+    pub const kCLErrorRegionMonitoringResponseDelayed: Self = Self(7);
+    pub const kCLErrorGeocodeFoundNoResult: Self = Self(8);
+    pub const kCLErrorGeocodeFoundPartialResult: Self = Self(9);
+    pub const kCLErrorGeocodeCanceled: Self = Self(10);
+    pub const kCLErrorDeferredFailed: Self = Self(11);
+    pub const kCLErrorDeferredNotUpdatingLocation: Self = Self(12);
+    pub const kCLErrorDeferredAccuracyTooLow: Self = Self(13);
+    pub const kCLErrorDeferredDistanceFiltered: Self = Self(14);
+    pub const kCLErrorDeferredCanceled: Self = Self(15);
+    pub const kCLErrorRangingUnavailable: Self = Self(16);
+    pub const kCLErrorRangingFailure: Self = Self(17);
+    pub const kCLErrorPromptDeclined: Self = Self(18);
+    pub const kCLErrorHistoricalLocationError: Self = Self(19);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for CLError {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for CLError {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]

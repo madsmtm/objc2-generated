@@ -3,163 +3,251 @@
 use crate::common::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSGrammaticalGender {
-        #[doc(alias = "NSGrammaticalGenderNotSet")]
-        NotSet = 0,
-        #[doc(alias = "NSGrammaticalGenderFeminine")]
-        Feminine = 1,
-        #[doc(alias = "NSGrammaticalGenderMasculine")]
-        Masculine = 2,
-        #[doc(alias = "NSGrammaticalGenderNeuter")]
-        Neuter = 3,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSGrammaticalGender(pub NSInteger);
+impl NSGrammaticalGender {
+    #[doc(alias = "NSGrammaticalGenderNotSet")]
+    pub const NotSet: Self = Self(0);
+    #[doc(alias = "NSGrammaticalGenderFeminine")]
+    pub const Feminine: Self = Self(1);
+    #[doc(alias = "NSGrammaticalGenderMasculine")]
+    pub const Masculine: Self = Self(2);
+    #[doc(alias = "NSGrammaticalGenderNeuter")]
+    pub const Neuter: Self = Self(3);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSGrammaticalPartOfSpeech {
-        #[doc(alias = "NSGrammaticalPartOfSpeechNotSet")]
-        NotSet = 0,
-        #[doc(alias = "NSGrammaticalPartOfSpeechDeterminer")]
-        Determiner = 1,
-        #[doc(alias = "NSGrammaticalPartOfSpeechPronoun")]
-        Pronoun = 2,
-        #[doc(alias = "NSGrammaticalPartOfSpeechLetter")]
-        Letter = 3,
-        #[doc(alias = "NSGrammaticalPartOfSpeechAdverb")]
-        Adverb = 4,
-        #[doc(alias = "NSGrammaticalPartOfSpeechParticle")]
-        Particle = 5,
-        #[doc(alias = "NSGrammaticalPartOfSpeechAdjective")]
-        Adjective = 6,
-        #[doc(alias = "NSGrammaticalPartOfSpeechAdposition")]
-        Adposition = 7,
-        #[doc(alias = "NSGrammaticalPartOfSpeechVerb")]
-        Verb = 8,
-        #[doc(alias = "NSGrammaticalPartOfSpeechNoun")]
-        Noun = 9,
-        #[doc(alias = "NSGrammaticalPartOfSpeechConjunction")]
-        Conjunction = 10,
-        #[doc(alias = "NSGrammaticalPartOfSpeechNumeral")]
-        Numeral = 11,
-        #[doc(alias = "NSGrammaticalPartOfSpeechInterjection")]
-        Interjection = 12,
-        #[doc(alias = "NSGrammaticalPartOfSpeechPreposition")]
-        Preposition = 13,
-        #[doc(alias = "NSGrammaticalPartOfSpeechAbbreviation")]
-        Abbreviation = 14,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSGrammaticalGender {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSGrammaticalNumber {
-        #[doc(alias = "NSGrammaticalNumberNotSet")]
-        NotSet = 0,
-        #[doc(alias = "NSGrammaticalNumberSingular")]
-        Singular = 1,
-        #[doc(alias = "NSGrammaticalNumberZero")]
-        Zero = 2,
-        #[doc(alias = "NSGrammaticalNumberPlural")]
-        Plural = 3,
-        #[doc(alias = "NSGrammaticalNumberPluralTwo")]
-        PluralTwo = 4,
-        #[doc(alias = "NSGrammaticalNumberPluralFew")]
-        PluralFew = 5,
-        #[doc(alias = "NSGrammaticalNumberPluralMany")]
-        PluralMany = 6,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSGrammaticalGender {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSGrammaticalCase {
-        #[doc(alias = "NSGrammaticalCaseNotSet")]
-        NotSet = 0,
-        #[doc(alias = "NSGrammaticalCaseNominative")]
-        Nominative = 1,
-        #[doc(alias = "NSGrammaticalCaseAccusative")]
-        Accusative = 2,
-        #[doc(alias = "NSGrammaticalCaseDative")]
-        Dative = 3,
-        #[doc(alias = "NSGrammaticalCaseGenitive")]
-        Genitive = 4,
-        #[doc(alias = "NSGrammaticalCasePrepositional")]
-        Prepositional = 5,
-        #[doc(alias = "NSGrammaticalCaseAblative")]
-        Ablative = 6,
-        #[doc(alias = "NSGrammaticalCaseAdessive")]
-        Adessive = 7,
-        #[doc(alias = "NSGrammaticalCaseAllative")]
-        Allative = 8,
-        #[doc(alias = "NSGrammaticalCaseElative")]
-        Elative = 9,
-        #[doc(alias = "NSGrammaticalCaseIllative")]
-        Illative = 10,
-        #[doc(alias = "NSGrammaticalCaseEssive")]
-        Essive = 11,
-        #[doc(alias = "NSGrammaticalCaseInessive")]
-        Inessive = 12,
-        #[doc(alias = "NSGrammaticalCaseLocative")]
-        Locative = 13,
-        #[doc(alias = "NSGrammaticalCaseTranslative")]
-        Translative = 14,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSGrammaticalPartOfSpeech(pub NSInteger);
+impl NSGrammaticalPartOfSpeech {
+    #[doc(alias = "NSGrammaticalPartOfSpeechNotSet")]
+    pub const NotSet: Self = Self(0);
+    #[doc(alias = "NSGrammaticalPartOfSpeechDeterminer")]
+    pub const Determiner: Self = Self(1);
+    #[doc(alias = "NSGrammaticalPartOfSpeechPronoun")]
+    pub const Pronoun: Self = Self(2);
+    #[doc(alias = "NSGrammaticalPartOfSpeechLetter")]
+    pub const Letter: Self = Self(3);
+    #[doc(alias = "NSGrammaticalPartOfSpeechAdverb")]
+    pub const Adverb: Self = Self(4);
+    #[doc(alias = "NSGrammaticalPartOfSpeechParticle")]
+    pub const Particle: Self = Self(5);
+    #[doc(alias = "NSGrammaticalPartOfSpeechAdjective")]
+    pub const Adjective: Self = Self(6);
+    #[doc(alias = "NSGrammaticalPartOfSpeechAdposition")]
+    pub const Adposition: Self = Self(7);
+    #[doc(alias = "NSGrammaticalPartOfSpeechVerb")]
+    pub const Verb: Self = Self(8);
+    #[doc(alias = "NSGrammaticalPartOfSpeechNoun")]
+    pub const Noun: Self = Self(9);
+    #[doc(alias = "NSGrammaticalPartOfSpeechConjunction")]
+    pub const Conjunction: Self = Self(10);
+    #[doc(alias = "NSGrammaticalPartOfSpeechNumeral")]
+    pub const Numeral: Self = Self(11);
+    #[doc(alias = "NSGrammaticalPartOfSpeechInterjection")]
+    pub const Interjection: Self = Self(12);
+    #[doc(alias = "NSGrammaticalPartOfSpeechPreposition")]
+    pub const Preposition: Self = Self(13);
+    #[doc(alias = "NSGrammaticalPartOfSpeechAbbreviation")]
+    pub const Abbreviation: Self = Self(14);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSGrammaticalPronounType {
-        #[doc(alias = "NSGrammaticalPronounTypeNotSet")]
-        NotSet = 0,
-        #[doc(alias = "NSGrammaticalPronounTypePersonal")]
-        Personal = 1,
-        #[doc(alias = "NSGrammaticalPronounTypeReflexive")]
-        Reflexive = 2,
-        #[doc(alias = "NSGrammaticalPronounTypePossessive")]
-        Possessive = 3,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSGrammaticalPartOfSpeech {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSGrammaticalPerson {
-        #[doc(alias = "NSGrammaticalPersonNotSet")]
-        NotSet = 0,
-        #[doc(alias = "NSGrammaticalPersonFirst")]
-        First = 1,
-        #[doc(alias = "NSGrammaticalPersonSecond")]
-        Second = 2,
-        #[doc(alias = "NSGrammaticalPersonThird")]
-        Third = 3,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSGrammaticalPartOfSpeech {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSGrammaticalDetermination {
-        #[doc(alias = "NSGrammaticalDeterminationNotSet")]
-        NotSet = 0,
-        #[doc(alias = "NSGrammaticalDeterminationIndependent")]
-        Independent = 1,
-        #[doc(alias = "NSGrammaticalDeterminationDependent")]
-        Dependent = 2,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSGrammaticalNumber(pub NSInteger);
+impl NSGrammaticalNumber {
+    #[doc(alias = "NSGrammaticalNumberNotSet")]
+    pub const NotSet: Self = Self(0);
+    #[doc(alias = "NSGrammaticalNumberSingular")]
+    pub const Singular: Self = Self(1);
+    #[doc(alias = "NSGrammaticalNumberZero")]
+    pub const Zero: Self = Self(2);
+    #[doc(alias = "NSGrammaticalNumberPlural")]
+    pub const Plural: Self = Self(3);
+    #[doc(alias = "NSGrammaticalNumberPluralTwo")]
+    pub const PluralTwo: Self = Self(4);
+    #[doc(alias = "NSGrammaticalNumberPluralFew")]
+    pub const PluralFew: Self = Self(5);
+    #[doc(alias = "NSGrammaticalNumberPluralMany")]
+    pub const PluralMany: Self = Self(6);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSGrammaticalDefiniteness {
-        #[doc(alias = "NSGrammaticalDefinitenessNotSet")]
-        NotSet = 0,
-        #[doc(alias = "NSGrammaticalDefinitenessIndefinite")]
-        Indefinite = 1,
-        #[doc(alias = "NSGrammaticalDefinitenessDefinite")]
-        Definite = 2,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSGrammaticalNumber {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSGrammaticalNumber {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSGrammaticalCase(pub NSInteger);
+impl NSGrammaticalCase {
+    #[doc(alias = "NSGrammaticalCaseNotSet")]
+    pub const NotSet: Self = Self(0);
+    #[doc(alias = "NSGrammaticalCaseNominative")]
+    pub const Nominative: Self = Self(1);
+    #[doc(alias = "NSGrammaticalCaseAccusative")]
+    pub const Accusative: Self = Self(2);
+    #[doc(alias = "NSGrammaticalCaseDative")]
+    pub const Dative: Self = Self(3);
+    #[doc(alias = "NSGrammaticalCaseGenitive")]
+    pub const Genitive: Self = Self(4);
+    #[doc(alias = "NSGrammaticalCasePrepositional")]
+    pub const Prepositional: Self = Self(5);
+    #[doc(alias = "NSGrammaticalCaseAblative")]
+    pub const Ablative: Self = Self(6);
+    #[doc(alias = "NSGrammaticalCaseAdessive")]
+    pub const Adessive: Self = Self(7);
+    #[doc(alias = "NSGrammaticalCaseAllative")]
+    pub const Allative: Self = Self(8);
+    #[doc(alias = "NSGrammaticalCaseElative")]
+    pub const Elative: Self = Self(9);
+    #[doc(alias = "NSGrammaticalCaseIllative")]
+    pub const Illative: Self = Self(10);
+    #[doc(alias = "NSGrammaticalCaseEssive")]
+    pub const Essive: Self = Self(11);
+    #[doc(alias = "NSGrammaticalCaseInessive")]
+    pub const Inessive: Self = Self(12);
+    #[doc(alias = "NSGrammaticalCaseLocative")]
+    pub const Locative: Self = Self(13);
+    #[doc(alias = "NSGrammaticalCaseTranslative")]
+    pub const Translative: Self = Self(14);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSGrammaticalCase {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSGrammaticalCase {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSGrammaticalPronounType(pub NSInteger);
+impl NSGrammaticalPronounType {
+    #[doc(alias = "NSGrammaticalPronounTypeNotSet")]
+    pub const NotSet: Self = Self(0);
+    #[doc(alias = "NSGrammaticalPronounTypePersonal")]
+    pub const Personal: Self = Self(1);
+    #[doc(alias = "NSGrammaticalPronounTypeReflexive")]
+    pub const Reflexive: Self = Self(2);
+    #[doc(alias = "NSGrammaticalPronounTypePossessive")]
+    pub const Possessive: Self = Self(3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSGrammaticalPronounType {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSGrammaticalPronounType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSGrammaticalPerson(pub NSInteger);
+impl NSGrammaticalPerson {
+    #[doc(alias = "NSGrammaticalPersonNotSet")]
+    pub const NotSet: Self = Self(0);
+    #[doc(alias = "NSGrammaticalPersonFirst")]
+    pub const First: Self = Self(1);
+    #[doc(alias = "NSGrammaticalPersonSecond")]
+    pub const Second: Self = Self(2);
+    #[doc(alias = "NSGrammaticalPersonThird")]
+    pub const Third: Self = Self(3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSGrammaticalPerson {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSGrammaticalPerson {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSGrammaticalDetermination(pub NSInteger);
+impl NSGrammaticalDetermination {
+    #[doc(alias = "NSGrammaticalDeterminationNotSet")]
+    pub const NotSet: Self = Self(0);
+    #[doc(alias = "NSGrammaticalDeterminationIndependent")]
+    pub const Independent: Self = Self(1);
+    #[doc(alias = "NSGrammaticalDeterminationDependent")]
+    pub const Dependent: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSGrammaticalDetermination {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSGrammaticalDetermination {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSGrammaticalDefiniteness(pub NSInteger);
+impl NSGrammaticalDefiniteness {
+    #[doc(alias = "NSGrammaticalDefinitenessNotSet")]
+    pub const NotSet: Self = Self(0);
+    #[doc(alias = "NSGrammaticalDefinitenessIndefinite")]
+    pub const Indefinite: Self = Self(1);
+    #[doc(alias = "NSGrammaticalDefinitenessDefinite")]
+    pub const Definite: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSGrammaticalDefiniteness {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSGrammaticalDefiniteness {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

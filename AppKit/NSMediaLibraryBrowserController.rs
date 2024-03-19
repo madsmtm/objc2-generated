@@ -5,17 +5,28 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSMediaLibrary {
-        #[doc(alias = "NSMediaLibraryAudio")]
-        Audio = 1 << 0,
-        #[doc(alias = "NSMediaLibraryImage")]
-        Image = 1 << 1,
-        #[doc(alias = "NSMediaLibraryMovie")]
-        Movie = 1 << 2,
-    }
-);
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSMediaLibrary(pub NSUInteger);
+impl NSMediaLibrary {
+    #[doc(alias = "NSMediaLibraryAudio")]
+    pub const Audio: Self = Self(1 << 0);
+    #[doc(alias = "NSMediaLibraryImage")]
+    pub const Image: Self = Self(1 << 1);
+    #[doc(alias = "NSMediaLibraryMovie")]
+    pub const Movie: Self = Self(1 << 2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSMediaLibrary {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSMediaLibrary {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

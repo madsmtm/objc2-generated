@@ -5,17 +5,28 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSWritingDirection {
-        #[doc(alias = "NSWritingDirectionNatural")]
-        Natural = -1,
-        #[doc(alias = "NSWritingDirectionLeftToRight")]
-        LeftToRight = 0,
-        #[doc(alias = "NSWritingDirectionRightToLeft")]
-        RightToLeft = 1,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSWritingDirection(pub NSInteger);
+impl NSWritingDirection {
+    #[doc(alias = "NSWritingDirectionNatural")]
+    pub const Natural: Self = Self(-1);
+    #[doc(alias = "NSWritingDirectionLeftToRight")]
+    pub const LeftToRight: Self = Self(0);
+    #[doc(alias = "NSWritingDirectionRightToLeft")]
+    pub const RightToLeft: Self = Self(1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSWritingDirection {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSWritingDirection {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -372,29 +383,40 @@ pub const NSDeleteCharacter: c_uint = 0x007f;
 pub const NSLineSeparatorCharacter: c_uint = 0x2028;
 pub const NSParagraphSeparatorCharacter: c_uint = 0x2029;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSTextMovement {
-        #[doc(alias = "NSTextMovementReturn")]
-        Return = 0x10,
-        #[doc(alias = "NSTextMovementTab")]
-        Tab = 0x11,
-        #[doc(alias = "NSTextMovementBacktab")]
-        Backtab = 0x12,
-        #[doc(alias = "NSTextMovementLeft")]
-        Left = 0x13,
-        #[doc(alias = "NSTextMovementRight")]
-        Right = 0x14,
-        #[doc(alias = "NSTextMovementUp")]
-        Up = 0x15,
-        #[doc(alias = "NSTextMovementDown")]
-        Down = 0x16,
-        #[doc(alias = "NSTextMovementCancel")]
-        Cancel = 0x17,
-        #[doc(alias = "NSTextMovementOther")]
-        Other = 0,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSTextMovement(pub NSInteger);
+impl NSTextMovement {
+    #[doc(alias = "NSTextMovementReturn")]
+    pub const Return: Self = Self(0x10);
+    #[doc(alias = "NSTextMovementTab")]
+    pub const Tab: Self = Self(0x11);
+    #[doc(alias = "NSTextMovementBacktab")]
+    pub const Backtab: Self = Self(0x12);
+    #[doc(alias = "NSTextMovementLeft")]
+    pub const Left: Self = Self(0x13);
+    #[doc(alias = "NSTextMovementRight")]
+    pub const Right: Self = Self(0x14);
+    #[doc(alias = "NSTextMovementUp")]
+    pub const Up: Self = Self(0x15);
+    #[doc(alias = "NSTextMovementDown")]
+    pub const Down: Self = Self(0x16);
+    #[doc(alias = "NSTextMovementCancel")]
+    pub const Cancel: Self = Self(0x17);
+    #[doc(alias = "NSTextMovementOther")]
+    pub const Other: Self = Self(0);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSTextMovement {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSTextMovement {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern "C" {
     #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]

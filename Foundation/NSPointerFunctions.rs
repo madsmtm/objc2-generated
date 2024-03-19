@@ -3,25 +3,36 @@
 use crate::common::*;
 use crate::Foundation::*;
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSPointerFunctionsOptions {
-        NSPointerFunctionsStrongMemory = 0 << 0,
-        #[deprecated = "GC no longer supported"]
-        NSPointerFunctionsZeroingWeakMemory = 1 << 0,
-        NSPointerFunctionsOpaqueMemory = 2 << 0,
-        NSPointerFunctionsMallocMemory = 3 << 0,
-        NSPointerFunctionsMachVirtualMemory = 4 << 0,
-        NSPointerFunctionsWeakMemory = 5 << 0,
-        NSPointerFunctionsObjectPersonality = 0 << 8,
-        NSPointerFunctionsOpaquePersonality = 1 << 8,
-        NSPointerFunctionsObjectPointerPersonality = 2 << 8,
-        NSPointerFunctionsCStringPersonality = 3 << 8,
-        NSPointerFunctionsStructPersonality = 4 << 8,
-        NSPointerFunctionsIntegerPersonality = 5 << 8,
-        NSPointerFunctionsCopyIn = 1 << 16,
-    }
-);
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSPointerFunctionsOptions(pub NSUInteger);
+impl NSPointerFunctionsOptions {
+    pub const NSPointerFunctionsStrongMemory: Self = Self(0 << 0);
+    #[deprecated = "GC no longer supported"]
+    pub const NSPointerFunctionsZeroingWeakMemory: Self = Self(1 << 0);
+    pub const NSPointerFunctionsOpaqueMemory: Self = Self(2 << 0);
+    pub const NSPointerFunctionsMallocMemory: Self = Self(3 << 0);
+    pub const NSPointerFunctionsMachVirtualMemory: Self = Self(4 << 0);
+    pub const NSPointerFunctionsWeakMemory: Self = Self(5 << 0);
+    pub const NSPointerFunctionsObjectPersonality: Self = Self(0 << 8);
+    pub const NSPointerFunctionsOpaquePersonality: Self = Self(1 << 8);
+    pub const NSPointerFunctionsObjectPointerPersonality: Self = Self(2 << 8);
+    pub const NSPointerFunctionsCStringPersonality: Self = Self(3 << 8);
+    pub const NSPointerFunctionsStructPersonality: Self = Self(4 << 8);
+    pub const NSPointerFunctionsIntegerPersonality: Self = Self(5 << 8);
+    pub const NSPointerFunctionsCopyIn: Self = Self(1 << 16);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSPointerFunctionsOptions {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSPointerFunctionsOptions {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

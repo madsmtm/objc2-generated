@@ -5,10 +5,9 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type NSTextCheckingOptionKey = NSString;
-);
+pub type NSTextCheckingOptionKey = NSString;
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]
@@ -65,35 +64,57 @@ extern "C" {
     pub static NSTextCheckingGenerateInlinePredictionsKey: &'static NSTextCheckingOptionKey;
 }
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSCorrectionResponse {
-        #[doc(alias = "NSCorrectionResponseNone")]
-        None = 0,
-        #[doc(alias = "NSCorrectionResponseAccepted")]
-        Accepted = 1,
-        #[doc(alias = "NSCorrectionResponseRejected")]
-        Rejected = 2,
-        #[doc(alias = "NSCorrectionResponseIgnored")]
-        Ignored = 3,
-        #[doc(alias = "NSCorrectionResponseEdited")]
-        Edited = 4,
-        #[doc(alias = "NSCorrectionResponseReverted")]
-        Reverted = 5,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSCorrectionResponse(pub NSInteger);
+impl NSCorrectionResponse {
+    #[doc(alias = "NSCorrectionResponseNone")]
+    pub const None: Self = Self(0);
+    #[doc(alias = "NSCorrectionResponseAccepted")]
+    pub const Accepted: Self = Self(1);
+    #[doc(alias = "NSCorrectionResponseRejected")]
+    pub const Rejected: Self = Self(2);
+    #[doc(alias = "NSCorrectionResponseIgnored")]
+    pub const Ignored: Self = Self(3);
+    #[doc(alias = "NSCorrectionResponseEdited")]
+    pub const Edited: Self = Self(4);
+    #[doc(alias = "NSCorrectionResponseReverted")]
+    pub const Reverted: Self = Self(5);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSCorrectionIndicatorType {
-        #[doc(alias = "NSCorrectionIndicatorTypeDefault")]
-        Default = 0,
-        #[doc(alias = "NSCorrectionIndicatorTypeReversion")]
-        Reversion = 1,
-        #[doc(alias = "NSCorrectionIndicatorTypeGuesses")]
-        Guesses = 2,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSCorrectionResponse {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSCorrectionResponse {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSCorrectionIndicatorType(pub NSInteger);
+impl NSCorrectionIndicatorType {
+    #[doc(alias = "NSCorrectionIndicatorTypeDefault")]
+    pub const Default: Self = Self(0);
+    #[doc(alias = "NSCorrectionIndicatorTypeReversion")]
+    pub const Reversion: Self = Self(1);
+    #[doc(alias = "NSCorrectionIndicatorTypeGuesses")]
+    pub const Guesses: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSCorrectionIndicatorType {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSCorrectionIndicatorType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

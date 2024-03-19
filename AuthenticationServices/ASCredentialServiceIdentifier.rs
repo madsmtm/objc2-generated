@@ -5,15 +5,26 @@ use crate::AppKit::*;
 use crate::AuthenticationServices::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum ASCredentialServiceIdentifierType {
-        #[doc(alias = "ASCredentialServiceIdentifierTypeDomain")]
-        Domain = 0,
-        #[doc(alias = "ASCredentialServiceIdentifierTypeURL")]
-        URL = 1,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct ASCredentialServiceIdentifierType(pub NSInteger);
+impl ASCredentialServiceIdentifierType {
+    #[doc(alias = "ASCredentialServiceIdentifierTypeDomain")]
+    pub const Domain: Self = Self(0);
+    #[doc(alias = "ASCredentialServiceIdentifierTypeURL")]
+    pub const URL: Self = Self(1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for ASCredentialServiceIdentifierType {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for ASCredentialServiceIdentifierType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

@@ -6,10 +6,9 @@ use crate::FileProvider::*;
 use crate::Foundation::*;
 use crate::UniformTypeIdentifiers::*;
 
+// NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_extensible_enum!(
-    pub type NSFileProviderItemDecorationIdentifier = NSString;
-);
+pub type NSFileProviderItemDecorationIdentifier = NSString;
 
 extern_protocol!(
     #[cfg(feature = "FileProvider_NSFileProviderItem")]

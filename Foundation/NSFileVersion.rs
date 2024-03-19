@@ -3,19 +3,41 @@
 use crate::common::*;
 use crate::Foundation::*;
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSFileVersionAddingOptions {
-        NSFileVersionAddingByMoving = 1 << 0,
-    }
-);
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSFileVersionAddingOptions(pub NSUInteger);
+impl NSFileVersionAddingOptions {
+    pub const NSFileVersionAddingByMoving: Self = Self(1 << 0);
+}
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSFileVersionReplacingOptions {
-        NSFileVersionReplacingByMoving = 1 << 0,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSFileVersionAddingOptions {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSFileVersionAddingOptions {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSFileVersionReplacingOptions(pub NSUInteger);
+impl NSFileVersionReplacingOptions {
+    pub const NSFileVersionReplacingByMoving: Self = Self(1 << 0);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSFileVersionReplacingOptions {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSFileVersionReplacingOptions {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

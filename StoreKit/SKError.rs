@@ -10,29 +10,40 @@ extern "C" {
     pub static SKErrorDomain: &'static NSString;
 }
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum SKErrorCode {
-        SKErrorUnknown = 0,
-        SKErrorClientInvalid = 1,
-        SKErrorPaymentCancelled = 2,
-        SKErrorPaymentInvalid = 3,
-        SKErrorPaymentNotAllowed = 4,
-        SKErrorStoreProductNotAvailable = 5,
-        SKErrorCloudServicePermissionDenied = 6,
-        SKErrorCloudServiceNetworkConnectionFailed = 7,
-        SKErrorCloudServiceRevoked = 8,
-        SKErrorPrivacyAcknowledgementRequired = 9,
-        SKErrorUnauthorizedRequestData = 10,
-        SKErrorInvalidOfferIdentifier = 11,
-        SKErrorInvalidSignature = 12,
-        SKErrorMissingOfferParams = 13,
-        SKErrorInvalidOfferPrice = 14,
-        SKErrorOverlayCancelled = 15,
-        SKErrorOverlayInvalidConfiguration = 16,
-        SKErrorOverlayTimeout = 17,
-        SKErrorIneligibleForOffer = 18,
-        SKErrorUnsupportedPlatform = 19,
-        SKErrorOverlayPresentedInBackgroundScene = 20,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct SKErrorCode(pub NSInteger);
+impl SKErrorCode {
+    pub const SKErrorUnknown: Self = Self(0);
+    pub const SKErrorClientInvalid: Self = Self(1);
+    pub const SKErrorPaymentCancelled: Self = Self(2);
+    pub const SKErrorPaymentInvalid: Self = Self(3);
+    pub const SKErrorPaymentNotAllowed: Self = Self(4);
+    pub const SKErrorStoreProductNotAvailable: Self = Self(5);
+    pub const SKErrorCloudServicePermissionDenied: Self = Self(6);
+    pub const SKErrorCloudServiceNetworkConnectionFailed: Self = Self(7);
+    pub const SKErrorCloudServiceRevoked: Self = Self(8);
+    pub const SKErrorPrivacyAcknowledgementRequired: Self = Self(9);
+    pub const SKErrorUnauthorizedRequestData: Self = Self(10);
+    pub const SKErrorInvalidOfferIdentifier: Self = Self(11);
+    pub const SKErrorInvalidSignature: Self = Self(12);
+    pub const SKErrorMissingOfferParams: Self = Self(13);
+    pub const SKErrorInvalidOfferPrice: Self = Self(14);
+    pub const SKErrorOverlayCancelled: Self = Self(15);
+    pub const SKErrorOverlayInvalidConfiguration: Self = Self(16);
+    pub const SKErrorOverlayTimeout: Self = Self(17);
+    pub const SKErrorIneligibleForOffer: Self = Self(18);
+    pub const SKErrorUnsupportedPlatform: Self = Self(19);
+    pub const SKErrorOverlayPresentedInBackgroundScene: Self = Self(20);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for SKErrorCode {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for SKErrorCode {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}

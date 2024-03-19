@@ -3,61 +3,117 @@
 use crate::common::*;
 use crate::Foundation::*;
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSDataReadingOptions {
-        NSDataReadingMappedIfSafe = 1 << 0,
-        NSDataReadingUncached = 1 << 1,
-        NSDataReadingMappedAlways = 1 << 3,
-        #[deprecated]
-        NSDataReadingMapped = NSDataReadingOptions::NSDataReadingMappedIfSafe.0,
-        #[deprecated]
-        NSMappedRead = NSDataReadingOptions::NSDataReadingMapped.0,
-        #[deprecated]
-        NSUncachedRead = NSDataReadingOptions::NSDataReadingUncached.0,
-    }
-);
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSDataReadingOptions(pub NSUInteger);
+impl NSDataReadingOptions {
+    pub const NSDataReadingMappedIfSafe: Self = Self(1 << 0);
+    pub const NSDataReadingUncached: Self = Self(1 << 1);
+    pub const NSDataReadingMappedAlways: Self = Self(1 << 3);
+    #[deprecated]
+    pub const NSDataReadingMapped: Self = Self(NSDataReadingOptions::NSDataReadingMappedIfSafe.0);
+    #[deprecated]
+    pub const NSMappedRead: Self = Self(NSDataReadingOptions::NSDataReadingMapped.0);
+    #[deprecated]
+    pub const NSUncachedRead: Self = Self(NSDataReadingOptions::NSDataReadingUncached.0);
+}
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSDataWritingOptions {
-        NSDataWritingAtomic = 1 << 0,
-        NSDataWritingWithoutOverwriting = 1 << 1,
-        NSDataWritingFileProtectionNone = 0x10000000,
-        NSDataWritingFileProtectionComplete = 0x20000000,
-        NSDataWritingFileProtectionCompleteUnlessOpen = 0x30000000,
-        NSDataWritingFileProtectionCompleteUntilFirstUserAuthentication = 0x40000000,
-        NSDataWritingFileProtectionCompleteWhenUserInactive = 0x50000000,
-        NSDataWritingFileProtectionMask = 0xf0000000,
-        #[deprecated]
-        NSAtomicWrite = NSDataWritingOptions::NSDataWritingAtomic.0,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSDataReadingOptions {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSDataSearchOptions {
-        NSDataSearchBackwards = 1 << 0,
-        NSDataSearchAnchored = 1 << 1,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSDataReadingOptions {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSDataBase64EncodingOptions {
-        NSDataBase64Encoding64CharacterLineLength = 1 << 0,
-        NSDataBase64Encoding76CharacterLineLength = 1 << 1,
-        NSDataBase64EncodingEndLineWithCarriageReturn = 1 << 4,
-        NSDataBase64EncodingEndLineWithLineFeed = 1 << 5,
-    }
-);
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSDataWritingOptions(pub NSUInteger);
+impl NSDataWritingOptions {
+    pub const NSDataWritingAtomic: Self = Self(1 << 0);
+    pub const NSDataWritingWithoutOverwriting: Self = Self(1 << 1);
+    pub const NSDataWritingFileProtectionNone: Self = Self(0x10000000);
+    pub const NSDataWritingFileProtectionComplete: Self = Self(0x20000000);
+    pub const NSDataWritingFileProtectionCompleteUnlessOpen: Self = Self(0x30000000);
+    pub const NSDataWritingFileProtectionCompleteUntilFirstUserAuthentication: Self =
+        Self(0x40000000);
+    pub const NSDataWritingFileProtectionCompleteWhenUserInactive: Self = Self(0x50000000);
+    pub const NSDataWritingFileProtectionMask: Self = Self(0xf0000000);
+    #[deprecated]
+    pub const NSAtomicWrite: Self = Self(NSDataWritingOptions::NSDataWritingAtomic.0);
+}
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSDataBase64DecodingOptions {
-        NSDataBase64DecodingIgnoreUnknownCharacters = 1 << 0,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSDataWritingOptions {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSDataWritingOptions {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSDataSearchOptions(pub NSUInteger);
+impl NSDataSearchOptions {
+    pub const NSDataSearchBackwards: Self = Self(1 << 0);
+    pub const NSDataSearchAnchored: Self = Self(1 << 1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSDataSearchOptions {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSDataSearchOptions {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSDataBase64EncodingOptions(pub NSUInteger);
+impl NSDataBase64EncodingOptions {
+    pub const NSDataBase64Encoding64CharacterLineLength: Self = Self(1 << 0);
+    pub const NSDataBase64Encoding76CharacterLineLength: Self = Self(1 << 1);
+    pub const NSDataBase64EncodingEndLineWithCarriageReturn: Self = Self(1 << 4);
+    pub const NSDataBase64EncodingEndLineWithLineFeed: Self = Self(1 << 5);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSDataBase64EncodingOptions {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSDataBase64EncodingOptions {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSDataBase64DecodingOptions(pub NSUInteger);
+impl NSDataBase64DecodingOptions {
+    pub const NSDataBase64DecodingIgnoreUnknownCharacters: Self = Self(1 << 0);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSDataBase64DecodingOptions {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSDataBase64DecodingOptions {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(PartialEq, Eq, Hash)]
@@ -452,19 +508,30 @@ extern_methods!(
     }
 );
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSDataCompressionAlgorithm {
-        #[doc(alias = "NSDataCompressionAlgorithmLZFSE")]
-        LZFSE = 0,
-        #[doc(alias = "NSDataCompressionAlgorithmLZ4")]
-        LZ4 = 1,
-        #[doc(alias = "NSDataCompressionAlgorithmLZMA")]
-        LZMA = 2,
-        #[doc(alias = "NSDataCompressionAlgorithmZlib")]
-        Zlib = 3,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSDataCompressionAlgorithm(pub NSInteger);
+impl NSDataCompressionAlgorithm {
+    #[doc(alias = "NSDataCompressionAlgorithmLZFSE")]
+    pub const LZFSE: Self = Self(0);
+    #[doc(alias = "NSDataCompressionAlgorithmLZ4")]
+    pub const LZ4: Self = Self(1);
+    #[doc(alias = "NSDataCompressionAlgorithmLZMA")]
+    pub const LZMA: Self = Self(2);
+    #[doc(alias = "NSDataCompressionAlgorithmZlib")]
+    pub const Zlib: Self = Self(3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSDataCompressionAlgorithm {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSDataCompressionAlgorithm {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_methods!(
     /// NSDataCompression

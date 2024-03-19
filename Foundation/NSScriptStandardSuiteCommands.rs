@@ -3,17 +3,28 @@
 use crate::common::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSSaveOptions {
-        #[doc(alias = "NSSaveOptionsYes")]
-        Yes = 0,
-        #[doc(alias = "NSSaveOptionsNo")]
-        No = 1,
-        #[doc(alias = "NSSaveOptionsAsk")]
-        Ask = 2,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSSaveOptions(pub NSUInteger);
+impl NSSaveOptions {
+    #[doc(alias = "NSSaveOptionsYes")]
+    pub const Yes: Self = Self(0);
+    #[doc(alias = "NSSaveOptionsNo")]
+    pub const No: Self = Self(1);
+    #[doc(alias = "NSSaveOptionsAsk")]
+    pub const Ask: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSSaveOptions {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSSaveOptions {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

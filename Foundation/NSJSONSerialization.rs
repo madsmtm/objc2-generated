@@ -3,28 +3,51 @@
 use crate::common::*;
 use crate::Foundation::*;
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSJSONReadingOptions {
-        NSJSONReadingMutableContainers = 1 << 0,
-        NSJSONReadingMutableLeaves = 1 << 1,
-        NSJSONReadingFragmentsAllowed = 1 << 2,
-        NSJSONReadingJSON5Allowed = 1 << 3,
-        NSJSONReadingTopLevelDictionaryAssumed = 1 << 4,
-        #[deprecated]
-        NSJSONReadingAllowFragments = NSJSONReadingOptions::NSJSONReadingFragmentsAllowed.0,
-    }
-);
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSJSONReadingOptions(pub NSUInteger);
+impl NSJSONReadingOptions {
+    pub const NSJSONReadingMutableContainers: Self = Self(1 << 0);
+    pub const NSJSONReadingMutableLeaves: Self = Self(1 << 1);
+    pub const NSJSONReadingFragmentsAllowed: Self = Self(1 << 2);
+    pub const NSJSONReadingJSON5Allowed: Self = Self(1 << 3);
+    pub const NSJSONReadingTopLevelDictionaryAssumed: Self = Self(1 << 4);
+    #[deprecated]
+    pub const NSJSONReadingAllowFragments: Self =
+        Self(NSJSONReadingOptions::NSJSONReadingFragmentsAllowed.0);
+}
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSJSONWritingOptions {
-        NSJSONWritingPrettyPrinted = 1 << 0,
-        NSJSONWritingSortedKeys = 1 << 1,
-        NSJSONWritingFragmentsAllowed = 1 << 2,
-        NSJSONWritingWithoutEscapingSlashes = 1 << 3,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSJSONReadingOptions {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSJSONReadingOptions {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSJSONWritingOptions(pub NSUInteger);
+impl NSJSONWritingOptions {
+    pub const NSJSONWritingPrettyPrinted: Self = Self(1 << 0);
+    pub const NSJSONWritingSortedKeys: Self = Self(1 << 1);
+    pub const NSJSONWritingFragmentsAllowed: Self = Self(1 << 2);
+    pub const NSJSONWritingWithoutEscapingSlashes: Self = Self(1 << 3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSJSONWritingOptions {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSJSONWritingOptions {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

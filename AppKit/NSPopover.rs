@@ -5,30 +5,52 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
+// NS_ENUM
+#[deprecated]
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSPopoverAppearance(pub NSInteger);
+impl NSPopoverAppearance {
     #[deprecated]
-    pub enum NSPopoverAppearance {
-        #[deprecated]
-        #[doc(alias = "NSPopoverAppearanceMinimal")]
-        Minimal = 0,
-        #[deprecated]
-        #[doc(alias = "NSPopoverAppearanceHUD")]
-        HUD = 1,
-    }
-);
+    #[doc(alias = "NSPopoverAppearanceMinimal")]
+    pub const Minimal: Self = Self(0);
+    #[deprecated]
+    #[doc(alias = "NSPopoverAppearanceHUD")]
+    pub const HUD: Self = Self(1);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSPopoverBehavior {
-        #[doc(alias = "NSPopoverBehaviorApplicationDefined")]
-        ApplicationDefined = 0,
-        #[doc(alias = "NSPopoverBehaviorTransient")]
-        Transient = 1,
-        #[doc(alias = "NSPopoverBehaviorSemitransient")]
-        Semitransient = 2,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSPopoverAppearance {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSPopoverAppearance {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSPopoverBehavior(pub NSInteger);
+impl NSPopoverBehavior {
+    #[doc(alias = "NSPopoverBehaviorApplicationDefined")]
+    pub const ApplicationDefined: Self = Self(0);
+    #[doc(alias = "NSPopoverBehaviorTransient")]
+    pub const Transient: Self = Self(1);
+    #[doc(alias = "NSPopoverBehaviorSemitransient")]
+    pub const Semitransient: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSPopoverBehavior {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSPopoverBehavior {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -178,10 +200,9 @@ extern "C" {
     pub static NSPopoverCloseReasonKey: &'static NSString;
 }
 
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type NSPopoverCloseReasonValue = NSString;
-);
+pub type NSPopoverCloseReasonValue = NSString;
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]

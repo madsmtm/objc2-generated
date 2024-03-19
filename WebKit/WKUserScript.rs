@@ -5,15 +5,26 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::WebKit::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum WKUserScriptInjectionTime {
-        #[doc(alias = "WKUserScriptInjectionTimeAtDocumentStart")]
-        AtDocumentStart = 0,
-        #[doc(alias = "WKUserScriptInjectionTimeAtDocumentEnd")]
-        AtDocumentEnd = 1,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct WKUserScriptInjectionTime(pub NSInteger);
+impl WKUserScriptInjectionTime {
+    #[doc(alias = "WKUserScriptInjectionTimeAtDocumentStart")]
+    pub const AtDocumentStart: Self = Self(0);
+    #[doc(alias = "WKUserScriptInjectionTimeAtDocumentEnd")]
+    pub const AtDocumentEnd: Self = Self(1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for WKUserScriptInjectionTime {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for WKUserScriptInjectionTime {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

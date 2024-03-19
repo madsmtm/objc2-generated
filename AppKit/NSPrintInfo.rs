@@ -5,32 +5,53 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSPaperOrientation {
-        #[doc(alias = "NSPaperOrientationPortrait")]
-        Portrait = 0,
-        #[doc(alias = "NSPaperOrientationLandscape")]
-        Landscape = 1,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSPaperOrientation(pub NSInteger);
+impl NSPaperOrientation {
+    #[doc(alias = "NSPaperOrientationPortrait")]
+    pub const Portrait: Self = Self(0);
+    #[doc(alias = "NSPaperOrientationLandscape")]
+    pub const Landscape: Self = Self(1);
+}
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSPrintingPaginationMode {
-        #[doc(alias = "NSPrintingPaginationModeAutomatic")]
-        Automatic = 0,
-        #[doc(alias = "NSPrintingPaginationModeFit")]
-        Fit = 1,
-        #[doc(alias = "NSPrintingPaginationModeClip")]
-        Clip = 2,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSPaperOrientation {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
 
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSPaperOrientation {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSPrintingPaginationMode(pub NSUInteger);
+impl NSPrintingPaginationMode {
+    #[doc(alias = "NSPrintingPaginationModeAutomatic")]
+    pub const Automatic: Self = Self(0);
+    #[doc(alias = "NSPrintingPaginationModeFit")]
+    pub const Fit: Self = Self(1);
+    #[doc(alias = "NSPrintingPaginationModeClip")]
+    pub const Clip: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSPrintingPaginationMode {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSPrintingPaginationMode {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_extensible_enum!(
-    pub type NSPrintInfoAttributeKey = NSString;
-);
+pub type NSPrintInfoAttributeKey = NSString;
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]
@@ -182,10 +203,9 @@ extern "C" {
     pub static NSPrintHeaderAndFooter: &'static NSPrintInfoAttributeKey;
 }
 
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type NSPrintJobDispositionValue = NSString;
-);
+pub type NSPrintJobDispositionValue = NSString;
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]
@@ -466,16 +486,27 @@ extern "C" {
     pub static NSPrintSavePath: &'static NSString;
 }
 
-ns_enum!(
-    #[underlying(NSUInteger)]
+// NS_ENUM
+#[deprecated]
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSPrintingOrientation(pub NSUInteger);
+impl NSPrintingOrientation {
     #[deprecated]
-    pub enum NSPrintingOrientation {
-        #[deprecated]
-        NSPortraitOrientation = 0,
-        #[deprecated]
-        NSLandscapeOrientation = 1,
-    }
-);
+    pub const NSPortraitOrientation: Self = Self(0);
+    #[deprecated]
+    pub const NSLandscapeOrientation: Self = Self(1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSPrintingOrientation {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSPrintingOrientation {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 pub static NSAutoPagination: NSPrintingPaginationMode =
     NSPrintingPaginationMode(NSPrintingPaginationMode::Automatic.0);

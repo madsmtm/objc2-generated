@@ -3,10 +3,9 @@
 use crate::common::*;
 use crate::Foundation::*;
 
+// NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_extensible_enum!(
-    pub type NSURLResourceKey = NSString;
-);
+pub type NSURLResourceKey = NSString;
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]
@@ -273,10 +272,9 @@ extern "C" {
     pub static NSURLIsSparseKey: &'static NSURLResourceKey;
 }
 
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type NSURLFileResourceType = NSString;
-);
+pub type NSURLFileResourceType = NSString;
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]
@@ -328,10 +326,9 @@ extern "C" {
     pub static NSURLThumbnailKey: &'static NSURLResourceKey;
 }
 
+// NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_extensible_enum!(
-    pub type NSURLThumbnailDictionaryItem = NSString;
-);
+pub type NSURLThumbnailDictionaryItem = NSString;
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]
@@ -368,10 +365,9 @@ extern "C" {
     pub static NSURLFileProtectionKey: &'static NSURLResourceKey;
 }
 
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type NSURLFileProtectionType = NSString;
-);
+pub type NSURLFileProtectionType = NSString;
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]
@@ -725,10 +721,9 @@ extern "C" {
         &'static NSURLResourceKey;
 }
 
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type NSURLUbiquitousItemDownloadingStatus = NSString;
-);
+pub type NSURLUbiquitousItemDownloadingStatus = NSString;
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]
@@ -748,10 +743,9 @@ extern "C" {
         &'static NSURLUbiquitousItemDownloadingStatus;
 }
 
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type NSURLUbiquitousSharedItemRole = NSString;
-);
+pub type NSURLUbiquitousSharedItemRole = NSString;
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]
@@ -763,10 +757,9 @@ extern "C" {
     pub static NSURLUbiquitousSharedItemRoleParticipant: &'static NSURLUbiquitousSharedItemRole;
 }
 
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type NSURLUbiquitousSharedItemPermissions = NSString;
-);
+pub type NSURLUbiquitousSharedItemPermissions = NSString;
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]
@@ -780,28 +773,50 @@ extern "C" {
         &'static NSURLUbiquitousSharedItemPermissions;
 }
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSURLBookmarkCreationOptions {
-        #[deprecated = "Not supported"]
-        NSURLBookmarkCreationPreferFileIDResolution = 1 << 8,
-        NSURLBookmarkCreationMinimalBookmark = 1 << 9,
-        NSURLBookmarkCreationSuitableForBookmarkFile = 1 << 10,
-        NSURLBookmarkCreationWithSecurityScope = 1 << 11,
-        NSURLBookmarkCreationSecurityScopeAllowOnlyReadAccess = 1 << 12,
-        NSURLBookmarkCreationWithoutImplicitSecurityScope = 1 << 29,
-    }
-);
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSURLBookmarkCreationOptions(pub NSUInteger);
+impl NSURLBookmarkCreationOptions {
+    #[deprecated = "Not supported"]
+    pub const NSURLBookmarkCreationPreferFileIDResolution: Self = Self(1 << 8);
+    pub const NSURLBookmarkCreationMinimalBookmark: Self = Self(1 << 9);
+    pub const NSURLBookmarkCreationSuitableForBookmarkFile: Self = Self(1 << 10);
+    pub const NSURLBookmarkCreationWithSecurityScope: Self = Self(1 << 11);
+    pub const NSURLBookmarkCreationSecurityScopeAllowOnlyReadAccess: Self = Self(1 << 12);
+    pub const NSURLBookmarkCreationWithoutImplicitSecurityScope: Self = Self(1 << 29);
+}
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSURLBookmarkResolutionOptions {
-        NSURLBookmarkResolutionWithoutUI = 1 << 8,
-        NSURLBookmarkResolutionWithoutMounting = 1 << 9,
-        NSURLBookmarkResolutionWithSecurityScope = 1 << 10,
-        NSURLBookmarkResolutionWithoutImplicitStartAccessing = 1 << 15,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSURLBookmarkCreationOptions {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSURLBookmarkCreationOptions {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSURLBookmarkResolutionOptions(pub NSUInteger);
+impl NSURLBookmarkResolutionOptions {
+    pub const NSURLBookmarkResolutionWithoutUI: Self = Self(1 << 8);
+    pub const NSURLBookmarkResolutionWithoutMounting: Self = Self(1 << 9);
+    pub const NSURLBookmarkResolutionWithSecurityScope: Self = Self(1 << 10);
+    pub const NSURLBookmarkResolutionWithoutImplicitStartAccessing: Self = Self(1 << 15);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSURLBookmarkResolutionOptions {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSURLBookmarkResolutionOptions {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 pub type NSURLBookmarkFileCreationOptions = NSUInteger;
 

@@ -11,20 +11,30 @@ extern "C" {
     pub static FPUIErrorDomain: &'static NSString;
 }
 
+// NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_extensible_enum!(
-    pub type FPUIActionIdentifier = NSString;
-);
+pub type FPUIActionIdentifier = NSString;
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum FPUIExtensionErrorCode {
-        #[doc(alias = "FPUIExtensionErrorCodeUserCancelled")]
-        UserCancelled = 0,
-        #[doc(alias = "FPUIExtensionErrorCodeFailed")]
-        Failed = 1,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct FPUIExtensionErrorCode(pub NSUInteger);
+impl FPUIExtensionErrorCode {
+    #[doc(alias = "FPUIExtensionErrorCodeUserCancelled")]
+    pub const UserCancelled: Self = Self(0);
+    #[doc(alias = "FPUIExtensionErrorCodeFailed")]
+    pub const Failed: Self = Self(1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for FPUIExtensionErrorCode {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for FPUIExtensionErrorCode {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

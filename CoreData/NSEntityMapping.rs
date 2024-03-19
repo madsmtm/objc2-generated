@@ -4,17 +4,28 @@ use crate::common::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSEntityMappingType {
-        NSUndefinedEntityMappingType = 0x00,
-        NSCustomEntityMappingType = 0x01,
-        NSAddEntityMappingType = 0x02,
-        NSRemoveEntityMappingType = 0x03,
-        NSCopyEntityMappingType = 0x04,
-        NSTransformEntityMappingType = 0x05,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSEntityMappingType(pub NSUInteger);
+impl NSEntityMappingType {
+    pub const NSUndefinedEntityMappingType: Self = Self(0x00);
+    pub const NSCustomEntityMappingType: Self = Self(0x01);
+    pub const NSAddEntityMappingType: Self = Self(0x02);
+    pub const NSRemoveEntityMappingType: Self = Self(0x03);
+    pub const NSCopyEntityMappingType: Self = Self(0x04);
+    pub const NSTransformEntityMappingType: Self = Self(0x05);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSEntityMappingType {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSEntityMappingType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

@@ -5,14 +5,25 @@ use crate::CloudKit::*;
 use crate::CoreLocation::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum CKRecordSavePolicy {
-        CKRecordSaveIfServerRecordUnchanged = 0,
-        CKRecordSaveChangedKeys = 1,
-        CKRecordSaveAllKeys = 2,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct CKRecordSavePolicy(pub NSInteger);
+impl CKRecordSavePolicy {
+    pub const CKRecordSaveIfServerRecordUnchanged: Self = Self(0);
+    pub const CKRecordSaveChangedKeys: Self = Self(1);
+    pub const CKRecordSaveAllKeys: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for CKRecordSavePolicy {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for CKRecordSavePolicy {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

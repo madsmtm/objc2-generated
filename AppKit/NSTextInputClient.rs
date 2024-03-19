@@ -5,29 +5,40 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSTextCursorAccessoryPlacement {
-        #[doc(alias = "NSTextCursorAccessoryPlacementUnspecified")]
-        Unspecified = 0,
-        #[doc(alias = "NSTextCursorAccessoryPlacementBackward")]
-        Backward = 1,
-        #[doc(alias = "NSTextCursorAccessoryPlacementForward")]
-        Forward = 2,
-        #[doc(alias = "NSTextCursorAccessoryPlacementInvisible")]
-        Invisible = 3,
-        #[doc(alias = "NSTextCursorAccessoryPlacementCenter")]
-        Center = 4,
-        #[doc(alias = "NSTextCursorAccessoryPlacementOffscreenLeft")]
-        OffscreenLeft = 5,
-        #[doc(alias = "NSTextCursorAccessoryPlacementOffscreenTop")]
-        OffscreenTop = 6,
-        #[doc(alias = "NSTextCursorAccessoryPlacementOffscreenRight")]
-        OffscreenRight = 7,
-        #[doc(alias = "NSTextCursorAccessoryPlacementOffscreenBottom")]
-        OffscreenBottom = 8,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSTextCursorAccessoryPlacement(pub NSInteger);
+impl NSTextCursorAccessoryPlacement {
+    #[doc(alias = "NSTextCursorAccessoryPlacementUnspecified")]
+    pub const Unspecified: Self = Self(0);
+    #[doc(alias = "NSTextCursorAccessoryPlacementBackward")]
+    pub const Backward: Self = Self(1);
+    #[doc(alias = "NSTextCursorAccessoryPlacementForward")]
+    pub const Forward: Self = Self(2);
+    #[doc(alias = "NSTextCursorAccessoryPlacementInvisible")]
+    pub const Invisible: Self = Self(3);
+    #[doc(alias = "NSTextCursorAccessoryPlacementCenter")]
+    pub const Center: Self = Self(4);
+    #[doc(alias = "NSTextCursorAccessoryPlacementOffscreenLeft")]
+    pub const OffscreenLeft: Self = Self(5);
+    #[doc(alias = "NSTextCursorAccessoryPlacementOffscreenTop")]
+    pub const OffscreenTop: Self = Self(6);
+    #[doc(alias = "NSTextCursorAccessoryPlacementOffscreenRight")]
+    pub const OffscreenRight: Self = Self(7);
+    #[doc(alias = "NSTextCursorAccessoryPlacementOffscreenBottom")]
+    pub const OffscreenBottom: Self = Self(8);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSTextCursorAccessoryPlacement {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSTextCursorAccessoryPlacement {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_protocol!(
     pub unsafe trait NSTextInputClient {

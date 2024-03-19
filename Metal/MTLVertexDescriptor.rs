@@ -4,135 +4,157 @@ use crate::common::*;
 use crate::Foundation::*;
 use crate::Metal::*;
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum MTLVertexFormat {
-        #[doc(alias = "MTLVertexFormatInvalid")]
-        Invalid = 0,
-        #[doc(alias = "MTLVertexFormatUChar2")]
-        UChar2 = 1,
-        #[doc(alias = "MTLVertexFormatUChar3")]
-        UChar3 = 2,
-        #[doc(alias = "MTLVertexFormatUChar4")]
-        UChar4 = 3,
-        #[doc(alias = "MTLVertexFormatChar2")]
-        Char2 = 4,
-        #[doc(alias = "MTLVertexFormatChar3")]
-        Char3 = 5,
-        #[doc(alias = "MTLVertexFormatChar4")]
-        Char4 = 6,
-        #[doc(alias = "MTLVertexFormatUChar2Normalized")]
-        UChar2Normalized = 7,
-        #[doc(alias = "MTLVertexFormatUChar3Normalized")]
-        UChar3Normalized = 8,
-        #[doc(alias = "MTLVertexFormatUChar4Normalized")]
-        UChar4Normalized = 9,
-        #[doc(alias = "MTLVertexFormatChar2Normalized")]
-        Char2Normalized = 10,
-        #[doc(alias = "MTLVertexFormatChar3Normalized")]
-        Char3Normalized = 11,
-        #[doc(alias = "MTLVertexFormatChar4Normalized")]
-        Char4Normalized = 12,
-        #[doc(alias = "MTLVertexFormatUShort2")]
-        UShort2 = 13,
-        #[doc(alias = "MTLVertexFormatUShort3")]
-        UShort3 = 14,
-        #[doc(alias = "MTLVertexFormatUShort4")]
-        UShort4 = 15,
-        #[doc(alias = "MTLVertexFormatShort2")]
-        Short2 = 16,
-        #[doc(alias = "MTLVertexFormatShort3")]
-        Short3 = 17,
-        #[doc(alias = "MTLVertexFormatShort4")]
-        Short4 = 18,
-        #[doc(alias = "MTLVertexFormatUShort2Normalized")]
-        UShort2Normalized = 19,
-        #[doc(alias = "MTLVertexFormatUShort3Normalized")]
-        UShort3Normalized = 20,
-        #[doc(alias = "MTLVertexFormatUShort4Normalized")]
-        UShort4Normalized = 21,
-        #[doc(alias = "MTLVertexFormatShort2Normalized")]
-        Short2Normalized = 22,
-        #[doc(alias = "MTLVertexFormatShort3Normalized")]
-        Short3Normalized = 23,
-        #[doc(alias = "MTLVertexFormatShort4Normalized")]
-        Short4Normalized = 24,
-        #[doc(alias = "MTLVertexFormatHalf2")]
-        Half2 = 25,
-        #[doc(alias = "MTLVertexFormatHalf3")]
-        Half3 = 26,
-        #[doc(alias = "MTLVertexFormatHalf4")]
-        Half4 = 27,
-        #[doc(alias = "MTLVertexFormatFloat")]
-        Float = 28,
-        #[doc(alias = "MTLVertexFormatFloat2")]
-        Float2 = 29,
-        #[doc(alias = "MTLVertexFormatFloat3")]
-        Float3 = 30,
-        #[doc(alias = "MTLVertexFormatFloat4")]
-        Float4 = 31,
-        #[doc(alias = "MTLVertexFormatInt")]
-        Int = 32,
-        #[doc(alias = "MTLVertexFormatInt2")]
-        Int2 = 33,
-        #[doc(alias = "MTLVertexFormatInt3")]
-        Int3 = 34,
-        #[doc(alias = "MTLVertexFormatInt4")]
-        Int4 = 35,
-        #[doc(alias = "MTLVertexFormatUInt")]
-        UInt = 36,
-        #[doc(alias = "MTLVertexFormatUInt2")]
-        UInt2 = 37,
-        #[doc(alias = "MTLVertexFormatUInt3")]
-        UInt3 = 38,
-        #[doc(alias = "MTLVertexFormatUInt4")]
-        UInt4 = 39,
-        #[doc(alias = "MTLVertexFormatInt1010102Normalized")]
-        Int1010102Normalized = 40,
-        #[doc(alias = "MTLVertexFormatUInt1010102Normalized")]
-        UInt1010102Normalized = 41,
-        #[doc(alias = "MTLVertexFormatUChar4Normalized_BGRA")]
-        UChar4Normalized_BGRA = 42,
-        #[doc(alias = "MTLVertexFormatUChar")]
-        UChar = 45,
-        #[doc(alias = "MTLVertexFormatChar")]
-        Char = 46,
-        #[doc(alias = "MTLVertexFormatUCharNormalized")]
-        UCharNormalized = 47,
-        #[doc(alias = "MTLVertexFormatCharNormalized")]
-        CharNormalized = 48,
-        #[doc(alias = "MTLVertexFormatUShort")]
-        UShort = 49,
-        #[doc(alias = "MTLVertexFormatShort")]
-        Short = 50,
-        #[doc(alias = "MTLVertexFormatUShortNormalized")]
-        UShortNormalized = 51,
-        #[doc(alias = "MTLVertexFormatShortNormalized")]
-        ShortNormalized = 52,
-        #[doc(alias = "MTLVertexFormatHalf")]
-        Half = 53,
-        #[doc(alias = "MTLVertexFormatFloatRG11B10")]
-        FloatRG11B10 = 54,
-        #[doc(alias = "MTLVertexFormatFloatRGB9E5")]
-        FloatRGB9E5 = 55,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MTLVertexFormat(pub NSUInteger);
+impl MTLVertexFormat {
+    #[doc(alias = "MTLVertexFormatInvalid")]
+    pub const Invalid: Self = Self(0);
+    #[doc(alias = "MTLVertexFormatUChar2")]
+    pub const UChar2: Self = Self(1);
+    #[doc(alias = "MTLVertexFormatUChar3")]
+    pub const UChar3: Self = Self(2);
+    #[doc(alias = "MTLVertexFormatUChar4")]
+    pub const UChar4: Self = Self(3);
+    #[doc(alias = "MTLVertexFormatChar2")]
+    pub const Char2: Self = Self(4);
+    #[doc(alias = "MTLVertexFormatChar3")]
+    pub const Char3: Self = Self(5);
+    #[doc(alias = "MTLVertexFormatChar4")]
+    pub const Char4: Self = Self(6);
+    #[doc(alias = "MTLVertexFormatUChar2Normalized")]
+    pub const UChar2Normalized: Self = Self(7);
+    #[doc(alias = "MTLVertexFormatUChar3Normalized")]
+    pub const UChar3Normalized: Self = Self(8);
+    #[doc(alias = "MTLVertexFormatUChar4Normalized")]
+    pub const UChar4Normalized: Self = Self(9);
+    #[doc(alias = "MTLVertexFormatChar2Normalized")]
+    pub const Char2Normalized: Self = Self(10);
+    #[doc(alias = "MTLVertexFormatChar3Normalized")]
+    pub const Char3Normalized: Self = Self(11);
+    #[doc(alias = "MTLVertexFormatChar4Normalized")]
+    pub const Char4Normalized: Self = Self(12);
+    #[doc(alias = "MTLVertexFormatUShort2")]
+    pub const UShort2: Self = Self(13);
+    #[doc(alias = "MTLVertexFormatUShort3")]
+    pub const UShort3: Self = Self(14);
+    #[doc(alias = "MTLVertexFormatUShort4")]
+    pub const UShort4: Self = Self(15);
+    #[doc(alias = "MTLVertexFormatShort2")]
+    pub const Short2: Self = Self(16);
+    #[doc(alias = "MTLVertexFormatShort3")]
+    pub const Short3: Self = Self(17);
+    #[doc(alias = "MTLVertexFormatShort4")]
+    pub const Short4: Self = Self(18);
+    #[doc(alias = "MTLVertexFormatUShort2Normalized")]
+    pub const UShort2Normalized: Self = Self(19);
+    #[doc(alias = "MTLVertexFormatUShort3Normalized")]
+    pub const UShort3Normalized: Self = Self(20);
+    #[doc(alias = "MTLVertexFormatUShort4Normalized")]
+    pub const UShort4Normalized: Self = Self(21);
+    #[doc(alias = "MTLVertexFormatShort2Normalized")]
+    pub const Short2Normalized: Self = Self(22);
+    #[doc(alias = "MTLVertexFormatShort3Normalized")]
+    pub const Short3Normalized: Self = Self(23);
+    #[doc(alias = "MTLVertexFormatShort4Normalized")]
+    pub const Short4Normalized: Self = Self(24);
+    #[doc(alias = "MTLVertexFormatHalf2")]
+    pub const Half2: Self = Self(25);
+    #[doc(alias = "MTLVertexFormatHalf3")]
+    pub const Half3: Self = Self(26);
+    #[doc(alias = "MTLVertexFormatHalf4")]
+    pub const Half4: Self = Self(27);
+    #[doc(alias = "MTLVertexFormatFloat")]
+    pub const Float: Self = Self(28);
+    #[doc(alias = "MTLVertexFormatFloat2")]
+    pub const Float2: Self = Self(29);
+    #[doc(alias = "MTLVertexFormatFloat3")]
+    pub const Float3: Self = Self(30);
+    #[doc(alias = "MTLVertexFormatFloat4")]
+    pub const Float4: Self = Self(31);
+    #[doc(alias = "MTLVertexFormatInt")]
+    pub const Int: Self = Self(32);
+    #[doc(alias = "MTLVertexFormatInt2")]
+    pub const Int2: Self = Self(33);
+    #[doc(alias = "MTLVertexFormatInt3")]
+    pub const Int3: Self = Self(34);
+    #[doc(alias = "MTLVertexFormatInt4")]
+    pub const Int4: Self = Self(35);
+    #[doc(alias = "MTLVertexFormatUInt")]
+    pub const UInt: Self = Self(36);
+    #[doc(alias = "MTLVertexFormatUInt2")]
+    pub const UInt2: Self = Self(37);
+    #[doc(alias = "MTLVertexFormatUInt3")]
+    pub const UInt3: Self = Self(38);
+    #[doc(alias = "MTLVertexFormatUInt4")]
+    pub const UInt4: Self = Self(39);
+    #[doc(alias = "MTLVertexFormatInt1010102Normalized")]
+    pub const Int1010102Normalized: Self = Self(40);
+    #[doc(alias = "MTLVertexFormatUInt1010102Normalized")]
+    pub const UInt1010102Normalized: Self = Self(41);
+    #[doc(alias = "MTLVertexFormatUChar4Normalized_BGRA")]
+    pub const UChar4Normalized_BGRA: Self = Self(42);
+    #[doc(alias = "MTLVertexFormatUChar")]
+    pub const UChar: Self = Self(45);
+    #[doc(alias = "MTLVertexFormatChar")]
+    pub const Char: Self = Self(46);
+    #[doc(alias = "MTLVertexFormatUCharNormalized")]
+    pub const UCharNormalized: Self = Self(47);
+    #[doc(alias = "MTLVertexFormatCharNormalized")]
+    pub const CharNormalized: Self = Self(48);
+    #[doc(alias = "MTLVertexFormatUShort")]
+    pub const UShort: Self = Self(49);
+    #[doc(alias = "MTLVertexFormatShort")]
+    pub const Short: Self = Self(50);
+    #[doc(alias = "MTLVertexFormatUShortNormalized")]
+    pub const UShortNormalized: Self = Self(51);
+    #[doc(alias = "MTLVertexFormatShortNormalized")]
+    pub const ShortNormalized: Self = Self(52);
+    #[doc(alias = "MTLVertexFormatHalf")]
+    pub const Half: Self = Self(53);
+    #[doc(alias = "MTLVertexFormatFloatRG11B10")]
+    pub const FloatRG11B10: Self = Self(54);
+    #[doc(alias = "MTLVertexFormatFloatRGB9E5")]
+    pub const FloatRGB9E5: Self = Self(55);
+}
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum MTLVertexStepFunction {
-        #[doc(alias = "MTLVertexStepFunctionConstant")]
-        Constant = 0,
-        #[doc(alias = "MTLVertexStepFunctionPerVertex")]
-        PerVertex = 1,
-        #[doc(alias = "MTLVertexStepFunctionPerInstance")]
-        PerInstance = 2,
-        #[doc(alias = "MTLVertexStepFunctionPerPatch")]
-        PerPatch = 3,
-        #[doc(alias = "MTLVertexStepFunctionPerPatchControlPoint")]
-        PerPatchControlPoint = 4,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLVertexFormat {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLVertexFormat {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MTLVertexStepFunction(pub NSUInteger);
+impl MTLVertexStepFunction {
+    #[doc(alias = "MTLVertexStepFunctionConstant")]
+    pub const Constant: Self = Self(0);
+    #[doc(alias = "MTLVertexStepFunctionPerVertex")]
+    pub const PerVertex: Self = Self(1);
+    #[doc(alias = "MTLVertexStepFunctionPerInstance")]
+    pub const PerInstance: Self = Self(2);
+    #[doc(alias = "MTLVertexStepFunctionPerPatch")]
+    pub const PerPatch: Self = Self(3);
+    #[doc(alias = "MTLVertexStepFunctionPerPatchControlPoint")]
+    pub const PerPatchControlPoint: Self = Self(4);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLVertexStepFunction {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLVertexStepFunction {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 pub static MTLBufferLayoutStrideDynamic: NSUInteger = NSUIntegerMax as _;
 

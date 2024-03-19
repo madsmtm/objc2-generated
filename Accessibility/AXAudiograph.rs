@@ -43,14 +43,25 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn AXDataAxisDescriptor {}
 );
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum AXNumericDataAxisDescriptorScale {
-        AXScaleTypeLinear = 0,
-        AXScaleTypeLog10 = 1,
-        AXScaleTypeLn = 2,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct AXNumericDataAxisDescriptorScale(pub NSInteger);
+impl AXNumericDataAxisDescriptorScale {
+    pub const AXScaleTypeLinear: Self = Self(0);
+    pub const AXScaleTypeLog10: Self = Self(1);
+    pub const AXScaleTypeLn: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for AXNumericDataAxisDescriptorScale {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for AXNumericDataAxisDescriptorScale {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -415,17 +426,28 @@ extern_methods!(
     }
 );
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum AXChartDescriptorContentDirection {
-        AXChartContentDirectionLeftToRight = 0,
-        AXChartContentDirectionRightToLeft = 1,
-        AXChartContentDirectionTopToBottom = 2,
-        AXChartContentDirectionBottomToTop = 3,
-        AXChartContentDirectionRadialClockwise = 4,
-        AXChartContentDirectionRadialCounterClockwise = 5,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct AXChartDescriptorContentDirection(pub NSInteger);
+impl AXChartDescriptorContentDirection {
+    pub const AXChartContentDirectionLeftToRight: Self = Self(0);
+    pub const AXChartContentDirectionRightToLeft: Self = Self(1);
+    pub const AXChartContentDirectionTopToBottom: Self = Self(2);
+    pub const AXChartContentDirectionBottomToTop: Self = Self(3);
+    pub const AXChartContentDirectionRadialClockwise: Self = Self(4);
+    pub const AXChartContentDirectionRadialCounterClockwise: Self = Self(5);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for AXChartDescriptorContentDirection {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for AXChartDescriptorContentDirection {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

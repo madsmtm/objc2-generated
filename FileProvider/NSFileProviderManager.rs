@@ -6,17 +6,28 @@ use crate::FileProvider::*;
 use crate::Foundation::*;
 use crate::UniformTypeIdentifiers::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSFileProviderDomainRemovalMode {
-        #[doc(alias = "NSFileProviderDomainRemovalModeRemoveAll")]
-        RemoveAll = 0,
-        #[doc(alias = "NSFileProviderDomainRemovalModePreserveDirtyUserData")]
-        PreserveDirtyUserData = 1,
-        #[doc(alias = "NSFileProviderDomainRemovalModePreserveDownloadedUserData")]
-        PreserveDownloadedUserData = 2,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSFileProviderDomainRemovalMode(pub NSInteger);
+impl NSFileProviderDomainRemovalMode {
+    #[doc(alias = "NSFileProviderDomainRemovalModeRemoveAll")]
+    pub const RemoveAll: Self = Self(0);
+    #[doc(alias = "NSFileProviderDomainRemovalModePreserveDirtyUserData")]
+    pub const PreserveDirtyUserData: Self = Self(1);
+    #[doc(alias = "NSFileProviderDomainRemovalModePreserveDownloadedUserData")]
+    pub const PreserveDownloadedUserData: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSFileProviderDomainRemovalMode {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSFileProviderDomainRemovalMode {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -343,13 +354,24 @@ extern_methods!(
     }
 );
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSFileProviderManagerDisconnectionOptions {
-        #[doc(alias = "NSFileProviderManagerDisconnectionOptionsTemporary")]
-        Temporary = 1 << 0,
-    }
-);
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSFileProviderManagerDisconnectionOptions(pub NSUInteger);
+impl NSFileProviderManagerDisconnectionOptions {
+    #[doc(alias = "NSFileProviderManagerDisconnectionOptionsTemporary")]
+    pub const Temporary: Self = Self(1 << 0);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSFileProviderManagerDisconnectionOptions {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSFileProviderManagerDisconnectionOptions {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_methods!(
     /// Disconnection

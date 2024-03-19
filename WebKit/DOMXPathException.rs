@@ -10,13 +10,23 @@ extern "C" {
     pub static DOMXPathException: Option<&'static NSString>;
 }
 
-extern_enum!(
-    #[underlying(c_uint)]
+#[deprecated]
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct DOMXPathExceptionCode(pub c_uint);
+impl DOMXPathExceptionCode {
     #[deprecated]
-    pub enum DOMXPathExceptionCode {
-        #[deprecated]
-        DOM_INVALID_EXPRESSION_ERR = 51,
-        #[deprecated]
-        DOM_TYPE_ERR = 52,
-    }
-);
+    pub const DOM_INVALID_EXPRESSION_ERR: Self = Self(51);
+    #[deprecated]
+    pub const DOM_TYPE_ERR: Self = Self(52);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for DOMXPathExceptionCode {
+    const ENCODING: Encoding = c_uint::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for DOMXPathExceptionCode {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}

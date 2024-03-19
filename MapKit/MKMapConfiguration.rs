@@ -7,15 +7,26 @@ use crate::CoreLocation::*;
 use crate::Foundation::*;
 use crate::MapKit::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum MKMapElevationStyle {
-        #[doc(alias = "MKMapElevationStyleFlat")]
-        Flat = 0,
-        #[doc(alias = "MKMapElevationStyleRealistic")]
-        Realistic = 1,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MKMapElevationStyle(pub NSInteger);
+impl MKMapElevationStyle {
+    #[doc(alias = "MKMapElevationStyleFlat")]
+    pub const Flat: Self = Self(0);
+    #[doc(alias = "MKMapElevationStyleRealistic")]
+    pub const Realistic: Self = Self(1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MKMapElevationStyle {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MKMapElevationStyle {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

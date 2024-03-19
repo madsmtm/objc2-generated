@@ -5,27 +5,38 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSColorSpaceModel {
-        #[doc(alias = "NSColorSpaceModelUnknown")]
-        Unknown = -1,
-        #[doc(alias = "NSColorSpaceModelGray")]
-        Gray = 0,
-        #[doc(alias = "NSColorSpaceModelRGB")]
-        RGB = 1,
-        #[doc(alias = "NSColorSpaceModelCMYK")]
-        CMYK = 2,
-        #[doc(alias = "NSColorSpaceModelLAB")]
-        LAB = 3,
-        #[doc(alias = "NSColorSpaceModelDeviceN")]
-        DeviceN = 4,
-        #[doc(alias = "NSColorSpaceModelIndexed")]
-        Indexed = 5,
-        #[doc(alias = "NSColorSpaceModelPatterned")]
-        Patterned = 6,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSColorSpaceModel(pub NSInteger);
+impl NSColorSpaceModel {
+    #[doc(alias = "NSColorSpaceModelUnknown")]
+    pub const Unknown: Self = Self(-1);
+    #[doc(alias = "NSColorSpaceModelGray")]
+    pub const Gray: Self = Self(0);
+    #[doc(alias = "NSColorSpaceModelRGB")]
+    pub const RGB: Self = Self(1);
+    #[doc(alias = "NSColorSpaceModelCMYK")]
+    pub const CMYK: Self = Self(2);
+    #[doc(alias = "NSColorSpaceModelLAB")]
+    pub const LAB: Self = Self(3);
+    #[doc(alias = "NSColorSpaceModelDeviceN")]
+    pub const DeviceN: Self = Self(4);
+    #[doc(alias = "NSColorSpaceModelIndexed")]
+    pub const Indexed: Self = Self(5);
+    #[doc(alias = "NSColorSpaceModelPatterned")]
+    pub const Patterned: Self = Self(6);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSColorSpaceModel {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSColorSpaceModel {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

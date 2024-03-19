@@ -3,10 +3,9 @@
 use crate::common::*;
 use crate::Foundation::*;
 
+// NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_extensible_enum!(
-    pub type NSValueTransformerName = NSString;
-);
+pub type NSValueTransformerName = NSString;
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]

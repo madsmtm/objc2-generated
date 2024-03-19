@@ -4,27 +4,38 @@ use crate::common::*;
 use crate::Foundation::*;
 use crate::Metal::*;
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum MTLIndirectCommandType {
-        #[doc(alias = "MTLIndirectCommandTypeDraw")]
-        Draw = 1 << 0,
-        #[doc(alias = "MTLIndirectCommandTypeDrawIndexed")]
-        DrawIndexed = 1 << 1,
-        #[doc(alias = "MTLIndirectCommandTypeDrawPatches")]
-        DrawPatches = 1 << 2,
-        #[doc(alias = "MTLIndirectCommandTypeDrawIndexedPatches")]
-        DrawIndexedPatches = 1 << 3,
-        #[doc(alias = "MTLIndirectCommandTypeConcurrentDispatch")]
-        ConcurrentDispatch = 1 << 5,
-        #[doc(alias = "MTLIndirectCommandTypeConcurrentDispatchThreads")]
-        ConcurrentDispatchThreads = 1 << 6,
-        #[doc(alias = "MTLIndirectCommandTypeDrawMeshThreadgroups")]
-        DrawMeshThreadgroups = 1 << 7,
-        #[doc(alias = "MTLIndirectCommandTypeDrawMeshThreads")]
-        DrawMeshThreads = 1 << 8,
-    }
-);
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MTLIndirectCommandType(pub NSUInteger);
+impl MTLIndirectCommandType {
+    #[doc(alias = "MTLIndirectCommandTypeDraw")]
+    pub const Draw: Self = Self(1 << 0);
+    #[doc(alias = "MTLIndirectCommandTypeDrawIndexed")]
+    pub const DrawIndexed: Self = Self(1 << 1);
+    #[doc(alias = "MTLIndirectCommandTypeDrawPatches")]
+    pub const DrawPatches: Self = Self(1 << 2);
+    #[doc(alias = "MTLIndirectCommandTypeDrawIndexedPatches")]
+    pub const DrawIndexedPatches: Self = Self(1 << 3);
+    #[doc(alias = "MTLIndirectCommandTypeConcurrentDispatch")]
+    pub const ConcurrentDispatch: Self = Self(1 << 5);
+    #[doc(alias = "MTLIndirectCommandTypeConcurrentDispatchThreads")]
+    pub const ConcurrentDispatchThreads: Self = Self(1 << 6);
+    #[doc(alias = "MTLIndirectCommandTypeDrawMeshThreadgroups")]
+    pub const DrawMeshThreadgroups: Self = Self(1 << 7);
+    #[doc(alias = "MTLIndirectCommandTypeDrawMeshThreads")]
+    pub const DrawMeshThreads: Self = Self(1 << 8);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLIndirectCommandType {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLIndirectCommandType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_struct!(
     #[encoding_name("?")]

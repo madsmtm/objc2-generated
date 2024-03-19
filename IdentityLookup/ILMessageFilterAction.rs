@@ -4,53 +4,75 @@ use crate::common::*;
 use crate::Foundation::*;
 use crate::IdentityLookup::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum ILMessageFilterAction {
-        #[doc(alias = "ILMessageFilterActionNone")]
-        None = 0,
-        #[doc(alias = "ILMessageFilterActionAllow")]
-        Allow = 1,
-        #[doc(alias = "ILMessageFilterActionJunk")]
-        Junk = 2,
-        #[deprecated]
-        #[doc(alias = "ILMessageFilterActionFilter")]
-        Filter = ILMessageFilterAction::Junk.0,
-        #[doc(alias = "ILMessageFilterActionPromotion")]
-        Promotion = 3,
-        #[doc(alias = "ILMessageFilterActionTransaction")]
-        Transaction = 4,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct ILMessageFilterAction(pub NSInteger);
+impl ILMessageFilterAction {
+    #[doc(alias = "ILMessageFilterActionNone")]
+    pub const None: Self = Self(0);
+    #[doc(alias = "ILMessageFilterActionAllow")]
+    pub const Allow: Self = Self(1);
+    #[doc(alias = "ILMessageFilterActionJunk")]
+    pub const Junk: Self = Self(2);
+    #[deprecated]
+    #[doc(alias = "ILMessageFilterActionFilter")]
+    pub const Filter: Self = Self(ILMessageFilterAction::Junk.0);
+    #[doc(alias = "ILMessageFilterActionPromotion")]
+    pub const Promotion: Self = Self(3);
+    #[doc(alias = "ILMessageFilterActionTransaction")]
+    pub const Transaction: Self = Self(4);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum ILMessageFilterSubAction {
-        #[doc(alias = "ILMessageFilterSubActionNone")]
-        None = 0,
-        #[doc(alias = "ILMessageFilterSubActionTransactionalOthers")]
-        TransactionalOthers = 10000,
-        #[doc(alias = "ILMessageFilterSubActionTransactionalFinance")]
-        TransactionalFinance = 10001,
-        #[doc(alias = "ILMessageFilterSubActionTransactionalOrders")]
-        TransactionalOrders = 10002,
-        #[doc(alias = "ILMessageFilterSubActionTransactionalReminders")]
-        TransactionalReminders = 10003,
-        #[doc(alias = "ILMessageFilterSubActionTransactionalHealth")]
-        TransactionalHealth = 10004,
-        #[doc(alias = "ILMessageFilterSubActionTransactionalWeather")]
-        TransactionalWeather = 10005,
-        #[doc(alias = "ILMessageFilterSubActionTransactionalCarrier")]
-        TransactionalCarrier = 10006,
-        #[doc(alias = "ILMessageFilterSubActionTransactionalRewards")]
-        TransactionalRewards = 10007,
-        #[doc(alias = "ILMessageFilterSubActionTransactionalPublicServices")]
-        TransactionalPublicServices = 10008,
-        #[doc(alias = "ILMessageFilterSubActionPromotionalOthers")]
-        PromotionalOthers = 20000,
-        #[doc(alias = "ILMessageFilterSubActionPromotionalOffers")]
-        PromotionalOffers = 20001,
-        #[doc(alias = "ILMessageFilterSubActionPromotionalCoupons")]
-        PromotionalCoupons = 20002,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for ILMessageFilterAction {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for ILMessageFilterAction {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct ILMessageFilterSubAction(pub NSInteger);
+impl ILMessageFilterSubAction {
+    #[doc(alias = "ILMessageFilterSubActionNone")]
+    pub const None: Self = Self(0);
+    #[doc(alias = "ILMessageFilterSubActionTransactionalOthers")]
+    pub const TransactionalOthers: Self = Self(10000);
+    #[doc(alias = "ILMessageFilterSubActionTransactionalFinance")]
+    pub const TransactionalFinance: Self = Self(10001);
+    #[doc(alias = "ILMessageFilterSubActionTransactionalOrders")]
+    pub const TransactionalOrders: Self = Self(10002);
+    #[doc(alias = "ILMessageFilterSubActionTransactionalReminders")]
+    pub const TransactionalReminders: Self = Self(10003);
+    #[doc(alias = "ILMessageFilterSubActionTransactionalHealth")]
+    pub const TransactionalHealth: Self = Self(10004);
+    #[doc(alias = "ILMessageFilterSubActionTransactionalWeather")]
+    pub const TransactionalWeather: Self = Self(10005);
+    #[doc(alias = "ILMessageFilterSubActionTransactionalCarrier")]
+    pub const TransactionalCarrier: Self = Self(10006);
+    #[doc(alias = "ILMessageFilterSubActionTransactionalRewards")]
+    pub const TransactionalRewards: Self = Self(10007);
+    #[doc(alias = "ILMessageFilterSubActionTransactionalPublicServices")]
+    pub const TransactionalPublicServices: Self = Self(10008);
+    #[doc(alias = "ILMessageFilterSubActionPromotionalOthers")]
+    pub const PromotionalOthers: Self = Self(20000);
+    #[doc(alias = "ILMessageFilterSubActionPromotionalOffers")]
+    pub const PromotionalOffers: Self = Self(20001);
+    #[doc(alias = "ILMessageFilterSubActionPromotionalCoupons")]
+    pub const PromotionalCoupons: Self = Self(20002);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for ILMessageFilterSubAction {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for ILMessageFilterSubAction {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}

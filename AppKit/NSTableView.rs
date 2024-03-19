@@ -5,120 +5,219 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSTableViewDropOperation {
-        NSTableViewDropOn = 0,
-        NSTableViewDropAbove = 1,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSTableViewDropOperation(pub NSUInteger);
+impl NSTableViewDropOperation {
+    pub const NSTableViewDropOn: Self = Self(0);
+    pub const NSTableViewDropAbove: Self = Self(1);
+}
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSTableViewColumnAutoresizingStyle {
-        NSTableViewNoColumnAutoresizing = 0,
-        NSTableViewUniformColumnAutoresizingStyle = 1,
-        NSTableViewSequentialColumnAutoresizingStyle = 2,
-        NSTableViewReverseSequentialColumnAutoresizingStyle = 3,
-        NSTableViewLastColumnOnlyAutoresizingStyle = 4,
-        NSTableViewFirstColumnOnlyAutoresizingStyle = 5,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSTableViewDropOperation {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSTableViewGridLineStyle {
-        NSTableViewGridNone = 0,
-        NSTableViewSolidVerticalGridLineMask = 1 << 0,
-        NSTableViewSolidHorizontalGridLineMask = 1 << 1,
-        NSTableViewDashedHorizontalGridLineMask = 1 << 3,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSTableViewDropOperation {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSTableViewRowSizeStyle {
-        #[doc(alias = "NSTableViewRowSizeStyleDefault")]
-        Default = -1,
-        #[doc(alias = "NSTableViewRowSizeStyleCustom")]
-        Custom = 0,
-        #[doc(alias = "NSTableViewRowSizeStyleSmall")]
-        Small = 1,
-        #[doc(alias = "NSTableViewRowSizeStyleMedium")]
-        Medium = 2,
-        #[doc(alias = "NSTableViewRowSizeStyleLarge")]
-        Large = 3,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSTableViewColumnAutoresizingStyle(pub NSUInteger);
+impl NSTableViewColumnAutoresizingStyle {
+    pub const NSTableViewNoColumnAutoresizing: Self = Self(0);
+    pub const NSTableViewUniformColumnAutoresizingStyle: Self = Self(1);
+    pub const NSTableViewSequentialColumnAutoresizingStyle: Self = Self(2);
+    pub const NSTableViewReverseSequentialColumnAutoresizingStyle: Self = Self(3);
+    pub const NSTableViewLastColumnOnlyAutoresizingStyle: Self = Self(4);
+    pub const NSTableViewFirstColumnOnlyAutoresizingStyle: Self = Self(5);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSTableViewStyle {
-        #[doc(alias = "NSTableViewStyleAutomatic")]
-        Automatic = 0,
-        #[doc(alias = "NSTableViewStyleFullWidth")]
-        FullWidth = 1,
-        #[doc(alias = "NSTableViewStyleInset")]
-        Inset = 2,
-        #[doc(alias = "NSTableViewStyleSourceList")]
-        SourceList = 3,
-        #[doc(alias = "NSTableViewStylePlain")]
-        Plain = 4,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSTableViewColumnAutoresizingStyle {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSTableViewSelectionHighlightStyle {
-        #[doc(alias = "NSTableViewSelectionHighlightStyleNone")]
-        None = -1,
-        #[doc(alias = "NSTableViewSelectionHighlightStyleRegular")]
-        Regular = 0,
-        #[deprecated = "Set the NSTableView.style property to NSTableViewStyleSourceList instead."]
-        #[doc(alias = "NSTableViewSelectionHighlightStyleSourceList")]
-        SourceList = 1,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSTableViewColumnAutoresizingStyle {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSTableViewDraggingDestinationFeedbackStyle {
-        #[doc(alias = "NSTableViewDraggingDestinationFeedbackStyleNone")]
-        None = -1,
-        #[doc(alias = "NSTableViewDraggingDestinationFeedbackStyleRegular")]
-        Regular = 0,
-        #[doc(alias = "NSTableViewDraggingDestinationFeedbackStyleSourceList")]
-        SourceList = 1,
-        #[doc(alias = "NSTableViewDraggingDestinationFeedbackStyleGap")]
-        Gap = 2,
-    }
-);
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSTableViewGridLineStyle(pub NSUInteger);
+impl NSTableViewGridLineStyle {
+    pub const NSTableViewGridNone: Self = Self(0);
+    pub const NSTableViewSolidVerticalGridLineMask: Self = Self(1 << 0);
+    pub const NSTableViewSolidHorizontalGridLineMask: Self = Self(1 << 1);
+    pub const NSTableViewDashedHorizontalGridLineMask: Self = Self(1 << 3);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSTableRowActionEdge {
-        #[doc(alias = "NSTableRowActionEdgeLeading")]
-        Leading = 0,
-        #[doc(alias = "NSTableRowActionEdgeTrailing")]
-        Trailing = 1,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSTableViewGridLineStyle {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSTableViewGridLineStyle {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSTableViewRowSizeStyle(pub NSInteger);
+impl NSTableViewRowSizeStyle {
+    #[doc(alias = "NSTableViewRowSizeStyleDefault")]
+    pub const Default: Self = Self(-1);
+    #[doc(alias = "NSTableViewRowSizeStyleCustom")]
+    pub const Custom: Self = Self(0);
+    #[doc(alias = "NSTableViewRowSizeStyleSmall")]
+    pub const Small: Self = Self(1);
+    #[doc(alias = "NSTableViewRowSizeStyleMedium")]
+    pub const Medium: Self = Self(2);
+    #[doc(alias = "NSTableViewRowSizeStyleLarge")]
+    pub const Large: Self = Self(3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSTableViewRowSizeStyle {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSTableViewRowSizeStyle {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSTableViewStyle(pub NSInteger);
+impl NSTableViewStyle {
+    #[doc(alias = "NSTableViewStyleAutomatic")]
+    pub const Automatic: Self = Self(0);
+    #[doc(alias = "NSTableViewStyleFullWidth")]
+    pub const FullWidth: Self = Self(1);
+    #[doc(alias = "NSTableViewStyleInset")]
+    pub const Inset: Self = Self(2);
+    #[doc(alias = "NSTableViewStyleSourceList")]
+    pub const SourceList: Self = Self(3);
+    #[doc(alias = "NSTableViewStylePlain")]
+    pub const Plain: Self = Self(4);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSTableViewStyle {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSTableViewStyle {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSTableViewSelectionHighlightStyle(pub NSInteger);
+impl NSTableViewSelectionHighlightStyle {
+    #[doc(alias = "NSTableViewSelectionHighlightStyleNone")]
+    pub const None: Self = Self(-1);
+    #[doc(alias = "NSTableViewSelectionHighlightStyleRegular")]
+    pub const Regular: Self = Self(0);
+    #[deprecated = "Set the NSTableView.style property to NSTableViewStyleSourceList instead."]
+    #[doc(alias = "NSTableViewSelectionHighlightStyleSourceList")]
+    pub const SourceList: Self = Self(1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSTableViewSelectionHighlightStyle {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSTableViewSelectionHighlightStyle {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSTableViewDraggingDestinationFeedbackStyle(pub NSInteger);
+impl NSTableViewDraggingDestinationFeedbackStyle {
+    #[doc(alias = "NSTableViewDraggingDestinationFeedbackStyleNone")]
+    pub const None: Self = Self(-1);
+    #[doc(alias = "NSTableViewDraggingDestinationFeedbackStyleRegular")]
+    pub const Regular: Self = Self(0);
+    #[doc(alias = "NSTableViewDraggingDestinationFeedbackStyleSourceList")]
+    pub const SourceList: Self = Self(1);
+    #[doc(alias = "NSTableViewDraggingDestinationFeedbackStyleGap")]
+    pub const Gap: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSTableViewDraggingDestinationFeedbackStyle {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSTableViewDraggingDestinationFeedbackStyle {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSTableRowActionEdge(pub NSInteger);
+impl NSTableRowActionEdge {
+    #[doc(alias = "NSTableRowActionEdgeLeading")]
+    pub const Leading: Self = Self(0);
+    #[doc(alias = "NSTableRowActionEdgeTrailing")]
+    pub const Trailing: Self = Self(1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSTableRowActionEdge {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSTableRowActionEdge {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 #[cfg(feature = "Foundation_NSString")]
 pub type NSTableViewAutosaveName = NSString;
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSTableViewAnimationOptions {
-        NSTableViewAnimationEffectNone = 0x0,
-        NSTableViewAnimationEffectFade = 0x1,
-        NSTableViewAnimationEffectGap = 0x2,
-        NSTableViewAnimationSlideUp = 0x10,
-        NSTableViewAnimationSlideDown = 0x20,
-        NSTableViewAnimationSlideLeft = 0x30,
-        NSTableViewAnimationSlideRight = 0x40,
-    }
-);
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSTableViewAnimationOptions(pub NSUInteger);
+impl NSTableViewAnimationOptions {
+    pub const NSTableViewAnimationEffectNone: Self = Self(0x0);
+    pub const NSTableViewAnimationEffectFade: Self = Self(0x1);
+    pub const NSTableViewAnimationEffectGap: Self = Self(0x2);
+    pub const NSTableViewAnimationSlideUp: Self = Self(0x10);
+    pub const NSTableViewAnimationSlideDown: Self = Self(0x20);
+    pub const NSTableViewAnimationSlideLeft: Self = Self(0x30);
+    pub const NSTableViewAnimationSlideRight: Self = Self(0x40);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSTableViewAnimationOptions {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSTableViewAnimationOptions {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

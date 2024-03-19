@@ -5,17 +5,28 @@ use crate::Foundation::*;
 use crate::Metal::*;
 use crate::MetalFX::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum MTLFXSpatialScalerColorProcessingMode {
-        #[doc(alias = "MTLFXSpatialScalerColorProcessingModePerceptual")]
-        Perceptual = 0,
-        #[doc(alias = "MTLFXSpatialScalerColorProcessingModeLinear")]
-        Linear = 1,
-        #[doc(alias = "MTLFXSpatialScalerColorProcessingModeHDR")]
-        HDR = 2,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MTLFXSpatialScalerColorProcessingMode(pub NSInteger);
+impl MTLFXSpatialScalerColorProcessingMode {
+    #[doc(alias = "MTLFXSpatialScalerColorProcessingModePerceptual")]
+    pub const Perceptual: Self = Self(0);
+    #[doc(alias = "MTLFXSpatialScalerColorProcessingModeLinear")]
+    pub const Linear: Self = Self(1);
+    #[doc(alias = "MTLFXSpatialScalerColorProcessingModeHDR")]
+    pub const HDR: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLFXSpatialScalerColorProcessingMode {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLFXSpatialScalerColorProcessingMode {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

@@ -5,76 +5,109 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSVisualEffectMaterial {
-        #[doc(alias = "NSVisualEffectMaterialTitlebar")]
-        Titlebar = 3,
-        #[doc(alias = "NSVisualEffectMaterialSelection")]
-        Selection = 4,
-        #[doc(alias = "NSVisualEffectMaterialMenu")]
-        Menu = 5,
-        #[doc(alias = "NSVisualEffectMaterialPopover")]
-        Popover = 6,
-        #[doc(alias = "NSVisualEffectMaterialSidebar")]
-        Sidebar = 7,
-        #[doc(alias = "NSVisualEffectMaterialHeaderView")]
-        HeaderView = 10,
-        #[doc(alias = "NSVisualEffectMaterialSheet")]
-        Sheet = 11,
-        #[doc(alias = "NSVisualEffectMaterialWindowBackground")]
-        WindowBackground = 12,
-        #[doc(alias = "NSVisualEffectMaterialHUDWindow")]
-        HUDWindow = 13,
-        #[doc(alias = "NSVisualEffectMaterialFullScreenUI")]
-        FullScreenUI = 15,
-        #[doc(alias = "NSVisualEffectMaterialToolTip")]
-        ToolTip = 17,
-        #[doc(alias = "NSVisualEffectMaterialContentBackground")]
-        ContentBackground = 18,
-        #[doc(alias = "NSVisualEffectMaterialUnderWindowBackground")]
-        UnderWindowBackground = 21,
-        #[doc(alias = "NSVisualEffectMaterialUnderPageBackground")]
-        UnderPageBackground = 22,
-        #[deprecated = "Use a specific semantic material instead."]
-        #[doc(alias = "NSVisualEffectMaterialAppearanceBased")]
-        AppearanceBased = 0,
-        #[deprecated = "Use a semantic material instead.  To force the appearance of a view hierarchy, set the `appearance` property to an appropriate NSAppearance value."]
-        #[doc(alias = "NSVisualEffectMaterialLight")]
-        Light = 1,
-        #[deprecated = "Use a semantic material instead.  To force the appearance of a view hierarchy, set the `appearance` property to an appropriate NSAppearance value."]
-        #[doc(alias = "NSVisualEffectMaterialDark")]
-        Dark = 2,
-        #[deprecated = "Use a semantic material instead.  To force the appearance of a view hierarchy, set the `appearance` property to an appropriate NSAppearance value."]
-        #[doc(alias = "NSVisualEffectMaterialMediumLight")]
-        MediumLight = 8,
-        #[deprecated = "Use a semantic material instead.  To force the appearance of a view hierarchy, set the `appearance` property to an appropriate NSAppearance value."]
-        #[doc(alias = "NSVisualEffectMaterialUltraDark")]
-        UltraDark = 9,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSVisualEffectMaterial(pub NSInteger);
+impl NSVisualEffectMaterial {
+    #[doc(alias = "NSVisualEffectMaterialTitlebar")]
+    pub const Titlebar: Self = Self(3);
+    #[doc(alias = "NSVisualEffectMaterialSelection")]
+    pub const Selection: Self = Self(4);
+    #[doc(alias = "NSVisualEffectMaterialMenu")]
+    pub const Menu: Self = Self(5);
+    #[doc(alias = "NSVisualEffectMaterialPopover")]
+    pub const Popover: Self = Self(6);
+    #[doc(alias = "NSVisualEffectMaterialSidebar")]
+    pub const Sidebar: Self = Self(7);
+    #[doc(alias = "NSVisualEffectMaterialHeaderView")]
+    pub const HeaderView: Self = Self(10);
+    #[doc(alias = "NSVisualEffectMaterialSheet")]
+    pub const Sheet: Self = Self(11);
+    #[doc(alias = "NSVisualEffectMaterialWindowBackground")]
+    pub const WindowBackground: Self = Self(12);
+    #[doc(alias = "NSVisualEffectMaterialHUDWindow")]
+    pub const HUDWindow: Self = Self(13);
+    #[doc(alias = "NSVisualEffectMaterialFullScreenUI")]
+    pub const FullScreenUI: Self = Self(15);
+    #[doc(alias = "NSVisualEffectMaterialToolTip")]
+    pub const ToolTip: Self = Self(17);
+    #[doc(alias = "NSVisualEffectMaterialContentBackground")]
+    pub const ContentBackground: Self = Self(18);
+    #[doc(alias = "NSVisualEffectMaterialUnderWindowBackground")]
+    pub const UnderWindowBackground: Self = Self(21);
+    #[doc(alias = "NSVisualEffectMaterialUnderPageBackground")]
+    pub const UnderPageBackground: Self = Self(22);
+    #[deprecated = "Use a specific semantic material instead."]
+    #[doc(alias = "NSVisualEffectMaterialAppearanceBased")]
+    pub const AppearanceBased: Self = Self(0);
+    #[deprecated = "Use a semantic material instead.  To force the appearance of a view hierarchy, set the `appearance` property to an appropriate NSAppearance value."]
+    #[doc(alias = "NSVisualEffectMaterialLight")]
+    pub const Light: Self = Self(1);
+    #[deprecated = "Use a semantic material instead.  To force the appearance of a view hierarchy, set the `appearance` property to an appropriate NSAppearance value."]
+    #[doc(alias = "NSVisualEffectMaterialDark")]
+    pub const Dark: Self = Self(2);
+    #[deprecated = "Use a semantic material instead.  To force the appearance of a view hierarchy, set the `appearance` property to an appropriate NSAppearance value."]
+    #[doc(alias = "NSVisualEffectMaterialMediumLight")]
+    pub const MediumLight: Self = Self(8);
+    #[deprecated = "Use a semantic material instead.  To force the appearance of a view hierarchy, set the `appearance` property to an appropriate NSAppearance value."]
+    #[doc(alias = "NSVisualEffectMaterialUltraDark")]
+    pub const UltraDark: Self = Self(9);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSVisualEffectBlendingMode {
-        #[doc(alias = "NSVisualEffectBlendingModeBehindWindow")]
-        BehindWindow = 0,
-        #[doc(alias = "NSVisualEffectBlendingModeWithinWindow")]
-        WithinWindow = 1,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSVisualEffectMaterial {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSVisualEffectState {
-        #[doc(alias = "NSVisualEffectStateFollowsWindowActiveState")]
-        FollowsWindowActiveState = 0,
-        #[doc(alias = "NSVisualEffectStateActive")]
-        Active = 1,
-        #[doc(alias = "NSVisualEffectStateInactive")]
-        Inactive = 2,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSVisualEffectMaterial {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSVisualEffectBlendingMode(pub NSInteger);
+impl NSVisualEffectBlendingMode {
+    #[doc(alias = "NSVisualEffectBlendingModeBehindWindow")]
+    pub const BehindWindow: Self = Self(0);
+    #[doc(alias = "NSVisualEffectBlendingModeWithinWindow")]
+    pub const WithinWindow: Self = Self(1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSVisualEffectBlendingMode {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSVisualEffectBlendingMode {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSVisualEffectState(pub NSInteger);
+impl NSVisualEffectState {
+    #[doc(alias = "NSVisualEffectStateFollowsWindowActiveState")]
+    pub const FollowsWindowActiveState: Self = Self(0);
+    #[doc(alias = "NSVisualEffectStateActive")]
+    pub const Active: Self = Self(1);
+    #[doc(alias = "NSVisualEffectStateInactive")]
+    pub const Inactive: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSVisualEffectState {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSVisualEffectState {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

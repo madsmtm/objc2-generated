@@ -5,51 +5,84 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::MediaPlayer::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum MPMusicPlaybackState {
-        #[doc(alias = "MPMusicPlaybackStateStopped")]
-        Stopped = 0,
-        #[doc(alias = "MPMusicPlaybackStatePlaying")]
-        Playing = 1,
-        #[doc(alias = "MPMusicPlaybackStatePaused")]
-        Paused = 2,
-        #[doc(alias = "MPMusicPlaybackStateInterrupted")]
-        Interrupted = 3,
-        #[doc(alias = "MPMusicPlaybackStateSeekingForward")]
-        SeekingForward = 4,
-        #[doc(alias = "MPMusicPlaybackStateSeekingBackward")]
-        SeekingBackward = 5,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MPMusicPlaybackState(pub NSInteger);
+impl MPMusicPlaybackState {
+    #[doc(alias = "MPMusicPlaybackStateStopped")]
+    pub const Stopped: Self = Self(0);
+    #[doc(alias = "MPMusicPlaybackStatePlaying")]
+    pub const Playing: Self = Self(1);
+    #[doc(alias = "MPMusicPlaybackStatePaused")]
+    pub const Paused: Self = Self(2);
+    #[doc(alias = "MPMusicPlaybackStateInterrupted")]
+    pub const Interrupted: Self = Self(3);
+    #[doc(alias = "MPMusicPlaybackStateSeekingForward")]
+    pub const SeekingForward: Self = Self(4);
+    #[doc(alias = "MPMusicPlaybackStateSeekingBackward")]
+    pub const SeekingBackward: Self = Self(5);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum MPMusicRepeatMode {
-        #[doc(alias = "MPMusicRepeatModeDefault")]
-        Default = 0,
-        #[doc(alias = "MPMusicRepeatModeNone")]
-        None = 1,
-        #[doc(alias = "MPMusicRepeatModeOne")]
-        One = 2,
-        #[doc(alias = "MPMusicRepeatModeAll")]
-        All = 3,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MPMusicPlaybackState {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum MPMusicShuffleMode {
-        #[doc(alias = "MPMusicShuffleModeDefault")]
-        Default = 0,
-        #[doc(alias = "MPMusicShuffleModeOff")]
-        Off = 1,
-        #[doc(alias = "MPMusicShuffleModeSongs")]
-        Songs = 2,
-        #[doc(alias = "MPMusicShuffleModeAlbums")]
-        Albums = 3,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MPMusicPlaybackState {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MPMusicRepeatMode(pub NSInteger);
+impl MPMusicRepeatMode {
+    #[doc(alias = "MPMusicRepeatModeDefault")]
+    pub const Default: Self = Self(0);
+    #[doc(alias = "MPMusicRepeatModeNone")]
+    pub const None: Self = Self(1);
+    #[doc(alias = "MPMusicRepeatModeOne")]
+    pub const One: Self = Self(2);
+    #[doc(alias = "MPMusicRepeatModeAll")]
+    pub const All: Self = Self(3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MPMusicRepeatMode {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MPMusicRepeatMode {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MPMusicShuffleMode(pub NSInteger);
+impl MPMusicShuffleMode {
+    #[doc(alias = "MPMusicShuffleModeDefault")]
+    pub const Default: Self = Self(0);
+    #[doc(alias = "MPMusicShuffleModeOff")]
+    pub const Off: Self = Self(1);
+    #[doc(alias = "MPMusicShuffleModeSongs")]
+    pub const Songs: Self = Self(2);
+    #[doc(alias = "MPMusicShuffleModeAlbums")]
+    pub const Albums: Self = Self(3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MPMusicShuffleMode {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MPMusicShuffleMode {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_protocol!(
     pub unsafe trait MPSystemMusicPlayerController: NSObjectProtocol {

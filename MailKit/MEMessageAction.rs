@@ -5,51 +5,73 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::MailKit::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum MEMessageActionMessageColor {
-        #[doc(alias = "MEMessageActionMessageColorNone")]
-        None = 0,
-        #[doc(alias = "MEMessageActionMessageColorGreen")]
-        Green = 1,
-        #[doc(alias = "MEMessageActionMessageColorYellow")]
-        Yellow = 2,
-        #[doc(alias = "MEMessageActionMessageColorOrange")]
-        Orange = 3,
-        #[doc(alias = "MEMessageActionMessageColorRed")]
-        Red = 4,
-        #[doc(alias = "MEMessageActionMessageColorPurple")]
-        Purple = 5,
-        #[doc(alias = "MEMessageActionMessageColorBlue")]
-        Blue = 6,
-        #[doc(alias = "MEMessageActionMessageColorGray")]
-        Gray = 7,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MEMessageActionMessageColor(pub NSInteger);
+impl MEMessageActionMessageColor {
+    #[doc(alias = "MEMessageActionMessageColorNone")]
+    pub const None: Self = Self(0);
+    #[doc(alias = "MEMessageActionMessageColorGreen")]
+    pub const Green: Self = Self(1);
+    #[doc(alias = "MEMessageActionMessageColorYellow")]
+    pub const Yellow: Self = Self(2);
+    #[doc(alias = "MEMessageActionMessageColorOrange")]
+    pub const Orange: Self = Self(3);
+    #[doc(alias = "MEMessageActionMessageColorRed")]
+    pub const Red: Self = Self(4);
+    #[doc(alias = "MEMessageActionMessageColorPurple")]
+    pub const Purple: Self = Self(5);
+    #[doc(alias = "MEMessageActionMessageColorBlue")]
+    pub const Blue: Self = Self(6);
+    #[doc(alias = "MEMessageActionMessageColorGray")]
+    pub const Gray: Self = Self(7);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum MEMessageActionFlag {
-        #[doc(alias = "MEMessageActionFlagNone")]
-        None = 0,
-        #[doc(alias = "MEMessageActionFlagDefaultColor")]
-        DefaultColor = 1,
-        #[doc(alias = "MEMessageActionFlagRed")]
-        Red = 2,
-        #[doc(alias = "MEMessageActionFlagOrange")]
-        Orange = 3,
-        #[doc(alias = "MEMessageActionFlagYellow")]
-        Yellow = 4,
-        #[doc(alias = "MEMessageActionFlagGreen")]
-        Green = 5,
-        #[doc(alias = "MEMessageActionFlagBlue")]
-        Blue = 6,
-        #[doc(alias = "MEMessageActionFlagPurple")]
-        Purple = 7,
-        #[doc(alias = "MEMessageActionFlagGray")]
-        Gray = 8,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MEMessageActionMessageColor {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MEMessageActionMessageColor {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MEMessageActionFlag(pub NSInteger);
+impl MEMessageActionFlag {
+    #[doc(alias = "MEMessageActionFlagNone")]
+    pub const None: Self = Self(0);
+    #[doc(alias = "MEMessageActionFlagDefaultColor")]
+    pub const DefaultColor: Self = Self(1);
+    #[doc(alias = "MEMessageActionFlagRed")]
+    pub const Red: Self = Self(2);
+    #[doc(alias = "MEMessageActionFlagOrange")]
+    pub const Orange: Self = Self(3);
+    #[doc(alias = "MEMessageActionFlagYellow")]
+    pub const Yellow: Self = Self(4);
+    #[doc(alias = "MEMessageActionFlagGreen")]
+    pub const Green: Self = Self(5);
+    #[doc(alias = "MEMessageActionFlagBlue")]
+    pub const Blue: Self = Self(6);
+    #[doc(alias = "MEMessageActionFlagPurple")]
+    pub const Purple: Self = Self(7);
+    #[doc(alias = "MEMessageActionFlagGray")]
+    pub const Gray: Self = Self(8);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MEMessageActionFlag {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MEMessageActionFlag {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

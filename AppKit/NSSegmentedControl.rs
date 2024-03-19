@@ -5,55 +5,88 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSSegmentSwitchTracking {
-        #[doc(alias = "NSSegmentSwitchTrackingSelectOne")]
-        SelectOne = 0,
-        #[doc(alias = "NSSegmentSwitchTrackingSelectAny")]
-        SelectAny = 1,
-        #[doc(alias = "NSSegmentSwitchTrackingMomentary")]
-        Momentary = 2,
-        #[doc(alias = "NSSegmentSwitchTrackingMomentaryAccelerator")]
-        MomentaryAccelerator = 3,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSSegmentSwitchTracking(pub NSUInteger);
+impl NSSegmentSwitchTracking {
+    #[doc(alias = "NSSegmentSwitchTrackingSelectOne")]
+    pub const SelectOne: Self = Self(0);
+    #[doc(alias = "NSSegmentSwitchTrackingSelectAny")]
+    pub const SelectAny: Self = Self(1);
+    #[doc(alias = "NSSegmentSwitchTrackingMomentary")]
+    pub const Momentary: Self = Self(2);
+    #[doc(alias = "NSSegmentSwitchTrackingMomentaryAccelerator")]
+    pub const MomentaryAccelerator: Self = Self(3);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSSegmentStyle {
-        #[doc(alias = "NSSegmentStyleAutomatic")]
-        Automatic = 0,
-        #[doc(alias = "NSSegmentStyleRounded")]
-        Rounded = 1,
-        #[doc(alias = "NSSegmentStyleRoundRect")]
-        RoundRect = 3,
-        #[doc(alias = "NSSegmentStyleTexturedSquare")]
-        TexturedSquare = 4,
-        #[doc(alias = "NSSegmentStyleSmallSquare")]
-        SmallSquare = 6,
-        #[doc(alias = "NSSegmentStyleSeparated")]
-        Separated = 8,
-        #[doc(alias = "NSSegmentStyleTexturedRounded")]
-        TexturedRounded = 2,
-        #[doc(alias = "NSSegmentStyleCapsule")]
-        Capsule = 5,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSSegmentSwitchTracking {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSSegmentDistribution {
-        #[doc(alias = "NSSegmentDistributionFit")]
-        Fit = 0,
-        #[doc(alias = "NSSegmentDistributionFill")]
-        Fill = 1,
-        #[doc(alias = "NSSegmentDistributionFillEqually")]
-        FillEqually = 2,
-        #[doc(alias = "NSSegmentDistributionFillProportionally")]
-        FillProportionally = 3,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSSegmentSwitchTracking {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSSegmentStyle(pub NSInteger);
+impl NSSegmentStyle {
+    #[doc(alias = "NSSegmentStyleAutomatic")]
+    pub const Automatic: Self = Self(0);
+    #[doc(alias = "NSSegmentStyleRounded")]
+    pub const Rounded: Self = Self(1);
+    #[doc(alias = "NSSegmentStyleRoundRect")]
+    pub const RoundRect: Self = Self(3);
+    #[doc(alias = "NSSegmentStyleTexturedSquare")]
+    pub const TexturedSquare: Self = Self(4);
+    #[doc(alias = "NSSegmentStyleSmallSquare")]
+    pub const SmallSquare: Self = Self(6);
+    #[doc(alias = "NSSegmentStyleSeparated")]
+    pub const Separated: Self = Self(8);
+    #[doc(alias = "NSSegmentStyleTexturedRounded")]
+    pub const TexturedRounded: Self = Self(2);
+    #[doc(alias = "NSSegmentStyleCapsule")]
+    pub const Capsule: Self = Self(5);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSSegmentStyle {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSSegmentStyle {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSSegmentDistribution(pub NSInteger);
+impl NSSegmentDistribution {
+    #[doc(alias = "NSSegmentDistributionFit")]
+    pub const Fit: Self = Self(0);
+    #[doc(alias = "NSSegmentDistributionFill")]
+    pub const Fill: Self = Self(1);
+    #[doc(alias = "NSSegmentDistributionFillEqually")]
+    pub const FillEqually: Self = Self(2);
+    #[doc(alias = "NSSegmentDistributionFillProportionally")]
+    pub const FillProportionally: Self = Self(3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSSegmentDistribution {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSSegmentDistribution {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

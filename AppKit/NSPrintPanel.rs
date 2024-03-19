@@ -5,34 +5,55 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSPrintPanelResult {
-        #[doc(alias = "NSPrintPanelResultCancelled")]
-        Cancelled = 0,
-        #[doc(alias = "NSPrintPanelResultPrinted")]
-        Printed = 1,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSPrintPanelResult(pub NSInteger);
+impl NSPrintPanelResult {
+    #[doc(alias = "NSPrintPanelResultCancelled")]
+    pub const Cancelled: Self = Self(0);
+    #[doc(alias = "NSPrintPanelResultPrinted")]
+    pub const Printed: Self = Self(1);
+}
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSPrintPanelOptions {
-        NSPrintPanelShowsCopies = 1 << 0,
-        NSPrintPanelShowsPageRange = 1 << 1,
-        NSPrintPanelShowsPaperSize = 1 << 2,
-        NSPrintPanelShowsOrientation = 1 << 3,
-        NSPrintPanelShowsScaling = 1 << 4,
-        NSPrintPanelShowsPrintSelection = 1 << 5,
-        NSPrintPanelShowsPageSetupAccessory = 1 << 8,
-        NSPrintPanelShowsPreview = 1 << 17,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSPrintPanelResult {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
 
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSPrintPanelResult {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSPrintPanelOptions(pub NSUInteger);
+impl NSPrintPanelOptions {
+    pub const NSPrintPanelShowsCopies: Self = Self(1 << 0);
+    pub const NSPrintPanelShowsPageRange: Self = Self(1 << 1);
+    pub const NSPrintPanelShowsPaperSize: Self = Self(1 << 2);
+    pub const NSPrintPanelShowsOrientation: Self = Self(1 << 3);
+    pub const NSPrintPanelShowsScaling: Self = Self(1 << 4);
+    pub const NSPrintPanelShowsPrintSelection: Self = Self(1 << 5);
+    pub const NSPrintPanelShowsPageSetupAccessory: Self = Self(1 << 8);
+    pub const NSPrintPanelShowsPreview: Self = Self(1 << 17);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSPrintPanelOptions {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSPrintPanelOptions {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type NSPrintPanelJobStyleHint = NSString;
-);
+pub type NSPrintPanelJobStyleHint = NSString;
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]
@@ -49,10 +70,9 @@ extern "C" {
     pub static NSPrintNoPresetsJobStyleHint: &'static NSPrintPanelJobStyleHint;
 }
 
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type NSPrintPanelAccessorySummaryKey = NSString;
-);
+pub type NSPrintPanelAccessorySummaryKey = NSString;
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]

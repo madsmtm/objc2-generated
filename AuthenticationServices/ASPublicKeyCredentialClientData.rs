@@ -5,17 +5,28 @@ use crate::AppKit::*;
 use crate::AuthenticationServices::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum ASPublicKeyCredentialClientDataCrossOriginValue {
-        #[doc(alias = "ASPublicKeyCredentialClientDataCrossOriginValueNotSet")]
-        NotSet = 0,
-        #[doc(alias = "ASPublicKeyCredentialClientDataCrossOriginValueCrossOrigin")]
-        CrossOrigin = 1,
-        #[doc(alias = "ASPublicKeyCredentialClientDataCrossOriginValueSameOriginWithAncestors")]
-        SameOriginWithAncestors = 2,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct ASPublicKeyCredentialClientDataCrossOriginValue(pub NSInteger);
+impl ASPublicKeyCredentialClientDataCrossOriginValue {
+    #[doc(alias = "ASPublicKeyCredentialClientDataCrossOriginValueNotSet")]
+    pub const NotSet: Self = Self(0);
+    #[doc(alias = "ASPublicKeyCredentialClientDataCrossOriginValueCrossOrigin")]
+    pub const CrossOrigin: Self = Self(1);
+    #[doc(alias = "ASPublicKeyCredentialClientDataCrossOriginValueSameOriginWithAncestors")]
+    pub const SameOriginWithAncestors: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for ASPublicKeyCredentialClientDataCrossOriginValue {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for ASPublicKeyCredentialClientDataCrossOriginValue {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

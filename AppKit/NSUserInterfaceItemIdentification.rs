@@ -5,10 +5,9 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
+// NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_extensible_enum!(
-    pub type NSUserInterfaceItemIdentifier = NSString;
-);
+pub type NSUserInterfaceItemIdentifier = NSString;
 
 extern_protocol!(
     pub unsafe trait NSUserInterfaceItemIdentification {

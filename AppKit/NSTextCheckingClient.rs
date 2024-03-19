@@ -5,17 +5,28 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSTextInputTraitType {
-        #[doc(alias = "NSTextInputTraitTypeDefault")]
-        Default = 0,
-        #[doc(alias = "NSTextInputTraitTypeNo")]
-        No = 1,
-        #[doc(alias = "NSTextInputTraitTypeYes")]
-        Yes = 2,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSTextInputTraitType(pub NSInteger);
+impl NSTextInputTraitType {
+    #[doc(alias = "NSTextInputTraitTypeDefault")]
+    pub const Default: Self = Self(0);
+    #[doc(alias = "NSTextInputTraitTypeNo")]
+    pub const No: Self = Self(1);
+    #[doc(alias = "NSTextInputTraitTypeYes")]
+    pub const Yes: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSTextInputTraitType {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSTextInputTraitType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_protocol!(
     pub unsafe trait NSTextInputTraits {

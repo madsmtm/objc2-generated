@@ -4,15 +4,26 @@ use crate::common::*;
 use crate::Foundation::*;
 use crate::Metal::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum MTLIOCompressionStatus {
-        #[doc(alias = "MTLIOCompressionStatusComplete")]
-        Complete = 0,
-        #[doc(alias = "MTLIOCompressionStatusError")]
-        Error = 1,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MTLIOCompressionStatus(pub NSInteger);
+impl MTLIOCompressionStatus {
+    #[doc(alias = "MTLIOCompressionStatusComplete")]
+    pub const Complete: Self = Self(0);
+    #[doc(alias = "MTLIOCompressionStatusError")]
+    pub const Error: Self = Self(1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLIOCompressionStatus {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLIOCompressionStatus {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 pub type MTLIOCompressionContext = *mut c_void;
 

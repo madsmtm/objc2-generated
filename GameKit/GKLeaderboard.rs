@@ -5,37 +5,70 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::GameKit::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum GKLeaderboardTimeScope {
-        #[doc(alias = "GKLeaderboardTimeScopeToday")]
-        Today = 0,
-        #[doc(alias = "GKLeaderboardTimeScopeWeek")]
-        Week = 1,
-        #[doc(alias = "GKLeaderboardTimeScopeAllTime")]
-        AllTime = 2,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct GKLeaderboardTimeScope(pub NSInteger);
+impl GKLeaderboardTimeScope {
+    #[doc(alias = "GKLeaderboardTimeScopeToday")]
+    pub const Today: Self = Self(0);
+    #[doc(alias = "GKLeaderboardTimeScopeWeek")]
+    pub const Week: Self = Self(1);
+    #[doc(alias = "GKLeaderboardTimeScopeAllTime")]
+    pub const AllTime: Self = Self(2);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum GKLeaderboardPlayerScope {
-        #[doc(alias = "GKLeaderboardPlayerScopeGlobal")]
-        Global = 0,
-        #[doc(alias = "GKLeaderboardPlayerScopeFriendsOnly")]
-        FriendsOnly = 1,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for GKLeaderboardTimeScope {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum GKLeaderboardType {
-        #[doc(alias = "GKLeaderboardTypeClassic")]
-        Classic = 0,
-        #[doc(alias = "GKLeaderboardTypeRecurring")]
-        Recurring = 1,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for GKLeaderboardTimeScope {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct GKLeaderboardPlayerScope(pub NSInteger);
+impl GKLeaderboardPlayerScope {
+    #[doc(alias = "GKLeaderboardPlayerScopeGlobal")]
+    pub const Global: Self = Self(0);
+    #[doc(alias = "GKLeaderboardPlayerScopeFriendsOnly")]
+    pub const FriendsOnly: Self = Self(1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for GKLeaderboardPlayerScope {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for GKLeaderboardPlayerScope {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct GKLeaderboardType(pub NSInteger);
+impl GKLeaderboardType {
+    #[doc(alias = "GKLeaderboardTypeClassic")]
+    pub const Classic: Self = Self(0);
+    #[doc(alias = "GKLeaderboardTypeRecurring")]
+    pub const Recurring: Self = Self(1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for GKLeaderboardType {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for GKLeaderboardType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

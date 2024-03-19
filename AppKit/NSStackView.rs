@@ -5,43 +5,64 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSStackViewGravity {
-        #[doc(alias = "NSStackViewGravityTop")]
-        Top = 1,
-        #[doc(alias = "NSStackViewGravityLeading")]
-        Leading = 1,
-        #[doc(alias = "NSStackViewGravityCenter")]
-        Center = 2,
-        #[doc(alias = "NSStackViewGravityBottom")]
-        Bottom = 3,
-        #[doc(alias = "NSStackViewGravityTrailing")]
-        Trailing = 3,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSStackViewGravity(pub NSInteger);
+impl NSStackViewGravity {
+    #[doc(alias = "NSStackViewGravityTop")]
+    pub const Top: Self = Self(1);
+    #[doc(alias = "NSStackViewGravityLeading")]
+    pub const Leading: Self = Self(1);
+    #[doc(alias = "NSStackViewGravityCenter")]
+    pub const Center: Self = Self(2);
+    #[doc(alias = "NSStackViewGravityBottom")]
+    pub const Bottom: Self = Self(3);
+    #[doc(alias = "NSStackViewGravityTrailing")]
+    pub const Trailing: Self = Self(3);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSStackViewDistribution {
-        #[doc(alias = "NSStackViewDistributionGravityAreas")]
-        GravityAreas = -1,
-        #[doc(alias = "NSStackViewDistributionFill")]
-        Fill = 0,
-        #[doc(alias = "NSStackViewDistributionFillEqually")]
-        FillEqually = 1,
-        #[doc(alias = "NSStackViewDistributionFillProportionally")]
-        FillProportionally = 2,
-        #[doc(alias = "NSStackViewDistributionEqualSpacing")]
-        EqualSpacing = 3,
-        #[doc(alias = "NSStackViewDistributionEqualCentering")]
-        EqualCentering = 4,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSStackViewGravity {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
 
-typed_extensible_enum!(
-    pub type NSStackViewVisibilityPriority = c_float;
-);
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSStackViewGravity {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSStackViewDistribution(pub NSInteger);
+impl NSStackViewDistribution {
+    #[doc(alias = "NSStackViewDistributionGravityAreas")]
+    pub const GravityAreas: Self = Self(-1);
+    #[doc(alias = "NSStackViewDistributionFill")]
+    pub const Fill: Self = Self(0);
+    #[doc(alias = "NSStackViewDistributionFillEqually")]
+    pub const FillEqually: Self = Self(1);
+    #[doc(alias = "NSStackViewDistributionFillProportionally")]
+    pub const FillProportionally: Self = Self(2);
+    #[doc(alias = "NSStackViewDistributionEqualSpacing")]
+    pub const EqualSpacing: Self = Self(3);
+    #[doc(alias = "NSStackViewDistributionEqualCentering")]
+    pub const EqualCentering: Self = Self(4);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSStackViewDistribution {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSStackViewDistribution {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_TYPED_EXTENSIBLE_ENUM
+pub type NSStackViewVisibilityPriority = c_float;
 
 pub static NSStackViewVisibilityPriorityMustHold: NSStackViewVisibilityPriority = 1000 as _;
 

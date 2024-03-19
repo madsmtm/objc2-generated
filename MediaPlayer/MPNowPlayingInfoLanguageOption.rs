@@ -55,15 +55,26 @@ extern "C" {
     pub static MPLanguageOptionCharacteristicVoiceOverTranslation: &'static NSString;
 }
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum MPNowPlayingInfoLanguageOptionType {
-        #[doc(alias = "MPNowPlayingInfoLanguageOptionTypeAudible")]
-        Audible = 0,
-        #[doc(alias = "MPNowPlayingInfoLanguageOptionTypeLegible")]
-        Legible = 1,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MPNowPlayingInfoLanguageOptionType(pub NSUInteger);
+impl MPNowPlayingInfoLanguageOptionType {
+    #[doc(alias = "MPNowPlayingInfoLanguageOptionTypeAudible")]
+    pub const Audible: Self = Self(0);
+    #[doc(alias = "MPNowPlayingInfoLanguageOptionTypeLegible")]
+    pub const Legible: Self = Self(1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MPNowPlayingInfoLanguageOptionType {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MPNowPlayingInfoLanguageOptionType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

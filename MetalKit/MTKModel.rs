@@ -6,10 +6,9 @@ use crate::Foundation::*;
 use crate::Metal::*;
 use crate::MetalKit::*;
 
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type MTKModelError = NSString;
-);
+pub type MTKModelError = NSString;
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]

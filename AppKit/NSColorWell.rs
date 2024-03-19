@@ -5,17 +5,28 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSColorWellStyle {
-        #[doc(alias = "NSColorWellStyleDefault")]
-        Default = 0,
-        #[doc(alias = "NSColorWellStyleMinimal")]
-        Minimal = 1,
-        #[doc(alias = "NSColorWellStyleExpanded")]
-        Expanded = 2,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSColorWellStyle(pub NSInteger);
+impl NSColorWellStyle {
+    #[doc(alias = "NSColorWellStyleDefault")]
+    pub const Default: Self = Self(0);
+    #[doc(alias = "NSColorWellStyleMinimal")]
+    pub const Minimal: Self = Self(1);
+    #[doc(alias = "NSColorWellStyleExpanded")]
+    pub const Expanded: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSColorWellStyle {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSColorWellStyle {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

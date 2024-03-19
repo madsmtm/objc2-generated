@@ -4,19 +4,30 @@ use crate::common::*;
 use crate::Contacts::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum CNContainerType {
-        #[doc(alias = "CNContainerTypeUnassigned")]
-        Unassigned = 0,
-        #[doc(alias = "CNContainerTypeLocal")]
-        Local = 1,
-        #[doc(alias = "CNContainerTypeExchange")]
-        Exchange = 2,
-        #[doc(alias = "CNContainerTypeCardDAV")]
-        CardDAV = 3,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct CNContainerType(pub NSInteger);
+impl CNContainerType {
+    #[doc(alias = "CNContainerTypeUnassigned")]
+    pub const Unassigned: Self = Self(0);
+    #[doc(alias = "CNContainerTypeLocal")]
+    pub const Local: Self = Self(1);
+    #[doc(alias = "CNContainerTypeExchange")]
+    pub const Exchange: Self = Self(2);
+    #[doc(alias = "CNContainerTypeCardDAV")]
+    pub const CardDAV: Self = Self(3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for CNContainerType {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for CNContainerType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

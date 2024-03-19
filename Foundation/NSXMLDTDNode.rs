@@ -3,31 +3,42 @@
 use crate::common::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSXMLDTDNodeKind {
-        NSXMLEntityGeneralKind = 1,
-        NSXMLEntityParsedKind = 2,
-        NSXMLEntityUnparsedKind = 3,
-        NSXMLEntityParameterKind = 4,
-        NSXMLEntityPredefined = 5,
-        NSXMLAttributeCDATAKind = 6,
-        NSXMLAttributeIDKind = 7,
-        NSXMLAttributeIDRefKind = 8,
-        NSXMLAttributeIDRefsKind = 9,
-        NSXMLAttributeEntityKind = 10,
-        NSXMLAttributeEntitiesKind = 11,
-        NSXMLAttributeNMTokenKind = 12,
-        NSXMLAttributeNMTokensKind = 13,
-        NSXMLAttributeEnumerationKind = 14,
-        NSXMLAttributeNotationKind = 15,
-        NSXMLElementDeclarationUndefinedKind = 16,
-        NSXMLElementDeclarationEmptyKind = 17,
-        NSXMLElementDeclarationAnyKind = 18,
-        NSXMLElementDeclarationMixedKind = 19,
-        NSXMLElementDeclarationElementKind = 20,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSXMLDTDNodeKind(pub NSUInteger);
+impl NSXMLDTDNodeKind {
+    pub const NSXMLEntityGeneralKind: Self = Self(1);
+    pub const NSXMLEntityParsedKind: Self = Self(2);
+    pub const NSXMLEntityUnparsedKind: Self = Self(3);
+    pub const NSXMLEntityParameterKind: Self = Self(4);
+    pub const NSXMLEntityPredefined: Self = Self(5);
+    pub const NSXMLAttributeCDATAKind: Self = Self(6);
+    pub const NSXMLAttributeIDKind: Self = Self(7);
+    pub const NSXMLAttributeIDRefKind: Self = Self(8);
+    pub const NSXMLAttributeIDRefsKind: Self = Self(9);
+    pub const NSXMLAttributeEntityKind: Self = Self(10);
+    pub const NSXMLAttributeEntitiesKind: Self = Self(11);
+    pub const NSXMLAttributeNMTokenKind: Self = Self(12);
+    pub const NSXMLAttributeNMTokensKind: Self = Self(13);
+    pub const NSXMLAttributeEnumerationKind: Self = Self(14);
+    pub const NSXMLAttributeNotationKind: Self = Self(15);
+    pub const NSXMLElementDeclarationUndefinedKind: Self = Self(16);
+    pub const NSXMLElementDeclarationEmptyKind: Self = Self(17);
+    pub const NSXMLElementDeclarationAnyKind: Self = Self(18);
+    pub const NSXMLElementDeclarationMixedKind: Self = Self(19);
+    pub const NSXMLElementDeclarationElementKind: Self = Self(20);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSXMLDTDNodeKind {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSXMLDTDNodeKind {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

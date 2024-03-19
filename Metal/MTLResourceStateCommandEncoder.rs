@@ -4,15 +4,26 @@ use crate::common::*;
 use crate::Foundation::*;
 use crate::Metal::*;
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum MTLSparseTextureMappingMode {
-        #[doc(alias = "MTLSparseTextureMappingModeMap")]
-        Map = 0,
-        #[doc(alias = "MTLSparseTextureMappingModeUnmap")]
-        Unmap = 1,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MTLSparseTextureMappingMode(pub NSUInteger);
+impl MTLSparseTextureMappingMode {
+    #[doc(alias = "MTLSparseTextureMappingModeMap")]
+    pub const Map: Self = Self(0);
+    #[doc(alias = "MTLSparseTextureMappingModeUnmap")]
+    pub const Unmap: Self = Self(1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLSparseTextureMappingMode {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLSparseTextureMappingMode {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_struct!(
     #[encoding_name("?")]

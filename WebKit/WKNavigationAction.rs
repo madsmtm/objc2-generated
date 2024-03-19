@@ -5,23 +5,34 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::WebKit::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum WKNavigationType {
-        #[doc(alias = "WKNavigationTypeLinkActivated")]
-        LinkActivated = 0,
-        #[doc(alias = "WKNavigationTypeFormSubmitted")]
-        FormSubmitted = 1,
-        #[doc(alias = "WKNavigationTypeBackForward")]
-        BackForward = 2,
-        #[doc(alias = "WKNavigationTypeReload")]
-        Reload = 3,
-        #[doc(alias = "WKNavigationTypeFormResubmitted")]
-        FormResubmitted = 4,
-        #[doc(alias = "WKNavigationTypeOther")]
-        Other = -1,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct WKNavigationType(pub NSInteger);
+impl WKNavigationType {
+    #[doc(alias = "WKNavigationTypeLinkActivated")]
+    pub const LinkActivated: Self = Self(0);
+    #[doc(alias = "WKNavigationTypeFormSubmitted")]
+    pub const FormSubmitted: Self = Self(1);
+    #[doc(alias = "WKNavigationTypeBackForward")]
+    pub const BackForward: Self = Self(2);
+    #[doc(alias = "WKNavigationTypeReload")]
+    pub const Reload: Self = Self(3);
+    #[doc(alias = "WKNavigationTypeFormResubmitted")]
+    pub const FormResubmitted: Self = Self(4);
+    #[doc(alias = "WKNavigationTypeOther")]
+    pub const Other: Self = Self(-1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for WKNavigationType {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for WKNavigationType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

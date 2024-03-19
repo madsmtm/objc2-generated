@@ -4,82 +4,140 @@ use crate::common::*;
 use crate::Foundation::*;
 use crate::Metal::*;
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum MTLPurgeableState {
-        #[doc(alias = "MTLPurgeableStateKeepCurrent")]
-        KeepCurrent = 1,
-        #[doc(alias = "MTLPurgeableStateNonVolatile")]
-        NonVolatile = 2,
-        #[doc(alias = "MTLPurgeableStateVolatile")]
-        Volatile = 3,
-        #[doc(alias = "MTLPurgeableStateEmpty")]
-        Empty = 4,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MTLPurgeableState(pub NSUInteger);
+impl MTLPurgeableState {
+    #[doc(alias = "MTLPurgeableStateKeepCurrent")]
+    pub const KeepCurrent: Self = Self(1);
+    #[doc(alias = "MTLPurgeableStateNonVolatile")]
+    pub const NonVolatile: Self = Self(2);
+    #[doc(alias = "MTLPurgeableStateVolatile")]
+    pub const Volatile: Self = Self(3);
+    #[doc(alias = "MTLPurgeableStateEmpty")]
+    pub const Empty: Self = Self(4);
+}
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum MTLCPUCacheMode {
-        #[doc(alias = "MTLCPUCacheModeDefaultCache")]
-        DefaultCache = 0,
-        #[doc(alias = "MTLCPUCacheModeWriteCombined")]
-        WriteCombined = 1,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLPurgeableState {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum MTLStorageMode {
-        #[doc(alias = "MTLStorageModeShared")]
-        Shared = 0,
-        #[doc(alias = "MTLStorageModeManaged")]
-        Managed = 1,
-        #[doc(alias = "MTLStorageModePrivate")]
-        Private = 2,
-        #[doc(alias = "MTLStorageModeMemoryless")]
-        Memoryless = 3,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLPurgeableState {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum MTLHazardTrackingMode {
-        #[doc(alias = "MTLHazardTrackingModeDefault")]
-        Default = 0,
-        #[doc(alias = "MTLHazardTrackingModeUntracked")]
-        Untracked = 1,
-        #[doc(alias = "MTLHazardTrackingModeTracked")]
-        Tracked = 2,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MTLCPUCacheMode(pub NSUInteger);
+impl MTLCPUCacheMode {
+    #[doc(alias = "MTLCPUCacheModeDefaultCache")]
+    pub const DefaultCache: Self = Self(0);
+    #[doc(alias = "MTLCPUCacheModeWriteCombined")]
+    pub const WriteCombined: Self = Self(1);
+}
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum MTLResourceOptions {
-        MTLResourceCPUCacheModeDefaultCache =
-            MTLCPUCacheMode::DefaultCache.0 << MTLResourceCPUCacheModeShift,
-        MTLResourceCPUCacheModeWriteCombined =
-            MTLCPUCacheMode::WriteCombined.0 << MTLResourceCPUCacheModeShift,
-        MTLResourceStorageModeShared = MTLStorageMode::Shared.0 << MTLResourceStorageModeShift,
-        MTLResourceStorageModeManaged = MTLStorageMode::Managed.0 << MTLResourceStorageModeShift,
-        MTLResourceStorageModePrivate = MTLStorageMode::Private.0 << MTLResourceStorageModeShift,
-        MTLResourceStorageModeMemoryless =
-            MTLStorageMode::Memoryless.0 << MTLResourceStorageModeShift,
-        MTLResourceHazardTrackingModeDefault =
-            MTLHazardTrackingMode::Default.0 << MTLResourceHazardTrackingModeShift,
-        MTLResourceHazardTrackingModeUntracked =
-            MTLHazardTrackingMode::Untracked.0 << MTLResourceHazardTrackingModeShift,
-        MTLResourceHazardTrackingModeTracked =
-            MTLHazardTrackingMode::Tracked.0 << MTLResourceHazardTrackingModeShift,
-        #[deprecated]
-        MTLResourceOptionCPUCacheModeDefault =
-            MTLResourceOptions::MTLResourceCPUCacheModeDefaultCache.0,
-        #[deprecated]
-        MTLResourceOptionCPUCacheModeWriteCombined =
-            MTLResourceOptions::MTLResourceCPUCacheModeWriteCombined.0,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLCPUCacheMode {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLCPUCacheMode {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MTLStorageMode(pub NSUInteger);
+impl MTLStorageMode {
+    #[doc(alias = "MTLStorageModeShared")]
+    pub const Shared: Self = Self(0);
+    #[doc(alias = "MTLStorageModeManaged")]
+    pub const Managed: Self = Self(1);
+    #[doc(alias = "MTLStorageModePrivate")]
+    pub const Private: Self = Self(2);
+    #[doc(alias = "MTLStorageModeMemoryless")]
+    pub const Memoryless: Self = Self(3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLStorageMode {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLStorageMode {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MTLHazardTrackingMode(pub NSUInteger);
+impl MTLHazardTrackingMode {
+    #[doc(alias = "MTLHazardTrackingModeDefault")]
+    pub const Default: Self = Self(0);
+    #[doc(alias = "MTLHazardTrackingModeUntracked")]
+    pub const Untracked: Self = Self(1);
+    #[doc(alias = "MTLHazardTrackingModeTracked")]
+    pub const Tracked: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLHazardTrackingMode {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLHazardTrackingMode {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MTLResourceOptions(pub NSUInteger);
+impl MTLResourceOptions {
+    pub const MTLResourceCPUCacheModeDefaultCache: Self =
+        Self(MTLCPUCacheMode::DefaultCache.0 << MTLResourceCPUCacheModeShift);
+    pub const MTLResourceCPUCacheModeWriteCombined: Self =
+        Self(MTLCPUCacheMode::WriteCombined.0 << MTLResourceCPUCacheModeShift);
+    pub const MTLResourceStorageModeShared: Self =
+        Self(MTLStorageMode::Shared.0 << MTLResourceStorageModeShift);
+    pub const MTLResourceStorageModeManaged: Self =
+        Self(MTLStorageMode::Managed.0 << MTLResourceStorageModeShift);
+    pub const MTLResourceStorageModePrivate: Self =
+        Self(MTLStorageMode::Private.0 << MTLResourceStorageModeShift);
+    pub const MTLResourceStorageModeMemoryless: Self =
+        Self(MTLStorageMode::Memoryless.0 << MTLResourceStorageModeShift);
+    pub const MTLResourceHazardTrackingModeDefault: Self =
+        Self(MTLHazardTrackingMode::Default.0 << MTLResourceHazardTrackingModeShift);
+    pub const MTLResourceHazardTrackingModeUntracked: Self =
+        Self(MTLHazardTrackingMode::Untracked.0 << MTLResourceHazardTrackingModeShift);
+    pub const MTLResourceHazardTrackingModeTracked: Self =
+        Self(MTLHazardTrackingMode::Tracked.0 << MTLResourceHazardTrackingModeShift);
+    #[deprecated]
+    pub const MTLResourceOptionCPUCacheModeDefault: Self =
+        Self(MTLResourceOptions::MTLResourceCPUCacheModeDefaultCache.0);
+    #[deprecated]
+    pub const MTLResourceOptionCPUCacheModeWriteCombined: Self =
+        Self(MTLResourceOptions::MTLResourceCPUCacheModeWriteCombined.0);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLResourceOptions {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLResourceOptions {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_protocol!(
     pub unsafe trait MTLResource: NSObjectProtocol {

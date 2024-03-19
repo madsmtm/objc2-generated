@@ -5,22 +5,44 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::GameKit::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum GKMatchSendDataMode {
-        GKMatchSendDataReliable = 0,
-        GKMatchSendDataUnreliable = 1,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct GKMatchSendDataMode(pub NSInteger);
+impl GKMatchSendDataMode {
+    pub const GKMatchSendDataReliable: Self = Self(0);
+    pub const GKMatchSendDataUnreliable: Self = Self(1);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum GKPlayerConnectionState {
-        GKPlayerStateUnknown = 0,
-        GKPlayerStateConnected = 1,
-        GKPlayerStateDisconnected = 2,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for GKMatchSendDataMode {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for GKMatchSendDataMode {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct GKPlayerConnectionState(pub NSInteger);
+impl GKPlayerConnectionState {
+    pub const GKPlayerStateUnknown: Self = Self(0);
+    pub const GKPlayerStateConnected: Self = Self(1);
+    pub const GKPlayerStateDisconnected: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for GKPlayerConnectionState {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for GKPlayerConnectionState {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

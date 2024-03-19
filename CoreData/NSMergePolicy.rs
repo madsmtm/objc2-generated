@@ -4,16 +4,27 @@ use crate::common::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSMergePolicyType {
-        NSErrorMergePolicyType = 0x00,
-        NSMergeByPropertyStoreTrumpMergePolicyType = 0x01,
-        NSMergeByPropertyObjectTrumpMergePolicyType = 0x02,
-        NSOverwriteMergePolicyType = 0x03,
-        NSRollbackMergePolicyType = 0x04,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSMergePolicyType(pub NSUInteger);
+impl NSMergePolicyType {
+    pub const NSErrorMergePolicyType: Self = Self(0x00);
+    pub const NSMergeByPropertyStoreTrumpMergePolicyType: Self = Self(0x01);
+    pub const NSMergeByPropertyObjectTrumpMergePolicyType: Self = Self(0x02);
+    pub const NSOverwriteMergePolicyType: Self = Self(0x03);
+    pub const NSRollbackMergePolicyType: Self = Self(0x04);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSMergePolicyType {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSMergePolicyType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

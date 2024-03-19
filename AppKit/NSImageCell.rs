@@ -5,31 +5,53 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSImageAlignment {
-        NSImageAlignCenter = 0,
-        NSImageAlignTop = 1,
-        NSImageAlignTopLeft = 2,
-        NSImageAlignTopRight = 3,
-        NSImageAlignLeft = 4,
-        NSImageAlignBottom = 5,
-        NSImageAlignBottomLeft = 6,
-        NSImageAlignBottomRight = 7,
-        NSImageAlignRight = 8,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSImageAlignment(pub NSUInteger);
+impl NSImageAlignment {
+    pub const NSImageAlignCenter: Self = Self(0);
+    pub const NSImageAlignTop: Self = Self(1);
+    pub const NSImageAlignTopLeft: Self = Self(2);
+    pub const NSImageAlignTopRight: Self = Self(3);
+    pub const NSImageAlignLeft: Self = Self(4);
+    pub const NSImageAlignBottom: Self = Self(5);
+    pub const NSImageAlignBottomLeft: Self = Self(6);
+    pub const NSImageAlignBottomRight: Self = Self(7);
+    pub const NSImageAlignRight: Self = Self(8);
+}
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSImageFrameStyle {
-        NSImageFrameNone = 0,
-        NSImageFramePhoto = 1,
-        NSImageFrameGrayBezel = 2,
-        NSImageFrameGroove = 3,
-        NSImageFrameButton = 4,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSImageAlignment {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSImageAlignment {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSImageFrameStyle(pub NSUInteger);
+impl NSImageFrameStyle {
+    pub const NSImageFrameNone: Self = Self(0);
+    pub const NSImageFramePhoto: Self = Self(1);
+    pub const NSImageFrameGrayBezel: Self = Self(2);
+    pub const NSImageFrameGroove: Self = Self(3);
+    pub const NSImageFrameButton: Self = Self(4);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSImageFrameStyle {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSImageFrameStyle {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

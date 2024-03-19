@@ -5,27 +5,49 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSMenuPresentationStyle {
-        #[doc(alias = "NSMenuPresentationStyleRegular")]
-        Regular = 0,
-        #[doc(alias = "NSMenuPresentationStylePalette")]
-        Palette = 1,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSMenuPresentationStyle(pub NSInteger);
+impl NSMenuPresentationStyle {
+    #[doc(alias = "NSMenuPresentationStyleRegular")]
+    pub const Regular: Self = Self(0);
+    #[doc(alias = "NSMenuPresentationStylePalette")]
+    pub const Palette: Self = Self(1);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSMenuSelectionMode {
-        #[doc(alias = "NSMenuSelectionModeAutomatic")]
-        Automatic = 0,
-        #[doc(alias = "NSMenuSelectionModeSelectOne")]
-        SelectOne = 1,
-        #[doc(alias = "NSMenuSelectionModeSelectAny")]
-        SelectAny = 2,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSMenuPresentationStyle {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSMenuPresentationStyle {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSMenuSelectionMode(pub NSInteger);
+impl NSMenuSelectionMode {
+    #[doc(alias = "NSMenuSelectionModeAutomatic")]
+    pub const Automatic: Self = Self(0);
+    #[doc(alias = "NSMenuSelectionModeSelectOne")]
+    pub const SelectOne: Self = Self(1);
+    #[doc(alias = "NSMenuSelectionModeSelectAny")]
+    pub const SelectAny: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSMenuSelectionMode {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSMenuSelectionMode {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -432,17 +454,28 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn NSMenuDelegate {}
 );
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSMenuProperties {
-        NSMenuPropertyItemTitle = 1 << 0,
-        NSMenuPropertyItemAttributedTitle = 1 << 1,
-        NSMenuPropertyItemKeyEquivalent = 1 << 2,
-        NSMenuPropertyItemImage = 1 << 3,
-        NSMenuPropertyItemEnabled = 1 << 4,
-        NSMenuPropertyItemAccessibilityDescription = 1 << 5,
-    }
-);
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSMenuProperties(pub NSUInteger);
+impl NSMenuProperties {
+    pub const NSMenuPropertyItemTitle: Self = Self(1 << 0);
+    pub const NSMenuPropertyItemAttributedTitle: Self = Self(1 << 1);
+    pub const NSMenuPropertyItemKeyEquivalent: Self = Self(1 << 2);
+    pub const NSMenuPropertyItemImage: Self = Self(1 << 3);
+    pub const NSMenuPropertyItemEnabled: Self = Self(1 << 4);
+    pub const NSMenuPropertyItemAccessibilityDescription: Self = Self(1 << 5);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSMenuProperties {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSMenuProperties {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_methods!(
     /// NSMenuPropertiesToUpdate

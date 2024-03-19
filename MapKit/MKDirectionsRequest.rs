@@ -7,15 +7,26 @@ use crate::CoreLocation::*;
 use crate::Foundation::*;
 use crate::MapKit::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum MKDirectionsRoutePreference {
-        #[doc(alias = "MKDirectionsRoutePreferenceAny")]
-        Any = 0,
-        #[doc(alias = "MKDirectionsRoutePreferenceAvoid")]
-        Avoid = 1,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MKDirectionsRoutePreference(pub NSInteger);
+impl MKDirectionsRoutePreference {
+    #[doc(alias = "MKDirectionsRoutePreferenceAny")]
+    pub const Any: Self = Self(0);
+    #[doc(alias = "MKDirectionsRoutePreferenceAvoid")]
+    pub const Avoid: Self = Self(1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MKDirectionsRoutePreference {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MKDirectionsRoutePreference {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

@@ -5,19 +5,30 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::GameController::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum GCDeviceBatteryState {
-        #[doc(alias = "GCDeviceBatteryStateUnknown")]
-        Unknown = -1,
-        #[doc(alias = "GCDeviceBatteryStateDischarging")]
-        Discharging = 0,
-        #[doc(alias = "GCDeviceBatteryStateCharging")]
-        Charging = 1,
-        #[doc(alias = "GCDeviceBatteryStateFull")]
-        Full = 2,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct GCDeviceBatteryState(pub NSInteger);
+impl GCDeviceBatteryState {
+    #[doc(alias = "GCDeviceBatteryStateUnknown")]
+    pub const Unknown: Self = Self(-1);
+    #[doc(alias = "GCDeviceBatteryStateDischarging")]
+    pub const Discharging: Self = Self(0);
+    #[doc(alias = "GCDeviceBatteryStateCharging")]
+    pub const Charging: Self = Self(1);
+    #[doc(alias = "GCDeviceBatteryStateFull")]
+    pub const Full: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for GCDeviceBatteryState {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for GCDeviceBatteryState {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

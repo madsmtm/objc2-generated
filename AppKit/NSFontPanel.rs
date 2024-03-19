@@ -5,31 +5,42 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSFontPanelModeMask {
-        #[doc(alias = "NSFontPanelModeMaskFace")]
-        Face = 1 << 0,
-        #[doc(alias = "NSFontPanelModeMaskSize")]
-        Size = 1 << 1,
-        #[doc(alias = "NSFontPanelModeMaskCollection")]
-        Collection = 1 << 2,
-        #[doc(alias = "NSFontPanelModeMaskUnderlineEffect")]
-        UnderlineEffect = 1 << 8,
-        #[doc(alias = "NSFontPanelModeMaskStrikethroughEffect")]
-        StrikethroughEffect = 1 << 9,
-        #[doc(alias = "NSFontPanelModeMaskTextColorEffect")]
-        TextColorEffect = 1 << 10,
-        #[doc(alias = "NSFontPanelModeMaskDocumentColorEffect")]
-        DocumentColorEffect = 1 << 11,
-        #[doc(alias = "NSFontPanelModeMaskShadowEffect")]
-        ShadowEffect = 1 << 12,
-        #[doc(alias = "NSFontPanelModeMaskAllEffects")]
-        AllEffects = 0xFFF00,
-        NSFontPanelModesMaskStandardModes = 0xFFFF,
-        NSFontPanelModesMaskAllModes = 0xFFFFFFFF,
-    }
-);
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSFontPanelModeMask(pub NSUInteger);
+impl NSFontPanelModeMask {
+    #[doc(alias = "NSFontPanelModeMaskFace")]
+    pub const Face: Self = Self(1 << 0);
+    #[doc(alias = "NSFontPanelModeMaskSize")]
+    pub const Size: Self = Self(1 << 1);
+    #[doc(alias = "NSFontPanelModeMaskCollection")]
+    pub const Collection: Self = Self(1 << 2);
+    #[doc(alias = "NSFontPanelModeMaskUnderlineEffect")]
+    pub const UnderlineEffect: Self = Self(1 << 8);
+    #[doc(alias = "NSFontPanelModeMaskStrikethroughEffect")]
+    pub const StrikethroughEffect: Self = Self(1 << 9);
+    #[doc(alias = "NSFontPanelModeMaskTextColorEffect")]
+    pub const TextColorEffect: Self = Self(1 << 10);
+    #[doc(alias = "NSFontPanelModeMaskDocumentColorEffect")]
+    pub const DocumentColorEffect: Self = Self(1 << 11);
+    #[doc(alias = "NSFontPanelModeMaskShadowEffect")]
+    pub const ShadowEffect: Self = Self(1 << 12);
+    #[doc(alias = "NSFontPanelModeMaskAllEffects")]
+    pub const AllEffects: Self = Self(0xFFF00);
+    pub const NSFontPanelModesMaskStandardModes: Self = Self(0xFFFF);
+    pub const NSFontPanelModesMaskAllModes: Self = Self(0xFFFFFFFF);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSFontPanelModeMask {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSFontPanelModeMask {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_protocol!(
     pub unsafe trait NSFontChanging: NSObjectProtocol + IsMainThreadOnly {

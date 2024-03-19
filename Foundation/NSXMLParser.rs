@@ -3,15 +3,26 @@
 use crate::common::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSXMLParserExternalEntityResolvingPolicy {
-        NSXMLParserResolveExternalEntitiesNever = 0,
-        NSXMLParserResolveExternalEntitiesNoNetwork = 1,
-        NSXMLParserResolveExternalEntitiesSameOriginOnly = 2,
-        NSXMLParserResolveExternalEntitiesAlways = 3,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSXMLParserExternalEntityResolvingPolicy(pub NSUInteger);
+impl NSXMLParserExternalEntityResolvingPolicy {
+    pub const NSXMLParserResolveExternalEntitiesNever: Self = Self(0);
+    pub const NSXMLParserResolveExternalEntitiesNoNetwork: Self = Self(1);
+    pub const NSXMLParserResolveExternalEntitiesSameOriginOnly: Self = Self(2);
+    pub const NSXMLParserResolveExternalEntitiesAlways: Self = Self(3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSXMLParserExternalEntityResolvingPolicy {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSXMLParserExternalEntityResolvingPolicy {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -318,101 +329,112 @@ extern "C" {
     pub static NSXMLParserErrorDomain: &'static NSErrorDomain;
 }
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSXMLParserError {
-        NSXMLParserInternalError = 1,
-        NSXMLParserOutOfMemoryError = 2,
-        NSXMLParserDocumentStartError = 3,
-        NSXMLParserEmptyDocumentError = 4,
-        NSXMLParserPrematureDocumentEndError = 5,
-        NSXMLParserInvalidHexCharacterRefError = 6,
-        NSXMLParserInvalidDecimalCharacterRefError = 7,
-        NSXMLParserInvalidCharacterRefError = 8,
-        NSXMLParserInvalidCharacterError = 9,
-        NSXMLParserCharacterRefAtEOFError = 10,
-        NSXMLParserCharacterRefInPrologError = 11,
-        NSXMLParserCharacterRefInEpilogError = 12,
-        NSXMLParserCharacterRefInDTDError = 13,
-        NSXMLParserEntityRefAtEOFError = 14,
-        NSXMLParserEntityRefInPrologError = 15,
-        NSXMLParserEntityRefInEpilogError = 16,
-        NSXMLParserEntityRefInDTDError = 17,
-        NSXMLParserParsedEntityRefAtEOFError = 18,
-        NSXMLParserParsedEntityRefInPrologError = 19,
-        NSXMLParserParsedEntityRefInEpilogError = 20,
-        NSXMLParserParsedEntityRefInInternalSubsetError = 21,
-        NSXMLParserEntityReferenceWithoutNameError = 22,
-        NSXMLParserEntityReferenceMissingSemiError = 23,
-        NSXMLParserParsedEntityRefNoNameError = 24,
-        NSXMLParserParsedEntityRefMissingSemiError = 25,
-        NSXMLParserUndeclaredEntityError = 26,
-        NSXMLParserUnparsedEntityError = 28,
-        NSXMLParserEntityIsExternalError = 29,
-        NSXMLParserEntityIsParameterError = 30,
-        NSXMLParserUnknownEncodingError = 31,
-        NSXMLParserEncodingNotSupportedError = 32,
-        NSXMLParserStringNotStartedError = 33,
-        NSXMLParserStringNotClosedError = 34,
-        NSXMLParserNamespaceDeclarationError = 35,
-        NSXMLParserEntityNotStartedError = 36,
-        NSXMLParserEntityNotFinishedError = 37,
-        NSXMLParserLessThanSymbolInAttributeError = 38,
-        NSXMLParserAttributeNotStartedError = 39,
-        NSXMLParserAttributeNotFinishedError = 40,
-        NSXMLParserAttributeHasNoValueError = 41,
-        NSXMLParserAttributeRedefinedError = 42,
-        NSXMLParserLiteralNotStartedError = 43,
-        NSXMLParserLiteralNotFinishedError = 44,
-        NSXMLParserCommentNotFinishedError = 45,
-        NSXMLParserProcessingInstructionNotStartedError = 46,
-        NSXMLParserProcessingInstructionNotFinishedError = 47,
-        NSXMLParserNotationNotStartedError = 48,
-        NSXMLParserNotationNotFinishedError = 49,
-        NSXMLParserAttributeListNotStartedError = 50,
-        NSXMLParserAttributeListNotFinishedError = 51,
-        NSXMLParserMixedContentDeclNotStartedError = 52,
-        NSXMLParserMixedContentDeclNotFinishedError = 53,
-        NSXMLParserElementContentDeclNotStartedError = 54,
-        NSXMLParserElementContentDeclNotFinishedError = 55,
-        NSXMLParserXMLDeclNotStartedError = 56,
-        NSXMLParserXMLDeclNotFinishedError = 57,
-        NSXMLParserConditionalSectionNotStartedError = 58,
-        NSXMLParserConditionalSectionNotFinishedError = 59,
-        NSXMLParserExternalSubsetNotFinishedError = 60,
-        NSXMLParserDOCTYPEDeclNotFinishedError = 61,
-        NSXMLParserMisplacedCDATAEndStringError = 62,
-        NSXMLParserCDATANotFinishedError = 63,
-        NSXMLParserMisplacedXMLDeclarationError = 64,
-        NSXMLParserSpaceRequiredError = 65,
-        NSXMLParserSeparatorRequiredError = 66,
-        NSXMLParserNMTOKENRequiredError = 67,
-        NSXMLParserNAMERequiredError = 68,
-        NSXMLParserPCDATARequiredError = 69,
-        NSXMLParserURIRequiredError = 70,
-        NSXMLParserPublicIdentifierRequiredError = 71,
-        NSXMLParserLTRequiredError = 72,
-        NSXMLParserGTRequiredError = 73,
-        NSXMLParserLTSlashRequiredError = 74,
-        NSXMLParserEqualExpectedError = 75,
-        NSXMLParserTagNameMismatchError = 76,
-        NSXMLParserUnfinishedTagError = 77,
-        NSXMLParserStandaloneValueError = 78,
-        NSXMLParserInvalidEncodingNameError = 79,
-        NSXMLParserCommentContainsDoubleHyphenError = 80,
-        NSXMLParserInvalidEncodingError = 81,
-        NSXMLParserExternalStandaloneEntityError = 82,
-        NSXMLParserInvalidConditionalSectionError = 83,
-        NSXMLParserEntityValueRequiredError = 84,
-        NSXMLParserNotWellBalancedError = 85,
-        NSXMLParserExtraContentError = 86,
-        NSXMLParserInvalidCharacterInEntityError = 87,
-        NSXMLParserParsedEntityRefInInternalError = 88,
-        NSXMLParserEntityRefLoopError = 89,
-        NSXMLParserEntityBoundaryError = 90,
-        NSXMLParserInvalidURIError = 91,
-        NSXMLParserURIFragmentError = 92,
-        NSXMLParserNoDTDError = 94,
-        NSXMLParserDelegateAbortedParseError = 512,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSXMLParserError(pub NSInteger);
+impl NSXMLParserError {
+    pub const NSXMLParserInternalError: Self = Self(1);
+    pub const NSXMLParserOutOfMemoryError: Self = Self(2);
+    pub const NSXMLParserDocumentStartError: Self = Self(3);
+    pub const NSXMLParserEmptyDocumentError: Self = Self(4);
+    pub const NSXMLParserPrematureDocumentEndError: Self = Self(5);
+    pub const NSXMLParserInvalidHexCharacterRefError: Self = Self(6);
+    pub const NSXMLParserInvalidDecimalCharacterRefError: Self = Self(7);
+    pub const NSXMLParserInvalidCharacterRefError: Self = Self(8);
+    pub const NSXMLParserInvalidCharacterError: Self = Self(9);
+    pub const NSXMLParserCharacterRefAtEOFError: Self = Self(10);
+    pub const NSXMLParserCharacterRefInPrologError: Self = Self(11);
+    pub const NSXMLParserCharacterRefInEpilogError: Self = Self(12);
+    pub const NSXMLParserCharacterRefInDTDError: Self = Self(13);
+    pub const NSXMLParserEntityRefAtEOFError: Self = Self(14);
+    pub const NSXMLParserEntityRefInPrologError: Self = Self(15);
+    pub const NSXMLParserEntityRefInEpilogError: Self = Self(16);
+    pub const NSXMLParserEntityRefInDTDError: Self = Self(17);
+    pub const NSXMLParserParsedEntityRefAtEOFError: Self = Self(18);
+    pub const NSXMLParserParsedEntityRefInPrologError: Self = Self(19);
+    pub const NSXMLParserParsedEntityRefInEpilogError: Self = Self(20);
+    pub const NSXMLParserParsedEntityRefInInternalSubsetError: Self = Self(21);
+    pub const NSXMLParserEntityReferenceWithoutNameError: Self = Self(22);
+    pub const NSXMLParserEntityReferenceMissingSemiError: Self = Self(23);
+    pub const NSXMLParserParsedEntityRefNoNameError: Self = Self(24);
+    pub const NSXMLParserParsedEntityRefMissingSemiError: Self = Self(25);
+    pub const NSXMLParserUndeclaredEntityError: Self = Self(26);
+    pub const NSXMLParserUnparsedEntityError: Self = Self(28);
+    pub const NSXMLParserEntityIsExternalError: Self = Self(29);
+    pub const NSXMLParserEntityIsParameterError: Self = Self(30);
+    pub const NSXMLParserUnknownEncodingError: Self = Self(31);
+    pub const NSXMLParserEncodingNotSupportedError: Self = Self(32);
+    pub const NSXMLParserStringNotStartedError: Self = Self(33);
+    pub const NSXMLParserStringNotClosedError: Self = Self(34);
+    pub const NSXMLParserNamespaceDeclarationError: Self = Self(35);
+    pub const NSXMLParserEntityNotStartedError: Self = Self(36);
+    pub const NSXMLParserEntityNotFinishedError: Self = Self(37);
+    pub const NSXMLParserLessThanSymbolInAttributeError: Self = Self(38);
+    pub const NSXMLParserAttributeNotStartedError: Self = Self(39);
+    pub const NSXMLParserAttributeNotFinishedError: Self = Self(40);
+    pub const NSXMLParserAttributeHasNoValueError: Self = Self(41);
+    pub const NSXMLParserAttributeRedefinedError: Self = Self(42);
+    pub const NSXMLParserLiteralNotStartedError: Self = Self(43);
+    pub const NSXMLParserLiteralNotFinishedError: Self = Self(44);
+    pub const NSXMLParserCommentNotFinishedError: Self = Self(45);
+    pub const NSXMLParserProcessingInstructionNotStartedError: Self = Self(46);
+    pub const NSXMLParserProcessingInstructionNotFinishedError: Self = Self(47);
+    pub const NSXMLParserNotationNotStartedError: Self = Self(48);
+    pub const NSXMLParserNotationNotFinishedError: Self = Self(49);
+    pub const NSXMLParserAttributeListNotStartedError: Self = Self(50);
+    pub const NSXMLParserAttributeListNotFinishedError: Self = Self(51);
+    pub const NSXMLParserMixedContentDeclNotStartedError: Self = Self(52);
+    pub const NSXMLParserMixedContentDeclNotFinishedError: Self = Self(53);
+    pub const NSXMLParserElementContentDeclNotStartedError: Self = Self(54);
+    pub const NSXMLParserElementContentDeclNotFinishedError: Self = Self(55);
+    pub const NSXMLParserXMLDeclNotStartedError: Self = Self(56);
+    pub const NSXMLParserXMLDeclNotFinishedError: Self = Self(57);
+    pub const NSXMLParserConditionalSectionNotStartedError: Self = Self(58);
+    pub const NSXMLParserConditionalSectionNotFinishedError: Self = Self(59);
+    pub const NSXMLParserExternalSubsetNotFinishedError: Self = Self(60);
+    pub const NSXMLParserDOCTYPEDeclNotFinishedError: Self = Self(61);
+    pub const NSXMLParserMisplacedCDATAEndStringError: Self = Self(62);
+    pub const NSXMLParserCDATANotFinishedError: Self = Self(63);
+    pub const NSXMLParserMisplacedXMLDeclarationError: Self = Self(64);
+    pub const NSXMLParserSpaceRequiredError: Self = Self(65);
+    pub const NSXMLParserSeparatorRequiredError: Self = Self(66);
+    pub const NSXMLParserNMTOKENRequiredError: Self = Self(67);
+    pub const NSXMLParserNAMERequiredError: Self = Self(68);
+    pub const NSXMLParserPCDATARequiredError: Self = Self(69);
+    pub const NSXMLParserURIRequiredError: Self = Self(70);
+    pub const NSXMLParserPublicIdentifierRequiredError: Self = Self(71);
+    pub const NSXMLParserLTRequiredError: Self = Self(72);
+    pub const NSXMLParserGTRequiredError: Self = Self(73);
+    pub const NSXMLParserLTSlashRequiredError: Self = Self(74);
+    pub const NSXMLParserEqualExpectedError: Self = Self(75);
+    pub const NSXMLParserTagNameMismatchError: Self = Self(76);
+    pub const NSXMLParserUnfinishedTagError: Self = Self(77);
+    pub const NSXMLParserStandaloneValueError: Self = Self(78);
+    pub const NSXMLParserInvalidEncodingNameError: Self = Self(79);
+    pub const NSXMLParserCommentContainsDoubleHyphenError: Self = Self(80);
+    pub const NSXMLParserInvalidEncodingError: Self = Self(81);
+    pub const NSXMLParserExternalStandaloneEntityError: Self = Self(82);
+    pub const NSXMLParserInvalidConditionalSectionError: Self = Self(83);
+    pub const NSXMLParserEntityValueRequiredError: Self = Self(84);
+    pub const NSXMLParserNotWellBalancedError: Self = Self(85);
+    pub const NSXMLParserExtraContentError: Self = Self(86);
+    pub const NSXMLParserInvalidCharacterInEntityError: Self = Self(87);
+    pub const NSXMLParserParsedEntityRefInInternalError: Self = Self(88);
+    pub const NSXMLParserEntityRefLoopError: Self = Self(89);
+    pub const NSXMLParserEntityBoundaryError: Self = Self(90);
+    pub const NSXMLParserInvalidURIError: Self = Self(91);
+    pub const NSXMLParserURIFragmentError: Self = Self(92);
+    pub const NSXMLParserNoDTDError: Self = Self(94);
+    pub const NSXMLParserDelegateAbortedParseError: Self = Self(512);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSXMLParserError {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSXMLParserError {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}

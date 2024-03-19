@@ -6,27 +6,38 @@ use crate::FileProvider::*;
 use crate::Foundation::*;
 use crate::UniformTypeIdentifiers::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSFileProviderTestingOperationType {
-        #[doc(alias = "NSFileProviderTestingOperationTypeIngestion")]
-        Ingestion = 0,
-        #[doc(alias = "NSFileProviderTestingOperationTypeLookup")]
-        Lookup = 1,
-        #[doc(alias = "NSFileProviderTestingOperationTypeCreation")]
-        Creation = 2,
-        #[doc(alias = "NSFileProviderTestingOperationTypeModification")]
-        Modification = 3,
-        #[doc(alias = "NSFileProviderTestingOperationTypeDeletion")]
-        Deletion = 4,
-        #[doc(alias = "NSFileProviderTestingOperationTypeContentFetch")]
-        ContentFetch = 5,
-        #[doc(alias = "NSFileProviderTestingOperationTypeChildrenEnumeration")]
-        ChildrenEnumeration = 6,
-        #[doc(alias = "NSFileProviderTestingOperationTypeCollisionResolution")]
-        CollisionResolution = 7,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSFileProviderTestingOperationType(pub NSInteger);
+impl NSFileProviderTestingOperationType {
+    #[doc(alias = "NSFileProviderTestingOperationTypeIngestion")]
+    pub const Ingestion: Self = Self(0);
+    #[doc(alias = "NSFileProviderTestingOperationTypeLookup")]
+    pub const Lookup: Self = Self(1);
+    #[doc(alias = "NSFileProviderTestingOperationTypeCreation")]
+    pub const Creation: Self = Self(2);
+    #[doc(alias = "NSFileProviderTestingOperationTypeModification")]
+    pub const Modification: Self = Self(3);
+    #[doc(alias = "NSFileProviderTestingOperationTypeDeletion")]
+    pub const Deletion: Self = Self(4);
+    #[doc(alias = "NSFileProviderTestingOperationTypeContentFetch")]
+    pub const ContentFetch: Self = Self(5);
+    #[doc(alias = "NSFileProviderTestingOperationTypeChildrenEnumeration")]
+    pub const ChildrenEnumeration: Self = Self(6);
+    #[doc(alias = "NSFileProviderTestingOperationTypeCollisionResolution")]
+    pub const CollisionResolution: Self = Self(7);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSFileProviderTestingOperationType {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSFileProviderTestingOperationType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_protocol!(
     pub unsafe trait NSFileProviderTestingOperation: NSObjectProtocol {
@@ -106,15 +117,26 @@ extern_methods!(
     }
 );
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSFileProviderTestingOperationSide {
-        #[doc(alias = "NSFileProviderTestingOperationSideDisk")]
-        Disk = 0,
-        #[doc(alias = "NSFileProviderTestingOperationSideFileProvider")]
-        FileProvider = 1,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSFileProviderTestingOperationSide(pub NSUInteger);
+impl NSFileProviderTestingOperationSide {
+    #[doc(alias = "NSFileProviderTestingOperationSideDisk")]
+    pub const Disk: Self = Self(0);
+    #[doc(alias = "NSFileProviderTestingOperationSideFileProvider")]
+    pub const FileProvider: Self = Self(1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSFileProviderTestingOperationSide {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSFileProviderTestingOperationSide {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_protocol!(
     pub unsafe trait NSFileProviderTestingIngestion: NSFileProviderTestingOperation {

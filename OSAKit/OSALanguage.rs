@@ -5,19 +5,30 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::OSAKit::*;
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum OSALanguageFeatures {
-        OSASupportsCompiling = 0x0002,
-        OSASupportsGetSource = 0x0004,
-        OSASupportsAECoercion = 0x0008,
-        OSASupportsAESending = 0x0010,
-        OSASupportsRecording = 0x0020,
-        OSASupportsConvenience = 0x0040,
-        OSASupportsDialects = 0x0080,
-        OSASupportsEventHandling = 0x0100,
-    }
-);
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct OSALanguageFeatures(pub NSUInteger);
+impl OSALanguageFeatures {
+    pub const OSASupportsCompiling: Self = Self(0x0002);
+    pub const OSASupportsGetSource: Self = Self(0x0004);
+    pub const OSASupportsAECoercion: Self = Self(0x0008);
+    pub const OSASupportsAESending: Self = Self(0x0010);
+    pub const OSASupportsRecording: Self = Self(0x0020);
+    pub const OSASupportsConvenience: Self = Self(0x0040);
+    pub const OSASupportsDialects: Self = Self(0x0080);
+    pub const OSASupportsEventHandling: Self = Self(0x0100);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for OSALanguageFeatures {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for OSALanguageFeatures {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

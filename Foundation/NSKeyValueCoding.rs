@@ -8,10 +8,9 @@ extern "C" {
     pub static NSUndefinedKeyException: &'static NSExceptionName;
 }
 
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type NSKeyValueOperator = NSString;
-);
+pub type NSKeyValueOperator = NSString;
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]

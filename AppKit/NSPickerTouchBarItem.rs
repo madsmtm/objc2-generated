@@ -5,29 +5,51 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSPickerTouchBarItemSelectionMode {
-        #[doc(alias = "NSPickerTouchBarItemSelectionModeSelectOne")]
-        SelectOne = 0,
-        #[doc(alias = "NSPickerTouchBarItemSelectionModeSelectAny")]
-        SelectAny = 1,
-        #[doc(alias = "NSPickerTouchBarItemSelectionModeMomentary")]
-        Momentary = 2,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSPickerTouchBarItemSelectionMode(pub NSInteger);
+impl NSPickerTouchBarItemSelectionMode {
+    #[doc(alias = "NSPickerTouchBarItemSelectionModeSelectOne")]
+    pub const SelectOne: Self = Self(0);
+    #[doc(alias = "NSPickerTouchBarItemSelectionModeSelectAny")]
+    pub const SelectAny: Self = Self(1);
+    #[doc(alias = "NSPickerTouchBarItemSelectionModeMomentary")]
+    pub const Momentary: Self = Self(2);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSPickerTouchBarItemControlRepresentation {
-        #[doc(alias = "NSPickerTouchBarItemControlRepresentationAutomatic")]
-        Automatic = 0,
-        #[doc(alias = "NSPickerTouchBarItemControlRepresentationExpanded")]
-        Expanded = 1,
-        #[doc(alias = "NSPickerTouchBarItemControlRepresentationCollapsed")]
-        Collapsed = 2,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSPickerTouchBarItemSelectionMode {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSPickerTouchBarItemSelectionMode {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSPickerTouchBarItemControlRepresentation(pub NSInteger);
+impl NSPickerTouchBarItemControlRepresentation {
+    #[doc(alias = "NSPickerTouchBarItemControlRepresentationAutomatic")]
+    pub const Automatic: Self = Self(0);
+    #[doc(alias = "NSPickerTouchBarItemControlRepresentationExpanded")]
+    pub const Expanded: Self = Self(1);
+    #[doc(alias = "NSPickerTouchBarItemControlRepresentationCollapsed")]
+    pub const Collapsed: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSPickerTouchBarItemControlRepresentation {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSPickerTouchBarItemControlRepresentation {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

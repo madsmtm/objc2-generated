@@ -7,16 +7,27 @@ use crate::CoreLocation::*;
 use crate::Foundation::*;
 use crate::MapKit::*;
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum MKDirectionsTransportType {
-        #[doc(alias = "MKDirectionsTransportTypeAutomobile")]
-        Automobile = 1 << 0,
-        #[doc(alias = "MKDirectionsTransportTypeWalking")]
-        Walking = 1 << 1,
-        #[doc(alias = "MKDirectionsTransportTypeTransit")]
-        Transit = 1 << 2,
-        #[doc(alias = "MKDirectionsTransportTypeAny")]
-        Any = 0x0FFFFFFF,
-    }
-);
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MKDirectionsTransportType(pub NSUInteger);
+impl MKDirectionsTransportType {
+    #[doc(alias = "MKDirectionsTransportTypeAutomobile")]
+    pub const Automobile: Self = Self(1 << 0);
+    #[doc(alias = "MKDirectionsTransportTypeWalking")]
+    pub const Walking: Self = Self(1 << 1);
+    #[doc(alias = "MKDirectionsTransportTypeTransit")]
+    pub const Transit: Self = Self(1 << 2);
+    #[doc(alias = "MKDirectionsTransportTypeAny")]
+    pub const Any: Self = Self(0x0FFFFFFF);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MKDirectionsTransportType {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MKDirectionsTransportType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}

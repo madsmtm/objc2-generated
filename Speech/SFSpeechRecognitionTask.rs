@@ -4,21 +4,32 @@ use crate::common::*;
 use crate::Foundation::*;
 use crate::Speech::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum SFSpeechRecognitionTaskState {
-        #[doc(alias = "SFSpeechRecognitionTaskStateStarting")]
-        Starting = 0,
-        #[doc(alias = "SFSpeechRecognitionTaskStateRunning")]
-        Running = 1,
-        #[doc(alias = "SFSpeechRecognitionTaskStateFinishing")]
-        Finishing = 2,
-        #[doc(alias = "SFSpeechRecognitionTaskStateCanceling")]
-        Canceling = 3,
-        #[doc(alias = "SFSpeechRecognitionTaskStateCompleted")]
-        Completed = 4,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct SFSpeechRecognitionTaskState(pub NSInteger);
+impl SFSpeechRecognitionTaskState {
+    #[doc(alias = "SFSpeechRecognitionTaskStateStarting")]
+    pub const Starting: Self = Self(0);
+    #[doc(alias = "SFSpeechRecognitionTaskStateRunning")]
+    pub const Running: Self = Self(1);
+    #[doc(alias = "SFSpeechRecognitionTaskStateFinishing")]
+    pub const Finishing: Self = Self(2);
+    #[doc(alias = "SFSpeechRecognitionTaskStateCanceling")]
+    pub const Canceling: Self = Self(3);
+    #[doc(alias = "SFSpeechRecognitionTaskStateCompleted")]
+    pub const Completed: Self = Self(4);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for SFSpeechRecognitionTaskState {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for SFSpeechRecognitionTaskState {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

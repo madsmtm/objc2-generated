@@ -7,49 +7,82 @@ use crate::CoreLocation::*;
 use crate::Foundation::*;
 use crate::MapKit::*;
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum MKMapType {
-        #[doc(alias = "MKMapTypeStandard")]
-        Standard = 0,
-        #[doc(alias = "MKMapTypeSatellite")]
-        Satellite = 1,
-        #[doc(alias = "MKMapTypeHybrid")]
-        Hybrid = 2,
-        #[doc(alias = "MKMapTypeSatelliteFlyover")]
-        SatelliteFlyover = 3,
-        #[doc(alias = "MKMapTypeHybridFlyover")]
-        HybridFlyover = 4,
-        #[doc(alias = "MKMapTypeMutedStandard")]
-        MutedStandard = 5,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MKMapType(pub NSUInteger);
+impl MKMapType {
+    #[doc(alias = "MKMapTypeStandard")]
+    pub const Standard: Self = Self(0);
+    #[doc(alias = "MKMapTypeSatellite")]
+    pub const Satellite: Self = Self(1);
+    #[doc(alias = "MKMapTypeHybrid")]
+    pub const Hybrid: Self = Self(2);
+    #[doc(alias = "MKMapTypeSatelliteFlyover")]
+    pub const SatelliteFlyover: Self = Self(3);
+    #[doc(alias = "MKMapTypeHybridFlyover")]
+    pub const HybridFlyover: Self = Self(4);
+    #[doc(alias = "MKMapTypeMutedStandard")]
+    pub const MutedStandard: Self = Self(5);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MKMapType {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MKMapType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]
     pub static MKErrorDomain: &'static NSString;
 }
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum MKErrorCode {
-        MKErrorUnknown = 1,
-        MKErrorServerFailure = 2,
-        MKErrorLoadingThrottled = 3,
-        MKErrorPlacemarkNotFound = 4,
-        MKErrorDirectionsNotFound = 5,
-        MKErrorDecodingFailed = 6,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MKErrorCode(pub NSUInteger);
+impl MKErrorCode {
+    pub const MKErrorUnknown: Self = Self(1);
+    pub const MKErrorServerFailure: Self = Self(2);
+    pub const MKErrorLoadingThrottled: Self = Self(3);
+    pub const MKErrorPlacemarkNotFound: Self = Self(4);
+    pub const MKErrorDirectionsNotFound: Self = Self(5);
+    pub const MKErrorDecodingFailed: Self = Self(6);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum MKFeatureVisibility {
-        #[doc(alias = "MKFeatureVisibilityAdaptive")]
-        Adaptive = 0,
-        #[doc(alias = "MKFeatureVisibilityHidden")]
-        Hidden = 1,
-        #[doc(alias = "MKFeatureVisibilityVisible")]
-        Visible = 2,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MKErrorCode {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MKErrorCode {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MKFeatureVisibility(pub NSInteger);
+impl MKFeatureVisibility {
+    #[doc(alias = "MKFeatureVisibilityAdaptive")]
+    pub const Adaptive: Self = Self(0);
+    #[doc(alias = "MKFeatureVisibilityHidden")]
+    pub const Hidden: Self = Self(1);
+    #[doc(alias = "MKFeatureVisibilityVisible")]
+    pub const Visible: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MKFeatureVisibility {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MKFeatureVisibility {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}

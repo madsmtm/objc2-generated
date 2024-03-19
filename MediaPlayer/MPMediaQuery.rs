@@ -5,27 +5,38 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::MediaPlayer::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum MPMediaGrouping {
-        #[doc(alias = "MPMediaGroupingTitle")]
-        Title = 0,
-        #[doc(alias = "MPMediaGroupingAlbum")]
-        Album = 1,
-        #[doc(alias = "MPMediaGroupingArtist")]
-        Artist = 2,
-        #[doc(alias = "MPMediaGroupingAlbumArtist")]
-        AlbumArtist = 3,
-        #[doc(alias = "MPMediaGroupingComposer")]
-        Composer = 4,
-        #[doc(alias = "MPMediaGroupingGenre")]
-        Genre = 5,
-        #[doc(alias = "MPMediaGroupingPlaylist")]
-        Playlist = 6,
-        #[doc(alias = "MPMediaGroupingPodcastTitle")]
-        PodcastTitle = 7,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MPMediaGrouping(pub NSInteger);
+impl MPMediaGrouping {
+    #[doc(alias = "MPMediaGroupingTitle")]
+    pub const Title: Self = Self(0);
+    #[doc(alias = "MPMediaGroupingAlbum")]
+    pub const Album: Self = Self(1);
+    #[doc(alias = "MPMediaGroupingArtist")]
+    pub const Artist: Self = Self(2);
+    #[doc(alias = "MPMediaGroupingAlbumArtist")]
+    pub const AlbumArtist: Self = Self(3);
+    #[doc(alias = "MPMediaGroupingComposer")]
+    pub const Composer: Self = Self(4);
+    #[doc(alias = "MPMediaGroupingGenre")]
+    pub const Genre: Self = Self(5);
+    #[doc(alias = "MPMediaGroupingPlaylist")]
+    pub const Playlist: Self = Self(6);
+    #[doc(alias = "MPMediaGroupingPodcastTitle")]
+    pub const PodcastTitle: Self = Self(7);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MPMediaGrouping {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MPMediaGrouping {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -183,15 +194,26 @@ extern_methods!(
     }
 );
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum MPMediaPredicateComparison {
-        #[doc(alias = "MPMediaPredicateComparisonEqualTo")]
-        EqualTo = 0,
-        #[doc(alias = "MPMediaPredicateComparisonContains")]
-        Contains = 1,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MPMediaPredicateComparison(pub NSInteger);
+impl MPMediaPredicateComparison {
+    #[doc(alias = "MPMediaPredicateComparisonEqualTo")]
+    pub const EqualTo: Self = Self(0);
+    #[doc(alias = "MPMediaPredicateComparisonContains")]
+    pub const Contains: Self = Self(1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MPMediaPredicateComparison {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MPMediaPredicateComparison {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

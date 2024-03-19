@@ -6,10 +6,9 @@ use crate::Foundation::*;
 use crate::HealthKit::*;
 use crate::UniformTypeIdentifiers::*;
 
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type HKFHIRResourceType = NSString;
-);
+pub type HKFHIRResourceType = NSString;
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]

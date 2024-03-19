@@ -6,47 +6,80 @@ use crate::Foundation::*;
 use crate::HealthKit::*;
 use crate::UniformTypeIdentifiers::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum HKElectrocardiogramLead {
-        #[doc(alias = "HKElectrocardiogramLeadAppleWatchSimilarToLeadI")]
-        AppleWatchSimilarToLeadI = 1,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct HKElectrocardiogramLead(pub NSInteger);
+impl HKElectrocardiogramLead {
+    #[doc(alias = "HKElectrocardiogramLeadAppleWatchSimilarToLeadI")]
+    pub const AppleWatchSimilarToLeadI: Self = Self(1);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum HKElectrocardiogramClassification {
-        #[doc(alias = "HKElectrocardiogramClassificationNotSet")]
-        NotSet = 0,
-        #[doc(alias = "HKElectrocardiogramClassificationSinusRhythm")]
-        SinusRhythm = 1,
-        #[doc(alias = "HKElectrocardiogramClassificationAtrialFibrillation")]
-        AtrialFibrillation = 2,
-        #[doc(alias = "HKElectrocardiogramClassificationInconclusiveLowHeartRate")]
-        InconclusiveLowHeartRate = 3,
-        #[doc(alias = "HKElectrocardiogramClassificationInconclusiveHighHeartRate")]
-        InconclusiveHighHeartRate = 4,
-        #[doc(alias = "HKElectrocardiogramClassificationInconclusivePoorReading")]
-        InconclusivePoorReading = 5,
-        #[doc(alias = "HKElectrocardiogramClassificationInconclusiveOther")]
-        InconclusiveOther = 6,
-        #[doc(alias = "HKElectrocardiogramClassificationUnrecognized")]
-        Unrecognized = 100,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for HKElectrocardiogramLead {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum HKElectrocardiogramSymptomsStatus {
-        #[doc(alias = "HKElectrocardiogramSymptomsStatusNotSet")]
-        NotSet = 0,
-        #[doc(alias = "HKElectrocardiogramSymptomsStatusNone")]
-        None = 1,
-        #[doc(alias = "HKElectrocardiogramSymptomsStatusPresent")]
-        Present = 2,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for HKElectrocardiogramLead {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct HKElectrocardiogramClassification(pub NSInteger);
+impl HKElectrocardiogramClassification {
+    #[doc(alias = "HKElectrocardiogramClassificationNotSet")]
+    pub const NotSet: Self = Self(0);
+    #[doc(alias = "HKElectrocardiogramClassificationSinusRhythm")]
+    pub const SinusRhythm: Self = Self(1);
+    #[doc(alias = "HKElectrocardiogramClassificationAtrialFibrillation")]
+    pub const AtrialFibrillation: Self = Self(2);
+    #[doc(alias = "HKElectrocardiogramClassificationInconclusiveLowHeartRate")]
+    pub const InconclusiveLowHeartRate: Self = Self(3);
+    #[doc(alias = "HKElectrocardiogramClassificationInconclusiveHighHeartRate")]
+    pub const InconclusiveHighHeartRate: Self = Self(4);
+    #[doc(alias = "HKElectrocardiogramClassificationInconclusivePoorReading")]
+    pub const InconclusivePoorReading: Self = Self(5);
+    #[doc(alias = "HKElectrocardiogramClassificationInconclusiveOther")]
+    pub const InconclusiveOther: Self = Self(6);
+    #[doc(alias = "HKElectrocardiogramClassificationUnrecognized")]
+    pub const Unrecognized: Self = Self(100);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for HKElectrocardiogramClassification {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for HKElectrocardiogramClassification {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct HKElectrocardiogramSymptomsStatus(pub NSInteger);
+impl HKElectrocardiogramSymptomsStatus {
+    #[doc(alias = "HKElectrocardiogramSymptomsStatusNotSet")]
+    pub const NotSet: Self = Self(0);
+    #[doc(alias = "HKElectrocardiogramSymptomsStatusNone")]
+    pub const None: Self = Self(1);
+    #[doc(alias = "HKElectrocardiogramSymptomsStatusPresent")]
+    pub const Present: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for HKElectrocardiogramSymptomsStatus {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for HKElectrocardiogramSymptomsStatus {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

@@ -3,54 +3,98 @@
 use crate::common::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSNumberFormatterBehavior {
-        #[doc(alias = "NSNumberFormatterBehaviorDefault")]
-        Default = 0,
-        NSNumberFormatterBehavior10_0 = 1000,
-        NSNumberFormatterBehavior10_4 = 1040,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSNumberFormatterBehavior(pub NSUInteger);
+impl NSNumberFormatterBehavior {
+    #[doc(alias = "NSNumberFormatterBehaviorDefault")]
+    pub const Default: Self = Self(0);
+    pub const NSNumberFormatterBehavior10_0: Self = Self(1000);
+    pub const NSNumberFormatterBehavior10_4: Self = Self(1040);
+}
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSNumberFormatterStyle {
-        NSNumberFormatterNoStyle = 0,
-        NSNumberFormatterDecimalStyle = 1,
-        NSNumberFormatterCurrencyStyle = 2,
-        NSNumberFormatterPercentStyle = 3,
-        NSNumberFormatterScientificStyle = 4,
-        NSNumberFormatterSpellOutStyle = 5,
-        NSNumberFormatterOrdinalStyle = 6,
-        NSNumberFormatterCurrencyISOCodeStyle = 8,
-        NSNumberFormatterCurrencyPluralStyle = 9,
-        NSNumberFormatterCurrencyAccountingStyle = 10,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSNumberFormatterBehavior {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSNumberFormatterPadPosition {
-        NSNumberFormatterPadBeforePrefix = 0,
-        NSNumberFormatterPadAfterPrefix = 1,
-        NSNumberFormatterPadBeforeSuffix = 2,
-        NSNumberFormatterPadAfterSuffix = 3,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSNumberFormatterBehavior {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSNumberFormatterRoundingMode {
-        NSNumberFormatterRoundCeiling = 0,
-        NSNumberFormatterRoundFloor = 1,
-        NSNumberFormatterRoundDown = 2,
-        NSNumberFormatterRoundUp = 3,
-        NSNumberFormatterRoundHalfEven = 4,
-        NSNumberFormatterRoundHalfDown = 5,
-        NSNumberFormatterRoundHalfUp = 6,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSNumberFormatterStyle(pub NSUInteger);
+impl NSNumberFormatterStyle {
+    pub const NSNumberFormatterNoStyle: Self = Self(0);
+    pub const NSNumberFormatterDecimalStyle: Self = Self(1);
+    pub const NSNumberFormatterCurrencyStyle: Self = Self(2);
+    pub const NSNumberFormatterPercentStyle: Self = Self(3);
+    pub const NSNumberFormatterScientificStyle: Self = Self(4);
+    pub const NSNumberFormatterSpellOutStyle: Self = Self(5);
+    pub const NSNumberFormatterOrdinalStyle: Self = Self(6);
+    pub const NSNumberFormatterCurrencyISOCodeStyle: Self = Self(8);
+    pub const NSNumberFormatterCurrencyPluralStyle: Self = Self(9);
+    pub const NSNumberFormatterCurrencyAccountingStyle: Self = Self(10);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSNumberFormatterStyle {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSNumberFormatterStyle {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSNumberFormatterPadPosition(pub NSUInteger);
+impl NSNumberFormatterPadPosition {
+    pub const NSNumberFormatterPadBeforePrefix: Self = Self(0);
+    pub const NSNumberFormatterPadAfterPrefix: Self = Self(1);
+    pub const NSNumberFormatterPadBeforeSuffix: Self = Self(2);
+    pub const NSNumberFormatterPadAfterSuffix: Self = Self(3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSNumberFormatterPadPosition {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSNumberFormatterPadPosition {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSNumberFormatterRoundingMode(pub NSUInteger);
+impl NSNumberFormatterRoundingMode {
+    pub const NSNumberFormatterRoundCeiling: Self = Self(0);
+    pub const NSNumberFormatterRoundFloor: Self = Self(1);
+    pub const NSNumberFormatterRoundDown: Self = Self(2);
+    pub const NSNumberFormatterRoundUp: Self = Self(3);
+    pub const NSNumberFormatterRoundHalfEven: Self = Self(4);
+    pub const NSNumberFormatterRoundHalfDown: Self = Self(5);
+    pub const NSNumberFormatterRoundHalfUp: Self = Self(6);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSNumberFormatterRoundingMode {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSNumberFormatterRoundingMode {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

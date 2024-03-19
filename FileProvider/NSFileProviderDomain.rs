@@ -6,10 +6,9 @@ use crate::FileProvider::*;
 use crate::Foundation::*;
 use crate::UniformTypeIdentifiers::*;
 
+// NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_extensible_enum!(
-    pub type NSFileProviderDomainIdentifier = NSString;
-);
+pub type NSFileProviderDomainIdentifier = NSString;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -54,13 +53,24 @@ extern_methods!(
     }
 );
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSFileProviderDomainTestingModes {
-        NSFileProviderDomainTestingModeAlwaysEnabled = 1 << 0,
-        NSFileProviderDomainTestingModeInteractive = 1 << 1,
-    }
-);
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSFileProviderDomainTestingModes(pub NSUInteger);
+impl NSFileProviderDomainTestingModes {
+    pub const NSFileProviderDomainTestingModeAlwaysEnabled: Self = Self(1 << 0);
+    pub const NSFileProviderDomainTestingModeInteractive: Self = Self(1 << 1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSFileProviderDomainTestingModes {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSFileProviderDomainTestingModes {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

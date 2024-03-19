@@ -4,10 +4,9 @@ use crate::common::*;
 use crate::Foundation::*;
 use crate::QuartzCore::*;
 
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type CAMediaTimingFillMode = NSString;
-);
+pub type CAMediaTimingFillMode = NSString;
 
 extern_protocol!(
     pub unsafe trait CAMediaTiming {

@@ -23,31 +23,53 @@ extern "C" {
     pub static NSImageHintUserInterfaceLayoutDirection: &'static NSImageHintKey;
 }
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSImageLoadStatus {
-        #[doc(alias = "NSImageLoadStatusCompleted")]
-        Completed = 0,
-        #[doc(alias = "NSImageLoadStatusCancelled")]
-        Cancelled = 1,
-        #[doc(alias = "NSImageLoadStatusInvalidData")]
-        InvalidData = 2,
-        #[doc(alias = "NSImageLoadStatusUnexpectedEOF")]
-        UnexpectedEOF = 3,
-        #[doc(alias = "NSImageLoadStatusReadError")]
-        ReadError = 4,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSImageLoadStatus(pub NSUInteger);
+impl NSImageLoadStatus {
+    #[doc(alias = "NSImageLoadStatusCompleted")]
+    pub const Completed: Self = Self(0);
+    #[doc(alias = "NSImageLoadStatusCancelled")]
+    pub const Cancelled: Self = Self(1);
+    #[doc(alias = "NSImageLoadStatusInvalidData")]
+    pub const InvalidData: Self = Self(2);
+    #[doc(alias = "NSImageLoadStatusUnexpectedEOF")]
+    pub const UnexpectedEOF: Self = Self(3);
+    #[doc(alias = "NSImageLoadStatusReadError")]
+    pub const ReadError: Self = Self(4);
+}
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSImageCacheMode {
-        NSImageCacheDefault = 0,
-        NSImageCacheAlways = 1,
-        NSImageCacheBySize = 2,
-        NSImageCacheNever = 3,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSImageLoadStatus {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSImageLoadStatus {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSImageCacheMode(pub NSUInteger);
+impl NSImageCacheMode {
+    pub const NSImageCacheDefault: Self = Self(0);
+    pub const NSImageCacheAlways: Self = Self(1);
+    pub const NSImageCacheBySize: Self = Self(2);
+    pub const NSImageCacheNever: Self = Self(3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSImageCacheMode {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSImageCacheMode {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -1379,17 +1401,28 @@ extern "C" {
     pub static NSImageNameTouchBarPlayheadTemplate: &'static NSImageName;
 }
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSImageSymbolScale {
-        #[doc(alias = "NSImageSymbolScaleSmall")]
-        Small = 1,
-        #[doc(alias = "NSImageSymbolScaleMedium")]
-        Medium = 2,
-        #[doc(alias = "NSImageSymbolScaleLarge")]
-        Large = 3,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSImageSymbolScale(pub NSInteger);
+impl NSImageSymbolScale {
+    #[doc(alias = "NSImageSymbolScaleSmall")]
+    pub const Small: Self = Self(1);
+    #[doc(alias = "NSImageSymbolScaleMedium")]
+    pub const Medium: Self = Self(2);
+    #[doc(alias = "NSImageSymbolScaleLarge")]
+    pub const Large: Self = Self(3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSImageSymbolScale {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSImageSymbolScale {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

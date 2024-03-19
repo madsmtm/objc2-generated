@@ -9,18 +9,29 @@ extern "C" {
     pub static SNErrorDomain: Option<&'static NSString>;
 }
 
-ns_error_enum!(
-    #[underlying(NSInteger)]
-    pub enum SNErrorCode {
-        #[doc(alias = "SNErrorCodeUnknownError")]
-        UnknownError = 1,
-        #[doc(alias = "SNErrorCodeOperationFailed")]
-        OperationFailed = 2,
-        #[doc(alias = "SNErrorCodeInvalidFormat")]
-        InvalidFormat = 3,
-        #[doc(alias = "SNErrorCodeInvalidModel")]
-        InvalidModel = 4,
-        #[doc(alias = "SNErrorCodeInvalidFile")]
-        InvalidFile = 5,
-    }
-);
+// NS_ERROR_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct SNErrorCode(pub NSInteger);
+impl SNErrorCode {
+    #[doc(alias = "SNErrorCodeUnknownError")]
+    pub const UnknownError: Self = Self(1);
+    #[doc(alias = "SNErrorCodeOperationFailed")]
+    pub const OperationFailed: Self = Self(2);
+    #[doc(alias = "SNErrorCodeInvalidFormat")]
+    pub const InvalidFormat: Self = Self(3);
+    #[doc(alias = "SNErrorCodeInvalidModel")]
+    pub const InvalidModel: Self = Self(4);
+    #[doc(alias = "SNErrorCodeInvalidFile")]
+    pub const InvalidFile: Self = Self(5);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for SNErrorCode {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for SNErrorCode {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}

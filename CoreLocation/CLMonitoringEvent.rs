@@ -5,19 +5,30 @@ use crate::Contacts::*;
 use crate::CoreLocation::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum CLMonitoringState {
-        #[doc(alias = "CLMonitoringStateUnknown")]
-        Unknown = 0,
-        #[doc(alias = "CLMonitoringStateSatisfied")]
-        Satisfied = 1,
-        #[doc(alias = "CLMonitoringStateUnsatisfied")]
-        Unsatisfied = 2,
-        #[doc(alias = "CLMonitoringStateUnmonitored")]
-        Unmonitored = 3,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct CLMonitoringState(pub NSUInteger);
+impl CLMonitoringState {
+    #[doc(alias = "CLMonitoringStateUnknown")]
+    pub const Unknown: Self = Self(0);
+    #[doc(alias = "CLMonitoringStateSatisfied")]
+    pub const Satisfied: Self = Self(1);
+    #[doc(alias = "CLMonitoringStateUnsatisfied")]
+    pub const Unsatisfied: Self = Self(2);
+    #[doc(alias = "CLMonitoringStateUnmonitored")]
+    pub const Unmonitored: Self = Self(3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for CLMonitoringState {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for CLMonitoringState {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

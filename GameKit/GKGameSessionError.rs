@@ -10,41 +10,52 @@ extern "C" {
     pub static GKGameSessionErrorDomain: &'static NSString;
 }
 
-ns_enum!(
-    #[underlying(NSInteger)]
+// NS_ENUM
+#[deprecated = "GKGameSession is deprecated, use real-time and turn-based matchmaking APIs instead."]
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct GKGameSessionErrorCode(pub NSInteger);
+impl GKGameSessionErrorCode {
     #[deprecated = "GKGameSession is deprecated, use real-time and turn-based matchmaking APIs instead."]
-    pub enum GKGameSessionErrorCode {
-        #[deprecated = "GKGameSession is deprecated, use real-time and turn-based matchmaking APIs instead."]
-        GKGameSessionErrorUnknown = 1,
-        #[deprecated = "GKGameSession is deprecated, use real-time and turn-based matchmaking APIs instead."]
-        GKGameSessionErrorNotAuthenticated = 2,
-        #[deprecated = "GKGameSession is deprecated, use real-time and turn-based matchmaking APIs instead."]
-        GKGameSessionErrorSessionConflict = 3,
-        #[deprecated = "GKGameSession is deprecated, use real-time and turn-based matchmaking APIs instead."]
-        GKGameSessionErrorSessionNotShared = 4,
-        #[deprecated = "GKGameSession is deprecated, use real-time and turn-based matchmaking APIs instead."]
-        GKGameSessionErrorConnectionCancelledByUser = 5,
-        #[deprecated = "GKGameSession is deprecated, use real-time and turn-based matchmaking APIs instead."]
-        GKGameSessionErrorConnectionFailed = 6,
-        #[deprecated = "GKGameSession is deprecated, use real-time and turn-based matchmaking APIs instead."]
-        GKGameSessionErrorSessionHasMaxConnectedPlayers = 7,
-        #[deprecated = "GKGameSession is deprecated, use real-time and turn-based matchmaking APIs instead."]
-        GKGameSessionErrorSendDataNotConnected = 8,
-        #[deprecated = "GKGameSession is deprecated, use real-time and turn-based matchmaking APIs instead."]
-        GKGameSessionErrorSendDataNoRecipients = 9,
-        #[deprecated = "GKGameSession is deprecated, use real-time and turn-based matchmaking APIs instead."]
-        GKGameSessionErrorSendDataNotReachable = 10,
-        #[deprecated = "GKGameSession is deprecated, use real-time and turn-based matchmaking APIs instead."]
-        GKGameSessionErrorSendRateLimitReached = 11,
-        #[deprecated = "GKGameSession is deprecated, use real-time and turn-based matchmaking APIs instead."]
-        GKGameSessionErrorBadContainer = 12,
-        #[deprecated = "GKGameSession is deprecated, use real-time and turn-based matchmaking APIs instead."]
-        GKGameSessionErrorCloudQuotaExceeded = 13,
-        #[deprecated = "GKGameSession is deprecated, use real-time and turn-based matchmaking APIs instead."]
-        GKGameSessionErrorNetworkFailure = 14,
-        #[deprecated = "GKGameSession is deprecated, use real-time and turn-based matchmaking APIs instead."]
-        GKGameSessionErrorCloudDriveDisabled = 15,
-        #[deprecated = "GKGameSession is deprecated, use real-time and turn-based matchmaking APIs instead."]
-        GKGameSessionErrorInvalidSession = 16,
-    }
-);
+    pub const GKGameSessionErrorUnknown: Self = Self(1);
+    #[deprecated = "GKGameSession is deprecated, use real-time and turn-based matchmaking APIs instead."]
+    pub const GKGameSessionErrorNotAuthenticated: Self = Self(2);
+    #[deprecated = "GKGameSession is deprecated, use real-time and turn-based matchmaking APIs instead."]
+    pub const GKGameSessionErrorSessionConflict: Self = Self(3);
+    #[deprecated = "GKGameSession is deprecated, use real-time and turn-based matchmaking APIs instead."]
+    pub const GKGameSessionErrorSessionNotShared: Self = Self(4);
+    #[deprecated = "GKGameSession is deprecated, use real-time and turn-based matchmaking APIs instead."]
+    pub const GKGameSessionErrorConnectionCancelledByUser: Self = Self(5);
+    #[deprecated = "GKGameSession is deprecated, use real-time and turn-based matchmaking APIs instead."]
+    pub const GKGameSessionErrorConnectionFailed: Self = Self(6);
+    #[deprecated = "GKGameSession is deprecated, use real-time and turn-based matchmaking APIs instead."]
+    pub const GKGameSessionErrorSessionHasMaxConnectedPlayers: Self = Self(7);
+    #[deprecated = "GKGameSession is deprecated, use real-time and turn-based matchmaking APIs instead."]
+    pub const GKGameSessionErrorSendDataNotConnected: Self = Self(8);
+    #[deprecated = "GKGameSession is deprecated, use real-time and turn-based matchmaking APIs instead."]
+    pub const GKGameSessionErrorSendDataNoRecipients: Self = Self(9);
+    #[deprecated = "GKGameSession is deprecated, use real-time and turn-based matchmaking APIs instead."]
+    pub const GKGameSessionErrorSendDataNotReachable: Self = Self(10);
+    #[deprecated = "GKGameSession is deprecated, use real-time and turn-based matchmaking APIs instead."]
+    pub const GKGameSessionErrorSendRateLimitReached: Self = Self(11);
+    #[deprecated = "GKGameSession is deprecated, use real-time and turn-based matchmaking APIs instead."]
+    pub const GKGameSessionErrorBadContainer: Self = Self(12);
+    #[deprecated = "GKGameSession is deprecated, use real-time and turn-based matchmaking APIs instead."]
+    pub const GKGameSessionErrorCloudQuotaExceeded: Self = Self(13);
+    #[deprecated = "GKGameSession is deprecated, use real-time and turn-based matchmaking APIs instead."]
+    pub const GKGameSessionErrorNetworkFailure: Self = Self(14);
+    #[deprecated = "GKGameSession is deprecated, use real-time and turn-based matchmaking APIs instead."]
+    pub const GKGameSessionErrorCloudDriveDisabled: Self = Self(15);
+    #[deprecated = "GKGameSession is deprecated, use real-time and turn-based matchmaking APIs instead."]
+    pub const GKGameSessionErrorInvalidSession: Self = Self(16);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for GKGameSessionErrorCode {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for GKGameSessionErrorCode {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}

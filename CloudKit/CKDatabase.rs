@@ -5,17 +5,28 @@ use crate::CloudKit::*;
 use crate::CoreLocation::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum CKDatabaseScope {
-        #[doc(alias = "CKDatabaseScopePublic")]
-        Public = 1,
-        #[doc(alias = "CKDatabaseScopePrivate")]
-        Private = 2,
-        #[doc(alias = "CKDatabaseScopeShared")]
-        Shared = 3,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct CKDatabaseScope(pub NSInteger);
+impl CKDatabaseScope {
+    #[doc(alias = "CKDatabaseScopePublic")]
+    pub const Public: Self = Self(1);
+    #[doc(alias = "CKDatabaseScopePrivate")]
+    pub const Private: Self = Self(2);
+    #[doc(alias = "CKDatabaseScopeShared")]
+    pub const Shared: Self = Self(3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for CKDatabaseScope {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for CKDatabaseScope {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

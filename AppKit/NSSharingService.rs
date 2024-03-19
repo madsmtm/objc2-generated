@@ -5,10 +5,9 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
+// NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_extensible_enum!(
-    pub type NSSharingServiceName = NSString;
-);
+pub type NSSharingServiceName = NSString;
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]
@@ -230,17 +229,28 @@ extern_methods!(
     }
 );
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSSharingContentScope {
-        #[doc(alias = "NSSharingContentScopeItem")]
-        Item = 0,
-        #[doc(alias = "NSSharingContentScopePartial")]
-        Partial = 1,
-        #[doc(alias = "NSSharingContentScopeFull")]
-        Full = 2,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSSharingContentScope(pub NSInteger);
+impl NSSharingContentScope {
+    #[doc(alias = "NSSharingContentScopeItem")]
+    pub const Item: Self = Self(0);
+    #[doc(alias = "NSSharingContentScopePartial")]
+    pub const Partial: Self = Self(1);
+    #[doc(alias = "NSSharingContentScopeFull")]
+    pub const Full: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSSharingContentScope {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSSharingContentScope {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_protocol!(
     pub unsafe trait NSSharingServiceDelegate: NSObjectProtocol + IsMainThreadOnly {
@@ -323,16 +333,27 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn NSSharingServiceDelegate {}
 );
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSCloudKitSharingServiceOptions {
-        NSCloudKitSharingServiceStandard = 0,
-        NSCloudKitSharingServiceAllowPublic = 1 << 0,
-        NSCloudKitSharingServiceAllowPrivate = 1 << 1,
-        NSCloudKitSharingServiceAllowReadOnly = 1 << 4,
-        NSCloudKitSharingServiceAllowReadWrite = 1 << 5,
-    }
-);
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSCloudKitSharingServiceOptions(pub NSUInteger);
+impl NSCloudKitSharingServiceOptions {
+    pub const NSCloudKitSharingServiceStandard: Self = Self(0);
+    pub const NSCloudKitSharingServiceAllowPublic: Self = Self(1 << 0);
+    pub const NSCloudKitSharingServiceAllowPrivate: Self = Self(1 << 1);
+    pub const NSCloudKitSharingServiceAllowReadOnly: Self = Self(1 << 4);
+    pub const NSCloudKitSharingServiceAllowReadWrite: Self = Self(1 << 5);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSCloudKitSharingServiceOptions {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSCloudKitSharingServiceOptions {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_protocol!(
     pub unsafe trait NSCloudSharingServiceDelegate: NSSharingServiceDelegate {

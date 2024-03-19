@@ -5,18 +5,29 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSPathStyle {
-        #[doc(alias = "NSPathStyleStandard")]
-        Standard = 0,
-        #[doc(alias = "NSPathStylePopUp")]
-        PopUp = 2,
-        #[deprecated]
-        #[doc(alias = "NSPathStyleNavigationBar")]
-        NavigationBar = 1,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSPathStyle(pub NSInteger);
+impl NSPathStyle {
+    #[doc(alias = "NSPathStyleStandard")]
+    pub const Standard: Self = Self(0);
+    #[doc(alias = "NSPathStylePopUp")]
+    pub const PopUp: Self = Self(2);
+    #[deprecated]
+    #[doc(alias = "NSPathStyleNavigationBar")]
+    pub const NavigationBar: Self = Self(1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSPathStyle {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSPathStyle {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

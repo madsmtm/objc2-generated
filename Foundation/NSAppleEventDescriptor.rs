@@ -3,22 +3,33 @@
 use crate::common::*;
 use crate::Foundation::*;
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSAppleEventSendOptions {
-        NSAppleEventSendNoReply = 1,
-        NSAppleEventSendQueueReply = 2,
-        NSAppleEventSendWaitForReply = 3,
-        NSAppleEventSendNeverInteract = 16,
-        NSAppleEventSendCanInteract = 32,
-        NSAppleEventSendAlwaysInteract = 48,
-        NSAppleEventSendCanSwitchLayer = 64,
-        NSAppleEventSendDontRecord = 4096,
-        NSAppleEventSendDontExecute = 8192,
-        NSAppleEventSendDontAnnotate = 65536,
-        NSAppleEventSendDefaultOptions = 35,
-    }
-);
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSAppleEventSendOptions(pub NSUInteger);
+impl NSAppleEventSendOptions {
+    pub const NSAppleEventSendNoReply: Self = Self(1);
+    pub const NSAppleEventSendQueueReply: Self = Self(2);
+    pub const NSAppleEventSendWaitForReply: Self = Self(3);
+    pub const NSAppleEventSendNeverInteract: Self = Self(16);
+    pub const NSAppleEventSendCanInteract: Self = Self(32);
+    pub const NSAppleEventSendAlwaysInteract: Self = Self(48);
+    pub const NSAppleEventSendCanSwitchLayer: Self = Self(64);
+    pub const NSAppleEventSendDontRecord: Self = Self(4096);
+    pub const NSAppleEventSendDontExecute: Self = Self(8192);
+    pub const NSAppleEventSendDontAnnotate: Self = Self(65536);
+    pub const NSAppleEventSendDefaultOptions: Self = Self(35);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSAppleEventSendOptions {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSAppleEventSendOptions {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

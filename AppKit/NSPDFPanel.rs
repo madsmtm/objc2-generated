@@ -5,14 +5,25 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-ns_options!(
-    #[underlying(NSInteger)]
-    pub enum NSPDFPanelOptions {
-        NSPDFPanelShowsPaperSize = 1 << 2,
-        NSPDFPanelShowsOrientation = 1 << 3,
-        NSPDFPanelRequestsParentDirectory = 1 << 24,
-    }
-);
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSPDFPanelOptions(pub NSInteger);
+impl NSPDFPanelOptions {
+    pub const NSPDFPanelShowsPaperSize: Self = Self(1 << 2);
+    pub const NSPDFPanelShowsOrientation: Self = Self(1 << 3);
+    pub const NSPDFPanelRequestsParentDirectory: Self = Self(1 << 24);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSPDFPanelOptions {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSPDFPanelOptions {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

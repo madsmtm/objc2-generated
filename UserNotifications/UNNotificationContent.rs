@@ -11,19 +11,30 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn UNNotificationContentProviding {}
 );
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum UNNotificationInterruptionLevel {
-        #[doc(alias = "UNNotificationInterruptionLevelPassive")]
-        Passive = 0,
-        #[doc(alias = "UNNotificationInterruptionLevelActive")]
-        Active = 1,
-        #[doc(alias = "UNNotificationInterruptionLevelTimeSensitive")]
-        TimeSensitive = 2,
-        #[doc(alias = "UNNotificationInterruptionLevelCritical")]
-        Critical = 3,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct UNNotificationInterruptionLevel(pub NSUInteger);
+impl UNNotificationInterruptionLevel {
+    #[doc(alias = "UNNotificationInterruptionLevelPassive")]
+    pub const Passive: Self = Self(0);
+    #[doc(alias = "UNNotificationInterruptionLevelActive")]
+    pub const Active: Self = Self(1);
+    #[doc(alias = "UNNotificationInterruptionLevelTimeSensitive")]
+    pub const TimeSensitive: Self = Self(2);
+    #[doc(alias = "UNNotificationInterruptionLevelCritical")]
+    pub const Critical: Self = Self(3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for UNNotificationInterruptionLevel {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for UNNotificationInterruptionLevel {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

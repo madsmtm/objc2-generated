@@ -5,44 +5,66 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSColorPanelMode {
-        #[doc(alias = "NSColorPanelModeNone")]
-        None = -1,
-        #[doc(alias = "NSColorPanelModeGray")]
-        Gray = 0,
-        #[doc(alias = "NSColorPanelModeRGB")]
-        RGB = 1,
-        #[doc(alias = "NSColorPanelModeCMYK")]
-        CMYK = 2,
-        #[doc(alias = "NSColorPanelModeHSB")]
-        HSB = 3,
-        #[doc(alias = "NSColorPanelModeCustomPalette")]
-        CustomPalette = 4,
-        #[doc(alias = "NSColorPanelModeColorList")]
-        ColorList = 5,
-        #[doc(alias = "NSColorPanelModeWheel")]
-        Wheel = 6,
-        #[doc(alias = "NSColorPanelModeCrayon")]
-        Crayon = 7,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSColorPanelMode(pub NSInteger);
+impl NSColorPanelMode {
+    #[doc(alias = "NSColorPanelModeNone")]
+    pub const None: Self = Self(-1);
+    #[doc(alias = "NSColorPanelModeGray")]
+    pub const Gray: Self = Self(0);
+    #[doc(alias = "NSColorPanelModeRGB")]
+    pub const RGB: Self = Self(1);
+    #[doc(alias = "NSColorPanelModeCMYK")]
+    pub const CMYK: Self = Self(2);
+    #[doc(alias = "NSColorPanelModeHSB")]
+    pub const HSB: Self = Self(3);
+    #[doc(alias = "NSColorPanelModeCustomPalette")]
+    pub const CustomPalette: Self = Self(4);
+    #[doc(alias = "NSColorPanelModeColorList")]
+    pub const ColorList: Self = Self(5);
+    #[doc(alias = "NSColorPanelModeWheel")]
+    pub const Wheel: Self = Self(6);
+    #[doc(alias = "NSColorPanelModeCrayon")]
+    pub const Crayon: Self = Self(7);
+}
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSColorPanelOptions {
-        NSColorPanelGrayModeMask = 0x00000001,
-        NSColorPanelRGBModeMask = 0x00000002,
-        NSColorPanelCMYKModeMask = 0x00000004,
-        NSColorPanelHSBModeMask = 0x00000008,
-        NSColorPanelCustomPaletteModeMask = 0x00000010,
-        NSColorPanelColorListModeMask = 0x00000020,
-        NSColorPanelWheelModeMask = 0x00000040,
-        NSColorPanelCrayonModeMask = 0x00000080,
-        NSColorPanelAllModesMask = 0x0000ffff,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSColorPanelMode {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSColorPanelMode {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSColorPanelOptions(pub NSUInteger);
+impl NSColorPanelOptions {
+    pub const NSColorPanelGrayModeMask: Self = Self(0x00000001);
+    pub const NSColorPanelRGBModeMask: Self = Self(0x00000002);
+    pub const NSColorPanelCMYKModeMask: Self = Self(0x00000004);
+    pub const NSColorPanelHSBModeMask: Self = Self(0x00000008);
+    pub const NSColorPanelCustomPaletteModeMask: Self = Self(0x00000010);
+    pub const NSColorPanelColorListModeMask: Self = Self(0x00000020);
+    pub const NSColorPanelWheelModeMask: Self = Self(0x00000040);
+    pub const NSColorPanelCrayonModeMask: Self = Self(0x00000080);
+    pub const NSColorPanelAllModesMask: Self = Self(0x0000ffff);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSColorPanelOptions {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSColorPanelOptions {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

@@ -7,10 +7,9 @@ use crate::CoreLocation::*;
 use crate::Foundation::*;
 use crate::MapKit::*;
 
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type MKPointOfInterestCategory = NSString;
-);
+pub type MKPointOfInterestCategory = NSString;
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]

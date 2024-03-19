@@ -5,15 +5,26 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::GameController::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum GCDevicePhysicalInputElementChange {
-        GCDevicePhysicalInputElementUnknownChange = -1,
-        GCDevicePhysicalInputElementNoChange = 0,
-        #[doc(alias = "GCDevicePhysicalInputElementChanged")]
-        d = 1,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct GCDevicePhysicalInputElementChange(pub NSInteger);
+impl GCDevicePhysicalInputElementChange {
+    pub const GCDevicePhysicalInputElementUnknownChange: Self = Self(-1);
+    pub const GCDevicePhysicalInputElementNoChange: Self = Self(0);
+    #[doc(alias = "GCDevicePhysicalInputElementChanged")]
+    pub const d: Self = Self(1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for GCDevicePhysicalInputElementChange {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for GCDevicePhysicalInputElementChange {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_protocol!(
     pub unsafe trait GCDevicePhysicalInputStateDiff: NSObjectProtocol {

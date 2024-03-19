@@ -5,19 +5,30 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSTabViewControllerTabStyle {
-        #[doc(alias = "NSTabViewControllerTabStyleSegmentedControlOnTop")]
-        SegmentedControlOnTop = 0,
-        #[doc(alias = "NSTabViewControllerTabStyleSegmentedControlOnBottom")]
-        SegmentedControlOnBottom = 1,
-        #[doc(alias = "NSTabViewControllerTabStyleToolbar")]
-        Toolbar = 2,
-        #[doc(alias = "NSTabViewControllerTabStyleUnspecified")]
-        Unspecified = -1,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSTabViewControllerTabStyle(pub NSInteger);
+impl NSTabViewControllerTabStyle {
+    #[doc(alias = "NSTabViewControllerTabStyleSegmentedControlOnTop")]
+    pub const SegmentedControlOnTop: Self = Self(0);
+    #[doc(alias = "NSTabViewControllerTabStyleSegmentedControlOnBottom")]
+    pub const SegmentedControlOnBottom: Self = Self(1);
+    #[doc(alias = "NSTabViewControllerTabStyleToolbar")]
+    pub const Toolbar: Self = Self(2);
+    #[doc(alias = "NSTabViewControllerTabStyleUnspecified")]
+    pub const Unspecified: Self = Self(-1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSTabViewControllerTabStyle {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSTabViewControllerTabStyle {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

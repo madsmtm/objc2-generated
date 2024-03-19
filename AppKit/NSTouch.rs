@@ -5,45 +5,79 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSTouchPhase {
-        #[doc(alias = "NSTouchPhaseBegan")]
-        Began = 1 << 0,
-        #[doc(alias = "NSTouchPhaseMoved")]
-        Moved = 1 << 1,
-        #[doc(alias = "NSTouchPhaseStationary")]
-        Stationary = 1 << 2,
-        #[doc(alias = "NSTouchPhaseEnded")]
-        Ended = 1 << 3,
-        #[doc(alias = "NSTouchPhaseCancelled")]
-        Cancelled = 1 << 4,
-        #[doc(alias = "NSTouchPhaseTouching")]
-        Touching = NSTouchPhase::Began.0 | NSTouchPhase::Moved.0 | NSTouchPhase::Stationary.0,
-        #[doc(alias = "NSTouchPhaseAny")]
-        Any = NSUIntegerMax as _,
-    }
-);
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSTouchPhase(pub NSUInteger);
+impl NSTouchPhase {
+    #[doc(alias = "NSTouchPhaseBegan")]
+    pub const Began: Self = Self(1 << 0);
+    #[doc(alias = "NSTouchPhaseMoved")]
+    pub const Moved: Self = Self(1 << 1);
+    #[doc(alias = "NSTouchPhaseStationary")]
+    pub const Stationary: Self = Self(1 << 2);
+    #[doc(alias = "NSTouchPhaseEnded")]
+    pub const Ended: Self = Self(1 << 3);
+    #[doc(alias = "NSTouchPhaseCancelled")]
+    pub const Cancelled: Self = Self(1 << 4);
+    #[doc(alias = "NSTouchPhaseTouching")]
+    pub const Touching: Self =
+        Self(NSTouchPhase::Began.0 | NSTouchPhase::Moved.0 | NSTouchPhase::Stationary.0);
+    #[doc(alias = "NSTouchPhaseAny")]
+    pub const Any: Self = Self(NSUIntegerMax as _);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSTouchType {
-        #[doc(alias = "NSTouchTypeDirect")]
-        Direct = 0,
-        #[doc(alias = "NSTouchTypeIndirect")]
-        Indirect = 1,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSTouchPhase {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSTouchTypeMask {
-        #[doc(alias = "NSTouchTypeMaskDirect")]
-        Direct = 1 << NSTouchType::Direct.0,
-        #[doc(alias = "NSTouchTypeMaskIndirect")]
-        Indirect = 1 << NSTouchType::Indirect.0,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSTouchPhase {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSTouchType(pub NSInteger);
+impl NSTouchType {
+    #[doc(alias = "NSTouchTypeDirect")]
+    pub const Direct: Self = Self(0);
+    #[doc(alias = "NSTouchTypeIndirect")]
+    pub const Indirect: Self = Self(1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSTouchType {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSTouchType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSTouchTypeMask(pub NSUInteger);
+impl NSTouchTypeMask {
+    #[doc(alias = "NSTouchTypeMaskDirect")]
+    pub const Direct: Self = Self(1 << NSTouchType::Direct.0);
+    #[doc(alias = "NSTouchTypeMaskIndirect")]
+    pub const Indirect: Self = Self(1 << NSTouchType::Indirect.0);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSTouchTypeMask {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSTouchTypeMask {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 // TODO: pub fn NSTouchTypeMaskFromType(r#type: NSTouchType,) -> NSTouchTypeMask;
 

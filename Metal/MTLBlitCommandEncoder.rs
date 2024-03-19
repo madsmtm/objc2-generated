@@ -4,19 +4,30 @@ use crate::common::*;
 use crate::Foundation::*;
 use crate::Metal::*;
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum MTLBlitOption {
-        #[doc(alias = "MTLBlitOptionNone")]
-        None = 0,
-        #[doc(alias = "MTLBlitOptionDepthFromDepthStencil")]
-        DepthFromDepthStencil = 1 << 0,
-        #[doc(alias = "MTLBlitOptionStencilFromDepthStencil")]
-        StencilFromDepthStencil = 1 << 1,
-        #[doc(alias = "MTLBlitOptionRowLinearPVRTC")]
-        RowLinearPVRTC = 1 << 2,
-    }
-);
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MTLBlitOption(pub NSUInteger);
+impl MTLBlitOption {
+    #[doc(alias = "MTLBlitOptionNone")]
+    pub const None: Self = Self(0);
+    #[doc(alias = "MTLBlitOptionDepthFromDepthStencil")]
+    pub const DepthFromDepthStencil: Self = Self(1 << 0);
+    #[doc(alias = "MTLBlitOptionStencilFromDepthStencil")]
+    pub const StencilFromDepthStencil: Self = Self(1 << 1);
+    #[doc(alias = "MTLBlitOptionRowLinearPVRTC")]
+    pub const RowLinearPVRTC: Self = Self(1 << 2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLBlitOption {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLBlitOption {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_protocol!(
     #[cfg(feature = "Metal_MTLCommandEncoder")]

@@ -6,31 +6,53 @@ use crate::Foundation::*;
 use crate::HealthKit::*;
 use crate::UniformTypeIdentifiers::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum HKPrismBase {
-        #[doc(alias = "HKPrismBaseNone")]
-        None = 0,
-        #[doc(alias = "HKPrismBaseUp")]
-        Up = 1,
-        #[doc(alias = "HKPrismBaseDown")]
-        Down = 2,
-        #[doc(alias = "HKPrismBaseIn")]
-        In = 3,
-        #[doc(alias = "HKPrismBaseOut")]
-        Out = 4,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct HKPrismBase(pub NSInteger);
+impl HKPrismBase {
+    #[doc(alias = "HKPrismBaseNone")]
+    pub const None: Self = Self(0);
+    #[doc(alias = "HKPrismBaseUp")]
+    pub const Up: Self = Self(1);
+    #[doc(alias = "HKPrismBaseDown")]
+    pub const Down: Self = Self(2);
+    #[doc(alias = "HKPrismBaseIn")]
+    pub const In: Self = Self(3);
+    #[doc(alias = "HKPrismBaseOut")]
+    pub const Out: Self = Self(4);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum HKVisionEye {
-        #[doc(alias = "HKVisionEyeLeft")]
-        Left = 1,
-        #[doc(alias = "HKVisionEyeRight")]
-        Right = 2,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for HKPrismBase {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for HKPrismBase {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct HKVisionEye(pub NSInteger);
+impl HKVisionEye {
+    #[doc(alias = "HKVisionEyeLeft")]
+    pub const Left: Self = Self(1);
+    #[doc(alias = "HKVisionEyeRight")]
+    pub const Right: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for HKVisionEye {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for HKVisionEye {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

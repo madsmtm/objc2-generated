@@ -3,26 +3,48 @@
 use crate::common::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSRoundingMode {
-        NSRoundPlain = 0,
-        NSRoundDown = 1,
-        NSRoundUp = 2,
-        NSRoundBankers = 3,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSRoundingMode(pub NSUInteger);
+impl NSRoundingMode {
+    pub const NSRoundPlain: Self = Self(0);
+    pub const NSRoundDown: Self = Self(1);
+    pub const NSRoundUp: Self = Self(2);
+    pub const NSRoundBankers: Self = Self(3);
+}
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSCalculationError {
-        NSCalculationNoError = 0,
-        NSCalculationLossOfPrecision = 1,
-        NSCalculationUnderflow = 2,
-        NSCalculationOverflow = 3,
-        NSCalculationDivideByZero = 4,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSRoundingMode {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSRoundingMode {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSCalculationError(pub NSUInteger);
+impl NSCalculationError {
+    pub const NSCalculationNoError: Self = Self(0);
+    pub const NSCalculationLossOfPrecision: Self = Self(1);
+    pub const NSCalculationUnderflow: Self = Self(2);
+    pub const NSCalculationOverflow: Self = Self(3);
+    pub const NSCalculationDivideByZero: Self = Self(4);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSCalculationError {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSCalculationError {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 // TODO: pub fn NSDecimalIsNotANumber(dcm: NonNull<NSDecimal>,) -> Bool;
 

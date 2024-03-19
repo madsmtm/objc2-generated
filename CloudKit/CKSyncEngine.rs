@@ -366,15 +366,26 @@ extern_methods!(
     }
 );
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum CKSyncEngineSyncReason {
-        #[doc(alias = "CKSyncEngineSyncReasonScheduled")]
-        Scheduled = 0,
-        #[doc(alias = "CKSyncEngineSyncReasonManual")]
-        Manual = 1,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct CKSyncEngineSyncReason(pub NSInteger);
+impl CKSyncEngineSyncReason {
+    #[doc(alias = "CKSyncEngineSyncReasonScheduled")]
+    pub const Scheduled: Self = Self(0);
+    #[doc(alias = "CKSyncEngineSyncReasonManual")]
+    pub const Manual: Self = Self(1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for CKSyncEngineSyncReason {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for CKSyncEngineSyncReason {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

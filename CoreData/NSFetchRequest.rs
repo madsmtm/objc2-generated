@@ -4,15 +4,26 @@ use crate::common::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSFetchRequestResultType {
-        NSManagedObjectResultType = 0x00,
-        NSManagedObjectIDResultType = 0x01,
-        NSDictionaryResultType = 0x02,
-        NSCountResultType = 0x04,
-    }
-);
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSFetchRequestResultType(pub NSUInteger);
+impl NSFetchRequestResultType {
+    pub const NSManagedObjectResultType: Self = Self(0x00);
+    pub const NSManagedObjectIDResultType: Self = Self(0x01);
+    pub const NSDictionaryResultType: Self = Self(0x02);
+    pub const NSCountResultType: Self = Self(0x04);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSFetchRequestResultType {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSFetchRequestResultType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_protocol!(
     pub unsafe trait NSFetchRequestResult: NSObjectProtocol {}

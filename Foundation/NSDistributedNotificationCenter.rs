@@ -3,37 +3,58 @@
 use crate::common::*;
 use crate::Foundation::*;
 
+// NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_extensible_enum!(
-    pub type NSDistributedNotificationCenterType = NSString;
-);
+pub type NSDistributedNotificationCenterType = NSString;
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]
     pub static NSLocalNotificationCenterType: &'static NSDistributedNotificationCenterType;
 }
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSNotificationSuspensionBehavior {
-        #[doc(alias = "NSNotificationSuspensionBehaviorDrop")]
-        Drop = 1,
-        #[doc(alias = "NSNotificationSuspensionBehaviorCoalesce")]
-        Coalesce = 2,
-        #[doc(alias = "NSNotificationSuspensionBehaviorHold")]
-        Hold = 3,
-        #[doc(alias = "NSNotificationSuspensionBehaviorDeliverImmediately")]
-        DeliverImmediately = 4,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSNotificationSuspensionBehavior(pub NSUInteger);
+impl NSNotificationSuspensionBehavior {
+    #[doc(alias = "NSNotificationSuspensionBehaviorDrop")]
+    pub const Drop: Self = Self(1);
+    #[doc(alias = "NSNotificationSuspensionBehaviorCoalesce")]
+    pub const Coalesce: Self = Self(2);
+    #[doc(alias = "NSNotificationSuspensionBehaviorHold")]
+    pub const Hold: Self = Self(3);
+    #[doc(alias = "NSNotificationSuspensionBehaviorDeliverImmediately")]
+    pub const DeliverImmediately: Self = Self(4);
+}
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSDistributedNotificationOptions {
-        NSDistributedNotificationDeliverImmediately = 1 << 0,
-        NSDistributedNotificationPostToAllSessions = 1 << 1,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSNotificationSuspensionBehavior {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSNotificationSuspensionBehavior {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSDistributedNotificationOptions(pub NSUInteger);
+impl NSDistributedNotificationOptions {
+    pub const NSDistributedNotificationDeliverImmediately: Self = Self(1 << 0);
+    pub const NSDistributedNotificationPostToAllSessions: Self = Self(1 << 1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSDistributedNotificationOptions {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSDistributedNotificationOptions {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 pub static NSNotificationDeliverImmediately: NSDistributedNotificationOptions =
     NSDistributedNotificationOptions(

@@ -5,24 +5,46 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSAnimationCurve {
-        NSAnimationEaseInOut = 0,
-        NSAnimationEaseIn = 1,
-        NSAnimationEaseOut = 2,
-        NSAnimationLinear = 3,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSAnimationCurve(pub NSUInteger);
+impl NSAnimationCurve {
+    pub const NSAnimationEaseInOut: Self = Self(0);
+    pub const NSAnimationEaseIn: Self = Self(1);
+    pub const NSAnimationEaseOut: Self = Self(2);
+    pub const NSAnimationLinear: Self = Self(3);
+}
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSAnimationBlockingMode {
-        NSAnimationBlocking = 0,
-        NSAnimationNonblocking = 1,
-        NSAnimationNonblockingThreaded = 2,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSAnimationCurve {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSAnimationCurve {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSAnimationBlockingMode(pub NSUInteger);
+impl NSAnimationBlockingMode {
+    pub const NSAnimationBlocking: Self = Self(0);
+    pub const NSAnimationNonblocking: Self = Self(1);
+    pub const NSAnimationNonblockingThreaded: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSAnimationBlockingMode {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSAnimationBlockingMode {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 pub type NSAnimationProgress = c_float;
 
@@ -213,10 +235,9 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn NSAnimationDelegate {}
 );
 
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type NSViewAnimationKey = NSString;
-);
+pub type NSViewAnimationKey = NSString;
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]
@@ -238,10 +259,9 @@ extern "C" {
     pub static NSViewAnimationEffectKey: &'static NSViewAnimationKey;
 }
 
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type NSViewAnimationEffectName = NSString;
-);
+pub type NSViewAnimationEffectName = NSString;
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]

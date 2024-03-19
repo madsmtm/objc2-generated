@@ -78,14 +78,25 @@ extern_methods!(
     }
 );
 
-ns_enum!(
-    #[underlying(NSInteger)]
+// NS_ENUM
+#[deprecated = "GCMicroGamepadSnapshot has been deprecated, use [GCController controllerWithMicroGamepad] instead"]
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct GCMicroGamepadSnapshotDataVersion(pub NSInteger);
+impl GCMicroGamepadSnapshotDataVersion {
     #[deprecated = "GCMicroGamepadSnapshot has been deprecated, use [GCController controllerWithMicroGamepad] instead"]
-    pub enum GCMicroGamepadSnapshotDataVersion {
-        #[deprecated = "GCMicroGamepadSnapshot has been deprecated, use [GCController controllerWithMicroGamepad] instead"]
-        GCMicroGamepadSnapshotDataVersion1 = 0x0100,
-    }
-);
+    pub const GCMicroGamepadSnapshotDataVersion1: Self = Self(0x0100);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for GCMicroGamepadSnapshotDataVersion {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for GCMicroGamepadSnapshotDataVersion {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern "C" {
     pub static GCCurrentMicroGamepadSnapshotDataVersion: GCMicroGamepadSnapshotDataVersion;

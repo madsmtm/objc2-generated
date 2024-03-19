@@ -7,15 +7,26 @@ use crate::CoreLocation::*;
 use crate::Foundation::*;
 use crate::MapKit::*;
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum MKLocalSearchResultType {
-        #[doc(alias = "MKLocalSearchResultTypeAddress")]
-        Address = 1 << 0,
-        #[doc(alias = "MKLocalSearchResultTypePointOfInterest")]
-        PointOfInterest = 1 << 1,
-    }
-);
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MKLocalSearchResultType(pub NSUInteger);
+impl MKLocalSearchResultType {
+    #[doc(alias = "MKLocalSearchResultTypeAddress")]
+    pub const Address: Self = Self(1 << 0);
+    #[doc(alias = "MKLocalSearchResultTypePointOfInterest")]
+    pub const PointOfInterest: Self = Self(1 << 1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MKLocalSearchResultType {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MKLocalSearchResultType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

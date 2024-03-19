@@ -5,20 +5,31 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSViewControllerTransitionOptions {
-        NSViewControllerTransitionNone = 0x0,
-        NSViewControllerTransitionCrossfade = 0x1,
-        NSViewControllerTransitionSlideUp = 0x10,
-        NSViewControllerTransitionSlideDown = 0x20,
-        NSViewControllerTransitionSlideLeft = 0x40,
-        NSViewControllerTransitionSlideRight = 0x80,
-        NSViewControllerTransitionSlideForward = 0x140,
-        NSViewControllerTransitionSlideBackward = 0x180,
-        NSViewControllerTransitionAllowUserInteraction = 0x1000,
-    }
-);
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSViewControllerTransitionOptions(pub NSUInteger);
+impl NSViewControllerTransitionOptions {
+    pub const NSViewControllerTransitionNone: Self = Self(0x0);
+    pub const NSViewControllerTransitionCrossfade: Self = Self(0x1);
+    pub const NSViewControllerTransitionSlideUp: Self = Self(0x10);
+    pub const NSViewControllerTransitionSlideDown: Self = Self(0x20);
+    pub const NSViewControllerTransitionSlideLeft: Self = Self(0x40);
+    pub const NSViewControllerTransitionSlideRight: Self = Self(0x80);
+    pub const NSViewControllerTransitionSlideForward: Self = Self(0x140);
+    pub const NSViewControllerTransitionSlideBackward: Self = Self(0x180);
+    pub const NSViewControllerTransitionAllowUserInteraction: Self = Self(0x1000);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSViewControllerTransitionOptions {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSViewControllerTransitionOptions {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

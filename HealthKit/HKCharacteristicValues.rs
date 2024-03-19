@@ -6,82 +6,137 @@ use crate::Foundation::*;
 use crate::HealthKit::*;
 use crate::UniformTypeIdentifiers::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum HKActivityMoveMode {
-        #[doc(alias = "HKActivityMoveModeActiveEnergy")]
-        ActiveEnergy = 1,
-        #[doc(alias = "HKActivityMoveModeAppleMoveTime")]
-        AppleMoveTime = 2,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct HKActivityMoveMode(pub NSInteger);
+impl HKActivityMoveMode {
+    #[doc(alias = "HKActivityMoveModeActiveEnergy")]
+    pub const ActiveEnergy: Self = Self(1);
+    #[doc(alias = "HKActivityMoveModeAppleMoveTime")]
+    pub const AppleMoveTime: Self = Self(2);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum HKBiologicalSex {
-        #[doc(alias = "HKBiologicalSexNotSet")]
-        NotSet = 0,
-        #[doc(alias = "HKBiologicalSexFemale")]
-        Female = 1,
-        #[doc(alias = "HKBiologicalSexMale")]
-        Male = 2,
-        #[doc(alias = "HKBiologicalSexOther")]
-        Other = 3,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for HKActivityMoveMode {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum HKBloodType {
-        #[doc(alias = "HKBloodTypeNotSet")]
-        NotSet = 0,
-        #[doc(alias = "HKBloodTypeAPositive")]
-        APositive = 1,
-        #[doc(alias = "HKBloodTypeANegative")]
-        ANegative = 2,
-        #[doc(alias = "HKBloodTypeBPositive")]
-        BPositive = 3,
-        #[doc(alias = "HKBloodTypeBNegative")]
-        BNegative = 4,
-        #[doc(alias = "HKBloodTypeABPositive")]
-        ABPositive = 5,
-        #[doc(alias = "HKBloodTypeABNegative")]
-        ABNegative = 6,
-        #[doc(alias = "HKBloodTypeOPositive")]
-        OPositive = 7,
-        #[doc(alias = "HKBloodTypeONegative")]
-        ONegative = 8,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for HKActivityMoveMode {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum HKFitzpatrickSkinType {
-        #[doc(alias = "HKFitzpatrickSkinTypeNotSet")]
-        NotSet = 0,
-        #[doc(alias = "HKFitzpatrickSkinTypeI")]
-        I = 1,
-        #[doc(alias = "HKFitzpatrickSkinTypeII")]
-        II = 2,
-        #[doc(alias = "HKFitzpatrickSkinTypeIII")]
-        III = 3,
-        #[doc(alias = "HKFitzpatrickSkinTypeIV")]
-        IV = 4,
-        #[doc(alias = "HKFitzpatrickSkinTypeV")]
-        V = 5,
-        #[doc(alias = "HKFitzpatrickSkinTypeVI")]
-        VI = 6,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct HKBiologicalSex(pub NSInteger);
+impl HKBiologicalSex {
+    #[doc(alias = "HKBiologicalSexNotSet")]
+    pub const NotSet: Self = Self(0);
+    #[doc(alias = "HKBiologicalSexFemale")]
+    pub const Female: Self = Self(1);
+    #[doc(alias = "HKBiologicalSexMale")]
+    pub const Male: Self = Self(2);
+    #[doc(alias = "HKBiologicalSexOther")]
+    pub const Other: Self = Self(3);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum HKWheelchairUse {
-        #[doc(alias = "HKWheelchairUseNotSet")]
-        NotSet = 0,
-        #[doc(alias = "HKWheelchairUseNo")]
-        No = 1,
-        #[doc(alias = "HKWheelchairUseYes")]
-        Yes = 2,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for HKBiologicalSex {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for HKBiologicalSex {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct HKBloodType(pub NSInteger);
+impl HKBloodType {
+    #[doc(alias = "HKBloodTypeNotSet")]
+    pub const NotSet: Self = Self(0);
+    #[doc(alias = "HKBloodTypeAPositive")]
+    pub const APositive: Self = Self(1);
+    #[doc(alias = "HKBloodTypeANegative")]
+    pub const ANegative: Self = Self(2);
+    #[doc(alias = "HKBloodTypeBPositive")]
+    pub const BPositive: Self = Self(3);
+    #[doc(alias = "HKBloodTypeBNegative")]
+    pub const BNegative: Self = Self(4);
+    #[doc(alias = "HKBloodTypeABPositive")]
+    pub const ABPositive: Self = Self(5);
+    #[doc(alias = "HKBloodTypeABNegative")]
+    pub const ABNegative: Self = Self(6);
+    #[doc(alias = "HKBloodTypeOPositive")]
+    pub const OPositive: Self = Self(7);
+    #[doc(alias = "HKBloodTypeONegative")]
+    pub const ONegative: Self = Self(8);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for HKBloodType {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for HKBloodType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct HKFitzpatrickSkinType(pub NSInteger);
+impl HKFitzpatrickSkinType {
+    #[doc(alias = "HKFitzpatrickSkinTypeNotSet")]
+    pub const NotSet: Self = Self(0);
+    #[doc(alias = "HKFitzpatrickSkinTypeI")]
+    pub const I: Self = Self(1);
+    #[doc(alias = "HKFitzpatrickSkinTypeII")]
+    pub const II: Self = Self(2);
+    #[doc(alias = "HKFitzpatrickSkinTypeIII")]
+    pub const III: Self = Self(3);
+    #[doc(alias = "HKFitzpatrickSkinTypeIV")]
+    pub const IV: Self = Self(4);
+    #[doc(alias = "HKFitzpatrickSkinTypeV")]
+    pub const V: Self = Self(5);
+    #[doc(alias = "HKFitzpatrickSkinTypeVI")]
+    pub const VI: Self = Self(6);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for HKFitzpatrickSkinType {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for HKFitzpatrickSkinType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct HKWheelchairUse(pub NSInteger);
+impl HKWheelchairUse {
+    #[doc(alias = "HKWheelchairUseNotSet")]
+    pub const NotSet: Self = Self(0);
+    #[doc(alias = "HKWheelchairUseNo")]
+    pub const No: Self = Self(1);
+    #[doc(alias = "HKWheelchairUseYes")]
+    pub const Yes: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for HKWheelchairUse {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for HKWheelchairUse {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}

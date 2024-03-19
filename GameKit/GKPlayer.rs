@@ -73,15 +73,26 @@ extern_methods!(
     }
 );
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum GKPhotoSize {
-        #[doc(alias = "GKPhotoSizeSmall")]
-        Small = 0,
-        #[doc(alias = "GKPhotoSizeNormal")]
-        Normal = 1,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct GKPhotoSize(pub NSInteger);
+impl GKPhotoSize {
+    #[doc(alias = "GKPhotoSizeSmall")]
+    pub const Small: Self = Self(0);
+    #[doc(alias = "GKPhotoSizeNormal")]
+    pub const Normal: Self = Self(1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for GKPhotoSize {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for GKPhotoSize {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_methods!(
     /// UI

@@ -29,94 +29,149 @@ extern "C" {
     pub static CXErrorDomainNotificationServiceExtension: &'static NSErrorDomain;
 }
 
-ns_error_enum!(
-    #[underlying(NSInteger)]
-    pub enum CXErrorCode {
-        #[doc(alias = "CXErrorCodeUnknownError")]
-        UnknownError = 0,
-        #[doc(alias = "CXErrorCodeUnentitled")]
-        Unentitled = 1,
-        #[doc(alias = "CXErrorCodeInvalidArgument")]
-        InvalidArgument = 2,
-        #[doc(alias = "CXErrorCodeMissingVoIPBackgroundMode")]
-        MissingVoIPBackgroundMode = 3,
-    }
-);
+// NS_ERROR_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct CXErrorCode(pub NSInteger);
+impl CXErrorCode {
+    #[doc(alias = "CXErrorCodeUnknownError")]
+    pub const UnknownError: Self = Self(0);
+    #[doc(alias = "CXErrorCodeUnentitled")]
+    pub const Unentitled: Self = Self(1);
+    #[doc(alias = "CXErrorCodeInvalidArgument")]
+    pub const InvalidArgument: Self = Self(2);
+    #[doc(alias = "CXErrorCodeMissingVoIPBackgroundMode")]
+    pub const MissingVoIPBackgroundMode: Self = Self(3);
+}
 
-ns_error_enum!(
-    #[underlying(NSInteger)]
-    pub enum CXErrorCodeIncomingCallError {
-        #[doc(alias = "CXErrorCodeIncomingCallErrorUnknown")]
-        Unknown = 0,
-        #[doc(alias = "CXErrorCodeIncomingCallErrorUnentitled")]
-        Unentitled = 1,
-        #[doc(alias = "CXErrorCodeIncomingCallErrorCallUUIDAlreadyExists")]
-        CallUUIDAlreadyExists = 2,
-        #[doc(alias = "CXErrorCodeIncomingCallErrorFilteredByDoNotDisturb")]
-        FilteredByDoNotDisturb = 3,
-        #[doc(alias = "CXErrorCodeIncomingCallErrorFilteredByBlockList")]
-        FilteredByBlockList = 4,
-        #[doc(alias = "CXErrorCodeIncomingCallErrorFilteredDuringRestrictedSharingMode")]
-        FilteredDuringRestrictedSharingMode = 5,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for CXErrorCode {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
 
-ns_error_enum!(
-    #[underlying(NSInteger)]
-    pub enum CXErrorCodeRequestTransactionError {
-        #[doc(alias = "CXErrorCodeRequestTransactionErrorUnknown")]
-        Unknown = 0,
-        #[doc(alias = "CXErrorCodeRequestTransactionErrorUnentitled")]
-        Unentitled = 1,
-        #[doc(alias = "CXErrorCodeRequestTransactionErrorUnknownCallProvider")]
-        UnknownCallProvider = 2,
-        #[doc(alias = "CXErrorCodeRequestTransactionErrorEmptyTransaction")]
-        EmptyTransaction = 3,
-        #[doc(alias = "CXErrorCodeRequestTransactionErrorUnknownCallUUID")]
-        UnknownCallUUID = 4,
-        #[doc(alias = "CXErrorCodeRequestTransactionErrorCallUUIDAlreadyExists")]
-        CallUUIDAlreadyExists = 5,
-        #[doc(alias = "CXErrorCodeRequestTransactionErrorInvalidAction")]
-        InvalidAction = 6,
-        #[doc(alias = "CXErrorCodeRequestTransactionErrorMaximumCallGroupsReached")]
-        MaximumCallGroupsReached = 7,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for CXErrorCode {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
-ns_error_enum!(
-    #[underlying(NSInteger)]
-    pub enum CXErrorCodeCallDirectoryManagerError {
-        #[doc(alias = "CXErrorCodeCallDirectoryManagerErrorUnknown")]
-        Unknown = 0,
-        #[doc(alias = "CXErrorCodeCallDirectoryManagerErrorNoExtensionFound")]
-        NoExtensionFound = 1,
-        #[doc(alias = "CXErrorCodeCallDirectoryManagerErrorLoadingInterrupted")]
-        LoadingInterrupted = 2,
-        #[doc(alias = "CXErrorCodeCallDirectoryManagerErrorEntriesOutOfOrder")]
-        EntriesOutOfOrder = 3,
-        #[doc(alias = "CXErrorCodeCallDirectoryManagerErrorDuplicateEntries")]
-        DuplicateEntries = 4,
-        #[doc(alias = "CXErrorCodeCallDirectoryManagerErrorMaximumEntriesExceeded")]
-        MaximumEntriesExceeded = 5,
-        #[doc(alias = "CXErrorCodeCallDirectoryManagerErrorExtensionDisabled")]
-        ExtensionDisabled = 6,
-        #[doc(alias = "CXErrorCodeCallDirectoryManagerErrorCurrentlyLoading")]
-        CurrentlyLoading = 7,
-        #[doc(alias = "CXErrorCodeCallDirectoryManagerErrorUnexpectedIncrementalRemoval")]
-        UnexpectedIncrementalRemoval = 8,
-    }
-);
+// NS_ERROR_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct CXErrorCodeIncomingCallError(pub NSInteger);
+impl CXErrorCodeIncomingCallError {
+    #[doc(alias = "CXErrorCodeIncomingCallErrorUnknown")]
+    pub const Unknown: Self = Self(0);
+    #[doc(alias = "CXErrorCodeIncomingCallErrorUnentitled")]
+    pub const Unentitled: Self = Self(1);
+    #[doc(alias = "CXErrorCodeIncomingCallErrorCallUUIDAlreadyExists")]
+    pub const CallUUIDAlreadyExists: Self = Self(2);
+    #[doc(alias = "CXErrorCodeIncomingCallErrorFilteredByDoNotDisturb")]
+    pub const FilteredByDoNotDisturb: Self = Self(3);
+    #[doc(alias = "CXErrorCodeIncomingCallErrorFilteredByBlockList")]
+    pub const FilteredByBlockList: Self = Self(4);
+    #[doc(alias = "CXErrorCodeIncomingCallErrorFilteredDuringRestrictedSharingMode")]
+    pub const FilteredDuringRestrictedSharingMode: Self = Self(5);
+}
 
-ns_error_enum!(
-    #[underlying(NSInteger)]
-    pub enum CXErrorCodeNotificationServiceExtensionError {
-        #[doc(alias = "CXErrorCodeNotificationServiceExtensionErrorUnknown")]
-        Unknown = 0,
-        #[doc(alias = "CXErrorCodeNotificationServiceExtensionErrorInvalidClientProcess")]
-        InvalidClientProcess = 1,
-        #[doc(
-            alias = "CXErrorCodeNotificationServiceExtensionErrorMissingNotificationFilteringEntitlement"
-        )]
-        MissingNotificationFilteringEntitlement = 2,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for CXErrorCodeIncomingCallError {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for CXErrorCodeIncomingCallError {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ERROR_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct CXErrorCodeRequestTransactionError(pub NSInteger);
+impl CXErrorCodeRequestTransactionError {
+    #[doc(alias = "CXErrorCodeRequestTransactionErrorUnknown")]
+    pub const Unknown: Self = Self(0);
+    #[doc(alias = "CXErrorCodeRequestTransactionErrorUnentitled")]
+    pub const Unentitled: Self = Self(1);
+    #[doc(alias = "CXErrorCodeRequestTransactionErrorUnknownCallProvider")]
+    pub const UnknownCallProvider: Self = Self(2);
+    #[doc(alias = "CXErrorCodeRequestTransactionErrorEmptyTransaction")]
+    pub const EmptyTransaction: Self = Self(3);
+    #[doc(alias = "CXErrorCodeRequestTransactionErrorUnknownCallUUID")]
+    pub const UnknownCallUUID: Self = Self(4);
+    #[doc(alias = "CXErrorCodeRequestTransactionErrorCallUUIDAlreadyExists")]
+    pub const CallUUIDAlreadyExists: Self = Self(5);
+    #[doc(alias = "CXErrorCodeRequestTransactionErrorInvalidAction")]
+    pub const InvalidAction: Self = Self(6);
+    #[doc(alias = "CXErrorCodeRequestTransactionErrorMaximumCallGroupsReached")]
+    pub const MaximumCallGroupsReached: Self = Self(7);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for CXErrorCodeRequestTransactionError {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for CXErrorCodeRequestTransactionError {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ERROR_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct CXErrorCodeCallDirectoryManagerError(pub NSInteger);
+impl CXErrorCodeCallDirectoryManagerError {
+    #[doc(alias = "CXErrorCodeCallDirectoryManagerErrorUnknown")]
+    pub const Unknown: Self = Self(0);
+    #[doc(alias = "CXErrorCodeCallDirectoryManagerErrorNoExtensionFound")]
+    pub const NoExtensionFound: Self = Self(1);
+    #[doc(alias = "CXErrorCodeCallDirectoryManagerErrorLoadingInterrupted")]
+    pub const LoadingInterrupted: Self = Self(2);
+    #[doc(alias = "CXErrorCodeCallDirectoryManagerErrorEntriesOutOfOrder")]
+    pub const EntriesOutOfOrder: Self = Self(3);
+    #[doc(alias = "CXErrorCodeCallDirectoryManagerErrorDuplicateEntries")]
+    pub const DuplicateEntries: Self = Self(4);
+    #[doc(alias = "CXErrorCodeCallDirectoryManagerErrorMaximumEntriesExceeded")]
+    pub const MaximumEntriesExceeded: Self = Self(5);
+    #[doc(alias = "CXErrorCodeCallDirectoryManagerErrorExtensionDisabled")]
+    pub const ExtensionDisabled: Self = Self(6);
+    #[doc(alias = "CXErrorCodeCallDirectoryManagerErrorCurrentlyLoading")]
+    pub const CurrentlyLoading: Self = Self(7);
+    #[doc(alias = "CXErrorCodeCallDirectoryManagerErrorUnexpectedIncrementalRemoval")]
+    pub const UnexpectedIncrementalRemoval: Self = Self(8);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for CXErrorCodeCallDirectoryManagerError {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for CXErrorCodeCallDirectoryManagerError {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ERROR_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct CXErrorCodeNotificationServiceExtensionError(pub NSInteger);
+impl CXErrorCodeNotificationServiceExtensionError {
+    #[doc(alias = "CXErrorCodeNotificationServiceExtensionErrorUnknown")]
+    pub const Unknown: Self = Self(0);
+    #[doc(alias = "CXErrorCodeNotificationServiceExtensionErrorInvalidClientProcess")]
+    pub const InvalidClientProcess: Self = Self(1);
+    #[doc(
+        alias = "CXErrorCodeNotificationServiceExtensionErrorMissingNotificationFilteringEntitlement"
+    )]
+    pub const MissingNotificationFilteringEntitlement: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for CXErrorCodeNotificationServiceExtensionError {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for CXErrorCodeNotificationServiceExtensionError {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}

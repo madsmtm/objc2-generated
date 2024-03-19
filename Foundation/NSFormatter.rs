@@ -3,35 +3,57 @@
 use crate::common::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSFormattingContext {
-        #[doc(alias = "NSFormattingContextUnknown")]
-        Unknown = 0,
-        #[doc(alias = "NSFormattingContextDynamic")]
-        Dynamic = 1,
-        #[doc(alias = "NSFormattingContextStandalone")]
-        Standalone = 2,
-        #[doc(alias = "NSFormattingContextListItem")]
-        ListItem = 3,
-        #[doc(alias = "NSFormattingContextBeginningOfSentence")]
-        BeginningOfSentence = 4,
-        #[doc(alias = "NSFormattingContextMiddleOfSentence")]
-        MiddleOfSentence = 5,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSFormattingContext(pub NSInteger);
+impl NSFormattingContext {
+    #[doc(alias = "NSFormattingContextUnknown")]
+    pub const Unknown: Self = Self(0);
+    #[doc(alias = "NSFormattingContextDynamic")]
+    pub const Dynamic: Self = Self(1);
+    #[doc(alias = "NSFormattingContextStandalone")]
+    pub const Standalone: Self = Self(2);
+    #[doc(alias = "NSFormattingContextListItem")]
+    pub const ListItem: Self = Self(3);
+    #[doc(alias = "NSFormattingContextBeginningOfSentence")]
+    pub const BeginningOfSentence: Self = Self(4);
+    #[doc(alias = "NSFormattingContextMiddleOfSentence")]
+    pub const MiddleOfSentence: Self = Self(5);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSFormattingUnitStyle {
-        #[doc(alias = "NSFormattingUnitStyleShort")]
-        Short = 1,
-        #[doc(alias = "NSFormattingUnitStyleMedium")]
-        Medium = 2,
-        #[doc(alias = "NSFormattingUnitStyleLong")]
-        Long = 3,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSFormattingContext {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSFormattingContext {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSFormattingUnitStyle(pub NSInteger);
+impl NSFormattingUnitStyle {
+    #[doc(alias = "NSFormattingUnitStyleShort")]
+    pub const Short: Self = Self(1);
+    #[doc(alias = "NSFormattingUnitStyleMedium")]
+    pub const Medium: Self = Self(2);
+    #[doc(alias = "NSFormattingUnitStyleLong")]
+    pub const Long: Self = Self(3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSFormattingUnitStyle {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSFormattingUnitStyle {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

@@ -5,19 +5,30 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSDrawerState {
-        #[deprecated = "Drawers are deprecated; consider using NSSplitViewController"]
-        NSDrawerClosedState = 0,
-        #[deprecated = "Drawers are deprecated; consider using NSSplitViewController"]
-        NSDrawerOpeningState = 1,
-        #[deprecated = "Drawers are deprecated; consider using NSSplitViewController"]
-        NSDrawerOpenState = 2,
-        #[deprecated = "Drawers are deprecated; consider using NSSplitViewController"]
-        NSDrawerClosingState = 3,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSDrawerState(pub NSUInteger);
+impl NSDrawerState {
+    #[deprecated = "Drawers are deprecated; consider using NSSplitViewController"]
+    pub const NSDrawerClosedState: Self = Self(0);
+    #[deprecated = "Drawers are deprecated; consider using NSSplitViewController"]
+    pub const NSDrawerOpeningState: Self = Self(1);
+    #[deprecated = "Drawers are deprecated; consider using NSSplitViewController"]
+    pub const NSDrawerOpenState: Self = Self(2);
+    #[deprecated = "Drawers are deprecated; consider using NSSplitViewController"]
+    pub const NSDrawerClosingState: Self = Self(3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSDrawerState {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSDrawerState {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

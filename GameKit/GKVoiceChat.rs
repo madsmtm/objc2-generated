@@ -5,16 +5,27 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::GameKit::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum GKVoiceChatPlayerState {
-        GKVoiceChatPlayerConnected = 0,
-        GKVoiceChatPlayerDisconnected = 1,
-        GKVoiceChatPlayerSpeaking = 2,
-        GKVoiceChatPlayerSilent = 3,
-        GKVoiceChatPlayerConnecting = 4,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct GKVoiceChatPlayerState(pub NSInteger);
+impl GKVoiceChatPlayerState {
+    pub const GKVoiceChatPlayerConnected: Self = Self(0);
+    pub const GKVoiceChatPlayerDisconnected: Self = Self(1);
+    pub const GKVoiceChatPlayerSpeaking: Self = Self(2);
+    pub const GKVoiceChatPlayerSilent: Self = Self(3);
+    pub const GKVoiceChatPlayerConnecting: Self = Self(4);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for GKVoiceChatPlayerState {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for GKVoiceChatPlayerState {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

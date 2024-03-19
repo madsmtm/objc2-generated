@@ -4,58 +4,87 @@ use crate::common::*;
 use crate::Foundation::*;
 use crate::QuartzCore::*;
 
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type CALayerContentsGravity = NSString;
-);
+pub type CALayerContentsGravity = NSString;
 
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type CALayerContentsFormat = NSString;
-);
+pub type CALayerContentsFormat = NSString;
 
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type CALayerContentsFilter = NSString;
-);
+pub type CALayerContentsFilter = NSString;
 
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type CALayerCornerCurve = NSString;
-);
+pub type CALayerCornerCurve = NSString;
 
-ns_options!(
-    #[underlying(c_uint)]
-    pub enum CAAutoresizingMask {
-        kCALayerNotSizable = 0,
-        kCALayerMinXMargin = 1 << 0,
-        kCALayerWidthSizable = 1 << 1,
-        kCALayerMaxXMargin = 1 << 2,
-        kCALayerMinYMargin = 1 << 3,
-        kCALayerHeightSizable = 1 << 4,
-        kCALayerMaxYMargin = 1 << 5,
-    }
-);
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct CAAutoresizingMask(pub c_uint);
+impl CAAutoresizingMask {
+    pub const kCALayerNotSizable: Self = Self(0);
+    pub const kCALayerMinXMargin: Self = Self(1 << 0);
+    pub const kCALayerWidthSizable: Self = Self(1 << 1);
+    pub const kCALayerMaxXMargin: Self = Self(1 << 2);
+    pub const kCALayerMinYMargin: Self = Self(1 << 3);
+    pub const kCALayerHeightSizable: Self = Self(1 << 4);
+    pub const kCALayerMaxYMargin: Self = Self(1 << 5);
+}
 
-ns_options!(
-    #[underlying(c_uint)]
-    pub enum CAEdgeAntialiasingMask {
-        kCALayerLeftEdge = 1 << 0,
-        kCALayerRightEdge = 1 << 1,
-        kCALayerBottomEdge = 1 << 2,
-        kCALayerTopEdge = 1 << 3,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for CAAutoresizingMask {
+    const ENCODING: Encoding = c_uint::ENCODING;
+}
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum CACornerMask {
-        kCALayerMinXMinYCorner = 1 << 0,
-        kCALayerMaxXMinYCorner = 1 << 1,
-        kCALayerMinXMaxYCorner = 1 << 2,
-        kCALayerMaxXMaxYCorner = 1 << 3,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for CAAutoresizingMask {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct CAEdgeAntialiasingMask(pub c_uint);
+impl CAEdgeAntialiasingMask {
+    pub const kCALayerLeftEdge: Self = Self(1 << 0);
+    pub const kCALayerRightEdge: Self = Self(1 << 1);
+    pub const kCALayerBottomEdge: Self = Self(1 << 2);
+    pub const kCALayerTopEdge: Self = Self(1 << 3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for CAEdgeAntialiasingMask {
+    const ENCODING: Encoding = c_uint::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for CAEdgeAntialiasingMask {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct CACornerMask(pub NSUInteger);
+impl CACornerMask {
+    pub const kCALayerMinXMinYCorner: Self = Self(1 << 0);
+    pub const kCALayerMaxXMinYCorner: Self = Self(1 << 1);
+    pub const kCALayerMinXMaxYCorner: Self = Self(1 << 2);
+    pub const kCALayerMaxXMaxYCorner: Self = Self(1 << 3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for CACornerMask {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for CACornerMask {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

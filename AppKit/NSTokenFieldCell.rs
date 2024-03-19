@@ -5,21 +5,32 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSTokenStyle {
-        #[doc(alias = "NSTokenStyleDefault")]
-        Default = 0,
-        #[doc(alias = "NSTokenStyleNone")]
-        None = 1,
-        #[doc(alias = "NSTokenStyleRounded")]
-        Rounded = 2,
-        #[doc(alias = "NSTokenStyleSquared")]
-        Squared = 3,
-        #[doc(alias = "NSTokenStylePlainSquared")]
-        PlainSquared = 4,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSTokenStyle(pub NSUInteger);
+impl NSTokenStyle {
+    #[doc(alias = "NSTokenStyleDefault")]
+    pub const Default: Self = Self(0);
+    #[doc(alias = "NSTokenStyleNone")]
+    pub const None: Self = Self(1);
+    #[doc(alias = "NSTokenStyleRounded")]
+    pub const Rounded: Self = Self(2);
+    #[doc(alias = "NSTokenStyleSquared")]
+    pub const Squared: Self = Self(3);
+    #[doc(alias = "NSTokenStylePlainSquared")]
+    pub const PlainSquared: Self = Self(4);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSTokenStyle {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSTokenStyle {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

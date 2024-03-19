@@ -4,27 +4,38 @@ use crate::common::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSAttributeType {
-        NSUndefinedAttributeType = 0,
-        NSInteger16AttributeType = 100,
-        NSInteger32AttributeType = 200,
-        NSInteger64AttributeType = 300,
-        NSDecimalAttributeType = 400,
-        NSDoubleAttributeType = 500,
-        NSFloatAttributeType = 600,
-        NSStringAttributeType = 700,
-        NSBooleanAttributeType = 800,
-        NSDateAttributeType = 900,
-        NSBinaryDataAttributeType = 1000,
-        NSUUIDAttributeType = 1100,
-        NSURIAttributeType = 1200,
-        NSTransformableAttributeType = 1800,
-        NSObjectIDAttributeType = 2000,
-        NSCompositeAttributeType = 2100,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSAttributeType(pub NSUInteger);
+impl NSAttributeType {
+    pub const NSUndefinedAttributeType: Self = Self(0);
+    pub const NSInteger16AttributeType: Self = Self(100);
+    pub const NSInteger32AttributeType: Self = Self(200);
+    pub const NSInteger64AttributeType: Self = Self(300);
+    pub const NSDecimalAttributeType: Self = Self(400);
+    pub const NSDoubleAttributeType: Self = Self(500);
+    pub const NSFloatAttributeType: Self = Self(600);
+    pub const NSStringAttributeType: Self = Self(700);
+    pub const NSBooleanAttributeType: Self = Self(800);
+    pub const NSDateAttributeType: Self = Self(900);
+    pub const NSBinaryDataAttributeType: Self = Self(1000);
+    pub const NSUUIDAttributeType: Self = Self(1100);
+    pub const NSURIAttributeType: Self = Self(1200);
+    pub const NSTransformableAttributeType: Self = Self(1800);
+    pub const NSObjectIDAttributeType: Self = Self(2000);
+    pub const NSCompositeAttributeType: Self = Self(2100);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSAttributeType {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSAttributeType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

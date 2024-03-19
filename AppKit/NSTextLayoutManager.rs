@@ -5,35 +5,57 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSTextLayoutManagerSegmentType {
-        #[doc(alias = "NSTextLayoutManagerSegmentTypeStandard")]
-        Standard = 0,
-        #[doc(alias = "NSTextLayoutManagerSegmentTypeSelection")]
-        Selection = 1,
-        #[doc(alias = "NSTextLayoutManagerSegmentTypeHighlight")]
-        Highlight = 2,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSTextLayoutManagerSegmentType(pub NSInteger);
+impl NSTextLayoutManagerSegmentType {
+    #[doc(alias = "NSTextLayoutManagerSegmentTypeStandard")]
+    pub const Standard: Self = Self(0);
+    #[doc(alias = "NSTextLayoutManagerSegmentTypeSelection")]
+    pub const Selection: Self = Self(1);
+    #[doc(alias = "NSTextLayoutManagerSegmentTypeHighlight")]
+    pub const Highlight: Self = Self(2);
+}
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSTextLayoutManagerSegmentOptions {
-        #[doc(alias = "NSTextLayoutManagerSegmentOptionsNone")]
-        None = 0,
-        #[doc(alias = "NSTextLayoutManagerSegmentOptionsRangeNotRequired")]
-        RangeNotRequired = 1 << 0,
-        #[doc(alias = "NSTextLayoutManagerSegmentOptionsMiddleFragmentsExcluded")]
-        MiddleFragmentsExcluded = 1 << 1,
-        #[doc(alias = "NSTextLayoutManagerSegmentOptionsHeadSegmentExtended")]
-        HeadSegmentExtended = 1 << 2,
-        #[doc(alias = "NSTextLayoutManagerSegmentOptionsTailSegmentExtended")]
-        TailSegmentExtended = 1 << 3,
-        #[doc(alias = "NSTextLayoutManagerSegmentOptionsUpstreamAffinity")]
-        UpstreamAffinity = 1 << 4,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSTextLayoutManagerSegmentType {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSTextLayoutManagerSegmentType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSTextLayoutManagerSegmentOptions(pub NSUInteger);
+impl NSTextLayoutManagerSegmentOptions {
+    #[doc(alias = "NSTextLayoutManagerSegmentOptionsNone")]
+    pub const None: Self = Self(0);
+    #[doc(alias = "NSTextLayoutManagerSegmentOptionsRangeNotRequired")]
+    pub const RangeNotRequired: Self = Self(1 << 0);
+    #[doc(alias = "NSTextLayoutManagerSegmentOptionsMiddleFragmentsExcluded")]
+    pub const MiddleFragmentsExcluded: Self = Self(1 << 1);
+    #[doc(alias = "NSTextLayoutManagerSegmentOptionsHeadSegmentExtended")]
+    pub const HeadSegmentExtended: Self = Self(1 << 2);
+    #[doc(alias = "NSTextLayoutManagerSegmentOptionsTailSegmentExtended")]
+    pub const TailSegmentExtended: Self = Self(1 << 3);
+    #[doc(alias = "NSTextLayoutManagerSegmentOptionsUpstreamAffinity")]
+    pub const UpstreamAffinity: Self = Self(1 << 4);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSTextLayoutManagerSegmentOptions {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSTextLayoutManagerSegmentOptions {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

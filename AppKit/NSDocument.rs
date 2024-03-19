@@ -5,32 +5,54 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSDocumentChangeType {
-        NSChangeDone = 0,
-        NSChangeUndone = 1,
-        NSChangeRedone = 5,
-        NSChangeCleared = 2,
-        NSChangeReadOtherContents = 3,
-        NSChangeAutosaved = 4,
-        NSChangeDiscardable = 256,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSDocumentChangeType(pub NSUInteger);
+impl NSDocumentChangeType {
+    pub const NSChangeDone: Self = Self(0);
+    pub const NSChangeUndone: Self = Self(1);
+    pub const NSChangeRedone: Self = Self(5);
+    pub const NSChangeCleared: Self = Self(2);
+    pub const NSChangeReadOtherContents: Self = Self(3);
+    pub const NSChangeAutosaved: Self = Self(4);
+    pub const NSChangeDiscardable: Self = Self(256);
+}
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSSaveOperationType {
-        NSSaveOperation = 0,
-        NSSaveAsOperation = 1,
-        NSSaveToOperation = 2,
-        NSAutosaveInPlaceOperation = 4,
-        NSAutosaveElsewhereOperation = 3,
-        NSAutosaveAsOperation = 5,
-        #[deprecated = "Use NSAutosaveElsewhereOperation instead"]
-        NSAutosaveOperation = 3,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSDocumentChangeType {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSDocumentChangeType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSSaveOperationType(pub NSUInteger);
+impl NSSaveOperationType {
+    pub const NSSaveOperation: Self = Self(0);
+    pub const NSSaveAsOperation: Self = Self(1);
+    pub const NSSaveToOperation: Self = Self(2);
+    pub const NSAutosaveInPlaceOperation: Self = Self(4);
+    pub const NSAutosaveElsewhereOperation: Self = Self(3);
+    pub const NSAutosaveAsOperation: Self = Self(5);
+    #[deprecated = "Use NSAutosaveElsewhereOperation instead"]
+    pub const NSAutosaveOperation: Self = Self(3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSSaveOperationType {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSSaveOperationType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

@@ -3,14 +3,25 @@
 use crate::common::*;
 use crate::Foundation::*;
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSOrderedCollectionDifferenceCalculationOptions {
-        NSOrderedCollectionDifferenceCalculationOmitInsertedObjects = 1 << 0,
-        NSOrderedCollectionDifferenceCalculationOmitRemovedObjects = 1 << 1,
-        NSOrderedCollectionDifferenceCalculationInferMoves = 1 << 2,
-    }
-);
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSOrderedCollectionDifferenceCalculationOptions(pub NSUInteger);
+impl NSOrderedCollectionDifferenceCalculationOptions {
+    pub const NSOrderedCollectionDifferenceCalculationOmitInsertedObjects: Self = Self(1 << 0);
+    pub const NSOrderedCollectionDifferenceCalculationOmitRemovedObjects: Self = Self(1 << 1);
+    pub const NSOrderedCollectionDifferenceCalculationInferMoves: Self = Self(1 << 2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSOrderedCollectionDifferenceCalculationOptions {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSOrderedCollectionDifferenceCalculationOptions {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 __inner_extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

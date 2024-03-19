@@ -5,19 +5,30 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::GameKit::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum GKMatchmakingMode {
-        #[doc(alias = "GKMatchmakingModeDefault")]
-        Default = 0,
-        #[doc(alias = "GKMatchmakingModeNearbyOnly")]
-        NearbyOnly = 1,
-        #[doc(alias = "GKMatchmakingModeAutomatchOnly")]
-        AutomatchOnly = 2,
-        #[doc(alias = "GKMatchmakingModeInviteOnly")]
-        InviteOnly = 3,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct GKMatchmakingMode(pub NSInteger);
+impl GKMatchmakingMode {
+    #[doc(alias = "GKMatchmakingModeDefault")]
+    pub const Default: Self = Self(0);
+    #[doc(alias = "GKMatchmakingModeNearbyOnly")]
+    pub const NearbyOnly: Self = Self(1);
+    #[doc(alias = "GKMatchmakingModeAutomatchOnly")]
+    pub const AutomatchOnly: Self = Self(2);
+    #[doc(alias = "GKMatchmakingModeInviteOnly")]
+    pub const InviteOnly: Self = Self(3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for GKMatchmakingMode {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for GKMatchmakingMode {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

@@ -5,17 +5,28 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::WebKit::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum WKInactiveSchedulingPolicy {
-        #[doc(alias = "WKInactiveSchedulingPolicySuspend")]
-        Suspend = 0,
-        #[doc(alias = "WKInactiveSchedulingPolicyThrottle")]
-        Throttle = 1,
-        #[doc(alias = "WKInactiveSchedulingPolicyNone")]
-        None = 2,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct WKInactiveSchedulingPolicy(pub NSInteger);
+impl WKInactiveSchedulingPolicy {
+    #[doc(alias = "WKInactiveSchedulingPolicySuspend")]
+    pub const Suspend: Self = Self(0);
+    #[doc(alias = "WKInactiveSchedulingPolicyThrottle")]
+    pub const Throttle: Self = Self(1);
+    #[doc(alias = "WKInactiveSchedulingPolicyNone")]
+    pub const None: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for WKInactiveSchedulingPolicy {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for WKInactiveSchedulingPolicy {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

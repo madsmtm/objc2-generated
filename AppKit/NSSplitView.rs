@@ -8,17 +8,28 @@ use crate::Foundation::*;
 #[cfg(feature = "Foundation_NSString")]
 pub type NSSplitViewAutosaveName = NSString;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSSplitViewDividerStyle {
-        #[doc(alias = "NSSplitViewDividerStyleThick")]
-        Thick = 1,
-        #[doc(alias = "NSSplitViewDividerStyleThin")]
-        Thin = 2,
-        #[doc(alias = "NSSplitViewDividerStylePaneSplitter")]
-        PaneSplitter = 3,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSSplitViewDividerStyle(pub NSInteger);
+impl NSSplitViewDividerStyle {
+    #[doc(alias = "NSSplitViewDividerStyleThick")]
+    pub const Thick: Self = Self(1);
+    #[doc(alias = "NSSplitViewDividerStyleThin")]
+    pub const Thin: Self = Self(2);
+    #[doc(alias = "NSSplitViewDividerStylePaneSplitter")]
+    pub const PaneSplitter: Self = Self(3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSSplitViewDividerStyle {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSSplitViewDividerStyle {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

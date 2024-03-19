@@ -4,30 +4,53 @@ use crate::common::*;
 use crate::Foundation::*;
 use crate::Metal::*;
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum MTLAccelerationStructureUsage {
-        #[doc(alias = "MTLAccelerationStructureUsageNone")]
-        None = 0,
-        #[doc(alias = "MTLAccelerationStructureUsageRefit")]
-        Refit = 1 << 0,
-        #[doc(alias = "MTLAccelerationStructureUsagePreferFastBuild")]
-        PreferFastBuild = 1 << 1,
-        #[doc(alias = "MTLAccelerationStructureUsageExtendedLimits")]
-        ExtendedLimits = 1 << 2,
-    }
-);
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MTLAccelerationStructureUsage(pub NSUInteger);
+impl MTLAccelerationStructureUsage {
+    #[doc(alias = "MTLAccelerationStructureUsageNone")]
+    pub const None: Self = Self(0);
+    #[doc(alias = "MTLAccelerationStructureUsageRefit")]
+    pub const Refit: Self = Self(1 << 0);
+    #[doc(alias = "MTLAccelerationStructureUsagePreferFastBuild")]
+    pub const PreferFastBuild: Self = Self(1 << 1);
+    #[doc(alias = "MTLAccelerationStructureUsageExtendedLimits")]
+    pub const ExtendedLimits: Self = Self(1 << 2);
+}
 
-ns_options!(
-    #[underlying(u32)]
-    pub enum MTLAccelerationStructureInstanceOptions {
-        MTLAccelerationStructureInstanceOptionNone = 0,
-        MTLAccelerationStructureInstanceOptionDisableTriangleCulling = 1 << 0,
-        MTLAccelerationStructureInstanceOptionTriangleFrontFacingWindingCounterClockwise = 1 << 1,
-        MTLAccelerationStructureInstanceOptionOpaque = 1 << 2,
-        MTLAccelerationStructureInstanceOptionNonOpaque = 1 << 3,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLAccelerationStructureUsage {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLAccelerationStructureUsage {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MTLAccelerationStructureInstanceOptions(pub u32);
+impl MTLAccelerationStructureInstanceOptions {
+    pub const MTLAccelerationStructureInstanceOptionNone: Self = Self(0);
+    pub const MTLAccelerationStructureInstanceOptionDisableTriangleCulling: Self = Self(1 << 0);
+    pub const MTLAccelerationStructureInstanceOptionTriangleFrontFacingWindingCounterClockwise:
+        Self = Self(1 << 1);
+    pub const MTLAccelerationStructureInstanceOptionOpaque: Self = Self(1 << 2);
+    pub const MTLAccelerationStructureInstanceOptionNonOpaque: Self = Self(1 << 3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLAccelerationStructureInstanceOptions {
+    const ENCODING: Encoding = u32::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLAccelerationStructureInstanceOptions {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -156,15 +179,26 @@ extern_methods!(
     }
 );
 
-ns_enum!(
-    #[underlying(u32)]
-    pub enum MTLMotionBorderMode {
-        #[doc(alias = "MTLMotionBorderModeClamp")]
-        Clamp = 0,
-        #[doc(alias = "MTLMotionBorderModeVanish")]
-        Vanish = 1,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MTLMotionBorderMode(pub u32);
+impl MTLMotionBorderMode {
+    #[doc(alias = "MTLMotionBorderModeClamp")]
+    pub const Clamp: Self = Self(0);
+    #[doc(alias = "MTLMotionBorderModeVanish")]
+    pub const Vanish: Self = Self(1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLMotionBorderMode {
+    const ENCODING: Encoding = u32::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLMotionBorderMode {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -628,41 +662,74 @@ extern_methods!(
     }
 );
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum MTLCurveType {
-        #[doc(alias = "MTLCurveTypeRound")]
-        Round = 0,
-        #[doc(alias = "MTLCurveTypeFlat")]
-        Flat = 1,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MTLCurveType(pub NSInteger);
+impl MTLCurveType {
+    #[doc(alias = "MTLCurveTypeRound")]
+    pub const Round: Self = Self(0);
+    #[doc(alias = "MTLCurveTypeFlat")]
+    pub const Flat: Self = Self(1);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum MTLCurveBasis {
-        #[doc(alias = "MTLCurveBasisBSpline")]
-        BSpline = 0,
-        #[doc(alias = "MTLCurveBasisCatmullRom")]
-        CatmullRom = 1,
-        #[doc(alias = "MTLCurveBasisLinear")]
-        Linear = 2,
-        #[doc(alias = "MTLCurveBasisBezier")]
-        Bezier = 3,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLCurveType {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum MTLCurveEndCaps {
-        #[doc(alias = "MTLCurveEndCapsNone")]
-        None = 0,
-        #[doc(alias = "MTLCurveEndCapsDisk")]
-        Disk = 1,
-        #[doc(alias = "MTLCurveEndCapsSphere")]
-        Sphere = 2,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLCurveType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MTLCurveBasis(pub NSInteger);
+impl MTLCurveBasis {
+    #[doc(alias = "MTLCurveBasisBSpline")]
+    pub const BSpline: Self = Self(0);
+    #[doc(alias = "MTLCurveBasisCatmullRom")]
+    pub const CatmullRom: Self = Self(1);
+    #[doc(alias = "MTLCurveBasisLinear")]
+    pub const Linear: Self = Self(2);
+    #[doc(alias = "MTLCurveBasisBezier")]
+    pub const Bezier: Self = Self(3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLCurveBasis {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLCurveBasis {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MTLCurveEndCaps(pub NSInteger);
+impl MTLCurveEndCaps {
+    #[doc(alias = "MTLCurveEndCapsNone")]
+    pub const None: Self = Self(0);
+    #[doc(alias = "MTLCurveEndCapsDisk")]
+    pub const Disk: Self = Self(1);
+    #[doc(alias = "MTLCurveEndCapsSphere")]
+    pub const Sphere: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLCurveEndCaps {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLCurveEndCaps {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -979,21 +1046,32 @@ extern_struct!(
     }
 );
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum MTLAccelerationStructureInstanceDescriptorType {
-        #[doc(alias = "MTLAccelerationStructureInstanceDescriptorTypeDefault")]
-        Default = 0,
-        #[doc(alias = "MTLAccelerationStructureInstanceDescriptorTypeUserID")]
-        UserID = 1,
-        #[doc(alias = "MTLAccelerationStructureInstanceDescriptorTypeMotion")]
-        Motion = 2,
-        #[doc(alias = "MTLAccelerationStructureInstanceDescriptorTypeIndirect")]
-        Indirect = 3,
-        #[doc(alias = "MTLAccelerationStructureInstanceDescriptorTypeIndirectMotion")]
-        IndirectMotion = 4,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MTLAccelerationStructureInstanceDescriptorType(pub NSUInteger);
+impl MTLAccelerationStructureInstanceDescriptorType {
+    #[doc(alias = "MTLAccelerationStructureInstanceDescriptorTypeDefault")]
+    pub const Default: Self = Self(0);
+    #[doc(alias = "MTLAccelerationStructureInstanceDescriptorTypeUserID")]
+    pub const UserID: Self = Self(1);
+    #[doc(alias = "MTLAccelerationStructureInstanceDescriptorTypeMotion")]
+    pub const Motion: Self = Self(2);
+    #[doc(alias = "MTLAccelerationStructureInstanceDescriptorTypeIndirect")]
+    pub const Indirect: Self = Self(3);
+    #[doc(alias = "MTLAccelerationStructureInstanceDescriptorTypeIndirectMotion")]
+    pub const IndirectMotion: Self = Self(4);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLAccelerationStructureInstanceDescriptorType {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLAccelerationStructureInstanceDescriptorType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_struct!(
     #[encoding_name("?")]

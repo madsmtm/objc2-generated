@@ -12,46 +12,57 @@ extern "C" {
     pub static EKErrorDomain: Option<&'static NSString>;
 }
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum EKErrorCode {
-        EKErrorEventNotMutable = 0,
-        EKErrorNoCalendar = 1,
-        EKErrorNoStartDate = 2,
-        EKErrorNoEndDate = 3,
-        EKErrorDatesInverted = 4,
-        EKErrorInternalFailure = 5,
-        EKErrorCalendarReadOnly = 6,
-        EKErrorDurationGreaterThanRecurrence = 7,
-        EKErrorAlarmGreaterThanRecurrence = 8,
-        EKErrorStartDateTooFarInFuture = 9,
-        EKErrorStartDateCollidesWithOtherOccurrence = 10,
-        EKErrorObjectBelongsToDifferentStore = 11,
-        EKErrorInvitesCannotBeMoved = 12,
-        EKErrorInvalidSpan = 13,
-        EKErrorCalendarHasNoSource = 14,
-        EKErrorCalendarSourceCannotBeModified = 15,
-        EKErrorCalendarIsImmutable = 16,
-        EKErrorSourceDoesNotAllowCalendarAddDelete = 17,
-        EKErrorRecurringReminderRequiresDueDate = 18,
-        EKErrorStructuredLocationsNotSupported = 19,
-        EKErrorReminderLocationsNotSupported = 20,
-        EKErrorAlarmProximityNotSupported = 21,
-        EKErrorCalendarDoesNotAllowEvents = 22,
-        EKErrorCalendarDoesNotAllowReminders = 23,
-        EKErrorSourceDoesNotAllowReminders = 24,
-        EKErrorSourceDoesNotAllowEvents = 25,
-        EKErrorPriorityIsInvalid = 26,
-        EKErrorInvalidEntityType = 27,
-        EKErrorProcedureAlarmsNotMutable = 28,
-        EKErrorEventStoreNotAuthorized = 29,
-        EKErrorOSNotSupported = 30,
-        EKErrorInvalidInviteReplyCalendar = 31,
-        EKErrorNotificationsCollectionFlagNotSet = 32,
-        EKErrorSourceMismatch = 33,
-        EKErrorNotificationCollectionMismatch = 34,
-        EKErrorNotificationSavedWithoutCollection = 35,
-        EKErrorReminderAlarmContainsEmailOrUrl = 36,
-        EKErrorLast = 37,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct EKErrorCode(pub NSInteger);
+impl EKErrorCode {
+    pub const EKErrorEventNotMutable: Self = Self(0);
+    pub const EKErrorNoCalendar: Self = Self(1);
+    pub const EKErrorNoStartDate: Self = Self(2);
+    pub const EKErrorNoEndDate: Self = Self(3);
+    pub const EKErrorDatesInverted: Self = Self(4);
+    pub const EKErrorInternalFailure: Self = Self(5);
+    pub const EKErrorCalendarReadOnly: Self = Self(6);
+    pub const EKErrorDurationGreaterThanRecurrence: Self = Self(7);
+    pub const EKErrorAlarmGreaterThanRecurrence: Self = Self(8);
+    pub const EKErrorStartDateTooFarInFuture: Self = Self(9);
+    pub const EKErrorStartDateCollidesWithOtherOccurrence: Self = Self(10);
+    pub const EKErrorObjectBelongsToDifferentStore: Self = Self(11);
+    pub const EKErrorInvitesCannotBeMoved: Self = Self(12);
+    pub const EKErrorInvalidSpan: Self = Self(13);
+    pub const EKErrorCalendarHasNoSource: Self = Self(14);
+    pub const EKErrorCalendarSourceCannotBeModified: Self = Self(15);
+    pub const EKErrorCalendarIsImmutable: Self = Self(16);
+    pub const EKErrorSourceDoesNotAllowCalendarAddDelete: Self = Self(17);
+    pub const EKErrorRecurringReminderRequiresDueDate: Self = Self(18);
+    pub const EKErrorStructuredLocationsNotSupported: Self = Self(19);
+    pub const EKErrorReminderLocationsNotSupported: Self = Self(20);
+    pub const EKErrorAlarmProximityNotSupported: Self = Self(21);
+    pub const EKErrorCalendarDoesNotAllowEvents: Self = Self(22);
+    pub const EKErrorCalendarDoesNotAllowReminders: Self = Self(23);
+    pub const EKErrorSourceDoesNotAllowReminders: Self = Self(24);
+    pub const EKErrorSourceDoesNotAllowEvents: Self = Self(25);
+    pub const EKErrorPriorityIsInvalid: Self = Self(26);
+    pub const EKErrorInvalidEntityType: Self = Self(27);
+    pub const EKErrorProcedureAlarmsNotMutable: Self = Self(28);
+    pub const EKErrorEventStoreNotAuthorized: Self = Self(29);
+    pub const EKErrorOSNotSupported: Self = Self(30);
+    pub const EKErrorInvalidInviteReplyCalendar: Self = Self(31);
+    pub const EKErrorNotificationsCollectionFlagNotSet: Self = Self(32);
+    pub const EKErrorSourceMismatch: Self = Self(33);
+    pub const EKErrorNotificationCollectionMismatch: Self = Self(34);
+    pub const EKErrorNotificationSavedWithoutCollection: Self = Self(35);
+    pub const EKErrorReminderAlarmContainsEmailOrUrl: Self = Self(36);
+    pub const EKErrorLast: Self = Self(37);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for EKErrorCode {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for EKErrorCode {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}

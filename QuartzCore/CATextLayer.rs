@@ -4,15 +4,13 @@ use crate::common::*;
 use crate::Foundation::*;
 use crate::QuartzCore::*;
 
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type CATextLayerTruncationMode = NSString;
-);
+pub type CATextLayerTruncationMode = NSString;
 
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type CATextLayerAlignmentMode = NSString;
-);
+pub type CATextLayerAlignmentMode = NSString;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

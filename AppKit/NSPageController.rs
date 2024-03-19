@@ -8,17 +8,28 @@ use crate::Foundation::*;
 #[cfg(feature = "Foundation_NSString")]
 pub type NSPageControllerObjectIdentifier = NSString;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSPageControllerTransitionStyle {
-        #[doc(alias = "NSPageControllerTransitionStyleStackHistory")]
-        StackHistory = 0,
-        #[doc(alias = "NSPageControllerTransitionStyleStackBook")]
-        StackBook = 1,
-        #[doc(alias = "NSPageControllerTransitionStyleHorizontalStrip")]
-        HorizontalStrip = 2,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSPageControllerTransitionStyle(pub NSInteger);
+impl NSPageControllerTransitionStyle {
+    #[doc(alias = "NSPageControllerTransitionStyleStackHistory")]
+    pub const StackHistory: Self = Self(0);
+    #[doc(alias = "NSPageControllerTransitionStyleStackBook")]
+    pub const StackBook: Self = Self(1);
+    #[doc(alias = "NSPageControllerTransitionStyleHorizontalStrip")]
+    pub const HorizontalStrip: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSPageControllerTransitionStyle {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSPageControllerTransitionStyle {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

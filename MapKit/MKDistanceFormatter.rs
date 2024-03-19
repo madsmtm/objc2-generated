@@ -7,31 +7,53 @@ use crate::CoreLocation::*;
 use crate::Foundation::*;
 use crate::MapKit::*;
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum MKDistanceFormatterUnits {
-        #[doc(alias = "MKDistanceFormatterUnitsDefault")]
-        Default = 0,
-        #[doc(alias = "MKDistanceFormatterUnitsMetric")]
-        Metric = 1,
-        #[doc(alias = "MKDistanceFormatterUnitsImperial")]
-        Imperial = 2,
-        #[doc(alias = "MKDistanceFormatterUnitsImperialWithYards")]
-        ImperialWithYards = 3,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MKDistanceFormatterUnits(pub NSUInteger);
+impl MKDistanceFormatterUnits {
+    #[doc(alias = "MKDistanceFormatterUnitsDefault")]
+    pub const Default: Self = Self(0);
+    #[doc(alias = "MKDistanceFormatterUnitsMetric")]
+    pub const Metric: Self = Self(1);
+    #[doc(alias = "MKDistanceFormatterUnitsImperial")]
+    pub const Imperial: Self = Self(2);
+    #[doc(alias = "MKDistanceFormatterUnitsImperialWithYards")]
+    pub const ImperialWithYards: Self = Self(3);
+}
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum MKDistanceFormatterUnitStyle {
-        #[doc(alias = "MKDistanceFormatterUnitStyleDefault")]
-        Default = 0,
-        #[doc(alias = "MKDistanceFormatterUnitStyleAbbreviated")]
-        Abbreviated = 1,
-        #[doc(alias = "MKDistanceFormatterUnitStyleFull")]
-        Full = 2,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MKDistanceFormatterUnits {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MKDistanceFormatterUnits {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MKDistanceFormatterUnitStyle(pub NSUInteger);
+impl MKDistanceFormatterUnitStyle {
+    #[doc(alias = "MKDistanceFormatterUnitStyleDefault")]
+    pub const Default: Self = Self(0);
+    #[doc(alias = "MKDistanceFormatterUnitStyleAbbreviated")]
+    pub const Abbreviated: Self = Self(1);
+    #[doc(alias = "MKDistanceFormatterUnitStyleFull")]
+    pub const Full: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MKDistanceFormatterUnitStyle {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MKDistanceFormatterUnitStyle {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

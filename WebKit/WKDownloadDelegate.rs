@@ -5,15 +5,26 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::WebKit::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum WKDownloadRedirectPolicy {
-        #[doc(alias = "WKDownloadRedirectPolicyCancel")]
-        Cancel = 0,
-        #[doc(alias = "WKDownloadRedirectPolicyAllow")]
-        Allow = 1,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct WKDownloadRedirectPolicy(pub NSInteger);
+impl WKDownloadRedirectPolicy {
+    #[doc(alias = "WKDownloadRedirectPolicyCancel")]
+    pub const Cancel: Self = Self(0);
+    #[doc(alias = "WKDownloadRedirectPolicyAllow")]
+    pub const Allow: Self = Self(1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for WKDownloadRedirectPolicy {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for WKDownloadRedirectPolicy {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_protocol!(
     pub unsafe trait WKDownloadDelegate: NSObjectProtocol {

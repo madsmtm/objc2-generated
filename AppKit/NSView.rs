@@ -5,69 +5,113 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSAutoresizingMaskOptions {
-        NSViewNotSizable = 0,
-        NSViewMinXMargin = 1,
-        NSViewWidthSizable = 2,
-        NSViewMaxXMargin = 4,
-        NSViewMinYMargin = 8,
-        NSViewHeightSizable = 16,
-        NSViewMaxYMargin = 32,
-    }
-);
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSAutoresizingMaskOptions(pub NSUInteger);
+impl NSAutoresizingMaskOptions {
+    pub const NSViewNotSizable: Self = Self(0);
+    pub const NSViewMinXMargin: Self = Self(1);
+    pub const NSViewWidthSizable: Self = Self(2);
+    pub const NSViewMaxXMargin: Self = Self(4);
+    pub const NSViewMinYMargin: Self = Self(8);
+    pub const NSViewHeightSizable: Self = Self(16);
+    pub const NSViewMaxYMargin: Self = Self(32);
+}
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSBorderType {
-        NSNoBorder = 0,
-        NSLineBorder = 1,
-        NSBezelBorder = 2,
-        NSGrooveBorder = 3,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSAutoresizingMaskOptions {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSViewLayerContentsRedrawPolicy {
-        NSViewLayerContentsRedrawNever = 0,
-        NSViewLayerContentsRedrawOnSetNeedsDisplay = 1,
-        NSViewLayerContentsRedrawDuringViewResize = 2,
-        NSViewLayerContentsRedrawBeforeViewResize = 3,
-        NSViewLayerContentsRedrawCrossfade = 4,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSAutoresizingMaskOptions {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSViewLayerContentsPlacement {
-        #[doc(alias = "NSViewLayerContentsPlacementScaleAxesIndependently")]
-        ScaleAxesIndependently = 0,
-        #[doc(alias = "NSViewLayerContentsPlacementScaleProportionallyToFit")]
-        ScaleProportionallyToFit = 1,
-        #[doc(alias = "NSViewLayerContentsPlacementScaleProportionallyToFill")]
-        ScaleProportionallyToFill = 2,
-        #[doc(alias = "NSViewLayerContentsPlacementCenter")]
-        Center = 3,
-        #[doc(alias = "NSViewLayerContentsPlacementTop")]
-        Top = 4,
-        #[doc(alias = "NSViewLayerContentsPlacementTopRight")]
-        TopRight = 5,
-        #[doc(alias = "NSViewLayerContentsPlacementRight")]
-        Right = 6,
-        #[doc(alias = "NSViewLayerContentsPlacementBottomRight")]
-        BottomRight = 7,
-        #[doc(alias = "NSViewLayerContentsPlacementBottom")]
-        Bottom = 8,
-        #[doc(alias = "NSViewLayerContentsPlacementBottomLeft")]
-        BottomLeft = 9,
-        #[doc(alias = "NSViewLayerContentsPlacementLeft")]
-        Left = 10,
-        #[doc(alias = "NSViewLayerContentsPlacementTopLeft")]
-        TopLeft = 11,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSBorderType(pub NSUInteger);
+impl NSBorderType {
+    pub const NSNoBorder: Self = Self(0);
+    pub const NSLineBorder: Self = Self(1);
+    pub const NSBezelBorder: Self = Self(2);
+    pub const NSGrooveBorder: Self = Self(3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSBorderType {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSBorderType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSViewLayerContentsRedrawPolicy(pub NSInteger);
+impl NSViewLayerContentsRedrawPolicy {
+    pub const NSViewLayerContentsRedrawNever: Self = Self(0);
+    pub const NSViewLayerContentsRedrawOnSetNeedsDisplay: Self = Self(1);
+    pub const NSViewLayerContentsRedrawDuringViewResize: Self = Self(2);
+    pub const NSViewLayerContentsRedrawBeforeViewResize: Self = Self(3);
+    pub const NSViewLayerContentsRedrawCrossfade: Self = Self(4);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSViewLayerContentsRedrawPolicy {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSViewLayerContentsRedrawPolicy {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSViewLayerContentsPlacement(pub NSInteger);
+impl NSViewLayerContentsPlacement {
+    #[doc(alias = "NSViewLayerContentsPlacementScaleAxesIndependently")]
+    pub const ScaleAxesIndependently: Self = Self(0);
+    #[doc(alias = "NSViewLayerContentsPlacementScaleProportionallyToFit")]
+    pub const ScaleProportionallyToFit: Self = Self(1);
+    #[doc(alias = "NSViewLayerContentsPlacementScaleProportionallyToFill")]
+    pub const ScaleProportionallyToFill: Self = Self(2);
+    #[doc(alias = "NSViewLayerContentsPlacementCenter")]
+    pub const Center: Self = Self(3);
+    #[doc(alias = "NSViewLayerContentsPlacementTop")]
+    pub const Top: Self = Self(4);
+    #[doc(alias = "NSViewLayerContentsPlacementTopRight")]
+    pub const TopRight: Self = Self(5);
+    #[doc(alias = "NSViewLayerContentsPlacementRight")]
+    pub const Right: Self = Self(6);
+    #[doc(alias = "NSViewLayerContentsPlacementBottomRight")]
+    pub const BottomRight: Self = Self(7);
+    #[doc(alias = "NSViewLayerContentsPlacementBottom")]
+    pub const Bottom: Self = Self(8);
+    #[doc(alias = "NSViewLayerContentsPlacementBottomLeft")]
+    pub const BottomLeft: Self = Self(9);
+    #[doc(alias = "NSViewLayerContentsPlacementLeft")]
+    pub const Left: Self = Self(10);
+    #[doc(alias = "NSViewLayerContentsPlacementTopLeft")]
+    pub const TopLeft: Self = Self(11);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSViewLayerContentsPlacement {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSViewLayerContentsPlacement {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 pub type NSTrackingRectTag = NSInteger;
 
@@ -1042,10 +1086,9 @@ extern_methods!(
     }
 );
 
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type NSViewFullScreenModeOptionKey = NSString;
-);
+pub type NSViewFullScreenModeOptionKey = NSString;
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]
@@ -1096,20 +1139,18 @@ extern_methods!(
     }
 );
 
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type NSDefinitionOptionKey = NSString;
-);
+pub type NSDefinitionOptionKey = NSString;
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]
     pub static NSDefinitionPresentationTypeKey: &'static NSDefinitionOptionKey;
 }
 
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type NSDefinitionPresentationType = NSString;
-);
+pub type NSDefinitionPresentationType = NSString;
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]

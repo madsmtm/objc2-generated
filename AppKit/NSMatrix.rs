@@ -5,15 +5,26 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSMatrixMode {
-        NSRadioModeMatrix = 0,
-        NSHighlightModeMatrix = 1,
-        NSListModeMatrix = 2,
-        NSTrackModeMatrix = 3,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSMatrixMode(pub NSUInteger);
+impl NSMatrixMode {
+    pub const NSRadioModeMatrix: Self = Self(0);
+    pub const NSHighlightModeMatrix: Self = Self(1);
+    pub const NSListModeMatrix: Self = Self(2);
+    pub const NSTrackModeMatrix: Self = Self(3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSMatrixMode {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSMatrixMode {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

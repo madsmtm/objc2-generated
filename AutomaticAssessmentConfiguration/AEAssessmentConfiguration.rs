@@ -4,17 +4,28 @@ use crate::common::*;
 use crate::AutomaticAssessmentConfiguration::*;
 use crate::Foundation::*;
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum AEAutocorrectMode {
-        #[doc(alias = "AEAutocorrectModeNone")]
-        None = 0,
-        #[doc(alias = "AEAutocorrectModeSpelling")]
-        Spelling = 1 << 0,
-        #[doc(alias = "AEAutocorrectModePunctuation")]
-        Punctuation = 1 << 1,
-    }
-);
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct AEAutocorrectMode(pub NSUInteger);
+impl AEAutocorrectMode {
+    #[doc(alias = "AEAutocorrectModeNone")]
+    pub const None: Self = Self(0);
+    #[doc(alias = "AEAutocorrectModeSpelling")]
+    pub const Spelling: Self = Self(1 << 0);
+    #[doc(alias = "AEAutocorrectModePunctuation")]
+    pub const Punctuation: Self = Self(1 << 1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for AEAutocorrectMode {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for AEAutocorrectMode {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

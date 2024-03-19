@@ -5,29 +5,51 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::WebKit::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum WKNavigationActionPolicy {
-        #[doc(alias = "WKNavigationActionPolicyCancel")]
-        Cancel = 0,
-        #[doc(alias = "WKNavigationActionPolicyAllow")]
-        Allow = 1,
-        #[doc(alias = "WKNavigationActionPolicyDownload")]
-        Download = 2,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct WKNavigationActionPolicy(pub NSInteger);
+impl WKNavigationActionPolicy {
+    #[doc(alias = "WKNavigationActionPolicyCancel")]
+    pub const Cancel: Self = Self(0);
+    #[doc(alias = "WKNavigationActionPolicyAllow")]
+    pub const Allow: Self = Self(1);
+    #[doc(alias = "WKNavigationActionPolicyDownload")]
+    pub const Download: Self = Self(2);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum WKNavigationResponsePolicy {
-        #[doc(alias = "WKNavigationResponsePolicyCancel")]
-        Cancel = 0,
-        #[doc(alias = "WKNavigationResponsePolicyAllow")]
-        Allow = 1,
-        #[doc(alias = "WKNavigationResponsePolicyDownload")]
-        Download = 2,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for WKNavigationActionPolicy {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for WKNavigationActionPolicy {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct WKNavigationResponsePolicy(pub NSInteger);
+impl WKNavigationResponsePolicy {
+    #[doc(alias = "WKNavigationResponsePolicyCancel")]
+    pub const Cancel: Self = Self(0);
+    #[doc(alias = "WKNavigationResponsePolicyAllow")]
+    pub const Allow: Self = Self(1);
+    #[doc(alias = "WKNavigationResponsePolicyDownload")]
+    pub const Download: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for WKNavigationResponsePolicy {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for WKNavigationResponsePolicy {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_protocol!(
     pub unsafe trait WKNavigationDelegate: NSObjectProtocol {

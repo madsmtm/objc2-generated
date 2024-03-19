@@ -59,14 +59,25 @@ impl<ObjectType: Message> DefaultId for NSArray<ObjectType> {
     }
 }
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSBinarySearchingOptions {
-        NSBinarySearchingFirstEqual = 1 << 8,
-        NSBinarySearchingLastEqual = 1 << 9,
-        NSBinarySearchingInsertionIndex = 1 << 10,
-    }
-);
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSBinarySearchingOptions(pub NSUInteger);
+impl NSBinarySearchingOptions {
+    pub const NSBinarySearchingFirstEqual: Self = Self(1 << 8);
+    pub const NSBinarySearchingLastEqual: Self = Self(1 << 9);
+    pub const NSBinarySearchingInsertionIndex: Self = Self(1 << 10);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSBinarySearchingOptions {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSBinarySearchingOptions {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_methods!(
     /// NSExtendedArray

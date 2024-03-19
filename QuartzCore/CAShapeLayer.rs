@@ -4,20 +4,17 @@ use crate::common::*;
 use crate::Foundation::*;
 use crate::QuartzCore::*;
 
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type CAShapeLayerFillRule = NSString;
-);
+pub type CAShapeLayerFillRule = NSString;
 
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type CAShapeLayerLineJoin = NSString;
-);
+pub type CAShapeLayerLineJoin = NSString;
 
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type CAShapeLayerLineCap = NSString;
-);
+pub type CAShapeLayerLineCap = NSString;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

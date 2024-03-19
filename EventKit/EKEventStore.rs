@@ -7,15 +7,26 @@ use crate::EventKit::*;
 use crate::Foundation::*;
 use crate::MapKit::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum EKSpan {
-        #[doc(alias = "EKSpanThisEvent")]
-        ThisEvent = 0,
-        #[doc(alias = "EKSpanFutureEvents")]
-        FutureEvents = 1,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct EKSpan(pub NSInteger);
+impl EKSpan {
+    #[doc(alias = "EKSpanThisEvent")]
+    pub const ThisEvent: Self = Self(0);
+    #[doc(alias = "EKSpanFutureEvents")]
+    pub const FutureEvents: Self = Self(1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for EKSpan {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for EKSpan {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 #[cfg(all(
     feature = "EventKit_EKCalendarItem",

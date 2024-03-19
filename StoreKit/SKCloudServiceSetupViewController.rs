@@ -5,20 +5,17 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::StoreKit::*;
 
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type SKCloudServiceSetupOptionsKey = NSString;
-);
+pub type SKCloudServiceSetupOptionsKey = NSString;
 
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type SKCloudServiceSetupAction = NSString;
-);
+pub type SKCloudServiceSetupAction = NSString;
 
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type SKCloudServiceSetupMessageIdentifier = NSString;
-);
+pub type SKCloudServiceSetupMessageIdentifier = NSString;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

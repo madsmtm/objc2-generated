@@ -5,43 +5,66 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::GameKit::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum GKInviteRecipientResponse {
-        #[doc(alias = "GKInviteRecipientResponseAccepted")]
-        Accepted = 0,
-        #[doc(alias = "GKInviteRecipientResponseDeclined")]
-        Declined = 1,
-        #[doc(alias = "GKInviteRecipientResponseFailed")]
-        Failed = 2,
-        #[doc(alias = "GKInviteRecipientResponseIncompatible")]
-        Incompatible = 3,
-        #[doc(alias = "GKInviteRecipientResponseUnableToConnect")]
-        UnableToConnect = 4,
-        #[doc(alias = "GKInviteRecipientResponseNoAnswer")]
-        NoAnswer = 5,
-        GKInviteeResponseAccepted = GKInviteRecipientResponse::Accepted.0,
-        GKInviteeResponseDeclined = GKInviteRecipientResponse::Declined.0,
-        GKInviteeResponseFailed = GKInviteRecipientResponse::Failed.0,
-        GKInviteeResponseIncompatible = GKInviteRecipientResponse::Incompatible.0,
-        GKInviteeResponseUnableToConnect = GKInviteRecipientResponse::UnableToConnect.0,
-        GKInviteeResponseNoAnswer = GKInviteRecipientResponse::NoAnswer.0,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct GKInviteRecipientResponse(pub NSInteger);
+impl GKInviteRecipientResponse {
+    #[doc(alias = "GKInviteRecipientResponseAccepted")]
+    pub const Accepted: Self = Self(0);
+    #[doc(alias = "GKInviteRecipientResponseDeclined")]
+    pub const Declined: Self = Self(1);
+    #[doc(alias = "GKInviteRecipientResponseFailed")]
+    pub const Failed: Self = Self(2);
+    #[doc(alias = "GKInviteRecipientResponseIncompatible")]
+    pub const Incompatible: Self = Self(3);
+    #[doc(alias = "GKInviteRecipientResponseUnableToConnect")]
+    pub const UnableToConnect: Self = Self(4);
+    #[doc(alias = "GKInviteRecipientResponseNoAnswer")]
+    pub const NoAnswer: Self = Self(5);
+    pub const GKInviteeResponseAccepted: Self = Self(GKInviteRecipientResponse::Accepted.0);
+    pub const GKInviteeResponseDeclined: Self = Self(GKInviteRecipientResponse::Declined.0);
+    pub const GKInviteeResponseFailed: Self = Self(GKInviteRecipientResponse::Failed.0);
+    pub const GKInviteeResponseIncompatible: Self = Self(GKInviteRecipientResponse::Incompatible.0);
+    pub const GKInviteeResponseUnableToConnect: Self =
+        Self(GKInviteRecipientResponse::UnableToConnect.0);
+    pub const GKInviteeResponseNoAnswer: Self = Self(GKInviteRecipientResponse::NoAnswer.0);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for GKInviteRecipientResponse {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for GKInviteRecipientResponse {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 pub type GKInviteeResponse = GKInviteRecipientResponse;
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum GKMatchType {
-        #[doc(alias = "GKMatchTypePeerToPeer")]
-        PeerToPeer = 0,
-        #[doc(alias = "GKMatchTypeHosted")]
-        Hosted = 1,
-        #[doc(alias = "GKMatchTypeTurnBased")]
-        TurnBased = 2,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct GKMatchType(pub NSUInteger);
+impl GKMatchType {
+    #[doc(alias = "GKMatchTypePeerToPeer")]
+    pub const PeerToPeer: Self = Self(0);
+    #[doc(alias = "GKMatchTypeHosted")]
+    pub const Hosted: Self = Self(1);
+    #[doc(alias = "GKMatchTypeTurnBased")]
+    pub const TurnBased: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for GKMatchType {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for GKMatchType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

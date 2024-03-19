@@ -5,66 +5,110 @@ use crate::CloudKit::*;
 use crate::CoreLocation::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum CKShareParticipantAcceptanceStatus {
-        #[doc(alias = "CKShareParticipantAcceptanceStatusUnknown")]
-        Unknown = 0,
-        #[doc(alias = "CKShareParticipantAcceptanceStatusPending")]
-        Pending = 1,
-        #[doc(alias = "CKShareParticipantAcceptanceStatusAccepted")]
-        Accepted = 2,
-        #[doc(alias = "CKShareParticipantAcceptanceStatusRemoved")]
-        Removed = 3,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct CKShareParticipantAcceptanceStatus(pub NSInteger);
+impl CKShareParticipantAcceptanceStatus {
+    #[doc(alias = "CKShareParticipantAcceptanceStatusUnknown")]
+    pub const Unknown: Self = Self(0);
+    #[doc(alias = "CKShareParticipantAcceptanceStatusPending")]
+    pub const Pending: Self = Self(1);
+    #[doc(alias = "CKShareParticipantAcceptanceStatusAccepted")]
+    pub const Accepted: Self = Self(2);
+    #[doc(alias = "CKShareParticipantAcceptanceStatusRemoved")]
+    pub const Removed: Self = Self(3);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum CKShareParticipantPermission {
-        #[doc(alias = "CKShareParticipantPermissionUnknown")]
-        Unknown = 0,
-        #[doc(alias = "CKShareParticipantPermissionNone")]
-        None = 1,
-        #[doc(alias = "CKShareParticipantPermissionReadOnly")]
-        ReadOnly = 2,
-        #[doc(alias = "CKShareParticipantPermissionReadWrite")]
-        ReadWrite = 3,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for CKShareParticipantAcceptanceStatus {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum CKShareParticipantRole {
-        #[doc(alias = "CKShareParticipantRoleUnknown")]
-        Unknown = 0,
-        #[doc(alias = "CKShareParticipantRoleOwner")]
-        Owner = 1,
-        #[doc(alias = "CKShareParticipantRolePrivateUser")]
-        PrivateUser = 3,
-        #[doc(alias = "CKShareParticipantRolePublicUser")]
-        PublicUser = 4,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for CKShareParticipantAcceptanceStatus {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct CKShareParticipantPermission(pub NSInteger);
+impl CKShareParticipantPermission {
+    #[doc(alias = "CKShareParticipantPermissionUnknown")]
+    pub const Unknown: Self = Self(0);
+    #[doc(alias = "CKShareParticipantPermissionNone")]
+    pub const None: Self = Self(1);
+    #[doc(alias = "CKShareParticipantPermissionReadOnly")]
+    pub const ReadOnly: Self = Self(2);
+    #[doc(alias = "CKShareParticipantPermissionReadWrite")]
+    pub const ReadWrite: Self = Self(3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for CKShareParticipantPermission {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for CKShareParticipantPermission {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct CKShareParticipantRole(pub NSInteger);
+impl CKShareParticipantRole {
+    #[doc(alias = "CKShareParticipantRoleUnknown")]
+    pub const Unknown: Self = Self(0);
+    #[doc(alias = "CKShareParticipantRoleOwner")]
+    pub const Owner: Self = Self(1);
+    #[doc(alias = "CKShareParticipantRolePrivateUser")]
+    pub const PrivateUser: Self = Self(3);
+    #[doc(alias = "CKShareParticipantRolePublicUser")]
+    pub const PublicUser: Self = Self(4);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for CKShareParticipantRole {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for CKShareParticipantRole {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[deprecated]
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct CKShareParticipantType(pub NSInteger);
+impl CKShareParticipantType {
     #[deprecated]
-    pub enum CKShareParticipantType {
-        #[deprecated]
-        #[doc(alias = "CKShareParticipantTypeUnknown")]
-        Unknown = 0,
-        #[deprecated]
-        #[doc(alias = "CKShareParticipantTypeOwner")]
-        Owner = 1,
-        #[deprecated]
-        #[doc(alias = "CKShareParticipantTypePrivateUser")]
-        PrivateUser = 3,
-        #[deprecated]
-        #[doc(alias = "CKShareParticipantTypePublicUser")]
-        PublicUser = 4,
-    }
-);
+    #[doc(alias = "CKShareParticipantTypeUnknown")]
+    pub const Unknown: Self = Self(0);
+    #[deprecated]
+    #[doc(alias = "CKShareParticipantTypeOwner")]
+    pub const Owner: Self = Self(1);
+    #[deprecated]
+    #[doc(alias = "CKShareParticipantTypePrivateUser")]
+    pub const PrivateUser: Self = Self(3);
+    #[deprecated]
+    #[doc(alias = "CKShareParticipantTypePublicUser")]
+    pub const PublicUser: Self = Self(4);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for CKShareParticipantType {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for CKShareParticipantType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

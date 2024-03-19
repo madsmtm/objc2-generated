@@ -4,13 +4,24 @@ use crate::common::*;
 use crate::Foundation::*;
 use crate::Metal::*;
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum MTLAccelerationStructureRefitOptions {
-        MTLAccelerationStructureRefitOptionVertexData = 1 << 0,
-        MTLAccelerationStructureRefitOptionPerPrimitiveData = 1 << 1,
-    }
-);
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MTLAccelerationStructureRefitOptions(pub NSUInteger);
+impl MTLAccelerationStructureRefitOptions {
+    pub const MTLAccelerationStructureRefitOptionVertexData: Self = Self(1 << 0);
+    pub const MTLAccelerationStructureRefitOptionPerPrimitiveData: Self = Self(1 << 1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLAccelerationStructureRefitOptions {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLAccelerationStructureRefitOptions {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_protocol!(
     #[cfg(feature = "Metal_MTLCommandEncoder")]

@@ -5,44 +5,77 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSFontTraitMask {
-        NSItalicFontMask = 0x00000001,
-        NSBoldFontMask = 0x00000002,
-        NSUnboldFontMask = 0x00000004,
-        NSNonStandardCharacterSetFontMask = 0x00000008,
-        NSNarrowFontMask = 0x00000010,
-        NSExpandedFontMask = 0x00000020,
-        NSCondensedFontMask = 0x00000040,
-        NSSmallCapsFontMask = 0x00000080,
-        NSPosterFontMask = 0x00000100,
-        NSCompressedFontMask = 0x00000200,
-        NSFixedPitchFontMask = 0x00000400,
-        NSUnitalicFontMask = 0x01000000,
-    }
-);
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSFontTraitMask(pub NSUInteger);
+impl NSFontTraitMask {
+    pub const NSItalicFontMask: Self = Self(0x00000001);
+    pub const NSBoldFontMask: Self = Self(0x00000002);
+    pub const NSUnboldFontMask: Self = Self(0x00000004);
+    pub const NSNonStandardCharacterSetFontMask: Self = Self(0x00000008);
+    pub const NSNarrowFontMask: Self = Self(0x00000010);
+    pub const NSExpandedFontMask: Self = Self(0x00000020);
+    pub const NSCondensedFontMask: Self = Self(0x00000040);
+    pub const NSSmallCapsFontMask: Self = Self(0x00000080);
+    pub const NSPosterFontMask: Self = Self(0x00000100);
+    pub const NSCompressedFontMask: Self = Self(0x00000200);
+    pub const NSFixedPitchFontMask: Self = Self(0x00000400);
+    pub const NSUnitalicFontMask: Self = Self(0x01000000);
+}
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSFontCollectionOptions {
-        NSFontCollectionApplicationOnlyMask = 1 << 0,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSFontTraitMask {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSFontAction {
-        NSNoFontChangeAction = 0,
-        NSViaPanelFontAction = 1,
-        NSAddTraitFontAction = 2,
-        NSSizeUpFontAction = 3,
-        NSSizeDownFontAction = 4,
-        NSHeavierFontAction = 5,
-        NSLighterFontAction = 6,
-        NSRemoveTraitFontAction = 7,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSFontTraitMask {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSFontCollectionOptions(pub NSUInteger);
+impl NSFontCollectionOptions {
+    pub const NSFontCollectionApplicationOnlyMask: Self = Self(1 << 0);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSFontCollectionOptions {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSFontCollectionOptions {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSFontAction(pub NSUInteger);
+impl NSFontAction {
+    pub const NSNoFontChangeAction: Self = Self(0);
+    pub const NSViaPanelFontAction: Self = Self(1);
+    pub const NSAddTraitFontAction: Self = Self(2);
+    pub const NSSizeUpFontAction: Self = Self(3);
+    pub const NSSizeDownFontAction: Self = Self(4);
+    pub const NSHeavierFontAction: Self = Self(5);
+    pub const NSLighterFontAction: Self = Self(6);
+    pub const NSRemoveTraitFontAction: Self = Self(7);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSFontAction {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSFontAction {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

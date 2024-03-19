@@ -45,17 +45,28 @@ extern_methods!(
     }
 );
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSCharacterCollection {
-        NSIdentityMappingCharacterCollection = 0,
-        NSAdobeCNS1CharacterCollection = 1,
-        NSAdobeGB1CharacterCollection = 2,
-        NSAdobeJapan1CharacterCollection = 3,
-        NSAdobeJapan2CharacterCollection = 4,
-        NSAdobeKorea1CharacterCollection = 5,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSCharacterCollection(pub NSUInteger);
+impl NSCharacterCollection {
+    pub const NSIdentityMappingCharacterCollection: Self = Self(0);
+    pub const NSAdobeCNS1CharacterCollection: Self = Self(1);
+    pub const NSAdobeGB1CharacterCollection: Self = Self(2);
+    pub const NSAdobeJapan1CharacterCollection: Self = Self(3);
+    pub const NSAdobeJapan2CharacterCollection: Self = Self(4);
+    pub const NSAdobeKorea1CharacterCollection: Self = Self(5);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSCharacterCollection {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSCharacterCollection {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_methods!(
     /// NSGlyphInfo_Deprecated

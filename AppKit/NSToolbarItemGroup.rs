@@ -5,29 +5,51 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSToolbarItemGroupSelectionMode {
-        #[doc(alias = "NSToolbarItemGroupSelectionModeSelectOne")]
-        SelectOne = 0,
-        #[doc(alias = "NSToolbarItemGroupSelectionModeSelectAny")]
-        SelectAny = 1,
-        #[doc(alias = "NSToolbarItemGroupSelectionModeMomentary")]
-        Momentary = 2,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSToolbarItemGroupSelectionMode(pub NSInteger);
+impl NSToolbarItemGroupSelectionMode {
+    #[doc(alias = "NSToolbarItemGroupSelectionModeSelectOne")]
+    pub const SelectOne: Self = Self(0);
+    #[doc(alias = "NSToolbarItemGroupSelectionModeSelectAny")]
+    pub const SelectAny: Self = Self(1);
+    #[doc(alias = "NSToolbarItemGroupSelectionModeMomentary")]
+    pub const Momentary: Self = Self(2);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSToolbarItemGroupControlRepresentation {
-        #[doc(alias = "NSToolbarItemGroupControlRepresentationAutomatic")]
-        Automatic = 0,
-        #[doc(alias = "NSToolbarItemGroupControlRepresentationExpanded")]
-        Expanded = 1,
-        #[doc(alias = "NSToolbarItemGroupControlRepresentationCollapsed")]
-        Collapsed = 2,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSToolbarItemGroupSelectionMode {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSToolbarItemGroupSelectionMode {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSToolbarItemGroupControlRepresentation(pub NSInteger);
+impl NSToolbarItemGroupControlRepresentation {
+    #[doc(alias = "NSToolbarItemGroupControlRepresentationAutomatic")]
+    pub const Automatic: Self = Self(0);
+    #[doc(alias = "NSToolbarItemGroupControlRepresentationExpanded")]
+    pub const Expanded: Self = Self(1);
+    #[doc(alias = "NSToolbarItemGroupControlRepresentationCollapsed")]
+    pub const Collapsed: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSToolbarItemGroupControlRepresentation {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSToolbarItemGroupControlRepresentation {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

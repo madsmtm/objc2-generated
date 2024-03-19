@@ -5,18 +5,28 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSRulerOrientation {
-        NSHorizontalRuler = 0,
-        NSVerticalRuler = 1,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSRulerOrientation(pub NSUInteger);
+impl NSRulerOrientation {
+    pub const NSHorizontalRuler: Self = Self(0);
+    pub const NSVerticalRuler: Self = Self(1);
+}
 
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSRulerOrientation {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSRulerOrientation {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_extensible_enum!(
-    pub type NSRulerViewUnitName = NSString;
-);
+pub type NSRulerViewUnitName = NSString;
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]

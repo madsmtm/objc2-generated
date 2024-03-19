@@ -4,19 +4,30 @@ use crate::common::*;
 use crate::Foundation::*;
 use crate::Metal::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum MTLIOStatus {
-        #[doc(alias = "MTLIOStatusPending")]
-        Pending = 0,
-        #[doc(alias = "MTLIOStatusCancelled")]
-        Cancelled = 1,
-        #[doc(alias = "MTLIOStatusError")]
-        Error = 2,
-        #[doc(alias = "MTLIOStatusComplete")]
-        Complete = 3,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MTLIOStatus(pub NSInteger);
+impl MTLIOStatus {
+    #[doc(alias = "MTLIOStatusPending")]
+    pub const Pending: Self = Self(0);
+    #[doc(alias = "MTLIOStatusCancelled")]
+    pub const Cancelled: Self = Self(1);
+    #[doc(alias = "MTLIOStatusError")]
+    pub const Error: Self = Self(2);
+    #[doc(alias = "MTLIOStatusComplete")]
+    pub const Complete: Self = Self(3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLIOStatus {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLIOStatus {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 pub type MTLIOCommandBufferHandler =
     *mut Block<dyn Fn(NonNull<ProtocolObject<dyn MTLIOCommandBuffer>>)>;

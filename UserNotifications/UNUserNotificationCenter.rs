@@ -5,22 +5,33 @@ use crate::CoreLocation::*;
 use crate::Foundation::*;
 use crate::UserNotifications::*;
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum UNAuthorizationOptions {
-        UNAuthorizationOptionBadge = 1 << 0,
-        UNAuthorizationOptionSound = 1 << 1,
-        UNAuthorizationOptionAlert = 1 << 2,
-        UNAuthorizationOptionCarPlay = 1 << 3,
-        UNAuthorizationOptionCriticalAlert = 1 << 4,
-        UNAuthorizationOptionProvidesAppNotificationSettings = 1 << 5,
-        UNAuthorizationOptionProvisional = 1 << 6,
-        #[deprecated = "Announcement authorization is always included"]
-        UNAuthorizationOptionAnnouncement = 1 << 7,
-        #[deprecated = "Use time-sensitive entitlement"]
-        UNAuthorizationOptionTimeSensitive = 1 << 8,
-    }
-);
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct UNAuthorizationOptions(pub NSUInteger);
+impl UNAuthorizationOptions {
+    pub const UNAuthorizationOptionBadge: Self = Self(1 << 0);
+    pub const UNAuthorizationOptionSound: Self = Self(1 << 1);
+    pub const UNAuthorizationOptionAlert: Self = Self(1 << 2);
+    pub const UNAuthorizationOptionCarPlay: Self = Self(1 << 3);
+    pub const UNAuthorizationOptionCriticalAlert: Self = Self(1 << 4);
+    pub const UNAuthorizationOptionProvidesAppNotificationSettings: Self = Self(1 << 5);
+    pub const UNAuthorizationOptionProvisional: Self = Self(1 << 6);
+    #[deprecated = "Announcement authorization is always included"]
+    pub const UNAuthorizationOptionAnnouncement: Self = Self(1 << 7);
+    #[deprecated = "Use time-sensitive entitlement"]
+    pub const UNAuthorizationOptionTimeSensitive: Self = Self(1 << 8);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for UNAuthorizationOptions {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for UNAuthorizationOptions {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 pub static UNAuthorizationOptionNone: UNAuthorizationOptions = UNAuthorizationOptions(0);
 
@@ -159,17 +170,28 @@ extern_methods!(
     }
 );
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum UNNotificationPresentationOptions {
-        UNNotificationPresentationOptionBadge = 1 << 0,
-        UNNotificationPresentationOptionSound = 1 << 1,
-        #[deprecated]
-        UNNotificationPresentationOptionAlert = 1 << 2,
-        UNNotificationPresentationOptionList = 1 << 3,
-        UNNotificationPresentationOptionBanner = 1 << 4,
-    }
-);
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct UNNotificationPresentationOptions(pub NSUInteger);
+impl UNNotificationPresentationOptions {
+    pub const UNNotificationPresentationOptionBadge: Self = Self(1 << 0);
+    pub const UNNotificationPresentationOptionSound: Self = Self(1 << 1);
+    #[deprecated]
+    pub const UNNotificationPresentationOptionAlert: Self = Self(1 << 2);
+    pub const UNNotificationPresentationOptionList: Self = Self(1 << 3);
+    pub const UNNotificationPresentationOptionBanner: Self = Self(1 << 4);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for UNNotificationPresentationOptions {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for UNNotificationPresentationOptions {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 pub static UNNotificationPresentationOptionNone: UNNotificationPresentationOptions =
     UNNotificationPresentationOptions(0);

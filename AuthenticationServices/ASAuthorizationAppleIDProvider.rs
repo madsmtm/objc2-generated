@@ -5,15 +5,26 @@ use crate::AppKit::*;
 use crate::AuthenticationServices::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum ASAuthorizationAppleIDProviderCredentialState {
-        ASAuthorizationAppleIDProviderCredentialRevoked = 0,
-        ASAuthorizationAppleIDProviderCredentialAuthorized = 1,
-        ASAuthorizationAppleIDProviderCredentialNotFound = 2,
-        ASAuthorizationAppleIDProviderCredentialTransferred = 3,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct ASAuthorizationAppleIDProviderCredentialState(pub NSInteger);
+impl ASAuthorizationAppleIDProviderCredentialState {
+    pub const ASAuthorizationAppleIDProviderCredentialRevoked: Self = Self(0);
+    pub const ASAuthorizationAppleIDProviderCredentialAuthorized: Self = Self(1);
+    pub const ASAuthorizationAppleIDProviderCredentialNotFound: Self = Self(2);
+    pub const ASAuthorizationAppleIDProviderCredentialTransferred: Self = Self(3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for ASAuthorizationAppleIDProviderCredentialState {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for ASAuthorizationAppleIDProviderCredentialState {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern "C" {
     #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]

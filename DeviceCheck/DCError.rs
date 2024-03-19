@@ -9,18 +9,29 @@ extern "C" {
     pub static DCErrorDomain: &'static NSErrorDomain;
 }
 
-ns_error_enum!(
-    #[underlying(NSInteger)]
-    pub enum DCError {
-        #[doc(alias = "DCErrorUnknownSystemFailure")]
-        UnknownSystemFailure = 0,
-        #[doc(alias = "DCErrorFeatureUnsupported")]
-        FeatureUnsupported = 1,
-        #[doc(alias = "DCErrorInvalidInput")]
-        InvalidInput = 2,
-        #[doc(alias = "DCErrorInvalidKey")]
-        InvalidKey = 3,
-        #[doc(alias = "DCErrorServerUnavailable")]
-        ServerUnavailable = 4,
-    }
-);
+// NS_ERROR_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct DCError(pub NSInteger);
+impl DCError {
+    #[doc(alias = "DCErrorUnknownSystemFailure")]
+    pub const UnknownSystemFailure: Self = Self(0);
+    #[doc(alias = "DCErrorFeatureUnsupported")]
+    pub const FeatureUnsupported: Self = Self(1);
+    #[doc(alias = "DCErrorInvalidInput")]
+    pub const InvalidInput: Self = Self(2);
+    #[doc(alias = "DCErrorInvalidKey")]
+    pub const InvalidKey: Self = Self(3);
+    #[doc(alias = "DCErrorServerUnavailable")]
+    pub const ServerUnavailable: Self = Self(4);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for DCError {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for DCError {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}

@@ -4,17 +4,28 @@ use crate::common::*;
 use crate::CallKit::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum CXHandleType {
-        #[doc(alias = "CXHandleTypeGeneric")]
-        Generic = 1,
-        #[doc(alias = "CXHandleTypePhoneNumber")]
-        PhoneNumber = 2,
-        #[doc(alias = "CXHandleTypeEmailAddress")]
-        EmailAddress = 3,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct CXHandleType(pub NSInteger);
+impl CXHandleType {
+    #[doc(alias = "CXHandleTypeGeneric")]
+    pub const Generic: Self = Self(1);
+    #[doc(alias = "CXHandleTypePhoneNumber")]
+    pub const PhoneNumber: Self = Self(2);
+    #[doc(alias = "CXHandleTypeEmailAddress")]
+    pub const EmailAddress: Self = Self(3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for CXHandleType {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for CXHandleType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

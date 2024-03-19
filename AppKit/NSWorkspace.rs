@@ -5,13 +5,24 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSWorkspaceIconCreationOptions {
-        NSExcludeQuickDrawElementsIconCreationOption = 1 << 1,
-        NSExclude10_4ElementsIconCreationOption = 1 << 2,
-    }
-);
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSWorkspaceIconCreationOptions(pub NSUInteger);
+impl NSWorkspaceIconCreationOptions {
+    pub const NSExcludeQuickDrawElementsIconCreationOption: Self = Self(1 << 1);
+    pub const NSExclude10_4ElementsIconCreationOption: Self = Self(1 << 2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSWorkspaceIconCreationOptions {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSWorkspaceIconCreationOptions {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -382,10 +393,9 @@ extern_methods!(
     }
 );
 
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type NSWorkspaceDesktopImageOptionKey = NSString;
-);
+pub type NSWorkspaceDesktopImageOptionKey = NSString;
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]
@@ -437,17 +447,28 @@ extern_methods!(
     }
 );
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSWorkspaceAuthorizationType {
-        #[doc(alias = "NSWorkspaceAuthorizationTypeCreateSymbolicLink")]
-        CreateSymbolicLink = 0,
-        #[doc(alias = "NSWorkspaceAuthorizationTypeSetAttributes")]
-        SetAttributes = 1,
-        #[doc(alias = "NSWorkspaceAuthorizationTypeReplaceFile")]
-        ReplaceFile = 2,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSWorkspaceAuthorizationType(pub NSInteger);
+impl NSWorkspaceAuthorizationType {
+    #[doc(alias = "NSWorkspaceAuthorizationTypeCreateSymbolicLink")]
+    pub const CreateSymbolicLink: Self = Self(0);
+    #[doc(alias = "NSWorkspaceAuthorizationTypeSetAttributes")]
+    pub const SetAttributes: Self = Self(1);
+    #[doc(alias = "NSWorkspaceAuthorizationTypeReplaceFile")]
+    pub const ReplaceFile: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSWorkspaceAuthorizationType {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSWorkspaceAuthorizationType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -629,45 +650,55 @@ extern "C" {
     pub static NSWorkspaceActiveSpaceDidChangeNotification: &'static NSNotificationName;
 }
 
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type NSWorkspaceFileOperationName = NSString;
-);
+pub type NSWorkspaceFileOperationName = NSString;
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSWorkspaceLaunchOptions {
-        #[deprecated = "Use -[NSWorkspaceOpenConfiguration setForPrinting:YES] instead."]
-        NSWorkspaceLaunchAndPrint = 0x00000002,
-        #[deprecated = "Use -[NSWorkspaceOpenConfiguration setPromptsUserIfNeeded:YES] instead."]
-        NSWorkspaceLaunchWithErrorPresentation = 0x00000040,
-        #[deprecated = "This option does nothing."]
-        NSWorkspaceLaunchInhibitingBackgroundOnly = 0x00000080,
-        #[deprecated = "Use -[NSWorkspaceOpenConfiguration setAddsToRecentItems:YES] instead."]
-        NSWorkspaceLaunchWithoutAddingToRecents = 0x00000100,
-        #[deprecated = "Use -[NSWorkspaceOpenConfiguration setActivates:NO] instead."]
-        NSWorkspaceLaunchWithoutActivation = 0x00000200,
-        #[deprecated = "When using NSWorkspaceOpenConfiguration, all launches are asynchronous."]
-        NSWorkspaceLaunchAsync = 0x00010000,
-        #[deprecated = "Use -[NSWorkspaceOpenConfiguration setCreatesNewApplicationInstance:YES] instead."]
-        NSWorkspaceLaunchNewInstance = 0x00080000,
-        #[deprecated = "Use -[NSWorkspaceOpenConfiguration setHides:YES] instead."]
-        NSWorkspaceLaunchAndHide = 0x00100000,
-        #[deprecated = "Use -[NSWorkspaceOpenConfiguration setHidesOthers:YES] instead."]
-        NSWorkspaceLaunchAndHideOthers = 0x00200000,
-        #[deprecated = "Use NSWorkspaceOpenConfiguration instead."]
-        NSWorkspaceLaunchDefault = NSWorkspaceLaunchOptions::NSWorkspaceLaunchAsync.0,
-        #[deprecated = "The Classic environment is no longer supported."]
-        NSWorkspaceLaunchAllowingClassicStartup = 0x00020000,
-        #[deprecated = "The Classic environment is no longer supported."]
-        NSWorkspaceLaunchPreferringClassic = 0x00040000,
-    }
-);
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSWorkspaceLaunchOptions(pub NSUInteger);
+impl NSWorkspaceLaunchOptions {
+    #[deprecated = "Use -[NSWorkspaceOpenConfiguration setForPrinting:YES] instead."]
+    pub const NSWorkspaceLaunchAndPrint: Self = Self(0x00000002);
+    #[deprecated = "Use -[NSWorkspaceOpenConfiguration setPromptsUserIfNeeded:YES] instead."]
+    pub const NSWorkspaceLaunchWithErrorPresentation: Self = Self(0x00000040);
+    #[deprecated = "This option does nothing."]
+    pub const NSWorkspaceLaunchInhibitingBackgroundOnly: Self = Self(0x00000080);
+    #[deprecated = "Use -[NSWorkspaceOpenConfiguration setAddsToRecentItems:YES] instead."]
+    pub const NSWorkspaceLaunchWithoutAddingToRecents: Self = Self(0x00000100);
+    #[deprecated = "Use -[NSWorkspaceOpenConfiguration setActivates:NO] instead."]
+    pub const NSWorkspaceLaunchWithoutActivation: Self = Self(0x00000200);
+    #[deprecated = "When using NSWorkspaceOpenConfiguration, all launches are asynchronous."]
+    pub const NSWorkspaceLaunchAsync: Self = Self(0x00010000);
+    #[deprecated = "Use -[NSWorkspaceOpenConfiguration setCreatesNewApplicationInstance:YES] instead."]
+    pub const NSWorkspaceLaunchNewInstance: Self = Self(0x00080000);
+    #[deprecated = "Use -[NSWorkspaceOpenConfiguration setHides:YES] instead."]
+    pub const NSWorkspaceLaunchAndHide: Self = Self(0x00100000);
+    #[deprecated = "Use -[NSWorkspaceOpenConfiguration setHidesOthers:YES] instead."]
+    pub const NSWorkspaceLaunchAndHideOthers: Self = Self(0x00200000);
+    #[deprecated = "Use NSWorkspaceOpenConfiguration instead."]
+    pub const NSWorkspaceLaunchDefault: Self =
+        Self(NSWorkspaceLaunchOptions::NSWorkspaceLaunchAsync.0);
+    #[deprecated = "The Classic environment is no longer supported."]
+    pub const NSWorkspaceLaunchAllowingClassicStartup: Self = Self(0x00020000);
+    #[deprecated = "The Classic environment is no longer supported."]
+    pub const NSWorkspaceLaunchPreferringClassic: Self = Self(0x00040000);
+}
 
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSWorkspaceLaunchOptions {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSWorkspaceLaunchOptions {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type NSWorkspaceLaunchConfigurationKey = NSString;
-);
+pub type NSWorkspaceLaunchConfigurationKey = NSString;
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]

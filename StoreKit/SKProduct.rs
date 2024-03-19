@@ -5,19 +5,30 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::StoreKit::*;
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum SKProductPeriodUnit {
-        #[doc(alias = "SKProductPeriodUnitDay")]
-        Day = 0,
-        #[doc(alias = "SKProductPeriodUnitWeek")]
-        Week = 1,
-        #[doc(alias = "SKProductPeriodUnitMonth")]
-        Month = 2,
-        #[doc(alias = "SKProductPeriodUnitYear")]
-        Year = 3,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct SKProductPeriodUnit(pub NSUInteger);
+impl SKProductPeriodUnit {
+    #[doc(alias = "SKProductPeriodUnitDay")]
+    pub const Day: Self = Self(0);
+    #[doc(alias = "SKProductPeriodUnitWeek")]
+    pub const Week: Self = Self(1);
+    #[doc(alias = "SKProductPeriodUnitMonth")]
+    pub const Month: Self = Self(2);
+    #[doc(alias = "SKProductPeriodUnitYear")]
+    pub const Year: Self = Self(3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for SKProductPeriodUnit {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for SKProductPeriodUnit {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

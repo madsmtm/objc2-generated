@@ -4,10 +4,9 @@ use crate::common::*;
 use crate::Foundation::*;
 use crate::QuartzCore::*;
 
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type CAScrollLayerScrollMode = NSString;
-);
+pub type CAScrollLayerScrollMode = NSString;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

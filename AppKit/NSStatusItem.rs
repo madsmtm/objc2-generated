@@ -8,15 +8,26 @@ use crate::Foundation::*;
 #[cfg(feature = "Foundation_NSString")]
 pub type NSStatusItemAutosaveName = NSString;
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSStatusItemBehavior {
-        #[doc(alias = "NSStatusItemBehaviorRemovalAllowed")]
-        RemovalAllowed = 1 << 1,
-        #[doc(alias = "NSStatusItemBehaviorTerminationOnRemoval")]
-        TerminationOnRemoval = 1 << 2,
-    }
-);
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSStatusItemBehavior(pub NSUInteger);
+impl NSStatusItemBehavior {
+    #[doc(alias = "NSStatusItemBehaviorRemovalAllowed")]
+    pub const RemovalAllowed: Self = Self(1 << 1);
+    #[doc(alias = "NSStatusItemBehaviorTerminationOnRemoval")]
+    pub const TerminationOnRemoval: Self = Self(1 << 2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSStatusItemBehavior {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSStatusItemBehavior {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

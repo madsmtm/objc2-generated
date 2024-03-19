@@ -5,31 +5,53 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSTextSelectionGranularity {
-        #[doc(alias = "NSTextSelectionGranularityCharacter")]
-        Character = 0,
-        #[doc(alias = "NSTextSelectionGranularityWord")]
-        Word = 1,
-        #[doc(alias = "NSTextSelectionGranularityParagraph")]
-        Paragraph = 2,
-        #[doc(alias = "NSTextSelectionGranularityLine")]
-        Line = 3,
-        #[doc(alias = "NSTextSelectionGranularitySentence")]
-        Sentence = 4,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSTextSelectionGranularity(pub NSInteger);
+impl NSTextSelectionGranularity {
+    #[doc(alias = "NSTextSelectionGranularityCharacter")]
+    pub const Character: Self = Self(0);
+    #[doc(alias = "NSTextSelectionGranularityWord")]
+    pub const Word: Self = Self(1);
+    #[doc(alias = "NSTextSelectionGranularityParagraph")]
+    pub const Paragraph: Self = Self(2);
+    #[doc(alias = "NSTextSelectionGranularityLine")]
+    pub const Line: Self = Self(3);
+    #[doc(alias = "NSTextSelectionGranularitySentence")]
+    pub const Sentence: Self = Self(4);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSTextSelectionAffinity {
-        #[doc(alias = "NSTextSelectionAffinityUpstream")]
-        Upstream = 0,
-        #[doc(alias = "NSTextSelectionAffinityDownstream")]
-        Downstream = 1,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSTextSelectionGranularity {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSTextSelectionGranularity {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSTextSelectionAffinity(pub NSInteger);
+impl NSTextSelectionAffinity {
+    #[doc(alias = "NSTextSelectionAffinityUpstream")]
+    pub const Upstream: Self = Self(0);
+    #[doc(alias = "NSTextSelectionAffinityDownstream")]
+    pub const Downstream: Self = Self(1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSTextSelectionAffinity {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSTextSelectionAffinity {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

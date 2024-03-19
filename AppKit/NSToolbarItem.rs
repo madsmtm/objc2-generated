@@ -5,9 +5,8 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-typed_extensible_enum!(
-    pub type NSToolbarItemVisibilityPriority = NSInteger;
-);
+// NS_TYPED_EXTENSIBLE_ENUM
+pub type NSToolbarItemVisibilityPriority = NSInteger;
 
 pub static NSToolbarItemVisibilityPriorityStandard: NSToolbarItemVisibilityPriority = 0;
 

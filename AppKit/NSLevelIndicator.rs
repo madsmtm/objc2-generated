@@ -5,17 +5,28 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSLevelIndicatorPlaceholderVisibility {
-        #[doc(alias = "NSLevelIndicatorPlaceholderVisibilityAutomatic")]
-        Automatic = 0,
-        #[doc(alias = "NSLevelIndicatorPlaceholderVisibilityAlways")]
-        Always = 1,
-        #[doc(alias = "NSLevelIndicatorPlaceholderVisibilityWhileEditing")]
-        WhileEditing = 2,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSLevelIndicatorPlaceholderVisibility(pub NSInteger);
+impl NSLevelIndicatorPlaceholderVisibility {
+    #[doc(alias = "NSLevelIndicatorPlaceholderVisibilityAutomatic")]
+    pub const Automatic: Self = Self(0);
+    #[doc(alias = "NSLevelIndicatorPlaceholderVisibilityAlways")]
+    pub const Always: Self = Self(1);
+    #[doc(alias = "NSLevelIndicatorPlaceholderVisibilityWhileEditing")]
+    pub const WhileEditing: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSLevelIndicatorPlaceholderVisibility {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSLevelIndicatorPlaceholderVisibility {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

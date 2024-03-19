@@ -5,29 +5,51 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSTickMarkPosition {
-        #[doc(alias = "NSTickMarkPositionBelow")]
-        Below = 0,
-        #[doc(alias = "NSTickMarkPositionAbove")]
-        Above = 1,
-        #[doc(alias = "NSTickMarkPositionLeading")]
-        Leading = NSTickMarkPosition::Above.0,
-        #[doc(alias = "NSTickMarkPositionTrailing")]
-        Trailing = NSTickMarkPosition::Below.0,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSTickMarkPosition(pub NSUInteger);
+impl NSTickMarkPosition {
+    #[doc(alias = "NSTickMarkPositionBelow")]
+    pub const Below: Self = Self(0);
+    #[doc(alias = "NSTickMarkPositionAbove")]
+    pub const Above: Self = Self(1);
+    #[doc(alias = "NSTickMarkPositionLeading")]
+    pub const Leading: Self = Self(NSTickMarkPosition::Above.0);
+    #[doc(alias = "NSTickMarkPositionTrailing")]
+    pub const Trailing: Self = Self(NSTickMarkPosition::Below.0);
+}
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSSliderType {
-        #[doc(alias = "NSSliderTypeLinear")]
-        Linear = 0,
-        #[doc(alias = "NSSliderTypeCircular")]
-        Circular = 1,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSTickMarkPosition {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSTickMarkPosition {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSSliderType(pub NSUInteger);
+impl NSSliderType {
+    #[doc(alias = "NSSliderTypeLinear")]
+    pub const Linear: Self = Self(0);
+    #[doc(alias = "NSSliderTypeCircular")]
+    pub const Circular: Self = Self(1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSSliderType {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSSliderType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

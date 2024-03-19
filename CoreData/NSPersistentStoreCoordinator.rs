@@ -585,24 +585,35 @@ extern_methods!(
     }
 );
 
-ns_enum!(
-    #[underlying(NSUInteger)]
+// NS_ENUM
+#[deprecated = "Please see the release notes and Core Data documentation."]
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSPersistentStoreUbiquitousTransitionType(pub NSUInteger);
+impl NSPersistentStoreUbiquitousTransitionType {
     #[deprecated = "Please see the release notes and Core Data documentation."]
-    pub enum NSPersistentStoreUbiquitousTransitionType {
-        #[deprecated = "Please see the release notes and Core Data documentation."]
-        #[doc(alias = "NSPersistentStoreUbiquitousTransitionTypeAccountAdded")]
-        AccountAdded = 1,
-        #[deprecated = "Please see the release notes and Core Data documentation."]
-        #[doc(alias = "NSPersistentStoreUbiquitousTransitionTypeAccountRemoved")]
-        AccountRemoved = 2,
-        #[deprecated = "Please see the release notes and Core Data documentation."]
-        #[doc(alias = "NSPersistentStoreUbiquitousTransitionTypeContentRemoved")]
-        ContentRemoved = 3,
-        #[deprecated = "Please see the release notes and Core Data documentation."]
-        #[doc(alias = "NSPersistentStoreUbiquitousTransitionTypeInitialImportCompleted")]
-        InitialImportCompleted = 4,
-    }
-);
+    #[doc(alias = "NSPersistentStoreUbiquitousTransitionTypeAccountAdded")]
+    pub const AccountAdded: Self = Self(1);
+    #[deprecated = "Please see the release notes and Core Data documentation."]
+    #[doc(alias = "NSPersistentStoreUbiquitousTransitionTypeAccountRemoved")]
+    pub const AccountRemoved: Self = Self(2);
+    #[deprecated = "Please see the release notes and Core Data documentation."]
+    #[doc(alias = "NSPersistentStoreUbiquitousTransitionTypeContentRemoved")]
+    pub const ContentRemoved: Self = Self(3);
+    #[deprecated = "Please see the release notes and Core Data documentation."]
+    #[doc(alias = "NSPersistentStoreUbiquitousTransitionTypeInitialImportCompleted")]
+    pub const InitialImportCompleted: Self = Self(4);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSPersistentStoreUbiquitousTransitionType {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSPersistentStoreUbiquitousTransitionType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]

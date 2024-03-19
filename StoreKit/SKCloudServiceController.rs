@@ -5,33 +5,55 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::StoreKit::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum SKCloudServiceAuthorizationStatus {
-        #[doc(alias = "SKCloudServiceAuthorizationStatusNotDetermined")]
-        NotDetermined = 0,
-        #[doc(alias = "SKCloudServiceAuthorizationStatusDenied")]
-        Denied = 1,
-        #[doc(alias = "SKCloudServiceAuthorizationStatusRestricted")]
-        Restricted = 2,
-        #[doc(alias = "SKCloudServiceAuthorizationStatusAuthorized")]
-        Authorized = 3,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct SKCloudServiceAuthorizationStatus(pub NSInteger);
+impl SKCloudServiceAuthorizationStatus {
+    #[doc(alias = "SKCloudServiceAuthorizationStatusNotDetermined")]
+    pub const NotDetermined: Self = Self(0);
+    #[doc(alias = "SKCloudServiceAuthorizationStatusDenied")]
+    pub const Denied: Self = Self(1);
+    #[doc(alias = "SKCloudServiceAuthorizationStatusRestricted")]
+    pub const Restricted: Self = Self(2);
+    #[doc(alias = "SKCloudServiceAuthorizationStatusAuthorized")]
+    pub const Authorized: Self = Self(3);
+}
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum SKCloudServiceCapability {
-        #[doc(alias = "SKCloudServiceCapabilityNone")]
-        None = 0,
-        #[doc(alias = "SKCloudServiceCapabilityMusicCatalogPlayback")]
-        MusicCatalogPlayback = 1 << 0,
-        #[doc(alias = "SKCloudServiceCapabilityMusicCatalogSubscriptionEligible")]
-        MusicCatalogSubscriptionEligible = 1 << 1,
-        #[doc(alias = "SKCloudServiceCapabilityAddToCloudMusicLibrary")]
-        AddToCloudMusicLibrary = 1 << 8,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for SKCloudServiceAuthorizationStatus {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for SKCloudServiceAuthorizationStatus {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct SKCloudServiceCapability(pub NSUInteger);
+impl SKCloudServiceCapability {
+    #[doc(alias = "SKCloudServiceCapabilityNone")]
+    pub const None: Self = Self(0);
+    #[doc(alias = "SKCloudServiceCapabilityMusicCatalogPlayback")]
+    pub const MusicCatalogPlayback: Self = Self(1 << 0);
+    #[doc(alias = "SKCloudServiceCapabilityMusicCatalogSubscriptionEligible")]
+    pub const MusicCatalogSubscriptionEligible: Self = Self(1 << 1);
+    #[doc(alias = "SKCloudServiceCapabilityAddToCloudMusicLibrary")]
+    pub const AddToCloudMusicLibrary: Self = Self(1 << 8);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for SKCloudServiceCapability {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for SKCloudServiceCapability {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

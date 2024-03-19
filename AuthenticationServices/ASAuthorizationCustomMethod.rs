@@ -5,10 +5,9 @@ use crate::AppKit::*;
 use crate::AuthenticationServices::*;
 use crate::Foundation::*;
 
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type ASAuthorizationCustomMethod = NSString;
-);
+pub type ASAuthorizationCustomMethod = NSString;
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]

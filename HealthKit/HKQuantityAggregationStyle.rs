@@ -6,19 +6,30 @@ use crate::Foundation::*;
 use crate::HealthKit::*;
 use crate::UniformTypeIdentifiers::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum HKQuantityAggregationStyle {
-        #[doc(alias = "HKQuantityAggregationStyleCumulative")]
-        Cumulative = 0,
-        #[doc(alias = "HKQuantityAggregationStyleDiscreteArithmetic")]
-        DiscreteArithmetic = 1,
-        #[deprecated]
-        #[doc(alias = "HKQuantityAggregationStyleDiscrete")]
-        Discrete = HKQuantityAggregationStyle::DiscreteArithmetic.0,
-        #[doc(alias = "HKQuantityAggregationStyleDiscreteTemporallyWeighted")]
-        DiscreteTemporallyWeighted = 2,
-        #[doc(alias = "HKQuantityAggregationStyleDiscreteEquivalentContinuousLevel")]
-        DiscreteEquivalentContinuousLevel = 3,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct HKQuantityAggregationStyle(pub NSInteger);
+impl HKQuantityAggregationStyle {
+    #[doc(alias = "HKQuantityAggregationStyleCumulative")]
+    pub const Cumulative: Self = Self(0);
+    #[doc(alias = "HKQuantityAggregationStyleDiscreteArithmetic")]
+    pub const DiscreteArithmetic: Self = Self(1);
+    #[deprecated]
+    #[doc(alias = "HKQuantityAggregationStyleDiscrete")]
+    pub const Discrete: Self = Self(HKQuantityAggregationStyle::DiscreteArithmetic.0);
+    #[doc(alias = "HKQuantityAggregationStyleDiscreteTemporallyWeighted")]
+    pub const DiscreteTemporallyWeighted: Self = Self(2);
+    #[doc(alias = "HKQuantityAggregationStyleDiscreteEquivalentContinuousLevel")]
+    pub const DiscreteEquivalentContinuousLevel: Self = Self(3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for HKQuantityAggregationStyle {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for HKQuantityAggregationStyle {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}

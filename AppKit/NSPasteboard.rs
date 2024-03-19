@@ -5,10 +5,9 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
+// NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_extensible_enum!(
-    pub type NSPasteboardType = NSString;
-);
+pub type NSPasteboardType = NSString;
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]
@@ -90,10 +89,9 @@ extern "C" {
     pub static NSPasteboardTypeFileURL: &'static NSPasteboardType;
 }
 
+// NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_extensible_enum!(
-    pub type NSPasteboardName = NSString;
-);
+pub type NSPasteboardName = NSString;
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]
@@ -120,17 +118,27 @@ extern "C" {
     pub static NSPasteboardNameDrag: &'static NSPasteboardName;
 }
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSPasteboardContentsOptions {
-        NSPasteboardContentsCurrentHostOnly = 1 << 0,
-    }
-);
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSPasteboardContentsOptions(pub NSUInteger);
+impl NSPasteboardContentsOptions {
+    pub const NSPasteboardContentsCurrentHostOnly: Self = Self(1 << 0);
+}
 
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSPasteboardContentsOptions {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSPasteboardContentsOptions {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type NSPasteboardReadingOptionKey = NSString;
-);
+pub type NSPasteboardReadingOptionKey = NSString;
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]
@@ -352,12 +360,23 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn NSPasteboardTypeOwner {}
 );
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSPasteboardWritingOptions {
-        NSPasteboardWritingPromised = 1 << 9,
-    }
-);
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSPasteboardWritingOptions(pub NSUInteger);
+impl NSPasteboardWritingOptions {
+    pub const NSPasteboardWritingPromised: Self = Self(1 << 9);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSPasteboardWritingOptions {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSPasteboardWritingOptions {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_protocol!(
     pub unsafe trait NSPasteboardWriting: NSObjectProtocol {
@@ -388,15 +407,26 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn NSPasteboardWriting {}
 );
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSPasteboardReadingOptions {
-        NSPasteboardReadingAsData = 0,
-        NSPasteboardReadingAsString = 1 << 0,
-        NSPasteboardReadingAsPropertyList = 1 << 1,
-        NSPasteboardReadingAsKeyedArchive = 1 << 2,
-    }
-);
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSPasteboardReadingOptions(pub NSUInteger);
+impl NSPasteboardReadingOptions {
+    pub const NSPasteboardReadingAsData: Self = Self(0);
+    pub const NSPasteboardReadingAsString: Self = Self(1 << 0);
+    pub const NSPasteboardReadingAsPropertyList: Self = Self(1 << 1);
+    pub const NSPasteboardReadingAsKeyedArchive: Self = Self(1 << 2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSPasteboardReadingOptions {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSPasteboardReadingOptions {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_protocol!(
     pub unsafe trait NSPasteboardReading: NSObjectProtocol {

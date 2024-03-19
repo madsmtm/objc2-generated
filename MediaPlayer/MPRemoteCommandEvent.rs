@@ -72,15 +72,26 @@ extern_methods!(
     }
 );
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum MPSeekCommandEventType {
-        #[doc(alias = "MPSeekCommandEventTypeBeginSeeking")]
-        BeginSeeking = 0,
-        #[doc(alias = "MPSeekCommandEventTypeEndSeeking")]
-        EndSeeking = 1,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MPSeekCommandEventType(pub NSUInteger);
+impl MPSeekCommandEventType {
+    #[doc(alias = "MPSeekCommandEventTypeBeginSeeking")]
+    pub const BeginSeeking: Self = Self(0);
+    #[doc(alias = "MPSeekCommandEventTypeEndSeeking")]
+    pub const EndSeeking: Self = Self(1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MPSeekCommandEventType {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MPSeekCommandEventType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

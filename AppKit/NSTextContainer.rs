@@ -146,26 +146,48 @@ extern_methods!(
     }
 );
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSLineSweepDirection {
-        NSLineSweepLeft = 0,
-        NSLineSweepRight = 1,
-        NSLineSweepDown = 2,
-        NSLineSweepUp = 3,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSLineSweepDirection(pub NSUInteger);
+impl NSLineSweepDirection {
+    pub const NSLineSweepLeft: Self = Self(0);
+    pub const NSLineSweepRight: Self = Self(1);
+    pub const NSLineSweepDown: Self = Self(2);
+    pub const NSLineSweepUp: Self = Self(3);
+}
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSLineMovementDirection {
-        NSLineDoesntMove = 0,
-        NSLineMovesLeft = 1,
-        NSLineMovesRight = 2,
-        NSLineMovesDown = 3,
-        NSLineMovesUp = 4,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSLineSweepDirection {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSLineSweepDirection {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSLineMovementDirection(pub NSUInteger);
+impl NSLineMovementDirection {
+    pub const NSLineDoesntMove: Self = Self(0);
+    pub const NSLineMovesLeft: Self = Self(1);
+    pub const NSLineMovesRight: Self = Self(2);
+    pub const NSLineMovesDown: Self = Self(3);
+    pub const NSLineMovesUp: Self = Self(4);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSLineMovementDirection {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSLineMovementDirection {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_methods!(
     /// NSTextContainerDeprecated

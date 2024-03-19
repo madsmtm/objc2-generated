@@ -213,59 +213,91 @@ extern "C" {
     pub static NSGlyphInfoAttributeName: &'static NSAttributedStringKey;
 }
 
-ns_options!(
-    #[underlying(NSInteger)]
-    pub enum NSUnderlineStyle {
-        #[doc(alias = "NSUnderlineStyleNone")]
-        None = 0x00,
-        #[doc(alias = "NSUnderlineStyleSingle")]
-        Single = 0x01,
-        #[doc(alias = "NSUnderlineStyleThick")]
-        Thick = 0x02,
-        #[doc(alias = "NSUnderlineStyleDouble")]
-        Double = 0x09,
-        #[doc(alias = "NSUnderlineStylePatternSolid")]
-        PatternSolid = 0x0000,
-        #[doc(alias = "NSUnderlineStylePatternDot")]
-        PatternDot = 0x0100,
-        #[doc(alias = "NSUnderlineStylePatternDash")]
-        PatternDash = 0x0200,
-        #[doc(alias = "NSUnderlineStylePatternDashDot")]
-        PatternDashDot = 0x0300,
-        #[doc(alias = "NSUnderlineStylePatternDashDotDot")]
-        PatternDashDotDot = 0x0400,
-        #[doc(alias = "NSUnderlineStyleByWord")]
-        ByWord = 0x8000,
-    }
-);
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSUnderlineStyle(pub NSInteger);
+impl NSUnderlineStyle {
+    #[doc(alias = "NSUnderlineStyleNone")]
+    pub const None: Self = Self(0x00);
+    #[doc(alias = "NSUnderlineStyleSingle")]
+    pub const Single: Self = Self(0x01);
+    #[doc(alias = "NSUnderlineStyleThick")]
+    pub const Thick: Self = Self(0x02);
+    #[doc(alias = "NSUnderlineStyleDouble")]
+    pub const Double: Self = Self(0x09);
+    #[doc(alias = "NSUnderlineStylePatternSolid")]
+    pub const PatternSolid: Self = Self(0x0000);
+    #[doc(alias = "NSUnderlineStylePatternDot")]
+    pub const PatternDot: Self = Self(0x0100);
+    #[doc(alias = "NSUnderlineStylePatternDash")]
+    pub const PatternDash: Self = Self(0x0200);
+    #[doc(alias = "NSUnderlineStylePatternDashDot")]
+    pub const PatternDashDot: Self = Self(0x0300);
+    #[doc(alias = "NSUnderlineStylePatternDashDotDot")]
+    pub const PatternDashDotDot: Self = Self(0x0400);
+    #[doc(alias = "NSUnderlineStyleByWord")]
+    pub const ByWord: Self = Self(0x8000);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSWritingDirectionFormatType {
-        NSWritingDirectionEmbedding = 0 << 1,
-        NSWritingDirectionOverride = 1 << 1,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSUnderlineStyle {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
 
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSUnderlineStyle {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSWritingDirectionFormatType(pub NSInteger);
+impl NSWritingDirectionFormatType {
+    pub const NSWritingDirectionEmbedding: Self = Self(0 << 1);
+    pub const NSWritingDirectionOverride: Self = Self(1 << 1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSWritingDirectionFormatType {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSWritingDirectionFormatType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type NSTextEffectStyle = NSString;
-);
+pub type NSTextEffectStyle = NSString;
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]
     pub static NSTextEffectLetterpressStyle: &'static NSTextEffectStyle;
 }
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSSpellingState {
-        #[doc(alias = "NSSpellingStateSpellingFlag")]
-        SpellingFlag = 1 << 0,
-        #[doc(alias = "NSSpellingStateGrammarFlag")]
-        GrammarFlag = 1 << 1,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSSpellingState(pub NSInteger);
+impl NSSpellingState {
+    #[doc(alias = "NSSpellingStateSpellingFlag")]
+    pub const SpellingFlag: Self = Self(1 << 0);
+    #[doc(alias = "NSSpellingStateGrammarFlag")]
+    pub const GrammarFlag: Self = Self(1 << 1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSSpellingState {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSSpellingState {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_category!(
     /// Category on [`NSMutableAttributedString`].
@@ -291,10 +323,9 @@ extern_category!(
     unsafe impl NSAttributedStringAttributeFixing for NSMutableAttributedString {}
 );
 
+// NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_extensible_enum!(
-    pub type NSAttributedStringDocumentType = NSString;
-);
+pub type NSAttributedStringDocumentType = NSString;
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]
@@ -346,10 +377,9 @@ extern "C" {
     pub static NSOpenDocumentTextDocumentType: &'static NSAttributedStringDocumentType;
 }
 
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type NSTextLayoutSectionKey = NSString;
-);
+pub type NSTextLayoutSectionKey = NSString;
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]
@@ -361,18 +391,28 @@ extern "C" {
     pub static NSTextLayoutSectionRange: &'static NSTextLayoutSectionKey;
 }
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSTextScalingType {
-        NSTextScalingStandard = 0,
-        NSTextScalingiOS = 1,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSTextScalingType(pub NSInteger);
+impl NSTextScalingType {
+    pub const NSTextScalingStandard: Self = Self(0);
+    pub const NSTextScalingiOS: Self = Self(1);
+}
 
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSTextScalingType {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSTextScalingType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_extensible_enum!(
-    pub type NSAttributedStringDocumentAttributeKey = NSString;
-);
+pub type NSAttributedStringDocumentAttributeKey = NSString;
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]
@@ -570,10 +610,9 @@ extern "C" {
         &'static NSAttributedStringDocumentAttributeKey;
 }
 
+// NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_extensible_enum!(
-    pub type NSAttributedStringDocumentReadingOptionKey = NSString;
-);
+pub type NSAttributedStringDocumentReadingOptionKey = NSString;
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]

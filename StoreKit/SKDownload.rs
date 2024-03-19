@@ -5,30 +5,40 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::StoreKit::*;
 
-ns_closed_enum!(
-    #[underlying(NSInteger)]
+// NS_CLOSED_ENUM
+#[deprecated = "Hosted content is no longer supported"]
+#[repr(isize)] // NSInteger
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub enum SKDownloadState {
     #[deprecated = "Hosted content is no longer supported"]
-    pub enum SKDownloadState {
-        #[deprecated = "Hosted content is no longer supported"]
-        #[doc(alias = "SKDownloadStateWaiting")]
-        Waiting = 0,
-        #[deprecated = "Hosted content is no longer supported"]
-        #[doc(alias = "SKDownloadStateActive")]
-        Active = 1,
-        #[deprecated = "Hosted content is no longer supported"]
-        #[doc(alias = "SKDownloadStatePaused")]
-        Paused = 2,
-        #[deprecated = "Hosted content is no longer supported"]
-        #[doc(alias = "SKDownloadStateFinished")]
-        Finished = 3,
-        #[deprecated = "Hosted content is no longer supported"]
-        #[doc(alias = "SKDownloadStateFailed")]
-        Failed = 4,
-        #[deprecated = "Hosted content is no longer supported"]
-        #[doc(alias = "SKDownloadStateCancelled")]
-        Cancelled = 5,
-    }
-);
+    #[doc(alias = "SKDownloadStateWaiting")]
+    Waiting = 0,
+    #[deprecated = "Hosted content is no longer supported"]
+    #[doc(alias = "SKDownloadStateActive")]
+    Active = 1,
+    #[deprecated = "Hosted content is no longer supported"]
+    #[doc(alias = "SKDownloadStatePaused")]
+    Paused = 2,
+    #[deprecated = "Hosted content is no longer supported"]
+    #[doc(alias = "SKDownloadStateFinished")]
+    Finished = 3,
+    #[deprecated = "Hosted content is no longer supported"]
+    #[doc(alias = "SKDownloadStateFailed")]
+    Failed = 4,
+    #[deprecated = "Hosted content is no longer supported"]
+    #[doc(alias = "SKDownloadStateCancelled")]
+    Cancelled = 5,
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for SKDownloadState {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for SKDownloadState {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern "C" {
     #[cfg(feature = "Foundation_NSDate")]

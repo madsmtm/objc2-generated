@@ -5,19 +5,30 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSImageDynamicRange {
-        #[doc(alias = "NSImageDynamicRangeUnspecified")]
-        Unspecified = -1,
-        #[doc(alias = "NSImageDynamicRangeStandard")]
-        Standard = 0,
-        #[doc(alias = "NSImageDynamicRangeConstrainedHigh")]
-        ConstrainedHigh = 1,
-        #[doc(alias = "NSImageDynamicRangeHigh")]
-        High = 2,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSImageDynamicRange(pub NSInteger);
+impl NSImageDynamicRange {
+    #[doc(alias = "NSImageDynamicRangeUnspecified")]
+    pub const Unspecified: Self = Self(-1);
+    #[doc(alias = "NSImageDynamicRangeStandard")]
+    pub const Standard: Self = Self(0);
+    #[doc(alias = "NSImageDynamicRangeConstrainedHigh")]
+    pub const ConstrainedHigh: Self = Self(1);
+    #[doc(alias = "NSImageDynamicRangeHigh")]
+    pub const High: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSImageDynamicRange {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSImageDynamicRange {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

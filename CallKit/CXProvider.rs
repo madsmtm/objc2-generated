@@ -4,21 +4,32 @@ use crate::common::*;
 use crate::CallKit::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum CXCallEndedReason {
-        #[doc(alias = "CXCallEndedReasonFailed")]
-        Failed = 1,
-        #[doc(alias = "CXCallEndedReasonRemoteEnded")]
-        RemoteEnded = 2,
-        #[doc(alias = "CXCallEndedReasonUnanswered")]
-        Unanswered = 3,
-        #[doc(alias = "CXCallEndedReasonAnsweredElsewhere")]
-        AnsweredElsewhere = 4,
-        #[doc(alias = "CXCallEndedReasonDeclinedElsewhere")]
-        DeclinedElsewhere = 5,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct CXCallEndedReason(pub NSInteger);
+impl CXCallEndedReason {
+    #[doc(alias = "CXCallEndedReasonFailed")]
+    pub const Failed: Self = Self(1);
+    #[doc(alias = "CXCallEndedReasonRemoteEnded")]
+    pub const RemoteEnded: Self = Self(2);
+    #[doc(alias = "CXCallEndedReasonUnanswered")]
+    pub const Unanswered: Self = Self(3);
+    #[doc(alias = "CXCallEndedReasonAnsweredElsewhere")]
+    pub const AnsweredElsewhere: Self = Self(4);
+    #[doc(alias = "CXCallEndedReasonDeclinedElsewhere")]
+    pub const DeclinedElsewhere: Self = Self(5);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for CXCallEndedReason {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for CXCallEndedReason {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_protocol!(
     pub unsafe trait CXProviderDelegate: NSObjectProtocol {

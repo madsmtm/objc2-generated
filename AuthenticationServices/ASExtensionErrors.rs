@@ -10,19 +10,30 @@ extern "C" {
     pub static ASExtensionErrorDomain: Option<&'static NSErrorDomain>;
 }
 
-ns_error_enum!(
-    #[underlying(NSInteger)]
-    pub enum ASExtensionErrorCode {
-        #[doc(alias = "ASExtensionErrorCodeFailed")]
-        Failed = 0,
-        #[doc(alias = "ASExtensionErrorCodeUserCanceled")]
-        UserCanceled = 1,
-        #[doc(alias = "ASExtensionErrorCodeUserInteractionRequired")]
-        UserInteractionRequired = 100,
-        #[doc(alias = "ASExtensionErrorCodeCredentialIdentityNotFound")]
-        CredentialIdentityNotFound = 101,
-    }
-);
+// NS_ERROR_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct ASExtensionErrorCode(pub NSInteger);
+impl ASExtensionErrorCode {
+    #[doc(alias = "ASExtensionErrorCodeFailed")]
+    pub const Failed: Self = Self(0);
+    #[doc(alias = "ASExtensionErrorCodeUserCanceled")]
+    pub const UserCanceled: Self = Self(1);
+    #[doc(alias = "ASExtensionErrorCodeUserInteractionRequired")]
+    pub const UserInteractionRequired: Self = Self(100);
+    #[doc(alias = "ASExtensionErrorCodeCredentialIdentityNotFound")]
+    pub const CredentialIdentityNotFound: Self = Self(101);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for ASExtensionErrorCode {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for ASExtensionErrorCode {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern "C" {
     #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]

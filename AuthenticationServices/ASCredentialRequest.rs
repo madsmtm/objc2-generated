@@ -5,15 +5,26 @@ use crate::AppKit::*;
 use crate::AuthenticationServices::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum ASCredentialRequestType {
-        #[doc(alias = "ASCredentialRequestTypePassword")]
-        Password = 0,
-        #[doc(alias = "ASCredentialRequestTypePasskeyAssertion")]
-        PasskeyAssertion = 1,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct ASCredentialRequestType(pub NSInteger);
+impl ASCredentialRequestType {
+    #[doc(alias = "ASCredentialRequestTypePassword")]
+    pub const Password: Self = Self(0);
+    #[doc(alias = "ASCredentialRequestTypePasskeyAssertion")]
+    pub const PasskeyAssertion: Self = Self(1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for ASCredentialRequestType {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for ASCredentialRequestType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_protocol!(
     #[cfg(feature = "Foundation_NSObject")]

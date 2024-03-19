@@ -4,19 +4,30 @@ use crate::common::*;
 use crate::Foundation::*;
 use crate::Speech::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum SFSpeechRecognizerAuthorizationStatus {
-        #[doc(alias = "SFSpeechRecognizerAuthorizationStatusNotDetermined")]
-        NotDetermined = 0,
-        #[doc(alias = "SFSpeechRecognizerAuthorizationStatusDenied")]
-        Denied = 1,
-        #[doc(alias = "SFSpeechRecognizerAuthorizationStatusRestricted")]
-        Restricted = 2,
-        #[doc(alias = "SFSpeechRecognizerAuthorizationStatusAuthorized")]
-        Authorized = 3,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct SFSpeechRecognizerAuthorizationStatus(pub NSInteger);
+impl SFSpeechRecognizerAuthorizationStatus {
+    #[doc(alias = "SFSpeechRecognizerAuthorizationStatusNotDetermined")]
+    pub const NotDetermined: Self = Self(0);
+    #[doc(alias = "SFSpeechRecognizerAuthorizationStatusDenied")]
+    pub const Denied: Self = Self(1);
+    #[doc(alias = "SFSpeechRecognizerAuthorizationStatusRestricted")]
+    pub const Restricted: Self = Self(2);
+    #[doc(alias = "SFSpeechRecognizerAuthorizationStatusAuthorized")]
+    pub const Authorized: Self = Self(3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for SFSpeechRecognizerAuthorizationStatus {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for SFSpeechRecognizerAuthorizationStatus {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

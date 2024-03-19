@@ -4,19 +4,30 @@ use crate::common::*;
 use crate::Accessibility::*;
 use crate::Foundation::*;
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum AXHearingDeviceEar {
-        #[doc(alias = "AXHearingDeviceEarNone")]
-        None = 0,
-        #[doc(alias = "AXHearingDeviceEarLeft")]
-        Left = 1 << 1,
-        #[doc(alias = "AXHearingDeviceEarRight")]
-        Right = 1 << 2,
-        #[doc(alias = "AXHearingDeviceEarBoth")]
-        Both = AXHearingDeviceEar::Left.0 | AXHearingDeviceEar::Right.0,
-    }
-);
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct AXHearingDeviceEar(pub NSUInteger);
+impl AXHearingDeviceEar {
+    #[doc(alias = "AXHearingDeviceEarNone")]
+    pub const None: Self = Self(0);
+    #[doc(alias = "AXHearingDeviceEarLeft")]
+    pub const Left: Self = Self(1 << 1);
+    #[doc(alias = "AXHearingDeviceEarRight")]
+    pub const Right: Self = Self(1 << 2);
+    #[doc(alias = "AXHearingDeviceEarBoth")]
+    pub const Both: Self = Self(AXHearingDeviceEar::Left.0 | AXHearingDeviceEar::Right.0);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for AXHearingDeviceEar {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for AXHearingDeviceEar {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern "C" {
     pub fn AXMFiHearingDeviceStreamingEar() -> AXHearingDeviceEar;

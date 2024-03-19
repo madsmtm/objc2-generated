@@ -6,15 +6,13 @@ use crate::FileProvider::*;
 use crate::Foundation::*;
 use crate::UniformTypeIdentifiers::*;
 
+// NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "Foundation_NSData")]
-typed_extensible_enum!(
-    pub type NSFileProviderSyncAnchor = NSData;
-);
+pub type NSFileProviderSyncAnchor = NSData;
 
+// NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "Foundation_NSData")]
-typed_extensible_enum!(
-    pub type NSFileProviderPage = NSData;
-);
+pub type NSFileProviderPage = NSData;
 
 extern "C" {
     #[cfg(feature = "Foundation_NSData")]

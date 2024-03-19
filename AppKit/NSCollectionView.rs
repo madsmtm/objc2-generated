@@ -5,51 +5,84 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSCollectionViewDropOperation {
-        NSCollectionViewDropOn = 0,
-        NSCollectionViewDropBefore = 1,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSCollectionViewDropOperation(pub NSInteger);
+impl NSCollectionViewDropOperation {
+    pub const NSCollectionViewDropOn: Self = Self(0);
+    pub const NSCollectionViewDropBefore: Self = Self(1);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSCollectionViewItemHighlightState {
-        NSCollectionViewItemHighlightNone = 0,
-        NSCollectionViewItemHighlightForSelection = 1,
-        NSCollectionViewItemHighlightForDeselection = 2,
-        NSCollectionViewItemHighlightAsDropTarget = 3,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSCollectionViewDropOperation {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSCollectionViewScrollPosition {
-        #[doc(alias = "NSCollectionViewScrollPositionNone")]
-        None = 0,
-        #[doc(alias = "NSCollectionViewScrollPositionTop")]
-        Top = 1 << 0,
-        #[doc(alias = "NSCollectionViewScrollPositionCenteredVertically")]
-        CenteredVertically = 1 << 1,
-        #[doc(alias = "NSCollectionViewScrollPositionBottom")]
-        Bottom = 1 << 2,
-        #[doc(alias = "NSCollectionViewScrollPositionNearestHorizontalEdge")]
-        NearestHorizontalEdge = 1 << 9,
-        #[doc(alias = "NSCollectionViewScrollPositionLeft")]
-        Left = 1 << 3,
-        #[doc(alias = "NSCollectionViewScrollPositionCenteredHorizontally")]
-        CenteredHorizontally = 1 << 4,
-        #[doc(alias = "NSCollectionViewScrollPositionRight")]
-        Right = 1 << 5,
-        #[doc(alias = "NSCollectionViewScrollPositionLeadingEdge")]
-        LeadingEdge = 1 << 6,
-        #[doc(alias = "NSCollectionViewScrollPositionTrailingEdge")]
-        TrailingEdge = 1 << 7,
-        #[doc(alias = "NSCollectionViewScrollPositionNearestVerticalEdge")]
-        NearestVerticalEdge = 1 << 8,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSCollectionViewDropOperation {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSCollectionViewItemHighlightState(pub NSInteger);
+impl NSCollectionViewItemHighlightState {
+    pub const NSCollectionViewItemHighlightNone: Self = Self(0);
+    pub const NSCollectionViewItemHighlightForSelection: Self = Self(1);
+    pub const NSCollectionViewItemHighlightForDeselection: Self = Self(2);
+    pub const NSCollectionViewItemHighlightAsDropTarget: Self = Self(3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSCollectionViewItemHighlightState {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSCollectionViewItemHighlightState {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSCollectionViewScrollPosition(pub NSUInteger);
+impl NSCollectionViewScrollPosition {
+    #[doc(alias = "NSCollectionViewScrollPositionNone")]
+    pub const None: Self = Self(0);
+    #[doc(alias = "NSCollectionViewScrollPositionTop")]
+    pub const Top: Self = Self(1 << 0);
+    #[doc(alias = "NSCollectionViewScrollPositionCenteredVertically")]
+    pub const CenteredVertically: Self = Self(1 << 1);
+    #[doc(alias = "NSCollectionViewScrollPositionBottom")]
+    pub const Bottom: Self = Self(1 << 2);
+    #[doc(alias = "NSCollectionViewScrollPositionNearestHorizontalEdge")]
+    pub const NearestHorizontalEdge: Self = Self(1 << 9);
+    #[doc(alias = "NSCollectionViewScrollPositionLeft")]
+    pub const Left: Self = Self(1 << 3);
+    #[doc(alias = "NSCollectionViewScrollPositionCenteredHorizontally")]
+    pub const CenteredHorizontally: Self = Self(1 << 4);
+    #[doc(alias = "NSCollectionViewScrollPositionRight")]
+    pub const Right: Self = Self(1 << 5);
+    #[doc(alias = "NSCollectionViewScrollPositionLeadingEdge")]
+    pub const LeadingEdge: Self = Self(1 << 6);
+    #[doc(alias = "NSCollectionViewScrollPositionTrailingEdge")]
+    pub const TrailingEdge: Self = Self(1 << 7);
+    #[doc(alias = "NSCollectionViewScrollPositionNearestVerticalEdge")]
+    pub const NearestVerticalEdge: Self = Self(1 << 8);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSCollectionViewScrollPosition {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSCollectionViewScrollPosition {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 #[cfg(feature = "Foundation_NSString")]
 pub type NSCollectionViewSupplementaryElementKind = NSString;

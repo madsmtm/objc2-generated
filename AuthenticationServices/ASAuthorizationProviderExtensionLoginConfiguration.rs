@@ -91,41 +91,63 @@ extern_methods!(
     }
 );
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum ASAuthorizationProviderExtensionFederationType {
-        #[doc(alias = "ASAuthorizationProviderExtensionFederationTypeNone")]
-        None = 0,
-        #[doc(alias = "ASAuthorizationProviderExtensionFederationTypeWSTrust")]
-        WSTrust = 1,
-        #[doc(alias = "ASAuthorizationProviderExtensionFederationTypeDynamicWSTrust")]
-        DynamicWSTrust = 2,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct ASAuthorizationProviderExtensionFederationType(pub NSInteger);
+impl ASAuthorizationProviderExtensionFederationType {
+    #[doc(alias = "ASAuthorizationProviderExtensionFederationTypeNone")]
+    pub const None: Self = Self(0);
+    #[doc(alias = "ASAuthorizationProviderExtensionFederationTypeWSTrust")]
+    pub const WSTrust: Self = Self(1);
+    #[doc(alias = "ASAuthorizationProviderExtensionFederationTypeDynamicWSTrust")]
+    pub const DynamicWSTrust: Self = Self(2);
+}
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum ASAuthorizationProviderExtensionUserSecureEnclaveKeyBiometricPolicy {
-        #[doc(alias = "ASAuthorizationProviderExtensionUserSecureEnclaveKeyBiometricPolicyNone")]
-        None = 0,
-        #[doc(
-            alias = "ASAuthorizationProviderExtensionUserSecureEnclaveKeyBiometricPolicyTouchIDOrWatchCurrentSet"
-        )]
-        TouchIDOrWatchCurrentSet = 1 << 0,
-        #[doc(
-            alias = "ASAuthorizationProviderExtensionUserSecureEnclaveKeyBiometricPolicyTouchIDOrWatchAny"
-        )]
-        TouchIDOrWatchAny = 1 << 1,
-        #[doc(
-            alias = "ASAuthorizationProviderExtensionUserSecureEnclaveKeyBiometricPolicyReuseDuringUnlock"
-        )]
-        ReuseDuringUnlock = 1 << 2,
-        #[doc(
-            alias = "ASAuthorizationProviderExtensionUserSecureEnclaveKeyBiometricPolicyPasswordFallback"
-        )]
-        PasswordFallback = 1 << 3,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for ASAuthorizationProviderExtensionFederationType {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for ASAuthorizationProviderExtensionFederationType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct ASAuthorizationProviderExtensionUserSecureEnclaveKeyBiometricPolicy(pub NSUInteger);
+impl ASAuthorizationProviderExtensionUserSecureEnclaveKeyBiometricPolicy {
+    #[doc(alias = "ASAuthorizationProviderExtensionUserSecureEnclaveKeyBiometricPolicyNone")]
+    pub const None: Self = Self(0);
+    #[doc(
+        alias = "ASAuthorizationProviderExtensionUserSecureEnclaveKeyBiometricPolicyTouchIDOrWatchCurrentSet"
+    )]
+    pub const TouchIDOrWatchCurrentSet: Self = Self(1 << 0);
+    #[doc(
+        alias = "ASAuthorizationProviderExtensionUserSecureEnclaveKeyBiometricPolicyTouchIDOrWatchAny"
+    )]
+    pub const TouchIDOrWatchAny: Self = Self(1 << 1);
+    #[doc(
+        alias = "ASAuthorizationProviderExtensionUserSecureEnclaveKeyBiometricPolicyReuseDuringUnlock"
+    )]
+    pub const ReuseDuringUnlock: Self = Self(1 << 2);
+    #[doc(
+        alias = "ASAuthorizationProviderExtensionUserSecureEnclaveKeyBiometricPolicyPasswordFallback"
+    )]
+    pub const PasswordFallback: Self = Self(1 << 3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for ASAuthorizationProviderExtensionUserSecureEnclaveKeyBiometricPolicy {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for ASAuthorizationProviderExtensionUserSecureEnclaveKeyBiometricPolicy {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

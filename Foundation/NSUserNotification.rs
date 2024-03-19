@@ -3,25 +3,36 @@
 use crate::common::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
+// NS_ENUM
+#[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSUserNotificationActivationType(pub NSInteger);
+impl NSUserNotificationActivationType {
     #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
-    pub enum NSUserNotificationActivationType {
-        #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
-        #[doc(alias = "NSUserNotificationActivationTypeNone")]
-        None = 0,
-        #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
-        #[doc(alias = "NSUserNotificationActivationTypeContentsClicked")]
-        ContentsClicked = 1,
-        #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
-        #[doc(alias = "NSUserNotificationActivationTypeActionButtonClicked")]
-        ActionButtonClicked = 2,
-        #[doc(alias = "NSUserNotificationActivationTypeReplied")]
-        Replied = 3,
-        #[doc(alias = "NSUserNotificationActivationTypeAdditionalActionClicked")]
-        AdditionalActionClicked = 4,
-    }
-);
+    #[doc(alias = "NSUserNotificationActivationTypeNone")]
+    pub const None: Self = Self(0);
+    #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
+    #[doc(alias = "NSUserNotificationActivationTypeContentsClicked")]
+    pub const ContentsClicked: Self = Self(1);
+    #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
+    #[doc(alias = "NSUserNotificationActivationTypeActionButtonClicked")]
+    pub const ActionButtonClicked: Self = Self(2);
+    #[doc(alias = "NSUserNotificationActivationTypeReplied")]
+    pub const Replied: Self = Self(3);
+    #[doc(alias = "NSUserNotificationActivationTypeAdditionalActionClicked")]
+    pub const AdditionalActionClicked: Self = Self(4);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSUserNotificationActivationType {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSUserNotificationActivationType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

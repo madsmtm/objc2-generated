@@ -4,27 +4,49 @@ use crate::common::*;
 use crate::Contacts::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum CNEntityType {
-        #[doc(alias = "CNEntityTypeContacts")]
-        Contacts = 0,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct CNEntityType(pub NSInteger);
+impl CNEntityType {
+    #[doc(alias = "CNEntityTypeContacts")]
+    pub const Contacts: Self = Self(0);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum CNAuthorizationStatus {
-        #[doc(alias = "CNAuthorizationStatusNotDetermined")]
-        NotDetermined = 0,
-        #[doc(alias = "CNAuthorizationStatusRestricted")]
-        Restricted = 1,
-        #[doc(alias = "CNAuthorizationStatusDenied")]
-        Denied = 2,
-        #[doc(alias = "CNAuthorizationStatusAuthorized")]
-        Authorized = 3,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for CNEntityType {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for CNEntityType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct CNAuthorizationStatus(pub NSInteger);
+impl CNAuthorizationStatus {
+    #[doc(alias = "CNAuthorizationStatusNotDetermined")]
+    pub const NotDetermined: Self = Self(0);
+    #[doc(alias = "CNAuthorizationStatusRestricted")]
+    pub const Restricted: Self = Self(1);
+    #[doc(alias = "CNAuthorizationStatusDenied")]
+    pub const Denied: Self = Self(2);
+    #[doc(alias = "CNAuthorizationStatusAuthorized")]
+    pub const Authorized: Self = Self(3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for CNAuthorizationStatus {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for CNAuthorizationStatus {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

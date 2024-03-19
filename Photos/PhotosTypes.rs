@@ -7,280 +7,434 @@ use crate::Foundation::*;
 use crate::Photos::*;
 use crate::UniformTypeIdentifiers::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum PHImageContentMode {
-        #[doc(alias = "PHImageContentModeAspectFit")]
-        AspectFit = 0,
-        #[doc(alias = "PHImageContentModeAspectFill")]
-        AspectFill = 1,
-        #[doc(alias = "PHImageContentModeDefault")]
-        Default = PHImageContentMode::AspectFit.0,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct PHImageContentMode(pub NSInteger);
+impl PHImageContentMode {
+    #[doc(alias = "PHImageContentModeAspectFit")]
+    pub const AspectFit: Self = Self(0);
+    #[doc(alias = "PHImageContentModeAspectFill")]
+    pub const AspectFill: Self = Self(1);
+    #[doc(alias = "PHImageContentModeDefault")]
+    pub const Default: Self = Self(PHImageContentMode::AspectFit.0);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum PHCollectionListType {
-        #[deprecated = "Will be removed in a future release"]
-        #[doc(alias = "PHCollectionListTypeMomentList")]
-        MomentList = 1,
-        #[doc(alias = "PHCollectionListTypeFolder")]
-        Folder = 2,
-        #[doc(alias = "PHCollectionListTypeSmartFolder")]
-        SmartFolder = 3,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for PHImageContentMode {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum PHCollectionListSubtype {
-        #[deprecated = "Will be removed in a future release"]
-        #[doc(alias = "PHCollectionListSubtypeMomentListCluster")]
-        MomentListCluster = 1,
-        #[deprecated = "Will be removed in a future release"]
-        #[doc(alias = "PHCollectionListSubtypeMomentListYear")]
-        MomentListYear = 2,
-        #[doc(alias = "PHCollectionListSubtypeRegularFolder")]
-        RegularFolder = 100,
-        #[doc(alias = "PHCollectionListSubtypeSmartFolderEvents")]
-        SmartFolderEvents = 200,
-        #[doc(alias = "PHCollectionListSubtypeSmartFolderFaces")]
-        SmartFolderFaces = 201,
-        #[doc(alias = "PHCollectionListSubtypeAny")]
-        Any = NSIntegerMax as _,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for PHImageContentMode {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum PHCollectionEditOperation {
-        #[doc(alias = "PHCollectionEditOperationDeleteContent")]
-        DeleteContent = 1,
-        #[doc(alias = "PHCollectionEditOperationRemoveContent")]
-        RemoveContent = 2,
-        #[doc(alias = "PHCollectionEditOperationAddContent")]
-        AddContent = 3,
-        #[doc(alias = "PHCollectionEditOperationCreateContent")]
-        CreateContent = 4,
-        #[doc(alias = "PHCollectionEditOperationRearrangeContent")]
-        RearrangeContent = 5,
-        #[doc(alias = "PHCollectionEditOperationDelete")]
-        Delete = 6,
-        #[doc(alias = "PHCollectionEditOperationRename")]
-        Rename = 7,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct PHCollectionListType(pub NSInteger);
+impl PHCollectionListType {
+    #[deprecated = "Will be removed in a future release"]
+    #[doc(alias = "PHCollectionListTypeMomentList")]
+    pub const MomentList: Self = Self(1);
+    #[doc(alias = "PHCollectionListTypeFolder")]
+    pub const Folder: Self = Self(2);
+    #[doc(alias = "PHCollectionListTypeSmartFolder")]
+    pub const SmartFolder: Self = Self(3);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum PHAssetCollectionType {
-        #[doc(alias = "PHAssetCollectionTypeAlbum")]
-        Album = 1,
-        #[doc(alias = "PHAssetCollectionTypeSmartAlbum")]
-        SmartAlbum = 2,
-        #[deprecated = "Will be removed in a future release"]
-        #[doc(alias = "PHAssetCollectionTypeMoment")]
-        Moment = 3,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for PHCollectionListType {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum PHAssetCollectionSubtype {
-        #[doc(alias = "PHAssetCollectionSubtypeAlbumRegular")]
-        AlbumRegular = 2,
-        #[doc(alias = "PHAssetCollectionSubtypeAlbumSyncedEvent")]
-        AlbumSyncedEvent = 3,
-        #[doc(alias = "PHAssetCollectionSubtypeAlbumSyncedFaces")]
-        AlbumSyncedFaces = 4,
-        #[doc(alias = "PHAssetCollectionSubtypeAlbumSyncedAlbum")]
-        AlbumSyncedAlbum = 5,
-        #[doc(alias = "PHAssetCollectionSubtypeAlbumImported")]
-        AlbumImported = 6,
-        #[doc(alias = "PHAssetCollectionSubtypeAlbumMyPhotoStream")]
-        AlbumMyPhotoStream = 100,
-        #[doc(alias = "PHAssetCollectionSubtypeAlbumCloudShared")]
-        AlbumCloudShared = 101,
-        #[doc(alias = "PHAssetCollectionSubtypeSmartAlbumGeneric")]
-        SmartAlbumGeneric = 200,
-        #[doc(alias = "PHAssetCollectionSubtypeSmartAlbumPanoramas")]
-        SmartAlbumPanoramas = 201,
-        #[doc(alias = "PHAssetCollectionSubtypeSmartAlbumVideos")]
-        SmartAlbumVideos = 202,
-        #[doc(alias = "PHAssetCollectionSubtypeSmartAlbumFavorites")]
-        SmartAlbumFavorites = 203,
-        #[doc(alias = "PHAssetCollectionSubtypeSmartAlbumTimelapses")]
-        SmartAlbumTimelapses = 204,
-        #[doc(alias = "PHAssetCollectionSubtypeSmartAlbumAllHidden")]
-        SmartAlbumAllHidden = 205,
-        #[doc(alias = "PHAssetCollectionSubtypeSmartAlbumRecentlyAdded")]
-        SmartAlbumRecentlyAdded = 206,
-        #[doc(alias = "PHAssetCollectionSubtypeSmartAlbumBursts")]
-        SmartAlbumBursts = 207,
-        #[doc(alias = "PHAssetCollectionSubtypeSmartAlbumSlomoVideos")]
-        SmartAlbumSlomoVideos = 208,
-        #[doc(alias = "PHAssetCollectionSubtypeSmartAlbumUserLibrary")]
-        SmartAlbumUserLibrary = 209,
-        #[doc(alias = "PHAssetCollectionSubtypeSmartAlbumSelfPortraits")]
-        SmartAlbumSelfPortraits = 210,
-        #[doc(alias = "PHAssetCollectionSubtypeSmartAlbumScreenshots")]
-        SmartAlbumScreenshots = 211,
-        #[doc(alias = "PHAssetCollectionSubtypeSmartAlbumDepthEffect")]
-        SmartAlbumDepthEffect = 212,
-        #[doc(alias = "PHAssetCollectionSubtypeSmartAlbumLivePhotos")]
-        SmartAlbumLivePhotos = 213,
-        #[doc(alias = "PHAssetCollectionSubtypeSmartAlbumAnimated")]
-        SmartAlbumAnimated = 214,
-        #[doc(alias = "PHAssetCollectionSubtypeSmartAlbumLongExposures")]
-        SmartAlbumLongExposures = 215,
-        #[doc(alias = "PHAssetCollectionSubtypeSmartAlbumUnableToUpload")]
-        SmartAlbumUnableToUpload = 216,
-        #[doc(alias = "PHAssetCollectionSubtypeSmartAlbumRAW")]
-        SmartAlbumRAW = 217,
-        #[doc(alias = "PHAssetCollectionSubtypeSmartAlbumCinematic")]
-        SmartAlbumCinematic = 218,
-        #[doc(alias = "PHAssetCollectionSubtypeAny")]
-        Any = NSIntegerMax as _,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for PHCollectionListType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum PHAssetEditOperation {
-        #[doc(alias = "PHAssetEditOperationDelete")]
-        Delete = 1,
-        #[doc(alias = "PHAssetEditOperationContent")]
-        Content = 2,
-        #[doc(alias = "PHAssetEditOperationProperties")]
-        Properties = 3,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct PHCollectionListSubtype(pub NSInteger);
+impl PHCollectionListSubtype {
+    #[deprecated = "Will be removed in a future release"]
+    #[doc(alias = "PHCollectionListSubtypeMomentListCluster")]
+    pub const MomentListCluster: Self = Self(1);
+    #[deprecated = "Will be removed in a future release"]
+    #[doc(alias = "PHCollectionListSubtypeMomentListYear")]
+    pub const MomentListYear: Self = Self(2);
+    #[doc(alias = "PHCollectionListSubtypeRegularFolder")]
+    pub const RegularFolder: Self = Self(100);
+    #[doc(alias = "PHCollectionListSubtypeSmartFolderEvents")]
+    pub const SmartFolderEvents: Self = Self(200);
+    #[doc(alias = "PHCollectionListSubtypeSmartFolderFaces")]
+    pub const SmartFolderFaces: Self = Self(201);
+    #[doc(alias = "PHCollectionListSubtypeAny")]
+    pub const Any: Self = Self(NSIntegerMax as _);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum PHAssetPlaybackStyle {
-        #[doc(alias = "PHAssetPlaybackStyleUnsupported")]
-        Unsupported = 0,
-        #[doc(alias = "PHAssetPlaybackStyleImage")]
-        Image = 1,
-        #[doc(alias = "PHAssetPlaybackStyleImageAnimated")]
-        ImageAnimated = 2,
-        #[doc(alias = "PHAssetPlaybackStyleLivePhoto")]
-        LivePhoto = 3,
-        #[doc(alias = "PHAssetPlaybackStyleVideo")]
-        Video = 4,
-        #[doc(alias = "PHAssetPlaybackStyleVideoLooping")]
-        VideoLooping = 5,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for PHCollectionListSubtype {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum PHAssetMediaType {
-        #[doc(alias = "PHAssetMediaTypeUnknown")]
-        Unknown = 0,
-        #[doc(alias = "PHAssetMediaTypeImage")]
-        Image = 1,
-        #[doc(alias = "PHAssetMediaTypeVideo")]
-        Video = 2,
-        #[doc(alias = "PHAssetMediaTypeAudio")]
-        Audio = 3,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for PHCollectionListSubtype {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum PHAssetMediaSubtype {
-        #[doc(alias = "PHAssetMediaSubtypeNone")]
-        None = 0,
-        #[doc(alias = "PHAssetMediaSubtypePhotoPanorama")]
-        PhotoPanorama = 1 << 0,
-        #[doc(alias = "PHAssetMediaSubtypePhotoHDR")]
-        PhotoHDR = 1 << 1,
-        #[doc(alias = "PHAssetMediaSubtypePhotoScreenshot")]
-        PhotoScreenshot = 1 << 2,
-        #[doc(alias = "PHAssetMediaSubtypePhotoLive")]
-        PhotoLive = 1 << 3,
-        #[doc(alias = "PHAssetMediaSubtypePhotoDepthEffect")]
-        PhotoDepthEffect = 1 << 4,
-        #[doc(alias = "PHAssetMediaSubtypeVideoStreamed")]
-        VideoStreamed = 1 << 16,
-        #[doc(alias = "PHAssetMediaSubtypeVideoHighFrameRate")]
-        VideoHighFrameRate = 1 << 17,
-        #[doc(alias = "PHAssetMediaSubtypeVideoTimelapse")]
-        VideoTimelapse = 1 << 18,
-        #[doc(alias = "PHAssetMediaSubtypeVideoCinematic")]
-        VideoCinematic = 1 << 21,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct PHCollectionEditOperation(pub NSInteger);
+impl PHCollectionEditOperation {
+    #[doc(alias = "PHCollectionEditOperationDeleteContent")]
+    pub const DeleteContent: Self = Self(1);
+    #[doc(alias = "PHCollectionEditOperationRemoveContent")]
+    pub const RemoveContent: Self = Self(2);
+    #[doc(alias = "PHCollectionEditOperationAddContent")]
+    pub const AddContent: Self = Self(3);
+    #[doc(alias = "PHCollectionEditOperationCreateContent")]
+    pub const CreateContent: Self = Self(4);
+    #[doc(alias = "PHCollectionEditOperationRearrangeContent")]
+    pub const RearrangeContent: Self = Self(5);
+    #[doc(alias = "PHCollectionEditOperationDelete")]
+    pub const Delete: Self = Self(6);
+    #[doc(alias = "PHCollectionEditOperationRename")]
+    pub const Rename: Self = Self(7);
+}
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum PHAssetBurstSelectionType {
-        #[doc(alias = "PHAssetBurstSelectionTypeNone")]
-        None = 0,
-        #[doc(alias = "PHAssetBurstSelectionTypeAutoPick")]
-        AutoPick = 1 << 0,
-        #[doc(alias = "PHAssetBurstSelectionTypeUserPick")]
-        UserPick = 1 << 1,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for PHCollectionEditOperation {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum PHAssetSourceType {
-        #[doc(alias = "PHAssetSourceTypeNone")]
-        None = 0,
-        #[doc(alias = "PHAssetSourceTypeUserLibrary")]
-        UserLibrary = 1 << 0,
-        #[doc(alias = "PHAssetSourceTypeCloudShared")]
-        CloudShared = 1 << 1,
-        #[doc(alias = "PHAssetSourceTypeiTunesSynced")]
-        iTunesSynced = 1 << 2,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for PHCollectionEditOperation {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum PHAssetResourceType {
-        #[doc(alias = "PHAssetResourceTypePhoto")]
-        Photo = 1,
-        #[doc(alias = "PHAssetResourceTypeVideo")]
-        Video = 2,
-        #[doc(alias = "PHAssetResourceTypeAudio")]
-        Audio = 3,
-        #[doc(alias = "PHAssetResourceTypeAlternatePhoto")]
-        AlternatePhoto = 4,
-        #[doc(alias = "PHAssetResourceTypeFullSizePhoto")]
-        FullSizePhoto = 5,
-        #[doc(alias = "PHAssetResourceTypeFullSizeVideo")]
-        FullSizeVideo = 6,
-        #[doc(alias = "PHAssetResourceTypeAdjustmentData")]
-        AdjustmentData = 7,
-        #[doc(alias = "PHAssetResourceTypeAdjustmentBasePhoto")]
-        AdjustmentBasePhoto = 8,
-        #[doc(alias = "PHAssetResourceTypePairedVideo")]
-        PairedVideo = 9,
-        #[doc(alias = "PHAssetResourceTypeFullSizePairedVideo")]
-        FullSizePairedVideo = 10,
-        #[doc(alias = "PHAssetResourceTypeAdjustmentBasePairedVideo")]
-        AdjustmentBasePairedVideo = 11,
-        #[doc(alias = "PHAssetResourceTypeAdjustmentBaseVideo")]
-        AdjustmentBaseVideo = 12,
-        #[doc(alias = "PHAssetResourceTypePhotoProxy")]
-        PhotoProxy = 19,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct PHAssetCollectionType(pub NSInteger);
+impl PHAssetCollectionType {
+    #[doc(alias = "PHAssetCollectionTypeAlbum")]
+    pub const Album: Self = Self(1);
+    #[doc(alias = "PHAssetCollectionTypeSmartAlbum")]
+    pub const SmartAlbum: Self = Self(2);
+    #[deprecated = "Will be removed in a future release"]
+    #[doc(alias = "PHAssetCollectionTypeMoment")]
+    pub const Moment: Self = Self(3);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum PHObjectType {
-        #[doc(alias = "PHObjectTypeAsset")]
-        Asset = 1,
-        #[doc(alias = "PHObjectTypeAssetCollection")]
-        AssetCollection = 2,
-        #[doc(alias = "PHObjectTypeCollectionList")]
-        CollectionList = 3,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for PHAssetCollectionType {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for PHAssetCollectionType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct PHAssetCollectionSubtype(pub NSInteger);
+impl PHAssetCollectionSubtype {
+    #[doc(alias = "PHAssetCollectionSubtypeAlbumRegular")]
+    pub const AlbumRegular: Self = Self(2);
+    #[doc(alias = "PHAssetCollectionSubtypeAlbumSyncedEvent")]
+    pub const AlbumSyncedEvent: Self = Self(3);
+    #[doc(alias = "PHAssetCollectionSubtypeAlbumSyncedFaces")]
+    pub const AlbumSyncedFaces: Self = Self(4);
+    #[doc(alias = "PHAssetCollectionSubtypeAlbumSyncedAlbum")]
+    pub const AlbumSyncedAlbum: Self = Self(5);
+    #[doc(alias = "PHAssetCollectionSubtypeAlbumImported")]
+    pub const AlbumImported: Self = Self(6);
+    #[doc(alias = "PHAssetCollectionSubtypeAlbumMyPhotoStream")]
+    pub const AlbumMyPhotoStream: Self = Self(100);
+    #[doc(alias = "PHAssetCollectionSubtypeAlbumCloudShared")]
+    pub const AlbumCloudShared: Self = Self(101);
+    #[doc(alias = "PHAssetCollectionSubtypeSmartAlbumGeneric")]
+    pub const SmartAlbumGeneric: Self = Self(200);
+    #[doc(alias = "PHAssetCollectionSubtypeSmartAlbumPanoramas")]
+    pub const SmartAlbumPanoramas: Self = Self(201);
+    #[doc(alias = "PHAssetCollectionSubtypeSmartAlbumVideos")]
+    pub const SmartAlbumVideos: Self = Self(202);
+    #[doc(alias = "PHAssetCollectionSubtypeSmartAlbumFavorites")]
+    pub const SmartAlbumFavorites: Self = Self(203);
+    #[doc(alias = "PHAssetCollectionSubtypeSmartAlbumTimelapses")]
+    pub const SmartAlbumTimelapses: Self = Self(204);
+    #[doc(alias = "PHAssetCollectionSubtypeSmartAlbumAllHidden")]
+    pub const SmartAlbumAllHidden: Self = Self(205);
+    #[doc(alias = "PHAssetCollectionSubtypeSmartAlbumRecentlyAdded")]
+    pub const SmartAlbumRecentlyAdded: Self = Self(206);
+    #[doc(alias = "PHAssetCollectionSubtypeSmartAlbumBursts")]
+    pub const SmartAlbumBursts: Self = Self(207);
+    #[doc(alias = "PHAssetCollectionSubtypeSmartAlbumSlomoVideos")]
+    pub const SmartAlbumSlomoVideos: Self = Self(208);
+    #[doc(alias = "PHAssetCollectionSubtypeSmartAlbumUserLibrary")]
+    pub const SmartAlbumUserLibrary: Self = Self(209);
+    #[doc(alias = "PHAssetCollectionSubtypeSmartAlbumSelfPortraits")]
+    pub const SmartAlbumSelfPortraits: Self = Self(210);
+    #[doc(alias = "PHAssetCollectionSubtypeSmartAlbumScreenshots")]
+    pub const SmartAlbumScreenshots: Self = Self(211);
+    #[doc(alias = "PHAssetCollectionSubtypeSmartAlbumDepthEffect")]
+    pub const SmartAlbumDepthEffect: Self = Self(212);
+    #[doc(alias = "PHAssetCollectionSubtypeSmartAlbumLivePhotos")]
+    pub const SmartAlbumLivePhotos: Self = Self(213);
+    #[doc(alias = "PHAssetCollectionSubtypeSmartAlbumAnimated")]
+    pub const SmartAlbumAnimated: Self = Self(214);
+    #[doc(alias = "PHAssetCollectionSubtypeSmartAlbumLongExposures")]
+    pub const SmartAlbumLongExposures: Self = Self(215);
+    #[doc(alias = "PHAssetCollectionSubtypeSmartAlbumUnableToUpload")]
+    pub const SmartAlbumUnableToUpload: Self = Self(216);
+    #[doc(alias = "PHAssetCollectionSubtypeSmartAlbumRAW")]
+    pub const SmartAlbumRAW: Self = Self(217);
+    #[doc(alias = "PHAssetCollectionSubtypeSmartAlbumCinematic")]
+    pub const SmartAlbumCinematic: Self = Self(218);
+    #[doc(alias = "PHAssetCollectionSubtypeAny")]
+    pub const Any: Self = Self(NSIntegerMax as _);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for PHAssetCollectionSubtype {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for PHAssetCollectionSubtype {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct PHAssetEditOperation(pub NSInteger);
+impl PHAssetEditOperation {
+    #[doc(alias = "PHAssetEditOperationDelete")]
+    pub const Delete: Self = Self(1);
+    #[doc(alias = "PHAssetEditOperationContent")]
+    pub const Content: Self = Self(2);
+    #[doc(alias = "PHAssetEditOperationProperties")]
+    pub const Properties: Self = Self(3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for PHAssetEditOperation {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for PHAssetEditOperation {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct PHAssetPlaybackStyle(pub NSInteger);
+impl PHAssetPlaybackStyle {
+    #[doc(alias = "PHAssetPlaybackStyleUnsupported")]
+    pub const Unsupported: Self = Self(0);
+    #[doc(alias = "PHAssetPlaybackStyleImage")]
+    pub const Image: Self = Self(1);
+    #[doc(alias = "PHAssetPlaybackStyleImageAnimated")]
+    pub const ImageAnimated: Self = Self(2);
+    #[doc(alias = "PHAssetPlaybackStyleLivePhoto")]
+    pub const LivePhoto: Self = Self(3);
+    #[doc(alias = "PHAssetPlaybackStyleVideo")]
+    pub const Video: Self = Self(4);
+    #[doc(alias = "PHAssetPlaybackStyleVideoLooping")]
+    pub const VideoLooping: Self = Self(5);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for PHAssetPlaybackStyle {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for PHAssetPlaybackStyle {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct PHAssetMediaType(pub NSInteger);
+impl PHAssetMediaType {
+    #[doc(alias = "PHAssetMediaTypeUnknown")]
+    pub const Unknown: Self = Self(0);
+    #[doc(alias = "PHAssetMediaTypeImage")]
+    pub const Image: Self = Self(1);
+    #[doc(alias = "PHAssetMediaTypeVideo")]
+    pub const Video: Self = Self(2);
+    #[doc(alias = "PHAssetMediaTypeAudio")]
+    pub const Audio: Self = Self(3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for PHAssetMediaType {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for PHAssetMediaType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct PHAssetMediaSubtype(pub NSUInteger);
+impl PHAssetMediaSubtype {
+    #[doc(alias = "PHAssetMediaSubtypeNone")]
+    pub const None: Self = Self(0);
+    #[doc(alias = "PHAssetMediaSubtypePhotoPanorama")]
+    pub const PhotoPanorama: Self = Self(1 << 0);
+    #[doc(alias = "PHAssetMediaSubtypePhotoHDR")]
+    pub const PhotoHDR: Self = Self(1 << 1);
+    #[doc(alias = "PHAssetMediaSubtypePhotoScreenshot")]
+    pub const PhotoScreenshot: Self = Self(1 << 2);
+    #[doc(alias = "PHAssetMediaSubtypePhotoLive")]
+    pub const PhotoLive: Self = Self(1 << 3);
+    #[doc(alias = "PHAssetMediaSubtypePhotoDepthEffect")]
+    pub const PhotoDepthEffect: Self = Self(1 << 4);
+    #[doc(alias = "PHAssetMediaSubtypeVideoStreamed")]
+    pub const VideoStreamed: Self = Self(1 << 16);
+    #[doc(alias = "PHAssetMediaSubtypeVideoHighFrameRate")]
+    pub const VideoHighFrameRate: Self = Self(1 << 17);
+    #[doc(alias = "PHAssetMediaSubtypeVideoTimelapse")]
+    pub const VideoTimelapse: Self = Self(1 << 18);
+    #[doc(alias = "PHAssetMediaSubtypeVideoCinematic")]
+    pub const VideoCinematic: Self = Self(1 << 21);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for PHAssetMediaSubtype {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for PHAssetMediaSubtype {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct PHAssetBurstSelectionType(pub NSUInteger);
+impl PHAssetBurstSelectionType {
+    #[doc(alias = "PHAssetBurstSelectionTypeNone")]
+    pub const None: Self = Self(0);
+    #[doc(alias = "PHAssetBurstSelectionTypeAutoPick")]
+    pub const AutoPick: Self = Self(1 << 0);
+    #[doc(alias = "PHAssetBurstSelectionTypeUserPick")]
+    pub const UserPick: Self = Self(1 << 1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for PHAssetBurstSelectionType {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for PHAssetBurstSelectionType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct PHAssetSourceType(pub NSUInteger);
+impl PHAssetSourceType {
+    #[doc(alias = "PHAssetSourceTypeNone")]
+    pub const None: Self = Self(0);
+    #[doc(alias = "PHAssetSourceTypeUserLibrary")]
+    pub const UserLibrary: Self = Self(1 << 0);
+    #[doc(alias = "PHAssetSourceTypeCloudShared")]
+    pub const CloudShared: Self = Self(1 << 1);
+    #[doc(alias = "PHAssetSourceTypeiTunesSynced")]
+    pub const iTunesSynced: Self = Self(1 << 2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for PHAssetSourceType {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for PHAssetSourceType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct PHAssetResourceType(pub NSInteger);
+impl PHAssetResourceType {
+    #[doc(alias = "PHAssetResourceTypePhoto")]
+    pub const Photo: Self = Self(1);
+    #[doc(alias = "PHAssetResourceTypeVideo")]
+    pub const Video: Self = Self(2);
+    #[doc(alias = "PHAssetResourceTypeAudio")]
+    pub const Audio: Self = Self(3);
+    #[doc(alias = "PHAssetResourceTypeAlternatePhoto")]
+    pub const AlternatePhoto: Self = Self(4);
+    #[doc(alias = "PHAssetResourceTypeFullSizePhoto")]
+    pub const FullSizePhoto: Self = Self(5);
+    #[doc(alias = "PHAssetResourceTypeFullSizeVideo")]
+    pub const FullSizeVideo: Self = Self(6);
+    #[doc(alias = "PHAssetResourceTypeAdjustmentData")]
+    pub const AdjustmentData: Self = Self(7);
+    #[doc(alias = "PHAssetResourceTypeAdjustmentBasePhoto")]
+    pub const AdjustmentBasePhoto: Self = Self(8);
+    #[doc(alias = "PHAssetResourceTypePairedVideo")]
+    pub const PairedVideo: Self = Self(9);
+    #[doc(alias = "PHAssetResourceTypeFullSizePairedVideo")]
+    pub const FullSizePairedVideo: Self = Self(10);
+    #[doc(alias = "PHAssetResourceTypeAdjustmentBasePairedVideo")]
+    pub const AdjustmentBasePairedVideo: Self = Self(11);
+    #[doc(alias = "PHAssetResourceTypeAdjustmentBaseVideo")]
+    pub const AdjustmentBaseVideo: Self = Self(12);
+    #[doc(alias = "PHAssetResourceTypePhotoProxy")]
+    pub const PhotoProxy: Self = Self(19);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for PHAssetResourceType {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for PHAssetResourceType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct PHObjectType(pub NSInteger);
+impl PHObjectType {
+    #[doc(alias = "PHObjectTypeAsset")]
+    pub const Asset: Self = Self(1);
+    #[doc(alias = "PHObjectTypeAssetCollection")]
+    pub const AssetCollection: Self = Self(2);
+    #[doc(alias = "PHObjectTypeCollectionList")]
+    pub const CollectionList: Self = Self(3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for PHObjectType {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for PHObjectType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}

@@ -3,19 +3,30 @@
 use crate::common::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSEnergyFormatterUnit {
-        #[doc(alias = "NSEnergyFormatterUnitJoule")]
-        Joule = 11,
-        #[doc(alias = "NSEnergyFormatterUnitKilojoule")]
-        Kilojoule = 14,
-        #[doc(alias = "NSEnergyFormatterUnitCalorie")]
-        Calorie = (7 << 8) + 1,
-        #[doc(alias = "NSEnergyFormatterUnitKilocalorie")]
-        Kilocalorie = (7 << 8) + 2,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSEnergyFormatterUnit(pub NSInteger);
+impl NSEnergyFormatterUnit {
+    #[doc(alias = "NSEnergyFormatterUnitJoule")]
+    pub const Joule: Self = Self(11);
+    #[doc(alias = "NSEnergyFormatterUnitKilojoule")]
+    pub const Kilojoule: Self = Self(14);
+    #[doc(alias = "NSEnergyFormatterUnitCalorie")]
+    pub const Calorie: Self = Self((7 << 8) + 1);
+    #[doc(alias = "NSEnergyFormatterUnitKilocalorie")]
+    pub const Kilocalorie: Self = Self((7 << 8) + 2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSEnergyFormatterUnit {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSEnergyFormatterUnit {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

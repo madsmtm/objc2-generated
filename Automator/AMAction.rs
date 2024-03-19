@@ -6,19 +6,30 @@ use crate::Automator::*;
 use crate::Foundation::*;
 use crate::OSAKit::*;
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum AMLogLevel {
-        #[doc(alias = "AMLogLevelDebug")]
-        Debug = 0,
-        #[doc(alias = "AMLogLevelInfo")]
-        Info = 1,
-        #[doc(alias = "AMLogLevelWarn")]
-        Warn = 2,
-        #[doc(alias = "AMLogLevelError")]
-        Error = 3,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct AMLogLevel(pub NSUInteger);
+impl AMLogLevel {
+    #[doc(alias = "AMLogLevelDebug")]
+    pub const Debug: Self = Self(0);
+    #[doc(alias = "AMLogLevelInfo")]
+    pub const Info: Self = Self(1);
+    #[doc(alias = "AMLogLevelWarn")]
+    pub const Warn: Self = Self(2);
+    #[doc(alias = "AMLogLevelError")]
+    pub const Error: Self = Self(3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for AMLogLevel {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for AMLogLevel {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

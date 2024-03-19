@@ -5,39 +5,72 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSDatePickerStyle {
-        #[doc(alias = "NSDatePickerStyleTextFieldAndStepper")]
-        TextFieldAndStepper = 0,
-        #[doc(alias = "NSDatePickerStyleClockAndCalendar")]
-        ClockAndCalendar = 1,
-        #[doc(alias = "NSDatePickerStyleTextField")]
-        TextField = 2,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSDatePickerStyle(pub NSUInteger);
+impl NSDatePickerStyle {
+    #[doc(alias = "NSDatePickerStyleTextFieldAndStepper")]
+    pub const TextFieldAndStepper: Self = Self(0);
+    #[doc(alias = "NSDatePickerStyleClockAndCalendar")]
+    pub const ClockAndCalendar: Self = Self(1);
+    #[doc(alias = "NSDatePickerStyleTextField")]
+    pub const TextField: Self = Self(2);
+}
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSDatePickerMode {
-        #[doc(alias = "NSDatePickerModeSingle")]
-        Single = 0,
-        #[doc(alias = "NSDatePickerModeRange")]
-        Range = 1,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSDatePickerStyle {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSDatePickerElementFlags {
-        NSDatePickerElementFlagHourMinute = 0x000c,
-        NSDatePickerElementFlagHourMinuteSecond = 0x000e,
-        NSDatePickerElementFlagTimeZone = 0x0010,
-        NSDatePickerElementFlagYearMonth = 0x00c0,
-        NSDatePickerElementFlagYearMonthDay = 0x00e0,
-        NSDatePickerElementFlagEra = 0x0100,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSDatePickerStyle {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSDatePickerMode(pub NSUInteger);
+impl NSDatePickerMode {
+    #[doc(alias = "NSDatePickerModeSingle")]
+    pub const Single: Self = Self(0);
+    #[doc(alias = "NSDatePickerModeRange")]
+    pub const Range: Self = Self(1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSDatePickerMode {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSDatePickerMode {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSDatePickerElementFlags(pub NSUInteger);
+impl NSDatePickerElementFlags {
+    pub const NSDatePickerElementFlagHourMinute: Self = Self(0x000c);
+    pub const NSDatePickerElementFlagHourMinuteSecond: Self = Self(0x000e);
+    pub const NSDatePickerElementFlagTimeZone: Self = Self(0x0010);
+    pub const NSDatePickerElementFlagYearMonth: Self = Self(0x00c0);
+    pub const NSDatePickerElementFlagYearMonthDay: Self = Self(0x00e0);
+    pub const NSDatePickerElementFlagEra: Self = Self(0x0100);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSDatePickerElementFlags {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSDatePickerElementFlags {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

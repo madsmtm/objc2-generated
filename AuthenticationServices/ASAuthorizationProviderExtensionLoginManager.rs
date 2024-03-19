@@ -5,27 +5,38 @@ use crate::AppKit::*;
 use crate::AuthenticationServices::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum ASAuthorizationProviderExtensionKeyType {
-        #[doc(alias = "ASAuthorizationProviderExtensionKeyTypeUserDeviceSigning")]
-        UserDeviceSigning = 1,
-        #[doc(alias = "ASAuthorizationProviderExtensionKeyTypeUserDeviceEncryption")]
-        UserDeviceEncryption = 2,
-        #[doc(alias = "ASAuthorizationProviderExtensionKeyTypeUserSecureEnclaveKey")]
-        UserSecureEnclaveKey = 3,
-        #[doc(alias = "ASAuthorizationProviderExtensionKeyTypeSharedDeviceSigning")]
-        SharedDeviceSigning = 4,
-        #[doc(alias = "ASAuthorizationProviderExtensionKeyTypeSharedDeviceEncryption")]
-        SharedDeviceEncryption = 5,
-        #[doc(alias = "ASAuthorizationProviderExtensionKeyTypeCurrentDeviceSigning")]
-        CurrentDeviceSigning = 10,
-        #[doc(alias = "ASAuthorizationProviderExtensionKeyTypeCurrentDeviceEncryption")]
-        CurrentDeviceEncryption = 11,
-        #[doc(alias = "ASAuthorizationProviderExtensionKeyTypeUserSmartCard")]
-        UserSmartCard = 20,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct ASAuthorizationProviderExtensionKeyType(pub NSInteger);
+impl ASAuthorizationProviderExtensionKeyType {
+    #[doc(alias = "ASAuthorizationProviderExtensionKeyTypeUserDeviceSigning")]
+    pub const UserDeviceSigning: Self = Self(1);
+    #[doc(alias = "ASAuthorizationProviderExtensionKeyTypeUserDeviceEncryption")]
+    pub const UserDeviceEncryption: Self = Self(2);
+    #[doc(alias = "ASAuthorizationProviderExtensionKeyTypeUserSecureEnclaveKey")]
+    pub const UserSecureEnclaveKey: Self = Self(3);
+    #[doc(alias = "ASAuthorizationProviderExtensionKeyTypeSharedDeviceSigning")]
+    pub const SharedDeviceSigning: Self = Self(4);
+    #[doc(alias = "ASAuthorizationProviderExtensionKeyTypeSharedDeviceEncryption")]
+    pub const SharedDeviceEncryption: Self = Self(5);
+    #[doc(alias = "ASAuthorizationProviderExtensionKeyTypeCurrentDeviceSigning")]
+    pub const CurrentDeviceSigning: Self = Self(10);
+    #[doc(alias = "ASAuthorizationProviderExtensionKeyTypeCurrentDeviceEncryption")]
+    pub const CurrentDeviceEncryption: Self = Self(11);
+    #[doc(alias = "ASAuthorizationProviderExtensionKeyTypeUserSmartCard")]
+    pub const UserSmartCard: Self = Self(20);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for ASAuthorizationProviderExtensionKeyType {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for ASAuthorizationProviderExtensionKeyType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

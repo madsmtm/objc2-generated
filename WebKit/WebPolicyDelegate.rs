@@ -5,30 +5,41 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::WebKit::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
+// NS_ENUM
+#[deprecated]
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct WebNavigationType(pub NSInteger);
+impl WebNavigationType {
     #[deprecated]
-    pub enum WebNavigationType {
-        #[deprecated]
-        #[doc(alias = "WebNavigationTypeLinkClicked")]
-        LinkClicked = 0,
-        #[deprecated]
-        #[doc(alias = "WebNavigationTypeFormSubmitted")]
-        FormSubmitted = 1,
-        #[deprecated]
-        #[doc(alias = "WebNavigationTypeBackForward")]
-        BackForward = 2,
-        #[deprecated]
-        #[doc(alias = "WebNavigationTypeReload")]
-        Reload = 3,
-        #[deprecated]
-        #[doc(alias = "WebNavigationTypeFormResubmitted")]
-        FormResubmitted = 4,
-        #[deprecated]
-        #[doc(alias = "WebNavigationTypeOther")]
-        Other = 5,
-    }
-);
+    #[doc(alias = "WebNavigationTypeLinkClicked")]
+    pub const LinkClicked: Self = Self(0);
+    #[deprecated]
+    #[doc(alias = "WebNavigationTypeFormSubmitted")]
+    pub const FormSubmitted: Self = Self(1);
+    #[deprecated]
+    #[doc(alias = "WebNavigationTypeBackForward")]
+    pub const BackForward: Self = Self(2);
+    #[deprecated]
+    #[doc(alias = "WebNavigationTypeReload")]
+    pub const Reload: Self = Self(3);
+    #[deprecated]
+    #[doc(alias = "WebNavigationTypeFormResubmitted")]
+    pub const FormResubmitted: Self = Self(4);
+    #[deprecated]
+    #[doc(alias = "WebNavigationTypeOther")]
+    pub const Other: Self = Self(5);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for WebNavigationType {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for WebNavigationType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]

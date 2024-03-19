@@ -4,15 +4,26 @@ use crate::common::*;
 use crate::Accessibility::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum AXCustomContentImportance {
-        #[doc(alias = "AXCustomContentImportanceDefault")]
-        Default = 0,
-        #[doc(alias = "AXCustomContentImportanceHigh")]
-        High = 1,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct AXCustomContentImportance(pub NSUInteger);
+impl AXCustomContentImportance {
+    #[doc(alias = "AXCustomContentImportanceDefault")]
+    pub const Default: Self = Self(0);
+    #[doc(alias = "AXCustomContentImportanceHigh")]
+    pub const High: Self = Self(1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for AXCustomContentImportance {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for AXCustomContentImportance {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

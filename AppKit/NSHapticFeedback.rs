@@ -5,29 +5,51 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSHapticFeedbackPattern {
-        #[doc(alias = "NSHapticFeedbackPatternGeneric")]
-        Generic = 0,
-        #[doc(alias = "NSHapticFeedbackPatternAlignment")]
-        Alignment = 1,
-        #[doc(alias = "NSHapticFeedbackPatternLevelChange")]
-        LevelChange = 2,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSHapticFeedbackPattern(pub NSInteger);
+impl NSHapticFeedbackPattern {
+    #[doc(alias = "NSHapticFeedbackPatternGeneric")]
+    pub const Generic: Self = Self(0);
+    #[doc(alias = "NSHapticFeedbackPatternAlignment")]
+    pub const Alignment: Self = Self(1);
+    #[doc(alias = "NSHapticFeedbackPatternLevelChange")]
+    pub const LevelChange: Self = Self(2);
+}
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSHapticFeedbackPerformanceTime {
-        #[doc(alias = "NSHapticFeedbackPerformanceTimeDefault")]
-        Default = 0,
-        #[doc(alias = "NSHapticFeedbackPerformanceTimeNow")]
-        Now = 1,
-        #[doc(alias = "NSHapticFeedbackPerformanceTimeDrawCompleted")]
-        DrawCompleted = 2,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSHapticFeedbackPattern {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSHapticFeedbackPattern {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSHapticFeedbackPerformanceTime(pub NSUInteger);
+impl NSHapticFeedbackPerformanceTime {
+    #[doc(alias = "NSHapticFeedbackPerformanceTimeDefault")]
+    pub const Default: Self = Self(0);
+    #[doc(alias = "NSHapticFeedbackPerformanceTimeNow")]
+    pub const Now: Self = Self(1);
+    #[doc(alias = "NSHapticFeedbackPerformanceTimeDrawCompleted")]
+    pub const DrawCompleted: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSHapticFeedbackPerformanceTime {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSHapticFeedbackPerformanceTime {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_protocol!(
     pub unsafe trait NSHapticFeedbackPerformer: NSObjectProtocol {

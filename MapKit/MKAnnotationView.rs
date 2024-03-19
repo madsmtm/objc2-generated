@@ -12,25 +12,35 @@ extern "C" {
     pub static MKAnnotationCalloutInfoDidChangeNotification: &'static NSString;
 }
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum MKAnnotationViewDragState {
-        #[doc(alias = "MKAnnotationViewDragStateNone")]
-        None = 0,
-        #[doc(alias = "MKAnnotationViewDragStateStarting")]
-        Starting = 1,
-        #[doc(alias = "MKAnnotationViewDragStateDragging")]
-        Dragging = 2,
-        #[doc(alias = "MKAnnotationViewDragStateCanceling")]
-        Canceling = 3,
-        #[doc(alias = "MKAnnotationViewDragStateEnding")]
-        Ending = 4,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MKAnnotationViewDragState(pub NSUInteger);
+impl MKAnnotationViewDragState {
+    #[doc(alias = "MKAnnotationViewDragStateNone")]
+    pub const None: Self = Self(0);
+    #[doc(alias = "MKAnnotationViewDragStateStarting")]
+    pub const Starting: Self = Self(1);
+    #[doc(alias = "MKAnnotationViewDragStateDragging")]
+    pub const Dragging: Self = Self(2);
+    #[doc(alias = "MKAnnotationViewDragStateCanceling")]
+    pub const Canceling: Self = Self(3);
+    #[doc(alias = "MKAnnotationViewDragStateEnding")]
+    pub const Ending: Self = Self(4);
+}
 
-typed_extensible_enum!(
-    pub type MKFeatureDisplayPriority = c_float;
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MKAnnotationViewDragState {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MKAnnotationViewDragState {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_TYPED_EXTENSIBLE_ENUM
+pub type MKFeatureDisplayPriority = c_float;
 
 pub static MKFeatureDisplayPriorityRequired: MKFeatureDisplayPriority = 1000 as _;
 
@@ -38,9 +48,8 @@ pub static MKFeatureDisplayPriorityDefaultHigh: MKFeatureDisplayPriority = 750 a
 
 pub static MKFeatureDisplayPriorityDefaultLow: MKFeatureDisplayPriority = 250 as _;
 
-typed_extensible_enum!(
-    pub type MKAnnotationViewZPriority = c_float;
-);
+// NS_TYPED_EXTENSIBLE_ENUM
+pub type MKAnnotationViewZPriority = c_float;
 
 pub static MKAnnotationViewZPriorityMax: MKAnnotationViewZPriority = 1000 as _;
 
@@ -50,17 +59,28 @@ pub static MKAnnotationViewZPriorityDefaultUnselected: MKAnnotationViewZPriority
 
 pub static MKAnnotationViewZPriorityMin: MKAnnotationViewZPriority = 0 as _;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum MKAnnotationViewCollisionMode {
-        #[doc(alias = "MKAnnotationViewCollisionModeRectangle")]
-        Rectangle = 0,
-        #[doc(alias = "MKAnnotationViewCollisionModeCircle")]
-        Circle = 1,
-        #[doc(alias = "MKAnnotationViewCollisionModeNone")]
-        None = 2,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MKAnnotationViewCollisionMode(pub NSInteger);
+impl MKAnnotationViewCollisionMode {
+    #[doc(alias = "MKAnnotationViewCollisionModeRectangle")]
+    pub const Rectangle: Self = Self(0);
+    #[doc(alias = "MKAnnotationViewCollisionModeCircle")]
+    pub const Circle: Self = Self(1);
+    #[doc(alias = "MKAnnotationViewCollisionModeNone")]
+    pub const None: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MKAnnotationViewCollisionMode {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MKAnnotationViewCollisionMode {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

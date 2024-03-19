@@ -5,26 +5,39 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSDirectionalRectEdge {
-        #[doc(alias = "NSDirectionalRectEdgeNone")]
-        None = 0,
-        #[doc(alias = "NSDirectionalRectEdgeTop")]
-        Top = 1 << 0,
-        #[doc(alias = "NSDirectionalRectEdgeLeading")]
-        Leading = 1 << 1,
-        #[doc(alias = "NSDirectionalRectEdgeBottom")]
-        Bottom = 1 << 2,
-        #[doc(alias = "NSDirectionalRectEdgeTrailing")]
-        Trailing = 1 << 3,
-        #[doc(alias = "NSDirectionalRectEdgeAll")]
-        All = NSDirectionalRectEdge::Top.0
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSDirectionalRectEdge(pub NSUInteger);
+impl NSDirectionalRectEdge {
+    #[doc(alias = "NSDirectionalRectEdgeNone")]
+    pub const None: Self = Self(0);
+    #[doc(alias = "NSDirectionalRectEdgeTop")]
+    pub const Top: Self = Self(1 << 0);
+    #[doc(alias = "NSDirectionalRectEdgeLeading")]
+    pub const Leading: Self = Self(1 << 1);
+    #[doc(alias = "NSDirectionalRectEdgeBottom")]
+    pub const Bottom: Self = Self(1 << 2);
+    #[doc(alias = "NSDirectionalRectEdgeTrailing")]
+    pub const Trailing: Self = Self(1 << 3);
+    #[doc(alias = "NSDirectionalRectEdgeAll")]
+    pub const All: Self = Self(
+        NSDirectionalRectEdge::Top.0
             | NSDirectionalRectEdge::Leading.0
             | NSDirectionalRectEdge::Bottom.0
             | NSDirectionalRectEdge::Trailing.0,
-    }
-);
+    );
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSDirectionalRectEdge {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSDirectionalRectEdge {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_struct!(
     #[cfg(feature = "Foundation_NSGeometry")]
@@ -47,29 +60,40 @@ extern "C" {
     pub static NSDirectionalEdgeInsetsZero: NSDirectionalEdgeInsets;
 }
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSRectAlignment {
-        #[doc(alias = "NSRectAlignmentNone")]
-        None = 0,
-        #[doc(alias = "NSRectAlignmentTop")]
-        Top = 1,
-        #[doc(alias = "NSRectAlignmentTopLeading")]
-        TopLeading = 2,
-        #[doc(alias = "NSRectAlignmentLeading")]
-        Leading = 3,
-        #[doc(alias = "NSRectAlignmentBottomLeading")]
-        BottomLeading = 4,
-        #[doc(alias = "NSRectAlignmentBottom")]
-        Bottom = 5,
-        #[doc(alias = "NSRectAlignmentBottomTrailing")]
-        BottomTrailing = 6,
-        #[doc(alias = "NSRectAlignmentTrailing")]
-        Trailing = 7,
-        #[doc(alias = "NSRectAlignmentTopTrailing")]
-        TopTrailing = 8,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSRectAlignment(pub NSInteger);
+impl NSRectAlignment {
+    #[doc(alias = "NSRectAlignmentNone")]
+    pub const None: Self = Self(0);
+    #[doc(alias = "NSRectAlignmentTop")]
+    pub const Top: Self = Self(1);
+    #[doc(alias = "NSRectAlignmentTopLeading")]
+    pub const TopLeading: Self = Self(2);
+    #[doc(alias = "NSRectAlignmentLeading")]
+    pub const Leading: Self = Self(3);
+    #[doc(alias = "NSRectAlignmentBottomLeading")]
+    pub const BottomLeading: Self = Self(4);
+    #[doc(alias = "NSRectAlignmentBottom")]
+    pub const Bottom: Self = Self(5);
+    #[doc(alias = "NSRectAlignmentBottomTrailing")]
+    pub const BottomTrailing: Self = Self(6);
+    #[doc(alias = "NSRectAlignmentTrailing")]
+    pub const Trailing: Self = Self(7);
+    #[doc(alias = "NSRectAlignmentTopTrailing")]
+    pub const TopTrailing: Self = Self(8);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSRectAlignment {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSRectAlignment {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 // TODO: pub fn NSDirectionalEdgeInsetsMake(top: CGFloat,leading: CGFloat,bottom: CGFloat,trailing: CGFloat,) -> NSDirectionalEdgeInsets;
 
@@ -207,25 +231,36 @@ extern_methods!(
     }
 );
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSCollectionLayoutSectionOrthogonalScrollingBehavior {
-        #[doc(alias = "NSCollectionLayoutSectionOrthogonalScrollingBehaviorNone")]
-        None = 0,
-        #[doc(alias = "NSCollectionLayoutSectionOrthogonalScrollingBehaviorContinuous")]
-        Continuous = 1,
-        #[doc(
-            alias = "NSCollectionLayoutSectionOrthogonalScrollingBehaviorContinuousGroupLeadingBoundary"
-        )]
-        ContinuousGroupLeadingBoundary = 2,
-        #[doc(alias = "NSCollectionLayoutSectionOrthogonalScrollingBehaviorPaging")]
-        Paging = 3,
-        #[doc(alias = "NSCollectionLayoutSectionOrthogonalScrollingBehaviorGroupPaging")]
-        GroupPaging = 4,
-        #[doc(alias = "NSCollectionLayoutSectionOrthogonalScrollingBehaviorGroupPagingCentered")]
-        GroupPagingCentered = 5,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSCollectionLayoutSectionOrthogonalScrollingBehavior(pub NSInteger);
+impl NSCollectionLayoutSectionOrthogonalScrollingBehavior {
+    #[doc(alias = "NSCollectionLayoutSectionOrthogonalScrollingBehaviorNone")]
+    pub const None: Self = Self(0);
+    #[doc(alias = "NSCollectionLayoutSectionOrthogonalScrollingBehaviorContinuous")]
+    pub const Continuous: Self = Self(1);
+    #[doc(
+        alias = "NSCollectionLayoutSectionOrthogonalScrollingBehaviorContinuousGroupLeadingBoundary"
+    )]
+    pub const ContinuousGroupLeadingBoundary: Self = Self(2);
+    #[doc(alias = "NSCollectionLayoutSectionOrthogonalScrollingBehaviorPaging")]
+    pub const Paging: Self = Self(3);
+    #[doc(alias = "NSCollectionLayoutSectionOrthogonalScrollingBehaviorGroupPaging")]
+    pub const GroupPaging: Self = Self(4);
+    #[doc(alias = "NSCollectionLayoutSectionOrthogonalScrollingBehaviorGroupPagingCentered")]
+    pub const GroupPagingCentered: Self = Self(5);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSCollectionLayoutSectionOrthogonalScrollingBehavior {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSCollectionLayoutSectionOrthogonalScrollingBehavior {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSGeometry"))]
 pub type NSCollectionLayoutSectionVisibleItemsInvalidationHandler = *mut Block<

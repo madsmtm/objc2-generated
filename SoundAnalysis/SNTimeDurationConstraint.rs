@@ -4,15 +4,26 @@ use crate::common::*;
 use crate::Foundation::*;
 use crate::SoundAnalysis::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum SNTimeDurationConstraintType {
-        #[doc(alias = "SNTimeDurationConstraintTypeEnumerated")]
-        Enumerated = 1,
-        #[doc(alias = "SNTimeDurationConstraintTypeRange")]
-        Range = 2,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct SNTimeDurationConstraintType(pub NSInteger);
+impl SNTimeDurationConstraintType {
+    #[doc(alias = "SNTimeDurationConstraintTypeEnumerated")]
+    pub const Enumerated: Self = Self(1);
+    #[doc(alias = "SNTimeDurationConstraintTypeRange")]
+    pub const Range: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for SNTimeDurationConstraintType {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for SNTimeDurationConstraintType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

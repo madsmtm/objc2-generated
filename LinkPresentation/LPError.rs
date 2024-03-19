@@ -10,13 +10,24 @@ extern "C" {
     pub static LPErrorDomain: Option<&'static NSErrorDomain>;
 }
 
-ns_error_enum!(
-    #[underlying(NSInteger)]
-    pub enum LPErrorCode {
-        LPErrorUnknown = 1,
-        LPErrorMetadataFetchFailed = 2,
-        LPErrorMetadataFetchCancelled = 3,
-        LPErrorMetadataFetchTimedOut = 4,
-        LPErrorMetadataFetchNotAllowed = 5,
-    }
-);
+// NS_ERROR_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct LPErrorCode(pub NSInteger);
+impl LPErrorCode {
+    pub const LPErrorUnknown: Self = Self(1);
+    pub const LPErrorMetadataFetchFailed: Self = Self(2);
+    pub const LPErrorMetadataFetchCancelled: Self = Self(3);
+    pub const LPErrorMetadataFetchTimedOut: Self = Self(4);
+    pub const LPErrorMetadataFetchNotAllowed: Self = Self(5);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for LPErrorCode {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for LPErrorCode {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}

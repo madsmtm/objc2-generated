@@ -3,15 +3,13 @@
 use crate::common::*;
 use crate::Foundation::*;
 
+// NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_extensible_enum!(
-    pub type NSAttributedStringKey = NSString;
-);
+pub type NSAttributedStringKey = NSString;
 
+// NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_extensible_enum!(
-    pub type NSAttributedStringFormattingContextKey = NSString;
-);
+pub type NSAttributedStringFormattingContextKey = NSString;
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]
@@ -80,13 +78,24 @@ impl DefaultId for NSAttributedString {
     }
 }
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSAttributedStringEnumerationOptions {
-        NSAttributedStringEnumerationReverse = 1 << 1,
-        NSAttributedStringEnumerationLongestEffectiveRangeNotRequired = 1 << 20,
-    }
-);
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSAttributedStringEnumerationOptions(pub NSUInteger);
+impl NSAttributedStringEnumerationOptions {
+    pub const NSAttributedStringEnumerationReverse: Self = Self(1 << 1);
+    pub const NSAttributedStringEnumerationLongestEffectiveRangeNotRequired: Self = Self(1 << 20);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSAttributedStringEnumerationOptions {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSAttributedStringEnumerationOptions {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_methods!(
     /// NSExtendedAttributedString
@@ -344,27 +353,38 @@ extern_methods!(
     }
 );
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSInlinePresentationIntent {
-        #[doc(alias = "NSInlinePresentationIntentEmphasized")]
-        Emphasized = 1 << 0,
-        #[doc(alias = "NSInlinePresentationIntentStronglyEmphasized")]
-        StronglyEmphasized = 1 << 1,
-        #[doc(alias = "NSInlinePresentationIntentCode")]
-        Code = 1 << 2,
-        #[doc(alias = "NSInlinePresentationIntentStrikethrough")]
-        Strikethrough = 1 << 5,
-        #[doc(alias = "NSInlinePresentationIntentSoftBreak")]
-        SoftBreak = 1 << 6,
-        #[doc(alias = "NSInlinePresentationIntentLineBreak")]
-        LineBreak = 1 << 7,
-        #[doc(alias = "NSInlinePresentationIntentInlineHTML")]
-        InlineHTML = 1 << 8,
-        #[doc(alias = "NSInlinePresentationIntentBlockHTML")]
-        BlockHTML = 1 << 9,
-    }
-);
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSInlinePresentationIntent(pub NSUInteger);
+impl NSInlinePresentationIntent {
+    #[doc(alias = "NSInlinePresentationIntentEmphasized")]
+    pub const Emphasized: Self = Self(1 << 0);
+    #[doc(alias = "NSInlinePresentationIntentStronglyEmphasized")]
+    pub const StronglyEmphasized: Self = Self(1 << 1);
+    #[doc(alias = "NSInlinePresentationIntentCode")]
+    pub const Code: Self = Self(1 << 2);
+    #[doc(alias = "NSInlinePresentationIntentStrikethrough")]
+    pub const Strikethrough: Self = Self(1 << 5);
+    #[doc(alias = "NSInlinePresentationIntentSoftBreak")]
+    pub const SoftBreak: Self = Self(1 << 6);
+    #[doc(alias = "NSInlinePresentationIntentLineBreak")]
+    pub const LineBreak: Self = Self(1 << 7);
+    #[doc(alias = "NSInlinePresentationIntentInlineHTML")]
+    pub const InlineHTML: Self = Self(1 << 8);
+    #[doc(alias = "NSInlinePresentationIntentBlockHTML")]
+    pub const BlockHTML: Self = Self(1 << 9);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSInlinePresentationIntent {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSInlinePresentationIntent {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]
@@ -391,25 +411,48 @@ extern "C" {
     pub static NSMarkdownSourcePositionAttributeName: &'static NSAttributedStringKey;
 }
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSAttributedStringMarkdownParsingFailurePolicy {
-        NSAttributedStringMarkdownParsingFailureReturnError = 0,
-        NSAttributedStringMarkdownParsingFailureReturnPartiallyParsedIfPossible = 1,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSAttributedStringMarkdownParsingFailurePolicy(pub NSInteger);
+impl NSAttributedStringMarkdownParsingFailurePolicy {
+    pub const NSAttributedStringMarkdownParsingFailureReturnError: Self = Self(0);
+    pub const NSAttributedStringMarkdownParsingFailureReturnPartiallyParsedIfPossible: Self =
+        Self(1);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSAttributedStringMarkdownInterpretedSyntax {
-        #[doc(alias = "NSAttributedStringMarkdownInterpretedSyntaxFull")]
-        Full = 0,
-        #[doc(alias = "NSAttributedStringMarkdownInterpretedSyntaxInlineOnly")]
-        InlineOnly = 1,
-        #[doc(alias = "NSAttributedStringMarkdownInterpretedSyntaxInlineOnlyPreservingWhitespace")]
-        InlineOnlyPreservingWhitespace = 2,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSAttributedStringMarkdownParsingFailurePolicy {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSAttributedStringMarkdownParsingFailurePolicy {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSAttributedStringMarkdownInterpretedSyntax(pub NSInteger);
+impl NSAttributedStringMarkdownInterpretedSyntax {
+    #[doc(alias = "NSAttributedStringMarkdownInterpretedSyntaxFull")]
+    pub const Full: Self = Self(0);
+    #[doc(alias = "NSAttributedStringMarkdownInterpretedSyntaxInlineOnly")]
+    pub const InlineOnly: Self = Self(1);
+    #[doc(alias = "NSAttributedStringMarkdownInterpretedSyntaxInlineOnlyPreservingWhitespace")]
+    pub const InlineOnlyPreservingWhitespace: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSAttributedStringMarkdownInterpretedSyntax {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSAttributedStringMarkdownInterpretedSyntax {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -625,13 +668,25 @@ extern_methods!(
     }
 );
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSAttributedStringFormattingOptions {
-        NSAttributedStringFormattingInsertArgumentAttributesWithoutMerging = 1 << 0,
-        NSAttributedStringFormattingApplyReplacementIndexAttribute = 1 << 1,
-    }
-);
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSAttributedStringFormattingOptions(pub NSUInteger);
+impl NSAttributedStringFormattingOptions {
+    pub const NSAttributedStringFormattingInsertArgumentAttributesWithoutMerging: Self =
+        Self(1 << 0);
+    pub const NSAttributedStringFormattingApplyReplacementIndexAttribute: Self = Self(1 << 1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSAttributedStringFormattingOptions {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSAttributedStringFormattingOptions {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_methods!(
     /// NSAttributedStringFormatting
@@ -691,47 +746,69 @@ extern "C" {
     pub static NSPresentationIntentAttributeName: &'static NSAttributedStringKey;
 }
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSPresentationIntentKind {
-        #[doc(alias = "NSPresentationIntentKindParagraph")]
-        Paragraph = 0,
-        #[doc(alias = "NSPresentationIntentKindHeader")]
-        Header = 1,
-        #[doc(alias = "NSPresentationIntentKindOrderedList")]
-        OrderedList = 2,
-        #[doc(alias = "NSPresentationIntentKindUnorderedList")]
-        UnorderedList = 3,
-        #[doc(alias = "NSPresentationIntentKindListItem")]
-        ListItem = 4,
-        #[doc(alias = "NSPresentationIntentKindCodeBlock")]
-        CodeBlock = 5,
-        #[doc(alias = "NSPresentationIntentKindBlockQuote")]
-        BlockQuote = 6,
-        #[doc(alias = "NSPresentationIntentKindThematicBreak")]
-        ThematicBreak = 7,
-        #[doc(alias = "NSPresentationIntentKindTable")]
-        Table = 8,
-        #[doc(alias = "NSPresentationIntentKindTableHeaderRow")]
-        TableHeaderRow = 9,
-        #[doc(alias = "NSPresentationIntentKindTableRow")]
-        TableRow = 10,
-        #[doc(alias = "NSPresentationIntentKindTableCell")]
-        TableCell = 11,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSPresentationIntentKind(pub NSInteger);
+impl NSPresentationIntentKind {
+    #[doc(alias = "NSPresentationIntentKindParagraph")]
+    pub const Paragraph: Self = Self(0);
+    #[doc(alias = "NSPresentationIntentKindHeader")]
+    pub const Header: Self = Self(1);
+    #[doc(alias = "NSPresentationIntentKindOrderedList")]
+    pub const OrderedList: Self = Self(2);
+    #[doc(alias = "NSPresentationIntentKindUnorderedList")]
+    pub const UnorderedList: Self = Self(3);
+    #[doc(alias = "NSPresentationIntentKindListItem")]
+    pub const ListItem: Self = Self(4);
+    #[doc(alias = "NSPresentationIntentKindCodeBlock")]
+    pub const CodeBlock: Self = Self(5);
+    #[doc(alias = "NSPresentationIntentKindBlockQuote")]
+    pub const BlockQuote: Self = Self(6);
+    #[doc(alias = "NSPresentationIntentKindThematicBreak")]
+    pub const ThematicBreak: Self = Self(7);
+    #[doc(alias = "NSPresentationIntentKindTable")]
+    pub const Table: Self = Self(8);
+    #[doc(alias = "NSPresentationIntentKindTableHeaderRow")]
+    pub const TableHeaderRow: Self = Self(9);
+    #[doc(alias = "NSPresentationIntentKindTableRow")]
+    pub const TableRow: Self = Self(10);
+    #[doc(alias = "NSPresentationIntentKindTableCell")]
+    pub const TableCell: Self = Self(11);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSPresentationIntentTableColumnAlignment {
-        #[doc(alias = "NSPresentationIntentTableColumnAlignmentLeft")]
-        Left = 0,
-        #[doc(alias = "NSPresentationIntentTableColumnAlignmentCenter")]
-        Center = 1,
-        #[doc(alias = "NSPresentationIntentTableColumnAlignmentRight")]
-        Right = 2,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSPresentationIntentKind {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSPresentationIntentKind {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSPresentationIntentTableColumnAlignment(pub NSInteger);
+impl NSPresentationIntentTableColumnAlignment {
+    #[doc(alias = "NSPresentationIntentTableColumnAlignmentLeft")]
+    pub const Left: Self = Self(0);
+    #[doc(alias = "NSPresentationIntentTableColumnAlignmentCenter")]
+    pub const Center: Self = Self(1);
+    #[doc(alias = "NSPresentationIntentTableColumnAlignmentRight")]
+    pub const Right: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSPresentationIntentTableColumnAlignment {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSPresentationIntentTableColumnAlignment {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

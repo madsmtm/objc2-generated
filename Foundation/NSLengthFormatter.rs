@@ -3,27 +3,38 @@
 use crate::common::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSLengthFormatterUnit {
-        #[doc(alias = "NSLengthFormatterUnitMillimeter")]
-        Millimeter = 8,
-        #[doc(alias = "NSLengthFormatterUnitCentimeter")]
-        Centimeter = 9,
-        #[doc(alias = "NSLengthFormatterUnitMeter")]
-        Meter = 11,
-        #[doc(alias = "NSLengthFormatterUnitKilometer")]
-        Kilometer = 14,
-        #[doc(alias = "NSLengthFormatterUnitInch")]
-        Inch = (5 << 8) + 1,
-        #[doc(alias = "NSLengthFormatterUnitFoot")]
-        Foot = (5 << 8) + 2,
-        #[doc(alias = "NSLengthFormatterUnitYard")]
-        Yard = (5 << 8) + 3,
-        #[doc(alias = "NSLengthFormatterUnitMile")]
-        Mile = (5 << 8) + 4,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSLengthFormatterUnit(pub NSInteger);
+impl NSLengthFormatterUnit {
+    #[doc(alias = "NSLengthFormatterUnitMillimeter")]
+    pub const Millimeter: Self = Self(8);
+    #[doc(alias = "NSLengthFormatterUnitCentimeter")]
+    pub const Centimeter: Self = Self(9);
+    #[doc(alias = "NSLengthFormatterUnitMeter")]
+    pub const Meter: Self = Self(11);
+    #[doc(alias = "NSLengthFormatterUnitKilometer")]
+    pub const Kilometer: Self = Self(14);
+    #[doc(alias = "NSLengthFormatterUnitInch")]
+    pub const Inch: Self = Self((5 << 8) + 1);
+    #[doc(alias = "NSLengthFormatterUnitFoot")]
+    pub const Foot: Self = Self((5 << 8) + 2);
+    #[doc(alias = "NSLengthFormatterUnitYard")]
+    pub const Yard: Self = Self((5 << 8) + 3);
+    #[doc(alias = "NSLengthFormatterUnitMile")]
+    pub const Mile: Self = Self((5 << 8) + 4);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSLengthFormatterUnit {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSLengthFormatterUnit {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

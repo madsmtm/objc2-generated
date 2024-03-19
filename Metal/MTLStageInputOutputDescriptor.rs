@@ -4,153 +4,186 @@ use crate::common::*;
 use crate::Foundation::*;
 use crate::Metal::*;
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum MTLAttributeFormat {
-        #[doc(alias = "MTLAttributeFormatInvalid")]
-        Invalid = 0,
-        #[doc(alias = "MTLAttributeFormatUChar2")]
-        UChar2 = 1,
-        #[doc(alias = "MTLAttributeFormatUChar3")]
-        UChar3 = 2,
-        #[doc(alias = "MTLAttributeFormatUChar4")]
-        UChar4 = 3,
-        #[doc(alias = "MTLAttributeFormatChar2")]
-        Char2 = 4,
-        #[doc(alias = "MTLAttributeFormatChar3")]
-        Char3 = 5,
-        #[doc(alias = "MTLAttributeFormatChar4")]
-        Char4 = 6,
-        #[doc(alias = "MTLAttributeFormatUChar2Normalized")]
-        UChar2Normalized = 7,
-        #[doc(alias = "MTLAttributeFormatUChar3Normalized")]
-        UChar3Normalized = 8,
-        #[doc(alias = "MTLAttributeFormatUChar4Normalized")]
-        UChar4Normalized = 9,
-        #[doc(alias = "MTLAttributeFormatChar2Normalized")]
-        Char2Normalized = 10,
-        #[doc(alias = "MTLAttributeFormatChar3Normalized")]
-        Char3Normalized = 11,
-        #[doc(alias = "MTLAttributeFormatChar4Normalized")]
-        Char4Normalized = 12,
-        #[doc(alias = "MTLAttributeFormatUShort2")]
-        UShort2 = 13,
-        #[doc(alias = "MTLAttributeFormatUShort3")]
-        UShort3 = 14,
-        #[doc(alias = "MTLAttributeFormatUShort4")]
-        UShort4 = 15,
-        #[doc(alias = "MTLAttributeFormatShort2")]
-        Short2 = 16,
-        #[doc(alias = "MTLAttributeFormatShort3")]
-        Short3 = 17,
-        #[doc(alias = "MTLAttributeFormatShort4")]
-        Short4 = 18,
-        #[doc(alias = "MTLAttributeFormatUShort2Normalized")]
-        UShort2Normalized = 19,
-        #[doc(alias = "MTLAttributeFormatUShort3Normalized")]
-        UShort3Normalized = 20,
-        #[doc(alias = "MTLAttributeFormatUShort4Normalized")]
-        UShort4Normalized = 21,
-        #[doc(alias = "MTLAttributeFormatShort2Normalized")]
-        Short2Normalized = 22,
-        #[doc(alias = "MTLAttributeFormatShort3Normalized")]
-        Short3Normalized = 23,
-        #[doc(alias = "MTLAttributeFormatShort4Normalized")]
-        Short4Normalized = 24,
-        #[doc(alias = "MTLAttributeFormatHalf2")]
-        Half2 = 25,
-        #[doc(alias = "MTLAttributeFormatHalf3")]
-        Half3 = 26,
-        #[doc(alias = "MTLAttributeFormatHalf4")]
-        Half4 = 27,
-        #[doc(alias = "MTLAttributeFormatFloat")]
-        Float = 28,
-        #[doc(alias = "MTLAttributeFormatFloat2")]
-        Float2 = 29,
-        #[doc(alias = "MTLAttributeFormatFloat3")]
-        Float3 = 30,
-        #[doc(alias = "MTLAttributeFormatFloat4")]
-        Float4 = 31,
-        #[doc(alias = "MTLAttributeFormatInt")]
-        Int = 32,
-        #[doc(alias = "MTLAttributeFormatInt2")]
-        Int2 = 33,
-        #[doc(alias = "MTLAttributeFormatInt3")]
-        Int3 = 34,
-        #[doc(alias = "MTLAttributeFormatInt4")]
-        Int4 = 35,
-        #[doc(alias = "MTLAttributeFormatUInt")]
-        UInt = 36,
-        #[doc(alias = "MTLAttributeFormatUInt2")]
-        UInt2 = 37,
-        #[doc(alias = "MTLAttributeFormatUInt3")]
-        UInt3 = 38,
-        #[doc(alias = "MTLAttributeFormatUInt4")]
-        UInt4 = 39,
-        #[doc(alias = "MTLAttributeFormatInt1010102Normalized")]
-        Int1010102Normalized = 40,
-        #[doc(alias = "MTLAttributeFormatUInt1010102Normalized")]
-        UInt1010102Normalized = 41,
-        #[doc(alias = "MTLAttributeFormatUChar4Normalized_BGRA")]
-        UChar4Normalized_BGRA = 42,
-        #[doc(alias = "MTLAttributeFormatUChar")]
-        UChar = 45,
-        #[doc(alias = "MTLAttributeFormatChar")]
-        Char = 46,
-        #[doc(alias = "MTLAttributeFormatUCharNormalized")]
-        UCharNormalized = 47,
-        #[doc(alias = "MTLAttributeFormatCharNormalized")]
-        CharNormalized = 48,
-        #[doc(alias = "MTLAttributeFormatUShort")]
-        UShort = 49,
-        #[doc(alias = "MTLAttributeFormatShort")]
-        Short = 50,
-        #[doc(alias = "MTLAttributeFormatUShortNormalized")]
-        UShortNormalized = 51,
-        #[doc(alias = "MTLAttributeFormatShortNormalized")]
-        ShortNormalized = 52,
-        #[doc(alias = "MTLAttributeFormatHalf")]
-        Half = 53,
-        #[doc(alias = "MTLAttributeFormatFloatRG11B10")]
-        FloatRG11B10 = 54,
-        #[doc(alias = "MTLAttributeFormatFloatRGB9E5")]
-        FloatRGB9E5 = 55,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MTLAttributeFormat(pub NSUInteger);
+impl MTLAttributeFormat {
+    #[doc(alias = "MTLAttributeFormatInvalid")]
+    pub const Invalid: Self = Self(0);
+    #[doc(alias = "MTLAttributeFormatUChar2")]
+    pub const UChar2: Self = Self(1);
+    #[doc(alias = "MTLAttributeFormatUChar3")]
+    pub const UChar3: Self = Self(2);
+    #[doc(alias = "MTLAttributeFormatUChar4")]
+    pub const UChar4: Self = Self(3);
+    #[doc(alias = "MTLAttributeFormatChar2")]
+    pub const Char2: Self = Self(4);
+    #[doc(alias = "MTLAttributeFormatChar3")]
+    pub const Char3: Self = Self(5);
+    #[doc(alias = "MTLAttributeFormatChar4")]
+    pub const Char4: Self = Self(6);
+    #[doc(alias = "MTLAttributeFormatUChar2Normalized")]
+    pub const UChar2Normalized: Self = Self(7);
+    #[doc(alias = "MTLAttributeFormatUChar3Normalized")]
+    pub const UChar3Normalized: Self = Self(8);
+    #[doc(alias = "MTLAttributeFormatUChar4Normalized")]
+    pub const UChar4Normalized: Self = Self(9);
+    #[doc(alias = "MTLAttributeFormatChar2Normalized")]
+    pub const Char2Normalized: Self = Self(10);
+    #[doc(alias = "MTLAttributeFormatChar3Normalized")]
+    pub const Char3Normalized: Self = Self(11);
+    #[doc(alias = "MTLAttributeFormatChar4Normalized")]
+    pub const Char4Normalized: Self = Self(12);
+    #[doc(alias = "MTLAttributeFormatUShort2")]
+    pub const UShort2: Self = Self(13);
+    #[doc(alias = "MTLAttributeFormatUShort3")]
+    pub const UShort3: Self = Self(14);
+    #[doc(alias = "MTLAttributeFormatUShort4")]
+    pub const UShort4: Self = Self(15);
+    #[doc(alias = "MTLAttributeFormatShort2")]
+    pub const Short2: Self = Self(16);
+    #[doc(alias = "MTLAttributeFormatShort3")]
+    pub const Short3: Self = Self(17);
+    #[doc(alias = "MTLAttributeFormatShort4")]
+    pub const Short4: Self = Self(18);
+    #[doc(alias = "MTLAttributeFormatUShort2Normalized")]
+    pub const UShort2Normalized: Self = Self(19);
+    #[doc(alias = "MTLAttributeFormatUShort3Normalized")]
+    pub const UShort3Normalized: Self = Self(20);
+    #[doc(alias = "MTLAttributeFormatUShort4Normalized")]
+    pub const UShort4Normalized: Self = Self(21);
+    #[doc(alias = "MTLAttributeFormatShort2Normalized")]
+    pub const Short2Normalized: Self = Self(22);
+    #[doc(alias = "MTLAttributeFormatShort3Normalized")]
+    pub const Short3Normalized: Self = Self(23);
+    #[doc(alias = "MTLAttributeFormatShort4Normalized")]
+    pub const Short4Normalized: Self = Self(24);
+    #[doc(alias = "MTLAttributeFormatHalf2")]
+    pub const Half2: Self = Self(25);
+    #[doc(alias = "MTLAttributeFormatHalf3")]
+    pub const Half3: Self = Self(26);
+    #[doc(alias = "MTLAttributeFormatHalf4")]
+    pub const Half4: Self = Self(27);
+    #[doc(alias = "MTLAttributeFormatFloat")]
+    pub const Float: Self = Self(28);
+    #[doc(alias = "MTLAttributeFormatFloat2")]
+    pub const Float2: Self = Self(29);
+    #[doc(alias = "MTLAttributeFormatFloat3")]
+    pub const Float3: Self = Self(30);
+    #[doc(alias = "MTLAttributeFormatFloat4")]
+    pub const Float4: Self = Self(31);
+    #[doc(alias = "MTLAttributeFormatInt")]
+    pub const Int: Self = Self(32);
+    #[doc(alias = "MTLAttributeFormatInt2")]
+    pub const Int2: Self = Self(33);
+    #[doc(alias = "MTLAttributeFormatInt3")]
+    pub const Int3: Self = Self(34);
+    #[doc(alias = "MTLAttributeFormatInt4")]
+    pub const Int4: Self = Self(35);
+    #[doc(alias = "MTLAttributeFormatUInt")]
+    pub const UInt: Self = Self(36);
+    #[doc(alias = "MTLAttributeFormatUInt2")]
+    pub const UInt2: Self = Self(37);
+    #[doc(alias = "MTLAttributeFormatUInt3")]
+    pub const UInt3: Self = Self(38);
+    #[doc(alias = "MTLAttributeFormatUInt4")]
+    pub const UInt4: Self = Self(39);
+    #[doc(alias = "MTLAttributeFormatInt1010102Normalized")]
+    pub const Int1010102Normalized: Self = Self(40);
+    #[doc(alias = "MTLAttributeFormatUInt1010102Normalized")]
+    pub const UInt1010102Normalized: Self = Self(41);
+    #[doc(alias = "MTLAttributeFormatUChar4Normalized_BGRA")]
+    pub const UChar4Normalized_BGRA: Self = Self(42);
+    #[doc(alias = "MTLAttributeFormatUChar")]
+    pub const UChar: Self = Self(45);
+    #[doc(alias = "MTLAttributeFormatChar")]
+    pub const Char: Self = Self(46);
+    #[doc(alias = "MTLAttributeFormatUCharNormalized")]
+    pub const UCharNormalized: Self = Self(47);
+    #[doc(alias = "MTLAttributeFormatCharNormalized")]
+    pub const CharNormalized: Self = Self(48);
+    #[doc(alias = "MTLAttributeFormatUShort")]
+    pub const UShort: Self = Self(49);
+    #[doc(alias = "MTLAttributeFormatShort")]
+    pub const Short: Self = Self(50);
+    #[doc(alias = "MTLAttributeFormatUShortNormalized")]
+    pub const UShortNormalized: Self = Self(51);
+    #[doc(alias = "MTLAttributeFormatShortNormalized")]
+    pub const ShortNormalized: Self = Self(52);
+    #[doc(alias = "MTLAttributeFormatHalf")]
+    pub const Half: Self = Self(53);
+    #[doc(alias = "MTLAttributeFormatFloatRG11B10")]
+    pub const FloatRG11B10: Self = Self(54);
+    #[doc(alias = "MTLAttributeFormatFloatRGB9E5")]
+    pub const FloatRGB9E5: Self = Self(55);
+}
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum MTLIndexType {
-        #[doc(alias = "MTLIndexTypeUInt16")]
-        UInt16 = 0,
-        #[doc(alias = "MTLIndexTypeUInt32")]
-        UInt32 = 1,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLAttributeFormat {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum MTLStepFunction {
-        #[doc(alias = "MTLStepFunctionConstant")]
-        Constant = 0,
-        #[doc(alias = "MTLStepFunctionPerVertex")]
-        PerVertex = 1,
-        #[doc(alias = "MTLStepFunctionPerInstance")]
-        PerInstance = 2,
-        #[doc(alias = "MTLStepFunctionPerPatch")]
-        PerPatch = 3,
-        #[doc(alias = "MTLStepFunctionPerPatchControlPoint")]
-        PerPatchControlPoint = 4,
-        #[doc(alias = "MTLStepFunctionThreadPositionInGridX")]
-        ThreadPositionInGridX = 5,
-        #[doc(alias = "MTLStepFunctionThreadPositionInGridY")]
-        ThreadPositionInGridY = 6,
-        #[doc(alias = "MTLStepFunctionThreadPositionInGridXIndexed")]
-        ThreadPositionInGridXIndexed = 7,
-        #[doc(alias = "MTLStepFunctionThreadPositionInGridYIndexed")]
-        ThreadPositionInGridYIndexed = 8,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLAttributeFormat {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MTLIndexType(pub NSUInteger);
+impl MTLIndexType {
+    #[doc(alias = "MTLIndexTypeUInt16")]
+    pub const UInt16: Self = Self(0);
+    #[doc(alias = "MTLIndexTypeUInt32")]
+    pub const UInt32: Self = Self(1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLIndexType {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLIndexType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MTLStepFunction(pub NSUInteger);
+impl MTLStepFunction {
+    #[doc(alias = "MTLStepFunctionConstant")]
+    pub const Constant: Self = Self(0);
+    #[doc(alias = "MTLStepFunctionPerVertex")]
+    pub const PerVertex: Self = Self(1);
+    #[doc(alias = "MTLStepFunctionPerInstance")]
+    pub const PerInstance: Self = Self(2);
+    #[doc(alias = "MTLStepFunctionPerPatch")]
+    pub const PerPatch: Self = Self(3);
+    #[doc(alias = "MTLStepFunctionPerPatchControlPoint")]
+    pub const PerPatchControlPoint: Self = Self(4);
+    #[doc(alias = "MTLStepFunctionThreadPositionInGridX")]
+    pub const ThreadPositionInGridX: Self = Self(5);
+    #[doc(alias = "MTLStepFunctionThreadPositionInGridY")]
+    pub const ThreadPositionInGridY: Self = Self(6);
+    #[doc(alias = "MTLStepFunctionThreadPositionInGridXIndexed")]
+    pub const ThreadPositionInGridXIndexed: Self = Self(7);
+    #[doc(alias = "MTLStepFunctionThreadPositionInGridYIndexed")]
+    pub const ThreadPositionInGridYIndexed: Self = Self(8);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLStepFunction {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLStepFunction {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

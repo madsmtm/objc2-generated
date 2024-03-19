@@ -3,26 +3,48 @@
 use crate::common::*;
 use crate::Foundation::*;
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSFileCoordinatorReadingOptions {
-        NSFileCoordinatorReadingWithoutChanges = 1 << 0,
-        NSFileCoordinatorReadingResolvesSymbolicLink = 1 << 1,
-        NSFileCoordinatorReadingImmediatelyAvailableMetadataOnly = 1 << 2,
-        NSFileCoordinatorReadingForUploading = 1 << 3,
-    }
-);
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSFileCoordinatorReadingOptions(pub NSUInteger);
+impl NSFileCoordinatorReadingOptions {
+    pub const NSFileCoordinatorReadingWithoutChanges: Self = Self(1 << 0);
+    pub const NSFileCoordinatorReadingResolvesSymbolicLink: Self = Self(1 << 1);
+    pub const NSFileCoordinatorReadingImmediatelyAvailableMetadataOnly: Self = Self(1 << 2);
+    pub const NSFileCoordinatorReadingForUploading: Self = Self(1 << 3);
+}
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSFileCoordinatorWritingOptions {
-        NSFileCoordinatorWritingForDeleting = 1 << 0,
-        NSFileCoordinatorWritingForMoving = 1 << 1,
-        NSFileCoordinatorWritingForMerging = 1 << 2,
-        NSFileCoordinatorWritingForReplacing = 1 << 3,
-        NSFileCoordinatorWritingContentIndependentMetadataOnly = 1 << 4,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSFileCoordinatorReadingOptions {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSFileCoordinatorReadingOptions {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSFileCoordinatorWritingOptions(pub NSUInteger);
+impl NSFileCoordinatorWritingOptions {
+    pub const NSFileCoordinatorWritingForDeleting: Self = Self(1 << 0);
+    pub const NSFileCoordinatorWritingForMoving: Self = Self(1 << 1);
+    pub const NSFileCoordinatorWritingForMerging: Self = Self(1 << 2);
+    pub const NSFileCoordinatorWritingForReplacing: Self = Self(1 << 3);
+    pub const NSFileCoordinatorWritingContentIndependentMetadataOnly: Self = Self(1 << 4);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSFileCoordinatorWritingOptions {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSFileCoordinatorWritingOptions {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

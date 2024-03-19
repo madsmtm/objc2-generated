@@ -3,10 +3,9 @@
 use crate::common::*;
 use crate::Foundation::*;
 
+// NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_extensible_enum!(
-    pub type NSLinguisticTagScheme = NSString;
-);
+pub type NSLinguisticTagScheme = NSString;
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]
@@ -43,10 +42,9 @@ extern "C" {
     pub static NSLinguisticTagSchemeScript: &'static NSLinguisticTagScheme;
 }
 
+// NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_extensible_enum!(
-    pub type NSLinguisticTag = NSString;
-);
+pub type NSLinguisticTag = NSString;
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]
@@ -203,30 +201,52 @@ extern "C" {
     pub static NSLinguisticTagOrganizationName: &'static NSLinguisticTag;
 }
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSLinguisticTaggerUnit {
-        #[doc(alias = "NSLinguisticTaggerUnitWord")]
-        Word = 0,
-        #[doc(alias = "NSLinguisticTaggerUnitSentence")]
-        Sentence = 1,
-        #[doc(alias = "NSLinguisticTaggerUnitParagraph")]
-        Paragraph = 2,
-        #[doc(alias = "NSLinguisticTaggerUnitDocument")]
-        Document = 3,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSLinguisticTaggerUnit(pub NSInteger);
+impl NSLinguisticTaggerUnit {
+    #[doc(alias = "NSLinguisticTaggerUnitWord")]
+    pub const Word: Self = Self(0);
+    #[doc(alias = "NSLinguisticTaggerUnitSentence")]
+    pub const Sentence: Self = Self(1);
+    #[doc(alias = "NSLinguisticTaggerUnitParagraph")]
+    pub const Paragraph: Self = Self(2);
+    #[doc(alias = "NSLinguisticTaggerUnitDocument")]
+    pub const Document: Self = Self(3);
+}
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSLinguisticTaggerOptions {
-        NSLinguisticTaggerOmitWords = 1 << 0,
-        NSLinguisticTaggerOmitPunctuation = 1 << 1,
-        NSLinguisticTaggerOmitWhitespace = 1 << 2,
-        NSLinguisticTaggerOmitOther = 1 << 3,
-        NSLinguisticTaggerJoinNames = 1 << 4,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSLinguisticTaggerUnit {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSLinguisticTaggerUnit {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSLinguisticTaggerOptions(pub NSUInteger);
+impl NSLinguisticTaggerOptions {
+    pub const NSLinguisticTaggerOmitWords: Self = Self(1 << 0);
+    pub const NSLinguisticTaggerOmitPunctuation: Self = Self(1 << 1);
+    pub const NSLinguisticTaggerOmitWhitespace: Self = Self(1 << 2);
+    pub const NSLinguisticTaggerOmitOther: Self = Self(1 << 3);
+    pub const NSLinguisticTaggerJoinNames: Self = Self(1 << 4);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSLinguisticTaggerOptions {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSLinguisticTaggerOptions {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

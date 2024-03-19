@@ -10,25 +10,36 @@ extern "C" {
     pub static WKErrorDomain: &'static NSString;
 }
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum WKErrorCode {
-        WKErrorUnknown = 1,
-        WKErrorWebContentProcessTerminated = 2,
-        WKErrorWebViewInvalidated = 3,
-        WKErrorJavaScriptExceptionOccurred = 4,
-        WKErrorJavaScriptResultTypeIsUnsupported = 5,
-        WKErrorContentRuleListStoreCompileFailed = 6,
-        WKErrorContentRuleListStoreLookUpFailed = 7,
-        WKErrorContentRuleListStoreRemoveFailed = 8,
-        WKErrorContentRuleListStoreVersionMismatch = 9,
-        WKErrorAttributedStringContentFailedToLoad = 10,
-        WKErrorAttributedStringContentLoadTimedOut = 11,
-        WKErrorJavaScriptInvalidFrameTarget = 12,
-        WKErrorNavigationAppBoundDomain = 13,
-        WKErrorJavaScriptAppBoundDomain = 14,
-        WKErrorDuplicateCredential = 15,
-        WKErrorMalformedCredential = 16,
-        WKErrorCredentialNotFound = 17,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct WKErrorCode(pub NSInteger);
+impl WKErrorCode {
+    pub const WKErrorUnknown: Self = Self(1);
+    pub const WKErrorWebContentProcessTerminated: Self = Self(2);
+    pub const WKErrorWebViewInvalidated: Self = Self(3);
+    pub const WKErrorJavaScriptExceptionOccurred: Self = Self(4);
+    pub const WKErrorJavaScriptResultTypeIsUnsupported: Self = Self(5);
+    pub const WKErrorContentRuleListStoreCompileFailed: Self = Self(6);
+    pub const WKErrorContentRuleListStoreLookUpFailed: Self = Self(7);
+    pub const WKErrorContentRuleListStoreRemoveFailed: Self = Self(8);
+    pub const WKErrorContentRuleListStoreVersionMismatch: Self = Self(9);
+    pub const WKErrorAttributedStringContentFailedToLoad: Self = Self(10);
+    pub const WKErrorAttributedStringContentLoadTimedOut: Self = Self(11);
+    pub const WKErrorJavaScriptInvalidFrameTarget: Self = Self(12);
+    pub const WKErrorNavigationAppBoundDomain: Self = Self(13);
+    pub const WKErrorJavaScriptAppBoundDomain: Self = Self(14);
+    pub const WKErrorDuplicateCredential: Self = Self(15);
+    pub const WKErrorMalformedCredential: Self = Self(16);
+    pub const WKErrorCredentialNotFound: Self = Self(17);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for WKErrorCode {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for WKErrorCode {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}

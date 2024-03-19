@@ -5,24 +5,34 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type NSImageHintKey = NSString;
-);
+pub type NSImageHintKey = NSString;
 
 pub const NSImageRepMatchesDevice: c_uint = 0;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSImageLayoutDirection {
-        #[doc(alias = "NSImageLayoutDirectionUnspecified")]
-        Unspecified = -1,
-        #[doc(alias = "NSImageLayoutDirectionLeftToRight")]
-        LeftToRight = 2,
-        #[doc(alias = "NSImageLayoutDirectionRightToLeft")]
-        RightToLeft = 3,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSImageLayoutDirection(pub NSInteger);
+impl NSImageLayoutDirection {
+    #[doc(alias = "NSImageLayoutDirectionUnspecified")]
+    pub const Unspecified: Self = Self(-1);
+    #[doc(alias = "NSImageLayoutDirectionLeftToRight")]
+    pub const LeftToRight: Self = Self(2);
+    #[doc(alias = "NSImageLayoutDirectionRightToLeft")]
+    pub const RightToLeft: Self = Self(3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSImageLayoutDirection {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSImageLayoutDirection {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

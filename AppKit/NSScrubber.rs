@@ -79,29 +79,51 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn NSScrubberDelegate {}
 );
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSScrubberMode {
-        #[doc(alias = "NSScrubberModeFixed")]
-        Fixed = 0,
-        #[doc(alias = "NSScrubberModeFree")]
-        Free = 1,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSScrubberMode(pub NSInteger);
+impl NSScrubberMode {
+    #[doc(alias = "NSScrubberModeFixed")]
+    pub const Fixed: Self = Self(0);
+    #[doc(alias = "NSScrubberModeFree")]
+    pub const Free: Self = Self(1);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSScrubberAlignment {
-        #[doc(alias = "NSScrubberAlignmentNone")]
-        None = 0,
-        #[doc(alias = "NSScrubberAlignmentLeading")]
-        Leading = 1,
-        #[doc(alias = "NSScrubberAlignmentTrailing")]
-        Trailing = 2,
-        #[doc(alias = "NSScrubberAlignmentCenter")]
-        Center = 3,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSScrubberMode {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSScrubberMode {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSScrubberAlignment(pub NSInteger);
+impl NSScrubberAlignment {
+    #[doc(alias = "NSScrubberAlignmentNone")]
+    pub const None: Self = Self(0);
+    #[doc(alias = "NSScrubberAlignmentLeading")]
+    pub const Leading: Self = Self(1);
+    #[doc(alias = "NSScrubberAlignmentTrailing")]
+    pub const Trailing: Self = Self(2);
+    #[doc(alias = "NSScrubberAlignmentCenter")]
+    pub const Center: Self = Self(3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSScrubberAlignment {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSScrubberAlignment {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

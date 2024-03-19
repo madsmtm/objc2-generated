@@ -3,19 +3,30 @@
 use crate::common::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSTestComparisonOperation {
-        NSEqualToComparison = 0,
-        NSLessThanOrEqualToComparison = 1,
-        NSLessThanComparison = 2,
-        NSGreaterThanOrEqualToComparison = 3,
-        NSGreaterThanComparison = 4,
-        NSBeginsWithComparison = 5,
-        NSEndsWithComparison = 6,
-        NSContainsComparison = 7,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSTestComparisonOperation(pub NSUInteger);
+impl NSTestComparisonOperation {
+    pub const NSEqualToComparison: Self = Self(0);
+    pub const NSLessThanOrEqualToComparison: Self = Self(1);
+    pub const NSLessThanComparison: Self = Self(2);
+    pub const NSGreaterThanOrEqualToComparison: Self = Self(3);
+    pub const NSGreaterThanComparison: Self = Self(4);
+    pub const NSBeginsWithComparison: Self = Self(5);
+    pub const NSEndsWithComparison: Self = Self(6);
+    pub const NSContainsComparison: Self = Self(7);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSTestComparisonOperation {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSTestComparisonOperation {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

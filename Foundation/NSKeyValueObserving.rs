@@ -3,44 +3,76 @@
 use crate::common::*;
 use crate::Foundation::*;
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSKeyValueObservingOptions {
-        NSKeyValueObservingOptionNew = 0x01,
-        NSKeyValueObservingOptionOld = 0x02,
-        NSKeyValueObservingOptionInitial = 0x04,
-        NSKeyValueObservingOptionPrior = 0x08,
-    }
-);
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSKeyValueObservingOptions(pub NSUInteger);
+impl NSKeyValueObservingOptions {
+    pub const NSKeyValueObservingOptionNew: Self = Self(0x01);
+    pub const NSKeyValueObservingOptionOld: Self = Self(0x02);
+    pub const NSKeyValueObservingOptionInitial: Self = Self(0x04);
+    pub const NSKeyValueObservingOptionPrior: Self = Self(0x08);
+}
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSKeyValueChange {
-        #[doc(alias = "NSKeyValueChangeSetting")]
-        Setting = 1,
-        #[doc(alias = "NSKeyValueChangeInsertion")]
-        Insertion = 2,
-        #[doc(alias = "NSKeyValueChangeRemoval")]
-        Removal = 3,
-        #[doc(alias = "NSKeyValueChangeReplacement")]
-        Replacement = 4,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSKeyValueObservingOptions {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSKeyValueSetMutationKind {
-        NSKeyValueUnionSetMutation = 1,
-        NSKeyValueMinusSetMutation = 2,
-        NSKeyValueIntersectSetMutation = 3,
-        NSKeyValueSetSetMutation = 4,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSKeyValueObservingOptions {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSKeyValueChange(pub NSUInteger);
+impl NSKeyValueChange {
+    #[doc(alias = "NSKeyValueChangeSetting")]
+    pub const Setting: Self = Self(1);
+    #[doc(alias = "NSKeyValueChangeInsertion")]
+    pub const Insertion: Self = Self(2);
+    #[doc(alias = "NSKeyValueChangeRemoval")]
+    pub const Removal: Self = Self(3);
+    #[doc(alias = "NSKeyValueChangeReplacement")]
+    pub const Replacement: Self = Self(4);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSKeyValueChange {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSKeyValueChange {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSKeyValueSetMutationKind(pub NSUInteger);
+impl NSKeyValueSetMutationKind {
+    pub const NSKeyValueUnionSetMutation: Self = Self(1);
+    pub const NSKeyValueMinusSetMutation: Self = Self(2);
+    pub const NSKeyValueIntersectSetMutation: Self = Self(3);
+    pub const NSKeyValueSetSetMutation: Self = Self(4);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSKeyValueSetMutationKind {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSKeyValueSetMutationKind {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type NSKeyValueChangeKey = NSString;
-);
+pub type NSKeyValueChangeKey = NSString;
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]

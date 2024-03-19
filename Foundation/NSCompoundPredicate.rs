@@ -3,14 +3,25 @@
 use crate::common::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSCompoundPredicateType {
-        NSNotPredicateType = 0,
-        NSAndPredicateType = 1,
-        NSOrPredicateType = 2,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSCompoundPredicateType(pub NSUInteger);
+impl NSCompoundPredicateType {
+    pub const NSNotPredicateType: Self = Self(0);
+    pub const NSAndPredicateType: Self = Self(1);
+    pub const NSOrPredicateType: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSCompoundPredicateType {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSCompoundPredicateType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

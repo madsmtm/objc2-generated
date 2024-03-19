@@ -5,21 +5,32 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::MediaPlayer::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum MPRemoteCommandHandlerStatus {
-        #[doc(alias = "MPRemoteCommandHandlerStatusSuccess")]
-        Success = 0,
-        #[doc(alias = "MPRemoteCommandHandlerStatusNoSuchContent")]
-        NoSuchContent = 100,
-        #[doc(alias = "MPRemoteCommandHandlerStatusNoActionableNowPlayingItem")]
-        NoActionableNowPlayingItem = 110,
-        #[doc(alias = "MPRemoteCommandHandlerStatusDeviceNotFound")]
-        DeviceNotFound = 120,
-        #[doc(alias = "MPRemoteCommandHandlerStatusCommandFailed")]
-        CommandFailed = 200,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MPRemoteCommandHandlerStatus(pub NSInteger);
+impl MPRemoteCommandHandlerStatus {
+    #[doc(alias = "MPRemoteCommandHandlerStatusSuccess")]
+    pub const Success: Self = Self(0);
+    #[doc(alias = "MPRemoteCommandHandlerStatusNoSuchContent")]
+    pub const NoSuchContent: Self = Self(100);
+    #[doc(alias = "MPRemoteCommandHandlerStatusNoActionableNowPlayingItem")]
+    pub const NoActionableNowPlayingItem: Self = Self(110);
+    #[doc(alias = "MPRemoteCommandHandlerStatusDeviceNotFound")]
+    pub const DeviceNotFound: Self = Self(120);
+    #[doc(alias = "MPRemoteCommandHandlerStatusCommandFailed")]
+    pub const CommandFailed: Self = Self(200);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MPRemoteCommandHandlerStatus {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MPRemoteCommandHandlerStatus {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

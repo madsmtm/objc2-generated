@@ -4,57 +4,101 @@ use crate::common::*;
 use crate::Foundation::*;
 use crate::Metal::*;
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum MTLSamplerMinMagFilter {
-        #[doc(alias = "MTLSamplerMinMagFilterNearest")]
-        Nearest = 0,
-        #[doc(alias = "MTLSamplerMinMagFilterLinear")]
-        Linear = 1,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MTLSamplerMinMagFilter(pub NSUInteger);
+impl MTLSamplerMinMagFilter {
+    #[doc(alias = "MTLSamplerMinMagFilterNearest")]
+    pub const Nearest: Self = Self(0);
+    #[doc(alias = "MTLSamplerMinMagFilterLinear")]
+    pub const Linear: Self = Self(1);
+}
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum MTLSamplerMipFilter {
-        #[doc(alias = "MTLSamplerMipFilterNotMipmapped")]
-        NotMipmapped = 0,
-        #[doc(alias = "MTLSamplerMipFilterNearest")]
-        Nearest = 1,
-        #[doc(alias = "MTLSamplerMipFilterLinear")]
-        Linear = 2,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLSamplerMinMagFilter {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum MTLSamplerAddressMode {
-        #[doc(alias = "MTLSamplerAddressModeClampToEdge")]
-        ClampToEdge = 0,
-        #[doc(alias = "MTLSamplerAddressModeMirrorClampToEdge")]
-        MirrorClampToEdge = 1,
-        #[doc(alias = "MTLSamplerAddressModeRepeat")]
-        Repeat = 2,
-        #[doc(alias = "MTLSamplerAddressModeMirrorRepeat")]
-        MirrorRepeat = 3,
-        #[doc(alias = "MTLSamplerAddressModeClampToZero")]
-        ClampToZero = 4,
-        #[doc(alias = "MTLSamplerAddressModeClampToBorderColor")]
-        ClampToBorderColor = 5,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLSamplerMinMagFilter {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum MTLSamplerBorderColor {
-        #[doc(alias = "MTLSamplerBorderColorTransparentBlack")]
-        TransparentBlack = 0,
-        #[doc(alias = "MTLSamplerBorderColorOpaqueBlack")]
-        OpaqueBlack = 1,
-        #[doc(alias = "MTLSamplerBorderColorOpaqueWhite")]
-        OpaqueWhite = 2,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MTLSamplerMipFilter(pub NSUInteger);
+impl MTLSamplerMipFilter {
+    #[doc(alias = "MTLSamplerMipFilterNotMipmapped")]
+    pub const NotMipmapped: Self = Self(0);
+    #[doc(alias = "MTLSamplerMipFilterNearest")]
+    pub const Nearest: Self = Self(1);
+    #[doc(alias = "MTLSamplerMipFilterLinear")]
+    pub const Linear: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLSamplerMipFilter {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLSamplerMipFilter {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MTLSamplerAddressMode(pub NSUInteger);
+impl MTLSamplerAddressMode {
+    #[doc(alias = "MTLSamplerAddressModeClampToEdge")]
+    pub const ClampToEdge: Self = Self(0);
+    #[doc(alias = "MTLSamplerAddressModeMirrorClampToEdge")]
+    pub const MirrorClampToEdge: Self = Self(1);
+    #[doc(alias = "MTLSamplerAddressModeRepeat")]
+    pub const Repeat: Self = Self(2);
+    #[doc(alias = "MTLSamplerAddressModeMirrorRepeat")]
+    pub const MirrorRepeat: Self = Self(3);
+    #[doc(alias = "MTLSamplerAddressModeClampToZero")]
+    pub const ClampToZero: Self = Self(4);
+    #[doc(alias = "MTLSamplerAddressModeClampToBorderColor")]
+    pub const ClampToBorderColor: Self = Self(5);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLSamplerAddressMode {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLSamplerAddressMode {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MTLSamplerBorderColor(pub NSUInteger);
+impl MTLSamplerBorderColor {
+    #[doc(alias = "MTLSamplerBorderColorTransparentBlack")]
+    pub const TransparentBlack: Self = Self(0);
+    #[doc(alias = "MTLSamplerBorderColorOpaqueBlack")]
+    pub const OpaqueBlack: Self = Self(1);
+    #[doc(alias = "MTLSamplerBorderColorOpaqueWhite")]
+    pub const OpaqueWhite: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLSamplerBorderColor {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLSamplerBorderColor {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

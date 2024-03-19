@@ -6,9 +6,20 @@ use crate::FileProvider::*;
 use crate::Foundation::*;
 use crate::UniformTypeIdentifiers::*;
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSFileProviderModifyItemOptions {
-        NSFileProviderModifyItemMayAlreadyExist = 1 << 0,
-    }
-);
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSFileProviderModifyItemOptions(pub NSUInteger);
+impl NSFileProviderModifyItemOptions {
+    pub const NSFileProviderModifyItemMayAlreadyExist: Self = Self(1 << 0);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSFileProviderModifyItemOptions {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSFileProviderModifyItemOptions {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}

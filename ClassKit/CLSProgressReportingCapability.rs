@@ -4,21 +4,32 @@ use crate::common::*;
 use crate::ClassKit::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum CLSProgressReportingCapabilityKind {
-        #[doc(alias = "CLSProgressReportingCapabilityKindDuration")]
-        Duration = 0,
-        #[doc(alias = "CLSProgressReportingCapabilityKindPercent")]
-        Percent = 1,
-        #[doc(alias = "CLSProgressReportingCapabilityKindBinary")]
-        Binary = 2,
-        #[doc(alias = "CLSProgressReportingCapabilityKindQuantity")]
-        Quantity = 3,
-        #[doc(alias = "CLSProgressReportingCapabilityKindScore")]
-        Score = 4,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct CLSProgressReportingCapabilityKind(pub NSInteger);
+impl CLSProgressReportingCapabilityKind {
+    #[doc(alias = "CLSProgressReportingCapabilityKindDuration")]
+    pub const Duration: Self = Self(0);
+    #[doc(alias = "CLSProgressReportingCapabilityKindPercent")]
+    pub const Percent: Self = Self(1);
+    #[doc(alias = "CLSProgressReportingCapabilityKindBinary")]
+    pub const Binary: Self = Self(2);
+    #[doc(alias = "CLSProgressReportingCapabilityKindQuantity")]
+    pub const Quantity: Self = Self(3);
+    #[doc(alias = "CLSProgressReportingCapabilityKindScore")]
+    pub const Score: Self = Self(4);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for CLSProgressReportingCapabilityKind {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for CLSProgressReportingCapabilityKind {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

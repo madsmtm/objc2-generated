@@ -80,21 +80,32 @@ extern_methods!(
     }
 );
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum CKAccountStatus {
-        #[doc(alias = "CKAccountStatusCouldNotDetermine")]
-        CouldNotDetermine = 0,
-        #[doc(alias = "CKAccountStatusAvailable")]
-        Available = 1,
-        #[doc(alias = "CKAccountStatusRestricted")]
-        Restricted = 2,
-        #[doc(alias = "CKAccountStatusNoAccount")]
-        NoAccount = 3,
-        #[doc(alias = "CKAccountStatusTemporarilyUnavailable")]
-        TemporarilyUnavailable = 4,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct CKAccountStatus(pub NSInteger);
+impl CKAccountStatus {
+    #[doc(alias = "CKAccountStatusCouldNotDetermine")]
+    pub const CouldNotDetermine: Self = Self(0);
+    #[doc(alias = "CKAccountStatusAvailable")]
+    pub const Available: Self = Self(1);
+    #[doc(alias = "CKAccountStatusRestricted")]
+    pub const Restricted: Self = Self(2);
+    #[doc(alias = "CKAccountStatusNoAccount")]
+    pub const NoAccount: Self = Self(3);
+    #[doc(alias = "CKAccountStatusTemporarilyUnavailable")]
+    pub const TemporarilyUnavailable: Self = Self(4);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for CKAccountStatus {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for CKAccountStatus {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]
@@ -113,32 +124,54 @@ extern_methods!(
     }
 );
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum CKApplicationPermissions {
-        #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
-        CKApplicationPermissionUserDiscoverability = 1 << 0,
-    }
-);
-
-ns_enum!(
-    #[underlying(NSInteger)]
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct CKApplicationPermissions(pub NSUInteger);
+impl CKApplicationPermissions {
     #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
-    pub enum CKApplicationPermissionStatus {
-        #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
-        #[doc(alias = "CKApplicationPermissionStatusInitialState")]
-        InitialState = 0,
-        #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
-        #[doc(alias = "CKApplicationPermissionStatusCouldNotComplete")]
-        CouldNotComplete = 1,
-        #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
-        #[doc(alias = "CKApplicationPermissionStatusDenied")]
-        Denied = 2,
-        #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
-        #[doc(alias = "CKApplicationPermissionStatusGranted")]
-        Granted = 3,
-    }
-);
+    pub const CKApplicationPermissionUserDiscoverability: Self = Self(1 << 0);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for CKApplicationPermissions {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for CKApplicationPermissions {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct CKApplicationPermissionStatus(pub NSInteger);
+impl CKApplicationPermissionStatus {
+    #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
+    #[doc(alias = "CKApplicationPermissionStatusInitialState")]
+    pub const InitialState: Self = Self(0);
+    #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
+    #[doc(alias = "CKApplicationPermissionStatusCouldNotComplete")]
+    pub const CouldNotComplete: Self = Self(1);
+    #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
+    #[doc(alias = "CKApplicationPermissionStatusDenied")]
+    pub const Denied: Self = Self(2);
+    #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
+    #[doc(alias = "CKApplicationPermissionStatusGranted")]
+    pub const Granted: Self = Self(3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for CKApplicationPermissionStatus {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for CKApplicationPermissionStatus {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 #[cfg(feature = "Foundation_NSError")]
 pub type CKApplicationPermissionBlock =

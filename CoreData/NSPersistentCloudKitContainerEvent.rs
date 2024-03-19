@@ -4,17 +4,28 @@ use crate::common::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSPersistentCloudKitContainerEventType {
-        #[doc(alias = "NSPersistentCloudKitContainerEventTypeSetup")]
-        Setup = 0,
-        #[doc(alias = "NSPersistentCloudKitContainerEventTypeImport")]
-        Import = 1,
-        #[doc(alias = "NSPersistentCloudKitContainerEventTypeExport")]
-        Export = 2,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSPersistentCloudKitContainerEventType(pub NSInteger);
+impl NSPersistentCloudKitContainerEventType {
+    #[doc(alias = "NSPersistentCloudKitContainerEventTypeSetup")]
+    pub const Setup: Self = Self(0);
+    #[doc(alias = "NSPersistentCloudKitContainerEventTypeImport")]
+    pub const Import: Self = Self(1);
+    #[doc(alias = "NSPersistentCloudKitContainerEventTypeExport")]
+    pub const Export: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSPersistentCloudKitContainerEventType {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSPersistentCloudKitContainerEventType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern "C" {
     #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]

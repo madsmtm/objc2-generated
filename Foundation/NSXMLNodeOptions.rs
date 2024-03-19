@@ -3,40 +3,46 @@
 use crate::common::*;
 use crate::Foundation::*;
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSXMLNodeOptions {
-        #[doc(alias = "NSXMLNodeOptionsNone")]
-        None = 0,
-        NSXMLNodeIsCDATA = 1 << 0,
-        NSXMLNodeExpandEmptyElement = 1 << 1,
-        NSXMLNodeCompactEmptyElement = 1 << 2,
-        NSXMLNodeUseSingleQuotes = 1 << 3,
-        NSXMLNodeUseDoubleQuotes = 1 << 4,
-        NSXMLNodeNeverEscapeContents = 1 << 5,
-        NSXMLDocumentTidyHTML = 1 << 9,
-        NSXMLDocumentTidyXML = 1 << 10,
-        NSXMLDocumentValidate = 1 << 13,
-        NSXMLNodeLoadExternalEntitiesAlways = 1 << 14,
-        NSXMLNodeLoadExternalEntitiesSameOriginOnly = 1 << 15,
-        NSXMLNodeLoadExternalEntitiesNever = 1 << 19,
-        NSXMLDocumentXInclude = 1 << 16,
-        NSXMLNodePrettyPrint = 1 << 17,
-        NSXMLDocumentIncludeContentTypeDeclaration = 1 << 18,
-        NSXMLNodePreserveNamespaceOrder = 1 << 20,
-        NSXMLNodePreserveAttributeOrder = 1 << 21,
-        NSXMLNodePreserveEntities = 1 << 22,
-        NSXMLNodePreservePrefixes = 1 << 23,
-        NSXMLNodePreserveCDATA = 1 << 24,
-        NSXMLNodePreserveWhitespace = 1 << 25,
-        NSXMLNodePreserveDTD = 1 << 26,
-        NSXMLNodePreserveCharacterReferences = 1 << 27,
-        NSXMLNodePromoteSignificantWhitespace = 1 << 28,
-        NSXMLNodePreserveEmptyElements = NSXMLNodeOptions::NSXMLNodeExpandEmptyElement.0
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSXMLNodeOptions(pub NSUInteger);
+impl NSXMLNodeOptions {
+    #[doc(alias = "NSXMLNodeOptionsNone")]
+    pub const None: Self = Self(0);
+    pub const NSXMLNodeIsCDATA: Self = Self(1 << 0);
+    pub const NSXMLNodeExpandEmptyElement: Self = Self(1 << 1);
+    pub const NSXMLNodeCompactEmptyElement: Self = Self(1 << 2);
+    pub const NSXMLNodeUseSingleQuotes: Self = Self(1 << 3);
+    pub const NSXMLNodeUseDoubleQuotes: Self = Self(1 << 4);
+    pub const NSXMLNodeNeverEscapeContents: Self = Self(1 << 5);
+    pub const NSXMLDocumentTidyHTML: Self = Self(1 << 9);
+    pub const NSXMLDocumentTidyXML: Self = Self(1 << 10);
+    pub const NSXMLDocumentValidate: Self = Self(1 << 13);
+    pub const NSXMLNodeLoadExternalEntitiesAlways: Self = Self(1 << 14);
+    pub const NSXMLNodeLoadExternalEntitiesSameOriginOnly: Self = Self(1 << 15);
+    pub const NSXMLNodeLoadExternalEntitiesNever: Self = Self(1 << 19);
+    pub const NSXMLDocumentXInclude: Self = Self(1 << 16);
+    pub const NSXMLNodePrettyPrint: Self = Self(1 << 17);
+    pub const NSXMLDocumentIncludeContentTypeDeclaration: Self = Self(1 << 18);
+    pub const NSXMLNodePreserveNamespaceOrder: Self = Self(1 << 20);
+    pub const NSXMLNodePreserveAttributeOrder: Self = Self(1 << 21);
+    pub const NSXMLNodePreserveEntities: Self = Self(1 << 22);
+    pub const NSXMLNodePreservePrefixes: Self = Self(1 << 23);
+    pub const NSXMLNodePreserveCDATA: Self = Self(1 << 24);
+    pub const NSXMLNodePreserveWhitespace: Self = Self(1 << 25);
+    pub const NSXMLNodePreserveDTD: Self = Self(1 << 26);
+    pub const NSXMLNodePreserveCharacterReferences: Self = Self(1 << 27);
+    pub const NSXMLNodePromoteSignificantWhitespace: Self = Self(1 << 28);
+    pub const NSXMLNodePreserveEmptyElements: Self = Self(
+        NSXMLNodeOptions::NSXMLNodeExpandEmptyElement.0
             | NSXMLNodeOptions::NSXMLNodeCompactEmptyElement.0,
-        NSXMLNodePreserveQuotes = NSXMLNodeOptions::NSXMLNodeUseSingleQuotes.0
-            | NSXMLNodeOptions::NSXMLNodeUseDoubleQuotes.0,
-        NSXMLNodePreserveAll = NSXMLNodeOptions::NSXMLNodePreserveNamespaceOrder.0
+    );
+    pub const NSXMLNodePreserveQuotes: Self = Self(
+        NSXMLNodeOptions::NSXMLNodeUseSingleQuotes.0 | NSXMLNodeOptions::NSXMLNodeUseDoubleQuotes.0,
+    );
+    pub const NSXMLNodePreserveAll: Self = Self(
+        NSXMLNodeOptions::NSXMLNodePreserveNamespaceOrder.0
             | NSXMLNodeOptions::NSXMLNodePreserveAttributeOrder.0
             | NSXMLNodeOptions::NSXMLNodePreserveEntities.0
             | NSXMLNodeOptions::NSXMLNodePreservePrefixes.0
@@ -47,5 +53,15 @@ ns_options!(
             | NSXMLNodeOptions::NSXMLNodePreserveDTD.0
             | NSXMLNodeOptions::NSXMLNodePreserveCharacterReferences.0
             | 0xFFF00000,
-    }
-);
+    );
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSXMLNodeOptions {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSXMLNodeOptions {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}

@@ -4,10 +4,9 @@ use crate::common::*;
 use crate::Foundation::*;
 use crate::Metal::*;
 
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type MTLCommonCounter = NSString;
-);
+pub type MTLCommonCounter = NSString;
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]
@@ -84,10 +83,9 @@ extern "C" {
     pub static MTLCommonCounterRenderTargetWriteCycles: &'static MTLCommonCounter;
 }
 
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type MTLCommonCounterSet = NSString;
-);
+pub type MTLCommonCounterSet = NSString;
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]
@@ -245,14 +243,25 @@ extern "C" {
     pub static MTLCounterErrorDomain: &'static NSErrorDomain;
 }
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum MTLCounterSampleBufferError {
-        #[doc(alias = "MTLCounterSampleBufferErrorOutOfMemory")]
-        OutOfMemory = 0,
-        #[doc(alias = "MTLCounterSampleBufferErrorInvalid")]
-        Invalid = 1,
-        #[doc(alias = "MTLCounterSampleBufferErrorInternal")]
-        Internal = 2,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MTLCounterSampleBufferError(pub NSInteger);
+impl MTLCounterSampleBufferError {
+    #[doc(alias = "MTLCounterSampleBufferErrorOutOfMemory")]
+    pub const OutOfMemory: Self = Self(0);
+    #[doc(alias = "MTLCounterSampleBufferErrorInvalid")]
+    pub const Invalid: Self = Self(1);
+    #[doc(alias = "MTLCounterSampleBufferErrorInternal")]
+    pub const Internal: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLCounterSampleBufferError {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLCounterSampleBufferError {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}

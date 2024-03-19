@@ -8,46 +8,79 @@ use crate::Foundation::*;
 #[cfg(feature = "AppKit_NSApplication")]
 pub static NSAppKitVersionNumberWithDirectionalTabs: NSAppKitVersion = 631.0 as _;
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSTabViewType {
-        NSTopTabsBezelBorder = 0,
-        NSLeftTabsBezelBorder = 1,
-        NSBottomTabsBezelBorder = 2,
-        NSRightTabsBezelBorder = 3,
-        NSNoTabsBezelBorder = 4,
-        NSNoTabsLineBorder = 5,
-        NSNoTabsNoBorder = 6,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSTabViewType(pub NSUInteger);
+impl NSTabViewType {
+    pub const NSTopTabsBezelBorder: Self = Self(0);
+    pub const NSLeftTabsBezelBorder: Self = Self(1);
+    pub const NSBottomTabsBezelBorder: Self = Self(2);
+    pub const NSRightTabsBezelBorder: Self = Self(3);
+    pub const NSNoTabsBezelBorder: Self = Self(4);
+    pub const NSNoTabsLineBorder: Self = Self(5);
+    pub const NSNoTabsNoBorder: Self = Self(6);
+}
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSTabPosition {
-        #[doc(alias = "NSTabPositionNone")]
-        None = 0,
-        #[doc(alias = "NSTabPositionTop")]
-        Top = 1,
-        #[doc(alias = "NSTabPositionLeft")]
-        Left = 2,
-        #[doc(alias = "NSTabPositionBottom")]
-        Bottom = 3,
-        #[doc(alias = "NSTabPositionRight")]
-        Right = 4,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSTabViewType {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSTabViewBorderType {
-        #[doc(alias = "NSTabViewBorderTypeNone")]
-        None = 0,
-        #[doc(alias = "NSTabViewBorderTypeLine")]
-        Line = 1,
-        #[doc(alias = "NSTabViewBorderTypeBezel")]
-        Bezel = 2,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSTabViewType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSTabPosition(pub NSUInteger);
+impl NSTabPosition {
+    #[doc(alias = "NSTabPositionNone")]
+    pub const None: Self = Self(0);
+    #[doc(alias = "NSTabPositionTop")]
+    pub const Top: Self = Self(1);
+    #[doc(alias = "NSTabPositionLeft")]
+    pub const Left: Self = Self(2);
+    #[doc(alias = "NSTabPositionBottom")]
+    pub const Bottom: Self = Self(3);
+    #[doc(alias = "NSTabPositionRight")]
+    pub const Right: Self = Self(4);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSTabPosition {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSTabPosition {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSTabViewBorderType(pub NSUInteger);
+impl NSTabViewBorderType {
+    #[doc(alias = "NSTabViewBorderTypeNone")]
+    pub const None: Self = Self(0);
+    #[doc(alias = "NSTabViewBorderTypeLine")]
+    pub const Line: Self = Self(1);
+    #[doc(alias = "NSTabViewBorderTypeBezel")]
+    pub const Bezel: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSTabViewBorderType {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSTabViewBorderType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

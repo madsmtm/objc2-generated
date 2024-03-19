@@ -6,36 +6,80 @@ use crate::FileProvider::*;
 use crate::Foundation::*;
 use crate::UniformTypeIdentifiers::*;
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSFileProviderCreateItemOptions {
-        NSFileProviderCreateItemMayAlreadyExist = 1 << 0,
-        NSFileProviderCreateItemDeletionConflicted = 1 << 1,
-    }
-);
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSFileProviderCreateItemOptions(pub NSUInteger);
+impl NSFileProviderCreateItemOptions {
+    pub const NSFileProviderCreateItemMayAlreadyExist: Self = Self(1 << 0);
+    pub const NSFileProviderCreateItemDeletionConflicted: Self = Self(1 << 1);
+}
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSFileProviderDeleteItemOptions {
-        NSFileProviderDeleteItemRecursive = 1 << 0,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSFileProviderCreateItemOptions {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSFileProviderMaterializationFlags {
-        #[doc(alias = "NSFileProviderMaterializationFlagsKnownSparseRanges")]
-        KnownSparseRanges = 1 << 0,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSFileProviderCreateItemOptions {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSFileProviderFetchContentsOptions {
-        #[doc(alias = "NSFileProviderFetchContentsOptionsStrictVersioning")]
-        StrictVersioning = 1 << 0,
-    }
-);
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSFileProviderDeleteItemOptions(pub NSUInteger);
+impl NSFileProviderDeleteItemOptions {
+    pub const NSFileProviderDeleteItemRecursive: Self = Self(1 << 0);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSFileProviderDeleteItemOptions {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSFileProviderDeleteItemOptions {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSFileProviderMaterializationFlags(pub NSUInteger);
+impl NSFileProviderMaterializationFlags {
+    #[doc(alias = "NSFileProviderMaterializationFlagsKnownSparseRanges")]
+    pub const KnownSparseRanges: Self = Self(1 << 0);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSFileProviderMaterializationFlags {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSFileProviderMaterializationFlags {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSFileProviderFetchContentsOptions(pub NSUInteger);
+impl NSFileProviderFetchContentsOptions {
+    #[doc(alias = "NSFileProviderFetchContentsOptionsStrictVersioning")]
+    pub const StrictVersioning: Self = Self(1 << 0);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSFileProviderFetchContentsOptions {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSFileProviderFetchContentsOptions {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_protocol!(
     pub unsafe trait NSFileProviderEnumerating: NSObjectProtocol {

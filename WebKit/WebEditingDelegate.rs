@@ -5,21 +5,32 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::WebKit::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
+// NS_ENUM
+#[deprecated]
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct WebViewInsertAction(pub NSInteger);
+impl WebViewInsertAction {
     #[deprecated]
-    pub enum WebViewInsertAction {
-        #[deprecated]
-        #[doc(alias = "WebViewInsertActionTyped")]
-        Typed = 0,
-        #[deprecated]
-        #[doc(alias = "WebViewInsertActionPasted")]
-        Pasted = 1,
-        #[deprecated]
-        #[doc(alias = "WebViewInsertActionDropped")]
-        Dropped = 2,
-    }
-);
+    #[doc(alias = "WebViewInsertActionTyped")]
+    pub const Typed: Self = Self(0);
+    #[deprecated]
+    #[doc(alias = "WebViewInsertActionPasted")]
+    pub const Pasted: Self = Self(1);
+    #[deprecated]
+    #[doc(alias = "WebViewInsertActionDropped")]
+    pub const Dropped: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for WebViewInsertAction {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for WebViewInsertAction {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_protocol!(
     #[deprecated]

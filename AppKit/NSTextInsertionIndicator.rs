@@ -5,27 +5,49 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSTextInsertionIndicatorDisplayMode {
-        #[doc(alias = "NSTextInsertionIndicatorDisplayModeAutomatic")]
-        Automatic = 0,
-        #[doc(alias = "NSTextInsertionIndicatorDisplayModeHidden")]
-        Hidden = 1,
-        #[doc(alias = "NSTextInsertionIndicatorDisplayModeVisible")]
-        Visible = 2,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSTextInsertionIndicatorDisplayMode(pub NSInteger);
+impl NSTextInsertionIndicatorDisplayMode {
+    #[doc(alias = "NSTextInsertionIndicatorDisplayModeAutomatic")]
+    pub const Automatic: Self = Self(0);
+    #[doc(alias = "NSTextInsertionIndicatorDisplayModeHidden")]
+    pub const Hidden: Self = Self(1);
+    #[doc(alias = "NSTextInsertionIndicatorDisplayModeVisible")]
+    pub const Visible: Self = Self(2);
+}
 
-ns_options!(
-    #[underlying(NSInteger)]
-    pub enum NSTextInsertionIndicatorAutomaticModeOptions {
-        #[doc(alias = "NSTextInsertionIndicatorAutomaticModeOptionsShowEffectsView")]
-        ShowEffectsView = 1 << 0,
-        #[doc(alias = "NSTextInsertionIndicatorAutomaticModeOptionsShowWhileTracking")]
-        ShowWhileTracking = 1 << 1,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSTextInsertionIndicatorDisplayMode {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSTextInsertionIndicatorDisplayMode {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSTextInsertionIndicatorAutomaticModeOptions(pub NSInteger);
+impl NSTextInsertionIndicatorAutomaticModeOptions {
+    #[doc(alias = "NSTextInsertionIndicatorAutomaticModeOptionsShowEffectsView")]
+    pub const ShowEffectsView: Self = Self(1 << 0);
+    #[doc(alias = "NSTextInsertionIndicatorAutomaticModeOptionsShowWhileTracking")]
+    pub const ShowWhileTracking: Self = Self(1 << 1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSTextInsertionIndicatorAutomaticModeOptions {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSTextInsertionIndicatorAutomaticModeOptions {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

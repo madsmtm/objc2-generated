@@ -5,47 +5,80 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSTextLayoutOrientation {
-        #[doc(alias = "NSTextLayoutOrientationHorizontal")]
-        Horizontal = 0,
-        #[doc(alias = "NSTextLayoutOrientationVertical")]
-        Vertical = 1,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSTextLayoutOrientation(pub NSInteger);
+impl NSTextLayoutOrientation {
+    #[doc(alias = "NSTextLayoutOrientationHorizontal")]
+    pub const Horizontal: Self = Self(0);
+    #[doc(alias = "NSTextLayoutOrientationVertical")]
+    pub const Vertical: Self = Self(1);
+}
 
-ns_options!(
-    #[underlying(NSInteger)]
-    pub enum NSGlyphProperty {
-        #[doc(alias = "NSGlyphPropertyNull")]
-        Null = 1 << 0,
-        #[doc(alias = "NSGlyphPropertyControlCharacter")]
-        ControlCharacter = 1 << 1,
-        #[doc(alias = "NSGlyphPropertyElastic")]
-        Elastic = 1 << 2,
-        #[doc(alias = "NSGlyphPropertyNonBaseCharacter")]
-        NonBaseCharacter = 1 << 3,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSTextLayoutOrientation {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
 
-ns_options!(
-    #[underlying(NSInteger)]
-    pub enum NSControlCharacterAction {
-        #[doc(alias = "NSControlCharacterActionZeroAdvancement")]
-        ZeroAdvancement = 1 << 0,
-        #[doc(alias = "NSControlCharacterActionWhitespace")]
-        Whitespace = 1 << 1,
-        #[doc(alias = "NSControlCharacterActionHorizontalTab")]
-        HorizontalTab = 1 << 2,
-        #[doc(alias = "NSControlCharacterActionLineBreak")]
-        LineBreak = 1 << 3,
-        #[doc(alias = "NSControlCharacterActionParagraphBreak")]
-        ParagraphBreak = 1 << 4,
-        #[doc(alias = "NSControlCharacterActionContainerBreak")]
-        ContainerBreak = 1 << 5,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSTextLayoutOrientation {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSGlyphProperty(pub NSInteger);
+impl NSGlyphProperty {
+    #[doc(alias = "NSGlyphPropertyNull")]
+    pub const Null: Self = Self(1 << 0);
+    #[doc(alias = "NSGlyphPropertyControlCharacter")]
+    pub const ControlCharacter: Self = Self(1 << 1);
+    #[doc(alias = "NSGlyphPropertyElastic")]
+    pub const Elastic: Self = Self(1 << 2);
+    #[doc(alias = "NSGlyphPropertyNonBaseCharacter")]
+    pub const NonBaseCharacter: Self = Self(1 << 3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSGlyphProperty {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSGlyphProperty {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSControlCharacterAction(pub NSInteger);
+impl NSControlCharacterAction {
+    #[doc(alias = "NSControlCharacterActionZeroAdvancement")]
+    pub const ZeroAdvancement: Self = Self(1 << 0);
+    #[doc(alias = "NSControlCharacterActionWhitespace")]
+    pub const Whitespace: Self = Self(1 << 1);
+    #[doc(alias = "NSControlCharacterActionHorizontalTab")]
+    pub const HorizontalTab: Self = Self(1 << 2);
+    #[doc(alias = "NSControlCharacterActionLineBreak")]
+    pub const LineBreak: Self = Self(1 << 3);
+    #[doc(alias = "NSControlCharacterActionParagraphBreak")]
+    pub const ParagraphBreak: Self = Self(1 << 4);
+    #[doc(alias = "NSControlCharacterActionContainerBreak")]
+    pub const ContainerBreak: Self = Self(1 << 5);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSControlCharacterAction {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSControlCharacterAction {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_protocol!(
     pub unsafe trait NSTextLayoutOrientationProvider {
@@ -56,21 +89,32 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn NSTextLayoutOrientationProvider {}
 );
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSTypesetterBehavior {
-        NSTypesetterLatestBehavior = -1,
-        NSTypesetterOriginalBehavior = 0,
-        #[doc(alias = "NSTypesetterBehavior_10_2_WithCompatibility")]
-        _10_2_WithCompatibility = 1,
-        #[doc(alias = "NSTypesetterBehavior_10_2")]
-        _10_2 = 2,
-        #[doc(alias = "NSTypesetterBehavior_10_3")]
-        _10_3 = 3,
-        #[doc(alias = "NSTypesetterBehavior_10_4")]
-        _10_4 = 4,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSTypesetterBehavior(pub NSInteger);
+impl NSTypesetterBehavior {
+    pub const NSTypesetterLatestBehavior: Self = Self(-1);
+    pub const NSTypesetterOriginalBehavior: Self = Self(0);
+    #[doc(alias = "NSTypesetterBehavior_10_2_WithCompatibility")]
+    pub const _10_2_WithCompatibility: Self = Self(1);
+    #[doc(alias = "NSTypesetterBehavior_10_2")]
+    pub const _10_2: Self = Self(2);
+    #[doc(alias = "NSTypesetterBehavior_10_3")]
+    pub const _10_3: Self = Self(3);
+    #[doc(alias = "NSTypesetterBehavior_10_4")]
+    pub const _10_4: Self = Self(4);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSTypesetterBehavior {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSTypesetterBehavior {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -1103,22 +1147,33 @@ pub const NSGlyphAttributeBidiLevel: c_uint = 2;
 #[deprecated]
 pub const NSGlyphAttributeInscribe: c_uint = 5;
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    #[deprecated = "Use NSGlyphProperty instead"]
-    pub enum NSGlyphInscription {
-        #[deprecated]
-        NSGlyphInscribeBase = 0,
-        #[deprecated]
-        NSGlyphInscribeBelow = 1,
-        #[deprecated]
-        NSGlyphInscribeAbove = 2,
-        #[deprecated]
-        NSGlyphInscribeOverstrike = 3,
-        #[deprecated]
-        NSGlyphInscribeOverBelow = 4,
-    }
-);
+// NS_ENUM
+#[deprecated = "Use NSGlyphProperty instead"]
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSGlyphInscription(pub NSUInteger);
+impl NSGlyphInscription {
+    #[deprecated]
+    pub const NSGlyphInscribeBase: Self = Self(0);
+    #[deprecated]
+    pub const NSGlyphInscribeBelow: Self = Self(1);
+    #[deprecated]
+    pub const NSGlyphInscribeAbove: Self = Self(2);
+    #[deprecated]
+    pub const NSGlyphInscribeOverstrike: Self = Self(3);
+    #[deprecated]
+    pub const NSGlyphInscribeOverBelow: Self = Self(4);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSGlyphInscription {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSGlyphInscription {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_methods!(
     /// NSLayoutManagerDeprecated

@@ -5,17 +5,27 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSTextListOptions {
-        NSTextListPrependEnclosingMarker = 1 << 0,
-    }
-);
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSTextListOptions(pub NSUInteger);
+impl NSTextListOptions {
+    pub const NSTextListPrependEnclosingMarker: Self = Self(1 << 0);
+}
 
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSTextListOptions {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSTextListOptions {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_extensible_enum!(
-    pub type NSTextListMarkerFormat = NSString;
-);
+pub type NSTextListMarkerFormat = NSString;
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]

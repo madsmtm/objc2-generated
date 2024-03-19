@@ -4,53 +4,97 @@ use crate::common::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSBatchInsertRequestResultType {
-        #[doc(alias = "NSBatchInsertRequestResultTypeStatusOnly")]
-        StatusOnly = 0x0,
-        #[doc(alias = "NSBatchInsertRequestResultTypeObjectIDs")]
-        ObjectIDs = 0x1,
-        #[doc(alias = "NSBatchInsertRequestResultTypeCount")]
-        Count = 0x2,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSBatchInsertRequestResultType(pub NSUInteger);
+impl NSBatchInsertRequestResultType {
+    #[doc(alias = "NSBatchInsertRequestResultTypeStatusOnly")]
+    pub const StatusOnly: Self = Self(0x0);
+    #[doc(alias = "NSBatchInsertRequestResultTypeObjectIDs")]
+    pub const ObjectIDs: Self = Self(0x1);
+    #[doc(alias = "NSBatchInsertRequestResultTypeCount")]
+    pub const Count: Self = Self(0x2);
+}
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSBatchUpdateRequestResultType {
-        NSStatusOnlyResultType = 0x0,
-        NSUpdatedObjectIDsResultType = 0x1,
-        NSUpdatedObjectsCountResultType = 0x2,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSBatchInsertRequestResultType {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSBatchDeleteRequestResultType {
-        NSBatchDeleteResultTypeStatusOnly = 0x0,
-        NSBatchDeleteResultTypeObjectIDs = 0x1,
-        NSBatchDeleteResultTypeCount = 0x2,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSBatchInsertRequestResultType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSPersistentHistoryResultType {
-        #[doc(alias = "NSPersistentHistoryResultTypeStatusOnly")]
-        StatusOnly = 0x0,
-        #[doc(alias = "NSPersistentHistoryResultTypeObjectIDs")]
-        ObjectIDs = 0x1,
-        #[doc(alias = "NSPersistentHistoryResultTypeCount")]
-        Count = 0x2,
-        #[doc(alias = "NSPersistentHistoryResultTypeTransactionsOnly")]
-        TransactionsOnly = 0x3,
-        #[doc(alias = "NSPersistentHistoryResultTypeChangesOnly")]
-        ChangesOnly = 0x4,
-        #[doc(alias = "NSPersistentHistoryResultTypeTransactionsAndChanges")]
-        TransactionsAndChanges = 0x5,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSBatchUpdateRequestResultType(pub NSUInteger);
+impl NSBatchUpdateRequestResultType {
+    pub const NSStatusOnlyResultType: Self = Self(0x0);
+    pub const NSUpdatedObjectIDsResultType: Self = Self(0x1);
+    pub const NSUpdatedObjectsCountResultType: Self = Self(0x2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSBatchUpdateRequestResultType {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSBatchUpdateRequestResultType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSBatchDeleteRequestResultType(pub NSUInteger);
+impl NSBatchDeleteRequestResultType {
+    pub const NSBatchDeleteResultTypeStatusOnly: Self = Self(0x0);
+    pub const NSBatchDeleteResultTypeObjectIDs: Self = Self(0x1);
+    pub const NSBatchDeleteResultTypeCount: Self = Self(0x2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSBatchDeleteRequestResultType {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSBatchDeleteRequestResultType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSPersistentHistoryResultType(pub NSInteger);
+impl NSPersistentHistoryResultType {
+    #[doc(alias = "NSPersistentHistoryResultTypeStatusOnly")]
+    pub const StatusOnly: Self = Self(0x0);
+    #[doc(alias = "NSPersistentHistoryResultTypeObjectIDs")]
+    pub const ObjectIDs: Self = Self(0x1);
+    #[doc(alias = "NSPersistentHistoryResultTypeCount")]
+    pub const Count: Self = Self(0x2);
+    #[doc(alias = "NSPersistentHistoryResultTypeTransactionsOnly")]
+    pub const TransactionsOnly: Self = Self(0x3);
+    #[doc(alias = "NSPersistentHistoryResultTypeChangesOnly")]
+    pub const ChangesOnly: Self = Self(0x4);
+    #[doc(alias = "NSPersistentHistoryResultTypeTransactionsAndChanges")]
+    pub const TransactionsAndChanges: Self = Self(0x5);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSPersistentHistoryResultType {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSPersistentHistoryResultType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -309,15 +353,26 @@ extern_methods!(
     }
 );
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSPersistentCloudKitContainerEventResultType {
-        #[doc(alias = "NSPersistentCloudKitContainerEventResultTypeEvents")]
-        Events = 0,
-        #[doc(alias = "NSPersistentCloudKitContainerEventResultTypeCountEvents")]
-        CountEvents = 1,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSPersistentCloudKitContainerEventResultType(pub NSInteger);
+impl NSPersistentCloudKitContainerEventResultType {
+    #[doc(alias = "NSPersistentCloudKitContainerEventResultTypeEvents")]
+    pub const Events: Self = Self(0);
+    #[doc(alias = "NSPersistentCloudKitContainerEventResultTypeCountEvents")]
+    pub const CountEvents: Self = Self(1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSPersistentCloudKitContainerEventResultType {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSPersistentCloudKitContainerEventResultType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

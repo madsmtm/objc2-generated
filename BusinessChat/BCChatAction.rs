@@ -5,10 +5,9 @@ use crate::AppKit::*;
 use crate::BusinessChat::*;
 use crate::Foundation::*;
 
+// NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_extensible_enum!(
-    pub type BCParameterName = NSString;
-);
+pub type BCParameterName = NSString;
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]

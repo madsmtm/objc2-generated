@@ -4,14 +4,25 @@ use crate::common::*;
 use crate::Foundation::*;
 use crate::Metal::*;
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum MTLFunctionOptions {
-        MTLFunctionOptionNone = 0,
-        MTLFunctionOptionCompileToBinary = 1 << 0,
-        MTLFunctionOptionStoreFunctionInMetalScript = 1 << 1,
-    }
-);
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MTLFunctionOptions(pub NSUInteger);
+impl MTLFunctionOptions {
+    pub const MTLFunctionOptionNone: Self = Self(0);
+    pub const MTLFunctionOptionCompileToBinary: Self = Self(1 << 0);
+    pub const MTLFunctionOptionStoreFunctionInMetalScript: Self = Self(1 << 1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLFunctionOptions {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLFunctionOptions {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

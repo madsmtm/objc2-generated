@@ -4,90 +4,134 @@ use crate::common::*;
 use crate::Foundation::*;
 use crate::Metal::*;
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum MTLCommandBufferStatus {
-        #[doc(alias = "MTLCommandBufferStatusNotEnqueued")]
-        NotEnqueued = 0,
-        #[doc(alias = "MTLCommandBufferStatusEnqueued")]
-        Enqueued = 1,
-        #[doc(alias = "MTLCommandBufferStatusCommitted")]
-        Committed = 2,
-        #[doc(alias = "MTLCommandBufferStatusScheduled")]
-        Scheduled = 3,
-        #[doc(alias = "MTLCommandBufferStatusCompleted")]
-        Completed = 4,
-        #[doc(alias = "MTLCommandBufferStatusError")]
-        Error = 5,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MTLCommandBufferStatus(pub NSUInteger);
+impl MTLCommandBufferStatus {
+    #[doc(alias = "MTLCommandBufferStatusNotEnqueued")]
+    pub const NotEnqueued: Self = Self(0);
+    #[doc(alias = "MTLCommandBufferStatusEnqueued")]
+    pub const Enqueued: Self = Self(1);
+    #[doc(alias = "MTLCommandBufferStatusCommitted")]
+    pub const Committed: Self = Self(2);
+    #[doc(alias = "MTLCommandBufferStatusScheduled")]
+    pub const Scheduled: Self = Self(3);
+    #[doc(alias = "MTLCommandBufferStatusCompleted")]
+    pub const Completed: Self = Self(4);
+    #[doc(alias = "MTLCommandBufferStatusError")]
+    pub const Error: Self = Self(5);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLCommandBufferStatus {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLCommandBufferStatus {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern "C" {
     #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
     pub static MTLCommandBufferErrorDomain: &'static NSErrorDomain;
 }
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum MTLCommandBufferError {
-        #[doc(alias = "MTLCommandBufferErrorNone")]
-        None = 0,
-        #[doc(alias = "MTLCommandBufferErrorInternal")]
-        Internal = 1,
-        #[doc(alias = "MTLCommandBufferErrorTimeout")]
-        Timeout = 2,
-        #[doc(alias = "MTLCommandBufferErrorPageFault")]
-        PageFault = 3,
-        #[deprecated]
-        #[doc(alias = "MTLCommandBufferErrorBlacklisted")]
-        Blacklisted = 4,
-        #[doc(alias = "MTLCommandBufferErrorAccessRevoked")]
-        AccessRevoked = 4,
-        #[doc(alias = "MTLCommandBufferErrorNotPermitted")]
-        NotPermitted = 7,
-        #[doc(alias = "MTLCommandBufferErrorOutOfMemory")]
-        OutOfMemory = 8,
-        #[doc(alias = "MTLCommandBufferErrorInvalidResource")]
-        InvalidResource = 9,
-        #[doc(alias = "MTLCommandBufferErrorMemoryless")]
-        Memoryless = 10,
-        #[doc(alias = "MTLCommandBufferErrorDeviceRemoved")]
-        DeviceRemoved = 11,
-        #[doc(alias = "MTLCommandBufferErrorStackOverflow")]
-        StackOverflow = 12,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MTLCommandBufferError(pub NSUInteger);
+impl MTLCommandBufferError {
+    #[doc(alias = "MTLCommandBufferErrorNone")]
+    pub const None: Self = Self(0);
+    #[doc(alias = "MTLCommandBufferErrorInternal")]
+    pub const Internal: Self = Self(1);
+    #[doc(alias = "MTLCommandBufferErrorTimeout")]
+    pub const Timeout: Self = Self(2);
+    #[doc(alias = "MTLCommandBufferErrorPageFault")]
+    pub const PageFault: Self = Self(3);
+    #[deprecated]
+    #[doc(alias = "MTLCommandBufferErrorBlacklisted")]
+    pub const Blacklisted: Self = Self(4);
+    #[doc(alias = "MTLCommandBufferErrorAccessRevoked")]
+    pub const AccessRevoked: Self = Self(4);
+    #[doc(alias = "MTLCommandBufferErrorNotPermitted")]
+    pub const NotPermitted: Self = Self(7);
+    #[doc(alias = "MTLCommandBufferErrorOutOfMemory")]
+    pub const OutOfMemory: Self = Self(8);
+    #[doc(alias = "MTLCommandBufferErrorInvalidResource")]
+    pub const InvalidResource: Self = Self(9);
+    #[doc(alias = "MTLCommandBufferErrorMemoryless")]
+    pub const Memoryless: Self = Self(10);
+    #[doc(alias = "MTLCommandBufferErrorDeviceRemoved")]
+    pub const DeviceRemoved: Self = Self(11);
+    #[doc(alias = "MTLCommandBufferErrorStackOverflow")]
+    pub const StackOverflow: Self = Self(12);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLCommandBufferError {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLCommandBufferError {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern "C" {
     #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
     pub static MTLCommandBufferEncoderInfoErrorKey: &'static NSErrorUserInfoKey;
 }
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum MTLCommandBufferErrorOption {
-        #[doc(alias = "MTLCommandBufferErrorOptionNone")]
-        None = 0,
-        #[doc(alias = "MTLCommandBufferErrorOptionEncoderExecutionStatus")]
-        EncoderExecutionStatus = 1 << 0,
-    }
-);
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MTLCommandBufferErrorOption(pub NSUInteger);
+impl MTLCommandBufferErrorOption {
+    #[doc(alias = "MTLCommandBufferErrorOptionNone")]
+    pub const None: Self = Self(0);
+    #[doc(alias = "MTLCommandBufferErrorOptionEncoderExecutionStatus")]
+    pub const EncoderExecutionStatus: Self = Self(1 << 0);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum MTLCommandEncoderErrorState {
-        #[doc(alias = "MTLCommandEncoderErrorStateUnknown")]
-        Unknown = 0,
-        #[doc(alias = "MTLCommandEncoderErrorStateCompleted")]
-        Completed = 1,
-        #[doc(alias = "MTLCommandEncoderErrorStateAffected")]
-        Affected = 2,
-        #[doc(alias = "MTLCommandEncoderErrorStatePending")]
-        Pending = 3,
-        #[doc(alias = "MTLCommandEncoderErrorStateFaulted")]
-        Faulted = 4,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLCommandBufferErrorOption {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLCommandBufferErrorOption {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MTLCommandEncoderErrorState(pub NSInteger);
+impl MTLCommandEncoderErrorState {
+    #[doc(alias = "MTLCommandEncoderErrorStateUnknown")]
+    pub const Unknown: Self = Self(0);
+    #[doc(alias = "MTLCommandEncoderErrorStateCompleted")]
+    pub const Completed: Self = Self(1);
+    #[doc(alias = "MTLCommandEncoderErrorStateAffected")]
+    pub const Affected: Self = Self(2);
+    #[doc(alias = "MTLCommandEncoderErrorStatePending")]
+    pub const Pending: Self = Self(3);
+    #[doc(alias = "MTLCommandEncoderErrorStateFaulted")]
+    pub const Faulted: Self = Self(4);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLCommandEncoderErrorState {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLCommandEncoderErrorState {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -151,15 +195,26 @@ extern_protocol!(
 pub type MTLCommandBufferHandler =
     *mut Block<dyn Fn(NonNull<ProtocolObject<dyn MTLCommandBuffer>>)>;
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum MTLDispatchType {
-        #[doc(alias = "MTLDispatchTypeSerial")]
-        Serial = 0,
-        #[doc(alias = "MTLDispatchTypeConcurrent")]
-        Concurrent = 1,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MTLDispatchType(pub NSUInteger);
+impl MTLDispatchType {
+    #[doc(alias = "MTLDispatchTypeSerial")]
+    pub const Serial: Self = Self(0);
+    #[doc(alias = "MTLDispatchTypeConcurrent")]
+    pub const Concurrent: Self = Self(1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLDispatchType {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLDispatchType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_protocol!(
     pub unsafe trait MTLCommandBuffer: NSObjectProtocol {

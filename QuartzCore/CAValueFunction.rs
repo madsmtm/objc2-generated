@@ -4,10 +4,9 @@ use crate::common::*;
 use crate::Foundation::*;
 use crate::QuartzCore::*;
 
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type CAValueFunctionName = NSString;
-);
+pub type CAValueFunctionName = NSString;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

@@ -3,72 +3,123 @@
 use crate::common::*;
 use crate::Foundation::*;
 
+// NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_extensible_enum!(
-    pub type NSFileAttributeKey = NSString;
-);
+pub type NSFileAttributeKey = NSString;
 
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type NSFileAttributeType = NSString;
-);
+pub type NSFileAttributeType = NSString;
 
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type NSFileProtectionType = NSString;
-);
+pub type NSFileProtectionType = NSString;
 
+// NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_extensible_enum!(
-    pub type NSFileProviderServiceName = NSString;
-);
+pub type NSFileProviderServiceName = NSString;
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSVolumeEnumerationOptions {
-        NSVolumeEnumerationSkipHiddenVolumes = 1 << 1,
-        NSVolumeEnumerationProduceFileReferenceURLs = 1 << 2,
-    }
-);
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSVolumeEnumerationOptions(pub NSUInteger);
+impl NSVolumeEnumerationOptions {
+    pub const NSVolumeEnumerationSkipHiddenVolumes: Self = Self(1 << 1);
+    pub const NSVolumeEnumerationProduceFileReferenceURLs: Self = Self(1 << 2);
+}
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSDirectoryEnumerationOptions {
-        NSDirectoryEnumerationSkipsSubdirectoryDescendants = 1 << 0,
-        NSDirectoryEnumerationSkipsPackageDescendants = 1 << 1,
-        NSDirectoryEnumerationSkipsHiddenFiles = 1 << 2,
-        NSDirectoryEnumerationIncludesDirectoriesPostOrder = 1 << 3,
-        NSDirectoryEnumerationProducesRelativePathURLs = 1 << 4,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSVolumeEnumerationOptions {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSFileManagerItemReplacementOptions {
-        NSFileManagerItemReplacementUsingNewMetadataOnly = 1 << 0,
-        NSFileManagerItemReplacementWithoutDeletingBackupItem = 1 << 1,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSVolumeEnumerationOptions {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSURLRelationship {
-        #[doc(alias = "NSURLRelationshipContains")]
-        Contains = 0,
-        #[doc(alias = "NSURLRelationshipSame")]
-        Same = 1,
-        #[doc(alias = "NSURLRelationshipOther")]
-        Other = 2,
-    }
-);
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSDirectoryEnumerationOptions(pub NSUInteger);
+impl NSDirectoryEnumerationOptions {
+    pub const NSDirectoryEnumerationSkipsSubdirectoryDescendants: Self = Self(1 << 0);
+    pub const NSDirectoryEnumerationSkipsPackageDescendants: Self = Self(1 << 1);
+    pub const NSDirectoryEnumerationSkipsHiddenFiles: Self = Self(1 << 2);
+    pub const NSDirectoryEnumerationIncludesDirectoriesPostOrder: Self = Self(1 << 3);
+    pub const NSDirectoryEnumerationProducesRelativePathURLs: Self = Self(1 << 4);
+}
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSFileManagerUnmountOptions {
-        NSFileManagerUnmountAllPartitionsAndEjectDisk = 1 << 0,
-        NSFileManagerUnmountWithoutUI = 1 << 1,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSDirectoryEnumerationOptions {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSDirectoryEnumerationOptions {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSFileManagerItemReplacementOptions(pub NSUInteger);
+impl NSFileManagerItemReplacementOptions {
+    pub const NSFileManagerItemReplacementUsingNewMetadataOnly: Self = Self(1 << 0);
+    pub const NSFileManagerItemReplacementWithoutDeletingBackupItem: Self = Self(1 << 1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSFileManagerItemReplacementOptions {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSFileManagerItemReplacementOptions {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSURLRelationship(pub NSInteger);
+impl NSURLRelationship {
+    #[doc(alias = "NSURLRelationshipContains")]
+    pub const Contains: Self = Self(0);
+    #[doc(alias = "NSURLRelationshipSame")]
+    pub const Same: Self = Self(1);
+    #[doc(alias = "NSURLRelationshipOther")]
+    pub const Other: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSURLRelationship {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSURLRelationship {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSFileManagerUnmountOptions(pub NSUInteger);
+impl NSFileManagerUnmountOptions {
+    pub const NSFileManagerUnmountAllPartitionsAndEjectDisk: Self = Self(1 << 0);
+    pub const NSFileManagerUnmountWithoutUI: Self = Self(1 << 1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSFileManagerUnmountOptions {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSFileManagerUnmountOptions {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]

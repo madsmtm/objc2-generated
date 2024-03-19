@@ -3,15 +3,13 @@
 use crate::common::*;
 use crate::Foundation::*;
 
+// NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_extensible_enum!(
-    pub type NSHTTPCookiePropertyKey = NSString;
-);
+pub type NSHTTPCookiePropertyKey = NSString;
 
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type NSHTTPCookieStringPolicy = NSString;
-);
+pub type NSHTTPCookieStringPolicy = NSString;
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]

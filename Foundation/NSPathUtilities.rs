@@ -121,49 +121,71 @@ extern "C" {
     pub fn NSOpenStepRootDirectory() -> NonNull<NSString>;
 }
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSSearchPathDirectory {
-        NSApplicationDirectory = 1,
-        NSDemoApplicationDirectory = 2,
-        NSDeveloperApplicationDirectory = 3,
-        NSAdminApplicationDirectory = 4,
-        NSLibraryDirectory = 5,
-        NSDeveloperDirectory = 6,
-        NSUserDirectory = 7,
-        NSDocumentationDirectory = 8,
-        NSDocumentDirectory = 9,
-        NSCoreServiceDirectory = 10,
-        NSAutosavedInformationDirectory = 11,
-        NSDesktopDirectory = 12,
-        NSCachesDirectory = 13,
-        NSApplicationSupportDirectory = 14,
-        NSDownloadsDirectory = 15,
-        NSInputMethodsDirectory = 16,
-        NSMoviesDirectory = 17,
-        NSMusicDirectory = 18,
-        NSPicturesDirectory = 19,
-        NSPrinterDescriptionDirectory = 20,
-        NSSharedPublicDirectory = 21,
-        NSPreferencePanesDirectory = 22,
-        NSApplicationScriptsDirectory = 23,
-        NSItemReplacementDirectory = 99,
-        NSAllApplicationsDirectory = 100,
-        NSAllLibrariesDirectory = 101,
-        NSTrashDirectory = 102,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSSearchPathDirectory(pub NSUInteger);
+impl NSSearchPathDirectory {
+    pub const NSApplicationDirectory: Self = Self(1);
+    pub const NSDemoApplicationDirectory: Self = Self(2);
+    pub const NSDeveloperApplicationDirectory: Self = Self(3);
+    pub const NSAdminApplicationDirectory: Self = Self(4);
+    pub const NSLibraryDirectory: Self = Self(5);
+    pub const NSDeveloperDirectory: Self = Self(6);
+    pub const NSUserDirectory: Self = Self(7);
+    pub const NSDocumentationDirectory: Self = Self(8);
+    pub const NSDocumentDirectory: Self = Self(9);
+    pub const NSCoreServiceDirectory: Self = Self(10);
+    pub const NSAutosavedInformationDirectory: Self = Self(11);
+    pub const NSDesktopDirectory: Self = Self(12);
+    pub const NSCachesDirectory: Self = Self(13);
+    pub const NSApplicationSupportDirectory: Self = Self(14);
+    pub const NSDownloadsDirectory: Self = Self(15);
+    pub const NSInputMethodsDirectory: Self = Self(16);
+    pub const NSMoviesDirectory: Self = Self(17);
+    pub const NSMusicDirectory: Self = Self(18);
+    pub const NSPicturesDirectory: Self = Self(19);
+    pub const NSPrinterDescriptionDirectory: Self = Self(20);
+    pub const NSSharedPublicDirectory: Self = Self(21);
+    pub const NSPreferencePanesDirectory: Self = Self(22);
+    pub const NSApplicationScriptsDirectory: Self = Self(23);
+    pub const NSItemReplacementDirectory: Self = Self(99);
+    pub const NSAllApplicationsDirectory: Self = Self(100);
+    pub const NSAllLibrariesDirectory: Self = Self(101);
+    pub const NSTrashDirectory: Self = Self(102);
+}
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSSearchPathDomainMask {
-        NSUserDomainMask = 1,
-        NSLocalDomainMask = 2,
-        NSNetworkDomainMask = 4,
-        NSSystemDomainMask = 8,
-        NSAllDomainsMask = 0x0ffff,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSSearchPathDirectory {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSSearchPathDirectory {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSSearchPathDomainMask(pub NSUInteger);
+impl NSSearchPathDomainMask {
+    pub const NSUserDomainMask: Self = Self(1);
+    pub const NSLocalDomainMask: Self = Self(2);
+    pub const NSNetworkDomainMask: Self = Self(4);
+    pub const NSSystemDomainMask: Self = Self(8);
+    pub const NSAllDomainsMask: Self = Self(0x0ffff);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSSearchPathDomainMask {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSSearchPathDomainMask {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern "C" {
     #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]

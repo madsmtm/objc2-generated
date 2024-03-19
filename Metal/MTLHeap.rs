@@ -4,17 +4,28 @@ use crate::common::*;
 use crate::Foundation::*;
 use crate::Metal::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum MTLHeapType {
-        #[doc(alias = "MTLHeapTypeAutomatic")]
-        Automatic = 0,
-        #[doc(alias = "MTLHeapTypePlacement")]
-        Placement = 1,
-        #[doc(alias = "MTLHeapTypeSparse")]
-        Sparse = 2,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MTLHeapType(pub NSInteger);
+impl MTLHeapType {
+    #[doc(alias = "MTLHeapTypeAutomatic")]
+    pub const Automatic: Self = Self(0);
+    #[doc(alias = "MTLHeapTypePlacement")]
+    pub const Placement: Self = Self(1);
+    #[doc(alias = "MTLHeapTypeSparse")]
+    pub const Sparse: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLHeapType {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLHeapType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

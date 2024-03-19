@@ -4,25 +4,21 @@ use crate::common::*;
 use crate::Foundation::*;
 use crate::QuartzCore::*;
 
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type CAAnimationCalculationMode = NSString;
-);
+pub type CAAnimationCalculationMode = NSString;
 
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type CAAnimationRotationMode = NSString;
-);
+pub type CAAnimationRotationMode = NSString;
 
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type CATransitionType = NSString;
-);
+pub type CATransitionType = NSString;
 
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type CATransitionSubtype = NSString;
-);
+pub type CATransitionSubtype = NSString;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

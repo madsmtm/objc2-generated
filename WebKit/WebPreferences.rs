@@ -5,21 +5,32 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::WebKit::*;
 
-ns_enum!(
-    #[underlying(NSUInteger)]
+// NS_ENUM
+#[deprecated]
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct WebCacheModel(pub NSUInteger);
+impl WebCacheModel {
     #[deprecated]
-    pub enum WebCacheModel {
-        #[deprecated]
-        #[doc(alias = "WebCacheModelDocumentViewer")]
-        DocumentViewer = 0,
-        #[deprecated]
-        #[doc(alias = "WebCacheModelDocumentBrowser")]
-        DocumentBrowser = 1,
-        #[deprecated]
-        #[doc(alias = "WebCacheModelPrimaryWebBrowser")]
-        PrimaryWebBrowser = 2,
-    }
-);
+    #[doc(alias = "WebCacheModelDocumentViewer")]
+    pub const DocumentViewer: Self = Self(0);
+    #[deprecated]
+    #[doc(alias = "WebCacheModelDocumentBrowser")]
+    pub const DocumentBrowser: Self = Self(1);
+    #[deprecated]
+    #[doc(alias = "WebCacheModelPrimaryWebBrowser")]
+    pub const PrimaryWebBrowser: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for WebCacheModel {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for WebCacheModel {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]

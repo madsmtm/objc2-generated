@@ -5,10 +5,9 @@ use crate::AppKit::*;
 use crate::AuthenticationServices::*;
 use crate::Foundation::*;
 
+// NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_extensible_enum!(
-    pub type ASAuthorizationPublicKeyCredentialUserVerificationPreference = NSString;
-);
+pub type ASAuthorizationPublicKeyCredentialUserVerificationPreference = NSString;
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]
@@ -28,10 +27,9 @@ extern "C" {
         Option<&'static ASAuthorizationPublicKeyCredentialUserVerificationPreference>;
 }
 
+// NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_extensible_enum!(
-    pub type ASAuthorizationPublicKeyCredentialAttestationKind = NSString;
-);
+pub type ASAuthorizationPublicKeyCredentialAttestationKind = NSString;
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]
@@ -57,10 +55,9 @@ extern "C" {
         Option<&'static ASAuthorizationPublicKeyCredentialAttestationKind>;
 }
 
+// NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_extensible_enum!(
-    pub type ASAuthorizationPublicKeyCredentialResidentKeyPreference = NSString;
-);
+pub type ASAuthorizationPublicKeyCredentialResidentKeyPreference = NSString;
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]
@@ -80,12 +77,23 @@ extern "C" {
         Option<&'static ASAuthorizationPublicKeyCredentialResidentKeyPreference>;
 }
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum ASAuthorizationPublicKeyCredentialAttachment {
-        #[doc(alias = "ASAuthorizationPublicKeyCredentialAttachmentPlatform")]
-        Platform = 0,
-        #[doc(alias = "ASAuthorizationPublicKeyCredentialAttachmentCrossPlatform")]
-        CrossPlatform = 1,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct ASAuthorizationPublicKeyCredentialAttachment(pub NSInteger);
+impl ASAuthorizationPublicKeyCredentialAttachment {
+    #[doc(alias = "ASAuthorizationPublicKeyCredentialAttachmentPlatform")]
+    pub const Platform: Self = Self(0);
+    #[doc(alias = "ASAuthorizationPublicKeyCredentialAttachmentCrossPlatform")]
+    pub const CrossPlatform: Self = Self(1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for ASAuthorizationPublicKeyCredentialAttachment {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for ASAuthorizationPublicKeyCredentialAttachment {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}

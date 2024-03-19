@@ -4,15 +4,26 @@ use crate::common::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSDeleteRule {
-        NSNoActionDeleteRule = 0,
-        NSNullifyDeleteRule = 1,
-        NSCascadeDeleteRule = 2,
-        NSDenyDeleteRule = 3,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSDeleteRule(pub NSUInteger);
+impl NSDeleteRule {
+    pub const NSNoActionDeleteRule: Self = Self(0);
+    pub const NSNullifyDeleteRule: Self = Self(1);
+    pub const NSCascadeDeleteRule: Self = Self(2);
+    pub const NSDenyDeleteRule: Self = Self(3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSDeleteRule {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSDeleteRule {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

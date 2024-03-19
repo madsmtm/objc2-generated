@@ -26,35 +26,46 @@ extern "C" {
     pub static NSFileProviderErrorNonExistentItemIdentifierKey: &'static NSErrorUserInfoKey;
 }
 
-ns_error_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSFileProviderErrorCode {
-        NSFileProviderErrorNotAuthenticated = -1000,
-        NSFileProviderErrorFilenameCollision = -1001,
-        NSFileProviderErrorSyncAnchorExpired = -1002,
-        NSFileProviderErrorPageExpired =
-            NSFileProviderErrorCode::NSFileProviderErrorSyncAnchorExpired.0,
-        NSFileProviderErrorInsufficientQuota = -1003,
-        NSFileProviderErrorServerUnreachable = -1004,
-        NSFileProviderErrorNoSuchItem = -1005,
-        NSFileProviderErrorDeletionRejected = -1006,
-        NSFileProviderErrorDirectoryNotEmpty = -1007,
-        NSFileProviderErrorProviderNotFound = -2001,
-        NSFileProviderErrorProviderTranslocated = -2002,
-        NSFileProviderErrorOlderExtensionVersionRunning = -2003,
-        NSFileProviderErrorNewerExtensionVersionFound = -2004,
-        NSFileProviderErrorCannotSynchronize = -2005,
-        NSFileProviderErrorNonEvictableChildren = -2006,
-        NSFileProviderErrorUnsyncedEdits = -2007,
-        NSFileProviderErrorNonEvictable = -2008,
-        NSFileProviderErrorVersionNoLongerAvailable = -2009,
-        NSFileProviderErrorExcludedFromSync = -2010,
-        NSFileProviderErrorDomainDisabled = -2011,
-        NSFileProviderErrorProviderDomainTemporarilyUnavailable = -2012,
-        NSFileProviderErrorProviderDomainNotFound = -2013,
-        NSFileProviderErrorApplicationExtensionNotFound = -2014,
-    }
-);
+// NS_ERROR_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSFileProviderErrorCode(pub NSInteger);
+impl NSFileProviderErrorCode {
+    pub const NSFileProviderErrorNotAuthenticated: Self = Self(-1000);
+    pub const NSFileProviderErrorFilenameCollision: Self = Self(-1001);
+    pub const NSFileProviderErrorSyncAnchorExpired: Self = Self(-1002);
+    pub const NSFileProviderErrorPageExpired: Self =
+        Self(NSFileProviderErrorCode::NSFileProviderErrorSyncAnchorExpired.0);
+    pub const NSFileProviderErrorInsufficientQuota: Self = Self(-1003);
+    pub const NSFileProviderErrorServerUnreachable: Self = Self(-1004);
+    pub const NSFileProviderErrorNoSuchItem: Self = Self(-1005);
+    pub const NSFileProviderErrorDeletionRejected: Self = Self(-1006);
+    pub const NSFileProviderErrorDirectoryNotEmpty: Self = Self(-1007);
+    pub const NSFileProviderErrorProviderNotFound: Self = Self(-2001);
+    pub const NSFileProviderErrorProviderTranslocated: Self = Self(-2002);
+    pub const NSFileProviderErrorOlderExtensionVersionRunning: Self = Self(-2003);
+    pub const NSFileProviderErrorNewerExtensionVersionFound: Self = Self(-2004);
+    pub const NSFileProviderErrorCannotSynchronize: Self = Self(-2005);
+    pub const NSFileProviderErrorNonEvictableChildren: Self = Self(-2006);
+    pub const NSFileProviderErrorUnsyncedEdits: Self = Self(-2007);
+    pub const NSFileProviderErrorNonEvictable: Self = Self(-2008);
+    pub const NSFileProviderErrorVersionNoLongerAvailable: Self = Self(-2009);
+    pub const NSFileProviderErrorExcludedFromSync: Self = Self(-2010);
+    pub const NSFileProviderErrorDomainDisabled: Self = Self(-2011);
+    pub const NSFileProviderErrorProviderDomainTemporarilyUnavailable: Self = Self(-2012);
+    pub const NSFileProviderErrorProviderDomainNotFound: Self = Self(-2013);
+    pub const NSFileProviderErrorApplicationExtensionNotFound: Self = Self(-2014);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSFileProviderErrorCode {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSFileProviderErrorCode {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_category!(
     /// Category "NSFileProviderError" on [`NSError`].

@@ -4,42 +4,75 @@ use crate::common::*;
 use crate::Foundation::*;
 use crate::Metal::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum MTLIOPriority {
-        #[doc(alias = "MTLIOPriorityHigh")]
-        High = 0,
-        #[doc(alias = "MTLIOPriorityNormal")]
-        Normal = 1,
-        #[doc(alias = "MTLIOPriorityLow")]
-        Low = 2,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MTLIOPriority(pub NSInteger);
+impl MTLIOPriority {
+    #[doc(alias = "MTLIOPriorityHigh")]
+    pub const High: Self = Self(0);
+    #[doc(alias = "MTLIOPriorityNormal")]
+    pub const Normal: Self = Self(1);
+    #[doc(alias = "MTLIOPriorityLow")]
+    pub const Low: Self = Self(2);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum MTLIOCommandQueueType {
-        #[doc(alias = "MTLIOCommandQueueTypeConcurrent")]
-        Concurrent = 0,
-        #[doc(alias = "MTLIOCommandQueueTypeSerial")]
-        Serial = 1,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLIOPriority {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLIOPriority {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MTLIOCommandQueueType(pub NSInteger);
+impl MTLIOCommandQueueType {
+    #[doc(alias = "MTLIOCommandQueueTypeConcurrent")]
+    pub const Concurrent: Self = Self(0);
+    #[doc(alias = "MTLIOCommandQueueTypeSerial")]
+    pub const Serial: Self = Self(1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLIOCommandQueueType {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLIOCommandQueueType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern "C" {
     #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
     pub static MTLIOErrorDomain: &'static NSErrorDomain;
 }
 
-ns_error_enum!(
-    #[underlying(NSInteger)]
-    pub enum MTLIOError {
-        #[doc(alias = "MTLIOErrorURLInvalid")]
-        URLInvalid = 1,
-        #[doc(alias = "MTLIOErrorInternal")]
-        Internal = 2,
-    }
-);
+// NS_ERROR_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MTLIOError(pub NSInteger);
+impl MTLIOError {
+    #[doc(alias = "MTLIOErrorURLInvalid")]
+    pub const URLInvalid: Self = Self(1);
+    #[doc(alias = "MTLIOErrorInternal")]
+    pub const Internal: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLIOError {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLIOError {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_protocol!(
     pub unsafe trait MTLIOCommandQueue: NSObjectProtocol {

@@ -3,21 +3,32 @@
 use crate::common::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSOperationQueuePriority {
-        #[doc(alias = "NSOperationQueuePriorityVeryLow")]
-        VeryLow = -8,
-        #[doc(alias = "NSOperationQueuePriorityLow")]
-        Low = -4,
-        #[doc(alias = "NSOperationQueuePriorityNormal")]
-        Normal = 0,
-        #[doc(alias = "NSOperationQueuePriorityHigh")]
-        High = 4,
-        #[doc(alias = "NSOperationQueuePriorityVeryHigh")]
-        VeryHigh = 8,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSOperationQueuePriority(pub NSInteger);
+impl NSOperationQueuePriority {
+    #[doc(alias = "NSOperationQueuePriorityVeryLow")]
+    pub const VeryLow: Self = Self(-8);
+    #[doc(alias = "NSOperationQueuePriorityLow")]
+    pub const Low: Self = Self(-4);
+    #[doc(alias = "NSOperationQueuePriorityNormal")]
+    pub const Normal: Self = Self(0);
+    #[doc(alias = "NSOperationQueuePriorityHigh")]
+    pub const High: Self = Self(4);
+    #[doc(alias = "NSOperationQueuePriorityVeryHigh")]
+    pub const VeryHigh: Self = Self(8);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSOperationQueuePriority {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSOperationQueuePriority {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

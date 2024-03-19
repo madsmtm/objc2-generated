@@ -5,21 +5,32 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::StoreKit::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum SKPaymentTransactionState {
-        #[doc(alias = "SKPaymentTransactionStatePurchasing")]
-        Purchasing = 0,
-        #[doc(alias = "SKPaymentTransactionStatePurchased")]
-        Purchased = 1,
-        #[doc(alias = "SKPaymentTransactionStateFailed")]
-        Failed = 2,
-        #[doc(alias = "SKPaymentTransactionStateRestored")]
-        Restored = 3,
-        #[doc(alias = "SKPaymentTransactionStateDeferred")]
-        Deferred = 4,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct SKPaymentTransactionState(pub NSInteger);
+impl SKPaymentTransactionState {
+    #[doc(alias = "SKPaymentTransactionStatePurchasing")]
+    pub const Purchasing: Self = Self(0);
+    #[doc(alias = "SKPaymentTransactionStatePurchased")]
+    pub const Purchased: Self = Self(1);
+    #[doc(alias = "SKPaymentTransactionStateFailed")]
+    pub const Failed: Self = Self(2);
+    #[doc(alias = "SKPaymentTransactionStateRestored")]
+    pub const Restored: Self = Self(3);
+    #[doc(alias = "SKPaymentTransactionStateDeferred")]
+    pub const Deferred: Self = Self(4);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for SKPaymentTransactionState {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for SKPaymentTransactionState {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

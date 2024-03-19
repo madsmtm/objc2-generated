@@ -5,88 +5,110 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSButtonType {
-        #[doc(alias = "NSButtonTypeMomentaryLight")]
-        MomentaryLight = 0,
-        #[doc(alias = "NSButtonTypePushOnPushOff")]
-        PushOnPushOff = 1,
-        #[doc(alias = "NSButtonTypeToggle")]
-        Toggle = 2,
-        #[doc(alias = "NSButtonTypeSwitch")]
-        Switch = 3,
-        #[doc(alias = "NSButtonTypeRadio")]
-        Radio = 4,
-        #[doc(alias = "NSButtonTypeMomentaryChange")]
-        MomentaryChange = 5,
-        #[doc(alias = "NSButtonTypeOnOff")]
-        OnOff = 6,
-        #[doc(alias = "NSButtonTypeMomentaryPushIn")]
-        MomentaryPushIn = 7,
-        #[doc(alias = "NSButtonTypeAccelerator")]
-        Accelerator = 8,
-        #[doc(alias = "NSButtonTypeMultiLevelAccelerator")]
-        MultiLevelAccelerator = 9,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSButtonType(pub NSUInteger);
+impl NSButtonType {
+    #[doc(alias = "NSButtonTypeMomentaryLight")]
+    pub const MomentaryLight: Self = Self(0);
+    #[doc(alias = "NSButtonTypePushOnPushOff")]
+    pub const PushOnPushOff: Self = Self(1);
+    #[doc(alias = "NSButtonTypeToggle")]
+    pub const Toggle: Self = Self(2);
+    #[doc(alias = "NSButtonTypeSwitch")]
+    pub const Switch: Self = Self(3);
+    #[doc(alias = "NSButtonTypeRadio")]
+    pub const Radio: Self = Self(4);
+    #[doc(alias = "NSButtonTypeMomentaryChange")]
+    pub const MomentaryChange: Self = Self(5);
+    #[doc(alias = "NSButtonTypeOnOff")]
+    pub const OnOff: Self = Self(6);
+    #[doc(alias = "NSButtonTypeMomentaryPushIn")]
+    pub const MomentaryPushIn: Self = Self(7);
+    #[doc(alias = "NSButtonTypeAccelerator")]
+    pub const Accelerator: Self = Self(8);
+    #[doc(alias = "NSButtonTypeMultiLevelAccelerator")]
+    pub const MultiLevelAccelerator: Self = Self(9);
+}
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSBezelStyle {
-        #[doc(alias = "NSBezelStyleAutomatic")]
-        Automatic = 0,
-        #[doc(alias = "NSBezelStylePush")]
-        Push = 1,
-        #[doc(alias = "NSBezelStyleFlexiblePush")]
-        FlexiblePush = 2,
-        #[doc(alias = "NSBezelStyleDisclosure")]
-        Disclosure = 5,
-        #[doc(alias = "NSBezelStyleCircular")]
-        Circular = 7,
-        #[doc(alias = "NSBezelStyleHelpButton")]
-        HelpButton = 9,
-        #[doc(alias = "NSBezelStyleSmallSquare")]
-        SmallSquare = 10,
-        #[doc(alias = "NSBezelStyleToolbar")]
-        Toolbar = 11,
-        #[doc(alias = "NSBezelStyleAccessoryBarAction")]
-        AccessoryBarAction = 12,
-        #[doc(alias = "NSBezelStyleAccessoryBar")]
-        AccessoryBar = 13,
-        #[doc(alias = "NSBezelStylePushDisclosure")]
-        PushDisclosure = 14,
-        #[doc(alias = "NSBezelStyleBadge")]
-        Badge = 15,
-        #[deprecated]
-        #[doc(alias = "NSBezelStyleShadowlessSquare")]
-        ShadowlessSquare = 6,
-        #[deprecated]
-        #[doc(alias = "NSBezelStyleTexturedSquare")]
-        TexturedSquare = 8,
-        #[deprecated]
-        #[doc(alias = "NSBezelStyleRounded")]
-        Rounded = NSBezelStyle::Push.0,
-        #[deprecated]
-        #[doc(alias = "NSBezelStyleRegularSquare")]
-        RegularSquare = NSBezelStyle::FlexiblePush.0,
-        #[deprecated]
-        #[doc(alias = "NSBezelStyleTexturedRounded")]
-        TexturedRounded = NSBezelStyle::Toolbar.0,
-        #[deprecated]
-        #[doc(alias = "NSBezelStyleRoundRect")]
-        RoundRect = NSBezelStyle::AccessoryBarAction.0,
-        #[deprecated]
-        #[doc(alias = "NSBezelStyleRecessed")]
-        Recessed = NSBezelStyle::AccessoryBar.0,
-        #[deprecated]
-        #[doc(alias = "NSBezelStyleRoundedDisclosure")]
-        RoundedDisclosure = NSBezelStyle::PushDisclosure.0,
-        #[deprecated]
-        #[doc(alias = "NSBezelStyleInline")]
-        Inline = NSBezelStyle::Badge.0,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSButtonType {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSButtonType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSBezelStyle(pub NSUInteger);
+impl NSBezelStyle {
+    #[doc(alias = "NSBezelStyleAutomatic")]
+    pub const Automatic: Self = Self(0);
+    #[doc(alias = "NSBezelStylePush")]
+    pub const Push: Self = Self(1);
+    #[doc(alias = "NSBezelStyleFlexiblePush")]
+    pub const FlexiblePush: Self = Self(2);
+    #[doc(alias = "NSBezelStyleDisclosure")]
+    pub const Disclosure: Self = Self(5);
+    #[doc(alias = "NSBezelStyleCircular")]
+    pub const Circular: Self = Self(7);
+    #[doc(alias = "NSBezelStyleHelpButton")]
+    pub const HelpButton: Self = Self(9);
+    #[doc(alias = "NSBezelStyleSmallSquare")]
+    pub const SmallSquare: Self = Self(10);
+    #[doc(alias = "NSBezelStyleToolbar")]
+    pub const Toolbar: Self = Self(11);
+    #[doc(alias = "NSBezelStyleAccessoryBarAction")]
+    pub const AccessoryBarAction: Self = Self(12);
+    #[doc(alias = "NSBezelStyleAccessoryBar")]
+    pub const AccessoryBar: Self = Self(13);
+    #[doc(alias = "NSBezelStylePushDisclosure")]
+    pub const PushDisclosure: Self = Self(14);
+    #[doc(alias = "NSBezelStyleBadge")]
+    pub const Badge: Self = Self(15);
+    #[deprecated]
+    #[doc(alias = "NSBezelStyleShadowlessSquare")]
+    pub const ShadowlessSquare: Self = Self(6);
+    #[deprecated]
+    #[doc(alias = "NSBezelStyleTexturedSquare")]
+    pub const TexturedSquare: Self = Self(8);
+    #[deprecated]
+    #[doc(alias = "NSBezelStyleRounded")]
+    pub const Rounded: Self = Self(NSBezelStyle::Push.0);
+    #[deprecated]
+    #[doc(alias = "NSBezelStyleRegularSquare")]
+    pub const RegularSquare: Self = Self(NSBezelStyle::FlexiblePush.0);
+    #[deprecated]
+    #[doc(alias = "NSBezelStyleTexturedRounded")]
+    pub const TexturedRounded: Self = Self(NSBezelStyle::Toolbar.0);
+    #[deprecated]
+    #[doc(alias = "NSBezelStyleRoundRect")]
+    pub const RoundRect: Self = Self(NSBezelStyle::AccessoryBarAction.0);
+    #[deprecated]
+    #[doc(alias = "NSBezelStyleRecessed")]
+    pub const Recessed: Self = Self(NSBezelStyle::AccessoryBar.0);
+    #[deprecated]
+    #[doc(alias = "NSBezelStyleRoundedDisclosure")]
+    pub const RoundedDisclosure: Self = Self(NSBezelStyle::PushDisclosure.0);
+    #[deprecated]
+    #[doc(alias = "NSBezelStyleInline")]
+    pub const Inline: Self = Self(NSBezelStyle::Badge.0);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSBezelStyle {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSBezelStyle {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -366,17 +388,28 @@ extern_methods!(
     }
 );
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    #[deprecated]
-    pub enum NSGradientType {
-        NSGradientNone = 0,
-        NSGradientConcaveWeak = 1,
-        NSGradientConcaveStrong = 2,
-        NSGradientConvexWeak = 3,
-        NSGradientConvexStrong = 4,
-    }
-);
+// NS_ENUM
+#[deprecated]
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSGradientType(pub NSUInteger);
+impl NSGradientType {
+    pub const NSGradientNone: Self = Self(0);
+    pub const NSGradientConcaveWeak: Self = Self(1);
+    pub const NSGradientConcaveStrong: Self = Self(2);
+    pub const NSGradientConvexWeak: Self = Self(3);
+    pub const NSGradientConvexStrong: Self = Self(4);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSGradientType {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSGradientType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 pub static NSMomentaryLightButton: NSButtonType = NSButtonType(NSButtonType::MomentaryLight.0);
 

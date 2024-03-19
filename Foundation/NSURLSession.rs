@@ -309,19 +309,30 @@ extern_methods!(
     }
 );
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSURLSessionTaskState {
-        #[doc(alias = "NSURLSessionTaskStateRunning")]
-        Running = 0,
-        #[doc(alias = "NSURLSessionTaskStateSuspended")]
-        Suspended = 1,
-        #[doc(alias = "NSURLSessionTaskStateCanceling")]
-        Canceling = 2,
-        #[doc(alias = "NSURLSessionTaskStateCompleted")]
-        Completed = 3,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSURLSessionTaskState(pub NSInteger);
+impl NSURLSessionTaskState {
+    #[doc(alias = "NSURLSessionTaskStateRunning")]
+    pub const Running: Self = Self(0);
+    #[doc(alias = "NSURLSessionTaskStateSuspended")]
+    pub const Suspended: Self = Self(1);
+    #[doc(alias = "NSURLSessionTaskStateCanceling")]
+    pub const Canceling: Self = Self(2);
+    #[doc(alias = "NSURLSessionTaskStateCompleted")]
+    pub const Completed: Self = Self(3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSURLSessionTaskState {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSURLSessionTaskState {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -668,15 +679,26 @@ extern_methods!(
     }
 );
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSURLSessionWebSocketMessageType {
-        #[doc(alias = "NSURLSessionWebSocketMessageTypeData")]
-        Data = 0,
-        #[doc(alias = "NSURLSessionWebSocketMessageTypeString")]
-        String = 1,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSURLSessionWebSocketMessageType(pub NSInteger);
+impl NSURLSessionWebSocketMessageType {
+    #[doc(alias = "NSURLSessionWebSocketMessageTypeData")]
+    pub const Data: Self = Self(0);
+    #[doc(alias = "NSURLSessionWebSocketMessageTypeString")]
+    pub const String: Self = Self(1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSURLSessionWebSocketMessageType {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSURLSessionWebSocketMessageType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -723,37 +745,48 @@ extern_methods!(
     }
 );
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSURLSessionWebSocketCloseCode {
-        #[doc(alias = "NSURLSessionWebSocketCloseCodeInvalid")]
-        Invalid = 0,
-        #[doc(alias = "NSURLSessionWebSocketCloseCodeNormalClosure")]
-        NormalClosure = 1000,
-        #[doc(alias = "NSURLSessionWebSocketCloseCodeGoingAway")]
-        GoingAway = 1001,
-        #[doc(alias = "NSURLSessionWebSocketCloseCodeProtocolError")]
-        ProtocolError = 1002,
-        #[doc(alias = "NSURLSessionWebSocketCloseCodeUnsupportedData")]
-        UnsupportedData = 1003,
-        #[doc(alias = "NSURLSessionWebSocketCloseCodeNoStatusReceived")]
-        NoStatusReceived = 1005,
-        #[doc(alias = "NSURLSessionWebSocketCloseCodeAbnormalClosure")]
-        AbnormalClosure = 1006,
-        #[doc(alias = "NSURLSessionWebSocketCloseCodeInvalidFramePayloadData")]
-        InvalidFramePayloadData = 1007,
-        #[doc(alias = "NSURLSessionWebSocketCloseCodePolicyViolation")]
-        PolicyViolation = 1008,
-        #[doc(alias = "NSURLSessionWebSocketCloseCodeMessageTooBig")]
-        MessageTooBig = 1009,
-        #[doc(alias = "NSURLSessionWebSocketCloseCodeMandatoryExtensionMissing")]
-        MandatoryExtensionMissing = 1010,
-        #[doc(alias = "NSURLSessionWebSocketCloseCodeInternalServerError")]
-        InternalServerError = 1011,
-        #[doc(alias = "NSURLSessionWebSocketCloseCodeTLSHandshakeFailure")]
-        TLSHandshakeFailure = 1015,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSURLSessionWebSocketCloseCode(pub NSInteger);
+impl NSURLSessionWebSocketCloseCode {
+    #[doc(alias = "NSURLSessionWebSocketCloseCodeInvalid")]
+    pub const Invalid: Self = Self(0);
+    #[doc(alias = "NSURLSessionWebSocketCloseCodeNormalClosure")]
+    pub const NormalClosure: Self = Self(1000);
+    #[doc(alias = "NSURLSessionWebSocketCloseCodeGoingAway")]
+    pub const GoingAway: Self = Self(1001);
+    #[doc(alias = "NSURLSessionWebSocketCloseCodeProtocolError")]
+    pub const ProtocolError: Self = Self(1002);
+    #[doc(alias = "NSURLSessionWebSocketCloseCodeUnsupportedData")]
+    pub const UnsupportedData: Self = Self(1003);
+    #[doc(alias = "NSURLSessionWebSocketCloseCodeNoStatusReceived")]
+    pub const NoStatusReceived: Self = Self(1005);
+    #[doc(alias = "NSURLSessionWebSocketCloseCodeAbnormalClosure")]
+    pub const AbnormalClosure: Self = Self(1006);
+    #[doc(alias = "NSURLSessionWebSocketCloseCodeInvalidFramePayloadData")]
+    pub const InvalidFramePayloadData: Self = Self(1007);
+    #[doc(alias = "NSURLSessionWebSocketCloseCodePolicyViolation")]
+    pub const PolicyViolation: Self = Self(1008);
+    #[doc(alias = "NSURLSessionWebSocketCloseCodeMessageTooBig")]
+    pub const MessageTooBig: Self = Self(1009);
+    #[doc(alias = "NSURLSessionWebSocketCloseCodeMandatoryExtensionMissing")]
+    pub const MandatoryExtensionMissing: Self = Self(1010);
+    #[doc(alias = "NSURLSessionWebSocketCloseCodeInternalServerError")]
+    pub const InternalServerError: Self = Self(1011);
+    #[doc(alias = "NSURLSessionWebSocketCloseCodeTLSHandshakeFailure")]
+    pub const TLSHandshakeFailure: Self = Self(1015);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSURLSessionWebSocketCloseCode {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSURLSessionWebSocketCloseCode {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -831,19 +864,30 @@ extern_methods!(
     }
 );
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSURLSessionMultipathServiceType {
-        #[doc(alias = "NSURLSessionMultipathServiceTypeNone")]
-        None = 0,
-        #[doc(alias = "NSURLSessionMultipathServiceTypeHandover")]
-        Handover = 1,
-        #[doc(alias = "NSURLSessionMultipathServiceTypeInteractive")]
-        Interactive = 2,
-        #[doc(alias = "NSURLSessionMultipathServiceTypeAggregate")]
-        Aggregate = 3,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSURLSessionMultipathServiceType(pub NSInteger);
+impl NSURLSessionMultipathServiceType {
+    #[doc(alias = "NSURLSessionMultipathServiceTypeNone")]
+    pub const None: Self = Self(0);
+    #[doc(alias = "NSURLSessionMultipathServiceTypeHandover")]
+    pub const Handover: Self = Self(1);
+    #[doc(alias = "NSURLSessionMultipathServiceTypeInteractive")]
+    pub const Interactive: Self = Self(2);
+    #[doc(alias = "NSURLSessionMultipathServiceTypeAggregate")]
+    pub const Aggregate: Self = Self(3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSURLSessionMultipathServiceType {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSURLSessionMultipathServiceType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -1099,34 +1143,67 @@ extern_methods!(
     }
 );
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSURLSessionDelayedRequestDisposition {
-        NSURLSessionDelayedRequestContinueLoading = 0,
-        NSURLSessionDelayedRequestUseNewRequest = 1,
-        NSURLSessionDelayedRequestCancel = 2,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSURLSessionDelayedRequestDisposition(pub NSInteger);
+impl NSURLSessionDelayedRequestDisposition {
+    pub const NSURLSessionDelayedRequestContinueLoading: Self = Self(0);
+    pub const NSURLSessionDelayedRequestUseNewRequest: Self = Self(1);
+    pub const NSURLSessionDelayedRequestCancel: Self = Self(2);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSURLSessionAuthChallengeDisposition {
-        NSURLSessionAuthChallengeUseCredential = 0,
-        NSURLSessionAuthChallengePerformDefaultHandling = 1,
-        NSURLSessionAuthChallengeCancelAuthenticationChallenge = 2,
-        NSURLSessionAuthChallengeRejectProtectionSpace = 3,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSURLSessionDelayedRequestDisposition {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSURLSessionResponseDisposition {
-        NSURLSessionResponseCancel = 0,
-        NSURLSessionResponseAllow = 1,
-        NSURLSessionResponseBecomeDownload = 2,
-        NSURLSessionResponseBecomeStream = 3,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSURLSessionDelayedRequestDisposition {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSURLSessionAuthChallengeDisposition(pub NSInteger);
+impl NSURLSessionAuthChallengeDisposition {
+    pub const NSURLSessionAuthChallengeUseCredential: Self = Self(0);
+    pub const NSURLSessionAuthChallengePerformDefaultHandling: Self = Self(1);
+    pub const NSURLSessionAuthChallengeCancelAuthenticationChallenge: Self = Self(2);
+    pub const NSURLSessionAuthChallengeRejectProtectionSpace: Self = Self(3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSURLSessionAuthChallengeDisposition {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSURLSessionAuthChallengeDisposition {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSURLSessionResponseDisposition(pub NSInteger);
+impl NSURLSessionResponseDisposition {
+    pub const NSURLSessionResponseCancel: Self = Self(0);
+    pub const NSURLSessionResponseAllow: Self = Self(1);
+    pub const NSURLSessionResponseBecomeDownload: Self = Self(2);
+    pub const NSURLSessionResponseBecomeStream: Self = Self(3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSURLSessionResponseDisposition {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSURLSessionResponseDisposition {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_protocol!(
     pub unsafe trait NSURLSessionDelegate: NSObjectProtocol {
@@ -1467,35 +1544,57 @@ extern_methods!(
     }
 );
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSURLSessionTaskMetricsResourceFetchType {
-        #[doc(alias = "NSURLSessionTaskMetricsResourceFetchTypeUnknown")]
-        Unknown = 0,
-        #[doc(alias = "NSURLSessionTaskMetricsResourceFetchTypeNetworkLoad")]
-        NetworkLoad = 1,
-        #[doc(alias = "NSURLSessionTaskMetricsResourceFetchTypeServerPush")]
-        ServerPush = 2,
-        #[doc(alias = "NSURLSessionTaskMetricsResourceFetchTypeLocalCache")]
-        LocalCache = 3,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSURLSessionTaskMetricsResourceFetchType(pub NSInteger);
+impl NSURLSessionTaskMetricsResourceFetchType {
+    #[doc(alias = "NSURLSessionTaskMetricsResourceFetchTypeUnknown")]
+    pub const Unknown: Self = Self(0);
+    #[doc(alias = "NSURLSessionTaskMetricsResourceFetchTypeNetworkLoad")]
+    pub const NetworkLoad: Self = Self(1);
+    #[doc(alias = "NSURLSessionTaskMetricsResourceFetchTypeServerPush")]
+    pub const ServerPush: Self = Self(2);
+    #[doc(alias = "NSURLSessionTaskMetricsResourceFetchTypeLocalCache")]
+    pub const LocalCache: Self = Self(3);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSURLSessionTaskMetricsDomainResolutionProtocol {
-        #[doc(alias = "NSURLSessionTaskMetricsDomainResolutionProtocolUnknown")]
-        Unknown = 0,
-        #[doc(alias = "NSURLSessionTaskMetricsDomainResolutionProtocolUDP")]
-        UDP = 1,
-        #[doc(alias = "NSURLSessionTaskMetricsDomainResolutionProtocolTCP")]
-        TCP = 2,
-        #[doc(alias = "NSURLSessionTaskMetricsDomainResolutionProtocolTLS")]
-        TLS = 3,
-        #[doc(alias = "NSURLSessionTaskMetricsDomainResolutionProtocolHTTPS")]
-        HTTPS = 4,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSURLSessionTaskMetricsResourceFetchType {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSURLSessionTaskMetricsResourceFetchType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSURLSessionTaskMetricsDomainResolutionProtocol(pub NSInteger);
+impl NSURLSessionTaskMetricsDomainResolutionProtocol {
+    #[doc(alias = "NSURLSessionTaskMetricsDomainResolutionProtocolUnknown")]
+    pub const Unknown: Self = Self(0);
+    #[doc(alias = "NSURLSessionTaskMetricsDomainResolutionProtocolUDP")]
+    pub const UDP: Self = Self(1);
+    #[doc(alias = "NSURLSessionTaskMetricsDomainResolutionProtocolTCP")]
+    pub const TCP: Self = Self(2);
+    #[doc(alias = "NSURLSessionTaskMetricsDomainResolutionProtocolTLS")]
+    pub const TLS: Self = Self(3);
+    #[doc(alias = "NSURLSessionTaskMetricsDomainResolutionProtocolHTTPS")]
+    pub const HTTPS: Self = Self(4);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSURLSessionTaskMetricsDomainResolutionProtocol {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSURLSessionTaskMetricsDomainResolutionProtocol {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

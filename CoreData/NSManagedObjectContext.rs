@@ -89,15 +89,26 @@ extern "C" {
     pub static NSInvalidatedObjectIDsKey: &'static NSString;
 }
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSManagedObjectContextConcurrencyType {
-        #[deprecated = "Use another NSManagedObjectContextConcurrencyType"]
-        NSConfinementConcurrencyType = 0x00,
-        NSPrivateQueueConcurrencyType = 0x01,
-        NSMainQueueConcurrencyType = 0x02,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSManagedObjectContextConcurrencyType(pub NSUInteger);
+impl NSManagedObjectContextConcurrencyType {
+    #[deprecated = "Use another NSManagedObjectContextConcurrencyType"]
+    pub const NSConfinementConcurrencyType: Self = Self(0x00);
+    pub const NSPrivateQueueConcurrencyType: Self = Self(0x01);
+    pub const NSMainQueueConcurrencyType: Self = Self(0x02);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSManagedObjectContextConcurrencyType {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSManagedObjectContextConcurrencyType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

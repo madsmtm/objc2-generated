@@ -11,35 +11,68 @@ pub const NSInvalidIndexSpecifierError: NSInteger = 4;
 pub const NSInternalSpecifierError: NSInteger = 5;
 pub const NSOperationNotSupportedForKeySpecifierError: NSInteger = 6;
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSInsertionPosition {
-        NSPositionAfter = 0,
-        NSPositionBefore = 1,
-        NSPositionBeginning = 2,
-        NSPositionEnd = 3,
-        NSPositionReplace = 4,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSInsertionPosition(pub NSUInteger);
+impl NSInsertionPosition {
+    pub const NSPositionAfter: Self = Self(0);
+    pub const NSPositionBefore: Self = Self(1);
+    pub const NSPositionBeginning: Self = Self(2);
+    pub const NSPositionEnd: Self = Self(3);
+    pub const NSPositionReplace: Self = Self(4);
+}
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSRelativePosition {
-        NSRelativeAfter = 0,
-        NSRelativeBefore = 1,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSInsertionPosition {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSWhoseSubelementIdentifier {
-        NSIndexSubelement = 0,
-        NSEverySubelement = 1,
-        NSMiddleSubelement = 2,
-        NSRandomSubelement = 3,
-        NSNoSubelement = 4,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSInsertionPosition {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSRelativePosition(pub NSUInteger);
+impl NSRelativePosition {
+    pub const NSRelativeAfter: Self = Self(0);
+    pub const NSRelativeBefore: Self = Self(1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSRelativePosition {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSRelativePosition {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSWhoseSubelementIdentifier(pub NSUInteger);
+impl NSWhoseSubelementIdentifier {
+    pub const NSIndexSubelement: Self = Self(0);
+    pub const NSEverySubelement: Self = Self(1);
+    pub const NSMiddleSubelement: Self = Self(2);
+    pub const NSRandomSubelement: Self = Self(3);
+    pub const NSNoSubelement: Self = Self(4);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSWhoseSubelementIdentifier {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSWhoseSubelementIdentifier {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

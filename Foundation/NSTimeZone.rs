@@ -74,23 +74,34 @@ extern_methods!(
     }
 );
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSTimeZoneNameStyle {
-        #[doc(alias = "NSTimeZoneNameStyleStandard")]
-        Standard = 0,
-        #[doc(alias = "NSTimeZoneNameStyleShortStandard")]
-        ShortStandard = 1,
-        #[doc(alias = "NSTimeZoneNameStyleDaylightSaving")]
-        DaylightSaving = 2,
-        #[doc(alias = "NSTimeZoneNameStyleShortDaylightSaving")]
-        ShortDaylightSaving = 3,
-        #[doc(alias = "NSTimeZoneNameStyleGeneric")]
-        Generic = 4,
-        #[doc(alias = "NSTimeZoneNameStyleShortGeneric")]
-        ShortGeneric = 5,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSTimeZoneNameStyle(pub NSInteger);
+impl NSTimeZoneNameStyle {
+    #[doc(alias = "NSTimeZoneNameStyleStandard")]
+    pub const Standard: Self = Self(0);
+    #[doc(alias = "NSTimeZoneNameStyleShortStandard")]
+    pub const ShortStandard: Self = Self(1);
+    #[doc(alias = "NSTimeZoneNameStyleDaylightSaving")]
+    pub const DaylightSaving: Self = Self(2);
+    #[doc(alias = "NSTimeZoneNameStyleShortDaylightSaving")]
+    pub const ShortDaylightSaving: Self = Self(3);
+    #[doc(alias = "NSTimeZoneNameStyleGeneric")]
+    pub const Generic: Self = Self(4);
+    #[doc(alias = "NSTimeZoneNameStyleShortGeneric")]
+    pub const ShortGeneric: Self = Self(5);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSTimeZoneNameStyle {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSTimeZoneNameStyle {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_methods!(
     /// NSExtendedTimeZone

@@ -5,79 +5,90 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSEventType {
-        #[doc(alias = "NSEventTypeLeftMouseDown")]
-        LeftMouseDown = 1,
-        #[doc(alias = "NSEventTypeLeftMouseUp")]
-        LeftMouseUp = 2,
-        #[doc(alias = "NSEventTypeRightMouseDown")]
-        RightMouseDown = 3,
-        #[doc(alias = "NSEventTypeRightMouseUp")]
-        RightMouseUp = 4,
-        #[doc(alias = "NSEventTypeMouseMoved")]
-        MouseMoved = 5,
-        #[doc(alias = "NSEventTypeLeftMouseDragged")]
-        LeftMouseDragged = 6,
-        #[doc(alias = "NSEventTypeRightMouseDragged")]
-        RightMouseDragged = 7,
-        #[doc(alias = "NSEventTypeMouseEntered")]
-        MouseEntered = 8,
-        #[doc(alias = "NSEventTypeMouseExited")]
-        MouseExited = 9,
-        #[doc(alias = "NSEventTypeKeyDown")]
-        KeyDown = 10,
-        #[doc(alias = "NSEventTypeKeyUp")]
-        KeyUp = 11,
-        #[doc(alias = "NSEventTypeFlagsChanged")]
-        FlagsChanged = 12,
-        #[doc(alias = "NSEventTypeAppKitDefined")]
-        AppKitDefined = 13,
-        #[doc(alias = "NSEventTypeSystemDefined")]
-        SystemDefined = 14,
-        #[doc(alias = "NSEventTypeApplicationDefined")]
-        ApplicationDefined = 15,
-        #[doc(alias = "NSEventTypePeriodic")]
-        Periodic = 16,
-        #[doc(alias = "NSEventTypeCursorUpdate")]
-        CursorUpdate = 17,
-        #[doc(alias = "NSEventTypeScrollWheel")]
-        ScrollWheel = 22,
-        #[doc(alias = "NSEventTypeTabletPoint")]
-        TabletPoint = 23,
-        #[doc(alias = "NSEventTypeTabletProximity")]
-        TabletProximity = 24,
-        #[doc(alias = "NSEventTypeOtherMouseDown")]
-        OtherMouseDown = 25,
-        #[doc(alias = "NSEventTypeOtherMouseUp")]
-        OtherMouseUp = 26,
-        #[doc(alias = "NSEventTypeOtherMouseDragged")]
-        OtherMouseDragged = 27,
-        #[doc(alias = "NSEventTypeGesture")]
-        Gesture = 29,
-        #[doc(alias = "NSEventTypeMagnify")]
-        Magnify = 30,
-        #[doc(alias = "NSEventTypeSwipe")]
-        Swipe = 31,
-        #[doc(alias = "NSEventTypeRotate")]
-        Rotate = 18,
-        #[doc(alias = "NSEventTypeBeginGesture")]
-        BeginGesture = 19,
-        #[doc(alias = "NSEventTypeEndGesture")]
-        EndGesture = 20,
-        #[doc(alias = "NSEventTypeSmartMagnify")]
-        SmartMagnify = 32,
-        #[doc(alias = "NSEventTypeQuickLook")]
-        QuickLook = 33,
-        #[doc(alias = "NSEventTypePressure")]
-        Pressure = 34,
-        #[doc(alias = "NSEventTypeDirectTouch")]
-        DirectTouch = 37,
-        #[doc(alias = "NSEventTypeChangeMode")]
-        ChangeMode = 38,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSEventType(pub NSUInteger);
+impl NSEventType {
+    #[doc(alias = "NSEventTypeLeftMouseDown")]
+    pub const LeftMouseDown: Self = Self(1);
+    #[doc(alias = "NSEventTypeLeftMouseUp")]
+    pub const LeftMouseUp: Self = Self(2);
+    #[doc(alias = "NSEventTypeRightMouseDown")]
+    pub const RightMouseDown: Self = Self(3);
+    #[doc(alias = "NSEventTypeRightMouseUp")]
+    pub const RightMouseUp: Self = Self(4);
+    #[doc(alias = "NSEventTypeMouseMoved")]
+    pub const MouseMoved: Self = Self(5);
+    #[doc(alias = "NSEventTypeLeftMouseDragged")]
+    pub const LeftMouseDragged: Self = Self(6);
+    #[doc(alias = "NSEventTypeRightMouseDragged")]
+    pub const RightMouseDragged: Self = Self(7);
+    #[doc(alias = "NSEventTypeMouseEntered")]
+    pub const MouseEntered: Self = Self(8);
+    #[doc(alias = "NSEventTypeMouseExited")]
+    pub const MouseExited: Self = Self(9);
+    #[doc(alias = "NSEventTypeKeyDown")]
+    pub const KeyDown: Self = Self(10);
+    #[doc(alias = "NSEventTypeKeyUp")]
+    pub const KeyUp: Self = Self(11);
+    #[doc(alias = "NSEventTypeFlagsChanged")]
+    pub const FlagsChanged: Self = Self(12);
+    #[doc(alias = "NSEventTypeAppKitDefined")]
+    pub const AppKitDefined: Self = Self(13);
+    #[doc(alias = "NSEventTypeSystemDefined")]
+    pub const SystemDefined: Self = Self(14);
+    #[doc(alias = "NSEventTypeApplicationDefined")]
+    pub const ApplicationDefined: Self = Self(15);
+    #[doc(alias = "NSEventTypePeriodic")]
+    pub const Periodic: Self = Self(16);
+    #[doc(alias = "NSEventTypeCursorUpdate")]
+    pub const CursorUpdate: Self = Self(17);
+    #[doc(alias = "NSEventTypeScrollWheel")]
+    pub const ScrollWheel: Self = Self(22);
+    #[doc(alias = "NSEventTypeTabletPoint")]
+    pub const TabletPoint: Self = Self(23);
+    #[doc(alias = "NSEventTypeTabletProximity")]
+    pub const TabletProximity: Self = Self(24);
+    #[doc(alias = "NSEventTypeOtherMouseDown")]
+    pub const OtherMouseDown: Self = Self(25);
+    #[doc(alias = "NSEventTypeOtherMouseUp")]
+    pub const OtherMouseUp: Self = Self(26);
+    #[doc(alias = "NSEventTypeOtherMouseDragged")]
+    pub const OtherMouseDragged: Self = Self(27);
+    #[doc(alias = "NSEventTypeGesture")]
+    pub const Gesture: Self = Self(29);
+    #[doc(alias = "NSEventTypeMagnify")]
+    pub const Magnify: Self = Self(30);
+    #[doc(alias = "NSEventTypeSwipe")]
+    pub const Swipe: Self = Self(31);
+    #[doc(alias = "NSEventTypeRotate")]
+    pub const Rotate: Self = Self(18);
+    #[doc(alias = "NSEventTypeBeginGesture")]
+    pub const BeginGesture: Self = Self(19);
+    #[doc(alias = "NSEventTypeEndGesture")]
+    pub const EndGesture: Self = Self(20);
+    #[doc(alias = "NSEventTypeSmartMagnify")]
+    pub const SmartMagnify: Self = Self(32);
+    #[doc(alias = "NSEventTypeQuickLook")]
+    pub const QuickLook: Self = Self(33);
+    #[doc(alias = "NSEventTypePressure")]
+    pub const Pressure: Self = Self(34);
+    #[doc(alias = "NSEventTypeDirectTouch")]
+    pub const DirectTouch: Self = Self(37);
+    #[doc(alias = "NSEventTypeChangeMode")]
+    pub const ChangeMode: Self = Self(38);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSEventType {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSEventType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 pub static NSLeftMouseDown: NSEventType = NSEventType(NSEventType::LeftMouseDown.0);
 
@@ -125,79 +136,90 @@ pub static NSOtherMouseUp: NSEventType = NSEventType(NSEventType::OtherMouseUp.0
 
 pub static NSOtherMouseDragged: NSEventType = NSEventType(NSEventType::OtherMouseDragged.0);
 
-ns_options!(
-    #[underlying(c_ulonglong)]
-    pub enum NSEventMask {
-        #[doc(alias = "NSEventMaskLeftMouseDown")]
-        LeftMouseDown = 1 << NSEventType::LeftMouseDown.0,
-        #[doc(alias = "NSEventMaskLeftMouseUp")]
-        LeftMouseUp = 1 << NSEventType::LeftMouseUp.0,
-        #[doc(alias = "NSEventMaskRightMouseDown")]
-        RightMouseDown = 1 << NSEventType::RightMouseDown.0,
-        #[doc(alias = "NSEventMaskRightMouseUp")]
-        RightMouseUp = 1 << NSEventType::RightMouseUp.0,
-        #[doc(alias = "NSEventMaskMouseMoved")]
-        MouseMoved = 1 << NSEventType::MouseMoved.0,
-        #[doc(alias = "NSEventMaskLeftMouseDragged")]
-        LeftMouseDragged = 1 << NSEventType::LeftMouseDragged.0,
-        #[doc(alias = "NSEventMaskRightMouseDragged")]
-        RightMouseDragged = 1 << NSEventType::RightMouseDragged.0,
-        #[doc(alias = "NSEventMaskMouseEntered")]
-        MouseEntered = 1 << NSEventType::MouseEntered.0,
-        #[doc(alias = "NSEventMaskMouseExited")]
-        MouseExited = 1 << NSEventType::MouseExited.0,
-        #[doc(alias = "NSEventMaskKeyDown")]
-        KeyDown = 1 << NSEventType::KeyDown.0,
-        #[doc(alias = "NSEventMaskKeyUp")]
-        KeyUp = 1 << NSEventType::KeyUp.0,
-        #[doc(alias = "NSEventMaskFlagsChanged")]
-        FlagsChanged = 1 << NSEventType::FlagsChanged.0,
-        #[doc(alias = "NSEventMaskAppKitDefined")]
-        AppKitDefined = 1 << NSEventType::AppKitDefined.0,
-        #[doc(alias = "NSEventMaskSystemDefined")]
-        SystemDefined = 1 << NSEventType::SystemDefined.0,
-        #[doc(alias = "NSEventMaskApplicationDefined")]
-        ApplicationDefined = 1 << NSEventType::ApplicationDefined.0,
-        #[doc(alias = "NSEventMaskPeriodic")]
-        Periodic = 1 << NSEventType::Periodic.0,
-        #[doc(alias = "NSEventMaskCursorUpdate")]
-        CursorUpdate = 1 << NSEventType::CursorUpdate.0,
-        #[doc(alias = "NSEventMaskScrollWheel")]
-        ScrollWheel = 1 << NSEventType::ScrollWheel.0,
-        #[doc(alias = "NSEventMaskTabletPoint")]
-        TabletPoint = 1 << NSEventType::TabletPoint.0,
-        #[doc(alias = "NSEventMaskTabletProximity")]
-        TabletProximity = 1 << NSEventType::TabletProximity.0,
-        #[doc(alias = "NSEventMaskOtherMouseDown")]
-        OtherMouseDown = 1 << NSEventType::OtherMouseDown.0,
-        #[doc(alias = "NSEventMaskOtherMouseUp")]
-        OtherMouseUp = 1 << NSEventType::OtherMouseUp.0,
-        #[doc(alias = "NSEventMaskOtherMouseDragged")]
-        OtherMouseDragged = 1 << NSEventType::OtherMouseDragged.0,
-        #[doc(alias = "NSEventMaskGesture")]
-        Gesture = 1 << NSEventType::Gesture.0,
-        #[doc(alias = "NSEventMaskMagnify")]
-        Magnify = 1 << NSEventType::Magnify.0,
-        #[doc(alias = "NSEventMaskSwipe")]
-        Swipe = 1 << NSEventType::Swipe.0,
-        #[doc(alias = "NSEventMaskRotate")]
-        Rotate = 1 << NSEventType::Rotate.0,
-        #[doc(alias = "NSEventMaskBeginGesture")]
-        BeginGesture = 1 << NSEventType::BeginGesture.0,
-        #[doc(alias = "NSEventMaskEndGesture")]
-        EndGesture = 1 << NSEventType::EndGesture.0,
-        #[doc(alias = "NSEventMaskSmartMagnify")]
-        SmartMagnify = 1 << NSEventType::SmartMagnify.0,
-        #[doc(alias = "NSEventMaskPressure")]
-        Pressure = 1 << NSEventType::Pressure.0,
-        #[doc(alias = "NSEventMaskDirectTouch")]
-        DirectTouch = 1 << NSEventType::DirectTouch.0,
-        #[doc(alias = "NSEventMaskChangeMode")]
-        ChangeMode = 1 << NSEventType::ChangeMode.0,
-        #[doc(alias = "NSEventMaskAny")]
-        Any = NSUIntegerMax as _,
-    }
-);
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSEventMask(pub c_ulonglong);
+impl NSEventMask {
+    #[doc(alias = "NSEventMaskLeftMouseDown")]
+    pub const LeftMouseDown: Self = Self(1 << NSEventType::LeftMouseDown.0);
+    #[doc(alias = "NSEventMaskLeftMouseUp")]
+    pub const LeftMouseUp: Self = Self(1 << NSEventType::LeftMouseUp.0);
+    #[doc(alias = "NSEventMaskRightMouseDown")]
+    pub const RightMouseDown: Self = Self(1 << NSEventType::RightMouseDown.0);
+    #[doc(alias = "NSEventMaskRightMouseUp")]
+    pub const RightMouseUp: Self = Self(1 << NSEventType::RightMouseUp.0);
+    #[doc(alias = "NSEventMaskMouseMoved")]
+    pub const MouseMoved: Self = Self(1 << NSEventType::MouseMoved.0);
+    #[doc(alias = "NSEventMaskLeftMouseDragged")]
+    pub const LeftMouseDragged: Self = Self(1 << NSEventType::LeftMouseDragged.0);
+    #[doc(alias = "NSEventMaskRightMouseDragged")]
+    pub const RightMouseDragged: Self = Self(1 << NSEventType::RightMouseDragged.0);
+    #[doc(alias = "NSEventMaskMouseEntered")]
+    pub const MouseEntered: Self = Self(1 << NSEventType::MouseEntered.0);
+    #[doc(alias = "NSEventMaskMouseExited")]
+    pub const MouseExited: Self = Self(1 << NSEventType::MouseExited.0);
+    #[doc(alias = "NSEventMaskKeyDown")]
+    pub const KeyDown: Self = Self(1 << NSEventType::KeyDown.0);
+    #[doc(alias = "NSEventMaskKeyUp")]
+    pub const KeyUp: Self = Self(1 << NSEventType::KeyUp.0);
+    #[doc(alias = "NSEventMaskFlagsChanged")]
+    pub const FlagsChanged: Self = Self(1 << NSEventType::FlagsChanged.0);
+    #[doc(alias = "NSEventMaskAppKitDefined")]
+    pub const AppKitDefined: Self = Self(1 << NSEventType::AppKitDefined.0);
+    #[doc(alias = "NSEventMaskSystemDefined")]
+    pub const SystemDefined: Self = Self(1 << NSEventType::SystemDefined.0);
+    #[doc(alias = "NSEventMaskApplicationDefined")]
+    pub const ApplicationDefined: Self = Self(1 << NSEventType::ApplicationDefined.0);
+    #[doc(alias = "NSEventMaskPeriodic")]
+    pub const Periodic: Self = Self(1 << NSEventType::Periodic.0);
+    #[doc(alias = "NSEventMaskCursorUpdate")]
+    pub const CursorUpdate: Self = Self(1 << NSEventType::CursorUpdate.0);
+    #[doc(alias = "NSEventMaskScrollWheel")]
+    pub const ScrollWheel: Self = Self(1 << NSEventType::ScrollWheel.0);
+    #[doc(alias = "NSEventMaskTabletPoint")]
+    pub const TabletPoint: Self = Self(1 << NSEventType::TabletPoint.0);
+    #[doc(alias = "NSEventMaskTabletProximity")]
+    pub const TabletProximity: Self = Self(1 << NSEventType::TabletProximity.0);
+    #[doc(alias = "NSEventMaskOtherMouseDown")]
+    pub const OtherMouseDown: Self = Self(1 << NSEventType::OtherMouseDown.0);
+    #[doc(alias = "NSEventMaskOtherMouseUp")]
+    pub const OtherMouseUp: Self = Self(1 << NSEventType::OtherMouseUp.0);
+    #[doc(alias = "NSEventMaskOtherMouseDragged")]
+    pub const OtherMouseDragged: Self = Self(1 << NSEventType::OtherMouseDragged.0);
+    #[doc(alias = "NSEventMaskGesture")]
+    pub const Gesture: Self = Self(1 << NSEventType::Gesture.0);
+    #[doc(alias = "NSEventMaskMagnify")]
+    pub const Magnify: Self = Self(1 << NSEventType::Magnify.0);
+    #[doc(alias = "NSEventMaskSwipe")]
+    pub const Swipe: Self = Self(1 << NSEventType::Swipe.0);
+    #[doc(alias = "NSEventMaskRotate")]
+    pub const Rotate: Self = Self(1 << NSEventType::Rotate.0);
+    #[doc(alias = "NSEventMaskBeginGesture")]
+    pub const BeginGesture: Self = Self(1 << NSEventType::BeginGesture.0);
+    #[doc(alias = "NSEventMaskEndGesture")]
+    pub const EndGesture: Self = Self(1 << NSEventType::EndGesture.0);
+    #[doc(alias = "NSEventMaskSmartMagnify")]
+    pub const SmartMagnify: Self = Self(1 << NSEventType::SmartMagnify.0);
+    #[doc(alias = "NSEventMaskPressure")]
+    pub const Pressure: Self = Self(1 << NSEventType::Pressure.0);
+    #[doc(alias = "NSEventMaskDirectTouch")]
+    pub const DirectTouch: Self = Self(1 << NSEventType::DirectTouch.0);
+    #[doc(alias = "NSEventMaskChangeMode")]
+    pub const ChangeMode: Self = Self(1 << NSEventType::ChangeMode.0);
+    #[doc(alias = "NSEventMaskAny")]
+    pub const Any: Self = Self(NSUIntegerMax as _);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSEventMask {
+    const ENCODING: Encoding = c_ulonglong::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSEventMask {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 pub static NSLeftMouseDownMask: NSEventMask = NSEventMask(NSEventMask::LeftMouseDown.0);
 
@@ -249,20 +271,31 @@ pub static NSAnyEventMask: NSEventMask = NSEventMask(NSUIntegerMax as _);
 
 // TODO: pub fn NSEventMaskFromType(r#type: NSEventType,) -> NSEventMask;
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSEventModifierFlags {
-        NSEventModifierFlagCapsLock = 1 << 16,
-        NSEventModifierFlagShift = 1 << 17,
-        NSEventModifierFlagControl = 1 << 18,
-        NSEventModifierFlagOption = 1 << 19,
-        NSEventModifierFlagCommand = 1 << 20,
-        NSEventModifierFlagNumericPad = 1 << 21,
-        NSEventModifierFlagHelp = 1 << 22,
-        NSEventModifierFlagFunction = 1 << 23,
-        NSEventModifierFlagDeviceIndependentFlagsMask = 0xffff0000,
-    }
-);
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSEventModifierFlags(pub NSUInteger);
+impl NSEventModifierFlags {
+    pub const NSEventModifierFlagCapsLock: Self = Self(1 << 16);
+    pub const NSEventModifierFlagShift: Self = Self(1 << 17);
+    pub const NSEventModifierFlagControl: Self = Self(1 << 18);
+    pub const NSEventModifierFlagOption: Self = Self(1 << 19);
+    pub const NSEventModifierFlagCommand: Self = Self(1 << 20);
+    pub const NSEventModifierFlagNumericPad: Self = Self(1 << 21);
+    pub const NSEventModifierFlagHelp: Self = Self(1 << 22);
+    pub const NSEventModifierFlagFunction: Self = Self(1 << 23);
+    pub const NSEventModifierFlagDeviceIndependentFlagsMask: Self = Self(0xffff0000);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSEventModifierFlags {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSEventModifierFlags {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 pub static NSAlphaShiftKeyMask: NSEventModifierFlags =
     NSEventModifierFlags(NSEventModifierFlags::NSEventModifierFlagCapsLock.0);
@@ -291,19 +324,30 @@ pub static NSFunctionKeyMask: NSEventModifierFlags =
 pub static NSDeviceIndependentModifierFlagsMask: NSEventModifierFlags =
     NSEventModifierFlags(NSEventModifierFlags::NSEventModifierFlagDeviceIndependentFlagsMask.0);
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSPointingDeviceType {
-        #[doc(alias = "NSPointingDeviceTypeUnknown")]
-        Unknown = 0,
-        #[doc(alias = "NSPointingDeviceTypePen")]
-        Pen = 1,
-        #[doc(alias = "NSPointingDeviceTypeCursor")]
-        Cursor = 2,
-        #[doc(alias = "NSPointingDeviceTypeEraser")]
-        Eraser = 3,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSPointingDeviceType(pub NSUInteger);
+impl NSPointingDeviceType {
+    #[doc(alias = "NSPointingDeviceTypeUnknown")]
+    pub const Unknown: Self = Self(0);
+    #[doc(alias = "NSPointingDeviceTypePen")]
+    pub const Pen: Self = Self(1);
+    #[doc(alias = "NSPointingDeviceTypeCursor")]
+    pub const Cursor: Self = Self(2);
+    #[doc(alias = "NSPointingDeviceTypeEraser")]
+    pub const Eraser: Self = Self(3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSPointingDeviceType {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSPointingDeviceType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 pub static NSUnknownPointingDevice: NSPointingDeviceType =
     NSPointingDeviceType(NSPointingDeviceType::Unknown.0);
@@ -317,17 +361,28 @@ pub static NSCursorPointingDevice: NSPointingDeviceType =
 pub static NSEraserPointingDevice: NSPointingDeviceType =
     NSPointingDeviceType(NSPointingDeviceType::Eraser.0);
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSEventButtonMask {
-        #[doc(alias = "NSEventButtonMaskPenTip")]
-        PenTip = 1,
-        #[doc(alias = "NSEventButtonMaskPenLowerSide")]
-        PenLowerSide = 2,
-        #[doc(alias = "NSEventButtonMaskPenUpperSide")]
-        PenUpperSide = 4,
-    }
-);
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSEventButtonMask(pub NSUInteger);
+impl NSEventButtonMask {
+    #[doc(alias = "NSEventButtonMaskPenTip")]
+    pub const PenTip: Self = Self(1);
+    #[doc(alias = "NSEventButtonMaskPenLowerSide")]
+    pub const PenLowerSide: Self = Self(2);
+    #[doc(alias = "NSEventButtonMaskPenUpperSide")]
+    pub const PenUpperSide: Self = Self(4);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSEventButtonMask {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSEventButtonMask {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 pub static NSPenTipMask: NSEventButtonMask = NSEventButtonMask(NSEventButtonMask::PenTip.0);
 
@@ -337,71 +392,115 @@ pub static NSPenLowerSideMask: NSEventButtonMask =
 pub static NSPenUpperSideMask: NSEventButtonMask =
     NSEventButtonMask(NSEventButtonMask::PenUpperSide.0);
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSEventPhase {
-        #[doc(alias = "NSEventPhaseNone")]
-        None = 0,
-        #[doc(alias = "NSEventPhaseBegan")]
-        Began = 0x1 << 0,
-        #[doc(alias = "NSEventPhaseStationary")]
-        Stationary = 0x1 << 1,
-        #[doc(alias = "NSEventPhaseChanged")]
-        Changed = 0x1 << 2,
-        #[doc(alias = "NSEventPhaseEnded")]
-        Ended = 0x1 << 3,
-        #[doc(alias = "NSEventPhaseCancelled")]
-        Cancelled = 0x1 << 4,
-        #[doc(alias = "NSEventPhaseMayBegin")]
-        MayBegin = 0x1 << 5,
-    }
-);
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSEventPhase(pub NSUInteger);
+impl NSEventPhase {
+    #[doc(alias = "NSEventPhaseNone")]
+    pub const None: Self = Self(0);
+    #[doc(alias = "NSEventPhaseBegan")]
+    pub const Began: Self = Self(0x1 << 0);
+    #[doc(alias = "NSEventPhaseStationary")]
+    pub const Stationary: Self = Self(0x1 << 1);
+    #[doc(alias = "NSEventPhaseChanged")]
+    pub const Changed: Self = Self(0x1 << 2);
+    #[doc(alias = "NSEventPhaseEnded")]
+    pub const Ended: Self = Self(0x1 << 3);
+    #[doc(alias = "NSEventPhaseCancelled")]
+    pub const Cancelled: Self = Self(0x1 << 4);
+    #[doc(alias = "NSEventPhaseMayBegin")]
+    pub const MayBegin: Self = Self(0x1 << 5);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSEventGestureAxis {
-        #[doc(alias = "NSEventGestureAxisNone")]
-        None = 0,
-        #[doc(alias = "NSEventGestureAxisHorizontal")]
-        Horizontal = 1,
-        #[doc(alias = "NSEventGestureAxisVertical")]
-        Vertical = 2,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSEventPhase {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSEventSwipeTrackingOptions {
-        NSEventSwipeTrackingLockDirection = 0x1 << 0,
-        NSEventSwipeTrackingClampGestureAmount = 0x1 << 1,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSEventPhase {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
-ns_enum!(
-    #[underlying(c_short)]
-    pub enum NSEventSubtype {
-        #[doc(alias = "NSEventSubtypeWindowExposed")]
-        WindowExposed = 0,
-        #[doc(alias = "NSEventSubtypeApplicationActivated")]
-        ApplicationActivated = 1,
-        #[doc(alias = "NSEventSubtypeApplicationDeactivated")]
-        ApplicationDeactivated = 2,
-        #[doc(alias = "NSEventSubtypeWindowMoved")]
-        WindowMoved = 4,
-        #[doc(alias = "NSEventSubtypeScreenChanged")]
-        ScreenChanged = 8,
-        #[doc(alias = "NSEventSubtypePowerOff")]
-        PowerOff = 1,
-        #[doc(alias = "NSEventSubtypeMouseEvent")]
-        MouseEvent = 0,
-        #[doc(alias = "NSEventSubtypeTabletPoint")]
-        TabletPoint = 1,
-        #[doc(alias = "NSEventSubtypeTabletProximity")]
-        TabletProximity = 2,
-        #[doc(alias = "NSEventSubtypeTouch")]
-        Touch = 3,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSEventGestureAxis(pub NSInteger);
+impl NSEventGestureAxis {
+    #[doc(alias = "NSEventGestureAxisNone")]
+    pub const None: Self = Self(0);
+    #[doc(alias = "NSEventGestureAxisHorizontal")]
+    pub const Horizontal: Self = Self(1);
+    #[doc(alias = "NSEventGestureAxisVertical")]
+    pub const Vertical: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSEventGestureAxis {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSEventGestureAxis {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSEventSwipeTrackingOptions(pub NSUInteger);
+impl NSEventSwipeTrackingOptions {
+    pub const NSEventSwipeTrackingLockDirection: Self = Self(0x1 << 0);
+    pub const NSEventSwipeTrackingClampGestureAmount: Self = Self(0x1 << 1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSEventSwipeTrackingOptions {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSEventSwipeTrackingOptions {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSEventSubtype(pub c_short);
+impl NSEventSubtype {
+    #[doc(alias = "NSEventSubtypeWindowExposed")]
+    pub const WindowExposed: Self = Self(0);
+    #[doc(alias = "NSEventSubtypeApplicationActivated")]
+    pub const ApplicationActivated: Self = Self(1);
+    #[doc(alias = "NSEventSubtypeApplicationDeactivated")]
+    pub const ApplicationDeactivated: Self = Self(2);
+    #[doc(alias = "NSEventSubtypeWindowMoved")]
+    pub const WindowMoved: Self = Self(4);
+    #[doc(alias = "NSEventSubtypeScreenChanged")]
+    pub const ScreenChanged: Self = Self(8);
+    #[doc(alias = "NSEventSubtypePowerOff")]
+    pub const PowerOff: Self = Self(1);
+    #[doc(alias = "NSEventSubtypeMouseEvent")]
+    pub const MouseEvent: Self = Self(0);
+    #[doc(alias = "NSEventSubtypeTabletPoint")]
+    pub const TabletPoint: Self = Self(1);
+    #[doc(alias = "NSEventSubtypeTabletProximity")]
+    pub const TabletProximity: Self = Self(2);
+    #[doc(alias = "NSEventSubtypeTouch")]
+    pub const Touch: Self = Self(3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSEventSubtype {
+    const ENCODING: Encoding = c_short::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSEventSubtype {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 pub static NSWindowExposedEventType: NSEventSubtype =
     NSEventSubtype(NSEventSubtype::WindowExposed.0);
@@ -431,25 +530,36 @@ pub static NSTabletProximityEventSubtype: NSEventSubtype =
 
 pub static NSTouchEventSubtype: NSEventSubtype = NSEventSubtype(NSEventSubtype::Touch.0);
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSPressureBehavior {
-        #[doc(alias = "NSPressureBehaviorUnknown")]
-        Unknown = -1,
-        #[doc(alias = "NSPressureBehaviorPrimaryDefault")]
-        PrimaryDefault = 0,
-        #[doc(alias = "NSPressureBehaviorPrimaryClick")]
-        PrimaryClick = 1,
-        #[doc(alias = "NSPressureBehaviorPrimaryGeneric")]
-        PrimaryGeneric = 2,
-        #[doc(alias = "NSPressureBehaviorPrimaryAccelerator")]
-        PrimaryAccelerator = 3,
-        #[doc(alias = "NSPressureBehaviorPrimaryDeepClick")]
-        PrimaryDeepClick = 5,
-        #[doc(alias = "NSPressureBehaviorPrimaryDeepDrag")]
-        PrimaryDeepDrag = 6,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSPressureBehavior(pub NSInteger);
+impl NSPressureBehavior {
+    #[doc(alias = "NSPressureBehaviorUnknown")]
+    pub const Unknown: Self = Self(-1);
+    #[doc(alias = "NSPressureBehaviorPrimaryDefault")]
+    pub const PrimaryDefault: Self = Self(0);
+    #[doc(alias = "NSPressureBehaviorPrimaryClick")]
+    pub const PrimaryClick: Self = Self(1);
+    #[doc(alias = "NSPressureBehaviorPrimaryGeneric")]
+    pub const PrimaryGeneric: Self = Self(2);
+    #[doc(alias = "NSPressureBehaviorPrimaryAccelerator")]
+    pub const PrimaryAccelerator: Self = Self(3);
+    #[doc(alias = "NSPressureBehaviorPrimaryDeepClick")]
+    pub const PrimaryDeepClick: Self = Self(5);
+    #[doc(alias = "NSPressureBehaviorPrimaryDeepDrag")]
+    pub const PrimaryDeepDrag: Self = Self(6);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSPressureBehavior {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSPressureBehavior {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

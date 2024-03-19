@@ -5,17 +5,28 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::GameController::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum GCTouchState {
-        #[doc(alias = "GCTouchStateUp")]
-        Up = 0,
-        #[doc(alias = "GCTouchStateDown")]
-        Down = 1,
-        #[doc(alias = "GCTouchStateMoving")]
-        Moving = 2,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct GCTouchState(pub NSInteger);
+impl GCTouchState {
+    #[doc(alias = "GCTouchStateUp")]
+    pub const Up: Self = Self(0);
+    #[doc(alias = "GCTouchStateDown")]
+    pub const Down: Self = Self(1);
+    #[doc(alias = "GCTouchStateMoving")]
+    pub const Moving: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for GCTouchState {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for GCTouchState {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 #[cfg(feature = "GameController_GCControllerElement")]
 pub type GCControllerTouchpadHandler =

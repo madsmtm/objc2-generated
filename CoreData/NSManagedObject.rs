@@ -4,17 +4,28 @@ use crate::common::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSSnapshotEventType {
-        NSSnapshotEventUndoInsertion = 1 << 1,
-        NSSnapshotEventUndoDeletion = 1 << 2,
-        NSSnapshotEventUndoUpdate = 1 << 3,
-        NSSnapshotEventRollback = 1 << 4,
-        NSSnapshotEventRefresh = 1 << 5,
-        NSSnapshotEventMergePolicy = 1 << 6,
-    }
-);
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSSnapshotEventType(pub NSUInteger);
+impl NSSnapshotEventType {
+    pub const NSSnapshotEventUndoInsertion: Self = Self(1 << 1);
+    pub const NSSnapshotEventUndoDeletion: Self = Self(1 << 2);
+    pub const NSSnapshotEventUndoUpdate: Self = Self(1 << 3);
+    pub const NSSnapshotEventRollback: Self = Self(1 << 4);
+    pub const NSSnapshotEventRefresh: Self = Self(1 << 5);
+    pub const NSSnapshotEventMergePolicy: Self = Self(1 << 6);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSSnapshotEventType {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSSnapshotEventType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

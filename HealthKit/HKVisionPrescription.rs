@@ -6,15 +6,26 @@ use crate::Foundation::*;
 use crate::HealthKit::*;
 use crate::UniformTypeIdentifiers::*;
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum HKVisionPrescriptionType {
-        #[doc(alias = "HKVisionPrescriptionTypeGlasses")]
-        Glasses = 1,
-        #[doc(alias = "HKVisionPrescriptionTypeContacts")]
-        Contacts = 2,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct HKVisionPrescriptionType(pub NSUInteger);
+impl HKVisionPrescriptionType {
+    #[doc(alias = "HKVisionPrescriptionTypeGlasses")]
+    pub const Glasses: Self = Self(1);
+    #[doc(alias = "HKVisionPrescriptionTypeContacts")]
+    pub const Contacts: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for HKVisionPrescriptionType {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for HKVisionPrescriptionType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

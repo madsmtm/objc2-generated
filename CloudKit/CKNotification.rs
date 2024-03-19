@@ -41,19 +41,30 @@ extern_methods!(
     }
 );
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum CKNotificationType {
-        #[doc(alias = "CKNotificationTypeQuery")]
-        Query = 1,
-        #[doc(alias = "CKNotificationTypeRecordZone")]
-        RecordZone = 2,
-        #[doc(alias = "CKNotificationTypeReadNotification")]
-        ReadNotification = 3,
-        #[doc(alias = "CKNotificationTypeDatabase")]
-        Database = 4,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct CKNotificationType(pub NSInteger);
+impl CKNotificationType {
+    #[doc(alias = "CKNotificationTypeQuery")]
+    pub const Query: Self = Self(1);
+    #[doc(alias = "CKNotificationTypeRecordZone")]
+    pub const RecordZone: Self = Self(2);
+    #[doc(alias = "CKNotificationTypeReadNotification")]
+    pub const ReadNotification: Self = Self(3);
+    #[doc(alias = "CKNotificationTypeDatabase")]
+    pub const Database: Self = Self(4);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for CKNotificationType {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for CKNotificationType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -176,17 +187,28 @@ extern_methods!(
     }
 );
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum CKQueryNotificationReason {
-        #[doc(alias = "CKQueryNotificationReasonRecordCreated")]
-        RecordCreated = 1,
-        #[doc(alias = "CKQueryNotificationReasonRecordUpdated")]
-        RecordUpdated = 2,
-        #[doc(alias = "CKQueryNotificationReasonRecordDeleted")]
-        RecordDeleted = 3,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct CKQueryNotificationReason(pub NSInteger);
+impl CKQueryNotificationReason {
+    #[doc(alias = "CKQueryNotificationReasonRecordCreated")]
+    pub const RecordCreated: Self = Self(1);
+    #[doc(alias = "CKQueryNotificationReasonRecordUpdated")]
+    pub const RecordUpdated: Self = Self(2);
+    #[doc(alias = "CKQueryNotificationReasonRecordDeleted")]
+    pub const RecordDeleted: Self = Self(3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for CKQueryNotificationReason {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for CKQueryNotificationReason {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

@@ -3,25 +3,36 @@
 use crate::common::*;
 use crate::Foundation::*;
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSISO8601DateFormatOptions {
-        NSISO8601DateFormatWithYear = 1,
-        NSISO8601DateFormatWithMonth = 2,
-        NSISO8601DateFormatWithWeekOfYear = 4,
-        NSISO8601DateFormatWithDay = 16,
-        NSISO8601DateFormatWithTime = 32,
-        NSISO8601DateFormatWithTimeZone = 64,
-        NSISO8601DateFormatWithSpaceBetweenDateAndTime = 128,
-        NSISO8601DateFormatWithDashSeparatorInDate = 256,
-        NSISO8601DateFormatWithColonSeparatorInTime = 512,
-        NSISO8601DateFormatWithColonSeparatorInTimeZone = 1024,
-        NSISO8601DateFormatWithFractionalSeconds = 2048,
-        NSISO8601DateFormatWithFullDate = 275,
-        NSISO8601DateFormatWithFullTime = 1632,
-        NSISO8601DateFormatWithInternetDateTime = 1907,
-    }
-);
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSISO8601DateFormatOptions(pub NSUInteger);
+impl NSISO8601DateFormatOptions {
+    pub const NSISO8601DateFormatWithYear: Self = Self(1);
+    pub const NSISO8601DateFormatWithMonth: Self = Self(2);
+    pub const NSISO8601DateFormatWithWeekOfYear: Self = Self(4);
+    pub const NSISO8601DateFormatWithDay: Self = Self(16);
+    pub const NSISO8601DateFormatWithTime: Self = Self(32);
+    pub const NSISO8601DateFormatWithTimeZone: Self = Self(64);
+    pub const NSISO8601DateFormatWithSpaceBetweenDateAndTime: Self = Self(128);
+    pub const NSISO8601DateFormatWithDashSeparatorInDate: Self = Self(256);
+    pub const NSISO8601DateFormatWithColonSeparatorInTime: Self = Self(512);
+    pub const NSISO8601DateFormatWithColonSeparatorInTimeZone: Self = Self(1024);
+    pub const NSISO8601DateFormatWithFractionalSeconds: Self = Self(2048);
+    pub const NSISO8601DateFormatWithFullDate: Self = Self(275);
+    pub const NSISO8601DateFormatWithFullTime: Self = Self(1632);
+    pub const NSISO8601DateFormatWithInternetDateTime: Self = Self(1907);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSISO8601DateFormatOptions {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSISO8601DateFormatOptions {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

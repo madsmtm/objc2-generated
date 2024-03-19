@@ -3,29 +3,51 @@
 use crate::common::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSRelativeDateTimeFormatterStyle {
-        #[doc(alias = "NSRelativeDateTimeFormatterStyleNumeric")]
-        Numeric = 0,
-        #[doc(alias = "NSRelativeDateTimeFormatterStyleNamed")]
-        Named = 1,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSRelativeDateTimeFormatterStyle(pub NSInteger);
+impl NSRelativeDateTimeFormatterStyle {
+    #[doc(alias = "NSRelativeDateTimeFormatterStyleNumeric")]
+    pub const Numeric: Self = Self(0);
+    #[doc(alias = "NSRelativeDateTimeFormatterStyleNamed")]
+    pub const Named: Self = Self(1);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSRelativeDateTimeFormatterUnitsStyle {
-        #[doc(alias = "NSRelativeDateTimeFormatterUnitsStyleFull")]
-        Full = 0,
-        #[doc(alias = "NSRelativeDateTimeFormatterUnitsStyleSpellOut")]
-        SpellOut = 1,
-        #[doc(alias = "NSRelativeDateTimeFormatterUnitsStyleShort")]
-        Short = 2,
-        #[doc(alias = "NSRelativeDateTimeFormatterUnitsStyleAbbreviated")]
-        Abbreviated = 3,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSRelativeDateTimeFormatterStyle {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSRelativeDateTimeFormatterStyle {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSRelativeDateTimeFormatterUnitsStyle(pub NSInteger);
+impl NSRelativeDateTimeFormatterUnitsStyle {
+    #[doc(alias = "NSRelativeDateTimeFormatterUnitsStyleFull")]
+    pub const Full: Self = Self(0);
+    #[doc(alias = "NSRelativeDateTimeFormatterUnitsStyleSpellOut")]
+    pub const SpellOut: Self = Self(1);
+    #[doc(alias = "NSRelativeDateTimeFormatterUnitsStyleShort")]
+    pub const Short: Self = Self(2);
+    #[doc(alias = "NSRelativeDateTimeFormatterUnitsStyleAbbreviated")]
+    pub const Abbreviated: Self = Self(3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSRelativeDateTimeFormatterUnitsStyle {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSRelativeDateTimeFormatterUnitsStyle {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

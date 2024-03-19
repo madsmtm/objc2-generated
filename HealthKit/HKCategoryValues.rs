@@ -6,222 +6,409 @@ use crate::Foundation::*;
 use crate::HealthKit::*;
 use crate::UniformTypeIdentifiers::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum HKCategoryValue {
-        #[doc(alias = "HKCategoryValueNotApplicable")]
-        NotApplicable = 0,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct HKCategoryValue(pub NSInteger);
+impl HKCategoryValue {
+    #[doc(alias = "HKCategoryValueNotApplicable")]
+    pub const NotApplicable: Self = Self(0);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum HKCategoryValueAppetiteChanges {
-        #[doc(alias = "HKCategoryValueAppetiteChangesUnspecified")]
-        Unspecified = 0,
-        #[doc(alias = "HKCategoryValueAppetiteChangesNoChange")]
-        NoChange = 1,
-        #[doc(alias = "HKCategoryValueAppetiteChangesDecreased")]
-        Decreased = 2,
-        #[doc(alias = "HKCategoryValueAppetiteChangesIncreased")]
-        Increased = 3,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for HKCategoryValue {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum HKCategoryValueAppleStandHour {
-        #[doc(alias = "HKCategoryValueAppleStandHourStood")]
-        Stood = 0,
-        #[doc(alias = "HKCategoryValueAppleStandHourIdle")]
-        Idle = 1,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for HKCategoryValue {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum HKCategoryValueAppleWalkingSteadinessEvent {
-        #[doc(alias = "HKCategoryValueAppleWalkingSteadinessEventInitialLow")]
-        InitialLow = 1,
-        #[doc(alias = "HKCategoryValueAppleWalkingSteadinessEventInitialVeryLow")]
-        InitialVeryLow = 2,
-        #[doc(alias = "HKCategoryValueAppleWalkingSteadinessEventRepeatLow")]
-        RepeatLow = 3,
-        #[doc(alias = "HKCategoryValueAppleWalkingSteadinessEventRepeatVeryLow")]
-        RepeatVeryLow = 4,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct HKCategoryValueAppetiteChanges(pub NSInteger);
+impl HKCategoryValueAppetiteChanges {
+    #[doc(alias = "HKCategoryValueAppetiteChangesUnspecified")]
+    pub const Unspecified: Self = Self(0);
+    #[doc(alias = "HKCategoryValueAppetiteChangesNoChange")]
+    pub const NoChange: Self = Self(1);
+    #[doc(alias = "HKCategoryValueAppetiteChangesDecreased")]
+    pub const Decreased: Self = Self(2);
+    #[doc(alias = "HKCategoryValueAppetiteChangesIncreased")]
+    pub const Increased: Self = Self(3);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum HKCategoryValueCervicalMucusQuality {
-        #[doc(alias = "HKCategoryValueCervicalMucusQualityDry")]
-        Dry = 1,
-        #[doc(alias = "HKCategoryValueCervicalMucusQualitySticky")]
-        Sticky = 2,
-        #[doc(alias = "HKCategoryValueCervicalMucusQualityCreamy")]
-        Creamy = 3,
-        #[doc(alias = "HKCategoryValueCervicalMucusQualityWatery")]
-        Watery = 4,
-        #[doc(alias = "HKCategoryValueCervicalMucusQualityEggWhite")]
-        EggWhite = 5,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for HKCategoryValueAppetiteChanges {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum HKCategoryValueContraceptive {
-        #[doc(alias = "HKCategoryValueContraceptiveUnspecified")]
-        Unspecified = 1,
-        #[doc(alias = "HKCategoryValueContraceptiveImplant")]
-        Implant = 2,
-        #[doc(alias = "HKCategoryValueContraceptiveInjection")]
-        Injection = 3,
-        #[doc(alias = "HKCategoryValueContraceptiveIntrauterineDevice")]
-        IntrauterineDevice = 4,
-        #[doc(alias = "HKCategoryValueContraceptiveIntravaginalRing")]
-        IntravaginalRing = 5,
-        #[doc(alias = "HKCategoryValueContraceptiveOral")]
-        Oral = 6,
-        #[doc(alias = "HKCategoryValueContraceptivePatch")]
-        Patch = 7,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for HKCategoryValueAppetiteChanges {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum HKCategoryValueEnvironmentalAudioExposureEvent {
-        #[doc(alias = "HKCategoryValueEnvironmentalAudioExposureEventMomentaryLimit")]
-        MomentaryLimit = 1,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct HKCategoryValueAppleStandHour(pub NSInteger);
+impl HKCategoryValueAppleStandHour {
+    #[doc(alias = "HKCategoryValueAppleStandHourStood")]
+    pub const Stood: Self = Self(0);
+    #[doc(alias = "HKCategoryValueAppleStandHourIdle")]
+    pub const Idle: Self = Self(1);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum HKCategoryValueHeadphoneAudioExposureEvent {
-        #[doc(alias = "HKCategoryValueHeadphoneAudioExposureEventSevenDayLimit")]
-        SevenDayLimit = 1,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for HKCategoryValueAppleStandHour {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum HKCategoryValueLowCardioFitnessEvent {
-        #[doc(alias = "HKCategoryValueLowCardioFitnessEventLowFitness")]
-        LowFitness = 1,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for HKCategoryValueAppleStandHour {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum HKCategoryValueMenstrualFlow {
-        #[doc(alias = "HKCategoryValueMenstrualFlowUnspecified")]
-        Unspecified = 1,
-        #[doc(alias = "HKCategoryValueMenstrualFlowLight")]
-        Light = 2,
-        #[doc(alias = "HKCategoryValueMenstrualFlowMedium")]
-        Medium = 3,
-        #[doc(alias = "HKCategoryValueMenstrualFlowHeavy")]
-        Heavy = 4,
-        #[doc(alias = "HKCategoryValueMenstrualFlowNone")]
-        None = 5,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct HKCategoryValueAppleWalkingSteadinessEvent(pub NSInteger);
+impl HKCategoryValueAppleWalkingSteadinessEvent {
+    #[doc(alias = "HKCategoryValueAppleWalkingSteadinessEventInitialLow")]
+    pub const InitialLow: Self = Self(1);
+    #[doc(alias = "HKCategoryValueAppleWalkingSteadinessEventInitialVeryLow")]
+    pub const InitialVeryLow: Self = Self(2);
+    #[doc(alias = "HKCategoryValueAppleWalkingSteadinessEventRepeatLow")]
+    pub const RepeatLow: Self = Self(3);
+    #[doc(alias = "HKCategoryValueAppleWalkingSteadinessEventRepeatVeryLow")]
+    pub const RepeatVeryLow: Self = Self(4);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum HKCategoryValueOvulationTestResult {
-        #[doc(alias = "HKCategoryValueOvulationTestResultNegative")]
-        Negative = 1,
-        #[doc(alias = "HKCategoryValueOvulationTestResultLuteinizingHormoneSurge")]
-        LuteinizingHormoneSurge = 2,
-        #[deprecated]
-        #[doc(alias = "HKCategoryValueOvulationTestResultPositive")]
-        Positive = HKCategoryValueOvulationTestResult::LuteinizingHormoneSurge.0,
-        #[doc(alias = "HKCategoryValueOvulationTestResultIndeterminate")]
-        Indeterminate = 3,
-        #[doc(alias = "HKCategoryValueOvulationTestResultEstrogenSurge")]
-        EstrogenSurge = 4,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for HKCategoryValueAppleWalkingSteadinessEvent {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum HKCategoryValuePregnancyTestResult {
-        #[doc(alias = "HKCategoryValuePregnancyTestResultNegative")]
-        Negative = 1,
-        #[doc(alias = "HKCategoryValuePregnancyTestResultPositive")]
-        Positive = 2,
-        #[doc(alias = "HKCategoryValuePregnancyTestResultIndeterminate")]
-        Indeterminate = 3,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for HKCategoryValueAppleWalkingSteadinessEvent {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum HKCategoryValuePresence {
-        #[doc(alias = "HKCategoryValuePresencePresent")]
-        Present = 0,
-        #[doc(alias = "HKCategoryValuePresenceNotPresent")]
-        NotPresent = 1,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct HKCategoryValueCervicalMucusQuality(pub NSInteger);
+impl HKCategoryValueCervicalMucusQuality {
+    #[doc(alias = "HKCategoryValueCervicalMucusQualityDry")]
+    pub const Dry: Self = Self(1);
+    #[doc(alias = "HKCategoryValueCervicalMucusQualitySticky")]
+    pub const Sticky: Self = Self(2);
+    #[doc(alias = "HKCategoryValueCervicalMucusQualityCreamy")]
+    pub const Creamy: Self = Self(3);
+    #[doc(alias = "HKCategoryValueCervicalMucusQualityWatery")]
+    pub const Watery: Self = Self(4);
+    #[doc(alias = "HKCategoryValueCervicalMucusQualityEggWhite")]
+    pub const EggWhite: Self = Self(5);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum HKCategoryValueProgesteroneTestResult {
-        #[doc(alias = "HKCategoryValueProgesteroneTestResultNegative")]
-        Negative = 1,
-        #[doc(alias = "HKCategoryValueProgesteroneTestResultPositive")]
-        Positive = 2,
-        #[doc(alias = "HKCategoryValueProgesteroneTestResultIndeterminate")]
-        Indeterminate = 3,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for HKCategoryValueCervicalMucusQuality {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum HKCategoryValueSeverity {
-        #[doc(alias = "HKCategoryValueSeverityUnspecified")]
-        Unspecified = 0,
-        #[doc(alias = "HKCategoryValueSeverityNotPresent")]
-        NotPresent = 1,
-        #[doc(alias = "HKCategoryValueSeverityMild")]
-        Mild = 2,
-        #[doc(alias = "HKCategoryValueSeverityModerate")]
-        Moderate = 3,
-        #[doc(alias = "HKCategoryValueSeveritySevere")]
-        Severe = 4,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for HKCategoryValueCervicalMucusQuality {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum HKCategoryValueSleepAnalysis {
-        #[doc(alias = "HKCategoryValueSleepAnalysisInBed")]
-        InBed = 0,
-        #[doc(alias = "HKCategoryValueSleepAnalysisAsleepUnspecified")]
-        AsleepUnspecified = 1,
-        #[deprecated]
-        #[doc(alias = "HKCategoryValueSleepAnalysisAsleep")]
-        Asleep = HKCategoryValueSleepAnalysis::AsleepUnspecified.0,
-        #[doc(alias = "HKCategoryValueSleepAnalysisAwake")]
-        Awake = 2,
-        #[doc(alias = "HKCategoryValueSleepAnalysisAsleepCore")]
-        AsleepCore = 3,
-        #[doc(alias = "HKCategoryValueSleepAnalysisAsleepDeep")]
-        AsleepDeep = 4,
-        #[doc(alias = "HKCategoryValueSleepAnalysisAsleepREM")]
-        AsleepREM = 5,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct HKCategoryValueContraceptive(pub NSInteger);
+impl HKCategoryValueContraceptive {
+    #[doc(alias = "HKCategoryValueContraceptiveUnspecified")]
+    pub const Unspecified: Self = Self(1);
+    #[doc(alias = "HKCategoryValueContraceptiveImplant")]
+    pub const Implant: Self = Self(2);
+    #[doc(alias = "HKCategoryValueContraceptiveInjection")]
+    pub const Injection: Self = Self(3);
+    #[doc(alias = "HKCategoryValueContraceptiveIntrauterineDevice")]
+    pub const IntrauterineDevice: Self = Self(4);
+    #[doc(alias = "HKCategoryValueContraceptiveIntravaginalRing")]
+    pub const IntravaginalRing: Self = Self(5);
+    #[doc(alias = "HKCategoryValueContraceptiveOral")]
+    pub const Oral: Self = Self(6);
+    #[doc(alias = "HKCategoryValueContraceptivePatch")]
+    pub const Patch: Self = Self(7);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
+#[cfg(feature = "objc2")]
+unsafe impl Encode for HKCategoryValueContraceptive {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for HKCategoryValueContraceptive {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct HKCategoryValueEnvironmentalAudioExposureEvent(pub NSInteger);
+impl HKCategoryValueEnvironmentalAudioExposureEvent {
+    #[doc(alias = "HKCategoryValueEnvironmentalAudioExposureEventMomentaryLimit")]
+    pub const MomentaryLimit: Self = Self(1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for HKCategoryValueEnvironmentalAudioExposureEvent {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for HKCategoryValueEnvironmentalAudioExposureEvent {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct HKCategoryValueHeadphoneAudioExposureEvent(pub NSInteger);
+impl HKCategoryValueHeadphoneAudioExposureEvent {
+    #[doc(alias = "HKCategoryValueHeadphoneAudioExposureEventSevenDayLimit")]
+    pub const SevenDayLimit: Self = Self(1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for HKCategoryValueHeadphoneAudioExposureEvent {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for HKCategoryValueHeadphoneAudioExposureEvent {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct HKCategoryValueLowCardioFitnessEvent(pub NSInteger);
+impl HKCategoryValueLowCardioFitnessEvent {
+    #[doc(alias = "HKCategoryValueLowCardioFitnessEventLowFitness")]
+    pub const LowFitness: Self = Self(1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for HKCategoryValueLowCardioFitnessEvent {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for HKCategoryValueLowCardioFitnessEvent {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct HKCategoryValueMenstrualFlow(pub NSInteger);
+impl HKCategoryValueMenstrualFlow {
+    #[doc(alias = "HKCategoryValueMenstrualFlowUnspecified")]
+    pub const Unspecified: Self = Self(1);
+    #[doc(alias = "HKCategoryValueMenstrualFlowLight")]
+    pub const Light: Self = Self(2);
+    #[doc(alias = "HKCategoryValueMenstrualFlowMedium")]
+    pub const Medium: Self = Self(3);
+    #[doc(alias = "HKCategoryValueMenstrualFlowHeavy")]
+    pub const Heavy: Self = Self(4);
+    #[doc(alias = "HKCategoryValueMenstrualFlowNone")]
+    pub const None: Self = Self(5);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for HKCategoryValueMenstrualFlow {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for HKCategoryValueMenstrualFlow {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct HKCategoryValueOvulationTestResult(pub NSInteger);
+impl HKCategoryValueOvulationTestResult {
+    #[doc(alias = "HKCategoryValueOvulationTestResultNegative")]
+    pub const Negative: Self = Self(1);
+    #[doc(alias = "HKCategoryValueOvulationTestResultLuteinizingHormoneSurge")]
+    pub const LuteinizingHormoneSurge: Self = Self(2);
     #[deprecated]
-    pub enum HKCategoryValueAudioExposureEvent {
-        #[deprecated]
-        #[doc(alias = "HKCategoryValueAudioExposureEventLoudEnvironment")]
-        LoudEnvironment = 1,
-    }
-);
+    #[doc(alias = "HKCategoryValueOvulationTestResultPositive")]
+    pub const Positive: Self = Self(HKCategoryValueOvulationTestResult::LuteinizingHormoneSurge.0);
+    #[doc(alias = "HKCategoryValueOvulationTestResultIndeterminate")]
+    pub const Indeterminate: Self = Self(3);
+    #[doc(alias = "HKCategoryValueOvulationTestResultEstrogenSurge")]
+    pub const EstrogenSurge: Self = Self(4);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for HKCategoryValueOvulationTestResult {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for HKCategoryValueOvulationTestResult {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct HKCategoryValuePregnancyTestResult(pub NSInteger);
+impl HKCategoryValuePregnancyTestResult {
+    #[doc(alias = "HKCategoryValuePregnancyTestResultNegative")]
+    pub const Negative: Self = Self(1);
+    #[doc(alias = "HKCategoryValuePregnancyTestResultPositive")]
+    pub const Positive: Self = Self(2);
+    #[doc(alias = "HKCategoryValuePregnancyTestResultIndeterminate")]
+    pub const Indeterminate: Self = Self(3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for HKCategoryValuePregnancyTestResult {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for HKCategoryValuePregnancyTestResult {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct HKCategoryValuePresence(pub NSInteger);
+impl HKCategoryValuePresence {
+    #[doc(alias = "HKCategoryValuePresencePresent")]
+    pub const Present: Self = Self(0);
+    #[doc(alias = "HKCategoryValuePresenceNotPresent")]
+    pub const NotPresent: Self = Self(1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for HKCategoryValuePresence {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for HKCategoryValuePresence {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct HKCategoryValueProgesteroneTestResult(pub NSInteger);
+impl HKCategoryValueProgesteroneTestResult {
+    #[doc(alias = "HKCategoryValueProgesteroneTestResultNegative")]
+    pub const Negative: Self = Self(1);
+    #[doc(alias = "HKCategoryValueProgesteroneTestResultPositive")]
+    pub const Positive: Self = Self(2);
+    #[doc(alias = "HKCategoryValueProgesteroneTestResultIndeterminate")]
+    pub const Indeterminate: Self = Self(3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for HKCategoryValueProgesteroneTestResult {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for HKCategoryValueProgesteroneTestResult {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct HKCategoryValueSeverity(pub NSInteger);
+impl HKCategoryValueSeverity {
+    #[doc(alias = "HKCategoryValueSeverityUnspecified")]
+    pub const Unspecified: Self = Self(0);
+    #[doc(alias = "HKCategoryValueSeverityNotPresent")]
+    pub const NotPresent: Self = Self(1);
+    #[doc(alias = "HKCategoryValueSeverityMild")]
+    pub const Mild: Self = Self(2);
+    #[doc(alias = "HKCategoryValueSeverityModerate")]
+    pub const Moderate: Self = Self(3);
+    #[doc(alias = "HKCategoryValueSeveritySevere")]
+    pub const Severe: Self = Self(4);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for HKCategoryValueSeverity {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for HKCategoryValueSeverity {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct HKCategoryValueSleepAnalysis(pub NSInteger);
+impl HKCategoryValueSleepAnalysis {
+    #[doc(alias = "HKCategoryValueSleepAnalysisInBed")]
+    pub const InBed: Self = Self(0);
+    #[doc(alias = "HKCategoryValueSleepAnalysisAsleepUnspecified")]
+    pub const AsleepUnspecified: Self = Self(1);
+    #[deprecated]
+    #[doc(alias = "HKCategoryValueSleepAnalysisAsleep")]
+    pub const Asleep: Self = Self(HKCategoryValueSleepAnalysis::AsleepUnspecified.0);
+    #[doc(alias = "HKCategoryValueSleepAnalysisAwake")]
+    pub const Awake: Self = Self(2);
+    #[doc(alias = "HKCategoryValueSleepAnalysisAsleepCore")]
+    pub const AsleepCore: Self = Self(3);
+    #[doc(alias = "HKCategoryValueSleepAnalysisAsleepDeep")]
+    pub const AsleepDeep: Self = Self(4);
+    #[doc(alias = "HKCategoryValueSleepAnalysisAsleepREM")]
+    pub const AsleepREM: Self = Self(5);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for HKCategoryValueSleepAnalysis {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for HKCategoryValueSleepAnalysis {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[deprecated]
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct HKCategoryValueAudioExposureEvent(pub NSInteger);
+impl HKCategoryValueAudioExposureEvent {
+    #[deprecated]
+    #[doc(alias = "HKCategoryValueAudioExposureEventLoudEnvironment")]
+    pub const LoudEnvironment: Self = Self(1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for HKCategoryValueAudioExposureEvent {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for HKCategoryValueAudioExposureEvent {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}

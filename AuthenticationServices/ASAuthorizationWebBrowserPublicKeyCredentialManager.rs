@@ -5,23 +5,32 @@ use crate::AppKit::*;
 use crate::AuthenticationServices::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum ASAuthorizationWebBrowserPublicKeyCredentialManagerAuthorizationState {
-        #[doc(
-            alias = "ASAuthorizationWebBrowserPublicKeyCredentialManagerAuthorizationStateAuthorized"
-        )]
-        Authorized = 0,
-        #[doc(
-            alias = "ASAuthorizationWebBrowserPublicKeyCredentialManagerAuthorizationStateDenied"
-        )]
-        Denied = 1,
-        #[doc(
-            alias = "ASAuthorizationWebBrowserPublicKeyCredentialManagerAuthorizationStateNotDetermined"
-        )]
-        NotDetermined = 2,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct ASAuthorizationWebBrowserPublicKeyCredentialManagerAuthorizationState(pub NSInteger);
+impl ASAuthorizationWebBrowserPublicKeyCredentialManagerAuthorizationState {
+    #[doc(
+        alias = "ASAuthorizationWebBrowserPublicKeyCredentialManagerAuthorizationStateAuthorized"
+    )]
+    pub const Authorized: Self = Self(0);
+    #[doc(alias = "ASAuthorizationWebBrowserPublicKeyCredentialManagerAuthorizationStateDenied")]
+    pub const Denied: Self = Self(1);
+    #[doc(
+        alias = "ASAuthorizationWebBrowserPublicKeyCredentialManagerAuthorizationStateNotDetermined"
+    )]
+    pub const NotDetermined: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for ASAuthorizationWebBrowserPublicKeyCredentialManagerAuthorizationState {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for ASAuthorizationWebBrowserPublicKeyCredentialManagerAuthorizationState {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

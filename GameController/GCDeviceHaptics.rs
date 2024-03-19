@@ -5,10 +5,9 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::GameController::*;
 
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type GCHapticsLocality = NSString;
-);
+pub type GCHapticsLocality = NSString;
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]

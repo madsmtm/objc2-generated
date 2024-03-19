@@ -4,19 +4,30 @@ use crate::common::*;
 use crate::Foundation::*;
 use crate::LocalAuthentication::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum LARightState {
-        #[doc(alias = "LARightStateUnknown")]
-        Unknown = 0,
-        #[doc(alias = "LARightStateAuthorizing")]
-        Authorizing = 1,
-        #[doc(alias = "LARightStateAuthorized")]
-        Authorized = 2,
-        #[doc(alias = "LARightStateNotAuthorized")]
-        NotAuthorized = 3,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct LARightState(pub NSInteger);
+impl LARightState {
+    #[doc(alias = "LARightStateUnknown")]
+    pub const Unknown: Self = Self(0);
+    #[doc(alias = "LARightStateAuthorizing")]
+    pub const Authorizing: Self = Self(1);
+    #[doc(alias = "LARightStateAuthorized")]
+    pub const Authorized: Self = Self(2);
+    #[doc(alias = "LARightStateNotAuthorized")]
+    pub const NotAuthorized: Self = Self(3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for LARightState {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for LARightState {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

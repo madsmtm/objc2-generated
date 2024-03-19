@@ -7,31 +7,53 @@ use crate::Foundation::*;
 use crate::Photos::*;
 use crate::UniformTypeIdentifiers::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum PHAuthorizationStatus {
-        #[doc(alias = "PHAuthorizationStatusNotDetermined")]
-        NotDetermined = 0,
-        #[doc(alias = "PHAuthorizationStatusRestricted")]
-        Restricted = 1,
-        #[doc(alias = "PHAuthorizationStatusDenied")]
-        Denied = 2,
-        #[doc(alias = "PHAuthorizationStatusAuthorized")]
-        Authorized = 3,
-        #[doc(alias = "PHAuthorizationStatusLimited")]
-        Limited = 4,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct PHAuthorizationStatus(pub NSInteger);
+impl PHAuthorizationStatus {
+    #[doc(alias = "PHAuthorizationStatusNotDetermined")]
+    pub const NotDetermined: Self = Self(0);
+    #[doc(alias = "PHAuthorizationStatusRestricted")]
+    pub const Restricted: Self = Self(1);
+    #[doc(alias = "PHAuthorizationStatusDenied")]
+    pub const Denied: Self = Self(2);
+    #[doc(alias = "PHAuthorizationStatusAuthorized")]
+    pub const Authorized: Self = Self(3);
+    #[doc(alias = "PHAuthorizationStatusLimited")]
+    pub const Limited: Self = Self(4);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum PHAccessLevel {
-        #[doc(alias = "PHAccessLevelAddOnly")]
-        AddOnly = 1,
-        #[doc(alias = "PHAccessLevelReadWrite")]
-        ReadWrite = 2,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for PHAuthorizationStatus {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for PHAuthorizationStatus {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct PHAccessLevel(pub NSInteger);
+impl PHAccessLevel {
+    #[doc(alias = "PHAccessLevelAddOnly")]
+    pub const AddOnly: Self = Self(1);
+    #[doc(alias = "PHAccessLevelReadWrite")]
+    pub const ReadWrite: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for PHAccessLevel {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for PHAccessLevel {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_protocol!(
     pub unsafe trait PHPhotoLibraryChangeObserver: NSObjectProtocol {

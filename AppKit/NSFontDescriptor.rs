@@ -7,79 +7,81 @@ use crate::Foundation::*;
 
 pub type NSFontSymbolicTraits = u32;
 
-ns_options!(
-    #[underlying(u32)]
-    pub enum NSFontDescriptorSymbolicTraits {
-        NSFontDescriptorTraitItalic = 1 << 0,
-        NSFontDescriptorTraitBold = 1 << 1,
-        NSFontDescriptorTraitExpanded = 1 << 5,
-        NSFontDescriptorTraitCondensed = 1 << 6,
-        NSFontDescriptorTraitMonoSpace = 1 << 10,
-        NSFontDescriptorTraitVertical = 1 << 11,
-        NSFontDescriptorTraitUIOptimized = 1 << 12,
-        NSFontDescriptorTraitTightLeading = 1 << 15,
-        NSFontDescriptorTraitLooseLeading = 1 << 16,
-        NSFontDescriptorTraitEmphasized =
-            NSFontDescriptorSymbolicTraits::NSFontDescriptorTraitBold.0,
-        NSFontDescriptorClassMask = 0xF0000000,
-        NSFontDescriptorClassUnknown = 0 << 28,
-        NSFontDescriptorClassOldStyleSerifs = 1 << 28,
-        NSFontDescriptorClassTransitionalSerifs = 2 << 28,
-        NSFontDescriptorClassModernSerifs = 3 << 28,
-        NSFontDescriptorClassClarendonSerifs = 4 << 28,
-        NSFontDescriptorClassSlabSerifs = 5 << 28,
-        NSFontDescriptorClassFreeformSerifs = 7 << 28,
-        NSFontDescriptorClassSansSerif = 8 << 28,
-        NSFontDescriptorClassOrnamentals = 9 << 28,
-        NSFontDescriptorClassScripts = 10 << 28,
-        NSFontDescriptorClassSymbolic = 12 << 28,
-    }
-);
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSFontDescriptorSymbolicTraits(pub u32);
+impl NSFontDescriptorSymbolicTraits {
+    pub const NSFontDescriptorTraitItalic: Self = Self(1 << 0);
+    pub const NSFontDescriptorTraitBold: Self = Self(1 << 1);
+    pub const NSFontDescriptorTraitExpanded: Self = Self(1 << 5);
+    pub const NSFontDescriptorTraitCondensed: Self = Self(1 << 6);
+    pub const NSFontDescriptorTraitMonoSpace: Self = Self(1 << 10);
+    pub const NSFontDescriptorTraitVertical: Self = Self(1 << 11);
+    pub const NSFontDescriptorTraitUIOptimized: Self = Self(1 << 12);
+    pub const NSFontDescriptorTraitTightLeading: Self = Self(1 << 15);
+    pub const NSFontDescriptorTraitLooseLeading: Self = Self(1 << 16);
+    pub const NSFontDescriptorTraitEmphasized: Self =
+        Self(NSFontDescriptorSymbolicTraits::NSFontDescriptorTraitBold.0);
+    pub const NSFontDescriptorClassMask: Self = Self(0xF0000000);
+    pub const NSFontDescriptorClassUnknown: Self = Self(0 << 28);
+    pub const NSFontDescriptorClassOldStyleSerifs: Self = Self(1 << 28);
+    pub const NSFontDescriptorClassTransitionalSerifs: Self = Self(2 << 28);
+    pub const NSFontDescriptorClassModernSerifs: Self = Self(3 << 28);
+    pub const NSFontDescriptorClassClarendonSerifs: Self = Self(4 << 28);
+    pub const NSFontDescriptorClassSlabSerifs: Self = Self(5 << 28);
+    pub const NSFontDescriptorClassFreeformSerifs: Self = Self(7 << 28);
+    pub const NSFontDescriptorClassSansSerif: Self = Self(8 << 28);
+    pub const NSFontDescriptorClassOrnamentals: Self = Self(9 << 28);
+    pub const NSFontDescriptorClassScripts: Self = Self(10 << 28);
+    pub const NSFontDescriptorClassSymbolic: Self = Self(12 << 28);
+}
 
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSFontDescriptorSymbolicTraits {
+    const ENCODING: Encoding = u32::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSFontDescriptorSymbolicTraits {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_extensible_enum!(
-    pub type NSFontDescriptorAttributeName = NSString;
-);
+pub type NSFontDescriptorAttributeName = NSString;
 
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type NSFontDescriptorTraitKey = NSString;
-);
+pub type NSFontDescriptorTraitKey = NSString;
 
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type NSFontDescriptorVariationKey = NSString;
-);
+pub type NSFontDescriptorVariationKey = NSString;
 
+// NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_extensible_enum!(
-    pub type NSFontDescriptorFeatureKey = NSString;
-);
+pub type NSFontDescriptorFeatureKey = NSString;
 
+// NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "Foundation_NSGeometry")]
-typed_extensible_enum!(
-    pub type NSFontWeight = CGFloat;
-);
+pub type NSFontWeight = CGFloat;
 
+// NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "Foundation_NSGeometry")]
-typed_extensible_enum!(
-    pub type NSFontWidth = CGFloat;
-);
+pub type NSFontWidth = CGFloat;
 
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type NSFontDescriptorSystemDesign = NSString;
-);
+pub type NSFontDescriptorSystemDesign = NSString;
 
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type NSFontTextStyle = NSString;
-);
+pub type NSFontTextStyle = NSString;
 
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type NSFontTextStyleOptionKey = NSString;
-);
+pub type NSFontTextStyleOptionKey = NSString;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

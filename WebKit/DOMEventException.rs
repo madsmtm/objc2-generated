@@ -10,11 +10,21 @@ extern "C" {
     pub static DOMEventException: Option<&'static NSString>;
 }
 
-extern_enum!(
-    #[underlying(c_uint)]
+#[deprecated]
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct DOMEventExceptionCode(pub c_uint);
+impl DOMEventExceptionCode {
     #[deprecated]
-    pub enum DOMEventExceptionCode {
-        #[deprecated]
-        DOM_UNSPECIFIED_EVENT_TYPE_ERR = 0,
-    }
-);
+    pub const DOM_UNSPECIFIED_EVENT_TYPE_ERR: Self = Self(0);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for DOMEventExceptionCode {
+    const ENCODING: Encoding = c_uint::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for DOMEventExceptionCode {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}

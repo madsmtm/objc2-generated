@@ -4,20 +4,17 @@ use crate::common::*;
 use crate::Foundation::*;
 use crate::QuartzCore::*;
 
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type CAEmitterLayerEmitterShape = NSString;
-);
+pub type CAEmitterLayerEmitterShape = NSString;
 
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type CAEmitterLayerEmitterMode = NSString;
-);
+pub type CAEmitterLayerEmitterMode = NSString;
 
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type CAEmitterLayerRenderMode = NSString;
-);
+pub type CAEmitterLayerRenderMode = NSString;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

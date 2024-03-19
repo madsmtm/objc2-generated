@@ -4,15 +4,26 @@ use crate::common::*;
 use crate::ExternalAccessory::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum EABluetoothAccessoryPickerErrorCode {
-        EABluetoothAccessoryPickerAlreadyConnected = 0,
-        EABluetoothAccessoryPickerResultNotFound = 1,
-        EABluetoothAccessoryPickerResultCancelled = 2,
-        EABluetoothAccessoryPickerResultFailed = 3,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct EABluetoothAccessoryPickerErrorCode(pub NSInteger);
+impl EABluetoothAccessoryPickerErrorCode {
+    pub const EABluetoothAccessoryPickerAlreadyConnected: Self = Self(0);
+    pub const EABluetoothAccessoryPickerResultNotFound: Self = Self(1);
+    pub const EABluetoothAccessoryPickerResultCancelled: Self = Self(2);
+    pub const EABluetoothAccessoryPickerResultFailed: Self = Self(3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for EABluetoothAccessoryPickerErrorCode {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for EABluetoothAccessoryPickerErrorCode {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]

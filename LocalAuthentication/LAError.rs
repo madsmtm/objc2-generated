@@ -9,47 +9,58 @@ extern "C" {
     pub static LAErrorDomain: &'static NSString;
 }
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum LAError {
-        #[doc(alias = "LAErrorAuthenticationFailed")]
-        AuthenticationFailed = -1,
-        #[doc(alias = "LAErrorUserCancel")]
-        UserCancel = -2,
-        #[doc(alias = "LAErrorUserFallback")]
-        UserFallback = -3,
-        #[doc(alias = "LAErrorSystemCancel")]
-        SystemCancel = -4,
-        #[doc(alias = "LAErrorPasscodeNotSet")]
-        PasscodeNotSet = -5,
-        #[deprecated = "use LAErrorBiometryNotAvailable"]
-        #[doc(alias = "LAErrorTouchIDNotAvailable")]
-        TouchIDNotAvailable = -6,
-        #[deprecated = "use LAErrorBiometryNotEnrolled"]
-        #[doc(alias = "LAErrorTouchIDNotEnrolled")]
-        TouchIDNotEnrolled = -7,
-        #[deprecated = "use LAErrorBiometryLockout"]
-        #[doc(alias = "LAErrorTouchIDLockout")]
-        TouchIDLockout = -8,
-        #[doc(alias = "LAErrorAppCancel")]
-        AppCancel = -9,
-        #[doc(alias = "LAErrorInvalidContext")]
-        InvalidContext = -10,
-        #[doc(alias = "LAErrorBiometryNotAvailable")]
-        BiometryNotAvailable = -6,
-        #[doc(alias = "LAErrorBiometryNotEnrolled")]
-        BiometryNotEnrolled = -7,
-        #[doc(alias = "LAErrorBiometryLockout")]
-        BiometryLockout = -8,
-        #[doc(alias = "LAErrorNotInteractive")]
-        NotInteractive = -1004,
-        #[doc(alias = "LAErrorWatchNotAvailable")]
-        WatchNotAvailable = -11,
-        #[doc(alias = "LAErrorBiometryNotPaired")]
-        BiometryNotPaired = -12,
-        #[doc(alias = "LAErrorBiometryDisconnected")]
-        BiometryDisconnected = -13,
-        #[doc(alias = "LAErrorInvalidDimensions")]
-        InvalidDimensions = -14,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct LAError(pub NSInteger);
+impl LAError {
+    #[doc(alias = "LAErrorAuthenticationFailed")]
+    pub const AuthenticationFailed: Self = Self(-1);
+    #[doc(alias = "LAErrorUserCancel")]
+    pub const UserCancel: Self = Self(-2);
+    #[doc(alias = "LAErrorUserFallback")]
+    pub const UserFallback: Self = Self(-3);
+    #[doc(alias = "LAErrorSystemCancel")]
+    pub const SystemCancel: Self = Self(-4);
+    #[doc(alias = "LAErrorPasscodeNotSet")]
+    pub const PasscodeNotSet: Self = Self(-5);
+    #[deprecated = "use LAErrorBiometryNotAvailable"]
+    #[doc(alias = "LAErrorTouchIDNotAvailable")]
+    pub const TouchIDNotAvailable: Self = Self(-6);
+    #[deprecated = "use LAErrorBiometryNotEnrolled"]
+    #[doc(alias = "LAErrorTouchIDNotEnrolled")]
+    pub const TouchIDNotEnrolled: Self = Self(-7);
+    #[deprecated = "use LAErrorBiometryLockout"]
+    #[doc(alias = "LAErrorTouchIDLockout")]
+    pub const TouchIDLockout: Self = Self(-8);
+    #[doc(alias = "LAErrorAppCancel")]
+    pub const AppCancel: Self = Self(-9);
+    #[doc(alias = "LAErrorInvalidContext")]
+    pub const InvalidContext: Self = Self(-10);
+    #[doc(alias = "LAErrorBiometryNotAvailable")]
+    pub const BiometryNotAvailable: Self = Self(-6);
+    #[doc(alias = "LAErrorBiometryNotEnrolled")]
+    pub const BiometryNotEnrolled: Self = Self(-7);
+    #[doc(alias = "LAErrorBiometryLockout")]
+    pub const BiometryLockout: Self = Self(-8);
+    #[doc(alias = "LAErrorNotInteractive")]
+    pub const NotInteractive: Self = Self(-1004);
+    #[doc(alias = "LAErrorWatchNotAvailable")]
+    pub const WatchNotAvailable: Self = Self(-11);
+    #[doc(alias = "LAErrorBiometryNotPaired")]
+    pub const BiometryNotPaired: Self = Self(-12);
+    #[doc(alias = "LAErrorBiometryDisconnected")]
+    pub const BiometryDisconnected: Self = Self(-13);
+    #[doc(alias = "LAErrorInvalidDimensions")]
+    pub const InvalidDimensions: Self = Self(-14);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for LAError {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for LAError {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}

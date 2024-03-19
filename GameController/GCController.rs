@@ -30,17 +30,28 @@ extern "C" {
     pub static GCControllerUserCustomizationsDidChangeNotification: &'static NSString;
 }
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum GCControllerPlayerIndex {
-        #[doc(alias = "GCControllerPlayerIndexUnset")]
-        Unset = -1,
-        GCControllerPlayerIndex1 = 0,
-        GCControllerPlayerIndex2 = 1,
-        GCControllerPlayerIndex3 = 2,
-        GCControllerPlayerIndex4 = 3,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct GCControllerPlayerIndex(pub NSInteger);
+impl GCControllerPlayerIndex {
+    #[doc(alias = "GCControllerPlayerIndexUnset")]
+    pub const Unset: Self = Self(-1);
+    pub const GCControllerPlayerIndex1: Self = Self(0);
+    pub const GCControllerPlayerIndex2: Self = Self(1);
+    pub const GCControllerPlayerIndex3: Self = Self(2);
+    pub const GCControllerPlayerIndex4: Self = Self(3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for GCControllerPlayerIndex {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for GCControllerPlayerIndex {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

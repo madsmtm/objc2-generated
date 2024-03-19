@@ -4,170 +4,280 @@ use crate::common::*;
 use crate::CoreWLAN::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum CWErr {
-        kCWNoErr = 0,
-        kCWEAPOLErr = 1,
-        kCWInvalidParameterErr = -3900,
-        kCWNoMemoryErr = -3901,
-        kCWUnknownErr = -3902,
-        kCWNotSupportedErr = -3903,
-        kCWInvalidFormatErr = -3904,
-        kCWTimeoutErr = -3905,
-        kCWUnspecifiedFailureErr = -3906,
-        kCWUnsupportedCapabilitiesErr = -3907,
-        kCWReassociationDeniedErr = -3908,
-        kCWAssociationDeniedErr = -3909,
-        kCWAuthenticationAlgorithmUnsupportedErr = -3910,
-        kCWInvalidAuthenticationSequenceNumberErr = -3911,
-        kCWChallengeFailureErr = -3912,
-        kCWAPFullErr = -3913,
-        kCWUnsupportedRateSetErr = -3914,
-        kCWShortSlotUnsupportedErr = -3915,
-        kCWDSSSOFDMUnsupportedErr = -3916,
-        kCWInvalidInformationElementErr = -3917,
-        kCWInvalidGroupCipherErr = -3918,
-        kCWInvalidPairwiseCipherErr = -3919,
-        kCWInvalidAKMPErr = -3920,
-        kCWUnsupportedRSNVersionErr = -3921,
-        kCWInvalidRSNCapabilitiesErr = -3922,
-        kCWCipherSuiteRejectedErr = -3923,
-        kCWInvalidPMKErr = -3924,
-        kCWSupplicantTimeoutErr = -3925,
-        kCWHTFeaturesNotSupportedErr = -3926,
-        kCWPCOTransitionTimeNotSupportedErr = -3927,
-        kCWReferenceNotBoundErr = -3928,
-        kCWIPCFailureErr = -3929,
-        kCWOperationNotPermittedErr = -3930,
-        kCWErr = -3931,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct CWErr(pub NSInteger);
+impl CWErr {
+    pub const kCWNoErr: Self = Self(0);
+    pub const kCWEAPOLErr: Self = Self(1);
+    pub const kCWInvalidParameterErr: Self = Self(-3900);
+    pub const kCWNoMemoryErr: Self = Self(-3901);
+    pub const kCWUnknownErr: Self = Self(-3902);
+    pub const kCWNotSupportedErr: Self = Self(-3903);
+    pub const kCWInvalidFormatErr: Self = Self(-3904);
+    pub const kCWTimeoutErr: Self = Self(-3905);
+    pub const kCWUnspecifiedFailureErr: Self = Self(-3906);
+    pub const kCWUnsupportedCapabilitiesErr: Self = Self(-3907);
+    pub const kCWReassociationDeniedErr: Self = Self(-3908);
+    pub const kCWAssociationDeniedErr: Self = Self(-3909);
+    pub const kCWAuthenticationAlgorithmUnsupportedErr: Self = Self(-3910);
+    pub const kCWInvalidAuthenticationSequenceNumberErr: Self = Self(-3911);
+    pub const kCWChallengeFailureErr: Self = Self(-3912);
+    pub const kCWAPFullErr: Self = Self(-3913);
+    pub const kCWUnsupportedRateSetErr: Self = Self(-3914);
+    pub const kCWShortSlotUnsupportedErr: Self = Self(-3915);
+    pub const kCWDSSSOFDMUnsupportedErr: Self = Self(-3916);
+    pub const kCWInvalidInformationElementErr: Self = Self(-3917);
+    pub const kCWInvalidGroupCipherErr: Self = Self(-3918);
+    pub const kCWInvalidPairwiseCipherErr: Self = Self(-3919);
+    pub const kCWInvalidAKMPErr: Self = Self(-3920);
+    pub const kCWUnsupportedRSNVersionErr: Self = Self(-3921);
+    pub const kCWInvalidRSNCapabilitiesErr: Self = Self(-3922);
+    pub const kCWCipherSuiteRejectedErr: Self = Self(-3923);
+    pub const kCWInvalidPMKErr: Self = Self(-3924);
+    pub const kCWSupplicantTimeoutErr: Self = Self(-3925);
+    pub const kCWHTFeaturesNotSupportedErr: Self = Self(-3926);
+    pub const kCWPCOTransitionTimeNotSupportedErr: Self = Self(-3927);
+    pub const kCWReferenceNotBoundErr: Self = Self(-3928);
+    pub const kCWIPCFailureErr: Self = Self(-3929);
+    pub const kCWOperationNotPermittedErr: Self = Self(-3930);
+    pub const kCWErr: Self = Self(-3931);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum CWPHYMode {
-        kCWPHYModeNone = 0,
-        kCWPHYMode11a = 1,
-        kCWPHYMode11b = 2,
-        kCWPHYMode11g = 3,
-        kCWPHYMode11n = 4,
-        kCWPHYMode11ac = 5,
-        kCWPHYMode11ax = 6,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for CWErr {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum CWInterfaceMode {
-        kCWInterfaceModeNone = 0,
-        kCWInterfaceModeStation = 1,
-        kCWInterfaceModeIBSS = 2,
-        kCWInterfaceModeHostAP = 3,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for CWErr {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum CWSecurity {
-        kCWSecurityNone = 0,
-        kCWSecurityWEP = 1,
-        kCWSecurityWPAPersonal = 2,
-        kCWSecurityWPAPersonalMixed = 3,
-        kCWSecurityWPA2Personal = 4,
-        kCWSecurityPersonal = 5,
-        kCWSecurityDynamicWEP = 6,
-        kCWSecurityWPAEnterprise = 7,
-        kCWSecurityWPAEnterpriseMixed = 8,
-        kCWSecurityWPA2Enterprise = 9,
-        kCWSecurityEnterprise = 10,
-        kCWSecurityWPA3Personal = 11,
-        kCWSecurityWPA3Enterprise = 12,
-        kCWSecurityWPA3Transition = 13,
-        kCWSecurityOWE = 14,
-        kCWSecurityOWETransition = 15,
-        kCWSecurityUnknown = NSIntegerMax as _,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct CWPHYMode(pub NSInteger);
+impl CWPHYMode {
+    pub const kCWPHYModeNone: Self = Self(0);
+    pub const kCWPHYMode11a: Self = Self(1);
+    pub const kCWPHYMode11b: Self = Self(2);
+    pub const kCWPHYMode11g: Self = Self(3);
+    pub const kCWPHYMode11n: Self = Self(4);
+    pub const kCWPHYMode11ac: Self = Self(5);
+    pub const kCWPHYMode11ax: Self = Self(6);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
+#[cfg(feature = "objc2")]
+unsafe impl Encode for CWPHYMode {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for CWPHYMode {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct CWInterfaceMode(pub NSInteger);
+impl CWInterfaceMode {
+    pub const kCWInterfaceModeNone: Self = Self(0);
+    pub const kCWInterfaceModeStation: Self = Self(1);
+    pub const kCWInterfaceModeIBSS: Self = Self(2);
+    pub const kCWInterfaceModeHostAP: Self = Self(3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for CWInterfaceMode {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for CWInterfaceMode {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct CWSecurity(pub NSInteger);
+impl CWSecurity {
+    pub const kCWSecurityNone: Self = Self(0);
+    pub const kCWSecurityWEP: Self = Self(1);
+    pub const kCWSecurityWPAPersonal: Self = Self(2);
+    pub const kCWSecurityWPAPersonalMixed: Self = Self(3);
+    pub const kCWSecurityWPA2Personal: Self = Self(4);
+    pub const kCWSecurityPersonal: Self = Self(5);
+    pub const kCWSecurityDynamicWEP: Self = Self(6);
+    pub const kCWSecurityWPAEnterprise: Self = Self(7);
+    pub const kCWSecurityWPAEnterpriseMixed: Self = Self(8);
+    pub const kCWSecurityWPA2Enterprise: Self = Self(9);
+    pub const kCWSecurityEnterprise: Self = Self(10);
+    pub const kCWSecurityWPA3Personal: Self = Self(11);
+    pub const kCWSecurityWPA3Enterprise: Self = Self(12);
+    pub const kCWSecurityWPA3Transition: Self = Self(13);
+    pub const kCWSecurityOWE: Self = Self(14);
+    pub const kCWSecurityOWETransition: Self = Self(15);
+    pub const kCWSecurityUnknown: Self = Self(NSIntegerMax as _);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for CWSecurity {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for CWSecurity {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[deprecated]
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct CWIBSSModeSecurity(pub NSInteger);
+impl CWIBSSModeSecurity {
     #[deprecated]
-    pub enum CWIBSSModeSecurity {
-        #[deprecated]
-        kCWIBSSModeSecurityNone = 0,
-        #[deprecated]
-        kCWIBSSModeSecurityWEP40 = 1,
-        #[deprecated]
-        kCWIBSSModeSecurityWEP104 = 2,
-    }
-);
+    pub const kCWIBSSModeSecurityNone: Self = Self(0);
+    #[deprecated]
+    pub const kCWIBSSModeSecurityWEP40: Self = Self(1);
+    #[deprecated]
+    pub const kCWIBSSModeSecurityWEP104: Self = Self(2);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum CWChannelWidth {
-        kCWChannelWidthUnknown = 0,
-        kCWChannelWidth20MHz = 1,
-        kCWChannelWidth40MHz = 2,
-        kCWChannelWidth80MHz = 3,
-        kCWChannelWidth160MHz = 4,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for CWIBSSModeSecurity {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum CWChannelBand {
-        kCWChannelBandUnknown = 0,
-        kCWChannelBand2GHz = 1,
-        kCWChannelBand5GHz = 2,
-        kCWChannelBand6GHz = 3,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for CWIBSSModeSecurity {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum CWCipherKeyFlags {
-        kCWCipherKeyFlagsNone = 0,
-        kCWCipherKeyFlagsUnicast = 1 << 1,
-        kCWCipherKeyFlagsMulticast = 1 << 2,
-        kCWCipherKeyFlagsTx = 1 << 3,
-        kCWCipherKeyFlagsRx = 1 << 4,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct CWChannelWidth(pub NSInteger);
+impl CWChannelWidth {
+    pub const kCWChannelWidthUnknown: Self = Self(0);
+    pub const kCWChannelWidth20MHz: Self = Self(1);
+    pub const kCWChannelWidth40MHz: Self = Self(2);
+    pub const kCWChannelWidth80MHz: Self = Self(3);
+    pub const kCWChannelWidth160MHz: Self = Self(4);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum CWKeychainDomain {
-        kCWKeychainDomainNone = 0,
-        kCWKeychainDomainUser = 1,
-        kCWKeychainDomainSystem = 2,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for CWChannelWidth {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum CWEventType {
-        #[doc(alias = "CWEventTypeNone")]
-        None = 0,
-        #[doc(alias = "CWEventTypePowerDidChange")]
-        PowerDidChange = 1,
-        #[doc(alias = "CWEventTypeSSIDDidChange")]
-        SSIDDidChange = 2,
-        #[doc(alias = "CWEventTypeBSSIDDidChange")]
-        BSSIDDidChange = 3,
-        #[doc(alias = "CWEventTypeCountryCodeDidChange")]
-        CountryCodeDidChange = 4,
-        #[doc(alias = "CWEventTypeLinkDidChange")]
-        LinkDidChange = 5,
-        #[doc(alias = "CWEventTypeLinkQualityDidChange")]
-        LinkQualityDidChange = 6,
-        #[doc(alias = "CWEventTypeModeDidChange")]
-        ModeDidChange = 7,
-        #[doc(alias = "CWEventTypeScanCacheUpdated")]
-        ScanCacheUpdated = 8,
-        #[doc(alias = "CWEventTypeBtCoexStats")]
-        BtCoexStats = 9,
-        #[doc(alias = "CWEventTypeUnknown")]
-        Unknown = NSIntegerMax as _,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for CWChannelWidth {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct CWChannelBand(pub NSInteger);
+impl CWChannelBand {
+    pub const kCWChannelBandUnknown: Self = Self(0);
+    pub const kCWChannelBand2GHz: Self = Self(1);
+    pub const kCWChannelBand5GHz: Self = Self(2);
+    pub const kCWChannelBand6GHz: Self = Self(3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for CWChannelBand {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for CWChannelBand {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct CWCipherKeyFlags(pub NSUInteger);
+impl CWCipherKeyFlags {
+    pub const kCWCipherKeyFlagsNone: Self = Self(0);
+    pub const kCWCipherKeyFlagsUnicast: Self = Self(1 << 1);
+    pub const kCWCipherKeyFlagsMulticast: Self = Self(1 << 2);
+    pub const kCWCipherKeyFlagsTx: Self = Self(1 << 3);
+    pub const kCWCipherKeyFlagsRx: Self = Self(1 << 4);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for CWCipherKeyFlags {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for CWCipherKeyFlags {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct CWKeychainDomain(pub NSInteger);
+impl CWKeychainDomain {
+    pub const kCWKeychainDomainNone: Self = Self(0);
+    pub const kCWKeychainDomainUser: Self = Self(1);
+    pub const kCWKeychainDomainSystem: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for CWKeychainDomain {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for CWKeychainDomain {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct CWEventType(pub NSInteger);
+impl CWEventType {
+    #[doc(alias = "CWEventTypeNone")]
+    pub const None: Self = Self(0);
+    #[doc(alias = "CWEventTypePowerDidChange")]
+    pub const PowerDidChange: Self = Self(1);
+    #[doc(alias = "CWEventTypeSSIDDidChange")]
+    pub const SSIDDidChange: Self = Self(2);
+    #[doc(alias = "CWEventTypeBSSIDDidChange")]
+    pub const BSSIDDidChange: Self = Self(3);
+    #[doc(alias = "CWEventTypeCountryCodeDidChange")]
+    pub const CountryCodeDidChange: Self = Self(4);
+    #[doc(alias = "CWEventTypeLinkDidChange")]
+    pub const LinkDidChange: Self = Self(5);
+    #[doc(alias = "CWEventTypeLinkQualityDidChange")]
+    pub const LinkQualityDidChange: Self = Self(6);
+    #[doc(alias = "CWEventTypeModeDidChange")]
+    pub const ModeDidChange: Self = Self(7);
+    #[doc(alias = "CWEventTypeScanCacheUpdated")]
+    pub const ScanCacheUpdated: Self = Self(8);
+    #[doc(alias = "CWEventTypeBtCoexStats")]
+    pub const BtCoexStats: Self = Self(9);
+    #[doc(alias = "CWEventTypeUnknown")]
+    pub const Unknown: Self = Self(NSIntegerMax as _);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for CWEventType {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for CWEventType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}

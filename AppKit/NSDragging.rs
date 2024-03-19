@@ -5,80 +5,136 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSDragOperation {
-        #[doc(alias = "NSDragOperationNone")]
-        None = 0,
-        #[doc(alias = "NSDragOperationCopy")]
-        Copy = 1,
-        #[doc(alias = "NSDragOperationLink")]
-        Link = 2,
-        #[doc(alias = "NSDragOperationGeneric")]
-        Generic = 4,
-        #[doc(alias = "NSDragOperationPrivate")]
-        Private = 8,
-        #[doc(alias = "NSDragOperationMove")]
-        Move = 16,
-        #[doc(alias = "NSDragOperationDelete")]
-        Delete = 32,
-        #[doc(alias = "NSDragOperationEvery")]
-        Every = NSUIntegerMax as _,
-        #[deprecated]
-        #[doc(alias = "NSDragOperationAll_Obsolete")]
-        All_Obsolete = 15,
-        #[deprecated]
-        #[doc(alias = "NSDragOperationAll")]
-        All = NSDragOperation::All_Obsolete.0,
-    }
-);
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSDragOperation(pub NSUInteger);
+impl NSDragOperation {
+    #[doc(alias = "NSDragOperationNone")]
+    pub const None: Self = Self(0);
+    #[doc(alias = "NSDragOperationCopy")]
+    pub const Copy: Self = Self(1);
+    #[doc(alias = "NSDragOperationLink")]
+    pub const Link: Self = Self(2);
+    #[doc(alias = "NSDragOperationGeneric")]
+    pub const Generic: Self = Self(4);
+    #[doc(alias = "NSDragOperationPrivate")]
+    pub const Private: Self = Self(8);
+    #[doc(alias = "NSDragOperationMove")]
+    pub const Move: Self = Self(16);
+    #[doc(alias = "NSDragOperationDelete")]
+    pub const Delete: Self = Self(32);
+    #[doc(alias = "NSDragOperationEvery")]
+    pub const Every: Self = Self(NSUIntegerMax as _);
+    #[deprecated]
+    #[doc(alias = "NSDragOperationAll_Obsolete")]
+    pub const All_Obsolete: Self = Self(15);
+    #[deprecated]
+    #[doc(alias = "NSDragOperationAll")]
+    pub const All: Self = Self(NSDragOperation::All_Obsolete.0);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSDraggingFormation {
-        #[doc(alias = "NSDraggingFormationDefault")]
-        Default = 0,
-        #[doc(alias = "NSDraggingFormationNone")]
-        None = 1,
-        #[doc(alias = "NSDraggingFormationPile")]
-        Pile = 2,
-        #[doc(alias = "NSDraggingFormationList")]
-        List = 3,
-        #[doc(alias = "NSDraggingFormationStack")]
-        Stack = 4,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSDragOperation {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSDraggingContext {
-        #[doc(alias = "NSDraggingContextOutsideApplication")]
-        OutsideApplication = 0,
-        #[doc(alias = "NSDraggingContextWithinApplication")]
-        WithinApplication = 1,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSDragOperation {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSDraggingItemEnumerationOptions {
-        #[cfg(feature = "Foundation_NSObjCRuntime")]
-        NSDraggingItemEnumerationConcurrent = NSEnumerationOptions::NSEnumerationConcurrent.0,
-        NSDraggingItemEnumerationClearNonenumeratedImages = 1 << 16,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSDraggingFormation(pub NSInteger);
+impl NSDraggingFormation {
+    #[doc(alias = "NSDraggingFormationDefault")]
+    pub const Default: Self = Self(0);
+    #[doc(alias = "NSDraggingFormationNone")]
+    pub const None: Self = Self(1);
+    #[doc(alias = "NSDraggingFormationPile")]
+    pub const Pile: Self = Self(2);
+    #[doc(alias = "NSDraggingFormationList")]
+    pub const List: Self = Self(3);
+    #[doc(alias = "NSDraggingFormationStack")]
+    pub const Stack: Self = Self(4);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSSpringLoadingHighlight {
-        #[doc(alias = "NSSpringLoadingHighlightNone")]
-        None = 0,
-        #[doc(alias = "NSSpringLoadingHighlightStandard")]
-        Standard = 1,
-        #[doc(alias = "NSSpringLoadingHighlightEmphasized")]
-        Emphasized = 2,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSDraggingFormation {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSDraggingFormation {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSDraggingContext(pub NSInteger);
+impl NSDraggingContext {
+    #[doc(alias = "NSDraggingContextOutsideApplication")]
+    pub const OutsideApplication: Self = Self(0);
+    #[doc(alias = "NSDraggingContextWithinApplication")]
+    pub const WithinApplication: Self = Self(1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSDraggingContext {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSDraggingContext {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSDraggingItemEnumerationOptions(pub NSUInteger);
+impl NSDraggingItemEnumerationOptions {
+    #[cfg(feature = "Foundation_NSObjCRuntime")]
+    pub const NSDraggingItemEnumerationConcurrent: Self =
+        Self(NSEnumerationOptions::NSEnumerationConcurrent.0);
+    pub const NSDraggingItemEnumerationClearNonenumeratedImages: Self = Self(1 << 16);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSDraggingItemEnumerationOptions {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSDraggingItemEnumerationOptions {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSSpringLoadingHighlight(pub NSInteger);
+impl NSSpringLoadingHighlight {
+    #[doc(alias = "NSSpringLoadingHighlightNone")]
+    pub const None: Self = Self(0);
+    #[doc(alias = "NSSpringLoadingHighlightStandard")]
+    pub const Standard: Self = Self(1);
+    #[doc(alias = "NSSpringLoadingHighlightEmphasized")]
+    pub const Emphasized: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSSpringLoadingHighlight {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSSpringLoadingHighlight {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_protocol!(
     pub unsafe trait NSDraggingInfo: NSObjectProtocol + IsMainThreadOnly {
@@ -285,15 +341,26 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn NSDraggingSource {}
 );
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSSpringLoadingOptions {
-        NSSpringLoadingDisabled = 0,
-        NSSpringLoadingEnabled = 1 << 0,
-        NSSpringLoadingContinuousActivation = 1 << 1,
-        NSSpringLoadingNoHover = 1 << 3,
-    }
-);
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSSpringLoadingOptions(pub NSUInteger);
+impl NSSpringLoadingOptions {
+    pub const NSSpringLoadingDisabled: Self = Self(0);
+    pub const NSSpringLoadingEnabled: Self = Self(1 << 0);
+    pub const NSSpringLoadingContinuousActivation: Self = Self(1 << 1);
+    pub const NSSpringLoadingNoHover: Self = Self(1 << 3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSSpringLoadingOptions {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSSpringLoadingOptions {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_protocol!(
     pub unsafe trait NSSpringLoadingDestination:

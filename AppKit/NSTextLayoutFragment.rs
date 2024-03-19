@@ -5,35 +5,57 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSTextLayoutFragmentEnumerationOptions {
-        #[doc(alias = "NSTextLayoutFragmentEnumerationOptionsNone")]
-        None = 0,
-        #[doc(alias = "NSTextLayoutFragmentEnumerationOptionsReverse")]
-        Reverse = 1 << 0,
-        #[doc(alias = "NSTextLayoutFragmentEnumerationOptionsEstimatesSize")]
-        EstimatesSize = 1 << 1,
-        #[doc(alias = "NSTextLayoutFragmentEnumerationOptionsEnsuresLayout")]
-        EnsuresLayout = 1 << 2,
-        #[doc(alias = "NSTextLayoutFragmentEnumerationOptionsEnsuresExtraLineFragment")]
-        EnsuresExtraLineFragment = 1 << 3,
-    }
-);
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSTextLayoutFragmentEnumerationOptions(pub NSUInteger);
+impl NSTextLayoutFragmentEnumerationOptions {
+    #[doc(alias = "NSTextLayoutFragmentEnumerationOptionsNone")]
+    pub const None: Self = Self(0);
+    #[doc(alias = "NSTextLayoutFragmentEnumerationOptionsReverse")]
+    pub const Reverse: Self = Self(1 << 0);
+    #[doc(alias = "NSTextLayoutFragmentEnumerationOptionsEstimatesSize")]
+    pub const EstimatesSize: Self = Self(1 << 1);
+    #[doc(alias = "NSTextLayoutFragmentEnumerationOptionsEnsuresLayout")]
+    pub const EnsuresLayout: Self = Self(1 << 2);
+    #[doc(alias = "NSTextLayoutFragmentEnumerationOptionsEnsuresExtraLineFragment")]
+    pub const EnsuresExtraLineFragment: Self = Self(1 << 3);
+}
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSTextLayoutFragmentState {
-        #[doc(alias = "NSTextLayoutFragmentStateNone")]
-        None = 0,
-        #[doc(alias = "NSTextLayoutFragmentStateEstimatedUsageBounds")]
-        EstimatedUsageBounds = 1,
-        #[doc(alias = "NSTextLayoutFragmentStateCalculatedUsageBounds")]
-        CalculatedUsageBounds = 2,
-        #[doc(alias = "NSTextLayoutFragmentStateLayoutAvailable")]
-        LayoutAvailable = 3,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSTextLayoutFragmentEnumerationOptions {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSTextLayoutFragmentEnumerationOptions {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSTextLayoutFragmentState(pub NSUInteger);
+impl NSTextLayoutFragmentState {
+    #[doc(alias = "NSTextLayoutFragmentStateNone")]
+    pub const None: Self = Self(0);
+    #[doc(alias = "NSTextLayoutFragmentStateEstimatedUsageBounds")]
+    pub const EstimatedUsageBounds: Self = Self(1);
+    #[doc(alias = "NSTextLayoutFragmentStateCalculatedUsageBounds")]
+    pub const CalculatedUsageBounds: Self = Self(2);
+    #[doc(alias = "NSTextLayoutFragmentStateLayoutAvailable")]
+    pub const LayoutAvailable: Self = Self(3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSTextLayoutFragmentState {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSTextLayoutFragmentState {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

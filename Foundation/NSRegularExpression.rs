@@ -3,18 +3,29 @@
 use crate::common::*;
 use crate::Foundation::*;
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSRegularExpressionOptions {
-        NSRegularExpressionCaseInsensitive = 1 << 0,
-        NSRegularExpressionAllowCommentsAndWhitespace = 1 << 1,
-        NSRegularExpressionIgnoreMetacharacters = 1 << 2,
-        NSRegularExpressionDotMatchesLineSeparators = 1 << 3,
-        NSRegularExpressionAnchorsMatchLines = 1 << 4,
-        NSRegularExpressionUseUnixLineSeparators = 1 << 5,
-        NSRegularExpressionUseUnicodeWordBoundaries = 1 << 6,
-    }
-);
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSRegularExpressionOptions(pub NSUInteger);
+impl NSRegularExpressionOptions {
+    pub const NSRegularExpressionCaseInsensitive: Self = Self(1 << 0);
+    pub const NSRegularExpressionAllowCommentsAndWhitespace: Self = Self(1 << 1);
+    pub const NSRegularExpressionIgnoreMetacharacters: Self = Self(1 << 2);
+    pub const NSRegularExpressionDotMatchesLineSeparators: Self = Self(1 << 3);
+    pub const NSRegularExpressionAnchorsMatchLines: Self = Self(1 << 4);
+    pub const NSRegularExpressionUseUnixLineSeparators: Self = Self(1 << 5);
+    pub const NSRegularExpressionUseUnicodeWordBoundaries: Self = Self(1 << 6);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSRegularExpressionOptions {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSRegularExpressionOptions {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -85,27 +96,49 @@ extern_methods!(
     }
 );
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSMatchingOptions {
-        NSMatchingReportProgress = 1 << 0,
-        NSMatchingReportCompletion = 1 << 1,
-        NSMatchingAnchored = 1 << 2,
-        NSMatchingWithTransparentBounds = 1 << 3,
-        NSMatchingWithoutAnchoringBounds = 1 << 4,
-    }
-);
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSMatchingOptions(pub NSUInteger);
+impl NSMatchingOptions {
+    pub const NSMatchingReportProgress: Self = Self(1 << 0);
+    pub const NSMatchingReportCompletion: Self = Self(1 << 1);
+    pub const NSMatchingAnchored: Self = Self(1 << 2);
+    pub const NSMatchingWithTransparentBounds: Self = Self(1 << 3);
+    pub const NSMatchingWithoutAnchoringBounds: Self = Self(1 << 4);
+}
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSMatchingFlags {
-        NSMatchingProgress = 1 << 0,
-        NSMatchingCompleted = 1 << 1,
-        NSMatchingHitEnd = 1 << 2,
-        NSMatchingRequiredEnd = 1 << 3,
-        NSMatchingInternalError = 1 << 4,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSMatchingOptions {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSMatchingOptions {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSMatchingFlags(pub NSUInteger);
+impl NSMatchingFlags {
+    pub const NSMatchingProgress: Self = Self(1 << 0);
+    pub const NSMatchingCompleted: Self = Self(1 << 1);
+    pub const NSMatchingHitEnd: Self = Self(1 << 2);
+    pub const NSMatchingRequiredEnd: Self = Self(1 << 3);
+    pub const NSMatchingInternalError: Self = Self(1 << 4);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSMatchingFlags {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSMatchingFlags {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_methods!(
     /// NSMatching

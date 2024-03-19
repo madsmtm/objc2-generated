@@ -7,49 +7,71 @@ use crate::GameController::*;
 
 pub const GCDualSenseAdaptiveTriggerDiscretePositionCount: c_uint = 10;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum GCDualSenseAdaptiveTriggerMode {
-        #[doc(alias = "GCDualSenseAdaptiveTriggerModeOff")]
-        Off = 0,
-        #[doc(alias = "GCDualSenseAdaptiveTriggerModeFeedback")]
-        Feedback = 1,
-        #[doc(alias = "GCDualSenseAdaptiveTriggerModeWeapon")]
-        Weapon = 2,
-        #[doc(alias = "GCDualSenseAdaptiveTriggerModeVibration")]
-        Vibration = 3,
-        #[doc(alias = "GCDualSenseAdaptiveTriggerModeSlopeFeedback")]
-        SlopeFeedback = 4,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct GCDualSenseAdaptiveTriggerMode(pub NSInteger);
+impl GCDualSenseAdaptiveTriggerMode {
+    #[doc(alias = "GCDualSenseAdaptiveTriggerModeOff")]
+    pub const Off: Self = Self(0);
+    #[doc(alias = "GCDualSenseAdaptiveTriggerModeFeedback")]
+    pub const Feedback: Self = Self(1);
+    #[doc(alias = "GCDualSenseAdaptiveTriggerModeWeapon")]
+    pub const Weapon: Self = Self(2);
+    #[doc(alias = "GCDualSenseAdaptiveTriggerModeVibration")]
+    pub const Vibration: Self = Self(3);
+    #[doc(alias = "GCDualSenseAdaptiveTriggerModeSlopeFeedback")]
+    pub const SlopeFeedback: Self = Self(4);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum GCDualSenseAdaptiveTriggerStatus {
-        #[doc(alias = "GCDualSenseAdaptiveTriggerStatusUnknown")]
-        Unknown = -1,
-        #[doc(alias = "GCDualSenseAdaptiveTriggerStatusFeedbackNoLoad")]
-        FeedbackNoLoad = 0,
-        #[doc(alias = "GCDualSenseAdaptiveTriggerStatusFeedbackLoadApplied")]
-        FeedbackLoadApplied = 1,
-        #[doc(alias = "GCDualSenseAdaptiveTriggerStatusWeaponReady")]
-        WeaponReady = 2,
-        #[doc(alias = "GCDualSenseAdaptiveTriggerStatusWeaponFiring")]
-        WeaponFiring = 3,
-        #[doc(alias = "GCDualSenseAdaptiveTriggerStatusWeaponFired")]
-        WeaponFired = 4,
-        #[doc(alias = "GCDualSenseAdaptiveTriggerStatusVibrationNotVibrating")]
-        VibrationNotVibrating = 5,
-        #[doc(alias = "GCDualSenseAdaptiveTriggerStatusVibrationIsVibrating")]
-        VibrationIsVibrating = 6,
-        #[doc(alias = "GCDualSenseAdaptiveTriggerStatusSlopeFeedbackReady")]
-        SlopeFeedbackReady = 7,
-        #[doc(alias = "GCDualSenseAdaptiveTriggerStatusSlopeFeedbackApplyingLoad")]
-        SlopeFeedbackApplyingLoad = 8,
-        #[doc(alias = "GCDualSenseAdaptiveTriggerStatusSlopeFeedbackFinished")]
-        SlopeFeedbackFinished = 9,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for GCDualSenseAdaptiveTriggerMode {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for GCDualSenseAdaptiveTriggerMode {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct GCDualSenseAdaptiveTriggerStatus(pub NSInteger);
+impl GCDualSenseAdaptiveTriggerStatus {
+    #[doc(alias = "GCDualSenseAdaptiveTriggerStatusUnknown")]
+    pub const Unknown: Self = Self(-1);
+    #[doc(alias = "GCDualSenseAdaptiveTriggerStatusFeedbackNoLoad")]
+    pub const FeedbackNoLoad: Self = Self(0);
+    #[doc(alias = "GCDualSenseAdaptiveTriggerStatusFeedbackLoadApplied")]
+    pub const FeedbackLoadApplied: Self = Self(1);
+    #[doc(alias = "GCDualSenseAdaptiveTriggerStatusWeaponReady")]
+    pub const WeaponReady: Self = Self(2);
+    #[doc(alias = "GCDualSenseAdaptiveTriggerStatusWeaponFiring")]
+    pub const WeaponFiring: Self = Self(3);
+    #[doc(alias = "GCDualSenseAdaptiveTriggerStatusWeaponFired")]
+    pub const WeaponFired: Self = Self(4);
+    #[doc(alias = "GCDualSenseAdaptiveTriggerStatusVibrationNotVibrating")]
+    pub const VibrationNotVibrating: Self = Self(5);
+    #[doc(alias = "GCDualSenseAdaptiveTriggerStatusVibrationIsVibrating")]
+    pub const VibrationIsVibrating: Self = Self(6);
+    #[doc(alias = "GCDualSenseAdaptiveTriggerStatusSlopeFeedbackReady")]
+    pub const SlopeFeedbackReady: Self = Self(7);
+    #[doc(alias = "GCDualSenseAdaptiveTriggerStatusSlopeFeedbackApplyingLoad")]
+    pub const SlopeFeedbackApplyingLoad: Self = Self(8);
+    #[doc(alias = "GCDualSenseAdaptiveTriggerStatusSlopeFeedbackFinished")]
+    pub const SlopeFeedbackFinished: Self = Self(9);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for GCDualSenseAdaptiveTriggerStatus {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for GCDualSenseAdaptiveTriggerStatus {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_struct!(
     #[encoding_name("?")]

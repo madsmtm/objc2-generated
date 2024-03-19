@@ -5,17 +5,27 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::StoreKit::*;
 
-ns_closed_enum!(
-    #[underlying(NSInteger)]
-    pub enum SKProductStorePromotionVisibility {
-        #[doc(alias = "SKProductStorePromotionVisibilityDefault")]
-        Default = 0,
-        #[doc(alias = "SKProductStorePromotionVisibilityShow")]
-        Show = 1,
-        #[doc(alias = "SKProductStorePromotionVisibilityHide")]
-        Hide = 2,
-    }
-);
+// NS_CLOSED_ENUM
+#[repr(isize)] // NSInteger
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub enum SKProductStorePromotionVisibility {
+    #[doc(alias = "SKProductStorePromotionVisibilityDefault")]
+    Default = 0,
+    #[doc(alias = "SKProductStorePromotionVisibilityShow")]
+    Show = 1,
+    #[doc(alias = "SKProductStorePromotionVisibilityHide")]
+    Hide = 2,
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for SKProductStorePromotionVisibility {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for SKProductStorePromotionVisibility {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

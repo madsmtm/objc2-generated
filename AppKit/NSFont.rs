@@ -290,24 +290,46 @@ pub type NSGlyph = c_uint;
 pub const NSControlGlyph: c_uint = 0x00FFFFFF;
 pub const NSNullGlyph: c_uint = 0x0;
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSFontRenderingMode {
-        NSFontDefaultRenderingMode = 0,
-        NSFontAntialiasedRenderingMode = 1,
-        NSFontIntegerAdvancementsRenderingMode = 2,
-        NSFontAntialiasedIntegerAdvancementsRenderingMode = 3,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSFontRenderingMode(pub NSUInteger);
+impl NSFontRenderingMode {
+    pub const NSFontDefaultRenderingMode: Self = Self(0);
+    pub const NSFontAntialiasedRenderingMode: Self = Self(1);
+    pub const NSFontIntegerAdvancementsRenderingMode: Self = Self(2);
+    pub const NSFontAntialiasedIntegerAdvancementsRenderingMode: Self = Self(3);
+}
 
-ns_enum!(
-    #[underlying(NSUInteger)]
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSFontRenderingMode {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSFontRenderingMode {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[deprecated]
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSMultibyteGlyphPacking(pub NSUInteger);
+impl NSMultibyteGlyphPacking {
     #[deprecated]
-    pub enum NSMultibyteGlyphPacking {
-        #[deprecated]
-        NSNativeShortGlyphPacking = 5,
-    }
-);
+    pub const NSNativeShortGlyphPacking: Self = Self(5);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSMultibyteGlyphPacking {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSMultibyteGlyphPacking {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern "C" {
     #[deprecated]

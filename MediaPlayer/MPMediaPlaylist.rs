@@ -5,19 +5,30 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::MediaPlayer::*;
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum MPMediaPlaylistAttribute {
-        #[doc(alias = "MPMediaPlaylistAttributeNone")]
-        None = 0,
-        #[doc(alias = "MPMediaPlaylistAttributeOnTheGo")]
-        OnTheGo = 1 << 0,
-        #[doc(alias = "MPMediaPlaylistAttributeSmart")]
-        Smart = 1 << 1,
-        #[doc(alias = "MPMediaPlaylistAttributeGenius")]
-        Genius = 1 << 2,
-    }
-);
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MPMediaPlaylistAttribute(pub NSUInteger);
+impl MPMediaPlaylistAttribute {
+    #[doc(alias = "MPMediaPlaylistAttributeNone")]
+    pub const None: Self = Self(0);
+    #[doc(alias = "MPMediaPlaylistAttributeOnTheGo")]
+    pub const OnTheGo: Self = Self(1 << 0);
+    #[doc(alias = "MPMediaPlaylistAttributeSmart")]
+    pub const Smart: Self = Self(1 << 1);
+    #[doc(alias = "MPMediaPlaylistAttributeGenius")]
+    pub const Genius: Self = Self(1 << 2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MPMediaPlaylistAttribute {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MPMediaPlaylistAttribute {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]

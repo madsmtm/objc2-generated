@@ -10,49 +10,60 @@ extern "C" {
     pub static GKErrorDomain: &'static NSString;
 }
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum GKErrorCode {
-        GKErrorUnknown = 1,
-        GKErrorCancelled = 2,
-        GKErrorCommunicationsFailure = 3,
-        GKErrorUserDenied = 4,
-        GKErrorInvalidCredentials = 5,
-        GKErrorNotAuthenticated = 6,
-        GKErrorAuthenticationInProgress = 7,
-        GKErrorInvalidPlayer = 8,
-        GKErrorScoreNotSet = 9,
-        GKErrorParentalControlsBlocked = 10,
-        GKErrorPlayerStatusExceedsMaximumLength = 11,
-        GKErrorPlayerStatusInvalid = 12,
-        GKErrorMatchRequestInvalid = 13,
-        GKErrorUnderage = 14,
-        GKErrorGameUnrecognized = 15,
-        GKErrorNotSupported = 16,
-        GKErrorInvalidParameter = 17,
-        GKErrorUnexpectedConnection = 18,
-        GKErrorChallengeInvalid = 19,
-        GKErrorTurnBasedMatchDataTooLarge = 20,
-        GKErrorTurnBasedTooManySessions = 21,
-        GKErrorTurnBasedInvalidParticipant = 22,
-        GKErrorTurnBasedInvalidTurn = 23,
-        GKErrorTurnBasedInvalidState = 24,
-        GKErrorInvitationsDisabled = 25,
-        GKErrorPlayerPhotoFailure = 26,
-        GKErrorUbiquityContainerUnavailable = 27,
-        GKErrorMatchNotConnected = 28,
-        GKErrorGameSessionRequestInvalid = 29,
-        GKErrorRestrictedToAutomatch = 30,
-        GKErrorAPINotAvailable = 31,
-        GKErrorNotAuthorized = 32,
-        GKErrorConnectionTimeout = 33,
-        GKErrorAPIObsolete = 34,
-        GKErrorICloudUnavailable = 35,
-        GKErrorLockdownMode = 36,
-        GKErrorAppUnlisted = 37,
-        GKErrorFriendListDescriptionMissing = 100,
-        GKErrorFriendListRestricted = 101,
-        GKErrorFriendListDenied = 102,
-        GKErrorFriendRequestNotAvailable = 103,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct GKErrorCode(pub NSInteger);
+impl GKErrorCode {
+    pub const GKErrorUnknown: Self = Self(1);
+    pub const GKErrorCancelled: Self = Self(2);
+    pub const GKErrorCommunicationsFailure: Self = Self(3);
+    pub const GKErrorUserDenied: Self = Self(4);
+    pub const GKErrorInvalidCredentials: Self = Self(5);
+    pub const GKErrorNotAuthenticated: Self = Self(6);
+    pub const GKErrorAuthenticationInProgress: Self = Self(7);
+    pub const GKErrorInvalidPlayer: Self = Self(8);
+    pub const GKErrorScoreNotSet: Self = Self(9);
+    pub const GKErrorParentalControlsBlocked: Self = Self(10);
+    pub const GKErrorPlayerStatusExceedsMaximumLength: Self = Self(11);
+    pub const GKErrorPlayerStatusInvalid: Self = Self(12);
+    pub const GKErrorMatchRequestInvalid: Self = Self(13);
+    pub const GKErrorUnderage: Self = Self(14);
+    pub const GKErrorGameUnrecognized: Self = Self(15);
+    pub const GKErrorNotSupported: Self = Self(16);
+    pub const GKErrorInvalidParameter: Self = Self(17);
+    pub const GKErrorUnexpectedConnection: Self = Self(18);
+    pub const GKErrorChallengeInvalid: Self = Self(19);
+    pub const GKErrorTurnBasedMatchDataTooLarge: Self = Self(20);
+    pub const GKErrorTurnBasedTooManySessions: Self = Self(21);
+    pub const GKErrorTurnBasedInvalidParticipant: Self = Self(22);
+    pub const GKErrorTurnBasedInvalidTurn: Self = Self(23);
+    pub const GKErrorTurnBasedInvalidState: Self = Self(24);
+    pub const GKErrorInvitationsDisabled: Self = Self(25);
+    pub const GKErrorPlayerPhotoFailure: Self = Self(26);
+    pub const GKErrorUbiquityContainerUnavailable: Self = Self(27);
+    pub const GKErrorMatchNotConnected: Self = Self(28);
+    pub const GKErrorGameSessionRequestInvalid: Self = Self(29);
+    pub const GKErrorRestrictedToAutomatch: Self = Self(30);
+    pub const GKErrorAPINotAvailable: Self = Self(31);
+    pub const GKErrorNotAuthorized: Self = Self(32);
+    pub const GKErrorConnectionTimeout: Self = Self(33);
+    pub const GKErrorAPIObsolete: Self = Self(34);
+    pub const GKErrorICloudUnavailable: Self = Self(35);
+    pub const GKErrorLockdownMode: Self = Self(36);
+    pub const GKErrorAppUnlisted: Self = Self(37);
+    pub const GKErrorFriendListDescriptionMissing: Self = Self(100);
+    pub const GKErrorFriendListRestricted: Self = Self(101);
+    pub const GKErrorFriendListDenied: Self = Self(102);
+    pub const GKErrorFriendRequestNotAvailable: Self = Self(103);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for GKErrorCode {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for GKErrorCode {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}

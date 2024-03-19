@@ -14,22 +14,44 @@ pub static NSAppKitVersionNumberWithColumnResizingBrowser: NSAppKitVersion = 685
 #[cfg(feature = "Foundation_NSString")]
 pub type NSBrowserColumnsAutosaveName = NSString;
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSBrowserColumnResizingType {
-        NSBrowserNoColumnResizing = 0,
-        NSBrowserAutoColumnResizing = 1,
-        NSBrowserUserColumnResizing = 2,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSBrowserColumnResizingType(pub NSUInteger);
+impl NSBrowserColumnResizingType {
+    pub const NSBrowserNoColumnResizing: Self = Self(0);
+    pub const NSBrowserAutoColumnResizing: Self = Self(1);
+    pub const NSBrowserUserColumnResizing: Self = Self(2);
+}
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSBrowserDropOperation {
-        NSBrowserDropOn = 0,
-        NSBrowserDropAbove = 1,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSBrowserColumnResizingType {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSBrowserColumnResizingType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSBrowserDropOperation(pub NSUInteger);
+impl NSBrowserDropOperation {
+    pub const NSBrowserDropOn: Self = Self(0);
+    pub const NSBrowserDropAbove: Self = Self(1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSBrowserDropOperation {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSBrowserDropOperation {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

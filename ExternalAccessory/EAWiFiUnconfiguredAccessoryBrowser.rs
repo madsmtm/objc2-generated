@@ -4,31 +4,53 @@ use crate::common::*;
 use crate::ExternalAccessory::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum EAWiFiUnconfiguredAccessoryBrowserState {
-        #[doc(alias = "EAWiFiUnconfiguredAccessoryBrowserStateWiFiUnavailable")]
-        WiFiUnavailable = 0,
-        #[doc(alias = "EAWiFiUnconfiguredAccessoryBrowserStateStopped")]
-        Stopped = 1,
-        #[doc(alias = "EAWiFiUnconfiguredAccessoryBrowserStateSearching")]
-        Searching = 2,
-        #[doc(alias = "EAWiFiUnconfiguredAccessoryBrowserStateConfiguring")]
-        Configuring = 3,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct EAWiFiUnconfiguredAccessoryBrowserState(pub NSInteger);
+impl EAWiFiUnconfiguredAccessoryBrowserState {
+    #[doc(alias = "EAWiFiUnconfiguredAccessoryBrowserStateWiFiUnavailable")]
+    pub const WiFiUnavailable: Self = Self(0);
+    #[doc(alias = "EAWiFiUnconfiguredAccessoryBrowserStateStopped")]
+    pub const Stopped: Self = Self(1);
+    #[doc(alias = "EAWiFiUnconfiguredAccessoryBrowserStateSearching")]
+    pub const Searching: Self = Self(2);
+    #[doc(alias = "EAWiFiUnconfiguredAccessoryBrowserStateConfiguring")]
+    pub const Configuring: Self = Self(3);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum EAWiFiUnconfiguredAccessoryConfigurationStatus {
-        #[doc(alias = "EAWiFiUnconfiguredAccessoryConfigurationStatusSuccess")]
-        Success = 0,
-        #[doc(alias = "EAWiFiUnconfiguredAccessoryConfigurationStatusUserCancelledConfiguration")]
-        UserCancelledConfiguration = 1,
-        #[doc(alias = "EAWiFiUnconfiguredAccessoryConfigurationStatusFailed")]
-        Failed = 2,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for EAWiFiUnconfiguredAccessoryBrowserState {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for EAWiFiUnconfiguredAccessoryBrowserState {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct EAWiFiUnconfiguredAccessoryConfigurationStatus(pub NSInteger);
+impl EAWiFiUnconfiguredAccessoryConfigurationStatus {
+    #[doc(alias = "EAWiFiUnconfiguredAccessoryConfigurationStatusSuccess")]
+    pub const Success: Self = Self(0);
+    #[doc(alias = "EAWiFiUnconfiguredAccessoryConfigurationStatusUserCancelledConfiguration")]
+    pub const UserCancelledConfiguration: Self = Self(1);
+    #[doc(alias = "EAWiFiUnconfiguredAccessoryConfigurationStatusFailed")]
+    pub const Failed: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for EAWiFiUnconfiguredAccessoryConfigurationStatus {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for EAWiFiUnconfiguredAccessoryConfigurationStatus {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

@@ -5,17 +5,28 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSAlertStyle {
-        #[doc(alias = "NSAlertStyleWarning")]
-        Warning = 0,
-        #[doc(alias = "NSAlertStyleInformational")]
-        Informational = 1,
-        #[doc(alias = "NSAlertStyleCritical")]
-        Critical = 2,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSAlertStyle(pub NSUInteger);
+impl NSAlertStyle {
+    #[doc(alias = "NSAlertStyleWarning")]
+    pub const Warning: Self = Self(0);
+    #[doc(alias = "NSAlertStyleInformational")]
+    pub const Informational: Self = Self(1);
+    #[doc(alias = "NSAlertStyleCritical")]
+    pub const Critical: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSAlertStyle {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSAlertStyle {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 #[cfg(feature = "AppKit_NSApplication")]
 pub static NSAlertFirstButtonReturn: NSModalResponse = 1000;

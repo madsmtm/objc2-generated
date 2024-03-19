@@ -5,25 +5,47 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::GameKit::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum GKConnectionState {
-        #[doc(alias = "GKConnectionStateNotConnected")]
-        NotConnected = 0,
-        #[doc(alias = "GKConnectionStateConnected")]
-        Connected = 1,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct GKConnectionState(pub NSInteger);
+impl GKConnectionState {
+    #[doc(alias = "GKConnectionStateNotConnected")]
+    pub const NotConnected: Self = Self(0);
+    #[doc(alias = "GKConnectionStateConnected")]
+    pub const Connected: Self = Self(1);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum GKTransportType {
-        #[doc(alias = "GKTransportTypeUnreliable")]
-        Unreliable = 0,
-        #[doc(alias = "GKTransportTypeReliable")]
-        Reliable = 1,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for GKConnectionState {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for GKConnectionState {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct GKTransportType(pub NSInteger);
+impl GKTransportType {
+    #[doc(alias = "GKTransportTypeUnreliable")]
+    pub const Unreliable: Self = Self(0);
+    #[doc(alias = "GKTransportTypeReliable")]
+    pub const Reliable: Self = Self(1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for GKTransportType {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for GKTransportType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

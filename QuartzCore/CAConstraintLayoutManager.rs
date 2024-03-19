@@ -4,19 +4,30 @@ use crate::common::*;
 use crate::Foundation::*;
 use crate::QuartzCore::*;
 
-ns_enum!(
-    #[underlying(c_int)]
-    pub enum CAConstraintAttribute {
-        kCAConstraintMinX = 0,
-        kCAConstraintMidX = 1,
-        kCAConstraintMaxX = 2,
-        kCAConstraintWidth = 3,
-        kCAConstraintMinY = 4,
-        kCAConstraintMidY = 5,
-        kCAConstraintMaxY = 6,
-        kCAConstraintHeight = 7,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct CAConstraintAttribute(pub c_int);
+impl CAConstraintAttribute {
+    pub const kCAConstraintMinX: Self = Self(0);
+    pub const kCAConstraintMidX: Self = Self(1);
+    pub const kCAConstraintMaxX: Self = Self(2);
+    pub const kCAConstraintWidth: Self = Self(3);
+    pub const kCAConstraintMinY: Self = Self(4);
+    pub const kCAConstraintMidY: Self = Self(5);
+    pub const kCAConstraintMaxY: Self = Self(6);
+    pub const kCAConstraintHeight: Self = Self(7);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for CAConstraintAttribute {
+    const ENCODING: Encoding = c_int::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for CAConstraintAttribute {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_methods!(
     /// CAConstraintLayoutManager

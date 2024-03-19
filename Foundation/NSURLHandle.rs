@@ -58,15 +58,26 @@ extern "C" {
     pub static NSFTPPropertyFTPProxy: Option<&'static NSString>;
 }
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSURLHandleStatus {
-        NSURLHandleNotLoaded = 0,
-        NSURLHandleLoadSucceeded = 1,
-        NSURLHandleLoadInProgress = 2,
-        NSURLHandleLoadFailed = 3,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSURLHandleStatus(pub NSUInteger);
+impl NSURLHandleStatus {
+    pub const NSURLHandleNotLoaded: Self = Self(0);
+    pub const NSURLHandleLoadSucceeded: Self = Self(1);
+    pub const NSURLHandleLoadInProgress: Self = Self(2);
+    pub const NSURLHandleLoadFailed: Self = Self(3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSURLHandleStatus {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSURLHandleStatus {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_protocol!(
     #[deprecated]

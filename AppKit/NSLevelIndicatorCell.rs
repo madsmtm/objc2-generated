@@ -5,19 +5,30 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSLevelIndicatorStyle {
-        #[doc(alias = "NSLevelIndicatorStyleRelevancy")]
-        Relevancy = 0,
-        #[doc(alias = "NSLevelIndicatorStyleContinuousCapacity")]
-        ContinuousCapacity = 1,
-        #[doc(alias = "NSLevelIndicatorStyleDiscreteCapacity")]
-        DiscreteCapacity = 2,
-        #[doc(alias = "NSLevelIndicatorStyleRating")]
-        Rating = 3,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSLevelIndicatorStyle(pub NSUInteger);
+impl NSLevelIndicatorStyle {
+    #[doc(alias = "NSLevelIndicatorStyleRelevancy")]
+    pub const Relevancy: Self = Self(0);
+    #[doc(alias = "NSLevelIndicatorStyleContinuousCapacity")]
+    pub const ContinuousCapacity: Self = Self(1);
+    #[doc(alias = "NSLevelIndicatorStyleDiscreteCapacity")]
+    pub const DiscreteCapacity: Self = Self(2);
+    #[doc(alias = "NSLevelIndicatorStyleRating")]
+    pub const Rating: Self = Self(3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSLevelIndicatorStyle {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSLevelIndicatorStyle {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

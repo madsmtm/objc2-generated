@@ -8,50 +8,70 @@ use crate::Foundation::*;
 #[cfg(feature = "Foundation_NSString")]
 pub type NSToolbarIdentifier = NSString;
 
+// NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_extensible_enum!(
-    pub type NSToolbarItemIdentifier = NSString;
-);
+pub type NSToolbarItemIdentifier = NSString;
 
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type NSToolbarUserInfoKey = NSString;
-);
+pub type NSToolbarUserInfoKey = NSString;
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]
     pub static NSToolbarItemKey: &'static NSToolbarUserInfoKey;
 }
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSToolbarDisplayMode {
-        #[doc(alias = "NSToolbarDisplayModeDefault")]
-        Default = 0,
-        #[doc(alias = "NSToolbarDisplayModeIconAndLabel")]
-        IconAndLabel = 1,
-        #[doc(alias = "NSToolbarDisplayModeIconOnly")]
-        IconOnly = 2,
-        #[doc(alias = "NSToolbarDisplayModeLabelOnly")]
-        LabelOnly = 3,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSToolbarDisplayMode(pub NSUInteger);
+impl NSToolbarDisplayMode {
+    #[doc(alias = "NSToolbarDisplayModeDefault")]
+    pub const Default: Self = Self(0);
+    #[doc(alias = "NSToolbarDisplayModeIconAndLabel")]
+    pub const IconAndLabel: Self = Self(1);
+    #[doc(alias = "NSToolbarDisplayModeIconOnly")]
+    pub const IconOnly: Self = Self(2);
+    #[doc(alias = "NSToolbarDisplayModeLabelOnly")]
+    pub const LabelOnly: Self = Self(3);
+}
 
-ns_enum!(
-    #[underlying(NSUInteger)]
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSToolbarDisplayMode {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSToolbarDisplayMode {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[deprecated = "NSToolbarSizeMode is no longer recommended and will be ignored in the future"]
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSToolbarSizeMode(pub NSUInteger);
+impl NSToolbarSizeMode {
     #[deprecated = "NSToolbarSizeMode is no longer recommended and will be ignored in the future"]
-    pub enum NSToolbarSizeMode {
-        #[deprecated = "NSToolbarSizeMode is no longer recommended and will be ignored in the future"]
-        #[doc(alias = "NSToolbarSizeModeDefault")]
-        Default = 0,
-        #[deprecated = "NSToolbarSizeMode is no longer recommended and will be ignored in the future"]
-        #[doc(alias = "NSToolbarSizeModeRegular")]
-        Regular = 1,
-        #[deprecated = "NSToolbarSizeMode is no longer recommended and will be ignored in the future"]
-        #[doc(alias = "NSToolbarSizeModeSmall")]
-        Small = 2,
-    }
-);
+    #[doc(alias = "NSToolbarSizeModeDefault")]
+    pub const Default: Self = Self(0);
+    #[deprecated = "NSToolbarSizeMode is no longer recommended and will be ignored in the future"]
+    #[doc(alias = "NSToolbarSizeModeRegular")]
+    pub const Regular: Self = Self(1);
+    #[deprecated = "NSToolbarSizeMode is no longer recommended and will be ignored in the future"]
+    #[doc(alias = "NSToolbarSizeModeSmall")]
+    pub const Small: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSToolbarSizeMode {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSToolbarSizeMode {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

@@ -5,15 +5,13 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type NSSpeechSynthesizerVoiceName = NSString;
-);
+pub type NSSpeechSynthesizerVoiceName = NSString;
 
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type NSVoiceAttributeKey = NSString;
-);
+pub type NSVoiceAttributeKey = NSString;
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]
@@ -55,10 +53,9 @@ extern "C" {
     pub static NSVoiceIndividuallySpokenCharacters: &'static NSVoiceAttributeKey;
 }
 
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type NSSpeechDictionaryKey = NSString;
-);
+pub type NSSpeechDictionaryKey = NSString;
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]
@@ -90,10 +87,9 @@ extern "C" {
     pub static NSSpeechDictionaryEntryPhonemes: &'static NSSpeechDictionaryKey;
 }
 
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type NSVoiceGenderName = NSString;
-);
+pub type NSVoiceGenderName = NSString;
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]
@@ -115,10 +111,9 @@ extern "C" {
     pub static NSVoiceGenderNeutral: &'static NSVoiceGenderName;
 }
 
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type NSSpeechPropertyKey = NSString;
-);
+pub type NSSpeechPropertyKey = NSString;
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]
@@ -205,17 +200,28 @@ extern "C" {
     pub static NSVoiceLanguage: &'static NSVoiceAttributeKey;
 }
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSSpeechBoundary {
-        #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
-        NSSpeechImmediateBoundary = 0,
-        #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
-        NSSpeechWordBoundary = 1,
-        #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
-        NSSpeechSentenceBoundary = 2,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSSpeechBoundary(pub NSUInteger);
+impl NSSpeechBoundary {
+    #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
+    pub const NSSpeechImmediateBoundary: Self = Self(0);
+    #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
+    pub const NSSpeechWordBoundary: Self = Self(1);
+    #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
+    pub const NSSpeechSentenceBoundary: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSSpeechBoundary {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSSpeechBoundary {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -429,10 +435,9 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn NSSpeechSynthesizerDelegate {}
 );
 
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type NSSpeechMode = NSString;
-);
+pub type NSSpeechMode = NSString;
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]
@@ -454,10 +459,9 @@ extern "C" {
     pub static NSSpeechModeLiteral: &'static NSSpeechMode;
 }
 
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type NSSpeechStatusKey = NSString;
-);
+pub type NSSpeechStatusKey = NSString;
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]
@@ -479,10 +483,9 @@ extern "C" {
     pub static NSSpeechStatusPhonemeCode: &'static NSSpeechStatusKey;
 }
 
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type NSSpeechErrorKey = NSString;
-);
+pub type NSSpeechErrorKey = NSString;
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]
@@ -509,10 +512,9 @@ extern "C" {
     pub static NSSpeechErrorNewestCharacterOffset: &'static NSSpeechErrorKey;
 }
 
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type NSSpeechSynthesizerInfoKey = NSString;
-);
+pub type NSSpeechSynthesizerInfoKey = NSString;
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]
@@ -524,10 +526,9 @@ extern "C" {
     pub static NSSpeechSynthesizerInfoVersion: &'static NSSpeechSynthesizerInfoKey;
 }
 
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type NSSpeechPhonemeInfoKey = NSString;
-);
+pub type NSSpeechPhonemeInfoKey = NSString;
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]
@@ -554,10 +555,9 @@ extern "C" {
     pub static NSSpeechPhonemeInfoHiliteEnd: &'static NSSpeechPhonemeInfoKey;
 }
 
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type NSSpeechCommandDelimiterKey = NSString;
-);
+pub type NSSpeechCommandDelimiterKey = NSString;
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]

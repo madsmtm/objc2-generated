@@ -4,70 +4,114 @@ use crate::common::*;
 use crate::Foundation::*;
 use crate::LocalAuthentication::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum LAPolicy {
-        #[doc(alias = "LAPolicyDeviceOwnerAuthenticationWithBiometrics")]
-        DeviceOwnerAuthenticationWithBiometrics = 1,
-        #[doc(alias = "LAPolicyDeviceOwnerAuthentication")]
-        DeviceOwnerAuthentication = 2,
-        #[doc(alias = "LAPolicyDeviceOwnerAuthenticationWithWatch")]
-        DeviceOwnerAuthenticationWithWatch = 3,
-        #[doc(alias = "LAPolicyDeviceOwnerAuthenticationWithBiometricsOrWatch")]
-        DeviceOwnerAuthenticationWithBiometricsOrWatch = 4,
-        #[doc(alias = "LAPolicyDeviceOwnerAuthenticationWithWristDetection")]
-        DeviceOwnerAuthenticationWithWristDetection = 5,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct LAPolicy(pub NSInteger);
+impl LAPolicy {
+    #[doc(alias = "LAPolicyDeviceOwnerAuthenticationWithBiometrics")]
+    pub const DeviceOwnerAuthenticationWithBiometrics: Self = Self(1);
+    #[doc(alias = "LAPolicyDeviceOwnerAuthentication")]
+    pub const DeviceOwnerAuthentication: Self = Self(2);
+    #[doc(alias = "LAPolicyDeviceOwnerAuthenticationWithWatch")]
+    pub const DeviceOwnerAuthenticationWithWatch: Self = Self(3);
+    #[doc(alias = "LAPolicyDeviceOwnerAuthenticationWithBiometricsOrWatch")]
+    pub const DeviceOwnerAuthenticationWithBiometricsOrWatch: Self = Self(4);
+    #[doc(alias = "LAPolicyDeviceOwnerAuthenticationWithWristDetection")]
+    pub const DeviceOwnerAuthenticationWithWristDetection: Self = Self(5);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for LAPolicy {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for LAPolicy {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern "C" {
     #[cfg(feature = "Foundation_NSDate")]
     pub static LATouchIDAuthenticationMaximumAllowableReuseDuration: NSTimeInterval;
 }
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum LACredentialType {
-        #[doc(alias = "LACredentialTypeApplicationPassword")]
-        ApplicationPassword = 0,
-        #[doc(alias = "LACredentialTypeSmartCardPIN")]
-        SmartCardPIN = -3,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct LACredentialType(pub NSInteger);
+impl LACredentialType {
+    #[doc(alias = "LACredentialTypeApplicationPassword")]
+    pub const ApplicationPassword: Self = Self(0);
+    #[doc(alias = "LACredentialTypeSmartCardPIN")]
+    pub const SmartCardPIN: Self = Self(-3);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum LAAccessControlOperation {
-        #[doc(alias = "LAAccessControlOperationCreateItem")]
-        CreateItem = 0,
-        #[doc(alias = "LAAccessControlOperationUseItem")]
-        UseItem = 1,
-        #[doc(alias = "LAAccessControlOperationCreateKey")]
-        CreateKey = 2,
-        #[doc(alias = "LAAccessControlOperationUseKeySign")]
-        UseKeySign = 3,
-        #[doc(alias = "LAAccessControlOperationUseKeyDecrypt")]
-        UseKeyDecrypt = 4,
-        #[doc(alias = "LAAccessControlOperationUseKeyKeyExchange")]
-        UseKeyKeyExchange = 5,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for LACredentialType {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum LABiometryType {
-        #[doc(alias = "LABiometryTypeNone")]
-        None = 0,
-        #[deprecated]
-        LABiometryNone = LABiometryType::None.0,
-        #[doc(alias = "LABiometryTypeTouchID")]
-        TouchID = 1,
-        #[doc(alias = "LABiometryTypeFaceID")]
-        FaceID = 2,
-        #[doc(alias = "LABiometryTypeOpticID")]
-        OpticID = 4,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for LACredentialType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct LAAccessControlOperation(pub NSInteger);
+impl LAAccessControlOperation {
+    #[doc(alias = "LAAccessControlOperationCreateItem")]
+    pub const CreateItem: Self = Self(0);
+    #[doc(alias = "LAAccessControlOperationUseItem")]
+    pub const UseItem: Self = Self(1);
+    #[doc(alias = "LAAccessControlOperationCreateKey")]
+    pub const CreateKey: Self = Self(2);
+    #[doc(alias = "LAAccessControlOperationUseKeySign")]
+    pub const UseKeySign: Self = Self(3);
+    #[doc(alias = "LAAccessControlOperationUseKeyDecrypt")]
+    pub const UseKeyDecrypt: Self = Self(4);
+    #[doc(alias = "LAAccessControlOperationUseKeyKeyExchange")]
+    pub const UseKeyKeyExchange: Self = Self(5);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for LAAccessControlOperation {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for LAAccessControlOperation {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct LABiometryType(pub NSInteger);
+impl LABiometryType {
+    #[doc(alias = "LABiometryTypeNone")]
+    pub const None: Self = Self(0);
+    #[deprecated]
+    pub const LABiometryNone: Self = Self(LABiometryType::None.0);
+    #[doc(alias = "LABiometryTypeTouchID")]
+    pub const TouchID: Self = Self(1);
+    #[doc(alias = "LABiometryTypeFaceID")]
+    pub const FaceID: Self = Self(2);
+    #[doc(alias = "LABiometryTypeOpticID")]
+    pub const OpticID: Self = Self(4);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for LABiometryType {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for LABiometryType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

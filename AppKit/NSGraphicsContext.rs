@@ -5,10 +5,9 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type NSGraphicsContextAttributeKey = NSString;
-);
+pub type NSGraphicsContextAttributeKey = NSString;
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]
@@ -21,10 +20,9 @@ extern "C" {
         &'static NSGraphicsContextAttributeKey;
 }
 
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type NSGraphicsContextRepresentationFormatName = NSString;
-);
+pub type NSGraphicsContextRepresentationFormatName = NSString;
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]
@@ -36,21 +34,32 @@ extern "C" {
     pub static NSGraphicsContextPDFFormat: &'static NSGraphicsContextRepresentationFormatName;
 }
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSImageInterpolation {
-        #[doc(alias = "NSImageInterpolationDefault")]
-        Default = 0,
-        #[doc(alias = "NSImageInterpolationNone")]
-        None = 1,
-        #[doc(alias = "NSImageInterpolationLow")]
-        Low = 2,
-        #[doc(alias = "NSImageInterpolationMedium")]
-        Medium = 4,
-        #[doc(alias = "NSImageInterpolationHigh")]
-        High = 3,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSImageInterpolation(pub NSUInteger);
+impl NSImageInterpolation {
+    #[doc(alias = "NSImageInterpolationDefault")]
+    pub const Default: Self = Self(0);
+    #[doc(alias = "NSImageInterpolationNone")]
+    pub const None: Self = Self(1);
+    #[doc(alias = "NSImageInterpolationLow")]
+    pub const Low: Self = Self(2);
+    #[doc(alias = "NSImageInterpolationMedium")]
+    pub const Medium: Self = Self(4);
+    #[doc(alias = "NSImageInterpolationHigh")]
+    pub const High: Self = Self(3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSImageInterpolation {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSImageInterpolation {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

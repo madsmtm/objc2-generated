@@ -5,76 +5,120 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::GameKit::*;
 
-ns_enum!(
-    #[underlying(c_int)]
+// NS_ENUM
+#[deprecated]
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct GKSendDataMode(pub c_int);
+impl GKSendDataMode {
     #[deprecated]
-    pub enum GKSendDataMode {
-        #[deprecated]
-        GKSendDataReliable = 0,
-        #[deprecated]
-        GKSendDataUnreliable = 1,
-    }
-);
+    pub const GKSendDataReliable: Self = Self(0);
+    #[deprecated]
+    pub const GKSendDataUnreliable: Self = Self(1);
+}
 
-ns_enum!(
-    #[underlying(c_int)]
-    #[deprecated]
-    pub enum GKSessionMode {
-        #[deprecated]
-        #[doc(alias = "GKSessionModeServer")]
-        Server = 0,
-        #[deprecated]
-        #[doc(alias = "GKSessionModeClient")]
-        Client = 1,
-        #[deprecated]
-        #[doc(alias = "GKSessionModePeer")]
-        Peer = 2,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for GKSendDataMode {
+    const ENCODING: Encoding = c_int::ENCODING;
+}
 
-ns_enum!(
-    #[underlying(c_int)]
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for GKSendDataMode {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[deprecated]
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct GKSessionMode(pub c_int);
+impl GKSessionMode {
     #[deprecated]
-    pub enum GKPeerConnectionState {
-        #[deprecated]
-        GKPeerStateAvailable = 0,
-        #[deprecated]
-        GKPeerStateUnavailable = 1,
-        #[deprecated]
-        GKPeerStateConnected = 2,
-        #[deprecated]
-        GKPeerStateDisconnected = 3,
-        #[deprecated]
-        GKPeerStateConnecting = 4,
-        #[deprecated]
-        GKPeerStateConnectedRelay = 5,
-    }
-);
+    #[doc(alias = "GKSessionModeServer")]
+    pub const Server: Self = Self(0);
+    #[deprecated]
+    #[doc(alias = "GKSessionModeClient")]
+    pub const Client: Self = Self(1);
+    #[deprecated]
+    #[doc(alias = "GKSessionModePeer")]
+    pub const Peer: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for GKSessionMode {
+    const ENCODING: Encoding = c_int::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for GKSessionMode {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[deprecated]
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct GKPeerConnectionState(pub c_int);
+impl GKPeerConnectionState {
+    #[deprecated]
+    pub const GKPeerStateAvailable: Self = Self(0);
+    #[deprecated]
+    pub const GKPeerStateUnavailable: Self = Self(1);
+    #[deprecated]
+    pub const GKPeerStateConnected: Self = Self(2);
+    #[deprecated]
+    pub const GKPeerStateDisconnected: Self = Self(3);
+    #[deprecated]
+    pub const GKPeerStateConnecting: Self = Self(4);
+    #[deprecated]
+    pub const GKPeerStateConnectedRelay: Self = Self(5);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for GKPeerConnectionState {
+    const ENCODING: Encoding = c_int::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for GKPeerConnectionState {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]
     pub static GKVoiceChatServiceErrorDomain: Option<&'static NSString>;
 }
 
-ns_enum!(
-    #[underlying(c_int)]
-    pub enum GKVoiceChatServiceError {
-        GKVoiceChatServiceInternalError = 32000,
-        GKVoiceChatServiceNoRemotePacketsError = 32001,
-        GKVoiceChatServiceUnableToConnectError = 32002,
-        GKVoiceChatServiceRemoteParticipantHangupError = 32003,
-        GKVoiceChatServiceInvalidCallIDError = 32004,
-        GKVoiceChatServiceAudioUnavailableError = 32005,
-        GKVoiceChatServiceUninitializedClientError = 32006,
-        GKVoiceChatServiceClientMissingRequiredMethodsError = 32007,
-        GKVoiceChatServiceRemoteParticipantBusyError = 32008,
-        GKVoiceChatServiceRemoteParticipantCancelledError = 32009,
-        GKVoiceChatServiceRemoteParticipantResponseInvalidError = 32010,
-        GKVoiceChatServiceRemoteParticipantDeclinedInviteError = 32011,
-        GKVoiceChatServiceMethodCurrentlyInvalidError = 32012,
-        GKVoiceChatServiceNetworkConfigurationError = 32013,
-        GKVoiceChatServiceUnsupportedRemoteVersionError = 32014,
-        GKVoiceChatServiceOutOfMemoryError = 32015,
-        GKVoiceChatServiceInvalidParameterError = 32016,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct GKVoiceChatServiceError(pub c_int);
+impl GKVoiceChatServiceError {
+    pub const GKVoiceChatServiceInternalError: Self = Self(32000);
+    pub const GKVoiceChatServiceNoRemotePacketsError: Self = Self(32001);
+    pub const GKVoiceChatServiceUnableToConnectError: Self = Self(32002);
+    pub const GKVoiceChatServiceRemoteParticipantHangupError: Self = Self(32003);
+    pub const GKVoiceChatServiceInvalidCallIDError: Self = Self(32004);
+    pub const GKVoiceChatServiceAudioUnavailableError: Self = Self(32005);
+    pub const GKVoiceChatServiceUninitializedClientError: Self = Self(32006);
+    pub const GKVoiceChatServiceClientMissingRequiredMethodsError: Self = Self(32007);
+    pub const GKVoiceChatServiceRemoteParticipantBusyError: Self = Self(32008);
+    pub const GKVoiceChatServiceRemoteParticipantCancelledError: Self = Self(32009);
+    pub const GKVoiceChatServiceRemoteParticipantResponseInvalidError: Self = Self(32010);
+    pub const GKVoiceChatServiceRemoteParticipantDeclinedInviteError: Self = Self(32011);
+    pub const GKVoiceChatServiceMethodCurrentlyInvalidError: Self = Self(32012);
+    pub const GKVoiceChatServiceNetworkConfigurationError: Self = Self(32013);
+    pub const GKVoiceChatServiceUnsupportedRemoteVersionError: Self = Self(32014);
+    pub const GKVoiceChatServiceOutOfMemoryError: Self = Self(32015);
+    pub const GKVoiceChatServiceInvalidParameterError: Self = Self(32016);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for GKVoiceChatServiceError {
+    const ENCODING: Encoding = c_int::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for GKVoiceChatServiceError {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}

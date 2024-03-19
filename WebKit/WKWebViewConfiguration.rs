@@ -5,25 +5,47 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::WebKit::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum WKUserInterfaceDirectionPolicy {
-        #[doc(alias = "WKUserInterfaceDirectionPolicyContent")]
-        Content = 0,
-        #[doc(alias = "WKUserInterfaceDirectionPolicySystem")]
-        System = 1,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct WKUserInterfaceDirectionPolicy(pub NSInteger);
+impl WKUserInterfaceDirectionPolicy {
+    #[doc(alias = "WKUserInterfaceDirectionPolicyContent")]
+    pub const Content: Self = Self(0);
+    #[doc(alias = "WKUserInterfaceDirectionPolicySystem")]
+    pub const System: Self = Self(1);
+}
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum WKAudiovisualMediaTypes {
-        WKAudiovisualMediaTypeNone = 0,
-        WKAudiovisualMediaTypeAudio = 1 << 0,
-        WKAudiovisualMediaTypeVideo = 1 << 1,
-        WKAudiovisualMediaTypeAll = NSUIntegerMax as _,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for WKUserInterfaceDirectionPolicy {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for WKUserInterfaceDirectionPolicy {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct WKAudiovisualMediaTypes(pub NSUInteger);
+impl WKAudiovisualMediaTypes {
+    pub const WKAudiovisualMediaTypeNone: Self = Self(0);
+    pub const WKAudiovisualMediaTypeAudio: Self = Self(1 << 0);
+    pub const WKAudiovisualMediaTypeVideo: Self = Self(1 << 1);
+    pub const WKAudiovisualMediaTypeAll: Self = Self(NSUIntegerMax as _);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for WKAudiovisualMediaTypes {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for WKAudiovisualMediaTypes {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

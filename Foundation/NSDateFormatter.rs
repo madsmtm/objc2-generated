@@ -3,26 +3,48 @@
 use crate::common::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSDateFormatterStyle {
-        NSDateFormatterNoStyle = 0,
-        NSDateFormatterShortStyle = 1,
-        NSDateFormatterMediumStyle = 2,
-        NSDateFormatterLongStyle = 3,
-        NSDateFormatterFullStyle = 4,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSDateFormatterStyle(pub NSUInteger);
+impl NSDateFormatterStyle {
+    pub const NSDateFormatterNoStyle: Self = Self(0);
+    pub const NSDateFormatterShortStyle: Self = Self(1);
+    pub const NSDateFormatterMediumStyle: Self = Self(2);
+    pub const NSDateFormatterLongStyle: Self = Self(3);
+    pub const NSDateFormatterFullStyle: Self = Self(4);
+}
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSDateFormatterBehavior {
-        #[doc(alias = "NSDateFormatterBehaviorDefault")]
-        Default = 0,
-        NSDateFormatterBehavior10_0 = 1000,
-        NSDateFormatterBehavior10_4 = 1040,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSDateFormatterStyle {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSDateFormatterStyle {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSDateFormatterBehavior(pub NSUInteger);
+impl NSDateFormatterBehavior {
+    #[doc(alias = "NSDateFormatterBehaviorDefault")]
+    pub const Default: Self = Self(0);
+    pub const NSDateFormatterBehavior10_0: Self = Self(1000);
+    pub const NSDateFormatterBehavior10_4: Self = Self(1040);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSDateFormatterBehavior {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSDateFormatterBehavior {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

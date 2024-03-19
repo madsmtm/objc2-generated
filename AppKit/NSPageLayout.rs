@@ -5,15 +5,26 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSPageLayoutResult {
-        #[doc(alias = "NSPageLayoutResultCancelled")]
-        Cancelled = 0,
-        #[doc(alias = "NSPageLayoutResultChanged")]
-        Changed = 1,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSPageLayoutResult(pub NSInteger);
+impl NSPageLayoutResult {
+    #[doc(alias = "NSPageLayoutResultCancelled")]
+    pub const Cancelled: Self = Self(0);
+    #[doc(alias = "NSPageLayoutResultChanged")]
+    pub const Changed: Self = Self(1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSPageLayoutResult {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSPageLayoutResult {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

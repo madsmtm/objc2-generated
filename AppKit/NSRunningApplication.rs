@@ -5,26 +5,48 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSApplicationActivationOptions {
-        NSApplicationActivateAllWindows = 1 << 0,
-        #[deprecated = "ignoringOtherApps is deprecated in macOS 14 and will have no effect."]
-        NSApplicationActivateIgnoringOtherApps = 1 << 1,
-    }
-);
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSApplicationActivationOptions(pub NSUInteger);
+impl NSApplicationActivationOptions {
+    pub const NSApplicationActivateAllWindows: Self = Self(1 << 0);
+    #[deprecated = "ignoringOtherApps is deprecated in macOS 14 and will have no effect."]
+    pub const NSApplicationActivateIgnoringOtherApps: Self = Self(1 << 1);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSApplicationActivationPolicy {
-        #[doc(alias = "NSApplicationActivationPolicyRegular")]
-        Regular = 0,
-        #[doc(alias = "NSApplicationActivationPolicyAccessory")]
-        Accessory = 1,
-        #[doc(alias = "NSApplicationActivationPolicyProhibited")]
-        Prohibited = 2,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSApplicationActivationOptions {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSApplicationActivationOptions {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSApplicationActivationPolicy(pub NSInteger);
+impl NSApplicationActivationPolicy {
+    #[doc(alias = "NSApplicationActivationPolicyRegular")]
+    pub const Regular: Self = Self(0);
+    #[doc(alias = "NSApplicationActivationPolicyAccessory")]
+    pub const Accessory: Self = Self(1);
+    #[doc(alias = "NSApplicationActivationPolicyProhibited")]
+    pub const Prohibited: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSApplicationActivationPolicy {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSApplicationActivationPolicy {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

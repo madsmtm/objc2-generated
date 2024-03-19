@@ -4,19 +4,30 @@ use crate::common::*;
 use crate::ClassKit::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum CLSBinaryValueType {
-        #[doc(alias = "CLSBinaryValueTypeTrueFalse")]
-        TrueFalse = 0,
-        #[doc(alias = "CLSBinaryValueTypePassFail")]
-        PassFail = 1,
-        #[doc(alias = "CLSBinaryValueTypeYesNo")]
-        YesNo = 2,
-        #[doc(alias = "CLSBinaryValueTypeCorrectIncorrect")]
-        CorrectIncorrect = 3,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct CLSBinaryValueType(pub NSInteger);
+impl CLSBinaryValueType {
+    #[doc(alias = "CLSBinaryValueTypeTrueFalse")]
+    pub const TrueFalse: Self = Self(0);
+    #[doc(alias = "CLSBinaryValueTypePassFail")]
+    pub const PassFail: Self = Self(1);
+    #[doc(alias = "CLSBinaryValueTypeYesNo")]
+    pub const YesNo: Self = Self(2);
+    #[doc(alias = "CLSBinaryValueTypeCorrectIncorrect")]
+    pub const CorrectIncorrect: Self = Self(3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for CLSBinaryValueType {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for CLSBinaryValueType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

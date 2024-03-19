@@ -17,51 +17,62 @@ extern "C" {
     pub static PHLocalIdentifiersErrorKey: Option<&'static NSErrorUserInfoKey>;
 }
 
-ns_error_enum!(
-    #[underlying(NSInteger)]
-    pub enum PHPhotosError {
-        #[doc(alias = "PHPhotosErrorInternalError")]
-        InternalError = -1,
-        #[doc(alias = "PHPhotosErrorUserCancelled")]
-        UserCancelled = 3072,
-        #[doc(alias = "PHPhotosErrorLibraryVolumeOffline")]
-        LibraryVolumeOffline = 3114,
-        #[doc(alias = "PHPhotosErrorRelinquishingLibraryBundleToWriter")]
-        RelinquishingLibraryBundleToWriter = 3142,
-        #[doc(alias = "PHPhotosErrorSwitchingSystemPhotoLibrary")]
-        SwitchingSystemPhotoLibrary = 3143,
-        #[doc(alias = "PHPhotosErrorNetworkAccessRequired")]
-        NetworkAccessRequired = 3164,
-        #[doc(alias = "PHPhotosErrorNetworkError")]
-        NetworkError = 3169,
-        #[doc(alias = "PHPhotosErrorIdentifierNotFound")]
-        IdentifierNotFound = 3201,
-        #[doc(alias = "PHPhotosErrorMultipleIdentifiersFound")]
-        MultipleIdentifiersFound = 3202,
-        #[doc(alias = "PHPhotosErrorChangeNotSupported")]
-        ChangeNotSupported = 3300,
-        #[doc(alias = "PHPhotosErrorOperationInterrupted")]
-        OperationInterrupted = 3301,
-        #[doc(alias = "PHPhotosErrorInvalidResource")]
-        InvalidResource = 3302,
-        #[doc(alias = "PHPhotosErrorMissingResource")]
-        MissingResource = 3303,
-        #[doc(alias = "PHPhotosErrorNotEnoughSpace")]
-        NotEnoughSpace = 3305,
-        #[doc(alias = "PHPhotosErrorRequestNotSupportedForAsset")]
-        RequestNotSupportedForAsset = 3306,
-        #[doc(alias = "PHPhotosErrorAccessRestricted")]
-        AccessRestricted = 3310,
-        #[doc(alias = "PHPhotosErrorAccessUserDenied")]
-        AccessUserDenied = 3311,
-        #[doc(alias = "PHPhotosErrorLibraryInFileProviderSyncRoot")]
-        LibraryInFileProviderSyncRoot = 5423,
-        #[doc(alias = "PHPhotosErrorPersistentChangeTokenExpired")]
-        PersistentChangeTokenExpired = 3105,
-        #[doc(alias = "PHPhotosErrorPersistentChangeDetailsUnavailable")]
-        PersistentChangeDetailsUnavailable = 3210,
-        #[deprecated]
-        #[doc(alias = "PHPhotosErrorInvalid")]
-        Invalid = -1,
-    }
-);
+// NS_ERROR_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct PHPhotosError(pub NSInteger);
+impl PHPhotosError {
+    #[doc(alias = "PHPhotosErrorInternalError")]
+    pub const InternalError: Self = Self(-1);
+    #[doc(alias = "PHPhotosErrorUserCancelled")]
+    pub const UserCancelled: Self = Self(3072);
+    #[doc(alias = "PHPhotosErrorLibraryVolumeOffline")]
+    pub const LibraryVolumeOffline: Self = Self(3114);
+    #[doc(alias = "PHPhotosErrorRelinquishingLibraryBundleToWriter")]
+    pub const RelinquishingLibraryBundleToWriter: Self = Self(3142);
+    #[doc(alias = "PHPhotosErrorSwitchingSystemPhotoLibrary")]
+    pub const SwitchingSystemPhotoLibrary: Self = Self(3143);
+    #[doc(alias = "PHPhotosErrorNetworkAccessRequired")]
+    pub const NetworkAccessRequired: Self = Self(3164);
+    #[doc(alias = "PHPhotosErrorNetworkError")]
+    pub const NetworkError: Self = Self(3169);
+    #[doc(alias = "PHPhotosErrorIdentifierNotFound")]
+    pub const IdentifierNotFound: Self = Self(3201);
+    #[doc(alias = "PHPhotosErrorMultipleIdentifiersFound")]
+    pub const MultipleIdentifiersFound: Self = Self(3202);
+    #[doc(alias = "PHPhotosErrorChangeNotSupported")]
+    pub const ChangeNotSupported: Self = Self(3300);
+    #[doc(alias = "PHPhotosErrorOperationInterrupted")]
+    pub const OperationInterrupted: Self = Self(3301);
+    #[doc(alias = "PHPhotosErrorInvalidResource")]
+    pub const InvalidResource: Self = Self(3302);
+    #[doc(alias = "PHPhotosErrorMissingResource")]
+    pub const MissingResource: Self = Self(3303);
+    #[doc(alias = "PHPhotosErrorNotEnoughSpace")]
+    pub const NotEnoughSpace: Self = Self(3305);
+    #[doc(alias = "PHPhotosErrorRequestNotSupportedForAsset")]
+    pub const RequestNotSupportedForAsset: Self = Self(3306);
+    #[doc(alias = "PHPhotosErrorAccessRestricted")]
+    pub const AccessRestricted: Self = Self(3310);
+    #[doc(alias = "PHPhotosErrorAccessUserDenied")]
+    pub const AccessUserDenied: Self = Self(3311);
+    #[doc(alias = "PHPhotosErrorLibraryInFileProviderSyncRoot")]
+    pub const LibraryInFileProviderSyncRoot: Self = Self(5423);
+    #[doc(alias = "PHPhotosErrorPersistentChangeTokenExpired")]
+    pub const PersistentChangeTokenExpired: Self = Self(3105);
+    #[doc(alias = "PHPhotosErrorPersistentChangeDetailsUnavailable")]
+    pub const PersistentChangeDetailsUnavailable: Self = Self(3210);
+    #[deprecated]
+    #[doc(alias = "PHPhotosErrorInvalid")]
+    pub const Invalid: Self = Self(-1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for PHPhotosError {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for PHPhotosError {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}

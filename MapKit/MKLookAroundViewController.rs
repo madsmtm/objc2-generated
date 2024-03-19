@@ -7,17 +7,28 @@ use crate::CoreLocation::*;
 use crate::Foundation::*;
 use crate::MapKit::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum MKLookAroundBadgePosition {
-        #[doc(alias = "MKLookAroundBadgePositionTopLeading")]
-        TopLeading = 0,
-        #[doc(alias = "MKLookAroundBadgePositionTopTrailing")]
-        TopTrailing = 1,
-        #[doc(alias = "MKLookAroundBadgePositionBottomTrailing")]
-        BottomTrailing = 2,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MKLookAroundBadgePosition(pub NSInteger);
+impl MKLookAroundBadgePosition {
+    #[doc(alias = "MKLookAroundBadgePositionTopLeading")]
+    pub const TopLeading: Self = Self(0);
+    #[doc(alias = "MKLookAroundBadgePositionTopTrailing")]
+    pub const TopTrailing: Self = Self(1);
+    #[doc(alias = "MKLookAroundBadgePositionBottomTrailing")]
+    pub const BottomTrailing: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MKLookAroundBadgePosition {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MKLookAroundBadgePosition {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

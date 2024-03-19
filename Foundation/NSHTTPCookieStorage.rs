@@ -3,17 +3,28 @@
 use crate::common::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSHTTPCookieAcceptPolicy {
-        #[doc(alias = "NSHTTPCookieAcceptPolicyAlways")]
-        Always = 0,
-        #[doc(alias = "NSHTTPCookieAcceptPolicyNever")]
-        Never = 1,
-        #[doc(alias = "NSHTTPCookieAcceptPolicyOnlyFromMainDocumentDomain")]
-        OnlyFromMainDocumentDomain = 2,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSHTTPCookieAcceptPolicy(pub NSUInteger);
+impl NSHTTPCookieAcceptPolicy {
+    #[doc(alias = "NSHTTPCookieAcceptPolicyAlways")]
+    pub const Always: Self = Self(0);
+    #[doc(alias = "NSHTTPCookieAcceptPolicyNever")]
+    pub const Never: Self = Self(1);
+    #[doc(alias = "NSHTTPCookieAcceptPolicyOnlyFromMainDocumentDomain")]
+    pub const OnlyFromMainDocumentDomain: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSHTTPCookieAcceptPolicy {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSHTTPCookieAcceptPolicy {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

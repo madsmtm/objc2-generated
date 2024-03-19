@@ -4,145 +4,233 @@ use crate::common::*;
 use crate::Foundation::*;
 use crate::Metal::*;
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum MTLBlendFactor {
-        #[doc(alias = "MTLBlendFactorZero")]
-        Zero = 0,
-        #[doc(alias = "MTLBlendFactorOne")]
-        One = 1,
-        #[doc(alias = "MTLBlendFactorSourceColor")]
-        SourceColor = 2,
-        #[doc(alias = "MTLBlendFactorOneMinusSourceColor")]
-        OneMinusSourceColor = 3,
-        #[doc(alias = "MTLBlendFactorSourceAlpha")]
-        SourceAlpha = 4,
-        #[doc(alias = "MTLBlendFactorOneMinusSourceAlpha")]
-        OneMinusSourceAlpha = 5,
-        #[doc(alias = "MTLBlendFactorDestinationColor")]
-        DestinationColor = 6,
-        #[doc(alias = "MTLBlendFactorOneMinusDestinationColor")]
-        OneMinusDestinationColor = 7,
-        #[doc(alias = "MTLBlendFactorDestinationAlpha")]
-        DestinationAlpha = 8,
-        #[doc(alias = "MTLBlendFactorOneMinusDestinationAlpha")]
-        OneMinusDestinationAlpha = 9,
-        #[doc(alias = "MTLBlendFactorSourceAlphaSaturated")]
-        SourceAlphaSaturated = 10,
-        #[doc(alias = "MTLBlendFactorBlendColor")]
-        BlendColor = 11,
-        #[doc(alias = "MTLBlendFactorOneMinusBlendColor")]
-        OneMinusBlendColor = 12,
-        #[doc(alias = "MTLBlendFactorBlendAlpha")]
-        BlendAlpha = 13,
-        #[doc(alias = "MTLBlendFactorOneMinusBlendAlpha")]
-        OneMinusBlendAlpha = 14,
-        #[doc(alias = "MTLBlendFactorSource1Color")]
-        Source1Color = 15,
-        #[doc(alias = "MTLBlendFactorOneMinusSource1Color")]
-        OneMinusSource1Color = 16,
-        #[doc(alias = "MTLBlendFactorSource1Alpha")]
-        Source1Alpha = 17,
-        #[doc(alias = "MTLBlendFactorOneMinusSource1Alpha")]
-        OneMinusSource1Alpha = 18,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MTLBlendFactor(pub NSUInteger);
+impl MTLBlendFactor {
+    #[doc(alias = "MTLBlendFactorZero")]
+    pub const Zero: Self = Self(0);
+    #[doc(alias = "MTLBlendFactorOne")]
+    pub const One: Self = Self(1);
+    #[doc(alias = "MTLBlendFactorSourceColor")]
+    pub const SourceColor: Self = Self(2);
+    #[doc(alias = "MTLBlendFactorOneMinusSourceColor")]
+    pub const OneMinusSourceColor: Self = Self(3);
+    #[doc(alias = "MTLBlendFactorSourceAlpha")]
+    pub const SourceAlpha: Self = Self(4);
+    #[doc(alias = "MTLBlendFactorOneMinusSourceAlpha")]
+    pub const OneMinusSourceAlpha: Self = Self(5);
+    #[doc(alias = "MTLBlendFactorDestinationColor")]
+    pub const DestinationColor: Self = Self(6);
+    #[doc(alias = "MTLBlendFactorOneMinusDestinationColor")]
+    pub const OneMinusDestinationColor: Self = Self(7);
+    #[doc(alias = "MTLBlendFactorDestinationAlpha")]
+    pub const DestinationAlpha: Self = Self(8);
+    #[doc(alias = "MTLBlendFactorOneMinusDestinationAlpha")]
+    pub const OneMinusDestinationAlpha: Self = Self(9);
+    #[doc(alias = "MTLBlendFactorSourceAlphaSaturated")]
+    pub const SourceAlphaSaturated: Self = Self(10);
+    #[doc(alias = "MTLBlendFactorBlendColor")]
+    pub const BlendColor: Self = Self(11);
+    #[doc(alias = "MTLBlendFactorOneMinusBlendColor")]
+    pub const OneMinusBlendColor: Self = Self(12);
+    #[doc(alias = "MTLBlendFactorBlendAlpha")]
+    pub const BlendAlpha: Self = Self(13);
+    #[doc(alias = "MTLBlendFactorOneMinusBlendAlpha")]
+    pub const OneMinusBlendAlpha: Self = Self(14);
+    #[doc(alias = "MTLBlendFactorSource1Color")]
+    pub const Source1Color: Self = Self(15);
+    #[doc(alias = "MTLBlendFactorOneMinusSource1Color")]
+    pub const OneMinusSource1Color: Self = Self(16);
+    #[doc(alias = "MTLBlendFactorSource1Alpha")]
+    pub const Source1Alpha: Self = Self(17);
+    #[doc(alias = "MTLBlendFactorOneMinusSource1Alpha")]
+    pub const OneMinusSource1Alpha: Self = Self(18);
+}
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum MTLBlendOperation {
-        #[doc(alias = "MTLBlendOperationAdd")]
-        Add = 0,
-        #[doc(alias = "MTLBlendOperationSubtract")]
-        Subtract = 1,
-        #[doc(alias = "MTLBlendOperationReverseSubtract")]
-        ReverseSubtract = 2,
-        #[doc(alias = "MTLBlendOperationMin")]
-        Min = 3,
-        #[doc(alias = "MTLBlendOperationMax")]
-        Max = 4,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLBlendFactor {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum MTLColorWriteMask {
-        #[doc(alias = "MTLColorWriteMaskNone")]
-        None = 0,
-        #[doc(alias = "MTLColorWriteMaskRed")]
-        Red = 0x1 << 3,
-        #[doc(alias = "MTLColorWriteMaskGreen")]
-        Green = 0x1 << 2,
-        #[doc(alias = "MTLColorWriteMaskBlue")]
-        Blue = 0x1 << 1,
-        #[doc(alias = "MTLColorWriteMaskAlpha")]
-        Alpha = 0x1 << 0,
-        #[doc(alias = "MTLColorWriteMaskAll")]
-        All = 0xf,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLBlendFactor {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum MTLPrimitiveTopologyClass {
-        #[doc(alias = "MTLPrimitiveTopologyClassUnspecified")]
-        Unspecified = 0,
-        #[doc(alias = "MTLPrimitiveTopologyClassPoint")]
-        Point = 1,
-        #[doc(alias = "MTLPrimitiveTopologyClassLine")]
-        Line = 2,
-        #[doc(alias = "MTLPrimitiveTopologyClassTriangle")]
-        Triangle = 3,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MTLBlendOperation(pub NSUInteger);
+impl MTLBlendOperation {
+    #[doc(alias = "MTLBlendOperationAdd")]
+    pub const Add: Self = Self(0);
+    #[doc(alias = "MTLBlendOperationSubtract")]
+    pub const Subtract: Self = Self(1);
+    #[doc(alias = "MTLBlendOperationReverseSubtract")]
+    pub const ReverseSubtract: Self = Self(2);
+    #[doc(alias = "MTLBlendOperationMin")]
+    pub const Min: Self = Self(3);
+    #[doc(alias = "MTLBlendOperationMax")]
+    pub const Max: Self = Self(4);
+}
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum MTLTessellationPartitionMode {
-        #[doc(alias = "MTLTessellationPartitionModePow2")]
-        Pow2 = 0,
-        #[doc(alias = "MTLTessellationPartitionModeInteger")]
-        Integer = 1,
-        #[doc(alias = "MTLTessellationPartitionModeFractionalOdd")]
-        FractionalOdd = 2,
-        #[doc(alias = "MTLTessellationPartitionModeFractionalEven")]
-        FractionalEven = 3,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLBlendOperation {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum MTLTessellationFactorStepFunction {
-        #[doc(alias = "MTLTessellationFactorStepFunctionConstant")]
-        Constant = 0,
-        #[doc(alias = "MTLTessellationFactorStepFunctionPerPatch")]
-        PerPatch = 1,
-        #[doc(alias = "MTLTessellationFactorStepFunctionPerInstance")]
-        PerInstance = 2,
-        #[doc(alias = "MTLTessellationFactorStepFunctionPerPatchAndPerInstance")]
-        PerPatchAndPerInstance = 3,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLBlendOperation {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum MTLTessellationFactorFormat {
-        #[doc(alias = "MTLTessellationFactorFormatHalf")]
-        Half = 0,
-    }
-);
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MTLColorWriteMask(pub NSUInteger);
+impl MTLColorWriteMask {
+    #[doc(alias = "MTLColorWriteMaskNone")]
+    pub const None: Self = Self(0);
+    #[doc(alias = "MTLColorWriteMaskRed")]
+    pub const Red: Self = Self(0x1 << 3);
+    #[doc(alias = "MTLColorWriteMaskGreen")]
+    pub const Green: Self = Self(0x1 << 2);
+    #[doc(alias = "MTLColorWriteMaskBlue")]
+    pub const Blue: Self = Self(0x1 << 1);
+    #[doc(alias = "MTLColorWriteMaskAlpha")]
+    pub const Alpha: Self = Self(0x1 << 0);
+    #[doc(alias = "MTLColorWriteMaskAll")]
+    pub const All: Self = Self(0xf);
+}
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum MTLTessellationControlPointIndexType {
-        #[doc(alias = "MTLTessellationControlPointIndexTypeNone")]
-        None = 0,
-        #[doc(alias = "MTLTessellationControlPointIndexTypeUInt16")]
-        UInt16 = 1,
-        #[doc(alias = "MTLTessellationControlPointIndexTypeUInt32")]
-        UInt32 = 2,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLColorWriteMask {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLColorWriteMask {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MTLPrimitiveTopologyClass(pub NSUInteger);
+impl MTLPrimitiveTopologyClass {
+    #[doc(alias = "MTLPrimitiveTopologyClassUnspecified")]
+    pub const Unspecified: Self = Self(0);
+    #[doc(alias = "MTLPrimitiveTopologyClassPoint")]
+    pub const Point: Self = Self(1);
+    #[doc(alias = "MTLPrimitiveTopologyClassLine")]
+    pub const Line: Self = Self(2);
+    #[doc(alias = "MTLPrimitiveTopologyClassTriangle")]
+    pub const Triangle: Self = Self(3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLPrimitiveTopologyClass {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLPrimitiveTopologyClass {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MTLTessellationPartitionMode(pub NSUInteger);
+impl MTLTessellationPartitionMode {
+    #[doc(alias = "MTLTessellationPartitionModePow2")]
+    pub const Pow2: Self = Self(0);
+    #[doc(alias = "MTLTessellationPartitionModeInteger")]
+    pub const Integer: Self = Self(1);
+    #[doc(alias = "MTLTessellationPartitionModeFractionalOdd")]
+    pub const FractionalOdd: Self = Self(2);
+    #[doc(alias = "MTLTessellationPartitionModeFractionalEven")]
+    pub const FractionalEven: Self = Self(3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLTessellationPartitionMode {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLTessellationPartitionMode {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MTLTessellationFactorStepFunction(pub NSUInteger);
+impl MTLTessellationFactorStepFunction {
+    #[doc(alias = "MTLTessellationFactorStepFunctionConstant")]
+    pub const Constant: Self = Self(0);
+    #[doc(alias = "MTLTessellationFactorStepFunctionPerPatch")]
+    pub const PerPatch: Self = Self(1);
+    #[doc(alias = "MTLTessellationFactorStepFunctionPerInstance")]
+    pub const PerInstance: Self = Self(2);
+    #[doc(alias = "MTLTessellationFactorStepFunctionPerPatchAndPerInstance")]
+    pub const PerPatchAndPerInstance: Self = Self(3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLTessellationFactorStepFunction {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLTessellationFactorStepFunction {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MTLTessellationFactorFormat(pub NSUInteger);
+impl MTLTessellationFactorFormat {
+    #[doc(alias = "MTLTessellationFactorFormatHalf")]
+    pub const Half: Self = Self(0);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLTessellationFactorFormat {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLTessellationFactorFormat {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MTLTessellationControlPointIndexType(pub NSUInteger);
+impl MTLTessellationControlPointIndexType {
+    #[doc(alias = "MTLTessellationControlPointIndexTypeNone")]
+    pub const None: Self = Self(0);
+    #[doc(alias = "MTLTessellationControlPointIndexTypeUInt16")]
+    pub const UInt16: Self = Self(1);
+    #[doc(alias = "MTLTessellationControlPointIndexTypeUInt32")]
+    pub const UInt32: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLTessellationControlPointIndexType {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLTessellationControlPointIndexType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

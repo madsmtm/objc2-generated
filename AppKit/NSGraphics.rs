@@ -5,70 +5,81 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSCompositingOperation {
-        #[doc(alias = "NSCompositingOperationClear")]
-        Clear = 0,
-        #[doc(alias = "NSCompositingOperationCopy")]
-        Copy = 1,
-        #[doc(alias = "NSCompositingOperationSourceOver")]
-        SourceOver = 2,
-        #[doc(alias = "NSCompositingOperationSourceIn")]
-        SourceIn = 3,
-        #[doc(alias = "NSCompositingOperationSourceOut")]
-        SourceOut = 4,
-        #[doc(alias = "NSCompositingOperationSourceAtop")]
-        SourceAtop = 5,
-        #[doc(alias = "NSCompositingOperationDestinationOver")]
-        DestinationOver = 6,
-        #[doc(alias = "NSCompositingOperationDestinationIn")]
-        DestinationIn = 7,
-        #[doc(alias = "NSCompositingOperationDestinationOut")]
-        DestinationOut = 8,
-        #[doc(alias = "NSCompositingOperationDestinationAtop")]
-        DestinationAtop = 9,
-        #[doc(alias = "NSCompositingOperationXOR")]
-        XOR = 10,
-        #[doc(alias = "NSCompositingOperationPlusDarker")]
-        PlusDarker = 11,
-        #[deprecated = "Use NSCompositingOperationSourceOver instead"]
-        #[doc(alias = "NSCompositingOperationHighlight")]
-        Highlight = 12,
-        #[doc(alias = "NSCompositingOperationPlusLighter")]
-        PlusLighter = 13,
-        #[doc(alias = "NSCompositingOperationMultiply")]
-        Multiply = 14,
-        #[doc(alias = "NSCompositingOperationScreen")]
-        Screen = 15,
-        #[doc(alias = "NSCompositingOperationOverlay")]
-        Overlay = 16,
-        #[doc(alias = "NSCompositingOperationDarken")]
-        Darken = 17,
-        #[doc(alias = "NSCompositingOperationLighten")]
-        Lighten = 18,
-        #[doc(alias = "NSCompositingOperationColorDodge")]
-        ColorDodge = 19,
-        #[doc(alias = "NSCompositingOperationColorBurn")]
-        ColorBurn = 20,
-        #[doc(alias = "NSCompositingOperationSoftLight")]
-        SoftLight = 21,
-        #[doc(alias = "NSCompositingOperationHardLight")]
-        HardLight = 22,
-        #[doc(alias = "NSCompositingOperationDifference")]
-        Difference = 23,
-        #[doc(alias = "NSCompositingOperationExclusion")]
-        Exclusion = 24,
-        #[doc(alias = "NSCompositingOperationHue")]
-        Hue = 25,
-        #[doc(alias = "NSCompositingOperationSaturation")]
-        Saturation = 26,
-        #[doc(alias = "NSCompositingOperationColor")]
-        Color = 27,
-        #[doc(alias = "NSCompositingOperationLuminosity")]
-        Luminosity = 28,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSCompositingOperation(pub NSUInteger);
+impl NSCompositingOperation {
+    #[doc(alias = "NSCompositingOperationClear")]
+    pub const Clear: Self = Self(0);
+    #[doc(alias = "NSCompositingOperationCopy")]
+    pub const Copy: Self = Self(1);
+    #[doc(alias = "NSCompositingOperationSourceOver")]
+    pub const SourceOver: Self = Self(2);
+    #[doc(alias = "NSCompositingOperationSourceIn")]
+    pub const SourceIn: Self = Self(3);
+    #[doc(alias = "NSCompositingOperationSourceOut")]
+    pub const SourceOut: Self = Self(4);
+    #[doc(alias = "NSCompositingOperationSourceAtop")]
+    pub const SourceAtop: Self = Self(5);
+    #[doc(alias = "NSCompositingOperationDestinationOver")]
+    pub const DestinationOver: Self = Self(6);
+    #[doc(alias = "NSCompositingOperationDestinationIn")]
+    pub const DestinationIn: Self = Self(7);
+    #[doc(alias = "NSCompositingOperationDestinationOut")]
+    pub const DestinationOut: Self = Self(8);
+    #[doc(alias = "NSCompositingOperationDestinationAtop")]
+    pub const DestinationAtop: Self = Self(9);
+    #[doc(alias = "NSCompositingOperationXOR")]
+    pub const XOR: Self = Self(10);
+    #[doc(alias = "NSCompositingOperationPlusDarker")]
+    pub const PlusDarker: Self = Self(11);
+    #[deprecated = "Use NSCompositingOperationSourceOver instead"]
+    #[doc(alias = "NSCompositingOperationHighlight")]
+    pub const Highlight: Self = Self(12);
+    #[doc(alias = "NSCompositingOperationPlusLighter")]
+    pub const PlusLighter: Self = Self(13);
+    #[doc(alias = "NSCompositingOperationMultiply")]
+    pub const Multiply: Self = Self(14);
+    #[doc(alias = "NSCompositingOperationScreen")]
+    pub const Screen: Self = Self(15);
+    #[doc(alias = "NSCompositingOperationOverlay")]
+    pub const Overlay: Self = Self(16);
+    #[doc(alias = "NSCompositingOperationDarken")]
+    pub const Darken: Self = Self(17);
+    #[doc(alias = "NSCompositingOperationLighten")]
+    pub const Lighten: Self = Self(18);
+    #[doc(alias = "NSCompositingOperationColorDodge")]
+    pub const ColorDodge: Self = Self(19);
+    #[doc(alias = "NSCompositingOperationColorBurn")]
+    pub const ColorBurn: Self = Self(20);
+    #[doc(alias = "NSCompositingOperationSoftLight")]
+    pub const SoftLight: Self = Self(21);
+    #[doc(alias = "NSCompositingOperationHardLight")]
+    pub const HardLight: Self = Self(22);
+    #[doc(alias = "NSCompositingOperationDifference")]
+    pub const Difference: Self = Self(23);
+    #[doc(alias = "NSCompositingOperationExclusion")]
+    pub const Exclusion: Self = Self(24);
+    #[doc(alias = "NSCompositingOperationHue")]
+    pub const Hue: Self = Self(25);
+    #[doc(alias = "NSCompositingOperationSaturation")]
+    pub const Saturation: Self = Self(26);
+    #[doc(alias = "NSCompositingOperationColor")]
+    pub const Color: Self = Self(27);
+    #[doc(alias = "NSCompositingOperationLuminosity")]
+    pub const Luminosity: Self = Self(28);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSCompositingOperation {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSCompositingOperation {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 pub static NSCompositeClear: NSCompositingOperation =
     NSCompositingOperation(NSCompositingOperation::Clear.0);
@@ -157,67 +168,121 @@ pub static NSCompositeColor: NSCompositingOperation =
 pub static NSCompositeLuminosity: NSCompositingOperation =
     NSCompositingOperation(NSCompositingOperation::Luminosity.0);
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSBackingStoreType {
-        #[deprecated]
-        NSBackingStoreRetained = 0,
-        #[deprecated]
-        NSBackingStoreNonretained = 1,
-        NSBackingStoreBuffered = 2,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSBackingStoreType(pub NSUInteger);
+impl NSBackingStoreType {
+    #[deprecated]
+    pub const NSBackingStoreRetained: Self = Self(0);
+    #[deprecated]
+    pub const NSBackingStoreNonretained: Self = Self(1);
+    pub const NSBackingStoreBuffered: Self = Self(2);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSWindowOrderingMode {
-        NSWindowAbove = 1,
-        NSWindowBelow = -1,
-        NSWindowOut = 0,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSBackingStoreType {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSFocusRingPlacement {
-        NSFocusRingOnly = 0,
-        NSFocusRingBelow = 1,
-        NSFocusRingAbove = 2,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSBackingStoreType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSFocusRingType {
-        #[doc(alias = "NSFocusRingTypeDefault")]
-        Default = 0,
-        #[doc(alias = "NSFocusRingTypeNone")]
-        None = 1,
-        #[doc(alias = "NSFocusRingTypeExterior")]
-        Exterior = 2,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSWindowOrderingMode(pub NSInteger);
+impl NSWindowOrderingMode {
+    pub const NSWindowAbove: Self = Self(1);
+    pub const NSWindowBelow: Self = Self(-1);
+    pub const NSWindowOut: Self = Self(0);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSColorRenderingIntent {
-        #[doc(alias = "NSColorRenderingIntentDefault")]
-        Default = 0,
-        #[doc(alias = "NSColorRenderingIntentAbsoluteColorimetric")]
-        AbsoluteColorimetric = 1,
-        #[doc(alias = "NSColorRenderingIntentRelativeColorimetric")]
-        RelativeColorimetric = 2,
-        #[doc(alias = "NSColorRenderingIntentPerceptual")]
-        Perceptual = 3,
-        #[doc(alias = "NSColorRenderingIntentSaturation")]
-        Saturation = 4,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSWindowOrderingMode {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
 
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSWindowOrderingMode {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSFocusRingPlacement(pub NSUInteger);
+impl NSFocusRingPlacement {
+    pub const NSFocusRingOnly: Self = Self(0);
+    pub const NSFocusRingBelow: Self = Self(1);
+    pub const NSFocusRingAbove: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSFocusRingPlacement {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSFocusRingPlacement {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSFocusRingType(pub NSUInteger);
+impl NSFocusRingType {
+    #[doc(alias = "NSFocusRingTypeDefault")]
+    pub const Default: Self = Self(0);
+    #[doc(alias = "NSFocusRingTypeNone")]
+    pub const None: Self = Self(1);
+    #[doc(alias = "NSFocusRingTypeExterior")]
+    pub const Exterior: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSFocusRingType {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSFocusRingType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSColorRenderingIntent(pub NSInteger);
+impl NSColorRenderingIntent {
+    #[doc(alias = "NSColorRenderingIntentDefault")]
+    pub const Default: Self = Self(0);
+    #[doc(alias = "NSColorRenderingIntentAbsoluteColorimetric")]
+    pub const AbsoluteColorimetric: Self = Self(1);
+    #[doc(alias = "NSColorRenderingIntentRelativeColorimetric")]
+    pub const RelativeColorimetric: Self = Self(2);
+    #[doc(alias = "NSColorRenderingIntentPerceptual")]
+    pub const Perceptual: Self = Self(3);
+    #[doc(alias = "NSColorRenderingIntentSaturation")]
+    pub const Saturation: Self = Self(4);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSColorRenderingIntent {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSColorRenderingIntent {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type NSColorSpaceName = NSString;
-);
+pub type NSColorSpaceName = NSString;
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]
@@ -269,17 +334,28 @@ extern "C" {
     pub static NSDeviceBlackColorSpace: &'static NSColorSpaceName;
 }
 
-ns_enum!(
-    #[underlying(i32)]
-    pub enum NSWindowDepth {
-        #[doc(alias = "NSWindowDepthTwentyfourBitRGB")]
-        TwentyfourBitRGB = 0x208,
-        #[doc(alias = "NSWindowDepthSixtyfourBitRGB")]
-        SixtyfourBitRGB = 0x210,
-        #[doc(alias = "NSWindowDepthOnehundredtwentyeightBitRGB")]
-        OnehundredtwentyeightBitRGB = 0x220,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSWindowDepth(pub i32);
+impl NSWindowDepth {
+    #[doc(alias = "NSWindowDepthTwentyfourBitRGB")]
+    pub const TwentyfourBitRGB: Self = Self(0x208);
+    #[doc(alias = "NSWindowDepthSixtyfourBitRGB")]
+    pub const SixtyfourBitRGB: Self = Self(0x210);
+    #[doc(alias = "NSWindowDepthOnehundredtwentyeightBitRGB")]
+    pub const OnehundredtwentyeightBitRGB: Self = Self(0x220);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSWindowDepth {
+    const ENCODING: Encoding = i32::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSWindowDepth {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]
@@ -338,20 +414,30 @@ extern "C" {
     pub static NSBlack: CGFloat;
 }
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSDisplayGamut {
-        #[doc(alias = "NSDisplayGamutSRGB")]
-        SRGB = 1,
-        #[doc(alias = "NSDisplayGamutP3")]
-        P3 = 2,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSDisplayGamut(pub NSInteger);
+impl NSDisplayGamut {
+    #[doc(alias = "NSDisplayGamutSRGB")]
+    pub const SRGB: Self = Self(1);
+    #[doc(alias = "NSDisplayGamutP3")]
+    pub const P3: Self = Self(2);
+}
 
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSDisplayGamut {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSDisplayGamut {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_extensible_enum!(
-    pub type NSDeviceDescriptionKey = NSString;
-);
+pub type NSDeviceDescriptionKey = NSString;
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]
@@ -568,16 +654,27 @@ extern "C" {
     pub fn NSEnableScreenUpdates();
 }
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    #[deprecated = "Use +[NSCursor disappearingItemCursor] instead"]
-    pub enum NSAnimationEffect {
-        #[doc(alias = "NSAnimationEffectDisappearingItemDefault")]
-        DisappearingItemDefault = 0,
-        #[doc(alias = "NSAnimationEffectPoof")]
-        Poof = 10,
-    }
-);
+// NS_ENUM
+#[deprecated = "Use +[NSCursor disappearingItemCursor] instead"]
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSAnimationEffect(pub NSUInteger);
+impl NSAnimationEffect {
+    #[doc(alias = "NSAnimationEffectDisappearingItemDefault")]
+    pub const DisappearingItemDefault: Self = Self(0);
+    #[doc(alias = "NSAnimationEffectPoof")]
+    pub const Poof: Self = Self(10);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSAnimationEffect {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSAnimationEffect {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern "C" {
     #[cfg(feature = "Foundation_NSGeometry")]

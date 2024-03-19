@@ -5,27 +5,49 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSTitlePosition {
-        NSNoTitle = 0,
-        NSAboveTop = 1,
-        NSAtTop = 2,
-        NSBelowTop = 3,
-        NSAboveBottom = 4,
-        NSAtBottom = 5,
-        NSBelowBottom = 6,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSTitlePosition(pub NSUInteger);
+impl NSTitlePosition {
+    pub const NSNoTitle: Self = Self(0);
+    pub const NSAboveTop: Self = Self(1);
+    pub const NSAtTop: Self = Self(2);
+    pub const NSBelowTop: Self = Self(3);
+    pub const NSAboveBottom: Self = Self(4);
+    pub const NSAtBottom: Self = Self(5);
+    pub const NSBelowBottom: Self = Self(6);
+}
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSBoxType {
-        NSBoxPrimary = 0,
-        NSBoxSeparator = 2,
-        NSBoxCustom = 4,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSTitlePosition {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSTitlePosition {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSBoxType(pub NSUInteger);
+impl NSBoxType {
+    pub const NSBoxPrimary: Self = Self(0);
+    pub const NSBoxSeparator: Self = Self(2);
+    pub const NSBoxCustom: Self = Self(4);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSBoxType {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSBoxType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

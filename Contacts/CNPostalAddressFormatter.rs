@@ -4,13 +4,24 @@ use crate::common::*;
 use crate::Contacts::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum CNPostalAddressFormatterStyle {
-        #[doc(alias = "CNPostalAddressFormatterStyleMailingAddress")]
-        MailingAddress = 0,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct CNPostalAddressFormatterStyle(pub NSInteger);
+impl CNPostalAddressFormatterStyle {
+    #[doc(alias = "CNPostalAddressFormatterStyleMailingAddress")]
+    pub const MailingAddress: Self = Self(0);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for CNPostalAddressFormatterStyle {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for CNPostalAddressFormatterStyle {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

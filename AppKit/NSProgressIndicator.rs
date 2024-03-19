@@ -5,15 +5,26 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSProgressIndicatorStyle {
-        #[doc(alias = "NSProgressIndicatorStyleBar")]
-        Bar = 0,
-        #[doc(alias = "NSProgressIndicatorStyleSpinning")]
-        Spinning = 1,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSProgressIndicatorStyle(pub NSUInteger);
+impl NSProgressIndicatorStyle {
+    #[doc(alias = "NSProgressIndicatorStyleBar")]
+    pub const Bar: Self = Self(0);
+    #[doc(alias = "NSProgressIndicatorStyleSpinning")]
+    pub const Spinning: Self = Self(1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSProgressIndicatorStyle {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSProgressIndicatorStyle {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -201,20 +212,31 @@ extern_methods!(
     }
 );
 
-ns_enum!(
-    #[underlying(NSUInteger)]
+// NS_ENUM
+#[deprecated = "These constants do not accurately represent the geometry of NSProgressIndicator.  Use `controlSize` and `sizeToFit` instead."]
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSProgressIndicatorThickness(pub NSUInteger);
+impl NSProgressIndicatorThickness {
     #[deprecated = "These constants do not accurately represent the geometry of NSProgressIndicator.  Use `controlSize` and `sizeToFit` instead."]
-    pub enum NSProgressIndicatorThickness {
-        #[deprecated = "These constants do not accurately represent the geometry of NSProgressIndicator.  Use `controlSize` and `sizeToFit` instead."]
-        NSProgressIndicatorPreferredThickness = 14,
-        #[deprecated = "These constants do not accurately represent the geometry of NSProgressIndicator.  Use `controlSize` and `sizeToFit` instead."]
-        NSProgressIndicatorPreferredSmallThickness = 10,
-        #[deprecated = "These constants do not accurately represent the geometry of NSProgressIndicator.  Use `controlSize` and `sizeToFit` instead."]
-        NSProgressIndicatorPreferredLargeThickness = 18,
-        #[deprecated = "These constants do not accurately represent the geometry of NSProgressIndicator.  Use `controlSize` and `sizeToFit` instead."]
-        NSProgressIndicatorPreferredAquaThickness = 12,
-    }
-);
+    pub const NSProgressIndicatorPreferredThickness: Self = Self(14);
+    #[deprecated = "These constants do not accurately represent the geometry of NSProgressIndicator.  Use `controlSize` and `sizeToFit` instead."]
+    pub const NSProgressIndicatorPreferredSmallThickness: Self = Self(10);
+    #[deprecated = "These constants do not accurately represent the geometry of NSProgressIndicator.  Use `controlSize` and `sizeToFit` instead."]
+    pub const NSProgressIndicatorPreferredLargeThickness: Self = Self(18);
+    #[deprecated = "These constants do not accurately represent the geometry of NSProgressIndicator.  Use `controlSize` and `sizeToFit` instead."]
+    pub const NSProgressIndicatorPreferredAquaThickness: Self = Self(12);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSProgressIndicatorThickness {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSProgressIndicatorThickness {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 pub static NSProgressIndicatorBarStyle: NSProgressIndicatorStyle =
     NSProgressIndicatorStyle(NSProgressIndicatorStyle::Bar.0);

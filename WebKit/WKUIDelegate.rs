@@ -5,41 +5,74 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::WebKit::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum WKPermissionDecision {
-        #[doc(alias = "WKPermissionDecisionPrompt")]
-        Prompt = 0,
-        #[doc(alias = "WKPermissionDecisionGrant")]
-        Grant = 1,
-        #[doc(alias = "WKPermissionDecisionDeny")]
-        Deny = 2,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct WKPermissionDecision(pub NSInteger);
+impl WKPermissionDecision {
+    #[doc(alias = "WKPermissionDecisionPrompt")]
+    pub const Prompt: Self = Self(0);
+    #[doc(alias = "WKPermissionDecisionGrant")]
+    pub const Grant: Self = Self(1);
+    #[doc(alias = "WKPermissionDecisionDeny")]
+    pub const Deny: Self = Self(2);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum WKMediaCaptureType {
-        #[doc(alias = "WKMediaCaptureTypeCamera")]
-        Camera = 0,
-        #[doc(alias = "WKMediaCaptureTypeMicrophone")]
-        Microphone = 1,
-        #[doc(alias = "WKMediaCaptureTypeCameraAndMicrophone")]
-        CameraAndMicrophone = 2,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for WKPermissionDecision {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum WKDialogResult {
-        #[doc(alias = "WKDialogResultShowDefault")]
-        ShowDefault = 1,
-        #[doc(alias = "WKDialogResultAskAgain")]
-        AskAgain = 2,
-        #[doc(alias = "WKDialogResultHandled")]
-        Handled = 3,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for WKPermissionDecision {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct WKMediaCaptureType(pub NSInteger);
+impl WKMediaCaptureType {
+    #[doc(alias = "WKMediaCaptureTypeCamera")]
+    pub const Camera: Self = Self(0);
+    #[doc(alias = "WKMediaCaptureTypeMicrophone")]
+    pub const Microphone: Self = Self(1);
+    #[doc(alias = "WKMediaCaptureTypeCameraAndMicrophone")]
+    pub const CameraAndMicrophone: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for WKMediaCaptureType {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for WKMediaCaptureType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct WKDialogResult(pub NSInteger);
+impl WKDialogResult {
+    #[doc(alias = "WKDialogResultShowDefault")]
+    pub const ShowDefault: Self = Self(1);
+    #[doc(alias = "WKDialogResultAskAgain")]
+    pub const AskAgain: Self = Self(2);
+    #[doc(alias = "WKDialogResultHandled")]
+    pub const Handled: Self = Self(3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for WKDialogResult {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for WKDialogResult {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_protocol!(
     pub unsafe trait WKUIDelegate: NSObjectProtocol {

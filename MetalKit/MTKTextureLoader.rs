@@ -6,10 +6,9 @@ use crate::Foundation::*;
 use crate::Metal::*;
 use crate::MetalKit::*;
 
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type MTKTextureLoaderError = NSString;
-);
+pub type MTKTextureLoaderError = NSString;
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]
@@ -21,10 +20,9 @@ extern "C" {
     pub static MTKTextureLoaderErrorKey: &'static MTKTextureLoaderError;
 }
 
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type MTKTextureLoaderOption = NSString;
-);
+pub type MTKTextureLoaderOption = NSString;
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]
@@ -56,10 +54,9 @@ extern "C" {
     pub static MTKTextureLoaderOptionTextureStorageMode: &'static MTKTextureLoaderOption;
 }
 
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type MTKTextureLoaderCubeLayout = NSString;
-);
+pub type MTKTextureLoaderCubeLayout = NSString;
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]
@@ -71,10 +68,9 @@ extern "C" {
     pub static MTKTextureLoaderCubeLayoutVertical: &'static MTKTextureLoaderCubeLayout;
 }
 
+// NS_TYPED_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_enum!(
-    pub type MTKTextureLoaderOrigin = NSString;
-);
+pub type MTKTextureLoaderOrigin = NSString;
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]

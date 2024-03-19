@@ -3,45 +3,78 @@
 use crate::common::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSURLRequestCachePolicy {
-        NSURLRequestUseProtocolCachePolicy = 0,
-        NSURLRequestReloadIgnoringLocalCacheData = 1,
-        NSURLRequestReloadIgnoringLocalAndRemoteCacheData = 4,
-        NSURLRequestReloadIgnoringCacheData =
-            NSURLRequestCachePolicy::NSURLRequestReloadIgnoringLocalCacheData.0,
-        NSURLRequestReturnCacheDataElseLoad = 2,
-        NSURLRequestReturnCacheDataDontLoad = 3,
-        NSURLRequestReloadRevalidatingCacheData = 5,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSURLRequestCachePolicy(pub NSUInteger);
+impl NSURLRequestCachePolicy {
+    pub const NSURLRequestUseProtocolCachePolicy: Self = Self(0);
+    pub const NSURLRequestReloadIgnoringLocalCacheData: Self = Self(1);
+    pub const NSURLRequestReloadIgnoringLocalAndRemoteCacheData: Self = Self(4);
+    pub const NSURLRequestReloadIgnoringCacheData: Self =
+        Self(NSURLRequestCachePolicy::NSURLRequestReloadIgnoringLocalCacheData.0);
+    pub const NSURLRequestReturnCacheDataElseLoad: Self = Self(2);
+    pub const NSURLRequestReturnCacheDataDontLoad: Self = Self(3);
+    pub const NSURLRequestReloadRevalidatingCacheData: Self = Self(5);
+}
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSURLRequestNetworkServiceType {
-        NSURLNetworkServiceTypeDefault = 0,
-        #[deprecated = "Use PushKit for VoIP control purposes"]
-        NSURLNetworkServiceTypeVoIP = 1,
-        NSURLNetworkServiceTypeVideo = 2,
-        NSURLNetworkServiceTypeBackground = 3,
-        NSURLNetworkServiceTypeVoice = 4,
-        NSURLNetworkServiceTypeResponsiveData = 6,
-        NSURLNetworkServiceTypeAVStreaming = 8,
-        NSURLNetworkServiceTypeResponsiveAV = 9,
-        NSURLNetworkServiceTypeCallSignaling = 11,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSURLRequestCachePolicy {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSURLRequestAttribution {
-        #[doc(alias = "NSURLRequestAttributionDeveloper")]
-        Developer = 0,
-        #[doc(alias = "NSURLRequestAttributionUser")]
-        User = 1,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSURLRequestCachePolicy {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSURLRequestNetworkServiceType(pub NSUInteger);
+impl NSURLRequestNetworkServiceType {
+    pub const NSURLNetworkServiceTypeDefault: Self = Self(0);
+    #[deprecated = "Use PushKit for VoIP control purposes"]
+    pub const NSURLNetworkServiceTypeVoIP: Self = Self(1);
+    pub const NSURLNetworkServiceTypeVideo: Self = Self(2);
+    pub const NSURLNetworkServiceTypeBackground: Self = Self(3);
+    pub const NSURLNetworkServiceTypeVoice: Self = Self(4);
+    pub const NSURLNetworkServiceTypeResponsiveData: Self = Self(6);
+    pub const NSURLNetworkServiceTypeAVStreaming: Self = Self(8);
+    pub const NSURLNetworkServiceTypeResponsiveAV: Self = Self(9);
+    pub const NSURLNetworkServiceTypeCallSignaling: Self = Self(11);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSURLRequestNetworkServiceType {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSURLRequestNetworkServiceType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSURLRequestAttribution(pub NSUInteger);
+impl NSURLRequestAttribution {
+    #[doc(alias = "NSURLRequestAttributionDeveloper")]
+    pub const Developer: Self = Self(0);
+    #[doc(alias = "NSURLRequestAttributionUser")]
+    pub const User: Self = Self(1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSURLRequestAttribution {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSURLRequestAttribution {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

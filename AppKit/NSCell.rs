@@ -5,72 +5,115 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSCellType {
-        NSNullCellType = 0,
-        NSTextCellType = 1,
-        NSImageCellType = 2,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSCellType(pub NSUInteger);
+impl NSCellType {
+    pub const NSNullCellType: Self = Self(0);
+    pub const NSTextCellType: Self = Self(1);
+    pub const NSImageCellType: Self = Self(2);
+}
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSCellAttribute {
-        NSCellDisabled = 0,
-        NSCellState = 1,
-        NSPushInCell = 2,
-        NSCellEditable = 3,
-        NSChangeGrayCell = 4,
-        NSCellHighlighted = 5,
-        NSCellLightsByContents = 6,
-        NSCellLightsByGray = 7,
-        NSChangeBackgroundCell = 8,
-        NSCellLightsByBackground = 9,
-        NSCellIsBordered = 10,
-        NSCellHasOverlappingImage = 11,
-        NSCellHasImageHorizontal = 12,
-        NSCellHasImageOnLeftOrBottom = 13,
-        NSCellChangesContents = 14,
-        NSCellIsInsetButton = 15,
-        NSCellAllowsMixedState = 16,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSCellType {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSCellImagePosition {
-        NSNoImage = 0,
-        NSImageOnly = 1,
-        NSImageLeft = 2,
-        NSImageRight = 3,
-        NSImageBelow = 4,
-        NSImageAbove = 5,
-        NSImageOverlaps = 6,
-        NSImageLeading = 7,
-        NSImageTrailing = 8,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSCellType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSImageScaling {
-        NSImageScaleProportionallyDown = 0,
-        NSImageScaleAxesIndependently = 1,
-        NSImageScaleNone = 2,
-        NSImageScaleProportionallyUpOrDown = 3,
-        #[deprecated = "Use NSImageScaleProportionallyDown instead"]
-        NSScaleProportionally = 0,
-        #[deprecated = "Use NSImageScaleAxesIndependently instead"]
-        NSScaleToFit = 1,
-        #[deprecated = "Use NSImageScaleNone instead"]
-        NSScaleNone = 2,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSCellAttribute(pub NSUInteger);
+impl NSCellAttribute {
+    pub const NSCellDisabled: Self = Self(0);
+    pub const NSCellState: Self = Self(1);
+    pub const NSPushInCell: Self = Self(2);
+    pub const NSCellEditable: Self = Self(3);
+    pub const NSChangeGrayCell: Self = Self(4);
+    pub const NSCellHighlighted: Self = Self(5);
+    pub const NSCellLightsByContents: Self = Self(6);
+    pub const NSCellLightsByGray: Self = Self(7);
+    pub const NSChangeBackgroundCell: Self = Self(8);
+    pub const NSCellLightsByBackground: Self = Self(9);
+    pub const NSCellIsBordered: Self = Self(10);
+    pub const NSCellHasOverlappingImage: Self = Self(11);
+    pub const NSCellHasImageHorizontal: Self = Self(12);
+    pub const NSCellHasImageOnLeftOrBottom: Self = Self(13);
+    pub const NSCellChangesContents: Self = Self(14);
+    pub const NSCellIsInsetButton: Self = Self(15);
+    pub const NSCellAllowsMixedState: Self = Self(16);
+}
 
-typed_extensible_enum!(
-    pub type NSControlStateValue = NSInteger;
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSCellAttribute {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSCellAttribute {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSCellImagePosition(pub NSUInteger);
+impl NSCellImagePosition {
+    pub const NSNoImage: Self = Self(0);
+    pub const NSImageOnly: Self = Self(1);
+    pub const NSImageLeft: Self = Self(2);
+    pub const NSImageRight: Self = Self(3);
+    pub const NSImageBelow: Self = Self(4);
+    pub const NSImageAbove: Self = Self(5);
+    pub const NSImageOverlaps: Self = Self(6);
+    pub const NSImageLeading: Self = Self(7);
+    pub const NSImageTrailing: Self = Self(8);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSCellImagePosition {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSCellImagePosition {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSImageScaling(pub NSUInteger);
+impl NSImageScaling {
+    pub const NSImageScaleProportionallyDown: Self = Self(0);
+    pub const NSImageScaleAxesIndependently: Self = Self(1);
+    pub const NSImageScaleNone: Self = Self(2);
+    pub const NSImageScaleProportionallyUpOrDown: Self = Self(3);
+    #[deprecated = "Use NSImageScaleProportionallyDown instead"]
+    pub const NSScaleProportionally: Self = Self(0);
+    #[deprecated = "Use NSImageScaleAxesIndependently instead"]
+    pub const NSScaleToFit: Self = Self(1);
+    #[deprecated = "Use NSImageScaleNone instead"]
+    pub const NSScaleNone: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSImageScaling {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSImageScaling {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_TYPED_EXTENSIBLE_ENUM
+pub type NSControlStateValue = NSInteger;
 
 pub static NSControlStateValueMixed: NSControlStateValue = -1;
 
@@ -78,40 +121,73 @@ pub static NSControlStateValueOff: NSControlStateValue = 0;
 
 pub static NSControlStateValueOn: NSControlStateValue = 1;
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSCellStyleMask {
-        NSNoCellMask = 0,
-        NSContentsCellMask = 1,
-        NSPushInCellMask = 2,
-        NSChangeGrayCellMask = 4,
-        NSChangeBackgroundCellMask = 8,
-    }
-);
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSCellStyleMask(pub NSUInteger);
+impl NSCellStyleMask {
+    pub const NSNoCellMask: Self = Self(0);
+    pub const NSContentsCellMask: Self = Self(1);
+    pub const NSPushInCellMask: Self = Self(2);
+    pub const NSChangeGrayCellMask: Self = Self(4);
+    pub const NSChangeBackgroundCellMask: Self = Self(8);
+}
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSControlTint {
-        NSDefaultControlTint = 0,
-        NSBlueControlTint = 1,
-        NSGraphiteControlTint = 6,
-        NSClearControlTint = 7,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSCellStyleMask {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSControlSize {
-        #[doc(alias = "NSControlSizeRegular")]
-        Regular = 0,
-        #[doc(alias = "NSControlSizeSmall")]
-        Small = 1,
-        #[doc(alias = "NSControlSizeMini")]
-        Mini = 2,
-        #[doc(alias = "NSControlSizeLarge")]
-        Large = 3,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSCellStyleMask {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSControlTint(pub NSUInteger);
+impl NSControlTint {
+    pub const NSDefaultControlTint: Self = Self(0);
+    pub const NSBlueControlTint: Self = Self(1);
+    pub const NSGraphiteControlTint: Self = Self(6);
+    pub const NSClearControlTint: Self = Self(7);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSControlTint {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSControlTint {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSControlSize(pub NSUInteger);
+impl NSControlSize {
+    #[doc(alias = "NSControlSizeRegular")]
+    pub const Regular: Self = Self(0);
+    #[doc(alias = "NSControlSizeSmall")]
+    pub const Small: Self = Self(1);
+    #[doc(alias = "NSControlSizeMini")]
+    pub const Mini: Self = Self(2);
+    #[doc(alias = "NSControlSizeLarge")]
+    pub const Large: Self = Self(3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSControlSize {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSControlSize {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -791,15 +867,26 @@ extern_methods!(
     }
 );
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSCellHitResult {
-        NSCellHitNone = 0,
-        NSCellHitContentArea = 1 << 0,
-        NSCellHitEditableTextArea = 1 << 1,
-        NSCellHitTrackableArea = 1 << 2,
-    }
-);
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSCellHitResult(pub NSUInteger);
+impl NSCellHitResult {
+    pub const NSCellHitNone: Self = Self(0);
+    pub const NSCellHitContentArea: Self = Self(1 << 0);
+    pub const NSCellHitEditableTextArea: Self = Self(1 << 1);
+    pub const NSCellHitTrackableArea: Self = Self(1 << 2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSCellHitResult {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSCellHitResult {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_methods!(
     /// NSCellHitTest
@@ -845,19 +932,30 @@ extern_methods!(
     }
 );
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSBackgroundStyle {
-        #[doc(alias = "NSBackgroundStyleNormal")]
-        Normal = 0,
-        #[doc(alias = "NSBackgroundStyleEmphasized")]
-        Emphasized = 1,
-        #[doc(alias = "NSBackgroundStyleRaised")]
-        Raised = 2,
-        #[doc(alias = "NSBackgroundStyleLowered")]
-        Lowered = 3,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSBackgroundStyle(pub NSInteger);
+impl NSBackgroundStyle {
+    #[doc(alias = "NSBackgroundStyleNormal")]
+    pub const Normal: Self = Self(0);
+    #[doc(alias = "NSBackgroundStyleEmphasized")]
+    pub const Emphasized: Self = Self(1);
+    #[doc(alias = "NSBackgroundStyleRaised")]
+    pub const Raised: Self = Self(2);
+    #[doc(alias = "NSBackgroundStyleLowered")]
+    pub const Lowered: Self = Self(3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSBackgroundStyle {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSBackgroundStyle {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_methods!(
     /// NSCellBackgroundStyle

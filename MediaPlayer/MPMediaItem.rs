@@ -5,37 +5,48 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::MediaPlayer::*;
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum MPMediaType {
-        #[doc(alias = "MPMediaTypeMusic")]
-        Music = 1 << 0,
-        #[doc(alias = "MPMediaTypePodcast")]
-        Podcast = 1 << 1,
-        #[doc(alias = "MPMediaTypeAudioBook")]
-        AudioBook = 1 << 2,
-        #[doc(alias = "MPMediaTypeAudioITunesU")]
-        AudioITunesU = 1 << 3,
-        #[doc(alias = "MPMediaTypeAnyAudio")]
-        AnyAudio = 0x00ff,
-        #[doc(alias = "MPMediaTypeMovie")]
-        Movie = 1 << 8,
-        #[doc(alias = "MPMediaTypeTVShow")]
-        TVShow = 1 << 9,
-        #[doc(alias = "MPMediaTypeVideoPodcast")]
-        VideoPodcast = 1 << 10,
-        #[doc(alias = "MPMediaTypeMusicVideo")]
-        MusicVideo = 1 << 11,
-        #[doc(alias = "MPMediaTypeVideoITunesU")]
-        VideoITunesU = 1 << 12,
-        #[doc(alias = "MPMediaTypeHomeVideo")]
-        HomeVideo = 1 << 13,
-        #[doc(alias = "MPMediaTypeAnyVideo")]
-        AnyVideo = 0xff00,
-        #[doc(alias = "MPMediaTypeAny")]
-        Any = !0,
-    }
-);
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MPMediaType(pub NSUInteger);
+impl MPMediaType {
+    #[doc(alias = "MPMediaTypeMusic")]
+    pub const Music: Self = Self(1 << 0);
+    #[doc(alias = "MPMediaTypePodcast")]
+    pub const Podcast: Self = Self(1 << 1);
+    #[doc(alias = "MPMediaTypeAudioBook")]
+    pub const AudioBook: Self = Self(1 << 2);
+    #[doc(alias = "MPMediaTypeAudioITunesU")]
+    pub const AudioITunesU: Self = Self(1 << 3);
+    #[doc(alias = "MPMediaTypeAnyAudio")]
+    pub const AnyAudio: Self = Self(0x00ff);
+    #[doc(alias = "MPMediaTypeMovie")]
+    pub const Movie: Self = Self(1 << 8);
+    #[doc(alias = "MPMediaTypeTVShow")]
+    pub const TVShow: Self = Self(1 << 9);
+    #[doc(alias = "MPMediaTypeVideoPodcast")]
+    pub const VideoPodcast: Self = Self(1 << 10);
+    #[doc(alias = "MPMediaTypeMusicVideo")]
+    pub const MusicVideo: Self = Self(1 << 11);
+    #[doc(alias = "MPMediaTypeVideoITunesU")]
+    pub const VideoITunesU: Self = Self(1 << 12);
+    #[doc(alias = "MPMediaTypeHomeVideo")]
+    pub const HomeVideo: Self = Self(1 << 13);
+    #[doc(alias = "MPMediaTypeAnyVideo")]
+    pub const AnyVideo: Self = Self(0xff00);
+    #[doc(alias = "MPMediaTypeAny")]
+    pub const Any: Self = Self(!0);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MPMediaType {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MPMediaType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]

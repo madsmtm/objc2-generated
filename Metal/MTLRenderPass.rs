@@ -16,43 +16,76 @@ extern_struct!(
 
 // TODO: pub fn MTLClearColorMake(red: c_double,green: c_double,blue: c_double,alpha: c_double,) -> MTLClearColor;
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum MTLLoadAction {
-        #[doc(alias = "MTLLoadActionDontCare")]
-        DontCare = 0,
-        #[doc(alias = "MTLLoadActionLoad")]
-        Load = 1,
-        #[doc(alias = "MTLLoadActionClear")]
-        Clear = 2,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MTLLoadAction(pub NSUInteger);
+impl MTLLoadAction {
+    #[doc(alias = "MTLLoadActionDontCare")]
+    pub const DontCare: Self = Self(0);
+    #[doc(alias = "MTLLoadActionLoad")]
+    pub const Load: Self = Self(1);
+    #[doc(alias = "MTLLoadActionClear")]
+    pub const Clear: Self = Self(2);
+}
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum MTLStoreAction {
-        #[doc(alias = "MTLStoreActionDontCare")]
-        DontCare = 0,
-        #[doc(alias = "MTLStoreActionStore")]
-        Store = 1,
-        #[doc(alias = "MTLStoreActionMultisampleResolve")]
-        MultisampleResolve = 2,
-        #[doc(alias = "MTLStoreActionStoreAndMultisampleResolve")]
-        StoreAndMultisampleResolve = 3,
-        #[doc(alias = "MTLStoreActionUnknown")]
-        Unknown = 4,
-        #[doc(alias = "MTLStoreActionCustomSampleDepthStore")]
-        CustomSampleDepthStore = 5,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLLoadAction {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum MTLStoreActionOptions {
-        MTLStoreActionOptionNone = 0,
-        MTLStoreActionOptionCustomSamplePositions = 1 << 0,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLLoadAction {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MTLStoreAction(pub NSUInteger);
+impl MTLStoreAction {
+    #[doc(alias = "MTLStoreActionDontCare")]
+    pub const DontCare: Self = Self(0);
+    #[doc(alias = "MTLStoreActionStore")]
+    pub const Store: Self = Self(1);
+    #[doc(alias = "MTLStoreActionMultisampleResolve")]
+    pub const MultisampleResolve: Self = Self(2);
+    #[doc(alias = "MTLStoreActionStoreAndMultisampleResolve")]
+    pub const StoreAndMultisampleResolve: Self = Self(3);
+    #[doc(alias = "MTLStoreActionUnknown")]
+    pub const Unknown: Self = Self(4);
+    #[doc(alias = "MTLStoreActionCustomSampleDepthStore")]
+    pub const CustomSampleDepthStore: Self = Self(5);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLStoreAction {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLStoreAction {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MTLStoreActionOptions(pub NSUInteger);
+impl MTLStoreActionOptions {
+    pub const MTLStoreActionOptionNone: Self = Self(0);
+    pub const MTLStoreActionOptionCustomSamplePositions: Self = Self(1 << 0);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLStoreActionOptions {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLStoreActionOptions {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -198,17 +231,28 @@ impl DefaultId for MTLRenderPassColorAttachmentDescriptor {
     }
 }
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum MTLMultisampleDepthResolveFilter {
-        #[doc(alias = "MTLMultisampleDepthResolveFilterSample0")]
-        Sample0 = 0,
-        #[doc(alias = "MTLMultisampleDepthResolveFilterMin")]
-        Min = 1,
-        #[doc(alias = "MTLMultisampleDepthResolveFilterMax")]
-        Max = 2,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MTLMultisampleDepthResolveFilter(pub NSUInteger);
+impl MTLMultisampleDepthResolveFilter {
+    #[doc(alias = "MTLMultisampleDepthResolveFilterSample0")]
+    pub const Sample0: Self = Self(0);
+    #[doc(alias = "MTLMultisampleDepthResolveFilterMin")]
+    pub const Min: Self = Self(1);
+    #[doc(alias = "MTLMultisampleDepthResolveFilterMax")]
+    pub const Max: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLMultisampleDepthResolveFilter {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLMultisampleDepthResolveFilter {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -253,15 +297,26 @@ extern_methods!(
     }
 );
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum MTLMultisampleStencilResolveFilter {
-        #[doc(alias = "MTLMultisampleStencilResolveFilterSample0")]
-        Sample0 = 0,
-        #[doc(alias = "MTLMultisampleStencilResolveFilterDepthResolvedSample")]
-        DepthResolvedSample = 1,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MTLMultisampleStencilResolveFilter(pub NSUInteger);
+impl MTLMultisampleStencilResolveFilter {
+    #[doc(alias = "MTLMultisampleStencilResolveFilterSample0")]
+    pub const Sample0: Self = Self(0);
+    #[doc(alias = "MTLMultisampleStencilResolveFilterDepthResolvedSample")]
+    pub const DepthResolvedSample: Self = Self(1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLMultisampleStencilResolveFilter {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLMultisampleStencilResolveFilter {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

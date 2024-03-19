@@ -10,18 +10,29 @@ extern "C" {
     pub static CLLocationPushServiceErrorDomain: Option<&'static NSErrorDomain>;
 }
 
-ns_error_enum!(
-    #[underlying(NSInteger)]
-    pub enum CLLocationPushServiceError {
-        #[doc(alias = "CLLocationPushServiceErrorUnknown")]
-        Unknown = 0,
-        #[doc(alias = "CLLocationPushServiceErrorMissingPushExtension")]
-        MissingPushExtension = 1,
-        #[doc(alias = "CLLocationPushServiceErrorMissingPushServerEnvironment")]
-        MissingPushServerEnvironment = 2,
-        #[doc(alias = "CLLocationPushServiceErrorMissingEntitlement")]
-        MissingEntitlement = 3,
-        #[doc(alias = "CLLocationPushServiceErrorUnsupportedPlatform")]
-        UnsupportedPlatform = 4,
-    }
-);
+// NS_ERROR_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct CLLocationPushServiceError(pub NSInteger);
+impl CLLocationPushServiceError {
+    #[doc(alias = "CLLocationPushServiceErrorUnknown")]
+    pub const Unknown: Self = Self(0);
+    #[doc(alias = "CLLocationPushServiceErrorMissingPushExtension")]
+    pub const MissingPushExtension: Self = Self(1);
+    #[doc(alias = "CLLocationPushServiceErrorMissingPushServerEnvironment")]
+    pub const MissingPushServerEnvironment: Self = Self(2);
+    #[doc(alias = "CLLocationPushServiceErrorMissingEntitlement")]
+    pub const MissingEntitlement: Self = Self(3);
+    #[doc(alias = "CLLocationPushServiceErrorUnsupportedPlatform")]
+    pub const UnsupportedPlatform: Self = Self(4);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for CLLocationPushServiceError {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for CLLocationPushServiceError {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}

@@ -10,13 +10,24 @@ extern "C" {
     pub static MEMessageSecurityErrorDomain: &'static NSErrorDomain;
 }
 
-ns_error_enum!(
-    #[underlying(NSInteger)]
-    pub enum MEMessageSecurityErrorCode {
-        MEMessageSecurityEncodingError = 0,
-        MEMessageSecurityDecodingError = 1,
-    }
-);
+// NS_ERROR_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MEMessageSecurityErrorCode(pub NSInteger);
+impl MEMessageSecurityErrorCode {
+    pub const MEMessageSecurityEncodingError: Self = Self(0);
+    pub const MEMessageSecurityDecodingError: Self = Self(1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MEMessageSecurityErrorCode {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MEMessageSecurityErrorCode {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_protocol!(
     #[cfg(all(

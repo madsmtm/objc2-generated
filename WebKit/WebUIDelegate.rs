@@ -70,52 +70,74 @@ pub const WebMenuItemPDFNextPage: c_uint = 31;
 #[deprecated]
 pub const WebMenuItemPDFPreviousPage: c_uint = 32;
 
-ns_options!(
-    #[underlying(NSUInteger)]
+// NS_OPTIONS
+#[deprecated]
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct WebDragDestinationAction(pub NSUInteger);
+impl WebDragDestinationAction {
     #[deprecated]
-    pub enum WebDragDestinationAction {
-        #[deprecated]
-        #[doc(alias = "WebDragDestinationActionNone")]
-        None = 0,
-        #[deprecated]
-        #[doc(alias = "WebDragDestinationActionDHTML")]
-        DHTML = 1,
-        #[deprecated]
-        #[doc(alias = "WebDragDestinationActionEdit")]
-        Edit = 2,
-        #[deprecated]
-        #[doc(alias = "WebDragDestinationActionLoad")]
-        Load = 4,
-        #[deprecated]
-        #[doc(alias = "WebDragDestinationActionAny")]
-        Any = 4294967295,
-    }
-);
+    #[doc(alias = "WebDragDestinationActionNone")]
+    pub const None: Self = Self(0);
+    #[deprecated]
+    #[doc(alias = "WebDragDestinationActionDHTML")]
+    pub const DHTML: Self = Self(1);
+    #[deprecated]
+    #[doc(alias = "WebDragDestinationActionEdit")]
+    pub const Edit: Self = Self(2);
+    #[deprecated]
+    #[doc(alias = "WebDragDestinationActionLoad")]
+    pub const Load: Self = Self(4);
+    #[deprecated]
+    #[doc(alias = "WebDragDestinationActionAny")]
+    pub const Any: Self = Self(4294967295);
+}
 
-ns_options!(
-    #[underlying(NSUInteger)]
+#[cfg(feature = "objc2")]
+unsafe impl Encode for WebDragDestinationAction {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for WebDragDestinationAction {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_OPTIONS
+#[deprecated]
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct WebDragSourceAction(pub NSUInteger);
+impl WebDragSourceAction {
     #[deprecated]
-    pub enum WebDragSourceAction {
-        #[deprecated]
-        #[doc(alias = "WebDragSourceActionNone")]
-        None = 0,
-        #[deprecated]
-        #[doc(alias = "WebDragSourceActionDHTML")]
-        DHTML = 1,
-        #[deprecated]
-        #[doc(alias = "WebDragSourceActionImage")]
-        Image = 2,
-        #[deprecated]
-        #[doc(alias = "WebDragSourceActionLink")]
-        Link = 4,
-        #[deprecated]
-        #[doc(alias = "WebDragSourceActionSelection")]
-        Selection = 8,
-        #[deprecated]
-        #[doc(alias = "WebDragSourceActionAny")]
-        Any = 4294967295,
-    }
-);
+    #[doc(alias = "WebDragSourceActionNone")]
+    pub const None: Self = Self(0);
+    #[deprecated]
+    #[doc(alias = "WebDragSourceActionDHTML")]
+    pub const DHTML: Self = Self(1);
+    #[deprecated]
+    #[doc(alias = "WebDragSourceActionImage")]
+    pub const Image: Self = Self(2);
+    #[deprecated]
+    #[doc(alias = "WebDragSourceActionLink")]
+    pub const Link: Self = Self(4);
+    #[deprecated]
+    #[doc(alias = "WebDragSourceActionSelection")]
+    pub const Selection: Self = Self(8);
+    #[deprecated]
+    #[doc(alias = "WebDragSourceActionAny")]
+    pub const Any: Self = Self(4294967295);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for WebDragSourceAction {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for WebDragSourceAction {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_protocol!(
     #[deprecated]

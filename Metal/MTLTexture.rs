@@ -4,42 +4,64 @@ use crate::common::*;
 use crate::Foundation::*;
 use crate::Metal::*;
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum MTLTextureType {
-        MTLTextureType1D = 0,
-        MTLTextureType1DArray = 1,
-        MTLTextureType2D = 2,
-        MTLTextureType2DArray = 3,
-        MTLTextureType2DMultisample = 4,
-        #[doc(alias = "MTLTextureTypeCube")]
-        Cube = 5,
-        #[doc(alias = "MTLTextureTypeCubeArray")]
-        CubeArray = 6,
-        MTLTextureType3D = 7,
-        MTLTextureType2DMultisampleArray = 8,
-        #[doc(alias = "MTLTextureTypeTextureBuffer")]
-        TextureBuffer = 9,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MTLTextureType(pub NSUInteger);
+impl MTLTextureType {
+    pub const MTLTextureType1D: Self = Self(0);
+    pub const MTLTextureType1DArray: Self = Self(1);
+    pub const MTLTextureType2D: Self = Self(2);
+    pub const MTLTextureType2DArray: Self = Self(3);
+    pub const MTLTextureType2DMultisample: Self = Self(4);
+    #[doc(alias = "MTLTextureTypeCube")]
+    pub const Cube: Self = Self(5);
+    #[doc(alias = "MTLTextureTypeCubeArray")]
+    pub const CubeArray: Self = Self(6);
+    pub const MTLTextureType3D: Self = Self(7);
+    pub const MTLTextureType2DMultisampleArray: Self = Self(8);
+    #[doc(alias = "MTLTextureTypeTextureBuffer")]
+    pub const TextureBuffer: Self = Self(9);
+}
 
-ns_enum!(
-    #[underlying(u8)]
-    pub enum MTLTextureSwizzle {
-        #[doc(alias = "MTLTextureSwizzleZero")]
-        Zero = 0,
-        #[doc(alias = "MTLTextureSwizzleOne")]
-        One = 1,
-        #[doc(alias = "MTLTextureSwizzleRed")]
-        Red = 2,
-        #[doc(alias = "MTLTextureSwizzleGreen")]
-        Green = 3,
-        #[doc(alias = "MTLTextureSwizzleBlue")]
-        Blue = 4,
-        #[doc(alias = "MTLTextureSwizzleAlpha")]
-        Alpha = 5,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLTextureType {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLTextureType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MTLTextureSwizzle(pub u8);
+impl MTLTextureSwizzle {
+    #[doc(alias = "MTLTextureSwizzleZero")]
+    pub const Zero: Self = Self(0);
+    #[doc(alias = "MTLTextureSwizzleOne")]
+    pub const One: Self = Self(1);
+    #[doc(alias = "MTLTextureSwizzleRed")]
+    pub const Red: Self = Self(2);
+    #[doc(alias = "MTLTextureSwizzleGreen")]
+    pub const Green: Self = Self(3);
+    #[doc(alias = "MTLTextureSwizzleBlue")]
+    pub const Blue: Self = Self(4);
+    #[doc(alias = "MTLTextureSwizzleAlpha")]
+    pub const Alpha: Self = Self(5);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLTextureSwizzle {
+    const ENCODING: Encoding = u8::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLTextureSwizzle {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_struct!(
     #[encoding_name("?")]
@@ -94,33 +116,55 @@ extern_methods!(
     }
 );
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum MTLTextureUsage {
-        #[doc(alias = "MTLTextureUsageUnknown")]
-        Unknown = 0x0000,
-        #[doc(alias = "MTLTextureUsageShaderRead")]
-        ShaderRead = 0x0001,
-        #[doc(alias = "MTLTextureUsageShaderWrite")]
-        ShaderWrite = 0x0002,
-        #[doc(alias = "MTLTextureUsageRenderTarget")]
-        RenderTarget = 0x0004,
-        #[doc(alias = "MTLTextureUsagePixelFormatView")]
-        PixelFormatView = 0x0010,
-        #[doc(alias = "MTLTextureUsageShaderAtomic")]
-        ShaderAtomic = 0x0020,
-    }
-);
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MTLTextureUsage(pub NSUInteger);
+impl MTLTextureUsage {
+    #[doc(alias = "MTLTextureUsageUnknown")]
+    pub const Unknown: Self = Self(0x0000);
+    #[doc(alias = "MTLTextureUsageShaderRead")]
+    pub const ShaderRead: Self = Self(0x0001);
+    #[doc(alias = "MTLTextureUsageShaderWrite")]
+    pub const ShaderWrite: Self = Self(0x0002);
+    #[doc(alias = "MTLTextureUsageRenderTarget")]
+    pub const RenderTarget: Self = Self(0x0004);
+    #[doc(alias = "MTLTextureUsagePixelFormatView")]
+    pub const PixelFormatView: Self = Self(0x0010);
+    #[doc(alias = "MTLTextureUsageShaderAtomic")]
+    pub const ShaderAtomic: Self = Self(0x0020);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum MTLTextureCompressionType {
-        #[doc(alias = "MTLTextureCompressionTypeLossless")]
-        Lossless = 0,
-        #[doc(alias = "MTLTextureCompressionTypeLossy")]
-        Lossy = 1,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLTextureUsage {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLTextureUsage {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MTLTextureCompressionType(pub NSInteger);
+impl MTLTextureCompressionType {
+    #[doc(alias = "MTLTextureCompressionTypeLossless")]
+    pub const Lossless: Self = Self(0);
+    #[doc(alias = "MTLTextureCompressionTypeLossy")]
+    pub const Lossy: Self = Self(1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLTextureCompressionType {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLTextureCompressionType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

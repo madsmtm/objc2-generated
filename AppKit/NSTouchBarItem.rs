@@ -5,14 +5,12 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
+// NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "Foundation_NSString")]
-typed_extensible_enum!(
-    pub type NSTouchBarItemIdentifier = NSString;
-);
+pub type NSTouchBarItemIdentifier = NSString;
 
-typed_extensible_enum!(
-    pub type NSTouchBarItemPriority = c_float;
-);
+// NS_TYPED_EXTENSIBLE_ENUM
+pub type NSTouchBarItemPriority = c_float;
 
 pub static NSTouchBarItemPriorityHigh: NSTouchBarItemPriority = 1000 as _;
 

@@ -5,19 +5,30 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSCollectionElementCategory {
-        #[doc(alias = "NSCollectionElementCategoryItem")]
-        Item = 0,
-        #[doc(alias = "NSCollectionElementCategorySupplementaryView")]
-        SupplementaryView = 1,
-        #[doc(alias = "NSCollectionElementCategoryDecorationView")]
-        DecorationView = 2,
-        #[doc(alias = "NSCollectionElementCategoryInterItemGap")]
-        InterItemGap = 3,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSCollectionElementCategory(pub NSInteger);
+impl NSCollectionElementCategory {
+    #[doc(alias = "NSCollectionElementCategoryItem")]
+    pub const Item: Self = Self(0);
+    #[doc(alias = "NSCollectionElementCategorySupplementaryView")]
+    pub const SupplementaryView: Self = Self(1);
+    #[doc(alias = "NSCollectionElementCategoryDecorationView")]
+    pub const DecorationView: Self = Self(2);
+    #[doc(alias = "NSCollectionElementCategoryInterItemGap")]
+    pub const InterItemGap: Self = Self(3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSCollectionElementCategory {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSCollectionElementCategory {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 #[cfg(feature = "Foundation_NSString")]
 pub type NSCollectionViewDecorationElementKind = NSString;
@@ -137,21 +148,32 @@ extern_methods!(
     }
 );
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSCollectionUpdateAction {
-        #[doc(alias = "NSCollectionUpdateActionInsert")]
-        Insert = 0,
-        #[doc(alias = "NSCollectionUpdateActionDelete")]
-        Delete = 1,
-        #[doc(alias = "NSCollectionUpdateActionReload")]
-        Reload = 2,
-        #[doc(alias = "NSCollectionUpdateActionMove")]
-        Move = 3,
-        #[doc(alias = "NSCollectionUpdateActionNone")]
-        None = 4,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSCollectionUpdateAction(pub NSInteger);
+impl NSCollectionUpdateAction {
+    #[doc(alias = "NSCollectionUpdateActionInsert")]
+    pub const Insert: Self = Self(0);
+    #[doc(alias = "NSCollectionUpdateActionDelete")]
+    pub const Delete: Self = Self(1);
+    #[doc(alias = "NSCollectionUpdateActionReload")]
+    pub const Reload: Self = Self(2);
+    #[doc(alias = "NSCollectionUpdateActionMove")]
+    pub const Move: Self = Self(3);
+    #[doc(alias = "NSCollectionUpdateActionNone")]
+    pub const None: Self = Self(4);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSCollectionUpdateAction {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSCollectionUpdateAction {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

@@ -6,17 +6,28 @@ use crate::Foundation::*;
 use crate::HealthKit::*;
 use crate::UniformTypeIdentifiers::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum HKWorkoutSessionLocationType {
-        #[doc(alias = "HKWorkoutSessionLocationTypeUnknown")]
-        Unknown = 1,
-        #[doc(alias = "HKWorkoutSessionLocationTypeIndoor")]
-        Indoor = 2,
-        #[doc(alias = "HKWorkoutSessionLocationTypeOutdoor")]
-        Outdoor = 3,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct HKWorkoutSessionLocationType(pub NSInteger);
+impl HKWorkoutSessionLocationType {
+    #[doc(alias = "HKWorkoutSessionLocationTypeUnknown")]
+    pub const Unknown: Self = Self(1);
+    #[doc(alias = "HKWorkoutSessionLocationTypeIndoor")]
+    pub const Indoor: Self = Self(2);
+    #[doc(alias = "HKWorkoutSessionLocationTypeOutdoor")]
+    pub const Outdoor: Self = Self(3);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for HKWorkoutSessionLocationType {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for HKWorkoutSessionLocationType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

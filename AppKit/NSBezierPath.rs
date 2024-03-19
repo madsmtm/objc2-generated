@@ -5,58 +5,102 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSLineCapStyle {
-        #[doc(alias = "NSLineCapStyleButt")]
-        Butt = 0,
-        #[doc(alias = "NSLineCapStyleRound")]
-        Round = 1,
-        #[doc(alias = "NSLineCapStyleSquare")]
-        Square = 2,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSLineCapStyle(pub NSUInteger);
+impl NSLineCapStyle {
+    #[doc(alias = "NSLineCapStyleButt")]
+    pub const Butt: Self = Self(0);
+    #[doc(alias = "NSLineCapStyleRound")]
+    pub const Round: Self = Self(1);
+    #[doc(alias = "NSLineCapStyleSquare")]
+    pub const Square: Self = Self(2);
+}
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSLineJoinStyle {
-        #[doc(alias = "NSLineJoinStyleMiter")]
-        Miter = 0,
-        #[doc(alias = "NSLineJoinStyleRound")]
-        Round = 1,
-        #[doc(alias = "NSLineJoinStyleBevel")]
-        Bevel = 2,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSLineCapStyle {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSWindingRule {
-        #[doc(alias = "NSWindingRuleNonZero")]
-        NonZero = 0,
-        #[doc(alias = "NSWindingRuleEvenOdd")]
-        EvenOdd = 1,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSLineCapStyle {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSBezierPathElement {
-        #[doc(alias = "NSBezierPathElementMoveTo")]
-        MoveTo = 0,
-        #[doc(alias = "NSBezierPathElementLineTo")]
-        LineTo = 1,
-        #[doc(alias = "NSBezierPathElementCubicCurveTo")]
-        CubicCurveTo = 2,
-        #[doc(alias = "NSBezierPathElementClosePath")]
-        ClosePath = 3,
-        #[doc(alias = "NSBezierPathElementQuadraticCurveTo")]
-        QuadraticCurveTo = 4,
-        #[deprecated]
-        #[doc(alias = "NSBezierPathElementCurveTo")]
-        CurveTo = NSBezierPathElement::CubicCurveTo.0,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSLineJoinStyle(pub NSUInteger);
+impl NSLineJoinStyle {
+    #[doc(alias = "NSLineJoinStyleMiter")]
+    pub const Miter: Self = Self(0);
+    #[doc(alias = "NSLineJoinStyleRound")]
+    pub const Round: Self = Self(1);
+    #[doc(alias = "NSLineJoinStyleBevel")]
+    pub const Bevel: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSLineJoinStyle {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSLineJoinStyle {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSWindingRule(pub NSUInteger);
+impl NSWindingRule {
+    #[doc(alias = "NSWindingRuleNonZero")]
+    pub const NonZero: Self = Self(0);
+    #[doc(alias = "NSWindingRuleEvenOdd")]
+    pub const EvenOdd: Self = Self(1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSWindingRule {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSWindingRule {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSBezierPathElement(pub NSUInteger);
+impl NSBezierPathElement {
+    #[doc(alias = "NSBezierPathElementMoveTo")]
+    pub const MoveTo: Self = Self(0);
+    #[doc(alias = "NSBezierPathElementLineTo")]
+    pub const LineTo: Self = Self(1);
+    #[doc(alias = "NSBezierPathElementCubicCurveTo")]
+    pub const CubicCurveTo: Self = Self(2);
+    #[doc(alias = "NSBezierPathElementClosePath")]
+    pub const ClosePath: Self = Self(3);
+    #[doc(alias = "NSBezierPathElementQuadraticCurveTo")]
+    pub const QuadraticCurveTo: Self = Self(4);
+    #[deprecated]
+    #[doc(alias = "NSBezierPathElementCurveTo")]
+    pub const CurveTo: Self = Self(NSBezierPathElement::CubicCurveTo.0);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSBezierPathElement {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSBezierPathElement {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

@@ -5,35 +5,46 @@ use crate::CloudKit::*;
 use crate::CoreLocation::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum CKSyncEngineEventType {
-        #[doc(alias = "CKSyncEngineEventTypeStateUpdate")]
-        StateUpdate = 0,
-        #[doc(alias = "CKSyncEngineEventTypeAccountChange")]
-        AccountChange = 1,
-        #[doc(alias = "CKSyncEngineEventTypeFetchedDatabaseChanges")]
-        FetchedDatabaseChanges = 2,
-        #[doc(alias = "CKSyncEngineEventTypeFetchedRecordZoneChanges")]
-        FetchedRecordZoneChanges = 3,
-        #[doc(alias = "CKSyncEngineEventTypeSentDatabaseChanges")]
-        SentDatabaseChanges = 4,
-        #[doc(alias = "CKSyncEngineEventTypeSentRecordZoneChanges")]
-        SentRecordZoneChanges = 5,
-        #[doc(alias = "CKSyncEngineEventTypeWillFetchChanges")]
-        WillFetchChanges = 6,
-        #[doc(alias = "CKSyncEngineEventTypeWillFetchRecordZoneChanges")]
-        WillFetchRecordZoneChanges = 7,
-        #[doc(alias = "CKSyncEngineEventTypeDidFetchRecordZoneChanges")]
-        DidFetchRecordZoneChanges = 8,
-        #[doc(alias = "CKSyncEngineEventTypeDidFetchChanges")]
-        DidFetchChanges = 9,
-        #[doc(alias = "CKSyncEngineEventTypeWillSendChanges")]
-        WillSendChanges = 10,
-        #[doc(alias = "CKSyncEngineEventTypeDidSendChanges")]
-        DidSendChanges = 11,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct CKSyncEngineEventType(pub NSInteger);
+impl CKSyncEngineEventType {
+    #[doc(alias = "CKSyncEngineEventTypeStateUpdate")]
+    pub const StateUpdate: Self = Self(0);
+    #[doc(alias = "CKSyncEngineEventTypeAccountChange")]
+    pub const AccountChange: Self = Self(1);
+    #[doc(alias = "CKSyncEngineEventTypeFetchedDatabaseChanges")]
+    pub const FetchedDatabaseChanges: Self = Self(2);
+    #[doc(alias = "CKSyncEngineEventTypeFetchedRecordZoneChanges")]
+    pub const FetchedRecordZoneChanges: Self = Self(3);
+    #[doc(alias = "CKSyncEngineEventTypeSentDatabaseChanges")]
+    pub const SentDatabaseChanges: Self = Self(4);
+    #[doc(alias = "CKSyncEngineEventTypeSentRecordZoneChanges")]
+    pub const SentRecordZoneChanges: Self = Self(5);
+    #[doc(alias = "CKSyncEngineEventTypeWillFetchChanges")]
+    pub const WillFetchChanges: Self = Self(6);
+    #[doc(alias = "CKSyncEngineEventTypeWillFetchRecordZoneChanges")]
+    pub const WillFetchRecordZoneChanges: Self = Self(7);
+    #[doc(alias = "CKSyncEngineEventTypeDidFetchRecordZoneChanges")]
+    pub const DidFetchRecordZoneChanges: Self = Self(8);
+    #[doc(alias = "CKSyncEngineEventTypeDidFetchChanges")]
+    pub const DidFetchChanges: Self = Self(9);
+    #[doc(alias = "CKSyncEngineEventTypeWillSendChanges")]
+    pub const WillSendChanges: Self = Self(10);
+    #[doc(alias = "CKSyncEngineEventTypeDidSendChanges")]
+    pub const DidSendChanges: Self = Self(11);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for CKSyncEngineEventType {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for CKSyncEngineEventType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -146,17 +157,28 @@ extern_methods!(
     }
 );
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum CKSyncEngineAccountChangeType {
-        #[doc(alias = "CKSyncEngineAccountChangeTypeSignIn")]
-        SignIn = 0,
-        #[doc(alias = "CKSyncEngineAccountChangeTypeSignOut")]
-        SignOut = 1,
-        #[doc(alias = "CKSyncEngineAccountChangeTypeSwitchAccounts")]
-        SwitchAccounts = 2,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct CKSyncEngineAccountChangeType(pub NSInteger);
+impl CKSyncEngineAccountChangeType {
+    #[doc(alias = "CKSyncEngineAccountChangeTypeSignIn")]
+    pub const SignIn: Self = Self(0);
+    #[doc(alias = "CKSyncEngineAccountChangeTypeSignOut")]
+    pub const SignOut: Self = Self(1);
+    #[doc(alias = "CKSyncEngineAccountChangeTypeSwitchAccounts")]
+    pub const SwitchAccounts: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for CKSyncEngineAccountChangeType {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for CKSyncEngineAccountChangeType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -639,17 +661,28 @@ extern_methods!(
     }
 );
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum CKSyncEngineZoneDeletionReason {
-        #[doc(alias = "CKSyncEngineZoneDeletionReasonDeleted")]
-        Deleted = 0,
-        #[doc(alias = "CKSyncEngineZoneDeletionReasonPurged")]
-        Purged = 1,
-        #[doc(alias = "CKSyncEngineZoneDeletionReasonEncryptedDataReset")]
-        EncryptedDataReset = 2,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct CKSyncEngineZoneDeletionReason(pub NSInteger);
+impl CKSyncEngineZoneDeletionReason {
+    #[doc(alias = "CKSyncEngineZoneDeletionReasonDeleted")]
+    pub const Deleted: Self = Self(0);
+    #[doc(alias = "CKSyncEngineZoneDeletionReasonPurged")]
+    pub const Purged: Self = Self(1);
+    #[doc(alias = "CKSyncEngineZoneDeletionReasonEncryptedDataReset")]
+    pub const EncryptedDataReset: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for CKSyncEngineZoneDeletionReason {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for CKSyncEngineZoneDeletionReason {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

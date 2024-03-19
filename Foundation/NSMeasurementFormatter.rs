@@ -3,17 +3,28 @@
 use crate::common::*;
 use crate::Foundation::*;
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSMeasurementFormatterUnitOptions {
-        #[doc(alias = "NSMeasurementFormatterUnitOptionsProvidedUnit")]
-        ProvidedUnit = 1 << 0,
-        #[doc(alias = "NSMeasurementFormatterUnitOptionsNaturalScale")]
-        NaturalScale = 1 << 1,
-        #[doc(alias = "NSMeasurementFormatterUnitOptionsTemperatureWithoutUnit")]
-        TemperatureWithoutUnit = 1 << 2,
-    }
-);
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSMeasurementFormatterUnitOptions(pub NSUInteger);
+impl NSMeasurementFormatterUnitOptions {
+    #[doc(alias = "NSMeasurementFormatterUnitOptionsProvidedUnit")]
+    pub const ProvidedUnit: Self = Self(1 << 0);
+    #[doc(alias = "NSMeasurementFormatterUnitOptionsNaturalScale")]
+    pub const NaturalScale: Self = Self(1 << 1);
+    #[doc(alias = "NSMeasurementFormatterUnitOptionsTemperatureWithoutUnit")]
+    pub const TemperatureWithoutUnit: Self = Self(1 << 2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSMeasurementFormatterUnitOptions {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSMeasurementFormatterUnitOptions {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

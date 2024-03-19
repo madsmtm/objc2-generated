@@ -4,13 +4,24 @@ use crate::common::*;
 use crate::Foundation::*;
 use crate::Metal::*;
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum MTLFunctionLogType {
-        #[doc(alias = "MTLFunctionLogTypeValidation")]
-        Validation = 0,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MTLFunctionLogType(pub NSUInteger);
+impl MTLFunctionLogType {
+    #[doc(alias = "MTLFunctionLogTypeValidation")]
+    pub const Validation: Self = Self(0);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLFunctionLogType {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLFunctionLogType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_protocol!(
     #[cfg(feature = "Foundation_NSEnumerator")]

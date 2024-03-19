@@ -5,31 +5,53 @@ use crate::AppKit::*;
 use crate::AuthenticationServices::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum ASAuthorizationAppleIDButtonType {
-        #[doc(alias = "ASAuthorizationAppleIDButtonTypeSignIn")]
-        SignIn = 0,
-        #[doc(alias = "ASAuthorizationAppleIDButtonTypeContinue")]
-        Continue = 1,
-        #[doc(alias = "ASAuthorizationAppleIDButtonTypeSignUp")]
-        SignUp = 2,
-        #[doc(alias = "ASAuthorizationAppleIDButtonTypeDefault")]
-        Default = ASAuthorizationAppleIDButtonType::SignIn.0,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct ASAuthorizationAppleIDButtonType(pub NSInteger);
+impl ASAuthorizationAppleIDButtonType {
+    #[doc(alias = "ASAuthorizationAppleIDButtonTypeSignIn")]
+    pub const SignIn: Self = Self(0);
+    #[doc(alias = "ASAuthorizationAppleIDButtonTypeContinue")]
+    pub const Continue: Self = Self(1);
+    #[doc(alias = "ASAuthorizationAppleIDButtonTypeSignUp")]
+    pub const SignUp: Self = Self(2);
+    #[doc(alias = "ASAuthorizationAppleIDButtonTypeDefault")]
+    pub const Default: Self = Self(ASAuthorizationAppleIDButtonType::SignIn.0);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum ASAuthorizationAppleIDButtonStyle {
-        #[doc(alias = "ASAuthorizationAppleIDButtonStyleWhite")]
-        White = 0,
-        #[doc(alias = "ASAuthorizationAppleIDButtonStyleWhiteOutline")]
-        WhiteOutline = 1,
-        #[doc(alias = "ASAuthorizationAppleIDButtonStyleBlack")]
-        Black = 2,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for ASAuthorizationAppleIDButtonType {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for ASAuthorizationAppleIDButtonType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct ASAuthorizationAppleIDButtonStyle(pub NSInteger);
+impl ASAuthorizationAppleIDButtonStyle {
+    #[doc(alias = "ASAuthorizationAppleIDButtonStyleWhite")]
+    pub const White: Self = Self(0);
+    #[doc(alias = "ASAuthorizationAppleIDButtonStyleWhiteOutline")]
+    pub const WhiteOutline: Self = Self(1);
+    #[doc(alias = "ASAuthorizationAppleIDButtonStyleBlack")]
+    pub const Black: Self = Self(2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for ASAuthorizationAppleIDButtonStyle {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for ASAuthorizationAppleIDButtonStyle {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 #[cfg(all(
     feature = "AppKit_NSAccessibilityProtocols",

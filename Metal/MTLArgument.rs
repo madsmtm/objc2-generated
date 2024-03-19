@@ -4,278 +4,322 @@ use crate::common::*;
 use crate::Foundation::*;
 use crate::Metal::*;
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum MTLDataType {
-        #[doc(alias = "MTLDataTypeNone")]
-        None = 0,
-        #[doc(alias = "MTLDataTypeStruct")]
-        Struct = 1,
-        #[doc(alias = "MTLDataTypeArray")]
-        Array = 2,
-        #[doc(alias = "MTLDataTypeFloat")]
-        Float = 3,
-        #[doc(alias = "MTLDataTypeFloat2")]
-        Float2 = 4,
-        #[doc(alias = "MTLDataTypeFloat3")]
-        Float3 = 5,
-        #[doc(alias = "MTLDataTypeFloat4")]
-        Float4 = 6,
-        #[doc(alias = "MTLDataTypeFloat2x2")]
-        Float2x2 = 7,
-        #[doc(alias = "MTLDataTypeFloat2x3")]
-        Float2x3 = 8,
-        #[doc(alias = "MTLDataTypeFloat2x4")]
-        Float2x4 = 9,
-        #[doc(alias = "MTLDataTypeFloat3x2")]
-        Float3x2 = 10,
-        #[doc(alias = "MTLDataTypeFloat3x3")]
-        Float3x3 = 11,
-        #[doc(alias = "MTLDataTypeFloat3x4")]
-        Float3x4 = 12,
-        #[doc(alias = "MTLDataTypeFloat4x2")]
-        Float4x2 = 13,
-        #[doc(alias = "MTLDataTypeFloat4x3")]
-        Float4x3 = 14,
-        #[doc(alias = "MTLDataTypeFloat4x4")]
-        Float4x4 = 15,
-        #[doc(alias = "MTLDataTypeHalf")]
-        Half = 16,
-        #[doc(alias = "MTLDataTypeHalf2")]
-        Half2 = 17,
-        #[doc(alias = "MTLDataTypeHalf3")]
-        Half3 = 18,
-        #[doc(alias = "MTLDataTypeHalf4")]
-        Half4 = 19,
-        #[doc(alias = "MTLDataTypeHalf2x2")]
-        Half2x2 = 20,
-        #[doc(alias = "MTLDataTypeHalf2x3")]
-        Half2x3 = 21,
-        #[doc(alias = "MTLDataTypeHalf2x4")]
-        Half2x4 = 22,
-        #[doc(alias = "MTLDataTypeHalf3x2")]
-        Half3x2 = 23,
-        #[doc(alias = "MTLDataTypeHalf3x3")]
-        Half3x3 = 24,
-        #[doc(alias = "MTLDataTypeHalf3x4")]
-        Half3x4 = 25,
-        #[doc(alias = "MTLDataTypeHalf4x2")]
-        Half4x2 = 26,
-        #[doc(alias = "MTLDataTypeHalf4x3")]
-        Half4x3 = 27,
-        #[doc(alias = "MTLDataTypeHalf4x4")]
-        Half4x4 = 28,
-        #[doc(alias = "MTLDataTypeInt")]
-        Int = 29,
-        #[doc(alias = "MTLDataTypeInt2")]
-        Int2 = 30,
-        #[doc(alias = "MTLDataTypeInt3")]
-        Int3 = 31,
-        #[doc(alias = "MTLDataTypeInt4")]
-        Int4 = 32,
-        #[doc(alias = "MTLDataTypeUInt")]
-        UInt = 33,
-        #[doc(alias = "MTLDataTypeUInt2")]
-        UInt2 = 34,
-        #[doc(alias = "MTLDataTypeUInt3")]
-        UInt3 = 35,
-        #[doc(alias = "MTLDataTypeUInt4")]
-        UInt4 = 36,
-        #[doc(alias = "MTLDataTypeShort")]
-        Short = 37,
-        #[doc(alias = "MTLDataTypeShort2")]
-        Short2 = 38,
-        #[doc(alias = "MTLDataTypeShort3")]
-        Short3 = 39,
-        #[doc(alias = "MTLDataTypeShort4")]
-        Short4 = 40,
-        #[doc(alias = "MTLDataTypeUShort")]
-        UShort = 41,
-        #[doc(alias = "MTLDataTypeUShort2")]
-        UShort2 = 42,
-        #[doc(alias = "MTLDataTypeUShort3")]
-        UShort3 = 43,
-        #[doc(alias = "MTLDataTypeUShort4")]
-        UShort4 = 44,
-        #[doc(alias = "MTLDataTypeChar")]
-        Char = 45,
-        #[doc(alias = "MTLDataTypeChar2")]
-        Char2 = 46,
-        #[doc(alias = "MTLDataTypeChar3")]
-        Char3 = 47,
-        #[doc(alias = "MTLDataTypeChar4")]
-        Char4 = 48,
-        #[doc(alias = "MTLDataTypeUChar")]
-        UChar = 49,
-        #[doc(alias = "MTLDataTypeUChar2")]
-        UChar2 = 50,
-        #[doc(alias = "MTLDataTypeUChar3")]
-        UChar3 = 51,
-        #[doc(alias = "MTLDataTypeUChar4")]
-        UChar4 = 52,
-        #[doc(alias = "MTLDataTypeBool")]
-        Bool = 53,
-        #[doc(alias = "MTLDataTypeBool2")]
-        Bool2 = 54,
-        #[doc(alias = "MTLDataTypeBool3")]
-        Bool3 = 55,
-        #[doc(alias = "MTLDataTypeBool4")]
-        Bool4 = 56,
-        #[doc(alias = "MTLDataTypeTexture")]
-        Texture = 58,
-        #[doc(alias = "MTLDataTypeSampler")]
-        Sampler = 59,
-        #[doc(alias = "MTLDataTypePointer")]
-        Pointer = 60,
-        #[doc(alias = "MTLDataTypeR8Unorm")]
-        R8Unorm = 62,
-        #[doc(alias = "MTLDataTypeR8Snorm")]
-        R8Snorm = 63,
-        #[doc(alias = "MTLDataTypeR16Unorm")]
-        R16Unorm = 64,
-        #[doc(alias = "MTLDataTypeR16Snorm")]
-        R16Snorm = 65,
-        #[doc(alias = "MTLDataTypeRG8Unorm")]
-        RG8Unorm = 66,
-        #[doc(alias = "MTLDataTypeRG8Snorm")]
-        RG8Snorm = 67,
-        #[doc(alias = "MTLDataTypeRG16Unorm")]
-        RG16Unorm = 68,
-        #[doc(alias = "MTLDataTypeRG16Snorm")]
-        RG16Snorm = 69,
-        #[doc(alias = "MTLDataTypeRGBA8Unorm")]
-        RGBA8Unorm = 70,
-        #[doc(alias = "MTLDataTypeRGBA8Unorm_sRGB")]
-        RGBA8Unorm_sRGB = 71,
-        #[doc(alias = "MTLDataTypeRGBA8Snorm")]
-        RGBA8Snorm = 72,
-        #[doc(alias = "MTLDataTypeRGBA16Unorm")]
-        RGBA16Unorm = 73,
-        #[doc(alias = "MTLDataTypeRGBA16Snorm")]
-        RGBA16Snorm = 74,
-        #[doc(alias = "MTLDataTypeRGB10A2Unorm")]
-        RGB10A2Unorm = 75,
-        #[doc(alias = "MTLDataTypeRG11B10Float")]
-        RG11B10Float = 76,
-        #[doc(alias = "MTLDataTypeRGB9E5Float")]
-        RGB9E5Float = 77,
-        #[doc(alias = "MTLDataTypeRenderPipeline")]
-        RenderPipeline = 78,
-        #[doc(alias = "MTLDataTypeComputePipeline")]
-        ComputePipeline = 79,
-        #[doc(alias = "MTLDataTypeIndirectCommandBuffer")]
-        IndirectCommandBuffer = 80,
-        #[doc(alias = "MTLDataTypeLong")]
-        Long = 81,
-        #[doc(alias = "MTLDataTypeLong2")]
-        Long2 = 82,
-        #[doc(alias = "MTLDataTypeLong3")]
-        Long3 = 83,
-        #[doc(alias = "MTLDataTypeLong4")]
-        Long4 = 84,
-        #[doc(alias = "MTLDataTypeULong")]
-        ULong = 85,
-        #[doc(alias = "MTLDataTypeULong2")]
-        ULong2 = 86,
-        #[doc(alias = "MTLDataTypeULong3")]
-        ULong3 = 87,
-        #[doc(alias = "MTLDataTypeULong4")]
-        ULong4 = 88,
-        #[doc(alias = "MTLDataTypeVisibleFunctionTable")]
-        VisibleFunctionTable = 115,
-        #[doc(alias = "MTLDataTypeIntersectionFunctionTable")]
-        IntersectionFunctionTable = 116,
-        #[doc(alias = "MTLDataTypePrimitiveAccelerationStructure")]
-        PrimitiveAccelerationStructure = 117,
-        #[doc(alias = "MTLDataTypeInstanceAccelerationStructure")]
-        InstanceAccelerationStructure = 118,
-        #[doc(alias = "MTLDataTypeBFloat")]
-        BFloat = 121,
-        #[doc(alias = "MTLDataTypeBFloat2")]
-        BFloat2 = 122,
-        #[doc(alias = "MTLDataTypeBFloat3")]
-        BFloat3 = 123,
-        #[doc(alias = "MTLDataTypeBFloat4")]
-        BFloat4 = 124,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MTLDataType(pub NSUInteger);
+impl MTLDataType {
+    #[doc(alias = "MTLDataTypeNone")]
+    pub const None: Self = Self(0);
+    #[doc(alias = "MTLDataTypeStruct")]
+    pub const Struct: Self = Self(1);
+    #[doc(alias = "MTLDataTypeArray")]
+    pub const Array: Self = Self(2);
+    #[doc(alias = "MTLDataTypeFloat")]
+    pub const Float: Self = Self(3);
+    #[doc(alias = "MTLDataTypeFloat2")]
+    pub const Float2: Self = Self(4);
+    #[doc(alias = "MTLDataTypeFloat3")]
+    pub const Float3: Self = Self(5);
+    #[doc(alias = "MTLDataTypeFloat4")]
+    pub const Float4: Self = Self(6);
+    #[doc(alias = "MTLDataTypeFloat2x2")]
+    pub const Float2x2: Self = Self(7);
+    #[doc(alias = "MTLDataTypeFloat2x3")]
+    pub const Float2x3: Self = Self(8);
+    #[doc(alias = "MTLDataTypeFloat2x4")]
+    pub const Float2x4: Self = Self(9);
+    #[doc(alias = "MTLDataTypeFloat3x2")]
+    pub const Float3x2: Self = Self(10);
+    #[doc(alias = "MTLDataTypeFloat3x3")]
+    pub const Float3x3: Self = Self(11);
+    #[doc(alias = "MTLDataTypeFloat3x4")]
+    pub const Float3x4: Self = Self(12);
+    #[doc(alias = "MTLDataTypeFloat4x2")]
+    pub const Float4x2: Self = Self(13);
+    #[doc(alias = "MTLDataTypeFloat4x3")]
+    pub const Float4x3: Self = Self(14);
+    #[doc(alias = "MTLDataTypeFloat4x4")]
+    pub const Float4x4: Self = Self(15);
+    #[doc(alias = "MTLDataTypeHalf")]
+    pub const Half: Self = Self(16);
+    #[doc(alias = "MTLDataTypeHalf2")]
+    pub const Half2: Self = Self(17);
+    #[doc(alias = "MTLDataTypeHalf3")]
+    pub const Half3: Self = Self(18);
+    #[doc(alias = "MTLDataTypeHalf4")]
+    pub const Half4: Self = Self(19);
+    #[doc(alias = "MTLDataTypeHalf2x2")]
+    pub const Half2x2: Self = Self(20);
+    #[doc(alias = "MTLDataTypeHalf2x3")]
+    pub const Half2x3: Self = Self(21);
+    #[doc(alias = "MTLDataTypeHalf2x4")]
+    pub const Half2x4: Self = Self(22);
+    #[doc(alias = "MTLDataTypeHalf3x2")]
+    pub const Half3x2: Self = Self(23);
+    #[doc(alias = "MTLDataTypeHalf3x3")]
+    pub const Half3x3: Self = Self(24);
+    #[doc(alias = "MTLDataTypeHalf3x4")]
+    pub const Half3x4: Self = Self(25);
+    #[doc(alias = "MTLDataTypeHalf4x2")]
+    pub const Half4x2: Self = Self(26);
+    #[doc(alias = "MTLDataTypeHalf4x3")]
+    pub const Half4x3: Self = Self(27);
+    #[doc(alias = "MTLDataTypeHalf4x4")]
+    pub const Half4x4: Self = Self(28);
+    #[doc(alias = "MTLDataTypeInt")]
+    pub const Int: Self = Self(29);
+    #[doc(alias = "MTLDataTypeInt2")]
+    pub const Int2: Self = Self(30);
+    #[doc(alias = "MTLDataTypeInt3")]
+    pub const Int3: Self = Self(31);
+    #[doc(alias = "MTLDataTypeInt4")]
+    pub const Int4: Self = Self(32);
+    #[doc(alias = "MTLDataTypeUInt")]
+    pub const UInt: Self = Self(33);
+    #[doc(alias = "MTLDataTypeUInt2")]
+    pub const UInt2: Self = Self(34);
+    #[doc(alias = "MTLDataTypeUInt3")]
+    pub const UInt3: Self = Self(35);
+    #[doc(alias = "MTLDataTypeUInt4")]
+    pub const UInt4: Self = Self(36);
+    #[doc(alias = "MTLDataTypeShort")]
+    pub const Short: Self = Self(37);
+    #[doc(alias = "MTLDataTypeShort2")]
+    pub const Short2: Self = Self(38);
+    #[doc(alias = "MTLDataTypeShort3")]
+    pub const Short3: Self = Self(39);
+    #[doc(alias = "MTLDataTypeShort4")]
+    pub const Short4: Self = Self(40);
+    #[doc(alias = "MTLDataTypeUShort")]
+    pub const UShort: Self = Self(41);
+    #[doc(alias = "MTLDataTypeUShort2")]
+    pub const UShort2: Self = Self(42);
+    #[doc(alias = "MTLDataTypeUShort3")]
+    pub const UShort3: Self = Self(43);
+    #[doc(alias = "MTLDataTypeUShort4")]
+    pub const UShort4: Self = Self(44);
+    #[doc(alias = "MTLDataTypeChar")]
+    pub const Char: Self = Self(45);
+    #[doc(alias = "MTLDataTypeChar2")]
+    pub const Char2: Self = Self(46);
+    #[doc(alias = "MTLDataTypeChar3")]
+    pub const Char3: Self = Self(47);
+    #[doc(alias = "MTLDataTypeChar4")]
+    pub const Char4: Self = Self(48);
+    #[doc(alias = "MTLDataTypeUChar")]
+    pub const UChar: Self = Self(49);
+    #[doc(alias = "MTLDataTypeUChar2")]
+    pub const UChar2: Self = Self(50);
+    #[doc(alias = "MTLDataTypeUChar3")]
+    pub const UChar3: Self = Self(51);
+    #[doc(alias = "MTLDataTypeUChar4")]
+    pub const UChar4: Self = Self(52);
+    #[doc(alias = "MTLDataTypeBool")]
+    pub const Bool: Self = Self(53);
+    #[doc(alias = "MTLDataTypeBool2")]
+    pub const Bool2: Self = Self(54);
+    #[doc(alias = "MTLDataTypeBool3")]
+    pub const Bool3: Self = Self(55);
+    #[doc(alias = "MTLDataTypeBool4")]
+    pub const Bool4: Self = Self(56);
+    #[doc(alias = "MTLDataTypeTexture")]
+    pub const Texture: Self = Self(58);
+    #[doc(alias = "MTLDataTypeSampler")]
+    pub const Sampler: Self = Self(59);
+    #[doc(alias = "MTLDataTypePointer")]
+    pub const Pointer: Self = Self(60);
+    #[doc(alias = "MTLDataTypeR8Unorm")]
+    pub const R8Unorm: Self = Self(62);
+    #[doc(alias = "MTLDataTypeR8Snorm")]
+    pub const R8Snorm: Self = Self(63);
+    #[doc(alias = "MTLDataTypeR16Unorm")]
+    pub const R16Unorm: Self = Self(64);
+    #[doc(alias = "MTLDataTypeR16Snorm")]
+    pub const R16Snorm: Self = Self(65);
+    #[doc(alias = "MTLDataTypeRG8Unorm")]
+    pub const RG8Unorm: Self = Self(66);
+    #[doc(alias = "MTLDataTypeRG8Snorm")]
+    pub const RG8Snorm: Self = Self(67);
+    #[doc(alias = "MTLDataTypeRG16Unorm")]
+    pub const RG16Unorm: Self = Self(68);
+    #[doc(alias = "MTLDataTypeRG16Snorm")]
+    pub const RG16Snorm: Self = Self(69);
+    #[doc(alias = "MTLDataTypeRGBA8Unorm")]
+    pub const RGBA8Unorm: Self = Self(70);
+    #[doc(alias = "MTLDataTypeRGBA8Unorm_sRGB")]
+    pub const RGBA8Unorm_sRGB: Self = Self(71);
+    #[doc(alias = "MTLDataTypeRGBA8Snorm")]
+    pub const RGBA8Snorm: Self = Self(72);
+    #[doc(alias = "MTLDataTypeRGBA16Unorm")]
+    pub const RGBA16Unorm: Self = Self(73);
+    #[doc(alias = "MTLDataTypeRGBA16Snorm")]
+    pub const RGBA16Snorm: Self = Self(74);
+    #[doc(alias = "MTLDataTypeRGB10A2Unorm")]
+    pub const RGB10A2Unorm: Self = Self(75);
+    #[doc(alias = "MTLDataTypeRG11B10Float")]
+    pub const RG11B10Float: Self = Self(76);
+    #[doc(alias = "MTLDataTypeRGB9E5Float")]
+    pub const RGB9E5Float: Self = Self(77);
+    #[doc(alias = "MTLDataTypeRenderPipeline")]
+    pub const RenderPipeline: Self = Self(78);
+    #[doc(alias = "MTLDataTypeComputePipeline")]
+    pub const ComputePipeline: Self = Self(79);
+    #[doc(alias = "MTLDataTypeIndirectCommandBuffer")]
+    pub const IndirectCommandBuffer: Self = Self(80);
+    #[doc(alias = "MTLDataTypeLong")]
+    pub const Long: Self = Self(81);
+    #[doc(alias = "MTLDataTypeLong2")]
+    pub const Long2: Self = Self(82);
+    #[doc(alias = "MTLDataTypeLong3")]
+    pub const Long3: Self = Self(83);
+    #[doc(alias = "MTLDataTypeLong4")]
+    pub const Long4: Self = Self(84);
+    #[doc(alias = "MTLDataTypeULong")]
+    pub const ULong: Self = Self(85);
+    #[doc(alias = "MTLDataTypeULong2")]
+    pub const ULong2: Self = Self(86);
+    #[doc(alias = "MTLDataTypeULong3")]
+    pub const ULong3: Self = Self(87);
+    #[doc(alias = "MTLDataTypeULong4")]
+    pub const ULong4: Self = Self(88);
+    #[doc(alias = "MTLDataTypeVisibleFunctionTable")]
+    pub const VisibleFunctionTable: Self = Self(115);
+    #[doc(alias = "MTLDataTypeIntersectionFunctionTable")]
+    pub const IntersectionFunctionTable: Self = Self(116);
+    #[doc(alias = "MTLDataTypePrimitiveAccelerationStructure")]
+    pub const PrimitiveAccelerationStructure: Self = Self(117);
+    #[doc(alias = "MTLDataTypeInstanceAccelerationStructure")]
+    pub const InstanceAccelerationStructure: Self = Self(118);
+    #[doc(alias = "MTLDataTypeBFloat")]
+    pub const BFloat: Self = Self(121);
+    #[doc(alias = "MTLDataTypeBFloat2")]
+    pub const BFloat2: Self = Self(122);
+    #[doc(alias = "MTLDataTypeBFloat3")]
+    pub const BFloat3: Self = Self(123);
+    #[doc(alias = "MTLDataTypeBFloat4")]
+    pub const BFloat4: Self = Self(124);
+}
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum MTLBindingType {
-        #[doc(alias = "MTLBindingTypeBuffer")]
-        Buffer = 0,
-        #[doc(alias = "MTLBindingTypeThreadgroupMemory")]
-        ThreadgroupMemory = 1,
-        #[doc(alias = "MTLBindingTypeTexture")]
-        Texture = 2,
-        #[doc(alias = "MTLBindingTypeSampler")]
-        Sampler = 3,
-        #[doc(alias = "MTLBindingTypeImageblockData")]
-        ImageblockData = 16,
-        #[doc(alias = "MTLBindingTypeImageblock")]
-        Imageblock = 17,
-        #[doc(alias = "MTLBindingTypeVisibleFunctionTable")]
-        VisibleFunctionTable = 24,
-        #[doc(alias = "MTLBindingTypePrimitiveAccelerationStructure")]
-        PrimitiveAccelerationStructure = 25,
-        #[doc(alias = "MTLBindingTypeInstanceAccelerationStructure")]
-        InstanceAccelerationStructure = 26,
-        #[doc(alias = "MTLBindingTypeIntersectionFunctionTable")]
-        IntersectionFunctionTable = 27,
-        #[doc(alias = "MTLBindingTypeObjectPayload")]
-        ObjectPayload = 34,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLDataType {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
 
-ns_enum!(
-    #[underlying(NSUInteger)]
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLDataType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MTLBindingType(pub NSInteger);
+impl MTLBindingType {
+    #[doc(alias = "MTLBindingTypeBuffer")]
+    pub const Buffer: Self = Self(0);
+    #[doc(alias = "MTLBindingTypeThreadgroupMemory")]
+    pub const ThreadgroupMemory: Self = Self(1);
+    #[doc(alias = "MTLBindingTypeTexture")]
+    pub const Texture: Self = Self(2);
+    #[doc(alias = "MTLBindingTypeSampler")]
+    pub const Sampler: Self = Self(3);
+    #[doc(alias = "MTLBindingTypeImageblockData")]
+    pub const ImageblockData: Self = Self(16);
+    #[doc(alias = "MTLBindingTypeImageblock")]
+    pub const Imageblock: Self = Self(17);
+    #[doc(alias = "MTLBindingTypeVisibleFunctionTable")]
+    pub const VisibleFunctionTable: Self = Self(24);
+    #[doc(alias = "MTLBindingTypePrimitiveAccelerationStructure")]
+    pub const PrimitiveAccelerationStructure: Self = Self(25);
+    #[doc(alias = "MTLBindingTypeInstanceAccelerationStructure")]
+    pub const InstanceAccelerationStructure: Self = Self(26);
+    #[doc(alias = "MTLBindingTypeIntersectionFunctionTable")]
+    pub const IntersectionFunctionTable: Self = Self(27);
+    #[doc(alias = "MTLBindingTypeObjectPayload")]
+    pub const ObjectPayload: Self = Self(34);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLBindingType {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLBindingType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[deprecated]
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MTLArgumentType(pub NSUInteger);
+impl MTLArgumentType {
     #[deprecated]
-    pub enum MTLArgumentType {
-        #[deprecated]
-        #[doc(alias = "MTLArgumentTypeBuffer")]
-        Buffer = 0,
-        #[deprecated]
-        #[doc(alias = "MTLArgumentTypeThreadgroupMemory")]
-        ThreadgroupMemory = 1,
-        #[deprecated]
-        #[doc(alias = "MTLArgumentTypeTexture")]
-        Texture = 2,
-        #[deprecated]
-        #[doc(alias = "MTLArgumentTypeSampler")]
-        Sampler = 3,
-        #[doc(alias = "MTLArgumentTypeImageblockData")]
-        ImageblockData = 16,
-        #[doc(alias = "MTLArgumentTypeImageblock")]
-        Imageblock = 17,
-        #[doc(alias = "MTLArgumentTypeVisibleFunctionTable")]
-        VisibleFunctionTable = 24,
-        #[doc(alias = "MTLArgumentTypePrimitiveAccelerationStructure")]
-        PrimitiveAccelerationStructure = 25,
-        #[doc(alias = "MTLArgumentTypeInstanceAccelerationStructure")]
-        InstanceAccelerationStructure = 26,
-        #[doc(alias = "MTLArgumentTypeIntersectionFunctionTable")]
-        IntersectionFunctionTable = 27,
-    }
-);
+    #[doc(alias = "MTLArgumentTypeBuffer")]
+    pub const Buffer: Self = Self(0);
+    #[deprecated]
+    #[doc(alias = "MTLArgumentTypeThreadgroupMemory")]
+    pub const ThreadgroupMemory: Self = Self(1);
+    #[deprecated]
+    #[doc(alias = "MTLArgumentTypeTexture")]
+    pub const Texture: Self = Self(2);
+    #[deprecated]
+    #[doc(alias = "MTLArgumentTypeSampler")]
+    pub const Sampler: Self = Self(3);
+    #[doc(alias = "MTLArgumentTypeImageblockData")]
+    pub const ImageblockData: Self = Self(16);
+    #[doc(alias = "MTLArgumentTypeImageblock")]
+    pub const Imageblock: Self = Self(17);
+    #[doc(alias = "MTLArgumentTypeVisibleFunctionTable")]
+    pub const VisibleFunctionTable: Self = Self(24);
+    #[doc(alias = "MTLArgumentTypePrimitiveAccelerationStructure")]
+    pub const PrimitiveAccelerationStructure: Self = Self(25);
+    #[doc(alias = "MTLArgumentTypeInstanceAccelerationStructure")]
+    pub const InstanceAccelerationStructure: Self = Self(26);
+    #[doc(alias = "MTLArgumentTypeIntersectionFunctionTable")]
+    pub const IntersectionFunctionTable: Self = Self(27);
+}
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum MTLBindingAccess {
-        #[doc(alias = "MTLBindingAccessReadOnly")]
-        ReadOnly = 0,
-        #[doc(alias = "MTLBindingAccessReadWrite")]
-        ReadWrite = 1,
-        #[doc(alias = "MTLBindingAccessWriteOnly")]
-        WriteOnly = 2,
-        #[deprecated]
-        MTLArgumentAccessReadOnly = MTLBindingAccess::ReadOnly.0,
-        #[deprecated]
-        MTLArgumentAccessReadWrite = MTLBindingAccess::ReadWrite.0,
-        #[deprecated]
-        MTLArgumentAccessWriteOnly = MTLBindingAccess::WriteOnly.0,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLArgumentType {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLArgumentType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MTLBindingAccess(pub NSUInteger);
+impl MTLBindingAccess {
+    #[doc(alias = "MTLBindingAccessReadOnly")]
+    pub const ReadOnly: Self = Self(0);
+    #[doc(alias = "MTLBindingAccessReadWrite")]
+    pub const ReadWrite: Self = Self(1);
+    #[doc(alias = "MTLBindingAccessWriteOnly")]
+    pub const WriteOnly: Self = Self(2);
+    #[deprecated]
+    pub const MTLArgumentAccessReadOnly: Self = Self(MTLBindingAccess::ReadOnly.0);
+    #[deprecated]
+    pub const MTLArgumentAccessReadWrite: Self = Self(MTLBindingAccess::ReadWrite.0);
+    #[deprecated]
+    pub const MTLArgumentAccessWriteOnly: Self = Self(MTLBindingAccess::WriteOnly.0);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLBindingAccess {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLBindingAccess {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 pub type MTLArgumentAccess = MTLBindingAccess;
 

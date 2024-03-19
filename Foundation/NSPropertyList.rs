@@ -3,23 +3,45 @@
 use crate::common::*;
 use crate::Foundation::*;
 
-ns_options!(
-    #[underlying(NSUInteger)]
-    pub enum NSPropertyListMutabilityOptions {
-        NSPropertyListImmutable = 0,
-        NSPropertyListMutableContainers = 1,
-        NSPropertyListMutableContainersAndLeaves = 2,
-    }
-);
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSPropertyListMutabilityOptions(pub NSUInteger);
+impl NSPropertyListMutabilityOptions {
+    pub const NSPropertyListImmutable: Self = Self(0);
+    pub const NSPropertyListMutableContainers: Self = Self(1);
+    pub const NSPropertyListMutableContainersAndLeaves: Self = Self(2);
+}
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSPropertyListFormat {
-        NSPropertyListOpenStepFormat = 1,
-        NSPropertyListXMLFormat_v1_0 = 100,
-        NSPropertyListBinaryFormat_v1_0 = 200,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSPropertyListMutabilityOptions {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSPropertyListMutabilityOptions {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSPropertyListFormat(pub NSUInteger);
+impl NSPropertyListFormat {
+    pub const NSPropertyListOpenStepFormat: Self = Self(1);
+    pub const NSPropertyListXMLFormat_v1_0: Self = Self(100);
+    pub const NSPropertyListBinaryFormat_v1_0: Self = Self(200);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSPropertyListFormat {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSPropertyListFormat {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 pub type NSPropertyListReadOptions = NSPropertyListMutabilityOptions;
 

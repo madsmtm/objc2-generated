@@ -5,15 +5,26 @@ use crate::CloudKit::*;
 use crate::CoreLocation::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum CKReferenceAction {
-        #[doc(alias = "CKReferenceActionNone")]
-        None = 0,
-        #[doc(alias = "CKReferenceActionDeleteSelf")]
-        DeleteSelf = 1,
-    }
-);
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct CKReferenceAction(pub NSUInteger);
+impl CKReferenceAction {
+    #[doc(alias = "CKReferenceActionNone")]
+    pub const None: Self = Self(0);
+    #[doc(alias = "CKReferenceActionDeleteSelf")]
+    pub const DeleteSelf: Self = Self(1);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for CKReferenceAction {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for CKReferenceAction {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
