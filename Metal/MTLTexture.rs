@@ -63,15 +63,32 @@ unsafe impl RefEncode for MTLTextureSwizzle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern_struct!(
-    #[encoding_name("?")]
-    pub struct MTLTextureSwizzleChannels {
-        pub red: MTLTextureSwizzle,
-        pub green: MTLTextureSwizzle,
-        pub blue: MTLTextureSwizzle,
-        pub alpha: MTLTextureSwizzle,
-    }
-);
+#[repr(C)]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub struct MTLTextureSwizzleChannels {
+    pub red: MTLTextureSwizzle,
+    pub green: MTLTextureSwizzle,
+    pub blue: MTLTextureSwizzle,
+    pub alpha: MTLTextureSwizzle,
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLTextureSwizzleChannels {
+    const ENCODING: Encoding = Encoding::Struct(
+        "?",
+        &[
+            <MTLTextureSwizzle>::ENCODING,
+            <MTLTextureSwizzle>::ENCODING,
+            <MTLTextureSwizzle>::ENCODING,
+            <MTLTextureSwizzle>::ENCODING,
+        ],
+    );
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLTextureSwizzleChannels {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 // TODO: pub fn MTLTextureSwizzleChannelsMake(r: MTLTextureSwizzle,g: MTLTextureSwizzle,b: MTLTextureSwizzle,a: MTLTextureSwizzle,) -> MTLTextureSwizzleChannels;
 

@@ -18,14 +18,30 @@ pub const NSSunOSOperatingSystem: c_uint = 6;
 #[deprecated = "Not supported"]
 pub const NSOSF1OperatingSystem: c_uint = 7;
 
-extern_struct!(
-    #[encoding_name("?")]
-    pub struct NSOperatingSystemVersion {
-        pub majorVersion: NSInteger,
-        pub minorVersion: NSInteger,
-        pub patchVersion: NSInteger,
-    }
-);
+#[repr(C)]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub struct NSOperatingSystemVersion {
+    pub majorVersion: NSInteger,
+    pub minorVersion: NSInteger,
+    pub patchVersion: NSInteger,
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSOperatingSystemVersion {
+    const ENCODING: Encoding = Encoding::Struct(
+        "?",
+        &[
+            <NSInteger>::ENCODING,
+            <NSInteger>::ENCODING,
+            <NSInteger>::ENCODING,
+        ],
+    );
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSOperatingSystemVersion {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 unsafe impl Send for NSOperatingSystemVersion {}
 

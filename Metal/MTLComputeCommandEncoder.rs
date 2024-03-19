@@ -4,20 +4,38 @@ use crate::common::*;
 use crate::Foundation::*;
 use crate::Metal::*;
 
-extern_struct!(
-    #[encoding_name("?")]
-    pub struct MTLDispatchThreadgroupsIndirectArguments {
-        pub threadgroupsPerGrid: [u32; 3],
-    }
-);
+#[repr(C)]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub struct MTLDispatchThreadgroupsIndirectArguments {
+    pub threadgroupsPerGrid: [u32; 3],
+}
 
-extern_struct!(
-    #[encoding_name("?")]
-    pub struct MTLStageInRegionIndirectArguments {
-        pub stageInOrigin: [u32; 3],
-        pub stageInSize: [u32; 3],
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLDispatchThreadgroupsIndirectArguments {
+    const ENCODING: Encoding = Encoding::Struct("?", &[<[u32; 3]>::ENCODING]);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLDispatchThreadgroupsIndirectArguments {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+#[repr(C)]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub struct MTLStageInRegionIndirectArguments {
+    pub stageInOrigin: [u32; 3],
+    pub stageInSize: [u32; 3],
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLStageInRegionIndirectArguments {
+    const ENCODING: Encoding = Encoding::Struct("?", &[<[u32; 3]>::ENCODING, <[u32; 3]>::ENCODING]);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLStageInRegionIndirectArguments {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_protocol!(
     #[cfg(feature = "Metal_MTLCommandEncoder")]

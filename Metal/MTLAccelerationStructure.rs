@@ -1021,30 +1021,71 @@ extern_methods!(
     }
 );
 
-extern_struct!(
-    #[encoding_name("?")]
-    #[cfg(feature = "Metal_MTLAccelerationStructureTypes")]
-    pub struct MTLAccelerationStructureInstanceDescriptor {
-        pub transformationMatrix: MTLPackedFloat4x3,
-        pub options: MTLAccelerationStructureInstanceOptions,
-        pub mask: u32,
-        pub intersectionFunctionTableOffset: u32,
-        pub accelerationStructureIndex: u32,
-    }
-);
+#[cfg(feature = "Metal_MTLAccelerationStructureTypes")]
+#[repr(C)]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub struct MTLAccelerationStructureInstanceDescriptor {
+    pub transformationMatrix: MTLPackedFloat4x3,
+    pub options: MTLAccelerationStructureInstanceOptions,
+    pub mask: u32,
+    pub intersectionFunctionTableOffset: u32,
+    pub accelerationStructureIndex: u32,
+}
 
-extern_struct!(
-    #[encoding_name("?")]
-    #[cfg(feature = "Metal_MTLAccelerationStructureTypes")]
-    pub struct MTLAccelerationStructureUserIDInstanceDescriptor {
-        pub transformationMatrix: MTLPackedFloat4x3,
-        pub options: MTLAccelerationStructureInstanceOptions,
-        pub mask: u32,
-        pub intersectionFunctionTableOffset: u32,
-        pub accelerationStructureIndex: u32,
-        pub userID: u32,
-    }
-);
+#[cfg(feature = "Metal_MTLAccelerationStructureTypes")]
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLAccelerationStructureInstanceDescriptor {
+    const ENCODING: Encoding = Encoding::Struct(
+        "?",
+        &[
+            <MTLPackedFloat4x3>::ENCODING,
+            <MTLAccelerationStructureInstanceOptions>::ENCODING,
+            <u32>::ENCODING,
+            <u32>::ENCODING,
+            <u32>::ENCODING,
+        ],
+    );
+}
+
+#[cfg(feature = "Metal_MTLAccelerationStructureTypes")]
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLAccelerationStructureInstanceDescriptor {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+#[cfg(feature = "Metal_MTLAccelerationStructureTypes")]
+#[repr(C)]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub struct MTLAccelerationStructureUserIDInstanceDescriptor {
+    pub transformationMatrix: MTLPackedFloat4x3,
+    pub options: MTLAccelerationStructureInstanceOptions,
+    pub mask: u32,
+    pub intersectionFunctionTableOffset: u32,
+    pub accelerationStructureIndex: u32,
+    pub userID: u32,
+}
+
+#[cfg(feature = "Metal_MTLAccelerationStructureTypes")]
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLAccelerationStructureUserIDInstanceDescriptor {
+    const ENCODING: Encoding = Encoding::Struct(
+        "?",
+        &[
+            <MTLPackedFloat4x3>::ENCODING,
+            <MTLAccelerationStructureInstanceOptions>::ENCODING,
+            <u32>::ENCODING,
+            <u32>::ENCODING,
+            <u32>::ENCODING,
+            <u32>::ENCODING,
+        ],
+    );
+}
+
+#[cfg(feature = "Metal_MTLAccelerationStructureTypes")]
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLAccelerationStructureUserIDInstanceDescriptor {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 // NS_ENUM
 #[repr(transparent)]
@@ -1073,56 +1114,133 @@ unsafe impl RefEncode for MTLAccelerationStructureInstanceDescriptorType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern_struct!(
-    #[encoding_name("?")]
-    pub struct MTLAccelerationStructureMotionInstanceDescriptor {
-        pub options: MTLAccelerationStructureInstanceOptions,
-        pub mask: u32,
-        pub intersectionFunctionTableOffset: u32,
-        pub accelerationStructureIndex: u32,
-        pub userID: u32,
-        pub motionTransformsStartIndex: u32,
-        pub motionTransformsCount: u32,
-        pub motionStartBorderMode: MTLMotionBorderMode,
-        pub motionEndBorderMode: MTLMotionBorderMode,
-        pub motionStartTime: c_float,
-        pub motionEndTime: c_float,
-    }
-);
+#[repr(C)]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub struct MTLAccelerationStructureMotionInstanceDescriptor {
+    pub options: MTLAccelerationStructureInstanceOptions,
+    pub mask: u32,
+    pub intersectionFunctionTableOffset: u32,
+    pub accelerationStructureIndex: u32,
+    pub userID: u32,
+    pub motionTransformsStartIndex: u32,
+    pub motionTransformsCount: u32,
+    pub motionStartBorderMode: MTLMotionBorderMode,
+    pub motionEndBorderMode: MTLMotionBorderMode,
+    pub motionStartTime: c_float,
+    pub motionEndTime: c_float,
+}
 
-extern_struct!(
-    #[encoding_name("?")]
-    #[cfg(all(
-        feature = "Metal_MTLAccelerationStructureTypes",
-        feature = "Metal_MTLTypes"
-    ))]
-    pub struct MTLIndirectAccelerationStructureInstanceDescriptor {
-        pub transformationMatrix: MTLPackedFloat4x3,
-        pub options: MTLAccelerationStructureInstanceOptions,
-        pub mask: u32,
-        pub intersectionFunctionTableOffset: u32,
-        pub userID: u32,
-        pub accelerationStructureID: MTLResourceID,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLAccelerationStructureMotionInstanceDescriptor {
+    const ENCODING: Encoding = Encoding::Struct(
+        "?",
+        &[
+            <MTLAccelerationStructureInstanceOptions>::ENCODING,
+            <u32>::ENCODING,
+            <u32>::ENCODING,
+            <u32>::ENCODING,
+            <u32>::ENCODING,
+            <u32>::ENCODING,
+            <u32>::ENCODING,
+            <MTLMotionBorderMode>::ENCODING,
+            <MTLMotionBorderMode>::ENCODING,
+            <c_float>::ENCODING,
+            <c_float>::ENCODING,
+        ],
+    );
+}
 
-extern_struct!(
-    #[encoding_name("?")]
-    #[cfg(feature = "Metal_MTLTypes")]
-    pub struct MTLIndirectAccelerationStructureMotionInstanceDescriptor {
-        pub options: MTLAccelerationStructureInstanceOptions,
-        pub mask: u32,
-        pub intersectionFunctionTableOffset: u32,
-        pub userID: u32,
-        pub accelerationStructureID: MTLResourceID,
-        pub motionTransformsStartIndex: u32,
-        pub motionTransformsCount: u32,
-        pub motionStartBorderMode: MTLMotionBorderMode,
-        pub motionEndBorderMode: MTLMotionBorderMode,
-        pub motionStartTime: c_float,
-        pub motionEndTime: c_float,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLAccelerationStructureMotionInstanceDescriptor {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+#[cfg(all(
+    feature = "Metal_MTLAccelerationStructureTypes",
+    feature = "Metal_MTLTypes"
+))]
+#[repr(C)]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub struct MTLIndirectAccelerationStructureInstanceDescriptor {
+    pub transformationMatrix: MTLPackedFloat4x3,
+    pub options: MTLAccelerationStructureInstanceOptions,
+    pub mask: u32,
+    pub intersectionFunctionTableOffset: u32,
+    pub userID: u32,
+    pub accelerationStructureID: MTLResourceID,
+}
+
+#[cfg(all(
+    feature = "Metal_MTLAccelerationStructureTypes",
+    feature = "Metal_MTLTypes"
+))]
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLIndirectAccelerationStructureInstanceDescriptor {
+    const ENCODING: Encoding = Encoding::Struct(
+        "?",
+        &[
+            <MTLPackedFloat4x3>::ENCODING,
+            <MTLAccelerationStructureInstanceOptions>::ENCODING,
+            <u32>::ENCODING,
+            <u32>::ENCODING,
+            <u32>::ENCODING,
+            <MTLResourceID>::ENCODING,
+        ],
+    );
+}
+
+#[cfg(all(
+    feature = "Metal_MTLAccelerationStructureTypes",
+    feature = "Metal_MTLTypes"
+))]
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLIndirectAccelerationStructureInstanceDescriptor {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+#[cfg(feature = "Metal_MTLTypes")]
+#[repr(C)]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub struct MTLIndirectAccelerationStructureMotionInstanceDescriptor {
+    pub options: MTLAccelerationStructureInstanceOptions,
+    pub mask: u32,
+    pub intersectionFunctionTableOffset: u32,
+    pub userID: u32,
+    pub accelerationStructureID: MTLResourceID,
+    pub motionTransformsStartIndex: u32,
+    pub motionTransformsCount: u32,
+    pub motionStartBorderMode: MTLMotionBorderMode,
+    pub motionEndBorderMode: MTLMotionBorderMode,
+    pub motionStartTime: c_float,
+    pub motionEndTime: c_float,
+}
+
+#[cfg(feature = "Metal_MTLTypes")]
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLIndirectAccelerationStructureMotionInstanceDescriptor {
+    const ENCODING: Encoding = Encoding::Struct(
+        "?",
+        &[
+            <MTLAccelerationStructureInstanceOptions>::ENCODING,
+            <u32>::ENCODING,
+            <u32>::ENCODING,
+            <u32>::ENCODING,
+            <MTLResourceID>::ENCODING,
+            <u32>::ENCODING,
+            <u32>::ENCODING,
+            <MTLMotionBorderMode>::ENCODING,
+            <MTLMotionBorderMode>::ENCODING,
+            <c_float>::ENCODING,
+            <c_float>::ENCODING,
+        ],
+    );
+}
+
+#[cfg(feature = "Metal_MTLTypes")]
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLIndirectAccelerationStructureMotionInstanceDescriptor {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

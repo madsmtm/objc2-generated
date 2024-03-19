@@ -4,19 +4,43 @@ use crate::common::*;
 use crate::Foundation::*;
 use crate::Metal::*;
 
-extern_struct!(
-    pub struct _MTLPackedFloat4x3 {
-        pub columns: [MTLPackedFloat3; 4],
-    }
-);
+#[repr(C)]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub struct _MTLPackedFloat4x3 {
+    pub columns: [MTLPackedFloat3; 4],
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for _MTLPackedFloat4x3 {
+    const ENCODING: Encoding =
+        Encoding::Struct("_MTLPackedFloat4x3", &[<[MTLPackedFloat3; 4]>::ENCODING]);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for _MTLPackedFloat4x3 {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 pub type MTLPackedFloat4x3 = _MTLPackedFloat4x3;
 
-extern_struct!(
-    pub struct _MTLAxisAlignedBoundingBox {
-        pub min: MTLPackedFloat3,
-        pub max: MTLPackedFloat3,
-    }
-);
+#[repr(C)]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub struct _MTLAxisAlignedBoundingBox {
+    pub min: MTLPackedFloat3,
+    pub max: MTLPackedFloat3,
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for _MTLAxisAlignedBoundingBox {
+    const ENCODING: Encoding = Encoding::Struct(
+        "_MTLAxisAlignedBoundingBox",
+        &[<MTLPackedFloat3>::ENCODING, <MTLPackedFloat3>::ENCODING],
+    );
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for _MTLAxisAlignedBoundingBox {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 pub type MTLAxisAlignedBoundingBox = _MTLAxisAlignedBoundingBox;

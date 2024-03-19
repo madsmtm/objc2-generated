@@ -17,12 +17,25 @@ pub type CLLocationDirection = c_double;
 
 pub type CLLocationDirectionAccuracy = c_double;
 
-extern_struct!(
-    pub struct CLLocationCoordinate2D {
-        pub latitude: CLLocationDegrees,
-        pub longitude: CLLocationDegrees,
-    }
-);
+#[repr(C)]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub struct CLLocationCoordinate2D {
+    pub latitude: CLLocationDegrees,
+    pub longitude: CLLocationDegrees,
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for CLLocationCoordinate2D {
+    const ENCODING: Encoding = Encoding::Struct(
+        "CLLocationCoordinate2D",
+        &[<CLLocationDegrees>::ENCODING, <CLLocationDegrees>::ENCODING],
+    );
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for CLLocationCoordinate2D {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 pub type CLLocationDistance = c_double;
 

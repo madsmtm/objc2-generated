@@ -83,16 +83,35 @@ extern_methods!(
     }
 );
 
-extern_struct!(
-    #[encoding_name("?")]
-    #[cfg(feature = "Foundation_NSGeometry")]
-    pub struct MKTileOverlayPath {
-        pub x: NSInteger,
-        pub y: NSInteger,
-        pub z: NSInteger,
-        pub contentScaleFactor: CGFloat,
-    }
-);
+#[cfg(feature = "Foundation_NSGeometry")]
+#[repr(C)]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub struct MKTileOverlayPath {
+    pub x: NSInteger,
+    pub y: NSInteger,
+    pub z: NSInteger,
+    pub contentScaleFactor: CGFloat,
+}
+
+#[cfg(feature = "Foundation_NSGeometry")]
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MKTileOverlayPath {
+    const ENCODING: Encoding = Encoding::Struct(
+        "?",
+        &[
+            <NSInteger>::ENCODING,
+            <NSInteger>::ENCODING,
+            <NSInteger>::ENCODING,
+            <CGFloat>::ENCODING,
+        ],
+    );
+}
+
+#[cfg(feature = "Foundation_NSGeometry")]
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MKTileOverlayPath {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_methods!(
     /// CustomLoading

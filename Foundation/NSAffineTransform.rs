@@ -3,18 +3,39 @@
 use crate::common::*;
 use crate::Foundation::*;
 
-extern_struct!(
-    #[encoding_name("?")]
-    #[cfg(feature = "Foundation_NSGeometry")]
-    pub struct NSAffineTransformStruct {
-        pub m11: CGFloat,
-        pub m12: CGFloat,
-        pub m21: CGFloat,
-        pub m22: CGFloat,
-        pub tX: CGFloat,
-        pub tY: CGFloat,
-    }
-);
+#[cfg(feature = "Foundation_NSGeometry")]
+#[repr(C)]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub struct NSAffineTransformStruct {
+    pub m11: CGFloat,
+    pub m12: CGFloat,
+    pub m21: CGFloat,
+    pub m22: CGFloat,
+    pub tX: CGFloat,
+    pub tY: CGFloat,
+}
+
+#[cfg(feature = "Foundation_NSGeometry")]
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSAffineTransformStruct {
+    const ENCODING: Encoding = Encoding::Struct(
+        "?",
+        &[
+            <CGFloat>::ENCODING,
+            <CGFloat>::ENCODING,
+            <CGFloat>::ENCODING,
+            <CGFloat>::ENCODING,
+            <CGFloat>::ENCODING,
+            <CGFloat>::ENCODING,
+        ],
+    );
+}
+
+#[cfg(feature = "Foundation_NSGeometry")]
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSAffineTransformStruct {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 #[cfg(feature = "Foundation_NSGeometry")]
 unsafe impl Send for NSAffineTransformStruct {}

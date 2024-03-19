@@ -4,15 +4,32 @@ use crate::common::*;
 use crate::Foundation::*;
 use crate::Metal::*;
 
-extern_struct!(
-    #[encoding_name("?")]
-    pub struct MTLClearColor {
-        pub red: c_double,
-        pub green: c_double,
-        pub blue: c_double,
-        pub alpha: c_double,
-    }
-);
+#[repr(C)]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub struct MTLClearColor {
+    pub red: c_double,
+    pub green: c_double,
+    pub blue: c_double,
+    pub alpha: c_double,
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLClearColor {
+    const ENCODING: Encoding = Encoding::Struct(
+        "?",
+        &[
+            <c_double>::ENCODING,
+            <c_double>::ENCODING,
+            <c_double>::ENCODING,
+            <c_double>::ENCODING,
+        ],
+    );
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLClearColor {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 // TODO: pub fn MTLClearColorMake(red: c_double,green: c_double,blue: c_double,alpha: c_double,) -> MTLClearColor;
 

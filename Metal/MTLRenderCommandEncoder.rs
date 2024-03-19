@@ -54,27 +54,63 @@ unsafe impl RefEncode for MTLVisibilityResultMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern_struct!(
-    #[encoding_name("?")]
-    pub struct MTLScissorRect {
-        pub x: NSUInteger,
-        pub y: NSUInteger,
-        pub width: NSUInteger,
-        pub height: NSUInteger,
-    }
-);
+#[repr(C)]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub struct MTLScissorRect {
+    pub x: NSUInteger,
+    pub y: NSUInteger,
+    pub width: NSUInteger,
+    pub height: NSUInteger,
+}
 
-extern_struct!(
-    #[encoding_name("?")]
-    pub struct MTLViewport {
-        pub originX: c_double,
-        pub originY: c_double,
-        pub width: c_double,
-        pub height: c_double,
-        pub znear: c_double,
-        pub zfar: c_double,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLScissorRect {
+    const ENCODING: Encoding = Encoding::Struct(
+        "?",
+        &[
+            <NSUInteger>::ENCODING,
+            <NSUInteger>::ENCODING,
+            <NSUInteger>::ENCODING,
+            <NSUInteger>::ENCODING,
+        ],
+    );
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLScissorRect {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+#[repr(C)]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub struct MTLViewport {
+    pub originX: c_double,
+    pub originY: c_double,
+    pub width: c_double,
+    pub height: c_double,
+    pub znear: c_double,
+    pub zfar: c_double,
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLViewport {
+    const ENCODING: Encoding = Encoding::Struct(
+        "?",
+        &[
+            <c_double>::ENCODING,
+            <c_double>::ENCODING,
+            <c_double>::ENCODING,
+            <c_double>::ENCODING,
+            <c_double>::ENCODING,
+            <c_double>::ENCODING,
+        ],
+    );
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLViewport {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 // NS_ENUM
 #[repr(transparent)]
@@ -162,60 +198,139 @@ unsafe impl RefEncode for MTLTriangleFillMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern_struct!(
-    #[encoding_name("?")]
-    pub struct MTLDrawPrimitivesIndirectArguments {
-        pub vertexCount: u32,
-        pub instanceCount: u32,
-        pub vertexStart: u32,
-        pub baseInstance: u32,
-    }
-);
+#[repr(C)]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub struct MTLDrawPrimitivesIndirectArguments {
+    pub vertexCount: u32,
+    pub instanceCount: u32,
+    pub vertexStart: u32,
+    pub baseInstance: u32,
+}
 
-extern_struct!(
-    #[encoding_name("?")]
-    pub struct MTLDrawIndexedPrimitivesIndirectArguments {
-        pub indexCount: u32,
-        pub instanceCount: u32,
-        pub indexStart: u32,
-        pub baseVertex: i32,
-        pub baseInstance: u32,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLDrawPrimitivesIndirectArguments {
+    const ENCODING: Encoding = Encoding::Struct(
+        "?",
+        &[
+            <u32>::ENCODING,
+            <u32>::ENCODING,
+            <u32>::ENCODING,
+            <u32>::ENCODING,
+        ],
+    );
+}
 
-extern_struct!(
-    #[encoding_name("?")]
-    pub struct MTLVertexAmplificationViewMapping {
-        pub viewportArrayIndexOffset: u32,
-        pub renderTargetArrayIndexOffset: u32,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLDrawPrimitivesIndirectArguments {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
-extern_struct!(
-    #[encoding_name("?")]
-    pub struct MTLDrawPatchIndirectArguments {
-        pub patchCount: u32,
-        pub instanceCount: u32,
-        pub patchStart: u32,
-        pub baseInstance: u32,
-    }
-);
+#[repr(C)]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub struct MTLDrawIndexedPrimitivesIndirectArguments {
+    pub indexCount: u32,
+    pub instanceCount: u32,
+    pub indexStart: u32,
+    pub baseVertex: i32,
+    pub baseInstance: u32,
+}
 
-extern_struct!(
-    #[encoding_name("?")]
-    pub struct MTLQuadTessellationFactorsHalf {
-        pub edgeTessellationFactor: [u16; 4],
-        pub insideTessellationFactor: [u16; 2],
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLDrawIndexedPrimitivesIndirectArguments {
+    const ENCODING: Encoding = Encoding::Struct(
+        "?",
+        &[
+            <u32>::ENCODING,
+            <u32>::ENCODING,
+            <u32>::ENCODING,
+            <i32>::ENCODING,
+            <u32>::ENCODING,
+        ],
+    );
+}
 
-extern_struct!(
-    #[encoding_name("?")]
-    pub struct MTLTriangleTessellationFactorsHalf {
-        pub edgeTessellationFactor: [u16; 3],
-        pub insideTessellationFactor: u16,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLDrawIndexedPrimitivesIndirectArguments {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+#[repr(C)]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub struct MTLVertexAmplificationViewMapping {
+    pub viewportArrayIndexOffset: u32,
+    pub renderTargetArrayIndexOffset: u32,
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLVertexAmplificationViewMapping {
+    const ENCODING: Encoding = Encoding::Struct("?", &[<u32>::ENCODING, <u32>::ENCODING]);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLVertexAmplificationViewMapping {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+#[repr(C)]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub struct MTLDrawPatchIndirectArguments {
+    pub patchCount: u32,
+    pub instanceCount: u32,
+    pub patchStart: u32,
+    pub baseInstance: u32,
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLDrawPatchIndirectArguments {
+    const ENCODING: Encoding = Encoding::Struct(
+        "?",
+        &[
+            <u32>::ENCODING,
+            <u32>::ENCODING,
+            <u32>::ENCODING,
+            <u32>::ENCODING,
+        ],
+    );
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLDrawPatchIndirectArguments {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+#[repr(C)]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub struct MTLQuadTessellationFactorsHalf {
+    pub edgeTessellationFactor: [u16; 4],
+    pub insideTessellationFactor: [u16; 2],
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLQuadTessellationFactorsHalf {
+    const ENCODING: Encoding = Encoding::Struct("?", &[<[u16; 4]>::ENCODING, <[u16; 2]>::ENCODING]);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLQuadTessellationFactorsHalf {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+#[repr(C)]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub struct MTLTriangleTessellationFactorsHalf {
+    pub edgeTessellationFactor: [u16; 3],
+    pub insideTessellationFactor: u16,
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLTriangleTessellationFactorsHalf {
+    const ENCODING: Encoding = Encoding::Struct("?", &[<[u16; 3]>::ENCODING, <u16>::ENCODING]);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLTriangleTessellationFactorsHalf {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 // NS_OPTIONS
 #[repr(transparent)]

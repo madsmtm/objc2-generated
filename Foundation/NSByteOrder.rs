@@ -45,23 +45,41 @@ use crate::Foundation::*;
 
 // TODO: pub fn NSSwapHostLongLongToLittle(x: c_ulonglong,) -> c_ulonglong;
 
-extern_struct!(
-    #[encoding_name("?")]
-    pub struct NSSwappedFloat {
-        pub v: c_uint,
-    }
-);
+#[repr(C)]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub struct NSSwappedFloat {
+    pub v: c_uint,
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSSwappedFloat {
+    const ENCODING: Encoding = Encoding::Struct("?", &[<c_uint>::ENCODING]);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSSwappedFloat {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 unsafe impl Send for NSSwappedFloat {}
 
 unsafe impl Sync for NSSwappedFloat {}
 
-extern_struct!(
-    #[encoding_name("?")]
-    pub struct NSSwappedDouble {
-        pub v: c_ulonglong,
-    }
-);
+#[repr(C)]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub struct NSSwappedDouble {
+    pub v: c_ulonglong,
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSSwappedDouble {
+    const ENCODING: Encoding = Encoding::Struct("?", &[<c_ulonglong>::ENCODING]);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSSwappedDouble {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 unsafe impl Send for NSSwappedDouble {}
 

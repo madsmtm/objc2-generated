@@ -337,14 +337,30 @@ unsafe impl RefEncode for MTLSparsePageSize {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern_struct!(
-    #[encoding_name("?")]
-    pub struct MTLAccelerationStructureSizes {
-        pub accelerationStructureSize: NSUInteger,
-        pub buildScratchBufferSize: NSUInteger,
-        pub refitScratchBufferSize: NSUInteger,
-    }
-);
+#[repr(C)]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub struct MTLAccelerationStructureSizes {
+    pub accelerationStructureSize: NSUInteger,
+    pub buildScratchBufferSize: NSUInteger,
+    pub refitScratchBufferSize: NSUInteger,
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLAccelerationStructureSizes {
+    const ENCODING: Encoding = Encoding::Struct(
+        "?",
+        &[
+            <NSUInteger>::ENCODING,
+            <NSUInteger>::ENCODING,
+            <NSUInteger>::ENCODING,
+        ],
+    );
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLAccelerationStructureSizes {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 // NS_ENUM
 #[repr(transparent)]
@@ -373,13 +389,23 @@ unsafe impl RefEncode for MTLCounterSamplingPoint {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern_struct!(
-    #[encoding_name("?")]
-    pub struct MTLSizeAndAlign {
-        pub size: NSUInteger,
-        pub align: NSUInteger,
-    }
-);
+#[repr(C)]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub struct MTLSizeAndAlign {
+    pub size: NSUInteger,
+    pub align: NSUInteger,
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLSizeAndAlign {
+    const ENCODING: Encoding =
+        Encoding::Struct("?", &[<NSUInteger>::ENCODING, <NSUInteger>::ENCODING]);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLSizeAndAlign {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 #[cfg(all(feature = "Foundation_NSError", feature = "Metal_MTLLibrary"))]
 pub type MTLNewLibraryCompletionHandler =

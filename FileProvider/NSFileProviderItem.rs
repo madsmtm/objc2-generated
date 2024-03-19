@@ -176,12 +176,25 @@ unsafe impl RefEncode for NSFileProviderFileSystemFlags {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern_struct!(
-    pub struct NSFileProviderTypeAndCreator {
-        pub r#type: OSType,
-        pub creator: OSType,
-    }
-);
+#[repr(C)]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub struct NSFileProviderTypeAndCreator {
+    pub r#type: OSType,
+    pub creator: OSType,
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSFileProviderTypeAndCreator {
+    const ENCODING: Encoding = Encoding::Struct(
+        "NSFileProviderTypeAndCreator",
+        &[<OSType>::ENCODING, <OSType>::ENCODING],
+    );
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSFileProviderTypeAndCreator {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 // NS_ENUM
 #[repr(transparent)]

@@ -73,19 +73,37 @@ unsafe impl RefEncode for GCDualSenseAdaptiveTriggerStatus {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern_struct!(
-    #[encoding_name("?")]
-    pub struct GCDualSenseAdaptiveTriggerPositionalAmplitudes {
-        pub values: [c_float; 10],
-    }
-);
+#[repr(C)]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub struct GCDualSenseAdaptiveTriggerPositionalAmplitudes {
+    pub values: [c_float; 10],
+}
 
-extern_struct!(
-    #[encoding_name("?")]
-    pub struct GCDualSenseAdaptiveTriggerPositionalResistiveStrengths {
-        pub values: [c_float; 10],
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for GCDualSenseAdaptiveTriggerPositionalAmplitudes {
+    const ENCODING: Encoding = Encoding::Struct("?", &[<[c_float; 10]>::ENCODING]);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for GCDualSenseAdaptiveTriggerPositionalAmplitudes {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+#[repr(C)]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub struct GCDualSenseAdaptiveTriggerPositionalResistiveStrengths {
+    pub values: [c_float; 10],
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for GCDualSenseAdaptiveTriggerPositionalResistiveStrengths {
+    const ENCODING: Encoding = Encoding::Struct("?", &[<[c_float; 10]>::ENCODING]);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for GCDualSenseAdaptiveTriggerPositionalResistiveStrengths {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

@@ -7,23 +7,54 @@ use crate::CoreLocation::*;
 use crate::Foundation::*;
 use crate::MapKit::*;
 
-extern_struct!(
-    #[encoding_name("?")]
-    #[cfg(feature = "CoreLocation_CLLocation")]
-    pub struct MKCoordinateSpan {
-        pub latitudeDelta: CLLocationDegrees,
-        pub longitudeDelta: CLLocationDegrees,
-    }
-);
+#[cfg(feature = "CoreLocation_CLLocation")]
+#[repr(C)]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub struct MKCoordinateSpan {
+    pub latitudeDelta: CLLocationDegrees,
+    pub longitudeDelta: CLLocationDegrees,
+}
 
-extern_struct!(
-    #[encoding_name("?")]
-    #[cfg(feature = "CoreLocation_CLLocation")]
-    pub struct MKCoordinateRegion {
-        pub center: CLLocationCoordinate2D,
-        pub span: MKCoordinateSpan,
-    }
-);
+#[cfg(feature = "CoreLocation_CLLocation")]
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MKCoordinateSpan {
+    const ENCODING: Encoding = Encoding::Struct(
+        "?",
+        &[<CLLocationDegrees>::ENCODING, <CLLocationDegrees>::ENCODING],
+    );
+}
+
+#[cfg(feature = "CoreLocation_CLLocation")]
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MKCoordinateSpan {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+#[cfg(feature = "CoreLocation_CLLocation")]
+#[repr(C)]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub struct MKCoordinateRegion {
+    pub center: CLLocationCoordinate2D,
+    pub span: MKCoordinateSpan,
+}
+
+#[cfg(feature = "CoreLocation_CLLocation")]
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MKCoordinateRegion {
+    const ENCODING: Encoding = Encoding::Struct(
+        "?",
+        &[
+            <CLLocationCoordinate2D>::ENCODING,
+            <MKCoordinateSpan>::ENCODING,
+        ],
+    );
+}
+
+#[cfg(feature = "CoreLocation_CLLocation")]
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MKCoordinateRegion {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 // TODO: pub fn MKCoordinateSpanMake(latitude_delta: CLLocationDegrees,longitude_delta: CLLocationDegrees,) -> MKCoordinateSpan;
 
@@ -38,29 +69,57 @@ extern "C" {
     ) -> MKCoordinateRegion;
 }
 
-extern_struct!(
-    #[encoding_name("?")]
-    pub struct MKMapPoint {
-        pub x: c_double,
-        pub y: c_double,
-    }
-);
+#[repr(C)]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub struct MKMapPoint {
+    pub x: c_double,
+    pub y: c_double,
+}
 
-extern_struct!(
-    #[encoding_name("?")]
-    pub struct MKMapSize {
-        pub width: c_double,
-        pub height: c_double,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MKMapPoint {
+    const ENCODING: Encoding = Encoding::Struct("?", &[<c_double>::ENCODING, <c_double>::ENCODING]);
+}
 
-extern_struct!(
-    #[encoding_name("?")]
-    pub struct MKMapRect {
-        pub origin: MKMapPoint,
-        pub size: MKMapSize,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MKMapPoint {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+#[repr(C)]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub struct MKMapSize {
+    pub width: c_double,
+    pub height: c_double,
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MKMapSize {
+    const ENCODING: Encoding = Encoding::Struct("?", &[<c_double>::ENCODING, <c_double>::ENCODING]);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MKMapSize {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+#[repr(C)]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub struct MKMapRect {
+    pub origin: MKMapPoint,
+    pub size: MKMapSize,
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MKMapRect {
+    const ENCODING: Encoding =
+        Encoding::Struct("?", &[<MKMapPoint>::ENCODING, <MKMapSize>::ENCODING]);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MKMapRect {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 #[cfg(feature = "Foundation_NSGeometry")]
 pub type MKZoomScale = CGFloat;

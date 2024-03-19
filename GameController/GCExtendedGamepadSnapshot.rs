@@ -121,27 +121,56 @@ extern "C" {
     ) -> *mut NSData;
 }
 
-extern_struct!(
-    #[encoding_name("?")]
-    pub struct GCExtendedGamepadSnapShotDataV100 {
-        pub version: u16,
-        pub size: u16,
-        pub dpadX: c_float,
-        pub dpadY: c_float,
-        pub buttonA: c_float,
-        pub buttonB: c_float,
-        pub buttonX: c_float,
-        pub buttonY: c_float,
-        pub leftShoulder: c_float,
-        pub rightShoulder: c_float,
-        pub leftThumbstickX: c_float,
-        pub leftThumbstickY: c_float,
-        pub rightThumbstickX: c_float,
-        pub rightThumbstickY: c_float,
-        pub leftTrigger: c_float,
-        pub rightTrigger: c_float,
-    }
-);
+#[repr(C)]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub struct GCExtendedGamepadSnapShotDataV100 {
+    pub version: u16,
+    pub size: u16,
+    pub dpadX: c_float,
+    pub dpadY: c_float,
+    pub buttonA: c_float,
+    pub buttonB: c_float,
+    pub buttonX: c_float,
+    pub buttonY: c_float,
+    pub leftShoulder: c_float,
+    pub rightShoulder: c_float,
+    pub leftThumbstickX: c_float,
+    pub leftThumbstickY: c_float,
+    pub rightThumbstickX: c_float,
+    pub rightThumbstickY: c_float,
+    pub leftTrigger: c_float,
+    pub rightTrigger: c_float,
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for GCExtendedGamepadSnapShotDataV100 {
+    const ENCODING: Encoding = Encoding::Struct(
+        "?",
+        &[
+            <u16>::ENCODING,
+            <u16>::ENCODING,
+            <c_float>::ENCODING,
+            <c_float>::ENCODING,
+            <c_float>::ENCODING,
+            <c_float>::ENCODING,
+            <c_float>::ENCODING,
+            <c_float>::ENCODING,
+            <c_float>::ENCODING,
+            <c_float>::ENCODING,
+            <c_float>::ENCODING,
+            <c_float>::ENCODING,
+            <c_float>::ENCODING,
+            <c_float>::ENCODING,
+            <c_float>::ENCODING,
+            <c_float>::ENCODING,
+        ],
+    );
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for GCExtendedGamepadSnapShotDataV100 {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern "C" {
     #[cfg(feature = "Foundation_NSData")]

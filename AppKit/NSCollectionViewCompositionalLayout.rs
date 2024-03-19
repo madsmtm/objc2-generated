@@ -39,15 +39,35 @@ unsafe impl RefEncode for NSDirectionalRectEdge {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern_struct!(
-    #[cfg(feature = "Foundation_NSGeometry")]
-    pub struct NSDirectionalEdgeInsets {
-        pub top: CGFloat,
-        pub leading: CGFloat,
-        pub bottom: CGFloat,
-        pub trailing: CGFloat,
-    }
-);
+#[cfg(feature = "Foundation_NSGeometry")]
+#[repr(C)]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub struct NSDirectionalEdgeInsets {
+    pub top: CGFloat,
+    pub leading: CGFloat,
+    pub bottom: CGFloat,
+    pub trailing: CGFloat,
+}
+
+#[cfg(feature = "Foundation_NSGeometry")]
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSDirectionalEdgeInsets {
+    const ENCODING: Encoding = Encoding::Struct(
+        "NSDirectionalEdgeInsets",
+        &[
+            <CGFloat>::ENCODING,
+            <CGFloat>::ENCODING,
+            <CGFloat>::ENCODING,
+            <CGFloat>::ENCODING,
+        ],
+    );
+}
+
+#[cfg(feature = "Foundation_NSGeometry")]
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSDirectionalEdgeInsets {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 #[cfg(feature = "Foundation_NSGeometry")]
 unsafe impl Send for NSDirectionalEdgeInsets {}

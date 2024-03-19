@@ -5,12 +5,23 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::GameController::*;
 
-extern_struct!(
-    pub struct GCPoint2 {
-        pub x: c_float,
-        pub y: c_float,
-    }
-);
+#[repr(C)]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub struct GCPoint2 {
+    pub x: c_float,
+    pub y: c_float,
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for GCPoint2 {
+    const ENCODING: Encoding =
+        Encoding::Struct("GCPoint2", &[<c_float>::ENCODING, <c_float>::ENCODING]);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for GCPoint2 {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern "C" {
     pub static GCPoint2Zero: GCPoint2;

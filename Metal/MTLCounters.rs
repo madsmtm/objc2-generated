@@ -102,38 +102,87 @@ extern "C" {
     pub static MTLCommonCounterSetStatistic: &'static MTLCommonCounterSet;
 }
 
-extern_struct!(
-    #[encoding_name("?")]
-    pub struct MTLCounterResultTimestamp {
-        pub timestamp: u64,
-    }
-);
+#[repr(C)]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub struct MTLCounterResultTimestamp {
+    pub timestamp: u64,
+}
 
-extern_struct!(
-    #[encoding_name("?")]
-    pub struct MTLCounterResultStageUtilization {
-        pub totalCycles: u64,
-        pub vertexCycles: u64,
-        pub tessellationCycles: u64,
-        pub postTessellationVertexCycles: u64,
-        pub fragmentCycles: u64,
-        pub renderTargetCycles: u64,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLCounterResultTimestamp {
+    const ENCODING: Encoding = Encoding::Struct("?", &[<u64>::ENCODING]);
+}
 
-extern_struct!(
-    #[encoding_name("?")]
-    pub struct MTLCounterResultStatistic {
-        pub tessellationInputPatches: u64,
-        pub vertexInvocations: u64,
-        pub postTessellationVertexInvocations: u64,
-        pub clipperInvocations: u64,
-        pub clipperPrimitivesOut: u64,
-        pub fragmentInvocations: u64,
-        pub fragmentsPassed: u64,
-        pub computeKernelInvocations: u64,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLCounterResultTimestamp {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+#[repr(C)]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub struct MTLCounterResultStageUtilization {
+    pub totalCycles: u64,
+    pub vertexCycles: u64,
+    pub tessellationCycles: u64,
+    pub postTessellationVertexCycles: u64,
+    pub fragmentCycles: u64,
+    pub renderTargetCycles: u64,
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLCounterResultStageUtilization {
+    const ENCODING: Encoding = Encoding::Struct(
+        "?",
+        &[
+            <u64>::ENCODING,
+            <u64>::ENCODING,
+            <u64>::ENCODING,
+            <u64>::ENCODING,
+            <u64>::ENCODING,
+            <u64>::ENCODING,
+        ],
+    );
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLCounterResultStageUtilization {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+#[repr(C)]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub struct MTLCounterResultStatistic {
+    pub tessellationInputPatches: u64,
+    pub vertexInvocations: u64,
+    pub postTessellationVertexInvocations: u64,
+    pub clipperInvocations: u64,
+    pub clipperPrimitivesOut: u64,
+    pub fragmentInvocations: u64,
+    pub fragmentsPassed: u64,
+    pub computeKernelInvocations: u64,
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLCounterResultStatistic {
+    const ENCODING: Encoding = Encoding::Struct(
+        "?",
+        &[
+            <u64>::ENCODING,
+            <u64>::ENCODING,
+            <u64>::ENCODING,
+            <u64>::ENCODING,
+            <u64>::ENCODING,
+            <u64>::ENCODING,
+            <u64>::ENCODING,
+            <u64>::ENCODING,
+        ],
+    );
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLCounterResultStatistic {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_protocol!(
     pub unsafe trait MTLCounter: NSObjectProtocol {

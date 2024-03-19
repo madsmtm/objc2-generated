@@ -162,14 +162,30 @@ extern_methods!(
     }
 );
 
-extern_struct!(
-    #[encoding_name("?")]
-    pub struct NSHashEnumerator {
-        _pi: NSUInteger,
-        _si: NSUInteger,
-        _bs: *mut c_void,
-    }
-);
+#[repr(C)]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub struct NSHashEnumerator {
+    _pi: NSUInteger,
+    _si: NSUInteger,
+    _bs: *mut c_void,
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSHashEnumerator {
+    const ENCODING: Encoding = Encoding::Struct(
+        "?",
+        &[
+            <NSUInteger>::ENCODING,
+            <NSUInteger>::ENCODING,
+            <*mut c_void>::ENCODING,
+        ],
+    );
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSHashEnumerator {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern "C" {
     pub fn NSFreeHashTable(table: &NSHashTable);
@@ -234,20 +250,31 @@ extern "C" {
     pub fn NSAllHashTableObjects(table: &NSHashTable) -> NonNull<NSArray>;
 }
 
-extern_struct!(
-    #[encoding_name("?")]
-    #[cfg(feature = "Foundation_NSString")]
-    pub struct NSHashTableCallBacks {
-        pub hash: Option<unsafe extern "C" fn(NonNull<NSHashTable>, NonNull<c_void>) -> NSUInteger>,
-        pub isEqual: Option<
-            unsafe extern "C" fn(NonNull<NSHashTable>, NonNull<c_void>, NonNull<c_void>) -> Bool,
-        >,
-        pub retain: Option<unsafe extern "C" fn(NonNull<NSHashTable>, NonNull<c_void>)>,
-        pub release: Option<unsafe extern "C" fn(NonNull<NSHashTable>, NonNull<c_void>)>,
-        pub describe:
-            Option<unsafe extern "C" fn(NonNull<NSHashTable>, NonNull<c_void>) -> *mut NSString>,
-    }
-);
+#[cfg(feature = "Foundation_NSString")]
+#[repr(C)]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub struct NSHashTableCallBacks {
+    pub hash: Option<unsafe extern "C" fn(NonNull<NSHashTable>, NonNull<c_void>) -> NSUInteger>,
+    pub isEqual: Option<
+        unsafe extern "C" fn(NonNull<NSHashTable>, NonNull<c_void>, NonNull<c_void>) -> Bool,
+    >,
+    pub retain: Option<unsafe extern "C" fn(NonNull<NSHashTable>, NonNull<c_void>)>,
+    pub release: Option<unsafe extern "C" fn(NonNull<NSHashTable>, NonNull<c_void>)>,
+    pub describe:
+        Option<unsafe extern "C" fn(NonNull<NSHashTable>, NonNull<c_void>) -> *mut NSString>,
+}
+
+#[cfg(feature = "Foundation_NSString")]
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSHashTableCallBacks {
+    const ENCODING: Encoding = Encoding::Struct("?", &[<Option<unsafe extern "C" fn(NonNull<NSHashTable>,NonNull<c_void>,) -> NSUInteger>>::ENCODING,<Option<unsafe extern "C" fn(NonNull<NSHashTable>,NonNull<c_void>,NonNull<c_void>,) -> Bool>>::ENCODING,<Option<unsafe extern "C" fn(NonNull<NSHashTable>,NonNull<c_void>,)>>::ENCODING,<Option<unsafe extern "C" fn(NonNull<NSHashTable>,NonNull<c_void>,)>>::ENCODING,<Option<unsafe extern "C" fn(NonNull<NSHashTable>,NonNull<c_void>,) -> *mut NSString>>::ENCODING,]);
+}
+
+#[cfg(feature = "Foundation_NSString")]
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSHashTableCallBacks {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern "C" {
     #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSZone"))]

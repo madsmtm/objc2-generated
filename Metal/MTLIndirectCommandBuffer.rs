@@ -37,13 +37,22 @@ unsafe impl RefEncode for MTLIndirectCommandType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern_struct!(
-    #[encoding_name("?")]
-    pub struct MTLIndirectCommandBufferExecutionRange {
-        pub location: u32,
-        pub length: u32,
-    }
-);
+#[repr(C)]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub struct MTLIndirectCommandBufferExecutionRange {
+    pub location: u32,
+    pub length: u32,
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLIndirectCommandBufferExecutionRange {
+    const ENCODING: Encoding = Encoding::Struct("?", &[<u32>::ENCODING, <u32>::ENCODING]);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLIndirectCommandBufferExecutionRange {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 // TODO: pub fn MTLIndirectCommandBufferExecutionRangeMake(location: u32,length: u32,) -> MTLIndirectCommandBufferExecutionRange;
 

@@ -102,17 +102,36 @@ extern "C" {
     pub static GCCurrentMicroGamepadSnapshotDataVersion: GCMicroGamepadSnapshotDataVersion;
 }
 
-extern_struct!(
-    #[encoding_name("?")]
-    pub struct GCMicroGamepadSnapshotData {
-        pub version: u16,
-        pub size: u16,
-        pub dpadX: c_float,
-        pub dpadY: c_float,
-        pub buttonA: c_float,
-        pub buttonX: c_float,
-    }
-);
+#[repr(C)]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub struct GCMicroGamepadSnapshotData {
+    pub version: u16,
+    pub size: u16,
+    pub dpadX: c_float,
+    pub dpadY: c_float,
+    pub buttonA: c_float,
+    pub buttonX: c_float,
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for GCMicroGamepadSnapshotData {
+    const ENCODING: Encoding = Encoding::Struct(
+        "?",
+        &[
+            <u16>::ENCODING,
+            <u16>::ENCODING,
+            <c_float>::ENCODING,
+            <c_float>::ENCODING,
+            <c_float>::ENCODING,
+            <c_float>::ENCODING,
+        ],
+    );
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for GCMicroGamepadSnapshotData {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern "C" {
     #[cfg(feature = "Foundation_NSData")]
@@ -131,17 +150,36 @@ extern "C" {
     ) -> *mut NSData;
 }
 
-extern_struct!(
-    #[encoding_name("?")]
-    pub struct GCMicroGamepadSnapShotDataV100 {
-        pub version: u16,
-        pub size: u16,
-        pub dpadX: c_float,
-        pub dpadY: c_float,
-        pub buttonA: c_float,
-        pub buttonX: c_float,
-    }
-);
+#[repr(C)]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub struct GCMicroGamepadSnapShotDataV100 {
+    pub version: u16,
+    pub size: u16,
+    pub dpadX: c_float,
+    pub dpadY: c_float,
+    pub buttonA: c_float,
+    pub buttonX: c_float,
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for GCMicroGamepadSnapShotDataV100 {
+    const ENCODING: Encoding = Encoding::Struct(
+        "?",
+        &[
+            <u16>::ENCODING,
+            <u16>::ENCODING,
+            <c_float>::ENCODING,
+            <c_float>::ENCODING,
+            <c_float>::ENCODING,
+            <c_float>::ENCODING,
+        ],
+    );
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for GCMicroGamepadSnapShotDataV100 {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern "C" {
     #[cfg(feature = "Foundation_NSData")]

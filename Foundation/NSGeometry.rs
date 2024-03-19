@@ -15,14 +15,32 @@ pub type NSRectPointer = *mut NSRect;
 
 pub type NSRectArray = *mut NSRect;
 
-extern_struct!(
-    pub struct NSEdgeInsets {
-        pub top: CGFloat,
-        pub left: CGFloat,
-        pub bottom: CGFloat,
-        pub right: CGFloat,
-    }
-);
+#[repr(C)]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub struct NSEdgeInsets {
+    pub top: CGFloat,
+    pub left: CGFloat,
+    pub bottom: CGFloat,
+    pub right: CGFloat,
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for NSEdgeInsets {
+    const ENCODING: Encoding = Encoding::Struct(
+        "NSEdgeInsets",
+        &[
+            <CGFloat>::ENCODING,
+            <CGFloat>::ENCODING,
+            <CGFloat>::ENCODING,
+            <CGFloat>::ENCODING,
+        ],
+    );
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for NSEdgeInsets {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 unsafe impl Send for NSEdgeInsets {}
 

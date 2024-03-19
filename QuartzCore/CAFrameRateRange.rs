@@ -4,13 +4,30 @@ use crate::common::*;
 use crate::Foundation::*;
 use crate::QuartzCore::*;
 
-extern_struct!(
-    pub struct CAFrameRateRange {
-        pub minimum: c_float,
-        pub maximum: c_float,
-        pub preferred: c_float,
-    }
-);
+#[repr(C)]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub struct CAFrameRateRange {
+    pub minimum: c_float,
+    pub maximum: c_float,
+    pub preferred: c_float,
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for CAFrameRateRange {
+    const ENCODING: Encoding = Encoding::Struct(
+        "CAFrameRateRange",
+        &[
+            <c_float>::ENCODING,
+            <c_float>::ENCODING,
+            <c_float>::ENCODING,
+        ],
+    );
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for CAFrameRateRange {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern "C" {
     pub static CAFrameRateRangeDefault: CAFrameRateRange;

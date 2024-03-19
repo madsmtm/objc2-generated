@@ -25,19 +25,40 @@ unsafe impl RefEncode for MTLSparseTextureMappingMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern_struct!(
-    #[encoding_name("?")]
-    pub struct MTLMapIndirectArguments {
-        pub regionOriginX: u32,
-        pub regionOriginY: u32,
-        pub regionOriginZ: u32,
-        pub regionSizeWidth: u32,
-        pub regionSizeHeight: u32,
-        pub regionSizeDepth: u32,
-        pub mipMapLevel: u32,
-        pub sliceId: u32,
-    }
-);
+#[repr(C)]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub struct MTLMapIndirectArguments {
+    pub regionOriginX: u32,
+    pub regionOriginY: u32,
+    pub regionOriginZ: u32,
+    pub regionSizeWidth: u32,
+    pub regionSizeHeight: u32,
+    pub regionSizeDepth: u32,
+    pub mipMapLevel: u32,
+    pub sliceId: u32,
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MTLMapIndirectArguments {
+    const ENCODING: Encoding = Encoding::Struct(
+        "?",
+        &[
+            <u32>::ENCODING,
+            <u32>::ENCODING,
+            <u32>::ENCODING,
+            <u32>::ENCODING,
+            <u32>::ENCODING,
+            <u32>::ENCODING,
+            <u32>::ENCODING,
+            <u32>::ENCODING,
+        ],
+    );
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MTLMapIndirectArguments {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 extern_protocol!(
     #[cfg(feature = "Metal_MTLCommandEncoder")]

@@ -5,41 +5,107 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::GameController::*;
 
-extern_struct!(
-    #[encoding_name("?")]
-    pub struct GCAcceleration {
-        pub x: c_double,
-        pub y: c_double,
-        pub z: c_double,
-    }
-);
+#[repr(C)]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub struct GCAcceleration {
+    pub x: c_double,
+    pub y: c_double,
+    pub z: c_double,
+}
 
-extern_struct!(
-    #[encoding_name("?")]
-    pub struct GCRotationRate {
-        pub x: c_double,
-        pub y: c_double,
-        pub z: c_double,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl Encode for GCAcceleration {
+    const ENCODING: Encoding = Encoding::Struct(
+        "?",
+        &[
+            <c_double>::ENCODING,
+            <c_double>::ENCODING,
+            <c_double>::ENCODING,
+        ],
+    );
+}
 
-extern_struct!(
-    #[encoding_name("?")]
-    pub struct GCEulerAngles {
-        pub pitch: c_double,
-        pub yaw: c_double,
-        pub roll: c_double,
-    }
-);
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for GCAcceleration {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
-extern_struct!(
-    pub struct GCQuaternion {
-        pub x: c_double,
-        pub y: c_double,
-        pub z: c_double,
-        pub w: c_double,
-    }
-);
+#[repr(C)]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub struct GCRotationRate {
+    pub x: c_double,
+    pub y: c_double,
+    pub z: c_double,
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for GCRotationRate {
+    const ENCODING: Encoding = Encoding::Struct(
+        "?",
+        &[
+            <c_double>::ENCODING,
+            <c_double>::ENCODING,
+            <c_double>::ENCODING,
+        ],
+    );
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for GCRotationRate {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+#[repr(C)]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub struct GCEulerAngles {
+    pub pitch: c_double,
+    pub yaw: c_double,
+    pub roll: c_double,
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for GCEulerAngles {
+    const ENCODING: Encoding = Encoding::Struct(
+        "?",
+        &[
+            <c_double>::ENCODING,
+            <c_double>::ENCODING,
+            <c_double>::ENCODING,
+        ],
+    );
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for GCEulerAngles {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+#[repr(C)]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub struct GCQuaternion {
+    pub x: c_double,
+    pub y: c_double,
+    pub z: c_double,
+    pub w: c_double,
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for GCQuaternion {
+    const ENCODING: Encoding = Encoding::Struct(
+        "GCQuaternion",
+        &[
+            <c_double>::ENCODING,
+            <c_double>::ENCODING,
+            <c_double>::ENCODING,
+            <c_double>::ENCODING,
+        ],
+    );
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for GCQuaternion {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 pub type GCMotionValueChangedHandler = *mut Block<dyn Fn(NonNull<GCMotion>)>;
 
