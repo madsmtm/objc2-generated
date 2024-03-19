@@ -138,8 +138,12 @@ extern_methods!(
     }
 );
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSHTTPCookieManagerAcceptPolicyChangedNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSHTTPCookieManagerAcceptPolicyChangedNotification: &'static NSNotificationName;
+}
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSHTTPCookieManagerCookiesChangedNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSHTTPCookieManagerCookiesChangedNotification: &'static NSNotificationName;
+}

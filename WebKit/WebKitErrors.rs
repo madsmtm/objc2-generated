@@ -5,17 +5,25 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::WebKit::*;
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(WebKitErrorDomain: Option<&'static NSString>);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static WebKitErrorDomain: Option<&'static NSString>;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(WebKitErrorMIMETypeKey: Option<&'static NSString>);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static WebKitErrorMIMETypeKey: Option<&'static NSString>;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(WebKitErrorPlugInNameKey: Option<&'static NSString>);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static WebKitErrorPlugInNameKey: Option<&'static NSString>;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(WebKitErrorPlugInPageURLStringKey: Option<&'static NSString>);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static WebKitErrorPlugInPageURLStringKey: Option<&'static NSString>;
+}
 
 #[deprecated]
 pub const WebKitErrorCannotShowMIMEType: c_uint = 100;

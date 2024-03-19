@@ -6,10 +6,10 @@ use crate::CoreData::*;
 use crate::Foundation::*;
 
 #[cfg(feature = "AppKit_NSApplication")]
-extern_static!(NSAppKitVersionNumberWithCustomSheetPosition: NSAppKitVersion = 686.0);
+pub static NSAppKitVersionNumberWithCustomSheetPosition: NSAppKitVersion = 686.0 as _;
 
 #[cfg(feature = "AppKit_NSApplication")]
-extern_static!(NSAppKitVersionNumberWithDeferredWindowDisplaySupport: NSAppKitVersion = 1019.0);
+pub static NSAppKitVersionNumberWithDeferredWindowDisplaySupport: NSAppKitVersion = 1019.0 as _;
 
 ns_options!(
     #[underlying(NSUInteger)]
@@ -45,10 +45,10 @@ ns_options!(
 );
 
 #[cfg(feature = "AppKit_NSApplication")]
-extern_static!(NSModalResponseOK: NSModalResponse = 1);
+pub static NSModalResponseOK: NSModalResponse = 1;
 
 #[cfg(feature = "AppKit_NSApplication")]
-extern_static!(NSModalResponseCancel: NSModalResponse = 0);
+pub static NSModalResponseCancel: NSModalResponse = 0;
 
 pub const NSDisplayWindowRunLoopOrdering: c_uint = 600000;
 pub const NSResetCursorRectsRunLoopOrdering: c_uint = 700000;
@@ -136,23 +136,23 @@ typed_extensible_enum!(
     pub type NSWindowLevel = NSInteger;
 );
 
-extern_static!(NSNormalWindowLevel: NSWindowLevel = 0);
+pub static NSNormalWindowLevel: NSWindowLevel = 0;
 
-extern_static!(NSFloatingWindowLevel: NSWindowLevel = 3);
+pub static NSFloatingWindowLevel: NSWindowLevel = 3;
 
-extern_static!(NSSubmenuWindowLevel: NSWindowLevel = 3);
+pub static NSSubmenuWindowLevel: NSWindowLevel = 3;
 
-extern_static!(NSTornOffMenuWindowLevel: NSWindowLevel = 3);
+pub static NSTornOffMenuWindowLevel: NSWindowLevel = 3;
 
-extern_static!(NSMainMenuWindowLevel: NSWindowLevel = 24);
+pub static NSMainMenuWindowLevel: NSWindowLevel = 24;
 
-extern_static!(NSStatusWindowLevel: NSWindowLevel = 25);
+pub static NSStatusWindowLevel: NSWindowLevel = 25;
 
-extern_static!(NSModalPanelWindowLevel: NSWindowLevel = 8);
+pub static NSModalPanelWindowLevel: NSWindowLevel = 8;
 
-extern_static!(NSPopUpMenuWindowLevel: NSWindowLevel = 101);
+pub static NSPopUpMenuWindowLevel: NSWindowLevel = 101;
 
-extern_static!(NSScreenSaverWindowLevel: NSWindowLevel = 1000);
+pub static NSScreenSaverWindowLevel: NSWindowLevel = 1000;
 
 ns_enum!(
     #[underlying(NSUInteger)]
@@ -200,7 +200,7 @@ ns_enum!(
 );
 
 #[cfg(feature = "Foundation_NSDate")]
-extern_static!(NSEventDurationForever: NSTimeInterval = c_double::MAX as _);
+pub static NSEventDurationForever: NSTimeInterval = c_double::MAX as _;
 
 ns_enum!(
     #[underlying(NSInteger)]
@@ -1937,98 +1937,160 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn NSWindowDelegate {}
 );
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSWindowDidBecomeKeyNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSWindowDidBecomeKeyNotification: &'static NSNotificationName;
+}
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSWindowDidBecomeMainNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSWindowDidBecomeMainNotification: &'static NSNotificationName;
+}
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSWindowDidChangeScreenNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSWindowDidChangeScreenNotification: &'static NSNotificationName;
+}
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSWindowDidDeminiaturizeNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSWindowDidDeminiaturizeNotification: &'static NSNotificationName;
+}
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSWindowDidExposeNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSWindowDidExposeNotification: &'static NSNotificationName;
+}
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSWindowDidMiniaturizeNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSWindowDidMiniaturizeNotification: &'static NSNotificationName;
+}
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSWindowDidMoveNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSWindowDidMoveNotification: &'static NSNotificationName;
+}
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSWindowDidResignKeyNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSWindowDidResignKeyNotification: &'static NSNotificationName;
+}
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSWindowDidResignMainNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSWindowDidResignMainNotification: &'static NSNotificationName;
+}
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSWindowDidResizeNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSWindowDidResizeNotification: &'static NSNotificationName;
+}
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSWindowDidUpdateNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSWindowDidUpdateNotification: &'static NSNotificationName;
+}
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSWindowWillCloseNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSWindowWillCloseNotification: &'static NSNotificationName;
+}
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSWindowWillMiniaturizeNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSWindowWillMiniaturizeNotification: &'static NSNotificationName;
+}
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSWindowWillMoveNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSWindowWillMoveNotification: &'static NSNotificationName;
+}
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSWindowWillBeginSheetNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSWindowWillBeginSheetNotification: &'static NSNotificationName;
+}
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSWindowDidEndSheetNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSWindowDidEndSheetNotification: &'static NSNotificationName;
+}
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSWindowDidChangeBackingPropertiesNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSWindowDidChangeBackingPropertiesNotification: &'static NSNotificationName;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSBackingPropertyOldScaleFactorKey: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSBackingPropertyOldScaleFactorKey: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSBackingPropertyOldColorSpaceKey: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSBackingPropertyOldColorSpaceKey: &'static NSString;
+}
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSWindowDidChangeScreenProfileNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSWindowDidChangeScreenProfileNotification: &'static NSNotificationName;
+}
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSWindowWillStartLiveResizeNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSWindowWillStartLiveResizeNotification: &'static NSNotificationName;
+}
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSWindowDidEndLiveResizeNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSWindowDidEndLiveResizeNotification: &'static NSNotificationName;
+}
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSWindowWillEnterFullScreenNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSWindowWillEnterFullScreenNotification: &'static NSNotificationName;
+}
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSWindowDidEnterFullScreenNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSWindowDidEnterFullScreenNotification: &'static NSNotificationName;
+}
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSWindowWillExitFullScreenNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSWindowWillExitFullScreenNotification: &'static NSNotificationName;
+}
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSWindowDidExitFullScreenNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSWindowDidExitFullScreenNotification: &'static NSNotificationName;
+}
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSWindowWillEnterVersionBrowserNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSWindowWillEnterVersionBrowserNotification: &'static NSNotificationName;
+}
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSWindowDidEnterVersionBrowserNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSWindowDidEnterVersionBrowserNotification: &'static NSNotificationName;
+}
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSWindowWillExitVersionBrowserNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSWindowWillExitVersionBrowserNotification: &'static NSNotificationName;
+}
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSWindowDidExitVersionBrowserNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSWindowDidExitVersionBrowserNotification: &'static NSNotificationName;
+}
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSWindowDidChangeOcclusionStateNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSWindowDidChangeOcclusionStateNotification: &'static NSNotificationName;
+}
 
 ns_enum!(
     #[underlying(NSUInteger)]
@@ -2156,34 +2218,45 @@ extern_methods!(
     }
 );
 
-extern_static!(NSBorderlessWindowMask: NSWindowStyleMask = NSWindowStyleMask(NSWindowStyleMask::Borderless.0));
+pub static NSBorderlessWindowMask: NSWindowStyleMask =
+    NSWindowStyleMask(NSWindowStyleMask::Borderless.0);
 
-extern_static!(NSTitledWindowMask: NSWindowStyleMask = NSWindowStyleMask(NSWindowStyleMask::Titled.0));
+pub static NSTitledWindowMask: NSWindowStyleMask = NSWindowStyleMask(NSWindowStyleMask::Titled.0);
 
-extern_static!(NSClosableWindowMask: NSWindowStyleMask = NSWindowStyleMask(NSWindowStyleMask::Closable.0));
+pub static NSClosableWindowMask: NSWindowStyleMask =
+    NSWindowStyleMask(NSWindowStyleMask::Closable.0);
 
-extern_static!(NSMiniaturizableWindowMask: NSWindowStyleMask = NSWindowStyleMask(NSWindowStyleMask::Miniaturizable.0));
+pub static NSMiniaturizableWindowMask: NSWindowStyleMask =
+    NSWindowStyleMask(NSWindowStyleMask::Miniaturizable.0);
 
-extern_static!(NSResizableWindowMask: NSWindowStyleMask = NSWindowStyleMask(NSWindowStyleMask::Resizable.0));
+pub static NSResizableWindowMask: NSWindowStyleMask =
+    NSWindowStyleMask(NSWindowStyleMask::Resizable.0);
 
-extern_static!(NSTexturedBackgroundWindowMask: NSWindowStyleMask = NSWindowStyleMask(NSWindowStyleMask::TexturedBackground.0));
+pub static NSTexturedBackgroundWindowMask: NSWindowStyleMask =
+    NSWindowStyleMask(NSWindowStyleMask::TexturedBackground.0);
 
-extern_static!(NSUnifiedTitleAndToolbarWindowMask: NSWindowStyleMask = NSWindowStyleMask(NSWindowStyleMask::UnifiedTitleAndToolbar.0));
+pub static NSUnifiedTitleAndToolbarWindowMask: NSWindowStyleMask =
+    NSWindowStyleMask(NSWindowStyleMask::UnifiedTitleAndToolbar.0);
 
-extern_static!(NSFullScreenWindowMask: NSWindowStyleMask = NSWindowStyleMask(NSWindowStyleMask::FullScreen.0));
+pub static NSFullScreenWindowMask: NSWindowStyleMask =
+    NSWindowStyleMask(NSWindowStyleMask::FullScreen.0);
 
-extern_static!(NSFullSizeContentViewWindowMask: NSWindowStyleMask = NSWindowStyleMask(NSWindowStyleMask::FullSizeContentView.0));
+pub static NSFullSizeContentViewWindowMask: NSWindowStyleMask =
+    NSWindowStyleMask(NSWindowStyleMask::FullSizeContentView.0);
 
-extern_static!(NSUtilityWindowMask: NSWindowStyleMask = NSWindowStyleMask(NSWindowStyleMask::UtilityWindow.0));
+pub static NSUtilityWindowMask: NSWindowStyleMask =
+    NSWindowStyleMask(NSWindowStyleMask::UtilityWindow.0);
 
-extern_static!(NSDocModalWindowMask: NSWindowStyleMask = NSWindowStyleMask(NSWindowStyleMask::DocModalWindow.0));
+pub static NSDocModalWindowMask: NSWindowStyleMask =
+    NSWindowStyleMask(NSWindowStyleMask::DocModalWindow.0);
 
-extern_static!(NSNonactivatingPanelMask: NSWindowStyleMask = NSWindowStyleMask(NSWindowStyleMask::NonactivatingPanel.0));
+pub static NSNonactivatingPanelMask: NSWindowStyleMask =
+    NSWindowStyleMask(NSWindowStyleMask::NonactivatingPanel.0);
 
-extern_static!(NSHUDWindowMask: NSWindowStyleMask = NSWindowStyleMask(NSWindowStyleMask::HUDWindow.0));
+pub static NSHUDWindowMask: NSWindowStyleMask = NSWindowStyleMask(NSWindowStyleMask::HUDWindow.0);
 
-extern_static!(NSUnscaledWindowMask: NSWindowStyleMask = NSWindowStyleMask(1<<11));
+pub static NSUnscaledWindowMask: NSWindowStyleMask = NSWindowStyleMask(1 << 11);
 
-extern_static!(NSWindowFullScreenButton: NSWindowButton = NSWindowButton(7));
+pub static NSWindowFullScreenButton: NSWindowButton = NSWindowButton(7);
 
-extern_static!(NSDockWindowLevel: NSWindowLevel = 20);
+pub static NSDockWindowLevel: NSWindowLevel = 20;

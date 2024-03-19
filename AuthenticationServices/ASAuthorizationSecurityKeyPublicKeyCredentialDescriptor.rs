@@ -10,14 +10,23 @@ typed_extensible_enum!(
     pub type ASAuthorizationSecurityKeyPublicKeyCredentialDescriptorTransport = NSString;
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(ASAuthorizationSecurityKeyPublicKeyCredentialDescriptorTransportUSB: &'static ASAuthorizationSecurityKeyPublicKeyCredentialDescriptorTransport);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static ASAuthorizationSecurityKeyPublicKeyCredentialDescriptorTransportUSB:
+        &'static ASAuthorizationSecurityKeyPublicKeyCredentialDescriptorTransport;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(ASAuthorizationSecurityKeyPublicKeyCredentialDescriptorTransportNFC: &'static ASAuthorizationSecurityKeyPublicKeyCredentialDescriptorTransport);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static ASAuthorizationSecurityKeyPublicKeyCredentialDescriptorTransportNFC:
+        &'static ASAuthorizationSecurityKeyPublicKeyCredentialDescriptorTransport;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(ASAuthorizationSecurityKeyPublicKeyCredentialDescriptorTransportBluetooth: &'static ASAuthorizationSecurityKeyPublicKeyCredentialDescriptorTransport);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static ASAuthorizationSecurityKeyPublicKeyCredentialDescriptorTransportBluetooth:
+        &'static ASAuthorizationSecurityKeyPublicKeyCredentialDescriptorTransport;
+}
 
 extern "C" {
     #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]

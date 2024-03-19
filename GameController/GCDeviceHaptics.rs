@@ -10,31 +10,49 @@ typed_enum!(
     pub type GCHapticsLocality = NSString;
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(GCHapticsLocalityDefault: &'static GCHapticsLocality);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static GCHapticsLocalityDefault: &'static GCHapticsLocality;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(GCHapticsLocalityAll: &'static GCHapticsLocality);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static GCHapticsLocalityAll: &'static GCHapticsLocality;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(GCHapticsLocalityHandles: &'static GCHapticsLocality);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static GCHapticsLocalityHandles: &'static GCHapticsLocality;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(GCHapticsLocalityLeftHandle: &'static GCHapticsLocality);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static GCHapticsLocalityLeftHandle: &'static GCHapticsLocality;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(GCHapticsLocalityRightHandle: &'static GCHapticsLocality);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static GCHapticsLocalityRightHandle: &'static GCHapticsLocality;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(GCHapticsLocalityTriggers: &'static GCHapticsLocality);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static GCHapticsLocalityTriggers: &'static GCHapticsLocality;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(GCHapticsLocalityLeftTrigger: &'static GCHapticsLocality);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static GCHapticsLocalityLeftTrigger: &'static GCHapticsLocality;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(GCHapticsLocalityRightTrigger: &'static GCHapticsLocality);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static GCHapticsLocalityRightTrigger: &'static GCHapticsLocality;
+}
 
-extern_static!(GCHapticDurationInfinite: c_float);
+extern "C" {
+    pub static GCHapticDurationInfinite: c_float;
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

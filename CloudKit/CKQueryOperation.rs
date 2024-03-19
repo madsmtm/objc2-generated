@@ -36,7 +36,9 @@ extern_methods!(
     }
 );
 
-extern_static!(CKQueryOperationMaximumResults: NSUInteger);
+extern "C" {
+    pub static CKQueryOperationMaximumResults: NSUInteger;
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

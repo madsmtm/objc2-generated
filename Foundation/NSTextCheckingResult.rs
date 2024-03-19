@@ -168,38 +168,60 @@ extern_methods!(
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSTextCheckingNameKey: &'static NSTextCheckingKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSTextCheckingNameKey: &'static NSTextCheckingKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSTextCheckingJobTitleKey: &'static NSTextCheckingKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSTextCheckingJobTitleKey: &'static NSTextCheckingKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSTextCheckingOrganizationKey: &'static NSTextCheckingKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSTextCheckingOrganizationKey: &'static NSTextCheckingKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSTextCheckingStreetKey: &'static NSTextCheckingKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSTextCheckingStreetKey: &'static NSTextCheckingKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSTextCheckingCityKey: &'static NSTextCheckingKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSTextCheckingCityKey: &'static NSTextCheckingKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSTextCheckingStateKey: &'static NSTextCheckingKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSTextCheckingStateKey: &'static NSTextCheckingKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSTextCheckingZIPKey: &'static NSTextCheckingKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSTextCheckingZIPKey: &'static NSTextCheckingKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSTextCheckingCountryKey: &'static NSTextCheckingKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSTextCheckingCountryKey: &'static NSTextCheckingKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSTextCheckingPhoneKey: &'static NSTextCheckingKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSTextCheckingPhoneKey: &'static NSTextCheckingKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSTextCheckingAirlineKey: &'static NSTextCheckingKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSTextCheckingAirlineKey: &'static NSTextCheckingKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSTextCheckingFlightKey: &'static NSTextCheckingKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSTextCheckingFlightKey: &'static NSTextCheckingKey;
+}
 
 extern_methods!(
     /// NSTextCheckingResultCreation

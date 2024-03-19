@@ -43,14 +43,15 @@ typed_extensible_enum!(
     pub type NSStackViewVisibilityPriority = c_float;
 );
 
-extern_static!(NSStackViewVisibilityPriorityMustHold: NSStackViewVisibilityPriority = 1000);
+pub static NSStackViewVisibilityPriorityMustHold: NSStackViewVisibilityPriority = 1000 as _;
 
-extern_static!(NSStackViewVisibilityPriorityDetachOnlyIfNecessary: NSStackViewVisibilityPriority = 900);
+pub static NSStackViewVisibilityPriorityDetachOnlyIfNecessary: NSStackViewVisibilityPriority =
+    900 as _;
 
-extern_static!(NSStackViewVisibilityPriorityNotVisible: NSStackViewVisibilityPriority = 0);
+pub static NSStackViewVisibilityPriorityNotVisible: NSStackViewVisibilityPriority = 0 as _;
 
 #[cfg(feature = "Foundation_NSGeometry")]
-extern_static!(NSStackViewSpacingUseDefault: CGFloat = c_float::MAX as _);
+pub static NSStackViewSpacingUseDefault: CGFloat = c_float::MAX as _;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

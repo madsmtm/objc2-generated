@@ -5,17 +5,25 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::GameController::*;
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(GCInputDirectionalDpad: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static GCInputDirectionalDpad: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(GCInputDirectionalTouchSurfaceButton: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static GCInputDirectionalTouchSurfaceButton: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(GCInputDirectionalCardinalDpad: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static GCInputDirectionalCardinalDpad: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(GCInputDirectionalCenterButton: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static GCInputDirectionalCenterButton: &'static NSString;
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

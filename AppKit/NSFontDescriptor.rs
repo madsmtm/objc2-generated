@@ -241,158 +241,260 @@ extern_methods!(
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFontFamilyAttribute: &'static NSFontDescriptorAttributeName);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFontFamilyAttribute: &'static NSFontDescriptorAttributeName;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFontNameAttribute: &'static NSFontDescriptorAttributeName);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFontNameAttribute: &'static NSFontDescriptorAttributeName;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFontFaceAttribute: &'static NSFontDescriptorAttributeName);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFontFaceAttribute: &'static NSFontDescriptorAttributeName;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFontSizeAttribute: &'static NSFontDescriptorAttributeName);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFontSizeAttribute: &'static NSFontDescriptorAttributeName;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFontVisibleNameAttribute: &'static NSFontDescriptorAttributeName);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFontVisibleNameAttribute: &'static NSFontDescriptorAttributeName;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFontMatrixAttribute: &'static NSFontDescriptorAttributeName);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFontMatrixAttribute: &'static NSFontDescriptorAttributeName;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFontVariationAttribute: &'static NSFontDescriptorAttributeName);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFontVariationAttribute: &'static NSFontDescriptorAttributeName;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFontCharacterSetAttribute: &'static NSFontDescriptorAttributeName);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFontCharacterSetAttribute: &'static NSFontDescriptorAttributeName;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFontCascadeListAttribute: &'static NSFontDescriptorAttributeName);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFontCascadeListAttribute: &'static NSFontDescriptorAttributeName;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFontTraitsAttribute: &'static NSFontDescriptorAttributeName);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFontTraitsAttribute: &'static NSFontDescriptorAttributeName;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFontFixedAdvanceAttribute: &'static NSFontDescriptorAttributeName);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFontFixedAdvanceAttribute: &'static NSFontDescriptorAttributeName;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFontFeatureSettingsAttribute: &'static NSFontDescriptorAttributeName);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFontFeatureSettingsAttribute: &'static NSFontDescriptorAttributeName;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFontSymbolicTrait: &'static NSFontDescriptorTraitKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFontSymbolicTrait: &'static NSFontDescriptorTraitKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFontWeightTrait: &'static NSFontDescriptorTraitKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFontWeightTrait: &'static NSFontDescriptorTraitKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFontWidthTrait: &'static NSFontDescriptorTraitKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFontWidthTrait: &'static NSFontDescriptorTraitKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFontSlantTrait: &'static NSFontDescriptorTraitKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFontSlantTrait: &'static NSFontDescriptorTraitKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFontVariationAxisIdentifierKey: &'static NSFontDescriptorVariationKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFontVariationAxisIdentifierKey: &'static NSFontDescriptorVariationKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFontVariationAxisMinimumValueKey: &'static NSFontDescriptorVariationKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFontVariationAxisMinimumValueKey: &'static NSFontDescriptorVariationKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFontVariationAxisMaximumValueKey: &'static NSFontDescriptorVariationKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFontVariationAxisMaximumValueKey: &'static NSFontDescriptorVariationKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFontVariationAxisDefaultValueKey: &'static NSFontDescriptorVariationKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFontVariationAxisDefaultValueKey: &'static NSFontDescriptorVariationKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFontVariationAxisNameKey: &'static NSFontDescriptorVariationKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFontVariationAxisNameKey: &'static NSFontDescriptorVariationKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFontFeatureTypeIdentifierKey: &'static NSFontDescriptorFeatureKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFontFeatureTypeIdentifierKey: &'static NSFontDescriptorFeatureKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFontFeatureSelectorIdentifierKey: &'static NSFontDescriptorFeatureKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFontFeatureSelectorIdentifierKey: &'static NSFontDescriptorFeatureKey;
+}
 
-#[cfg(feature = "Foundation_NSGeometry")]
-extern_static!(NSFontWeightUltraLight: NSFontWeight);
+extern "C" {
+    #[cfg(feature = "Foundation_NSGeometry")]
+    pub static NSFontWeightUltraLight: NSFontWeight;
+}
 
-#[cfg(feature = "Foundation_NSGeometry")]
-extern_static!(NSFontWeightThin: NSFontWeight);
+extern "C" {
+    #[cfg(feature = "Foundation_NSGeometry")]
+    pub static NSFontWeightThin: NSFontWeight;
+}
 
-#[cfg(feature = "Foundation_NSGeometry")]
-extern_static!(NSFontWeightLight: NSFontWeight);
+extern "C" {
+    #[cfg(feature = "Foundation_NSGeometry")]
+    pub static NSFontWeightLight: NSFontWeight;
+}
 
-#[cfg(feature = "Foundation_NSGeometry")]
-extern_static!(NSFontWeightRegular: NSFontWeight);
+extern "C" {
+    #[cfg(feature = "Foundation_NSGeometry")]
+    pub static NSFontWeightRegular: NSFontWeight;
+}
 
-#[cfg(feature = "Foundation_NSGeometry")]
-extern_static!(NSFontWeightMedium: NSFontWeight);
+extern "C" {
+    #[cfg(feature = "Foundation_NSGeometry")]
+    pub static NSFontWeightMedium: NSFontWeight;
+}
 
-#[cfg(feature = "Foundation_NSGeometry")]
-extern_static!(NSFontWeightSemibold: NSFontWeight);
+extern "C" {
+    #[cfg(feature = "Foundation_NSGeometry")]
+    pub static NSFontWeightSemibold: NSFontWeight;
+}
 
-#[cfg(feature = "Foundation_NSGeometry")]
-extern_static!(NSFontWeightBold: NSFontWeight);
+extern "C" {
+    #[cfg(feature = "Foundation_NSGeometry")]
+    pub static NSFontWeightBold: NSFontWeight;
+}
 
-#[cfg(feature = "Foundation_NSGeometry")]
-extern_static!(NSFontWeightHeavy: NSFontWeight);
+extern "C" {
+    #[cfg(feature = "Foundation_NSGeometry")]
+    pub static NSFontWeightHeavy: NSFontWeight;
+}
 
-#[cfg(feature = "Foundation_NSGeometry")]
-extern_static!(NSFontWeightBlack: NSFontWeight);
+extern "C" {
+    #[cfg(feature = "Foundation_NSGeometry")]
+    pub static NSFontWeightBlack: NSFontWeight;
+}
 
-#[cfg(feature = "Foundation_NSGeometry")]
-extern_static!(NSFontWidthCompressed: NSFontWidth);
+extern "C" {
+    #[cfg(feature = "Foundation_NSGeometry")]
+    pub static NSFontWidthCompressed: NSFontWidth;
+}
 
-#[cfg(feature = "Foundation_NSGeometry")]
-extern_static!(NSFontWidthCondensed: NSFontWidth);
+extern "C" {
+    #[cfg(feature = "Foundation_NSGeometry")]
+    pub static NSFontWidthCondensed: NSFontWidth;
+}
 
-#[cfg(feature = "Foundation_NSGeometry")]
-extern_static!(NSFontWidthStandard: NSFontWidth);
+extern "C" {
+    #[cfg(feature = "Foundation_NSGeometry")]
+    pub static NSFontWidthStandard: NSFontWidth;
+}
 
-#[cfg(feature = "Foundation_NSGeometry")]
-extern_static!(NSFontWidthExpanded: NSFontWidth);
+extern "C" {
+    #[cfg(feature = "Foundation_NSGeometry")]
+    pub static NSFontWidthExpanded: NSFontWidth;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFontDescriptorSystemDesignDefault: &'static NSFontDescriptorSystemDesign);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFontDescriptorSystemDesignDefault: &'static NSFontDescriptorSystemDesign;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFontDescriptorSystemDesignSerif: &'static NSFontDescriptorSystemDesign);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFontDescriptorSystemDesignSerif: &'static NSFontDescriptorSystemDesign;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFontDescriptorSystemDesignMonospaced: &'static NSFontDescriptorSystemDesign);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFontDescriptorSystemDesignMonospaced: &'static NSFontDescriptorSystemDesign;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFontDescriptorSystemDesignRounded: &'static NSFontDescriptorSystemDesign);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFontDescriptorSystemDesignRounded: &'static NSFontDescriptorSystemDesign;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFontTextStyleLargeTitle: &'static NSFontTextStyle);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFontTextStyleLargeTitle: &'static NSFontTextStyle;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFontTextStyleTitle1: &'static NSFontTextStyle);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFontTextStyleTitle1: &'static NSFontTextStyle;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFontTextStyleTitle2: &'static NSFontTextStyle);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFontTextStyleTitle2: &'static NSFontTextStyle;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFontTextStyleTitle3: &'static NSFontTextStyle);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFontTextStyleTitle3: &'static NSFontTextStyle;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFontTextStyleHeadline: &'static NSFontTextStyle);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFontTextStyleHeadline: &'static NSFontTextStyle;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFontTextStyleSubheadline: &'static NSFontTextStyle);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFontTextStyleSubheadline: &'static NSFontTextStyle;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFontTextStyleBody: &'static NSFontTextStyle);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFontTextStyleBody: &'static NSFontTextStyle;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFontTextStyleCallout: &'static NSFontTextStyle);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFontTextStyleCallout: &'static NSFontTextStyle;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFontTextStyleFootnote: &'static NSFontTextStyle);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFontTextStyleFootnote: &'static NSFontTextStyle;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFontTextStyleCaption1: &'static NSFontTextStyle);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFontTextStyleCaption1: &'static NSFontTextStyle;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFontTextStyleCaption2: &'static NSFontTextStyle);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFontTextStyleCaption2: &'static NSFontTextStyle;
+}
 
 pub type NSFontFamilyClass = u32;
 
@@ -418,8 +520,10 @@ pub const NSFontMonoSpaceTrait: c_uint = 1 << 10;
 pub const NSFontVerticalTrait: c_uint = 1 << 11;
 pub const NSFontUIOptimizedTrait: c_uint = 1 << 12;
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFontColorAttribute: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFontColorAttribute: &'static NSString;
+}
 
 extern_methods!(
     /// NSFontDescriptor_TextStyles

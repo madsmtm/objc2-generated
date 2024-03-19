@@ -9,64 +9,100 @@ typed_enum!(
     pub type MTLCommonCounter = NSString;
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(MTLCommonCounterTimestamp: &'static MTLCommonCounter);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static MTLCommonCounterTimestamp: &'static MTLCommonCounter;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(MTLCommonCounterTessellationInputPatches: &'static MTLCommonCounter);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static MTLCommonCounterTessellationInputPatches: &'static MTLCommonCounter;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(MTLCommonCounterVertexInvocations: &'static MTLCommonCounter);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static MTLCommonCounterVertexInvocations: &'static MTLCommonCounter;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(MTLCommonCounterPostTessellationVertexInvocations: &'static MTLCommonCounter);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static MTLCommonCounterPostTessellationVertexInvocations: &'static MTLCommonCounter;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(MTLCommonCounterClipperInvocations: &'static MTLCommonCounter);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static MTLCommonCounterClipperInvocations: &'static MTLCommonCounter;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(MTLCommonCounterClipperPrimitivesOut: &'static MTLCommonCounter);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static MTLCommonCounterClipperPrimitivesOut: &'static MTLCommonCounter;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(MTLCommonCounterFragmentInvocations: &'static MTLCommonCounter);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static MTLCommonCounterFragmentInvocations: &'static MTLCommonCounter;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(MTLCommonCounterFragmentsPassed: &'static MTLCommonCounter);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static MTLCommonCounterFragmentsPassed: &'static MTLCommonCounter;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(MTLCommonCounterComputeKernelInvocations: &'static MTLCommonCounter);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static MTLCommonCounterComputeKernelInvocations: &'static MTLCommonCounter;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(MTLCommonCounterTotalCycles: &'static MTLCommonCounter);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static MTLCommonCounterTotalCycles: &'static MTLCommonCounter;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(MTLCommonCounterVertexCycles: &'static MTLCommonCounter);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static MTLCommonCounterVertexCycles: &'static MTLCommonCounter;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(MTLCommonCounterTessellationCycles: &'static MTLCommonCounter);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static MTLCommonCounterTessellationCycles: &'static MTLCommonCounter;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(MTLCommonCounterPostTessellationVertexCycles: &'static MTLCommonCounter);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static MTLCommonCounterPostTessellationVertexCycles: &'static MTLCommonCounter;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(MTLCommonCounterFragmentCycles: &'static MTLCommonCounter);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static MTLCommonCounterFragmentCycles: &'static MTLCommonCounter;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(MTLCommonCounterRenderTargetWriteCycles: &'static MTLCommonCounter);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static MTLCommonCounterRenderTargetWriteCycles: &'static MTLCommonCounter;
+}
 
 #[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type MTLCommonCounterSet = NSString;
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(MTLCommonCounterSetTimestamp: &'static MTLCommonCounterSet);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static MTLCommonCounterSetTimestamp: &'static MTLCommonCounterSet;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(MTLCommonCounterSetStageUtilization: &'static MTLCommonCounterSet);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static MTLCommonCounterSetStageUtilization: &'static MTLCommonCounterSet;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(MTLCommonCounterSetStatistic: &'static MTLCommonCounterSet);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static MTLCommonCounterSetStatistic: &'static MTLCommonCounterSet;
+}
 
 extern_struct!(
     #[encoding_name("?")]
@@ -204,8 +240,10 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn MTLCounterSampleBuffer {}
 );
 
-#[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
-extern_static!(MTLCounterErrorDomain: &'static NSErrorDomain);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
+    pub static MTLCounterErrorDomain: &'static NSErrorDomain;
+}
 
 ns_enum!(
     #[underlying(NSInteger)]

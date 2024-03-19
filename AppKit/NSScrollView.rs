@@ -437,20 +437,30 @@ extern_methods!(
     }
 );
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSScrollViewWillStartLiveMagnifyNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSScrollViewWillStartLiveMagnifyNotification: &'static NSNotificationName;
+}
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSScrollViewDidEndLiveMagnifyNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSScrollViewDidEndLiveMagnifyNotification: &'static NSNotificationName;
+}
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSScrollViewWillStartLiveScrollNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSScrollViewWillStartLiveScrollNotification: &'static NSNotificationName;
+}
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSScrollViewDidLiveScrollNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSScrollViewDidLiveScrollNotification: &'static NSNotificationName;
+}
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSScrollViewDidEndLiveScrollNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSScrollViewDidEndLiveScrollNotification: &'static NSNotificationName;
+}
 
 extern_methods!(
     /// NSRulerSupport

@@ -129,5 +129,7 @@ extern_methods!(
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(MPMusicPlayerControllerQueueDidChangeNotification: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static MPMusicPlayerControllerQueueDidChangeNotification: &'static NSString;
+}

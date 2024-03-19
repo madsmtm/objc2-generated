@@ -10,17 +10,25 @@ typed_extensible_enum!(
     pub type ASAuthorizationOpenIDOperation = NSString;
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(ASAuthorizationOperationImplicit: &'static ASAuthorizationOpenIDOperation);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static ASAuthorizationOperationImplicit: &'static ASAuthorizationOpenIDOperation;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(ASAuthorizationOperationLogin: &'static ASAuthorizationOpenIDOperation);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static ASAuthorizationOperationLogin: &'static ASAuthorizationOpenIDOperation;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(ASAuthorizationOperationRefresh: &'static ASAuthorizationOpenIDOperation);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static ASAuthorizationOperationRefresh: &'static ASAuthorizationOpenIDOperation;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(ASAuthorizationOperationLogout: &'static ASAuthorizationOpenIDOperation);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static ASAuthorizationOperationLogout: &'static ASAuthorizationOpenIDOperation;
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

@@ -11,29 +11,45 @@ pub type CKRecordType = NSString;
 #[cfg(feature = "Foundation_NSString")]
 pub type CKRecordFieldKey = NSString;
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CKRecordTypeUserRecord: &'static CKRecordType);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CKRecordTypeUserRecord: &'static CKRecordType;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CKRecordRecordIDKey: &'static CKRecordFieldKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CKRecordRecordIDKey: &'static CKRecordFieldKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CKRecordCreatorUserRecordIDKey: &'static CKRecordFieldKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CKRecordCreatorUserRecordIDKey: &'static CKRecordFieldKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CKRecordCreationDateKey: &'static CKRecordFieldKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CKRecordCreationDateKey: &'static CKRecordFieldKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CKRecordLastModifiedUserRecordIDKey: &'static CKRecordFieldKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CKRecordLastModifiedUserRecordIDKey: &'static CKRecordFieldKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CKRecordModificationDateKey: &'static CKRecordFieldKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CKRecordModificationDateKey: &'static CKRecordFieldKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CKRecordParentKey: &'static CKRecordFieldKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CKRecordParentKey: &'static CKRecordFieldKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CKRecordShareKey: &'static CKRecordFieldKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CKRecordShareKey: &'static CKRecordFieldKey;
+}
 
 extern_protocol!(
     pub unsafe trait CKRecordValue: NSObjectProtocol {}

@@ -10,65 +10,105 @@ typed_extensible_enum!(
     pub type NSSharingServiceName = NSString;
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSSharingServiceNameComposeEmail: &'static NSSharingServiceName);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSSharingServiceNameComposeEmail: &'static NSSharingServiceName;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSSharingServiceNameComposeMessage: &'static NSSharingServiceName);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSSharingServiceNameComposeMessage: &'static NSSharingServiceName;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSSharingServiceNameSendViaAirDrop: &'static NSSharingServiceName);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSSharingServiceNameSendViaAirDrop: &'static NSSharingServiceName;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSSharingServiceNameAddToSafariReadingList: &'static NSSharingServiceName);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSSharingServiceNameAddToSafariReadingList: &'static NSSharingServiceName;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSSharingServiceNameAddToIPhoto: &'static NSSharingServiceName);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSSharingServiceNameAddToIPhoto: &'static NSSharingServiceName;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSSharingServiceNameAddToAperture: &'static NSSharingServiceName);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSSharingServiceNameAddToAperture: &'static NSSharingServiceName;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSSharingServiceNameUseAsDesktopPicture: &'static NSSharingServiceName);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSSharingServiceNameUseAsDesktopPicture: &'static NSSharingServiceName;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSSharingServiceNamePostOnFacebook: &'static NSSharingServiceName);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSSharingServiceNamePostOnFacebook: &'static NSSharingServiceName;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSSharingServiceNamePostOnTwitter: &'static NSSharingServiceName);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSSharingServiceNamePostOnTwitter: &'static NSSharingServiceName;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSSharingServiceNamePostOnSinaWeibo: &'static NSSharingServiceName);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSSharingServiceNamePostOnSinaWeibo: &'static NSSharingServiceName;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSSharingServiceNamePostOnTencentWeibo: &'static NSSharingServiceName);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSSharingServiceNamePostOnTencentWeibo: &'static NSSharingServiceName;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSSharingServiceNamePostOnLinkedIn: &'static NSSharingServiceName);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSSharingServiceNamePostOnLinkedIn: &'static NSSharingServiceName;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSSharingServiceNameUseAsTwitterProfileImage: &'static NSSharingServiceName);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSSharingServiceNameUseAsTwitterProfileImage: &'static NSSharingServiceName;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSSharingServiceNameUseAsFacebookProfileImage: &'static NSSharingServiceName);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSSharingServiceNameUseAsFacebookProfileImage: &'static NSSharingServiceName;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSSharingServiceNameUseAsLinkedInProfileImage: &'static NSSharingServiceName);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSSharingServiceNameUseAsLinkedInProfileImage: &'static NSSharingServiceName;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSSharingServiceNamePostImageOnFlickr: &'static NSSharingServiceName);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSSharingServiceNamePostImageOnFlickr: &'static NSSharingServiceName;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSSharingServiceNamePostVideoOnVimeo: &'static NSSharingServiceName);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSSharingServiceNamePostVideoOnVimeo: &'static NSSharingServiceName;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSSharingServiceNamePostVideoOnYouku: &'static NSSharingServiceName);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSSharingServiceNamePostVideoOnYouku: &'static NSSharingServiceName;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSSharingServiceNamePostVideoOnTudou: &'static NSSharingServiceName);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSSharingServiceNamePostVideoOnTudou: &'static NSSharingServiceName;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSSharingServiceNameCloudSharing: &'static NSSharingServiceName);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSSharingServiceNameCloudSharing: &'static NSSharingServiceName;
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

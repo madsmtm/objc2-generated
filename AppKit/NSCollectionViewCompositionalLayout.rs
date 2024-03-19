@@ -42,8 +42,10 @@ unsafe impl Send for NSDirectionalEdgeInsets {}
 #[cfg(feature = "Foundation_NSGeometry")]
 unsafe impl Sync for NSDirectionalEdgeInsets {}
 
-#[cfg(feature = "Foundation_NSGeometry")]
-extern_static!(NSDirectionalEdgeInsetsZero: NSDirectionalEdgeInsets);
+extern "C" {
+    #[cfg(feature = "Foundation_NSGeometry")]
+    pub static NSDirectionalEdgeInsetsZero: NSDirectionalEdgeInsets;
+}
 
 ns_enum!(
     #[underlying(NSInteger)]

@@ -5,110 +5,182 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-#[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
-extern_static!(NSTextLineTooLongException: &'static NSExceptionName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
+    pub static NSTextLineTooLongException: &'static NSExceptionName;
+}
 
-#[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
-extern_static!(NSTextNoSelectionException: &'static NSExceptionName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
+    pub static NSTextNoSelectionException: &'static NSExceptionName;
+}
 
-#[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
-extern_static!(NSWordTablesWriteException: &'static NSExceptionName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
+    pub static NSWordTablesWriteException: &'static NSExceptionName;
+}
 
-#[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
-extern_static!(NSWordTablesReadException: &'static NSExceptionName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
+    pub static NSWordTablesReadException: &'static NSExceptionName;
+}
 
-#[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
-extern_static!(NSTextReadException: &'static NSExceptionName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
+    pub static NSTextReadException: &'static NSExceptionName;
+}
 
-#[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
-extern_static!(NSTextWriteException: &'static NSExceptionName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
+    pub static NSTextWriteException: &'static NSExceptionName;
+}
 
-#[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
-extern_static!(NSPasteboardCommunicationException: &'static NSExceptionName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
+    pub static NSPasteboardCommunicationException: &'static NSExceptionName;
+}
 
-#[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
-extern_static!(NSPrintingCommunicationException: &'static NSExceptionName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
+    pub static NSPrintingCommunicationException: &'static NSExceptionName;
+}
 
-#[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
-extern_static!(NSAbortModalException: &'static NSExceptionName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
+    pub static NSAbortModalException: &'static NSExceptionName;
+}
 
-#[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
-extern_static!(NSAbortPrintingException: &'static NSExceptionName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
+    pub static NSAbortPrintingException: &'static NSExceptionName;
+}
 
-#[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
-extern_static!(NSIllegalSelectorException: &'static NSExceptionName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
+    pub static NSIllegalSelectorException: &'static NSExceptionName;
+}
 
-#[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
-extern_static!(NSAppKitVirtualMemoryException: &'static NSExceptionName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
+    pub static NSAppKitVirtualMemoryException: &'static NSExceptionName;
+}
 
-#[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
-extern_static!(NSBadRTFDirectiveException: &'static NSExceptionName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
+    pub static NSBadRTFDirectiveException: &'static NSExceptionName;
+}
 
-#[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
-extern_static!(NSBadRTFFontTableException: &'static NSExceptionName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
+    pub static NSBadRTFFontTableException: &'static NSExceptionName;
+}
 
-#[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
-extern_static!(NSBadRTFStyleSheetException: &'static NSExceptionName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
+    pub static NSBadRTFStyleSheetException: &'static NSExceptionName;
+}
 
-#[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
-extern_static!(NSTypedStreamVersionException: &'static NSExceptionName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
+    pub static NSTypedStreamVersionException: &'static NSExceptionName;
+}
 
-#[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
-extern_static!(NSTIFFException: &'static NSExceptionName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
+    pub static NSTIFFException: &'static NSExceptionName;
+}
 
-#[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
-extern_static!(NSPrintPackageException: &'static NSExceptionName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
+    pub static NSPrintPackageException: &'static NSExceptionName;
+}
 
-#[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
-extern_static!(NSBadRTFColorTableException: &'static NSExceptionName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
+    pub static NSBadRTFColorTableException: &'static NSExceptionName;
+}
 
-#[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
-extern_static!(NSDraggingException: &'static NSExceptionName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
+    pub static NSDraggingException: &'static NSExceptionName;
+}
 
-#[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
-extern_static!(NSColorListIOException: &'static NSExceptionName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
+    pub static NSColorListIOException: &'static NSExceptionName;
+}
 
-#[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
-extern_static!(NSColorListNotEditableException: &'static NSExceptionName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
+    pub static NSColorListNotEditableException: &'static NSExceptionName;
+}
 
-#[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
-extern_static!(NSBadBitmapParametersException: &'static NSExceptionName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
+    pub static NSBadBitmapParametersException: &'static NSExceptionName;
+}
 
-#[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
-extern_static!(NSWindowServerCommunicationException: &'static NSExceptionName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
+    pub static NSWindowServerCommunicationException: &'static NSExceptionName;
+}
 
-#[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
-extern_static!(NSFontUnavailableException: &'static NSExceptionName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
+    pub static NSFontUnavailableException: &'static NSExceptionName;
+}
 
-#[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
-extern_static!(NSPPDIncludeNotFoundException: &'static NSExceptionName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
+    pub static NSPPDIncludeNotFoundException: &'static NSExceptionName;
+}
 
-#[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
-extern_static!(NSPPDParseException: &'static NSExceptionName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
+    pub static NSPPDParseException: &'static NSExceptionName;
+}
 
-#[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
-extern_static!(NSPPDIncludeStackOverflowException: &'static NSExceptionName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
+    pub static NSPPDIncludeStackOverflowException: &'static NSExceptionName;
+}
 
-#[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
-extern_static!(NSPPDIncludeStackUnderflowException: &'static NSExceptionName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
+    pub static NSPPDIncludeStackUnderflowException: &'static NSExceptionName;
+}
 
-#[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
-extern_static!(NSRTFPropertyStackOverflowException: &'static NSExceptionName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
+    pub static NSRTFPropertyStackOverflowException: &'static NSExceptionName;
+}
 
-#[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
-extern_static!(NSAppKitIgnoredException: &'static NSExceptionName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
+    pub static NSAppKitIgnoredException: &'static NSExceptionName;
+}
 
-#[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
-extern_static!(NSBadComparisonException: &'static NSExceptionName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
+    pub static NSBadComparisonException: &'static NSExceptionName;
+}
 
-#[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
-extern_static!(NSImageCacheException: &'static NSExceptionName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
+    pub static NSImageCacheException: &'static NSExceptionName;
+}
 
-#[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
-extern_static!(NSNibLoadingException: &'static NSExceptionName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
+    pub static NSNibLoadingException: &'static NSExceptionName;
+}
 
-#[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
-extern_static!(NSBrowserIllegalDelegateException: &'static NSExceptionName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
+    pub static NSBrowserIllegalDelegateException: &'static NSExceptionName;
+}
 
-#[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
-extern_static!(NSAccessibilityException: &'static NSExceptionName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
+    pub static NSAccessibilityException: &'static NSExceptionName;
+}

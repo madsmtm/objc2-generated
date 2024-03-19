@@ -33,8 +33,10 @@ ns_enum!(
     }
 );
 
-#[cfg(feature = "Foundation_NSGeometry")]
-extern_static!(NSSplitViewItemUnspecifiedDimension: CGFloat);
+extern "C" {
+    #[cfg(feature = "Foundation_NSGeometry")]
+    pub static NSSplitViewItemUnspecifiedDimension: CGFloat;
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

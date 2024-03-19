@@ -42,20 +42,30 @@ typed_enum!(
     pub type NSKeyValueChangeKey = NSString;
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSKeyValueChangeKindKey: &'static NSKeyValueChangeKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSKeyValueChangeKindKey: &'static NSKeyValueChangeKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSKeyValueChangeNewKey: &'static NSKeyValueChangeKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSKeyValueChangeNewKey: &'static NSKeyValueChangeKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSKeyValueChangeOldKey: &'static NSKeyValueChangeKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSKeyValueChangeOldKey: &'static NSKeyValueChangeKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSKeyValueChangeIndexesKey: &'static NSKeyValueChangeKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSKeyValueChangeIndexesKey: &'static NSKeyValueChangeKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSKeyValueChangeNotificationIsPriorKey: &'static NSKeyValueChangeKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSKeyValueChangeNotificationIsPriorKey: &'static NSKeyValueChangeKey;
+}
 
 extern_category!(
     /// Category "NSKeyValueObserving" on [`NSObject`].

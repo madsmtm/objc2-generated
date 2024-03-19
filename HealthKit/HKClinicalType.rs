@@ -11,32 +11,50 @@ typed_enum!(
     pub type HKClinicalTypeIdentifier = NSString;
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKClinicalTypeIdentifierAllergyRecord: &'static HKClinicalTypeIdentifier);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKClinicalTypeIdentifierAllergyRecord: &'static HKClinicalTypeIdentifier;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKClinicalTypeIdentifierClinicalNoteRecord: &'static HKClinicalTypeIdentifier);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKClinicalTypeIdentifierClinicalNoteRecord: &'static HKClinicalTypeIdentifier;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKClinicalTypeIdentifierConditionRecord: &'static HKClinicalTypeIdentifier);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKClinicalTypeIdentifierConditionRecord: &'static HKClinicalTypeIdentifier;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKClinicalTypeIdentifierImmunizationRecord: &'static HKClinicalTypeIdentifier);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKClinicalTypeIdentifierImmunizationRecord: &'static HKClinicalTypeIdentifier;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKClinicalTypeIdentifierLabResultRecord: &'static HKClinicalTypeIdentifier);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKClinicalTypeIdentifierLabResultRecord: &'static HKClinicalTypeIdentifier;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKClinicalTypeIdentifierMedicationRecord: &'static HKClinicalTypeIdentifier);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKClinicalTypeIdentifierMedicationRecord: &'static HKClinicalTypeIdentifier;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKClinicalTypeIdentifierProcedureRecord: &'static HKClinicalTypeIdentifier);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKClinicalTypeIdentifierProcedureRecord: &'static HKClinicalTypeIdentifier;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKClinicalTypeIdentifierVitalSignRecord: &'static HKClinicalTypeIdentifier);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKClinicalTypeIdentifierVitalSignRecord: &'static HKClinicalTypeIdentifier;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKClinicalTypeIdentifierCoverageRecord: &'static HKClinicalTypeIdentifier);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKClinicalTypeIdentifierCoverageRecord: &'static HKClinicalTypeIdentifier;
+}
 
 extern_methods!(
     /// ClinicalType

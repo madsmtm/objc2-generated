@@ -7,8 +7,10 @@ use crate::CoreLocation::*;
 use crate::Foundation::*;
 use crate::MapKit::*;
 
-#[cfg(feature = "CoreLocation_CLLocation")]
-extern_static!(MKMapCameraZoomDefault: CLLocationDistance);
+extern "C" {
+    #[cfg(feature = "CoreLocation_CLLocation")]
+    pub static MKMapCameraZoomDefault: CLLocationDistance;
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

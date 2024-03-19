@@ -13,53 +13,85 @@ typed_enum!(
     pub type NSHTTPCookieStringPolicy = NSString;
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSHTTPCookieName: &'static NSHTTPCookiePropertyKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSHTTPCookieName: &'static NSHTTPCookiePropertyKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSHTTPCookieValue: &'static NSHTTPCookiePropertyKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSHTTPCookieValue: &'static NSHTTPCookiePropertyKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSHTTPCookieOriginURL: &'static NSHTTPCookiePropertyKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSHTTPCookieOriginURL: &'static NSHTTPCookiePropertyKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSHTTPCookieVersion: &'static NSHTTPCookiePropertyKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSHTTPCookieVersion: &'static NSHTTPCookiePropertyKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSHTTPCookieDomain: &'static NSHTTPCookiePropertyKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSHTTPCookieDomain: &'static NSHTTPCookiePropertyKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSHTTPCookiePath: &'static NSHTTPCookiePropertyKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSHTTPCookiePath: &'static NSHTTPCookiePropertyKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSHTTPCookieSecure: &'static NSHTTPCookiePropertyKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSHTTPCookieSecure: &'static NSHTTPCookiePropertyKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSHTTPCookieExpires: &'static NSHTTPCookiePropertyKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSHTTPCookieExpires: &'static NSHTTPCookiePropertyKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSHTTPCookieComment: &'static NSHTTPCookiePropertyKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSHTTPCookieComment: &'static NSHTTPCookiePropertyKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSHTTPCookieCommentURL: &'static NSHTTPCookiePropertyKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSHTTPCookieCommentURL: &'static NSHTTPCookiePropertyKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSHTTPCookieDiscard: &'static NSHTTPCookiePropertyKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSHTTPCookieDiscard: &'static NSHTTPCookiePropertyKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSHTTPCookieMaximumAge: &'static NSHTTPCookiePropertyKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSHTTPCookieMaximumAge: &'static NSHTTPCookiePropertyKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSHTTPCookiePort: &'static NSHTTPCookiePropertyKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSHTTPCookiePort: &'static NSHTTPCookiePropertyKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSHTTPCookieSameSitePolicy: &'static NSHTTPCookiePropertyKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSHTTPCookieSameSitePolicy: &'static NSHTTPCookiePropertyKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSHTTPCookieSameSiteLax: &'static NSHTTPCookieStringPolicy);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSHTTPCookieSameSiteLax: &'static NSHTTPCookieStringPolicy;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSHTTPCookieSameSiteStrict: &'static NSHTTPCookieStringPolicy);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSHTTPCookieSameSiteStrict: &'static NSHTTPCookieStringPolicy;
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

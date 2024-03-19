@@ -65,13 +65,21 @@ ns_options!(
     }
 );
 
-extern_static!(NSZeroPoint: NSPoint);
+extern "C" {
+    pub static NSZeroPoint: NSPoint;
+}
 
-extern_static!(NSZeroSize: NSSize);
+extern "C" {
+    pub static NSZeroSize: NSSize;
+}
 
-extern_static!(NSZeroRect: NSRect);
+extern "C" {
+    pub static NSZeroRect: NSRect;
+}
 
-extern_static!(NSEdgeInsetsZero: NSEdgeInsets);
+extern "C" {
+    pub static NSEdgeInsetsZero: NSEdgeInsets;
+}
 
 // TODO: pub fn NSMakePoint(x: CGFloat,y: CGFloat,) -> NSPoint;
 

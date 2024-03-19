@@ -204,8 +204,10 @@ extern_methods!(
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSUserActivityTypeBrowsingWeb: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSUserActivityTypeBrowsingWeb: &'static NSString;
+}
 
 extern_protocol!(
     pub unsafe trait NSUserActivityDelegate: NSObjectProtocol {

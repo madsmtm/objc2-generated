@@ -12,7 +12,9 @@ extern_struct!(
     }
 );
 
-extern_static!(CAFrameRateRangeDefault: CAFrameRateRange);
+extern "C" {
+    pub static CAFrameRateRangeDefault: CAFrameRateRange;
+}
 
 extern "C" {
     pub fn CAFrameRateRangeMake(

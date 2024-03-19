@@ -157,11 +157,15 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn NSTextStorageDelegate {}
 );
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSTextStorageWillProcessEditingNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSTextStorageWillProcessEditingNotification: &'static NSNotificationName;
+}
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSTextStorageDidProcessEditingNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSTextStorageDidProcessEditingNotification: &'static NSNotificationName;
+}
 
 extern_protocol!(
     pub unsafe trait NSTextStorageObserving: NSObjectProtocol {

@@ -72,11 +72,11 @@ typed_extensible_enum!(
     pub type NSControlStateValue = NSInteger;
 );
 
-extern_static!(NSControlStateValueMixed: NSControlStateValue = -1);
+pub static NSControlStateValueMixed: NSControlStateValue = -1;
 
-extern_static!(NSControlStateValueOff: NSControlStateValue = 0);
+pub static NSControlStateValueOff: NSControlStateValue = 0;
 
-extern_static!(NSControlStateValueOn: NSControlStateValue = 1);
+pub static NSControlStateValueOn: NSControlStateValue = 1;
 
 ns_options!(
     #[underlying(NSUInteger)]
@@ -967,26 +967,30 @@ extern_methods!(
     }
 );
 
-extern_static!(NSBackgroundStyleLight: NSBackgroundStyle = NSBackgroundStyle(NSBackgroundStyle::Normal.0));
+pub static NSBackgroundStyleLight: NSBackgroundStyle =
+    NSBackgroundStyle(NSBackgroundStyle::Normal.0);
 
-extern_static!(NSBackgroundStyleDark: NSBackgroundStyle = NSBackgroundStyle(NSBackgroundStyle::Emphasized.0));
+pub static NSBackgroundStyleDark: NSBackgroundStyle =
+    NSBackgroundStyle(NSBackgroundStyle::Emphasized.0);
 
 pub type NSCellStateValue = NSControlStateValue;
 
-extern_static!(NSMixedState: NSControlStateValue = NSControlStateValueMixed);
+pub static NSMixedState: NSControlStateValue = NSControlStateValueMixed;
 
-extern_static!(NSOffState: NSControlStateValue = NSControlStateValueOff);
+pub static NSOffState: NSControlStateValue = NSControlStateValueOff;
 
-extern_static!(NSOnState: NSControlStateValue = NSControlStateValueOn);
+pub static NSOnState: NSControlStateValue = NSControlStateValueOn;
 
-extern_static!(NSRegularControlSize: NSControlSize = NSControlSize(NSControlSize::Regular.0));
+pub static NSRegularControlSize: NSControlSize = NSControlSize(NSControlSize::Regular.0);
 
-extern_static!(NSSmallControlSize: NSControlSize = NSControlSize(NSControlSize::Small.0));
+pub static NSSmallControlSize: NSControlSize = NSControlSize(NSControlSize::Small.0);
 
-extern_static!(NSMiniControlSize: NSControlSize = NSControlSize(NSControlSize::Mini.0));
+pub static NSMiniControlSize: NSControlSize = NSControlSize(NSControlSize::Mini.0);
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSControlTintDidChangeNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSControlTintDidChangeNotification: &'static NSNotificationName;
+}
 
 #[deprecated = "Use formatters instead"]
 pub const NSAnyType: c_uint = 0;

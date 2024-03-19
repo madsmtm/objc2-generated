@@ -5,8 +5,10 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::WebKit::*;
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(WebArchivePboardType: Option<&'static NSString>);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static WebArchivePboardType: Option<&'static NSString>;
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

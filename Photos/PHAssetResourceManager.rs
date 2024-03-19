@@ -9,7 +9,7 @@ use crate::UniformTypeIdentifiers::*;
 
 pub type PHAssetResourceDataRequestID = i32;
 
-extern_static!(PHInvalidAssetResourceDataRequestID: PHAssetResourceDataRequestID = 0);
+pub static PHInvalidAssetResourceDataRequestID: PHAssetResourceDataRequestID = 0;
 
 pub type PHAssetResourceProgressHandler = *mut Block<dyn Fn(c_double)>;
 

@@ -9,19 +9,19 @@ typed_extensible_enum!(
     pub type NSLayoutPriority = c_float;
 );
 
-extern_static!(NSLayoutPriorityRequired: NSLayoutPriority = 1000);
+pub static NSLayoutPriorityRequired: NSLayoutPriority = 1000 as _;
 
-extern_static!(NSLayoutPriorityDefaultHigh: NSLayoutPriority = 750);
+pub static NSLayoutPriorityDefaultHigh: NSLayoutPriority = 750 as _;
 
-extern_static!(NSLayoutPriorityDragThatCanResizeWindow: NSLayoutPriority = 510);
+pub static NSLayoutPriorityDragThatCanResizeWindow: NSLayoutPriority = 510 as _;
 
-extern_static!(NSLayoutPriorityWindowSizeStayPut: NSLayoutPriority = 500);
+pub static NSLayoutPriorityWindowSizeStayPut: NSLayoutPriority = 500 as _;
 
-extern_static!(NSLayoutPriorityDragThatCannotResizeWindow: NSLayoutPriority = 490);
+pub static NSLayoutPriorityDragThatCannotResizeWindow: NSLayoutPriority = 490 as _;
 
-extern_static!(NSLayoutPriorityDefaultLow: NSLayoutPriority = 250);
+pub static NSLayoutPriorityDefaultLow: NSLayoutPriority = 250 as _;
 
-extern_static!(NSLayoutPriorityFittingSizeCompression: NSLayoutPriority = 50);
+pub static NSLayoutPriorityFittingSizeCompression: NSLayoutPriority = 50 as _;
 
 ns_enum!(
     #[underlying(NSInteger)]
@@ -357,11 +357,15 @@ extern_methods!(
     }
 );
 
-#[cfg(feature = "Foundation_NSGeometry")]
-extern_static!(NSViewNoInstrinsicMetric: CGFloat);
+extern "C" {
+    #[cfg(feature = "Foundation_NSGeometry")]
+    pub static NSViewNoInstrinsicMetric: CGFloat;
+}
 
-#[cfg(feature = "Foundation_NSGeometry")]
-extern_static!(NSViewNoIntrinsicMetric: CGFloat);
+extern "C" {
+    #[cfg(feature = "Foundation_NSGeometry")]
+    pub static NSViewNoIntrinsicMetric: CGFloat;
+}
 
 extern_methods!(
     /// NSConstraintBasedLayoutLayering

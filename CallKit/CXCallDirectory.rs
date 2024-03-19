@@ -6,4 +6,4 @@ use crate::Foundation::*;
 
 pub type CXCallDirectoryPhoneNumber = i64;
 
-extern_static!(CXCallDirectoryPhoneNumberMax: CXCallDirectoryPhoneNumber = INT64_MAX-1);
+pub static CXCallDirectoryPhoneNumberMax: CXCallDirectoryPhoneNumber = INT64_MAX - 1;

@@ -70,11 +70,15 @@ ns_options!(
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFileManagerUnmountDissentingProcessIdentifierErrorKey: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFileManagerUnmountDissentingProcessIdentifierErrorKey: &'static NSString;
+}
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSUbiquityIdentityDidChangeNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSUbiquityIdentityDidChangeNotification: &'static NSNotificationName;
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -961,113 +965,185 @@ extern_methods!(
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFileType: &'static NSFileAttributeKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFileType: &'static NSFileAttributeKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFileTypeDirectory: &'static NSFileAttributeType);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFileTypeDirectory: &'static NSFileAttributeType;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFileTypeRegular: &'static NSFileAttributeType);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFileTypeRegular: &'static NSFileAttributeType;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFileTypeSymbolicLink: &'static NSFileAttributeType);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFileTypeSymbolicLink: &'static NSFileAttributeType;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFileTypeSocket: &'static NSFileAttributeType);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFileTypeSocket: &'static NSFileAttributeType;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFileTypeCharacterSpecial: &'static NSFileAttributeType);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFileTypeCharacterSpecial: &'static NSFileAttributeType;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFileTypeBlockSpecial: &'static NSFileAttributeType);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFileTypeBlockSpecial: &'static NSFileAttributeType;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFileTypeUnknown: &'static NSFileAttributeType);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFileTypeUnknown: &'static NSFileAttributeType;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFileSize: &'static NSFileAttributeKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFileSize: &'static NSFileAttributeKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFileModificationDate: &'static NSFileAttributeKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFileModificationDate: &'static NSFileAttributeKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFileReferenceCount: &'static NSFileAttributeKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFileReferenceCount: &'static NSFileAttributeKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFileDeviceIdentifier: &'static NSFileAttributeKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFileDeviceIdentifier: &'static NSFileAttributeKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFileOwnerAccountName: &'static NSFileAttributeKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFileOwnerAccountName: &'static NSFileAttributeKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFileGroupOwnerAccountName: &'static NSFileAttributeKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFileGroupOwnerAccountName: &'static NSFileAttributeKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFilePosixPermissions: &'static NSFileAttributeKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFilePosixPermissions: &'static NSFileAttributeKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFileSystemNumber: &'static NSFileAttributeKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFileSystemNumber: &'static NSFileAttributeKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFileSystemFileNumber: &'static NSFileAttributeKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFileSystemFileNumber: &'static NSFileAttributeKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFileExtensionHidden: &'static NSFileAttributeKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFileExtensionHidden: &'static NSFileAttributeKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFileHFSCreatorCode: &'static NSFileAttributeKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFileHFSCreatorCode: &'static NSFileAttributeKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFileHFSTypeCode: &'static NSFileAttributeKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFileHFSTypeCode: &'static NSFileAttributeKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFileImmutable: &'static NSFileAttributeKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFileImmutable: &'static NSFileAttributeKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFileAppendOnly: &'static NSFileAttributeKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFileAppendOnly: &'static NSFileAttributeKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFileCreationDate: &'static NSFileAttributeKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFileCreationDate: &'static NSFileAttributeKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFileOwnerAccountID: &'static NSFileAttributeKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFileOwnerAccountID: &'static NSFileAttributeKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFileGroupOwnerAccountID: &'static NSFileAttributeKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFileGroupOwnerAccountID: &'static NSFileAttributeKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFileBusy: &'static NSFileAttributeKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFileBusy: &'static NSFileAttributeKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFileProtectionKey: &'static NSFileAttributeKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFileProtectionKey: &'static NSFileAttributeKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFileProtectionNone: &'static NSFileProtectionType);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFileProtectionNone: &'static NSFileProtectionType;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFileProtectionComplete: &'static NSFileProtectionType);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFileProtectionComplete: &'static NSFileProtectionType;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFileProtectionCompleteUnlessOpen: &'static NSFileProtectionType);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFileProtectionCompleteUnlessOpen: &'static NSFileProtectionType;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFileProtectionCompleteUntilFirstUserAuthentication: &'static NSFileProtectionType);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFileProtectionCompleteUntilFirstUserAuthentication: &'static NSFileProtectionType;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFileProtectionCompleteWhenUserInactive: &'static NSFileProtectionType);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFileProtectionCompleteWhenUserInactive: &'static NSFileProtectionType;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFileSystemSize: &'static NSFileAttributeKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFileSystemSize: &'static NSFileAttributeKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFileSystemFreeSize: &'static NSFileAttributeKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFileSystemFreeSize: &'static NSFileAttributeKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFileSystemNodes: &'static NSFileAttributeKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFileSystemNodes: &'static NSFileAttributeKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFileSystemFreeNodes: &'static NSFileAttributeKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFileSystemFreeNodes: &'static NSFileAttributeKey;
+}
 
 extern_methods!(
     /// NSFileAttributes

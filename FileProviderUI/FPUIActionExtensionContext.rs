@@ -6,8 +6,10 @@ use crate::FileProvider::*;
 use crate::FileProviderUI::*;
 use crate::Foundation::*;
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(FPUIErrorDomain: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static FPUIErrorDomain: &'static NSString;
+}
 
 #[cfg(feature = "Foundation_NSString")]
 typed_extensible_enum!(

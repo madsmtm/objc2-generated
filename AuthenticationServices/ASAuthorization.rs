@@ -10,11 +10,15 @@ typed_extensible_enum!(
     pub type ASAuthorizationScope = NSString;
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(ASAuthorizationScopeFullName: &'static ASAuthorizationScope);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static ASAuthorizationScopeFullName: &'static ASAuthorizationScope;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(ASAuthorizationScopeEmail: &'static ASAuthorizationScope);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static ASAuthorizationScopeEmail: &'static ASAuthorizationScope;
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

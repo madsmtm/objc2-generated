@@ -3,38 +3,60 @@
 use crate::common::*;
 use crate::Foundation::*;
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSHTTPPropertyStatusCodeKey: Option<&'static NSString>);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSHTTPPropertyStatusCodeKey: Option<&'static NSString>;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSHTTPPropertyStatusReasonKey: Option<&'static NSString>);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSHTTPPropertyStatusReasonKey: Option<&'static NSString>;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSHTTPPropertyServerHTTPVersionKey: Option<&'static NSString>);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSHTTPPropertyServerHTTPVersionKey: Option<&'static NSString>;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSHTTPPropertyRedirectionHeadersKey: Option<&'static NSString>);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSHTTPPropertyRedirectionHeadersKey: Option<&'static NSString>;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSHTTPPropertyErrorPageDataKey: Option<&'static NSString>);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSHTTPPropertyErrorPageDataKey: Option<&'static NSString>;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSHTTPPropertyHTTPProxy: Option<&'static NSString>);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSHTTPPropertyHTTPProxy: Option<&'static NSString>;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFTPPropertyUserLoginKey: Option<&'static NSString>);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFTPPropertyUserLoginKey: Option<&'static NSString>;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFTPPropertyUserPasswordKey: Option<&'static NSString>);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFTPPropertyUserPasswordKey: Option<&'static NSString>;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFTPPropertyActiveTransferModeKey: Option<&'static NSString>);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFTPPropertyActiveTransferModeKey: Option<&'static NSString>;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFTPPropertyFileOffsetKey: Option<&'static NSString>);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFTPPropertyFileOffsetKey: Option<&'static NSString>;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFTPPropertyFTPProxy: Option<&'static NSString>);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFTPPropertyFTPProxy: Option<&'static NSString>;
+}
 
 ns_enum!(
     #[underlying(NSUInteger)]

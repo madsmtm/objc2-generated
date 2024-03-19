@@ -65,11 +65,17 @@ extern_methods!(
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNContainerIdentifierKey: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNContainerIdentifierKey: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNContainerNameKey: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNContainerNameKey: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNContainerTypeKey: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNContainerTypeKey: &'static NSString;
+}

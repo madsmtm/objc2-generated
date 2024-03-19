@@ -74,41 +74,67 @@ extern_methods!(
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNSocialProfileURLStringKey: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNSocialProfileURLStringKey: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNSocialProfileUsernameKey: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNSocialProfileUsernameKey: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNSocialProfileUserIdentifierKey: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNSocialProfileUserIdentifierKey: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNSocialProfileServiceKey: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNSocialProfileServiceKey: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNSocialProfileServiceFacebook: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNSocialProfileServiceFacebook: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNSocialProfileServiceFlickr: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNSocialProfileServiceFlickr: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNSocialProfileServiceLinkedIn: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNSocialProfileServiceLinkedIn: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNSocialProfileServiceMySpace: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNSocialProfileServiceMySpace: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNSocialProfileServiceSinaWeibo: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNSocialProfileServiceSinaWeibo: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNSocialProfileServiceTencentWeibo: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNSocialProfileServiceTencentWeibo: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNSocialProfileServiceTwitter: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNSocialProfileServiceTwitter: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNSocialProfileServiceYelp: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNSocialProfileServiceYelp: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNSocialProfileServiceGameCenter: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNSocialProfileServiceGameCenter: &'static NSString;
+}

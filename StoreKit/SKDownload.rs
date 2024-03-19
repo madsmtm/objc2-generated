@@ -30,8 +30,10 @@ ns_closed_enum!(
     }
 );
 
-#[cfg(feature = "Foundation_NSDate")]
-extern_static!(SKDownloadTimeRemainingUnknown: NSTimeInterval);
+extern "C" {
+    #[cfg(feature = "Foundation_NSDate")]
+    pub static SKDownloadTimeRemainingUnknown: NSTimeInterval;
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

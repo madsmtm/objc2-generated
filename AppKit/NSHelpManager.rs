@@ -95,11 +95,15 @@ extern_methods!(
     }
 );
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSContextHelpModeDidActivateNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSContextHelpModeDidActivateNotification: &'static NSNotificationName;
+}
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSContextHelpModeDidDeactivateNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSContextHelpModeDidDeactivateNotification: &'static NSNotificationName;
+}
 
 extern_category!(
     /// Category on [`NSBundle`].

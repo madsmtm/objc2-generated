@@ -211,13 +211,17 @@ extern_methods!(
     }
 );
 
-#[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
-extern_static!(NSInvocationOperationVoidResultException: &'static NSExceptionName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
+    pub static NSInvocationOperationVoidResultException: &'static NSExceptionName;
+}
 
-#[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
-extern_static!(NSInvocationOperationCancelledException: &'static NSExceptionName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
+    pub static NSInvocationOperationCancelledException: &'static NSExceptionName;
+}
 
-extern_static!(NSOperationQueueDefaultMaxConcurrentOperationCount: NSInteger = -1);
+pub static NSOperationQueueDefaultMaxConcurrentOperationCount: NSInteger = -1;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

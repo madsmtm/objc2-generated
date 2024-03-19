@@ -7,11 +7,15 @@ use crate::Foundation::*;
 use crate::Photos::*;
 use crate::UniformTypeIdentifiers::*;
 
-#[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
-extern_static!(PHPhotosErrorDomain: Option<&'static NSErrorDomain>);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
+    pub static PHPhotosErrorDomain: Option<&'static NSErrorDomain>;
+}
 
-#[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
-extern_static!(PHLocalIdentifiersErrorKey: Option<&'static NSErrorUserInfoKey>);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
+    pub static PHLocalIdentifiersErrorKey: Option<&'static NSErrorUserInfoKey>;
+}
 
 ns_error_enum!(
     #[underlying(NSInteger)]

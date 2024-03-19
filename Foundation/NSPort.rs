@@ -5,8 +5,10 @@ use crate::Foundation::*;
 
 pub type NSSocketNativeHandle = c_int;
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSPortDidBecomeInvalidNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSPortDidBecomeInvalidNotification: &'static NSNotificationName;
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

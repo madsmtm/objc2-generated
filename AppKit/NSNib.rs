@@ -84,8 +84,12 @@ extern_methods!(
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSNibOwner: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSNibOwner: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSNibTopLevelObjects: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSNibTopLevelObjects: &'static NSString;
+}

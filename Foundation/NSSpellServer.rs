@@ -58,14 +58,20 @@ extern_methods!(
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSGrammarRange: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSGrammarRange: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSGrammarUserDescription: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSGrammarUserDescription: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSGrammarCorrections: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSGrammarCorrections: &'static NSString;
+}
 
 extern_protocol!(
     pub unsafe trait NSSpellServerDelegate: NSObjectProtocol {

@@ -4,8 +4,12 @@ use crate::common::*;
 use crate::Foundation::*;
 use crate::UniformTypeIdentifiers::*;
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(UTTagClassFilenameExtension: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static UTTagClassFilenameExtension: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(UTTagClassMIMEType: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static UTTagClassMIMEType: &'static NSString;
+}

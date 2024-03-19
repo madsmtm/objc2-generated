@@ -5,8 +5,10 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::GameKit::*;
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(GKErrorDomain: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static GKErrorDomain: &'static NSString;
+}
 
 ns_enum!(
     #[underlying(NSInteger)]

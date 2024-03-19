@@ -173,31 +173,45 @@ extern_methods!(
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSPopoverCloseReasonKey: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSPopoverCloseReasonKey: &'static NSString;
+}
 
 #[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type NSPopoverCloseReasonValue = NSString;
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSPopoverCloseReasonStandard: &'static NSPopoverCloseReasonValue);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSPopoverCloseReasonStandard: &'static NSPopoverCloseReasonValue;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSPopoverCloseReasonDetachToWindow: &'static NSPopoverCloseReasonValue);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSPopoverCloseReasonDetachToWindow: &'static NSPopoverCloseReasonValue;
+}
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSPopoverWillShowNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSPopoverWillShowNotification: &'static NSNotificationName;
+}
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSPopoverDidShowNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSPopoverDidShowNotification: &'static NSNotificationName;
+}
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSPopoverWillCloseNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSPopoverWillCloseNotification: &'static NSNotificationName;
+}
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSPopoverDidCloseNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSPopoverDidCloseNotification: &'static NSNotificationName;
+}
 
 extern_protocol!(
     pub unsafe trait NSPopoverDelegate: NSObjectProtocol + IsMainThreadOnly {

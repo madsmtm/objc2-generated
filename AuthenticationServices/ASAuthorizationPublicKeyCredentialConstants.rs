@@ -10,45 +10,75 @@ typed_extensible_enum!(
     pub type ASAuthorizationPublicKeyCredentialUserVerificationPreference = NSString;
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(ASAuthorizationPublicKeyCredentialUserVerificationPreferencePreferred: Option<&'static ASAuthorizationPublicKeyCredentialUserVerificationPreference>);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static ASAuthorizationPublicKeyCredentialUserVerificationPreferencePreferred:
+        Option<&'static ASAuthorizationPublicKeyCredentialUserVerificationPreference>;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(ASAuthorizationPublicKeyCredentialUserVerificationPreferenceRequired: Option<&'static ASAuthorizationPublicKeyCredentialUserVerificationPreference>);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static ASAuthorizationPublicKeyCredentialUserVerificationPreferenceRequired:
+        Option<&'static ASAuthorizationPublicKeyCredentialUserVerificationPreference>;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(ASAuthorizationPublicKeyCredentialUserVerificationPreferenceDiscouraged: Option<&'static ASAuthorizationPublicKeyCredentialUserVerificationPreference>);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static ASAuthorizationPublicKeyCredentialUserVerificationPreferenceDiscouraged:
+        Option<&'static ASAuthorizationPublicKeyCredentialUserVerificationPreference>;
+}
 
 #[cfg(feature = "Foundation_NSString")]
 typed_extensible_enum!(
     pub type ASAuthorizationPublicKeyCredentialAttestationKind = NSString;
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(ASAuthorizationPublicKeyCredentialAttestationKindNone: Option<&'static ASAuthorizationPublicKeyCredentialAttestationKind>);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static ASAuthorizationPublicKeyCredentialAttestationKindNone:
+        Option<&'static ASAuthorizationPublicKeyCredentialAttestationKind>;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(ASAuthorizationPublicKeyCredentialAttestationKindDirect: Option<&'static ASAuthorizationPublicKeyCredentialAttestationKind>);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static ASAuthorizationPublicKeyCredentialAttestationKindDirect:
+        Option<&'static ASAuthorizationPublicKeyCredentialAttestationKind>;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(ASAuthorizationPublicKeyCredentialAttestationKindIndirect: Option<&'static ASAuthorizationPublicKeyCredentialAttestationKind>);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static ASAuthorizationPublicKeyCredentialAttestationKindIndirect:
+        Option<&'static ASAuthorizationPublicKeyCredentialAttestationKind>;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(ASAuthorizationPublicKeyCredentialAttestationKindEnterprise: Option<&'static ASAuthorizationPublicKeyCredentialAttestationKind>);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static ASAuthorizationPublicKeyCredentialAttestationKindEnterprise:
+        Option<&'static ASAuthorizationPublicKeyCredentialAttestationKind>;
+}
 
 #[cfg(feature = "Foundation_NSString")]
 typed_extensible_enum!(
     pub type ASAuthorizationPublicKeyCredentialResidentKeyPreference = NSString;
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(ASAuthorizationPublicKeyCredentialResidentKeyPreferenceDiscouraged: Option<&'static ASAuthorizationPublicKeyCredentialResidentKeyPreference>);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static ASAuthorizationPublicKeyCredentialResidentKeyPreferenceDiscouraged:
+        Option<&'static ASAuthorizationPublicKeyCredentialResidentKeyPreference>;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(ASAuthorizationPublicKeyCredentialResidentKeyPreferencePreferred: Option<&'static ASAuthorizationPublicKeyCredentialResidentKeyPreference>);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static ASAuthorizationPublicKeyCredentialResidentKeyPreferencePreferred:
+        Option<&'static ASAuthorizationPublicKeyCredentialResidentKeyPreference>;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(ASAuthorizationPublicKeyCredentialResidentKeyPreferenceRequired: Option<&'static ASAuthorizationPublicKeyCredentialResidentKeyPreference>);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static ASAuthorizationPublicKeyCredentialResidentKeyPreferenceRequired:
+        Option<&'static ASAuthorizationPublicKeyCredentialResidentKeyPreference>;
+}
 
 ns_enum!(
     #[underlying(NSInteger)]

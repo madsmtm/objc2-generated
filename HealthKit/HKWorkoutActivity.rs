@@ -95,26 +95,42 @@ extern_methods!(
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKPredicateKeyPathWorkoutActivityType: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKPredicateKeyPathWorkoutActivityType: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKPredicateKeyPathWorkoutActivityDuration: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKPredicateKeyPathWorkoutActivityDuration: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKPredicateKeyPathWorkoutActivityStartDate: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKPredicateKeyPathWorkoutActivityStartDate: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKPredicateKeyPathWorkoutActivityEndDate: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKPredicateKeyPathWorkoutActivityEndDate: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKPredicateKeyPathWorkoutActivitySumQuantity: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKPredicateKeyPathWorkoutActivitySumQuantity: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKPredicateKeyPathWorkoutActivityMinimumQuantity: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKPredicateKeyPathWorkoutActivityMinimumQuantity: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKPredicateKeyPathWorkoutActivityMaximumQuantity: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKPredicateKeyPathWorkoutActivityMaximumQuantity: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKPredicateKeyPathWorkoutActivityAverageQuantity: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKPredicateKeyPathWorkoutActivityAverageQuantity: &'static NSString;
+}

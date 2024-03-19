@@ -422,5 +422,7 @@ extern_methods!(
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(EKEventStoreChangedNotification: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static EKEventStoreChangedNotification: &'static NSString;
+}

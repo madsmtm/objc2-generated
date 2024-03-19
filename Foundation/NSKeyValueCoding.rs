@@ -3,46 +3,70 @@
 use crate::common::*;
 use crate::Foundation::*;
 
-#[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
-extern_static!(NSUndefinedKeyException: &'static NSExceptionName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
+    pub static NSUndefinedKeyException: &'static NSExceptionName;
+}
 
 #[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type NSKeyValueOperator = NSString;
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSAverageKeyValueOperator: &'static NSKeyValueOperator);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSAverageKeyValueOperator: &'static NSKeyValueOperator;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSCountKeyValueOperator: &'static NSKeyValueOperator);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSCountKeyValueOperator: &'static NSKeyValueOperator;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSDistinctUnionOfArraysKeyValueOperator: &'static NSKeyValueOperator);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSDistinctUnionOfArraysKeyValueOperator: &'static NSKeyValueOperator;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSDistinctUnionOfObjectsKeyValueOperator: &'static NSKeyValueOperator);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSDistinctUnionOfObjectsKeyValueOperator: &'static NSKeyValueOperator;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSDistinctUnionOfSetsKeyValueOperator: &'static NSKeyValueOperator);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSDistinctUnionOfSetsKeyValueOperator: &'static NSKeyValueOperator;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSMaximumKeyValueOperator: &'static NSKeyValueOperator);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSMaximumKeyValueOperator: &'static NSKeyValueOperator;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSMinimumKeyValueOperator: &'static NSKeyValueOperator);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSMinimumKeyValueOperator: &'static NSKeyValueOperator;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSSumKeyValueOperator: &'static NSKeyValueOperator);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSSumKeyValueOperator: &'static NSKeyValueOperator;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSUnionOfArraysKeyValueOperator: &'static NSKeyValueOperator);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSUnionOfArraysKeyValueOperator: &'static NSKeyValueOperator;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSUnionOfObjectsKeyValueOperator: &'static NSKeyValueOperator);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSUnionOfObjectsKeyValueOperator: &'static NSKeyValueOperator;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSUnionOfSetsKeyValueOperator: &'static NSKeyValueOperator);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSUnionOfSetsKeyValueOperator: &'static NSKeyValueOperator;
+}
 
 extern_category!(
     /// Category "NSKeyValueCoding" on [`NSObject`].

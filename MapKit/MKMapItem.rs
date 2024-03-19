@@ -136,35 +136,55 @@ extern_methods!(
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(MKLaunchOptionsDirectionsModeKey: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static MKLaunchOptionsDirectionsModeKey: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(MKLaunchOptionsMapTypeKey: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static MKLaunchOptionsMapTypeKey: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(MKLaunchOptionsShowsTrafficKey: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static MKLaunchOptionsShowsTrafficKey: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(MKLaunchOptionsDirectionsModeDefault: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static MKLaunchOptionsDirectionsModeDefault: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(MKLaunchOptionsDirectionsModeDriving: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static MKLaunchOptionsDirectionsModeDriving: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(MKLaunchOptionsDirectionsModeWalking: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static MKLaunchOptionsDirectionsModeWalking: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(MKLaunchOptionsDirectionsModeTransit: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static MKLaunchOptionsDirectionsModeTransit: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(MKLaunchOptionsMapCenterKey: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static MKLaunchOptionsMapCenterKey: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(MKLaunchOptionsMapSpanKey: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static MKLaunchOptionsMapSpanKey: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(MKLaunchOptionsCameraKey: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static MKLaunchOptionsCameraKey: &'static NSString;
+}
 
 extern_methods!(
     /// MKMapItemSerialization
@@ -174,5 +194,7 @@ extern_methods!(
 #[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for MKMapItem {}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(MKMapItemTypeIdentifier: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static MKMapItemTypeIdentifier: &'static NSString;
+}

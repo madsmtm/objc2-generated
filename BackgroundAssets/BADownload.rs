@@ -24,11 +24,17 @@ typed_extensible_enum!(
     pub type BADownloaderPriority = NSInteger;
 );
 
-extern_static!(BADownloaderPriorityMin: BADownloaderPriority);
+extern "C" {
+    pub static BADownloaderPriorityMin: BADownloaderPriority;
+}
 
-extern_static!(BADownloaderPriorityDefault: BADownloaderPriority);
+extern "C" {
+    pub static BADownloaderPriorityDefault: BADownloaderPriority;
+}
 
-extern_static!(BADownloaderPriorityMax: BADownloaderPriority);
+extern "C" {
+    pub static BADownloaderPriorityMax: BADownloaderPriority;
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

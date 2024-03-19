@@ -11,14 +11,21 @@ typed_extensible_enum!(
     pub type NSFileProviderItemIdentifier = NSString;
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFileProviderRootContainerItemIdentifier: &'static NSFileProviderItemIdentifier);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFileProviderRootContainerItemIdentifier: &'static NSFileProviderItemIdentifier;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFileProviderWorkingSetContainerItemIdentifier: &'static NSFileProviderItemIdentifier);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFileProviderWorkingSetContainerItemIdentifier:
+        &'static NSFileProviderItemIdentifier;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFileProviderTrashContainerItemIdentifier: &'static NSFileProviderItemIdentifier);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFileProviderTrashContainerItemIdentifier: &'static NSFileProviderItemIdentifier;
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -67,7 +74,9 @@ extern_methods!(
     }
 );
 
-extern_static!(NSFileProviderFavoriteRankUnranked: c_ulonglong);
+extern "C" {
+    pub static NSFileProviderFavoriteRankUnranked: c_ulonglong;
+}
 
 ns_options!(
     #[underlying(NSUInteger)]

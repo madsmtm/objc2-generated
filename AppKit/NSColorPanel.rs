@@ -315,23 +315,27 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn NSColorChanging {}
 );
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSColorPanelColorDidChangeNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSColorPanelColorDidChangeNotification: &'static NSNotificationName;
+}
 
-extern_static!(NSNoModeColorPanel: NSColorPanelMode = NSColorPanelMode(NSColorPanelMode::None.0));
+pub static NSNoModeColorPanel: NSColorPanelMode = NSColorPanelMode(NSColorPanelMode::None.0);
 
-extern_static!(NSGrayModeColorPanel: NSColorPanelMode = NSColorPanelMode(NSColorPanelMode::Gray.0));
+pub static NSGrayModeColorPanel: NSColorPanelMode = NSColorPanelMode(NSColorPanelMode::Gray.0);
 
-extern_static!(NSRGBModeColorPanel: NSColorPanelMode = NSColorPanelMode(NSColorPanelMode::RGB.0));
+pub static NSRGBModeColorPanel: NSColorPanelMode = NSColorPanelMode(NSColorPanelMode::RGB.0);
 
-extern_static!(NSCMYKModeColorPanel: NSColorPanelMode = NSColorPanelMode(NSColorPanelMode::CMYK.0));
+pub static NSCMYKModeColorPanel: NSColorPanelMode = NSColorPanelMode(NSColorPanelMode::CMYK.0);
 
-extern_static!(NSHSBModeColorPanel: NSColorPanelMode = NSColorPanelMode(NSColorPanelMode::HSB.0));
+pub static NSHSBModeColorPanel: NSColorPanelMode = NSColorPanelMode(NSColorPanelMode::HSB.0);
 
-extern_static!(NSCustomPaletteModeColorPanel: NSColorPanelMode = NSColorPanelMode(NSColorPanelMode::CustomPalette.0));
+pub static NSCustomPaletteModeColorPanel: NSColorPanelMode =
+    NSColorPanelMode(NSColorPanelMode::CustomPalette.0);
 
-extern_static!(NSColorListModeColorPanel: NSColorPanelMode = NSColorPanelMode(NSColorPanelMode::ColorList.0));
+pub static NSColorListModeColorPanel: NSColorPanelMode =
+    NSColorPanelMode(NSColorPanelMode::ColorList.0);
 
-extern_static!(NSWheelModeColorPanel: NSColorPanelMode = NSColorPanelMode(NSColorPanelMode::Wheel.0));
+pub static NSWheelModeColorPanel: NSColorPanelMode = NSColorPanelMode(NSColorPanelMode::Wheel.0);
 
-extern_static!(NSCrayonModeColorPanel: NSColorPanelMode = NSColorPanelMode(NSColorPanelMode::Crayon.0));
+pub static NSCrayonModeColorPanel: NSColorPanelMode = NSColorPanelMode(NSColorPanelMode::Crayon.0);

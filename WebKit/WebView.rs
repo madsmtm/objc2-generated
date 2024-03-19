@@ -5,47 +5,75 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::WebKit::*;
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(WebElementDOMNodeKey: Option<&'static NSString>);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static WebElementDOMNodeKey: Option<&'static NSString>;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(WebElementFrameKey: Option<&'static NSString>);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static WebElementFrameKey: Option<&'static NSString>;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(WebElementImageAltStringKey: Option<&'static NSString>);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static WebElementImageAltStringKey: Option<&'static NSString>;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(WebElementImageKey: Option<&'static NSString>);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static WebElementImageKey: Option<&'static NSString>;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(WebElementImageRectKey: Option<&'static NSString>);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static WebElementImageRectKey: Option<&'static NSString>;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(WebElementImageURLKey: Option<&'static NSString>);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static WebElementImageURLKey: Option<&'static NSString>;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(WebElementIsSelectedKey: Option<&'static NSString>);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static WebElementIsSelectedKey: Option<&'static NSString>;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(WebElementLinkURLKey: Option<&'static NSString>);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static WebElementLinkURLKey: Option<&'static NSString>;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(WebElementLinkTargetFrameKey: Option<&'static NSString>);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static WebElementLinkTargetFrameKey: Option<&'static NSString>;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(WebElementLinkTitleKey: Option<&'static NSString>);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static WebElementLinkTitleKey: Option<&'static NSString>;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(WebElementLinkLabelKey: Option<&'static NSString>);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static WebElementLinkLabelKey: Option<&'static NSString>;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(WebViewProgressStartedNotification: Option<&'static NSString>);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static WebViewProgressStartedNotification: Option<&'static NSString>;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(WebViewProgressEstimateChangedNotification: Option<&'static NSString>);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static WebViewProgressEstimateChangedNotification: Option<&'static NSString>;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(WebViewProgressFinishedNotification: Option<&'static NSString>);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static WebViewProgressFinishedNotification: Option<&'static NSString>;
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -634,20 +662,30 @@ extern_methods!(
 ))]
 unsafe impl NSUserInterfaceValidations for WebView {}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(WebViewDidBeginEditingNotification: Option<&'static NSString>);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static WebViewDidBeginEditingNotification: Option<&'static NSString>;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(WebViewDidChangeNotification: Option<&'static NSString>);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static WebViewDidChangeNotification: Option<&'static NSString>;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(WebViewDidEndEditingNotification: Option<&'static NSString>);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static WebViewDidEndEditingNotification: Option<&'static NSString>;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(WebViewDidChangeTypingStyleNotification: Option<&'static NSString>);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static WebViewDidChangeTypingStyleNotification: Option<&'static NSString>;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(WebViewDidChangeSelectionNotification: Option<&'static NSString>);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static WebViewDidChangeSelectionNotification: Option<&'static NSString>;
+}
 
 extern_methods!(
     /// WebViewCSS

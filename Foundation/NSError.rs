@@ -6,59 +6,93 @@ use crate::Foundation::*;
 #[cfg(feature = "Foundation_NSString")]
 pub type NSErrorDomain = NSString;
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSCocoaErrorDomain: &'static NSErrorDomain);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSCocoaErrorDomain: &'static NSErrorDomain;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSPOSIXErrorDomain: &'static NSErrorDomain);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSPOSIXErrorDomain: &'static NSErrorDomain;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSOSStatusErrorDomain: &'static NSErrorDomain);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSOSStatusErrorDomain: &'static NSErrorDomain;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSMachErrorDomain: &'static NSErrorDomain);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSMachErrorDomain: &'static NSErrorDomain;
+}
 
 #[cfg(feature = "Foundation_NSString")]
 pub type NSErrorUserInfoKey = NSString;
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSUnderlyingErrorKey: &'static NSErrorUserInfoKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSUnderlyingErrorKey: &'static NSErrorUserInfoKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSMultipleUnderlyingErrorsKey: &'static NSErrorUserInfoKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSMultipleUnderlyingErrorsKey: &'static NSErrorUserInfoKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSLocalizedDescriptionKey: &'static NSErrorUserInfoKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSLocalizedDescriptionKey: &'static NSErrorUserInfoKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSLocalizedFailureReasonErrorKey: &'static NSErrorUserInfoKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSLocalizedFailureReasonErrorKey: &'static NSErrorUserInfoKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSLocalizedRecoverySuggestionErrorKey: &'static NSErrorUserInfoKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSLocalizedRecoverySuggestionErrorKey: &'static NSErrorUserInfoKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSLocalizedRecoveryOptionsErrorKey: &'static NSErrorUserInfoKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSLocalizedRecoveryOptionsErrorKey: &'static NSErrorUserInfoKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSRecoveryAttempterErrorKey: &'static NSErrorUserInfoKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSRecoveryAttempterErrorKey: &'static NSErrorUserInfoKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSHelpAnchorErrorKey: &'static NSErrorUserInfoKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSHelpAnchorErrorKey: &'static NSErrorUserInfoKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSDebugDescriptionErrorKey: &'static NSErrorUserInfoKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSDebugDescriptionErrorKey: &'static NSErrorUserInfoKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSLocalizedFailureErrorKey: &'static NSErrorUserInfoKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSLocalizedFailureErrorKey: &'static NSErrorUserInfoKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSStringEncodingErrorKey: &'static NSErrorUserInfoKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSStringEncodingErrorKey: &'static NSErrorUserInfoKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSURLErrorKey: &'static NSErrorUserInfoKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSURLErrorKey: &'static NSErrorUserInfoKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFilePathErrorKey: &'static NSErrorUserInfoKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFilePathErrorKey: &'static NSErrorUserInfoKey;
+}
 
 extern_class!(
     #[derive(PartialEq, Eq, Hash)]

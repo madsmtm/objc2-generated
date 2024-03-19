@@ -5,7 +5,7 @@ use crate::CoreData::*;
 use crate::Foundation::*;
 
 #[cfg(feature = "Foundation_NSExpression")]
-extern_static!(NSFetchRequestExpressionType: NSExpressionType = NSExpressionType(50));
+pub static NSFetchRequestExpressionType: NSExpressionType = NSExpressionType(50);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

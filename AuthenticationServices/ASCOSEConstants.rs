@@ -9,10 +9,10 @@ typed_extensible_enum!(
     pub type ASCOSEAlgorithmIdentifier = NSInteger;
 );
 
-extern_static!(ASCOSEAlgorithmIdentifierES256: ASCOSEAlgorithmIdentifier = -7);
+pub static ASCOSEAlgorithmIdentifierES256: ASCOSEAlgorithmIdentifier = -7;
 
 typed_extensible_enum!(
     pub type ASCOSEEllipticCurveIdentifier = NSInteger;
 );
 
-extern_static!(ASCOSEEllipticCurveIdentifierP256: ASCOSEEllipticCurveIdentifier = 1);
+pub static ASCOSEEllipticCurveIdentifierP256: ASCOSEEllipticCurveIdentifier = 1;

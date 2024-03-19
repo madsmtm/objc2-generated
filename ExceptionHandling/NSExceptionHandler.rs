@@ -4,14 +4,20 @@ use crate::common::*;
 use crate::ExceptionHandling::*;
 use crate::Foundation::*;
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSUncaughtSystemExceptionException: Option<&'static NSString>);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSUncaughtSystemExceptionException: Option<&'static NSString>;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSUncaughtRuntimeErrorException: Option<&'static NSString>);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSUncaughtRuntimeErrorException: Option<&'static NSString>;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSStackTraceKey: Option<&'static NSString>);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSStackTraceKey: Option<&'static NSString>;
+}
 
 extern "C" {
     pub fn NSExceptionHandlerResume();

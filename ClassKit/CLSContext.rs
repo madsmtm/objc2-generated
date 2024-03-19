@@ -51,29 +51,45 @@ typed_enum!(
     pub type CLSContextTopic = NSString;
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CLSContextTopicMath: &'static CLSContextTopic);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CLSContextTopicMath: &'static CLSContextTopic;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CLSContextTopicScience: &'static CLSContextTopic);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CLSContextTopicScience: &'static CLSContextTopic;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CLSContextTopicLiteracyAndWriting: &'static CLSContextTopic);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CLSContextTopicLiteracyAndWriting: &'static CLSContextTopic;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CLSContextTopicWorldLanguage: &'static CLSContextTopic);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CLSContextTopicWorldLanguage: &'static CLSContextTopic;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CLSContextTopicSocialScience: &'static CLSContextTopic);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CLSContextTopicSocialScience: &'static CLSContextTopic;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CLSContextTopicComputerScienceAndEngineering: &'static CLSContextTopic);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CLSContextTopicComputerScienceAndEngineering: &'static CLSContextTopic;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CLSContextTopicArtsAndMusic: &'static CLSContextTopic);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CLSContextTopicArtsAndMusic: &'static CLSContextTopic;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CLSContextTopicHealthAndFitness: &'static CLSContextTopic);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CLSContextTopicHealthAndFitness: &'static CLSContextTopic;
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

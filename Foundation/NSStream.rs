@@ -338,94 +338,142 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn NSStreamDelegate {}
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSStreamSocketSecurityLevelKey: &'static NSStreamPropertyKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSStreamSocketSecurityLevelKey: &'static NSStreamPropertyKey;
+}
 
 #[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type NSStreamSocketSecurityLevel = NSString;
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSStreamSocketSecurityLevelNone: &'static NSStreamSocketSecurityLevel);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSStreamSocketSecurityLevelNone: &'static NSStreamSocketSecurityLevel;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSStreamSocketSecurityLevelSSLv2: &'static NSStreamSocketSecurityLevel);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSStreamSocketSecurityLevelSSLv2: &'static NSStreamSocketSecurityLevel;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSStreamSocketSecurityLevelSSLv3: &'static NSStreamSocketSecurityLevel);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSStreamSocketSecurityLevelSSLv3: &'static NSStreamSocketSecurityLevel;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSStreamSocketSecurityLevelTLSv1: &'static NSStreamSocketSecurityLevel);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSStreamSocketSecurityLevelTLSv1: &'static NSStreamSocketSecurityLevel;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSStreamSocketSecurityLevelNegotiatedSSL: &'static NSStreamSocketSecurityLevel);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSStreamSocketSecurityLevelNegotiatedSSL: &'static NSStreamSocketSecurityLevel;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSStreamSOCKSProxyConfigurationKey: &'static NSStreamPropertyKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSStreamSOCKSProxyConfigurationKey: &'static NSStreamPropertyKey;
+}
 
 #[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type NSStreamSOCKSProxyConfiguration = NSString;
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSStreamSOCKSProxyHostKey: &'static NSStreamSOCKSProxyConfiguration);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSStreamSOCKSProxyHostKey: &'static NSStreamSOCKSProxyConfiguration;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSStreamSOCKSProxyPortKey: &'static NSStreamSOCKSProxyConfiguration);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSStreamSOCKSProxyPortKey: &'static NSStreamSOCKSProxyConfiguration;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSStreamSOCKSProxyVersionKey: &'static NSStreamSOCKSProxyConfiguration);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSStreamSOCKSProxyVersionKey: &'static NSStreamSOCKSProxyConfiguration;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSStreamSOCKSProxyUserKey: &'static NSStreamSOCKSProxyConfiguration);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSStreamSOCKSProxyUserKey: &'static NSStreamSOCKSProxyConfiguration;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSStreamSOCKSProxyPasswordKey: &'static NSStreamSOCKSProxyConfiguration);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSStreamSOCKSProxyPasswordKey: &'static NSStreamSOCKSProxyConfiguration;
+}
 
 #[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type NSStreamSOCKSProxyVersion = NSString;
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSStreamSOCKSProxyVersion4: &'static NSStreamSOCKSProxyVersion);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSStreamSOCKSProxyVersion4: &'static NSStreamSOCKSProxyVersion;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSStreamSOCKSProxyVersion5: &'static NSStreamSOCKSProxyVersion);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSStreamSOCKSProxyVersion5: &'static NSStreamSOCKSProxyVersion;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSStreamDataWrittenToMemoryStreamKey: &'static NSStreamPropertyKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSStreamDataWrittenToMemoryStreamKey: &'static NSStreamPropertyKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSStreamFileCurrentOffsetKey: &'static NSStreamPropertyKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSStreamFileCurrentOffsetKey: &'static NSStreamPropertyKey;
+}
 
-#[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
-extern_static!(NSStreamSocketSSLErrorDomain: &'static NSErrorDomain);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
+    pub static NSStreamSocketSSLErrorDomain: &'static NSErrorDomain;
+}
 
-#[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
-extern_static!(NSStreamSOCKSErrorDomain: &'static NSErrorDomain);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
+    pub static NSStreamSOCKSErrorDomain: &'static NSErrorDomain;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSStreamNetworkServiceType: &'static NSStreamPropertyKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSStreamNetworkServiceType: &'static NSStreamPropertyKey;
+}
 
 #[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type NSStreamNetworkServiceTypeValue = NSString;
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSStreamNetworkServiceTypeVoIP: &'static NSStreamNetworkServiceTypeValue);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSStreamNetworkServiceTypeVoIP: &'static NSStreamNetworkServiceTypeValue;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSStreamNetworkServiceTypeVideo: &'static NSStreamNetworkServiceTypeValue);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSStreamNetworkServiceTypeVideo: &'static NSStreamNetworkServiceTypeValue;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSStreamNetworkServiceTypeBackground: &'static NSStreamNetworkServiceTypeValue);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSStreamNetworkServiceTypeBackground: &'static NSStreamNetworkServiceTypeValue;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSStreamNetworkServiceTypeVoice: &'static NSStreamNetworkServiceTypeValue);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSStreamNetworkServiceTypeVoice: &'static NSStreamNetworkServiceTypeValue;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSStreamNetworkServiceTypeCallSignaling: &'static NSStreamNetworkServiceTypeValue);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSStreamNetworkServiceTypeCallSignaling: &'static NSStreamNetworkServiceTypeValue;
+}

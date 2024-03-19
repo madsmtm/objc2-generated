@@ -5,47 +5,75 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::WebKit::*;
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(WKWebsiteDataTypeFetchCache: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static WKWebsiteDataTypeFetchCache: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(WKWebsiteDataTypeDiskCache: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static WKWebsiteDataTypeDiskCache: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(WKWebsiteDataTypeMemoryCache: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static WKWebsiteDataTypeMemoryCache: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(WKWebsiteDataTypeOfflineWebApplicationCache: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static WKWebsiteDataTypeOfflineWebApplicationCache: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(WKWebsiteDataTypeCookies: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static WKWebsiteDataTypeCookies: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(WKWebsiteDataTypeSessionStorage: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static WKWebsiteDataTypeSessionStorage: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(WKWebsiteDataTypeLocalStorage: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static WKWebsiteDataTypeLocalStorage: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(WKWebsiteDataTypeWebSQLDatabases: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static WKWebsiteDataTypeWebSQLDatabases: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(WKWebsiteDataTypeIndexedDBDatabases: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static WKWebsiteDataTypeIndexedDBDatabases: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(WKWebsiteDataTypeServiceWorkerRegistrations: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static WKWebsiteDataTypeServiceWorkerRegistrations: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(WKWebsiteDataTypeFileSystem: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static WKWebsiteDataTypeFileSystem: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(WKWebsiteDataTypeSearchFieldRecentSearches: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static WKWebsiteDataTypeSearchFieldRecentSearches: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(WKWebsiteDataTypeMediaKeys: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static WKWebsiteDataTypeMediaKeys: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(WKWebsiteDataTypeHashSalt: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static WKWebsiteDataTypeHashSalt: &'static NSString;
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

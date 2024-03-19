@@ -3,10 +3,12 @@
 use crate::common::*;
 use crate::Foundation::*;
 
-extern_static!(NSUndoCloseGroupingRunLoopOrdering: NSUInteger = 350000);
+pub static NSUndoCloseGroupingRunLoopOrdering: NSUInteger = 350000;
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSUndoManagerGroupIsDiscardableKey: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSUndoManagerGroupIsDiscardableKey: &'static NSString;
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -171,26 +173,42 @@ extern_methods!(
     }
 );
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSUndoManagerCheckpointNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSUndoManagerCheckpointNotification: &'static NSNotificationName;
+}
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSUndoManagerWillUndoChangeNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSUndoManagerWillUndoChangeNotification: &'static NSNotificationName;
+}
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSUndoManagerWillRedoChangeNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSUndoManagerWillRedoChangeNotification: &'static NSNotificationName;
+}
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSUndoManagerDidUndoChangeNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSUndoManagerDidUndoChangeNotification: &'static NSNotificationName;
+}
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSUndoManagerDidRedoChangeNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSUndoManagerDidRedoChangeNotification: &'static NSNotificationName;
+}
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSUndoManagerDidOpenUndoGroupNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSUndoManagerDidOpenUndoGroupNotification: &'static NSNotificationName;
+}
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSUndoManagerWillCloseUndoGroupNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSUndoManagerWillCloseUndoGroupNotification: &'static NSNotificationName;
+}
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSUndoManagerDidCloseUndoGroupNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSUndoManagerDidCloseUndoGroupNotification: &'static NSNotificationName;
+}

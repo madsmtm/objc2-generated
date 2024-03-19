@@ -271,25 +271,37 @@ extern_methods!(
 
 pub type PHImageRequestID = i32;
 
-extern_static!(PHInvalidImageRequestID: PHImageRequestID = 0);
+pub static PHInvalidImageRequestID: PHImageRequestID = 0;
 
-#[cfg(feature = "Foundation_NSGeometry")]
-extern_static!(PHImageManagerMaximumSize: CGSize);
+extern "C" {
+    #[cfg(feature = "Foundation_NSGeometry")]
+    pub static PHImageManagerMaximumSize: CGSize;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(PHImageResultIsInCloudKey: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static PHImageResultIsInCloudKey: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(PHImageResultIsDegradedKey: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static PHImageResultIsDegradedKey: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(PHImageResultRequestIDKey: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static PHImageResultRequestIDKey: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(PHImageCancelledKey: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static PHImageCancelledKey: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(PHImageErrorKey: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static PHImageErrorKey: &'static NSString;
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

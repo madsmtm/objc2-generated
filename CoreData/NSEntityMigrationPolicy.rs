@@ -4,23 +4,35 @@ use crate::common::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSMigrationManagerKey: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSMigrationManagerKey: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSMigrationSourceObjectKey: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSMigrationSourceObjectKey: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSMigrationDestinationObjectKey: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSMigrationDestinationObjectKey: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSMigrationEntityMappingKey: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSMigrationEntityMappingKey: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSMigrationPropertyMappingKey: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSMigrationPropertyMappingKey: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSMigrationEntityPolicyKey: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSMigrationEntityPolicyKey: &'static NSString;
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

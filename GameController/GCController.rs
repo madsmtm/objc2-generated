@@ -5,20 +5,30 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::GameController::*;
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(GCControllerDidConnectNotification: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static GCControllerDidConnectNotification: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(GCControllerDidDisconnectNotification: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static GCControllerDidDisconnectNotification: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(GCControllerDidBecomeCurrentNotification: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static GCControllerDidBecomeCurrentNotification: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(GCControllerDidStopBeingCurrentNotification: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static GCControllerDidStopBeingCurrentNotification: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(GCControllerUserCustomizationsDidChangeNotification: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static GCControllerUserCustomizationsDidChangeNotification: &'static NSString;
+}
 
 ns_enum!(
     #[underlying(NSInteger)]

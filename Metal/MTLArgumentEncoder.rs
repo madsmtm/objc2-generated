@@ -4,7 +4,7 @@ use crate::common::*;
 use crate::Foundation::*;
 use crate::Metal::*;
 
-extern_static!(MTLAttributeStrideStatic: NSUInteger = NSUIntegerMax as _);
+pub static MTLAttributeStrideStatic: NSUInteger = NSUIntegerMax as _;
 
 extern_protocol!(
     pub unsafe trait MTLArgumentEncoder: NSObjectProtocol {

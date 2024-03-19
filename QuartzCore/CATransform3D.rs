@@ -26,8 +26,10 @@ extern_struct!(
     }
 );
 
-#[cfg(feature = "Foundation_NSGeometry")]
-extern_static!(CATransform3DIdentity: CATransform3D);
+extern "C" {
+    #[cfg(feature = "Foundation_NSGeometry")]
+    pub static CATransform3DIdentity: CATransform3D;
+}
 
 #[cfg(feature = "Foundation_NSGeometry")]
 #[inline]

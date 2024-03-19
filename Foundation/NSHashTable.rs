@@ -4,19 +4,26 @@ use crate::common::*;
 use crate::Foundation::*;
 
 #[cfg(feature = "Foundation_NSPointerFunctions")]
-extern_static!(NSHashTableStrongMemory: NSPointerFunctionsOptions = NSPointerFunctionsOptions(NSPointerFunctionsOptions::NSPointerFunctionsStrongMemory.0));
+pub static NSHashTableStrongMemory: NSPointerFunctionsOptions =
+    NSPointerFunctionsOptions(NSPointerFunctionsOptions::NSPointerFunctionsStrongMemory.0);
 
 #[cfg(feature = "Foundation_NSPointerFunctions")]
-extern_static!(NSHashTableZeroingWeakMemory: NSPointerFunctionsOptions = NSPointerFunctionsOptions(NSPointerFunctionsOptions::NSPointerFunctionsZeroingWeakMemory.0));
+pub static NSHashTableZeroingWeakMemory: NSPointerFunctionsOptions =
+    NSPointerFunctionsOptions(NSPointerFunctionsOptions::NSPointerFunctionsZeroingWeakMemory.0);
 
 #[cfg(feature = "Foundation_NSPointerFunctions")]
-extern_static!(NSHashTableCopyIn: NSPointerFunctionsOptions = NSPointerFunctionsOptions(NSPointerFunctionsOptions::NSPointerFunctionsCopyIn.0));
+pub static NSHashTableCopyIn: NSPointerFunctionsOptions =
+    NSPointerFunctionsOptions(NSPointerFunctionsOptions::NSPointerFunctionsCopyIn.0);
 
 #[cfg(feature = "Foundation_NSPointerFunctions")]
-extern_static!(NSHashTableObjectPointerPersonality: NSPointerFunctionsOptions = NSPointerFunctionsOptions(NSPointerFunctionsOptions::NSPointerFunctionsObjectPointerPersonality.0));
+pub static NSHashTableObjectPointerPersonality: NSPointerFunctionsOptions =
+    NSPointerFunctionsOptions(
+        NSPointerFunctionsOptions::NSPointerFunctionsObjectPointerPersonality.0,
+    );
 
 #[cfg(feature = "Foundation_NSPointerFunctions")]
-extern_static!(NSHashTableWeakMemory: NSPointerFunctionsOptions = NSPointerFunctionsOptions(NSPointerFunctionsOptions::NSPointerFunctionsWeakMemory.0));
+pub static NSHashTableWeakMemory: NSPointerFunctionsOptions =
+    NSPointerFunctionsOptions(NSPointerFunctionsOptions::NSPointerFunctionsWeakMemory.0);
 
 pub type NSHashTableOptions = NSUInteger;
 
@@ -259,26 +266,42 @@ extern "C" {
     ) -> NonNull<NSHashTable>;
 }
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSIntegerHashCallBacks: NSHashTableCallBacks);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSIntegerHashCallBacks: NSHashTableCallBacks;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSNonOwnedPointerHashCallBacks: NSHashTableCallBacks);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSNonOwnedPointerHashCallBacks: NSHashTableCallBacks;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSNonRetainedObjectHashCallBacks: NSHashTableCallBacks);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSNonRetainedObjectHashCallBacks: NSHashTableCallBacks;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSObjectHashCallBacks: NSHashTableCallBacks);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSObjectHashCallBacks: NSHashTableCallBacks;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSOwnedObjectIdentityHashCallBacks: NSHashTableCallBacks);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSOwnedObjectIdentityHashCallBacks: NSHashTableCallBacks;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSOwnedPointerHashCallBacks: NSHashTableCallBacks);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSOwnedPointerHashCallBacks: NSHashTableCallBacks;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSPointerToStructHashCallBacks: NSHashTableCallBacks);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSPointerToStructHashCallBacks: NSHashTableCallBacks;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSIntHashCallBacks: NSHashTableCallBacks);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSIntHashCallBacks: NSHashTableCallBacks;
+}

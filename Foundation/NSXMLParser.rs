@@ -313,8 +313,10 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn NSXMLParserDelegate {}
 );
 
-#[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
-extern_static!(NSXMLParserErrorDomain: &'static NSErrorDomain);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
+    pub static NSXMLParserErrorDomain: &'static NSErrorDomain;
+}
 
 ns_enum!(
     #[underlying(NSInteger)]

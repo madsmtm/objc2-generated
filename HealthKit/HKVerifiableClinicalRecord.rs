@@ -11,28 +11,46 @@ typed_enum!(
     pub type HKVerifiableClinicalRecordSourceType = NSString;
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKVerifiableClinicalRecordSourceTypeSMARTHealthCard: &'static HKVerifiableClinicalRecordSourceType);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKVerifiableClinicalRecordSourceTypeSMARTHealthCard:
+        &'static HKVerifiableClinicalRecordSourceType;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKVerifiableClinicalRecordSourceTypeEUDigitalCOVIDCertificate: &'static HKVerifiableClinicalRecordSourceType);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKVerifiableClinicalRecordSourceTypeEUDigitalCOVIDCertificate:
+        &'static HKVerifiableClinicalRecordSourceType;
+}
 
 #[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type HKVerifiableClinicalRecordCredentialType = NSString;
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKVerifiableClinicalRecordCredentialTypeCOVID19: &'static HKVerifiableClinicalRecordCredentialType);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKVerifiableClinicalRecordCredentialTypeCOVID19:
+        &'static HKVerifiableClinicalRecordCredentialType;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKVerifiableClinicalRecordCredentialTypeImmunization: &'static HKVerifiableClinicalRecordCredentialType);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKVerifiableClinicalRecordCredentialTypeImmunization:
+        &'static HKVerifiableClinicalRecordCredentialType;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKVerifiableClinicalRecordCredentialTypeLaboratory: &'static HKVerifiableClinicalRecordCredentialType);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKVerifiableClinicalRecordCredentialTypeLaboratory:
+        &'static HKVerifiableClinicalRecordCredentialType;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKVerifiableClinicalRecordCredentialTypeRecovery: &'static HKVerifiableClinicalRecordCredentialType);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKVerifiableClinicalRecordCredentialTypeRecovery:
+        &'static HKVerifiableClinicalRecordCredentialType;
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

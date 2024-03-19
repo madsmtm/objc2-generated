@@ -97,14 +97,22 @@ extern_methods!(
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(kCAScrollNone: &'static CAScrollLayerScrollMode);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static kCAScrollNone: &'static CAScrollLayerScrollMode;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(kCAScrollVertically: &'static CAScrollLayerScrollMode);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static kCAScrollVertically: &'static CAScrollLayerScrollMode;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(kCAScrollHorizontally: &'static CAScrollLayerScrollMode);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static kCAScrollHorizontally: &'static CAScrollLayerScrollMode;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(kCAScrollBoth: &'static CAScrollLayerScrollMode);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static kCAScrollBoth: &'static CAScrollLayerScrollMode;
+}

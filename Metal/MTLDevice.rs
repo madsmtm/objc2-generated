@@ -34,14 +34,20 @@ typed_enum!(
     pub type MTLDeviceNotificationName = NSString;
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(MTLDeviceWasAddedNotification: &'static MTLDeviceNotificationName);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static MTLDeviceWasAddedNotification: &'static MTLDeviceNotificationName;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(MTLDeviceRemovalRequestedNotification: &'static MTLDeviceNotificationName);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static MTLDeviceRemovalRequestedNotification: &'static MTLDeviceNotificationName;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(MTLDeviceWasRemovedNotification: &'static MTLDeviceNotificationName);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static MTLDeviceWasRemovedNotification: &'static MTLDeviceNotificationName;
+}
 
 #[cfg(feature = "Foundation_NSString")]
 pub type MTLDeviceNotificationHandler =

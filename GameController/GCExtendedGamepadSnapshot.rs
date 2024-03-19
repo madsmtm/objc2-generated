@@ -89,7 +89,9 @@ ns_enum!(
     }
 );
 
-extern_static!(GCCurrentExtendedGamepadSnapshotDataVersion: GCExtendedGamepadSnapshotDataVersion);
+extern "C" {
+    pub static GCCurrentExtendedGamepadSnapshotDataVersion: GCExtendedGamepadSnapshotDataVersion;
+}
 
 extern "C" {
     #[cfg(feature = "Foundation_NSData")]

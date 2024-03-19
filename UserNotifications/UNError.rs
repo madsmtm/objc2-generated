@@ -5,8 +5,10 @@ use crate::CoreLocation::*;
 use crate::Foundation::*;
 use crate::UserNotifications::*;
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(UNErrorDomain: Option<&'static NSString>);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static UNErrorDomain: Option<&'static NSString>;
+}
 
 ns_enum!(
     #[underlying(NSInteger)]

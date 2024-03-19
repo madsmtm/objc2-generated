@@ -41,5 +41,7 @@ extern_methods!(
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSInterfaceStyleDefault: Option<&'static NSString>);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSInterfaceStyleDefault: Option<&'static NSString>;
+}

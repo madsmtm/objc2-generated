@@ -18,17 +18,25 @@ typed_extensible_enum!(
     pub type NSRulerViewUnitName = NSString;
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSRulerViewUnitInches: &'static NSRulerViewUnitName);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSRulerViewUnitInches: &'static NSRulerViewUnitName;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSRulerViewUnitCentimeters: &'static NSRulerViewUnitName);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSRulerViewUnitCentimeters: &'static NSRulerViewUnitName;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSRulerViewUnitPoints: &'static NSRulerViewUnitName);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSRulerViewUnitPoints: &'static NSRulerViewUnitName;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSRulerViewUnitPicas: &'static NSRulerViewUnitName);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSRulerViewUnitPicas: &'static NSRulerViewUnitName;
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

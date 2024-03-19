@@ -3,8 +3,10 @@
 use crate::common::*;
 use crate::Foundation::*;
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSSystemClockDidChangeNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSSystemClockDidChangeNotification: &'static NSNotificationName;
+}
 
 pub type NSTimeInterval = c_double;
 

@@ -5,8 +5,10 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::WebKit::*;
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(DOMRangeException: Option<&'static NSString>);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static DOMRangeException: Option<&'static NSString>;
+}
 
 extern_enum!(
     #[underlying(c_uint)]

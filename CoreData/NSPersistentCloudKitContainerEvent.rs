@@ -16,11 +16,15 @@ ns_enum!(
     }
 );
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSPersistentCloudKitContainerEventChangedNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSPersistentCloudKitContainerEventChangedNotification: &'static NSNotificationName;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSPersistentCloudKitContainerEventUserInfoKey: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSPersistentCloudKitContainerEventUserInfoKey: &'static NSString;
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

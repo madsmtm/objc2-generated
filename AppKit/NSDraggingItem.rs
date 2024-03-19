@@ -10,11 +10,15 @@ typed_extensible_enum!(
     pub type NSDraggingImageComponentKey = NSString;
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSDraggingImageComponentIconKey: &'static NSDraggingImageComponentKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSDraggingImageComponentIconKey: &'static NSDraggingImageComponentKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSDraggingImageComponentLabelKey: &'static NSDraggingImageComponentKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSDraggingImageComponentLabelKey: &'static NSDraggingImageComponentKey;
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

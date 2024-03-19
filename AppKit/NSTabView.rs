@@ -6,7 +6,7 @@ use crate::CoreData::*;
 use crate::Foundation::*;
 
 #[cfg(feature = "AppKit_NSApplication")]
-extern_static!(NSAppKitVersionNumberWithDirectionalTabs: NSAppKitVersion = 631.0);
+pub static NSAppKitVersionNumberWithDirectionalTabs: NSAppKitVersion = 631.0 as _;
 
 ns_enum!(
     #[underlying(NSUInteger)]

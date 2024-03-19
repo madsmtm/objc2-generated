@@ -12,7 +12,9 @@ extern_struct!(
     }
 );
 
-extern_static!(GCPoint2Zero: GCPoint2);
+extern "C" {
+    pub static GCPoint2Zero: GCPoint2;
+}
 
 // TODO: pub fn GCPoint2Make(x: c_float,y: c_float,) -> GCPoint2;
 

@@ -5,62 +5,100 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::OSAKit::*;
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(OSAScriptErrorMessageKey: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static OSAScriptErrorMessageKey: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(OSAScriptErrorBriefMessageKey: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static OSAScriptErrorBriefMessageKey: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(OSAScriptErrorNumberKey: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static OSAScriptErrorNumberKey: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(OSAScriptErrorPartialResultKey: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static OSAScriptErrorPartialResultKey: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(OSAScriptErrorOffendingObjectKey: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static OSAScriptErrorOffendingObjectKey: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(OSAScriptErrorExpectedTypeKey: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static OSAScriptErrorExpectedTypeKey: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(OSAScriptErrorAppAddressKey: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static OSAScriptErrorAppAddressKey: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(OSAScriptErrorAppNameKey: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static OSAScriptErrorAppNameKey: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(OSAScriptErrorRangeKey: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static OSAScriptErrorRangeKey: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(OSAScriptErrorMessage: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static OSAScriptErrorMessage: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(OSAScriptErrorNumber: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static OSAScriptErrorNumber: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(OSAScriptErrorAppName: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static OSAScriptErrorAppName: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(OSAScriptErrorBriefMessage: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static OSAScriptErrorBriefMessage: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(OSAScriptErrorRange: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static OSAScriptErrorRange: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(OSAStorageScriptType: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static OSAStorageScriptType: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(OSAStorageScriptBundleType: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static OSAStorageScriptBundleType: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(OSAStorageApplicationType: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static OSAStorageApplicationType: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(OSAStorageApplicationBundleType: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static OSAStorageApplicationBundleType: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(OSAStorageTextType: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static OSAStorageTextType: &'static NSString;
+}
 
 ns_options!(
     #[underlying(NSUInteger)]

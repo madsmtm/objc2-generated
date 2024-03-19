@@ -4,4 +4,6 @@ use crate::common::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-extern_static!(NSCoreDataVersionNumber: c_double);
+extern "C" {
+    pub static NSCoreDataVersionNumber: c_double;
+}

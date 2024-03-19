@@ -202,8 +202,10 @@ extern_methods!(
     }
 );
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSFileProviderMaterializedSetDidChange: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSFileProviderMaterializedSetDidChange: &'static NSNotificationName;
+}
 
 extern_methods!(
     /// MaterializedSet
@@ -216,8 +218,10 @@ extern_methods!(
     }
 );
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSFileProviderPendingSetDidChange: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSFileProviderPendingSetDidChange: &'static NSNotificationName;
+}
 
 extern_protocol!(
     #[cfg(feature = "FileProvider_NSFileProviderEnumerating")]

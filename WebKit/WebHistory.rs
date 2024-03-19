@@ -5,23 +5,35 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::WebKit::*;
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(WebHistoryItemsAddedNotification: Option<&'static NSString>);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static WebHistoryItemsAddedNotification: Option<&'static NSString>;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(WebHistoryItemsRemovedNotification: Option<&'static NSString>);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static WebHistoryItemsRemovedNotification: Option<&'static NSString>;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(WebHistoryAllItemsRemovedNotification: Option<&'static NSString>);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static WebHistoryAllItemsRemovedNotification: Option<&'static NSString>;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(WebHistoryLoadedNotification: Option<&'static NSString>);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static WebHistoryLoadedNotification: Option<&'static NSString>;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(WebHistorySavedNotification: Option<&'static NSString>);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static WebHistorySavedNotification: Option<&'static NSString>;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(WebHistoryItemsKey: Option<&'static NSString>);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static WebHistoryItemsKey: Option<&'static NSString>;
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

@@ -3,50 +3,80 @@
 use crate::common::*;
 use crate::Foundation::*;
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSURLProtectionSpaceHTTP: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSURLProtectionSpaceHTTP: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSURLProtectionSpaceHTTPS: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSURLProtectionSpaceHTTPS: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSURLProtectionSpaceFTP: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSURLProtectionSpaceFTP: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSURLProtectionSpaceHTTPProxy: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSURLProtectionSpaceHTTPProxy: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSURLProtectionSpaceHTTPSProxy: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSURLProtectionSpaceHTTPSProxy: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSURLProtectionSpaceFTPProxy: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSURLProtectionSpaceFTPProxy: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSURLProtectionSpaceSOCKSProxy: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSURLProtectionSpaceSOCKSProxy: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSURLAuthenticationMethodDefault: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSURLAuthenticationMethodDefault: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSURLAuthenticationMethodHTTPBasic: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSURLAuthenticationMethodHTTPBasic: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSURLAuthenticationMethodHTTPDigest: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSURLAuthenticationMethodHTTPDigest: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSURLAuthenticationMethodHTMLForm: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSURLAuthenticationMethodHTMLForm: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSURLAuthenticationMethodNTLM: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSURLAuthenticationMethodNTLM: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSURLAuthenticationMethodNegotiate: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSURLAuthenticationMethodNegotiate: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSURLAuthenticationMethodClientCertificate: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSURLAuthenticationMethodClientCertificate: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSURLAuthenticationMethodServerTrust: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSURLAuthenticationMethodServerTrust: &'static NSString;
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

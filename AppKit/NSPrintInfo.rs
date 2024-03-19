@@ -32,112 +32,180 @@ typed_extensible_enum!(
     pub type NSPrintInfoAttributeKey = NSString;
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSPrintPaperName: &'static NSPrintInfoAttributeKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSPrintPaperName: &'static NSPrintInfoAttributeKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSPrintPaperSize: &'static NSPrintInfoAttributeKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSPrintPaperSize: &'static NSPrintInfoAttributeKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSPrintOrientation: &'static NSPrintInfoAttributeKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSPrintOrientation: &'static NSPrintInfoAttributeKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSPrintScalingFactor: &'static NSPrintInfoAttributeKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSPrintScalingFactor: &'static NSPrintInfoAttributeKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSPrintLeftMargin: &'static NSPrintInfoAttributeKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSPrintLeftMargin: &'static NSPrintInfoAttributeKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSPrintRightMargin: &'static NSPrintInfoAttributeKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSPrintRightMargin: &'static NSPrintInfoAttributeKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSPrintTopMargin: &'static NSPrintInfoAttributeKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSPrintTopMargin: &'static NSPrintInfoAttributeKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSPrintBottomMargin: &'static NSPrintInfoAttributeKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSPrintBottomMargin: &'static NSPrintInfoAttributeKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSPrintHorizontallyCentered: &'static NSPrintInfoAttributeKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSPrintHorizontallyCentered: &'static NSPrintInfoAttributeKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSPrintVerticallyCentered: &'static NSPrintInfoAttributeKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSPrintVerticallyCentered: &'static NSPrintInfoAttributeKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSPrintHorizontalPagination: &'static NSPrintInfoAttributeKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSPrintHorizontalPagination: &'static NSPrintInfoAttributeKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSPrintVerticalPagination: &'static NSPrintInfoAttributeKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSPrintVerticalPagination: &'static NSPrintInfoAttributeKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSPrintPrinter: &'static NSPrintInfoAttributeKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSPrintPrinter: &'static NSPrintInfoAttributeKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSPrintCopies: &'static NSPrintInfoAttributeKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSPrintCopies: &'static NSPrintInfoAttributeKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSPrintAllPages: &'static NSPrintInfoAttributeKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSPrintAllPages: &'static NSPrintInfoAttributeKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSPrintFirstPage: &'static NSPrintInfoAttributeKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSPrintFirstPage: &'static NSPrintInfoAttributeKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSPrintLastPage: &'static NSPrintInfoAttributeKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSPrintLastPage: &'static NSPrintInfoAttributeKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSPrintMustCollate: &'static NSPrintInfoAttributeKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSPrintMustCollate: &'static NSPrintInfoAttributeKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSPrintReversePageOrder: &'static NSPrintInfoAttributeKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSPrintReversePageOrder: &'static NSPrintInfoAttributeKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSPrintJobDisposition: &'static NSPrintInfoAttributeKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSPrintJobDisposition: &'static NSPrintInfoAttributeKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSPrintPagesAcross: &'static NSPrintInfoAttributeKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSPrintPagesAcross: &'static NSPrintInfoAttributeKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSPrintPagesDown: &'static NSPrintInfoAttributeKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSPrintPagesDown: &'static NSPrintInfoAttributeKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSPrintTime: &'static NSPrintInfoAttributeKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSPrintTime: &'static NSPrintInfoAttributeKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSPrintDetailedErrorReporting: &'static NSPrintInfoAttributeKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSPrintDetailedErrorReporting: &'static NSPrintInfoAttributeKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSPrintFaxNumber: &'static NSPrintInfoAttributeKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSPrintFaxNumber: &'static NSPrintInfoAttributeKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSPrintPrinterName: &'static NSPrintInfoAttributeKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSPrintPrinterName: &'static NSPrintInfoAttributeKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSPrintSelectionOnly: &'static NSPrintInfoAttributeKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSPrintSelectionOnly: &'static NSPrintInfoAttributeKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSPrintJobSavingURL: &'static NSPrintInfoAttributeKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSPrintJobSavingURL: &'static NSPrintInfoAttributeKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSPrintJobSavingFileNameExtensionHidden: &'static NSPrintInfoAttributeKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSPrintJobSavingFileNameExtensionHidden: &'static NSPrintInfoAttributeKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSPrintHeaderAndFooter: &'static NSPrintInfoAttributeKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSPrintHeaderAndFooter: &'static NSPrintInfoAttributeKey;
+}
 
 #[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type NSPrintJobDispositionValue = NSString;
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSPrintSpoolJob: &'static NSPrintJobDispositionValue);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSPrintSpoolJob: &'static NSPrintJobDispositionValue;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSPrintPreviewJob: &'static NSPrintJobDispositionValue);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSPrintPreviewJob: &'static NSPrintJobDispositionValue;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSPrintSaveJob: &'static NSPrintJobDispositionValue);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSPrintSaveJob: &'static NSPrintJobDispositionValue;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSPrintCancelJob: &'static NSPrintJobDispositionValue);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSPrintCancelJob: &'static NSPrintJobDispositionValue;
+}
 
 #[cfg(feature = "Foundation_NSString")]
 pub type NSPrintInfoSettingKey = NSString;
@@ -368,23 +436,35 @@ extern_methods!(
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSPrintFormName: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSPrintFormName: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSPrintJobFeatures: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSPrintJobFeatures: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSPrintManualFeed: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSPrintManualFeed: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSPrintPagesPerSheet: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSPrintPagesPerSheet: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSPrintPaperFeed: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSPrintPaperFeed: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSPrintSavePath: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSPrintSavePath: &'static NSString;
+}
 
 ns_enum!(
     #[underlying(NSUInteger)]
@@ -397,8 +477,11 @@ ns_enum!(
     }
 );
 
-extern_static!(NSAutoPagination: NSPrintingPaginationMode = NSPrintingPaginationMode(NSPrintingPaginationMode::Automatic.0));
+pub static NSAutoPagination: NSPrintingPaginationMode =
+    NSPrintingPaginationMode(NSPrintingPaginationMode::Automatic.0);
 
-extern_static!(NSFitPagination: NSPrintingPaginationMode = NSPrintingPaginationMode(NSPrintingPaginationMode::Fit.0));
+pub static NSFitPagination: NSPrintingPaginationMode =
+    NSPrintingPaginationMode(NSPrintingPaginationMode::Fit.0);
 
-extern_static!(NSClipPagination: NSPrintingPaginationMode = NSPrintingPaginationMode(NSPrintingPaginationMode::Clip.0));
+pub static NSClipPagination: NSPrintingPaginationMode =
+    NSPrintingPaginationMode(NSPrintingPaginationMode::Clip.0);

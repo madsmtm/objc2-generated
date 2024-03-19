@@ -60,23 +60,37 @@ extern_methods!(
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKPredicateKeyPathUUID: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKPredicateKeyPathUUID: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKPredicateKeyPathSource: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKPredicateKeyPathSource: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKPredicateKeyPathMetadata: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKPredicateKeyPathMetadata: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKPredicateKeyPathCorrelation: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKPredicateKeyPathCorrelation: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKPredicateKeyPathWorkout: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKPredicateKeyPathWorkout: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKPredicateKeyPathDevice: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKPredicateKeyPathDevice: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKPredicateKeyPathSourceRevision: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKPredicateKeyPathSourceRevision: &'static NSString;
+}

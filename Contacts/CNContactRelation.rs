@@ -52,650 +52,1087 @@ extern_methods!(
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationAssistant: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationManager: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationColleague: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationTeacher: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationSibling: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationYoungerSibling: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationElderSibling: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationSister: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationYoungerSister: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationYoungestSister: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationElderSister: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationEldestSister: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationBrother: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationYoungerBrother: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationYoungestBrother: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationElderBrother: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationEldestBrother: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationFriend: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationMaleFriend: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationFemaleFriend: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationSpouse: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationWife: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationHusband: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationPartner: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationMalePartner: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationFemalePartner: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationGirlfriendOrBoyfriend: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationGirlfriend: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationBoyfriend: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationParent: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationMother: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationFather: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationChild: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationDaughter: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationSon: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationGrandparent: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationGrandmother: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationGrandmotherMothersMother: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationGrandmotherFathersMother: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationGrandfather: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationGrandfatherMothersFather: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationGrandfatherFathersFather: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationGreatGrandparent: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationGreatGrandmother: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationGreatGrandfather: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationGrandchild: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationGranddaughter: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationGranddaughterDaughtersDaughter: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationGranddaughterSonsDaughter: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationGrandson: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationGrandsonDaughtersSon: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationGrandsonSonsSon: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationGreatGrandchild: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationGreatGranddaughter: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationGreatGrandson: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationParentInLaw: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationMotherInLaw: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationMotherInLawWifesMother: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationMotherInLawHusbandsMother: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationFatherInLaw: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationFatherInLawWifesFather: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationFatherInLawHusbandsFather: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationCoParentInLaw: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationCoMotherInLaw: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationCoFatherInLaw: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationSiblingInLaw: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationYoungerSiblingInLaw: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationElderSiblingInLaw: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationSisterInLaw: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationYoungerSisterInLaw: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationElderSisterInLaw: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationSisterInLawSpousesSister: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationSisterInLawWifesSister: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationSisterInLawHusbandsSister: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationSisterInLawBrothersWife: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationSisterInLawYoungerBrothersWife: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationSisterInLawElderBrothersWife: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationBrotherInLaw: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationYoungerBrotherInLaw: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationElderBrotherInLaw: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationBrotherInLawSpousesBrother: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationBrotherInLawHusbandsBrother: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationBrotherInLawWifesBrother: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationBrotherInLawSistersHusband: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationBrotherInLawYoungerSistersHusband: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationBrotherInLawElderSistersHusband: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationSisterInLawWifesBrothersWife: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationSisterInLawHusbandsBrothersWife: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationBrotherInLawWifesSistersHusband: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationBrotherInLawHusbandsSistersHusband: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationCoSiblingInLaw: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationCoSisterInLaw: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationCoBrotherInLaw: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationChildInLaw: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationDaughterInLaw: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationSonInLaw: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationCousin: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationYoungerCousin: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationElderCousin: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationMaleCousin: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationFemaleCousin: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationCousinParentsSiblingsChild: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationCousinParentsSiblingsSon: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationYoungerCousinParentsSiblingsSon: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationElderCousinParentsSiblingsSon: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationCousinParentsSiblingsDaughter: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationYoungerCousinParentsSiblingsDaughter: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationElderCousinParentsSiblingsDaughter: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationCousinMothersSistersDaughter: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationYoungerCousinMothersSistersDaughter: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationElderCousinMothersSistersDaughter: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationCousinMothersSistersSon: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationYoungerCousinMothersSistersSon: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationElderCousinMothersSistersSon: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationCousinMothersBrothersDaughter: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationYoungerCousinMothersBrothersDaughter: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationElderCousinMothersBrothersDaughter: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationCousinMothersBrothersSon: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationYoungerCousinMothersBrothersSon: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationElderCousinMothersBrothersSon: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationCousinFathersSistersDaughter: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationYoungerCousinFathersSistersDaughter: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationElderCousinFathersSistersDaughter: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationCousinFathersSistersSon: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationYoungerCousinFathersSistersSon: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationElderCousinFathersSistersSon: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationCousinFathersBrothersDaughter: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationYoungerCousinFathersBrothersDaughter: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationElderCousinFathersBrothersDaughter: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationCousinFathersBrothersSon: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationYoungerCousinFathersBrothersSon: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationElderCousinFathersBrothersSon: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationCousinGrandparentsSiblingsChild: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationCousinGrandparentsSiblingsDaughter: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationCousinGrandparentsSiblingsSon: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationYoungerCousinMothersSiblingsSonOrFathersSistersSon: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationElderCousinMothersSiblingsSonOrFathersSistersSon: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationYoungerCousinMothersSiblingsDaughterOrFathersSistersDaughter: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationElderCousinMothersSiblingsDaughterOrFathersSistersDaughter: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationParentsSibling: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationParentsYoungerSibling: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationParentsElderSibling: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationParentsSiblingMothersSibling: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationParentsSiblingMothersYoungerSibling: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationParentsSiblingMothersElderSibling: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationParentsSiblingFathersSibling: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationParentsSiblingFathersYoungerSibling: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationParentsSiblingFathersElderSibling: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationAunt: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationAuntParentsSister: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationAuntParentsYoungerSister: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationAuntParentsElderSister: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationAuntFathersSister: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationAuntFathersYoungerSister: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationAuntFathersElderSister: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationAuntFathersBrothersWife: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationAuntFathersYoungerBrothersWife: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationAuntFathersElderBrothersWife: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationAuntMothersSister: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationAuntMothersYoungerSister: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationAuntMothersElderSister: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationAuntMothersBrothersWife: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationGrandaunt: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationUncle: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationUncleParentsBrother: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationUncleParentsYoungerBrother: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationUncleParentsElderBrother: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationUncleMothersBrother: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationUncleMothersYoungerBrother: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationUncleMothersElderBrother: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationUncleMothersSistersHusband: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationUncleFathersBrother: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationUncleFathersYoungerBrother: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationUncleFathersElderBrother: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationUncleFathersSistersHusband: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationUncleFathersYoungerSistersHusband: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationUncleFathersElderSistersHusband: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationGranduncle: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationSiblingsChild: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationNiece: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationNieceSistersDaughter: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationNieceBrothersDaughter: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationNieceSistersDaughterOrWifesSiblingsDaughter: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationNieceBrothersDaughterOrHusbandsSiblingsDaughter: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationNephew: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationNephewSistersSon: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationNephewBrothersSon: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationNephewBrothersSonOrHusbandsSiblingsSon: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationNephewSistersSonOrWifesSiblingsSon: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationGrandniece: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationGrandnieceSistersGranddaughter: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationGrandnieceBrothersGranddaughter: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationGrandnephew: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationGrandnephewSistersGrandson: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationGrandnephewBrothersGrandson: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationStepparent: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationStepmother: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationStepfather: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationStepchild: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationStepdaughter: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationStepson: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationStepsister: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationStepbrother: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationMotherInLawOrStepmother: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationFatherInLawOrStepfather: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationDaughterInLawOrStepdaughter: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationSonInLawOrStepson: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationCousinOrSiblingsChild: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationNieceOrCousin: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationNephewOrCousin: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationGrandchildOrSiblingsChild: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationGranddaughterOrNiece: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationGrandsonOrNephew: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationGreatGrandchildOrSiblingsGrandchild: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationDaughterInLawOrSisterInLaw: &'static NSString);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNLabelContactRelationSonInLawOrBrotherInLaw: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationAssistant: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationManager: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationColleague: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationTeacher: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationSibling: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationYoungerSibling: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationElderSibling: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationSister: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationYoungerSister: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationYoungestSister: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationElderSister: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationEldestSister: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationBrother: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationYoungerBrother: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationYoungestBrother: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationElderBrother: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationEldestBrother: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationFriend: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationMaleFriend: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationFemaleFriend: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationSpouse: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationWife: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationHusband: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationPartner: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationMalePartner: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationFemalePartner: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationGirlfriendOrBoyfriend: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationGirlfriend: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationBoyfriend: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationParent: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationMother: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationFather: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationChild: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationDaughter: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationSon: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationGrandparent: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationGrandmother: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationGrandmotherMothersMother: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationGrandmotherFathersMother: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationGrandfather: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationGrandfatherMothersFather: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationGrandfatherFathersFather: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationGreatGrandparent: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationGreatGrandmother: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationGreatGrandfather: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationGrandchild: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationGranddaughter: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationGranddaughterDaughtersDaughter: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationGranddaughterSonsDaughter: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationGrandson: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationGrandsonDaughtersSon: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationGrandsonSonsSon: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationGreatGrandchild: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationGreatGranddaughter: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationGreatGrandson: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationParentInLaw: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationMotherInLaw: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationMotherInLawWifesMother: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationMotherInLawHusbandsMother: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationFatherInLaw: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationFatherInLawWifesFather: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationFatherInLawHusbandsFather: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationCoParentInLaw: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationCoMotherInLaw: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationCoFatherInLaw: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationSiblingInLaw: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationYoungerSiblingInLaw: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationElderSiblingInLaw: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationSisterInLaw: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationYoungerSisterInLaw: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationElderSisterInLaw: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationSisterInLawSpousesSister: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationSisterInLawWifesSister: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationSisterInLawHusbandsSister: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationSisterInLawBrothersWife: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationSisterInLawYoungerBrothersWife: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationSisterInLawElderBrothersWife: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationBrotherInLaw: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationYoungerBrotherInLaw: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationElderBrotherInLaw: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationBrotherInLawSpousesBrother: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationBrotherInLawHusbandsBrother: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationBrotherInLawWifesBrother: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationBrotherInLawSistersHusband: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationBrotherInLawYoungerSistersHusband: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationBrotherInLawElderSistersHusband: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationSisterInLawWifesBrothersWife: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationSisterInLawHusbandsBrothersWife: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationBrotherInLawWifesSistersHusband: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationBrotherInLawHusbandsSistersHusband: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationCoSiblingInLaw: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationCoSisterInLaw: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationCoBrotherInLaw: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationChildInLaw: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationDaughterInLaw: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationSonInLaw: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationCousin: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationYoungerCousin: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationElderCousin: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationMaleCousin: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationFemaleCousin: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationCousinParentsSiblingsChild: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationCousinParentsSiblingsSon: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationYoungerCousinParentsSiblingsSon: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationElderCousinParentsSiblingsSon: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationCousinParentsSiblingsDaughter: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationYoungerCousinParentsSiblingsDaughter: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationElderCousinParentsSiblingsDaughter: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationCousinMothersSistersDaughter: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationYoungerCousinMothersSistersDaughter: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationElderCousinMothersSistersDaughter: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationCousinMothersSistersSon: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationYoungerCousinMothersSistersSon: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationElderCousinMothersSistersSon: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationCousinMothersBrothersDaughter: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationYoungerCousinMothersBrothersDaughter: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationElderCousinMothersBrothersDaughter: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationCousinMothersBrothersSon: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationYoungerCousinMothersBrothersSon: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationElderCousinMothersBrothersSon: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationCousinFathersSistersDaughter: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationYoungerCousinFathersSistersDaughter: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationElderCousinFathersSistersDaughter: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationCousinFathersSistersSon: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationYoungerCousinFathersSistersSon: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationElderCousinFathersSistersSon: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationCousinFathersBrothersDaughter: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationYoungerCousinFathersBrothersDaughter: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationElderCousinFathersBrothersDaughter: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationCousinFathersBrothersSon: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationYoungerCousinFathersBrothersSon: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationElderCousinFathersBrothersSon: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationCousinGrandparentsSiblingsChild: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationCousinGrandparentsSiblingsDaughter: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationCousinGrandparentsSiblingsSon: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationYoungerCousinMothersSiblingsSonOrFathersSistersSon:
+        &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationElderCousinMothersSiblingsSonOrFathersSistersSon:
+        &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationYoungerCousinMothersSiblingsDaughterOrFathersSistersDaughter:
+        &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationElderCousinMothersSiblingsDaughterOrFathersSistersDaughter:
+        &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationParentsSibling: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationParentsYoungerSibling: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationParentsElderSibling: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationParentsSiblingMothersSibling: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationParentsSiblingMothersYoungerSibling: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationParentsSiblingMothersElderSibling: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationParentsSiblingFathersSibling: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationParentsSiblingFathersYoungerSibling: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationParentsSiblingFathersElderSibling: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationAunt: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationAuntParentsSister: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationAuntParentsYoungerSister: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationAuntParentsElderSister: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationAuntFathersSister: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationAuntFathersYoungerSister: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationAuntFathersElderSister: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationAuntFathersBrothersWife: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationAuntFathersYoungerBrothersWife: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationAuntFathersElderBrothersWife: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationAuntMothersSister: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationAuntMothersYoungerSister: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationAuntMothersElderSister: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationAuntMothersBrothersWife: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationGrandaunt: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationUncle: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationUncleParentsBrother: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationUncleParentsYoungerBrother: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationUncleParentsElderBrother: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationUncleMothersBrother: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationUncleMothersYoungerBrother: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationUncleMothersElderBrother: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationUncleMothersSistersHusband: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationUncleFathersBrother: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationUncleFathersYoungerBrother: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationUncleFathersElderBrother: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationUncleFathersSistersHusband: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationUncleFathersYoungerSistersHusband: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationUncleFathersElderSistersHusband: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationGranduncle: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationSiblingsChild: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationNiece: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationNieceSistersDaughter: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationNieceBrothersDaughter: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationNieceSistersDaughterOrWifesSiblingsDaughter: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationNieceBrothersDaughterOrHusbandsSiblingsDaughter:
+        &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationNephew: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationNephewSistersSon: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationNephewBrothersSon: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationNephewBrothersSonOrHusbandsSiblingsSon: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationNephewSistersSonOrWifesSiblingsSon: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationGrandniece: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationGrandnieceSistersGranddaughter: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationGrandnieceBrothersGranddaughter: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationGrandnephew: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationGrandnephewSistersGrandson: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationGrandnephewBrothersGrandson: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationStepparent: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationStepmother: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationStepfather: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationStepchild: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationStepdaughter: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationStepson: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationStepsister: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationStepbrother: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationMotherInLawOrStepmother: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationFatherInLawOrStepfather: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationDaughterInLawOrStepdaughter: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationSonInLawOrStepson: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationCousinOrSiblingsChild: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationNieceOrCousin: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationNephewOrCousin: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationGrandchildOrSiblingsChild: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationGranddaughterOrNiece: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationGrandsonOrNephew: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationGreatGrandchildOrSiblingsGrandchild: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationDaughterInLawOrSisterInLaw: &'static NSString;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNLabelContactRelationSonInLawOrBrotherInLaw: &'static NSString;
+}

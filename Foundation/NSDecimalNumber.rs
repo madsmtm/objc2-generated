@@ -3,17 +3,25 @@
 use crate::common::*;
 use crate::Foundation::*;
 
-#[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
-extern_static!(NSDecimalNumberExactnessException: &'static NSExceptionName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
+    pub static NSDecimalNumberExactnessException: &'static NSExceptionName;
+}
 
-#[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
-extern_static!(NSDecimalNumberOverflowException: &'static NSExceptionName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
+    pub static NSDecimalNumberOverflowException: &'static NSExceptionName;
+}
 
-#[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
-extern_static!(NSDecimalNumberUnderflowException: &'static NSExceptionName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
+    pub static NSDecimalNumberUnderflowException: &'static NSExceptionName;
+}
 
-#[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
-extern_static!(NSDecimalNumberDivideByZeroException: &'static NSExceptionName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
+    pub static NSDecimalNumberDivideByZeroException: &'static NSExceptionName;
+}
 
 extern_protocol!(
     pub unsafe trait NSDecimalNumberBehaviors {

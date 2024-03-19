@@ -3,11 +3,15 @@
 use crate::common::*;
 use crate::Foundation::*;
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSNetServicesErrorCode: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSNetServicesErrorCode: &'static NSString;
+}
 
-#[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
-extern_static!(NSNetServicesErrorDomain: &'static NSErrorDomain);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
+    pub static NSNetServicesErrorDomain: &'static NSErrorDomain;
+}
 
 ns_enum!(
     #[underlying(NSInteger)]

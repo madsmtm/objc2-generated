@@ -117,8 +117,12 @@ extern_methods!(
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKPredicateKeyPathQuantity: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKPredicateKeyPathQuantity: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKPredicateKeyPathCount: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKPredicateKeyPathCount: &'static NSString;
+}

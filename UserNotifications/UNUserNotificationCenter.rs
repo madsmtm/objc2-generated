@@ -22,7 +22,7 @@ ns_options!(
     }
 );
 
-extern_static!(UNAuthorizationOptionNone: UNAuthorizationOptions = UNAuthorizationOptions(0));
+pub static UNAuthorizationOptionNone: UNAuthorizationOptions = UNAuthorizationOptions(0);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -171,7 +171,8 @@ ns_options!(
     }
 );
 
-extern_static!(UNNotificationPresentationOptionNone: UNNotificationPresentationOptions = UNNotificationPresentationOptions(0));
+pub static UNNotificationPresentationOptionNone: UNNotificationPresentationOptions =
+    UNNotificationPresentationOptions(0);
 
 extern_protocol!(
     pub unsafe trait UNUserNotificationCenterDelegate: NSObjectProtocol {

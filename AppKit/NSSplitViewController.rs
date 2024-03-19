@@ -5,8 +5,10 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-#[cfg(feature = "Foundation_NSGeometry")]
-extern_static!(NSSplitViewControllerAutomaticDimension: CGFloat);
+extern "C" {
+    #[cfg(feature = "Foundation_NSGeometry")]
+    pub static NSSplitViewControllerAutomaticDimension: CGFloat;
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

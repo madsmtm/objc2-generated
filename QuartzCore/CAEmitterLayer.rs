@@ -179,47 +179,77 @@ extern_methods!(
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(kCAEmitterLayerPoint: &'static CAEmitterLayerEmitterShape);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static kCAEmitterLayerPoint: &'static CAEmitterLayerEmitterShape;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(kCAEmitterLayerLine: &'static CAEmitterLayerEmitterShape);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static kCAEmitterLayerLine: &'static CAEmitterLayerEmitterShape;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(kCAEmitterLayerRectangle: &'static CAEmitterLayerEmitterShape);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static kCAEmitterLayerRectangle: &'static CAEmitterLayerEmitterShape;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(kCAEmitterLayerCuboid: &'static CAEmitterLayerEmitterShape);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static kCAEmitterLayerCuboid: &'static CAEmitterLayerEmitterShape;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(kCAEmitterLayerCircle: &'static CAEmitterLayerEmitterShape);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static kCAEmitterLayerCircle: &'static CAEmitterLayerEmitterShape;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(kCAEmitterLayerSphere: &'static CAEmitterLayerEmitterShape);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static kCAEmitterLayerSphere: &'static CAEmitterLayerEmitterShape;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(kCAEmitterLayerPoints: &'static CAEmitterLayerEmitterMode);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static kCAEmitterLayerPoints: &'static CAEmitterLayerEmitterMode;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(kCAEmitterLayerOutline: &'static CAEmitterLayerEmitterMode);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static kCAEmitterLayerOutline: &'static CAEmitterLayerEmitterMode;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(kCAEmitterLayerSurface: &'static CAEmitterLayerEmitterMode);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static kCAEmitterLayerSurface: &'static CAEmitterLayerEmitterMode;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(kCAEmitterLayerVolume: &'static CAEmitterLayerEmitterMode);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static kCAEmitterLayerVolume: &'static CAEmitterLayerEmitterMode;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(kCAEmitterLayerUnordered: &'static CAEmitterLayerRenderMode);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static kCAEmitterLayerUnordered: &'static CAEmitterLayerRenderMode;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(kCAEmitterLayerOldestFirst: &'static CAEmitterLayerRenderMode);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static kCAEmitterLayerOldestFirst: &'static CAEmitterLayerRenderMode;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(kCAEmitterLayerOldestLast: &'static CAEmitterLayerRenderMode);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static kCAEmitterLayerOldestLast: &'static CAEmitterLayerRenderMode;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(kCAEmitterLayerBackToFront: &'static CAEmitterLayerRenderMode);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static kCAEmitterLayerBackToFront: &'static CAEmitterLayerRenderMode;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(kCAEmitterLayerAdditive: &'static CAEmitterLayerRenderMode);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static kCAEmitterLayerAdditive: &'static CAEmitterLayerRenderMode;
+}

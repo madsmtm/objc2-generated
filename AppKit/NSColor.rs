@@ -6,7 +6,7 @@ use crate::CoreData::*;
 use crate::Foundation::*;
 
 #[cfg(feature = "AppKit_NSApplication")]
-extern_static!(NSAppKitVersionNumberWithPatternColorLeakFix: NSAppKitVersion = 641.0);
+pub static NSAppKitVersionNumberWithPatternColorLeakFix: NSAppKitVersion = 641.0 as _;
 
 ns_enum!(
     #[underlying(NSInteger)]
@@ -731,5 +731,7 @@ extern_methods!(
     unsafe impl NSColor {}
 );
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSSystemColorsDidChangeNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSSystemColorsDidChangeNotification: &'static NSNotificationName;
+}

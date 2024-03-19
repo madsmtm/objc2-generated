@@ -10,26 +10,40 @@ typed_enum!(
     pub type NSRuleEditorPredicatePartKey = NSString;
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSRuleEditorPredicateLeftExpression: &'static NSRuleEditorPredicatePartKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSRuleEditorPredicateLeftExpression: &'static NSRuleEditorPredicatePartKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSRuleEditorPredicateRightExpression: &'static NSRuleEditorPredicatePartKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSRuleEditorPredicateRightExpression: &'static NSRuleEditorPredicatePartKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSRuleEditorPredicateComparisonModifier: &'static NSRuleEditorPredicatePartKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSRuleEditorPredicateComparisonModifier: &'static NSRuleEditorPredicatePartKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSRuleEditorPredicateOptions: &'static NSRuleEditorPredicatePartKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSRuleEditorPredicateOptions: &'static NSRuleEditorPredicatePartKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSRuleEditorPredicateOperatorType: &'static NSRuleEditorPredicatePartKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSRuleEditorPredicateOperatorType: &'static NSRuleEditorPredicatePartKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSRuleEditorPredicateCustomSelector: &'static NSRuleEditorPredicatePartKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSRuleEditorPredicateCustomSelector: &'static NSRuleEditorPredicatePartKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSRuleEditorPredicateCompoundType: &'static NSRuleEditorPredicatePartKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSRuleEditorPredicateCompoundType: &'static NSRuleEditorPredicatePartKey;
+}
 
 ns_enum!(
     #[underlying(NSUInteger)]
@@ -437,5 +451,7 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn NSRuleEditorDelegate {}
 );
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSRuleEditorRowsDidChangeNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSRuleEditorRowsDidChangeNotification: &'static NSNotificationName;
+}

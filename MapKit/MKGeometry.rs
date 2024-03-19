@@ -65,9 +65,13 @@ extern_struct!(
 #[cfg(feature = "Foundation_NSGeometry")]
 pub type MKZoomScale = CGFloat;
 
-extern_static!(MKMapSizeWorld: MKMapSize);
+extern "C" {
+    pub static MKMapSizeWorld: MKMapSize;
+}
 
-extern_static!(MKMapRectWorld: MKMapRect);
+extern "C" {
+    pub static MKMapRectWorld: MKMapRect;
+}
 
 extern "C" {
     #[cfg(feature = "CoreLocation_CLLocation")]
@@ -94,7 +98,9 @@ extern "C" {
     pub fn MKMetersBetweenMapPoints(a: MKMapPoint, b: MKMapPoint) -> CLLocationDistance;
 }
 
-extern_static!(MKMapRectNull: MKMapRect);
+extern "C" {
+    pub static MKMapRectNull: MKMapRect;
+}
 
 // TODO: pub fn MKMapPointMake(x: c_double,y: c_double,) -> MKMapPoint;
 

@@ -368,11 +368,15 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn NSSplitViewDelegate {}
 );
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSSplitViewWillResizeSubviewsNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSSplitViewWillResizeSubviewsNotification: &'static NSNotificationName;
+}
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSSplitViewDidResizeSubviewsNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSSplitViewDidResizeSubviewsNotification: &'static NSNotificationName;
+}
 
 extern_methods!(
     /// NSDeprecated

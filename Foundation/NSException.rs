@@ -3,50 +3,80 @@
 use crate::common::*;
 use crate::Foundation::*;
 
-#[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
-extern_static!(NSGenericException: &'static NSExceptionName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
+    pub static NSGenericException: &'static NSExceptionName;
+}
 
-#[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
-extern_static!(NSRangeException: &'static NSExceptionName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
+    pub static NSRangeException: &'static NSExceptionName;
+}
 
-#[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
-extern_static!(NSInvalidArgumentException: &'static NSExceptionName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
+    pub static NSInvalidArgumentException: &'static NSExceptionName;
+}
 
-#[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
-extern_static!(NSInternalInconsistencyException: &'static NSExceptionName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
+    pub static NSInternalInconsistencyException: &'static NSExceptionName;
+}
 
-#[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
-extern_static!(NSMallocException: &'static NSExceptionName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
+    pub static NSMallocException: &'static NSExceptionName;
+}
 
-#[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
-extern_static!(NSObjectInaccessibleException: &'static NSExceptionName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
+    pub static NSObjectInaccessibleException: &'static NSExceptionName;
+}
 
-#[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
-extern_static!(NSObjectNotAvailableException: &'static NSExceptionName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
+    pub static NSObjectNotAvailableException: &'static NSExceptionName;
+}
 
-#[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
-extern_static!(NSDestinationInvalidException: &'static NSExceptionName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
+    pub static NSDestinationInvalidException: &'static NSExceptionName;
+}
 
-#[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
-extern_static!(NSPortTimeoutException: &'static NSExceptionName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
+    pub static NSPortTimeoutException: &'static NSExceptionName;
+}
 
-#[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
-extern_static!(NSInvalidSendPortException: &'static NSExceptionName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
+    pub static NSInvalidSendPortException: &'static NSExceptionName;
+}
 
-#[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
-extern_static!(NSInvalidReceivePortException: &'static NSExceptionName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
+    pub static NSInvalidReceivePortException: &'static NSExceptionName;
+}
 
-#[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
-extern_static!(NSPortSendException: &'static NSExceptionName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
+    pub static NSPortSendException: &'static NSExceptionName;
+}
 
-#[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
-extern_static!(NSPortReceiveException: &'static NSExceptionName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
+    pub static NSPortReceiveException: &'static NSExceptionName;
+}
 
-#[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
-extern_static!(NSOldStyleException: &'static NSExceptionName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
+    pub static NSOldStyleException: &'static NSExceptionName;
+}
 
-#[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
-extern_static!(NSInconsistentArchiveException: &'static NSExceptionName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
+    pub static NSInconsistentArchiveException: &'static NSExceptionName;
+}
 
 extern_class!(
     #[derive(PartialEq, Eq, Hash)]
@@ -141,8 +171,10 @@ extern "C" {
     pub fn NSSetUncaughtExceptionHandler(_: *mut NSUncaughtExceptionHandler);
 }
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSAssertionHandlerKey: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSAssertionHandlerKey: &'static NSString;
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

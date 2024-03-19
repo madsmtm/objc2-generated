@@ -4,8 +4,10 @@ use crate::common::*;
 use crate::AdServices::*;
 use crate::Foundation::*;
 
-#[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
-extern_static!(AAAttributionErrorDomain: &'static NSErrorDomain);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
+    pub static AAAttributionErrorDomain: &'static NSErrorDomain;
+}
 
 ns_error_enum!(
     #[underlying(NSInteger)]

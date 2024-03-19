@@ -22,8 +22,11 @@ ns_enum!(
 #[cfg(feature = "Foundation_NSString")]
 pub type NSCollectionViewDecorationElementKind = NSString;
 
-#[cfg(all(feature = "AppKit_NSCollectionView", feature = "Foundation_NSString"))]
-extern_static!(NSCollectionElementKindInterItemGapIndicator: &'static NSCollectionViewSupplementaryElementKind);
+extern "C" {
+    #[cfg(all(feature = "AppKit_NSCollectionView", feature = "Foundation_NSString"))]
+    pub static NSCollectionElementKindInterItemGapIndicator:
+        &'static NSCollectionViewSupplementaryElementKind;
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

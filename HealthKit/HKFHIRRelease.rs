@@ -11,11 +11,17 @@ typed_enum!(
     pub type HKFHIRRelease = NSString;
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKFHIRReleaseDSTU2: &'static HKFHIRRelease);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKFHIRReleaseDSTU2: &'static HKFHIRRelease;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKFHIRReleaseR4: &'static HKFHIRRelease);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKFHIRReleaseR4: &'static HKFHIRRelease;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKFHIRReleaseUnknown: &'static HKFHIRRelease);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKFHIRReleaseUnknown: &'static HKFHIRRelease;
+}

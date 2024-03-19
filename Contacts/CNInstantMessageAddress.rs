@@ -64,38 +64,62 @@ extern_methods!(
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNInstantMessageAddressUsernameKey: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNInstantMessageAddressUsernameKey: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNInstantMessageAddressServiceKey: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNInstantMessageAddressServiceKey: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNInstantMessageServiceAIM: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNInstantMessageServiceAIM: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNInstantMessageServiceFacebook: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNInstantMessageServiceFacebook: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNInstantMessageServiceGaduGadu: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNInstantMessageServiceGaduGadu: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNInstantMessageServiceGoogleTalk: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNInstantMessageServiceGoogleTalk: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNInstantMessageServiceICQ: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNInstantMessageServiceICQ: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNInstantMessageServiceJabber: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNInstantMessageServiceJabber: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNInstantMessageServiceMSN: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNInstantMessageServiceMSN: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNInstantMessageServiceQQ: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNInstantMessageServiceQQ: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNInstantMessageServiceSkype: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNInstantMessageServiceSkype: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNInstantMessageServiceYahoo: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNInstantMessageServiceYahoo: &'static NSString;
+}

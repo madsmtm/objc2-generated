@@ -88,50 +88,80 @@ typed_extensible_enum!(
     pub type NSBitmapImageRepPropertyKey = NSString;
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageCompressionMethod: &'static NSBitmapImageRepPropertyKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageCompressionMethod: &'static NSBitmapImageRepPropertyKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageCompressionFactor: &'static NSBitmapImageRepPropertyKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageCompressionFactor: &'static NSBitmapImageRepPropertyKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageDitherTransparency: &'static NSBitmapImageRepPropertyKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageDitherTransparency: &'static NSBitmapImageRepPropertyKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageRGBColorTable: &'static NSBitmapImageRepPropertyKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageRGBColorTable: &'static NSBitmapImageRepPropertyKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageInterlaced: &'static NSBitmapImageRepPropertyKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageInterlaced: &'static NSBitmapImageRepPropertyKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageColorSyncProfileData: &'static NSBitmapImageRepPropertyKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageColorSyncProfileData: &'static NSBitmapImageRepPropertyKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageFrameCount: &'static NSBitmapImageRepPropertyKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageFrameCount: &'static NSBitmapImageRepPropertyKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageCurrentFrame: &'static NSBitmapImageRepPropertyKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageCurrentFrame: &'static NSBitmapImageRepPropertyKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageCurrentFrameDuration: &'static NSBitmapImageRepPropertyKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageCurrentFrameDuration: &'static NSBitmapImageRepPropertyKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageLoopCount: &'static NSBitmapImageRepPropertyKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageLoopCount: &'static NSBitmapImageRepPropertyKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageGamma: &'static NSBitmapImageRepPropertyKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageGamma: &'static NSBitmapImageRepPropertyKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageProgressive: &'static NSBitmapImageRepPropertyKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageProgressive: &'static NSBitmapImageRepPropertyKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageEXIFData: &'static NSBitmapImageRepPropertyKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageEXIFData: &'static NSBitmapImageRepPropertyKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageIPTCData: &'static NSBitmapImageRepPropertyKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageIPTCData: &'static NSBitmapImageRepPropertyKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageFallbackBackgroundColor: &'static NSBitmapImageRepPropertyKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageFallbackBackgroundColor: &'static NSBitmapImageRepPropertyKey;
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -416,28 +446,40 @@ extern_methods!(
     }
 );
 
-extern_static!(NSTIFFFileType: NSBitmapImageFileType = NSBitmapImageFileType(NSBitmapImageFileType::TIFF.0));
+pub static NSTIFFFileType: NSBitmapImageFileType =
+    NSBitmapImageFileType(NSBitmapImageFileType::TIFF.0);
 
-extern_static!(NSBMPFileType: NSBitmapImageFileType = NSBitmapImageFileType(NSBitmapImageFileType::BMP.0));
+pub static NSBMPFileType: NSBitmapImageFileType =
+    NSBitmapImageFileType(NSBitmapImageFileType::BMP.0);
 
-extern_static!(NSGIFFileType: NSBitmapImageFileType = NSBitmapImageFileType(NSBitmapImageFileType::GIF.0));
+pub static NSGIFFileType: NSBitmapImageFileType =
+    NSBitmapImageFileType(NSBitmapImageFileType::GIF.0);
 
-extern_static!(NSJPEGFileType: NSBitmapImageFileType = NSBitmapImageFileType(NSBitmapImageFileType::JPEG.0));
+pub static NSJPEGFileType: NSBitmapImageFileType =
+    NSBitmapImageFileType(NSBitmapImageFileType::JPEG.0);
 
-extern_static!(NSPNGFileType: NSBitmapImageFileType = NSBitmapImageFileType(NSBitmapImageFileType::PNG.0));
+pub static NSPNGFileType: NSBitmapImageFileType =
+    NSBitmapImageFileType(NSBitmapImageFileType::PNG.0);
 
-extern_static!(NSJPEG2000FileType: NSBitmapImageFileType = NSBitmapImageFileType(NSBitmapImageFileType::JPEG2000.0));
+pub static NSJPEG2000FileType: NSBitmapImageFileType =
+    NSBitmapImageFileType(NSBitmapImageFileType::JPEG2000.0);
 
-extern_static!(NSAlphaFirstBitmapFormat: NSBitmapFormat = NSBitmapFormat(NSBitmapFormat::AlphaFirst.0));
+pub static NSAlphaFirstBitmapFormat: NSBitmapFormat = NSBitmapFormat(NSBitmapFormat::AlphaFirst.0);
 
-extern_static!(NSAlphaNonpremultipliedBitmapFormat: NSBitmapFormat = NSBitmapFormat(NSBitmapFormat::AlphaNonpremultiplied.0));
+pub static NSAlphaNonpremultipliedBitmapFormat: NSBitmapFormat =
+    NSBitmapFormat(NSBitmapFormat::AlphaNonpremultiplied.0);
 
-extern_static!(NSFloatingPointSamplesBitmapFormat: NSBitmapFormat = NSBitmapFormat(NSBitmapFormat::FloatingPointSamples.0));
+pub static NSFloatingPointSamplesBitmapFormat: NSBitmapFormat =
+    NSBitmapFormat(NSBitmapFormat::FloatingPointSamples.0);
 
-extern_static!(NS16BitLittleEndianBitmapFormat: NSBitmapFormat = NSBitmapFormat(NSBitmapFormat::SixteenBitLittleEndian.0));
+pub static NS16BitLittleEndianBitmapFormat: NSBitmapFormat =
+    NSBitmapFormat(NSBitmapFormat::SixteenBitLittleEndian.0);
 
-extern_static!(NS32BitLittleEndianBitmapFormat: NSBitmapFormat = NSBitmapFormat(NSBitmapFormat::ThirtyTwoBitLittleEndian.0));
+pub static NS32BitLittleEndianBitmapFormat: NSBitmapFormat =
+    NSBitmapFormat(NSBitmapFormat::ThirtyTwoBitLittleEndian.0);
 
-extern_static!(NS16BitBigEndianBitmapFormat: NSBitmapFormat = NSBitmapFormat(NSBitmapFormat::SixteenBitBigEndian.0));
+pub static NS16BitBigEndianBitmapFormat: NSBitmapFormat =
+    NSBitmapFormat(NSBitmapFormat::SixteenBitBigEndian.0);
 
-extern_static!(NS32BitBigEndianBitmapFormat: NSBitmapFormat = NSBitmapFormat(NSBitmapFormat::ThirtyTwoBitBigEndian.0));
+pub static NS32BitBigEndianBitmapFormat: NSBitmapFormat =
+    NSBitmapFormat(NSBitmapFormat::ThirtyTwoBitBigEndian.0);

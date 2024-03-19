@@ -5,8 +5,10 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::GameKit::*;
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(GKPlayerIDNoLongerAvailable: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static GKPlayerIDNoLongerAvailable: &'static NSString;
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -95,8 +97,10 @@ extern_methods!(
     }
 );
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(GKPlayerDidChangeNotificationName: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static GKPlayerDidChangeNotificationName: &'static NSNotificationName;
+}
 
 extern_methods!(
     /// Deprecated

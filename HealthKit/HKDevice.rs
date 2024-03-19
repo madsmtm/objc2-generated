@@ -6,29 +6,45 @@ use crate::Foundation::*;
 use crate::HealthKit::*;
 use crate::UniformTypeIdentifiers::*;
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKDevicePropertyKeyName: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKDevicePropertyKeyName: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKDevicePropertyKeyManufacturer: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKDevicePropertyKeyManufacturer: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKDevicePropertyKeyModel: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKDevicePropertyKeyModel: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKDevicePropertyKeyHardwareVersion: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKDevicePropertyKeyHardwareVersion: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKDevicePropertyKeyFirmwareVersion: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKDevicePropertyKeyFirmwareVersion: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKDevicePropertyKeySoftwareVersion: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKDevicePropertyKeySoftwareVersion: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKDevicePropertyKeyLocalIdentifier: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKDevicePropertyKeyLocalIdentifier: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKDevicePropertyKeyUDIDeviceIdentifier: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKDevicePropertyKeyUDIDeviceIdentifier: &'static NSString;
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

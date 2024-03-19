@@ -6,7 +6,7 @@ use crate::Foundation::*;
 use crate::HealthKit::*;
 use crate::UniformTypeIdentifiers::*;
 
-extern_static!(HKObjectQueryNoLimit: NSUInteger = 0);
+pub static HKObjectQueryNoLimit: NSUInteger = 0;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

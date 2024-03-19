@@ -10,11 +10,18 @@ typed_enum!(
     pub type ASAuthorizationCustomMethod = NSString;
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(ASAuthorizationCustomMethodVideoSubscriberAccount: &'static ASAuthorizationCustomMethod);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static ASAuthorizationCustomMethodVideoSubscriberAccount:
+        &'static ASAuthorizationCustomMethod;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(ASAuthorizationCustomMethodRestorePurchase: &'static ASAuthorizationCustomMethod);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static ASAuthorizationCustomMethodRestorePurchase: &'static ASAuthorizationCustomMethod;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(ASAuthorizationCustomMethodOther: &'static ASAuthorizationCustomMethod);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static ASAuthorizationCustomMethodOther: &'static ASAuthorizationCustomMethod;
+}

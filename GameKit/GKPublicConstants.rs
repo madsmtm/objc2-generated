@@ -51,8 +51,10 @@ ns_enum!(
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(GKVoiceChatServiceErrorDomain: Option<&'static NSString>);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static GKVoiceChatServiceErrorDomain: Option<&'static NSString>;
+}
 
 ns_enum!(
     #[underlying(c_int)]

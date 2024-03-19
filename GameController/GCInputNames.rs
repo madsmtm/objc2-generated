@@ -35,11 +35,15 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn GCDirectionPadElementName {}
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(GCInputLeftBumper: Option<&'static GCInputButtonName>);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static GCInputLeftBumper: Option<&'static GCInputButtonName>;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(GCInputRightBumper: Option<&'static GCInputButtonName>);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static GCInputRightBumper: Option<&'static GCInputButtonName>;
+}
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]

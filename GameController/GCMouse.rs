@@ -5,17 +5,25 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::GameController::*;
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(GCMouseDidConnectNotification: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static GCMouseDidConnectNotification: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(GCMouseDidDisconnectNotification: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static GCMouseDidDisconnectNotification: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(GCMouseDidBecomeCurrentNotification: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static GCMouseDidBecomeCurrentNotification: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(GCMouseDidStopBeingCurrentNotification: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static GCMouseDidStopBeingCurrentNotification: &'static NSString;
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

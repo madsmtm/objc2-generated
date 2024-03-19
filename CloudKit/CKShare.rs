@@ -5,20 +5,30 @@ use crate::CloudKit::*;
 use crate::CoreLocation::*;
 use crate::Foundation::*;
 
-#[cfg(all(feature = "CloudKit_CKRecord", feature = "Foundation_NSString"))]
-extern_static!(CKRecordTypeShare: &'static CKRecordType);
+extern "C" {
+    #[cfg(all(feature = "CloudKit_CKRecord", feature = "Foundation_NSString"))]
+    pub static CKRecordTypeShare: &'static CKRecordType;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CKRecordNameZoneWideShare: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CKRecordNameZoneWideShare: &'static NSString;
+}
 
-#[cfg(all(feature = "CloudKit_CKRecord", feature = "Foundation_NSString"))]
-extern_static!(CKShareTitleKey: &'static CKRecordFieldKey);
+extern "C" {
+    #[cfg(all(feature = "CloudKit_CKRecord", feature = "Foundation_NSString"))]
+    pub static CKShareTitleKey: &'static CKRecordFieldKey;
+}
 
-#[cfg(all(feature = "CloudKit_CKRecord", feature = "Foundation_NSString"))]
-extern_static!(CKShareThumbnailImageDataKey: &'static CKRecordFieldKey);
+extern "C" {
+    #[cfg(all(feature = "CloudKit_CKRecord", feature = "Foundation_NSString"))]
+    pub static CKShareThumbnailImageDataKey: &'static CKRecordFieldKey;
+}
 
-#[cfg(all(feature = "CloudKit_CKRecord", feature = "Foundation_NSString"))]
-extern_static!(CKShareTypeKey: &'static CKRecordFieldKey);
+extern "C" {
+    #[cfg(all(feature = "CloudKit_CKRecord", feature = "Foundation_NSString"))]
+    pub static CKShareTypeKey: &'static CKRecordFieldKey;
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

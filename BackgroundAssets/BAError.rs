@@ -4,8 +4,10 @@ use crate::common::*;
 use crate::BackgroundAssets::*;
 use crate::Foundation::*;
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(BAErrorDomain: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static BAErrorDomain: &'static NSString;
+}
 
 ns_enum!(
     #[underlying(NSInteger)]

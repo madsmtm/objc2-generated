@@ -227,5 +227,7 @@ extern_methods!(
     }
 );
 
-#[cfg(all(feature = "AppKit_NSTouchBarItem", feature = "Foundation_NSString"))]
-extern_static!(NSTouchBarItemIdentifierCandidateList: &'static NSTouchBarItemIdentifier);
+extern "C" {
+    #[cfg(all(feature = "AppKit_NSTouchBarItem", feature = "Foundation_NSString"))]
+    pub static NSTouchBarItemIdentifierCandidateList: &'static NSTouchBarItemIdentifier;
+}

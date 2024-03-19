@@ -159,8 +159,10 @@ extern_methods!(
     }
 );
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(GKPlayerAuthenticationDidChangeNotificationName: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static GKPlayerAuthenticationDidChangeNotificationName: &'static NSNotificationName;
+}
 
 extern_methods!(
     /// Deprecated

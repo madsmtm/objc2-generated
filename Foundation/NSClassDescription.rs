@@ -94,5 +94,7 @@ extern_category!(
     unsafe impl NSObjectNSClassDescriptionPrimitives for NSObject {}
 );
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSClassDescriptionNeededForClassNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSClassDescriptionNeededForClassNotification: &'static NSNotificationName;
+}

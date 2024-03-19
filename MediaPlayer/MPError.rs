@@ -5,8 +5,10 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::MediaPlayer::*;
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(MPErrorDomain: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static MPErrorDomain: &'static NSString;
+}
 
 ns_enum!(
     #[underlying(NSInteger)]

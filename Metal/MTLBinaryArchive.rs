@@ -4,8 +4,10 @@ use crate::common::*;
 use crate::Foundation::*;
 use crate::Metal::*;
 
-#[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
-extern_static!(MTLBinaryArchiveDomain: &'static NSErrorDomain);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
+    pub static MTLBinaryArchiveDomain: &'static NSErrorDomain;
+}
 
 ns_enum!(
     #[underlying(NSUInteger)]

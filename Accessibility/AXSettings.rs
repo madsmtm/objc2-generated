@@ -8,12 +8,16 @@ extern "C" {
     pub fn AXPrefersHorizontalTextLayout() -> Bool;
 }
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(AXPrefersHorizontalTextLayoutDidChangeNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static AXPrefersHorizontalTextLayoutDidChangeNotification: &'static NSNotificationName;
+}
 
 extern "C" {
     pub fn AXAnimatedImagesEnabled() -> Bool;
 }
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(AXAnimatedImagesEnabledDidChangeNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static AXAnimatedImagesEnabledDidChangeNotification: &'static NSNotificationName;
+}

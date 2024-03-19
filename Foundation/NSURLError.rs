@@ -3,30 +3,44 @@
 use crate::common::*;
 use crate::Foundation::*;
 
-#[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
-extern_static!(NSURLErrorDomain: &'static NSErrorDomain);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
+    pub static NSURLErrorDomain: &'static NSErrorDomain;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSURLErrorFailingURLErrorKey: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSURLErrorFailingURLErrorKey: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSURLErrorFailingURLStringErrorKey: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSURLErrorFailingURLStringErrorKey: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSErrorFailingURLStringKey: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSErrorFailingURLStringKey: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSURLErrorFailingURLPeerTrustErrorKey: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSURLErrorFailingURLPeerTrustErrorKey: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSURLErrorBackgroundTaskCancelledReasonKey: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSURLErrorBackgroundTaskCancelledReasonKey: &'static NSString;
+}
 
 pub const NSURLErrorCancelledReasonUserForceQuitApplication: NSInteger = 0;
 pub const NSURLErrorCancelledReasonBackgroundUpdatesDisabled: NSInteger = 1;
 pub const NSURLErrorCancelledReasonInsufficientSystemResources: NSInteger = 2;
 
-#[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
-extern_static!(NSURLErrorNetworkUnavailableReasonKey: &'static NSErrorUserInfoKey);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
+    pub static NSURLErrorNetworkUnavailableReasonKey: &'static NSErrorUserInfoKey;
+}
 
 ns_enum!(
     #[underlying(NSInteger)]

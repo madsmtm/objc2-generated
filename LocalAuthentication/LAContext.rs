@@ -20,8 +20,10 @@ ns_enum!(
     }
 );
 
-#[cfg(feature = "Foundation_NSDate")]
-extern_static!(LATouchIDAuthenticationMaximumAllowableReuseDuration: NSTimeInterval);
+extern "C" {
+    #[cfg(feature = "Foundation_NSDate")]
+    pub static LATouchIDAuthenticationMaximumAllowableReuseDuration: NSTimeInterval;
+}
 
 ns_enum!(
     #[underlying(NSInteger)]

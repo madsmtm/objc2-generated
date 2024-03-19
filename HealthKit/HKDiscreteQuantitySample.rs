@@ -162,23 +162,37 @@ extern_methods!(
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKPredicateKeyPathMin: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKPredicateKeyPathMin: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKPredicateKeyPathAverage: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKPredicateKeyPathAverage: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKPredicateKeyPathMax: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKPredicateKeyPathMax: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKPredicateKeyPathMostRecent: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKPredicateKeyPathMostRecent: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKPredicateKeyPathMostRecentStartDate: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKPredicateKeyPathMostRecentStartDate: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKPredicateKeyPathMostRecentEndDate: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKPredicateKeyPathMostRecentEndDate: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKPredicateKeyPathMostRecentDuration: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKPredicateKeyPathMostRecentDuration: &'static NSString;
+}

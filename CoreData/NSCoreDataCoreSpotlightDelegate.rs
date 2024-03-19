@@ -4,8 +4,11 @@ use crate::common::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSCoreDataCoreSpotlightDelegateIndexDidUpdateNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSCoreDataCoreSpotlightDelegateIndexDidUpdateNotification:
+        &'static NSNotificationName;
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

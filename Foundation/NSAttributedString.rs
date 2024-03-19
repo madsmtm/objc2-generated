@@ -13,8 +13,10 @@ typed_extensible_enum!(
     pub type NSAttributedStringFormattingContextKey = NSString;
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSInflectionConceptsKey: &'static NSAttributedStringFormattingContextKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSInflectionConceptsKey: &'static NSAttributedStringFormattingContextKey;
+}
 
 extern_class!(
     #[derive(PartialEq, Eq, Hash)]
@@ -364,20 +366,30 @@ ns_options!(
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSInlinePresentationIntentAttributeName: &'static NSAttributedStringKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSInlinePresentationIntentAttributeName: &'static NSAttributedStringKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSAlternateDescriptionAttributeName: &'static NSAttributedStringKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSAlternateDescriptionAttributeName: &'static NSAttributedStringKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageURLAttributeName: &'static NSAttributedStringKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageURLAttributeName: &'static NSAttributedStringKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSLanguageIdentifierAttributeName: &'static NSAttributedStringKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSLanguageIdentifierAttributeName: &'static NSAttributedStringKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSMarkdownSourcePositionAttributeName: &'static NSAttributedStringKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSMarkdownSourcePositionAttributeName: &'static NSAttributedStringKey;
+}
 
 ns_enum!(
     #[underlying(NSInteger)]
@@ -631,8 +643,10 @@ extern_methods!(
     unsafe impl NSMutableAttributedString {}
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSReplacementIndexAttributeName: &'static NSAttributedStringKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSReplacementIndexAttributeName: &'static NSAttributedStringKey;
+}
 
 extern_methods!(
     /// NSMorphology
@@ -642,26 +656,40 @@ extern_methods!(
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSMorphologyAttributeName: &'static NSAttributedStringKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSMorphologyAttributeName: &'static NSAttributedStringKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSInflectionRuleAttributeName: &'static NSAttributedStringKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSInflectionRuleAttributeName: &'static NSAttributedStringKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSInflectionAgreementArgumentAttributeName: &'static NSAttributedStringKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSInflectionAgreementArgumentAttributeName: &'static NSAttributedStringKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSInflectionAgreementConceptAttributeName: &'static NSAttributedStringKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSInflectionAgreementConceptAttributeName: &'static NSAttributedStringKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSInflectionReferentConceptAttributeName: &'static NSAttributedStringKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSInflectionReferentConceptAttributeName: &'static NSAttributedStringKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSInflectionAlternativeAttributeName: &'static NSAttributedStringKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSInflectionAlternativeAttributeName: &'static NSAttributedStringKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSPresentationIntentAttributeName: &'static NSAttributedStringKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSPresentationIntentAttributeName: &'static NSAttributedStringKey;
+}
 
 ns_enum!(
     #[underlying(NSInteger)]

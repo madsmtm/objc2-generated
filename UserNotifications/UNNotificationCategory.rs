@@ -17,7 +17,8 @@ ns_options!(
     }
 );
 
-extern_static!(UNNotificationCategoryOptionNone: UNNotificationCategoryOptions = UNNotificationCategoryOptions(0));
+pub static UNNotificationCategoryOptionNone: UNNotificationCategoryOptions =
+    UNNotificationCategoryOptions(0);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

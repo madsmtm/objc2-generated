@@ -5,26 +5,40 @@ use crate::CloudKit::*;
 use crate::CoreLocation::*;
 use crate::Foundation::*;
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CKErrorDomain: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CKErrorDomain: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CKPartialErrorsByItemIDKey: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CKPartialErrorsByItemIDKey: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CKRecordChangedErrorAncestorRecordKey: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CKRecordChangedErrorAncestorRecordKey: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CKRecordChangedErrorServerRecordKey: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CKRecordChangedErrorServerRecordKey: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CKRecordChangedErrorClientRecordKey: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CKRecordChangedErrorClientRecordKey: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CKErrorUserDidResetEncryptedDataKey: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CKErrorUserDidResetEncryptedDataKey: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CKErrorRetryAfterKey: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CKErrorRetryAfterKey: &'static NSString;
+}
 
 ns_enum!(
     #[underlying(NSInteger)]

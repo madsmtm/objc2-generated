@@ -387,14 +387,20 @@ typed_enum!(
     pub type NSWorkspaceDesktopImageOptionKey = NSString;
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSWorkspaceDesktopImageScalingKey: &'static NSWorkspaceDesktopImageOptionKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSWorkspaceDesktopImageScalingKey: &'static NSWorkspaceDesktopImageOptionKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSWorkspaceDesktopImageAllowClippingKey: &'static NSWorkspaceDesktopImageOptionKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSWorkspaceDesktopImageAllowClippingKey: &'static NSWorkspaceDesktopImageOptionKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSWorkspaceDesktopImageFillColorKey: &'static NSWorkspaceDesktopImageOptionKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSWorkspaceDesktopImageFillColorKey: &'static NSWorkspaceDesktopImageOptionKey;
+}
 
 extern_methods!(
     /// NSDesktopImages
@@ -498,80 +504,130 @@ extern_category!(
     unsafe impl NSFileManagerNSWorkspaceAuthorization for NSFileManager {}
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSWorkspaceApplicationKey: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSWorkspaceApplicationKey: &'static NSString;
+}
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSWorkspaceWillLaunchApplicationNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSWorkspaceWillLaunchApplicationNotification: &'static NSNotificationName;
+}
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSWorkspaceDidLaunchApplicationNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSWorkspaceDidLaunchApplicationNotification: &'static NSNotificationName;
+}
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSWorkspaceDidTerminateApplicationNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSWorkspaceDidTerminateApplicationNotification: &'static NSNotificationName;
+}
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSWorkspaceDidHideApplicationNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSWorkspaceDidHideApplicationNotification: &'static NSNotificationName;
+}
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSWorkspaceDidUnhideApplicationNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSWorkspaceDidUnhideApplicationNotification: &'static NSNotificationName;
+}
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSWorkspaceDidActivateApplicationNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSWorkspaceDidActivateApplicationNotification: &'static NSNotificationName;
+}
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSWorkspaceDidDeactivateApplicationNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSWorkspaceDidDeactivateApplicationNotification: &'static NSNotificationName;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSWorkspaceVolumeLocalizedNameKey: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSWorkspaceVolumeLocalizedNameKey: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSWorkspaceVolumeURLKey: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSWorkspaceVolumeURLKey: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSWorkspaceVolumeOldLocalizedNameKey: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSWorkspaceVolumeOldLocalizedNameKey: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSWorkspaceVolumeOldURLKey: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSWorkspaceVolumeOldURLKey: &'static NSString;
+}
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSWorkspaceDidMountNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSWorkspaceDidMountNotification: &'static NSNotificationName;
+}
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSWorkspaceDidUnmountNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSWorkspaceDidUnmountNotification: &'static NSNotificationName;
+}
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSWorkspaceWillUnmountNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSWorkspaceWillUnmountNotification: &'static NSNotificationName;
+}
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSWorkspaceDidRenameVolumeNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSWorkspaceDidRenameVolumeNotification: &'static NSNotificationName;
+}
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSWorkspaceWillPowerOffNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSWorkspaceWillPowerOffNotification: &'static NSNotificationName;
+}
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSWorkspaceWillSleepNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSWorkspaceWillSleepNotification: &'static NSNotificationName;
+}
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSWorkspaceDidWakeNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSWorkspaceDidWakeNotification: &'static NSNotificationName;
+}
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSWorkspaceScreensDidSleepNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSWorkspaceScreensDidSleepNotification: &'static NSNotificationName;
+}
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSWorkspaceScreensDidWakeNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSWorkspaceScreensDidWakeNotification: &'static NSNotificationName;
+}
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSWorkspaceSessionDidBecomeActiveNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSWorkspaceSessionDidBecomeActiveNotification: &'static NSNotificationName;
+}
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSWorkspaceSessionDidResignActiveNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSWorkspaceSessionDidResignActiveNotification: &'static NSNotificationName;
+}
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSWorkspaceDidChangeFileLabelsNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSWorkspaceDidChangeFileLabelsNotification: &'static NSNotificationName;
+}
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSWorkspaceActiveSpaceDidChangeNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSWorkspaceActiveSpaceDidChangeNotification: &'static NSNotificationName;
+}
 
 #[cfg(feature = "Foundation_NSString")]
 typed_enum!(
@@ -613,17 +669,27 @@ typed_enum!(
     pub type NSWorkspaceLaunchConfigurationKey = NSString;
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSWorkspaceLaunchConfigurationAppleEvent: &'static NSWorkspaceLaunchConfigurationKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSWorkspaceLaunchConfigurationAppleEvent: &'static NSWorkspaceLaunchConfigurationKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSWorkspaceLaunchConfigurationArguments: &'static NSWorkspaceLaunchConfigurationKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSWorkspaceLaunchConfigurationArguments: &'static NSWorkspaceLaunchConfigurationKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSWorkspaceLaunchConfigurationEnvironment: &'static NSWorkspaceLaunchConfigurationKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSWorkspaceLaunchConfigurationEnvironment:
+        &'static NSWorkspaceLaunchConfigurationKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSWorkspaceLaunchConfigurationArchitecture: &'static NSWorkspaceLaunchConfigurationKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSWorkspaceLaunchConfigurationArchitecture:
+        &'static NSWorkspaceLaunchConfigurationKey;
+}
 
 extern_methods!(
     /// NSDeprecated
@@ -915,50 +981,82 @@ extern_methods!(
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSWorkspaceMoveOperation: &'static NSWorkspaceFileOperationName);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSWorkspaceMoveOperation: &'static NSWorkspaceFileOperationName;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSWorkspaceCopyOperation: &'static NSWorkspaceFileOperationName);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSWorkspaceCopyOperation: &'static NSWorkspaceFileOperationName;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSWorkspaceLinkOperation: &'static NSWorkspaceFileOperationName);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSWorkspaceLinkOperation: &'static NSWorkspaceFileOperationName;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSWorkspaceCompressOperation: &'static NSWorkspaceFileOperationName);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSWorkspaceCompressOperation: &'static NSWorkspaceFileOperationName;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSWorkspaceDecompressOperation: &'static NSWorkspaceFileOperationName);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSWorkspaceDecompressOperation: &'static NSWorkspaceFileOperationName;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSWorkspaceEncryptOperation: &'static NSWorkspaceFileOperationName);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSWorkspaceEncryptOperation: &'static NSWorkspaceFileOperationName;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSWorkspaceDecryptOperation: &'static NSWorkspaceFileOperationName);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSWorkspaceDecryptOperation: &'static NSWorkspaceFileOperationName;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSWorkspaceDestroyOperation: &'static NSWorkspaceFileOperationName);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSWorkspaceDestroyOperation: &'static NSWorkspaceFileOperationName;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSWorkspaceRecycleOperation: &'static NSWorkspaceFileOperationName);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSWorkspaceRecycleOperation: &'static NSWorkspaceFileOperationName;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSWorkspaceDuplicateOperation: &'static NSWorkspaceFileOperationName);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSWorkspaceDuplicateOperation: &'static NSWorkspaceFileOperationName;
+}
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSWorkspaceDidPerformFileOperationNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSWorkspaceDidPerformFileOperationNotification: &'static NSNotificationName;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSPlainFileType: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSPlainFileType: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSDirectoryFileType: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSDirectoryFileType: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSApplicationFileType: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSApplicationFileType: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFilesystemFileType: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFilesystemFileType: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSShellCommandFileType: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSShellCommandFileType: &'static NSString;
+}

@@ -278,50 +278,83 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn NSProgressReporting {}
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSProgressEstimatedTimeRemainingKey: &'static NSProgressUserInfoKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSProgressEstimatedTimeRemainingKey: &'static NSProgressUserInfoKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSProgressThroughputKey: &'static NSProgressUserInfoKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSProgressThroughputKey: &'static NSProgressUserInfoKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSProgressKindFile: &'static NSProgressKind);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSProgressKindFile: &'static NSProgressKind;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSProgressFileOperationKindKey: &'static NSProgressUserInfoKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSProgressFileOperationKindKey: &'static NSProgressUserInfoKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSProgressFileOperationKindDownloading: &'static NSProgressFileOperationKind);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSProgressFileOperationKindDownloading: &'static NSProgressFileOperationKind;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSProgressFileOperationKindDecompressingAfterDownloading: &'static NSProgressFileOperationKind);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSProgressFileOperationKindDecompressingAfterDownloading:
+        &'static NSProgressFileOperationKind;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSProgressFileOperationKindReceiving: &'static NSProgressFileOperationKind);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSProgressFileOperationKindReceiving: &'static NSProgressFileOperationKind;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSProgressFileOperationKindCopying: &'static NSProgressFileOperationKind);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSProgressFileOperationKindCopying: &'static NSProgressFileOperationKind;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSProgressFileOperationKindUploading: &'static NSProgressFileOperationKind);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSProgressFileOperationKindUploading: &'static NSProgressFileOperationKind;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSProgressFileOperationKindDuplicating: &'static NSProgressFileOperationKind);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSProgressFileOperationKindDuplicating: &'static NSProgressFileOperationKind;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSProgressFileURLKey: &'static NSProgressUserInfoKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSProgressFileURLKey: &'static NSProgressUserInfoKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSProgressFileTotalCountKey: &'static NSProgressUserInfoKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSProgressFileTotalCountKey: &'static NSProgressUserInfoKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSProgressFileCompletedCountKey: &'static NSProgressUserInfoKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSProgressFileCompletedCountKey: &'static NSProgressUserInfoKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSProgressFileAnimationImageKey: &'static NSProgressUserInfoKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSProgressFileAnimationImageKey: &'static NSProgressUserInfoKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSProgressFileAnimationImageOriginalRectKey: &'static NSProgressUserInfoKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSProgressFileAnimationImageOriginalRectKey: &'static NSProgressUserInfoKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSProgressFileIconKey: &'static NSProgressUserInfoKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSProgressFileIconKey: &'static NSProgressUserInfoKey;
+}

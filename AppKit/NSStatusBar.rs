@@ -6,10 +6,10 @@ use crate::CoreData::*;
 use crate::Foundation::*;
 
 #[cfg(feature = "Foundation_NSGeometry")]
-extern_static!(NSVariableStatusItemLength: CGFloat = -1.0);
+pub static NSVariableStatusItemLength: CGFloat = -1.0 as _;
 
 #[cfg(feature = "Foundation_NSGeometry")]
-extern_static!(NSSquareStatusItemLength: CGFloat = -2.0);
+pub static NSSquareStatusItemLength: CGFloat = -2.0 as _;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

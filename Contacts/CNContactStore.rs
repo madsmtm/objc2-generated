@@ -187,5 +187,7 @@ extern_methods!(
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNContactStoreDidChangeNotification: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNContactStoreDidChangeNotification: &'static NSString;
+}

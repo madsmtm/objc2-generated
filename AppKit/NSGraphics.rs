@@ -70,63 +70,92 @@ ns_enum!(
     }
 );
 
-extern_static!(NSCompositeClear: NSCompositingOperation = NSCompositingOperation(NSCompositingOperation::Clear.0));
+pub static NSCompositeClear: NSCompositingOperation =
+    NSCompositingOperation(NSCompositingOperation::Clear.0);
 
-extern_static!(NSCompositeCopy: NSCompositingOperation = NSCompositingOperation(NSCompositingOperation::Copy.0));
+pub static NSCompositeCopy: NSCompositingOperation =
+    NSCompositingOperation(NSCompositingOperation::Copy.0);
 
-extern_static!(NSCompositeSourceOver: NSCompositingOperation = NSCompositingOperation(NSCompositingOperation::SourceOver.0));
+pub static NSCompositeSourceOver: NSCompositingOperation =
+    NSCompositingOperation(NSCompositingOperation::SourceOver.0);
 
-extern_static!(NSCompositeSourceIn: NSCompositingOperation = NSCompositingOperation(NSCompositingOperation::SourceIn.0));
+pub static NSCompositeSourceIn: NSCompositingOperation =
+    NSCompositingOperation(NSCompositingOperation::SourceIn.0);
 
-extern_static!(NSCompositeSourceOut: NSCompositingOperation = NSCompositingOperation(NSCompositingOperation::SourceOut.0));
+pub static NSCompositeSourceOut: NSCompositingOperation =
+    NSCompositingOperation(NSCompositingOperation::SourceOut.0);
 
-extern_static!(NSCompositeSourceAtop: NSCompositingOperation = NSCompositingOperation(NSCompositingOperation::SourceAtop.0));
+pub static NSCompositeSourceAtop: NSCompositingOperation =
+    NSCompositingOperation(NSCompositingOperation::SourceAtop.0);
 
-extern_static!(NSCompositeDestinationOver: NSCompositingOperation = NSCompositingOperation(NSCompositingOperation::DestinationOver.0));
+pub static NSCompositeDestinationOver: NSCompositingOperation =
+    NSCompositingOperation(NSCompositingOperation::DestinationOver.0);
 
-extern_static!(NSCompositeDestinationIn: NSCompositingOperation = NSCompositingOperation(NSCompositingOperation::DestinationIn.0));
+pub static NSCompositeDestinationIn: NSCompositingOperation =
+    NSCompositingOperation(NSCompositingOperation::DestinationIn.0);
 
-extern_static!(NSCompositeDestinationOut: NSCompositingOperation = NSCompositingOperation(NSCompositingOperation::DestinationOut.0));
+pub static NSCompositeDestinationOut: NSCompositingOperation =
+    NSCompositingOperation(NSCompositingOperation::DestinationOut.0);
 
-extern_static!(NSCompositeDestinationAtop: NSCompositingOperation = NSCompositingOperation(NSCompositingOperation::DestinationAtop.0));
+pub static NSCompositeDestinationAtop: NSCompositingOperation =
+    NSCompositingOperation(NSCompositingOperation::DestinationAtop.0);
 
-extern_static!(NSCompositeXOR: NSCompositingOperation = NSCompositingOperation(NSCompositingOperation::XOR.0));
+pub static NSCompositeXOR: NSCompositingOperation =
+    NSCompositingOperation(NSCompositingOperation::XOR.0);
 
-extern_static!(NSCompositePlusDarker: NSCompositingOperation = NSCompositingOperation(NSCompositingOperation::PlusDarker.0));
+pub static NSCompositePlusDarker: NSCompositingOperation =
+    NSCompositingOperation(NSCompositingOperation::PlusDarker.0);
 
-extern_static!(NSCompositeHighlight: NSCompositingOperation = NSCompositingOperation(NSCompositingOperation::Highlight.0));
+pub static NSCompositeHighlight: NSCompositingOperation =
+    NSCompositingOperation(NSCompositingOperation::Highlight.0);
 
-extern_static!(NSCompositePlusLighter: NSCompositingOperation = NSCompositingOperation(NSCompositingOperation::PlusLighter.0));
+pub static NSCompositePlusLighter: NSCompositingOperation =
+    NSCompositingOperation(NSCompositingOperation::PlusLighter.0);
 
-extern_static!(NSCompositeMultiply: NSCompositingOperation = NSCompositingOperation(NSCompositingOperation::Multiply.0));
+pub static NSCompositeMultiply: NSCompositingOperation =
+    NSCompositingOperation(NSCompositingOperation::Multiply.0);
 
-extern_static!(NSCompositeScreen: NSCompositingOperation = NSCompositingOperation(NSCompositingOperation::Screen.0));
+pub static NSCompositeScreen: NSCompositingOperation =
+    NSCompositingOperation(NSCompositingOperation::Screen.0);
 
-extern_static!(NSCompositeOverlay: NSCompositingOperation = NSCompositingOperation(NSCompositingOperation::Overlay.0));
+pub static NSCompositeOverlay: NSCompositingOperation =
+    NSCompositingOperation(NSCompositingOperation::Overlay.0);
 
-extern_static!(NSCompositeDarken: NSCompositingOperation = NSCompositingOperation(NSCompositingOperation::Darken.0));
+pub static NSCompositeDarken: NSCompositingOperation =
+    NSCompositingOperation(NSCompositingOperation::Darken.0);
 
-extern_static!(NSCompositeLighten: NSCompositingOperation = NSCompositingOperation(NSCompositingOperation::Lighten.0));
+pub static NSCompositeLighten: NSCompositingOperation =
+    NSCompositingOperation(NSCompositingOperation::Lighten.0);
 
-extern_static!(NSCompositeColorDodge: NSCompositingOperation = NSCompositingOperation(NSCompositingOperation::ColorDodge.0));
+pub static NSCompositeColorDodge: NSCompositingOperation =
+    NSCompositingOperation(NSCompositingOperation::ColorDodge.0);
 
-extern_static!(NSCompositeColorBurn: NSCompositingOperation = NSCompositingOperation(NSCompositingOperation::ColorBurn.0));
+pub static NSCompositeColorBurn: NSCompositingOperation =
+    NSCompositingOperation(NSCompositingOperation::ColorBurn.0);
 
-extern_static!(NSCompositeSoftLight: NSCompositingOperation = NSCompositingOperation(NSCompositingOperation::SoftLight.0));
+pub static NSCompositeSoftLight: NSCompositingOperation =
+    NSCompositingOperation(NSCompositingOperation::SoftLight.0);
 
-extern_static!(NSCompositeHardLight: NSCompositingOperation = NSCompositingOperation(NSCompositingOperation::HardLight.0));
+pub static NSCompositeHardLight: NSCompositingOperation =
+    NSCompositingOperation(NSCompositingOperation::HardLight.0);
 
-extern_static!(NSCompositeDifference: NSCompositingOperation = NSCompositingOperation(NSCompositingOperation::Difference.0));
+pub static NSCompositeDifference: NSCompositingOperation =
+    NSCompositingOperation(NSCompositingOperation::Difference.0);
 
-extern_static!(NSCompositeExclusion: NSCompositingOperation = NSCompositingOperation(NSCompositingOperation::Exclusion.0));
+pub static NSCompositeExclusion: NSCompositingOperation =
+    NSCompositingOperation(NSCompositingOperation::Exclusion.0);
 
-extern_static!(NSCompositeHue: NSCompositingOperation = NSCompositingOperation(NSCompositingOperation::Hue.0));
+pub static NSCompositeHue: NSCompositingOperation =
+    NSCompositingOperation(NSCompositingOperation::Hue.0);
 
-extern_static!(NSCompositeSaturation: NSCompositingOperation = NSCompositingOperation(NSCompositingOperation::Saturation.0));
+pub static NSCompositeSaturation: NSCompositingOperation =
+    NSCompositingOperation(NSCompositingOperation::Saturation.0);
 
-extern_static!(NSCompositeColor: NSCompositingOperation = NSCompositingOperation(NSCompositingOperation::Color.0));
+pub static NSCompositeColor: NSCompositingOperation =
+    NSCompositingOperation(NSCompositingOperation::Color.0);
 
-extern_static!(NSCompositeLuminosity: NSCompositingOperation = NSCompositingOperation(NSCompositingOperation::Luminosity.0));
+pub static NSCompositeLuminosity: NSCompositingOperation =
+    NSCompositingOperation(NSCompositingOperation::Luminosity.0);
 
 ns_enum!(
     #[underlying(NSUInteger)]
@@ -190,35 +219,55 @@ typed_enum!(
     pub type NSColorSpaceName = NSString;
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSCalibratedWhiteColorSpace: &'static NSColorSpaceName);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSCalibratedWhiteColorSpace: &'static NSColorSpaceName;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSCalibratedRGBColorSpace: &'static NSColorSpaceName);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSCalibratedRGBColorSpace: &'static NSColorSpaceName;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSDeviceWhiteColorSpace: &'static NSColorSpaceName);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSDeviceWhiteColorSpace: &'static NSColorSpaceName;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSDeviceRGBColorSpace: &'static NSColorSpaceName);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSDeviceRGBColorSpace: &'static NSColorSpaceName;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSDeviceCMYKColorSpace: &'static NSColorSpaceName);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSDeviceCMYKColorSpace: &'static NSColorSpaceName;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSNamedColorSpace: &'static NSColorSpaceName);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSNamedColorSpace: &'static NSColorSpaceName;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSPatternColorSpace: &'static NSColorSpaceName);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSPatternColorSpace: &'static NSColorSpaceName;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSCustomColorSpace: &'static NSColorSpaceName);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSCustomColorSpace: &'static NSColorSpaceName;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSCalibratedBlackColorSpace: &'static NSColorSpaceName);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSCalibratedBlackColorSpace: &'static NSColorSpaceName;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSDeviceBlackColorSpace: &'static NSColorSpaceName);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSDeviceBlackColorSpace: &'static NSColorSpaceName;
+}
 
 ns_enum!(
     #[underlying(i32)]
@@ -269,17 +318,25 @@ extern "C" {
     pub fn NSAvailableWindowDepths() -> NonNull<NSWindowDepth>;
 }
 
-#[cfg(feature = "Foundation_NSGeometry")]
-extern_static!(NSWhite: CGFloat);
+extern "C" {
+    #[cfg(feature = "Foundation_NSGeometry")]
+    pub static NSWhite: CGFloat;
+}
 
-#[cfg(feature = "Foundation_NSGeometry")]
-extern_static!(NSLightGray: CGFloat);
+extern "C" {
+    #[cfg(feature = "Foundation_NSGeometry")]
+    pub static NSLightGray: CGFloat;
+}
 
-#[cfg(feature = "Foundation_NSGeometry")]
-extern_static!(NSDarkGray: CGFloat);
+extern "C" {
+    #[cfg(feature = "Foundation_NSGeometry")]
+    pub static NSDarkGray: CGFloat;
+}
 
-#[cfg(feature = "Foundation_NSGeometry")]
-extern_static!(NSBlack: CGFloat);
+extern "C" {
+    #[cfg(feature = "Foundation_NSGeometry")]
+    pub static NSBlack: CGFloat;
+}
 
 ns_enum!(
     #[underlying(NSInteger)]
@@ -296,23 +353,35 @@ typed_extensible_enum!(
     pub type NSDeviceDescriptionKey = NSString;
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSDeviceResolution: &'static NSDeviceDescriptionKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSDeviceResolution: &'static NSDeviceDescriptionKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSDeviceColorSpaceName: &'static NSDeviceDescriptionKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSDeviceColorSpaceName: &'static NSDeviceDescriptionKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSDeviceBitsPerSample: &'static NSDeviceDescriptionKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSDeviceBitsPerSample: &'static NSDeviceDescriptionKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSDeviceIsScreen: &'static NSDeviceDescriptionKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSDeviceIsScreen: &'static NSDeviceDescriptionKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSDeviceIsPrinter: &'static NSDeviceDescriptionKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSDeviceIsPrinter: &'static NSDeviceDescriptionKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSDeviceSize: &'static NSDeviceDescriptionKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSDeviceSize: &'static NSDeviceDescriptionKey;
+}
 
 extern "C" {
     #[cfg(feature = "Foundation_NSGeometry")]

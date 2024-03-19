@@ -301,11 +301,13 @@ extern_methods!(
     }
 );
 
-#[cfg(all(
-    feature = "AppKit_NSUserInterfaceItemIdentification",
-    feature = "Foundation_NSString"
-))]
-extern_static!(NSMenuItemImportFromDeviceIdentifier: &'static NSUserInterfaceItemIdentifier);
+extern "C" {
+    #[cfg(all(
+        feature = "AppKit_NSUserInterfaceItemIdentification",
+        feature = "Foundation_NSString"
+    ))]
+    pub static NSMenuItemImportFromDeviceIdentifier: &'static NSUserInterfaceItemIdentifier;
+}
 
 extern_methods!(
     /// NSDeprecated

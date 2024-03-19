@@ -19,26 +19,40 @@ ns_options!(
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(MPMediaPlaylistPropertyPersistentID: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static MPMediaPlaylistPropertyPersistentID: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(MPMediaPlaylistPropertyCloudGlobalID: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static MPMediaPlaylistPropertyCloudGlobalID: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(MPMediaPlaylistPropertyName: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static MPMediaPlaylistPropertyName: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(MPMediaPlaylistPropertyPlaylistAttributes: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static MPMediaPlaylistPropertyPlaylistAttributes: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(MPMediaPlaylistPropertySeedItems: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static MPMediaPlaylistPropertySeedItems: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(MPMediaPlaylistPropertyDescriptionText: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static MPMediaPlaylistPropertyDescriptionText: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(MPMediaPlaylistPropertyAuthorDisplayName: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static MPMediaPlaylistPropertyAuthorDisplayName: &'static NSString;
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

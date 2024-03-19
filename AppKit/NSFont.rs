@@ -5,8 +5,10 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-#[cfg(feature = "Foundation_NSGeometry")]
-extern_static!(NSFontIdentityMatrix: NonNull<CGFloat>);
+extern "C" {
+    #[cfg(feature = "Foundation_NSGeometry")]
+    pub static NSFontIdentityMatrix: NonNull<CGFloat>;
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -273,11 +275,15 @@ extern_methods!(
     }
 );
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSAntialiasThresholdChangedNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSAntialiasThresholdChangedNotification: &'static NSNotificationName;
+}
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSFontSetChangedNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSFontSetChangedNotification: &'static NSNotificationName;
+}
 
 pub type NSGlyph = c_uint;
 

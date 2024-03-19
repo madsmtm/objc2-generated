@@ -140,7 +140,7 @@ extern_methods!(
 );
 
 #[cfg(feature = "AppKit_NSApplication")]
-extern_static!(NSAppKitVersionNumberWithCursorSizeSupport: NSAppKitVersion = 682.0);
+pub static NSAppKitVersionNumberWithCursorSizeSupport: NSAppKitVersion = 682.0 as _;
 
 extern_methods!(
     /// NSDeprecated

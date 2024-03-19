@@ -5,11 +5,15 @@ use crate::CloudKit::*;
 use crate::CoreLocation::*;
 use crate::Foundation::*;
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CKCurrentUserDefaultName: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CKCurrentUserDefaultName: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CKOwnerDefaultName: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CKOwnerDefaultName: &'static NSString;
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -92,8 +96,10 @@ ns_enum!(
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CKAccountChangedNotification: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CKAccountChangedNotification: &'static NSString;
+}
 
 extern_methods!(
     /// AccountStatus

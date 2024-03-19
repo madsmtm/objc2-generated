@@ -4,35 +4,57 @@ use crate::common::*;
 use crate::CoreWLAN::*;
 use crate::Foundation::*;
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CWErrorDomain: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CWErrorDomain: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CWPowerDidChangeNotification: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CWPowerDidChangeNotification: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CWSSIDDidChangeNotification: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CWSSIDDidChangeNotification: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CWBSSIDDidChangeNotification: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CWBSSIDDidChangeNotification: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CWLinkDidChangeNotification: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CWLinkDidChangeNotification: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CWModeDidChangeNotification: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CWModeDidChangeNotification: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CWCountryCodeDidChangeNotification: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CWCountryCodeDidChangeNotification: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CWScanCacheDidUpdateNotification: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CWScanCacheDidUpdateNotification: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CWLinkQualityDidChangeNotification: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CWLinkQualityDidChangeNotification: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CWLinkQualityNotificationRSSIKey: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CWLinkQualityNotificationRSSIKey: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CWLinkQualityNotificationTransmitRateKey: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CWLinkQualityNotificationTransmitRateKey: &'static NSString;
+}

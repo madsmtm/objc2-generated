@@ -48,8 +48,10 @@ extern_methods!(
     }
 );
 
-#[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
-extern_static!(MEComposeSessionErrorDomain: &'static NSErrorDomain);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
+    pub static MEComposeSessionErrorDomain: &'static NSErrorDomain;
+}
 
 ns_error_enum!(
     #[underlying(NSInteger)]

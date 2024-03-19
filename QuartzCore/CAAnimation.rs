@@ -419,26 +419,40 @@ extern_methods!(
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(kCAAnimationLinear: &'static CAAnimationCalculationMode);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static kCAAnimationLinear: &'static CAAnimationCalculationMode;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(kCAAnimationDiscrete: &'static CAAnimationCalculationMode);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static kCAAnimationDiscrete: &'static CAAnimationCalculationMode;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(kCAAnimationPaced: &'static CAAnimationCalculationMode);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static kCAAnimationPaced: &'static CAAnimationCalculationMode;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(kCAAnimationCubic: &'static CAAnimationCalculationMode);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static kCAAnimationCubic: &'static CAAnimationCalculationMode;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(kCAAnimationCubicPaced: &'static CAAnimationCalculationMode);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static kCAAnimationCubicPaced: &'static CAAnimationCalculationMode;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(kCAAnimationRotateAuto: &'static CAAnimationRotationMode);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static kCAAnimationRotateAuto: &'static CAAnimationRotationMode;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(kCAAnimationRotateAutoReverse: &'static CAAnimationRotationMode);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static kCAAnimationRotateAutoReverse: &'static CAAnimationRotationMode;
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -641,29 +655,45 @@ extern_methods!(
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(kCATransitionFade: &'static CATransitionType);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static kCATransitionFade: &'static CATransitionType;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(kCATransitionMoveIn: &'static CATransitionType);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static kCATransitionMoveIn: &'static CATransitionType;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(kCATransitionPush: &'static CATransitionType);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static kCATransitionPush: &'static CATransitionType;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(kCATransitionReveal: &'static CATransitionType);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static kCATransitionReveal: &'static CATransitionType;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(kCATransitionFromRight: &'static CATransitionSubtype);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static kCATransitionFromRight: &'static CATransitionSubtype;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(kCATransitionFromLeft: &'static CATransitionSubtype);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static kCATransitionFromLeft: &'static CATransitionSubtype;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(kCATransitionFromTop: &'static CATransitionSubtype);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static kCATransitionFromTop: &'static CATransitionSubtype;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(kCATransitionFromBottom: &'static CATransitionSubtype);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static kCATransitionFromBottom: &'static CATransitionSubtype;
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

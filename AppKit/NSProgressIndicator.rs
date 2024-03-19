@@ -216,9 +216,11 @@ ns_enum!(
     }
 );
 
-extern_static!(NSProgressIndicatorBarStyle: NSProgressIndicatorStyle = NSProgressIndicatorStyle(NSProgressIndicatorStyle::Bar.0));
+pub static NSProgressIndicatorBarStyle: NSProgressIndicatorStyle =
+    NSProgressIndicatorStyle(NSProgressIndicatorStyle::Bar.0);
 
-extern_static!(NSProgressIndicatorSpinningStyle: NSProgressIndicatorStyle = NSProgressIndicatorStyle(NSProgressIndicatorStyle::Spinning.0));
+pub static NSProgressIndicatorSpinningStyle: NSProgressIndicatorStyle =
+    NSProgressIndicatorStyle(NSProgressIndicatorStyle::Spinning.0);
 
 extern_methods!(
     /// NSProgressIndicatorDeprecated

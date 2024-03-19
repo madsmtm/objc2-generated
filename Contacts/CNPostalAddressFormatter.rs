@@ -95,8 +95,12 @@ extern_methods!(
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNPostalAddressPropertyAttribute: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNPostalAddressPropertyAttribute: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNPostalAddressLocalizedPropertyNameAttribute: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNPostalAddressLocalizedPropertyNameAttribute: &'static NSString;
+}

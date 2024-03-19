@@ -42,11 +42,15 @@ typed_enum!(
     pub type NSPasteboardTypeTextFinderOptionKey = NSString;
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSTextFinderCaseInsensitiveKey: &'static NSPasteboardTypeTextFinderOptionKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSTextFinderCaseInsensitiveKey: &'static NSPasteboardTypeTextFinderOptionKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSTextFinderMatchingTypeKey: &'static NSPasteboardTypeTextFinderOptionKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSTextFinderMatchingTypeKey: &'static NSPasteboardTypeTextFinderOptionKey;
+}
 
 ns_enum!(
     #[underlying(NSInteger)]

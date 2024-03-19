@@ -36,8 +36,10 @@ typed_enum!(
     pub type NSTextTabOptionKey = NSString;
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSTabColumnTerminatorsAttributeName: &'static NSTextTabOptionKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSTabColumnTerminatorsAttributeName: &'static NSTextTabOptionKey;
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

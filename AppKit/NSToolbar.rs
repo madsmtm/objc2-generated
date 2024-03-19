@@ -18,8 +18,10 @@ typed_enum!(
     pub type NSToolbarUserInfoKey = NSString;
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSToolbarItemKey: &'static NSToolbarUserInfoKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSToolbarItemKey: &'static NSToolbarUserInfoKey;
+}
 
 ns_enum!(
     #[underlying(NSUInteger)]
@@ -281,11 +283,15 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn NSToolbarDelegate {}
 );
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSToolbarWillAddItemNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSToolbarWillAddItemNotification: &'static NSNotificationName;
+}
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSToolbarDidRemoveItemNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSToolbarDidRemoveItemNotification: &'static NSNotificationName;
+}
 
 extern_methods!(
     /// NSDeprecated

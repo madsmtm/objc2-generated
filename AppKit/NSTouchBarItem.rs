@@ -14,11 +14,11 @@ typed_extensible_enum!(
     pub type NSTouchBarItemPriority = c_float;
 );
 
-extern_static!(NSTouchBarItemPriorityHigh: NSTouchBarItemPriority = 1000);
+pub static NSTouchBarItemPriorityHigh: NSTouchBarItemPriority = 1000 as _;
 
-extern_static!(NSTouchBarItemPriorityNormal: NSTouchBarItemPriority = 0);
+pub static NSTouchBarItemPriorityNormal: NSTouchBarItemPriority = 0 as _;
 
-extern_static!(NSTouchBarItemPriorityLow: NSTouchBarItemPriority = -1000);
+pub static NSTouchBarItemPriorityLow: NSTouchBarItemPriority = -1000 as _;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -86,14 +86,22 @@ extern_methods!(
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSTouchBarItemIdentifierFixedSpaceSmall: &'static NSTouchBarItemIdentifier);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSTouchBarItemIdentifierFixedSpaceSmall: &'static NSTouchBarItemIdentifier;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSTouchBarItemIdentifierFixedSpaceLarge: &'static NSTouchBarItemIdentifier);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSTouchBarItemIdentifierFixedSpaceLarge: &'static NSTouchBarItemIdentifier;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSTouchBarItemIdentifierFlexibleSpace: &'static NSTouchBarItemIdentifier);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSTouchBarItemIdentifierFlexibleSpace: &'static NSTouchBarItemIdentifier;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSTouchBarItemIdentifierOtherItemsProxy: &'static NSTouchBarItemIdentifier);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSTouchBarItemIdentifierOtherItemsProxy: &'static NSTouchBarItemIdentifier;
+}

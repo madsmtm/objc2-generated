@@ -5,35 +5,55 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::MediaPlayer::*;
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(MPLanguageOptionCharacteristicIsMainProgramContent: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static MPLanguageOptionCharacteristicIsMainProgramContent: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(MPLanguageOptionCharacteristicIsAuxiliaryContent: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static MPLanguageOptionCharacteristicIsAuxiliaryContent: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(MPLanguageOptionCharacteristicContainsOnlyForcedSubtitles: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static MPLanguageOptionCharacteristicContainsOnlyForcedSubtitles: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(MPLanguageOptionCharacteristicTranscribesSpokenDialog: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static MPLanguageOptionCharacteristicTranscribesSpokenDialog: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(MPLanguageOptionCharacteristicDescribesMusicAndSound: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static MPLanguageOptionCharacteristicDescribesMusicAndSound: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(MPLanguageOptionCharacteristicEasyToRead: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static MPLanguageOptionCharacteristicEasyToRead: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(MPLanguageOptionCharacteristicDescribesVideo: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static MPLanguageOptionCharacteristicDescribesVideo: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(MPLanguageOptionCharacteristicLanguageTranslation: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static MPLanguageOptionCharacteristicLanguageTranslation: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(MPLanguageOptionCharacteristicDubbedTranslation: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static MPLanguageOptionCharacteristicDubbedTranslation: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(MPLanguageOptionCharacteristicVoiceOverTranslation: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static MPLanguageOptionCharacteristicVoiceOverTranslation: &'static NSString;
+}
 
 ns_enum!(
     #[underlying(NSUInteger)]

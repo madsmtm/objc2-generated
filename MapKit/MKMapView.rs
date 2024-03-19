@@ -29,11 +29,15 @@ ns_enum!(
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(MKMapViewDefaultAnnotationViewReuseIdentifier: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static MKMapViewDefaultAnnotationViewReuseIdentifier: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(MKMapViewDefaultClusterAnnotationViewReuseIdentifier: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static MKMapViewDefaultClusterAnnotationViewReuseIdentifier: &'static NSString;
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

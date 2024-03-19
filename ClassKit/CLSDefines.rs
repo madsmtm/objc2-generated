@@ -4,8 +4,10 @@ use crate::common::*;
 use crate::ClassKit::*;
 use crate::Foundation::*;
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CLSErrorCodeDomain: Option<&'static NSString>);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CLSErrorCodeDomain: Option<&'static NSString>;
+}
 
 ns_error_enum!(
     #[underlying(NSInteger)]
@@ -40,34 +42,52 @@ typed_extensible_enum!(
     pub type CLSErrorUserInfoKey = NSString;
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CLSErrorObjectKey: Option<&'static CLSErrorUserInfoKey>);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CLSErrorObjectKey: Option<&'static CLSErrorUserInfoKey>;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CLSErrorUnderlyingErrorsKey: Option<&'static CLSErrorUserInfoKey>);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CLSErrorUnderlyingErrorsKey: Option<&'static CLSErrorUserInfoKey>;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CLSErrorSuccessfulObjectsKey: Option<&'static CLSErrorUserInfoKey>);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CLSErrorSuccessfulObjectsKey: Option<&'static CLSErrorUserInfoKey>;
+}
 
 #[cfg(feature = "Foundation_NSString")]
 typed_extensible_enum!(
     pub type CLSPredicateKeyPath = NSString;
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CLSPredicateKeyPathDateCreated: Option<&'static CLSPredicateKeyPath>);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CLSPredicateKeyPathDateCreated: Option<&'static CLSPredicateKeyPath>;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CLSPredicateKeyPathIdentifier: Option<&'static CLSPredicateKeyPath>);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CLSPredicateKeyPathIdentifier: Option<&'static CLSPredicateKeyPath>;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CLSPredicateKeyPathTitle: Option<&'static CLSPredicateKeyPath>);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CLSPredicateKeyPathTitle: Option<&'static CLSPredicateKeyPath>;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CLSPredicateKeyPathUniversalLinkURL: Option<&'static CLSPredicateKeyPath>);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CLSPredicateKeyPathUniversalLinkURL: Option<&'static CLSPredicateKeyPath>;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CLSPredicateKeyPathTopic: Option<&'static CLSPredicateKeyPath>);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CLSPredicateKeyPathTopic: Option<&'static CLSPredicateKeyPath>;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CLSPredicateKeyPathParent: Option<&'static CLSPredicateKeyPath>);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CLSPredicateKeyPathParent: Option<&'static CLSPredicateKeyPath>;
+}

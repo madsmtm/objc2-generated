@@ -18,13 +18,13 @@ ns_enum!(
 );
 
 #[cfg(feature = "AppKit_NSApplication")]
-extern_static!(NSAlertFirstButtonReturn: NSModalResponse = 1000);
+pub static NSAlertFirstButtonReturn: NSModalResponse = 1000;
 
 #[cfg(feature = "AppKit_NSApplication")]
-extern_static!(NSAlertSecondButtonReturn: NSModalResponse = 1001);
+pub static NSAlertSecondButtonReturn: NSModalResponse = 1001;
 
 #[cfg(feature = "AppKit_NSApplication")]
-extern_static!(NSAlertThirdButtonReturn: NSModalResponse = 1002);
+pub static NSAlertThirdButtonReturn: NSModalResponse = 1002;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -199,8 +199,8 @@ extern_methods!(
     }
 );
 
-extern_static!(NSWarningAlertStyle: NSAlertStyle = NSAlertStyle(NSAlertStyle::Warning.0));
+pub static NSWarningAlertStyle: NSAlertStyle = NSAlertStyle(NSAlertStyle::Warning.0);
 
-extern_static!(NSInformationalAlertStyle: NSAlertStyle = NSAlertStyle(NSAlertStyle::Informational.0));
+pub static NSInformationalAlertStyle: NSAlertStyle = NSAlertStyle(NSAlertStyle::Informational.0);
 
-extern_static!(NSCriticalAlertStyle: NSAlertStyle = NSAlertStyle(NSAlertStyle::Critical.0));
+pub static NSCriticalAlertStyle: NSAlertStyle = NSAlertStyle(NSAlertStyle::Critical.0);

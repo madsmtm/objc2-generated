@@ -101,5 +101,7 @@ extern_methods!(
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKPredicateKeyPathCategoryValue: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKPredicateKeyPathCategoryValue: &'static NSString;
+}

@@ -8,14 +8,20 @@ use crate::Foundation::*;
 #[cfg(feature = "Foundation_NSString")]
 pub type NSImageName = NSString;
 
-#[cfg(all(feature = "AppKit_NSImageRep", feature = "Foundation_NSString"))]
-extern_static!(NSImageHintCTM: &'static NSImageHintKey);
+extern "C" {
+    #[cfg(all(feature = "AppKit_NSImageRep", feature = "Foundation_NSString"))]
+    pub static NSImageHintCTM: &'static NSImageHintKey;
+}
 
-#[cfg(all(feature = "AppKit_NSImageRep", feature = "Foundation_NSString"))]
-extern_static!(NSImageHintInterpolation: &'static NSImageHintKey);
+extern "C" {
+    #[cfg(all(feature = "AppKit_NSImageRep", feature = "Foundation_NSString"))]
+    pub static NSImageHintInterpolation: &'static NSImageHintKey;
+}
 
-#[cfg(all(feature = "AppKit_NSImageRep", feature = "Foundation_NSString"))]
-extern_static!(NSImageHintUserInterfaceLayoutDirection: &'static NSImageHintKey);
+extern "C" {
+    #[cfg(all(feature = "AppKit_NSImageRep", feature = "Foundation_NSString"))]
+    pub static NSImageHintUserInterfaceLayoutDirection: &'static NSImageHintKey;
+}
 
 ns_enum!(
     #[underlying(NSUInteger)]
@@ -678,422 +684,700 @@ extern_methods!(
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameAddTemplate: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameBluetoothTemplate: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameBonjour: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameBookmarksTemplate: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameCaution: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameComputer: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameEnterFullScreenTemplate: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameExitFullScreenTemplate: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameFolder: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameFolderBurnable: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameFolderSmart: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameFollowLinkFreestandingTemplate: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameHomeTemplate: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameIChatTheaterTemplate: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameLockLockedTemplate: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameLockUnlockedTemplate: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameNetwork: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNamePathTemplate: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameQuickLookTemplate: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameRefreshFreestandingTemplate: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameRefreshTemplate: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameRemoveTemplate: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameRevealFreestandingTemplate: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameShareTemplate: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameSlideshowTemplate: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameStatusAvailable: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameStatusNone: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameStatusPartiallyAvailable: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameStatusUnavailable: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameStopProgressFreestandingTemplate: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameStopProgressTemplate: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameTrashEmpty: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameTrashFull: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameActionTemplate: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameSmartBadgeTemplate: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameIconViewTemplate: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameListViewTemplate: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameColumnViewTemplate: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameFlowViewTemplate: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameInvalidDataFreestandingTemplate: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameGoForwardTemplate: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameGoBackTemplate: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameGoRightTemplate: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameGoLeftTemplate: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameRightFacingTriangleTemplate: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameLeftFacingTriangleTemplate: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameDotMac: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameMobileMe: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameMultipleDocuments: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameUserAccounts: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNamePreferencesGeneral: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameAdvanced: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameInfo: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameFontPanel: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameColorPanel: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameUser: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameUserGroup: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameEveryone: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameUserGuest: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameMenuOnStateTemplate: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameMenuMixedStateTemplate: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameApplicationIcon: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameTouchBarAddDetailTemplate: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameTouchBarAddTemplate: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameTouchBarAlarmTemplate: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameTouchBarAudioInputMuteTemplate: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameTouchBarAudioInputTemplate: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameTouchBarAudioOutputMuteTemplate: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameTouchBarAudioOutputVolumeHighTemplate: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameTouchBarAudioOutputVolumeLowTemplate: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameTouchBarAudioOutputVolumeMediumTemplate: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameTouchBarAudioOutputVolumeOffTemplate: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameTouchBarBookmarksTemplate: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameTouchBarColorPickerFill: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameTouchBarColorPickerFont: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameTouchBarColorPickerStroke: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameTouchBarCommunicationAudioTemplate: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameTouchBarCommunicationVideoTemplate: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameTouchBarComposeTemplate: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameTouchBarDeleteTemplate: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameTouchBarDownloadTemplate: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameTouchBarEnterFullScreenTemplate: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameTouchBarExitFullScreenTemplate: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameTouchBarFastForwardTemplate: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameTouchBarFolderCopyToTemplate: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameTouchBarFolderMoveToTemplate: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameTouchBarFolderTemplate: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameTouchBarGetInfoTemplate: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameTouchBarGoBackTemplate: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameTouchBarGoDownTemplate: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameTouchBarGoForwardTemplate: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameTouchBarGoUpTemplate: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameTouchBarHistoryTemplate: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameTouchBarIconViewTemplate: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameTouchBarListViewTemplate: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameTouchBarMailTemplate: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameTouchBarNewFolderTemplate: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameTouchBarNewMessageTemplate: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameTouchBarOpenInBrowserTemplate: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameTouchBarPauseTemplate: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameTouchBarPlayPauseTemplate: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameTouchBarPlayTemplate: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameTouchBarQuickLookTemplate: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameTouchBarRecordStartTemplate: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameTouchBarRecordStopTemplate: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameTouchBarRefreshTemplate: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameTouchBarRemoveTemplate: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameTouchBarRewindTemplate: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameTouchBarRotateLeftTemplate: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameTouchBarRotateRightTemplate: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameTouchBarSearchTemplate: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameTouchBarShareTemplate: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameTouchBarSidebarTemplate: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameTouchBarSkipAhead15SecondsTemplate: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameTouchBarSkipAhead30SecondsTemplate: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameTouchBarSkipAheadTemplate: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameTouchBarSkipBack15SecondsTemplate: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameTouchBarSkipBack30SecondsTemplate: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameTouchBarSkipBackTemplate: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameTouchBarSkipToEndTemplate: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameTouchBarSkipToStartTemplate: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameTouchBarSlideshowTemplate: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameTouchBarTagIconTemplate: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameTouchBarTextBoldTemplate: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameTouchBarTextBoxTemplate: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameTouchBarTextCenterAlignTemplate: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameTouchBarTextItalicTemplate: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameTouchBarTextJustifiedAlignTemplate: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameTouchBarTextLeftAlignTemplate: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameTouchBarTextListTemplate: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameTouchBarTextRightAlignTemplate: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameTouchBarTextStrikethroughTemplate: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameTouchBarTextUnderlineTemplate: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameTouchBarUserAddTemplate: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameTouchBarUserGroupTemplate: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameTouchBarUserTemplate: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameTouchBarVolumeDownTemplate: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameTouchBarVolumeUpTemplate: &'static NSImageName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageNameTouchBarPlayheadTemplate: &'static NSImageName);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameAddTemplate: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameBluetoothTemplate: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameBonjour: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameBookmarksTemplate: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameCaution: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameComputer: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameEnterFullScreenTemplate: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameExitFullScreenTemplate: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameFolder: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameFolderBurnable: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameFolderSmart: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameFollowLinkFreestandingTemplate: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameHomeTemplate: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameIChatTheaterTemplate: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameLockLockedTemplate: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameLockUnlockedTemplate: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameNetwork: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNamePathTemplate: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameQuickLookTemplate: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameRefreshFreestandingTemplate: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameRefreshTemplate: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameRemoveTemplate: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameRevealFreestandingTemplate: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameShareTemplate: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameSlideshowTemplate: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameStatusAvailable: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameStatusNone: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameStatusPartiallyAvailable: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameStatusUnavailable: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameStopProgressFreestandingTemplate: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameStopProgressTemplate: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameTrashEmpty: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameTrashFull: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameActionTemplate: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameSmartBadgeTemplate: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameIconViewTemplate: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameListViewTemplate: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameColumnViewTemplate: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameFlowViewTemplate: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameInvalidDataFreestandingTemplate: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameGoForwardTemplate: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameGoBackTemplate: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameGoRightTemplate: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameGoLeftTemplate: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameRightFacingTriangleTemplate: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameLeftFacingTriangleTemplate: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameDotMac: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameMobileMe: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameMultipleDocuments: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameUserAccounts: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNamePreferencesGeneral: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameAdvanced: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameInfo: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameFontPanel: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameColorPanel: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameUser: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameUserGroup: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameEveryone: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameUserGuest: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameMenuOnStateTemplate: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameMenuMixedStateTemplate: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameApplicationIcon: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameTouchBarAddDetailTemplate: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameTouchBarAddTemplate: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameTouchBarAlarmTemplate: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameTouchBarAudioInputMuteTemplate: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameTouchBarAudioInputTemplate: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameTouchBarAudioOutputMuteTemplate: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameTouchBarAudioOutputVolumeHighTemplate: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameTouchBarAudioOutputVolumeLowTemplate: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameTouchBarAudioOutputVolumeMediumTemplate: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameTouchBarAudioOutputVolumeOffTemplate: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameTouchBarBookmarksTemplate: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameTouchBarColorPickerFill: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameTouchBarColorPickerFont: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameTouchBarColorPickerStroke: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameTouchBarCommunicationAudioTemplate: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameTouchBarCommunicationVideoTemplate: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameTouchBarComposeTemplate: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameTouchBarDeleteTemplate: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameTouchBarDownloadTemplate: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameTouchBarEnterFullScreenTemplate: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameTouchBarExitFullScreenTemplate: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameTouchBarFastForwardTemplate: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameTouchBarFolderCopyToTemplate: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameTouchBarFolderMoveToTemplate: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameTouchBarFolderTemplate: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameTouchBarGetInfoTemplate: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameTouchBarGoBackTemplate: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameTouchBarGoDownTemplate: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameTouchBarGoForwardTemplate: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameTouchBarGoUpTemplate: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameTouchBarHistoryTemplate: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameTouchBarIconViewTemplate: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameTouchBarListViewTemplate: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameTouchBarMailTemplate: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameTouchBarNewFolderTemplate: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameTouchBarNewMessageTemplate: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameTouchBarOpenInBrowserTemplate: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameTouchBarPauseTemplate: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameTouchBarPlayPauseTemplate: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameTouchBarPlayTemplate: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameTouchBarQuickLookTemplate: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameTouchBarRecordStartTemplate: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameTouchBarRecordStopTemplate: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameTouchBarRefreshTemplate: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameTouchBarRemoveTemplate: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameTouchBarRewindTemplate: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameTouchBarRotateLeftTemplate: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameTouchBarRotateRightTemplate: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameTouchBarSearchTemplate: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameTouchBarShareTemplate: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameTouchBarSidebarTemplate: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameTouchBarSkipAhead15SecondsTemplate: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameTouchBarSkipAhead30SecondsTemplate: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameTouchBarSkipAheadTemplate: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameTouchBarSkipBack15SecondsTemplate: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameTouchBarSkipBack30SecondsTemplate: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameTouchBarSkipBackTemplate: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameTouchBarSkipToEndTemplate: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameTouchBarSkipToStartTemplate: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameTouchBarSlideshowTemplate: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameTouchBarTagIconTemplate: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameTouchBarTextBoldTemplate: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameTouchBarTextBoxTemplate: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameTouchBarTextCenterAlignTemplate: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameTouchBarTextItalicTemplate: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameTouchBarTextJustifiedAlignTemplate: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameTouchBarTextLeftAlignTemplate: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameTouchBarTextListTemplate: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameTouchBarTextRightAlignTemplate: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameTouchBarTextStrikethroughTemplate: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameTouchBarTextUnderlineTemplate: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameTouchBarUserAddTemplate: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameTouchBarUserGroupTemplate: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameTouchBarUserTemplate: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameTouchBarVolumeDownTemplate: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameTouchBarVolumeUpTemplate: &'static NSImageName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageNameTouchBarPlayheadTemplate: &'static NSImageName;
+}
 
 ns_enum!(
     #[underlying(NSInteger)]

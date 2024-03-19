@@ -31,5 +31,7 @@ ns_enum!(
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(kCLErrorUserInfoAlternateRegionKey: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static kCLErrorUserInfoAlternateRegionKey: &'static NSString;
+}

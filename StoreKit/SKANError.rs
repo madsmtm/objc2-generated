@@ -5,8 +5,10 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::StoreKit::*;
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(SKANErrorDomain: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static SKANErrorDomain: &'static NSString;
+}
 
 ns_error_enum!(
     #[underlying(NSInteger)]

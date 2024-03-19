@@ -8,124 +8,200 @@ typed_extensible_enum!(
     pub type NSLinguisticTagScheme = NSString;
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSLinguisticTagSchemeTokenType: &'static NSLinguisticTagScheme);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSLinguisticTagSchemeTokenType: &'static NSLinguisticTagScheme;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSLinguisticTagSchemeLexicalClass: &'static NSLinguisticTagScheme);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSLinguisticTagSchemeLexicalClass: &'static NSLinguisticTagScheme;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSLinguisticTagSchemeNameType: &'static NSLinguisticTagScheme);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSLinguisticTagSchemeNameType: &'static NSLinguisticTagScheme;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSLinguisticTagSchemeNameTypeOrLexicalClass: &'static NSLinguisticTagScheme);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSLinguisticTagSchemeNameTypeOrLexicalClass: &'static NSLinguisticTagScheme;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSLinguisticTagSchemeLemma: &'static NSLinguisticTagScheme);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSLinguisticTagSchemeLemma: &'static NSLinguisticTagScheme;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSLinguisticTagSchemeLanguage: &'static NSLinguisticTagScheme);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSLinguisticTagSchemeLanguage: &'static NSLinguisticTagScheme;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSLinguisticTagSchemeScript: &'static NSLinguisticTagScheme);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSLinguisticTagSchemeScript: &'static NSLinguisticTagScheme;
+}
 
 #[cfg(feature = "Foundation_NSString")]
 typed_extensible_enum!(
     pub type NSLinguisticTag = NSString;
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSLinguisticTagWord: &'static NSLinguisticTag);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSLinguisticTagWord: &'static NSLinguisticTag;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSLinguisticTagPunctuation: &'static NSLinguisticTag);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSLinguisticTagPunctuation: &'static NSLinguisticTag;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSLinguisticTagWhitespace: &'static NSLinguisticTag);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSLinguisticTagWhitespace: &'static NSLinguisticTag;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSLinguisticTagOther: &'static NSLinguisticTag);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSLinguisticTagOther: &'static NSLinguisticTag;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSLinguisticTagNoun: &'static NSLinguisticTag);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSLinguisticTagNoun: &'static NSLinguisticTag;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSLinguisticTagVerb: &'static NSLinguisticTag);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSLinguisticTagVerb: &'static NSLinguisticTag;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSLinguisticTagAdjective: &'static NSLinguisticTag);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSLinguisticTagAdjective: &'static NSLinguisticTag;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSLinguisticTagAdverb: &'static NSLinguisticTag);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSLinguisticTagAdverb: &'static NSLinguisticTag;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSLinguisticTagPronoun: &'static NSLinguisticTag);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSLinguisticTagPronoun: &'static NSLinguisticTag;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSLinguisticTagDeterminer: &'static NSLinguisticTag);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSLinguisticTagDeterminer: &'static NSLinguisticTag;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSLinguisticTagParticle: &'static NSLinguisticTag);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSLinguisticTagParticle: &'static NSLinguisticTag;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSLinguisticTagPreposition: &'static NSLinguisticTag);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSLinguisticTagPreposition: &'static NSLinguisticTag;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSLinguisticTagNumber: &'static NSLinguisticTag);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSLinguisticTagNumber: &'static NSLinguisticTag;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSLinguisticTagConjunction: &'static NSLinguisticTag);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSLinguisticTagConjunction: &'static NSLinguisticTag;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSLinguisticTagInterjection: &'static NSLinguisticTag);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSLinguisticTagInterjection: &'static NSLinguisticTag;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSLinguisticTagClassifier: &'static NSLinguisticTag);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSLinguisticTagClassifier: &'static NSLinguisticTag;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSLinguisticTagIdiom: &'static NSLinguisticTag);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSLinguisticTagIdiom: &'static NSLinguisticTag;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSLinguisticTagOtherWord: &'static NSLinguisticTag);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSLinguisticTagOtherWord: &'static NSLinguisticTag;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSLinguisticTagSentenceTerminator: &'static NSLinguisticTag);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSLinguisticTagSentenceTerminator: &'static NSLinguisticTag;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSLinguisticTagOpenQuote: &'static NSLinguisticTag);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSLinguisticTagOpenQuote: &'static NSLinguisticTag;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSLinguisticTagCloseQuote: &'static NSLinguisticTag);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSLinguisticTagCloseQuote: &'static NSLinguisticTag;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSLinguisticTagOpenParenthesis: &'static NSLinguisticTag);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSLinguisticTagOpenParenthesis: &'static NSLinguisticTag;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSLinguisticTagCloseParenthesis: &'static NSLinguisticTag);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSLinguisticTagCloseParenthesis: &'static NSLinguisticTag;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSLinguisticTagWordJoiner: &'static NSLinguisticTag);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSLinguisticTagWordJoiner: &'static NSLinguisticTag;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSLinguisticTagDash: &'static NSLinguisticTag);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSLinguisticTagDash: &'static NSLinguisticTag;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSLinguisticTagOtherPunctuation: &'static NSLinguisticTag);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSLinguisticTagOtherPunctuation: &'static NSLinguisticTag;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSLinguisticTagParagraphBreak: &'static NSLinguisticTag);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSLinguisticTagParagraphBreak: &'static NSLinguisticTag;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSLinguisticTagOtherWhitespace: &'static NSLinguisticTag);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSLinguisticTagOtherWhitespace: &'static NSLinguisticTag;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSLinguisticTagPersonalName: &'static NSLinguisticTag);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSLinguisticTagPersonalName: &'static NSLinguisticTag;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSLinguisticTagPlaceName: &'static NSLinguisticTag);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSLinguisticTagPlaceName: &'static NSLinguisticTag;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSLinguisticTagOrganizationName: &'static NSLinguisticTag);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSLinguisticTagOrganizationName: &'static NSLinguisticTag;
+}
 
 ns_enum!(
     #[underlying(NSInteger)]

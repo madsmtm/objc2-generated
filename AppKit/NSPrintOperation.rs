@@ -25,8 +25,10 @@ ns_enum!(
     }
 );
 
-#[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
-extern_static!(NSPrintOperationExistsException: &'static NSExceptionName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
+    pub static NSPrintOperationExistsException: &'static NSExceptionName;
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

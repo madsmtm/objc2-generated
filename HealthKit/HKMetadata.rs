@@ -6,11 +6,15 @@ use crate::Foundation::*;
 use crate::HealthKit::*;
 use crate::UniformTypeIdentifiers::*;
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKMetadataKeyDeviceSerialNumber: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKMetadataKeyDeviceSerialNumber: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKMetadataKeyBodyTemperatureSensorLocation: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKMetadataKeyBodyTemperatureSensorLocation: &'static NSString;
+}
 
 ns_enum!(
     #[underlying(NSInteger)]
@@ -42,8 +46,10 @@ ns_enum!(
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKMetadataKeyHeartRateSensorLocation: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKMetadataKeyHeartRateSensorLocation: &'static NSString;
+}
 
 ns_enum!(
     #[underlying(NSInteger)]
@@ -65,8 +71,10 @@ ns_enum!(
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKMetadataKeyHeartRateMotionContext: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKMetadataKeyHeartRateMotionContext: &'static NSString;
+}
 
 ns_enum!(
     #[underlying(NSInteger)]
@@ -80,8 +88,10 @@ ns_enum!(
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKMetadataKeyUserMotionContext: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKMetadataKeyUserMotionContext: &'static NSString;
+}
 
 ns_enum!(
     #[underlying(NSInteger)]
@@ -95,8 +105,10 @@ ns_enum!(
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKMetadataKeySessionEstimate: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKMetadataKeySessionEstimate: &'static NSString;
+}
 
 ns_enum!(
     #[underlying(NSInteger)]
@@ -110,74 +122,120 @@ ns_enum!(
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKMetadataKeyHeartRateRecoveryTestType: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKMetadataKeyHeartRateRecoveryTestType: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKMetadataKeyHeartRateRecoveryActivityType: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKMetadataKeyHeartRateRecoveryActivityType: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKMetadataKeyHeartRateRecoveryActivityDuration: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKMetadataKeyHeartRateRecoveryActivityDuration: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKMetadataKeyHeartRateRecoveryMaxObservedRecoveryHeartRate: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKMetadataKeyHeartRateRecoveryMaxObservedRecoveryHeartRate: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKMetadataKeyFoodType: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKMetadataKeyFoodType: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKMetadataKeyUDIDeviceIdentifier: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKMetadataKeyUDIDeviceIdentifier: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKMetadataKeyUDIProductionIdentifier: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKMetadataKeyUDIProductionIdentifier: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKMetadataKeyDigitalSignature: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKMetadataKeyDigitalSignature: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKMetadataKeyExternalUUID: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKMetadataKeyExternalUUID: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKMetadataKeySyncIdentifier: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKMetadataKeySyncIdentifier: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKMetadataKeySyncVersion: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKMetadataKeySyncVersion: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKMetadataKeyTimeZone: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKMetadataKeyTimeZone: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKMetadataKeyDeviceName: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKMetadataKeyDeviceName: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKMetadataKeyDeviceManufacturerName: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKMetadataKeyDeviceManufacturerName: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKMetadataKeyWasTakenInLab: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKMetadataKeyWasTakenInLab: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKMetadataKeyReferenceRangeLowerLimit: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKMetadataKeyReferenceRangeLowerLimit: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKMetadataKeyReferenceRangeUpperLimit: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKMetadataKeyReferenceRangeUpperLimit: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKMetadataKeyWasUserEntered: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKMetadataKeyWasUserEntered: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKMetadataKeyWorkoutBrandName: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKMetadataKeyWorkoutBrandName: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKMetadataKeyGroupFitness: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKMetadataKeyGroupFitness: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKMetadataKeyAppleFitnessPlusSession: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKMetadataKeyAppleFitnessPlusSession: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKMetadataKeyIndoorWorkout: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKMetadataKeyIndoorWorkout: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKMetadataKeyCoachedWorkout: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKMetadataKeyCoachedWorkout: &'static NSString;
+}
 
 ns_enum!(
     #[underlying(NSInteger)]
@@ -241,23 +299,35 @@ ns_enum!(
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKMetadataKeyWeatherCondition: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKMetadataKeyWeatherCondition: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKMetadataKeyWeatherTemperature: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKMetadataKeyWeatherTemperature: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKMetadataKeyWeatherHumidity: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKMetadataKeyWeatherHumidity: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKMetadataKeySexualActivityProtectionUsed: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKMetadataKeySexualActivityProtectionUsed: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKMetadataKeyMenstrualCycleStart: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKMetadataKeyMenstrualCycleStart: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKMetadataKeyLapLength: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKMetadataKeyLapLength: &'static NSString;
+}
 
 ns_enum!(
     #[underlying(NSInteger)]
@@ -271,8 +341,10 @@ ns_enum!(
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKMetadataKeySwimmingLocationType: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKMetadataKeySwimmingLocationType: &'static NSString;
+}
 
 ns_enum!(
     #[underlying(NSInteger)]
@@ -294,8 +366,10 @@ ns_enum!(
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKMetadataKeySwimmingStrokeStyle: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKMetadataKeySwimmingStrokeStyle: &'static NSString;
+}
 
 ns_enum!(
     #[underlying(NSInteger)]
@@ -307,8 +381,10 @@ ns_enum!(
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKMetadataKeyInsulinDeliveryReason: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKMetadataKeyInsulinDeliveryReason: &'static NSString;
+}
 
 ns_enum!(
     #[underlying(NSInteger)]
@@ -320,8 +396,10 @@ ns_enum!(
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKMetadataKeyBloodGlucoseMealTime: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKMetadataKeyBloodGlucoseMealTime: &'static NSString;
+}
 
 ns_enum!(
     #[underlying(NSInteger)]
@@ -335,44 +413,70 @@ ns_enum!(
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKMetadataKeyVO2MaxTestType: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKMetadataKeyVO2MaxTestType: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKMetadataKeyAverageSpeed: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKMetadataKeyAverageSpeed: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKMetadataKeyMaximumSpeed: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKMetadataKeyMaximumSpeed: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKMetadataKeyAlpineSlopeGrade: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKMetadataKeyAlpineSlopeGrade: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKMetadataKeyElevationAscended: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKMetadataKeyElevationAscended: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKMetadataKeyElevationDescended: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKMetadataKeyElevationDescended: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKMetadataKeyFitnessMachineDuration: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKMetadataKeyFitnessMachineDuration: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKMetadataKeyIndoorBikeDistance: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKMetadataKeyIndoorBikeDistance: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKMetadataKeyCrossTrainerDistance: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKMetadataKeyCrossTrainerDistance: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKMetadataKeyHeartRateEventThreshold: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKMetadataKeyHeartRateEventThreshold: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKMetadataKeyAverageMETs: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKMetadataKeyAverageMETs: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKMetadataKeyAudioExposureLevel: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKMetadataKeyAudioExposureLevel: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKMetadataKeyAudioExposureDuration: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKMetadataKeyAudioExposureDuration: &'static NSString;
+}
 
 ns_enum!(
     #[underlying(NSInteger)]
@@ -382,8 +486,10 @@ ns_enum!(
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKMetadataKeyAppleECGAlgorithmVersion: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKMetadataKeyAppleECGAlgorithmVersion: &'static NSString;
+}
 
 ns_enum!(
     #[underlying(NSInteger)]
@@ -399,38 +505,60 @@ ns_enum!(
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKMetadataKeyDevicePlacementSide: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKMetadataKeyDevicePlacementSide: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKMetadataKeyBarometricPressure: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKMetadataKeyBarometricPressure: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKMetadataKeyAppleDeviceCalibrated: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKMetadataKeyAppleDeviceCalibrated: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKMetadataKeyVO2MaxValue: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKMetadataKeyVO2MaxValue: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKMetadataKeyLowCardioFitnessEventThreshold: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKMetadataKeyLowCardioFitnessEventThreshold: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKMetadataKeyDateOfEarliestDataUsedForEstimate: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKMetadataKeyDateOfEarliestDataUsedForEstimate: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKMetadataKeyAlgorithmVersion: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKMetadataKeyAlgorithmVersion: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKMetadataKeySWOLFScore: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKMetadataKeySWOLFScore: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKMetadataKeyQuantityClampedToLowerBound: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKMetadataKeyQuantityClampedToLowerBound: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKMetadataKeyQuantityClampedToUpperBound: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKMetadataKeyQuantityClampedToUpperBound: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKMetadataKeyGlassesPrescriptionDescription: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKMetadataKeyGlassesPrescriptionDescription: &'static NSString;
+}
 
 ns_enum!(
     #[underlying(NSInteger)]
@@ -442,14 +570,20 @@ ns_enum!(
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKMetadataKeyWaterSalinity: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKMetadataKeyWaterSalinity: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKMetadataKeyHeadphoneGain: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKMetadataKeyHeadphoneGain: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKMetadataKeyCyclingFunctionalThresholdPowerTestType: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKMetadataKeyCyclingFunctionalThresholdPowerTestType: &'static NSString;
+}
 
 ns_enum!(
     #[underlying(NSInteger)]
@@ -465,11 +599,15 @@ ns_enum!(
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKMetadataKeyActivityType: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKMetadataKeyActivityType: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKMetadataKeyPhysicalEffortEstimationType: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKMetadataKeyPhysicalEffortEstimationType: &'static NSString;
+}
 
 ns_enum!(
     #[underlying(NSInteger)]
@@ -481,5 +619,7 @@ ns_enum!(
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKMetadataKeyMaximumLightIntensity: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKMetadataKeyMaximumLightIntensity: &'static NSString;
+}

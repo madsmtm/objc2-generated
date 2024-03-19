@@ -3,7 +3,9 @@
 use crate::common::*;
 use crate::Foundation::*;
 
-extern_static!(NSURLSessionTransferSizeUnknown: i64);
+extern "C" {
+    pub static NSURLSessionTransferSizeUnknown: i64;
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -457,11 +459,17 @@ extern_methods!(
     }
 );
 
-extern_static!(NSURLSessionTaskPriorityDefault: c_float);
+extern "C" {
+    pub static NSURLSessionTaskPriorityDefault: c_float;
+}
 
-extern_static!(NSURLSessionTaskPriorityLow: c_float);
+extern "C" {
+    pub static NSURLSessionTaskPriorityLow: c_float;
+}
 
-extern_static!(NSURLSessionTaskPriorityHigh: c_float);
+extern "C" {
+    pub static NSURLSessionTaskPriorityHigh: c_float;
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -1437,11 +1445,15 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn NSURLSessionWebSocketDelegate {}
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSURLSessionDownloadTaskResumeData: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSURLSessionDownloadTaskResumeData: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSURLSessionUploadTaskResumeData: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSURLSessionUploadTaskResumeData: &'static NSString;
+}
 
 extern_methods!(
     /// NSURLSessionDeprecated

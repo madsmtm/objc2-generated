@@ -4,8 +4,10 @@ use crate::common::*;
 use crate::Contacts::*;
 use crate::Foundation::*;
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNErrorDomain: Option<&'static NSString>);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNErrorDomain: Option<&'static NSString>;
+}
 
 ns_enum!(
     #[underlying(NSInteger)]
@@ -69,14 +71,22 @@ ns_enum!(
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNErrorUserInfoAffectedRecordsKey: Option<&'static NSString>);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNErrorUserInfoAffectedRecordsKey: Option<&'static NSString>;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNErrorUserInfoAffectedRecordIdentifiersKey: Option<&'static NSString>);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNErrorUserInfoAffectedRecordIdentifiersKey: Option<&'static NSString>;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNErrorUserInfoValidationErrorsKey: Option<&'static NSString>);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNErrorUserInfoValidationErrorsKey: Option<&'static NSString>;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CNErrorUserInfoKeyPathsKey: Option<&'static NSString>);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CNErrorUserInfoKeyPathsKey: Option<&'static NSString>;
+}

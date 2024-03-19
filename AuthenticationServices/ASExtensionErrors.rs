@@ -5,8 +5,10 @@ use crate::AppKit::*;
 use crate::AuthenticationServices::*;
 use crate::Foundation::*;
 
-#[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
-extern_static!(ASExtensionErrorDomain: Option<&'static NSErrorDomain>);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
+    pub static ASExtensionErrorDomain: Option<&'static NSErrorDomain>;
+}
 
 ns_error_enum!(
     #[underlying(NSInteger)]
@@ -22,5 +24,7 @@ ns_error_enum!(
     }
 );
 
-#[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
-extern_static!(ASExtensionLocalizedFailureReasonErrorKey: Option<&'static NSErrorUserInfoKey>);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
+    pub static ASExtensionLocalizedFailureReasonErrorKey: Option<&'static NSErrorUserInfoKey>;
+}

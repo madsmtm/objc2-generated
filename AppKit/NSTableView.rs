@@ -1291,23 +1291,33 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn NSTableViewDelegate {}
 );
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSTableViewSelectionDidChangeNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSTableViewSelectionDidChangeNotification: &'static NSNotificationName;
+}
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSTableViewColumnDidMoveNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSTableViewColumnDidMoveNotification: &'static NSNotificationName;
+}
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSTableViewColumnDidResizeNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSTableViewColumnDidResizeNotification: &'static NSNotificationName;
+}
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSTableViewSelectionIsChangingNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSTableViewSelectionIsChangingNotification: &'static NSNotificationName;
+}
 
-#[cfg(all(
-    feature = "AppKit_NSUserInterfaceItemIdentification",
-    feature = "Foundation_NSString"
-))]
-extern_static!(NSTableViewRowViewKey: &'static NSUserInterfaceItemIdentifier);
+extern "C" {
+    #[cfg(all(
+        feature = "AppKit_NSUserInterfaceItemIdentification",
+        feature = "Foundation_NSString"
+    ))]
+    pub static NSTableViewRowViewKey: &'static NSUserInterfaceItemIdentifier;
+}
 
 extern_protocol!(
     pub unsafe trait NSTableViewDataSource: NSObjectProtocol {

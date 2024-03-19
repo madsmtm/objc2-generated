@@ -4,20 +4,30 @@ use crate::common::*;
 use crate::CallKit::*;
 use crate::Foundation::*;
 
-#[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
-extern_static!(CXErrorDomain: &'static NSErrorDomain);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
+    pub static CXErrorDomain: &'static NSErrorDomain;
+}
 
-#[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
-extern_static!(CXErrorDomainIncomingCall: &'static NSErrorDomain);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
+    pub static CXErrorDomainIncomingCall: &'static NSErrorDomain;
+}
 
-#[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
-extern_static!(CXErrorDomainRequestTransaction: &'static NSErrorDomain);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
+    pub static CXErrorDomainRequestTransaction: &'static NSErrorDomain;
+}
 
-#[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
-extern_static!(CXErrorDomainCallDirectoryManager: &'static NSErrorDomain);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
+    pub static CXErrorDomainCallDirectoryManager: &'static NSErrorDomain;
+}
 
-#[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
-extern_static!(CXErrorDomainNotificationServiceExtension: &'static NSErrorDomain);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
+    pub static CXErrorDomainNotificationServiceExtension: &'static NSErrorDomain;
+}
 
 ns_error_enum!(
     #[underlying(NSInteger)]

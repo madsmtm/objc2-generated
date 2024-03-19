@@ -136,18 +136,22 @@ extern_methods!(
     }
 );
 
-extern_static!(NSUnknownColorSpaceModel: NSColorSpaceModel = NSColorSpaceModel(NSColorSpaceModel::Unknown.0));
+pub static NSUnknownColorSpaceModel: NSColorSpaceModel =
+    NSColorSpaceModel(NSColorSpaceModel::Unknown.0);
 
-extern_static!(NSGrayColorSpaceModel: NSColorSpaceModel = NSColorSpaceModel(NSColorSpaceModel::Gray.0));
+pub static NSGrayColorSpaceModel: NSColorSpaceModel = NSColorSpaceModel(NSColorSpaceModel::Gray.0);
 
-extern_static!(NSRGBColorSpaceModel: NSColorSpaceModel = NSColorSpaceModel(NSColorSpaceModel::RGB.0));
+pub static NSRGBColorSpaceModel: NSColorSpaceModel = NSColorSpaceModel(NSColorSpaceModel::RGB.0);
 
-extern_static!(NSCMYKColorSpaceModel: NSColorSpaceModel = NSColorSpaceModel(NSColorSpaceModel::CMYK.0));
+pub static NSCMYKColorSpaceModel: NSColorSpaceModel = NSColorSpaceModel(NSColorSpaceModel::CMYK.0);
 
-extern_static!(NSLABColorSpaceModel: NSColorSpaceModel = NSColorSpaceModel(NSColorSpaceModel::LAB.0));
+pub static NSLABColorSpaceModel: NSColorSpaceModel = NSColorSpaceModel(NSColorSpaceModel::LAB.0);
 
-extern_static!(NSDeviceNColorSpaceModel: NSColorSpaceModel = NSColorSpaceModel(NSColorSpaceModel::DeviceN.0));
+pub static NSDeviceNColorSpaceModel: NSColorSpaceModel =
+    NSColorSpaceModel(NSColorSpaceModel::DeviceN.0);
 
-extern_static!(NSIndexedColorSpaceModel: NSColorSpaceModel = NSColorSpaceModel(NSColorSpaceModel::Indexed.0));
+pub static NSIndexedColorSpaceModel: NSColorSpaceModel =
+    NSColorSpaceModel(NSColorSpaceModel::Indexed.0);
 
-extern_static!(NSPatternColorSpaceModel: NSColorSpaceModel = NSColorSpaceModel(NSColorSpaceModel::Patterned.0));
+pub static NSPatternColorSpaceModel: NSColorSpaceModel =
+    NSColorSpaceModel(NSColorSpaceModel::Patterned.0);

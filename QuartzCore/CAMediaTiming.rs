@@ -65,14 +65,22 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn CAMediaTiming {}
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(kCAFillModeForwards: &'static CAMediaTimingFillMode);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static kCAFillModeForwards: &'static CAMediaTimingFillMode;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(kCAFillModeBackwards: &'static CAMediaTimingFillMode);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static kCAFillModeBackwards: &'static CAMediaTimingFillMode;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(kCAFillModeBoth: &'static CAMediaTimingFillMode);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static kCAFillModeBoth: &'static CAMediaTimingFillMode;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(kCAFillModeRemoved: &'static CAMediaTimingFillMode);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static kCAFillModeRemoved: &'static CAMediaTimingFillMode;
+}

@@ -10,73 +10,115 @@ typed_extensible_enum!(
     pub type NSPasteboardType = NSString;
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSPasteboardTypeString: &'static NSPasteboardType);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSPasteboardTypeString: &'static NSPasteboardType;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSPasteboardTypePDF: &'static NSPasteboardType);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSPasteboardTypePDF: &'static NSPasteboardType;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSPasteboardTypeTIFF: &'static NSPasteboardType);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSPasteboardTypeTIFF: &'static NSPasteboardType;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSPasteboardTypePNG: &'static NSPasteboardType);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSPasteboardTypePNG: &'static NSPasteboardType;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSPasteboardTypeRTF: &'static NSPasteboardType);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSPasteboardTypeRTF: &'static NSPasteboardType;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSPasteboardTypeRTFD: &'static NSPasteboardType);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSPasteboardTypeRTFD: &'static NSPasteboardType;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSPasteboardTypeHTML: &'static NSPasteboardType);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSPasteboardTypeHTML: &'static NSPasteboardType;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSPasteboardTypeTabularText: &'static NSPasteboardType);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSPasteboardTypeTabularText: &'static NSPasteboardType;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSPasteboardTypeFont: &'static NSPasteboardType);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSPasteboardTypeFont: &'static NSPasteboardType;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSPasteboardTypeRuler: &'static NSPasteboardType);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSPasteboardTypeRuler: &'static NSPasteboardType;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSPasteboardTypeColor: &'static NSPasteboardType);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSPasteboardTypeColor: &'static NSPasteboardType;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSPasteboardTypeSound: &'static NSPasteboardType);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSPasteboardTypeSound: &'static NSPasteboardType;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSPasteboardTypeMultipleTextSelection: &'static NSPasteboardType);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSPasteboardTypeMultipleTextSelection: &'static NSPasteboardType;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSPasteboardTypeTextFinderOptions: &'static NSPasteboardType);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSPasteboardTypeTextFinderOptions: &'static NSPasteboardType;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSPasteboardTypeURL: &'static NSPasteboardType);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSPasteboardTypeURL: &'static NSPasteboardType;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSPasteboardTypeFileURL: &'static NSPasteboardType);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSPasteboardTypeFileURL: &'static NSPasteboardType;
+}
 
 #[cfg(feature = "Foundation_NSString")]
 typed_extensible_enum!(
     pub type NSPasteboardName = NSString;
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSPasteboardNameGeneral: &'static NSPasteboardName);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSPasteboardNameGeneral: &'static NSPasteboardName;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSPasteboardNameFont: &'static NSPasteboardName);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSPasteboardNameFont: &'static NSPasteboardName;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSPasteboardNameRuler: &'static NSPasteboardName);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSPasteboardNameRuler: &'static NSPasteboardName;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSPasteboardNameFind: &'static NSPasteboardName);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSPasteboardNameFind: &'static NSPasteboardName;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSPasteboardNameDrag: &'static NSPasteboardName);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSPasteboardNameDrag: &'static NSPasteboardName;
+}
 
 ns_options!(
     #[underlying(NSUInteger)]
@@ -90,11 +132,16 @@ typed_enum!(
     pub type NSPasteboardReadingOptionKey = NSString;
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSPasteboardURLReadingFileURLsOnlyKey: &'static NSPasteboardReadingOptionKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSPasteboardURLReadingFileURLsOnlyKey: &'static NSPasteboardReadingOptionKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSPasteboardURLReadingContentsConformToTypesKey: &'static NSPasteboardReadingOptionKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSPasteboardURLReadingContentsConformToTypesKey:
+        &'static NSPasteboardReadingOptionKey;
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -434,8 +481,10 @@ extern_methods!(
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFileContentsPboardType: &'static NSPasteboardType);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFileContentsPboardType: &'static NSPasteboardType;
+}
 
 extern "C" {
     #[cfg(feature = "Foundation_NSString")]
@@ -457,74 +506,122 @@ extern "C" {
     pub fn NSGetFileTypes(pboard_types: &NSArray<NSPasteboardType>) -> *mut NSArray<NSString>;
 }
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSStringPboardType: &'static NSPasteboardType);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSStringPboardType: &'static NSPasteboardType;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFilenamesPboardType: &'static NSPasteboardType);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFilenamesPboardType: &'static NSPasteboardType;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSTIFFPboardType: &'static NSPasteboardType);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSTIFFPboardType: &'static NSPasteboardType;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSRTFPboardType: &'static NSPasteboardType);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSRTFPboardType: &'static NSPasteboardType;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSTabularTextPboardType: &'static NSPasteboardType);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSTabularTextPboardType: &'static NSPasteboardType;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFontPboardType: &'static NSPasteboardType);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFontPboardType: &'static NSPasteboardType;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSRulerPboardType: &'static NSPasteboardType);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSRulerPboardType: &'static NSPasteboardType;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSColorPboardType: &'static NSPasteboardType);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSColorPboardType: &'static NSPasteboardType;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSRTFDPboardType: &'static NSPasteboardType);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSRTFDPboardType: &'static NSPasteboardType;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSHTMLPboardType: &'static NSPasteboardType);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSHTMLPboardType: &'static NSPasteboardType;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSURLPboardType: &'static NSPasteboardType);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSURLPboardType: &'static NSPasteboardType;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSPDFPboardType: &'static NSPasteboardType);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSPDFPboardType: &'static NSPasteboardType;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSMultipleTextSelectionPboardType: &'static NSPasteboardType);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSMultipleTextSelectionPboardType: &'static NSPasteboardType;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSPostScriptPboardType: &'static NSPasteboardType);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSPostScriptPboardType: &'static NSPasteboardType;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSVCardPboardType: &'static NSPasteboardType);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSVCardPboardType: &'static NSPasteboardType;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSInkTextPboardType: &'static NSPasteboardType);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSInkTextPboardType: &'static NSPasteboardType;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFilesPromisePboardType: &'static NSPasteboardType);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFilesPromisePboardType: &'static NSPasteboardType;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSPasteboardTypeFindPanelSearchOptions: &'static NSPasteboardType);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSPasteboardTypeFindPanelSearchOptions: &'static NSPasteboardType;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSGeneralPboard: &'static NSPasteboardName);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSGeneralPboard: &'static NSPasteboardName;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFontPboard: &'static NSPasteboardName);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFontPboard: &'static NSPasteboardName;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSRulerPboard: &'static NSPasteboardName);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSRulerPboard: &'static NSPasteboardName;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFindPboard: &'static NSPasteboardName);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFindPboard: &'static NSPasteboardName;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSDragPboard: &'static NSPasteboardName);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSDragPboard: &'static NSPasteboardName;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSPICTPboardType: &'static NSPasteboardType);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSPICTPboardType: &'static NSPasteboardType;
+}

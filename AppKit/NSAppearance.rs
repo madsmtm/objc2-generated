@@ -87,32 +87,50 @@ extern_methods!(
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSAppearanceNameAqua: &'static NSAppearanceName);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSAppearanceNameAqua: &'static NSAppearanceName;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSAppearanceNameDarkAqua: &'static NSAppearanceName);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSAppearanceNameDarkAqua: &'static NSAppearanceName;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSAppearanceNameLightContent: &'static NSAppearanceName);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSAppearanceNameLightContent: &'static NSAppearanceName;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSAppearanceNameVibrantDark: &'static NSAppearanceName);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSAppearanceNameVibrantDark: &'static NSAppearanceName;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSAppearanceNameVibrantLight: &'static NSAppearanceName);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSAppearanceNameVibrantLight: &'static NSAppearanceName;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSAppearanceNameAccessibilityHighContrastAqua: &'static NSAppearanceName);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSAppearanceNameAccessibilityHighContrastAqua: &'static NSAppearanceName;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSAppearanceNameAccessibilityHighContrastDarkAqua: &'static NSAppearanceName);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSAppearanceNameAccessibilityHighContrastDarkAqua: &'static NSAppearanceName;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSAppearanceNameAccessibilityHighContrastVibrantLight: &'static NSAppearanceName);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSAppearanceNameAccessibilityHighContrastVibrantLight: &'static NSAppearanceName;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSAppearanceNameAccessibilityHighContrastVibrantDark: &'static NSAppearanceName);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSAppearanceNameAccessibilityHighContrastVibrantDark: &'static NSAppearanceName;
+}
 
 extern_protocol!(
     pub unsafe trait NSAppearanceCustomization: NSObjectProtocol {

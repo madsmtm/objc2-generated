@@ -436,26 +436,30 @@ extern_methods!(
     }
 );
 
-extern_static!(NSButtLineCapStyle: NSLineCapStyle = NSLineCapStyle(NSLineCapStyle::Butt.0));
+pub static NSButtLineCapStyle: NSLineCapStyle = NSLineCapStyle(NSLineCapStyle::Butt.0);
 
-extern_static!(NSRoundLineCapStyle: NSLineCapStyle = NSLineCapStyle(NSLineCapStyle::Round.0));
+pub static NSRoundLineCapStyle: NSLineCapStyle = NSLineCapStyle(NSLineCapStyle::Round.0);
 
-extern_static!(NSSquareLineCapStyle: NSLineCapStyle = NSLineCapStyle(NSLineCapStyle::Square.0));
+pub static NSSquareLineCapStyle: NSLineCapStyle = NSLineCapStyle(NSLineCapStyle::Square.0);
 
-extern_static!(NSMiterLineJoinStyle: NSLineJoinStyle = NSLineJoinStyle(NSLineJoinStyle::Miter.0));
+pub static NSMiterLineJoinStyle: NSLineJoinStyle = NSLineJoinStyle(NSLineJoinStyle::Miter.0);
 
-extern_static!(NSRoundLineJoinStyle: NSLineJoinStyle = NSLineJoinStyle(NSLineJoinStyle::Round.0));
+pub static NSRoundLineJoinStyle: NSLineJoinStyle = NSLineJoinStyle(NSLineJoinStyle::Round.0);
 
-extern_static!(NSBevelLineJoinStyle: NSLineJoinStyle = NSLineJoinStyle(NSLineJoinStyle::Bevel.0));
+pub static NSBevelLineJoinStyle: NSLineJoinStyle = NSLineJoinStyle(NSLineJoinStyle::Bevel.0);
 
-extern_static!(NSNonZeroWindingRule: NSWindingRule = NSWindingRule(NSWindingRule::NonZero.0));
+pub static NSNonZeroWindingRule: NSWindingRule = NSWindingRule(NSWindingRule::NonZero.0);
 
-extern_static!(NSEvenOddWindingRule: NSWindingRule = NSWindingRule(NSWindingRule::EvenOdd.0));
+pub static NSEvenOddWindingRule: NSWindingRule = NSWindingRule(NSWindingRule::EvenOdd.0);
 
-extern_static!(NSMoveToBezierPathElement: NSBezierPathElement = NSBezierPathElement(NSBezierPathElement::MoveTo.0));
+pub static NSMoveToBezierPathElement: NSBezierPathElement =
+    NSBezierPathElement(NSBezierPathElement::MoveTo.0);
 
-extern_static!(NSLineToBezierPathElement: NSBezierPathElement = NSBezierPathElement(NSBezierPathElement::LineTo.0));
+pub static NSLineToBezierPathElement: NSBezierPathElement =
+    NSBezierPathElement(NSBezierPathElement::LineTo.0);
 
-extern_static!(NSCurveToBezierPathElement: NSBezierPathElement = NSBezierPathElement(NSBezierPathElement::CurveTo.0));
+pub static NSCurveToBezierPathElement: NSBezierPathElement =
+    NSBezierPathElement(NSBezierPathElement::CurveTo.0);
 
-extern_static!(NSClosePathBezierPathElement: NSBezierPathElement = NSBezierPathElement(NSBezierPathElement::ClosePath.0));
+pub static NSClosePathBezierPathElement: NSBezierPathElement =
+    NSBezierPathElement(NSBezierPathElement::ClosePath.0);

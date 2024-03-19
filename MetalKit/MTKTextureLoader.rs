@@ -11,65 +11,95 @@ typed_enum!(
     pub type MTKTextureLoaderError = NSString;
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(MTKTextureLoaderErrorDomain: &'static MTKTextureLoaderError);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static MTKTextureLoaderErrorDomain: &'static MTKTextureLoaderError;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(MTKTextureLoaderErrorKey: &'static MTKTextureLoaderError);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static MTKTextureLoaderErrorKey: &'static MTKTextureLoaderError;
+}
 
 #[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type MTKTextureLoaderOption = NSString;
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(MTKTextureLoaderOptionAllocateMipmaps: &'static MTKTextureLoaderOption);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static MTKTextureLoaderOptionAllocateMipmaps: &'static MTKTextureLoaderOption;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(MTKTextureLoaderOptionGenerateMipmaps: &'static MTKTextureLoaderOption);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static MTKTextureLoaderOptionGenerateMipmaps: &'static MTKTextureLoaderOption;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(MTKTextureLoaderOptionSRGB: &'static MTKTextureLoaderOption);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static MTKTextureLoaderOptionSRGB: &'static MTKTextureLoaderOption;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(MTKTextureLoaderOptionTextureUsage: &'static MTKTextureLoaderOption);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static MTKTextureLoaderOptionTextureUsage: &'static MTKTextureLoaderOption;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(MTKTextureLoaderOptionTextureCPUCacheMode: &'static MTKTextureLoaderOption);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static MTKTextureLoaderOptionTextureCPUCacheMode: &'static MTKTextureLoaderOption;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(MTKTextureLoaderOptionTextureStorageMode: &'static MTKTextureLoaderOption);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static MTKTextureLoaderOptionTextureStorageMode: &'static MTKTextureLoaderOption;
+}
 
 #[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type MTKTextureLoaderCubeLayout = NSString;
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(MTKTextureLoaderOptionCubeLayout: &'static MTKTextureLoaderOption);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static MTKTextureLoaderOptionCubeLayout: &'static MTKTextureLoaderOption;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(MTKTextureLoaderCubeLayoutVertical: &'static MTKTextureLoaderCubeLayout);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static MTKTextureLoaderCubeLayoutVertical: &'static MTKTextureLoaderCubeLayout;
+}
 
 #[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type MTKTextureLoaderOrigin = NSString;
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(MTKTextureLoaderOptionOrigin: &'static MTKTextureLoaderOption);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static MTKTextureLoaderOptionOrigin: &'static MTKTextureLoaderOption;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(MTKTextureLoaderOriginTopLeft: &'static MTKTextureLoaderOrigin);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static MTKTextureLoaderOriginTopLeft: &'static MTKTextureLoaderOrigin;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(MTKTextureLoaderOriginBottomLeft: &'static MTKTextureLoaderOrigin);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static MTKTextureLoaderOriginBottomLeft: &'static MTKTextureLoaderOrigin;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(MTKTextureLoaderOriginFlippedVertically: &'static MTKTextureLoaderOrigin);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static MTKTextureLoaderOriginFlippedVertically: &'static MTKTextureLoaderOrigin;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(MTKTextureLoaderOptionLoadAsArray: &'static MTKTextureLoaderOption);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static MTKTextureLoaderOptionLoadAsArray: &'static MTKTextureLoaderOption;
+}
 
 #[cfg(all(
     feature = "Foundation_NSError",

@@ -5,161 +5,213 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-#[cfg(all(
-    feature = "Foundation_NSAttributedString",
-    feature = "Foundation_NSString"
-))]
-extern_static!(NSFontAttributeName: &'static NSAttributedStringKey);
+extern "C" {
+    #[cfg(all(
+        feature = "Foundation_NSAttributedString",
+        feature = "Foundation_NSString"
+    ))]
+    pub static NSFontAttributeName: &'static NSAttributedStringKey;
+}
 
-#[cfg(all(
-    feature = "Foundation_NSAttributedString",
-    feature = "Foundation_NSString"
-))]
-extern_static!(NSParagraphStyleAttributeName: &'static NSAttributedStringKey);
+extern "C" {
+    #[cfg(all(
+        feature = "Foundation_NSAttributedString",
+        feature = "Foundation_NSString"
+    ))]
+    pub static NSParagraphStyleAttributeName: &'static NSAttributedStringKey;
+}
 
-#[cfg(all(
-    feature = "Foundation_NSAttributedString",
-    feature = "Foundation_NSString"
-))]
-extern_static!(NSForegroundColorAttributeName: &'static NSAttributedStringKey);
+extern "C" {
+    #[cfg(all(
+        feature = "Foundation_NSAttributedString",
+        feature = "Foundation_NSString"
+    ))]
+    pub static NSForegroundColorAttributeName: &'static NSAttributedStringKey;
+}
 
-#[cfg(all(
-    feature = "Foundation_NSAttributedString",
-    feature = "Foundation_NSString"
-))]
-extern_static!(NSBackgroundColorAttributeName: &'static NSAttributedStringKey);
+extern "C" {
+    #[cfg(all(
+        feature = "Foundation_NSAttributedString",
+        feature = "Foundation_NSString"
+    ))]
+    pub static NSBackgroundColorAttributeName: &'static NSAttributedStringKey;
+}
 
-#[cfg(all(
-    feature = "Foundation_NSAttributedString",
-    feature = "Foundation_NSString"
-))]
-extern_static!(NSLigatureAttributeName: &'static NSAttributedStringKey);
+extern "C" {
+    #[cfg(all(
+        feature = "Foundation_NSAttributedString",
+        feature = "Foundation_NSString"
+    ))]
+    pub static NSLigatureAttributeName: &'static NSAttributedStringKey;
+}
 
-#[cfg(all(
-    feature = "Foundation_NSAttributedString",
-    feature = "Foundation_NSString"
-))]
-extern_static!(NSKernAttributeName: &'static NSAttributedStringKey);
+extern "C" {
+    #[cfg(all(
+        feature = "Foundation_NSAttributedString",
+        feature = "Foundation_NSString"
+    ))]
+    pub static NSKernAttributeName: &'static NSAttributedStringKey;
+}
 
-#[cfg(all(
-    feature = "Foundation_NSAttributedString",
-    feature = "Foundation_NSString"
-))]
-extern_static!(NSTrackingAttributeName: &'static NSAttributedStringKey);
+extern "C" {
+    #[cfg(all(
+        feature = "Foundation_NSAttributedString",
+        feature = "Foundation_NSString"
+    ))]
+    pub static NSTrackingAttributeName: &'static NSAttributedStringKey;
+}
 
-#[cfg(all(
-    feature = "Foundation_NSAttributedString",
-    feature = "Foundation_NSString"
-))]
-extern_static!(NSStrikethroughStyleAttributeName: &'static NSAttributedStringKey);
+extern "C" {
+    #[cfg(all(
+        feature = "Foundation_NSAttributedString",
+        feature = "Foundation_NSString"
+    ))]
+    pub static NSStrikethroughStyleAttributeName: &'static NSAttributedStringKey;
+}
 
-#[cfg(all(
-    feature = "Foundation_NSAttributedString",
-    feature = "Foundation_NSString"
-))]
-extern_static!(NSUnderlineStyleAttributeName: &'static NSAttributedStringKey);
+extern "C" {
+    #[cfg(all(
+        feature = "Foundation_NSAttributedString",
+        feature = "Foundation_NSString"
+    ))]
+    pub static NSUnderlineStyleAttributeName: &'static NSAttributedStringKey;
+}
 
-#[cfg(all(
-    feature = "Foundation_NSAttributedString",
-    feature = "Foundation_NSString"
-))]
-extern_static!(NSStrokeColorAttributeName: &'static NSAttributedStringKey);
+extern "C" {
+    #[cfg(all(
+        feature = "Foundation_NSAttributedString",
+        feature = "Foundation_NSString"
+    ))]
+    pub static NSStrokeColorAttributeName: &'static NSAttributedStringKey;
+}
 
-#[cfg(all(
-    feature = "Foundation_NSAttributedString",
-    feature = "Foundation_NSString"
-))]
-extern_static!(NSStrokeWidthAttributeName: &'static NSAttributedStringKey);
+extern "C" {
+    #[cfg(all(
+        feature = "Foundation_NSAttributedString",
+        feature = "Foundation_NSString"
+    ))]
+    pub static NSStrokeWidthAttributeName: &'static NSAttributedStringKey;
+}
 
-#[cfg(all(
-    feature = "Foundation_NSAttributedString",
-    feature = "Foundation_NSString"
-))]
-extern_static!(NSShadowAttributeName: &'static NSAttributedStringKey);
+extern "C" {
+    #[cfg(all(
+        feature = "Foundation_NSAttributedString",
+        feature = "Foundation_NSString"
+    ))]
+    pub static NSShadowAttributeName: &'static NSAttributedStringKey;
+}
 
-#[cfg(all(
-    feature = "Foundation_NSAttributedString",
-    feature = "Foundation_NSString"
-))]
-extern_static!(NSTextEffectAttributeName: &'static NSAttributedStringKey);
+extern "C" {
+    #[cfg(all(
+        feature = "Foundation_NSAttributedString",
+        feature = "Foundation_NSString"
+    ))]
+    pub static NSTextEffectAttributeName: &'static NSAttributedStringKey;
+}
 
-#[cfg(all(
-    feature = "Foundation_NSAttributedString",
-    feature = "Foundation_NSString"
-))]
-extern_static!(NSAttachmentAttributeName: &'static NSAttributedStringKey);
+extern "C" {
+    #[cfg(all(
+        feature = "Foundation_NSAttributedString",
+        feature = "Foundation_NSString"
+    ))]
+    pub static NSAttachmentAttributeName: &'static NSAttributedStringKey;
+}
 
-#[cfg(all(
-    feature = "Foundation_NSAttributedString",
-    feature = "Foundation_NSString"
-))]
-extern_static!(NSLinkAttributeName: &'static NSAttributedStringKey);
+extern "C" {
+    #[cfg(all(
+        feature = "Foundation_NSAttributedString",
+        feature = "Foundation_NSString"
+    ))]
+    pub static NSLinkAttributeName: &'static NSAttributedStringKey;
+}
 
-#[cfg(all(
-    feature = "Foundation_NSAttributedString",
-    feature = "Foundation_NSString"
-))]
-extern_static!(NSBaselineOffsetAttributeName: &'static NSAttributedStringKey);
+extern "C" {
+    #[cfg(all(
+        feature = "Foundation_NSAttributedString",
+        feature = "Foundation_NSString"
+    ))]
+    pub static NSBaselineOffsetAttributeName: &'static NSAttributedStringKey;
+}
 
-#[cfg(all(
-    feature = "Foundation_NSAttributedString",
-    feature = "Foundation_NSString"
-))]
-extern_static!(NSUnderlineColorAttributeName: &'static NSAttributedStringKey);
+extern "C" {
+    #[cfg(all(
+        feature = "Foundation_NSAttributedString",
+        feature = "Foundation_NSString"
+    ))]
+    pub static NSUnderlineColorAttributeName: &'static NSAttributedStringKey;
+}
 
-#[cfg(all(
-    feature = "Foundation_NSAttributedString",
-    feature = "Foundation_NSString"
-))]
-extern_static!(NSStrikethroughColorAttributeName: &'static NSAttributedStringKey);
+extern "C" {
+    #[cfg(all(
+        feature = "Foundation_NSAttributedString",
+        feature = "Foundation_NSString"
+    ))]
+    pub static NSStrikethroughColorAttributeName: &'static NSAttributedStringKey;
+}
 
-#[cfg(all(
-    feature = "Foundation_NSAttributedString",
-    feature = "Foundation_NSString"
-))]
-extern_static!(NSWritingDirectionAttributeName: &'static NSAttributedStringKey);
+extern "C" {
+    #[cfg(all(
+        feature = "Foundation_NSAttributedString",
+        feature = "Foundation_NSString"
+    ))]
+    pub static NSWritingDirectionAttributeName: &'static NSAttributedStringKey;
+}
 
-#[cfg(all(
-    feature = "Foundation_NSAttributedString",
-    feature = "Foundation_NSString"
-))]
-extern_static!(NSCursorAttributeName: &'static NSAttributedStringKey);
+extern "C" {
+    #[cfg(all(
+        feature = "Foundation_NSAttributedString",
+        feature = "Foundation_NSString"
+    ))]
+    pub static NSCursorAttributeName: &'static NSAttributedStringKey;
+}
 
-#[cfg(all(
-    feature = "Foundation_NSAttributedString",
-    feature = "Foundation_NSString"
-))]
-extern_static!(NSToolTipAttributeName: &'static NSAttributedStringKey);
+extern "C" {
+    #[cfg(all(
+        feature = "Foundation_NSAttributedString",
+        feature = "Foundation_NSString"
+    ))]
+    pub static NSToolTipAttributeName: &'static NSAttributedStringKey;
+}
 
-#[cfg(all(
-    feature = "Foundation_NSAttributedString",
-    feature = "Foundation_NSString"
-))]
-extern_static!(NSMarkedClauseSegmentAttributeName: &'static NSAttributedStringKey);
+extern "C" {
+    #[cfg(all(
+        feature = "Foundation_NSAttributedString",
+        feature = "Foundation_NSString"
+    ))]
+    pub static NSMarkedClauseSegmentAttributeName: &'static NSAttributedStringKey;
+}
 
-#[cfg(all(
-    feature = "Foundation_NSAttributedString",
-    feature = "Foundation_NSString"
-))]
-extern_static!(NSTextAlternativesAttributeName: &'static NSAttributedStringKey);
+extern "C" {
+    #[cfg(all(
+        feature = "Foundation_NSAttributedString",
+        feature = "Foundation_NSString"
+    ))]
+    pub static NSTextAlternativesAttributeName: &'static NSAttributedStringKey;
+}
 
-#[cfg(all(
-    feature = "Foundation_NSAttributedString",
-    feature = "Foundation_NSString"
-))]
-extern_static!(NSSpellingStateAttributeName: &'static NSAttributedStringKey);
+extern "C" {
+    #[cfg(all(
+        feature = "Foundation_NSAttributedString",
+        feature = "Foundation_NSString"
+    ))]
+    pub static NSSpellingStateAttributeName: &'static NSAttributedStringKey;
+}
 
-#[cfg(all(
-    feature = "Foundation_NSAttributedString",
-    feature = "Foundation_NSString"
-))]
-extern_static!(NSSuperscriptAttributeName: &'static NSAttributedStringKey);
+extern "C" {
+    #[cfg(all(
+        feature = "Foundation_NSAttributedString",
+        feature = "Foundation_NSString"
+    ))]
+    pub static NSSuperscriptAttributeName: &'static NSAttributedStringKey;
+}
 
-#[cfg(all(
-    feature = "Foundation_NSAttributedString",
-    feature = "Foundation_NSString"
-))]
-extern_static!(NSGlyphInfoAttributeName: &'static NSAttributedStringKey);
+extern "C" {
+    #[cfg(all(
+        feature = "Foundation_NSAttributedString",
+        feature = "Foundation_NSString"
+    ))]
+    pub static NSGlyphInfoAttributeName: &'static NSAttributedStringKey;
+}
 
 ns_options!(
     #[underlying(NSInteger)]
@@ -200,8 +252,10 @@ typed_enum!(
     pub type NSTextEffectStyle = NSString;
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSTextEffectLetterpressStyle: &'static NSTextEffectStyle);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSTextEffectLetterpressStyle: &'static NSTextEffectStyle;
+}
 
 ns_enum!(
     #[underlying(NSInteger)]
@@ -242,46 +296,70 @@ typed_extensible_enum!(
     pub type NSAttributedStringDocumentType = NSString;
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSPlainTextDocumentType: &'static NSAttributedStringDocumentType);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSPlainTextDocumentType: &'static NSAttributedStringDocumentType;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSRTFTextDocumentType: &'static NSAttributedStringDocumentType);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSRTFTextDocumentType: &'static NSAttributedStringDocumentType;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSRTFDTextDocumentType: &'static NSAttributedStringDocumentType);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSRTFDTextDocumentType: &'static NSAttributedStringDocumentType;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSHTMLTextDocumentType: &'static NSAttributedStringDocumentType);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSHTMLTextDocumentType: &'static NSAttributedStringDocumentType;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSMacSimpleTextDocumentType: &'static NSAttributedStringDocumentType);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSMacSimpleTextDocumentType: &'static NSAttributedStringDocumentType;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSDocFormatTextDocumentType: &'static NSAttributedStringDocumentType);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSDocFormatTextDocumentType: &'static NSAttributedStringDocumentType;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSWordMLTextDocumentType: &'static NSAttributedStringDocumentType);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSWordMLTextDocumentType: &'static NSAttributedStringDocumentType;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSWebArchiveTextDocumentType: &'static NSAttributedStringDocumentType);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSWebArchiveTextDocumentType: &'static NSAttributedStringDocumentType;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSOfficeOpenXMLTextDocumentType: &'static NSAttributedStringDocumentType);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSOfficeOpenXMLTextDocumentType: &'static NSAttributedStringDocumentType;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSOpenDocumentTextDocumentType: &'static NSAttributedStringDocumentType);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSOpenDocumentTextDocumentType: &'static NSAttributedStringDocumentType;
+}
 
 #[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type NSTextLayoutSectionKey = NSString;
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSTextLayoutSectionOrientation: &'static NSTextLayoutSectionKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSTextLayoutSectionOrientation: &'static NSTextLayoutSectionKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSTextLayoutSectionRange: &'static NSTextLayoutSectionKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSTextLayoutSectionRange: &'static NSTextLayoutSectionKey;
+}
 
 ns_enum!(
     #[underlying(NSInteger)]
@@ -296,160 +374,273 @@ typed_extensible_enum!(
     pub type NSAttributedStringDocumentAttributeKey = NSString;
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSDocumentTypeDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSDocumentTypeDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSConvertedDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSConvertedDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSCocoaVersionDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSCocoaVersionDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFileTypeDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFileTypeDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSTitleDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSTitleDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSCompanyDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSCompanyDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSCopyrightDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSCopyrightDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSSubjectDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSSubjectDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSAuthorDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSAuthorDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSKeywordsDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSKeywordsDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSCommentDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSCommentDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSEditorDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSEditorDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSCreationTimeDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSCreationTimeDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSModificationTimeDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSModificationTimeDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSManagerDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSManagerDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSCategoryDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSCategoryDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSAppearanceDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSAppearanceDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSCharacterEncodingDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSCharacterEncodingDocumentAttribute:
+        &'static NSAttributedStringDocumentAttributeKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSDefaultAttributesDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSDefaultAttributesDocumentAttribute:
+        &'static NSAttributedStringDocumentAttributeKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSPaperSizeDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSPaperSizeDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSLeftMarginDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSLeftMarginDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSRightMarginDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSRightMarginDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSTopMarginDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSTopMarginDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSBottomMarginDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSBottomMarginDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSViewSizeDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSViewSizeDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSViewZoomDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSViewZoomDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSViewModeDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSViewModeDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSReadOnlyDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSReadOnlyDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSBackgroundColorDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSBackgroundColorDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSHyphenationFactorDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSHyphenationFactorDocumentAttribute:
+        &'static NSAttributedStringDocumentAttributeKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSDefaultTabIntervalDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSDefaultTabIntervalDocumentAttribute:
+        &'static NSAttributedStringDocumentAttributeKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSTextLayoutSectionsAttribute: &'static NSAttributedStringDocumentAttributeKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSTextLayoutSectionsAttribute: &'static NSAttributedStringDocumentAttributeKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSExcludedElementsDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSExcludedElementsDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSTextEncodingNameDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSTextEncodingNameDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSPrefixSpacesDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSPrefixSpacesDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSDefaultFontExcludedDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSDefaultFontExcludedDocumentAttribute:
+        &'static NSAttributedStringDocumentAttributeKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSTextScalingDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSTextScalingDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSSourceTextScalingDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSSourceTextScalingDocumentAttribute:
+        &'static NSAttributedStringDocumentAttributeKey;
+}
 
 #[cfg(feature = "Foundation_NSString")]
 typed_extensible_enum!(
     pub type NSAttributedStringDocumentReadingOptionKey = NSString;
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSDocumentTypeDocumentOption: &'static NSAttributedStringDocumentReadingOptionKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSDocumentTypeDocumentOption: &'static NSAttributedStringDocumentReadingOptionKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSDefaultAttributesDocumentOption: &'static NSAttributedStringDocumentReadingOptionKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSDefaultAttributesDocumentOption:
+        &'static NSAttributedStringDocumentReadingOptionKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSCharacterEncodingDocumentOption: &'static NSAttributedStringDocumentReadingOptionKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSCharacterEncodingDocumentOption:
+        &'static NSAttributedStringDocumentReadingOptionKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSTextEncodingNameDocumentOption: &'static NSAttributedStringDocumentReadingOptionKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSTextEncodingNameDocumentOption:
+        &'static NSAttributedStringDocumentReadingOptionKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSBaseURLDocumentOption: &'static NSAttributedStringDocumentReadingOptionKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSBaseURLDocumentOption: &'static NSAttributedStringDocumentReadingOptionKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSTimeoutDocumentOption: &'static NSAttributedStringDocumentReadingOptionKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSTimeoutDocumentOption: &'static NSAttributedStringDocumentReadingOptionKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSWebPreferencesDocumentOption: &'static NSAttributedStringDocumentReadingOptionKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSWebPreferencesDocumentOption: &'static NSAttributedStringDocumentReadingOptionKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSWebResourceLoadDelegateDocumentOption: &'static NSAttributedStringDocumentReadingOptionKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSWebResourceLoadDelegateDocumentOption:
+        &'static NSAttributedStringDocumentReadingOptionKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSTextSizeMultiplierDocumentOption: &'static NSAttributedStringDocumentReadingOptionKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSTextSizeMultiplierDocumentOption:
+        &'static NSAttributedStringDocumentReadingOptionKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFileTypeDocumentOption: &'static NSAttributedStringDocumentReadingOptionKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFileTypeDocumentOption: &'static NSAttributedStringDocumentReadingOptionKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSTargetTextScalingDocumentOption: &'static NSAttributedStringDocumentReadingOptionKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSTargetTextScalingDocumentOption:
+        &'static NSAttributedStringDocumentReadingOptionKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSSourceTextScalingDocumentOption: &'static NSAttributedStringDocumentReadingOptionKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSSourceTextScalingDocumentOption:
+        &'static NSAttributedStringDocumentReadingOptionKey;
+}
 
 extern_category!(
     /// Category on [`NSAttributedString`].
@@ -888,56 +1079,75 @@ extern_category!(
     unsafe impl NSMutableAttributedStringKitAdditions for NSMutableAttributedString {}
 );
 
-extern_static!(NSUnderlinePatternSolid: NSUnderlineStyle = NSUnderlineStyle(NSUnderlineStyle::PatternSolid.0));
+pub static NSUnderlinePatternSolid: NSUnderlineStyle =
+    NSUnderlineStyle(NSUnderlineStyle::PatternSolid.0);
 
-extern_static!(NSUnderlinePatternDot: NSUnderlineStyle = NSUnderlineStyle(NSUnderlineStyle::PatternDot.0));
+pub static NSUnderlinePatternDot: NSUnderlineStyle =
+    NSUnderlineStyle(NSUnderlineStyle::PatternDot.0);
 
-extern_static!(NSUnderlinePatternDash: NSUnderlineStyle = NSUnderlineStyle(NSUnderlineStyle::PatternDash.0));
+pub static NSUnderlinePatternDash: NSUnderlineStyle =
+    NSUnderlineStyle(NSUnderlineStyle::PatternDash.0);
 
-extern_static!(NSUnderlinePatternDashDot: NSUnderlineStyle = NSUnderlineStyle(NSUnderlineStyle::PatternDashDot.0));
+pub static NSUnderlinePatternDashDot: NSUnderlineStyle =
+    NSUnderlineStyle(NSUnderlineStyle::PatternDashDot.0);
 
-extern_static!(NSUnderlinePatternDashDotDot: NSUnderlineStyle = NSUnderlineStyle(NSUnderlineStyle::PatternDashDotDot.0));
+pub static NSUnderlinePatternDashDotDot: NSUnderlineStyle =
+    NSUnderlineStyle(NSUnderlineStyle::PatternDashDotDot.0);
 
-extern_static!(NSUnderlineByWord: NSUnderlineStyle = NSUnderlineStyle(NSUnderlineStyle::ByWord.0));
+pub static NSUnderlineByWord: NSUnderlineStyle = NSUnderlineStyle(NSUnderlineStyle::ByWord.0);
 
-#[cfg(all(
-    feature = "Foundation_NSAttributedString",
-    feature = "Foundation_NSString"
-))]
-extern_static!(NSCharacterShapeAttributeName: &'static NSAttributedStringKey);
+extern "C" {
+    #[cfg(all(
+        feature = "Foundation_NSAttributedString",
+        feature = "Foundation_NSString"
+    ))]
+    pub static NSCharacterShapeAttributeName: &'static NSAttributedStringKey;
+}
 
-#[cfg(all(
-    feature = "Foundation_NSAttributedString",
-    feature = "Foundation_NSString"
-))]
-extern_static!(NSUsesScreenFontsDocumentAttribute: &'static NSAttributedStringKey);
+extern "C" {
+    #[cfg(all(
+        feature = "Foundation_NSAttributedString",
+        feature = "Foundation_NSString"
+    ))]
+    pub static NSUsesScreenFontsDocumentAttribute: &'static NSAttributedStringKey;
+}
 
-#[cfg(all(
-    feature = "Foundation_NSAttributedString",
-    feature = "Foundation_NSString"
-))]
-extern_static!(NSObliquenessAttributeName: &'static NSAttributedStringKey);
+extern "C" {
+    #[cfg(all(
+        feature = "Foundation_NSAttributedString",
+        feature = "Foundation_NSString"
+    ))]
+    pub static NSObliquenessAttributeName: &'static NSAttributedStringKey;
+}
 
-#[cfg(all(
-    feature = "Foundation_NSAttributedString",
-    feature = "Foundation_NSString"
-))]
-extern_static!(NSExpansionAttributeName: &'static NSAttributedStringKey);
+extern "C" {
+    #[cfg(all(
+        feature = "Foundation_NSAttributedString",
+        feature = "Foundation_NSString"
+    ))]
+    pub static NSExpansionAttributeName: &'static NSAttributedStringKey;
+}
 
-#[cfg(all(
-    feature = "Foundation_NSAttributedString",
-    feature = "Foundation_NSString"
-))]
-extern_static!(NSVerticalGlyphFormAttributeName: &'static NSAttributedStringKey);
+extern "C" {
+    #[cfg(all(
+        feature = "Foundation_NSAttributedString",
+        feature = "Foundation_NSString"
+    ))]
+    pub static NSVerticalGlyphFormAttributeName: &'static NSAttributedStringKey;
+}
 
 #[deprecated = "Use NSUnderlineStyleNone instead"]
 pub const NSNoUnderlineStyle: c_uint = 0;
 #[deprecated = "Use NSUnderlineStyleSingle instead"]
 pub const NSSingleUnderlineStyle: c_uint = 1;
 
-extern_static!(NSUnderlineStrikethroughMask: NSUInteger);
+extern "C" {
+    pub static NSUnderlineStrikethroughMask: NSUInteger;
+}
 
-extern_static!(NSUnderlineByWordMask: NSUInteger);
+extern "C" {
+    pub static NSUnderlineByWordMask: NSUInteger;
+}
 
 extern_category!(
     /// Category "NSDeprecatedKitAdditions" on [`NSAttributedString`].

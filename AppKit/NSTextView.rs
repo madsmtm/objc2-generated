@@ -24,8 +24,10 @@ ns_enum!(
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSAllRomanInputSourcesLocaleIdentifier: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSAllRomanInputSourcesLocaleIdentifier: &'static NSString;
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -1889,38 +1891,60 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn NSTextViewDelegate {}
 );
 
-#[cfg(all(feature = "AppKit_NSTouchBarItem", feature = "Foundation_NSString"))]
-extern_static!(NSTouchBarItemIdentifierCharacterPicker: &'static NSTouchBarItemIdentifier);
+extern "C" {
+    #[cfg(all(feature = "AppKit_NSTouchBarItem", feature = "Foundation_NSString"))]
+    pub static NSTouchBarItemIdentifierCharacterPicker: &'static NSTouchBarItemIdentifier;
+}
 
-#[cfg(all(feature = "AppKit_NSTouchBarItem", feature = "Foundation_NSString"))]
-extern_static!(NSTouchBarItemIdentifierTextColorPicker: &'static NSTouchBarItemIdentifier);
+extern "C" {
+    #[cfg(all(feature = "AppKit_NSTouchBarItem", feature = "Foundation_NSString"))]
+    pub static NSTouchBarItemIdentifierTextColorPicker: &'static NSTouchBarItemIdentifier;
+}
 
-#[cfg(all(feature = "AppKit_NSTouchBarItem", feature = "Foundation_NSString"))]
-extern_static!(NSTouchBarItemIdentifierTextStyle: &'static NSTouchBarItemIdentifier);
+extern "C" {
+    #[cfg(all(feature = "AppKit_NSTouchBarItem", feature = "Foundation_NSString"))]
+    pub static NSTouchBarItemIdentifierTextStyle: &'static NSTouchBarItemIdentifier;
+}
 
-#[cfg(all(feature = "AppKit_NSTouchBarItem", feature = "Foundation_NSString"))]
-extern_static!(NSTouchBarItemIdentifierTextAlignment: &'static NSTouchBarItemIdentifier);
+extern "C" {
+    #[cfg(all(feature = "AppKit_NSTouchBarItem", feature = "Foundation_NSString"))]
+    pub static NSTouchBarItemIdentifierTextAlignment: &'static NSTouchBarItemIdentifier;
+}
 
-#[cfg(all(feature = "AppKit_NSTouchBarItem", feature = "Foundation_NSString"))]
-extern_static!(NSTouchBarItemIdentifierTextList: &'static NSTouchBarItemIdentifier);
+extern "C" {
+    #[cfg(all(feature = "AppKit_NSTouchBarItem", feature = "Foundation_NSString"))]
+    pub static NSTouchBarItemIdentifierTextList: &'static NSTouchBarItemIdentifier;
+}
 
-#[cfg(all(feature = "AppKit_NSTouchBarItem", feature = "Foundation_NSString"))]
-extern_static!(NSTouchBarItemIdentifierTextFormat: &'static NSTouchBarItemIdentifier);
+extern "C" {
+    #[cfg(all(feature = "AppKit_NSTouchBarItem", feature = "Foundation_NSString"))]
+    pub static NSTouchBarItemIdentifierTextFormat: &'static NSTouchBarItemIdentifier;
+}
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSTextViewWillChangeNotifyingTextViewNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSTextViewWillChangeNotifyingTextViewNotification: &'static NSNotificationName;
+}
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSTextViewDidChangeSelectionNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSTextViewDidChangeSelectionNotification: &'static NSNotificationName;
+}
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSTextViewDidChangeTypingAttributesNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSTextViewDidChangeTypingAttributesNotification: &'static NSNotificationName;
+}
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSTextViewWillSwitchToNSLayoutManagerNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSTextViewWillSwitchToNSLayoutManagerNotification: &'static NSNotificationName;
+}
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSTextViewDidSwitchToNSLayoutManagerNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSTextViewDidSwitchToNSLayoutManagerNotification: &'static NSNotificationName;
+}
 
 ns_enum!(
     #[underlying(NSUInteger)]
@@ -1948,19 +1972,25 @@ ns_enum!(
     }
 );
 
-#[cfg(all(feature = "AppKit_NSPasteboard", feature = "Foundation_NSString"))]
-extern_static!(NSFindPanelSearchOptionsPboardType: &'static NSPasteboardType);
+extern "C" {
+    #[cfg(all(feature = "AppKit_NSPasteboard", feature = "Foundation_NSString"))]
+    pub static NSFindPanelSearchOptionsPboardType: &'static NSPasteboardType;
+}
 
 #[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type NSPasteboardTypeFindPanelSearchOptionKey = NSString;
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFindPanelCaseInsensitiveSearch: &'static NSPasteboardTypeFindPanelSearchOptionKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFindPanelCaseInsensitiveSearch: &'static NSPasteboardTypeFindPanelSearchOptionKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFindPanelSubstringMatch: &'static NSPasteboardTypeFindPanelSearchOptionKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFindPanelSubstringMatch: &'static NSPasteboardTypeFindPanelSearchOptionKey;
+}
 
 ns_enum!(
     #[underlying(NSUInteger)]

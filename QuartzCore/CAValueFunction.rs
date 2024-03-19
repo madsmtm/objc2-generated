@@ -50,35 +50,57 @@ extern_methods!(
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(kCAValueFunctionRotateX: &'static CAValueFunctionName);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static kCAValueFunctionRotateX: &'static CAValueFunctionName;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(kCAValueFunctionRotateY: &'static CAValueFunctionName);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static kCAValueFunctionRotateY: &'static CAValueFunctionName;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(kCAValueFunctionRotateZ: &'static CAValueFunctionName);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static kCAValueFunctionRotateZ: &'static CAValueFunctionName;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(kCAValueFunctionScale: &'static CAValueFunctionName);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static kCAValueFunctionScale: &'static CAValueFunctionName;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(kCAValueFunctionScaleX: &'static CAValueFunctionName);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static kCAValueFunctionScaleX: &'static CAValueFunctionName;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(kCAValueFunctionScaleY: &'static CAValueFunctionName);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static kCAValueFunctionScaleY: &'static CAValueFunctionName;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(kCAValueFunctionScaleZ: &'static CAValueFunctionName);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static kCAValueFunctionScaleZ: &'static CAValueFunctionName;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(kCAValueFunctionTranslate: &'static CAValueFunctionName);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static kCAValueFunctionTranslate: &'static CAValueFunctionName;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(kCAValueFunctionTranslateX: &'static CAValueFunctionName);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static kCAValueFunctionTranslateX: &'static CAValueFunctionName;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(kCAValueFunctionTranslateY: &'static CAValueFunctionName);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static kCAValueFunctionTranslateY: &'static CAValueFunctionName;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(kCAValueFunctionTranslateZ: &'static CAValueFunctionName);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static kCAValueFunctionTranslateZ: &'static CAValueFunctionName;
+}

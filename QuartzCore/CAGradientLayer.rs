@@ -103,11 +103,17 @@ extern_methods!(
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(kCAGradientLayerAxial: &'static CAGradientLayerType);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static kCAGradientLayerAxial: &'static CAGradientLayerType;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(kCAGradientLayerRadial: &'static CAGradientLayerType);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static kCAGradientLayerRadial: &'static CAGradientLayerType;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(kCAGradientLayerConic: &'static CAGradientLayerType);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static kCAGradientLayerConic: &'static CAGradientLayerType;
+}

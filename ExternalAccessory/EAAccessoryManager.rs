@@ -14,23 +14,33 @@ ns_enum!(
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(EABluetoothAccessoryPickerErrorDomain: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static EABluetoothAccessoryPickerErrorDomain: &'static NSString;
+}
 
 #[cfg(feature = "Foundation_NSError")]
 pub type EABluetoothAccessoryPickerCompletion = *mut Block<dyn Fn(*mut NSError)>;
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(EAAccessoryDidConnectNotification: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static EAAccessoryDidConnectNotification: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(EAAccessoryDidDisconnectNotification: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static EAAccessoryDidDisconnectNotification: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(EAAccessoryKey: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static EAAccessoryKey: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(EAAccessorySelectedKey: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static EAAccessorySelectedKey: &'static NSString;
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

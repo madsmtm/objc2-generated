@@ -22,14 +22,22 @@ typed_enum!(
     pub type NSFontCollectionMatchingOptionKey = NSString;
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFontCollectionIncludeDisabledFontsOption: &'static NSFontCollectionMatchingOptionKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFontCollectionIncludeDisabledFontsOption:
+        &'static NSFontCollectionMatchingOptionKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFontCollectionRemoveDuplicatesOption: &'static NSFontCollectionMatchingOptionKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFontCollectionRemoveDuplicatesOption: &'static NSFontCollectionMatchingOptionKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFontCollectionDisallowAutoActivationOption: &'static NSFontCollectionMatchingOptionKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFontCollectionDisallowAutoActivationOption:
+        &'static NSFontCollectionMatchingOptionKey;
+}
 
 #[cfg(feature = "Foundation_NSString")]
 typed_extensible_enum!(
@@ -268,48 +276,72 @@ extern_methods!(
     }
 );
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSFontCollectionDidChangeNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSFontCollectionDidChangeNotification: &'static NSNotificationName;
+}
 
 #[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type NSFontCollectionUserInfoKey = NSString;
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFontCollectionActionKey: &'static NSFontCollectionUserInfoKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFontCollectionActionKey: &'static NSFontCollectionUserInfoKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFontCollectionNameKey: &'static NSFontCollectionUserInfoKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFontCollectionNameKey: &'static NSFontCollectionUserInfoKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFontCollectionOldNameKey: &'static NSFontCollectionUserInfoKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFontCollectionOldNameKey: &'static NSFontCollectionUserInfoKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFontCollectionVisibilityKey: &'static NSFontCollectionUserInfoKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFontCollectionVisibilityKey: &'static NSFontCollectionUserInfoKey;
+}
 
 #[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type NSFontCollectionActionTypeKey = NSString;
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFontCollectionWasShown: &'static NSFontCollectionActionTypeKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFontCollectionWasShown: &'static NSFontCollectionActionTypeKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFontCollectionWasHidden: &'static NSFontCollectionActionTypeKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFontCollectionWasHidden: &'static NSFontCollectionActionTypeKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFontCollectionWasRenamed: &'static NSFontCollectionActionTypeKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFontCollectionWasRenamed: &'static NSFontCollectionActionTypeKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFontCollectionAllFonts: &'static NSFontCollectionName);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFontCollectionAllFonts: &'static NSFontCollectionName;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFontCollectionUser: &'static NSFontCollectionName);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFontCollectionUser: &'static NSFontCollectionName;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFontCollectionFavorites: &'static NSFontCollectionName);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFontCollectionFavorites: &'static NSFontCollectionName;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFontCollectionRecentlyUsed: &'static NSFontCollectionName);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFontCollectionRecentlyUsed: &'static NSFontCollectionName;
+}

@@ -25,8 +25,10 @@ ns_enum!(
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(MKErrorDomain: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static MKErrorDomain: &'static NSString;
+}
 
 ns_enum!(
     #[underlying(NSUInteger)]

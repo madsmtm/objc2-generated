@@ -7,8 +7,10 @@ use crate::CoreLocation::*;
 use crate::Foundation::*;
 use crate::MapKit::*;
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(MKAnnotationCalloutInfoDidChangeNotification: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static MKAnnotationCalloutInfoDidChangeNotification: &'static NSString;
+}
 
 ns_enum!(
     #[underlying(NSUInteger)]
@@ -30,23 +32,23 @@ typed_extensible_enum!(
     pub type MKFeatureDisplayPriority = c_float;
 );
 
-extern_static!(MKFeatureDisplayPriorityRequired: MKFeatureDisplayPriority = 1000);
+pub static MKFeatureDisplayPriorityRequired: MKFeatureDisplayPriority = 1000 as _;
 
-extern_static!(MKFeatureDisplayPriorityDefaultHigh: MKFeatureDisplayPriority = 750);
+pub static MKFeatureDisplayPriorityDefaultHigh: MKFeatureDisplayPriority = 750 as _;
 
-extern_static!(MKFeatureDisplayPriorityDefaultLow: MKFeatureDisplayPriority = 250);
+pub static MKFeatureDisplayPriorityDefaultLow: MKFeatureDisplayPriority = 250 as _;
 
 typed_extensible_enum!(
     pub type MKAnnotationViewZPriority = c_float;
 );
 
-extern_static!(MKAnnotationViewZPriorityMax: MKAnnotationViewZPriority = 1000);
+pub static MKAnnotationViewZPriorityMax: MKAnnotationViewZPriority = 1000 as _;
 
-extern_static!(MKAnnotationViewZPriorityDefaultSelected: MKAnnotationViewZPriority = 1000);
+pub static MKAnnotationViewZPriorityDefaultSelected: MKAnnotationViewZPriority = 1000 as _;
 
-extern_static!(MKAnnotationViewZPriorityDefaultUnselected: MKAnnotationViewZPriority = 500);
+pub static MKAnnotationViewZPriorityDefaultUnselected: MKAnnotationViewZPriority = 500 as _;
 
-extern_static!(MKAnnotationViewZPriorityMin: MKAnnotationViewZPriority = 0);
+pub static MKAnnotationViewZPriorityMin: MKAnnotationViewZPriority = 0 as _;
 
 ns_enum!(
     #[underlying(NSInteger)]

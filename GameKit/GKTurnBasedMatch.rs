@@ -212,11 +212,15 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn GKTurnBasedEventListener {}
 );
 
-#[cfg(feature = "Foundation_NSDate")]
-extern_static!(GKTurnTimeoutDefault: NSTimeInterval);
+extern "C" {
+    #[cfg(feature = "Foundation_NSDate")]
+    pub static GKTurnTimeoutDefault: NSTimeInterval;
+}
 
-#[cfg(feature = "Foundation_NSDate")]
-extern_static!(GKTurnTimeoutNone: NSTimeInterval);
+extern "C" {
+    #[cfg(feature = "Foundation_NSDate")]
+    pub static GKTurnTimeoutNone: NSTimeInterval;
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -530,11 +534,15 @@ ns_enum!(
     }
 );
 
-#[cfg(feature = "Foundation_NSDate")]
-extern_static!(GKExchangeTimeoutDefault: NSTimeInterval);
+extern "C" {
+    #[cfg(feature = "Foundation_NSDate")]
+    pub static GKExchangeTimeoutDefault: NSTimeInterval;
+}
 
-#[cfg(feature = "Foundation_NSDate")]
-extern_static!(GKExchangeTimeoutNone: NSTimeInterval);
+extern "C" {
+    #[cfg(feature = "Foundation_NSDate")]
+    pub static GKExchangeTimeoutNone: NSTimeInterval;
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

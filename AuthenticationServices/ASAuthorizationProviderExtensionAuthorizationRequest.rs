@@ -10,11 +10,17 @@ typed_extensible_enum!(
     pub type ASAuthorizationProviderAuthorizationOperation = NSString;
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(ASAuthorizationProviderAuthorizationOperationConfigurationRemoved: &'static ASAuthorizationProviderAuthorizationOperation);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static ASAuthorizationProviderAuthorizationOperationConfigurationRemoved:
+        &'static ASAuthorizationProviderAuthorizationOperation;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(ASAuthorizationProviderAuthorizationOperationDirectRequest: &'static ASAuthorizationProviderAuthorizationOperation);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static ASAuthorizationProviderAuthorizationOperationDirectRequest:
+        &'static ASAuthorizationProviderAuthorizationOperation;
+}
 
 extern_protocol!(
     pub unsafe trait ASAuthorizationProviderExtensionAuthorizationRequestHandler:

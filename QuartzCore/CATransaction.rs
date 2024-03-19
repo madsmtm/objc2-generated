@@ -80,14 +80,22 @@ extern_methods!(
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(kCATransactionAnimationDuration: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static kCATransactionAnimationDuration: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(kCATransactionDisableActions: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static kCATransactionDisableActions: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(kCATransactionAnimationTimingFunction: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static kCATransactionAnimationTimingFunction: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(kCATransactionCompletionBlock: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static kCATransactionCompletionBlock: &'static NSString;
+}

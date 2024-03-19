@@ -112,5 +112,8 @@ extern_methods!(
     }
 );
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSTextInputContextKeyboardSelectionDidChangeNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSTextInputContextKeyboardSelectionDidChangeNotification:
+        &'static NSNotificationName;
+}

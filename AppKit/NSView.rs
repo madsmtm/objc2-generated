@@ -1047,17 +1047,26 @@ typed_enum!(
     pub type NSViewFullScreenModeOptionKey = NSString;
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFullScreenModeAllScreens: &'static NSViewFullScreenModeOptionKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFullScreenModeAllScreens: &'static NSViewFullScreenModeOptionKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFullScreenModeSetting: &'static NSViewFullScreenModeOptionKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFullScreenModeSetting: &'static NSViewFullScreenModeOptionKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFullScreenModeWindowLevel: &'static NSViewFullScreenModeOptionKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFullScreenModeWindowLevel: &'static NSViewFullScreenModeOptionKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFullScreenModeApplicationPresentationOptions: &'static NSViewFullScreenModeOptionKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFullScreenModeApplicationPresentationOptions:
+        &'static NSViewFullScreenModeOptionKey;
+}
 
 extern_methods!(
     /// NSFullScreenMode
@@ -1092,19 +1101,26 @@ typed_enum!(
     pub type NSDefinitionOptionKey = NSString;
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSDefinitionPresentationTypeKey: &'static NSDefinitionOptionKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSDefinitionPresentationTypeKey: &'static NSDefinitionOptionKey;
+}
 
 #[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type NSDefinitionPresentationType = NSString;
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSDefinitionPresentationTypeOverlay: &'static NSDefinitionPresentationType);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSDefinitionPresentationTypeOverlay: &'static NSDefinitionPresentationType;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSDefinitionPresentationTypeDictionaryApplication: &'static NSDefinitionPresentationType);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSDefinitionPresentationTypeDictionaryApplication:
+        &'static NSDefinitionPresentationType;
+}
 
 extern_methods!(
     /// NSDefinition
@@ -1383,17 +1399,27 @@ extern_methods!(
     }
 );
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSViewFrameDidChangeNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSViewFrameDidChangeNotification: &'static NSNotificationName;
+}
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSViewFocusDidChangeNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSViewFocusDidChangeNotification: &'static NSNotificationName;
+}
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSViewBoundsDidChangeNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSViewBoundsDidChangeNotification: &'static NSNotificationName;
+}
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSViewGlobalFrameDidChangeNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSViewGlobalFrameDidChangeNotification: &'static NSNotificationName;
+}
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSViewDidUpdateTrackingAreasNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSViewDidUpdateTrackingAreasNotification: &'static NSNotificationName;
+}

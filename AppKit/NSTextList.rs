@@ -17,56 +17,90 @@ typed_extensible_enum!(
     pub type NSTextListMarkerFormat = NSString;
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSTextListMarkerBox: &'static NSTextListMarkerFormat);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSTextListMarkerBox: &'static NSTextListMarkerFormat;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSTextListMarkerCheck: &'static NSTextListMarkerFormat);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSTextListMarkerCheck: &'static NSTextListMarkerFormat;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSTextListMarkerCircle: &'static NSTextListMarkerFormat);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSTextListMarkerCircle: &'static NSTextListMarkerFormat;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSTextListMarkerDiamond: &'static NSTextListMarkerFormat);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSTextListMarkerDiamond: &'static NSTextListMarkerFormat;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSTextListMarkerDisc: &'static NSTextListMarkerFormat);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSTextListMarkerDisc: &'static NSTextListMarkerFormat;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSTextListMarkerHyphen: &'static NSTextListMarkerFormat);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSTextListMarkerHyphen: &'static NSTextListMarkerFormat;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSTextListMarkerSquare: &'static NSTextListMarkerFormat);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSTextListMarkerSquare: &'static NSTextListMarkerFormat;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSTextListMarkerLowercaseHexadecimal: &'static NSTextListMarkerFormat);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSTextListMarkerLowercaseHexadecimal: &'static NSTextListMarkerFormat;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSTextListMarkerUppercaseHexadecimal: &'static NSTextListMarkerFormat);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSTextListMarkerUppercaseHexadecimal: &'static NSTextListMarkerFormat;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSTextListMarkerOctal: &'static NSTextListMarkerFormat);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSTextListMarkerOctal: &'static NSTextListMarkerFormat;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSTextListMarkerLowercaseAlpha: &'static NSTextListMarkerFormat);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSTextListMarkerLowercaseAlpha: &'static NSTextListMarkerFormat;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSTextListMarkerUppercaseAlpha: &'static NSTextListMarkerFormat);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSTextListMarkerUppercaseAlpha: &'static NSTextListMarkerFormat;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSTextListMarkerLowercaseLatin: &'static NSTextListMarkerFormat);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSTextListMarkerLowercaseLatin: &'static NSTextListMarkerFormat;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSTextListMarkerUppercaseLatin: &'static NSTextListMarkerFormat);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSTextListMarkerUppercaseLatin: &'static NSTextListMarkerFormat;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSTextListMarkerLowercaseRoman: &'static NSTextListMarkerFormat);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSTextListMarkerLowercaseRoman: &'static NSTextListMarkerFormat;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSTextListMarkerUppercaseRoman: &'static NSTextListMarkerFormat);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSTextListMarkerUppercaseRoman: &'static NSTextListMarkerFormat;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSTextListMarkerDecimal: &'static NSTextListMarkerFormat);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSTextListMarkerDecimal: &'static NSTextListMarkerFormat;
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

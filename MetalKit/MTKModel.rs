@@ -11,11 +11,15 @@ typed_enum!(
     pub type MTKModelError = NSString;
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(MTKModelErrorDomain: &'static MTKModelError);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static MTKModelErrorDomain: &'static MTKModelError;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(MTKModelErrorKey: &'static MTKModelError);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static MTKModelErrorKey: &'static MTKModelError;
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

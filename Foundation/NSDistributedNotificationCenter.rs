@@ -8,8 +8,10 @@ typed_extensible_enum!(
     pub type NSDistributedNotificationCenterType = NSString;
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSLocalNotificationCenterType: &'static NSDistributedNotificationCenterType);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSLocalNotificationCenterType: &'static NSDistributedNotificationCenterType;
+}
 
 ns_enum!(
     #[underlying(NSUInteger)]
@@ -33,9 +35,15 @@ ns_options!(
     }
 );
 
-extern_static!(NSNotificationDeliverImmediately: NSDistributedNotificationOptions = NSDistributedNotificationOptions(NSDistributedNotificationOptions::NSDistributedNotificationDeliverImmediately.0));
+pub static NSNotificationDeliverImmediately: NSDistributedNotificationOptions =
+    NSDistributedNotificationOptions(
+        NSDistributedNotificationOptions::NSDistributedNotificationDeliverImmediately.0,
+    );
 
-extern_static!(NSNotificationPostToAllSessions: NSDistributedNotificationOptions = NSDistributedNotificationOptions(NSDistributedNotificationOptions::NSDistributedNotificationPostToAllSessions.0));
+pub static NSNotificationPostToAllSessions: NSDistributedNotificationOptions =
+    NSDistributedNotificationOptions(
+        NSDistributedNotificationOptions::NSDistributedNotificationPostToAllSessions.0,
+    );
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

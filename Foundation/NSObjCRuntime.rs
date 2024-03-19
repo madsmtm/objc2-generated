@@ -3,7 +3,9 @@
 use crate::common::*;
 use crate::Foundation::*;
 
-extern_static!(NSFoundationVersionNumber: c_double);
+extern "C" {
+    pub static NSFoundationVersionNumber: c_double;
+}
 
 #[cfg(feature = "Foundation_NSString")]
 typed_extensible_enum!(
@@ -88,4 +90,4 @@ ns_enum!(
     }
 );
 
-extern_static!(NSNotFound: NSInteger = NSIntegerMax as _);
+pub static NSNotFound: NSInteger = NSIntegerMax as _;

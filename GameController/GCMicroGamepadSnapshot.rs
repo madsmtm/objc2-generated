@@ -87,7 +87,9 @@ ns_enum!(
     }
 );
 
-extern_static!(GCCurrentMicroGamepadSnapshotDataVersion: GCMicroGamepadSnapshotDataVersion);
+extern "C" {
+    pub static GCCurrentMicroGamepadSnapshotDataVersion: GCMicroGamepadSnapshotDataVersion;
+}
 
 extern_struct!(
     #[encoding_name("?")]

@@ -10,22 +10,31 @@ typed_enum!(
     pub type NSGraphicsContextAttributeKey = NSString;
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSGraphicsContextDestinationAttributeName: &'static NSGraphicsContextAttributeKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSGraphicsContextDestinationAttributeName: &'static NSGraphicsContextAttributeKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSGraphicsContextRepresentationFormatAttributeName: &'static NSGraphicsContextAttributeKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSGraphicsContextRepresentationFormatAttributeName:
+        &'static NSGraphicsContextAttributeKey;
+}
 
 #[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type NSGraphicsContextRepresentationFormatName = NSString;
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSGraphicsContextPSFormat: &'static NSGraphicsContextRepresentationFormatName);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSGraphicsContextPSFormat: &'static NSGraphicsContextRepresentationFormatName;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSGraphicsContextPDFFormat: &'static NSGraphicsContextRepresentationFormatName);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSGraphicsContextPDFFormat: &'static NSGraphicsContextRepresentationFormatName;
+}
 
 ns_enum!(
     #[underlying(NSUInteger)]

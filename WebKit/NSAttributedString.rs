@@ -5,8 +5,10 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::WebKit::*;
 
-#[cfg(all(feature = "AppKit_NSAttributedString", feature = "Foundation_NSString"))]
-extern_static!(NSReadAccessURLDocumentOption: &'static NSAttributedStringDocumentReadingOptionKey);
+extern "C" {
+    #[cfg(all(feature = "AppKit_NSAttributedString", feature = "Foundation_NSString"))]
+    pub static NSReadAccessURLDocumentOption: &'static NSAttributedStringDocumentReadingOptionKey;
+}
 
 #[cfg(all(
     feature = "AppKit_NSAttributedString",

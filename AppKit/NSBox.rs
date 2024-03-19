@@ -246,6 +246,6 @@ extern_methods!(
     }
 );
 
-extern_static!(NSBoxSecondary: NSBoxType = NSBoxType(1));
+pub static NSBoxSecondary: NSBoxType = NSBoxType(1);
 
-extern_static!(NSBoxOldStyle: NSBoxType = NSBoxType(3));
+pub static NSBoxOldStyle: NSBoxType = NSBoxType(3);

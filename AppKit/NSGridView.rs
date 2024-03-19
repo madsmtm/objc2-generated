@@ -41,8 +41,10 @@ ns_enum!(
     }
 );
 
-#[cfg(feature = "Foundation_NSGeometry")]
-extern_static!(NSGridViewSizeForContent: CGFloat);
+extern "C" {
+    #[cfg(feature = "Foundation_NSGeometry")]
+    pub static NSGridViewSizeForContent: CGFloat;
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

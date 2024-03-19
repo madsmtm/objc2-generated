@@ -14,7 +14,8 @@ ns_options!(
     }
 );
 
-extern_static!(UNNotificationActionOptionNone: UNNotificationActionOptions = UNNotificationActionOptions(0));
+pub static UNNotificationActionOptionNone: UNNotificationActionOptions =
+    UNNotificationActionOptions(0);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

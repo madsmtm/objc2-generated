@@ -10,14 +10,20 @@ typed_enum!(
     pub type SKAdNetworkCoarseConversionValue = NSString;
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(SKAdNetworkCoarseConversionValueHigh: &'static SKAdNetworkCoarseConversionValue);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static SKAdNetworkCoarseConversionValueHigh: &'static SKAdNetworkCoarseConversionValue;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(SKAdNetworkCoarseConversionValueMedium: &'static SKAdNetworkCoarseConversionValue);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static SKAdNetworkCoarseConversionValueMedium: &'static SKAdNetworkCoarseConversionValue;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(SKAdNetworkCoarseConversionValueLow: &'static SKAdNetworkCoarseConversionValue);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static SKAdNetworkCoarseConversionValueLow: &'static SKAdNetworkCoarseConversionValue;
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -92,26 +98,42 @@ extern_methods!(
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(SKStoreProductParameterAdNetworkAttributionSignature: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static SKStoreProductParameterAdNetworkAttributionSignature: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(SKStoreProductParameterAdNetworkCampaignIdentifier: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static SKStoreProductParameterAdNetworkCampaignIdentifier: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(SKStoreProductParameterAdNetworkSourceIdentifier: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static SKStoreProductParameterAdNetworkSourceIdentifier: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(SKStoreProductParameterAdNetworkIdentifier: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static SKStoreProductParameterAdNetworkIdentifier: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(SKStoreProductParameterAdNetworkNonce: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static SKStoreProductParameterAdNetworkNonce: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(SKStoreProductParameterAdNetworkTimestamp: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static SKStoreProductParameterAdNetworkTimestamp: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(SKStoreProductParameterAdNetworkSourceAppStoreIdentifier: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static SKStoreProductParameterAdNetworkSourceAppStoreIdentifier: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(SKStoreProductParameterAdNetworkVersion: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static SKStoreProductParameterAdNetworkVersion: &'static NSString;
+}

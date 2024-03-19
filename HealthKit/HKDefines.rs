@@ -6,8 +6,10 @@ use crate::Foundation::*;
 use crate::HealthKit::*;
 use crate::UniformTypeIdentifiers::*;
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKErrorDomain: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKErrorDomain: &'static NSString;
+}
 
 ns_enum!(
     #[underlying(NSInteger)]

@@ -26,8 +26,10 @@ ns_enum!(
     }
 );
 
-#[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
-extern_static!(MTLIOErrorDomain: &'static NSErrorDomain);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
+    pub static MTLIOErrorDomain: &'static NSErrorDomain;
+}
 
 ns_error_enum!(
     #[underlying(NSInteger)]

@@ -22,8 +22,10 @@ ns_enum!(
     }
 );
 
-#[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
-extern_static!(MTLCommandBufferErrorDomain: &'static NSErrorDomain);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
+    pub static MTLCommandBufferErrorDomain: &'static NSErrorDomain;
+}
 
 ns_enum!(
     #[underlying(NSUInteger)]
@@ -56,8 +58,10 @@ ns_enum!(
     }
 );
 
-#[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
-extern_static!(MTLCommandBufferEncoderInfoErrorKey: &'static NSErrorUserInfoKey);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
+    pub static MTLCommandBufferEncoderInfoErrorKey: &'static NSErrorUserInfoKey;
+}
 
 ns_options!(
     #[underlying(NSUInteger)]

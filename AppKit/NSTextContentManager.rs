@@ -357,5 +357,8 @@ extern_methods!(
     }
 );
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSTextContentStorageUnsupportedAttributeAddedNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSTextContentStorageUnsupportedAttributeAddedNotification:
+        &'static NSNotificationName;
+}

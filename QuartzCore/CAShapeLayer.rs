@@ -145,26 +145,42 @@ extern_methods!(
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(kCAFillRuleNonZero: &'static CAShapeLayerFillRule);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static kCAFillRuleNonZero: &'static CAShapeLayerFillRule;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(kCAFillRuleEvenOdd: &'static CAShapeLayerFillRule);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static kCAFillRuleEvenOdd: &'static CAShapeLayerFillRule;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(kCALineJoinMiter: &'static CAShapeLayerLineJoin);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static kCALineJoinMiter: &'static CAShapeLayerLineJoin;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(kCALineJoinRound: &'static CAShapeLayerLineJoin);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static kCALineJoinRound: &'static CAShapeLayerLineJoin;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(kCALineJoinBevel: &'static CAShapeLayerLineJoin);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static kCALineJoinBevel: &'static CAShapeLayerLineJoin;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(kCALineCapButt: &'static CAShapeLayerLineCap);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static kCALineCapButt: &'static CAShapeLayerLineCap;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(kCALineCapRound: &'static CAShapeLayerLineCap);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static kCALineCapRound: &'static CAShapeLayerLineCap;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(kCALineCapSquare: &'static CAShapeLayerLineCap);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static kCALineCapSquare: &'static CAShapeLayerLineCap;
+}

@@ -687,71 +687,117 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn CALayerDelegate {}
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(kCAGravityCenter: &'static CALayerContentsGravity);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static kCAGravityCenter: &'static CALayerContentsGravity;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(kCAGravityTop: &'static CALayerContentsGravity);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static kCAGravityTop: &'static CALayerContentsGravity;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(kCAGravityBottom: &'static CALayerContentsGravity);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static kCAGravityBottom: &'static CALayerContentsGravity;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(kCAGravityLeft: &'static CALayerContentsGravity);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static kCAGravityLeft: &'static CALayerContentsGravity;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(kCAGravityRight: &'static CALayerContentsGravity);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static kCAGravityRight: &'static CALayerContentsGravity;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(kCAGravityTopLeft: &'static CALayerContentsGravity);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static kCAGravityTopLeft: &'static CALayerContentsGravity;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(kCAGravityTopRight: &'static CALayerContentsGravity);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static kCAGravityTopRight: &'static CALayerContentsGravity;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(kCAGravityBottomLeft: &'static CALayerContentsGravity);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static kCAGravityBottomLeft: &'static CALayerContentsGravity;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(kCAGravityBottomRight: &'static CALayerContentsGravity);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static kCAGravityBottomRight: &'static CALayerContentsGravity;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(kCAGravityResize: &'static CALayerContentsGravity);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static kCAGravityResize: &'static CALayerContentsGravity;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(kCAGravityResizeAspect: &'static CALayerContentsGravity);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static kCAGravityResizeAspect: &'static CALayerContentsGravity;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(kCAGravityResizeAspectFill: &'static CALayerContentsGravity);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static kCAGravityResizeAspectFill: &'static CALayerContentsGravity;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(kCAContentsFormatRGBA8Uint: &'static CALayerContentsFormat);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static kCAContentsFormatRGBA8Uint: &'static CALayerContentsFormat;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(kCAContentsFormatRGBA16Float: &'static CALayerContentsFormat);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static kCAContentsFormatRGBA16Float: &'static CALayerContentsFormat;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(kCAContentsFormatGray8Uint: &'static CALayerContentsFormat);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static kCAContentsFormatGray8Uint: &'static CALayerContentsFormat;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(kCAFilterNearest: &'static CALayerContentsFilter);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static kCAFilterNearest: &'static CALayerContentsFilter;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(kCAFilterLinear: &'static CALayerContentsFilter);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static kCAFilterLinear: &'static CALayerContentsFilter;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(kCAFilterTrilinear: &'static CALayerContentsFilter);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static kCAFilterTrilinear: &'static CALayerContentsFilter;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(kCACornerCurveCircular: &'static CALayerCornerCurve);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static kCACornerCurveCircular: &'static CALayerCornerCurve;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(kCACornerCurveContinuous: &'static CALayerCornerCurve);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static kCACornerCurveContinuous: &'static CALayerCornerCurve;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(kCAOnOrderIn: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static kCAOnOrderIn: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(kCAOnOrderOut: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static kCAOnOrderOut: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(kCATransition: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static kCATransition: &'static NSString;
+}

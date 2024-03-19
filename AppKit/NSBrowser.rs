@@ -6,10 +6,10 @@ use crate::CoreData::*;
 use crate::Foundation::*;
 
 #[cfg(feature = "AppKit_NSApplication")]
-extern_static!(NSAppKitVersionNumberWithContinuousScrollingBrowser: NSAppKitVersion = 680.0);
+pub static NSAppKitVersionNumberWithContinuousScrollingBrowser: NSAppKitVersion = 680.0 as _;
 
 #[cfg(feature = "AppKit_NSApplication")]
-extern_static!(NSAppKitVersionNumberWithColumnResizingBrowser: NSAppKitVersion = 685.0);
+pub static NSAppKitVersionNumberWithColumnResizingBrowser: NSAppKitVersion = 685.0 as _;
 
 #[cfg(feature = "Foundation_NSString")]
 pub type NSBrowserColumnsAutosaveName = NSString;
@@ -609,8 +609,10 @@ extern_methods!(
     }
 );
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSBrowserColumnConfigurationDidChangeNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSBrowserColumnConfigurationDidChangeNotification: &'static NSNotificationName;
+}
 
 extern_protocol!(
     pub unsafe trait NSBrowserDelegate: NSObjectProtocol + IsMainThreadOnly {

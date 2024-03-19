@@ -37,122 +37,200 @@ ns_options!(
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(MPMediaItemPropertyPersistentID: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static MPMediaItemPropertyPersistentID: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(MPMediaItemPropertyMediaType: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static MPMediaItemPropertyMediaType: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(MPMediaItemPropertyTitle: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static MPMediaItemPropertyTitle: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(MPMediaItemPropertyAlbumTitle: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static MPMediaItemPropertyAlbumTitle: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(MPMediaItemPropertyAlbumPersistentID: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static MPMediaItemPropertyAlbumPersistentID: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(MPMediaItemPropertyArtist: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static MPMediaItemPropertyArtist: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(MPMediaItemPropertyArtistPersistentID: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static MPMediaItemPropertyArtistPersistentID: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(MPMediaItemPropertyAlbumArtist: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static MPMediaItemPropertyAlbumArtist: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(MPMediaItemPropertyAlbumArtistPersistentID: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static MPMediaItemPropertyAlbumArtistPersistentID: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(MPMediaItemPropertyGenre: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static MPMediaItemPropertyGenre: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(MPMediaItemPropertyGenrePersistentID: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static MPMediaItemPropertyGenrePersistentID: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(MPMediaItemPropertyComposer: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static MPMediaItemPropertyComposer: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(MPMediaItemPropertyComposerPersistentID: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static MPMediaItemPropertyComposerPersistentID: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(MPMediaItemPropertyPlaybackDuration: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static MPMediaItemPropertyPlaybackDuration: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(MPMediaItemPropertyAlbumTrackNumber: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static MPMediaItemPropertyAlbumTrackNumber: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(MPMediaItemPropertyAlbumTrackCount: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static MPMediaItemPropertyAlbumTrackCount: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(MPMediaItemPropertyDiscNumber: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static MPMediaItemPropertyDiscNumber: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(MPMediaItemPropertyDiscCount: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static MPMediaItemPropertyDiscCount: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(MPMediaItemPropertyArtwork: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static MPMediaItemPropertyArtwork: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(MPMediaItemPropertyIsExplicit: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static MPMediaItemPropertyIsExplicit: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(MPMediaItemPropertyLyrics: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static MPMediaItemPropertyLyrics: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(MPMediaItemPropertyIsCompilation: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static MPMediaItemPropertyIsCompilation: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(MPMediaItemPropertyReleaseDate: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static MPMediaItemPropertyReleaseDate: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(MPMediaItemPropertyBeatsPerMinute: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static MPMediaItemPropertyBeatsPerMinute: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(MPMediaItemPropertyComments: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static MPMediaItemPropertyComments: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(MPMediaItemPropertyAssetURL: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static MPMediaItemPropertyAssetURL: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(MPMediaItemPropertyIsCloudItem: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static MPMediaItemPropertyIsCloudItem: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(MPMediaItemPropertyHasProtectedAsset: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static MPMediaItemPropertyHasProtectedAsset: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(MPMediaItemPropertyPodcastTitle: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static MPMediaItemPropertyPodcastTitle: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(MPMediaItemPropertyPodcastPersistentID: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static MPMediaItemPropertyPodcastPersistentID: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(MPMediaItemPropertyPlayCount: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static MPMediaItemPropertyPlayCount: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(MPMediaItemPropertySkipCount: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static MPMediaItemPropertySkipCount: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(MPMediaItemPropertyRating: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static MPMediaItemPropertyRating: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(MPMediaItemPropertyLastPlayedDate: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static MPMediaItemPropertyLastPlayedDate: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(MPMediaItemPropertyUserGrouping: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static MPMediaItemPropertyUserGrouping: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(MPMediaItemPropertyBookmarkTime: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static MPMediaItemPropertyBookmarkTime: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(MPMediaItemPropertyDateAdded: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static MPMediaItemPropertyDateAdded: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(MPMediaItemPropertyPlaybackStoreID: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static MPMediaItemPropertyPlaybackStoreID: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(MPMediaItemPropertyIsPreorder: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static MPMediaItemPropertyIsPreorder: &'static NSString;
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

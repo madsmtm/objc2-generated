@@ -288,8 +288,10 @@ extern_methods!(
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSItemProviderPreferredImageSizeKey: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSItemProviderPreferredImageSizeKey: &'static NSString;
+}
 
 extern_methods!(
     /// NSPreviewSupport
@@ -327,14 +329,20 @@ extern_methods!(
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSExtensionJavaScriptPreprocessingResultsKey: Option<&'static NSString>);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSExtensionJavaScriptPreprocessingResultsKey: Option<&'static NSString>;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSExtensionJavaScriptFinalizeArgumentKey: Option<&'static NSString>);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSExtensionJavaScriptFinalizeArgumentKey: Option<&'static NSString>;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSItemProviderErrorDomain: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSItemProviderErrorDomain: &'static NSString;
+}
 
 ns_enum!(
     #[underlying(NSInteger)]

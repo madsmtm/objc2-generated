@@ -22,8 +22,10 @@ extern "C" {
     pub fn AXMFiHearingDeviceStreamingEar() -> AXHearingDeviceEar;
 }
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(AXMFiHearingDeviceStreamingEarDidChangeNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static AXMFiHearingDeviceStreamingEarDidChangeNotification: &'static NSNotificationName;
+}
 
 extern "C" {
     pub fn AXSupportsBidirectionalAXMFiHearingDeviceStreaming() -> Bool;
@@ -34,5 +36,7 @@ extern "C" {
     pub fn AXMFiHearingDevicePairedUUIDs() -> NonNull<NSArray<NSUUID>>;
 }
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(AXMFiHearingDevicePairedUUIDsDidChangeNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static AXMFiHearingDevicePairedUUIDsDidChangeNotification: &'static NSNotificationName;
+}

@@ -9,175 +9,181 @@ typed_extensible_enum!(
     pub type NSAppKitVersion = c_double;
 );
 
-extern_static!(NSAppKitVersionNumber: NSAppKitVersion);
+extern "C" {
+    pub static NSAppKitVersionNumber: NSAppKitVersion;
+}
 
-extern_static!(NSAppKitVersionNumber10_0: NSAppKitVersion = 577);
+pub static NSAppKitVersionNumber10_0: NSAppKitVersion = 577 as _;
 
-extern_static!(NSAppKitVersionNumber10_1: NSAppKitVersion = 620);
+pub static NSAppKitVersionNumber10_1: NSAppKitVersion = 620 as _;
 
-extern_static!(NSAppKitVersionNumber10_2: NSAppKitVersion = 663);
+pub static NSAppKitVersionNumber10_2: NSAppKitVersion = 663 as _;
 
-extern_static!(NSAppKitVersionNumber10_2_3: NSAppKitVersion = 663.6);
+pub static NSAppKitVersionNumber10_2_3: NSAppKitVersion = 663.6 as _;
 
-extern_static!(NSAppKitVersionNumber10_3: NSAppKitVersion = 743);
+pub static NSAppKitVersionNumber10_3: NSAppKitVersion = 743 as _;
 
-extern_static!(NSAppKitVersionNumber10_3_2: NSAppKitVersion = 743.14);
+pub static NSAppKitVersionNumber10_3_2: NSAppKitVersion = 743.14 as _;
 
-extern_static!(NSAppKitVersionNumber10_3_3: NSAppKitVersion = 743.2);
+pub static NSAppKitVersionNumber10_3_3: NSAppKitVersion = 743.2 as _;
 
-extern_static!(NSAppKitVersionNumber10_3_5: NSAppKitVersion = 743.24);
+pub static NSAppKitVersionNumber10_3_5: NSAppKitVersion = 743.24 as _;
 
-extern_static!(NSAppKitVersionNumber10_3_7: NSAppKitVersion = 743.33);
+pub static NSAppKitVersionNumber10_3_7: NSAppKitVersion = 743.33 as _;
 
-extern_static!(NSAppKitVersionNumber10_3_9: NSAppKitVersion = 743.36);
+pub static NSAppKitVersionNumber10_3_9: NSAppKitVersion = 743.36 as _;
 
-extern_static!(NSAppKitVersionNumber10_4: NSAppKitVersion = 824);
+pub static NSAppKitVersionNumber10_4: NSAppKitVersion = 824 as _;
 
-extern_static!(NSAppKitVersionNumber10_4_1: NSAppKitVersion = 824.1);
+pub static NSAppKitVersionNumber10_4_1: NSAppKitVersion = 824.1 as _;
 
-extern_static!(NSAppKitVersionNumber10_4_3: NSAppKitVersion = 824.23);
+pub static NSAppKitVersionNumber10_4_3: NSAppKitVersion = 824.23 as _;
 
-extern_static!(NSAppKitVersionNumber10_4_4: NSAppKitVersion = 824.33);
+pub static NSAppKitVersionNumber10_4_4: NSAppKitVersion = 824.33 as _;
 
-extern_static!(NSAppKitVersionNumber10_4_7: NSAppKitVersion = 824.41);
+pub static NSAppKitVersionNumber10_4_7: NSAppKitVersion = 824.41 as _;
 
-extern_static!(NSAppKitVersionNumber10_5: NSAppKitVersion = 949);
+pub static NSAppKitVersionNumber10_5: NSAppKitVersion = 949 as _;
 
-extern_static!(NSAppKitVersionNumber10_5_2: NSAppKitVersion = 949.27);
+pub static NSAppKitVersionNumber10_5_2: NSAppKitVersion = 949.27 as _;
 
-extern_static!(NSAppKitVersionNumber10_5_3: NSAppKitVersion = 949.33);
+pub static NSAppKitVersionNumber10_5_3: NSAppKitVersion = 949.33 as _;
 
-extern_static!(NSAppKitVersionNumber10_6: NSAppKitVersion = 1038);
+pub static NSAppKitVersionNumber10_6: NSAppKitVersion = 1038 as _;
 
-extern_static!(NSAppKitVersionNumber10_7: NSAppKitVersion = 1138);
+pub static NSAppKitVersionNumber10_7: NSAppKitVersion = 1138 as _;
 
-extern_static!(NSAppKitVersionNumber10_7_2: NSAppKitVersion = 1138.23);
+pub static NSAppKitVersionNumber10_7_2: NSAppKitVersion = 1138.23 as _;
 
-extern_static!(NSAppKitVersionNumber10_7_3: NSAppKitVersion = 1138.32);
+pub static NSAppKitVersionNumber10_7_3: NSAppKitVersion = 1138.32 as _;
 
-extern_static!(NSAppKitVersionNumber10_7_4: NSAppKitVersion = 1138.47);
+pub static NSAppKitVersionNumber10_7_4: NSAppKitVersion = 1138.47 as _;
 
-extern_static!(NSAppKitVersionNumber10_8: NSAppKitVersion = 1187);
+pub static NSAppKitVersionNumber10_8: NSAppKitVersion = 1187 as _;
 
-extern_static!(NSAppKitVersionNumber10_9: NSAppKitVersion = 1265);
+pub static NSAppKitVersionNumber10_9: NSAppKitVersion = 1265 as _;
 
-extern_static!(NSAppKitVersionNumber10_10: NSAppKitVersion = 1343);
+pub static NSAppKitVersionNumber10_10: NSAppKitVersion = 1343 as _;
 
-extern_static!(NSAppKitVersionNumber10_10_2: NSAppKitVersion = 1344);
+pub static NSAppKitVersionNumber10_10_2: NSAppKitVersion = 1344 as _;
 
-extern_static!(NSAppKitVersionNumber10_10_3: NSAppKitVersion = 1347);
+pub static NSAppKitVersionNumber10_10_3: NSAppKitVersion = 1347 as _;
 
-extern_static!(NSAppKitVersionNumber10_10_4: NSAppKitVersion = 1348);
+pub static NSAppKitVersionNumber10_10_4: NSAppKitVersion = 1348 as _;
 
-extern_static!(NSAppKitVersionNumber10_10_5: NSAppKitVersion = 1348);
+pub static NSAppKitVersionNumber10_10_5: NSAppKitVersion = 1348 as _;
 
-extern_static!(NSAppKitVersionNumber10_10_Max: NSAppKitVersion = 1349);
+pub static NSAppKitVersionNumber10_10_Max: NSAppKitVersion = 1349 as _;
 
-extern_static!(NSAppKitVersionNumber10_11: NSAppKitVersion = 1404);
+pub static NSAppKitVersionNumber10_11: NSAppKitVersion = 1404 as _;
 
-extern_static!(NSAppKitVersionNumber10_11_1: NSAppKitVersion = 1404.13);
+pub static NSAppKitVersionNumber10_11_1: NSAppKitVersion = 1404.13 as _;
 
-extern_static!(NSAppKitVersionNumber10_11_2: NSAppKitVersion = 1404.34);
+pub static NSAppKitVersionNumber10_11_2: NSAppKitVersion = 1404.34 as _;
 
-extern_static!(NSAppKitVersionNumber10_11_3: NSAppKitVersion = 1404.34);
+pub static NSAppKitVersionNumber10_11_3: NSAppKitVersion = 1404.34 as _;
 
-extern_static!(NSAppKitVersionNumber10_12: NSAppKitVersion = 1504);
+pub static NSAppKitVersionNumber10_12: NSAppKitVersion = 1504 as _;
 
-extern_static!(NSAppKitVersionNumber10_12_1: NSAppKitVersion = 1504.6);
+pub static NSAppKitVersionNumber10_12_1: NSAppKitVersion = 1504.6 as _;
 
-extern_static!(NSAppKitVersionNumber10_12_2: NSAppKitVersion = 1504.76);
+pub static NSAppKitVersionNumber10_12_2: NSAppKitVersion = 1504.76 as _;
 
-extern_static!(NSAppKitVersionNumber10_13: NSAppKitVersion = 1561);
+pub static NSAppKitVersionNumber10_13: NSAppKitVersion = 1561 as _;
 
-extern_static!(NSAppKitVersionNumber10_13_1: NSAppKitVersion = 1561.1);
+pub static NSAppKitVersionNumber10_13_1: NSAppKitVersion = 1561.1 as _;
 
-extern_static!(NSAppKitVersionNumber10_13_2: NSAppKitVersion = 1561.2);
+pub static NSAppKitVersionNumber10_13_2: NSAppKitVersion = 1561.2 as _;
 
-extern_static!(NSAppKitVersionNumber10_13_4: NSAppKitVersion = 1561.4);
+pub static NSAppKitVersionNumber10_13_4: NSAppKitVersion = 1561.4 as _;
 
-extern_static!(NSAppKitVersionNumber10_14: NSAppKitVersion = 1671);
+pub static NSAppKitVersionNumber10_14: NSAppKitVersion = 1671 as _;
 
-extern_static!(NSAppKitVersionNumber10_14_1: NSAppKitVersion = 1671.1);
+pub static NSAppKitVersionNumber10_14_1: NSAppKitVersion = 1671.1 as _;
 
-extern_static!(NSAppKitVersionNumber10_14_2: NSAppKitVersion = 1671.2);
+pub static NSAppKitVersionNumber10_14_2: NSAppKitVersion = 1671.2 as _;
 
-extern_static!(NSAppKitVersionNumber10_14_3: NSAppKitVersion = 1671.3);
+pub static NSAppKitVersionNumber10_14_3: NSAppKitVersion = 1671.3 as _;
 
-extern_static!(NSAppKitVersionNumber10_14_4: NSAppKitVersion = 1671.4);
+pub static NSAppKitVersionNumber10_14_4: NSAppKitVersion = 1671.4 as _;
 
-extern_static!(NSAppKitVersionNumber10_14_5: NSAppKitVersion = 1671.5);
+pub static NSAppKitVersionNumber10_14_5: NSAppKitVersion = 1671.5 as _;
 
-extern_static!(NSAppKitVersionNumber10_15: NSAppKitVersion = 1894);
+pub static NSAppKitVersionNumber10_15: NSAppKitVersion = 1894 as _;
 
-extern_static!(NSAppKitVersionNumber10_15_1: NSAppKitVersion = 1894.1);
+pub static NSAppKitVersionNumber10_15_1: NSAppKitVersion = 1894.1 as _;
 
-extern_static!(NSAppKitVersionNumber10_15_2: NSAppKitVersion = 1894.2);
+pub static NSAppKitVersionNumber10_15_2: NSAppKitVersion = 1894.2 as _;
 
-extern_static!(NSAppKitVersionNumber10_15_3: NSAppKitVersion = 1894.3);
+pub static NSAppKitVersionNumber10_15_3: NSAppKitVersion = 1894.3 as _;
 
-extern_static!(NSAppKitVersionNumber10_15_4: NSAppKitVersion = 1894.4);
+pub static NSAppKitVersionNumber10_15_4: NSAppKitVersion = 1894.4 as _;
 
-extern_static!(NSAppKitVersionNumber10_15_5: NSAppKitVersion = 1894.5);
+pub static NSAppKitVersionNumber10_15_5: NSAppKitVersion = 1894.5 as _;
 
-extern_static!(NSAppKitVersionNumber10_15_6: NSAppKitVersion = 1894.6);
+pub static NSAppKitVersionNumber10_15_6: NSAppKitVersion = 1894.6 as _;
 
-extern_static!(NSAppKitVersionNumber11_0: NSAppKitVersion = 2022);
+pub static NSAppKitVersionNumber11_0: NSAppKitVersion = 2022 as _;
 
-extern_static!(NSAppKitVersionNumber11_1: NSAppKitVersion = 2022.2);
+pub static NSAppKitVersionNumber11_1: NSAppKitVersion = 2022.2 as _;
 
-extern_static!(NSAppKitVersionNumber11_2: NSAppKitVersion = 2022.3);
+pub static NSAppKitVersionNumber11_2: NSAppKitVersion = 2022.3 as _;
 
-extern_static!(NSAppKitVersionNumber11_3: NSAppKitVersion = 2022.4);
+pub static NSAppKitVersionNumber11_3: NSAppKitVersion = 2022.4 as _;
 
-extern_static!(NSAppKitVersionNumber11_4: NSAppKitVersion = 2022.5);
+pub static NSAppKitVersionNumber11_4: NSAppKitVersion = 2022.5 as _;
 
-extern_static!(NSAppKitVersionNumber11_5: NSAppKitVersion = 2022.6);
+pub static NSAppKitVersionNumber11_5: NSAppKitVersion = 2022.6 as _;
 
-extern_static!(NSAppKitVersionNumber12_0: NSAppKitVersion = 2113);
+pub static NSAppKitVersionNumber12_0: NSAppKitVersion = 2113 as _;
 
-extern_static!(NSAppKitVersionNumber12_1: NSAppKitVersion = 2113.2);
+pub static NSAppKitVersionNumber12_1: NSAppKitVersion = 2113.2 as _;
 
-extern_static!(NSAppKitVersionNumber12_2: NSAppKitVersion = 2113.3);
+pub static NSAppKitVersionNumber12_2: NSAppKitVersion = 2113.3 as _;
 
-extern_static!(NSAppKitVersionNumber12_3: NSAppKitVersion = 2113.4);
+pub static NSAppKitVersionNumber12_3: NSAppKitVersion = 2113.4 as _;
 
-extern_static!(NSAppKitVersionNumber12_4: NSAppKitVersion = 2113.5);
+pub static NSAppKitVersionNumber12_4: NSAppKitVersion = 2113.5 as _;
 
-extern_static!(NSAppKitVersionNumber12_5: NSAppKitVersion = 2113.6);
+pub static NSAppKitVersionNumber12_5: NSAppKitVersion = 2113.6 as _;
 
-extern_static!(NSAppKitVersionNumber13_0: NSAppKitVersion = 2299);
+pub static NSAppKitVersionNumber13_0: NSAppKitVersion = 2299 as _;
 
-extern_static!(NSAppKitVersionNumber13_1: NSAppKitVersion = 2299.3);
+pub static NSAppKitVersionNumber13_1: NSAppKitVersion = 2299.3 as _;
 
-extern_static!(NSAppKitVersionNumber13_2: NSAppKitVersion = 2299.3);
+pub static NSAppKitVersionNumber13_2: NSAppKitVersion = 2299.3 as _;
 
-extern_static!(NSAppKitVersionNumber13_3: NSAppKitVersion = 2299.4);
+pub static NSAppKitVersionNumber13_3: NSAppKitVersion = 2299.4 as _;
 
-extern_static!(NSAppKitVersionNumber13_4: NSAppKitVersion = 2299.5);
+pub static NSAppKitVersionNumber13_4: NSAppKitVersion = 2299.5 as _;
 
-extern_static!(NSAppKitVersionNumber13_5: NSAppKitVersion = 2299.6);
+pub static NSAppKitVersionNumber13_5: NSAppKitVersion = 2299.6 as _;
 
-extern_static!(NSAppKitVersionNumber13_6: NSAppKitVersion = 2299.7);
+pub static NSAppKitVersionNumber13_6: NSAppKitVersion = 2299.7 as _;
 
-extern_static!(NSAppKitVersionNumber14_0: NSAppKitVersion = 2487);
+pub static NSAppKitVersionNumber14_0: NSAppKitVersion = 2487 as _;
 
-extern_static!(NSAppKitVersionNumber14_1: NSAppKitVersion = 2487.2);
+pub static NSAppKitVersionNumber14_1: NSAppKitVersion = 2487.2 as _;
 
-#[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
-extern_static!(NSModalPanelRunLoopMode: &'static NSRunLoopMode);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
+    pub static NSModalPanelRunLoopMode: &'static NSRunLoopMode;
+}
 
-#[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
-extern_static!(NSEventTrackingRunLoopMode: &'static NSRunLoopMode);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
+    pub static NSEventTrackingRunLoopMode: &'static NSRunLoopMode;
+}
 
 typed_extensible_enum!(
     pub type NSModalResponse = NSInteger;
 );
 
-extern_static!(NSModalResponseStop: NSModalResponse = -1000);
+pub static NSModalResponseStop: NSModalResponse = -1000;
 
-extern_static!(NSModalResponseAbort: NSModalResponse = -1001);
+pub static NSModalResponseAbort: NSModalResponse = -1001;
 
-extern_static!(NSModalResponseContinue: NSModalResponse = -1002);
+pub static NSModalResponseContinue: NSModalResponse = -1002;
 
 pub const NSUpdateWindowsRunLoopOrdering: c_uint = 500000;
 
@@ -1079,20 +1085,30 @@ typed_enum!(
     pub type NSAboutPanelOptionKey = NSString;
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSAboutPanelOptionCredits: &'static NSAboutPanelOptionKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSAboutPanelOptionCredits: &'static NSAboutPanelOptionKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSAboutPanelOptionApplicationName: &'static NSAboutPanelOptionKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSAboutPanelOptionApplicationName: &'static NSAboutPanelOptionKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSAboutPanelOptionApplicationIcon: &'static NSAboutPanelOptionKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSAboutPanelOptionApplicationIcon: &'static NSAboutPanelOptionKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSAboutPanelOptionVersion: &'static NSAboutPanelOptionKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSAboutPanelOptionVersion: &'static NSAboutPanelOptionKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSAboutPanelOptionApplicationVersion: &'static NSAboutPanelOptionKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSAboutPanelOptionApplicationVersion: &'static NSAboutPanelOptionKey;
+}
 
 extern_methods!(
     /// NSStandardAboutPanel
@@ -1207,65 +1223,107 @@ extern "C" {
     pub fn NSUnregisterServicesProvider(name: &NSServiceProviderName);
 }
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSApplicationDidBecomeActiveNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSApplicationDidBecomeActiveNotification: &'static NSNotificationName;
+}
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSApplicationDidHideNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSApplicationDidHideNotification: &'static NSNotificationName;
+}
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSApplicationDidFinishLaunchingNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSApplicationDidFinishLaunchingNotification: &'static NSNotificationName;
+}
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSApplicationDidResignActiveNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSApplicationDidResignActiveNotification: &'static NSNotificationName;
+}
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSApplicationDidUnhideNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSApplicationDidUnhideNotification: &'static NSNotificationName;
+}
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSApplicationDidUpdateNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSApplicationDidUpdateNotification: &'static NSNotificationName;
+}
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSApplicationWillBecomeActiveNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSApplicationWillBecomeActiveNotification: &'static NSNotificationName;
+}
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSApplicationWillHideNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSApplicationWillHideNotification: &'static NSNotificationName;
+}
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSApplicationWillFinishLaunchingNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSApplicationWillFinishLaunchingNotification: &'static NSNotificationName;
+}
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSApplicationWillResignActiveNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSApplicationWillResignActiveNotification: &'static NSNotificationName;
+}
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSApplicationWillUnhideNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSApplicationWillUnhideNotification: &'static NSNotificationName;
+}
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSApplicationWillUpdateNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSApplicationWillUpdateNotification: &'static NSNotificationName;
+}
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSApplicationWillTerminateNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSApplicationWillTerminateNotification: &'static NSNotificationName;
+}
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSApplicationDidChangeScreenParametersNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSApplicationDidChangeScreenParametersNotification: &'static NSNotificationName;
+}
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSApplicationProtectedDataWillBecomeUnavailableNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSApplicationProtectedDataWillBecomeUnavailableNotification:
+        &'static NSNotificationName;
+}
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSApplicationProtectedDataDidBecomeAvailableNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSApplicationProtectedDataDidBecomeAvailableNotification:
+        &'static NSNotificationName;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSApplicationLaunchIsDefaultLaunchKey: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSApplicationLaunchIsDefaultLaunchKey: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSApplicationLaunchUserNotificationKey: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSApplicationLaunchUserNotificationKey: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSApplicationLaunchRemoteNotificationKey: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSApplicationLaunchRemoteNotificationKey: &'static NSString;
+}
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSApplicationDidChangeOcclusionStateNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSApplicationDidChangeOcclusionStateNotification: &'static NSNotificationName;
+}
 
 #[deprecated = "Use NSModalResponseStop instead"]
 pub const NSRunStoppedResponse: c_int = -1000;

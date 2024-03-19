@@ -196,5 +196,7 @@ extern_methods!(
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(PHLocalIdentifierNotFound: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static PHLocalIdentifierNotFound: &'static NSString;
+}

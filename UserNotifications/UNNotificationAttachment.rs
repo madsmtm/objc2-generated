@@ -66,14 +66,22 @@ extern_methods!(
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(UNNotificationAttachmentOptionsTypeHintKey: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static UNNotificationAttachmentOptionsTypeHintKey: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(UNNotificationAttachmentOptionsThumbnailHiddenKey: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static UNNotificationAttachmentOptionsThumbnailHiddenKey: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(UNNotificationAttachmentOptionsThumbnailClippingRectKey: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static UNNotificationAttachmentOptionsThumbnailClippingRectKey: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(UNNotificationAttachmentOptionsThumbnailTimeKey: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static UNNotificationAttachmentOptionsThumbnailTimeKey: &'static NSString;
+}

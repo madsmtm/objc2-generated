@@ -5,8 +5,10 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-#[cfg(all(feature = "AppKit_NSPasteboard", feature = "Foundation_NSString"))]
-extern_static!(NSSoundPboardType: &'static NSPasteboardType);
+extern "C" {
+    #[cfg(all(feature = "AppKit_NSPasteboard", feature = "Foundation_NSString"))]
+    pub static NSSoundPboardType: &'static NSPasteboardType;
+}
 
 #[cfg(feature = "Foundation_NSString")]
 pub type NSSoundName = NSString;

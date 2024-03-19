@@ -26,28 +26,50 @@ extern_struct!(
 
 pub type CLLocationDistance = c_double;
 
-extern_static!(kCLDistanceFilterNone: CLLocationDistance);
+extern "C" {
+    pub static kCLDistanceFilterNone: CLLocationDistance;
+}
 
-extern_static!(kCLLocationAccuracyBestForNavigation: CLLocationAccuracy);
+extern "C" {
+    pub static kCLLocationAccuracyBestForNavigation: CLLocationAccuracy;
+}
 
-extern_static!(kCLLocationAccuracyBest: CLLocationAccuracy);
+extern "C" {
+    pub static kCLLocationAccuracyBest: CLLocationAccuracy;
+}
 
-extern_static!(kCLLocationAccuracyNearestTenMeters: CLLocationAccuracy);
+extern "C" {
+    pub static kCLLocationAccuracyNearestTenMeters: CLLocationAccuracy;
+}
 
-extern_static!(kCLLocationAccuracyHundredMeters: CLLocationAccuracy);
+extern "C" {
+    pub static kCLLocationAccuracyHundredMeters: CLLocationAccuracy;
+}
 
-extern_static!(kCLLocationAccuracyKilometer: CLLocationAccuracy);
+extern "C" {
+    pub static kCLLocationAccuracyKilometer: CLLocationAccuracy;
+}
 
-extern_static!(kCLLocationAccuracyThreeKilometers: CLLocationAccuracy);
+extern "C" {
+    pub static kCLLocationAccuracyThreeKilometers: CLLocationAccuracy;
+}
 
-extern_static!(kCLLocationAccuracyReduced: CLLocationAccuracy);
+extern "C" {
+    pub static kCLLocationAccuracyReduced: CLLocationAccuracy;
+}
 
-extern_static!(CLLocationDistanceMax: CLLocationDistance);
+extern "C" {
+    pub static CLLocationDistanceMax: CLLocationDistance;
+}
 
-#[cfg(feature = "Foundation_NSDate")]
-extern_static!(CLTimeIntervalMax: NSTimeInterval);
+extern "C" {
+    #[cfg(feature = "Foundation_NSDate")]
+    pub static CLTimeIntervalMax: NSTimeInterval;
+}
 
-extern_static!(kCLLocationCoordinate2DInvalid: CLLocationCoordinate2D);
+extern "C" {
+    pub static kCLLocationCoordinate2DInvalid: CLLocationCoordinate2D;
+}
 
 extern "C" {
     pub fn CLLocationCoordinate2DIsValid(coord: CLLocationCoordinate2D) -> Bool;

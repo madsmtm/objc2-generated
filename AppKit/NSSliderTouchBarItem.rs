@@ -10,11 +10,15 @@ typed_extensible_enum!(
     pub type NSSliderAccessoryWidth = CGFloat;
 );
 
-#[cfg(feature = "Foundation_NSGeometry")]
-extern_static!(NSSliderAccessoryWidthDefault: NSSliderAccessoryWidth);
+extern "C" {
+    #[cfg(feature = "Foundation_NSGeometry")]
+    pub static NSSliderAccessoryWidthDefault: NSSliderAccessoryWidth;
+}
 
-#[cfg(feature = "Foundation_NSGeometry")]
-extern_static!(NSSliderAccessoryWidthWide: NSSliderAccessoryWidth);
+extern "C" {
+    #[cfg(feature = "Foundation_NSGeometry")]
+    pub static NSSliderAccessoryWidthWide: NSSliderAccessoryWidth;
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

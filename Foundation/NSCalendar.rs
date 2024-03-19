@@ -8,53 +8,85 @@ typed_extensible_enum!(
     pub type NSCalendarIdentifier = NSString;
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSCalendarIdentifierGregorian: &'static NSCalendarIdentifier);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSCalendarIdentifierGregorian: &'static NSCalendarIdentifier;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSCalendarIdentifierBuddhist: &'static NSCalendarIdentifier);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSCalendarIdentifierBuddhist: &'static NSCalendarIdentifier;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSCalendarIdentifierChinese: &'static NSCalendarIdentifier);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSCalendarIdentifierChinese: &'static NSCalendarIdentifier;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSCalendarIdentifierCoptic: &'static NSCalendarIdentifier);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSCalendarIdentifierCoptic: &'static NSCalendarIdentifier;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSCalendarIdentifierEthiopicAmeteMihret: &'static NSCalendarIdentifier);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSCalendarIdentifierEthiopicAmeteMihret: &'static NSCalendarIdentifier;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSCalendarIdentifierEthiopicAmeteAlem: &'static NSCalendarIdentifier);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSCalendarIdentifierEthiopicAmeteAlem: &'static NSCalendarIdentifier;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSCalendarIdentifierHebrew: &'static NSCalendarIdentifier);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSCalendarIdentifierHebrew: &'static NSCalendarIdentifier;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSCalendarIdentifierISO8601: &'static NSCalendarIdentifier);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSCalendarIdentifierISO8601: &'static NSCalendarIdentifier;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSCalendarIdentifierIndian: &'static NSCalendarIdentifier);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSCalendarIdentifierIndian: &'static NSCalendarIdentifier;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSCalendarIdentifierIslamic: &'static NSCalendarIdentifier);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSCalendarIdentifierIslamic: &'static NSCalendarIdentifier;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSCalendarIdentifierIslamicCivil: &'static NSCalendarIdentifier);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSCalendarIdentifierIslamicCivil: &'static NSCalendarIdentifier;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSCalendarIdentifierJapanese: &'static NSCalendarIdentifier);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSCalendarIdentifierJapanese: &'static NSCalendarIdentifier;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSCalendarIdentifierPersian: &'static NSCalendarIdentifier);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSCalendarIdentifierPersian: &'static NSCalendarIdentifier;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSCalendarIdentifierRepublicOfChina: &'static NSCalendarIdentifier);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSCalendarIdentifierRepublicOfChina: &'static NSCalendarIdentifier;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSCalendarIdentifierIslamicTabular: &'static NSCalendarIdentifier);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSCalendarIdentifierIslamicTabular: &'static NSCalendarIdentifier;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSCalendarIdentifierIslamicUmmAlQura: &'static NSCalendarIdentifier);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSCalendarIdentifierIslamicUmmAlQura: &'static NSCalendarIdentifier;
+}
 
 ns_options!(
     #[underlying(NSUInteger)]
@@ -596,8 +628,10 @@ extern_methods!(
     }
 );
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSCalendarDayChangedNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSCalendarDayChangedNotification: &'static NSNotificationName;
+}
 
 pub const NSDateComponentUndefined: NSInteger = NSIntegerMax as _;
 #[deprecated]

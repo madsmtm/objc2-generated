@@ -338,8 +338,10 @@ extern_methods!(
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKUserPreferencesDidChangeNotification: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKUserPreferencesDidChangeNotification: &'static NSString;
+}
 
 extern_methods!(
     /// HKUserPreferences

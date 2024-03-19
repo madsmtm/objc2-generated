@@ -311,95 +311,157 @@ extern_methods!(
     }
 );
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSCurrentLocaleDidChangeNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSCurrentLocaleDidChangeNotification: &'static NSNotificationName;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSLocaleIdentifier: &'static NSLocaleKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSLocaleIdentifier: &'static NSLocaleKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSLocaleLanguageCode: &'static NSLocaleKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSLocaleLanguageCode: &'static NSLocaleKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSLocaleCountryCode: &'static NSLocaleKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSLocaleCountryCode: &'static NSLocaleKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSLocaleScriptCode: &'static NSLocaleKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSLocaleScriptCode: &'static NSLocaleKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSLocaleVariantCode: &'static NSLocaleKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSLocaleVariantCode: &'static NSLocaleKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSLocaleExemplarCharacterSet: &'static NSLocaleKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSLocaleExemplarCharacterSet: &'static NSLocaleKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSLocaleCalendar: &'static NSLocaleKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSLocaleCalendar: &'static NSLocaleKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSLocaleCollationIdentifier: &'static NSLocaleKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSLocaleCollationIdentifier: &'static NSLocaleKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSLocaleUsesMetricSystem: &'static NSLocaleKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSLocaleUsesMetricSystem: &'static NSLocaleKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSLocaleMeasurementSystem: &'static NSLocaleKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSLocaleMeasurementSystem: &'static NSLocaleKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSLocaleDecimalSeparator: &'static NSLocaleKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSLocaleDecimalSeparator: &'static NSLocaleKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSLocaleGroupingSeparator: &'static NSLocaleKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSLocaleGroupingSeparator: &'static NSLocaleKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSLocaleCurrencySymbol: &'static NSLocaleKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSLocaleCurrencySymbol: &'static NSLocaleKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSLocaleCurrencyCode: &'static NSLocaleKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSLocaleCurrencyCode: &'static NSLocaleKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSLocaleCollatorIdentifier: &'static NSLocaleKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSLocaleCollatorIdentifier: &'static NSLocaleKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSLocaleQuotationBeginDelimiterKey: &'static NSLocaleKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSLocaleQuotationBeginDelimiterKey: &'static NSLocaleKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSLocaleQuotationEndDelimiterKey: &'static NSLocaleKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSLocaleQuotationEndDelimiterKey: &'static NSLocaleKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSLocaleAlternateQuotationBeginDelimiterKey: &'static NSLocaleKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSLocaleAlternateQuotationBeginDelimiterKey: &'static NSLocaleKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSLocaleAlternateQuotationEndDelimiterKey: &'static NSLocaleKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSLocaleAlternateQuotationEndDelimiterKey: &'static NSLocaleKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSGregorianCalendar: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSGregorianCalendar: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSBuddhistCalendar: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSBuddhistCalendar: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSChineseCalendar: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSChineseCalendar: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSHebrewCalendar: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSHebrewCalendar: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSIslamicCalendar: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSIslamicCalendar: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSIslamicCivilCalendar: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSIslamicCivilCalendar: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSJapaneseCalendar: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSJapaneseCalendar: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSRepublicOfChinaCalendar: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSRepublicOfChinaCalendar: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSPersianCalendar: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSPersianCalendar: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSIndianCalendar: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSIndianCalendar: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSISO8601Calendar: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSISO8601Calendar: &'static NSString;
+}

@@ -54,17 +54,27 @@ extern_methods!(
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSExtensionItemsAndErrorsKey: Option<&'static NSString>);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSExtensionItemsAndErrorsKey: Option<&'static NSString>;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSExtensionHostWillEnterForegroundNotification: Option<&'static NSString>);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSExtensionHostWillEnterForegroundNotification: Option<&'static NSString>;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSExtensionHostDidEnterBackgroundNotification: Option<&'static NSString>);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSExtensionHostDidEnterBackgroundNotification: Option<&'static NSString>;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSExtensionHostWillResignActiveNotification: Option<&'static NSString>);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSExtensionHostWillResignActiveNotification: Option<&'static NSString>;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSExtensionHostDidBecomeActiveNotification: Option<&'static NSString>);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSExtensionHostDidBecomeActiveNotification: Option<&'static NSString>;
+}

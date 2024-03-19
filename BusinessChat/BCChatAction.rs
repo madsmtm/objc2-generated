@@ -10,14 +10,20 @@ typed_extensible_enum!(
     pub type BCParameterName = NSString;
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(BCParameterNameIntent: &'static BCParameterName);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static BCParameterNameIntent: &'static BCParameterName;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(BCParameterNameGroup: &'static BCParameterName);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static BCParameterNameGroup: &'static BCParameterName;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(BCParameterNameBody: &'static BCParameterName);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static BCParameterNameBody: &'static BCParameterName;
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

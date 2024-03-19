@@ -34,25 +34,36 @@ typed_enum!(
     pub type NSPrintPanelJobStyleHint = NSString;
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSPrintPhotoJobStyleHint: &'static NSPrintPanelJobStyleHint);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSPrintPhotoJobStyleHint: &'static NSPrintPanelJobStyleHint;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSPrintAllPresetsJobStyleHint: &'static NSPrintPanelJobStyleHint);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSPrintAllPresetsJobStyleHint: &'static NSPrintPanelJobStyleHint;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSPrintNoPresetsJobStyleHint: &'static NSPrintPanelJobStyleHint);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSPrintNoPresetsJobStyleHint: &'static NSPrintPanelJobStyleHint;
+}
 
 #[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type NSPrintPanelAccessorySummaryKey = NSString;
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSPrintPanelAccessorySummaryItemNameKey: &'static NSPrintPanelAccessorySummaryKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSPrintPanelAccessorySummaryItemNameKey: &'static NSPrintPanelAccessorySummaryKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSPrintPanelAccessorySummaryItemDescriptionKey: &'static NSPrintPanelAccessorySummaryKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSPrintPanelAccessorySummaryItemDescriptionKey:
+        &'static NSPrintPanelAccessorySummaryKey;
+}
 
 extern_protocol!(
     pub unsafe trait NSPrintPanelAccessorizing: IsMainThreadOnly {

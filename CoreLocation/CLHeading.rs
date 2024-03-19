@@ -7,8 +7,10 @@ use crate::Foundation::*;
 
 pub type CLHeadingComponentValue = c_double;
 
-#[cfg(feature = "CoreLocation_CLLocation")]
-extern_static!(kCLHeadingFilterNone: CLLocationDegrees);
+extern "C" {
+    #[cfg(feature = "CoreLocation_CLLocation")]
+    pub static kCLHeadingFilterNone: CLLocationDegrees;
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

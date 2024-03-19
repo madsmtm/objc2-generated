@@ -4,8 +4,10 @@ use crate::common::*;
 use crate::Foundation::*;
 use crate::SoundAnalysis::*;
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(SNErrorDomain: Option<&'static NSString>);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static SNErrorDomain: Option<&'static NSString>;
+}
 
 ns_error_enum!(
     #[underlying(NSInteger)]

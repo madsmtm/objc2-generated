@@ -107,11 +107,15 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn PHLivePhotoFrame {}
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(PHLivePhotoShouldRenderAtPlaybackTime: &'static PHLivePhotoEditingOption);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static PHLivePhotoShouldRenderAtPlaybackTime: &'static PHLivePhotoEditingOption;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(PHLivePhotoEditingErrorDomain: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static PHLivePhotoEditingErrorDomain: &'static NSString;
+}
 
 ns_enum!(
     #[underlying(NSInteger)]

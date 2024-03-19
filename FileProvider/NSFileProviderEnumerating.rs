@@ -16,11 +16,15 @@ typed_extensible_enum!(
     pub type NSFileProviderPage = NSData;
 );
 
-#[cfg(feature = "Foundation_NSData")]
-extern_static!(NSFileProviderInitialPageSortedByDate: &'static NSFileProviderPage);
+extern "C" {
+    #[cfg(feature = "Foundation_NSData")]
+    pub static NSFileProviderInitialPageSortedByDate: &'static NSFileProviderPage;
+}
 
-#[cfg(feature = "Foundation_NSData")]
-extern_static!(NSFileProviderInitialPageSortedByName: &'static NSFileProviderPage);
+extern "C" {
+    #[cfg(feature = "Foundation_NSData")]
+    pub static NSFileProviderInitialPageSortedByName: &'static NSFileProviderPage;
+}
 
 extern_protocol!(
     pub unsafe trait NSFileProviderEnumerationObserver: NSObjectProtocol {

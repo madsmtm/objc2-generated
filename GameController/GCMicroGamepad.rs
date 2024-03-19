@@ -5,17 +5,25 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::GameController::*;
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(GCInputMicroGamepadDpad: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static GCInputMicroGamepadDpad: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(GCInputMicroGamepadButtonA: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static GCInputMicroGamepadButtonA: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(GCInputMicroGamepadButtonX: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static GCInputMicroGamepadButtonX: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(GCInputMicroGamepadButtonMenu: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static GCInputMicroGamepadButtonMenu: &'static NSString;
+}
 
 #[cfg(all(
     feature = "GameController_GCControllerElement",

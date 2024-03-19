@@ -15,11 +15,17 @@ ns_enum!(
     }
 );
 
-#[cfg(all(feature = "AppKit_NSCollectionView", feature = "Foundation_NSString"))]
-extern_static!(NSCollectionElementKindSectionHeader: &'static NSCollectionViewSupplementaryElementKind);
+extern "C" {
+    #[cfg(all(feature = "AppKit_NSCollectionView", feature = "Foundation_NSString"))]
+    pub static NSCollectionElementKindSectionHeader:
+        &'static NSCollectionViewSupplementaryElementKind;
+}
 
-#[cfg(all(feature = "AppKit_NSCollectionView", feature = "Foundation_NSString"))]
-extern_static!(NSCollectionElementKindSectionFooter: &'static NSCollectionViewSupplementaryElementKind);
+extern "C" {
+    #[cfg(all(feature = "AppKit_NSCollectionView", feature = "Foundation_NSString"))]
+    pub static NSCollectionElementKindSectionFooter:
+        &'static NSCollectionViewSupplementaryElementKind;
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

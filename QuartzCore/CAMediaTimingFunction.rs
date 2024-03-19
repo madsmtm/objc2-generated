@@ -63,17 +63,27 @@ extern_methods!(
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(kCAMediaTimingFunctionLinear: &'static CAMediaTimingFunctionName);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static kCAMediaTimingFunctionLinear: &'static CAMediaTimingFunctionName;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(kCAMediaTimingFunctionEaseIn: &'static CAMediaTimingFunctionName);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static kCAMediaTimingFunctionEaseIn: &'static CAMediaTimingFunctionName;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(kCAMediaTimingFunctionEaseOut: &'static CAMediaTimingFunctionName);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static kCAMediaTimingFunctionEaseOut: &'static CAMediaTimingFunctionName;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(kCAMediaTimingFunctionEaseInEaseOut: &'static CAMediaTimingFunctionName);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static kCAMediaTimingFunctionEaseInEaseOut: &'static CAMediaTimingFunctionName;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(kCAMediaTimingFunctionDefault: &'static CAMediaTimingFunctionName);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static kCAMediaTimingFunctionDefault: &'static CAMediaTimingFunctionName;
+}

@@ -71,11 +71,17 @@ extern_methods!(
     }
 );
 
-extern_static!(NSMultipleValuesMarker: &'static AnyObject);
+extern "C" {
+    pub static NSMultipleValuesMarker: &'static AnyObject;
+}
 
-extern_static!(NSNoSelectionMarker: &'static AnyObject);
+extern "C" {
+    pub static NSNoSelectionMarker: &'static AnyObject;
+}
 
-extern_static!(NSNotApplicableMarker: &'static AnyObject);
+extern "C" {
+    pub static NSNotApplicableMarker: &'static AnyObject;
+}
 
 extern "C" {
     pub fn NSIsControllerMarker(object: Option<&AnyObject>) -> Bool;
@@ -86,14 +92,20 @@ typed_enum!(
     pub type NSBindingInfoKey = NSString;
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSObservedObjectKey: &'static NSBindingInfoKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSObservedObjectKey: &'static NSBindingInfoKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSObservedKeyPathKey: &'static NSBindingInfoKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSObservedKeyPathKey: &'static NSBindingInfoKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSOptionsKey: &'static NSBindingInfoKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSOptionsKey: &'static NSBindingInfoKey;
+}
 
 extern_category!(
     /// Category "NSKeyValueBindingCreation" on [`NSObject`].
@@ -200,317 +212,527 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn NSEditorRegistration {}
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSAlignmentBinding: &'static NSBindingName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSAlternateImageBinding: &'static NSBindingName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSAlternateTitleBinding: &'static NSBindingName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSAnimateBinding: &'static NSBindingName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSAnimationDelayBinding: &'static NSBindingName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSArgumentBinding: &'static NSBindingName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSAttributedStringBinding: &'static NSBindingName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSContentArrayBinding: &'static NSBindingName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSContentArrayForMultipleSelectionBinding: &'static NSBindingName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSContentBinding: &'static NSBindingName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSContentDictionaryBinding: &'static NSBindingName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSContentHeightBinding: &'static NSBindingName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSContentObjectBinding: &'static NSBindingName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSContentObjectsBinding: &'static NSBindingName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSContentSetBinding: &'static NSBindingName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSContentValuesBinding: &'static NSBindingName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSContentWidthBinding: &'static NSBindingName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSCriticalValueBinding: &'static NSBindingName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSDataBinding: &'static NSBindingName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSDisplayPatternTitleBinding: &'static NSBindingName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSDisplayPatternValueBinding: &'static NSBindingName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSDocumentEditedBinding: &'static NSBindingName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSDoubleClickArgumentBinding: &'static NSBindingName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSDoubleClickTargetBinding: &'static NSBindingName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSEditableBinding: &'static NSBindingName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSEnabledBinding: &'static NSBindingName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSExcludedKeysBinding: &'static NSBindingName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFilterPredicateBinding: &'static NSBindingName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFontBinding: &'static NSBindingName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFontBoldBinding: &'static NSBindingName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFontFamilyNameBinding: &'static NSBindingName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFontItalicBinding: &'static NSBindingName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFontNameBinding: &'static NSBindingName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSFontSizeBinding: &'static NSBindingName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSHeaderTitleBinding: &'static NSBindingName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSHiddenBinding: &'static NSBindingName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSImageBinding: &'static NSBindingName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSIncludedKeysBinding: &'static NSBindingName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSInitialKeyBinding: &'static NSBindingName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSInitialValueBinding: &'static NSBindingName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSIsIndeterminateBinding: &'static NSBindingName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSLabelBinding: &'static NSBindingName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSLocalizedKeyDictionaryBinding: &'static NSBindingName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSManagedObjectContextBinding: &'static NSBindingName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSMaximumRecentsBinding: &'static NSBindingName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSMaxValueBinding: &'static NSBindingName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSMaxWidthBinding: &'static NSBindingName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSMinValueBinding: &'static NSBindingName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSMinWidthBinding: &'static NSBindingName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSMixedStateImageBinding: &'static NSBindingName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSOffStateImageBinding: &'static NSBindingName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSOnStateImageBinding: &'static NSBindingName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSPositioningRectBinding: &'static NSBindingName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSPredicateBinding: &'static NSBindingName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSRecentSearchesBinding: &'static NSBindingName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSRepresentedFilenameBinding: &'static NSBindingName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSRowHeightBinding: &'static NSBindingName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSSelectedIdentifierBinding: &'static NSBindingName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSSelectedIndexBinding: &'static NSBindingName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSSelectedLabelBinding: &'static NSBindingName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSSelectedObjectBinding: &'static NSBindingName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSSelectedObjectsBinding: &'static NSBindingName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSSelectedTagBinding: &'static NSBindingName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSSelectedValueBinding: &'static NSBindingName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSSelectedValuesBinding: &'static NSBindingName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSSelectionIndexesBinding: &'static NSBindingName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSSelectionIndexPathsBinding: &'static NSBindingName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSSortDescriptorsBinding: &'static NSBindingName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSTargetBinding: &'static NSBindingName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSTextColorBinding: &'static NSBindingName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSTitleBinding: &'static NSBindingName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSToolTipBinding: &'static NSBindingName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSTransparentBinding: &'static NSBindingName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSValueBinding: &'static NSBindingName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSValuePathBinding: &'static NSBindingName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSValueURLBinding: &'static NSBindingName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSVisibleBinding: &'static NSBindingName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSWarningValueBinding: &'static NSBindingName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSWidthBinding: &'static NSBindingName);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSAllowsEditingMultipleValuesSelectionBindingOption: &'static NSBindingOption);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSAllowsNullArgumentBindingOption: &'static NSBindingOption);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSAlwaysPresentsApplicationModalAlertsBindingOption: &'static NSBindingOption);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSConditionallySetsEditableBindingOption: &'static NSBindingOption);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSConditionallySetsEnabledBindingOption: &'static NSBindingOption);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSConditionallySetsHiddenBindingOption: &'static NSBindingOption);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSContinuouslyUpdatesValueBindingOption: &'static NSBindingOption);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSCreatesSortDescriptorBindingOption: &'static NSBindingOption);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSDeletesObjectsOnRemoveBindingsOption: &'static NSBindingOption);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSDisplayNameBindingOption: &'static NSBindingOption);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSDisplayPatternBindingOption: &'static NSBindingOption);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSContentPlacementTagBindingOption: &'static NSBindingOption);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSHandlesContentAsCompoundValueBindingOption: &'static NSBindingOption);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSInsertsNullPlaceholderBindingOption: &'static NSBindingOption);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSInvokesSeparatelyWithArrayObjectsBindingOption: &'static NSBindingOption);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSMultipleValuesPlaceholderBindingOption: &'static NSBindingOption);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSNoSelectionPlaceholderBindingOption: &'static NSBindingOption);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSNotApplicablePlaceholderBindingOption: &'static NSBindingOption);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSNullPlaceholderBindingOption: &'static NSBindingOption);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSRaisesForNotApplicableKeysBindingOption: &'static NSBindingOption);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSPredicateFormatBindingOption: &'static NSBindingOption);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSSelectorNameBindingOption: &'static NSBindingOption);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSSelectsAllWhenSettingContentBindingOption: &'static NSBindingOption);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSValidatesImmediatelyBindingOption: &'static NSBindingOption);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSValueTransformerNameBindingOption: &'static NSBindingOption);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSValueTransformerBindingOption: &'static NSBindingOption);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSAlignmentBinding: &'static NSBindingName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSAlternateImageBinding: &'static NSBindingName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSAlternateTitleBinding: &'static NSBindingName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSAnimateBinding: &'static NSBindingName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSAnimationDelayBinding: &'static NSBindingName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSArgumentBinding: &'static NSBindingName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSAttributedStringBinding: &'static NSBindingName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSContentArrayBinding: &'static NSBindingName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSContentArrayForMultipleSelectionBinding: &'static NSBindingName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSContentBinding: &'static NSBindingName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSContentDictionaryBinding: &'static NSBindingName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSContentHeightBinding: &'static NSBindingName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSContentObjectBinding: &'static NSBindingName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSContentObjectsBinding: &'static NSBindingName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSContentSetBinding: &'static NSBindingName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSContentValuesBinding: &'static NSBindingName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSContentWidthBinding: &'static NSBindingName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSCriticalValueBinding: &'static NSBindingName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSDataBinding: &'static NSBindingName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSDisplayPatternTitleBinding: &'static NSBindingName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSDisplayPatternValueBinding: &'static NSBindingName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSDocumentEditedBinding: &'static NSBindingName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSDoubleClickArgumentBinding: &'static NSBindingName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSDoubleClickTargetBinding: &'static NSBindingName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSEditableBinding: &'static NSBindingName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSEnabledBinding: &'static NSBindingName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSExcludedKeysBinding: &'static NSBindingName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFilterPredicateBinding: &'static NSBindingName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFontBinding: &'static NSBindingName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFontBoldBinding: &'static NSBindingName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFontFamilyNameBinding: &'static NSBindingName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFontItalicBinding: &'static NSBindingName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFontNameBinding: &'static NSBindingName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSFontSizeBinding: &'static NSBindingName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSHeaderTitleBinding: &'static NSBindingName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSHiddenBinding: &'static NSBindingName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSImageBinding: &'static NSBindingName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSIncludedKeysBinding: &'static NSBindingName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSInitialKeyBinding: &'static NSBindingName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSInitialValueBinding: &'static NSBindingName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSIsIndeterminateBinding: &'static NSBindingName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSLabelBinding: &'static NSBindingName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSLocalizedKeyDictionaryBinding: &'static NSBindingName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSManagedObjectContextBinding: &'static NSBindingName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSMaximumRecentsBinding: &'static NSBindingName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSMaxValueBinding: &'static NSBindingName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSMaxWidthBinding: &'static NSBindingName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSMinValueBinding: &'static NSBindingName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSMinWidthBinding: &'static NSBindingName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSMixedStateImageBinding: &'static NSBindingName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSOffStateImageBinding: &'static NSBindingName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSOnStateImageBinding: &'static NSBindingName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSPositioningRectBinding: &'static NSBindingName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSPredicateBinding: &'static NSBindingName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSRecentSearchesBinding: &'static NSBindingName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSRepresentedFilenameBinding: &'static NSBindingName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSRowHeightBinding: &'static NSBindingName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSSelectedIdentifierBinding: &'static NSBindingName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSSelectedIndexBinding: &'static NSBindingName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSSelectedLabelBinding: &'static NSBindingName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSSelectedObjectBinding: &'static NSBindingName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSSelectedObjectsBinding: &'static NSBindingName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSSelectedTagBinding: &'static NSBindingName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSSelectedValueBinding: &'static NSBindingName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSSelectedValuesBinding: &'static NSBindingName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSSelectionIndexesBinding: &'static NSBindingName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSSelectionIndexPathsBinding: &'static NSBindingName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSSortDescriptorsBinding: &'static NSBindingName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSTargetBinding: &'static NSBindingName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSTextColorBinding: &'static NSBindingName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSTitleBinding: &'static NSBindingName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSToolTipBinding: &'static NSBindingName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSTransparentBinding: &'static NSBindingName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSValueBinding: &'static NSBindingName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSValuePathBinding: &'static NSBindingName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSValueURLBinding: &'static NSBindingName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSVisibleBinding: &'static NSBindingName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSWarningValueBinding: &'static NSBindingName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSWidthBinding: &'static NSBindingName;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSAllowsEditingMultipleValuesSelectionBindingOption: &'static NSBindingOption;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSAllowsNullArgumentBindingOption: &'static NSBindingOption;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSAlwaysPresentsApplicationModalAlertsBindingOption: &'static NSBindingOption;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSConditionallySetsEditableBindingOption: &'static NSBindingOption;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSConditionallySetsEnabledBindingOption: &'static NSBindingOption;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSConditionallySetsHiddenBindingOption: &'static NSBindingOption;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSContinuouslyUpdatesValueBindingOption: &'static NSBindingOption;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSCreatesSortDescriptorBindingOption: &'static NSBindingOption;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSDeletesObjectsOnRemoveBindingsOption: &'static NSBindingOption;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSDisplayNameBindingOption: &'static NSBindingOption;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSDisplayPatternBindingOption: &'static NSBindingOption;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSContentPlacementTagBindingOption: &'static NSBindingOption;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSHandlesContentAsCompoundValueBindingOption: &'static NSBindingOption;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSInsertsNullPlaceholderBindingOption: &'static NSBindingOption;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSInvokesSeparatelyWithArrayObjectsBindingOption: &'static NSBindingOption;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSMultipleValuesPlaceholderBindingOption: &'static NSBindingOption;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSNoSelectionPlaceholderBindingOption: &'static NSBindingOption;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSNotApplicablePlaceholderBindingOption: &'static NSBindingOption;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSNullPlaceholderBindingOption: &'static NSBindingOption;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSRaisesForNotApplicableKeysBindingOption: &'static NSBindingOption;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSPredicateFormatBindingOption: &'static NSBindingOption;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSSelectorNameBindingOption: &'static NSBindingOption;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSSelectsAllWhenSettingContentBindingOption: &'static NSBindingOption;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSValidatesImmediatelyBindingOption: &'static NSBindingOption;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSValueTransformerNameBindingOption: &'static NSBindingOption;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSValueTransformerBindingOption: &'static NSBindingOption;
+}

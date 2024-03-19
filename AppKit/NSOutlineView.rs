@@ -1176,38 +1176,58 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn NSOutlineViewDelegate {}
 );
 
-#[cfg(all(
-    feature = "AppKit_NSUserInterfaceItemIdentification",
-    feature = "Foundation_NSString"
-))]
-extern_static!(NSOutlineViewDisclosureButtonKey: &'static NSUserInterfaceItemIdentifier);
+extern "C" {
+    #[cfg(all(
+        feature = "AppKit_NSUserInterfaceItemIdentification",
+        feature = "Foundation_NSString"
+    ))]
+    pub static NSOutlineViewDisclosureButtonKey: &'static NSUserInterfaceItemIdentifier;
+}
 
-#[cfg(all(
-    feature = "AppKit_NSUserInterfaceItemIdentification",
-    feature = "Foundation_NSString"
-))]
-extern_static!(NSOutlineViewShowHideButtonKey: &'static NSUserInterfaceItemIdentifier);
+extern "C" {
+    #[cfg(all(
+        feature = "AppKit_NSUserInterfaceItemIdentification",
+        feature = "Foundation_NSString"
+    ))]
+    pub static NSOutlineViewShowHideButtonKey: &'static NSUserInterfaceItemIdentifier;
+}
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSOutlineViewSelectionDidChangeNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSOutlineViewSelectionDidChangeNotification: &'static NSNotificationName;
+}
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSOutlineViewColumnDidMoveNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSOutlineViewColumnDidMoveNotification: &'static NSNotificationName;
+}
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSOutlineViewColumnDidResizeNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSOutlineViewColumnDidResizeNotification: &'static NSNotificationName;
+}
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSOutlineViewSelectionIsChangingNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSOutlineViewSelectionIsChangingNotification: &'static NSNotificationName;
+}
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSOutlineViewItemWillExpandNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSOutlineViewItemWillExpandNotification: &'static NSNotificationName;
+}
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSOutlineViewItemDidExpandNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSOutlineViewItemDidExpandNotification: &'static NSNotificationName;
+}
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSOutlineViewItemWillCollapseNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSOutlineViewItemWillCollapseNotification: &'static NSNotificationName;
+}
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSOutlineViewItemDidCollapseNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSOutlineViewItemDidCollapseNotification: &'static NSNotificationName;
+}

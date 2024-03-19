@@ -4,398 +4,662 @@ use crate::common::*;
 use crate::Foundation::*;
 use crate::UniformTypeIdentifiers::*;
 
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeItem: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeContent: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeCompositeContent: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeDiskImage: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeData: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeDirectory: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeResolvable: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeSymbolicLink: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeExecutable: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeMountPoint: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeAliasFile: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeURLBookmarkData: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeURL: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeFileURL: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeText: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypePlainText: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeUTF8PlainText: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeUTF16ExternalPlainText: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeUTF16PlainText: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeDelimitedText: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeCommaSeparatedText: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeTabSeparatedText: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeUTF8TabSeparatedText: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeRTF: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeHTML: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeXML: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeYAML: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeSourceCode: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeAssemblyLanguageSource: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeCSource: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeObjectiveCSource: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeSwiftSource: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeCPlusPlusSource: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeObjectiveCPlusPlusSource: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeCHeader: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeCPlusPlusHeader: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeScript: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeAppleScript: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeOSAScript: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeOSAScriptBundle: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeJavaScript: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeShellScript: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypePerlScript: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypePythonScript: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeRubyScript: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypePHPScript: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeMakefile: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeJSON: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypePropertyList: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeXMLPropertyList: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeBinaryPropertyList: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypePDF: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeRTFD: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeFlatRTFD: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeWebArchive: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeImage: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeJPEG: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeTIFF: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeGIF: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypePNG: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeICNS: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeBMP: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeICO: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeRAWImage: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeSVG: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeLivePhoto: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeHEIF: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeHEIC: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeWebP: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTType3DContent: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeUSD: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeUSDZ: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeRealityFile: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeSceneKitScene: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeARReferenceObject: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeAudiovisualContent: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeMovie: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeVideo: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeAudio: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeQuickTimeMovie: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeMPEG: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeMPEG2Video: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeMPEG2TransportStream: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeMP3: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeMPEG4Movie: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeMPEG4Audio: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeAppleProtectedMPEG4Audio: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeAppleProtectedMPEG4Video: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeAVI: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeAIFF: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeWAV: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeMIDI: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypePlaylist: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeM3UPlaylist: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeFolder: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeVolume: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypePackage: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeBundle: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypePluginBundle: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeSpotlightImporter: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeQuickLookGenerator: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeXPCService: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeFramework: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeApplication: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeApplicationBundle: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeApplicationExtension: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeUnixExecutable: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeEXE: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeSystemPreferencesPane: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeArchive: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeGZIP: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeBZ2: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeZIP: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeAppleArchive: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeSpreadsheet: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypePresentation: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeDatabase: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeMessage: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeContact: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeVCard: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeToDoItem: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeCalendarEvent: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeEmailMessage: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeInternetLocation: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeInternetShortcut: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeFont: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeBookmark: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypePKCS12: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeX509Certificate: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeEPUB: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeLog: &'static UTType);
-
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
-extern_static!(UTTypeAHAP: &'static UTType);
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeItem: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeContent: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeCompositeContent: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeDiskImage: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeData: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeDirectory: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeResolvable: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeSymbolicLink: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeExecutable: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeMountPoint: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeAliasFile: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeURLBookmarkData: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeURL: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeFileURL: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeText: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypePlainText: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeUTF8PlainText: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeUTF16ExternalPlainText: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeUTF16PlainText: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeDelimitedText: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeCommaSeparatedText: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeTabSeparatedText: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeUTF8TabSeparatedText: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeRTF: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeHTML: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeXML: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeYAML: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeSourceCode: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeAssemblyLanguageSource: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeCSource: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeObjectiveCSource: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeSwiftSource: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeCPlusPlusSource: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeObjectiveCPlusPlusSource: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeCHeader: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeCPlusPlusHeader: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeScript: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeAppleScript: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeOSAScript: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeOSAScriptBundle: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeJavaScript: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeShellScript: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypePerlScript: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypePythonScript: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeRubyScript: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypePHPScript: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeMakefile: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeJSON: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypePropertyList: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeXMLPropertyList: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeBinaryPropertyList: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypePDF: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeRTFD: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeFlatRTFD: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeWebArchive: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeImage: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeJPEG: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeTIFF: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeGIF: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypePNG: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeICNS: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeBMP: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeICO: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeRAWImage: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeSVG: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeLivePhoto: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeHEIF: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeHEIC: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeWebP: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTType3DContent: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeUSD: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeUSDZ: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeRealityFile: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeSceneKitScene: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeARReferenceObject: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeAudiovisualContent: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeMovie: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeVideo: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeAudio: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeQuickTimeMovie: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeMPEG: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeMPEG2Video: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeMPEG2TransportStream: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeMP3: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeMPEG4Movie: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeMPEG4Audio: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeAppleProtectedMPEG4Audio: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeAppleProtectedMPEG4Video: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeAVI: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeAIFF: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeWAV: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeMIDI: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypePlaylist: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeM3UPlaylist: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeFolder: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeVolume: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypePackage: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeBundle: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypePluginBundle: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeSpotlightImporter: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeQuickLookGenerator: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeXPCService: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeFramework: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeApplication: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeApplicationBundle: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeApplicationExtension: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeUnixExecutable: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeEXE: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeSystemPreferencesPane: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeArchive: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeGZIP: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeBZ2: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeZIP: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeAppleArchive: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeSpreadsheet: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypePresentation: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeDatabase: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeMessage: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeContact: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeVCard: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeToDoItem: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeCalendarEvent: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeEmailMessage: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeInternetLocation: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeInternetShortcut: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeFont: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeBookmark: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypePKCS12: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeX509Certificate: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeEPUB: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeLog: &'static UTType;
+}
+
+extern "C" {
+    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+    pub static UTTypeAHAP: &'static UTType;
+}

@@ -80,11 +80,17 @@ extern_methods!(
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKSourceRevisionAnyVersion: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKSourceRevisionAnyVersion: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKSourceRevisionAnyProductType: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKSourceRevisionAnyProductType: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSProcessInfo")]
-extern_static!(HKSourceRevisionAnyOperatingSystem: NSOperatingSystemVersion);
+extern "C" {
+    #[cfg(feature = "Foundation_NSProcessInfo")]
+    pub static HKSourceRevisionAnyOperatingSystem: NSOperatingSystemVersion;
+}

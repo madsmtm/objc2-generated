@@ -53,11 +53,17 @@ extern "C" {
     pub fn SKTerminateForInvalidReceipt();
 }
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(SKReceiptPropertyIsExpired: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static SKReceiptPropertyIsExpired: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(SKReceiptPropertyIsRevoked: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static SKReceiptPropertyIsRevoked: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(SKReceiptPropertyIsVolumePurchase: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static SKReceiptPropertyIsVolumePurchase: &'static NSString;
+}

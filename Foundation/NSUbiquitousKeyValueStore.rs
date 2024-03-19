@@ -115,14 +115,21 @@ extern_methods!(
     }
 );
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSUbiquitousKeyValueStoreDidChangeExternallyNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSUbiquitousKeyValueStoreDidChangeExternallyNotification:
+        &'static NSNotificationName;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSUbiquitousKeyValueStoreChangeReasonKey: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSUbiquitousKeyValueStoreChangeReasonKey: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSUbiquitousKeyValueStoreChangedKeysKey: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSUbiquitousKeyValueStoreChangedKeysKey: &'static NSString;
+}
 
 pub const NSUbiquitousKeyValueStoreServerChange: NSInteger = 0;
 pub const NSUbiquitousKeyValueStoreInitialSyncChange: NSInteger = 1;

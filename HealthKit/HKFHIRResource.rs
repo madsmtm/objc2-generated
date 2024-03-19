@@ -11,41 +11,65 @@ typed_enum!(
     pub type HKFHIRResourceType = NSString;
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKFHIRResourceTypeAllergyIntolerance: &'static HKFHIRResourceType);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKFHIRResourceTypeAllergyIntolerance: &'static HKFHIRResourceType;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKFHIRResourceTypeCondition: &'static HKFHIRResourceType);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKFHIRResourceTypeCondition: &'static HKFHIRResourceType;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKFHIRResourceTypeCoverage: &'static HKFHIRResourceType);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKFHIRResourceTypeCoverage: &'static HKFHIRResourceType;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKFHIRResourceTypeDiagnosticReport: &'static HKFHIRResourceType);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKFHIRResourceTypeDiagnosticReport: &'static HKFHIRResourceType;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKFHIRResourceTypeDocumentReference: &'static HKFHIRResourceType);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKFHIRResourceTypeDocumentReference: &'static HKFHIRResourceType;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKFHIRResourceTypeImmunization: &'static HKFHIRResourceType);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKFHIRResourceTypeImmunization: &'static HKFHIRResourceType;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKFHIRResourceTypeMedicationDispense: &'static HKFHIRResourceType);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKFHIRResourceTypeMedicationDispense: &'static HKFHIRResourceType;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKFHIRResourceTypeMedicationOrder: &'static HKFHIRResourceType);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKFHIRResourceTypeMedicationOrder: &'static HKFHIRResourceType;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKFHIRResourceTypeMedicationRequest: &'static HKFHIRResourceType);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKFHIRResourceTypeMedicationRequest: &'static HKFHIRResourceType;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKFHIRResourceTypeMedicationStatement: &'static HKFHIRResourceType);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKFHIRResourceTypeMedicationStatement: &'static HKFHIRResourceType;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKFHIRResourceTypeObservation: &'static HKFHIRResourceType);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKFHIRResourceTypeObservation: &'static HKFHIRResourceType;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKFHIRResourceTypeProcedure: &'static HKFHIRResourceType);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKFHIRResourceTypeProcedure: &'static HKFHIRResourceType;
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

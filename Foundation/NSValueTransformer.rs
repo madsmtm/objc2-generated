@@ -8,23 +8,35 @@ typed_extensible_enum!(
     pub type NSValueTransformerName = NSString;
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSNegateBooleanTransformerName: &'static NSValueTransformerName);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSNegateBooleanTransformerName: &'static NSValueTransformerName;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSIsNilTransformerName: &'static NSValueTransformerName);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSIsNilTransformerName: &'static NSValueTransformerName;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSIsNotNilTransformerName: &'static NSValueTransformerName);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSIsNotNilTransformerName: &'static NSValueTransformerName;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSUnarchiveFromDataTransformerName: &'static NSValueTransformerName);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSUnarchiveFromDataTransformerName: &'static NSValueTransformerName;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSKeyedUnarchiveFromDataTransformerName: &'static NSValueTransformerName);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSKeyedUnarchiveFromDataTransformerName: &'static NSValueTransformerName;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSSecureUnarchiveFromDataTransformerName: &'static NSValueTransformerName);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSSecureUnarchiveFromDataTransformerName: &'static NSValueTransformerName;
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

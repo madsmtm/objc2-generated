@@ -3,11 +3,15 @@
 use crate::common::*;
 use crate::Foundation::*;
 
-#[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
-extern_static!(NSDefaultRunLoopMode: &'static NSRunLoopMode);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
+    pub static NSDefaultRunLoopMode: &'static NSRunLoopMode;
+}
 
-#[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
-extern_static!(NSRunLoopCommonModes: &'static NSRunLoopMode);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
+    pub static NSRunLoopCommonModes: &'static NSRunLoopMode;
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

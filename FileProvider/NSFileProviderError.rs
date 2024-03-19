@@ -6,17 +6,25 @@ use crate::FileProvider::*;
 use crate::Foundation::*;
 use crate::UniformTypeIdentifiers::*;
 
-#[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
-extern_static!(NSFileProviderErrorDomain: &'static NSErrorDomain);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
+    pub static NSFileProviderErrorDomain: &'static NSErrorDomain;
+}
 
-#[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
-extern_static!(NSFileProviderErrorCollidingItemKey: &'static NSErrorUserInfoKey);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
+    pub static NSFileProviderErrorCollidingItemKey: &'static NSErrorUserInfoKey;
+}
 
-#[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
-extern_static!(NSFileProviderErrorItemKey: &'static NSErrorUserInfoKey);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
+    pub static NSFileProviderErrorItemKey: &'static NSErrorUserInfoKey;
+}
 
-#[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
-extern_static!(NSFileProviderErrorNonExistentItemIdentifierKey: &'static NSErrorUserInfoKey);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
+    pub static NSFileProviderErrorNonExistentItemIdentifierKey: &'static NSErrorUserInfoKey;
+}
 
 ns_error_enum!(
     #[underlying(NSInteger)]

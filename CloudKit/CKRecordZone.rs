@@ -15,8 +15,10 @@ ns_options!(
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(CKRecordZoneDefaultName: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static CKRecordZoneDefaultName: &'static NSString;
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

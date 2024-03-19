@@ -4,19 +4,26 @@ use crate::common::*;
 use crate::Foundation::*;
 
 #[cfg(feature = "Foundation_NSPointerFunctions")]
-extern_static!(NSMapTableStrongMemory: NSPointerFunctionsOptions = NSPointerFunctionsOptions(NSPointerFunctionsOptions::NSPointerFunctionsStrongMemory.0));
+pub static NSMapTableStrongMemory: NSPointerFunctionsOptions =
+    NSPointerFunctionsOptions(NSPointerFunctionsOptions::NSPointerFunctionsStrongMemory.0);
 
 #[cfg(feature = "Foundation_NSPointerFunctions")]
-extern_static!(NSMapTableZeroingWeakMemory: NSPointerFunctionsOptions = NSPointerFunctionsOptions(NSPointerFunctionsOptions::NSPointerFunctionsZeroingWeakMemory.0));
+pub static NSMapTableZeroingWeakMemory: NSPointerFunctionsOptions =
+    NSPointerFunctionsOptions(NSPointerFunctionsOptions::NSPointerFunctionsZeroingWeakMemory.0);
 
 #[cfg(feature = "Foundation_NSPointerFunctions")]
-extern_static!(NSMapTableCopyIn: NSPointerFunctionsOptions = NSPointerFunctionsOptions(NSPointerFunctionsOptions::NSPointerFunctionsCopyIn.0));
+pub static NSMapTableCopyIn: NSPointerFunctionsOptions =
+    NSPointerFunctionsOptions(NSPointerFunctionsOptions::NSPointerFunctionsCopyIn.0);
 
 #[cfg(feature = "Foundation_NSPointerFunctions")]
-extern_static!(NSMapTableObjectPointerPersonality: NSPointerFunctionsOptions = NSPointerFunctionsOptions(NSPointerFunctionsOptions::NSPointerFunctionsObjectPointerPersonality.0));
+pub static NSMapTableObjectPointerPersonality: NSPointerFunctionsOptions =
+    NSPointerFunctionsOptions(
+        NSPointerFunctionsOptions::NSPointerFunctionsObjectPointerPersonality.0,
+    );
 
 #[cfg(feature = "Foundation_NSPointerFunctions")]
-extern_static!(NSMapTableWeakMemory: NSPointerFunctionsOptions = NSPointerFunctionsOptions(NSPointerFunctionsOptions::NSPointerFunctionsWeakMemory.0));
+pub static NSMapTableWeakMemory: NSPointerFunctionsOptions =
+    NSPointerFunctionsOptions(NSPointerFunctionsOptions::NSPointerFunctionsWeakMemory.0);
 
 pub type NSMapTableOptions = NSUInteger;
 
@@ -317,41 +324,67 @@ extern "C" {
     ) -> NonNull<NSMapTable>;
 }
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSIntegerMapKeyCallBacks: NSMapTableKeyCallBacks);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSIntegerMapKeyCallBacks: NSMapTableKeyCallBacks;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSNonOwnedPointerMapKeyCallBacks: NSMapTableKeyCallBacks);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSNonOwnedPointerMapKeyCallBacks: NSMapTableKeyCallBacks;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSNonOwnedPointerOrNullMapKeyCallBacks: NSMapTableKeyCallBacks);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSNonOwnedPointerOrNullMapKeyCallBacks: NSMapTableKeyCallBacks;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSNonRetainedObjectMapKeyCallBacks: NSMapTableKeyCallBacks);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSNonRetainedObjectMapKeyCallBacks: NSMapTableKeyCallBacks;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSObjectMapKeyCallBacks: NSMapTableKeyCallBacks);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSObjectMapKeyCallBacks: NSMapTableKeyCallBacks;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSOwnedPointerMapKeyCallBacks: NSMapTableKeyCallBacks);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSOwnedPointerMapKeyCallBacks: NSMapTableKeyCallBacks;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSIntMapKeyCallBacks: NSMapTableKeyCallBacks);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSIntMapKeyCallBacks: NSMapTableKeyCallBacks;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSIntegerMapValueCallBacks: NSMapTableValueCallBacks);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSIntegerMapValueCallBacks: NSMapTableValueCallBacks;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSNonOwnedPointerMapValueCallBacks: NSMapTableValueCallBacks);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSNonOwnedPointerMapValueCallBacks: NSMapTableValueCallBacks;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSObjectMapValueCallBacks: NSMapTableValueCallBacks);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSObjectMapValueCallBacks: NSMapTableValueCallBacks;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSNonRetainedObjectMapValueCallBacks: NSMapTableValueCallBacks);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSNonRetainedObjectMapValueCallBacks: NSMapTableValueCallBacks;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSOwnedPointerMapValueCallBacks: NSMapTableValueCallBacks);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSOwnedPointerMapValueCallBacks: NSMapTableValueCallBacks;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSIntMapValueCallBacks: NSMapTableValueCallBacks);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSIntMapValueCallBacks: NSMapTableValueCallBacks;
+}

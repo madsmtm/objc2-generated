@@ -9,16 +9,22 @@ use crate::UniformTypeIdentifiers::*;
 
 pub type PHLivePhotoRequestID = i32;
 
-extern_static!(PHLivePhotoRequestIDInvalid: PHLivePhotoRequestID = 0);
+pub static PHLivePhotoRequestIDInvalid: PHLivePhotoRequestID = 0;
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(PHLivePhotoInfoErrorKey: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static PHLivePhotoInfoErrorKey: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(PHLivePhotoInfoIsDegradedKey: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static PHLivePhotoInfoIsDegradedKey: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(PHLivePhotoInfoCancelledKey: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static PHLivePhotoInfoCancelledKey: &'static NSString;
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

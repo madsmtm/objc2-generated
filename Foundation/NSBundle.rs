@@ -369,11 +369,15 @@ extern_methods!(
     }
 );
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSBundleDidLoadNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSBundleDidLoadNotification: &'static NSNotificationName;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSLoadedClasses: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSLoadedClasses: &'static NSString;
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -467,7 +471,11 @@ extern_methods!(
     }
 );
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSBundleResourceRequestLowDiskSpaceNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSBundleResourceRequestLowDiskSpaceNotification: &'static NSNotificationName;
+}
 
-extern_static!(NSBundleResourceRequestLoadingPriorityUrgent: c_double);
+extern "C" {
+    pub static NSBundleResourceRequestLoadingPriorityUrgent: c_double;
+}

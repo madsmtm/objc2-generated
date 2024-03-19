@@ -26,11 +26,15 @@ ns_enum!(
 
 pub type NSAnimationProgress = c_float;
 
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
-extern_static!(NSAnimationProgressMarkNotification: &'static NSNotificationName);
+extern "C" {
+    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    pub static NSAnimationProgressMarkNotification: &'static NSNotificationName;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSAnimationProgressMark: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSAnimationProgressMark: &'static NSString;
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -214,28 +218,40 @@ typed_enum!(
     pub type NSViewAnimationKey = NSString;
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSViewAnimationTargetKey: &'static NSViewAnimationKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSViewAnimationTargetKey: &'static NSViewAnimationKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSViewAnimationStartFrameKey: &'static NSViewAnimationKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSViewAnimationStartFrameKey: &'static NSViewAnimationKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSViewAnimationEndFrameKey: &'static NSViewAnimationKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSViewAnimationEndFrameKey: &'static NSViewAnimationKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSViewAnimationEffectKey: &'static NSViewAnimationKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSViewAnimationEffectKey: &'static NSViewAnimationKey;
+}
 
 #[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type NSViewAnimationEffectName = NSString;
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSViewAnimationFadeInEffect: &'static NSViewAnimationEffectName);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSViewAnimationFadeInEffect: &'static NSViewAnimationEffectName;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSViewAnimationFadeOutEffect: &'static NSViewAnimationEffectName);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSViewAnimationFadeOutEffect: &'static NSViewAnimationEffectName;
+}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -351,8 +367,12 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn NSAnimatablePropertyContainer {}
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSAnimationTriggerOrderIn: &'static NSAnimatablePropertyKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSAnimationTriggerOrderIn: &'static NSAnimatablePropertyKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSAnimationTriggerOrderOut: &'static NSAnimatablePropertyKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSAnimationTriggerOrderOut: &'static NSAnimatablePropertyKey;
+}

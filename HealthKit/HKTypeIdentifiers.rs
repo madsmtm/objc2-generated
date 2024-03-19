@@ -11,589 +11,984 @@ typed_enum!(
     pub type HKQuantityTypeIdentifier = NSString;
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKQuantityTypeIdentifierAppleSleepingWristTemperature: &'static HKQuantityTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKQuantityTypeIdentifierBodyFatPercentage: &'static HKQuantityTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKQuantityTypeIdentifierBodyMass: &'static HKQuantityTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKQuantityTypeIdentifierBodyMassIndex: &'static HKQuantityTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKQuantityTypeIdentifierElectrodermalActivity: &'static HKQuantityTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKQuantityTypeIdentifierHeight: &'static HKQuantityTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKQuantityTypeIdentifierLeanBodyMass: &'static HKQuantityTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKQuantityTypeIdentifierWaistCircumference: &'static HKQuantityTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKQuantityTypeIdentifierActiveEnergyBurned: &'static HKQuantityTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKQuantityTypeIdentifierAppleExerciseTime: &'static HKQuantityTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKQuantityTypeIdentifierAppleMoveTime: &'static HKQuantityTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKQuantityTypeIdentifierAppleStandTime: &'static HKQuantityTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKQuantityTypeIdentifierBasalEnergyBurned: &'static HKQuantityTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKQuantityTypeIdentifierCyclingCadence: &'static HKQuantityTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKQuantityTypeIdentifierCyclingFunctionalThresholdPower: &'static HKQuantityTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKQuantityTypeIdentifierCyclingPower: &'static HKQuantityTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKQuantityTypeIdentifierCyclingSpeed: &'static HKQuantityTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKQuantityTypeIdentifierDistanceCycling: &'static HKQuantityTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKQuantityTypeIdentifierDistanceDownhillSnowSports: &'static HKQuantityTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKQuantityTypeIdentifierDistanceSwimming: &'static HKQuantityTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKQuantityTypeIdentifierDistanceWalkingRunning: &'static HKQuantityTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKQuantityTypeIdentifierDistanceWheelchair: &'static HKQuantityTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKQuantityTypeIdentifierFlightsClimbed: &'static HKQuantityTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKQuantityTypeIdentifierNikeFuel: &'static HKQuantityTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKQuantityTypeIdentifierPhysicalEffort: &'static HKQuantityTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKQuantityTypeIdentifierPushCount: &'static HKQuantityTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKQuantityTypeIdentifierRunningPower: &'static HKQuantityTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKQuantityTypeIdentifierRunningSpeed: &'static HKQuantityTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKQuantityTypeIdentifierStepCount: &'static HKQuantityTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKQuantityTypeIdentifierSwimmingStrokeCount: &'static HKQuantityTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKQuantityTypeIdentifierUnderwaterDepth: &'static HKQuantityTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKQuantityTypeIdentifierEnvironmentalAudioExposure: &'static HKQuantityTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKQuantityTypeIdentifierEnvironmentalSoundReduction: &'static HKQuantityTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKQuantityTypeIdentifierHeadphoneAudioExposure: &'static HKQuantityTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKQuantityTypeIdentifierAtrialFibrillationBurden: &'static HKQuantityTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKQuantityTypeIdentifierHeartRate: &'static HKQuantityTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKQuantityTypeIdentifierHeartRateRecoveryOneMinute: &'static HKQuantityTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKQuantityTypeIdentifierHeartRateVariabilitySDNN: &'static HKQuantityTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKQuantityTypeIdentifierPeripheralPerfusionIndex: &'static HKQuantityTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKQuantityTypeIdentifierRestingHeartRate: &'static HKQuantityTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKQuantityTypeIdentifierVO2Max: &'static HKQuantityTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKQuantityTypeIdentifierWalkingHeartRateAverage: &'static HKQuantityTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKQuantityTypeIdentifierAppleWalkingSteadiness: &'static HKQuantityTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKQuantityTypeIdentifierRunningGroundContactTime: &'static HKQuantityTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKQuantityTypeIdentifierRunningStrideLength: &'static HKQuantityTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKQuantityTypeIdentifierRunningVerticalOscillation: &'static HKQuantityTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKQuantityTypeIdentifierSixMinuteWalkTestDistance: &'static HKQuantityTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKQuantityTypeIdentifierStairAscentSpeed: &'static HKQuantityTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKQuantityTypeIdentifierStairDescentSpeed: &'static HKQuantityTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKQuantityTypeIdentifierWalkingAsymmetryPercentage: &'static HKQuantityTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKQuantityTypeIdentifierWalkingDoubleSupportPercentage: &'static HKQuantityTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKQuantityTypeIdentifierWalkingSpeed: &'static HKQuantityTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKQuantityTypeIdentifierWalkingStepLength: &'static HKQuantityTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKQuantityTypeIdentifierDietaryBiotin: &'static HKQuantityTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKQuantityTypeIdentifierDietaryCaffeine: &'static HKQuantityTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKQuantityTypeIdentifierDietaryCalcium: &'static HKQuantityTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKQuantityTypeIdentifierDietaryCarbohydrates: &'static HKQuantityTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKQuantityTypeIdentifierDietaryChloride: &'static HKQuantityTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKQuantityTypeIdentifierDietaryCholesterol: &'static HKQuantityTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKQuantityTypeIdentifierDietaryChromium: &'static HKQuantityTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKQuantityTypeIdentifierDietaryCopper: &'static HKQuantityTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKQuantityTypeIdentifierDietaryEnergyConsumed: &'static HKQuantityTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKQuantityTypeIdentifierDietaryFatMonounsaturated: &'static HKQuantityTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKQuantityTypeIdentifierDietaryFatPolyunsaturated: &'static HKQuantityTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKQuantityTypeIdentifierDietaryFatSaturated: &'static HKQuantityTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKQuantityTypeIdentifierDietaryFatTotal: &'static HKQuantityTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKQuantityTypeIdentifierDietaryFiber: &'static HKQuantityTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKQuantityTypeIdentifierDietaryFolate: &'static HKQuantityTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKQuantityTypeIdentifierDietaryIodine: &'static HKQuantityTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKQuantityTypeIdentifierDietaryIron: &'static HKQuantityTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKQuantityTypeIdentifierDietaryMagnesium: &'static HKQuantityTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKQuantityTypeIdentifierDietaryManganese: &'static HKQuantityTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKQuantityTypeIdentifierDietaryMolybdenum: &'static HKQuantityTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKQuantityTypeIdentifierDietaryNiacin: &'static HKQuantityTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKQuantityTypeIdentifierDietaryPantothenicAcid: &'static HKQuantityTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKQuantityTypeIdentifierDietaryPhosphorus: &'static HKQuantityTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKQuantityTypeIdentifierDietaryPotassium: &'static HKQuantityTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKQuantityTypeIdentifierDietaryProtein: &'static HKQuantityTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKQuantityTypeIdentifierDietaryRiboflavin: &'static HKQuantityTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKQuantityTypeIdentifierDietarySelenium: &'static HKQuantityTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKQuantityTypeIdentifierDietarySodium: &'static HKQuantityTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKQuantityTypeIdentifierDietarySugar: &'static HKQuantityTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKQuantityTypeIdentifierDietaryThiamin: &'static HKQuantityTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKQuantityTypeIdentifierDietaryVitaminA: &'static HKQuantityTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKQuantityTypeIdentifierDietaryVitaminB12: &'static HKQuantityTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKQuantityTypeIdentifierDietaryVitaminB6: &'static HKQuantityTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKQuantityTypeIdentifierDietaryVitaminC: &'static HKQuantityTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKQuantityTypeIdentifierDietaryVitaminD: &'static HKQuantityTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKQuantityTypeIdentifierDietaryVitaminE: &'static HKQuantityTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKQuantityTypeIdentifierDietaryVitaminK: &'static HKQuantityTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKQuantityTypeIdentifierDietaryWater: &'static HKQuantityTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKQuantityTypeIdentifierDietaryZinc: &'static HKQuantityTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKQuantityTypeIdentifierBloodAlcoholContent: &'static HKQuantityTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKQuantityTypeIdentifierBloodPressureDiastolic: &'static HKQuantityTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKQuantityTypeIdentifierBloodPressureSystolic: &'static HKQuantityTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKQuantityTypeIdentifierInsulinDelivery: &'static HKQuantityTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKQuantityTypeIdentifierNumberOfAlcoholicBeverages: &'static HKQuantityTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKQuantityTypeIdentifierNumberOfTimesFallen: &'static HKQuantityTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKQuantityTypeIdentifierTimeInDaylight: &'static HKQuantityTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKQuantityTypeIdentifierUVExposure: &'static HKQuantityTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKQuantityTypeIdentifierWaterTemperature: &'static HKQuantityTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKQuantityTypeIdentifierBasalBodyTemperature: &'static HKQuantityTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKQuantityTypeIdentifierForcedExpiratoryVolume1: &'static HKQuantityTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKQuantityTypeIdentifierForcedVitalCapacity: &'static HKQuantityTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKQuantityTypeIdentifierInhalerUsage: &'static HKQuantityTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKQuantityTypeIdentifierOxygenSaturation: &'static HKQuantityTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKQuantityTypeIdentifierPeakExpiratoryFlowRate: &'static HKQuantityTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKQuantityTypeIdentifierRespiratoryRate: &'static HKQuantityTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKQuantityTypeIdentifierBloodGlucose: &'static HKQuantityTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKQuantityTypeIdentifierBodyTemperature: &'static HKQuantityTypeIdentifier);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKQuantityTypeIdentifierAppleSleepingWristTemperature:
+        &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKQuantityTypeIdentifierBodyFatPercentage: &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKQuantityTypeIdentifierBodyMass: &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKQuantityTypeIdentifierBodyMassIndex: &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKQuantityTypeIdentifierElectrodermalActivity: &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKQuantityTypeIdentifierHeight: &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKQuantityTypeIdentifierLeanBodyMass: &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKQuantityTypeIdentifierWaistCircumference: &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKQuantityTypeIdentifierActiveEnergyBurned: &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKQuantityTypeIdentifierAppleExerciseTime: &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKQuantityTypeIdentifierAppleMoveTime: &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKQuantityTypeIdentifierAppleStandTime: &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKQuantityTypeIdentifierBasalEnergyBurned: &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKQuantityTypeIdentifierCyclingCadence: &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKQuantityTypeIdentifierCyclingFunctionalThresholdPower:
+        &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKQuantityTypeIdentifierCyclingPower: &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKQuantityTypeIdentifierCyclingSpeed: &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKQuantityTypeIdentifierDistanceCycling: &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKQuantityTypeIdentifierDistanceDownhillSnowSports:
+        &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKQuantityTypeIdentifierDistanceSwimming: &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKQuantityTypeIdentifierDistanceWalkingRunning: &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKQuantityTypeIdentifierDistanceWheelchair: &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKQuantityTypeIdentifierFlightsClimbed: &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKQuantityTypeIdentifierNikeFuel: &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKQuantityTypeIdentifierPhysicalEffort: &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKQuantityTypeIdentifierPushCount: &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKQuantityTypeIdentifierRunningPower: &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKQuantityTypeIdentifierRunningSpeed: &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKQuantityTypeIdentifierStepCount: &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKQuantityTypeIdentifierSwimmingStrokeCount: &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKQuantityTypeIdentifierUnderwaterDepth: &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKQuantityTypeIdentifierEnvironmentalAudioExposure:
+        &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKQuantityTypeIdentifierEnvironmentalSoundReduction:
+        &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKQuantityTypeIdentifierHeadphoneAudioExposure: &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKQuantityTypeIdentifierAtrialFibrillationBurden: &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKQuantityTypeIdentifierHeartRate: &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKQuantityTypeIdentifierHeartRateRecoveryOneMinute:
+        &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKQuantityTypeIdentifierHeartRateVariabilitySDNN: &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKQuantityTypeIdentifierPeripheralPerfusionIndex: &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKQuantityTypeIdentifierRestingHeartRate: &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKQuantityTypeIdentifierVO2Max: &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKQuantityTypeIdentifierWalkingHeartRateAverage: &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKQuantityTypeIdentifierAppleWalkingSteadiness: &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKQuantityTypeIdentifierRunningGroundContactTime: &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKQuantityTypeIdentifierRunningStrideLength: &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKQuantityTypeIdentifierRunningVerticalOscillation:
+        &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKQuantityTypeIdentifierSixMinuteWalkTestDistance: &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKQuantityTypeIdentifierStairAscentSpeed: &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKQuantityTypeIdentifierStairDescentSpeed: &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKQuantityTypeIdentifierWalkingAsymmetryPercentage:
+        &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKQuantityTypeIdentifierWalkingDoubleSupportPercentage:
+        &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKQuantityTypeIdentifierWalkingSpeed: &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKQuantityTypeIdentifierWalkingStepLength: &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKQuantityTypeIdentifierDietaryBiotin: &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKQuantityTypeIdentifierDietaryCaffeine: &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKQuantityTypeIdentifierDietaryCalcium: &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKQuantityTypeIdentifierDietaryCarbohydrates: &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKQuantityTypeIdentifierDietaryChloride: &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKQuantityTypeIdentifierDietaryCholesterol: &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKQuantityTypeIdentifierDietaryChromium: &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKQuantityTypeIdentifierDietaryCopper: &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKQuantityTypeIdentifierDietaryEnergyConsumed: &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKQuantityTypeIdentifierDietaryFatMonounsaturated: &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKQuantityTypeIdentifierDietaryFatPolyunsaturated: &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKQuantityTypeIdentifierDietaryFatSaturated: &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKQuantityTypeIdentifierDietaryFatTotal: &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKQuantityTypeIdentifierDietaryFiber: &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKQuantityTypeIdentifierDietaryFolate: &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKQuantityTypeIdentifierDietaryIodine: &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKQuantityTypeIdentifierDietaryIron: &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKQuantityTypeIdentifierDietaryMagnesium: &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKQuantityTypeIdentifierDietaryManganese: &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKQuantityTypeIdentifierDietaryMolybdenum: &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKQuantityTypeIdentifierDietaryNiacin: &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKQuantityTypeIdentifierDietaryPantothenicAcid: &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKQuantityTypeIdentifierDietaryPhosphorus: &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKQuantityTypeIdentifierDietaryPotassium: &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKQuantityTypeIdentifierDietaryProtein: &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKQuantityTypeIdentifierDietaryRiboflavin: &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKQuantityTypeIdentifierDietarySelenium: &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKQuantityTypeIdentifierDietarySodium: &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKQuantityTypeIdentifierDietarySugar: &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKQuantityTypeIdentifierDietaryThiamin: &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKQuantityTypeIdentifierDietaryVitaminA: &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKQuantityTypeIdentifierDietaryVitaminB12: &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKQuantityTypeIdentifierDietaryVitaminB6: &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKQuantityTypeIdentifierDietaryVitaminC: &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKQuantityTypeIdentifierDietaryVitaminD: &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKQuantityTypeIdentifierDietaryVitaminE: &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKQuantityTypeIdentifierDietaryVitaminK: &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKQuantityTypeIdentifierDietaryWater: &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKQuantityTypeIdentifierDietaryZinc: &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKQuantityTypeIdentifierBloodAlcoholContent: &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKQuantityTypeIdentifierBloodPressureDiastolic: &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKQuantityTypeIdentifierBloodPressureSystolic: &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKQuantityTypeIdentifierInsulinDelivery: &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKQuantityTypeIdentifierNumberOfAlcoholicBeverages:
+        &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKQuantityTypeIdentifierNumberOfTimesFallen: &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKQuantityTypeIdentifierTimeInDaylight: &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKQuantityTypeIdentifierUVExposure: &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKQuantityTypeIdentifierWaterTemperature: &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKQuantityTypeIdentifierBasalBodyTemperature: &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKQuantityTypeIdentifierForcedExpiratoryVolume1: &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKQuantityTypeIdentifierForcedVitalCapacity: &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKQuantityTypeIdentifierInhalerUsage: &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKQuantityTypeIdentifierOxygenSaturation: &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKQuantityTypeIdentifierPeakExpiratoryFlowRate: &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKQuantityTypeIdentifierRespiratoryRate: &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKQuantityTypeIdentifierBloodGlucose: &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKQuantityTypeIdentifierBodyTemperature: &'static HKQuantityTypeIdentifier;
+}
 
 #[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type HKCategoryTypeIdentifier = NSString;
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKCategoryTypeIdentifierAppleStandHour: &'static HKCategoryTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKCategoryTypeIdentifierEnvironmentalAudioExposureEvent: &'static HKCategoryTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKCategoryTypeIdentifierHeadphoneAudioExposureEvent: &'static HKCategoryTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKCategoryTypeIdentifierHighHeartRateEvent: &'static HKCategoryTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKCategoryTypeIdentifierIrregularHeartRhythmEvent: &'static HKCategoryTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKCategoryTypeIdentifierLowCardioFitnessEvent: &'static HKCategoryTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKCategoryTypeIdentifierLowHeartRateEvent: &'static HKCategoryTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKCategoryTypeIdentifierMindfulSession: &'static HKCategoryTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKCategoryTypeIdentifierAppleWalkingSteadinessEvent: &'static HKCategoryTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKCategoryTypeIdentifierHandwashingEvent: &'static HKCategoryTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKCategoryTypeIdentifierToothbrushingEvent: &'static HKCategoryTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKCategoryTypeIdentifierCervicalMucusQuality: &'static HKCategoryTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKCategoryTypeIdentifierContraceptive: &'static HKCategoryTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKCategoryTypeIdentifierInfrequentMenstrualCycles: &'static HKCategoryTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKCategoryTypeIdentifierIntermenstrualBleeding: &'static HKCategoryTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKCategoryTypeIdentifierIrregularMenstrualCycles: &'static HKCategoryTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKCategoryTypeIdentifierLactation: &'static HKCategoryTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKCategoryTypeIdentifierMenstrualFlow: &'static HKCategoryTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKCategoryTypeIdentifierOvulationTestResult: &'static HKCategoryTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKCategoryTypeIdentifierPersistentIntermenstrualBleeding: &'static HKCategoryTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKCategoryTypeIdentifierPregnancy: &'static HKCategoryTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKCategoryTypeIdentifierPregnancyTestResult: &'static HKCategoryTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKCategoryTypeIdentifierProgesteroneTestResult: &'static HKCategoryTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKCategoryTypeIdentifierProlongedMenstrualPeriods: &'static HKCategoryTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKCategoryTypeIdentifierSexualActivity: &'static HKCategoryTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKCategoryTypeIdentifierSleepAnalysis: &'static HKCategoryTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKCategoryTypeIdentifierAbdominalCramps: &'static HKCategoryTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKCategoryTypeIdentifierAcne: &'static HKCategoryTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKCategoryTypeIdentifierAppetiteChanges: &'static HKCategoryTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKCategoryTypeIdentifierBladderIncontinence: &'static HKCategoryTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKCategoryTypeIdentifierBloating: &'static HKCategoryTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKCategoryTypeIdentifierBreastPain: &'static HKCategoryTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKCategoryTypeIdentifierChestTightnessOrPain: &'static HKCategoryTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKCategoryTypeIdentifierChills: &'static HKCategoryTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKCategoryTypeIdentifierConstipation: &'static HKCategoryTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKCategoryTypeIdentifierCoughing: &'static HKCategoryTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKCategoryTypeIdentifierDiarrhea: &'static HKCategoryTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKCategoryTypeIdentifierDizziness: &'static HKCategoryTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKCategoryTypeIdentifierDrySkin: &'static HKCategoryTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKCategoryTypeIdentifierFainting: &'static HKCategoryTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKCategoryTypeIdentifierFatigue: &'static HKCategoryTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKCategoryTypeIdentifierFever: &'static HKCategoryTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKCategoryTypeIdentifierGeneralizedBodyAche: &'static HKCategoryTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKCategoryTypeIdentifierHairLoss: &'static HKCategoryTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKCategoryTypeIdentifierHeadache: &'static HKCategoryTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKCategoryTypeIdentifierHeartburn: &'static HKCategoryTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKCategoryTypeIdentifierHotFlashes: &'static HKCategoryTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKCategoryTypeIdentifierLossOfSmell: &'static HKCategoryTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKCategoryTypeIdentifierLossOfTaste: &'static HKCategoryTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKCategoryTypeIdentifierLowerBackPain: &'static HKCategoryTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKCategoryTypeIdentifierMemoryLapse: &'static HKCategoryTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKCategoryTypeIdentifierMoodChanges: &'static HKCategoryTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKCategoryTypeIdentifierNausea: &'static HKCategoryTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKCategoryTypeIdentifierNightSweats: &'static HKCategoryTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKCategoryTypeIdentifierPelvicPain: &'static HKCategoryTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKCategoryTypeIdentifierRapidPoundingOrFlutteringHeartbeat: &'static HKCategoryTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKCategoryTypeIdentifierRunnyNose: &'static HKCategoryTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKCategoryTypeIdentifierShortnessOfBreath: &'static HKCategoryTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKCategoryTypeIdentifierSinusCongestion: &'static HKCategoryTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKCategoryTypeIdentifierSkippedHeartbeat: &'static HKCategoryTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKCategoryTypeIdentifierSleepChanges: &'static HKCategoryTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKCategoryTypeIdentifierSoreThroat: &'static HKCategoryTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKCategoryTypeIdentifierVaginalDryness: &'static HKCategoryTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKCategoryTypeIdentifierVomiting: &'static HKCategoryTypeIdentifier);
-
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKCategoryTypeIdentifierWheezing: &'static HKCategoryTypeIdentifier);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKCategoryTypeIdentifierAppleStandHour: &'static HKCategoryTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKCategoryTypeIdentifierEnvironmentalAudioExposureEvent:
+        &'static HKCategoryTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKCategoryTypeIdentifierHeadphoneAudioExposureEvent:
+        &'static HKCategoryTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKCategoryTypeIdentifierHighHeartRateEvent: &'static HKCategoryTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKCategoryTypeIdentifierIrregularHeartRhythmEvent: &'static HKCategoryTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKCategoryTypeIdentifierLowCardioFitnessEvent: &'static HKCategoryTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKCategoryTypeIdentifierLowHeartRateEvent: &'static HKCategoryTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKCategoryTypeIdentifierMindfulSession: &'static HKCategoryTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKCategoryTypeIdentifierAppleWalkingSteadinessEvent:
+        &'static HKCategoryTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKCategoryTypeIdentifierHandwashingEvent: &'static HKCategoryTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKCategoryTypeIdentifierToothbrushingEvent: &'static HKCategoryTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKCategoryTypeIdentifierCervicalMucusQuality: &'static HKCategoryTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKCategoryTypeIdentifierContraceptive: &'static HKCategoryTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKCategoryTypeIdentifierInfrequentMenstrualCycles: &'static HKCategoryTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKCategoryTypeIdentifierIntermenstrualBleeding: &'static HKCategoryTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKCategoryTypeIdentifierIrregularMenstrualCycles: &'static HKCategoryTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKCategoryTypeIdentifierLactation: &'static HKCategoryTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKCategoryTypeIdentifierMenstrualFlow: &'static HKCategoryTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKCategoryTypeIdentifierOvulationTestResult: &'static HKCategoryTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKCategoryTypeIdentifierPersistentIntermenstrualBleeding:
+        &'static HKCategoryTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKCategoryTypeIdentifierPregnancy: &'static HKCategoryTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKCategoryTypeIdentifierPregnancyTestResult: &'static HKCategoryTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKCategoryTypeIdentifierProgesteroneTestResult: &'static HKCategoryTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKCategoryTypeIdentifierProlongedMenstrualPeriods: &'static HKCategoryTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKCategoryTypeIdentifierSexualActivity: &'static HKCategoryTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKCategoryTypeIdentifierSleepAnalysis: &'static HKCategoryTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKCategoryTypeIdentifierAbdominalCramps: &'static HKCategoryTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKCategoryTypeIdentifierAcne: &'static HKCategoryTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKCategoryTypeIdentifierAppetiteChanges: &'static HKCategoryTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKCategoryTypeIdentifierBladderIncontinence: &'static HKCategoryTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKCategoryTypeIdentifierBloating: &'static HKCategoryTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKCategoryTypeIdentifierBreastPain: &'static HKCategoryTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKCategoryTypeIdentifierChestTightnessOrPain: &'static HKCategoryTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKCategoryTypeIdentifierChills: &'static HKCategoryTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKCategoryTypeIdentifierConstipation: &'static HKCategoryTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKCategoryTypeIdentifierCoughing: &'static HKCategoryTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKCategoryTypeIdentifierDiarrhea: &'static HKCategoryTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKCategoryTypeIdentifierDizziness: &'static HKCategoryTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKCategoryTypeIdentifierDrySkin: &'static HKCategoryTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKCategoryTypeIdentifierFainting: &'static HKCategoryTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKCategoryTypeIdentifierFatigue: &'static HKCategoryTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKCategoryTypeIdentifierFever: &'static HKCategoryTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKCategoryTypeIdentifierGeneralizedBodyAche: &'static HKCategoryTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKCategoryTypeIdentifierHairLoss: &'static HKCategoryTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKCategoryTypeIdentifierHeadache: &'static HKCategoryTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKCategoryTypeIdentifierHeartburn: &'static HKCategoryTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKCategoryTypeIdentifierHotFlashes: &'static HKCategoryTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKCategoryTypeIdentifierLossOfSmell: &'static HKCategoryTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKCategoryTypeIdentifierLossOfTaste: &'static HKCategoryTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKCategoryTypeIdentifierLowerBackPain: &'static HKCategoryTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKCategoryTypeIdentifierMemoryLapse: &'static HKCategoryTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKCategoryTypeIdentifierMoodChanges: &'static HKCategoryTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKCategoryTypeIdentifierNausea: &'static HKCategoryTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKCategoryTypeIdentifierNightSweats: &'static HKCategoryTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKCategoryTypeIdentifierPelvicPain: &'static HKCategoryTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKCategoryTypeIdentifierRapidPoundingOrFlutteringHeartbeat:
+        &'static HKCategoryTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKCategoryTypeIdentifierRunnyNose: &'static HKCategoryTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKCategoryTypeIdentifierShortnessOfBreath: &'static HKCategoryTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKCategoryTypeIdentifierSinusCongestion: &'static HKCategoryTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKCategoryTypeIdentifierSkippedHeartbeat: &'static HKCategoryTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKCategoryTypeIdentifierSleepChanges: &'static HKCategoryTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKCategoryTypeIdentifierSoreThroat: &'static HKCategoryTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKCategoryTypeIdentifierVaginalDryness: &'static HKCategoryTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKCategoryTypeIdentifierVomiting: &'static HKCategoryTypeIdentifier;
+}
+
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKCategoryTypeIdentifierWheezing: &'static HKCategoryTypeIdentifier;
+}
 
 #[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type HKCharacteristicTypeIdentifier = NSString;
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKCharacteristicTypeIdentifierBiologicalSex: &'static HKCharacteristicTypeIdentifier);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKCharacteristicTypeIdentifierBiologicalSex: &'static HKCharacteristicTypeIdentifier;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKCharacteristicTypeIdentifierBloodType: &'static HKCharacteristicTypeIdentifier);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKCharacteristicTypeIdentifierBloodType: &'static HKCharacteristicTypeIdentifier;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKCharacteristicTypeIdentifierDateOfBirth: &'static HKCharacteristicTypeIdentifier);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKCharacteristicTypeIdentifierDateOfBirth: &'static HKCharacteristicTypeIdentifier;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKCharacteristicTypeIdentifierFitzpatrickSkinType: &'static HKCharacteristicTypeIdentifier);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKCharacteristicTypeIdentifierFitzpatrickSkinType:
+        &'static HKCharacteristicTypeIdentifier;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKCharacteristicTypeIdentifierWheelchairUse: &'static HKCharacteristicTypeIdentifier);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKCharacteristicTypeIdentifierWheelchairUse: &'static HKCharacteristicTypeIdentifier;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKCharacteristicTypeIdentifierActivityMoveMode: &'static HKCharacteristicTypeIdentifier);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKCharacteristicTypeIdentifierActivityMoveMode:
+        &'static HKCharacteristicTypeIdentifier;
+}
 
 #[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type HKCorrelationTypeIdentifier = NSString;
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKCorrelationTypeIdentifierBloodPressure: &'static HKCorrelationTypeIdentifier);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKCorrelationTypeIdentifierBloodPressure: &'static HKCorrelationTypeIdentifier;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKCorrelationTypeIdentifierFood: &'static HKCorrelationTypeIdentifier);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKCorrelationTypeIdentifierFood: &'static HKCorrelationTypeIdentifier;
+}
 
 #[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type HKDocumentTypeIdentifier = NSString;
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKDocumentTypeIdentifierCDA: &'static HKDocumentTypeIdentifier);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKDocumentTypeIdentifierCDA: &'static HKDocumentTypeIdentifier;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKWorkoutTypeIdentifier: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKWorkoutTypeIdentifier: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKWorkoutRouteTypeIdentifier: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKWorkoutRouteTypeIdentifier: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKDataTypeIdentifierHeartbeatSeries: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKDataTypeIdentifierHeartbeatSeries: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKVisionPrescriptionTypeIdentifier: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKVisionPrescriptionTypeIdentifier: &'static NSString;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(HKCategoryTypeIdentifierAudioExposureEvent: &'static HKCategoryTypeIdentifier);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static HKCategoryTypeIdentifierAudioExposureEvent: &'static HKCategoryTypeIdentifier;
+}

@@ -146,32 +146,58 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn SKCloudServiceSetupViewControllerDelegate {}
 );
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(SKCloudServiceSetupOptionsActionKey: &'static SKCloudServiceSetupOptionsKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static SKCloudServiceSetupOptionsActionKey: &'static SKCloudServiceSetupOptionsKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(SKCloudServiceSetupOptionsITunesItemIdentifierKey: &'static SKCloudServiceSetupOptionsKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static SKCloudServiceSetupOptionsITunesItemIdentifierKey:
+        &'static SKCloudServiceSetupOptionsKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(SKCloudServiceSetupOptionsAffiliateTokenKey: &'static SKCloudServiceSetupOptionsKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static SKCloudServiceSetupOptionsAffiliateTokenKey: &'static SKCloudServiceSetupOptionsKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(SKCloudServiceSetupOptionsCampaignTokenKey: &'static SKCloudServiceSetupOptionsKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static SKCloudServiceSetupOptionsCampaignTokenKey: &'static SKCloudServiceSetupOptionsKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(SKCloudServiceSetupOptionsMessageIdentifierKey: &'static SKCloudServiceSetupOptionsKey);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static SKCloudServiceSetupOptionsMessageIdentifierKey:
+        &'static SKCloudServiceSetupOptionsKey;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(SKCloudServiceSetupActionSubscribe: &'static SKCloudServiceSetupAction);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static SKCloudServiceSetupActionSubscribe: &'static SKCloudServiceSetupAction;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(SKCloudServiceSetupMessageIdentifierJoin: &'static SKCloudServiceSetupMessageIdentifier);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static SKCloudServiceSetupMessageIdentifierJoin:
+        &'static SKCloudServiceSetupMessageIdentifier;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(SKCloudServiceSetupMessageIdentifierConnect: &'static SKCloudServiceSetupMessageIdentifier);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static SKCloudServiceSetupMessageIdentifierConnect:
+        &'static SKCloudServiceSetupMessageIdentifier;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(SKCloudServiceSetupMessageIdentifierAddMusic: &'static SKCloudServiceSetupMessageIdentifier);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static SKCloudServiceSetupMessageIdentifierAddMusic:
+        &'static SKCloudServiceSetupMessageIdentifier;
+}
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(SKCloudServiceSetupMessageIdentifierPlayMusic: &'static SKCloudServiceSetupMessageIdentifier);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static SKCloudServiceSetupMessageIdentifierPlayMusic:
+        &'static SKCloudServiceSetupMessageIdentifier;
+}

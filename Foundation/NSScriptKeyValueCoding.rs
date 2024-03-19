@@ -3,8 +3,10 @@
 use crate::common::*;
 use crate::Foundation::*;
 
-#[cfg(feature = "Foundation_NSString")]
-extern_static!(NSOperationNotSupportedForKeyException: &'static NSString);
+extern "C" {
+    #[cfg(feature = "Foundation_NSString")]
+    pub static NSOperationNotSupportedForKeyException: &'static NSString;
+}
 
 extern_category!(
     /// Category "NSScriptKeyValueCoding" on [`NSObject`].
