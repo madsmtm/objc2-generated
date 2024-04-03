@@ -86,7 +86,7 @@ extern_methods!(
         #[method(isEssential)]
         pub unsafe fn isEssential(&self) -> bool;
 
-        #[method_id(@__retain_semantics CopyOrMutCopy copyAsNonEssential)]
+        #[method_id(@__retain_semantics Copy copyAsNonEssential)]
         pub unsafe fn copyAsNonEssential(&self) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
