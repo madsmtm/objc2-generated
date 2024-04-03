@@ -195,11 +195,7 @@ extern_methods!(
     /// GKChallenge
     #[cfg(feature = "GameKit_GKScore")]
     unsafe impl GKScore {
-        #[cfg(all(
-            feature = "Foundation_NSArray",
-            feature = "Foundation_NSError",
-            feature = "GameKit_GKChallenge"
-        ))]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSError"))]
         #[deprecated]
         #[method(reportScores:withEligibleChallenges:withCompletionHandler:)]
         pub unsafe fn reportScores_withEligibleChallenges_withCompletionHandler(
@@ -211,7 +207,6 @@ extern_methods!(
         #[cfg(all(
             feature = "Foundation_NSArray",
             feature = "Foundation_NSError",
-            feature = "GameKit_GKChallenge",
             feature = "GameKit_GKLeaderboardScore"
         ))]
         #[method(reportLeaderboardScores:withEligibleChallenges:withCompletionHandler:)]
@@ -240,11 +235,7 @@ extern_methods!(
             completion_handler: Option<&Block<dyn Fn(*mut NSArray<GKPlayer>, *mut NSError)>>,
         );
 
-        #[cfg(all(
-            feature = "Foundation_NSArray",
-            feature = "Foundation_NSError",
-            feature = "GameKit_GKChallenge"
-        ))]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSError"))]
         #[method(reportAchievements:withEligibleChallenges:withCompletionHandler:)]
         pub unsafe fn reportAchievements_withEligibleChallenges_withCompletionHandler(
             achievements: &NSArray<GKAchievement>,
@@ -326,7 +317,6 @@ extern_methods!(
             feature = "Foundation_NSArray",
             feature = "Foundation_NSString",
             feature = "GameKit_GKBasePlayer",
-            feature = "GameKit_GKChallenge",
             feature = "GameKit_GKPlayer"
         ))]
         #[deprecated]
@@ -345,7 +335,6 @@ extern_methods!(
             feature = "Foundation_NSArray",
             feature = "Foundation_NSString",
             feature = "GameKit_GKBasePlayer",
-            feature = "GameKit_GKChallenge",
             feature = "GameKit_GKPlayer"
         ))]
         #[method_id(@__retain_semantics Other challengeComposeControllerWithMessage:players:completion:)]
@@ -369,7 +358,6 @@ extern_methods!(
             feature = "Foundation_NSArray",
             feature = "Foundation_NSString",
             feature = "GameKit_GKBasePlayer",
-            feature = "GameKit_GKChallenge",
             feature = "GameKit_GKPlayer"
         ))]
         #[deprecated]
@@ -388,7 +376,6 @@ extern_methods!(
             feature = "Foundation_NSArray",
             feature = "Foundation_NSString",
             feature = "GameKit_GKBasePlayer",
-            feature = "GameKit_GKChallenge",
             feature = "GameKit_GKPlayer"
         ))]
         #[method_id(@__retain_semantics Other challengeComposeControllerWithMessage:players:completion:)]
@@ -412,7 +399,6 @@ extern_methods!(
             feature = "Foundation_NSArray",
             feature = "Foundation_NSString",
             feature = "GameKit_GKBasePlayer",
-            feature = "GameKit_GKChallenge",
             feature = "GameKit_GKPlayer"
         ))]
         #[deprecated]
@@ -431,7 +417,6 @@ extern_methods!(
             feature = "Foundation_NSArray",
             feature = "Foundation_NSString",
             feature = "GameKit_GKBasePlayer",
-            feature = "GameKit_GKChallenge",
             feature = "GameKit_GKPlayer"
         ))]
         #[method_id(@__retain_semantics Other challengeComposeControllerWithMessage:players:completion:)]

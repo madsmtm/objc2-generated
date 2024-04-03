@@ -40,11 +40,9 @@ extern_category!(
     /// Category "GCTypes" on [`NSValue`].
     #[doc(alias = "GCTypes")]
     pub unsafe trait NSValueGCTypes {
-        #[cfg(feature = "GameController_GCTypes")]
         #[method_id(@__retain_semantics Other valueWithGCPoint2:)]
         unsafe fn valueWithGCPoint2(point: GCPoint2) -> Id<Self>;
 
-        #[cfg(feature = "GameController_GCTypes")]
         #[method(GCPoint2Value)]
         unsafe fn GCPoint2Value(&self) -> GCPoint2;
     }

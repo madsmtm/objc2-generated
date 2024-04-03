@@ -33,21 +33,14 @@ extern_methods!(
     /// CAConstraintLayoutManager
     #[cfg(feature = "QuartzCore_CALayer")]
     unsafe impl CALayer {
-        #[cfg(all(
-            feature = "Foundation_NSArray",
-            feature = "QuartzCore_CAConstraintLayoutManager"
-        ))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other constraints)]
         pub unsafe fn constraints(&self) -> Option<Id<NSArray<CAConstraint>>>;
 
-        #[cfg(all(
-            feature = "Foundation_NSArray",
-            feature = "QuartzCore_CAConstraintLayoutManager"
-        ))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method(setConstraints:)]
         pub unsafe fn setConstraints(&self, constraints: Option<&NSArray<CAConstraint>>);
 
-        #[cfg(feature = "QuartzCore_CAConstraintLayoutManager")]
         #[method(addConstraint:)]
         pub unsafe fn addConstraint(&self, c: &CAConstraint);
     }

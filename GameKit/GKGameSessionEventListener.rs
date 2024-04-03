@@ -101,12 +101,10 @@ extern_methods!(
     /// GKGameSessionEventListener
     #[cfg(feature = "GameKit_GKGameSession")]
     unsafe impl GKGameSession {
-        #[cfg(feature = "GameKit_GKGameSessionEventListener")]
         #[deprecated]
         #[method(addEventListener:)]
         pub unsafe fn addEventListener(listener: &NSObject);
 
-        #[cfg(feature = "GameKit_GKGameSessionEventListener")]
         #[deprecated = "-[GKLocalPlayer unregisterListener:] or -[GKLocalPlayer unregisterAllListeners:]"]
         #[method(removeEventListener:)]
         pub unsafe fn removeEventListener(listener: &NSObject);

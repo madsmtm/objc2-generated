@@ -35,11 +35,9 @@ extern_methods!(
     /// NSValueRangeExtensions
     #[cfg(feature = "Foundation_NSValue")]
     unsafe impl NSValue {
-        #[cfg(feature = "Foundation_NSRange")]
         #[method_id(@__retain_semantics Other valueWithRange:)]
         pub unsafe fn valueWithRange(range: NSRange) -> Id<NSValue>;
 
-        #[cfg(feature = "Foundation_NSRange")]
         #[method(rangeValue)]
         pub unsafe fn rangeValue(&self) -> NSRange;
     }

@@ -90,7 +90,6 @@ extern_methods!(
     /// NSPredicateSupport
     #[cfg(feature = "Foundation_NSArray")]
     unsafe impl<ObjectType: Message> NSArray<ObjectType> {
-        #[cfg(feature = "Foundation_NSPredicate")]
         #[method_id(@__retain_semantics Other filteredArrayUsingPredicate:)]
         pub unsafe fn filteredArrayUsingPredicate(
             &self,
@@ -103,7 +102,6 @@ extern_methods!(
     /// NSPredicateSupport
     #[cfg(feature = "Foundation_NSArray")]
     unsafe impl<ObjectType: Message> NSMutableArray<ObjectType> {
-        #[cfg(feature = "Foundation_NSPredicate")]
         #[method(filterUsingPredicate:)]
         pub unsafe fn filterUsingPredicate(&mut self, predicate: &NSPredicate);
     }
@@ -113,7 +111,6 @@ extern_methods!(
     /// NSPredicateSupport
     #[cfg(feature = "Foundation_NSSet")]
     unsafe impl<ObjectType: Message> NSSet<ObjectType> {
-        #[cfg(feature = "Foundation_NSPredicate")]
         #[method_id(@__retain_semantics Other filteredSetUsingPredicate:)]
         pub unsafe fn filteredSetUsingPredicate(
             &self,
@@ -126,7 +123,6 @@ extern_methods!(
     /// NSPredicateSupport
     #[cfg(feature = "Foundation_NSSet")]
     unsafe impl<ObjectType: Message> NSMutableSet<ObjectType> {
-        #[cfg(feature = "Foundation_NSPredicate")]
         #[method(filterUsingPredicate:)]
         pub unsafe fn filterUsingPredicate(&mut self, predicate: &NSPredicate);
     }
@@ -136,7 +132,6 @@ extern_methods!(
     /// NSPredicateSupport
     #[cfg(feature = "Foundation_NSOrderedSet")]
     unsafe impl<ObjectType: Message> NSOrderedSet<ObjectType> {
-        #[cfg(feature = "Foundation_NSPredicate")]
         #[method_id(@__retain_semantics Other filteredOrderedSetUsingPredicate:)]
         pub unsafe fn filteredOrderedSetUsingPredicate(
             &self,
@@ -149,7 +144,6 @@ extern_methods!(
     /// NSPredicateSupport
     #[cfg(feature = "Foundation_NSOrderedSet")]
     unsafe impl<ObjectType: Message> NSMutableOrderedSet<ObjectType> {
-        #[cfg(feature = "Foundation_NSPredicate")]
         #[method(filterUsingPredicate:)]
         pub unsafe fn filterUsingPredicate(&mut self, p: &NSPredicate);
     }

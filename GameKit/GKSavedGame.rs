@@ -62,11 +62,7 @@ extern_methods!(
         feature = "GameKit_GKPlayer"
     ))]
     unsafe impl GKLocalPlayer {
-        #[cfg(all(
-            feature = "Foundation_NSArray",
-            feature = "Foundation_NSError",
-            feature = "GameKit_GKSavedGame"
-        ))]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSError"))]
         #[method(fetchSavedGamesWithCompletionHandler:)]
         pub unsafe fn fetchSavedGamesWithCompletionHandler(
             &self,
@@ -76,8 +72,7 @@ extern_methods!(
         #[cfg(all(
             feature = "Foundation_NSData",
             feature = "Foundation_NSError",
-            feature = "Foundation_NSString",
-            feature = "GameKit_GKSavedGame"
+            feature = "Foundation_NSString"
         ))]
         #[method(saveGameData:withName:completionHandler:)]
         pub unsafe fn saveGameData_withName_completionHandler(
@@ -98,8 +93,7 @@ extern_methods!(
         #[cfg(all(
             feature = "Foundation_NSArray",
             feature = "Foundation_NSData",
-            feature = "Foundation_NSError",
-            feature = "GameKit_GKSavedGame"
+            feature = "Foundation_NSError"
         ))]
         #[method(resolveConflictingSavedGames:withData:completionHandler:)]
         pub unsafe fn resolveConflictingSavedGames_withData_completionHandler(

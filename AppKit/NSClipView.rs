@@ -184,11 +184,10 @@ extern_methods!(
     /// NSClipViewSuperview
     #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     unsafe impl NSView {
-        #[cfg(feature = "AppKit_NSClipView")]
         #[method(reflectScrolledClipView:)]
         pub unsafe fn reflectScrolledClipView(&self, clip_view: &NSClipView);
 
-        #[cfg(all(feature = "AppKit_NSClipView", feature = "Foundation_NSGeometry"))]
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(scrollClipView:toPoint:)]
         pub unsafe fn scrollClipView_toPoint(&self, clip_view: &NSClipView, point: NSPoint);
     }

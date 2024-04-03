@@ -209,15 +209,12 @@ extern_methods!(
     /// NSTouchBarProvider
     #[cfg(feature = "AppKit_NSResponder")]
     unsafe impl NSResponder {
-        #[cfg(feature = "AppKit_NSTouchBar")]
         #[method_id(@__retain_semantics Other touchBar)]
         pub unsafe fn touchBar(&self) -> Option<Id<NSTouchBar>>;
 
-        #[cfg(feature = "AppKit_NSTouchBar")]
         #[method(setTouchBar:)]
         pub unsafe fn setTouchBar(&self, touch_bar: Option<&NSTouchBar>);
 
-        #[cfg(feature = "AppKit_NSTouchBar")]
         #[method_id(@__retain_semantics Other makeTouchBar)]
         pub unsafe fn makeTouchBar(&self) -> Option<Id<NSTouchBar>>;
     }

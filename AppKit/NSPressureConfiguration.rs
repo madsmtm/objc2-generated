@@ -50,11 +50,9 @@ extern_methods!(
     /// NSPressureConfiguration
     #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     unsafe impl NSView {
-        #[cfg(feature = "AppKit_NSPressureConfiguration")]
         #[method_id(@__retain_semantics Other pressureConfiguration)]
         pub unsafe fn pressureConfiguration(&self) -> Option<Id<NSPressureConfiguration>>;
 
-        #[cfg(feature = "AppKit_NSPressureConfiguration")]
         #[method(setPressureConfiguration:)]
         pub unsafe fn setPressureConfiguration(
             &self,

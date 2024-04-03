@@ -267,11 +267,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other dateWithString:)]
         pub unsafe fn dateWithString(a_string: &NSString) -> Id<AnyObject>;
 
-        #[cfg(all(
-            feature = "Foundation_NSCalendarDate",
-            feature = "Foundation_NSString",
-            feature = "Foundation_NSTimeZone"
-        ))]
+        #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSTimeZone"))]
         #[deprecated]
         #[method_id(@__retain_semantics Other dateWithCalendarFormat:timeZone:)]
         pub unsafe fn dateWithCalendarFormat_timeZone(

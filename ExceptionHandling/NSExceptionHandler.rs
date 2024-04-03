@@ -92,10 +92,7 @@ extern_category!(
     /// Category "NSExceptionHandlerDelegate" on [`NSObject`].
     #[doc(alias = "NSExceptionHandlerDelegate")]
     pub unsafe trait NSObjectNSExceptionHandlerDelegate {
-        #[cfg(all(
-            feature = "ExceptionHandling_NSExceptionHandler",
-            feature = "Foundation_NSException"
-        ))]
+        #[cfg(feature = "Foundation_NSException")]
         #[method(exceptionHandler:shouldLogException:mask:)]
         unsafe fn exceptionHandler_shouldLogException_mask(
             &self,
@@ -104,10 +101,7 @@ extern_category!(
             a_mask: NSUInteger,
         ) -> bool;
 
-        #[cfg(all(
-            feature = "ExceptionHandling_NSExceptionHandler",
-            feature = "Foundation_NSException"
-        ))]
+        #[cfg(feature = "Foundation_NSException")]
         #[method(exceptionHandler:shouldHandleException:mask:)]
         unsafe fn exceptionHandler_shouldHandleException_mask(
             &self,

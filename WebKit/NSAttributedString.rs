@@ -34,8 +34,7 @@ extern_category!(
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSError",
             feature = "Foundation_NSString",
-            feature = "Foundation_NSURLRequest",
-            feature = "WebKit_NSAttributedString"
+            feature = "Foundation_NSURLRequest"
         ))]
         #[method(loadFromHTMLWithRequest:options:completionHandler:)]
         unsafe fn loadFromHTMLWithRequest_options_completionHandler(
@@ -50,8 +49,7 @@ extern_category!(
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSError",
             feature = "Foundation_NSString",
-            feature = "Foundation_NSURL",
-            feature = "WebKit_NSAttributedString"
+            feature = "Foundation_NSURL"
         ))]
         #[method(loadFromHTMLWithFileURL:options:completionHandler:)]
         unsafe fn loadFromHTMLWithFileURL_options_completionHandler(
@@ -65,8 +63,7 @@ extern_category!(
             feature = "Foundation_NSAttributedString",
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSError",
-            feature = "Foundation_NSString",
-            feature = "WebKit_NSAttributedString"
+            feature = "Foundation_NSString"
         ))]
         #[method(loadFromHTMLWithString:options:completionHandler:)]
         unsafe fn loadFromHTMLWithString_options_completionHandler(
@@ -81,8 +78,7 @@ extern_category!(
             feature = "Foundation_NSData",
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSError",
-            feature = "Foundation_NSString",
-            feature = "WebKit_NSAttributedString"
+            feature = "Foundation_NSString"
         ))]
         #[method(loadFromHTMLWithData:options:completionHandler:)]
         unsafe fn loadFromHTMLWithData_options_completionHandler(

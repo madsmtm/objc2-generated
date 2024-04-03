@@ -218,10 +218,7 @@ extern_methods!(
     /// NSCandidateListTouchBarItem
     #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     unsafe impl NSView {
-        #[cfg(all(
-            feature = "AppKit_NSCandidateListTouchBarItem",
-            feature = "AppKit_NSTouchBarItem"
-        ))]
+        #[cfg(feature = "AppKit_NSTouchBarItem")]
         #[method_id(@__retain_semantics Other candidateListTouchBarItem)]
         pub unsafe fn candidateListTouchBarItem(&self) -> Option<Id<NSCandidateListTouchBarItem>>;
     }

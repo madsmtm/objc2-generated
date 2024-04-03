@@ -97,11 +97,9 @@ extern_methods!(
     /// Activity
     #[cfg(all(feature = "ClassKit_CLSContext", feature = "ClassKit_CLSObject"))]
     unsafe impl CLSContext {
-        #[cfg(feature = "ClassKit_CLSActivity")]
         #[method_id(@__retain_semantics Other currentActivity)]
         pub unsafe fn currentActivity(&self) -> Option<Id<CLSActivity>>;
 
-        #[cfg(feature = "ClassKit_CLSActivity")]
         #[method_id(@__retain_semantics Other createNewActivity)]
         pub unsafe fn createNewActivity(&self) -> Id<CLSActivity>;
     }

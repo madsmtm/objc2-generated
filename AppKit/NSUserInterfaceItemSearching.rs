@@ -37,14 +37,12 @@ extern_methods!(
     /// NSUserInterfaceItemSearching
     #[cfg(all(feature = "AppKit_NSApplication", feature = "AppKit_NSResponder"))]
     unsafe impl NSApplication {
-        #[cfg(feature = "AppKit_NSUserInterfaceItemSearching")]
         #[method(registerUserInterfaceItemSearchHandler:)]
         pub unsafe fn registerUserInterfaceItemSearchHandler(
             &self,
             handler: &ProtocolObject<dyn NSUserInterfaceItemSearching>,
         );
 
-        #[cfg(feature = "AppKit_NSUserInterfaceItemSearching")]
         #[method(unregisterUserInterfaceItemSearchHandler:)]
         pub unsafe fn unregisterUserInterfaceItemSearchHandler(
             &self,

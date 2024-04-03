@@ -59,7 +59,7 @@ extern_methods!(
     /// ClinicalType
     #[cfg(feature = "HealthKit_HKObjectType")]
     unsafe impl HKObjectType {
-        #[cfg(all(feature = "Foundation_NSString", feature = "HealthKit_HKClinicalType"))]
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other clinicalTypeForIdentifier:)]
         pub unsafe fn clinicalTypeForIdentifier(
             identifier: &HKClinicalTypeIdentifier,

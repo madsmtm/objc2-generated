@@ -477,7 +477,7 @@ extern_category!(
         #[method(classForKeyedArchiver)]
         unsafe fn classForKeyedArchiver(&self) -> Option<&'static AnyClass>;
 
-        #[cfg(all(feature = "Foundation_NSCoder", feature = "Foundation_NSKeyedArchiver"))]
+        #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Other replacementObjectForKeyedArchiver:)]
         unsafe fn replacementObjectForKeyedArchiver(
             &self,

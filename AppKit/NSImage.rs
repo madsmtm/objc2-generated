@@ -528,19 +528,15 @@ extern_protocol!(
 extern_category!(
     /// Category on [`NSBundle`].
     pub unsafe trait NSBundleImageExtension {
-        #[cfg(all(feature = "AppKit_NSImage", feature = "Foundation_NSString"))]
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other imageForResource:)]
         unsafe fn imageForResource(&self, name: &NSImageName) -> Option<Id<NSImage>>;
 
-        #[cfg(all(feature = "AppKit_NSImage", feature = "Foundation_NSString"))]
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other pathForImageResource:)]
         unsafe fn pathForImageResource(&self, name: &NSImageName) -> Option<Id<NSString>>;
 
-        #[cfg(all(
-            feature = "AppKit_NSImage",
-            feature = "Foundation_NSString",
-            feature = "Foundation_NSURL"
-        ))]
+        #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
         #[method_id(@__retain_semantics Other URLForImageResource:)]
         unsafe fn URLForImageResource(&self, name: &NSImageName) -> Option<Id<NSURL>>;
     }

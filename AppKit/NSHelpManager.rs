@@ -109,7 +109,6 @@ extern_category!(
     /// Category on [`NSBundle`].
     pub unsafe trait NSBundleHelpExtension {
         #[cfg(all(
-            feature = "AppKit_NSHelpManager",
             feature = "Foundation_NSAttributedString",
             feature = "Foundation_NSString"
         ))]

@@ -230,10 +230,7 @@ extern_methods!(
 extern_category!(
     /// Category on [`NSAttributedString`].
     pub unsafe trait NSAttributedStringAttachmentConveniences {
-        #[cfg(all(
-            feature = "AppKit_NSTextAttachment",
-            feature = "Foundation_NSAttributedString"
-        ))]
+        #[cfg(feature = "Foundation_NSAttributedString")]
         #[method_id(@__retain_semantics Other attributedStringWithAttachment:)]
         unsafe fn attributedStringWithAttachment(
             attachment: &NSTextAttachment,

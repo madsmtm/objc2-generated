@@ -72,11 +72,9 @@ extern_methods!(
         #[method(setRestorable:)]
         pub unsafe fn setRestorable(&self, restorable: bool);
 
-        #[cfg(feature = "AppKit_NSWindowRestoration")]
         #[method(restorationClass)]
         pub unsafe fn restorationClass(&self) -> Option<&'static AnyClass>;
 
-        #[cfg(feature = "AppKit_NSWindowRestoration")]
         #[method(setRestorationClass:)]
         pub unsafe fn setRestorationClass(&self, restoration_class: Option<&AnyClass>);
 

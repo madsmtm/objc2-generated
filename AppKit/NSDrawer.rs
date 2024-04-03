@@ -197,7 +197,7 @@ extern_methods!(
     /// NSDrawers
     #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSWindow"))]
     unsafe impl NSWindow {
-        #[cfg(all(feature = "AppKit_NSDrawer", feature = "Foundation_NSArray"))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[deprecated = "Drawers are deprecated; consider using NSSplitViewController"]
         #[method_id(@__retain_semantics Other drawers)]
         pub unsafe fn drawers(&self) -> Option<Id<NSArray<NSDrawer>>>;

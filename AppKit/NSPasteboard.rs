@@ -461,11 +461,10 @@ extern_category!(
     /// Category "NSPasteboardSupport" on [`NSURL`].
     #[doc(alias = "NSPasteboardSupport")]
     pub unsafe trait NSURLNSPasteboardSupport {
-        #[cfg(all(feature = "AppKit_NSPasteboard", feature = "Foundation_NSURL"))]
+        #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other URLFromPasteboard:)]
         unsafe fn URLFromPasteboard(paste_board: &NSPasteboard) -> Option<Id<NSURL>>;
 
-        #[cfg(feature = "AppKit_NSPasteboard")]
         #[method(writeToPasteboard:)]
         unsafe fn writeToPasteboard(&self, paste_board: &NSPasteboard);
     }

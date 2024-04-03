@@ -208,7 +208,6 @@ extern_methods!(
 extern_methods!(
     #[cfg(feature = "MapKit_MKLocalSearchRequest")]
     unsafe impl MKLocalSearchRequest {
-        #[cfg(feature = "MapKit_MKLocalSearchCompleter")]
         #[method_id(@__retain_semantics Init initWithCompletion:)]
         pub unsafe fn initWithCompletion(
             this: Allocated<Self>,

@@ -118,15 +118,13 @@ extern_methods!(
     /// NSLayoutGuideSupport
     #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     unsafe impl NSView {
-        #[cfg(feature = "AppKit_NSLayoutGuide")]
         #[method(addLayoutGuide:)]
         pub unsafe fn addLayoutGuide(&self, guide: &NSLayoutGuide);
 
-        #[cfg(feature = "AppKit_NSLayoutGuide")]
         #[method(removeLayoutGuide:)]
         pub unsafe fn removeLayoutGuide(&self, guide: &NSLayoutGuide);
 
-        #[cfg(all(feature = "AppKit_NSLayoutGuide", feature = "Foundation_NSArray"))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other layoutGuides)]
         pub unsafe fn layoutGuides(&self) -> Id<NSArray<NSLayoutGuide>>;
     }

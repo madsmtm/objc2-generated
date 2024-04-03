@@ -295,7 +295,6 @@ extern_methods!(
     /// NSViewEnclosingMenuItem
     #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     unsafe impl NSView {
-        #[cfg(feature = "AppKit_NSMenuItem")]
         #[method_id(@__retain_semantics Other enclosingMenuItem)]
         pub unsafe fn enclosingMenuItem(&self) -> Option<Id<NSMenuItem>>;
     }

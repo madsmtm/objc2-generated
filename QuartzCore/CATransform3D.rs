@@ -212,18 +212,11 @@ extern_category!(
     /// Category "CATransform3DAdditions" on [`NSValue`].
     #[doc(alias = "CATransform3DAdditions")]
     pub unsafe trait NSValueCATransform3DAdditions {
-        #[cfg(all(
-            feature = "Foundation_NSGeometry",
-            feature = "Foundation_NSValue",
-            feature = "QuartzCore_CATransform3D"
-        ))]
+        #[cfg(all(feature = "Foundation_NSGeometry", feature = "Foundation_NSValue"))]
         #[method_id(@__retain_semantics Other valueWithCATransform3D:)]
         unsafe fn valueWithCATransform3D(t: CATransform3D) -> Id<NSValue>;
 
-        #[cfg(all(
-            feature = "Foundation_NSGeometry",
-            feature = "QuartzCore_CATransform3D"
-        ))]
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(CATransform3DValue)]
         unsafe fn CATransform3DValue(&self) -> CATransform3D;
     }

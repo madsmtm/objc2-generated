@@ -158,10 +158,7 @@ extern_methods!(
     /// NSWorkspaceRunningApplications
     #[cfg(feature = "AppKit_NSWorkspace")]
     unsafe impl NSWorkspace {
-        #[cfg(all(
-            feature = "AppKit_NSRunningApplication",
-            feature = "Foundation_NSArray"
-        ))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other runningApplications)]
         pub unsafe fn runningApplications(&self) -> Id<NSArray<NSRunningApplication>>;
     }

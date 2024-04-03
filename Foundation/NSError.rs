@@ -205,7 +205,6 @@ extern_category!(
     /// Category "NSErrorRecoveryAttempting" on [`NSObject`].
     #[doc(alias = "NSErrorRecoveryAttempting")]
     pub unsafe trait NSObjectNSErrorRecoveryAttempting {
-        #[cfg(feature = "Foundation_NSError")]
         #[method(attemptRecoveryFromError:optionIndex:delegate:didRecoverSelector:contextInfo:)]
         unsafe fn attemptRecoveryFromError_optionIndex_delegate_didRecoverSelector_contextInfo(
             &self,
@@ -216,7 +215,6 @@ extern_category!(
             context_info: *mut c_void,
         );
 
-        #[cfg(feature = "Foundation_NSError")]
         #[method(attemptRecoveryFromError:optionIndex:)]
         unsafe fn attemptRecoveryFromError_optionIndex(
             &self,

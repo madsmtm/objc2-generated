@@ -685,7 +685,6 @@ extern_category!(
     /// Category on [`NSAttributedString`].
     pub unsafe trait NSAttributedStringDocumentFormats {
         #[cfg(all(
-            feature = "AppKit_NSAttributedString",
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSError",
             feature = "Foundation_NSString",
@@ -702,7 +701,6 @@ extern_category!(
         ) -> Result<Id<Self>, Id<NSError>>;
 
         #[cfg(all(
-            feature = "AppKit_NSAttributedString",
             feature = "Foundation_NSData",
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSError",
@@ -719,7 +717,6 @@ extern_category!(
         ) -> Result<Id<Self>, Id<NSError>>;
 
         #[cfg(all(
-            feature = "AppKit_NSAttributedString",
             feature = "Foundation_NSData",
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSError",
@@ -734,7 +731,6 @@ extern_category!(
         ) -> Result<Id<NSData>, Id<NSError>>;
 
         #[cfg(all(
-            feature = "AppKit_NSAttributedString",
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSError",
             feature = "Foundation_NSFileWrapper",
@@ -749,7 +745,6 @@ extern_category!(
         ) -> Result<Id<NSFileWrapper>, Id<NSError>>;
 
         #[cfg(all(
-            feature = "AppKit_NSAttributedString",
             feature = "Foundation_NSData",
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSString"
@@ -764,7 +759,6 @@ extern_category!(
         ) -> Option<Id<Self>>;
 
         #[cfg(all(
-            feature = "AppKit_NSAttributedString",
             feature = "Foundation_NSData",
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSString"
@@ -779,7 +773,6 @@ extern_category!(
         ) -> Option<Id<Self>>;
 
         #[cfg(all(
-            feature = "AppKit_NSAttributedString",
             feature = "Foundation_NSData",
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSString"
@@ -794,7 +787,6 @@ extern_category!(
         ) -> Option<Id<Self>>;
 
         #[cfg(all(
-            feature = "AppKit_NSAttributedString",
             feature = "Foundation_NSData",
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSString",
@@ -811,7 +803,6 @@ extern_category!(
         ) -> Option<Id<Self>>;
 
         #[cfg(all(
-            feature = "AppKit_NSAttributedString",
             feature = "Foundation_NSData",
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSString"
@@ -826,7 +817,6 @@ extern_category!(
         ) -> Option<Id<Self>>;
 
         #[cfg(all(
-            feature = "AppKit_NSAttributedString",
             feature = "Foundation_NSData",
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSString"
@@ -842,7 +832,6 @@ extern_category!(
         ) -> Option<Id<Self>>;
 
         #[cfg(all(
-            feature = "AppKit_NSAttributedString",
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSFileWrapper",
             feature = "Foundation_NSString"
@@ -857,7 +846,6 @@ extern_category!(
         ) -> Option<Id<Self>>;
 
         #[cfg(all(
-            feature = "AppKit_NSAttributedString",
             feature = "Foundation_NSData",
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSRange",
@@ -871,7 +859,6 @@ extern_category!(
         ) -> Option<Id<NSData>>;
 
         #[cfg(all(
-            feature = "AppKit_NSAttributedString",
             feature = "Foundation_NSData",
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSRange",
@@ -885,7 +872,6 @@ extern_category!(
         ) -> Option<Id<NSData>>;
 
         #[cfg(all(
-            feature = "AppKit_NSAttributedString",
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSFileWrapper",
             feature = "Foundation_NSRange",
@@ -899,7 +885,6 @@ extern_category!(
         ) -> Option<Id<NSFileWrapper>>;
 
         #[cfg(all(
-            feature = "AppKit_NSAttributedString",
             feature = "Foundation_NSData",
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSRange",
@@ -921,7 +906,6 @@ extern_category!(
     /// Category on [`NSMutableAttributedString`].
     pub unsafe trait NSMutableAttributedStringDocumentFormats {
         #[cfg(all(
-            feature = "AppKit_NSAttributedString",
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSError",
             feature = "Foundation_NSString",
@@ -938,7 +922,6 @@ extern_category!(
         ) -> Result<(), Id<NSError>>;
 
         #[cfg(all(
-            feature = "AppKit_NSAttributedString",
             feature = "Foundation_NSData",
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSError",

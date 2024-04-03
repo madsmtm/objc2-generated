@@ -281,13 +281,13 @@ extern_methods!(
         feature = "MediaPlayer_MPMediaItem"
     ))]
     unsafe impl MPMediaItem {
-        #[cfg(all(feature = "Foundation_NSString", feature = "MediaPlayer_MPMediaQuery"))]
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other persistentIDPropertyForGroupingType:)]
         pub unsafe fn persistentIDPropertyForGroupingType(
             grouping_type: MPMediaGrouping,
         ) -> Id<NSString>;
 
-        #[cfg(all(feature = "Foundation_NSString", feature = "MediaPlayer_MPMediaQuery"))]
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other titlePropertyForGroupingType:)]
         pub unsafe fn titlePropertyForGroupingType(grouping_type: MPMediaGrouping) -> Id<NSString>;
     }

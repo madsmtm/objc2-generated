@@ -185,11 +185,7 @@ extern_category!(
             wait: bool,
         );
 
-        #[cfg(all(
-            feature = "Foundation_NSArray",
-            feature = "Foundation_NSString",
-            feature = "Foundation_NSThread"
-        ))]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method(performSelector:onThread:withObject:waitUntilDone:modes:)]
         unsafe fn performSelector_onThread_withObject_waitUntilDone_modes(
             &self,
@@ -200,7 +196,6 @@ extern_category!(
             array: Option<&NSArray<NSString>>,
         );
 
-        #[cfg(feature = "Foundation_NSThread")]
         #[method(performSelector:onThread:withObject:waitUntilDone:)]
         unsafe fn performSelector_onThread_withObject_waitUntilDone(
             &self,

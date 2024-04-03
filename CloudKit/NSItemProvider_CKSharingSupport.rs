@@ -28,7 +28,6 @@ extern_category!(
             feature = "CloudKit_CKContainer",
             feature = "CloudKit_CKRecord",
             feature = "CloudKit_CKShare",
-            feature = "CloudKit_NSItemProvider_CKSharingSupport",
             feature = "Foundation_NSError"
         ))]
         #[method(registerCKShareWithContainer:allowedSharingOptions:preparationHandler:)]

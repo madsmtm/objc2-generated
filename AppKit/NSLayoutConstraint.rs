@@ -332,23 +332,21 @@ extern_methods!(
         #[method_id(@__retain_semantics Other lastBaselineAnchor)]
         pub unsafe fn lastBaselineAnchor(&self) -> Id<NSLayoutYAxisAnchor>;
 
-        #[cfg(all(feature = "AppKit_NSLayoutConstraint", feature = "Foundation_NSArray"))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other constraints)]
         pub unsafe fn constraints(&self) -> Id<NSArray<NSLayoutConstraint>>;
 
-        #[cfg(feature = "AppKit_NSLayoutConstraint")]
         #[method(addConstraint:)]
         pub unsafe fn addConstraint(&self, constraint: &NSLayoutConstraint);
 
-        #[cfg(all(feature = "AppKit_NSLayoutConstraint", feature = "Foundation_NSArray"))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method(addConstraints:)]
         pub unsafe fn addConstraints(&self, constraints: &NSArray<NSLayoutConstraint>);
 
-        #[cfg(feature = "AppKit_NSLayoutConstraint")]
         #[method(removeConstraint:)]
         pub unsafe fn removeConstraint(&self, constraint: &NSLayoutConstraint);
 
-        #[cfg(all(feature = "AppKit_NSLayoutConstraint", feature = "Foundation_NSArray"))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method(removeConstraints:)]
         pub unsafe fn removeConstraints(&self, constraints: &NSArray<NSLayoutConstraint>);
     }
@@ -447,14 +445,12 @@ extern_methods!(
         #[method(invalidateIntrinsicContentSize)]
         pub unsafe fn invalidateIntrinsicContentSize(&self);
 
-        #[cfg(feature = "AppKit_NSLayoutConstraint")]
         #[method(contentHuggingPriorityForOrientation:)]
         pub unsafe fn contentHuggingPriorityForOrientation(
             &self,
             orientation: NSLayoutConstraintOrientation,
         ) -> NSLayoutPriority;
 
-        #[cfg(feature = "AppKit_NSLayoutConstraint")]
         #[method(setContentHuggingPriority:forOrientation:)]
         pub unsafe fn setContentHuggingPriority_forOrientation(
             &self,
@@ -462,14 +458,12 @@ extern_methods!(
             orientation: NSLayoutConstraintOrientation,
         );
 
-        #[cfg(feature = "AppKit_NSLayoutConstraint")]
         #[method(contentCompressionResistancePriorityForOrientation:)]
         pub unsafe fn contentCompressionResistancePriorityForOrientation(
             &self,
             orientation: NSLayoutConstraintOrientation,
         ) -> NSLayoutPriority;
 
-        #[cfg(feature = "AppKit_NSLayoutConstraint")]
         #[method(setContentCompressionResistancePriority:forOrientation:)]
         pub unsafe fn setContentCompressionResistancePriority_forOrientation(
             &self,
@@ -515,14 +509,12 @@ extern_methods!(
     /// NSConstraintBasedLayoutAnchoring
     #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSWindow"))]
     unsafe impl NSWindow {
-        #[cfg(feature = "AppKit_NSLayoutConstraint")]
         #[method(anchorAttributeForOrientation:)]
         pub unsafe fn anchorAttributeForOrientation(
             &self,
             orientation: NSLayoutConstraintOrientation,
         ) -> NSLayoutAttribute;
 
-        #[cfg(feature = "AppKit_NSLayoutConstraint")]
         #[method(setAnchorAttribute:forOrientation:)]
         pub unsafe fn setAnchorAttribute_forOrientation(
             &self,
@@ -546,7 +538,7 @@ extern_methods!(
     /// NSConstraintBasedLayoutDebugging
     #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     unsafe impl NSView {
-        #[cfg(all(feature = "AppKit_NSLayoutConstraint", feature = "Foundation_NSArray"))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other constraintsAffectingLayoutForOrientation:)]
         pub unsafe fn constraintsAffectingLayoutForOrientation(
             &self,
@@ -565,7 +557,7 @@ extern_methods!(
     /// NSConstraintBasedLayoutDebugging
     #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSWindow"))]
     unsafe impl NSWindow {
-        #[cfg(all(feature = "AppKit_NSLayoutConstraint", feature = "Foundation_NSArray"))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method(visualizeConstraints:)]
         pub unsafe fn visualizeConstraints(
             &self,

@@ -145,7 +145,6 @@ extern_category!(
     #[doc(alias = "NSExtendedStringDrawing")]
     pub unsafe trait NSStringNSExtendedStringDrawing {
         #[cfg(all(
-            feature = "AppKit_NSStringDrawing",
             feature = "Foundation_NSAttributedString",
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSGeometry",
@@ -161,7 +160,6 @@ extern_category!(
         );
 
         #[cfg(all(
-            feature = "AppKit_NSStringDrawing",
             feature = "Foundation_NSAttributedString",
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSGeometry",
@@ -185,7 +183,7 @@ extern_category!(
     /// Category "NSExtendedStringDrawing" on [`NSAttributedString`].
     #[doc(alias = "NSExtendedStringDrawing")]
     pub unsafe trait NSAttributedStringNSExtendedStringDrawing {
-        #[cfg(all(feature = "AppKit_NSStringDrawing", feature = "Foundation_NSGeometry"))]
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(drawWithRect:options:context:)]
         unsafe fn drawWithRect_options_context(
             &self,
@@ -194,7 +192,7 @@ extern_category!(
             context: Option<&NSStringDrawingContext>,
         );
 
-        #[cfg(all(feature = "AppKit_NSStringDrawing", feature = "Foundation_NSGeometry"))]
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(boundingRectWithSize:options:context:)]
         unsafe fn boundingRectWithSize_options_context(
             &self,
@@ -212,7 +210,6 @@ extern_category!(
     /// Category on [`NSString`].
     pub unsafe trait NSStringDrawingDeprecated {
         #[cfg(all(
-            feature = "AppKit_NSStringDrawing",
             feature = "Foundation_NSAttributedString",
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSGeometry",
@@ -227,7 +224,6 @@ extern_category!(
         );
 
         #[cfg(all(
-            feature = "AppKit_NSStringDrawing",
             feature = "Foundation_NSAttributedString",
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSGeometry",
@@ -250,11 +246,11 @@ extern_category!(
     /// Category "NSStringDrawingDeprecated" on [`NSAttributedString`].
     #[doc(alias = "NSStringDrawingDeprecated")]
     pub unsafe trait NSAttributedStringNSStringDrawingDeprecated {
-        #[cfg(all(feature = "AppKit_NSStringDrawing", feature = "Foundation_NSGeometry"))]
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(drawWithRect:options:)]
         unsafe fn drawWithRect_options(&self, rect: NSRect, options: NSStringDrawingOptions);
 
-        #[cfg(all(feature = "AppKit_NSStringDrawing", feature = "Foundation_NSGeometry"))]
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(boundingRectWithSize:options:)]
         unsafe fn boundingRectWithSize_options(
             &self,

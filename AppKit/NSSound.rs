@@ -208,7 +208,7 @@ extern_protocol!(
 extern_category!(
     /// Category on [`NSBundle`].
     pub unsafe trait NSBundleSoundExtensions {
-        #[cfg(all(feature = "AppKit_NSSound", feature = "Foundation_NSString"))]
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other pathForSoundResource:)]
         unsafe fn pathForSoundResource(&self, name: &NSSoundName) -> Option<Id<NSString>>;
     }

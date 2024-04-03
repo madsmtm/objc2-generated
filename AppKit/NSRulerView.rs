@@ -304,7 +304,7 @@ extern_methods!(
     /// NSRulerMarkerClientViewDelegation
     #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     unsafe impl NSView {
-        #[cfg(all(feature = "AppKit_NSRulerMarker", feature = "AppKit_NSRulerView"))]
+        #[cfg(feature = "AppKit_NSRulerMarker")]
         #[method(rulerView:shouldMoveMarker:)]
         pub unsafe fn rulerView_shouldMoveMarker(
             &self,
@@ -312,11 +312,7 @@ extern_methods!(
             marker: &NSRulerMarker,
         ) -> bool;
 
-        #[cfg(all(
-            feature = "AppKit_NSRulerMarker",
-            feature = "AppKit_NSRulerView",
-            feature = "Foundation_NSGeometry"
-        ))]
+        #[cfg(all(feature = "AppKit_NSRulerMarker", feature = "Foundation_NSGeometry"))]
         #[method(rulerView:willMoveMarker:toLocation:)]
         pub unsafe fn rulerView_willMoveMarker_toLocation(
             &self,
@@ -325,11 +321,11 @@ extern_methods!(
             location: CGFloat,
         ) -> CGFloat;
 
-        #[cfg(all(feature = "AppKit_NSRulerMarker", feature = "AppKit_NSRulerView"))]
+        #[cfg(feature = "AppKit_NSRulerMarker")]
         #[method(rulerView:didMoveMarker:)]
         pub unsafe fn rulerView_didMoveMarker(&self, ruler: &NSRulerView, marker: &NSRulerMarker);
 
-        #[cfg(all(feature = "AppKit_NSRulerMarker", feature = "AppKit_NSRulerView"))]
+        #[cfg(feature = "AppKit_NSRulerMarker")]
         #[method(rulerView:shouldRemoveMarker:)]
         pub unsafe fn rulerView_shouldRemoveMarker(
             &self,
@@ -337,11 +333,11 @@ extern_methods!(
             marker: &NSRulerMarker,
         ) -> bool;
 
-        #[cfg(all(feature = "AppKit_NSRulerMarker", feature = "AppKit_NSRulerView"))]
+        #[cfg(feature = "AppKit_NSRulerMarker")]
         #[method(rulerView:didRemoveMarker:)]
         pub unsafe fn rulerView_didRemoveMarker(&self, ruler: &NSRulerView, marker: &NSRulerMarker);
 
-        #[cfg(all(feature = "AppKit_NSRulerMarker", feature = "AppKit_NSRulerView"))]
+        #[cfg(feature = "AppKit_NSRulerMarker")]
         #[method(rulerView:shouldAddMarker:)]
         pub unsafe fn rulerView_shouldAddMarker(
             &self,
@@ -349,11 +345,7 @@ extern_methods!(
             marker: &NSRulerMarker,
         ) -> bool;
 
-        #[cfg(all(
-            feature = "AppKit_NSRulerMarker",
-            feature = "AppKit_NSRulerView",
-            feature = "Foundation_NSGeometry"
-        ))]
+        #[cfg(all(feature = "AppKit_NSRulerMarker", feature = "Foundation_NSGeometry"))]
         #[method(rulerView:willAddMarker:atLocation:)]
         pub unsafe fn rulerView_willAddMarker_atLocation(
             &self,
@@ -362,19 +354,18 @@ extern_methods!(
             location: CGFloat,
         ) -> CGFloat;
 
-        #[cfg(all(feature = "AppKit_NSRulerMarker", feature = "AppKit_NSRulerView"))]
+        #[cfg(feature = "AppKit_NSRulerMarker")]
         #[method(rulerView:didAddMarker:)]
         pub unsafe fn rulerView_didAddMarker(&self, ruler: &NSRulerView, marker: &NSRulerMarker);
 
-        #[cfg(all(feature = "AppKit_NSEvent", feature = "AppKit_NSRulerView"))]
+        #[cfg(feature = "AppKit_NSEvent")]
         #[method(rulerView:handleMouseDown:)]
         pub unsafe fn rulerView_handleMouseDown(&self, ruler: &NSRulerView, event: &NSEvent);
 
-        #[cfg(feature = "AppKit_NSRulerView")]
         #[method(rulerView:willSetClientView:)]
         pub unsafe fn rulerView_willSetClientView(&self, ruler: &NSRulerView, new_client: &NSView);
 
-        #[cfg(all(feature = "AppKit_NSRulerView", feature = "Foundation_NSGeometry"))]
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(rulerView:locationForPoint:)]
         pub unsafe fn rulerView_locationForPoint(
             &self,
@@ -382,7 +373,7 @@ extern_methods!(
             point: NSPoint,
         ) -> CGFloat;
 
-        #[cfg(all(feature = "AppKit_NSRulerView", feature = "Foundation_NSGeometry"))]
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(rulerView:pointForLocation:)]
         pub unsafe fn rulerView_pointForLocation(
             &self,

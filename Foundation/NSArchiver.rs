@@ -202,7 +202,7 @@ extern_category!(
         #[method(classForArchiver)]
         unsafe fn classForArchiver(&self) -> Option<&'static AnyClass>;
 
-        #[cfg(all(feature = "Foundation_NSArchiver", feature = "Foundation_NSCoder"))]
+        #[cfg(feature = "Foundation_NSCoder")]
         #[deprecated]
         #[method_id(@__retain_semantics Other replacementObjectForArchiver:)]
         unsafe fn replacementObjectForArchiver(

@@ -233,15 +233,10 @@ extern_category!(
     /// Category "NSScriptObjectSpecifiers" on [`NSObject`].
     #[doc(alias = "NSScriptObjectSpecifiers")]
     pub unsafe trait NSObjectNSScriptObjectSpecifiers {
-        #[cfg(feature = "Foundation_NSScriptObjectSpecifiers")]
         #[method_id(@__retain_semantics Other objectSpecifier)]
         unsafe fn objectSpecifier(&self) -> Option<Id<NSScriptObjectSpecifier>>;
 
-        #[cfg(all(
-            feature = "Foundation_NSArray",
-            feature = "Foundation_NSScriptObjectSpecifiers",
-            feature = "Foundation_NSValue"
-        ))]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSValue"))]
         #[method_id(@__retain_semantics Other indicesOfObjectsByEvaluatingObjectSpecifier:)]
         unsafe fn indicesOfObjectsByEvaluatingObjectSpecifier(
             &self,

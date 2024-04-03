@@ -247,11 +247,7 @@ extern_category!(
         #[method_id(@__retain_semantics Other valueWithMKCoordinate:)]
         unsafe fn valueWithMKCoordinate(coordinate: CLLocationCoordinate2D) -> Id<NSValue>;
 
-        #[cfg(all(
-            feature = "CoreLocation_CLLocation",
-            feature = "Foundation_NSValue",
-            feature = "MapKit_MKGeometry"
-        ))]
+        #[cfg(all(feature = "CoreLocation_CLLocation", feature = "Foundation_NSValue"))]
         #[method_id(@__retain_semantics Other valueWithMKCoordinateSpan:)]
         unsafe fn valueWithMKCoordinateSpan(span: MKCoordinateSpan) -> Id<NSValue>;
 
@@ -259,7 +255,7 @@ extern_category!(
         #[method(MKCoordinateValue)]
         unsafe fn MKCoordinateValue(&self) -> CLLocationCoordinate2D;
 
-        #[cfg(all(feature = "CoreLocation_CLLocation", feature = "MapKit_MKGeometry"))]
+        #[cfg(feature = "CoreLocation_CLLocation")]
         #[method(MKCoordinateSpanValue)]
         unsafe fn MKCoordinateSpanValue(&self) -> MKCoordinateSpan;
     }

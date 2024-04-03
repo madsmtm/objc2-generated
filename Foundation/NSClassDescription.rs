@@ -67,7 +67,6 @@ extern_category!(
     /// Category "NSClassDescriptionPrimitives" on [`NSObject`].
     #[doc(alias = "NSClassDescriptionPrimitives")]
     pub unsafe trait NSObjectNSClassDescriptionPrimitives {
-        #[cfg(feature = "Foundation_NSClassDescription")]
         #[method_id(@__retain_semantics Other classDescription)]
         unsafe fn classDescription(&self) -> Id<NSClassDescription>;
 

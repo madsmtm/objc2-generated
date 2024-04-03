@@ -147,11 +147,7 @@ extern_methods!(
     /// CloudIdentifiers
     #[cfg(feature = "Photos_PHPhotoLibrary")]
     unsafe impl PHPhotoLibrary {
-        #[cfg(all(
-            feature = "Foundation_NSArray",
-            feature = "Foundation_NSDictionary",
-            feature = "Photos_PHCloudIdentifier"
-        ))]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSDictionary"))]
         #[method_id(@__retain_semantics Other localIdentifierMappingsForCloudIdentifiers:)]
         pub unsafe fn localIdentifierMappingsForCloudIdentifiers(
             &self,
@@ -161,8 +157,7 @@ extern_methods!(
         #[cfg(all(
             feature = "Foundation_NSArray",
             feature = "Foundation_NSDictionary",
-            feature = "Foundation_NSString",
-            feature = "Photos_PHCloudIdentifier"
+            feature = "Foundation_NSString"
         ))]
         #[method_id(@__retain_semantics Other cloudIdentifierMappingsForLocalIdentifiers:)]
         pub unsafe fn cloudIdentifierMappingsForLocalIdentifiers(
@@ -170,11 +165,7 @@ extern_methods!(
             local_identifiers: &NSArray<NSString>,
         ) -> Id<NSDictionary<NSString, PHCloudIdentifierMapping>>;
 
-        #[cfg(all(
-            feature = "Foundation_NSArray",
-            feature = "Foundation_NSString",
-            feature = "Photos_PHCloudIdentifier"
-        ))]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[deprecated]
         #[method_id(@__retain_semantics Other localIdentifiersForCloudIdentifiers:)]
         pub unsafe fn localIdentifiersForCloudIdentifiers(
@@ -182,11 +173,7 @@ extern_methods!(
             cloud_identifiers: &NSArray<PHCloudIdentifier>,
         ) -> Id<NSArray<NSString>>;
 
-        #[cfg(all(
-            feature = "Foundation_NSArray",
-            feature = "Foundation_NSString",
-            feature = "Photos_PHCloudIdentifier"
-        ))]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[deprecated]
         #[method_id(@__retain_semantics Other cloudIdentifiersForLocalIdentifiers:)]
         pub unsafe fn cloudIdentifiersForLocalIdentifiers(

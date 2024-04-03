@@ -173,7 +173,6 @@ extern_methods!(
     unsafe impl PHAsset {
         #[cfg(all(
             feature = "Foundation_NSDictionary",
-            feature = "Photos_PHAssetChangeRequest",
             feature = "Photos_PHContentEditingInput"
         ))]
         #[method(requestContentEditingInputWithOptions:completionHandler:)]
@@ -183,7 +182,6 @@ extern_methods!(
             completion_handler: &Block<dyn Fn(*mut PHContentEditingInput, NonNull<NSDictionary>)>,
         ) -> PHContentEditingInputRequestID;
 
-        #[cfg(feature = "Photos_PHAssetChangeRequest")]
         #[method(cancelContentEditingInputRequest:)]
         pub unsafe fn cancelContentEditingInputRequest(
             &self,

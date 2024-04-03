@@ -90,18 +90,13 @@ extern_methods!(
     /// TestingModeInteractive
     #[cfg(feature = "FileProvider_NSFileProviderManager")]
     unsafe impl NSFileProviderManager {
-        #[cfg(all(
-            feature = "FileProvider_NSFileProviderTesting",
-            feature = "Foundation_NSArray",
-            feature = "Foundation_NSError"
-        ))]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSError"))]
         #[method_id(@__retain_semantics Other listAvailableTestingOperationsWithError:_)]
         pub unsafe fn listAvailableTestingOperationsWithError(
             &self,
         ) -> Result<Id<NSArray<ProtocolObject<dyn NSFileProviderTestingOperation>>>, Id<NSError>>;
 
         #[cfg(all(
-            feature = "FileProvider_NSFileProviderTesting",
             feature = "Foundation_NSArray",
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSError"

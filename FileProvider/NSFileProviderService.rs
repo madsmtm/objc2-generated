@@ -32,7 +32,6 @@ extern_methods!(
     unsafe impl NSFileProviderExtension {
         #[cfg(all(
             feature = "FileProvider_NSFileProviderItem",
-            feature = "FileProvider_NSFileProviderService",
             feature = "Foundation_NSArray",
             feature = "Foundation_NSError",
             feature = "Foundation_NSString"
