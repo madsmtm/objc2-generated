@@ -234,8 +234,6 @@ pub use self::__MXSignpostMetric::MXSignpostIntervalData;
 pub use self::__MXSignpostMetric::MXSignpostMetric;
 #[cfg(feature = "MetricKit_MXSignpostRecord")]
 pub use self::__MXSignpostRecord::MXSignpostRecord;
-#[cfg(feature = "MetricKit_MXSignpost_Private")]
-pub(crate) use self::__MXSignpost_Private::_MXSignpostMetricsSnapshot;
 #[cfg(all(feature = "Foundation_NSUnit", feature = "MetricKit_MXUnit"))]
 pub use self::__MXUnit::MXUnitAveragePixelLuminance;
 #[cfg(all(feature = "Foundation_NSUnit", feature = "MetricKit_MXUnit"))]

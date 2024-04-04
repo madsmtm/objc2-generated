@@ -3,7 +3,3 @@
 use crate::common::*;
 use crate::Foundation::*;
 use crate::MetricKit::*;
-
-extern "C" {
-    pub fn _MXSignpostMetricsSnapshot() -> NonNull<c_void>;
-}
