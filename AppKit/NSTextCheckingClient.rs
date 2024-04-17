@@ -121,7 +121,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    #[cfg(feature = "AppKit_NSTextInputClient")]
+    #[cfg(feature = "NSTextInputClient")]
     pub unsafe trait NSTextCheckingClient: NSTextInputClient + NSTextInputTraits {
         #[method_id(@__retain_semantics Other annotatedSubstringForProposedRange:actualRange:)]
         unsafe fn annotatedSubstringForProposedRange_actualRange(
@@ -161,7 +161,7 @@ extern_protocol!(
         #[method(selectAndShowRange:)]
         unsafe fn selectAndShowRange(&self, range: NSRange);
 
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[method_id(@__retain_semantics Other viewForRange:firstRect:actualRange:)]
         unsafe fn viewForRange_firstRect_actualRange(
             &self,
@@ -171,10 +171,7 @@ extern_protocol!(
             mtm: MainThreadMarker,
         ) -> Option<Id<NSView>>;
 
-        #[cfg(all(
-            feature = "AppKit_NSCandidateListTouchBarItem",
-            feature = "AppKit_NSTouchBarItem"
-        ))]
+        #[cfg(all(feature = "NSCandidateListTouchBarItem", feature = "NSTouchBarItem"))]
         #[method_id(@__retain_semantics Other candidateListTouchBarItem)]
         unsafe fn candidateListTouchBarItem(
             &self,
@@ -182,6 +179,6 @@ extern_protocol!(
         ) -> Option<Id<NSCandidateListTouchBarItem>>;
     }
 
-    #[cfg(feature = "AppKit_NSTextInputClient")]
+    #[cfg(feature = "NSTextInputClient")]
     unsafe impl ProtocolType for dyn NSTextCheckingClient {}
 );

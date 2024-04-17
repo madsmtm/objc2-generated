@@ -18,15 +18,15 @@ unsafe impl Send for NSUUID {}
 
 unsafe impl Sync for NSUUID {}
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSCoding for NSUUID {}
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSUUID {}
 
 unsafe impl NSObjectProtocol for NSUUID {}
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSSecureCoding for NSUUID {}
 
 extern_methods!(
@@ -37,15 +37,15 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub fn init(this: Allocated<Self>) -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Init initWithUUIDString:)]
         pub fn initWithUUIDString(this: Allocated<Self>, string: &NSString) -> Option<Id<Self>>;
 
-        #[cfg(feature = "Foundation_NSObjCRuntime")]
+        #[cfg(feature = "NSObjCRuntime")]
         #[method(compare:)]
         pub unsafe fn compare(&self, other_uuid: &NSUUID) -> NSComparisonResult;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other UUIDString)]
         pub fn UUIDString(&self) -> Id<NSString>;
     }

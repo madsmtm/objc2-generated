@@ -9,9 +9,9 @@ use crate::*;
 
 extern_methods!(
     /// NSFileProviderThumbnailing
-    #[cfg(feature = "FileProvider_NSFileProviderExtension")]
+    #[cfg(feature = "NSFileProviderExtension")]
     unsafe impl NSFileProviderExtension {
-        #[cfg(all(feature = "FileProvider_NSFileProviderItem", feature = "block2"))]
+        #[cfg(all(feature = "NSFileProviderItem", feature = "block2"))]
         #[method_id(@__retain_semantics Other fetchThumbnailsForItemIdentifiers:requestedSize:perThumbnailCompletionHandler:completionHandler:)]
         pub unsafe fn fetchThumbnailsForItemIdentifiers_requestedSize_perThumbnailCompletionHandler_completionHandler(
             &self,

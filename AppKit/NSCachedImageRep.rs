@@ -7,11 +7,11 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSImageRep")]
+    #[cfg(feature = "NSImageRep")]
     #[deprecated]
     pub struct NSCachedImageRep;
 
-    #[cfg(feature = "AppKit_NSImageRep")]
+    #[cfg(feature = "NSImageRep")]
     unsafe impl ClassType for NSCachedImageRep {
         #[inherits(NSObject)]
         type Super = NSImageRep;
@@ -19,19 +19,19 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSImageRep")]
+#[cfg(feature = "NSImageRep")]
 unsafe impl NSCoding for NSCachedImageRep {}
 
-#[cfg(feature = "AppKit_NSImageRep")]
+#[cfg(feature = "NSImageRep")]
 unsafe impl NSCopying for NSCachedImageRep {}
 
-#[cfg(feature = "AppKit_NSImageRep")]
+#[cfg(feature = "NSImageRep")]
 unsafe impl NSObjectProtocol for NSCachedImageRep {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSImageRep")]
+    #[cfg(feature = "NSImageRep")]
     unsafe impl NSCachedImageRep {
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSWindow"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
         #[deprecated]
         #[method_id(@__retain_semantics Init initWithWindow:rect:)]
         pub unsafe fn initWithWindow_rect(
@@ -40,7 +40,7 @@ extern_methods!(
             rect: NSRect,
         ) -> Option<Id<Self>>;
 
-        #[cfg(feature = "AppKit_NSGraphics")]
+        #[cfg(feature = "NSGraphics")]
         #[deprecated]
         #[method_id(@__retain_semantics Init initWithSize:depth:separate:alpha:)]
         pub unsafe fn initWithSize_depth_separate_alpha(
@@ -51,7 +51,7 @@ extern_methods!(
             alpha: bool,
         ) -> Option<Id<Self>>;
 
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSWindow"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
         #[deprecated]
         #[method_id(@__retain_semantics Other window)]
         pub unsafe fn window(&self, mtm: MainThreadMarker) -> Option<Id<NSWindow>>;
@@ -64,7 +64,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSImageRep`
-    #[cfg(feature = "AppKit_NSImageRep")]
+    #[cfg(feature = "NSImageRep")]
     unsafe impl NSCachedImageRep {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -76,7 +76,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSImageRep")]
+    #[cfg(feature = "NSImageRep")]
     unsafe impl NSCachedImageRep {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

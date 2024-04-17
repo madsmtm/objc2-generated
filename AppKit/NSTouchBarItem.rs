@@ -54,11 +54,11 @@ extern_methods!(
         #[method(setVisibilityPriority:)]
         pub unsafe fn setVisibilityPriority(&self, visibility_priority: NSTouchBarItemPriority);
 
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[method_id(@__retain_semantics Other view)]
         pub unsafe fn view(&self) -> Option<Id<NSView>>;
 
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
         #[method_id(@__retain_semantics Other viewController)]
         pub unsafe fn viewController(&self) -> Option<Id<NSViewController>>;
 

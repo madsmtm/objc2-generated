@@ -15,7 +15,7 @@ extern_category!(
     #[doc(alias = "UI")]
     pub unsafe trait LARightUI {
         #[cfg(all(
-            feature = "LocalAuthenticationEmbeddedUI_LAPresentationContext",
+            feature = "LAPresentationContext",
             feature = "block2",
             feature = "objc2-app-kit"
         ))]

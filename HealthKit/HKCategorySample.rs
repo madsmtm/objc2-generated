@@ -7,10 +7,10 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(feature = "HealthKit_HKObject", feature = "HealthKit_HKSample"))]
+    #[cfg(all(feature = "HKObject", feature = "HKSample"))]
     pub struct HKCategorySample;
 
-    #[cfg(all(feature = "HealthKit_HKObject", feature = "HealthKit_HKSample"))]
+    #[cfg(all(feature = "HKObject", feature = "HKSample"))]
     unsafe impl ClassType for HKCategorySample {
         #[inherits(HKObject, NSObject)]
         type Super = HKSample;
@@ -18,19 +18,19 @@ extern_class!(
     }
 );
 
-#[cfg(all(feature = "HealthKit_HKObject", feature = "HealthKit_HKSample"))]
+#[cfg(all(feature = "HKObject", feature = "HKSample"))]
 unsafe impl NSCoding for HKCategorySample {}
 
-#[cfg(all(feature = "HealthKit_HKObject", feature = "HealthKit_HKSample"))]
+#[cfg(all(feature = "HKObject", feature = "HKSample"))]
 unsafe impl NSObjectProtocol for HKCategorySample {}
 
-#[cfg(all(feature = "HealthKit_HKObject", feature = "HealthKit_HKSample"))]
+#[cfg(all(feature = "HKObject", feature = "HKSample"))]
 unsafe impl NSSecureCoding for HKCategorySample {}
 
 extern_methods!(
-    #[cfg(all(feature = "HealthKit_HKObject", feature = "HealthKit_HKSample"))]
+    #[cfg(all(feature = "HKObject", feature = "HKSample"))]
     unsafe impl HKCategorySample {
-        #[cfg(feature = "HealthKit_HKObjectType")]
+        #[cfg(feature = "HKObjectType")]
         #[method_id(@__retain_semantics Other categoryType)]
         pub unsafe fn categoryType(&self) -> Id<HKCategoryType>;
 
@@ -40,7 +40,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
-        #[cfg(feature = "HealthKit_HKObjectType")]
+        #[cfg(feature = "HKObjectType")]
         #[method_id(@__retain_semantics Other categorySampleWithType:value:startDate:endDate:metadata:)]
         pub unsafe fn categorySampleWithType_value_startDate_endDate_metadata(
             r#type: &HKCategoryType,
@@ -50,7 +50,7 @@ extern_methods!(
             metadata: Option<&NSDictionary<NSString, AnyObject>>,
         ) -> Id<Self>;
 
-        #[cfg(feature = "HealthKit_HKObjectType")]
+        #[cfg(feature = "HKObjectType")]
         #[method_id(@__retain_semantics Other categorySampleWithType:value:startDate:endDate:)]
         pub unsafe fn categorySampleWithType_value_startDate_endDate(
             r#type: &HKCategoryType,
@@ -59,7 +59,7 @@ extern_methods!(
             end_date: &NSDate,
         ) -> Id<Self>;
 
-        #[cfg(all(feature = "HealthKit_HKDevice", feature = "HealthKit_HKObjectType"))]
+        #[cfg(all(feature = "HKDevice", feature = "HKObjectType"))]
         #[method_id(@__retain_semantics Other categorySampleWithType:value:startDate:endDate:device:metadata:)]
         pub unsafe fn categorySampleWithType_value_startDate_endDate_device_metadata(
             r#type: &HKCategoryType,
@@ -74,7 +74,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "HealthKit_HKObject", feature = "HealthKit_HKSample"))]
+    #[cfg(all(feature = "HKObject", feature = "HKSample"))]
     unsafe impl HKCategorySample {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

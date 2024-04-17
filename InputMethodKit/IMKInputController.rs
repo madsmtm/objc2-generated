@@ -149,7 +149,7 @@ unsafe impl NSObjectProtocol for IMKInputController {}
 
 extern_methods!(
     unsafe impl IMKInputController {
-        #[cfg(feature = "InputMethodKit_IMKServer")]
+        #[cfg(feature = "IMKServer")]
         #[method_id(@__retain_semantics Init initWithServer:delegate:client:)]
         pub unsafe fn initWithServer_delegate_client(
             this: Allocated<Self>,
@@ -203,7 +203,7 @@ extern_methods!(
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, new_delegate: Option<&AnyObject>);
 
-        #[cfg(feature = "InputMethodKit_IMKServer")]
+        #[cfg(feature = "IMKServer")]
         #[method_id(@__retain_semantics Other server)]
         pub unsafe fn server(&self) -> Option<Id<IMKServer>>;
 

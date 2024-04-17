@@ -79,17 +79,13 @@ extern_methods!(
         #[method(setLoginUserName:)]
         pub unsafe fn setLoginUserName(&self, login_user_name: Option<&NSString>);
 
-        #[cfg(
-            feature = "AuthenticationServices_ASAuthorizationProviderExtensionUserLoginConfiguration"
-        )]
+        #[cfg(feature = "ASAuthorizationProviderExtensionUserLoginConfiguration")]
         #[method_id(@__retain_semantics Other userLoginConfiguration)]
         pub unsafe fn userLoginConfiguration(
             &self,
         ) -> Option<Id<ASAuthorizationProviderExtensionUserLoginConfiguration>>;
 
-        #[cfg(
-            feature = "AuthenticationServices_ASAuthorizationProviderExtensionUserLoginConfiguration"
-        )]
+        #[cfg(feature = "ASAuthorizationProviderExtensionUserLoginConfiguration")]
         #[method(saveUserLoginConfiguration:error:_)]
         pub unsafe fn saveUserLoginConfiguration_error(
             &self,
@@ -102,17 +98,13 @@ extern_methods!(
         #[method(setSsoTokens:)]
         pub unsafe fn setSsoTokens(&self, sso_tokens: Option<&NSDictionary>);
 
-        #[cfg(
-            feature = "AuthenticationServices_ASAuthorizationProviderExtensionLoginConfiguration"
-        )]
+        #[cfg(feature = "ASAuthorizationProviderExtensionLoginConfiguration")]
         #[method_id(@__retain_semantics Other loginConfiguration)]
         pub unsafe fn loginConfiguration(
             &self,
         ) -> Option<Id<ASAuthorizationProviderExtensionLoginConfiguration>>;
 
-        #[cfg(
-            feature = "AuthenticationServices_ASAuthorizationProviderExtensionLoginConfiguration"
-        )]
+        #[cfg(feature = "ASAuthorizationProviderExtensionLoginConfiguration")]
         #[method(saveLoginConfiguration:error:_)]
         pub unsafe fn saveLoginConfiguration_error(
             &self,

@@ -24,10 +24,10 @@ unsafe impl RefEncode for NSCompoundPredicateType {
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSPredicate")]
+    #[cfg(feature = "NSPredicate")]
     pub struct NSCompoundPredicate;
 
-    #[cfg(feature = "Foundation_NSPredicate")]
+    #[cfg(feature = "NSPredicate")]
     unsafe impl ClassType for NSCompoundPredicate {
         #[inherits(NSObject)]
         type Super = NSPredicate;
@@ -35,22 +35,22 @@ extern_class!(
     }
 );
 
-#[cfg(all(feature = "Foundation_NSObject", feature = "Foundation_NSPredicate"))]
+#[cfg(all(feature = "NSObject", feature = "NSPredicate"))]
 unsafe impl NSCoding for NSCompoundPredicate {}
 
-#[cfg(all(feature = "Foundation_NSObject", feature = "Foundation_NSPredicate"))]
+#[cfg(all(feature = "NSObject", feature = "NSPredicate"))]
 unsafe impl NSCopying for NSCompoundPredicate {}
 
-#[cfg(feature = "Foundation_NSPredicate")]
+#[cfg(feature = "NSPredicate")]
 unsafe impl NSObjectProtocol for NSCompoundPredicate {}
 
-#[cfg(all(feature = "Foundation_NSObject", feature = "Foundation_NSPredicate"))]
+#[cfg(all(feature = "NSObject", feature = "NSPredicate"))]
 unsafe impl NSSecureCoding for NSCompoundPredicate {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSPredicate")]
+    #[cfg(feature = "NSPredicate")]
     unsafe impl NSCompoundPredicate {
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(feature = "NSArray")]
         #[method_id(@__retain_semantics Init initWithType:subpredicates:)]
         pub unsafe fn initWithType_subpredicates(
             this: Allocated<Self>,
@@ -58,24 +58,24 @@ extern_methods!(
             subpredicates: &NSArray<NSPredicate>,
         ) -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSCoder")]
+        #[cfg(feature = "NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
 
         #[method(compoundPredicateType)]
         pub unsafe fn compoundPredicateType(&self) -> NSCompoundPredicateType;
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(feature = "NSArray")]
         #[method_id(@__retain_semantics Other subpredicates)]
         pub unsafe fn subpredicates(&self) -> Id<NSArray>;
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(feature = "NSArray")]
         #[method_id(@__retain_semantics Other andPredicateWithSubpredicates:)]
         pub unsafe fn andPredicateWithSubpredicates(
             subpredicates: &NSArray<NSPredicate>,
         ) -> Id<NSCompoundPredicate>;
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(feature = "NSArray")]
         #[method_id(@__retain_semantics Other orPredicateWithSubpredicates:)]
         pub unsafe fn orPredicateWithSubpredicates(
             subpredicates: &NSArray<NSPredicate>,
@@ -90,7 +90,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSPredicate")]
+    #[cfg(feature = "NSPredicate")]
     unsafe impl NSCompoundPredicate {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

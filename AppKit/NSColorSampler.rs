@@ -21,7 +21,7 @@ unsafe impl NSObjectProtocol for NSColorSampler {}
 
 extern_methods!(
     unsafe impl NSColorSampler {
-        #[cfg(all(feature = "AppKit_NSColor", feature = "block2"))]
+        #[cfg(all(feature = "NSColor", feature = "block2"))]
         #[method(showSamplerWithSelectionHandler:)]
         pub unsafe fn showSamplerWithSelectionHandler(
             &self,

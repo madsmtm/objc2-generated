@@ -23,12 +23,12 @@ extern_methods!(
         #[method_id(@__retain_semantics Other systemDefaultPortNameServer)]
         pub unsafe fn systemDefaultPortNameServer() -> Id<NSPortNameServer>;
 
-        #[cfg(all(feature = "Foundation_NSPort", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSPort", feature = "NSString"))]
         #[deprecated = "Use NSXPCConnection instead"]
         #[method_id(@__retain_semantics Other portForName:)]
         pub unsafe fn portForName(&self, name: &NSString) -> Option<Id<NSPort>>;
 
-        #[cfg(all(feature = "Foundation_NSPort", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSPort", feature = "NSString"))]
         #[deprecated = "Use NSXPCConnection instead"]
         #[method_id(@__retain_semantics Other portForName:host:)]
         pub unsafe fn portForName_host(
@@ -37,12 +37,12 @@ extern_methods!(
             host: Option<&NSString>,
         ) -> Option<Id<NSPort>>;
 
-        #[cfg(all(feature = "Foundation_NSPort", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSPort", feature = "NSString"))]
         #[deprecated = "Use NSXPCConnection instead"]
         #[method(registerPort:name:)]
         pub unsafe fn registerPort_name(&self, port: &NSPort, name: &NSString) -> bool;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[deprecated = "Use NSXPCConnection instead"]
         #[method(removePortForName:)]
         pub unsafe fn removePortForName(&self, name: &NSString) -> bool;
@@ -80,12 +80,12 @@ extern_methods!(
         #[method_id(@__retain_semantics Other sharedInstance)]
         pub unsafe fn sharedInstance() -> Id<AnyObject>;
 
-        #[cfg(all(feature = "Foundation_NSPort", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSPort", feature = "NSString"))]
         #[deprecated = "Use NSXPCConnection instead"]
         #[method_id(@__retain_semantics Other portForName:)]
         pub unsafe fn portForName(&self, name: &NSString) -> Option<Id<NSPort>>;
 
-        #[cfg(all(feature = "Foundation_NSPort", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSPort", feature = "NSString"))]
         #[deprecated = "Use NSXPCConnection instead"]
         #[method_id(@__retain_semantics Other portForName:host:)]
         pub unsafe fn portForName_host(
@@ -94,12 +94,12 @@ extern_methods!(
             host: Option<&NSString>,
         ) -> Option<Id<NSPort>>;
 
-        #[cfg(all(feature = "Foundation_NSPort", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSPort", feature = "NSString"))]
         #[deprecated = "Use NSXPCConnection instead"]
         #[method(registerPort:name:)]
         pub unsafe fn registerPort_name(&self, port: &NSPort, name: &NSString) -> bool;
 
-        #[cfg(all(feature = "Foundation_NSPort", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSPort", feature = "NSString"))]
         #[method_id(@__retain_semantics Other servicePortWithName:)]
         pub unsafe fn servicePortWithName(&self, name: &NSString) -> Option<Id<NSPort>>;
     }
@@ -136,12 +136,12 @@ extern_methods!(
         #[method_id(@__retain_semantics Other sharedInstance)]
         pub unsafe fn sharedInstance() -> Id<AnyObject>;
 
-        #[cfg(all(feature = "Foundation_NSPort", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSPort", feature = "NSString"))]
         #[deprecated = "Use NSXPCConnection instead"]
         #[method_id(@__retain_semantics Other portForName:)]
         pub unsafe fn portForName(&self, name: &NSString) -> Option<Id<NSPort>>;
 
-        #[cfg(all(feature = "Foundation_NSPort", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSPort", feature = "NSString"))]
         #[deprecated = "Use NSXPCConnection instead"]
         #[method_id(@__retain_semantics Other portForName:host:)]
         pub unsafe fn portForName_host(
@@ -183,12 +183,12 @@ extern_methods!(
         #[method_id(@__retain_semantics Other sharedInstance)]
         pub unsafe fn sharedInstance() -> Id<AnyObject>;
 
-        #[cfg(all(feature = "Foundation_NSPort", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSPort", feature = "NSString"))]
         #[deprecated = "Use NSXPCConnection instead"]
         #[method_id(@__retain_semantics Other portForName:)]
         pub unsafe fn portForName(&self, name: &NSString) -> Option<Id<NSPort>>;
 
-        #[cfg(all(feature = "Foundation_NSPort", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSPort", feature = "NSString"))]
         #[deprecated = "Use NSXPCConnection instead"]
         #[method_id(@__retain_semantics Other portForName:host:)]
         pub unsafe fn portForName_host(
@@ -197,17 +197,17 @@ extern_methods!(
             host: Option<&NSString>,
         ) -> Option<Id<NSPort>>;
 
-        #[cfg(all(feature = "Foundation_NSPort", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSPort", feature = "NSString"))]
         #[deprecated = "Use NSXPCConnection instead"]
         #[method(registerPort:name:)]
         pub unsafe fn registerPort_name(&self, port: &NSPort, name: &NSString) -> bool;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[deprecated = "Use NSXPCConnection instead"]
         #[method(removePortForName:)]
         pub unsafe fn removePortForName(&self, name: &NSString) -> bool;
 
-        #[cfg(all(feature = "Foundation_NSPort", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSPort", feature = "NSString"))]
         #[deprecated = "Use NSXPCConnection instead"]
         #[method_id(@__retain_semantics Other portForName:host:nameServerPortNumber:)]
         pub unsafe fn portForName_host_nameServerPortNumber(
@@ -217,7 +217,7 @@ extern_methods!(
             port_number: u16,
         ) -> Option<Id<NSPort>>;
 
-        #[cfg(all(feature = "Foundation_NSPort", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSPort", feature = "NSString"))]
         #[deprecated = "Use NSXPCConnection instead"]
         #[method(registerPort:name:nameServerPortNumber:)]
         pub unsafe fn registerPort_name_nameServerPortNumber(

@@ -7,11 +7,11 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
+    #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     #[deprecated]
     pub struct DOMMediaList;
 
-    #[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
+    #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl ClassType for DOMMediaList {
         #[inherits(WebScriptObject, NSObject)]
         type Super = DOMObject;
@@ -19,14 +19,14 @@ extern_class!(
     }
 );
 
-#[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
+#[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
 unsafe impl NSCopying for DOMMediaList {}
 
-#[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
+#[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
 unsafe impl NSObjectProtocol for DOMMediaList {}
 
 extern_methods!(
-    #[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
+    #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMMediaList {
         #[deprecated]
         #[method_id(@__retain_semantics Other mediaText)]
@@ -56,7 +56,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `DOMObject`
-    #[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
+    #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMMediaList {
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
@@ -66,7 +66,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
+    #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMMediaList {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

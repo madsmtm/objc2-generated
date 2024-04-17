@@ -17,10 +17,10 @@ extern_class!(
 
 unsafe impl NSCoding for NSController {}
 
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 unsafe impl NSEditor for NSController {}
 
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 unsafe impl NSEditorRegistration for NSController {}
 
 unsafe impl NSObjectProtocol for NSController {}
@@ -33,11 +33,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
 
-        #[cfg(feature = "AppKit_NSKeyValueBinding")]
+        #[cfg(feature = "NSKeyValueBinding")]
         #[method(objectDidBeginEditing:)]
         pub unsafe fn objectDidBeginEditing(&self, editor: &ProtocolObject<dyn NSEditor>);
 
-        #[cfg(feature = "AppKit_NSKeyValueBinding")]
+        #[cfg(feature = "NSKeyValueBinding")]
         #[method(objectDidEndEditing:)]
         pub unsafe fn objectDidEndEditing(&self, editor: &ProtocolObject<dyn NSEditor>);
 

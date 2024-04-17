@@ -24,43 +24,43 @@ extern_methods!(
         #[method_id(@__retain_semantics Other linkedFunctions)]
         pub fn linkedFunctions() -> Id<MTLLinkedFunctions>;
 
-        #[cfg(feature = "Metal_MTLLibrary")]
+        #[cfg(feature = "MTLLibrary")]
         #[method_id(@__retain_semantics Other functions)]
         pub fn functions(&self) -> Option<Id<NSArray<ProtocolObject<dyn MTLFunction>>>>;
 
-        #[cfg(feature = "Metal_MTLLibrary")]
+        #[cfg(feature = "MTLLibrary")]
         #[method(setFunctions:)]
         pub fn setFunctions(&self, functions: Option<&NSArray<ProtocolObject<dyn MTLFunction>>>);
 
-        #[cfg(feature = "Metal_MTLLibrary")]
+        #[cfg(feature = "MTLLibrary")]
         #[method_id(@__retain_semantics Other binaryFunctions)]
         pub fn binaryFunctions(&self) -> Option<Id<NSArray<ProtocolObject<dyn MTLFunction>>>>;
 
-        #[cfg(feature = "Metal_MTLLibrary")]
+        #[cfg(feature = "MTLLibrary")]
         #[method(setBinaryFunctions:)]
         pub fn setBinaryFunctions(
             &self,
             binary_functions: Option<&NSArray<ProtocolObject<dyn MTLFunction>>>,
         );
 
-        #[cfg(feature = "Metal_MTLLibrary")]
+        #[cfg(feature = "MTLLibrary")]
         #[method_id(@__retain_semantics Other groups)]
         pub fn groups(
             &self,
         ) -> Option<Id<NSDictionary<NSString, NSArray<ProtocolObject<dyn MTLFunction>>>>>;
 
-        #[cfg(feature = "Metal_MTLLibrary")]
+        #[cfg(feature = "MTLLibrary")]
         #[method(setGroups:)]
         pub fn setGroups(
             &self,
             groups: Option<&NSDictionary<NSString, NSArray<ProtocolObject<dyn MTLFunction>>>>,
         );
 
-        #[cfg(feature = "Metal_MTLLibrary")]
+        #[cfg(feature = "MTLLibrary")]
         #[method_id(@__retain_semantics Other privateFunctions)]
         pub fn privateFunctions(&self) -> Option<Id<NSArray<ProtocolObject<dyn MTLFunction>>>>;
 
-        #[cfg(feature = "Metal_MTLLibrary")]
+        #[cfg(feature = "MTLLibrary")]
         #[method(setPrivateFunctions:)]
         pub fn setPrivateFunctions(
             &self,

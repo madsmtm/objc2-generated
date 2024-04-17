@@ -28,7 +28,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other persistentContainerWithName:)]
         pub unsafe fn persistentContainerWithName(name: &NSString) -> Id<Self>;
 
-        #[cfg(feature = "CoreData_NSManagedObjectModel")]
+        #[cfg(feature = "NSManagedObjectModel")]
         #[method_id(@__retain_semantics Other persistentContainerWithName:managedObjectModel:)]
         pub unsafe fn persistentContainerWithName_managedObjectModel(
             name: &NSString,
@@ -41,25 +41,25 @@ extern_methods!(
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Id<NSString>;
 
-        #[cfg(feature = "CoreData_NSManagedObjectContext")]
+        #[cfg(feature = "NSManagedObjectContext")]
         #[method_id(@__retain_semantics Other viewContext)]
         pub unsafe fn viewContext(&self) -> Id<NSManagedObjectContext>;
 
-        #[cfg(feature = "CoreData_NSManagedObjectModel")]
+        #[cfg(feature = "NSManagedObjectModel")]
         #[method_id(@__retain_semantics Other managedObjectModel)]
         pub unsafe fn managedObjectModel(&self) -> Id<NSManagedObjectModel>;
 
-        #[cfg(feature = "CoreData_NSPersistentStoreCoordinator")]
+        #[cfg(feature = "NSPersistentStoreCoordinator")]
         #[method_id(@__retain_semantics Other persistentStoreCoordinator)]
         pub unsafe fn persistentStoreCoordinator(&self) -> Id<NSPersistentStoreCoordinator>;
 
-        #[cfg(feature = "CoreData_NSPersistentStoreDescription")]
+        #[cfg(feature = "NSPersistentStoreDescription")]
         #[method_id(@__retain_semantics Other persistentStoreDescriptions)]
         pub unsafe fn persistentStoreDescriptions(
             &self,
         ) -> Id<NSArray<NSPersistentStoreDescription>>;
 
-        #[cfg(feature = "CoreData_NSPersistentStoreDescription")]
+        #[cfg(feature = "NSPersistentStoreDescription")]
         #[method(setPersistentStoreDescriptions:)]
         pub unsafe fn setPersistentStoreDescriptions(
             &self,
@@ -69,7 +69,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithName:)]
         pub unsafe fn initWithName(this: Allocated<Self>, name: &NSString) -> Id<Self>;
 
-        #[cfg(feature = "CoreData_NSManagedObjectModel")]
+        #[cfg(feature = "NSManagedObjectModel")]
         #[method_id(@__retain_semantics Init initWithName:managedObjectModel:)]
         pub unsafe fn initWithName_managedObjectModel(
             this: Allocated<Self>,
@@ -77,18 +77,18 @@ extern_methods!(
             model: &NSManagedObjectModel,
         ) -> Id<Self>;
 
-        #[cfg(all(feature = "CoreData_NSPersistentStoreDescription", feature = "block2"))]
+        #[cfg(all(feature = "NSPersistentStoreDescription", feature = "block2"))]
         #[method(loadPersistentStoresWithCompletionHandler:)]
         pub unsafe fn loadPersistentStoresWithCompletionHandler(
             &self,
             block: &Block<dyn Fn(NonNull<NSPersistentStoreDescription>, *mut NSError)>,
         );
 
-        #[cfg(feature = "CoreData_NSManagedObjectContext")]
+        #[cfg(feature = "NSManagedObjectContext")]
         #[method_id(@__retain_semantics New newBackgroundContext)]
         pub unsafe fn newBackgroundContext(&self) -> Id<NSManagedObjectContext>;
 
-        #[cfg(all(feature = "CoreData_NSManagedObjectContext", feature = "block2"))]
+        #[cfg(all(feature = "NSManagedObjectContext", feature = "block2"))]
         #[method(performBackgroundTask:)]
         pub unsafe fn performBackgroundTask(
             &self,

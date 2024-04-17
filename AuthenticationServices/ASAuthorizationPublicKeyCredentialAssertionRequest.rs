@@ -22,13 +22,13 @@ extern_protocol!(
         #[method(setRelyingPartyIdentifier:)]
         unsafe fn setRelyingPartyIdentifier(&self, relying_party_identifier: &NSString);
 
-        #[cfg(feature = "AuthenticationServices_ASAuthorizationPublicKeyCredentialDescriptor")]
+        #[cfg(feature = "ASAuthorizationPublicKeyCredentialDescriptor")]
         #[method_id(@__retain_semantics Other allowedCredentials)]
         unsafe fn allowedCredentials(
             &self,
         ) -> Id<NSArray<ProtocolObject<dyn ASAuthorizationPublicKeyCredentialDescriptor>>>;
 
-        #[cfg(feature = "AuthenticationServices_ASAuthorizationPublicKeyCredentialDescriptor")]
+        #[cfg(feature = "ASAuthorizationPublicKeyCredentialDescriptor")]
         #[method(setAllowedCredentials:)]
         unsafe fn setAllowedCredentials(
             &self,
@@ -37,13 +37,13 @@ extern_protocol!(
             >,
         );
 
-        #[cfg(feature = "AuthenticationServices_ASAuthorizationPublicKeyCredentialConstants")]
+        #[cfg(feature = "ASAuthorizationPublicKeyCredentialConstants")]
         #[method_id(@__retain_semantics Other userVerificationPreference)]
         unsafe fn userVerificationPreference(
             &self,
         ) -> Id<ASAuthorizationPublicKeyCredentialUserVerificationPreference>;
 
-        #[cfg(feature = "AuthenticationServices_ASAuthorizationPublicKeyCredentialConstants")]
+        #[cfg(feature = "ASAuthorizationPublicKeyCredentialConstants")]
         #[method(setUserVerificationPreference:)]
         unsafe fn setUserVerificationPreference(
             &self,

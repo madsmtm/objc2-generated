@@ -154,11 +154,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Other identifier)]
         pub unsafe fn identifier(&self) -> Id<NSToolbarIdentifier>;
 
-        #[cfg(feature = "AppKit_NSToolbarItem")]
+        #[cfg(feature = "NSToolbarItem")]
         #[method_id(@__retain_semantics Other items)]
         pub unsafe fn items(&self) -> Id<NSArray<NSToolbarItem>>;
 
-        #[cfg(feature = "AppKit_NSToolbarItem")]
+        #[cfg(feature = "NSToolbarItem")]
         #[method_id(@__retain_semantics Other visibleItems)]
         pub unsafe fn visibleItems(&self) -> Option<Id<NSArray<NSToolbarItem>>>;
 
@@ -218,7 +218,7 @@ extern_methods!(
 
 extern_protocol!(
     pub unsafe trait NSToolbarDelegate: NSObjectProtocol + IsMainThreadOnly {
-        #[cfg(feature = "AppKit_NSToolbarItem")]
+        #[cfg(feature = "NSToolbarItem")]
         #[optional]
         #[method_id(@__retain_semantics Other toolbar:itemForItemIdentifier:willBeInsertedIntoToolbar:)]
         unsafe fn toolbar_itemForItemIdentifier_willBeInsertedIntoToolbar(
@@ -288,12 +288,12 @@ extern "C" {
 extern_methods!(
     /// NSDeprecated
     unsafe impl NSToolbar {
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[deprecated = "Use NSTitlebarAccessoryViewController with NSWindow instead"]
         #[method_id(@__retain_semantics Other fullScreenAccessoryView)]
         pub unsafe fn fullScreenAccessoryView(&self) -> Option<Id<NSView>>;
 
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[deprecated = "Use NSTitlebarAccessoryViewController with NSWindow instead"]
         #[method(setFullScreenAccessoryView:)]
         pub unsafe fn setFullScreenAccessoryView(

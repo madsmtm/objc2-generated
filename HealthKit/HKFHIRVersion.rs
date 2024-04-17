@@ -34,7 +34,7 @@ extern_methods!(
         #[method(patchVersion)]
         pub unsafe fn patchVersion(&self) -> NSInteger;
 
-        #[cfg(feature = "HealthKit_HKFHIRRelease")]
+        #[cfg(feature = "HKFHIRRelease")]
         #[method_id(@__retain_semantics Other FHIRRelease)]
         pub unsafe fn FHIRRelease(&self) -> Id<HKFHIRRelease>;
 

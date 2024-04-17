@@ -23,10 +23,7 @@ unsafe impl NSObjectProtocol for ASAccountAuthenticationModificationExtensionCon
 
 extern_methods!(
     unsafe impl ASAccountAuthenticationModificationExtensionContext {
-        #[cfg(all(
-            feature = "AuthenticationServices_ASAuthorizationAppleIDCredential",
-            feature = "block2"
-        ))]
+        #[cfg(all(feature = "ASAuthorizationAppleIDCredential", feature = "block2"))]
         #[method(getSignInWithAppleUpgradeAuthorizationWithState:nonce:completionHandler:)]
         pub unsafe fn getSignInWithAppleUpgradeAuthorizationWithState_nonce_completionHandler(
             &self,
@@ -41,7 +38,7 @@ extern_methods!(
             user_info: Option<&NSDictionary>,
         );
 
-        #[cfg(feature = "AuthenticationServices_ASPasswordCredential")]
+        #[cfg(feature = "ASPasswordCredential")]
         #[method(completeChangePasswordRequestWithUpdatedCredential:userInfo:)]
         pub unsafe fn completeChangePasswordRequestWithUpdatedCredential_userInfo(
             &self,

@@ -31,14 +31,14 @@ extern_methods!(
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
 
-        #[cfg(feature = "CloudKit_CKUserIdentityLookupInfo")]
+        #[cfg(feature = "CKUserIdentityLookupInfo")]
         #[method_id(@__retain_semantics Other lookupInfo)]
         pub unsafe fn lookupInfo(&self) -> Option<Id<CKUserIdentityLookupInfo>>;
 
         #[method_id(@__retain_semantics Other nameComponents)]
         pub unsafe fn nameComponents(&self) -> Option<Id<NSPersonNameComponents>>;
 
-        #[cfg(feature = "CloudKit_CKRecordID")]
+        #[cfg(feature = "CKRecordID")]
         #[method_id(@__retain_semantics Other userRecordID)]
         pub unsafe fn userRecordID(&self) -> Option<Id<CKRecordID>>;
 

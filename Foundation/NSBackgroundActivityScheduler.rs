@@ -42,19 +42,19 @@ unsafe impl NSObjectProtocol for NSBackgroundActivityScheduler {}
 
 extern_methods!(
     unsafe impl NSBackgroundActivityScheduler {
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Init initWithIdentifier:)]
         pub unsafe fn initWithIdentifier(this: Allocated<Self>, identifier: &NSString) -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other identifier)]
         pub unsafe fn identifier(&self) -> Id<NSString>;
 
-        #[cfg(feature = "Foundation_NSObjCRuntime")]
+        #[cfg(feature = "NSObjCRuntime")]
         #[method(qualityOfService)]
         pub unsafe fn qualityOfService(&self) -> NSQualityOfService;
 
-        #[cfg(feature = "Foundation_NSObjCRuntime")]
+        #[cfg(feature = "NSObjCRuntime")]
         #[method(setQualityOfService:)]
         pub unsafe fn setQualityOfService(&self, quality_of_service: NSQualityOfService);
 
@@ -64,19 +64,19 @@ extern_methods!(
         #[method(setRepeats:)]
         pub unsafe fn setRepeats(&self, repeats: bool);
 
-        #[cfg(feature = "Foundation_NSDate")]
+        #[cfg(feature = "NSDate")]
         #[method(interval)]
         pub unsafe fn interval(&self) -> NSTimeInterval;
 
-        #[cfg(feature = "Foundation_NSDate")]
+        #[cfg(feature = "NSDate")]
         #[method(setInterval:)]
         pub unsafe fn setInterval(&self, interval: NSTimeInterval);
 
-        #[cfg(feature = "Foundation_NSDate")]
+        #[cfg(feature = "NSDate")]
         #[method(tolerance)]
         pub unsafe fn tolerance(&self) -> NSTimeInterval;
 
-        #[cfg(feature = "Foundation_NSDate")]
+        #[cfg(feature = "NSDate")]
         #[method(setTolerance:)]
         pub unsafe fn setTolerance(&self, tolerance: NSTimeInterval);
 

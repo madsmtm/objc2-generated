@@ -8,10 +8,10 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AuthenticationServices_ASAuthorizationRequest")]
+    #[cfg(feature = "ASAuthorizationRequest")]
     pub struct ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest;
 
-    #[cfg(feature = "AuthenticationServices_ASAuthorizationRequest")]
+    #[cfg(feature = "ASAuthorizationRequest")]
     unsafe impl ClassType for ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest {
         #[inherits(NSObject)]
         type Super = ASAuthorizationRequest;
@@ -20,28 +20,28 @@ extern_class!(
 );
 
 #[cfg(all(
-    feature = "AuthenticationServices_ASAuthorizationPublicKeyCredentialRegistrationRequest",
-    feature = "AuthenticationServices_ASAuthorizationRequest"
+    feature = "ASAuthorizationPublicKeyCredentialRegistrationRequest",
+    feature = "ASAuthorizationRequest"
 ))]
 unsafe impl ASAuthorizationPublicKeyCredentialRegistrationRequest
     for ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest
 {
 }
 
-#[cfg(feature = "AuthenticationServices_ASAuthorizationRequest")]
+#[cfg(feature = "ASAuthorizationRequest")]
 unsafe impl NSCoding for ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest {}
 
-#[cfg(feature = "AuthenticationServices_ASAuthorizationRequest")]
+#[cfg(feature = "ASAuthorizationRequest")]
 unsafe impl NSCopying for ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest {}
 
-#[cfg(feature = "AuthenticationServices_ASAuthorizationRequest")]
+#[cfg(feature = "ASAuthorizationRequest")]
 unsafe impl NSObjectProtocol for ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest {}
 
-#[cfg(feature = "AuthenticationServices_ASAuthorizationRequest")]
+#[cfg(feature = "ASAuthorizationRequest")]
 unsafe impl NSSecureCoding for ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest {}
 
 extern_methods!(
-    #[cfg(feature = "AuthenticationServices_ASAuthorizationRequest")]
+    #[cfg(feature = "ASAuthorizationRequest")]
     unsafe impl ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -49,17 +49,13 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
-        #[cfg(
-            feature = "AuthenticationServices_ASAuthorizationPublicKeyCredentialLargeBlobRegistrationInput"
-        )]
+        #[cfg(feature = "ASAuthorizationPublicKeyCredentialLargeBlobRegistrationInput")]
         #[method_id(@__retain_semantics Other largeBlob)]
         pub unsafe fn largeBlob(
             &self,
         ) -> Option<Id<ASAuthorizationPublicKeyCredentialLargeBlobRegistrationInput>>;
 
-        #[cfg(
-            feature = "AuthenticationServices_ASAuthorizationPublicKeyCredentialLargeBlobRegistrationInput"
-        )]
+        #[cfg(feature = "ASAuthorizationPublicKeyCredentialLargeBlobRegistrationInput")]
         #[method(setLargeBlob:)]
         pub unsafe fn setLargeBlob(
             &self,
@@ -69,13 +65,13 @@ extern_methods!(
 );
 
 extern_methods!(
-    #[cfg(feature = "AuthenticationServices_ASAuthorizationRequest")]
+    #[cfg(feature = "ASAuthorizationRequest")]
     unsafe impl ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest {}
 );
 
 #[cfg(all(
-    feature = "AuthenticationServices_ASAuthorizationRequest",
-    feature = "AuthenticationServices_ASAuthorizationWebBrowserPlatformPublicKeyCredentialRegistrationRequest"
+    feature = "ASAuthorizationRequest",
+    feature = "ASAuthorizationWebBrowserPlatformPublicKeyCredentialRegistrationRequest"
 ))]
 unsafe impl ASAuthorizationWebBrowserPlatformPublicKeyCredentialRegistrationRequest
     for ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest

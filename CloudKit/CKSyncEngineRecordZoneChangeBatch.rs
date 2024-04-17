@@ -26,9 +26,9 @@ unsafe impl NSObjectProtocol for CKSyncEngineRecordZoneChangeBatch {}
 extern_methods!(
     unsafe impl CKSyncEngineRecordZoneChangeBatch {
         #[cfg(all(
-            feature = "CloudKit_CKRecord",
-            feature = "CloudKit_CKRecordID",
-            feature = "CloudKit_CKSyncEngineState",
+            feature = "CKRecord",
+            feature = "CKRecordID",
+            feature = "CKSyncEngineState",
             feature = "block2"
         ))]
         #[method_id(@__retain_semantics Init initWithPendingChanges:recordProvider:)]
@@ -38,7 +38,7 @@ extern_methods!(
             record_provider: &Block<dyn Fn(NonNull<CKRecordID>) -> *mut CKRecord + '_>,
         ) -> Option<Id<Self>>;
 
-        #[cfg(all(feature = "CloudKit_CKRecord", feature = "CloudKit_CKRecordID"))]
+        #[cfg(all(feature = "CKRecord", feature = "CKRecordID"))]
         #[method_id(@__retain_semantics Init initWithRecordsToSave:recordIDsToDelete:atomicByZone:)]
         pub unsafe fn initWithRecordsToSave_recordIDsToDelete_atomicByZone(
             this: Allocated<Self>,
@@ -53,11 +53,11 @@ extern_methods!(
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
 
-        #[cfg(feature = "CloudKit_CKRecord")]
+        #[cfg(feature = "CKRecord")]
         #[method_id(@__retain_semantics Other recordsToSave)]
         pub unsafe fn recordsToSave(&self) -> Id<NSArray<CKRecord>>;
 
-        #[cfg(feature = "CloudKit_CKRecordID")]
+        #[cfg(feature = "CKRecordID")]
         #[method_id(@__retain_semantics Other recordIDsToDelete)]
         pub unsafe fn recordIDsToDelete(&self) -> Id<NSArray<CKRecordID>>;
 

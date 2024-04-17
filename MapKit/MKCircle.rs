@@ -9,10 +9,10 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MapKit_MKShape")]
+    #[cfg(feature = "MKShape")]
     pub struct MKCircle;
 
-    #[cfg(feature = "MapKit_MKShape")]
+    #[cfg(feature = "MKShape")]
     unsafe impl ClassType for MKCircle {
         #[inherits(NSObject)]
         type Super = MKShape;
@@ -20,21 +20,17 @@ extern_class!(
     }
 );
 
-#[cfg(all(feature = "MapKit_MKAnnotation", feature = "MapKit_MKShape"))]
+#[cfg(all(feature = "MKAnnotation", feature = "MKShape"))]
 unsafe impl MKAnnotation for MKCircle {}
 
-#[cfg(all(
-    feature = "MapKit_MKAnnotation",
-    feature = "MapKit_MKOverlay",
-    feature = "MapKit_MKShape"
-))]
+#[cfg(all(feature = "MKAnnotation", feature = "MKOverlay", feature = "MKShape"))]
 unsafe impl MKOverlay for MKCircle {}
 
-#[cfg(feature = "MapKit_MKShape")]
+#[cfg(feature = "MKShape")]
 unsafe impl NSObjectProtocol for MKCircle {}
 
 extern_methods!(
-    #[cfg(feature = "MapKit_MKShape")]
+    #[cfg(feature = "MKShape")]
     unsafe impl MKCircle {
         #[cfg(feature = "objc2-core-location")]
         #[method_id(@__retain_semantics Other circleWithCenterCoordinate:radius:)]
@@ -43,7 +39,7 @@ extern_methods!(
             radius: CLLocationDistance,
         ) -> Id<Self>;
 
-        #[cfg(feature = "MapKit_MKGeometry")]
+        #[cfg(feature = "MKGeometry")]
         #[method_id(@__retain_semantics Other circleWithMapRect:)]
         pub unsafe fn circleWithMapRect(map_rect: MKMapRect) -> Id<Self>;
 
@@ -55,7 +51,7 @@ extern_methods!(
         #[method(radius)]
         pub unsafe fn radius(&self) -> CLLocationDistance;
 
-        #[cfg(feature = "MapKit_MKGeometry")]
+        #[cfg(feature = "MKGeometry")]
         #[method(boundingMapRect)]
         pub unsafe fn boundingMapRect(&self) -> MKMapRect;
     }
@@ -63,7 +59,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MapKit_MKShape")]
+    #[cfg(feature = "MKShape")]
     unsafe impl MKCircle {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

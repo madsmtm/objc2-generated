@@ -42,16 +42,12 @@ unsafe impl RefEncode for NSFontPanelModeMask {
 
 extern_protocol!(
     pub unsafe trait NSFontChanging: NSObjectProtocol + IsMainThreadOnly {
-        #[cfg(feature = "AppKit_NSFontManager")]
+        #[cfg(feature = "NSFontManager")]
         #[optional]
         #[method(changeFont:)]
         unsafe fn changeFont(&self, sender: Option<&NSFontManager>);
 
-        #[cfg(all(
-            feature = "AppKit_NSPanel",
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSWindow"
-        ))]
+        #[cfg(all(feature = "NSPanel", feature = "NSResponder", feature = "NSWindow"))]
         #[optional]
         #[method(validModesForFontPanel:)]
         unsafe fn validModesForFontPanel(&self, font_panel: &NSFontPanel) -> NSFontPanelModeMask;
@@ -62,18 +58,10 @@ extern_protocol!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(
-        feature = "AppKit_NSPanel",
-        feature = "AppKit_NSResponder",
-        feature = "AppKit_NSWindow"
-    ))]
+    #[cfg(all(feature = "NSPanel", feature = "NSResponder", feature = "NSWindow"))]
     pub struct NSFontPanel;
 
-    #[cfg(all(
-        feature = "AppKit_NSPanel",
-        feature = "AppKit_NSResponder",
-        feature = "AppKit_NSWindow"
-    ))]
+    #[cfg(all(feature = "NSPanel", feature = "NSResponder", feature = "NSWindow"))]
     unsafe impl ClassType for NSFontPanel {
         #[inherits(NSWindow, NSResponder, NSObject)]
         type Super = NSPanel;
@@ -82,81 +70,69 @@ extern_class!(
 );
 
 #[cfg(all(
-    feature = "AppKit_NSAccessibilityProtocols",
-    feature = "AppKit_NSPanel",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSWindow"
+    feature = "NSAccessibilityProtocols",
+    feature = "NSPanel",
+    feature = "NSResponder",
+    feature = "NSWindow"
 ))]
 unsafe impl NSAccessibility for NSFontPanel {}
 
 #[cfg(all(
-    feature = "AppKit_NSAccessibilityProtocols",
-    feature = "AppKit_NSPanel",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSWindow"
+    feature = "NSAccessibilityProtocols",
+    feature = "NSPanel",
+    feature = "NSResponder",
+    feature = "NSWindow"
 ))]
 unsafe impl NSAccessibilityElementProtocol for NSFontPanel {}
 
 #[cfg(all(
-    feature = "AppKit_NSAnimation",
-    feature = "AppKit_NSPanel",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSWindow"
+    feature = "NSAnimation",
+    feature = "NSPanel",
+    feature = "NSResponder",
+    feature = "NSWindow"
 ))]
 unsafe impl NSAnimatablePropertyContainer for NSFontPanel {}
 
 #[cfg(all(
-    feature = "AppKit_NSAppearance",
-    feature = "AppKit_NSPanel",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSWindow"
+    feature = "NSAppearance",
+    feature = "NSPanel",
+    feature = "NSResponder",
+    feature = "NSWindow"
 ))]
 unsafe impl NSAppearanceCustomization for NSFontPanel {}
 
-#[cfg(all(
-    feature = "AppKit_NSPanel",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSWindow"
-))]
+#[cfg(all(feature = "NSPanel", feature = "NSResponder", feature = "NSWindow"))]
 unsafe impl NSCoding for NSFontPanel {}
 
 #[cfg(all(
-    feature = "AppKit_NSMenu",
-    feature = "AppKit_NSPanel",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSWindow"
+    feature = "NSMenu",
+    feature = "NSPanel",
+    feature = "NSResponder",
+    feature = "NSWindow"
 ))]
 unsafe impl NSMenuItemValidation for NSFontPanel {}
 
-#[cfg(all(
-    feature = "AppKit_NSPanel",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSWindow"
-))]
+#[cfg(all(feature = "NSPanel", feature = "NSResponder", feature = "NSWindow"))]
 unsafe impl NSObjectProtocol for NSFontPanel {}
 
 #[cfg(all(
-    feature = "AppKit_NSPanel",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSUserInterfaceItemIdentification",
-    feature = "AppKit_NSWindow"
+    feature = "NSPanel",
+    feature = "NSResponder",
+    feature = "NSUserInterfaceItemIdentification",
+    feature = "NSWindow"
 ))]
 unsafe impl NSUserInterfaceItemIdentification for NSFontPanel {}
 
 #[cfg(all(
-    feature = "AppKit_NSPanel",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSUserInterfaceValidation",
-    feature = "AppKit_NSWindow"
+    feature = "NSPanel",
+    feature = "NSResponder",
+    feature = "NSUserInterfaceValidation",
+    feature = "NSWindow"
 ))]
 unsafe impl NSUserInterfaceValidations for NSFontPanel {}
 
 extern_methods!(
-    #[cfg(all(
-        feature = "AppKit_NSPanel",
-        feature = "AppKit_NSResponder",
-        feature = "AppKit_NSWindow"
-    ))]
+    #[cfg(all(feature = "NSPanel", feature = "NSResponder", feature = "NSWindow"))]
     unsafe impl NSFontPanel {
         #[method_id(@__retain_semantics Other sharedFontPanel)]
         pub unsafe fn sharedFontPanel(mtm: MainThreadMarker) -> Id<NSFontPanel>;
@@ -164,19 +140,19 @@ extern_methods!(
         #[method(sharedFontPanelExists)]
         pub unsafe fn sharedFontPanelExists(mtm: MainThreadMarker) -> bool;
 
-        #[cfg(feature = "AppKit_NSView")]
+        #[cfg(feature = "NSView")]
         #[method_id(@__retain_semantics Other accessoryView)]
         pub unsafe fn accessoryView(&self) -> Option<Id<NSView>>;
 
-        #[cfg(feature = "AppKit_NSView")]
+        #[cfg(feature = "NSView")]
         #[method(setAccessoryView:)]
         pub unsafe fn setAccessoryView(&self, accessory_view: Option<&NSView>);
 
-        #[cfg(feature = "AppKit_NSFont")]
+        #[cfg(feature = "NSFont")]
         #[method(setPanelFont:isMultiple:)]
         pub unsafe fn setPanelFont_isMultiple(&self, font_obj: &NSFont, flag: bool);
 
-        #[cfg(feature = "AppKit_NSFont")]
+        #[cfg(feature = "NSFont")]
         #[method_id(@__retain_semantics Other panelConvertFont:)]
         pub unsafe fn panelConvertFont(&self, font_obj: &NSFont) -> Id<NSFont>;
 
@@ -199,13 +175,9 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSWindow`
-    #[cfg(all(
-        feature = "AppKit_NSPanel",
-        feature = "AppKit_NSResponder",
-        feature = "AppKit_NSWindow"
-    ))]
+    #[cfg(all(feature = "NSPanel", feature = "NSResponder", feature = "NSWindow"))]
     unsafe impl NSFontPanel {
-        #[cfg(feature = "AppKit_NSGraphics")]
+        #[cfg(feature = "NSGraphics")]
         #[method_id(@__retain_semantics Init initWithContentRect:styleMask:backing:defer:)]
         pub unsafe fn initWithContentRect_styleMask_backing_defer(
             this: Allocated<Self>,
@@ -215,7 +187,7 @@ extern_methods!(
             flag: bool,
         ) -> Id<Self>;
 
-        #[cfg(all(feature = "AppKit_NSGraphics", feature = "AppKit_NSScreen"))]
+        #[cfg(all(feature = "NSGraphics", feature = "NSScreen"))]
         #[method_id(@__retain_semantics Init initWithContentRect:styleMask:backing:defer:screen:)]
         pub unsafe fn initWithContentRect_styleMask_backing_defer_screen(
             this: Allocated<Self>,
@@ -229,7 +201,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Id<Self>;
 
-        #[cfg(feature = "AppKit_NSViewController")]
+        #[cfg(feature = "NSViewController")]
         #[method_id(@__retain_semantics Other windowWithContentViewController:)]
         pub unsafe fn windowWithContentViewController(
             content_view_controller: &NSViewController,
@@ -239,11 +211,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSResponder`
-    #[cfg(all(
-        feature = "AppKit_NSPanel",
-        feature = "AppKit_NSResponder",
-        feature = "AppKit_NSWindow"
-    ))]
+    #[cfg(all(feature = "NSPanel", feature = "NSResponder", feature = "NSWindow"))]
     unsafe impl NSFontPanel {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -252,11 +220,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(all(
-        feature = "AppKit_NSPanel",
-        feature = "AppKit_NSResponder",
-        feature = "AppKit_NSWindow"
-    ))]
+    #[cfg(all(feature = "NSPanel", feature = "NSResponder", feature = "NSWindow"))]
     unsafe impl NSFontPanel {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;

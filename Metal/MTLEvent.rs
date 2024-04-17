@@ -9,7 +9,7 @@ use crate::*;
 
 extern_protocol!(
     pub unsafe trait MTLEvent: NSObjectProtocol {
-        #[cfg(feature = "Metal_MTLDevice")]
+        #[cfg(feature = "MTLDevice")]
         #[method_id(@__retain_semantics Other device)]
         fn device(&self) -> Option<Id<ProtocolObject<dyn MTLDevice>>>;
 

@@ -74,11 +74,7 @@ extern_methods!(
         #[method(layoutAttributesClass)]
         pub unsafe fn layoutAttributesClass(mtm: MainThreadMarker) -> &'static AnyClass;
 
-        #[cfg(all(
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSScrubber",
-            feature = "AppKit_NSView"
-        ))]
+        #[cfg(all(feature = "NSResponder", feature = "NSScrubber", feature = "NSView"))]
         #[method_id(@__retain_semantics Other scrubber)]
         pub unsafe fn scrubber(&self) -> Option<Id<NSScrubber>>;
 
@@ -139,9 +135,9 @@ extern_methods!(
 );
 
 extern_protocol!(
-    #[cfg(feature = "AppKit_NSScrubber")]
+    #[cfg(feature = "NSScrubber")]
     pub unsafe trait NSScrubberFlowLayoutDelegate: NSScrubberDelegate {
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[optional]
         #[method(scrubber:layout:sizeForItemAtIndex:)]
         unsafe fn scrubber_layout_sizeForItemAtIndex(
@@ -152,7 +148,7 @@ extern_protocol!(
         ) -> NSSize;
     }
 
-    #[cfg(feature = "AppKit_NSScrubber")]
+    #[cfg(feature = "NSScrubber")]
     unsafe impl ProtocolType for dyn NSScrubberFlowLayoutDelegate {}
 );
 

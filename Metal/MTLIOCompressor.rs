@@ -31,7 +31,7 @@ extern "C" {
 }
 
 extern "C" {
-    #[cfg(feature = "Metal_MTLDevice")]
+    #[cfg(feature = "MTLDevice")]
     pub fn MTLIOCreateCompressionContext(
         path: NonNull<c_char>,
         r#type: MTLIOCompressionMethod,

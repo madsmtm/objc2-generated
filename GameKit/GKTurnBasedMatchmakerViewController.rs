@@ -20,7 +20,7 @@ extern_class!(
     }
 );
 
-#[cfg(all(feature = "GameKit_GKDialogController", feature = "objc2-app-kit"))]
+#[cfg(all(feature = "GKDialogController", feature = "objc2-app-kit"))]
 unsafe impl GKViewController for GKTurnBasedMatchmakerViewController {}
 
 #[cfg(feature = "objc2-app-kit")]
@@ -99,15 +99,15 @@ extern_methods!(
         #[method(setShowExistingMatches:)]
         pub unsafe fn setShowExistingMatches(&self, show_existing_matches: bool);
 
-        #[cfg(feature = "GameKit_GKMatchmakerViewController")]
+        #[cfg(feature = "GKMatchmakerViewController")]
         #[method(matchmakingMode)]
         pub unsafe fn matchmakingMode(&self) -> GKMatchmakingMode;
 
-        #[cfg(feature = "GameKit_GKMatchmakerViewController")]
+        #[cfg(feature = "GKMatchmakerViewController")]
         #[method(setMatchmakingMode:)]
         pub unsafe fn setMatchmakingMode(&self, matchmaking_mode: GKMatchmakingMode);
 
-        #[cfg(feature = "GameKit_GKMatchmaker")]
+        #[cfg(feature = "GKMatchmaker")]
         #[method_id(@__retain_semantics Init initWithMatchRequest:)]
         pub unsafe fn initWithMatchRequest(
             this: Allocated<Self>,
@@ -133,7 +133,7 @@ extern_protocol!(
             error: &NSError,
         );
 
-        #[cfg(all(feature = "GameKit_GKTurnBasedMatch", feature = "objc2-app-kit"))]
+        #[cfg(all(feature = "GKTurnBasedMatch", feature = "objc2-app-kit"))]
         #[deprecated]
         #[optional]
         #[method(turnBasedMatchmakerViewController:didFindMatch:)]
@@ -143,7 +143,7 @@ extern_protocol!(
             r#match: &GKTurnBasedMatch,
         );
 
-        #[cfg(all(feature = "GameKit_GKTurnBasedMatch", feature = "objc2-app-kit"))]
+        #[cfg(all(feature = "GKTurnBasedMatch", feature = "objc2-app-kit"))]
         #[deprecated]
         #[optional]
         #[method(turnBasedMatchmakerViewController:playerQuitForMatch:)]

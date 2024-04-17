@@ -18,11 +18,11 @@ unsafe impl NSObjectProtocol for NSURLDownload {}
 
 extern_methods!(
     unsafe impl NSURLDownload {
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method(canResumeDownloadDecodedWithEncodingMIMEType:)]
         pub unsafe fn canResumeDownloadDecodedWithEncodingMIMEType(mime_type: &NSString) -> bool;
 
-        #[cfg(feature = "Foundation_NSURLRequest")]
+        #[cfg(feature = "NSURLRequest")]
         #[deprecated = "Use NSURLSession downloadTask (see NSURLSession.h)"]
         #[method_id(@__retain_semantics Init initWithRequest:delegate:)]
         pub unsafe fn initWithRequest_delegate(
@@ -31,7 +31,7 @@ extern_methods!(
             delegate: Option<&ProtocolObject<dyn NSURLDownloadDelegate>>,
         ) -> Id<Self>;
 
-        #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSData", feature = "NSString"))]
         #[deprecated = "Use NSURLSession downloadTask (see NSURLSession.h)"]
         #[method_id(@__retain_semantics Init initWithResumeData:delegate:path:)]
         pub unsafe fn initWithResumeData_delegate_path(
@@ -44,15 +44,15 @@ extern_methods!(
         #[method(cancel)]
         pub unsafe fn cancel(&self);
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method(setDestination:allowOverwrite:)]
         pub unsafe fn setDestination_allowOverwrite(&self, path: &NSString, allow_overwrite: bool);
 
-        #[cfg(feature = "Foundation_NSURLRequest")]
+        #[cfg(feature = "NSURLRequest")]
         #[method_id(@__retain_semantics Other request)]
         pub unsafe fn request(&self) -> Id<NSURLRequest>;
 
-        #[cfg(feature = "Foundation_NSData")]
+        #[cfg(feature = "NSData")]
         #[method_id(@__retain_semantics Other resumeData)]
         pub unsafe fn resumeData(&self) -> Option<Id<NSData>>;
 
@@ -81,10 +81,7 @@ extern_protocol!(
         #[method(downloadDidBegin:)]
         unsafe fn downloadDidBegin(&self, download: &NSURLDownload);
 
-        #[cfg(all(
-            feature = "Foundation_NSURLRequest",
-            feature = "Foundation_NSURLResponse"
-        ))]
+        #[cfg(all(feature = "NSURLRequest", feature = "NSURLResponse"))]
         #[optional]
         #[method_id(@__retain_semantics Other download:willSendRequest:redirectResponse:)]
         unsafe fn download_willSendRequest_redirectResponse(
@@ -94,7 +91,7 @@ extern_protocol!(
             redirect_response: Option<&NSURLResponse>,
         ) -> Option<Id<NSURLRequest>>;
 
-        #[cfg(feature = "Foundation_NSURLProtectionSpace")]
+        #[cfg(feature = "NSURLProtectionSpace")]
         #[optional]
         #[method(download:canAuthenticateAgainstProtectionSpace:)]
         unsafe fn download_canAuthenticateAgainstProtectionSpace(
@@ -103,7 +100,7 @@ extern_protocol!(
             protection_space: &NSURLProtectionSpace,
         ) -> bool;
 
-        #[cfg(feature = "Foundation_NSURLAuthenticationChallenge")]
+        #[cfg(feature = "NSURLAuthenticationChallenge")]
         #[optional]
         #[method(download:didReceiveAuthenticationChallenge:)]
         unsafe fn download_didReceiveAuthenticationChallenge(
@@ -112,7 +109,7 @@ extern_protocol!(
             challenge: &NSURLAuthenticationChallenge,
         );
 
-        #[cfg(feature = "Foundation_NSURLAuthenticationChallenge")]
+        #[cfg(feature = "NSURLAuthenticationChallenge")]
         #[optional]
         #[method(download:didCancelAuthenticationChallenge:)]
         unsafe fn download_didCancelAuthenticationChallenge(
@@ -125,7 +122,7 @@ extern_protocol!(
         #[method(downloadShouldUseCredentialStorage:)]
         unsafe fn downloadShouldUseCredentialStorage(&self, download: &NSURLDownload) -> bool;
 
-        #[cfg(feature = "Foundation_NSURLResponse")]
+        #[cfg(feature = "NSURLResponse")]
         #[optional]
         #[method(download:didReceiveResponse:)]
         unsafe fn download_didReceiveResponse(
@@ -134,7 +131,7 @@ extern_protocol!(
             response: &NSURLResponse,
         );
 
-        #[cfg(feature = "Foundation_NSURLResponse")]
+        #[cfg(feature = "NSURLResponse")]
         #[optional]
         #[method(download:willResumeWithResponse:fromByte:)]
         unsafe fn download_willResumeWithResponse_fromByte(
@@ -152,7 +149,7 @@ extern_protocol!(
             length: NSUInteger,
         );
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[optional]
         #[method(download:shouldDecodeSourceDataOfMIMEType:)]
         unsafe fn download_shouldDecodeSourceDataOfMIMEType(
@@ -161,7 +158,7 @@ extern_protocol!(
             encoding_type: &NSString,
         ) -> bool;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[optional]
         #[method(download:decideDestinationWithSuggestedFilename:)]
         unsafe fn download_decideDestinationWithSuggestedFilename(
@@ -170,7 +167,7 @@ extern_protocol!(
             filename: &NSString,
         );
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[optional]
         #[method(download:didCreateDestination:)]
         unsafe fn download_didCreateDestination(&self, download: &NSURLDownload, path: &NSString);
@@ -179,7 +176,7 @@ extern_protocol!(
         #[method(downloadDidFinish:)]
         unsafe fn downloadDidFinish(&self, download: &NSURLDownload);
 
-        #[cfg(feature = "Foundation_NSError")]
+        #[cfg(feature = "NSError")]
         #[optional]
         #[method(download:didFailWithError:)]
         unsafe fn download_didFailWithError(&self, download: &NSURLDownload, error: &NSError);

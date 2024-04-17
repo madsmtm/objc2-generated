@@ -30,18 +30,10 @@ unsafe impl RefEncode for NSImageDynamicRange {
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(
-        feature = "AppKit_NSControl",
-        feature = "AppKit_NSResponder",
-        feature = "AppKit_NSView"
-    ))]
+    #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     pub struct NSImageView;
 
-    #[cfg(all(
-        feature = "AppKit_NSControl",
-        feature = "AppKit_NSResponder",
-        feature = "AppKit_NSView"
-    ))]
+    #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     unsafe impl ClassType for NSImageView {
         #[inherits(NSView, NSResponder, NSObject)]
         type Super = NSControl;
@@ -50,99 +42,87 @@ extern_class!(
 );
 
 #[cfg(all(
-    feature = "AppKit_NSAccessibilityProtocols",
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSView"
+    feature = "NSAccessibilityProtocols",
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSView"
 ))]
 unsafe impl NSAccessibility for NSImageView {}
 
 #[cfg(all(
-    feature = "AppKit_NSAccessibilityProtocols",
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSView"
+    feature = "NSAccessibilityProtocols",
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSView"
 ))]
 unsafe impl NSAccessibilityElementProtocol for NSImageView {}
 
 #[cfg(all(
-    feature = "AppKit_NSAccessibilityProtocols",
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSView"
+    feature = "NSAccessibilityProtocols",
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSView"
 ))]
 unsafe impl NSAccessibilityImage for NSImageView {}
 
 #[cfg(all(
-    feature = "AppKit_NSAnimation",
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSView"
+    feature = "NSAnimation",
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSView"
 ))]
 unsafe impl NSAnimatablePropertyContainer for NSImageView {}
 
 #[cfg(all(
-    feature = "AppKit_NSAppearance",
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSView"
+    feature = "NSAppearance",
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSView"
 ))]
 unsafe impl NSAppearanceCustomization for NSImageView {}
 
-#[cfg(all(
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSView"
-))]
+#[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
 unsafe impl NSCoding for NSImageView {}
 
 #[cfg(all(
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSDragging",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSView"
+    feature = "NSControl",
+    feature = "NSDragging",
+    feature = "NSResponder",
+    feature = "NSView"
 ))]
 unsafe impl NSDraggingDestination for NSImageView {}
 
 #[cfg(all(
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSMenu",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSView"
+    feature = "NSControl",
+    feature = "NSMenu",
+    feature = "NSResponder",
+    feature = "NSView"
 ))]
 unsafe impl NSMenuItemValidation for NSImageView {}
 
-#[cfg(all(
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSView"
-))]
+#[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
 unsafe impl NSObjectProtocol for NSImageView {}
 
 #[cfg(all(
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSUserInterfaceItemIdentification",
-    feature = "AppKit_NSView"
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSUserInterfaceItemIdentification",
+    feature = "NSView"
 ))]
 unsafe impl NSUserInterfaceItemIdentification for NSImageView {}
 
 extern_methods!(
-    #[cfg(all(
-        feature = "AppKit_NSControl",
-        feature = "AppKit_NSResponder",
-        feature = "AppKit_NSView"
-    ))]
+    #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSImageView {
-        #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(feature = "NSImage")]
         #[method_id(@__retain_semantics Other imageViewWithImage:)]
         pub unsafe fn imageViewWithImage(image: &NSImage, mtm: MainThreadMarker) -> Id<Self>;
 
-        #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(feature = "NSImage")]
         #[method_id(@__retain_semantics Other image)]
         pub unsafe fn image(&self) -> Option<Id<NSImage>>;
 
-        #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(feature = "NSImage")]
         #[method(setImage:)]
         pub unsafe fn setImage(&self, image: Option<&NSImage>);
 
@@ -152,46 +132,46 @@ extern_methods!(
         #[method(setEditable:)]
         pub unsafe fn setEditable(&self, editable: bool);
 
-        #[cfg(feature = "AppKit_NSImageCell")]
+        #[cfg(feature = "NSImageCell")]
         #[method(imageAlignment)]
         pub unsafe fn imageAlignment(&self) -> NSImageAlignment;
 
-        #[cfg(feature = "AppKit_NSImageCell")]
+        #[cfg(feature = "NSImageCell")]
         #[method(setImageAlignment:)]
         pub unsafe fn setImageAlignment(&self, image_alignment: NSImageAlignment);
 
-        #[cfg(feature = "AppKit_NSCell")]
+        #[cfg(feature = "NSCell")]
         #[method(imageScaling)]
         pub unsafe fn imageScaling(&self) -> NSImageScaling;
 
-        #[cfg(feature = "AppKit_NSCell")]
+        #[cfg(feature = "NSCell")]
         #[method(setImageScaling:)]
         pub unsafe fn setImageScaling(&self, image_scaling: NSImageScaling);
 
-        #[cfg(feature = "AppKit_NSImageCell")]
+        #[cfg(feature = "NSImageCell")]
         #[method(imageFrameStyle)]
         pub unsafe fn imageFrameStyle(&self) -> NSImageFrameStyle;
 
-        #[cfg(feature = "AppKit_NSImageCell")]
+        #[cfg(feature = "NSImageCell")]
         #[method(setImageFrameStyle:)]
         pub unsafe fn setImageFrameStyle(&self, image_frame_style: NSImageFrameStyle);
 
-        #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(feature = "NSImage")]
         #[method_id(@__retain_semantics Other symbolConfiguration)]
         pub unsafe fn symbolConfiguration(&self) -> Option<Id<NSImageSymbolConfiguration>>;
 
-        #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(feature = "NSImage")]
         #[method(setSymbolConfiguration:)]
         pub unsafe fn setSymbolConfiguration(
             &self,
             symbol_configuration: Option<&NSImageSymbolConfiguration>,
         );
 
-        #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(feature = "NSColor")]
         #[method_id(@__retain_semantics Other contentTintColor)]
         pub unsafe fn contentTintColor(&self) -> Option<Id<NSColor>>;
 
-        #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(feature = "NSColor")]
         #[method(setContentTintColor:)]
         pub unsafe fn setContentTintColor(&self, content_tint_color: Option<&NSColor>);
 
@@ -234,11 +214,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSControl`
-    #[cfg(all(
-        feature = "AppKit_NSControl",
-        feature = "AppKit_NSResponder",
-        feature = "AppKit_NSView"
-    ))]
+    #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSImageView {
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Id<Self>;
@@ -250,11 +226,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSResponder`
-    #[cfg(all(
-        feature = "AppKit_NSControl",
-        feature = "AppKit_NSResponder",
-        feature = "AppKit_NSView"
-    ))]
+    #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSImageView {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -263,11 +235,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(all(
-        feature = "AppKit_NSControl",
-        feature = "AppKit_NSResponder",
-        feature = "AppKit_NSView"
-    ))]
+    #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSImageView {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;

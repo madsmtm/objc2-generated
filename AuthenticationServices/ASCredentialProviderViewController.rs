@@ -18,11 +18,11 @@ unsafe impl NSUserInterfaceItemIdentification for ASCredentialProviderViewContro
 
 extern_methods!(
     unsafe impl ASCredentialProviderViewController {
-        #[cfg(feature = "AuthenticationServices_ASCredentialProviderExtensionContext")]
+        #[cfg(feature = "ASCredentialProviderExtensionContext")]
         #[method_id(@__retain_semantics Other extensionContext)]
         pub unsafe fn extensionContext(&self) -> Id<ASCredentialProviderExtensionContext>;
 
-        #[cfg(feature = "AuthenticationServices_ASCredentialServiceIdentifier")]
+        #[cfg(feature = "ASCredentialServiceIdentifier")]
         #[method(prepareCredentialListForServiceIdentifiers:)]
         pub unsafe fn prepareCredentialListForServiceIdentifiers(
             &self,
@@ -30,8 +30,8 @@ extern_methods!(
         );
 
         #[cfg(all(
-            feature = "AuthenticationServices_ASCredentialServiceIdentifier",
-            feature = "AuthenticationServices_ASPasskeyCredentialRequestParameters"
+            feature = "ASCredentialServiceIdentifier",
+            feature = "ASPasskeyCredentialRequestParameters"
         ))]
         #[method(prepareCredentialListForServiceIdentifiers:requestParameters:)]
         pub unsafe fn prepareCredentialListForServiceIdentifiers_requestParameters(
@@ -40,7 +40,7 @@ extern_methods!(
             request_parameters: &ASPasskeyCredentialRequestParameters,
         );
 
-        #[cfg(feature = "AuthenticationServices_ASPasswordCredentialIdentity")]
+        #[cfg(feature = "ASPasswordCredentialIdentity")]
         #[deprecated]
         #[method(provideCredentialWithoutUserInteractionForIdentity:)]
         pub unsafe fn provideCredentialWithoutUserInteractionForIdentity(
@@ -48,14 +48,14 @@ extern_methods!(
             credential_identity: &ASPasswordCredentialIdentity,
         );
 
-        #[cfg(feature = "AuthenticationServices_ASCredentialRequest")]
+        #[cfg(feature = "ASCredentialRequest")]
         #[method(provideCredentialWithoutUserInteractionForRequest:)]
         pub unsafe fn provideCredentialWithoutUserInteractionForRequest(
             &self,
             credential_request: &ProtocolObject<dyn ASCredentialRequest>,
         );
 
-        #[cfg(feature = "AuthenticationServices_ASPasswordCredentialIdentity")]
+        #[cfg(feature = "ASPasswordCredentialIdentity")]
         #[deprecated]
         #[method(prepareInterfaceToProvideCredentialForIdentity:)]
         pub unsafe fn prepareInterfaceToProvideCredentialForIdentity(
@@ -63,7 +63,7 @@ extern_methods!(
             credential_identity: &ASPasswordCredentialIdentity,
         );
 
-        #[cfg(feature = "AuthenticationServices_ASCredentialRequest")]
+        #[cfg(feature = "ASCredentialRequest")]
         #[method(prepareInterfaceToProvideCredentialForRequest:)]
         pub unsafe fn prepareInterfaceToProvideCredentialForRequest(
             &self,
@@ -73,7 +73,7 @@ extern_methods!(
         #[method(prepareInterfaceForExtensionConfiguration)]
         pub unsafe fn prepareInterfaceForExtensionConfiguration(&self);
 
-        #[cfg(feature = "AuthenticationServices_ASCredentialRequest")]
+        #[cfg(feature = "ASCredentialRequest")]
         #[method(prepareInterfaceForPasskeyRegistration:)]
         pub unsafe fn prepareInterfaceForPasskeyRegistration(
             &self,

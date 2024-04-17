@@ -21,11 +21,11 @@ unsafe impl NSObjectProtocol for MKDirectionsResponse {}
 
 extern_methods!(
     unsafe impl MKDirectionsResponse {
-        #[cfg(feature = "MapKit_MKMapItem")]
+        #[cfg(feature = "MKMapItem")]
         #[method_id(@__retain_semantics Other source)]
         pub unsafe fn source(&self) -> Id<MKMapItem>;
 
-        #[cfg(feature = "MapKit_MKMapItem")]
+        #[cfg(feature = "MKMapItem")]
         #[method_id(@__retain_semantics Other destination)]
         pub unsafe fn destination(&self) -> Id<MKMapItem>;
 
@@ -72,15 +72,11 @@ extern_methods!(
         #[method(expectedTravelTime)]
         pub unsafe fn expectedTravelTime(&self) -> NSTimeInterval;
 
-        #[cfg(feature = "MapKit_MKDirectionsTypes")]
+        #[cfg(feature = "MKDirectionsTypes")]
         #[method(transportType)]
         pub unsafe fn transportType(&self) -> MKDirectionsTransportType;
 
-        #[cfg(all(
-            feature = "MapKit_MKMultiPoint",
-            feature = "MapKit_MKPolyline",
-            feature = "MapKit_MKShape"
-        ))]
+        #[cfg(all(feature = "MKMultiPoint", feature = "MKPolyline", feature = "MKShape"))]
         #[method_id(@__retain_semantics Other polyline)]
         pub unsafe fn polyline(&self) -> Id<MKPolyline>;
 
@@ -126,11 +122,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other notice)]
         pub unsafe fn notice(&self) -> Option<Id<NSString>>;
 
-        #[cfg(all(
-            feature = "MapKit_MKMultiPoint",
-            feature = "MapKit_MKPolyline",
-            feature = "MapKit_MKShape"
-        ))]
+        #[cfg(all(feature = "MKMultiPoint", feature = "MKPolyline", feature = "MKShape"))]
         #[method_id(@__retain_semantics Other polyline)]
         pub unsafe fn polyline(&self) -> Id<MKPolyline>;
 
@@ -138,7 +130,7 @@ extern_methods!(
         #[method(distance)]
         pub unsafe fn distance(&self) -> CLLocationDistance;
 
-        #[cfg(feature = "MapKit_MKDirectionsTypes")]
+        #[cfg(feature = "MKDirectionsTypes")]
         #[method(transportType)]
         pub unsafe fn transportType(&self) -> MKDirectionsTransportType;
     }
@@ -169,11 +161,11 @@ unsafe impl NSObjectProtocol for MKETAResponse {}
 
 extern_methods!(
     unsafe impl MKETAResponse {
-        #[cfg(feature = "MapKit_MKMapItem")]
+        #[cfg(feature = "MKMapItem")]
         #[method_id(@__retain_semantics Other source)]
         pub unsafe fn source(&self) -> Id<MKMapItem>;
 
-        #[cfg(feature = "MapKit_MKMapItem")]
+        #[cfg(feature = "MKMapItem")]
         #[method_id(@__retain_semantics Other destination)]
         pub unsafe fn destination(&self) -> Id<MKMapItem>;
 
@@ -190,7 +182,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other expectedDepartureDate)]
         pub unsafe fn expectedDepartureDate(&self) -> Id<NSDate>;
 
-        #[cfg(feature = "MapKit_MKDirectionsTypes")]
+        #[cfg(feature = "MKDirectionsTypes")]
         #[method(transportType)]
         pub unsafe fn transportType(&self) -> MKDirectionsTransportType;
     }

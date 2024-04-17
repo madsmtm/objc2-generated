@@ -31,10 +31,10 @@ unsafe impl RefEncode for NSMassFormatterUnit {
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSFormatter")]
+    #[cfg(feature = "NSFormatter")]
     pub struct NSMassFormatter;
 
-    #[cfg(feature = "Foundation_NSFormatter")]
+    #[cfg(feature = "NSFormatter")]
     unsafe impl ClassType for NSMassFormatter {
         #[inherits(NSObject)]
         type Super = NSFormatter;
@@ -42,23 +42,23 @@ extern_class!(
     }
 );
 
-#[cfg(all(feature = "Foundation_NSFormatter", feature = "Foundation_NSObject"))]
+#[cfg(all(feature = "NSFormatter", feature = "NSObject"))]
 unsafe impl NSCoding for NSMassFormatter {}
 
-#[cfg(all(feature = "Foundation_NSFormatter", feature = "Foundation_NSObject"))]
+#[cfg(all(feature = "NSFormatter", feature = "NSObject"))]
 unsafe impl NSCopying for NSMassFormatter {}
 
-#[cfg(feature = "Foundation_NSFormatter")]
+#[cfg(feature = "NSFormatter")]
 unsafe impl NSObjectProtocol for NSMassFormatter {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSFormatter")]
+    #[cfg(feature = "NSFormatter")]
     unsafe impl NSMassFormatter {
-        #[cfg(feature = "Foundation_NSNumberFormatter")]
+        #[cfg(feature = "NSNumberFormatter")]
         #[method_id(@__retain_semantics Other numberFormatter)]
         pub unsafe fn numberFormatter(&self) -> Id<NSNumberFormatter>;
 
-        #[cfg(feature = "Foundation_NSNumberFormatter")]
+        #[cfg(feature = "NSNumberFormatter")]
         #[method(setNumberFormatter:)]
         pub unsafe fn setNumberFormatter(&self, number_formatter: Option<&NSNumberFormatter>);
 
@@ -74,7 +74,7 @@ extern_methods!(
         #[method(setForPersonMassUse:)]
         pub unsafe fn setForPersonMassUse(&self, for_person_mass_use: bool);
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other stringFromValue:unit:)]
         pub unsafe fn stringFromValue_unit(
             &self,
@@ -82,11 +82,11 @@ extern_methods!(
             unit: NSMassFormatterUnit,
         ) -> Id<NSString>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other stringFromKilograms:)]
         pub unsafe fn stringFromKilograms(&self, number_in_kilograms: c_double) -> Id<NSString>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other unitStringFromValue:unit:)]
         pub unsafe fn unitStringFromValue_unit(
             &self,
@@ -94,7 +94,7 @@ extern_methods!(
             unit: NSMassFormatterUnit,
         ) -> Id<NSString>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other unitStringFromKilograms:usedUnit:)]
         pub unsafe fn unitStringFromKilograms_usedUnit(
             &self,
@@ -102,7 +102,7 @@ extern_methods!(
             unitp: *mut NSMassFormatterUnit,
         ) -> Id<NSString>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method(getObjectValue:forString:errorDescription:)]
         pub unsafe fn getObjectValue_forString_errorDescription(
             &self,
@@ -115,7 +115,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSFormatter")]
+    #[cfg(feature = "NSFormatter")]
     unsafe impl NSMassFormatter {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

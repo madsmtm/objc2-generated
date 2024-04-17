@@ -245,11 +245,11 @@ extern_methods!(
             function_graphs: &NSArray<MTLFunctionStitchingGraph>,
         );
 
-        #[cfg(feature = "Metal_MTLLibrary")]
+        #[cfg(feature = "MTLLibrary")]
         #[method_id(@__retain_semantics Other functions)]
         pub unsafe fn functions(&self) -> Id<NSArray<ProtocolObject<dyn MTLFunction>>>;
 
-        #[cfg(feature = "Metal_MTLLibrary")]
+        #[cfg(feature = "MTLLibrary")]
         #[method(setFunctions:)]
         pub unsafe fn setFunctions(&self, functions: &NSArray<ProtocolObject<dyn MTLFunction>>);
     }

@@ -24,10 +24,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
-        #[cfg(all(
-            feature = "SoundAnalysis_SNRequest",
-            feature = "SoundAnalysis_SNResult"
-        ))]
+        #[cfg(all(feature = "SNRequest", feature = "SNResult"))]
         #[method(addRequest:withObserver:error:_)]
         pub unsafe fn addRequest_withObserver_error(
             &self,
@@ -35,7 +32,7 @@ extern_methods!(
             observer: &ProtocolObject<dyn SNResultsObserving>,
         ) -> Result<(), Id<NSError>>;
 
-        #[cfg(feature = "SoundAnalysis_SNRequest")]
+        #[cfg(feature = "SNRequest")]
         #[method(removeRequest:)]
         pub unsafe fn removeRequest(&self, request: &ProtocolObject<dyn SNRequest>);
 
@@ -78,10 +75,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
-        #[cfg(all(
-            feature = "SoundAnalysis_SNRequest",
-            feature = "SoundAnalysis_SNResult"
-        ))]
+        #[cfg(all(feature = "SNRequest", feature = "SNResult"))]
         #[method(addRequest:withObserver:error:_)]
         pub unsafe fn addRequest_withObserver_error(
             &self,
@@ -89,7 +83,7 @@ extern_methods!(
             observer: &ProtocolObject<dyn SNResultsObserving>,
         ) -> Result<(), Id<NSError>>;
 
-        #[cfg(feature = "SoundAnalysis_SNRequest")]
+        #[cfg(feature = "SNRequest")]
         #[method(removeRequest:)]
         pub unsafe fn removeRequest(&self, request: &ProtocolObject<dyn SNRequest>);
 

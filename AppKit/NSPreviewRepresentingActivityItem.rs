@@ -42,7 +42,7 @@ unsafe impl NSPreviewRepresentableActivityItem for NSPreviewRepresentingActivity
 
 extern_methods!(
     unsafe impl NSPreviewRepresentingActivityItem {
-        #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(feature = "NSImage")]
         #[method_id(@__retain_semantics Init initWithItem:title:image:icon:)]
         pub unsafe fn initWithItem_title_image_icon(
             this: Allocated<Self>,

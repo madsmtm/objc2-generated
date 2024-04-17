@@ -16,39 +16,39 @@
 #[link(name = "ServiceManagement", kind = "framework")]
 extern "C" {}
 
-#[cfg(feature = "ServiceManagement_SMAppService")]
+#[cfg(feature = "SMAppService")]
 #[path = "SMAppService.rs"]
 mod __SMAppService;
-#[cfg(feature = "ServiceManagement_SMErrors")]
+#[cfg(feature = "SMErrors")]
 #[path = "SMErrors.rs"]
 mod __SMErrors;
-#[cfg(feature = "ServiceManagement_SMLoginItem")]
+#[cfg(feature = "SMLoginItem")]
 #[path = "SMLoginItem.rs"]
 mod __SMLoginItem;
 
-#[cfg(feature = "ServiceManagement_SMAppService")]
+#[cfg(feature = "SMAppService")]
 pub use self::__SMAppService::SMAppService;
-#[cfg(feature = "ServiceManagement_SMAppService")]
+#[cfg(feature = "SMAppService")]
 pub use self::__SMAppService::SMAppServiceStatus;
-#[cfg(feature = "ServiceManagement_SMErrors")]
+#[cfg(feature = "SMErrors")]
 pub use self::__SMErrors::kSMErrorAlreadyRegistered;
-#[cfg(feature = "ServiceManagement_SMErrors")]
+#[cfg(feature = "SMErrors")]
 pub use self::__SMErrors::kSMErrorAuthorizationFailure;
-#[cfg(feature = "ServiceManagement_SMErrors")]
+#[cfg(feature = "SMErrors")]
 pub use self::__SMErrors::kSMErrorInternalFailure;
-#[cfg(feature = "ServiceManagement_SMErrors")]
+#[cfg(feature = "SMErrors")]
 pub use self::__SMErrors::kSMErrorInvalidPlist;
-#[cfg(feature = "ServiceManagement_SMErrors")]
+#[cfg(feature = "SMErrors")]
 pub use self::__SMErrors::kSMErrorInvalidSignature;
-#[cfg(feature = "ServiceManagement_SMErrors")]
+#[cfg(feature = "SMErrors")]
 pub use self::__SMErrors::kSMErrorJobMustBeEnabled;
-#[cfg(feature = "ServiceManagement_SMErrors")]
+#[cfg(feature = "SMErrors")]
 pub use self::__SMErrors::kSMErrorJobNotFound;
-#[cfg(feature = "ServiceManagement_SMErrors")]
+#[cfg(feature = "SMErrors")]
 pub use self::__SMErrors::kSMErrorJobPlistNotFound;
-#[cfg(feature = "ServiceManagement_SMErrors")]
+#[cfg(feature = "SMErrors")]
 pub use self::__SMErrors::kSMErrorLaunchDeniedByUser;
-#[cfg(feature = "ServiceManagement_SMErrors")]
+#[cfg(feature = "SMErrors")]
 pub use self::__SMErrors::kSMErrorServiceUnavailable;
-#[cfg(feature = "ServiceManagement_SMErrors")]
+#[cfg(feature = "SMErrors")]
 pub use self::__SMErrors::kSMErrorToolNotValid;

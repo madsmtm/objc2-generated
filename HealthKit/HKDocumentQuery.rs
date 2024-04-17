@@ -9,10 +9,10 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "HealthKit_HKQuery")]
+    #[cfg(feature = "HKQuery")]
     pub struct HKDocumentQuery;
 
-    #[cfg(feature = "HealthKit_HKQuery")]
+    #[cfg(feature = "HKQuery")]
     unsafe impl ClassType for HKDocumentQuery {
         #[inherits(NSObject)]
         type Super = HKQuery;
@@ -20,11 +20,11 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "HealthKit_HKQuery")]
+#[cfg(feature = "HKQuery")]
 unsafe impl NSObjectProtocol for HKDocumentQuery {}
 
 extern_methods!(
-    #[cfg(feature = "HealthKit_HKQuery")]
+    #[cfg(feature = "HKQuery")]
     unsafe impl HKDocumentQuery {
         #[method(limit)]
         pub unsafe fn limit(&self) -> NSUInteger;
@@ -36,10 +36,10 @@ extern_methods!(
         pub unsafe fn includeDocumentData(&self) -> bool;
 
         #[cfg(all(
-            feature = "HealthKit_HKDocumentSample",
-            feature = "HealthKit_HKObject",
-            feature = "HealthKit_HKObjectType",
-            feature = "HealthKit_HKSample",
+            feature = "HKDocumentSample",
+            feature = "HKObject",
+            feature = "HKObjectType",
+            feature = "HKSample",
             feature = "block2"
         ))]
         #[method_id(@__retain_semantics Init initWithDocumentType:predicate:limit:sortDescriptors:includeDocumentData:resultsHandler:)]
@@ -64,7 +64,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `HKQuery`
-    #[cfg(feature = "HealthKit_HKQuery")]
+    #[cfg(feature = "HKQuery")]
     unsafe impl HKDocumentQuery {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -73,7 +73,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "HealthKit_HKQuery")]
+    #[cfg(feature = "HKQuery")]
     unsafe impl HKDocumentQuery {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

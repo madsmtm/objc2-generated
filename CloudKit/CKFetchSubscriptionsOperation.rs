@@ -9,16 +9,10 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(
-        feature = "CloudKit_CKDatabaseOperation",
-        feature = "CloudKit_CKOperation"
-    ))]
+    #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
     pub struct CKFetchSubscriptionsOperation;
 
-    #[cfg(all(
-        feature = "CloudKit_CKDatabaseOperation",
-        feature = "CloudKit_CKOperation"
-    ))]
+    #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
     unsafe impl ClassType for CKFetchSubscriptionsOperation {
         #[inherits(CKOperation, NSOperation, NSObject)]
         type Super = CKDatabaseOperation;
@@ -26,17 +20,11 @@ extern_class!(
     }
 );
 
-#[cfg(all(
-    feature = "CloudKit_CKDatabaseOperation",
-    feature = "CloudKit_CKOperation"
-))]
+#[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
 unsafe impl NSObjectProtocol for CKFetchSubscriptionsOperation {}
 
 extern_methods!(
-    #[cfg(all(
-        feature = "CloudKit_CKDatabaseOperation",
-        feature = "CloudKit_CKOperation"
-    ))]
+    #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
     unsafe impl CKFetchSubscriptionsOperation {
         #[method_id(@__retain_semantics Other fetchAllSubscriptionsOperation)]
         pub unsafe fn fetchAllSubscriptionsOperation() -> Id<Self>;
@@ -44,31 +32,31 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
-        #[cfg(feature = "CloudKit_CKSubscription")]
+        #[cfg(feature = "CKSubscription")]
         #[method_id(@__retain_semantics Init initWithSubscriptionIDs:)]
         pub unsafe fn initWithSubscriptionIDs(
             this: Allocated<Self>,
             subscription_i_ds: &NSArray<CKSubscriptionID>,
         ) -> Id<Self>;
 
-        #[cfg(feature = "CloudKit_CKSubscription")]
+        #[cfg(feature = "CKSubscription")]
         #[method_id(@__retain_semantics Other subscriptionIDs)]
         pub unsafe fn subscriptionIDs(&self) -> Option<Id<NSArray<CKSubscriptionID>>>;
 
-        #[cfg(feature = "CloudKit_CKSubscription")]
+        #[cfg(feature = "CKSubscription")]
         #[method(setSubscriptionIDs:)]
         pub unsafe fn setSubscriptionIDs(
             &self,
             subscription_i_ds: Option<&NSArray<CKSubscriptionID>>,
         );
 
-        #[cfg(all(feature = "CloudKit_CKSubscription", feature = "block2"))]
+        #[cfg(all(feature = "CKSubscription", feature = "block2"))]
         #[method(perSubscriptionCompletionBlock)]
         pub unsafe fn perSubscriptionCompletionBlock(
             &self,
         ) -> *mut Block<dyn Fn(NonNull<CKSubscriptionID>, *mut CKSubscription, *mut NSError)>;
 
-        #[cfg(all(feature = "CloudKit_CKSubscription", feature = "block2"))]
+        #[cfg(all(feature = "CKSubscription", feature = "block2"))]
         #[method(setPerSubscriptionCompletionBlock:)]
         pub unsafe fn setPerSubscriptionCompletionBlock(
             &self,
@@ -77,13 +65,13 @@ extern_methods!(
             >,
         );
 
-        #[cfg(all(feature = "CloudKit_CKSubscription", feature = "block2"))]
+        #[cfg(all(feature = "CKSubscription", feature = "block2"))]
         #[method(fetchSubscriptionCompletionBlock)]
         pub unsafe fn fetchSubscriptionCompletionBlock(
             &self,
         ) -> *mut Block<dyn Fn(*mut NSDictionary<CKSubscriptionID, CKSubscription>, *mut NSError)>;
 
-        #[cfg(all(feature = "CloudKit_CKSubscription", feature = "block2"))]
+        #[cfg(all(feature = "CKSubscription", feature = "block2"))]
         #[method(setFetchSubscriptionCompletionBlock:)]
         pub unsafe fn setFetchSubscriptionCompletionBlock(
             &self,
@@ -96,10 +84,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(all(
-        feature = "CloudKit_CKDatabaseOperation",
-        feature = "CloudKit_CKOperation"
-    ))]
+    #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
     unsafe impl CKFetchSubscriptionsOperation {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

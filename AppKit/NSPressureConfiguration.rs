@@ -19,11 +19,11 @@ unsafe impl NSObjectProtocol for NSPressureConfiguration {}
 
 extern_methods!(
     unsafe impl NSPressureConfiguration {
-        #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(feature = "NSEvent")]
         #[method(pressureBehavior)]
         pub unsafe fn pressureBehavior(&self) -> NSPressureBehavior;
 
-        #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(feature = "NSEvent")]
         #[method_id(@__retain_semantics Init initWithPressureBehavior:)]
         pub unsafe fn initWithPressureBehavior(
             this: Allocated<Self>,
@@ -48,7 +48,7 @@ extern_methods!(
 
 extern_methods!(
     /// NSPressureConfiguration
-    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSView {
         #[method_id(@__retain_semantics Other pressureConfiguration)]
         pub unsafe fn pressureConfiguration(&self) -> Option<Id<NSPressureConfiguration>>;

@@ -16,23 +16,23 @@
 #[link(name = "MetalFX", kind = "framework")]
 extern "C" {}
 
-#[cfg(feature = "MetalFX_MTLFXDefines")]
+#[cfg(feature = "MTLFXDefines")]
 #[path = "MTLFXDefines.rs"]
 mod __MTLFXDefines;
-#[cfg(feature = "MetalFX_MTLFXSpatialScaler")]
+#[cfg(feature = "MTLFXSpatialScaler")]
 #[path = "MTLFXSpatialScaler.rs"]
 mod __MTLFXSpatialScaler;
-#[cfg(feature = "MetalFX_MTLFXTemporalScaler")]
+#[cfg(feature = "MTLFXTemporalScaler")]
 #[path = "MTLFXTemporalScaler.rs"]
 mod __MTLFXTemporalScaler;
 
-#[cfg(feature = "MetalFX_MTLFXSpatialScaler")]
+#[cfg(feature = "MTLFXSpatialScaler")]
 pub use self::__MTLFXSpatialScaler::MTLFXSpatialScaler;
-#[cfg(feature = "MetalFX_MTLFXSpatialScaler")]
+#[cfg(feature = "MTLFXSpatialScaler")]
 pub use self::__MTLFXSpatialScaler::MTLFXSpatialScalerColorProcessingMode;
-#[cfg(feature = "MetalFX_MTLFXSpatialScaler")]
+#[cfg(feature = "MTLFXSpatialScaler")]
 pub use self::__MTLFXSpatialScaler::MTLFXSpatialScalerDescriptor;
-#[cfg(feature = "MetalFX_MTLFXTemporalScaler")]
+#[cfg(feature = "MTLFXTemporalScaler")]
 pub use self::__MTLFXTemporalScaler::MTLFXTemporalScaler;
-#[cfg(feature = "MetalFX_MTLFXTemporalScaler")]
+#[cfg(feature = "MTLFXTemporalScaler")]
 pub use self::__MTLFXTemporalScaler::MTLFXTemporalScalerDescriptor;

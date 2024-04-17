@@ -32,18 +32,18 @@ unsafe impl NSObjectProtocol for NSToolbarItem {}
 
 extern_methods!(
     unsafe impl NSToolbarItem {
-        #[cfg(feature = "AppKit_NSToolbar")]
+        #[cfg(feature = "NSToolbar")]
         #[method_id(@__retain_semantics Init initWithItemIdentifier:)]
         pub unsafe fn initWithItemIdentifier(
             this: Allocated<Self>,
             item_identifier: &NSToolbarItemIdentifier,
         ) -> Id<Self>;
 
-        #[cfg(feature = "AppKit_NSToolbar")]
+        #[cfg(feature = "NSToolbar")]
         #[method_id(@__retain_semantics Other itemIdentifier)]
         pub unsafe fn itemIdentifier(&self) -> Id<NSToolbarItemIdentifier>;
 
-        #[cfg(feature = "AppKit_NSToolbar")]
+        #[cfg(feature = "NSToolbar")]
         #[method_id(@__retain_semantics Other toolbar)]
         pub unsafe fn toolbar(&self) -> Option<Id<NSToolbar>>;
 
@@ -71,11 +71,11 @@ extern_methods!(
         #[method(setToolTip:)]
         pub unsafe fn setToolTip(&self, tool_tip: Option<&NSString>);
 
-        #[cfg(feature = "AppKit_NSMenuItem")]
+        #[cfg(feature = "NSMenuItem")]
         #[method_id(@__retain_semantics Other menuFormRepresentation)]
         pub unsafe fn menuFormRepresentation(&self) -> Option<Id<NSMenuItem>>;
 
-        #[cfg(feature = "AppKit_NSMenuItem")]
+        #[cfg(feature = "NSMenuItem")]
         #[method(setMenuFormRepresentation:)]
         pub unsafe fn setMenuFormRepresentation(
             &self,
@@ -106,11 +106,11 @@ extern_methods!(
         #[method(setEnabled:)]
         pub unsafe fn setEnabled(&self, enabled: bool);
 
-        #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(feature = "NSImage")]
         #[method_id(@__retain_semantics Other image)]
         pub unsafe fn image(&self) -> Option<Id<NSImage>>;
 
-        #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(feature = "NSImage")]
         #[method(setImage:)]
         pub unsafe fn setImage(&self, image: Option<&NSImage>);
 
@@ -132,11 +132,11 @@ extern_methods!(
         #[method(setNavigational:)]
         pub unsafe fn setNavigational(&self, navigational: bool);
 
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[method_id(@__retain_semantics Other view)]
         pub unsafe fn view(&self) -> Option<Id<NSView>>;
 
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[method(setView:)]
         pub unsafe fn setView(&self, view: Option<&NSView>);
 
@@ -197,10 +197,10 @@ extern_methods!(
     unsafe impl NSToolbarItem {}
 );
 
-#[cfg(feature = "AppKit_NSMenu")]
+#[cfg(feature = "NSMenu")]
 unsafe impl NSMenuItemValidation for NSToolbarItem {}
 
-#[cfg(feature = "AppKit_NSUserInterfaceValidation")]
+#[cfg(feature = "NSUserInterfaceValidation")]
 unsafe impl NSValidatedUserInterfaceItem for NSToolbarItem {}
 
 extern_protocol!(
@@ -213,61 +213,61 @@ extern_protocol!(
 );
 
 extern "C" {
-    #[cfg(feature = "AppKit_NSToolbar")]
+    #[cfg(feature = "NSToolbar")]
     pub static NSToolbarSpaceItemIdentifier: &'static NSToolbarItemIdentifier;
 }
 
 extern "C" {
-    #[cfg(feature = "AppKit_NSToolbar")]
+    #[cfg(feature = "NSToolbar")]
     pub static NSToolbarFlexibleSpaceItemIdentifier: &'static NSToolbarItemIdentifier;
 }
 
 extern "C" {
-    #[cfg(feature = "AppKit_NSToolbar")]
+    #[cfg(feature = "NSToolbar")]
     pub static NSToolbarShowColorsItemIdentifier: &'static NSToolbarItemIdentifier;
 }
 
 extern "C" {
-    #[cfg(feature = "AppKit_NSToolbar")]
+    #[cfg(feature = "NSToolbar")]
     pub static NSToolbarShowFontsItemIdentifier: &'static NSToolbarItemIdentifier;
 }
 
 extern "C" {
-    #[cfg(feature = "AppKit_NSToolbar")]
+    #[cfg(feature = "NSToolbar")]
     pub static NSToolbarPrintItemIdentifier: &'static NSToolbarItemIdentifier;
 }
 
 extern "C" {
-    #[cfg(feature = "AppKit_NSToolbar")]
+    #[cfg(feature = "NSToolbar")]
     pub static NSToolbarToggleSidebarItemIdentifier: &'static NSToolbarItemIdentifier;
 }
 
 extern "C" {
-    #[cfg(feature = "AppKit_NSToolbar")]
+    #[cfg(feature = "NSToolbar")]
     pub static NSToolbarToggleInspectorItemIdentifier: &'static NSToolbarItemIdentifier;
 }
 
 extern "C" {
-    #[cfg(feature = "AppKit_NSToolbar")]
+    #[cfg(feature = "NSToolbar")]
     pub static NSToolbarCloudSharingItemIdentifier: &'static NSToolbarItemIdentifier;
 }
 
 extern "C" {
-    #[cfg(feature = "AppKit_NSToolbar")]
+    #[cfg(feature = "NSToolbar")]
     pub static NSToolbarSidebarTrackingSeparatorItemIdentifier: &'static NSToolbarItemIdentifier;
 }
 
 extern "C" {
-    #[cfg(feature = "AppKit_NSToolbar")]
+    #[cfg(feature = "NSToolbar")]
     pub static NSToolbarInspectorTrackingSeparatorItemIdentifier: &'static NSToolbarItemIdentifier;
 }
 
 extern "C" {
-    #[cfg(feature = "AppKit_NSToolbar")]
+    #[cfg(feature = "NSToolbar")]
     pub static NSToolbarSeparatorItemIdentifier: &'static NSToolbarItemIdentifier;
 }
 
 extern "C" {
-    #[cfg(feature = "AppKit_NSToolbar")]
+    #[cfg(feature = "NSToolbar")]
     pub static NSToolbarCustomizeToolbarItemIdentifier: &'static NSToolbarItemIdentifier;
 }

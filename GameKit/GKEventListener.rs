@@ -8,27 +8,27 @@ use crate::*;
 extern_protocol!(
     pub unsafe trait GKChallengeListener: NSObjectProtocol {
         #[cfg(all(
-            feature = "GameKit_GKBasePlayer",
-            feature = "GameKit_GKChallenge",
-            feature = "GameKit_GKPlayer"
+            feature = "GKBasePlayer",
+            feature = "GKChallenge",
+            feature = "GKPlayer"
         ))]
         #[optional]
         #[method(player:wantsToPlayChallenge:)]
         unsafe fn player_wantsToPlayChallenge(&self, player: &GKPlayer, challenge: &GKChallenge);
 
         #[cfg(all(
-            feature = "GameKit_GKBasePlayer",
-            feature = "GameKit_GKChallenge",
-            feature = "GameKit_GKPlayer"
+            feature = "GKBasePlayer",
+            feature = "GKChallenge",
+            feature = "GKPlayer"
         ))]
         #[optional]
         #[method(player:didReceiveChallenge:)]
         unsafe fn player_didReceiveChallenge(&self, player: &GKPlayer, challenge: &GKChallenge);
 
         #[cfg(all(
-            feature = "GameKit_GKBasePlayer",
-            feature = "GameKit_GKChallenge",
-            feature = "GameKit_GKPlayer"
+            feature = "GKBasePlayer",
+            feature = "GKChallenge",
+            feature = "GKPlayer"
         ))]
         #[optional]
         #[method(player:didCompleteChallenge:issuedByFriend:)]
@@ -40,9 +40,9 @@ extern_protocol!(
         );
 
         #[cfg(all(
-            feature = "GameKit_GKBasePlayer",
-            feature = "GameKit_GKChallenge",
-            feature = "GameKit_GKPlayer"
+            feature = "GKBasePlayer",
+            feature = "GKChallenge",
+            feature = "GKPlayer"
         ))]
         #[optional]
         #[method(player:issuedChallengeWasCompleted:byFriend:)]

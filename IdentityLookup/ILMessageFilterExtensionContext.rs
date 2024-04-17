@@ -22,7 +22,7 @@ unsafe impl NSObjectProtocol for ILMessageFilterExtensionContext {}
 
 extern_methods!(
     unsafe impl ILMessageFilterExtensionContext {
-        #[cfg(all(feature = "IdentityLookup_ILNetworkResponse", feature = "block2"))]
+        #[cfg(all(feature = "ILNetworkResponse", feature = "block2"))]
         #[method(deferQueryRequestToNetworkWithCompletion:)]
         pub unsafe fn deferQueryRequestToNetworkWithCompletion(
             &self,

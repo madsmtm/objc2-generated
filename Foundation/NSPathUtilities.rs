@@ -6,13 +6,13 @@ use crate::*;
 
 extern_methods!(
     /// NSStringPathExtensions
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     unsafe impl NSString {
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(feature = "NSArray")]
         #[method_id(@__retain_semantics Other pathWithComponents:)]
         pub unsafe fn pathWithComponents(components: &NSArray<NSString>) -> Id<NSString>;
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(feature = "NSArray")]
         #[method_id(@__retain_semantics Other pathComponents)]
         pub unsafe fn pathComponents(&self) -> Id<NSArray<NSString>>;
 
@@ -50,14 +50,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Other stringByResolvingSymlinksInPath)]
         pub unsafe fn stringByResolvingSymlinksInPath(&self) -> Id<NSString>;
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(feature = "NSArray")]
         #[method_id(@__retain_semantics Other stringsByAppendingPaths:)]
         pub unsafe fn stringsByAppendingPaths(
             &self,
             paths: &NSArray<NSString>,
         ) -> Id<NSArray<NSString>>;
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(feature = "NSArray")]
         #[method(completePathIntoString:caseSensitive:matchesIntoArray:filterTypes:)]
         pub unsafe fn completePathIntoString_caseSensitive_matchesIntoArray_filterTypes(
             &self,
@@ -81,9 +81,9 @@ extern_methods!(
 
 extern_methods!(
     /// NSArrayPathExtensions
-    #[cfg(feature = "Foundation_NSArray")]
+    #[cfg(feature = "NSArray")]
     unsafe impl<ObjectType: Message> NSArray<ObjectType> {
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other pathsMatchingExtensions:)]
         pub unsafe fn pathsMatchingExtensions(
             &self,
@@ -93,32 +93,32 @@ extern_methods!(
 );
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub fn NSUserName() -> NonNull<NSString>;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub fn NSFullUserName() -> NonNull<NSString>;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub fn NSHomeDirectory() -> NonNull<NSString>;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub fn NSHomeDirectoryForUser(user_name: Option<&NSString>) -> *mut NSString;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub fn NSTemporaryDirectory() -> NonNull<NSString>;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub fn NSOpenStepRootDirectory() -> NonNull<NSString>;
 }
 
@@ -185,7 +185,7 @@ unsafe impl RefEncode for NSSearchPathDomainMask {
 }
 
 extern "C" {
-    #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+    #[cfg(all(feature = "NSArray", feature = "NSString"))]
     pub fn NSSearchPathForDirectoriesInDomains(
         directory: NSSearchPathDirectory,
         domain_mask: NSSearchPathDomainMask,

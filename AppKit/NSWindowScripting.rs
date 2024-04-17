@@ -7,7 +7,7 @@ use crate::*;
 
 extern_methods!(
     /// NSScripting
-    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSWindow"))]
+    #[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
     unsafe impl NSWindow {
         #[method(hasCloseBox)]
         pub fn hasCloseBox(&self) -> bool;

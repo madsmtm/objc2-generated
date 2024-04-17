@@ -65,7 +65,7 @@ unsafe impl RefEncode for NSCharacterCollection {
 extern_methods!(
     /// NSGlyphInfo_Deprecated
     unsafe impl NSGlyphInfo {
-        #[cfg(feature = "AppKit_NSFont")]
+        #[cfg(feature = "NSFont")]
         #[method_id(@__retain_semantics Other glyphInfoWithGlyphName:forFont:baseString:)]
         pub unsafe fn glyphInfoWithGlyphName_forFont_baseString(
             glyph_name: &NSString,
@@ -73,7 +73,7 @@ extern_methods!(
             string: &NSString,
         ) -> Option<Id<NSGlyphInfo>>;
 
-        #[cfg(feature = "AppKit_NSFont")]
+        #[cfg(feature = "NSFont")]
         #[method_id(@__retain_semantics Other glyphInfoWithGlyph:forFont:baseString:)]
         pub unsafe fn glyphInfoWithGlyph_forFont_baseString(
             glyph: NSGlyph,

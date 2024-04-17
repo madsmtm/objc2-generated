@@ -43,7 +43,7 @@ extern_methods!(
             identifier: Option<&NSString>,
         ) -> Id<Self>;
 
-        #[cfg(all(feature = "GameKit_GKBasePlayer", feature = "GameKit_GKPlayer"))]
+        #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
         #[method_id(@__retain_semantics Init initWithIdentifier:player:)]
         pub unsafe fn initWithIdentifier_player(
             this: Allocated<Self>,
@@ -82,7 +82,7 @@ extern_methods!(
         #[method(setShowsCompletionBanner:)]
         pub unsafe fn setShowsCompletionBanner(&self, shows_completion_banner: bool);
 
-        #[cfg(all(feature = "GameKit_GKBasePlayer", feature = "GameKit_GKPlayer"))]
+        #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
         #[method_id(@__retain_semantics Other player)]
         pub unsafe fn player(&self) -> Option<Id<GKPlayer>>;
     }

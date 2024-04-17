@@ -7,10 +7,10 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CoreData_NSPropertyDescription")]
+    #[cfg(feature = "NSPropertyDescription")]
     pub struct NSExpressionDescription;
 
-    #[cfg(feature = "CoreData_NSPropertyDescription")]
+    #[cfg(feature = "NSPropertyDescription")]
     unsafe impl ClassType for NSExpressionDescription {
         #[inherits(NSObject)]
         type Super = NSPropertyDescription;
@@ -18,17 +18,17 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "CoreData_NSPropertyDescription")]
+#[cfg(feature = "NSPropertyDescription")]
 unsafe impl NSCoding for NSExpressionDescription {}
 
-#[cfg(feature = "CoreData_NSPropertyDescription")]
+#[cfg(feature = "NSPropertyDescription")]
 unsafe impl NSCopying for NSExpressionDescription {}
 
-#[cfg(feature = "CoreData_NSPropertyDescription")]
+#[cfg(feature = "NSPropertyDescription")]
 unsafe impl NSObjectProtocol for NSExpressionDescription {}
 
 extern_methods!(
-    #[cfg(feature = "CoreData_NSPropertyDescription")]
+    #[cfg(feature = "NSPropertyDescription")]
     unsafe impl NSExpressionDescription {
         #[method_id(@__retain_semantics Other expression)]
         pub unsafe fn expression(&self) -> Option<Id<NSExpression>>;
@@ -36,11 +36,11 @@ extern_methods!(
         #[method(setExpression:)]
         pub unsafe fn setExpression(&self, expression: Option<&NSExpression>);
 
-        #[cfg(feature = "CoreData_NSAttributeDescription")]
+        #[cfg(feature = "NSAttributeDescription")]
         #[method(expressionResultType)]
         pub unsafe fn expressionResultType(&self) -> NSAttributeType;
 
-        #[cfg(feature = "CoreData_NSAttributeDescription")]
+        #[cfg(feature = "NSAttributeDescription")]
         #[method(setExpressionResultType:)]
         pub unsafe fn setExpressionResultType(&self, expression_result_type: NSAttributeType);
     }
@@ -48,7 +48,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CoreData_NSPropertyDescription")]
+    #[cfg(feature = "NSPropertyDescription")]
     unsafe impl NSExpressionDescription {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

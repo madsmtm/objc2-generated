@@ -23,21 +23,18 @@ unsafe impl NSSecureCoding for WKUserContentController {}
 
 extern_methods!(
     unsafe impl WKUserContentController {
-        #[cfg(feature = "WebKit_WKUserScript")]
+        #[cfg(feature = "WKUserScript")]
         #[method_id(@__retain_semantics Other userScripts)]
         pub unsafe fn userScripts(&self) -> Id<NSArray<WKUserScript>>;
 
-        #[cfg(feature = "WebKit_WKUserScript")]
+        #[cfg(feature = "WKUserScript")]
         #[method(addUserScript:)]
         pub unsafe fn addUserScript(&self, user_script: &WKUserScript);
 
         #[method(removeAllUserScripts)]
         pub unsafe fn removeAllUserScripts(&self);
 
-        #[cfg(all(
-            feature = "WebKit_WKContentWorld",
-            feature = "WebKit_WKScriptMessageHandler"
-        ))]
+        #[cfg(all(feature = "WKContentWorld", feature = "WKScriptMessageHandler"))]
         #[method(addScriptMessageHandler:contentWorld:name:)]
         pub unsafe fn addScriptMessageHandler_contentWorld_name(
             &self,
@@ -47,8 +44,8 @@ extern_methods!(
         );
 
         #[cfg(all(
-            feature = "WebKit_WKContentWorld",
-            feature = "WebKit_WKScriptMessageHandlerWithReply"
+            feature = "WKContentWorld",
+            feature = "WKScriptMessageHandlerWithReply"
         ))]
         #[method(addScriptMessageHandlerWithReply:contentWorld:name:)]
         pub unsafe fn addScriptMessageHandlerWithReply_contentWorld_name(
@@ -58,7 +55,7 @@ extern_methods!(
             name: &NSString,
         );
 
-        #[cfg(feature = "WebKit_WKScriptMessageHandler")]
+        #[cfg(feature = "WKScriptMessageHandler")]
         #[method(addScriptMessageHandler:name:)]
         pub unsafe fn addScriptMessageHandler_name(
             &self,
@@ -66,7 +63,7 @@ extern_methods!(
             name: &NSString,
         );
 
-        #[cfg(feature = "WebKit_WKContentWorld")]
+        #[cfg(feature = "WKContentWorld")]
         #[method(removeScriptMessageHandlerForName:contentWorld:)]
         pub unsafe fn removeScriptMessageHandlerForName_contentWorld(
             &self,
@@ -77,7 +74,7 @@ extern_methods!(
         #[method(removeScriptMessageHandlerForName:)]
         pub unsafe fn removeScriptMessageHandlerForName(&self, name: &NSString);
 
-        #[cfg(feature = "WebKit_WKContentWorld")]
+        #[cfg(feature = "WKContentWorld")]
         #[method(removeAllScriptMessageHandlersFromContentWorld:)]
         pub unsafe fn removeAllScriptMessageHandlersFromContentWorld(
             &self,
@@ -87,11 +84,11 @@ extern_methods!(
         #[method(removeAllScriptMessageHandlers)]
         pub unsafe fn removeAllScriptMessageHandlers(&self);
 
-        #[cfg(feature = "WebKit_WKContentRuleList")]
+        #[cfg(feature = "WKContentRuleList")]
         #[method(addContentRuleList:)]
         pub unsafe fn addContentRuleList(&self, content_rule_list: &WKContentRuleList);
 
-        #[cfg(feature = "WebKit_WKContentRuleList")]
+        #[cfg(feature = "WKContentRuleList")]
         #[method(removeContentRuleList:)]
         pub unsafe fn removeContentRuleList(&self, content_rule_list: &WKContentRuleList);
 

@@ -7,10 +7,10 @@ use objc2_foundation::*;
 
 use crate::*;
 
-#[cfg(all(feature = "MapKit_MKDirectionsResponse", feature = "block2"))]
+#[cfg(all(feature = "MKDirectionsResponse", feature = "block2"))]
 pub type MKDirectionsHandler = *mut Block<dyn Fn(*mut MKDirectionsResponse, *mut NSError)>;
 
-#[cfg(all(feature = "MapKit_MKDirectionsResponse", feature = "block2"))]
+#[cfg(all(feature = "MKDirectionsResponse", feature = "block2"))]
 pub type MKETAHandler = *mut Block<dyn Fn(*mut MKETAResponse, *mut NSError)>;
 
 extern_class!(
@@ -27,21 +27,21 @@ unsafe impl NSObjectProtocol for MKDirections {}
 
 extern_methods!(
     unsafe impl MKDirections {
-        #[cfg(feature = "MapKit_MKDirectionsRequest")]
+        #[cfg(feature = "MKDirectionsRequest")]
         #[method_id(@__retain_semantics Init initWithRequest:)]
         pub unsafe fn initWithRequest(
             this: Allocated<Self>,
             request: &MKDirectionsRequest,
         ) -> Id<Self>;
 
-        #[cfg(all(feature = "MapKit_MKDirectionsResponse", feature = "block2"))]
+        #[cfg(all(feature = "MKDirectionsResponse", feature = "block2"))]
         #[method(calculateDirectionsWithCompletionHandler:)]
         pub unsafe fn calculateDirectionsWithCompletionHandler(
             &self,
             completion_handler: MKDirectionsHandler,
         );
 
-        #[cfg(all(feature = "MapKit_MKDirectionsResponse", feature = "block2"))]
+        #[cfg(all(feature = "MKDirectionsResponse", feature = "block2"))]
         #[method(calculateETAWithCompletionHandler:)]
         pub unsafe fn calculateETAWithCompletionHandler(&self, completion_handler: MKETAHandler);
 

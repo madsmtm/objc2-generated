@@ -19,11 +19,11 @@ unsafe impl NSObjectProtocol for MXMetricManager {}
 
 extern_methods!(
     unsafe impl MXMetricManager {
-        #[cfg(feature = "MetricKit_MXMetricPayload")]
+        #[cfg(feature = "MXMetricPayload")]
         #[method_id(@__retain_semantics Other pastPayloads)]
         pub unsafe fn pastPayloads(&self) -> Id<NSArray<MXMetricPayload>>;
 
-        #[cfg(feature = "MetricKit_MXDiagnosticPayload")]
+        #[cfg(feature = "MXDiagnosticPayload")]
         #[method_id(@__retain_semantics Other pastDiagnosticPayloads)]
         pub unsafe fn pastDiagnosticPayloads(&self) -> Id<NSArray<MXDiagnosticPayload>>;
 
@@ -57,12 +57,12 @@ extern_methods!(
 
 extern_protocol!(
     pub unsafe trait MXMetricManagerSubscriber: NSObjectProtocol {
-        #[cfg(feature = "MetricKit_MXMetricPayload")]
+        #[cfg(feature = "MXMetricPayload")]
         #[optional]
         #[method(didReceiveMetricPayloads:)]
         unsafe fn didReceiveMetricPayloads(&self, payloads: &NSArray<MXMetricPayload>);
 
-        #[cfg(feature = "MetricKit_MXDiagnosticPayload")]
+        #[cfg(feature = "MXDiagnosticPayload")]
         #[optional]
         #[method(didReceiveDiagnosticPayloads:)]
         unsafe fn didReceiveDiagnosticPayloads(&self, payloads: &NSArray<MXDiagnosticPayload>);

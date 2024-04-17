@@ -7,7 +7,7 @@ use crate::*;
 
 extern_protocol!(
     pub unsafe trait NSTextAttachmentCellProtocol: NSObjectProtocol {
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[method(drawWithFrame:inView:)]
         unsafe fn drawWithFrame_inView(
             &self,
@@ -19,7 +19,7 @@ extern_protocol!(
         #[method(wantsToTrackMouse)]
         unsafe fn wantsToTrackMouse(&self, mtm: MainThreadMarker) -> bool;
 
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[method(highlight:withFrame:inView:)]
         unsafe fn highlight_withFrame_inView(
             &self,
@@ -29,11 +29,7 @@ extern_protocol!(
             mtm: MainThreadMarker,
         );
 
-        #[cfg(all(
-            feature = "AppKit_NSEvent",
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSView"
-        ))]
+        #[cfg(all(feature = "NSEvent", feature = "NSResponder", feature = "NSView"))]
         #[method(trackMouse:inRect:ofView:untilMouseUp:)]
         unsafe fn trackMouse_inRect_ofView_untilMouseUp(
             &self,
@@ -50,15 +46,15 @@ extern_protocol!(
         #[method(cellBaselineOffset)]
         unsafe fn cellBaselineOffset(&self) -> NSPoint;
 
-        #[cfg(feature = "AppKit_NSTextAttachment")]
+        #[cfg(feature = "NSTextAttachment")]
         #[method_id(@__retain_semantics Other attachment)]
         unsafe fn attachment(&self) -> Option<Id<NSTextAttachment>>;
 
-        #[cfg(feature = "AppKit_NSTextAttachment")]
+        #[cfg(feature = "NSTextAttachment")]
         #[method(setAttachment:)]
         unsafe fn setAttachment(&self, attachment: Option<&NSTextAttachment>);
 
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[method(drawWithFrame:inView:characterIndex:)]
         unsafe fn drawWithFrame_inView_characterIndex(
             &self,
@@ -69,9 +65,9 @@ extern_protocol!(
         );
 
         #[cfg(all(
-            feature = "AppKit_NSLayoutManager",
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSView"
+            feature = "NSLayoutManager",
+            feature = "NSResponder",
+            feature = "NSView"
         ))]
         #[method(drawWithFrame:inView:characterIndex:layoutManager:)]
         unsafe fn drawWithFrame_inView_characterIndex_layoutManager(
@@ -83,11 +79,7 @@ extern_protocol!(
             mtm: MainThreadMarker,
         );
 
-        #[cfg(all(
-            feature = "AppKit_NSEvent",
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSView"
-        ))]
+        #[cfg(all(feature = "NSEvent", feature = "NSResponder", feature = "NSView"))]
         #[method(wantsToTrackMouseForEvent:inRect:ofView:atCharacterIndex:)]
         unsafe fn wantsToTrackMouseForEvent_inRect_ofView_atCharacterIndex(
             &self,
@@ -98,11 +90,7 @@ extern_protocol!(
             mtm: MainThreadMarker,
         ) -> bool;
 
-        #[cfg(all(
-            feature = "AppKit_NSEvent",
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSView"
-        ))]
+        #[cfg(all(feature = "NSEvent", feature = "NSResponder", feature = "NSView"))]
         #[method(trackMouse:inRect:ofView:atCharacterIndex:untilMouseUp:)]
         unsafe fn trackMouse_inRect_ofView_atCharacterIndex_untilMouseUp(
             &self,
@@ -114,7 +102,7 @@ extern_protocol!(
             mtm: MainThreadMarker,
         ) -> bool;
 
-        #[cfg(feature = "AppKit_NSTextContainer")]
+        #[cfg(feature = "NSTextContainer")]
         #[method(cellFrameForTextContainer:proposedLineFragment:glyphPosition:characterIndex:)]
         unsafe fn cellFrameForTextContainer_proposedLineFragment_glyphPosition_characterIndex(
             &self,
@@ -132,10 +120,10 @@ extern_protocol!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSCell")]
+    #[cfg(feature = "NSCell")]
     pub struct NSTextAttachmentCell;
 
-    #[cfg(feature = "AppKit_NSCell")]
+    #[cfg(feature = "NSCell")]
     unsafe impl ClassType for NSTextAttachmentCell {
         #[inherits(NSObject)]
         type Super = NSCell;
@@ -143,38 +131,35 @@ extern_class!(
     }
 );
 
-#[cfg(all(feature = "AppKit_NSAccessibilityProtocols", feature = "AppKit_NSCell"))]
+#[cfg(all(feature = "NSAccessibilityProtocols", feature = "NSCell"))]
 unsafe impl NSAccessibility for NSTextAttachmentCell {}
 
-#[cfg(all(feature = "AppKit_NSAccessibilityProtocols", feature = "AppKit_NSCell"))]
+#[cfg(all(feature = "NSAccessibilityProtocols", feature = "NSCell"))]
 unsafe impl NSAccessibilityElementProtocol for NSTextAttachmentCell {}
 
-#[cfg(feature = "AppKit_NSCell")]
+#[cfg(feature = "NSCell")]
 unsafe impl NSCoding for NSTextAttachmentCell {}
 
-#[cfg(feature = "AppKit_NSCell")]
+#[cfg(feature = "NSCell")]
 unsafe impl NSCopying for NSTextAttachmentCell {}
 
-#[cfg(feature = "AppKit_NSCell")]
+#[cfg(feature = "NSCell")]
 unsafe impl NSObjectProtocol for NSTextAttachmentCell {}
 
-#[cfg(feature = "AppKit_NSCell")]
+#[cfg(feature = "NSCell")]
 unsafe impl NSTextAttachmentCellProtocol for NSTextAttachmentCell {}
 
-#[cfg(all(
-    feature = "AppKit_NSCell",
-    feature = "AppKit_NSUserInterfaceItemIdentification"
-))]
+#[cfg(all(feature = "NSCell", feature = "NSUserInterfaceItemIdentification"))]
 unsafe impl NSUserInterfaceItemIdentification for NSTextAttachmentCell {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSCell")]
+    #[cfg(feature = "NSCell")]
     unsafe impl NSTextAttachmentCell {}
 );
 
 extern_methods!(
     /// Methods declared on superclass `NSCell`
-    #[cfg(feature = "AppKit_NSCell")]
+    #[cfg(feature = "NSCell")]
     unsafe impl NSTextAttachmentCell {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -182,7 +167,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initTextCell:)]
         pub unsafe fn initTextCell(this: Allocated<Self>, string: &NSString) -> Id<Self>;
 
-        #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(feature = "NSImage")]
         #[method_id(@__retain_semantics Init initImageCell:)]
         pub unsafe fn initImageCell(this: Allocated<Self>, image: Option<&NSImage>) -> Id<Self>;
 
@@ -193,7 +178,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSCell")]
+    #[cfg(feature = "NSCell")]
     unsafe impl NSTextAttachmentCell {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;

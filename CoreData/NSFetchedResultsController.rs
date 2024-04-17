@@ -32,9 +32,9 @@ unsafe impl<ResultType: ?Sized> NSObjectProtocol for NSFetchedResultsController<
 extern_methods!(
     unsafe impl<ResultType: Message> NSFetchedResultsController<ResultType> {
         #[cfg(all(
-            feature = "CoreData_NSFetchRequest",
-            feature = "CoreData_NSManagedObjectContext",
-            feature = "CoreData_NSPersistentStoreRequest"
+            feature = "NSFetchRequest",
+            feature = "NSManagedObjectContext",
+            feature = "NSPersistentStoreRequest"
         ))]
         #[method_id(@__retain_semantics Init initWithFetchRequest:managedObjectContext:sectionNameKeyPath:cacheName:)]
         pub unsafe fn initWithFetchRequest_managedObjectContext_sectionNameKeyPath_cacheName(
@@ -48,14 +48,11 @@ extern_methods!(
         #[method(performFetch:_)]
         pub unsafe fn performFetch(&self) -> Result<(), Id<NSError>>;
 
-        #[cfg(all(
-            feature = "CoreData_NSFetchRequest",
-            feature = "CoreData_NSPersistentStoreRequest"
-        ))]
+        #[cfg(all(feature = "NSFetchRequest", feature = "NSPersistentStoreRequest"))]
         #[method_id(@__retain_semantics Other fetchRequest)]
         pub unsafe fn fetchRequest(&self) -> Id<NSFetchRequest<ResultType>>;
 
-        #[cfg(feature = "CoreData_NSManagedObjectContext")]
+        #[cfg(feature = "NSManagedObjectContext")]
         #[method_id(@__retain_semantics Other managedObjectContext)]
         pub unsafe fn managedObjectContext(&self) -> Id<NSManagedObjectContext>;
 
@@ -161,7 +158,7 @@ unsafe impl RefEncode for NSFetchedResultsChangeType {
 
 extern_protocol!(
     pub unsafe trait NSFetchedResultsControllerDelegate: NSObjectProtocol {
-        #[cfg(feature = "CoreData_NSManagedObjectID")]
+        #[cfg(feature = "NSManagedObjectID")]
         #[optional]
         #[method(controller:didChangeContentWithDifference:)]
         unsafe fn controller_didChangeContentWithDifference(

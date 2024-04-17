@@ -7,10 +7,10 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(feature = "AppKit_NSController", feature = "AppKit_NSObjectController"))]
+    #[cfg(all(feature = "NSController", feature = "NSObjectController"))]
     pub struct NSArrayController;
 
-    #[cfg(all(feature = "AppKit_NSController", feature = "AppKit_NSObjectController"))]
+    #[cfg(all(feature = "NSController", feature = "NSObjectController"))]
     unsafe impl ClassType for NSArrayController {
         #[inherits(NSController, NSObject)]
         type Super = NSObjectController;
@@ -18,28 +18,28 @@ extern_class!(
     }
 );
 
-#[cfg(all(feature = "AppKit_NSController", feature = "AppKit_NSObjectController"))]
+#[cfg(all(feature = "NSController", feature = "NSObjectController"))]
 unsafe impl NSCoding for NSArrayController {}
 
 #[cfg(all(
-    feature = "AppKit_NSController",
-    feature = "AppKit_NSKeyValueBinding",
-    feature = "AppKit_NSObjectController"
+    feature = "NSController",
+    feature = "NSKeyValueBinding",
+    feature = "NSObjectController"
 ))]
 unsafe impl NSEditor for NSArrayController {}
 
 #[cfg(all(
-    feature = "AppKit_NSController",
-    feature = "AppKit_NSKeyValueBinding",
-    feature = "AppKit_NSObjectController"
+    feature = "NSController",
+    feature = "NSKeyValueBinding",
+    feature = "NSObjectController"
 ))]
 unsafe impl NSEditorRegistration for NSArrayController {}
 
-#[cfg(all(feature = "AppKit_NSController", feature = "AppKit_NSObjectController"))]
+#[cfg(all(feature = "NSController", feature = "NSObjectController"))]
 unsafe impl NSObjectProtocol for NSArrayController {}
 
 extern_methods!(
-    #[cfg(all(feature = "AppKit_NSController", feature = "AppKit_NSObjectController"))]
+    #[cfg(all(feature = "NSController", feature = "NSObjectController"))]
     unsafe impl NSArrayController {
         #[method(rearrangeObjects)]
         pub unsafe fn rearrangeObjects(&self);
@@ -203,7 +203,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObjectController`
-    #[cfg(all(feature = "AppKit_NSController", feature = "AppKit_NSObjectController"))]
+    #[cfg(all(feature = "NSController", feature = "NSObjectController"))]
     unsafe impl NSArrayController {
         #[method_id(@__retain_semantics Init initWithContent:)]
         pub unsafe fn initWithContent(
@@ -218,7 +218,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSController`
-    #[cfg(all(feature = "AppKit_NSController", feature = "AppKit_NSObjectController"))]
+    #[cfg(all(feature = "NSController", feature = "NSObjectController"))]
     unsafe impl NSArrayController {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -227,7 +227,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "AppKit_NSController", feature = "AppKit_NSObjectController"))]
+    #[cfg(all(feature = "NSController", feature = "NSObjectController"))]
     unsafe impl NSArrayController {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;

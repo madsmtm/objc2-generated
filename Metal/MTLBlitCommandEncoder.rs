@@ -29,13 +29,13 @@ unsafe impl RefEncode for MTLBlitOption {
 }
 
 extern_protocol!(
-    #[cfg(feature = "Metal_MTLCommandEncoder")]
+    #[cfg(feature = "MTLCommandEncoder")]
     pub unsafe trait MTLBlitCommandEncoder: MTLCommandEncoder {
-        #[cfg(feature = "Metal_MTLResource")]
+        #[cfg(feature = "MTLResource")]
         #[method(synchronizeResource:)]
         fn synchronizeResource(&self, resource: &ProtocolObject<dyn MTLResource>);
 
-        #[cfg(all(feature = "Metal_MTLResource", feature = "Metal_MTLTexture"))]
+        #[cfg(all(feature = "MTLResource", feature = "MTLTexture"))]
         #[method(synchronizeTexture:slice:level:)]
         unsafe fn synchronizeTexture_slice_level(
             &self,
@@ -44,11 +44,7 @@ extern_protocol!(
             level: NSUInteger,
         );
 
-        #[cfg(all(
-            feature = "Metal_MTLResource",
-            feature = "Metal_MTLTexture",
-            feature = "Metal_MTLTypes"
-        ))]
+        #[cfg(all(feature = "MTLResource", feature = "MTLTexture", feature = "MTLTypes"))]
         #[method(copyFromTexture:sourceSlice:sourceLevel:sourceOrigin:sourceSize:toTexture:destinationSlice:destinationLevel:destinationOrigin:)]
         unsafe fn copyFromTexture_sourceSlice_sourceLevel_sourceOrigin_sourceSize_toTexture_destinationSlice_destinationLevel_destinationOrigin(
             &self,
@@ -64,10 +60,10 @@ extern_protocol!(
         );
 
         #[cfg(all(
-            feature = "Metal_MTLBuffer",
-            feature = "Metal_MTLResource",
-            feature = "Metal_MTLTexture",
-            feature = "Metal_MTLTypes"
+            feature = "MTLBuffer",
+            feature = "MTLResource",
+            feature = "MTLTexture",
+            feature = "MTLTypes"
         ))]
         #[method(copyFromBuffer:sourceOffset:sourceBytesPerRow:sourceBytesPerImage:sourceSize:toTexture:destinationSlice:destinationLevel:destinationOrigin:)]
         unsafe fn copyFromBuffer_sourceOffset_sourceBytesPerRow_sourceBytesPerImage_sourceSize_toTexture_destinationSlice_destinationLevel_destinationOrigin(
@@ -84,10 +80,10 @@ extern_protocol!(
         );
 
         #[cfg(all(
-            feature = "Metal_MTLBuffer",
-            feature = "Metal_MTLResource",
-            feature = "Metal_MTLTexture",
-            feature = "Metal_MTLTypes"
+            feature = "MTLBuffer",
+            feature = "MTLResource",
+            feature = "MTLTexture",
+            feature = "MTLTypes"
         ))]
         #[method(copyFromBuffer:sourceOffset:sourceBytesPerRow:sourceBytesPerImage:sourceSize:toTexture:destinationSlice:destinationLevel:destinationOrigin:options:)]
         unsafe fn copyFromBuffer_sourceOffset_sourceBytesPerRow_sourceBytesPerImage_sourceSize_toTexture_destinationSlice_destinationLevel_destinationOrigin_options(
@@ -105,10 +101,10 @@ extern_protocol!(
         );
 
         #[cfg(all(
-            feature = "Metal_MTLBuffer",
-            feature = "Metal_MTLResource",
-            feature = "Metal_MTLTexture",
-            feature = "Metal_MTLTypes"
+            feature = "MTLBuffer",
+            feature = "MTLResource",
+            feature = "MTLTexture",
+            feature = "MTLTypes"
         ))]
         #[method(copyFromTexture:sourceSlice:sourceLevel:sourceOrigin:sourceSize:toBuffer:destinationOffset:destinationBytesPerRow:destinationBytesPerImage:)]
         unsafe fn copyFromTexture_sourceSlice_sourceLevel_sourceOrigin_sourceSize_toBuffer_destinationOffset_destinationBytesPerRow_destinationBytesPerImage(
@@ -125,10 +121,10 @@ extern_protocol!(
         );
 
         #[cfg(all(
-            feature = "Metal_MTLBuffer",
-            feature = "Metal_MTLResource",
-            feature = "Metal_MTLTexture",
-            feature = "Metal_MTLTypes"
+            feature = "MTLBuffer",
+            feature = "MTLResource",
+            feature = "MTLTexture",
+            feature = "MTLTypes"
         ))]
         #[method(copyFromTexture:sourceSlice:sourceLevel:sourceOrigin:sourceSize:toBuffer:destinationOffset:destinationBytesPerRow:destinationBytesPerImage:options:)]
         unsafe fn copyFromTexture_sourceSlice_sourceLevel_sourceOrigin_sourceSize_toBuffer_destinationOffset_destinationBytesPerRow_destinationBytesPerImage_options(
@@ -145,11 +141,11 @@ extern_protocol!(
             options: MTLBlitOption,
         );
 
-        #[cfg(all(feature = "Metal_MTLResource", feature = "Metal_MTLTexture"))]
+        #[cfg(all(feature = "MTLResource", feature = "MTLTexture"))]
         #[method(generateMipmapsForTexture:)]
         fn generateMipmapsForTexture(&self, texture: &ProtocolObject<dyn MTLTexture>);
 
-        #[cfg(all(feature = "Metal_MTLBuffer", feature = "Metal_MTLResource"))]
+        #[cfg(all(feature = "MTLBuffer", feature = "MTLResource"))]
         #[method(fillBuffer:range:value:)]
         fn fillBuffer_range_value(
             &self,
@@ -158,7 +154,7 @@ extern_protocol!(
             value: u8,
         );
 
-        #[cfg(all(feature = "Metal_MTLResource", feature = "Metal_MTLTexture"))]
+        #[cfg(all(feature = "MTLResource", feature = "MTLTexture"))]
         #[method(copyFromTexture:sourceSlice:sourceLevel:toTexture:destinationSlice:destinationLevel:sliceCount:levelCount:)]
         unsafe fn copyFromTexture_sourceSlice_sourceLevel_toTexture_destinationSlice_destinationLevel_sliceCount_levelCount(
             &self,
@@ -172,7 +168,7 @@ extern_protocol!(
             level_count: NSUInteger,
         );
 
-        #[cfg(all(feature = "Metal_MTLResource", feature = "Metal_MTLTexture"))]
+        #[cfg(all(feature = "MTLResource", feature = "MTLTexture"))]
         #[method(copyFromTexture:toTexture:)]
         unsafe fn copyFromTexture_toTexture(
             &self,
@@ -180,7 +176,7 @@ extern_protocol!(
             destination_texture: &ProtocolObject<dyn MTLTexture>,
         );
 
-        #[cfg(all(feature = "Metal_MTLBuffer", feature = "Metal_MTLResource"))]
+        #[cfg(all(feature = "MTLBuffer", feature = "MTLResource"))]
         #[method(copyFromBuffer:sourceOffset:toBuffer:destinationOffset:size:)]
         unsafe fn copyFromBuffer_sourceOffset_toBuffer_destinationOffset_size(
             &self,
@@ -191,19 +187,19 @@ extern_protocol!(
             size: NSUInteger,
         );
 
-        #[cfg(feature = "Metal_MTLFence")]
+        #[cfg(feature = "MTLFence")]
         #[method(updateFence:)]
         fn updateFence(&self, fence: &ProtocolObject<dyn MTLFence>);
 
-        #[cfg(feature = "Metal_MTLFence")]
+        #[cfg(feature = "MTLFence")]
         #[method(waitForFence:)]
         fn waitForFence(&self, fence: &ProtocolObject<dyn MTLFence>);
 
         #[cfg(all(
-            feature = "Metal_MTLBuffer",
-            feature = "Metal_MTLResource",
-            feature = "Metal_MTLTexture",
-            feature = "Metal_MTLTypes"
+            feature = "MTLBuffer",
+            feature = "MTLResource",
+            feature = "MTLTexture",
+            feature = "MTLTypes"
         ))]
         #[optional]
         #[method(getTextureAccessCounters:region:mipLevel:slice:resetCounters:countersBuffer:countersBufferOffset:)]
@@ -218,11 +214,7 @@ extern_protocol!(
             counters_buffer_offset: NSUInteger,
         );
 
-        #[cfg(all(
-            feature = "Metal_MTLResource",
-            feature = "Metal_MTLTexture",
-            feature = "Metal_MTLTypes"
-        ))]
+        #[cfg(all(feature = "MTLResource", feature = "MTLTexture", feature = "MTLTypes"))]
         #[optional]
         #[method(resetTextureAccessCounters:region:mipLevel:slice:)]
         unsafe fn resetTextureAccessCounters_region_mipLevel_slice(
@@ -233,11 +225,11 @@ extern_protocol!(
             slice: NSUInteger,
         );
 
-        #[cfg(all(feature = "Metal_MTLResource", feature = "Metal_MTLTexture"))]
+        #[cfg(all(feature = "MTLResource", feature = "MTLTexture"))]
         #[method(optimizeContentsForGPUAccess:)]
         fn optimizeContentsForGPUAccess(&self, texture: &ProtocolObject<dyn MTLTexture>);
 
-        #[cfg(all(feature = "Metal_MTLResource", feature = "Metal_MTLTexture"))]
+        #[cfg(all(feature = "MTLResource", feature = "MTLTexture"))]
         #[method(optimizeContentsForGPUAccess:slice:level:)]
         unsafe fn optimizeContentsForGPUAccess_slice_level(
             &self,
@@ -246,11 +238,11 @@ extern_protocol!(
             level: NSUInteger,
         );
 
-        #[cfg(all(feature = "Metal_MTLResource", feature = "Metal_MTLTexture"))]
+        #[cfg(all(feature = "MTLResource", feature = "MTLTexture"))]
         #[method(optimizeContentsForCPUAccess:)]
         unsafe fn optimizeContentsForCPUAccess(&self, texture: &ProtocolObject<dyn MTLTexture>);
 
-        #[cfg(all(feature = "Metal_MTLResource", feature = "Metal_MTLTexture"))]
+        #[cfg(all(feature = "MTLResource", feature = "MTLTexture"))]
         #[method(optimizeContentsForCPUAccess:slice:level:)]
         unsafe fn optimizeContentsForCPUAccess_slice_level(
             &self,
@@ -259,10 +251,7 @@ extern_protocol!(
             level: NSUInteger,
         );
 
-        #[cfg(all(
-            feature = "Metal_MTLIndirectCommandBuffer",
-            feature = "Metal_MTLResource"
-        ))]
+        #[cfg(all(feature = "MTLIndirectCommandBuffer", feature = "MTLResource"))]
         #[method(resetCommandsInBuffer:withRange:)]
         unsafe fn resetCommandsInBuffer_withRange(
             &self,
@@ -270,10 +259,7 @@ extern_protocol!(
             range: NSRange,
         );
 
-        #[cfg(all(
-            feature = "Metal_MTLIndirectCommandBuffer",
-            feature = "Metal_MTLResource"
-        ))]
+        #[cfg(all(feature = "MTLIndirectCommandBuffer", feature = "MTLResource"))]
         #[method(copyIndirectCommandBuffer:sourceRange:destination:destinationIndex:)]
         unsafe fn copyIndirectCommandBuffer_sourceRange_destination_destinationIndex(
             &self,
@@ -283,10 +269,7 @@ extern_protocol!(
             destination_index: NSUInteger,
         );
 
-        #[cfg(all(
-            feature = "Metal_MTLIndirectCommandBuffer",
-            feature = "Metal_MTLResource"
-        ))]
+        #[cfg(all(feature = "MTLIndirectCommandBuffer", feature = "MTLResource"))]
         #[method(optimizeIndirectCommandBuffer:withRange:)]
         unsafe fn optimizeIndirectCommandBuffer_withRange(
             &self,
@@ -294,7 +277,7 @@ extern_protocol!(
             range: NSRange,
         );
 
-        #[cfg(feature = "Metal_MTLCounters")]
+        #[cfg(feature = "MTLCounters")]
         #[method(sampleCountersInBuffer:atSampleIndex:withBarrier:)]
         unsafe fn sampleCountersInBuffer_atSampleIndex_withBarrier(
             &self,
@@ -304,9 +287,9 @@ extern_protocol!(
         );
 
         #[cfg(all(
-            feature = "Metal_MTLBuffer",
-            feature = "Metal_MTLCounters",
-            feature = "Metal_MTLResource"
+            feature = "MTLBuffer",
+            feature = "MTLCounters",
+            feature = "MTLResource"
         ))]
         #[method(resolveCounters:inRange:destinationBuffer:destinationOffset:)]
         unsafe fn resolveCounters_inRange_destinationBuffer_destinationOffset(
@@ -318,6 +301,6 @@ extern_protocol!(
         );
     }
 
-    #[cfg(feature = "Metal_MTLCommandEncoder")]
+    #[cfg(feature = "MTLCommandEncoder")]
     unsafe impl ProtocolType for dyn MTLBlitCommandEncoder {}
 );

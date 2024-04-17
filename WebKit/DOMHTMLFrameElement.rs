@@ -8,21 +8,21 @@ use crate::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(
-        feature = "WebKit_DOMElement",
-        feature = "WebKit_DOMHTMLElement",
-        feature = "WebKit_DOMNode",
-        feature = "WebKit_DOMObject",
-        feature = "WebKit_WebScriptObject"
+        feature = "DOMElement",
+        feature = "DOMHTMLElement",
+        feature = "DOMNode",
+        feature = "DOMObject",
+        feature = "WebScriptObject"
     ))]
     #[deprecated]
     pub struct DOMHTMLFrameElement;
 
     #[cfg(all(
-        feature = "WebKit_DOMElement",
-        feature = "WebKit_DOMHTMLElement",
-        feature = "WebKit_DOMNode",
-        feature = "WebKit_DOMObject",
-        feature = "WebKit_WebScriptObject"
+        feature = "DOMElement",
+        feature = "DOMHTMLElement",
+        feature = "DOMNode",
+        feature = "DOMObject",
+        feature = "WebScriptObject"
     ))]
     unsafe impl ClassType for DOMHTMLFrameElement {
         #[inherits(DOMElement, DOMNode, DOMObject, WebScriptObject, NSObject)]
@@ -32,40 +32,40 @@ extern_class!(
 );
 
 #[cfg(all(
-    feature = "WebKit_DOMElement",
-    feature = "WebKit_DOMEventTarget",
-    feature = "WebKit_DOMHTMLElement",
-    feature = "WebKit_DOMNode",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMElement",
+    feature = "DOMEventTarget",
+    feature = "DOMHTMLElement",
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 unsafe impl DOMEventTarget for DOMHTMLFrameElement {}
 
 #[cfg(all(
-    feature = "WebKit_DOMElement",
-    feature = "WebKit_DOMHTMLElement",
-    feature = "WebKit_DOMNode",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMElement",
+    feature = "DOMHTMLElement",
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 unsafe impl NSCopying for DOMHTMLFrameElement {}
 
 #[cfg(all(
-    feature = "WebKit_DOMElement",
-    feature = "WebKit_DOMHTMLElement",
-    feature = "WebKit_DOMNode",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMElement",
+    feature = "DOMHTMLElement",
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 unsafe impl NSObjectProtocol for DOMHTMLFrameElement {}
 
 extern_methods!(
     #[cfg(all(
-        feature = "WebKit_DOMElement",
-        feature = "WebKit_DOMHTMLElement",
-        feature = "WebKit_DOMNode",
-        feature = "WebKit_DOMObject",
-        feature = "WebKit_WebScriptObject"
+        feature = "DOMElement",
+        feature = "DOMHTMLElement",
+        feature = "DOMNode",
+        feature = "DOMObject",
+        feature = "WebScriptObject"
     ))]
     unsafe impl DOMHTMLFrameElement {
         #[deprecated]
@@ -132,12 +132,12 @@ extern_methods!(
         #[method(setSrc:)]
         pub unsafe fn setSrc(&self, src: Option<&NSString>);
 
-        #[cfg(feature = "WebKit_DOMDocument")]
+        #[cfg(feature = "DOMDocument")]
         #[deprecated]
         #[method_id(@__retain_semantics Other contentDocument)]
         pub unsafe fn contentDocument(&self) -> Option<Id<DOMDocument>>;
 
-        #[cfg(feature = "WebKit_DOMAbstractView")]
+        #[cfg(feature = "DOMAbstractView")]
         #[method_id(@__retain_semantics Other contentWindow)]
         pub unsafe fn contentWindow(&self) -> Option<Id<DOMAbstractView>>;
 
@@ -158,11 +158,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `DOMObject`
     #[cfg(all(
-        feature = "WebKit_DOMElement",
-        feature = "WebKit_DOMHTMLElement",
-        feature = "WebKit_DOMNode",
-        feature = "WebKit_DOMObject",
-        feature = "WebKit_WebScriptObject"
+        feature = "DOMElement",
+        feature = "DOMHTMLElement",
+        feature = "DOMNode",
+        feature = "DOMObject",
+        feature = "WebScriptObject"
     ))]
     unsafe impl DOMHTMLFrameElement {
         #[deprecated]
@@ -174,11 +174,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(
-        feature = "WebKit_DOMElement",
-        feature = "WebKit_DOMHTMLElement",
-        feature = "WebKit_DOMNode",
-        feature = "WebKit_DOMObject",
-        feature = "WebKit_WebScriptObject"
+        feature = "DOMElement",
+        feature = "DOMHTMLElement",
+        feature = "DOMNode",
+        feature = "DOMObject",
+        feature = "WebScriptObject"
     ))]
     unsafe impl DOMHTMLFrameElement {
         #[method_id(@__retain_semantics New new)]

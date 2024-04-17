@@ -7,10 +7,10 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSTouchBarItem")]
+    #[cfg(feature = "NSTouchBarItem")]
     pub struct NSButtonTouchBarItem;
 
-    #[cfg(feature = "AppKit_NSTouchBarItem")]
+    #[cfg(feature = "NSTouchBarItem")]
     unsafe impl ClassType for NSButtonTouchBarItem {
         #[inherits(NSObject)]
         type Super = NSTouchBarItem;
@@ -18,14 +18,14 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSTouchBarItem")]
+#[cfg(feature = "NSTouchBarItem")]
 unsafe impl NSCoding for NSButtonTouchBarItem {}
 
-#[cfg(feature = "AppKit_NSTouchBarItem")]
+#[cfg(feature = "NSTouchBarItem")]
 unsafe impl NSObjectProtocol for NSButtonTouchBarItem {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSTouchBarItem")]
+    #[cfg(feature = "NSTouchBarItem")]
     unsafe impl NSButtonTouchBarItem {
         #[method_id(@__retain_semantics Other buttonTouchBarItemWithIdentifier:title:target:action:)]
         pub unsafe fn buttonTouchBarItemWithIdentifier_title_target_action(
@@ -36,7 +36,7 @@ extern_methods!(
             mtm: MainThreadMarker,
         ) -> Id<Self>;
 
-        #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(feature = "NSImage")]
         #[method_id(@__retain_semantics Other buttonTouchBarItemWithIdentifier:image:target:action:)]
         pub unsafe fn buttonTouchBarItemWithIdentifier_image_target_action(
             identifier: &NSTouchBarItemIdentifier,
@@ -46,7 +46,7 @@ extern_methods!(
             mtm: MainThreadMarker,
         ) -> Id<Self>;
 
-        #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(feature = "NSImage")]
         #[method_id(@__retain_semantics Other buttonTouchBarItemWithIdentifier:title:image:target:action:)]
         pub unsafe fn buttonTouchBarItemWithIdentifier_title_image_target_action(
             identifier: &NSTouchBarItemIdentifier,
@@ -63,19 +63,19 @@ extern_methods!(
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, title: &NSString);
 
-        #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(feature = "NSImage")]
         #[method_id(@__retain_semantics Other image)]
         pub unsafe fn image(&self) -> Option<Id<NSImage>>;
 
-        #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(feature = "NSImage")]
         #[method(setImage:)]
         pub unsafe fn setImage(&self, image: Option<&NSImage>);
 
-        #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(feature = "NSColor")]
         #[method_id(@__retain_semantics Other bezelColor)]
         pub unsafe fn bezelColor(&self) -> Option<Id<NSColor>>;
 
-        #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(feature = "NSColor")]
         #[method(setBezelColor:)]
         pub unsafe fn setBezelColor(&self, bezel_color: Option<&NSColor>);
 
@@ -107,7 +107,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSTouchBarItem`
-    #[cfg(feature = "AppKit_NSTouchBarItem")]
+    #[cfg(feature = "NSTouchBarItem")]
     unsafe impl NSButtonTouchBarItem {
         #[method_id(@__retain_semantics Init initWithIdentifier:)]
         pub unsafe fn initWithIdentifier(
@@ -125,7 +125,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSTouchBarItem")]
+    #[cfg(feature = "NSTouchBarItem")]
     unsafe impl NSButtonTouchBarItem {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;

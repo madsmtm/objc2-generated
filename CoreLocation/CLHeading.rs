@@ -8,7 +8,7 @@ use crate::*;
 pub type CLHeadingComponentValue = c_double;
 
 extern "C" {
-    #[cfg(feature = "CoreLocation_CLLocation")]
+    #[cfg(feature = "CLLocation")]
     pub static kCLHeadingFilterNone: CLLocationDegrees;
 }
 
@@ -32,15 +32,15 @@ unsafe impl NSSecureCoding for CLHeading {}
 
 extern_methods!(
     unsafe impl CLHeading {
-        #[cfg(feature = "CoreLocation_CLLocation")]
+        #[cfg(feature = "CLLocation")]
         #[method(magneticHeading)]
         pub unsafe fn magneticHeading(&self) -> CLLocationDirection;
 
-        #[cfg(feature = "CoreLocation_CLLocation")]
+        #[cfg(feature = "CLLocation")]
         #[method(trueHeading)]
         pub unsafe fn trueHeading(&self) -> CLLocationDirection;
 
-        #[cfg(feature = "CoreLocation_CLLocation")]
+        #[cfg(feature = "CLLocation")]
         #[method(headingAccuracy)]
         pub unsafe fn headingAccuracy(&self) -> CLLocationDirection;
 

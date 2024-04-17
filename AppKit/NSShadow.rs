@@ -40,11 +40,11 @@ extern_methods!(
         #[method(setShadowBlurRadius:)]
         pub unsafe fn setShadowBlurRadius(&self, shadow_blur_radius: CGFloat);
 
-        #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(feature = "NSColor")]
         #[method_id(@__retain_semantics Other shadowColor)]
         pub unsafe fn shadowColor(&self) -> Option<Id<NSColor>>;
 
-        #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(feature = "NSColor")]
         #[method(setShadowColor:)]
         pub unsafe fn setShadowColor(&self, shadow_color: Option<&NSColor>);
 

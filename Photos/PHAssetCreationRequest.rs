@@ -56,16 +56,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(
-        feature = "Photos_PHAssetChangeRequest",
-        feature = "Photos_PHChangeRequest"
-    ))]
+    #[cfg(all(feature = "PHAssetChangeRequest", feature = "PHChangeRequest"))]
     pub struct PHAssetCreationRequest;
 
-    #[cfg(all(
-        feature = "Photos_PHAssetChangeRequest",
-        feature = "Photos_PHChangeRequest"
-    ))]
+    #[cfg(all(feature = "PHAssetChangeRequest", feature = "PHChangeRequest"))]
     unsafe impl ClassType for PHAssetCreationRequest {
         #[inherits(PHChangeRequest, NSObject)]
         type Super = PHAssetChangeRequest;
@@ -73,17 +67,11 @@ extern_class!(
     }
 );
 
-#[cfg(all(
-    feature = "Photos_PHAssetChangeRequest",
-    feature = "Photos_PHChangeRequest"
-))]
+#[cfg(all(feature = "PHAssetChangeRequest", feature = "PHChangeRequest"))]
 unsafe impl NSObjectProtocol for PHAssetCreationRequest {}
 
 extern_methods!(
-    #[cfg(all(
-        feature = "Photos_PHAssetChangeRequest",
-        feature = "Photos_PHChangeRequest"
-    ))]
+    #[cfg(all(feature = "PHAssetChangeRequest", feature = "PHChangeRequest"))]
     unsafe impl PHAssetCreationRequest {
         #[method_id(@__retain_semantics Other creationRequestForAsset)]
         pub unsafe fn creationRequestForAsset() -> Id<Self>;
@@ -91,7 +79,7 @@ extern_methods!(
         #[method(supportsAssetResourceTypes:)]
         pub unsafe fn supportsAssetResourceTypes(types: &NSArray<NSNumber>) -> bool;
 
-        #[cfg(feature = "Photos_PhotosTypes")]
+        #[cfg(feature = "PhotosTypes")]
         #[method(addResourceWithType:fileURL:options:)]
         pub unsafe fn addResourceWithType_fileURL_options(
             &self,
@@ -100,7 +88,7 @@ extern_methods!(
             options: Option<&PHAssetResourceCreationOptions>,
         );
 
-        #[cfg(feature = "Photos_PhotosTypes")]
+        #[cfg(feature = "PhotosTypes")]
         #[method(addResourceWithType:data:options:)]
         pub unsafe fn addResourceWithType_data_options(
             &self,
@@ -113,10 +101,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `PHAssetChangeRequest`
-    #[cfg(all(
-        feature = "Photos_PHAssetChangeRequest",
-        feature = "Photos_PHChangeRequest"
-    ))]
+    #[cfg(all(feature = "PHAssetChangeRequest", feature = "PHChangeRequest"))]
     unsafe impl PHAssetCreationRequest {
         #[cfg(feature = "objc2-app-kit")]
         #[method_id(@__retain_semantics Other creationRequestForAssetFromImage:)]
@@ -132,7 +117,7 @@ extern_methods!(
             file_url: &NSURL,
         ) -> Option<Id<Self>>;
 
-        #[cfg(all(feature = "Photos_PHAsset", feature = "Photos_PHObject"))]
+        #[cfg(all(feature = "PHAsset", feature = "PHObject"))]
         #[method_id(@__retain_semantics Other changeRequestForAsset:)]
         pub unsafe fn changeRequestForAsset(asset: &PHAsset) -> Id<Self>;
     }
@@ -140,10 +125,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(all(
-        feature = "Photos_PHAssetChangeRequest",
-        feature = "Photos_PHChangeRequest"
-    ))]
+    #[cfg(all(feature = "PHAssetChangeRequest", feature = "PHChangeRequest"))]
     unsafe impl PHAssetCreationRequest {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

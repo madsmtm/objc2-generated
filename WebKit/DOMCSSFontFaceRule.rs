@@ -8,17 +8,17 @@ use crate::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(
-        feature = "WebKit_DOMCSSRule",
-        feature = "WebKit_DOMObject",
-        feature = "WebKit_WebScriptObject"
+        feature = "DOMCSSRule",
+        feature = "DOMObject",
+        feature = "WebScriptObject"
     ))]
     #[deprecated]
     pub struct DOMCSSFontFaceRule;
 
     #[cfg(all(
-        feature = "WebKit_DOMCSSRule",
-        feature = "WebKit_DOMObject",
-        feature = "WebKit_WebScriptObject"
+        feature = "DOMCSSRule",
+        feature = "DOMObject",
+        feature = "WebScriptObject"
     ))]
     unsafe impl ClassType for DOMCSSFontFaceRule {
         #[inherits(DOMObject, WebScriptObject, NSObject)]
@@ -28,27 +28,27 @@ extern_class!(
 );
 
 #[cfg(all(
-    feature = "WebKit_DOMCSSRule",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMCSSRule",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 unsafe impl NSCopying for DOMCSSFontFaceRule {}
 
 #[cfg(all(
-    feature = "WebKit_DOMCSSRule",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMCSSRule",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 unsafe impl NSObjectProtocol for DOMCSSFontFaceRule {}
 
 extern_methods!(
     #[cfg(all(
-        feature = "WebKit_DOMCSSRule",
-        feature = "WebKit_DOMObject",
-        feature = "WebKit_WebScriptObject"
+        feature = "DOMCSSRule",
+        feature = "DOMObject",
+        feature = "WebScriptObject"
     ))]
     unsafe impl DOMCSSFontFaceRule {
-        #[cfg(feature = "WebKit_DOMCSSStyleDeclaration")]
+        #[cfg(feature = "DOMCSSStyleDeclaration")]
         #[deprecated]
         #[method_id(@__retain_semantics Other style)]
         pub unsafe fn style(&self) -> Option<Id<DOMCSSStyleDeclaration>>;
@@ -58,9 +58,9 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `DOMObject`
     #[cfg(all(
-        feature = "WebKit_DOMCSSRule",
-        feature = "WebKit_DOMObject",
-        feature = "WebKit_WebScriptObject"
+        feature = "DOMCSSRule",
+        feature = "DOMObject",
+        feature = "WebScriptObject"
     ))]
     unsafe impl DOMCSSFontFaceRule {
         #[deprecated]
@@ -72,9 +72,9 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(
-        feature = "WebKit_DOMCSSRule",
-        feature = "WebKit_DOMObject",
-        feature = "WebKit_WebScriptObject"
+        feature = "DOMCSSRule",
+        feature = "DOMObject",
+        feature = "WebScriptObject"
     ))]
     unsafe impl DOMCSSFontFaceRule {
         #[method_id(@__retain_semantics New new)]

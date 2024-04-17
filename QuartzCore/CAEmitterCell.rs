@@ -15,7 +15,7 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "QuartzCore_CAMediaTiming")]
+#[cfg(feature = "CAMediaTiming")]
 unsafe impl CAMediaTiming for CAEmitterCell {}
 
 unsafe impl NSCoding for CAEmitterCell {}

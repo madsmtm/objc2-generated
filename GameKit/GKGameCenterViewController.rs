@@ -49,7 +49,7 @@ extern_class!(
     }
 );
 
-#[cfg(all(feature = "GameKit_GKDialogController", feature = "objc2-app-kit"))]
+#[cfg(all(feature = "GKDialogController", feature = "objc2-app-kit"))]
 unsafe impl GKViewController for GKGameCenterViewController {}
 
 #[cfg(feature = "objc2-app-kit")]
@@ -126,7 +126,7 @@ extern_methods!(
             state: GKGameCenterViewControllerState,
         ) -> Id<Self>;
 
-        #[cfg(feature = "GameKit_GKLeaderboard")]
+        #[cfg(feature = "GKLeaderboard")]
         #[method_id(@__retain_semantics Init initWithLeaderboardID:playerScope:timeScope:)]
         pub unsafe fn initWithLeaderboardID_playerScope_timeScope(
             this: Allocated<Self>,
@@ -135,7 +135,7 @@ extern_methods!(
             time_scope: GKLeaderboardTimeScope,
         ) -> Id<Self>;
 
-        #[cfg(feature = "GameKit_GKLeaderboard")]
+        #[cfg(feature = "GKLeaderboard")]
         #[method_id(@__retain_semantics Init initWithLeaderboard:playerScope:)]
         pub unsafe fn initWithLeaderboard_playerScope(
             this: Allocated<Self>,
@@ -163,12 +163,12 @@ extern_methods!(
         #[method(setViewState:)]
         pub unsafe fn setViewState(&self, view_state: GKGameCenterViewControllerState);
 
-        #[cfg(feature = "GameKit_GKLeaderboard")]
+        #[cfg(feature = "GKLeaderboard")]
         #[deprecated]
         #[method(leaderboardTimeScope)]
         pub unsafe fn leaderboardTimeScope(&self) -> GKLeaderboardTimeScope;
 
-        #[cfg(feature = "GameKit_GKLeaderboard")]
+        #[cfg(feature = "GKLeaderboard")]
         #[deprecated]
         #[method(setLeaderboardTimeScope:)]
         pub unsafe fn setLeaderboardTimeScope(

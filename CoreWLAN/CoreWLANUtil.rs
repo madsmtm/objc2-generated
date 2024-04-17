@@ -6,6 +6,6 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    #[cfg(feature = "CoreWLAN_CWNetwork")]
+    #[cfg(feature = "CWNetwork")]
     pub fn CWMergeNetworks(networks: &NSSet<CWNetwork>) -> NonNull<NSSet<CWNetwork>>;
 }

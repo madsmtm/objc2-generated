@@ -16,7 +16,7 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AuthenticationServices_ASCredentialRequest")]
+#[cfg(feature = "ASCredentialRequest")]
 unsafe impl ASCredentialRequest for ASPasskeyCredentialRequest {}
 
 unsafe impl NSCoding for ASPasskeyCredentialRequest {}
@@ -33,8 +33,8 @@ extern_methods!(
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[cfg(all(
-            feature = "AuthenticationServices_ASAuthorizationPublicKeyCredentialConstants",
-            feature = "AuthenticationServices_ASPasskeyCredentialIdentity"
+            feature = "ASAuthorizationPublicKeyCredentialConstants",
+            feature = "ASPasskeyCredentialIdentity"
         ))]
         #[method_id(@__retain_semantics Init initWithCredentialIdentity:clientDataHash:userVerificationPreference:supportedAlgorithms:)]
         pub unsafe fn initWithCredentialIdentity_clientDataHash_userVerificationPreference_supportedAlgorithms(
@@ -46,8 +46,8 @@ extern_methods!(
         ) -> Id<Self>;
 
         #[cfg(all(
-            feature = "AuthenticationServices_ASAuthorizationPublicKeyCredentialConstants",
-            feature = "AuthenticationServices_ASPasskeyCredentialIdentity"
+            feature = "ASAuthorizationPublicKeyCredentialConstants",
+            feature = "ASPasskeyCredentialIdentity"
         ))]
         #[method_id(@__retain_semantics Other requestWithCredentialIdentity:clientDataHash:userVerificationPreference:supportedAlgorithms:)]
         pub unsafe fn requestWithCredentialIdentity_clientDataHash_userVerificationPreference_supportedAlgorithms(
@@ -60,13 +60,13 @@ extern_methods!(
         #[method_id(@__retain_semantics Other clientDataHash)]
         pub unsafe fn clientDataHash(&self) -> Id<NSData>;
 
-        #[cfg(feature = "AuthenticationServices_ASAuthorizationPublicKeyCredentialConstants")]
+        #[cfg(feature = "ASAuthorizationPublicKeyCredentialConstants")]
         #[method_id(@__retain_semantics Other userVerificationPreference)]
         pub unsafe fn userVerificationPreference(
             &self,
         ) -> Id<ASAuthorizationPublicKeyCredentialUserVerificationPreference>;
 
-        #[cfg(feature = "AuthenticationServices_ASAuthorizationPublicKeyCredentialConstants")]
+        #[cfg(feature = "ASAuthorizationPublicKeyCredentialConstants")]
         #[method(setUserVerificationPreference:)]
         pub unsafe fn setUserVerificationPreference(
             &self,

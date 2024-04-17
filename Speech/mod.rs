@@ -16,77 +16,77 @@
 #[link(name = "Speech", kind = "framework")]
 extern "C" {}
 
-#[cfg(feature = "Speech_SFErrors")]
+#[cfg(feature = "SFErrors")]
 #[path = "SFErrors.rs"]
 mod __SFErrors;
-#[cfg(feature = "Speech_SFSpeechLanguageModel")]
+#[cfg(feature = "SFSpeechLanguageModel")]
 #[path = "SFSpeechLanguageModel.rs"]
 mod __SFSpeechLanguageModel;
-#[cfg(feature = "Speech_SFSpeechRecognitionMetadata")]
+#[cfg(feature = "SFSpeechRecognitionMetadata")]
 #[path = "SFSpeechRecognitionMetadata.rs"]
 mod __SFSpeechRecognitionMetadata;
-#[cfg(feature = "Speech_SFSpeechRecognitionRequest")]
+#[cfg(feature = "SFSpeechRecognitionRequest")]
 #[path = "SFSpeechRecognitionRequest.rs"]
 mod __SFSpeechRecognitionRequest;
-#[cfg(feature = "Speech_SFSpeechRecognitionResult")]
+#[cfg(feature = "SFSpeechRecognitionResult")]
 #[path = "SFSpeechRecognitionResult.rs"]
 mod __SFSpeechRecognitionResult;
-#[cfg(feature = "Speech_SFSpeechRecognitionTask")]
+#[cfg(feature = "SFSpeechRecognitionTask")]
 #[path = "SFSpeechRecognitionTask.rs"]
 mod __SFSpeechRecognitionTask;
-#[cfg(feature = "Speech_SFSpeechRecognitionTaskHint")]
+#[cfg(feature = "SFSpeechRecognitionTaskHint")]
 #[path = "SFSpeechRecognitionTaskHint.rs"]
 mod __SFSpeechRecognitionTaskHint;
-#[cfg(feature = "Speech_SFSpeechRecognizer")]
+#[cfg(feature = "SFSpeechRecognizer")]
 #[path = "SFSpeechRecognizer.rs"]
 mod __SFSpeechRecognizer;
-#[cfg(feature = "Speech_SFTranscription")]
+#[cfg(feature = "SFTranscription")]
 #[path = "SFTranscription.rs"]
 mod __SFTranscription;
-#[cfg(feature = "Speech_SFTranscriptionSegment")]
+#[cfg(feature = "SFTranscriptionSegment")]
 #[path = "SFTranscriptionSegment.rs"]
 mod __SFTranscriptionSegment;
-#[cfg(feature = "Speech_SFVoiceAnalytics")]
+#[cfg(feature = "SFVoiceAnalytics")]
 #[path = "SFVoiceAnalytics.rs"]
 mod __SFVoiceAnalytics;
 
-#[cfg(feature = "Speech_SFErrors")]
+#[cfg(feature = "SFErrors")]
 pub use self::__SFErrors::SFSpeechErrorCode;
-#[cfg(feature = "Speech_SFErrors")]
+#[cfg(feature = "SFErrors")]
 pub use self::__SFErrors::SFSpeechErrorDomain;
-#[cfg(feature = "Speech_SFSpeechLanguageModel")]
+#[cfg(feature = "SFSpeechLanguageModel")]
 pub use self::__SFSpeechLanguageModel::SFSpeechLanguageModel;
-#[cfg(feature = "Speech_SFSpeechLanguageModel")]
+#[cfg(feature = "SFSpeechLanguageModel")]
 pub use self::__SFSpeechLanguageModel::SFSpeechLanguageModelConfiguration;
-#[cfg(feature = "Speech_SFSpeechRecognitionMetadata")]
+#[cfg(feature = "SFSpeechRecognitionMetadata")]
 pub use self::__SFSpeechRecognitionMetadata::SFSpeechRecognitionMetadata;
-#[cfg(feature = "Speech_SFSpeechRecognitionRequest")]
+#[cfg(feature = "SFSpeechRecognitionRequest")]
 pub use self::__SFSpeechRecognitionRequest::SFSpeechAudioBufferRecognitionRequest;
-#[cfg(feature = "Speech_SFSpeechRecognitionRequest")]
+#[cfg(feature = "SFSpeechRecognitionRequest")]
 pub use self::__SFSpeechRecognitionRequest::SFSpeechRecognitionRequest;
-#[cfg(feature = "Speech_SFSpeechRecognitionRequest")]
+#[cfg(feature = "SFSpeechRecognitionRequest")]
 pub use self::__SFSpeechRecognitionRequest::SFSpeechURLRecognitionRequest;
-#[cfg(feature = "Speech_SFSpeechRecognitionResult")]
+#[cfg(feature = "SFSpeechRecognitionResult")]
 pub use self::__SFSpeechRecognitionResult::SFSpeechRecognitionResult;
-#[cfg(feature = "Speech_SFSpeechRecognitionTask")]
+#[cfg(feature = "SFSpeechRecognitionTask")]
 pub use self::__SFSpeechRecognitionTask::SFSpeechRecognitionTask;
-#[cfg(feature = "Speech_SFSpeechRecognitionTask")]
+#[cfg(feature = "SFSpeechRecognitionTask")]
 pub use self::__SFSpeechRecognitionTask::SFSpeechRecognitionTaskDelegate;
-#[cfg(feature = "Speech_SFSpeechRecognitionTask")]
+#[cfg(feature = "SFSpeechRecognitionTask")]
 pub use self::__SFSpeechRecognitionTask::SFSpeechRecognitionTaskState;
-#[cfg(feature = "Speech_SFSpeechRecognitionTaskHint")]
+#[cfg(feature = "SFSpeechRecognitionTaskHint")]
 pub use self::__SFSpeechRecognitionTaskHint::SFSpeechRecognitionTaskHint;
-#[cfg(feature = "Speech_SFSpeechRecognizer")]
+#[cfg(feature = "SFSpeechRecognizer")]
 pub use self::__SFSpeechRecognizer::SFSpeechRecognizer;
-#[cfg(feature = "Speech_SFSpeechRecognizer")]
+#[cfg(feature = "SFSpeechRecognizer")]
 pub use self::__SFSpeechRecognizer::SFSpeechRecognizerAuthorizationStatus;
-#[cfg(feature = "Speech_SFSpeechRecognizer")]
+#[cfg(feature = "SFSpeechRecognizer")]
 pub use self::__SFSpeechRecognizer::SFSpeechRecognizerDelegate;
-#[cfg(feature = "Speech_SFTranscription")]
+#[cfg(feature = "SFTranscription")]
 pub use self::__SFTranscription::SFTranscription;
-#[cfg(feature = "Speech_SFTranscriptionSegment")]
+#[cfg(feature = "SFTranscriptionSegment")]
 pub use self::__SFTranscriptionSegment::SFTranscriptionSegment;
-#[cfg(feature = "Speech_SFVoiceAnalytics")]
+#[cfg(feature = "SFVoiceAnalytics")]
 pub use self::__SFVoiceAnalytics::SFAcousticFeature;
-#[cfg(feature = "Speech_SFVoiceAnalytics")]
+#[cfg(feature = "SFVoiceAnalytics")]
 pub use self::__SFVoiceAnalytics::SFVoiceAnalytics;

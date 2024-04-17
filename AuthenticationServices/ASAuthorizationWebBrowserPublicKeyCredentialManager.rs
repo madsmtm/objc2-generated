@@ -64,7 +64,7 @@ extern_methods!(
         );
 
         #[cfg(all(
-            feature = "AuthenticationServices_ASAuthorizationWebBrowserPlatformPublicKeyCredential",
+            feature = "ASAuthorizationWebBrowserPlatformPublicKeyCredential",
             feature = "block2"
         ))]
         #[method(platformCredentialsForRelyingParty:completionHandler:)]

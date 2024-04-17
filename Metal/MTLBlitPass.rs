@@ -21,12 +21,12 @@ unsafe impl NSObjectProtocol for MTLBlitPassSampleBufferAttachmentDescriptor {}
 
 extern_methods!(
     unsafe impl MTLBlitPassSampleBufferAttachmentDescriptor {
-        #[cfg(feature = "Metal_MTLCounters")]
+        #[cfg(feature = "MTLCounters")]
         #[method_id(@__retain_semantics Other sampleBuffer)]
         pub unsafe fn sampleBuffer(&self)
             -> Option<Id<ProtocolObject<dyn MTLCounterSampleBuffer>>>;
 
-        #[cfg(feature = "Metal_MTLCounters")]
+        #[cfg(feature = "MTLCounters")]
         #[method(setSampleBuffer:)]
         pub unsafe fn setSampleBuffer(
             &self,

@@ -69,19 +69,19 @@ unsafe impl NSSecureCoding for HKVisionPrism {}
 
 extern_methods!(
     unsafe impl HKVisionPrism {
-        #[cfg(feature = "HealthKit_HKQuantity")]
+        #[cfg(feature = "HKQuantity")]
         #[method_id(@__retain_semantics Other amount)]
         pub unsafe fn amount(&self) -> Id<HKQuantity>;
 
-        #[cfg(feature = "HealthKit_HKQuantity")]
+        #[cfg(feature = "HKQuantity")]
         #[method_id(@__retain_semantics Other angle)]
         pub unsafe fn angle(&self) -> Id<HKQuantity>;
 
-        #[cfg(feature = "HealthKit_HKQuantity")]
+        #[cfg(feature = "HKQuantity")]
         #[method_id(@__retain_semantics Other verticalAmount)]
         pub unsafe fn verticalAmount(&self) -> Id<HKQuantity>;
 
-        #[cfg(feature = "HealthKit_HKQuantity")]
+        #[cfg(feature = "HKQuantity")]
         #[method_id(@__retain_semantics Other horizontalAmount)]
         pub unsafe fn horizontalAmount(&self) -> Id<HKQuantity>;
 
@@ -94,7 +94,7 @@ extern_methods!(
         #[method(eye)]
         pub unsafe fn eye(&self) -> HKVisionEye;
 
-        #[cfg(feature = "HealthKit_HKQuantity")]
+        #[cfg(feature = "HKQuantity")]
         #[method_id(@__retain_semantics Init initWithAmount:angle:eye:)]
         pub unsafe fn initWithAmount_angle_eye(
             this: Allocated<Self>,
@@ -103,7 +103,7 @@ extern_methods!(
             eye: HKVisionEye,
         ) -> Id<Self>;
 
-        #[cfg(feature = "HealthKit_HKQuantity")]
+        #[cfg(feature = "HKQuantity")]
         #[method_id(@__retain_semantics Init initWithVerticalAmount:verticalBase:horizontalAmount:horizontalBase:eye:)]
         pub unsafe fn initWithVerticalAmount_verticalBase_horizontalAmount_horizontalBase_eye(
             this: Allocated<Self>,

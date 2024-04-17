@@ -35,10 +35,10 @@ unsafe impl RefEncode for NSISO8601DateFormatOptions {
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSFormatter")]
+    #[cfg(feature = "NSFormatter")]
     pub struct NSISO8601DateFormatter;
 
-    #[cfg(feature = "Foundation_NSFormatter")]
+    #[cfg(feature = "NSFormatter")]
     unsafe impl ClassType for NSISO8601DateFormatter {
         #[inherits(NSObject)]
         type Super = NSFormatter;
@@ -46,26 +46,26 @@ extern_class!(
     }
 );
 
-#[cfg(all(feature = "Foundation_NSFormatter", feature = "Foundation_NSObject"))]
+#[cfg(all(feature = "NSFormatter", feature = "NSObject"))]
 unsafe impl NSCoding for NSISO8601DateFormatter {}
 
-#[cfg(all(feature = "Foundation_NSFormatter", feature = "Foundation_NSObject"))]
+#[cfg(all(feature = "NSFormatter", feature = "NSObject"))]
 unsafe impl NSCopying for NSISO8601DateFormatter {}
 
-#[cfg(feature = "Foundation_NSFormatter")]
+#[cfg(feature = "NSFormatter")]
 unsafe impl NSObjectProtocol for NSISO8601DateFormatter {}
 
-#[cfg(all(feature = "Foundation_NSFormatter", feature = "Foundation_NSObject"))]
+#[cfg(all(feature = "NSFormatter", feature = "NSObject"))]
 unsafe impl NSSecureCoding for NSISO8601DateFormatter {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSFormatter")]
+    #[cfg(feature = "NSFormatter")]
     unsafe impl NSISO8601DateFormatter {
-        #[cfg(feature = "Foundation_NSTimeZone")]
+        #[cfg(feature = "NSTimeZone")]
         #[method_id(@__retain_semantics Other timeZone)]
         pub unsafe fn timeZone(&self) -> Id<NSTimeZone>;
 
-        #[cfg(feature = "Foundation_NSTimeZone")]
+        #[cfg(feature = "NSTimeZone")]
         #[method(setTimeZone:)]
         pub unsafe fn setTimeZone(&self, time_zone: Option<&NSTimeZone>);
 
@@ -78,19 +78,15 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
-        #[cfg(all(feature = "Foundation_NSDate", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSDate", feature = "NSString"))]
         #[method_id(@__retain_semantics Other stringFromDate:)]
         pub unsafe fn stringFromDate(&self, date: &NSDate) -> Id<NSString>;
 
-        #[cfg(all(feature = "Foundation_NSDate", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSDate", feature = "NSString"))]
         #[method_id(@__retain_semantics Other dateFromString:)]
         pub unsafe fn dateFromString(&self, string: &NSString) -> Option<Id<NSDate>>;
 
-        #[cfg(all(
-            feature = "Foundation_NSDate",
-            feature = "Foundation_NSString",
-            feature = "Foundation_NSTimeZone"
-        ))]
+        #[cfg(all(feature = "NSDate", feature = "NSString", feature = "NSTimeZone"))]
         #[method_id(@__retain_semantics Other stringFromDate:timeZone:formatOptions:)]
         pub unsafe fn stringFromDate_timeZone_formatOptions(
             date: &NSDate,
@@ -102,7 +98,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSFormatter")]
+    #[cfg(feature = "NSFormatter")]
     unsafe impl NSISO8601DateFormatter {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

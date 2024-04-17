@@ -24,11 +24,11 @@ pub const DOM_NODE_INSIDE: c_uint = 3;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
+    #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     #[deprecated]
     pub struct DOMRange;
 
-    #[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
+    #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl ClassType for DOMRange {
         #[inherits(WebScriptObject, NSObject)]
         type Super = DOMObject;
@@ -36,16 +36,16 @@ extern_class!(
     }
 );
 
-#[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
+#[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
 unsafe impl NSCopying for DOMRange {}
 
-#[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
+#[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
 unsafe impl NSObjectProtocol for DOMRange {}
 
 extern_methods!(
-    #[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
+    #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMRange {
-        #[cfg(feature = "WebKit_DOMNode")]
+        #[cfg(feature = "DOMNode")]
         #[deprecated]
         #[method_id(@__retain_semantics Other startContainer)]
         pub unsafe fn startContainer(&self) -> Option<Id<DOMNode>>;
@@ -54,7 +54,7 @@ extern_methods!(
         #[method(startOffset)]
         pub unsafe fn startOffset(&self) -> c_int;
 
-        #[cfg(feature = "WebKit_DOMNode")]
+        #[cfg(feature = "DOMNode")]
         #[deprecated]
         #[method_id(@__retain_semantics Other endContainer)]
         pub unsafe fn endContainer(&self) -> Option<Id<DOMNode>>;
@@ -67,7 +67,7 @@ extern_methods!(
         #[method(collapsed)]
         pub unsafe fn collapsed(&self) -> bool;
 
-        #[cfg(feature = "WebKit_DOMNode")]
+        #[cfg(feature = "DOMNode")]
         #[deprecated]
         #[method_id(@__retain_semantics Other commonAncestorContainer)]
         pub unsafe fn commonAncestorContainer(&self) -> Option<Id<DOMNode>>;
@@ -75,30 +75,30 @@ extern_methods!(
         #[method_id(@__retain_semantics Other text)]
         pub unsafe fn text(&self) -> Id<NSString>;
 
-        #[cfg(feature = "WebKit_DOMNode")]
+        #[cfg(feature = "DOMNode")]
         #[method(setStart:offset:)]
         pub unsafe fn setStart_offset(&self, ref_node: Option<&DOMNode>, offset: c_int);
 
-        #[cfg(feature = "WebKit_DOMNode")]
+        #[cfg(feature = "DOMNode")]
         #[method(setEnd:offset:)]
         pub unsafe fn setEnd_offset(&self, ref_node: Option<&DOMNode>, offset: c_int);
 
-        #[cfg(feature = "WebKit_DOMNode")]
+        #[cfg(feature = "DOMNode")]
         #[deprecated]
         #[method(setStartBefore:)]
         pub unsafe fn setStartBefore(&self, ref_node: Option<&DOMNode>);
 
-        #[cfg(feature = "WebKit_DOMNode")]
+        #[cfg(feature = "DOMNode")]
         #[deprecated]
         #[method(setStartAfter:)]
         pub unsafe fn setStartAfter(&self, ref_node: Option<&DOMNode>);
 
-        #[cfg(feature = "WebKit_DOMNode")]
+        #[cfg(feature = "DOMNode")]
         #[deprecated]
         #[method(setEndBefore:)]
         pub unsafe fn setEndBefore(&self, ref_node: Option<&DOMNode>);
 
-        #[cfg(feature = "WebKit_DOMNode")]
+        #[cfg(feature = "DOMNode")]
         #[deprecated]
         #[method(setEndAfter:)]
         pub unsafe fn setEndAfter(&self, ref_node: Option<&DOMNode>);
@@ -107,12 +107,12 @@ extern_methods!(
         #[method(collapse:)]
         pub unsafe fn collapse(&self, to_start: bool);
 
-        #[cfg(feature = "WebKit_DOMNode")]
+        #[cfg(feature = "DOMNode")]
         #[deprecated]
         #[method(selectNode:)]
         pub unsafe fn selectNode(&self, ref_node: Option<&DOMNode>);
 
-        #[cfg(feature = "WebKit_DOMNode")]
+        #[cfg(feature = "DOMNode")]
         #[deprecated]
         #[method(selectNodeContents:)]
         pub unsafe fn selectNodeContents(&self, ref_node: Option<&DOMNode>);
@@ -128,22 +128,22 @@ extern_methods!(
         #[method(deleteContents)]
         pub unsafe fn deleteContents(&self);
 
-        #[cfg(all(feature = "WebKit_DOMDocumentFragment", feature = "WebKit_DOMNode"))]
+        #[cfg(all(feature = "DOMDocumentFragment", feature = "DOMNode"))]
         #[deprecated]
         #[method_id(@__retain_semantics Other extractContents)]
         pub unsafe fn extractContents(&self) -> Option<Id<DOMDocumentFragment>>;
 
-        #[cfg(all(feature = "WebKit_DOMDocumentFragment", feature = "WebKit_DOMNode"))]
+        #[cfg(all(feature = "DOMDocumentFragment", feature = "DOMNode"))]
         #[deprecated]
         #[method_id(@__retain_semantics Other cloneContents)]
         pub unsafe fn cloneContents(&self) -> Option<Id<DOMDocumentFragment>>;
 
-        #[cfg(feature = "WebKit_DOMNode")]
+        #[cfg(feature = "DOMNode")]
         #[deprecated]
         #[method(insertNode:)]
         pub unsafe fn insertNode(&self, new_node: Option<&DOMNode>);
 
-        #[cfg(feature = "WebKit_DOMNode")]
+        #[cfg(feature = "DOMNode")]
         #[deprecated]
         #[method(surroundContents:)]
         pub unsafe fn surroundContents(&self, new_parent: Option<&DOMNode>);
@@ -160,22 +160,22 @@ extern_methods!(
         #[method(detach)]
         pub unsafe fn detach(&self);
 
-        #[cfg(all(feature = "WebKit_DOMDocumentFragment", feature = "WebKit_DOMNode"))]
+        #[cfg(all(feature = "DOMDocumentFragment", feature = "DOMNode"))]
         #[method_id(@__retain_semantics Other createContextualFragment:)]
         pub unsafe fn createContextualFragment(
             &self,
             html: Option<&NSString>,
         ) -> Option<Id<DOMDocumentFragment>>;
 
-        #[cfg(feature = "WebKit_DOMNode")]
+        #[cfg(feature = "DOMNode")]
         #[method(compareNode:)]
         pub unsafe fn compareNode(&self, ref_node: Option<&DOMNode>) -> c_short;
 
-        #[cfg(feature = "WebKit_DOMNode")]
+        #[cfg(feature = "DOMNode")]
         #[method(intersectsNode:)]
         pub unsafe fn intersectsNode(&self, ref_node: Option<&DOMNode>) -> bool;
 
-        #[cfg(feature = "WebKit_DOMNode")]
+        #[cfg(feature = "DOMNode")]
         #[method(comparePoint:offset:)]
         pub unsafe fn comparePoint_offset(
             &self,
@@ -183,7 +183,7 @@ extern_methods!(
             offset: c_int,
         ) -> c_short;
 
-        #[cfg(feature = "WebKit_DOMNode")]
+        #[cfg(feature = "DOMNode")]
         #[method(isPointInRange:offset:)]
         pub unsafe fn isPointInRange_offset(
             &self,
@@ -195,7 +195,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `DOMObject`
-    #[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
+    #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMRange {
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
@@ -205,7 +205,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
+    #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMRange {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -214,14 +214,14 @@ extern_methods!(
 
 extern_methods!(
     /// DOMRangeDeprecated
-    #[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
+    #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMRange {
-        #[cfg(feature = "WebKit_DOMNode")]
+        #[cfg(feature = "DOMNode")]
         #[deprecated]
         #[method(setStart::)]
         pub unsafe fn setStart(&self, ref_node: Option<&DOMNode>, offset: c_int);
 
-        #[cfg(feature = "WebKit_DOMNode")]
+        #[cfg(feature = "DOMNode")]
         #[deprecated]
         #[method(setEnd::)]
         pub unsafe fn setEnd(&self, ref_node: Option<&DOMNode>, offset: c_int);

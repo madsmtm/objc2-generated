@@ -208,11 +208,11 @@ extern_methods!(
         #[method(setLabel:)]
         pub unsafe fn setLabel(&self, label: &NSString);
 
-        #[cfg(feature = "Metal_MTLResource")]
+        #[cfg(feature = "MTLResource")]
         #[method(storageMode)]
         pub unsafe fn storageMode(&self) -> MTLStorageMode;
 
-        #[cfg(feature = "Metal_MTLResource")]
+        #[cfg(feature = "MTLResource")]
         #[method(setStorageMode:)]
         pub unsafe fn setStorageMode(&self, storage_mode: MTLStorageMode);
 
@@ -237,7 +237,7 @@ extern_methods!(
 
 extern_protocol!(
     pub unsafe trait MTLCounterSampleBuffer: NSObjectProtocol {
-        #[cfg(feature = "Metal_MTLDevice")]
+        #[cfg(feature = "MTLDevice")]
         #[method_id(@__retain_semantics Other device)]
         unsafe fn device(&self) -> Id<ProtocolObject<dyn MTLDevice>>;
 

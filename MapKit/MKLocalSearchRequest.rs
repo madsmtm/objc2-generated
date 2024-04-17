@@ -51,7 +51,7 @@ extern_methods!(
             natural_language_query: &NSString,
         ) -> Id<Self>;
 
-        #[cfg(all(feature = "MapKit_MKGeometry", feature = "objc2-core-location"))]
+        #[cfg(all(feature = "MKGeometry", feature = "objc2-core-location"))]
         #[method_id(@__retain_semantics Init initWithNaturalLanguageQuery:region:)]
         pub unsafe fn initWithNaturalLanguageQuery_region(
             this: Allocated<Self>,
@@ -65,11 +65,11 @@ extern_methods!(
         #[method(setNaturalLanguageQuery:)]
         pub unsafe fn setNaturalLanguageQuery(&self, natural_language_query: Option<&NSString>);
 
-        #[cfg(all(feature = "MapKit_MKGeometry", feature = "objc2-core-location"))]
+        #[cfg(all(feature = "MKGeometry", feature = "objc2-core-location"))]
         #[method(region)]
         pub unsafe fn region(&self) -> MKCoordinateRegion;
 
-        #[cfg(all(feature = "MapKit_MKGeometry", feature = "objc2-core-location"))]
+        #[cfg(all(feature = "MKGeometry", feature = "objc2-core-location"))]
         #[method(setRegion:)]
         pub unsafe fn setRegion(&self, region: MKCoordinateRegion);
 
@@ -79,11 +79,11 @@ extern_methods!(
         #[method(setResultTypes:)]
         pub unsafe fn setResultTypes(&self, result_types: MKLocalSearchResultType);
 
-        #[cfg(feature = "MapKit_MKPointOfInterestFilter")]
+        #[cfg(feature = "MKPointOfInterestFilter")]
         #[method_id(@__retain_semantics Other pointOfInterestFilter)]
         pub unsafe fn pointOfInterestFilter(&self) -> Option<Id<MKPointOfInterestFilter>>;
 
-        #[cfg(feature = "MapKit_MKPointOfInterestFilter")]
+        #[cfg(feature = "MKPointOfInterestFilter")]
         #[method(setPointOfInterestFilter:)]
         pub unsafe fn setPointOfInterestFilter(
             &self,

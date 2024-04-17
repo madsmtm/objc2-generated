@@ -36,7 +36,7 @@ extern_methods!(
             configuration: &NSURLSessionConfiguration,
         ) -> Id<NSURLSession>;
 
-        #[cfg(feature = "Foundation_NSOperation")]
+        #[cfg(feature = "NSOperation")]
         #[method_id(@__retain_semantics Other sessionWithConfiguration:delegate:delegateQueue:)]
         pub unsafe fn sessionWithConfiguration_delegate_delegateQueue(
             configuration: &NSURLSessionConfiguration,
@@ -44,7 +44,7 @@ extern_methods!(
             queue: Option<&NSOperationQueue>,
         ) -> Id<NSURLSession>;
 
-        #[cfg(feature = "Foundation_NSOperation")]
+        #[cfg(feature = "NSOperation")]
         #[method_id(@__retain_semantics Other delegateQueue)]
         pub unsafe fn delegateQueue(&self) -> Id<NSOperationQueue>;
 
@@ -54,11 +54,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Other configuration)]
         pub unsafe fn configuration(&self) -> Id<NSURLSessionConfiguration>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other sessionDescription)]
         pub unsafe fn sessionDescription(&self) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method(setSessionDescription:)]
         pub unsafe fn setSessionDescription(&self, session_description: Option<&NSString>);
 
@@ -76,7 +76,7 @@ extern_methods!(
         #[method(flushWithCompletionHandler:)]
         pub unsafe fn flushWithCompletionHandler(&self, completion_handler: &Block<dyn Fn()>);
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "block2"))]
+        #[cfg(all(feature = "NSArray", feature = "block2"))]
         #[method(getTasksWithCompletionHandler:)]
         pub unsafe fn getTasksWithCompletionHandler(
             &self,
@@ -89,25 +89,25 @@ extern_methods!(
             >,
         );
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "block2"))]
+        #[cfg(all(feature = "NSArray", feature = "block2"))]
         #[method(getAllTasksWithCompletionHandler:)]
         pub unsafe fn getAllTasksWithCompletionHandler(
             &self,
             completion_handler: &Block<dyn Fn(NonNull<NSArray<NSURLSessionTask>>)>,
         );
 
-        #[cfg(feature = "Foundation_NSURLRequest")]
+        #[cfg(feature = "NSURLRequest")]
         #[method_id(@__retain_semantics Other dataTaskWithRequest:)]
         pub unsafe fn dataTaskWithRequest(
             &self,
             request: &NSURLRequest,
         ) -> Id<NSURLSessionDataTask>;
 
-        #[cfg(feature = "Foundation_NSURL")]
+        #[cfg(feature = "NSURL")]
         #[method_id(@__retain_semantics Other dataTaskWithURL:)]
         pub unsafe fn dataTaskWithURL(&self, url: &NSURL) -> Id<NSURLSessionDataTask>;
 
-        #[cfg(all(feature = "Foundation_NSURL", feature = "Foundation_NSURLRequest"))]
+        #[cfg(all(feature = "NSURL", feature = "NSURLRequest"))]
         #[method_id(@__retain_semantics Other uploadTaskWithRequest:fromFile:)]
         pub unsafe fn uploadTaskWithRequest_fromFile(
             &self,
@@ -115,7 +115,7 @@ extern_methods!(
             file_url: &NSURL,
         ) -> Id<NSURLSessionUploadTask>;
 
-        #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSURLRequest"))]
+        #[cfg(all(feature = "NSData", feature = "NSURLRequest"))]
         #[method_id(@__retain_semantics Other uploadTaskWithRequest:fromData:)]
         pub unsafe fn uploadTaskWithRequest_fromData(
             &self,
@@ -123,39 +123,39 @@ extern_methods!(
             body_data: &NSData,
         ) -> Id<NSURLSessionUploadTask>;
 
-        #[cfg(feature = "Foundation_NSData")]
+        #[cfg(feature = "NSData")]
         #[method_id(@__retain_semantics Other uploadTaskWithResumeData:)]
         pub unsafe fn uploadTaskWithResumeData(
             &self,
             resume_data: &NSData,
         ) -> Id<NSURLSessionUploadTask>;
 
-        #[cfg(feature = "Foundation_NSURLRequest")]
+        #[cfg(feature = "NSURLRequest")]
         #[method_id(@__retain_semantics Other uploadTaskWithStreamedRequest:)]
         pub unsafe fn uploadTaskWithStreamedRequest(
             &self,
             request: &NSURLRequest,
         ) -> Id<NSURLSessionUploadTask>;
 
-        #[cfg(feature = "Foundation_NSURLRequest")]
+        #[cfg(feature = "NSURLRequest")]
         #[method_id(@__retain_semantics Other downloadTaskWithRequest:)]
         pub unsafe fn downloadTaskWithRequest(
             &self,
             request: &NSURLRequest,
         ) -> Id<NSURLSessionDownloadTask>;
 
-        #[cfg(feature = "Foundation_NSURL")]
+        #[cfg(feature = "NSURL")]
         #[method_id(@__retain_semantics Other downloadTaskWithURL:)]
         pub unsafe fn downloadTaskWithURL(&self, url: &NSURL) -> Id<NSURLSessionDownloadTask>;
 
-        #[cfg(feature = "Foundation_NSData")]
+        #[cfg(feature = "NSData")]
         #[method_id(@__retain_semantics Other downloadTaskWithResumeData:)]
         pub unsafe fn downloadTaskWithResumeData(
             &self,
             resume_data: &NSData,
         ) -> Id<NSURLSessionDownloadTask>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other streamTaskWithHostName:port:)]
         pub unsafe fn streamTaskWithHostName_port(
             &self,
@@ -163,7 +163,7 @@ extern_methods!(
             port: NSInteger,
         ) -> Id<NSURLSessionStreamTask>;
 
-        #[cfg(feature = "Foundation_NSNetServices")]
+        #[cfg(feature = "NSNetServices")]
         #[deprecated = "Use nw_connection_t in Network framework instead"]
         #[method_id(@__retain_semantics Other streamTaskWithNetService:)]
         pub unsafe fn streamTaskWithNetService(
@@ -171,15 +171,11 @@ extern_methods!(
             service: &NSNetService,
         ) -> Id<NSURLSessionStreamTask>;
 
-        #[cfg(feature = "Foundation_NSURL")]
+        #[cfg(feature = "NSURL")]
         #[method_id(@__retain_semantics Other webSocketTaskWithURL:)]
         pub unsafe fn webSocketTaskWithURL(&self, url: &NSURL) -> Id<NSURLSessionWebSocketTask>;
 
-        #[cfg(all(
-            feature = "Foundation_NSArray",
-            feature = "Foundation_NSString",
-            feature = "Foundation_NSURL"
-        ))]
+        #[cfg(all(feature = "NSArray", feature = "NSString", feature = "NSURL"))]
         #[method_id(@__retain_semantics Other webSocketTaskWithURL:protocols:)]
         pub unsafe fn webSocketTaskWithURL_protocols(
             &self,
@@ -187,7 +183,7 @@ extern_methods!(
             protocols: &NSArray<NSString>,
         ) -> Id<NSURLSessionWebSocketTask>;
 
-        #[cfg(feature = "Foundation_NSURLRequest")]
+        #[cfg(feature = "NSURLRequest")]
         #[method_id(@__retain_semantics Other webSocketTaskWithRequest:)]
         pub unsafe fn webSocketTaskWithRequest(
             &self,
@@ -208,10 +204,10 @@ extern_methods!(
     /// NSURLSessionAsynchronousConvenience
     unsafe impl NSURLSession {
         #[cfg(all(
-            feature = "Foundation_NSData",
-            feature = "Foundation_NSError",
-            feature = "Foundation_NSURLRequest",
-            feature = "Foundation_NSURLResponse",
+            feature = "NSData",
+            feature = "NSError",
+            feature = "NSURLRequest",
+            feature = "NSURLResponse",
             feature = "block2"
         ))]
         #[method_id(@__retain_semantics Other dataTaskWithRequest:completionHandler:)]
@@ -222,10 +218,10 @@ extern_methods!(
         ) -> Id<NSURLSessionDataTask>;
 
         #[cfg(all(
-            feature = "Foundation_NSData",
-            feature = "Foundation_NSError",
-            feature = "Foundation_NSURL",
-            feature = "Foundation_NSURLResponse",
+            feature = "NSData",
+            feature = "NSError",
+            feature = "NSURL",
+            feature = "NSURLResponse",
             feature = "block2"
         ))]
         #[method_id(@__retain_semantics Other dataTaskWithURL:completionHandler:)]
@@ -236,11 +232,11 @@ extern_methods!(
         ) -> Id<NSURLSessionDataTask>;
 
         #[cfg(all(
-            feature = "Foundation_NSData",
-            feature = "Foundation_NSError",
-            feature = "Foundation_NSURL",
-            feature = "Foundation_NSURLRequest",
-            feature = "Foundation_NSURLResponse",
+            feature = "NSData",
+            feature = "NSError",
+            feature = "NSURL",
+            feature = "NSURLRequest",
+            feature = "NSURLResponse",
             feature = "block2"
         ))]
         #[method_id(@__retain_semantics Other uploadTaskWithRequest:fromFile:completionHandler:)]
@@ -252,10 +248,10 @@ extern_methods!(
         ) -> Id<NSURLSessionUploadTask>;
 
         #[cfg(all(
-            feature = "Foundation_NSData",
-            feature = "Foundation_NSError",
-            feature = "Foundation_NSURLRequest",
-            feature = "Foundation_NSURLResponse",
+            feature = "NSData",
+            feature = "NSError",
+            feature = "NSURLRequest",
+            feature = "NSURLResponse",
             feature = "block2"
         ))]
         #[method_id(@__retain_semantics Other uploadTaskWithRequest:fromData:completionHandler:)]
@@ -267,9 +263,9 @@ extern_methods!(
         ) -> Id<NSURLSessionUploadTask>;
 
         #[cfg(all(
-            feature = "Foundation_NSData",
-            feature = "Foundation_NSError",
-            feature = "Foundation_NSURLResponse",
+            feature = "NSData",
+            feature = "NSError",
+            feature = "NSURLResponse",
             feature = "block2"
         ))]
         #[method_id(@__retain_semantics Other uploadTaskWithResumeData:completionHandler:)]
@@ -280,10 +276,10 @@ extern_methods!(
         ) -> Id<NSURLSessionUploadTask>;
 
         #[cfg(all(
-            feature = "Foundation_NSError",
-            feature = "Foundation_NSURL",
-            feature = "Foundation_NSURLRequest",
-            feature = "Foundation_NSURLResponse",
+            feature = "NSError",
+            feature = "NSURL",
+            feature = "NSURLRequest",
+            feature = "NSURLResponse",
             feature = "block2"
         ))]
         #[method_id(@__retain_semantics Other downloadTaskWithRequest:completionHandler:)]
@@ -294,9 +290,9 @@ extern_methods!(
         ) -> Id<NSURLSessionDownloadTask>;
 
         #[cfg(all(
-            feature = "Foundation_NSError",
-            feature = "Foundation_NSURL",
-            feature = "Foundation_NSURLResponse",
+            feature = "NSError",
+            feature = "NSURL",
+            feature = "NSURLResponse",
             feature = "block2"
         ))]
         #[method_id(@__retain_semantics Other downloadTaskWithURL:completionHandler:)]
@@ -307,10 +303,10 @@ extern_methods!(
         ) -> Id<NSURLSessionDownloadTask>;
 
         #[cfg(all(
-            feature = "Foundation_NSData",
-            feature = "Foundation_NSError",
-            feature = "Foundation_NSURL",
-            feature = "Foundation_NSURLResponse",
+            feature = "NSData",
+            feature = "NSError",
+            feature = "NSURL",
+            feature = "NSURLResponse",
             feature = "block2"
         ))]
         #[method_id(@__retain_semantics Other downloadTaskWithResumeData:completionHandler:)]
@@ -359,12 +355,12 @@ unsafe impl Send for NSURLSessionTask {}
 
 unsafe impl Sync for NSURLSessionTask {}
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSURLSessionTask {}
 
 unsafe impl NSObjectProtocol for NSURLSessionTask {}
 
-#[cfg(feature = "Foundation_NSProgress")]
+#[cfg(feature = "NSProgress")]
 unsafe impl NSProgressReporting for NSURLSessionTask {}
 
 extern_methods!(
@@ -372,15 +368,15 @@ extern_methods!(
         #[method(taskIdentifier)]
         pub unsafe fn taskIdentifier(&self) -> NSUInteger;
 
-        #[cfg(feature = "Foundation_NSURLRequest")]
+        #[cfg(feature = "NSURLRequest")]
         #[method_id(@__retain_semantics Other originalRequest)]
         pub unsafe fn originalRequest(&self) -> Option<Id<NSURLRequest>>;
 
-        #[cfg(feature = "Foundation_NSURLRequest")]
+        #[cfg(feature = "NSURLRequest")]
         #[method_id(@__retain_semantics Other currentRequest)]
         pub unsafe fn currentRequest(&self) -> Option<Id<NSURLRequest>>;
 
-        #[cfg(feature = "Foundation_NSURLResponse")]
+        #[cfg(feature = "NSURLResponse")]
         #[method_id(@__retain_semantics Other response)]
         pub unsafe fn response(&self) -> Option<Id<NSURLResponse>>;
 
@@ -393,15 +389,15 @@ extern_methods!(
             delegate: Option<&ProtocolObject<dyn NSURLSessionTaskDelegate>>,
         );
 
-        #[cfg(feature = "Foundation_NSProgress")]
+        #[cfg(feature = "NSProgress")]
         #[method_id(@__retain_semantics Other progress)]
         pub unsafe fn progress(&self) -> Id<NSProgress>;
 
-        #[cfg(feature = "Foundation_NSDate")]
+        #[cfg(feature = "NSDate")]
         #[method_id(@__retain_semantics Other earliestBeginDate)]
         pub unsafe fn earliestBeginDate(&self) -> Option<Id<NSDate>>;
 
-        #[cfg(feature = "Foundation_NSDate")]
+        #[cfg(feature = "NSDate")]
         #[method(setEarliestBeginDate:)]
         pub unsafe fn setEarliestBeginDate(&self, earliest_begin_date: Option<&NSDate>);
 
@@ -435,11 +431,11 @@ extern_methods!(
         #[method(countOfBytesExpectedToReceive)]
         pub unsafe fn countOfBytesExpectedToReceive(&self) -> i64;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other taskDescription)]
         pub unsafe fn taskDescription(&self) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method(setTaskDescription:)]
         pub unsafe fn setTaskDescription(&self, task_description: Option<&NSString>);
 
@@ -449,7 +445,7 @@ extern_methods!(
         #[method(state)]
         pub unsafe fn state(&self) -> NSURLSessionTaskState;
 
-        #[cfg(feature = "Foundation_NSError")]
+        #[cfg(feature = "NSError")]
         #[method_id(@__retain_semantics Other error)]
         pub unsafe fn error(&self) -> Option<Id<NSError>>;
 
@@ -508,12 +504,12 @@ unsafe impl Send for NSURLSessionDataTask {}
 
 unsafe impl Sync for NSURLSessionDataTask {}
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSURLSessionDataTask {}
 
 unsafe impl NSObjectProtocol for NSURLSessionDataTask {}
 
-#[cfg(feature = "Foundation_NSProgress")]
+#[cfg(feature = "NSProgress")]
 unsafe impl NSProgressReporting for NSURLSessionDataTask {}
 
 extern_methods!(
@@ -543,12 +539,12 @@ unsafe impl Send for NSURLSessionUploadTask {}
 
 unsafe impl Sync for NSURLSessionUploadTask {}
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSURLSessionUploadTask {}
 
 unsafe impl NSObjectProtocol for NSURLSessionUploadTask {}
 
-#[cfg(feature = "Foundation_NSProgress")]
+#[cfg(feature = "NSProgress")]
 unsafe impl NSProgressReporting for NSURLSessionUploadTask {}
 
 extern_methods!(
@@ -561,7 +557,7 @@ extern_methods!(
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
 
-        #[cfg(all(feature = "Foundation_NSData", feature = "block2"))]
+        #[cfg(all(feature = "NSData", feature = "block2"))]
         #[method(cancelByProducingResumeData:)]
         pub unsafe fn cancelByProducingResumeData(
             &self,
@@ -585,17 +581,17 @@ unsafe impl Send for NSURLSessionDownloadTask {}
 
 unsafe impl Sync for NSURLSessionDownloadTask {}
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSURLSessionDownloadTask {}
 
 unsafe impl NSObjectProtocol for NSURLSessionDownloadTask {}
 
-#[cfg(feature = "Foundation_NSProgress")]
+#[cfg(feature = "NSProgress")]
 unsafe impl NSProgressReporting for NSURLSessionDownloadTask {}
 
 extern_methods!(
     unsafe impl NSURLSessionDownloadTask {
-        #[cfg(all(feature = "Foundation_NSData", feature = "block2"))]
+        #[cfg(all(feature = "NSData", feature = "block2"))]
         #[method(cancelByProducingResumeData:)]
         pub unsafe fn cancelByProducingResumeData(
             &self,
@@ -627,20 +623,20 @@ unsafe impl Send for NSURLSessionStreamTask {}
 
 unsafe impl Sync for NSURLSessionStreamTask {}
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSURLSessionStreamTask {}
 
 unsafe impl NSObjectProtocol for NSURLSessionStreamTask {}
 
-#[cfg(feature = "Foundation_NSProgress")]
+#[cfg(feature = "NSProgress")]
 unsafe impl NSProgressReporting for NSURLSessionStreamTask {}
 
 extern_methods!(
     unsafe impl NSURLSessionStreamTask {
         #[cfg(all(
-            feature = "Foundation_NSData",
-            feature = "Foundation_NSDate",
-            feature = "Foundation_NSError",
+            feature = "NSData",
+            feature = "NSDate",
+            feature = "NSError",
             feature = "block2"
         ))]
         #[method(readDataOfMinLength:maxLength:timeout:completionHandler:)]
@@ -653,9 +649,9 @@ extern_methods!(
         );
 
         #[cfg(all(
-            feature = "Foundation_NSData",
-            feature = "Foundation_NSDate",
-            feature = "Foundation_NSError",
+            feature = "NSData",
+            feature = "NSDate",
+            feature = "NSError",
             feature = "block2"
         ))]
         #[method(writeData:timeout:completionHandler:)]
@@ -729,22 +725,22 @@ unsafe impl NSObjectProtocol for NSURLSessionWebSocketMessage {}
 
 extern_methods!(
     unsafe impl NSURLSessionWebSocketMessage {
-        #[cfg(feature = "Foundation_NSData")]
+        #[cfg(feature = "NSData")]
         #[method_id(@__retain_semantics Init initWithData:)]
         pub unsafe fn initWithData(this: Allocated<Self>, data: &NSData) -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Init initWithString:)]
         pub unsafe fn initWithString(this: Allocated<Self>, string: &NSString) -> Id<Self>;
 
         #[method(type)]
         pub unsafe fn r#type(&self) -> NSURLSessionWebSocketMessageType;
 
-        #[cfg(feature = "Foundation_NSData")]
+        #[cfg(feature = "NSData")]
         #[method_id(@__retain_semantics Other data)]
         pub unsafe fn data(&self) -> Option<Id<NSData>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other string)]
         pub unsafe fn string(&self) -> Option<Id<NSString>>;
 
@@ -812,17 +808,17 @@ unsafe impl Send for NSURLSessionWebSocketTask {}
 
 unsafe impl Sync for NSURLSessionWebSocketTask {}
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSURLSessionWebSocketTask {}
 
 unsafe impl NSObjectProtocol for NSURLSessionWebSocketTask {}
 
-#[cfg(feature = "Foundation_NSProgress")]
+#[cfg(feature = "NSProgress")]
 unsafe impl NSProgressReporting for NSURLSessionWebSocketTask {}
 
 extern_methods!(
     unsafe impl NSURLSessionWebSocketTask {
-        #[cfg(all(feature = "Foundation_NSError", feature = "block2"))]
+        #[cfg(all(feature = "NSError", feature = "block2"))]
         #[method(sendMessage:completionHandler:)]
         pub unsafe fn sendMessage_completionHandler(
             &self,
@@ -830,21 +826,21 @@ extern_methods!(
             completion_handler: &Block<dyn Fn(*mut NSError)>,
         );
 
-        #[cfg(all(feature = "Foundation_NSError", feature = "block2"))]
+        #[cfg(all(feature = "NSError", feature = "block2"))]
         #[method(receiveMessageWithCompletionHandler:)]
         pub unsafe fn receiveMessageWithCompletionHandler(
             &self,
             completion_handler: &Block<dyn Fn(*mut NSURLSessionWebSocketMessage, *mut NSError)>,
         );
 
-        #[cfg(all(feature = "Foundation_NSError", feature = "block2"))]
+        #[cfg(all(feature = "NSError", feature = "block2"))]
         #[method(sendPingWithPongReceiveHandler:)]
         pub unsafe fn sendPingWithPongReceiveHandler(
             &self,
             pong_receive_handler: &Block<dyn Fn(*mut NSError)>,
         );
 
-        #[cfg(feature = "Foundation_NSData")]
+        #[cfg(feature = "NSData")]
         #[method(cancelWithCloseCode:reason:)]
         pub unsafe fn cancelWithCloseCode_reason(
             &self,
@@ -861,7 +857,7 @@ extern_methods!(
         #[method(closeCode)]
         pub unsafe fn closeCode(&self) -> NSURLSessionWebSocketCloseCode;
 
-        #[cfg(feature = "Foundation_NSData")]
+        #[cfg(feature = "NSData")]
         #[method_id(@__retain_semantics Other closeReason)]
         pub unsafe fn closeReason(&self) -> Option<Id<NSData>>;
 
@@ -910,7 +906,7 @@ unsafe impl Send for NSURLSessionConfiguration {}
 
 unsafe impl Sync for NSURLSessionConfiguration {}
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSURLSessionConfiguration {}
 
 unsafe impl NSObjectProtocol for NSURLSessionConfiguration {}
@@ -923,51 +919,51 @@ extern_methods!(
         #[method_id(@__retain_semantics Other ephemeralSessionConfiguration)]
         pub unsafe fn ephemeralSessionConfiguration() -> Id<NSURLSessionConfiguration>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other backgroundSessionConfigurationWithIdentifier:)]
         pub unsafe fn backgroundSessionConfigurationWithIdentifier(
             identifier: &NSString,
         ) -> Id<NSURLSessionConfiguration>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other identifier)]
         pub unsafe fn identifier(&self) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "Foundation_NSURLRequest")]
+        #[cfg(feature = "NSURLRequest")]
         #[method(requestCachePolicy)]
         pub unsafe fn requestCachePolicy(&self) -> NSURLRequestCachePolicy;
 
-        #[cfg(feature = "Foundation_NSURLRequest")]
+        #[cfg(feature = "NSURLRequest")]
         #[method(setRequestCachePolicy:)]
         pub unsafe fn setRequestCachePolicy(&self, request_cache_policy: NSURLRequestCachePolicy);
 
-        #[cfg(feature = "Foundation_NSDate")]
+        #[cfg(feature = "NSDate")]
         #[method(timeoutIntervalForRequest)]
         pub unsafe fn timeoutIntervalForRequest(&self) -> NSTimeInterval;
 
-        #[cfg(feature = "Foundation_NSDate")]
+        #[cfg(feature = "NSDate")]
         #[method(setTimeoutIntervalForRequest:)]
         pub unsafe fn setTimeoutIntervalForRequest(
             &self,
             timeout_interval_for_request: NSTimeInterval,
         );
 
-        #[cfg(feature = "Foundation_NSDate")]
+        #[cfg(feature = "NSDate")]
         #[method(timeoutIntervalForResource)]
         pub unsafe fn timeoutIntervalForResource(&self) -> NSTimeInterval;
 
-        #[cfg(feature = "Foundation_NSDate")]
+        #[cfg(feature = "NSDate")]
         #[method(setTimeoutIntervalForResource:)]
         pub unsafe fn setTimeoutIntervalForResource(
             &self,
             timeout_interval_for_resource: NSTimeInterval,
         );
 
-        #[cfg(feature = "Foundation_NSURLRequest")]
+        #[cfg(feature = "NSURLRequest")]
         #[method(networkServiceType)]
         pub unsafe fn networkServiceType(&self) -> NSURLRequestNetworkServiceType;
 
-        #[cfg(feature = "Foundation_NSURLRequest")]
+        #[cfg(feature = "NSURLRequest")]
         #[method(setNetworkServiceType:)]
         pub unsafe fn setNetworkServiceType(
             &self,
@@ -1013,11 +1009,11 @@ extern_methods!(
         #[method(setDiscretionary:)]
         pub unsafe fn setDiscretionary(&self, discretionary: bool);
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other sharedContainerIdentifier)]
         pub unsafe fn sharedContainerIdentifier(&self) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method(setSharedContainerIdentifier:)]
         pub unsafe fn setSharedContainerIdentifier(
             &self,
@@ -1030,11 +1026,11 @@ extern_methods!(
         #[method(setSessionSendsLaunchEvents:)]
         pub unsafe fn setSessionSendsLaunchEvents(&self, session_sends_launch_events: bool);
 
-        #[cfg(feature = "Foundation_NSDictionary")]
+        #[cfg(feature = "NSDictionary")]
         #[method_id(@__retain_semantics Other connectionProxyDictionary)]
         pub unsafe fn connectionProxyDictionary(&self) -> Option<Id<NSDictionary>>;
 
-        #[cfg(feature = "Foundation_NSDictionary")]
+        #[cfg(feature = "NSDictionary")]
         #[method(setConnectionProxyDictionary:)]
         pub unsafe fn setConnectionProxyDictionary(
             &self,
@@ -1053,22 +1049,22 @@ extern_methods!(
         #[method(setHTTPShouldSetCookies:)]
         pub unsafe fn setHTTPShouldSetCookies(&self, http_should_set_cookies: bool);
 
-        #[cfg(feature = "Foundation_NSHTTPCookieStorage")]
+        #[cfg(feature = "NSHTTPCookieStorage")]
         #[method(HTTPCookieAcceptPolicy)]
         pub unsafe fn HTTPCookieAcceptPolicy(&self) -> NSHTTPCookieAcceptPolicy;
 
-        #[cfg(feature = "Foundation_NSHTTPCookieStorage")]
+        #[cfg(feature = "NSHTTPCookieStorage")]
         #[method(setHTTPCookieAcceptPolicy:)]
         pub unsafe fn setHTTPCookieAcceptPolicy(
             &self,
             http_cookie_accept_policy: NSHTTPCookieAcceptPolicy,
         );
 
-        #[cfg(feature = "Foundation_NSDictionary")]
+        #[cfg(feature = "NSDictionary")]
         #[method_id(@__retain_semantics Other HTTPAdditionalHeaders)]
         pub unsafe fn HTTPAdditionalHeaders(&self) -> Option<Id<NSDictionary>>;
 
-        #[cfg(feature = "Foundation_NSDictionary")]
+        #[cfg(feature = "NSDictionary")]
         #[method(setHTTPAdditionalHeaders:)]
         pub unsafe fn setHTTPAdditionalHeaders(
             &self,
@@ -1084,33 +1080,33 @@ extern_methods!(
             http_maximum_connections_per_host: NSInteger,
         );
 
-        #[cfg(feature = "Foundation_NSHTTPCookieStorage")]
+        #[cfg(feature = "NSHTTPCookieStorage")]
         #[method_id(@__retain_semantics Other HTTPCookieStorage)]
         pub unsafe fn HTTPCookieStorage(&self) -> Option<Id<NSHTTPCookieStorage>>;
 
-        #[cfg(feature = "Foundation_NSHTTPCookieStorage")]
+        #[cfg(feature = "NSHTTPCookieStorage")]
         #[method(setHTTPCookieStorage:)]
         pub unsafe fn setHTTPCookieStorage(
             &self,
             http_cookie_storage: Option<&NSHTTPCookieStorage>,
         );
 
-        #[cfg(feature = "Foundation_NSURLCredentialStorage")]
+        #[cfg(feature = "NSURLCredentialStorage")]
         #[method_id(@__retain_semantics Other URLCredentialStorage)]
         pub unsafe fn URLCredentialStorage(&self) -> Option<Id<NSURLCredentialStorage>>;
 
-        #[cfg(feature = "Foundation_NSURLCredentialStorage")]
+        #[cfg(feature = "NSURLCredentialStorage")]
         #[method(setURLCredentialStorage:)]
         pub unsafe fn setURLCredentialStorage(
             &self,
             url_credential_storage: Option<&NSURLCredentialStorage>,
         );
 
-        #[cfg(feature = "Foundation_NSURLCache")]
+        #[cfg(feature = "NSURLCache")]
         #[method_id(@__retain_semantics Other URLCache)]
         pub unsafe fn URLCache(&self) -> Option<Id<NSURLCache>>;
 
-        #[cfg(feature = "Foundation_NSURLCache")]
+        #[cfg(feature = "NSURLCache")]
         #[method(setURLCache:)]
         pub unsafe fn setURLCache(&self, url_cache: Option<&NSURLCache>);
 
@@ -1123,11 +1119,11 @@ extern_methods!(
             should_use_extended_background_idle_mode: bool,
         );
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(feature = "NSArray")]
         #[method_id(@__retain_semantics Other protocolClasses)]
         pub unsafe fn protocolClasses(&self) -> Option<Id<NSArray<TodoClass>>>;
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(feature = "NSArray")]
         #[method(setProtocolClasses:)]
         pub unsafe fn setProtocolClasses(&self, protocol_classes: Option<&NSArray<TodoClass>>);
 
@@ -1208,7 +1204,7 @@ unsafe impl RefEncode for NSURLSessionResponseDisposition {
 
 extern_protocol!(
     pub unsafe trait NSURLSessionDelegate: NSObjectProtocol {
-        #[cfg(feature = "Foundation_NSError")]
+        #[cfg(feature = "NSError")]
         #[optional]
         #[method(URLSession:didBecomeInvalidWithError:)]
         unsafe fn URLSession_didBecomeInvalidWithError(
@@ -1218,8 +1214,8 @@ extern_protocol!(
         );
 
         #[cfg(all(
-            feature = "Foundation_NSURLAuthenticationChallenge",
-            feature = "Foundation_NSURLCredential",
+            feature = "NSURLAuthenticationChallenge",
+            feature = "NSURLCredential",
             feature = "block2"
         ))]
         #[optional]
@@ -1247,7 +1243,7 @@ extern_protocol!(
         #[method(URLSession:didCreateTask:)]
         unsafe fn URLSession_didCreateTask(&self, session: &NSURLSession, task: &NSURLSessionTask);
 
-        #[cfg(all(feature = "Foundation_NSURLRequest", feature = "block2"))]
+        #[cfg(all(feature = "NSURLRequest", feature = "block2"))]
         #[optional]
         #[method(URLSession:task:willBeginDelayedRequest:completionHandler:)]
         unsafe fn URLSession_task_willBeginDelayedRequest_completionHandler(
@@ -1269,8 +1265,8 @@ extern_protocol!(
         );
 
         #[cfg(all(
-            feature = "Foundation_NSURLRequest",
-            feature = "Foundation_NSURLResponse",
+            feature = "NSURLRequest",
+            feature = "NSURLResponse",
             feature = "block2"
         ))]
         #[optional]
@@ -1285,8 +1281,8 @@ extern_protocol!(
         );
 
         #[cfg(all(
-            feature = "Foundation_NSURLAuthenticationChallenge",
-            feature = "Foundation_NSURLCredential",
+            feature = "NSURLAuthenticationChallenge",
+            feature = "NSURLCredential",
             feature = "block2"
         ))]
         #[optional]
@@ -1301,7 +1297,7 @@ extern_protocol!(
             >,
         );
 
-        #[cfg(all(feature = "Foundation_NSStream", feature = "block2"))]
+        #[cfg(all(feature = "NSStream", feature = "block2"))]
         #[optional]
         #[method(URLSession:task:needNewBodyStream:)]
         unsafe fn URLSession_task_needNewBodyStream(
@@ -1311,7 +1307,7 @@ extern_protocol!(
             completion_handler: &Block<dyn Fn(*mut NSInputStream)>,
         );
 
-        #[cfg(all(feature = "Foundation_NSStream", feature = "block2"))]
+        #[cfg(all(feature = "NSStream", feature = "block2"))]
         #[optional]
         #[method(URLSession:task:needNewBodyStreamFromOffset:completionHandler:)]
         unsafe fn URLSession_task_needNewBodyStreamFromOffset_completionHandler(
@@ -1333,7 +1329,7 @@ extern_protocol!(
             total_bytes_expected_to_send: i64,
         );
 
-        #[cfg(feature = "Foundation_NSURLResponse")]
+        #[cfg(feature = "NSURLResponse")]
         #[optional]
         #[method(URLSession:task:didReceiveInformationalResponse:)]
         unsafe fn URLSession_task_didReceiveInformationalResponse(
@@ -1352,7 +1348,7 @@ extern_protocol!(
             metrics: &NSURLSessionTaskMetrics,
         );
 
-        #[cfg(feature = "Foundation_NSError")]
+        #[cfg(feature = "NSError")]
         #[optional]
         #[method(URLSession:task:didCompleteWithError:)]
         unsafe fn URLSession_task_didCompleteWithError(
@@ -1368,7 +1364,7 @@ extern_protocol!(
 
 extern_protocol!(
     pub unsafe trait NSURLSessionDataDelegate: NSURLSessionTaskDelegate {
-        #[cfg(all(feature = "Foundation_NSURLResponse", feature = "block2"))]
+        #[cfg(all(feature = "NSURLResponse", feature = "block2"))]
         #[optional]
         #[method(URLSession:dataTask:didReceiveResponse:completionHandler:)]
         unsafe fn URLSession_dataTask_didReceiveResponse_completionHandler(
@@ -1397,7 +1393,7 @@ extern_protocol!(
             stream_task: &NSURLSessionStreamTask,
         );
 
-        #[cfg(feature = "Foundation_NSData")]
+        #[cfg(feature = "NSData")]
         #[optional]
         #[method(URLSession:dataTask:didReceiveData:)]
         unsafe fn URLSession_dataTask_didReceiveData(
@@ -1407,7 +1403,7 @@ extern_protocol!(
             data: &NSData,
         );
 
-        #[cfg(all(feature = "Foundation_NSURLCache", feature = "block2"))]
+        #[cfg(all(feature = "NSURLCache", feature = "block2"))]
         #[optional]
         #[method(URLSession:dataTask:willCacheResponse:completionHandler:)]
         unsafe fn URLSession_dataTask_willCacheResponse_completionHandler(
@@ -1424,7 +1420,7 @@ extern_protocol!(
 
 extern_protocol!(
     pub unsafe trait NSURLSessionDownloadDelegate: NSURLSessionTaskDelegate {
-        #[cfg(feature = "Foundation_NSURL")]
+        #[cfg(feature = "NSURL")]
         #[method(URLSession:downloadTask:didFinishDownloadingToURL:)]
         unsafe fn URLSession_downloadTask_didFinishDownloadingToURL(
             &self,
@@ -1484,7 +1480,7 @@ extern_protocol!(
             stream_task: &NSURLSessionStreamTask,
         );
 
-        #[cfg(feature = "Foundation_NSStream")]
+        #[cfg(feature = "NSStream")]
         #[optional]
         #[method(URLSession:streamTask:didBecomeInputStream:outputStream:)]
         unsafe fn URLSession_streamTask_didBecomeInputStream_outputStream(
@@ -1501,7 +1497,7 @@ extern_protocol!(
 
 extern_protocol!(
     pub unsafe trait NSURLSessionWebSocketDelegate: NSURLSessionTaskDelegate {
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[optional]
         #[method(URLSession:webSocketTask:didOpenWithProtocol:)]
         unsafe fn URLSession_webSocketTask_didOpenWithProtocol(
@@ -1511,7 +1507,7 @@ extern_protocol!(
             protocol: Option<&NSString>,
         );
 
-        #[cfg(feature = "Foundation_NSData")]
+        #[cfg(feature = "NSData")]
         #[optional]
         #[method(URLSession:webSocketTask:didCloseWithCode:reason:)]
         unsafe fn URLSession_webSocketTask_didCloseWithCode_reason(
@@ -1527,19 +1523,19 @@ extern_protocol!(
 );
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLSessionDownloadTaskResumeData: &'static NSString;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLSessionUploadTaskResumeData: &'static NSString;
 }
 
 extern_methods!(
     /// NSURLSessionDeprecated
     unsafe impl NSURLSessionConfiguration {
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[deprecated]
         #[method_id(@__retain_semantics Other backgroundSessionConfiguration:)]
         pub unsafe fn backgroundSessionConfiguration(
@@ -1614,59 +1610,59 @@ unsafe impl NSObjectProtocol for NSURLSessionTaskTransactionMetrics {}
 
 extern_methods!(
     unsafe impl NSURLSessionTaskTransactionMetrics {
-        #[cfg(feature = "Foundation_NSURLRequest")]
+        #[cfg(feature = "NSURLRequest")]
         #[method_id(@__retain_semantics Other request)]
         pub unsafe fn request(&self) -> Id<NSURLRequest>;
 
-        #[cfg(feature = "Foundation_NSURLResponse")]
+        #[cfg(feature = "NSURLResponse")]
         #[method_id(@__retain_semantics Other response)]
         pub unsafe fn response(&self) -> Option<Id<NSURLResponse>>;
 
-        #[cfg(feature = "Foundation_NSDate")]
+        #[cfg(feature = "NSDate")]
         #[method_id(@__retain_semantics Other fetchStartDate)]
         pub unsafe fn fetchStartDate(&self) -> Option<Id<NSDate>>;
 
-        #[cfg(feature = "Foundation_NSDate")]
+        #[cfg(feature = "NSDate")]
         #[method_id(@__retain_semantics Other domainLookupStartDate)]
         pub unsafe fn domainLookupStartDate(&self) -> Option<Id<NSDate>>;
 
-        #[cfg(feature = "Foundation_NSDate")]
+        #[cfg(feature = "NSDate")]
         #[method_id(@__retain_semantics Other domainLookupEndDate)]
         pub unsafe fn domainLookupEndDate(&self) -> Option<Id<NSDate>>;
 
-        #[cfg(feature = "Foundation_NSDate")]
+        #[cfg(feature = "NSDate")]
         #[method_id(@__retain_semantics Other connectStartDate)]
         pub unsafe fn connectStartDate(&self) -> Option<Id<NSDate>>;
 
-        #[cfg(feature = "Foundation_NSDate")]
+        #[cfg(feature = "NSDate")]
         #[method_id(@__retain_semantics Other secureConnectionStartDate)]
         pub unsafe fn secureConnectionStartDate(&self) -> Option<Id<NSDate>>;
 
-        #[cfg(feature = "Foundation_NSDate")]
+        #[cfg(feature = "NSDate")]
         #[method_id(@__retain_semantics Other secureConnectionEndDate)]
         pub unsafe fn secureConnectionEndDate(&self) -> Option<Id<NSDate>>;
 
-        #[cfg(feature = "Foundation_NSDate")]
+        #[cfg(feature = "NSDate")]
         #[method_id(@__retain_semantics Other connectEndDate)]
         pub unsafe fn connectEndDate(&self) -> Option<Id<NSDate>>;
 
-        #[cfg(feature = "Foundation_NSDate")]
+        #[cfg(feature = "NSDate")]
         #[method_id(@__retain_semantics Other requestStartDate)]
         pub unsafe fn requestStartDate(&self) -> Option<Id<NSDate>>;
 
-        #[cfg(feature = "Foundation_NSDate")]
+        #[cfg(feature = "NSDate")]
         #[method_id(@__retain_semantics Other requestEndDate)]
         pub unsafe fn requestEndDate(&self) -> Option<Id<NSDate>>;
 
-        #[cfg(feature = "Foundation_NSDate")]
+        #[cfg(feature = "NSDate")]
         #[method_id(@__retain_semantics Other responseStartDate)]
         pub unsafe fn responseStartDate(&self) -> Option<Id<NSDate>>;
 
-        #[cfg(feature = "Foundation_NSDate")]
+        #[cfg(feature = "NSDate")]
         #[method_id(@__retain_semantics Other responseEndDate)]
         pub unsafe fn responseEndDate(&self) -> Option<Id<NSDate>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other networkProtocolName)]
         pub unsafe fn networkProtocolName(&self) -> Option<Id<NSString>>;
 
@@ -1697,27 +1693,27 @@ extern_methods!(
         #[method(countOfResponseBodyBytesAfterDecoding)]
         pub unsafe fn countOfResponseBodyBytesAfterDecoding(&self) -> i64;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other localAddress)]
         pub unsafe fn localAddress(&self) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "Foundation_NSValue")]
+        #[cfg(feature = "NSValue")]
         #[method_id(@__retain_semantics Other localPort)]
         pub unsafe fn localPort(&self) -> Option<Id<NSNumber>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other remoteAddress)]
         pub unsafe fn remoteAddress(&self) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "Foundation_NSValue")]
+        #[cfg(feature = "NSValue")]
         #[method_id(@__retain_semantics Other remotePort)]
         pub unsafe fn remotePort(&self) -> Option<Id<NSNumber>>;
 
-        #[cfg(feature = "Foundation_NSValue")]
+        #[cfg(feature = "NSValue")]
         #[method_id(@__retain_semantics Other negotiatedTLSProtocolVersion)]
         pub unsafe fn negotiatedTLSProtocolVersion(&self) -> Option<Id<NSNumber>>;
 
-        #[cfg(feature = "Foundation_NSValue")]
+        #[cfg(feature = "NSValue")]
         #[method_id(@__retain_semantics Other negotiatedTLSCipherSuite)]
         pub unsafe fn negotiatedTLSCipherSuite(&self) -> Option<Id<NSNumber>>;
 
@@ -1766,11 +1762,11 @@ unsafe impl NSObjectProtocol for NSURLSessionTaskMetrics {}
 
 extern_methods!(
     unsafe impl NSURLSessionTaskMetrics {
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(feature = "NSArray")]
         #[method_id(@__retain_semantics Other transactionMetrics)]
         pub unsafe fn transactionMetrics(&self) -> Id<NSArray<NSURLSessionTaskTransactionMetrics>>;
 
-        #[cfg(feature = "Foundation_NSDateInterval")]
+        #[cfg(feature = "NSDateInterval")]
         #[method_id(@__retain_semantics Other taskInterval)]
         pub unsafe fn taskInterval(&self) -> Id<NSDateInterval>;
 

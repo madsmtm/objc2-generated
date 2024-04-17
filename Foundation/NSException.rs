@@ -5,77 +5,77 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern "C" {
-    #[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
+    #[cfg(all(feature = "NSObjCRuntime", feature = "NSString"))]
     pub static NSGenericException: &'static NSExceptionName;
 }
 
 extern "C" {
-    #[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
+    #[cfg(all(feature = "NSObjCRuntime", feature = "NSString"))]
     pub static NSRangeException: &'static NSExceptionName;
 }
 
 extern "C" {
-    #[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
+    #[cfg(all(feature = "NSObjCRuntime", feature = "NSString"))]
     pub static NSInvalidArgumentException: &'static NSExceptionName;
 }
 
 extern "C" {
-    #[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
+    #[cfg(all(feature = "NSObjCRuntime", feature = "NSString"))]
     pub static NSInternalInconsistencyException: &'static NSExceptionName;
 }
 
 extern "C" {
-    #[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
+    #[cfg(all(feature = "NSObjCRuntime", feature = "NSString"))]
     pub static NSMallocException: &'static NSExceptionName;
 }
 
 extern "C" {
-    #[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
+    #[cfg(all(feature = "NSObjCRuntime", feature = "NSString"))]
     pub static NSObjectInaccessibleException: &'static NSExceptionName;
 }
 
 extern "C" {
-    #[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
+    #[cfg(all(feature = "NSObjCRuntime", feature = "NSString"))]
     pub static NSObjectNotAvailableException: &'static NSExceptionName;
 }
 
 extern "C" {
-    #[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
+    #[cfg(all(feature = "NSObjCRuntime", feature = "NSString"))]
     pub static NSDestinationInvalidException: &'static NSExceptionName;
 }
 
 extern "C" {
-    #[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
+    #[cfg(all(feature = "NSObjCRuntime", feature = "NSString"))]
     pub static NSPortTimeoutException: &'static NSExceptionName;
 }
 
 extern "C" {
-    #[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
+    #[cfg(all(feature = "NSObjCRuntime", feature = "NSString"))]
     pub static NSInvalidSendPortException: &'static NSExceptionName;
 }
 
 extern "C" {
-    #[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
+    #[cfg(all(feature = "NSObjCRuntime", feature = "NSString"))]
     pub static NSInvalidReceivePortException: &'static NSExceptionName;
 }
 
 extern "C" {
-    #[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
+    #[cfg(all(feature = "NSObjCRuntime", feature = "NSString"))]
     pub static NSPortSendException: &'static NSExceptionName;
 }
 
 extern "C" {
-    #[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
+    #[cfg(all(feature = "NSObjCRuntime", feature = "NSString"))]
     pub static NSPortReceiveException: &'static NSExceptionName;
 }
 
 extern "C" {
-    #[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
+    #[cfg(all(feature = "NSObjCRuntime", feature = "NSString"))]
     pub static NSOldStyleException: &'static NSExceptionName;
 }
 
 extern "C" {
-    #[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
+    #[cfg(all(feature = "NSObjCRuntime", feature = "NSString"))]
     pub static NSInconsistentArchiveException: &'static NSExceptionName;
 }
 
@@ -89,23 +89,23 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSCoding for NSException {}
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSException {}
 
 unsafe impl NSObjectProtocol for NSException {}
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSSecureCoding for NSException {}
 
 extern_methods!(
     unsafe impl NSException {
         #[cfg(all(
-            feature = "Foundation_NSDictionary",
-            feature = "Foundation_NSObjCRuntime",
-            feature = "Foundation_NSString"
+            feature = "NSDictionary",
+            feature = "NSObjCRuntime",
+            feature = "NSString"
         ))]
         #[method_id(@__retain_semantics Other exceptionWithName:reason:userInfo:)]
         pub unsafe fn exceptionWithName_reason_userInfo(
@@ -115,9 +115,9 @@ extern_methods!(
         ) -> Id<NSException>;
 
         #[cfg(all(
-            feature = "Foundation_NSDictionary",
-            feature = "Foundation_NSObjCRuntime",
-            feature = "Foundation_NSString"
+            feature = "NSDictionary",
+            feature = "NSObjCRuntime",
+            feature = "NSString"
         ))]
         #[method_id(@__retain_semantics Init initWithName:reason:userInfo:)]
         pub unsafe fn initWithName_reason_userInfo(
@@ -127,23 +127,23 @@ extern_methods!(
             a_user_info: Option<&NSDictionary>,
         ) -> Id<Self>;
 
-        #[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSObjCRuntime", feature = "NSString"))]
         #[method_id(@__retain_semantics Other name)]
         pub fn name(&self) -> Id<NSExceptionName>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other reason)]
         pub fn reason(&self) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "Foundation_NSDictionary")]
+        #[cfg(feature = "NSDictionary")]
         #[method_id(@__retain_semantics Other userInfo)]
         pub fn userInfo(&self) -> Option<Id<NSDictionary>>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSValue"))]
+        #[cfg(all(feature = "NSArray", feature = "NSValue"))]
         #[method_id(@__retain_semantics Other callStackReturnAddresses)]
         pub unsafe fn callStackReturnAddresses(&self) -> Id<NSArray<NSNumber>>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[method_id(@__retain_semantics Other callStackSymbols)]
         pub unsafe fn callStackSymbols(&self) -> Id<NSArray<NSString>>;
     }
@@ -173,7 +173,7 @@ extern "C" {
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSAssertionHandlerKey: &'static NSString;
 }
 

@@ -24,9 +24,9 @@ unsafe impl NSObjectProtocol for CKSyncEngineConfiguration {}
 extern_methods!(
     unsafe impl CKSyncEngineConfiguration {
         #[cfg(all(
-            feature = "CloudKit_CKDatabase",
-            feature = "CloudKit_CKSyncEngine",
-            feature = "CloudKit_CKSyncEngineState"
+            feature = "CKDatabase",
+            feature = "CKSyncEngine",
+            feature = "CKSyncEngineState"
         ))]
         #[method_id(@__retain_semantics Init initWithDatabase:stateSerialization:delegate:)]
         pub unsafe fn initWithDatabase_stateSerialization_delegate(
@@ -42,30 +42,30 @@ extern_methods!(
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
 
-        #[cfg(feature = "CloudKit_CKDatabase")]
+        #[cfg(feature = "CKDatabase")]
         #[method_id(@__retain_semantics Other database)]
         pub unsafe fn database(&self) -> Id<CKDatabase>;
 
-        #[cfg(feature = "CloudKit_CKDatabase")]
+        #[cfg(feature = "CKDatabase")]
         #[method(setDatabase:)]
         pub unsafe fn setDatabase(&self, database: &CKDatabase);
 
-        #[cfg(feature = "CloudKit_CKSyncEngineState")]
+        #[cfg(feature = "CKSyncEngineState")]
         #[method_id(@__retain_semantics Other stateSerialization)]
         pub unsafe fn stateSerialization(&self) -> Option<Id<CKSyncEngineStateSerialization>>;
 
-        #[cfg(feature = "CloudKit_CKSyncEngineState")]
+        #[cfg(feature = "CKSyncEngineState")]
         #[method(setStateSerialization:)]
         pub unsafe fn setStateSerialization(
             &self,
             state_serialization: Option<&CKSyncEngineStateSerialization>,
         );
 
-        #[cfg(feature = "CloudKit_CKSyncEngine")]
+        #[cfg(feature = "CKSyncEngine")]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn CKSyncEngineDelegate>>>;
 
-        #[cfg(feature = "CloudKit_CKSyncEngine")]
+        #[cfg(feature = "CKSyncEngine")]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
@@ -78,11 +78,11 @@ extern_methods!(
         #[method(setAutomaticallySync:)]
         pub unsafe fn setAutomaticallySync(&self, automatically_sync: bool);
 
-        #[cfg(feature = "CloudKit_CKSubscription")]
+        #[cfg(feature = "CKSubscription")]
         #[method_id(@__retain_semantics Other subscriptionID)]
         pub unsafe fn subscriptionID(&self) -> Option<Id<CKSubscriptionID>>;
 
-        #[cfg(feature = "CloudKit_CKSubscription")]
+        #[cfg(feature = "CKSubscription")]
         #[method(setSubscriptionID:)]
         pub unsafe fn setSubscriptionID(&self, subscription_id: Option<&CKSubscriptionID>);
     }

@@ -23,7 +23,7 @@ unsafe impl NSObjectProtocol for MKMapItem {}
 
 extern_methods!(
     unsafe impl MKMapItem {
-        #[cfg(all(feature = "MapKit_MKPlacemark", feature = "objc2-core-location"))]
+        #[cfg(all(feature = "MKPlacemark", feature = "objc2-core-location"))]
         #[method_id(@__retain_semantics Other placemark)]
         pub unsafe fn placemark(&self) -> Id<MKPlacemark>;
 
@@ -54,11 +54,11 @@ extern_methods!(
         #[method(setTimeZone:)]
         pub unsafe fn setTimeZone(&self, time_zone: Option<&NSTimeZone>);
 
-        #[cfg(feature = "MapKit_MKPointOfInterestCategory")]
+        #[cfg(feature = "MKPointOfInterestCategory")]
         #[method_id(@__retain_semantics Other pointOfInterestCategory)]
         pub unsafe fn pointOfInterestCategory(&self) -> Option<Id<MKPointOfInterestCategory>>;
 
-        #[cfg(feature = "MapKit_MKPointOfInterestCategory")]
+        #[cfg(feature = "MKPointOfInterestCategory")]
         #[method(setPointOfInterestCategory:)]
         pub unsafe fn setPointOfInterestCategory(
             &self,
@@ -68,7 +68,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other mapItemForCurrentLocation)]
         pub unsafe fn mapItemForCurrentLocation() -> Id<MKMapItem>;
 
-        #[cfg(all(feature = "MapKit_MKPlacemark", feature = "objc2-core-location"))]
+        #[cfg(all(feature = "MKPlacemark", feature = "objc2-core-location"))]
         #[method_id(@__retain_semantics Init initWithPlacemark:)]
         pub unsafe fn initWithPlacemark(this: Allocated<Self>, placemark: &MKPlacemark)
             -> Id<Self>;

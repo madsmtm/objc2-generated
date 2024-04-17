@@ -10,9 +10,9 @@ use crate::*;
 extern_protocol!(
     pub unsafe trait MEMessageEncoder: NSObjectProtocol {
         #[cfg(all(
-            feature = "MailKit_MEComposeContext",
-            feature = "MailKit_MEMessage",
-            feature = "MailKit_MEOutgoingMessageEncodingStatus",
+            feature = "MEComposeContext",
+            feature = "MEMessage",
+            feature = "MEOutgoingMessageEncodingStatus",
             feature = "block2"
         ))]
         #[method(getEncodingStatusForMessage:composeContext:completionHandler:)]
@@ -24,9 +24,9 @@ extern_protocol!(
         );
 
         #[cfg(all(
-            feature = "MailKit_MEComposeContext",
-            feature = "MailKit_MEMessage",
-            feature = "MailKit_MEMessageEncodingResult",
+            feature = "MEComposeContext",
+            feature = "MEMessage",
+            feature = "MEMessageEncodingResult",
             feature = "block2"
         ))]
         #[method(encodeMessage:composeContext:completionHandler:)]

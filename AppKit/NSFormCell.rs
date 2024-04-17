@@ -7,10 +7,10 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(feature = "AppKit_NSActionCell", feature = "AppKit_NSCell"))]
+    #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
     pub struct NSFormCell;
 
-    #[cfg(all(feature = "AppKit_NSActionCell", feature = "AppKit_NSCell"))]
+    #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
     unsafe impl ClassType for NSFormCell {
         #[inherits(NSCell, NSObject)]
         type Super = NSActionCell;
@@ -19,37 +19,37 @@ extern_class!(
 );
 
 #[cfg(all(
-    feature = "AppKit_NSAccessibilityProtocols",
-    feature = "AppKit_NSActionCell",
-    feature = "AppKit_NSCell"
+    feature = "NSAccessibilityProtocols",
+    feature = "NSActionCell",
+    feature = "NSCell"
 ))]
 unsafe impl NSAccessibility for NSFormCell {}
 
 #[cfg(all(
-    feature = "AppKit_NSAccessibilityProtocols",
-    feature = "AppKit_NSActionCell",
-    feature = "AppKit_NSCell"
+    feature = "NSAccessibilityProtocols",
+    feature = "NSActionCell",
+    feature = "NSCell"
 ))]
 unsafe impl NSAccessibilityElementProtocol for NSFormCell {}
 
-#[cfg(all(feature = "AppKit_NSActionCell", feature = "AppKit_NSCell"))]
+#[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
 unsafe impl NSCoding for NSFormCell {}
 
-#[cfg(all(feature = "AppKit_NSActionCell", feature = "AppKit_NSCell"))]
+#[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
 unsafe impl NSCopying for NSFormCell {}
 
-#[cfg(all(feature = "AppKit_NSActionCell", feature = "AppKit_NSCell"))]
+#[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
 unsafe impl NSObjectProtocol for NSFormCell {}
 
 #[cfg(all(
-    feature = "AppKit_NSActionCell",
-    feature = "AppKit_NSCell",
-    feature = "AppKit_NSUserInterfaceItemIdentification"
+    feature = "NSActionCell",
+    feature = "NSCell",
+    feature = "NSUserInterfaceItemIdentification"
 ))]
 unsafe impl NSUserInterfaceItemIdentification for NSFormCell {}
 
 extern_methods!(
-    #[cfg(all(feature = "AppKit_NSActionCell", feature = "AppKit_NSCell"))]
+    #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
     unsafe impl NSFormCell {
         #[method_id(@__retain_semantics Init initTextCell:)]
         pub unsafe fn initTextCell(this: Allocated<Self>, string: Option<&NSString>) -> Id<Self>;
@@ -57,7 +57,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Id<Self>;
 
-        #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(feature = "NSImage")]
         #[method_id(@__retain_semantics Init initImageCell:)]
         pub unsafe fn initImageCell(this: Allocated<Self>, image: Option<&NSImage>) -> Id<Self>;
 
@@ -76,11 +76,11 @@ extern_methods!(
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, title: &NSString);
 
-        #[cfg(feature = "AppKit_NSFont")]
+        #[cfg(feature = "NSFont")]
         #[method_id(@__retain_semantics Other titleFont)]
         pub unsafe fn titleFont(&self) -> Id<NSFont>;
 
-        #[cfg(feature = "AppKit_NSFont")]
+        #[cfg(feature = "NSFont")]
         #[method(setTitleFont:)]
         pub unsafe fn setTitleFont(&self, title_font: &NSFont);
 
@@ -102,19 +102,19 @@ extern_methods!(
             placeholder_attributed_string: Option<&NSAttributedString>,
         );
 
-        #[cfg(feature = "AppKit_NSText")]
+        #[cfg(feature = "NSText")]
         #[method(titleAlignment)]
         pub unsafe fn titleAlignment(&self) -> NSTextAlignment;
 
-        #[cfg(feature = "AppKit_NSText")]
+        #[cfg(feature = "NSText")]
         #[method(setTitleAlignment:)]
         pub unsafe fn setTitleAlignment(&self, title_alignment: NSTextAlignment);
 
-        #[cfg(feature = "AppKit_NSText")]
+        #[cfg(feature = "NSText")]
         #[method(titleBaseWritingDirection)]
         pub unsafe fn titleBaseWritingDirection(&self) -> NSWritingDirection;
 
-        #[cfg(feature = "AppKit_NSText")]
+        #[cfg(feature = "NSText")]
         #[method(setTitleBaseWritingDirection:)]
         pub unsafe fn setTitleBaseWritingDirection(
             &self,
@@ -131,7 +131,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSCell`
-    #[cfg(all(feature = "AppKit_NSActionCell", feature = "AppKit_NSCell"))]
+    #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
     unsafe impl NSFormCell {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -140,7 +140,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "AppKit_NSActionCell", feature = "AppKit_NSCell"))]
+    #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
     unsafe impl NSFormCell {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
@@ -149,7 +149,7 @@ extern_methods!(
 
 extern_methods!(
     /// NSKeyboardUI
-    #[cfg(all(feature = "AppKit_NSActionCell", feature = "AppKit_NSCell"))]
+    #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
     unsafe impl NSFormCell {
         #[deprecated]
         #[method(setTitleWithMnemonic:)]
@@ -159,7 +159,7 @@ extern_methods!(
 
 extern_methods!(
     /// NSFormCellAttributedStringMethods
-    #[cfg(all(feature = "AppKit_NSActionCell", feature = "AppKit_NSCell"))]
+    #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
     unsafe impl NSFormCell {
         #[method_id(@__retain_semantics Other attributedTitle)]
         pub unsafe fn attributedTitle(&self) -> Id<NSAttributedString>;

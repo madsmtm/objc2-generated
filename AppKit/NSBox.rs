@@ -47,10 +47,10 @@ unsafe impl RefEncode for NSBoxType {
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     pub struct NSBox;
 
-    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl ClassType for NSBox {
         #[inherits(NSResponder, NSObject)]
         type Super = NSView;
@@ -59,55 +59,43 @@ extern_class!(
 );
 
 #[cfg(all(
-    feature = "AppKit_NSAccessibilityProtocols",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSView"
+    feature = "NSAccessibilityProtocols",
+    feature = "NSResponder",
+    feature = "NSView"
 ))]
 unsafe impl NSAccessibility for NSBox {}
 
 #[cfg(all(
-    feature = "AppKit_NSAccessibilityProtocols",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSView"
+    feature = "NSAccessibilityProtocols",
+    feature = "NSResponder",
+    feature = "NSView"
 ))]
 unsafe impl NSAccessibilityElementProtocol for NSBox {}
 
-#[cfg(all(
-    feature = "AppKit_NSAnimation",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSView"
-))]
+#[cfg(all(feature = "NSAnimation", feature = "NSResponder", feature = "NSView"))]
 unsafe impl NSAnimatablePropertyContainer for NSBox {}
 
-#[cfg(all(
-    feature = "AppKit_NSAppearance",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSView"
-))]
+#[cfg(all(feature = "NSAppearance", feature = "NSResponder", feature = "NSView"))]
 unsafe impl NSAppearanceCustomization for NSBox {}
 
-#[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+#[cfg(all(feature = "NSResponder", feature = "NSView"))]
 unsafe impl NSCoding for NSBox {}
 
-#[cfg(all(
-    feature = "AppKit_NSDragging",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSView"
-))]
+#[cfg(all(feature = "NSDragging", feature = "NSResponder", feature = "NSView"))]
 unsafe impl NSDraggingDestination for NSBox {}
 
-#[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+#[cfg(all(feature = "NSResponder", feature = "NSView"))]
 unsafe impl NSObjectProtocol for NSBox {}
 
 #[cfg(all(
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSUserInterfaceItemIdentification",
-    feature = "AppKit_NSView"
+    feature = "NSResponder",
+    feature = "NSUserInterfaceItemIdentification",
+    feature = "NSView"
 ))]
 unsafe impl NSUserInterfaceItemIdentification for NSBox {}
 
 extern_methods!(
-    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSBox {
         #[method(boxType)]
         pub unsafe fn boxType(&self) -> NSBoxType;
@@ -127,11 +115,11 @@ extern_methods!(
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, title: &NSString);
 
-        #[cfg(feature = "AppKit_NSFont")]
+        #[cfg(feature = "NSFont")]
         #[method_id(@__retain_semantics Other titleFont)]
         pub unsafe fn titleFont(&self) -> Id<NSFont>;
 
-        #[cfg(feature = "AppKit_NSFont")]
+        #[cfg(feature = "NSFont")]
         #[method(setTitleFont:)]
         pub unsafe fn setTitleFont(&self, title_font: &NSFont);
 
@@ -180,19 +168,19 @@ extern_methods!(
         #[method(setCornerRadius:)]
         pub unsafe fn setCornerRadius(&self, corner_radius: CGFloat);
 
-        #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(feature = "NSColor")]
         #[method_id(@__retain_semantics Other borderColor)]
         pub unsafe fn borderColor(&self) -> Id<NSColor>;
 
-        #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(feature = "NSColor")]
         #[method(setBorderColor:)]
         pub unsafe fn setBorderColor(&self, border_color: &NSColor);
 
-        #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(feature = "NSColor")]
         #[method_id(@__retain_semantics Other fillColor)]
         pub unsafe fn fillColor(&self) -> Id<NSColor>;
 
-        #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(feature = "NSColor")]
         #[method(setFillColor:)]
         pub unsafe fn setFillColor(&self, fill_color: &NSColor);
     }
@@ -200,7 +188,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSView`
-    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSBox {
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Id<Self>;
@@ -212,7 +200,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSResponder`
-    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSBox {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -221,7 +209,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSBox {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
@@ -230,7 +218,7 @@ extern_methods!(
 
 extern_methods!(
     /// NSDeprecated
-    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSBox {
         #[deprecated = "borderType is only applicable to NSBoxOldStyle, which is deprecated. To replace a borderType of NSNoBorder, use the `transparent` property."]
         #[method(borderType)]

@@ -8,17 +8,17 @@ use crate::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(
-        feature = "WebKit_DOMEvent",
-        feature = "WebKit_DOMObject",
-        feature = "WebKit_WebScriptObject"
+        feature = "DOMEvent",
+        feature = "DOMObject",
+        feature = "WebScriptObject"
     ))]
     #[deprecated]
     pub struct DOMProgressEvent;
 
     #[cfg(all(
-        feature = "WebKit_DOMEvent",
-        feature = "WebKit_DOMObject",
-        feature = "WebKit_WebScriptObject"
+        feature = "DOMEvent",
+        feature = "DOMObject",
+        feature = "WebScriptObject"
     ))]
     unsafe impl ClassType for DOMProgressEvent {
         #[inherits(DOMObject, WebScriptObject, NSObject)]
@@ -28,24 +28,24 @@ extern_class!(
 );
 
 #[cfg(all(
-    feature = "WebKit_DOMEvent",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMEvent",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 unsafe impl NSCopying for DOMProgressEvent {}
 
 #[cfg(all(
-    feature = "WebKit_DOMEvent",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMEvent",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 unsafe impl NSObjectProtocol for DOMProgressEvent {}
 
 extern_methods!(
     #[cfg(all(
-        feature = "WebKit_DOMEvent",
-        feature = "WebKit_DOMObject",
-        feature = "WebKit_WebScriptObject"
+        feature = "DOMEvent",
+        feature = "DOMObject",
+        feature = "WebScriptObject"
     ))]
     unsafe impl DOMProgressEvent {
         #[deprecated]
@@ -65,9 +65,9 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `DOMObject`
     #[cfg(all(
-        feature = "WebKit_DOMEvent",
-        feature = "WebKit_DOMObject",
-        feature = "WebKit_WebScriptObject"
+        feature = "DOMEvent",
+        feature = "DOMObject",
+        feature = "WebScriptObject"
     ))]
     unsafe impl DOMProgressEvent {
         #[deprecated]
@@ -79,9 +79,9 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(
-        feature = "WebKit_DOMEvent",
-        feature = "WebKit_DOMObject",
-        feature = "WebKit_WebScriptObject"
+        feature = "DOMEvent",
+        feature = "DOMObject",
+        feature = "WebScriptObject"
     ))]
     unsafe impl DOMProgressEvent {
         #[method_id(@__retain_semantics New new)]

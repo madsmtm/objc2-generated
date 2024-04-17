@@ -55,9 +55,9 @@ extern_methods!(
 extern_methods!(
     /// GKSavedGame
     #[cfg(all(
-        feature = "GameKit_GKBasePlayer",
-        feature = "GameKit_GKLocalPlayer",
-        feature = "GameKit_GKPlayer"
+        feature = "GKBasePlayer",
+        feature = "GKLocalPlayer",
+        feature = "GKPlayer"
     ))]
     unsafe impl GKLocalPlayer {
         #[cfg(feature = "block2")]
@@ -96,9 +96,9 @@ extern_methods!(
 );
 
 #[cfg(all(
-    feature = "GameKit_GKBasePlayer",
-    feature = "GameKit_GKLocalPlayer",
-    feature = "GameKit_GKPlayer",
-    feature = "GameKit_GKSavedGameListener"
+    feature = "GKBasePlayer",
+    feature = "GKLocalPlayer",
+    feature = "GKPlayer",
+    feature = "GKSavedGameListener"
 ))]
 unsafe impl GKSavedGameListener for GKLocalPlayer {}

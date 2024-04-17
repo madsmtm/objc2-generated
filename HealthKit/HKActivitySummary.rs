@@ -31,95 +31,95 @@ extern_methods!(
             calendar: &NSCalendar,
         ) -> Id<NSDateComponents>;
 
-        #[cfg(feature = "HealthKit_HKCharacteristicValues")]
+        #[cfg(feature = "HKCharacteristicValues")]
         #[method(activityMoveMode)]
         pub unsafe fn activityMoveMode(&self) -> HKActivityMoveMode;
 
-        #[cfg(feature = "HealthKit_HKCharacteristicValues")]
+        #[cfg(feature = "HKCharacteristicValues")]
         #[method(setActivityMoveMode:)]
         pub unsafe fn setActivityMoveMode(&self, activity_move_mode: HKActivityMoveMode);
 
-        #[cfg(feature = "HealthKit_HKQuantity")]
+        #[cfg(feature = "HKQuantity")]
         #[method_id(@__retain_semantics Other activeEnergyBurned)]
         pub unsafe fn activeEnergyBurned(&self) -> Id<HKQuantity>;
 
-        #[cfg(feature = "HealthKit_HKQuantity")]
+        #[cfg(feature = "HKQuantity")]
         #[method(setActiveEnergyBurned:)]
         pub unsafe fn setActiveEnergyBurned(&self, active_energy_burned: &HKQuantity);
 
-        #[cfg(feature = "HealthKit_HKQuantity")]
+        #[cfg(feature = "HKQuantity")]
         #[method_id(@__retain_semantics Other appleMoveTime)]
         pub unsafe fn appleMoveTime(&self) -> Id<HKQuantity>;
 
-        #[cfg(feature = "HealthKit_HKQuantity")]
+        #[cfg(feature = "HKQuantity")]
         #[method(setAppleMoveTime:)]
         pub unsafe fn setAppleMoveTime(&self, apple_move_time: &HKQuantity);
 
-        #[cfg(feature = "HealthKit_HKQuantity")]
+        #[cfg(feature = "HKQuantity")]
         #[method_id(@__retain_semantics Other appleExerciseTime)]
         pub unsafe fn appleExerciseTime(&self) -> Id<HKQuantity>;
 
-        #[cfg(feature = "HealthKit_HKQuantity")]
+        #[cfg(feature = "HKQuantity")]
         #[method(setAppleExerciseTime:)]
         pub unsafe fn setAppleExerciseTime(&self, apple_exercise_time: &HKQuantity);
 
-        #[cfg(feature = "HealthKit_HKQuantity")]
+        #[cfg(feature = "HKQuantity")]
         #[method_id(@__retain_semantics Other appleStandHours)]
         pub unsafe fn appleStandHours(&self) -> Id<HKQuantity>;
 
-        #[cfg(feature = "HealthKit_HKQuantity")]
+        #[cfg(feature = "HKQuantity")]
         #[method(setAppleStandHours:)]
         pub unsafe fn setAppleStandHours(&self, apple_stand_hours: &HKQuantity);
 
-        #[cfg(feature = "HealthKit_HKQuantity")]
+        #[cfg(feature = "HKQuantity")]
         #[method_id(@__retain_semantics Other activeEnergyBurnedGoal)]
         pub unsafe fn activeEnergyBurnedGoal(&self) -> Id<HKQuantity>;
 
-        #[cfg(feature = "HealthKit_HKQuantity")]
+        #[cfg(feature = "HKQuantity")]
         #[method(setActiveEnergyBurnedGoal:)]
         pub unsafe fn setActiveEnergyBurnedGoal(&self, active_energy_burned_goal: &HKQuantity);
 
-        #[cfg(feature = "HealthKit_HKQuantity")]
+        #[cfg(feature = "HKQuantity")]
         #[method_id(@__retain_semantics Other appleMoveTimeGoal)]
         pub unsafe fn appleMoveTimeGoal(&self) -> Id<HKQuantity>;
 
-        #[cfg(feature = "HealthKit_HKQuantity")]
+        #[cfg(feature = "HKQuantity")]
         #[method(setAppleMoveTimeGoal:)]
         pub unsafe fn setAppleMoveTimeGoal(&self, apple_move_time_goal: &HKQuantity);
 
-        #[cfg(feature = "HealthKit_HKQuantity")]
+        #[cfg(feature = "HKQuantity")]
         #[deprecated]
         #[method_id(@__retain_semantics Other appleExerciseTimeGoal)]
         pub unsafe fn appleExerciseTimeGoal(&self) -> Id<HKQuantity>;
 
-        #[cfg(feature = "HealthKit_HKQuantity")]
+        #[cfg(feature = "HKQuantity")]
         #[deprecated]
         #[method(setAppleExerciseTimeGoal:)]
         pub unsafe fn setAppleExerciseTimeGoal(&self, apple_exercise_time_goal: &HKQuantity);
 
-        #[cfg(feature = "HealthKit_HKQuantity")]
+        #[cfg(feature = "HKQuantity")]
         #[method_id(@__retain_semantics Other exerciseTimeGoal)]
         pub unsafe fn exerciseTimeGoal(&self) -> Option<Id<HKQuantity>>;
 
-        #[cfg(feature = "HealthKit_HKQuantity")]
+        #[cfg(feature = "HKQuantity")]
         #[method(setExerciseTimeGoal:)]
         pub unsafe fn setExerciseTimeGoal(&self, exercise_time_goal: Option<&HKQuantity>);
 
-        #[cfg(feature = "HealthKit_HKQuantity")]
+        #[cfg(feature = "HKQuantity")]
         #[deprecated]
         #[method_id(@__retain_semantics Other appleStandHoursGoal)]
         pub unsafe fn appleStandHoursGoal(&self) -> Id<HKQuantity>;
 
-        #[cfg(feature = "HealthKit_HKQuantity")]
+        #[cfg(feature = "HKQuantity")]
         #[deprecated]
         #[method(setAppleStandHoursGoal:)]
         pub unsafe fn setAppleStandHoursGoal(&self, apple_stand_hours_goal: &HKQuantity);
 
-        #[cfg(feature = "HealthKit_HKQuantity")]
+        #[cfg(feature = "HKQuantity")]
         #[method_id(@__retain_semantics Other standHoursGoal)]
         pub unsafe fn standHoursGoal(&self) -> Option<Id<HKQuantity>>;
 
-        #[cfg(feature = "HealthKit_HKQuantity")]
+        #[cfg(feature = "HKQuantity")]
         #[method(setStandHoursGoal:)]
         pub unsafe fn setStandHoursGoal(&self, stand_hours_goal: Option<&HKQuantity>);
     }

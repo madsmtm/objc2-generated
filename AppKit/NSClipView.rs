@@ -7,10 +7,10 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     pub struct NSClipView;
 
-    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl ClassType for NSClipView {
         #[inherits(NSResponder, NSObject)]
         type Super = NSView;
@@ -19,61 +19,49 @@ extern_class!(
 );
 
 #[cfg(all(
-    feature = "AppKit_NSAccessibilityProtocols",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSView"
+    feature = "NSAccessibilityProtocols",
+    feature = "NSResponder",
+    feature = "NSView"
 ))]
 unsafe impl NSAccessibility for NSClipView {}
 
 #[cfg(all(
-    feature = "AppKit_NSAccessibilityProtocols",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSView"
+    feature = "NSAccessibilityProtocols",
+    feature = "NSResponder",
+    feature = "NSView"
 ))]
 unsafe impl NSAccessibilityElementProtocol for NSClipView {}
 
-#[cfg(all(
-    feature = "AppKit_NSAnimation",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSView"
-))]
+#[cfg(all(feature = "NSAnimation", feature = "NSResponder", feature = "NSView"))]
 unsafe impl NSAnimatablePropertyContainer for NSClipView {}
 
-#[cfg(all(
-    feature = "AppKit_NSAppearance",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSView"
-))]
+#[cfg(all(feature = "NSAppearance", feature = "NSResponder", feature = "NSView"))]
 unsafe impl NSAppearanceCustomization for NSClipView {}
 
-#[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+#[cfg(all(feature = "NSResponder", feature = "NSView"))]
 unsafe impl NSCoding for NSClipView {}
 
-#[cfg(all(
-    feature = "AppKit_NSDragging",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSView"
-))]
+#[cfg(all(feature = "NSDragging", feature = "NSResponder", feature = "NSView"))]
 unsafe impl NSDraggingDestination for NSClipView {}
 
-#[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+#[cfg(all(feature = "NSResponder", feature = "NSView"))]
 unsafe impl NSObjectProtocol for NSClipView {}
 
 #[cfg(all(
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSUserInterfaceItemIdentification",
-    feature = "AppKit_NSView"
+    feature = "NSResponder",
+    feature = "NSUserInterfaceItemIdentification",
+    feature = "NSView"
 ))]
 unsafe impl NSUserInterfaceItemIdentification for NSClipView {}
 
 extern_methods!(
-    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSClipView {
-        #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(feature = "NSColor")]
         #[method_id(@__retain_semantics Other backgroundColor)]
         pub unsafe fn backgroundColor(&self) -> Id<NSColor>;
 
-        #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(feature = "NSColor")]
         #[method(setBackgroundColor:)]
         pub unsafe fn setBackgroundColor(&self, background_color: &NSColor);
 
@@ -92,11 +80,11 @@ extern_methods!(
         #[method(documentRect)]
         pub unsafe fn documentRect(&self) -> NSRect;
 
-        #[cfg(feature = "AppKit_NSCursor")]
+        #[cfg(feature = "NSCursor")]
         #[method_id(@__retain_semantics Other documentCursor)]
         pub unsafe fn documentCursor(&self) -> Option<Id<NSCursor>>;
 
-        #[cfg(feature = "AppKit_NSCursor")]
+        #[cfg(feature = "NSCursor")]
         #[method(setDocumentCursor:)]
         pub unsafe fn setDocumentCursor(&self, document_cursor: Option<&NSCursor>);
 
@@ -109,7 +97,7 @@ extern_methods!(
         #[method(viewBoundsChanged:)]
         pub unsafe fn viewBoundsChanged(&self, notification: &NSNotification);
 
-        #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(feature = "NSEvent")]
         #[method(autoscroll:)]
         pub unsafe fn autoscroll(&self, event: &NSEvent) -> bool;
 
@@ -138,7 +126,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSView`
-    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSClipView {
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Id<Self>;
@@ -150,7 +138,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSResponder`
-    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSClipView {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -159,7 +147,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSClipView {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
@@ -168,7 +156,7 @@ extern_methods!(
 
 extern_methods!(
     /// NSClipViewSuperview
-    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSView {
         #[method(reflectScrolledClipView:)]
         pub unsafe fn reflectScrolledClipView(&self, clip_view: &NSClipView);
@@ -179,7 +167,7 @@ extern_methods!(
 );
 
 extern_methods!(
-    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSClipView {
         #[deprecated = "Use -constrainBoundsRect: instead."]
         #[method(constrainScrollPoint:)]

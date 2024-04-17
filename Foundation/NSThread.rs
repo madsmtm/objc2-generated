@@ -37,15 +37,15 @@ extern_methods!(
         #[method(isMultiThreaded)]
         pub fn isMultiThreaded() -> bool;
 
-        #[cfg(feature = "Foundation_NSDictionary")]
+        #[cfg(feature = "NSDictionary")]
         #[method_id(@__retain_semantics Other threadDictionary)]
         pub unsafe fn threadDictionary(&self) -> Id<NSMutableDictionary>;
 
-        #[cfg(feature = "Foundation_NSDate")]
+        #[cfg(feature = "NSDate")]
         #[method(sleepUntilDate:)]
         pub unsafe fn sleepUntilDate(date: &NSDate);
 
-        #[cfg(feature = "Foundation_NSDate")]
+        #[cfg(feature = "NSDate")]
         #[method(sleepForTimeInterval:)]
         pub unsafe fn sleepForTimeInterval(ti: NSTimeInterval);
 
@@ -64,27 +64,27 @@ extern_methods!(
         #[method(setThreadPriority:)]
         pub unsafe fn setThreadPriority(&self, thread_priority: c_double);
 
-        #[cfg(feature = "Foundation_NSObjCRuntime")]
+        #[cfg(feature = "NSObjCRuntime")]
         #[method(qualityOfService)]
         pub unsafe fn qualityOfService(&self) -> NSQualityOfService;
 
-        #[cfg(feature = "Foundation_NSObjCRuntime")]
+        #[cfg(feature = "NSObjCRuntime")]
         #[method(setQualityOfService:)]
         pub unsafe fn setQualityOfService(&self, quality_of_service: NSQualityOfService);
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSValue"))]
+        #[cfg(all(feature = "NSArray", feature = "NSValue"))]
         #[method_id(@__retain_semantics Other callStackReturnAddresses)]
         pub unsafe fn callStackReturnAddresses() -> Id<NSArray<NSNumber>>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[method_id(@__retain_semantics Other callStackSymbols)]
         pub unsafe fn callStackSymbols() -> Id<NSArray<NSString>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other name)]
         pub fn name(&self) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method(setName:)]
         pub unsafe fn setName(&self, name: Option<&NSString>);
 
@@ -154,17 +154,17 @@ impl DefaultId for NSThread {
 }
 
 extern "C" {
-    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSWillBecomeMultiThreadedNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSDidBecomeSingleThreadedNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSThreadWillExitNotification: &'static NSNotificationName;
 }
 
@@ -172,7 +172,7 @@ extern_category!(
     /// Category "NSThreadPerformAdditions" on [`NSObject`].
     #[doc(alias = "NSThreadPerformAdditions")]
     pub unsafe trait NSObjectNSThreadPerformAdditions {
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[method(performSelectorOnMainThread:withObject:waitUntilDone:modes:)]
         unsafe fn performSelectorOnMainThread_withObject_waitUntilDone_modes(
             &self,
@@ -190,7 +190,7 @@ extern_category!(
             wait: bool,
         );
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[method(performSelector:onThread:withObject:waitUntilDone:modes:)]
         unsafe fn performSelector_onThread_withObject_waitUntilDone_modes(
             &self,

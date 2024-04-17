@@ -15,7 +15,7 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "GameController_GCDevicePhysicalInputState")]
+#[cfg(feature = "GCDevicePhysicalInputState")]
 unsafe impl GCDevicePhysicalInputState for GCControllerInputState {}
 
 unsafe impl NSObjectProtocol for GCControllerInputState {}
@@ -47,12 +47,12 @@ extern_class!(
 );
 
 #[cfg(all(
-    feature = "GameController_GCDevicePhysicalInput",
-    feature = "GameController_GCDevicePhysicalInputState"
+    feature = "GCDevicePhysicalInput",
+    feature = "GCDevicePhysicalInputState"
 ))]
 unsafe impl GCDevicePhysicalInput for GCControllerLiveInput {}
 
-#[cfg(feature = "GameController_GCDevicePhysicalInputState")]
+#[cfg(feature = "GCDevicePhysicalInputState")]
 unsafe impl GCDevicePhysicalInputState for GCControllerLiveInput {}
 
 unsafe impl NSObjectProtocol for GCControllerLiveInput {}
@@ -65,7 +65,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other capture)]
         pub unsafe fn capture(&self) -> Id<GCControllerInputState>;
 
-        #[cfg(feature = "GameController_GCDevicePhysicalInputStateDiff")]
+        #[cfg(feature = "GCDevicePhysicalInputStateDiff")]
         #[method_id(@__retain_semantics Other nextInputState)]
         pub unsafe fn nextInputState(&self) -> Option<Id<GCControllerInputState>>;
     }

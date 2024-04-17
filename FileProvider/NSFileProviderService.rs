@@ -27,9 +27,9 @@ extern_protocol!(
 
 extern_methods!(
     /// NSFileProviderService
-    #[cfg(feature = "FileProvider_NSFileProviderExtension")]
+    #[cfg(feature = "NSFileProviderExtension")]
     unsafe impl NSFileProviderExtension {
-        #[cfg(feature = "FileProvider_NSFileProviderItem")]
+        #[cfg(feature = "NSFileProviderItem")]
         #[method_id(@__retain_semantics Other supportedServiceSourcesForItemIdentifier:error:_)]
         pub unsafe fn supportedServiceSourcesForItemIdentifier_error(
             &self,
@@ -40,9 +40,9 @@ extern_methods!(
 
 extern_methods!(
     /// NSFileProviderService
-    #[cfg(feature = "FileProvider_NSFileProviderManager")]
+    #[cfg(feature = "NSFileProviderManager")]
     unsafe impl NSFileProviderManager {
-        #[cfg(all(feature = "FileProvider_NSFileProviderItem", feature = "block2"))]
+        #[cfg(all(feature = "NSFileProviderItem", feature = "block2"))]
         #[method(getServiceWithName:itemIdentifier:completionHandler:)]
         pub unsafe fn getServiceWithName_itemIdentifier_completionHandler(
             &self,

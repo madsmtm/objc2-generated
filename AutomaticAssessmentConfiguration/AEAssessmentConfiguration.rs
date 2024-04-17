@@ -96,15 +96,15 @@ extern_methods!(
         #[method(setAllowsContinuousPathKeyboard:)]
         pub unsafe fn setAllowsContinuousPathKeyboard(&self, allows_continuous_path_keyboard: bool);
 
-        #[cfg(feature = "AutomaticAssessmentConfiguration_AEAssessmentParticipantConfiguration")]
+        #[cfg(feature = "AEAssessmentParticipantConfiguration")]
         #[method_id(@__retain_semantics Other mainParticipantConfiguration)]
         pub unsafe fn mainParticipantConfiguration(
             &self,
         ) -> Id<AEAssessmentParticipantConfiguration>;
 
         #[cfg(all(
-            feature = "AutomaticAssessmentConfiguration_AEAssessmentApplication",
-            feature = "AutomaticAssessmentConfiguration_AEAssessmentParticipantConfiguration"
+            feature = "AEAssessmentApplication",
+            feature = "AEAssessmentParticipantConfiguration"
         ))]
         #[method_id(@__retain_semantics Other configurationsByApplication)]
         pub unsafe fn configurationsByApplication(
@@ -112,8 +112,8 @@ extern_methods!(
         ) -> Id<NSDictionary<AEAssessmentApplication, AEAssessmentParticipantConfiguration>>;
 
         #[cfg(all(
-            feature = "AutomaticAssessmentConfiguration_AEAssessmentApplication",
-            feature = "AutomaticAssessmentConfiguration_AEAssessmentParticipantConfiguration"
+            feature = "AEAssessmentApplication",
+            feature = "AEAssessmentParticipantConfiguration"
         ))]
         #[method(setConfiguration:forApplication:)]
         pub unsafe fn setConfiguration_forApplication(
@@ -122,7 +122,7 @@ extern_methods!(
             application: &AEAssessmentApplication,
         );
 
-        #[cfg(feature = "AutomaticAssessmentConfiguration_AEAssessmentApplication")]
+        #[cfg(feature = "AEAssessmentApplication")]
         #[method(removeApplication:)]
         pub unsafe fn removeApplication(&self, application: &AEAssessmentApplication);
     }

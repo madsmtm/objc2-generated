@@ -26,10 +26,7 @@ extern_methods!(
         #[method(timeSinceSampleStart)]
         pub unsafe fn timeSinceSampleStart(&self) -> NSTimeInterval;
 
-        #[cfg(all(
-            feature = "HealthKit_HKElectrocardiogram",
-            feature = "HealthKit_HKQuantity"
-        ))]
+        #[cfg(all(feature = "HKElectrocardiogram", feature = "HKQuantity"))]
         #[method_id(@__retain_semantics Other quantityForLead:)]
         pub unsafe fn quantityForLead(
             &self,
@@ -51,10 +48,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "HealthKit_HKQuery")]
+    #[cfg(feature = "HKQuery")]
     pub struct HKElectrocardiogramQuery;
 
-    #[cfg(feature = "HealthKit_HKQuery")]
+    #[cfg(feature = "HKQuery")]
     unsafe impl ClassType for HKElectrocardiogramQuery {
         #[inherits(NSObject)]
         type Super = HKQuery;
@@ -62,16 +59,16 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "HealthKit_HKQuery")]
+#[cfg(feature = "HKQuery")]
 unsafe impl NSObjectProtocol for HKElectrocardiogramQuery {}
 
 extern_methods!(
-    #[cfg(feature = "HealthKit_HKQuery")]
+    #[cfg(feature = "HKQuery")]
     unsafe impl HKElectrocardiogramQuery {
         #[cfg(all(
-            feature = "HealthKit_HKElectrocardiogram",
-            feature = "HealthKit_HKObject",
-            feature = "HealthKit_HKSample",
+            feature = "HKElectrocardiogram",
+            feature = "HKObject",
+            feature = "HKSample",
             feature = "block2"
         ))]
         #[method_id(@__retain_semantics Init initWithElectrocardiogram:dataHandler:)]
@@ -92,7 +89,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `HKQuery`
-    #[cfg(feature = "HealthKit_HKQuery")]
+    #[cfg(feature = "HKQuery")]
     unsafe impl HKElectrocardiogramQuery {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -101,7 +98,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "HealthKit_HKQuery")]
+    #[cfg(feature = "HKQuery")]
     unsafe impl HKElectrocardiogramQuery {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

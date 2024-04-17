@@ -45,7 +45,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other contextID)]
         pub unsafe fn contextID(&self) -> Id<NSUUID>;
 
-        #[cfg(feature = "MailKit_MEMessage")]
+        #[cfg(feature = "MEMessage")]
         #[method_id(@__retain_semantics Other originalMessage)]
         pub unsafe fn originalMessage(&self) -> Option<Id<MEMessage>>;
 

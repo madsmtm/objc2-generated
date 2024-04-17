@@ -75,7 +75,7 @@ extern_methods!(
             calendar_date: Option<&NSCalendarDate>,
         ) -> Option<Id<NSArray>>;
 
-        #[cfg(feature = "WebKit_WebHistoryItem")]
+        #[cfg(feature = "WebHistoryItem")]
         #[deprecated]
         #[method_id(@__retain_semantics Other itemForURL:)]
         pub unsafe fn itemForURL(&self, url: Option<&NSURL>) -> Option<Id<WebHistoryItem>>;

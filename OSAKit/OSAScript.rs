@@ -127,7 +127,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithSource:)]
         pub unsafe fn initWithSource(this: Allocated<Self>, source: &NSString) -> Id<Self>;
 
-        #[cfg(feature = "OSAKit_OSALanguage")]
+        #[cfg(feature = "OSALanguage")]
         #[method_id(@__retain_semantics Init initWithSource:language:)]
         pub unsafe fn initWithSource_language(
             this: Allocated<Self>,
@@ -135,7 +135,7 @@ extern_methods!(
             language: Option<&OSALanguage>,
         ) -> Id<Self>;
 
-        #[cfg(feature = "OSAKit_OSALanguageInstance")]
+        #[cfg(feature = "OSALanguageInstance")]
         #[method_id(@__retain_semantics Init initWithSource:fromURL:languageInstance:usingStorageOptions:)]
         pub unsafe fn initWithSource_fromURL_languageInstance_usingStorageOptions(
             this: Allocated<Self>,
@@ -152,7 +152,7 @@ extern_methods!(
             error_info: Option<&mut Option<Id<NSDictionary<NSString, AnyObject>>>>,
         ) -> Option<Id<Self>>;
 
-        #[cfg(feature = "OSAKit_OSALanguage")]
+        #[cfg(feature = "OSALanguage")]
         #[deprecated]
         #[method_id(@__retain_semantics Init initWithContentsOfURL:language:error:)]
         pub unsafe fn initWithContentsOfURL_language_error(
@@ -162,7 +162,7 @@ extern_methods!(
             error_info: Option<&mut Option<Id<NSDictionary<NSString, AnyObject>>>>,
         ) -> Id<Self>;
 
-        #[cfg(feature = "OSAKit_OSALanguageInstance")]
+        #[cfg(feature = "OSALanguageInstance")]
         #[method_id(@__retain_semantics Init initWithContentsOfURL:languageInstance:usingStorageOptions:error:_)]
         pub unsafe fn initWithContentsOfURL_languageInstance_usingStorageOptions_error(
             this: Allocated<Self>,
@@ -187,7 +187,7 @@ extern_methods!(
             storage_options: OSAStorageOptions,
         ) -> Result<Id<Self>, Id<NSError>>;
 
-        #[cfg(feature = "OSAKit_OSALanguageInstance")]
+        #[cfg(feature = "OSALanguageInstance")]
         #[method_id(@__retain_semantics Init initWithScriptDataDescriptor:fromURL:languageInstance:usingStorageOptions:error:_)]
         pub unsafe fn initWithScriptDataDescriptor_fromURL_languageInstance_usingStorageOptions_error(
             this: Allocated<Self>,
@@ -203,19 +203,19 @@ extern_methods!(
         #[method_id(@__retain_semantics Other url)]
         pub unsafe fn url(&self) -> Option<Id<NSURL>>;
 
-        #[cfg(feature = "OSAKit_OSALanguage")]
+        #[cfg(feature = "OSALanguage")]
         #[method_id(@__retain_semantics Other language)]
         pub unsafe fn language(&self) -> Id<OSALanguage>;
 
-        #[cfg(feature = "OSAKit_OSALanguage")]
+        #[cfg(feature = "OSALanguage")]
         #[method(setLanguage:)]
         pub unsafe fn setLanguage(&self, language: &OSALanguage);
 
-        #[cfg(feature = "OSAKit_OSALanguageInstance")]
+        #[cfg(feature = "OSALanguageInstance")]
         #[method_id(@__retain_semantics Other languageInstance)]
         pub unsafe fn languageInstance(&self) -> Id<OSALanguageInstance>;
 
-        #[cfg(feature = "OSAKit_OSALanguageInstance")]
+        #[cfg(feature = "OSALanguageInstance")]
         #[method(setLanguageInstance:)]
         pub unsafe fn setLanguageInstance(&self, language_instance: &OSALanguageInstance);
 

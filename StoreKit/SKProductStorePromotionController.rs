@@ -44,7 +44,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other defaultController)]
         pub unsafe fn defaultController() -> Id<Self>;
 
-        #[cfg(all(feature = "StoreKit_SKProduct", feature = "block2"))]
+        #[cfg(all(feature = "SKProduct", feature = "block2"))]
         #[method(fetchStorePromotionVisibilityForProduct:completionHandler:)]
         pub unsafe fn fetchStorePromotionVisibilityForProduct_completionHandler(
             &self,
@@ -54,7 +54,7 @@ extern_methods!(
             >,
         );
 
-        #[cfg(all(feature = "StoreKit_SKProduct", feature = "block2"))]
+        #[cfg(all(feature = "SKProduct", feature = "block2"))]
         #[method(updateStorePromotionVisibility:forProduct:completionHandler:)]
         pub unsafe fn updateStorePromotionVisibility_forProduct_completionHandler(
             &self,
@@ -63,14 +63,14 @@ extern_methods!(
             completion_handler: Option<&Block<dyn Fn(*mut NSError)>>,
         );
 
-        #[cfg(all(feature = "StoreKit_SKProduct", feature = "block2"))]
+        #[cfg(all(feature = "SKProduct", feature = "block2"))]
         #[method(fetchStorePromotionOrderWithCompletionHandler:)]
         pub unsafe fn fetchStorePromotionOrderWithCompletionHandler(
             &self,
             completion_handler: Option<&Block<dyn Fn(NonNull<NSArray<SKProduct>>, *mut NSError)>>,
         );
 
-        #[cfg(all(feature = "StoreKit_SKProduct", feature = "block2"))]
+        #[cfg(all(feature = "SKProduct", feature = "block2"))]
         #[method(updateStorePromotionOrder:completionHandler:)]
         pub unsafe fn updateStorePromotionOrder_completionHandler(
             &self,

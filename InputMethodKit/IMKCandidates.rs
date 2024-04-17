@@ -48,7 +48,7 @@ unsafe impl NSObjectProtocol for IMKCandidates {}
 extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     unsafe impl IMKCandidates {
-        #[cfg(feature = "InputMethodKit_IMKServer")]
+        #[cfg(feature = "IMKServer")]
         #[method_id(@__retain_semantics Init initWithServer:panelType:)]
         pub unsafe fn initWithServer_panelType(
             this: Allocated<Self>,
@@ -56,7 +56,7 @@ extern_methods!(
             panel_type: IMKCandidatePanelType,
         ) -> Option<Id<Self>>;
 
-        #[cfg(feature = "InputMethodKit_IMKServer")]
+        #[cfg(feature = "IMKServer")]
         #[method_id(@__retain_semantics Init initWithServer:panelType:styleType:)]
         pub unsafe fn initWithServer_panelType_styleType(
             this: Allocated<Self>,

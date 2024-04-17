@@ -23,7 +23,7 @@ unsafe impl NSSecureCoding for MEMessageSigner {}
 
 extern_methods!(
     unsafe impl MEMessageSigner {
-        #[cfg(feature = "MailKit_MEEmailAddress")]
+        #[cfg(feature = "MEEmailAddress")]
         #[method_id(@__retain_semantics Other emailAddresses)]
         pub unsafe fn emailAddresses(&self) -> Id<NSArray<MEEmailAddress>>;
 
@@ -39,7 +39,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
-        #[cfg(feature = "MailKit_MEEmailAddress")]
+        #[cfg(feature = "MEEmailAddress")]
         #[method_id(@__retain_semantics Init initWithEmailAddresses:signatureLabel:context:)]
         pub unsafe fn initWithEmailAddresses_signatureLabel_context(
             this: Allocated<Self>,

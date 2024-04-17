@@ -11,10 +11,10 @@ pub static HKObjectQueryNoLimit: NSUInteger = 0;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "HealthKit_HKQuery")]
+    #[cfg(feature = "HKQuery")]
     pub struct HKSampleQuery;
 
-    #[cfg(feature = "HealthKit_HKQuery")]
+    #[cfg(feature = "HKQuery")]
     unsafe impl ClassType for HKSampleQuery {
         #[inherits(NSObject)]
         type Super = HKQuery;
@@ -22,11 +22,11 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "HealthKit_HKQuery")]
+#[cfg(feature = "HKQuery")]
 unsafe impl NSObjectProtocol for HKSampleQuery {}
 
 extern_methods!(
-    #[cfg(feature = "HealthKit_HKQuery")]
+    #[cfg(feature = "HKQuery")]
     unsafe impl HKSampleQuery {
         #[method(limit)]
         pub unsafe fn limit(&self) -> NSUInteger;
@@ -35,9 +35,9 @@ extern_methods!(
         pub unsafe fn sortDescriptors(&self) -> Option<Id<NSArray<NSSortDescriptor>>>;
 
         #[cfg(all(
-            feature = "HealthKit_HKObject",
-            feature = "HealthKit_HKObjectType",
-            feature = "HealthKit_HKSample",
+            feature = "HKObject",
+            feature = "HKObjectType",
+            feature = "HKSample",
             feature = "block2"
         ))]
         #[method_id(@__retain_semantics Init initWithSampleType:predicate:limit:sortDescriptors:resultsHandler:)]
@@ -53,9 +53,9 @@ extern_methods!(
         ) -> Id<Self>;
 
         #[cfg(all(
-            feature = "HealthKit_HKObject",
-            feature = "HealthKit_HKQueryDescriptor",
-            feature = "HealthKit_HKSample",
+            feature = "HKObject",
+            feature = "HKQueryDescriptor",
+            feature = "HKSample",
             feature = "block2"
         ))]
         #[method_id(@__retain_semantics Init initWithQueryDescriptors:limit:resultsHandler:)]
@@ -69,9 +69,9 @@ extern_methods!(
         ) -> Id<Self>;
 
         #[cfg(all(
-            feature = "HealthKit_HKObject",
-            feature = "HealthKit_HKQueryDescriptor",
-            feature = "HealthKit_HKSample",
+            feature = "HKObject",
+            feature = "HKQueryDescriptor",
+            feature = "HKSample",
             feature = "block2"
         ))]
         #[method_id(@__retain_semantics Init initWithQueryDescriptors:limit:sortDescriptors:resultsHandler:)]
@@ -89,7 +89,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `HKQuery`
-    #[cfg(feature = "HealthKit_HKQuery")]
+    #[cfg(feature = "HKQuery")]
     unsafe impl HKSampleQuery {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -98,7 +98,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "HealthKit_HKQuery")]
+    #[cfg(feature = "HKQuery")]
     unsafe impl HKSampleQuery {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

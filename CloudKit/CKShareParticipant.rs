@@ -128,7 +128,7 @@ extern_methods!(
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
 
-        #[cfg(feature = "CloudKit_CKUserIdentity")]
+        #[cfg(feature = "CKUserIdentity")]
         #[method_id(@__retain_semantics Other userIdentity)]
         pub unsafe fn userIdentity(&self) -> Id<CKUserIdentity>;
 

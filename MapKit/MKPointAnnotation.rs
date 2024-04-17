@@ -9,10 +9,10 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MapKit_MKShape")]
+    #[cfg(feature = "MKShape")]
     pub struct MKPointAnnotation;
 
-    #[cfg(feature = "MapKit_MKShape")]
+    #[cfg(feature = "MKShape")]
     unsafe impl ClassType for MKPointAnnotation {
         #[inherits(NSObject)]
         type Super = MKShape;
@@ -20,14 +20,14 @@ extern_class!(
     }
 );
 
-#[cfg(all(feature = "MapKit_MKAnnotation", feature = "MapKit_MKShape"))]
+#[cfg(all(feature = "MKAnnotation", feature = "MKShape"))]
 unsafe impl MKAnnotation for MKPointAnnotation {}
 
-#[cfg(feature = "MapKit_MKShape")]
+#[cfg(feature = "MKShape")]
 unsafe impl NSObjectProtocol for MKPointAnnotation {}
 
 extern_methods!(
-    #[cfg(feature = "MapKit_MKShape")]
+    #[cfg(feature = "MKShape")]
     unsafe impl MKPointAnnotation {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -60,7 +60,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MapKit_MKShape")]
+    #[cfg(feature = "MKShape")]
     unsafe impl MKPointAnnotation {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

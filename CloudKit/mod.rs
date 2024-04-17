@@ -16,529 +16,508 @@
 #[link(name = "CloudKit", kind = "framework")]
 extern "C" {}
 
-#[cfg(feature = "CloudKit_CKAcceptSharesOperation")]
+#[cfg(feature = "CKAcceptSharesOperation")]
 #[path = "CKAcceptSharesOperation.rs"]
 mod __CKAcceptSharesOperation;
-#[cfg(feature = "CloudKit_CKAllowedSharingOptions")]
+#[cfg(feature = "CKAllowedSharingOptions")]
 #[path = "CKAllowedSharingOptions.rs"]
 mod __CKAllowedSharingOptions;
-#[cfg(feature = "CloudKit_CKAsset")]
+#[cfg(feature = "CKAsset")]
 #[path = "CKAsset.rs"]
 mod __CKAsset;
-#[cfg(feature = "CloudKit_CKContainer")]
+#[cfg(feature = "CKContainer")]
 #[path = "CKContainer.rs"]
 mod __CKContainer;
-#[cfg(feature = "CloudKit_CKDatabase")]
+#[cfg(feature = "CKDatabase")]
 #[path = "CKDatabase.rs"]
 mod __CKDatabase;
-#[cfg(feature = "CloudKit_CKDatabaseOperation")]
+#[cfg(feature = "CKDatabaseOperation")]
 #[path = "CKDatabaseOperation.rs"]
 mod __CKDatabaseOperation;
-#[cfg(feature = "CloudKit_CKDefines")]
+#[cfg(feature = "CKDefines")]
 #[path = "CKDefines.rs"]
 mod __CKDefines;
-#[cfg(feature = "CloudKit_CKDiscoverAllUserIdentitiesOperation")]
+#[cfg(feature = "CKDiscoverAllUserIdentitiesOperation")]
 #[path = "CKDiscoverAllUserIdentitiesOperation.rs"]
 mod __CKDiscoverAllUserIdentitiesOperation;
-#[cfg(feature = "CloudKit_CKDiscoverUserIdentitiesOperation")]
+#[cfg(feature = "CKDiscoverUserIdentitiesOperation")]
 #[path = "CKDiscoverUserIdentitiesOperation.rs"]
 mod __CKDiscoverUserIdentitiesOperation;
-#[cfg(feature = "CloudKit_CKError")]
+#[cfg(feature = "CKError")]
 #[path = "CKError.rs"]
 mod __CKError;
-#[cfg(feature = "CloudKit_CKFetchDatabaseChangesOperation")]
+#[cfg(feature = "CKFetchDatabaseChangesOperation")]
 #[path = "CKFetchDatabaseChangesOperation.rs"]
 mod __CKFetchDatabaseChangesOperation;
-#[cfg(feature = "CloudKit_CKFetchNotificationChangesOperation")]
+#[cfg(feature = "CKFetchNotificationChangesOperation")]
 #[path = "CKFetchNotificationChangesOperation.rs"]
 mod __CKFetchNotificationChangesOperation;
-#[cfg(feature = "CloudKit_CKFetchRecordChangesOperation")]
+#[cfg(feature = "CKFetchRecordChangesOperation")]
 #[path = "CKFetchRecordChangesOperation.rs"]
 mod __CKFetchRecordChangesOperation;
-#[cfg(feature = "CloudKit_CKFetchRecordZoneChangesOperation")]
+#[cfg(feature = "CKFetchRecordZoneChangesOperation")]
 #[path = "CKFetchRecordZoneChangesOperation.rs"]
 mod __CKFetchRecordZoneChangesOperation;
-#[cfg(feature = "CloudKit_CKFetchRecordZonesOperation")]
+#[cfg(feature = "CKFetchRecordZonesOperation")]
 #[path = "CKFetchRecordZonesOperation.rs"]
 mod __CKFetchRecordZonesOperation;
-#[cfg(feature = "CloudKit_CKFetchRecordsOperation")]
+#[cfg(feature = "CKFetchRecordsOperation")]
 #[path = "CKFetchRecordsOperation.rs"]
 mod __CKFetchRecordsOperation;
-#[cfg(feature = "CloudKit_CKFetchShareMetadataOperation")]
+#[cfg(feature = "CKFetchShareMetadataOperation")]
 #[path = "CKFetchShareMetadataOperation.rs"]
 mod __CKFetchShareMetadataOperation;
-#[cfg(feature = "CloudKit_CKFetchShareParticipantsOperation")]
+#[cfg(feature = "CKFetchShareParticipantsOperation")]
 #[path = "CKFetchShareParticipantsOperation.rs"]
 mod __CKFetchShareParticipantsOperation;
-#[cfg(feature = "CloudKit_CKFetchSubscriptionsOperation")]
+#[cfg(feature = "CKFetchSubscriptionsOperation")]
 #[path = "CKFetchSubscriptionsOperation.rs"]
 mod __CKFetchSubscriptionsOperation;
-#[cfg(feature = "CloudKit_CKFetchWebAuthTokenOperation")]
+#[cfg(feature = "CKFetchWebAuthTokenOperation")]
 #[path = "CKFetchWebAuthTokenOperation.rs"]
 mod __CKFetchWebAuthTokenOperation;
-#[cfg(feature = "CloudKit_CKLocationSortDescriptor")]
+#[cfg(feature = "CKLocationSortDescriptor")]
 #[path = "CKLocationSortDescriptor.rs"]
 mod __CKLocationSortDescriptor;
-#[cfg(feature = "CloudKit_CKMarkNotificationsReadOperation")]
+#[cfg(feature = "CKMarkNotificationsReadOperation")]
 #[path = "CKMarkNotificationsReadOperation.rs"]
 mod __CKMarkNotificationsReadOperation;
-#[cfg(feature = "CloudKit_CKModifyBadgeOperation")]
+#[cfg(feature = "CKModifyBadgeOperation")]
 #[path = "CKModifyBadgeOperation.rs"]
 mod __CKModifyBadgeOperation;
-#[cfg(feature = "CloudKit_CKModifyRecordZonesOperation")]
+#[cfg(feature = "CKModifyRecordZonesOperation")]
 #[path = "CKModifyRecordZonesOperation.rs"]
 mod __CKModifyRecordZonesOperation;
-#[cfg(feature = "CloudKit_CKModifyRecordsOperation")]
+#[cfg(feature = "CKModifyRecordsOperation")]
 #[path = "CKModifyRecordsOperation.rs"]
 mod __CKModifyRecordsOperation;
-#[cfg(feature = "CloudKit_CKModifySubscriptionsOperation")]
+#[cfg(feature = "CKModifySubscriptionsOperation")]
 #[path = "CKModifySubscriptionsOperation.rs"]
 mod __CKModifySubscriptionsOperation;
-#[cfg(feature = "CloudKit_CKNotification")]
+#[cfg(feature = "CKNotification")]
 #[path = "CKNotification.rs"]
 mod __CKNotification;
-#[cfg(feature = "CloudKit_CKOperation")]
+#[cfg(feature = "CKOperation")]
 #[path = "CKOperation.rs"]
 mod __CKOperation;
-#[cfg(feature = "CloudKit_CKOperationGroup")]
+#[cfg(feature = "CKOperationGroup")]
 #[path = "CKOperationGroup.rs"]
 mod __CKOperationGroup;
-#[cfg(feature = "CloudKit_CKQuery")]
+#[cfg(feature = "CKQuery")]
 #[path = "CKQuery.rs"]
 mod __CKQuery;
-#[cfg(feature = "CloudKit_CKQueryOperation")]
+#[cfg(feature = "CKQueryOperation")]
 #[path = "CKQueryOperation.rs"]
 mod __CKQueryOperation;
-#[cfg(feature = "CloudKit_CKRecord")]
+#[cfg(feature = "CKRecord")]
 #[path = "CKRecord.rs"]
 mod __CKRecord;
-#[cfg(feature = "CloudKit_CKRecordID")]
+#[cfg(feature = "CKRecordID")]
 #[path = "CKRecordID.rs"]
 mod __CKRecordID;
-#[cfg(feature = "CloudKit_CKRecordZone")]
+#[cfg(feature = "CKRecordZone")]
 #[path = "CKRecordZone.rs"]
 mod __CKRecordZone;
-#[cfg(feature = "CloudKit_CKRecordZoneID")]
+#[cfg(feature = "CKRecordZoneID")]
 #[path = "CKRecordZoneID.rs"]
 mod __CKRecordZoneID;
-#[cfg(feature = "CloudKit_CKReference")]
+#[cfg(feature = "CKReference")]
 #[path = "CKReference.rs"]
 mod __CKReference;
-#[cfg(feature = "CloudKit_CKServerChangeToken")]
+#[cfg(feature = "CKServerChangeToken")]
 #[path = "CKServerChangeToken.rs"]
 mod __CKServerChangeToken;
-#[cfg(feature = "CloudKit_CKShare")]
+#[cfg(feature = "CKShare")]
 #[path = "CKShare.rs"]
 mod __CKShare;
-#[cfg(feature = "CloudKit_CKShareMetadata")]
+#[cfg(feature = "CKShareMetadata")]
 #[path = "CKShareMetadata.rs"]
 mod __CKShareMetadata;
-#[cfg(feature = "CloudKit_CKShareParticipant")]
+#[cfg(feature = "CKShareParticipant")]
 #[path = "CKShareParticipant.rs"]
 mod __CKShareParticipant;
-#[cfg(feature = "CloudKit_CKSubscription")]
+#[cfg(feature = "CKSubscription")]
 #[path = "CKSubscription.rs"]
 mod __CKSubscription;
-#[cfg(feature = "CloudKit_CKSyncEngine")]
+#[cfg(feature = "CKSyncEngine")]
 #[path = "CKSyncEngine.rs"]
 mod __CKSyncEngine;
-#[cfg(feature = "CloudKit_CKSyncEngineConfiguration")]
+#[cfg(feature = "CKSyncEngineConfiguration")]
 #[path = "CKSyncEngineConfiguration.rs"]
 mod __CKSyncEngineConfiguration;
-#[cfg(feature = "CloudKit_CKSyncEngineEvent")]
+#[cfg(feature = "CKSyncEngineEvent")]
 #[path = "CKSyncEngineEvent.rs"]
 mod __CKSyncEngineEvent;
-#[cfg(feature = "CloudKit_CKSyncEngineRecordZoneChangeBatch")]
+#[cfg(feature = "CKSyncEngineRecordZoneChangeBatch")]
 #[path = "CKSyncEngineRecordZoneChangeBatch.rs"]
 mod __CKSyncEngineRecordZoneChangeBatch;
-#[cfg(feature = "CloudKit_CKSyncEngineState")]
+#[cfg(feature = "CKSyncEngineState")]
 #[path = "CKSyncEngineState.rs"]
 mod __CKSyncEngineState;
-#[cfg(feature = "CloudKit_CKSystemSharingUIObserver")]
+#[cfg(feature = "CKSystemSharingUIObserver")]
 #[path = "CKSystemSharingUIObserver.rs"]
 mod __CKSystemSharingUIObserver;
-#[cfg(feature = "CloudKit_CKUserIdentity")]
+#[cfg(feature = "CKUserIdentity")]
 #[path = "CKUserIdentity.rs"]
 mod __CKUserIdentity;
-#[cfg(feature = "CloudKit_CKUserIdentityLookupInfo")]
+#[cfg(feature = "CKUserIdentityLookupInfo")]
 #[path = "CKUserIdentityLookupInfo.rs"]
 mod __CKUserIdentityLookupInfo;
-#[cfg(feature = "CloudKit_NSItemProvider_CKSharingSupport")]
+#[cfg(feature = "NSItemProvider_CKSharingSupport")]
 #[path = "NSItemProvider_CKSharingSupport.rs"]
 mod __NSItemProvider_CKSharingSupport;
 
-#[cfg(all(
-    feature = "CloudKit_CKAcceptSharesOperation",
-    feature = "CloudKit_CKOperation"
-))]
+#[cfg(all(feature = "CKAcceptSharesOperation", feature = "CKOperation"))]
 pub use self::__CKAcceptSharesOperation::CKAcceptSharesOperation;
-#[cfg(feature = "CloudKit_CKAllowedSharingOptions")]
+#[cfg(feature = "CKAllowedSharingOptions")]
 pub use self::__CKAllowedSharingOptions::CKAllowedSharingOptions;
-#[cfg(feature = "CloudKit_CKAllowedSharingOptions")]
+#[cfg(feature = "CKAllowedSharingOptions")]
 pub use self::__CKAllowedSharingOptions::CKSharingParticipantAccessOption;
-#[cfg(feature = "CloudKit_CKAllowedSharingOptions")]
+#[cfg(feature = "CKAllowedSharingOptions")]
 pub use self::__CKAllowedSharingOptions::CKSharingParticipantPermissionOption;
-#[cfg(feature = "CloudKit_CKAsset")]
+#[cfg(feature = "CKAsset")]
 pub use self::__CKAsset::CKAsset;
-#[cfg(feature = "CloudKit_CKContainer")]
+#[cfg(feature = "CKContainer")]
 pub use self::__CKContainer::CKAccountChangedNotification;
-#[cfg(feature = "CloudKit_CKContainer")]
+#[cfg(feature = "CKContainer")]
 pub use self::__CKContainer::CKAccountStatus;
-#[cfg(all(feature = "CloudKit_CKContainer", feature = "block2"))]
+#[cfg(all(feature = "CKContainer", feature = "block2"))]
 pub use self::__CKContainer::CKApplicationPermissionBlock;
-#[cfg(feature = "CloudKit_CKContainer")]
+#[cfg(feature = "CKContainer")]
 pub use self::__CKContainer::CKApplicationPermissionStatus;
-#[cfg(feature = "CloudKit_CKContainer")]
+#[cfg(feature = "CKContainer")]
 pub use self::__CKContainer::CKApplicationPermissions;
-#[cfg(feature = "CloudKit_CKContainer")]
+#[cfg(feature = "CKContainer")]
 pub use self::__CKContainer::CKContainer;
-#[cfg(feature = "CloudKit_CKContainer")]
+#[cfg(feature = "CKContainer")]
 pub use self::__CKContainer::CKCurrentUserDefaultName;
-#[cfg(feature = "CloudKit_CKContainer")]
+#[cfg(feature = "CKContainer")]
 pub use self::__CKContainer::CKOwnerDefaultName;
-#[cfg(feature = "CloudKit_CKDatabase")]
+#[cfg(feature = "CKDatabase")]
 pub use self::__CKDatabase::CKDatabase;
-#[cfg(feature = "CloudKit_CKDatabase")]
+#[cfg(feature = "CKDatabase")]
 pub use self::__CKDatabase::CKDatabaseScope;
-#[cfg(all(
-    feature = "CloudKit_CKDatabaseOperation",
-    feature = "CloudKit_CKOperation"
-))]
+#[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
 pub use self::__CKDatabaseOperation::CKDatabaseOperation;
 #[cfg(all(
-    feature = "CloudKit_CKDiscoverAllUserIdentitiesOperation",
-    feature = "CloudKit_CKOperation"
+    feature = "CKDiscoverAllUserIdentitiesOperation",
+    feature = "CKOperation"
 ))]
 pub use self::__CKDiscoverAllUserIdentitiesOperation::CKDiscoverAllUserIdentitiesOperation;
-#[cfg(all(
-    feature = "CloudKit_CKDiscoverUserIdentitiesOperation",
-    feature = "CloudKit_CKOperation"
-))]
+#[cfg(all(feature = "CKDiscoverUserIdentitiesOperation", feature = "CKOperation"))]
 pub use self::__CKDiscoverUserIdentitiesOperation::CKDiscoverUserIdentitiesOperation;
-#[cfg(feature = "CloudKit_CKError")]
+#[cfg(feature = "CKError")]
 pub use self::__CKError::CKErrorCode;
-#[cfg(feature = "CloudKit_CKError")]
+#[cfg(feature = "CKError")]
 pub use self::__CKError::CKErrorDomain;
-#[cfg(feature = "CloudKit_CKError")]
+#[cfg(feature = "CKError")]
 pub use self::__CKError::CKErrorRetryAfterKey;
-#[cfg(feature = "CloudKit_CKError")]
+#[cfg(feature = "CKError")]
 pub use self::__CKError::CKErrorUserDidResetEncryptedDataKey;
-#[cfg(feature = "CloudKit_CKError")]
+#[cfg(feature = "CKError")]
 pub use self::__CKError::CKPartialErrorsByItemIDKey;
-#[cfg(feature = "CloudKit_CKError")]
+#[cfg(feature = "CKError")]
 pub use self::__CKError::CKRecordChangedErrorAncestorRecordKey;
-#[cfg(feature = "CloudKit_CKError")]
+#[cfg(feature = "CKError")]
 pub use self::__CKError::CKRecordChangedErrorClientRecordKey;
-#[cfg(feature = "CloudKit_CKError")]
+#[cfg(feature = "CKError")]
 pub use self::__CKError::CKRecordChangedErrorServerRecordKey;
 #[cfg(all(
-    feature = "CloudKit_CKDatabaseOperation",
-    feature = "CloudKit_CKFetchDatabaseChangesOperation",
-    feature = "CloudKit_CKOperation"
+    feature = "CKDatabaseOperation",
+    feature = "CKFetchDatabaseChangesOperation",
+    feature = "CKOperation"
 ))]
 pub use self::__CKFetchDatabaseChangesOperation::CKFetchDatabaseChangesOperation;
 #[cfg(all(
-    feature = "CloudKit_CKFetchNotificationChangesOperation",
-    feature = "CloudKit_CKOperation"
+    feature = "CKFetchNotificationChangesOperation",
+    feature = "CKOperation"
 ))]
 pub use self::__CKFetchNotificationChangesOperation::CKFetchNotificationChangesOperation;
 #[cfg(all(
-    feature = "CloudKit_CKDatabaseOperation",
-    feature = "CloudKit_CKFetchRecordChangesOperation",
-    feature = "CloudKit_CKOperation"
+    feature = "CKDatabaseOperation",
+    feature = "CKFetchRecordChangesOperation",
+    feature = "CKOperation"
 ))]
 pub use self::__CKFetchRecordChangesOperation::CKFetchRecordChangesOperation;
-#[cfg(feature = "CloudKit_CKFetchRecordZoneChangesOperation")]
+#[cfg(feature = "CKFetchRecordZoneChangesOperation")]
 pub use self::__CKFetchRecordZoneChangesOperation::CKFetchRecordZoneChangesConfiguration;
 #[cfg(all(
-    feature = "CloudKit_CKDatabaseOperation",
-    feature = "CloudKit_CKFetchRecordZoneChangesOperation",
-    feature = "CloudKit_CKOperation"
+    feature = "CKDatabaseOperation",
+    feature = "CKFetchRecordZoneChangesOperation",
+    feature = "CKOperation"
 ))]
 pub use self::__CKFetchRecordZoneChangesOperation::CKFetchRecordZoneChangesOperation;
-#[cfg(feature = "CloudKit_CKFetchRecordZoneChangesOperation")]
+#[cfg(feature = "CKFetchRecordZoneChangesOperation")]
 pub use self::__CKFetchRecordZoneChangesOperation::CKFetchRecordZoneChangesOptions;
 #[cfg(all(
-    feature = "CloudKit_CKDatabaseOperation",
-    feature = "CloudKit_CKFetchRecordZonesOperation",
-    feature = "CloudKit_CKOperation"
+    feature = "CKDatabaseOperation",
+    feature = "CKFetchRecordZonesOperation",
+    feature = "CKOperation"
 ))]
 pub use self::__CKFetchRecordZonesOperation::CKFetchRecordZonesOperation;
 #[cfg(all(
-    feature = "CloudKit_CKDatabaseOperation",
-    feature = "CloudKit_CKFetchRecordsOperation",
-    feature = "CloudKit_CKOperation"
+    feature = "CKDatabaseOperation",
+    feature = "CKFetchRecordsOperation",
+    feature = "CKOperation"
 ))]
 pub use self::__CKFetchRecordsOperation::CKFetchRecordsOperation;
-#[cfg(all(
-    feature = "CloudKit_CKFetchShareMetadataOperation",
-    feature = "CloudKit_CKOperation"
-))]
+#[cfg(all(feature = "CKFetchShareMetadataOperation", feature = "CKOperation"))]
 pub use self::__CKFetchShareMetadataOperation::CKFetchShareMetadataOperation;
-#[cfg(all(
-    feature = "CloudKit_CKFetchShareParticipantsOperation",
-    feature = "CloudKit_CKOperation"
-))]
+#[cfg(all(feature = "CKFetchShareParticipantsOperation", feature = "CKOperation"))]
 pub use self::__CKFetchShareParticipantsOperation::CKFetchShareParticipantsOperation;
 #[cfg(all(
-    feature = "CloudKit_CKDatabaseOperation",
-    feature = "CloudKit_CKFetchSubscriptionsOperation",
-    feature = "CloudKit_CKOperation"
+    feature = "CKDatabaseOperation",
+    feature = "CKFetchSubscriptionsOperation",
+    feature = "CKOperation"
 ))]
 pub use self::__CKFetchSubscriptionsOperation::CKFetchSubscriptionsOperation;
 #[cfg(all(
-    feature = "CloudKit_CKDatabaseOperation",
-    feature = "CloudKit_CKFetchWebAuthTokenOperation",
-    feature = "CloudKit_CKOperation"
+    feature = "CKDatabaseOperation",
+    feature = "CKFetchWebAuthTokenOperation",
+    feature = "CKOperation"
 ))]
 pub use self::__CKFetchWebAuthTokenOperation::CKFetchWebAuthTokenOperation;
-#[cfg(feature = "CloudKit_CKLocationSortDescriptor")]
+#[cfg(feature = "CKLocationSortDescriptor")]
 pub use self::__CKLocationSortDescriptor::CKLocationSortDescriptor;
-#[cfg(all(
-    feature = "CloudKit_CKMarkNotificationsReadOperation",
-    feature = "CloudKit_CKOperation"
-))]
+#[cfg(all(feature = "CKMarkNotificationsReadOperation", feature = "CKOperation"))]
 pub use self::__CKMarkNotificationsReadOperation::CKMarkNotificationsReadOperation;
-#[cfg(all(
-    feature = "CloudKit_CKModifyBadgeOperation",
-    feature = "CloudKit_CKOperation"
-))]
+#[cfg(all(feature = "CKModifyBadgeOperation", feature = "CKOperation"))]
 pub use self::__CKModifyBadgeOperation::CKModifyBadgeOperation;
 #[cfg(all(
-    feature = "CloudKit_CKDatabaseOperation",
-    feature = "CloudKit_CKModifyRecordZonesOperation",
-    feature = "CloudKit_CKOperation"
+    feature = "CKDatabaseOperation",
+    feature = "CKModifyRecordZonesOperation",
+    feature = "CKOperation"
 ))]
 pub use self::__CKModifyRecordZonesOperation::CKModifyRecordZonesOperation;
 #[cfg(all(
-    feature = "CloudKit_CKDatabaseOperation",
-    feature = "CloudKit_CKModifyRecordsOperation",
-    feature = "CloudKit_CKOperation"
+    feature = "CKDatabaseOperation",
+    feature = "CKModifyRecordsOperation",
+    feature = "CKOperation"
 ))]
 pub use self::__CKModifyRecordsOperation::CKModifyRecordsOperation;
-#[cfg(feature = "CloudKit_CKModifyRecordsOperation")]
+#[cfg(feature = "CKModifyRecordsOperation")]
 pub use self::__CKModifyRecordsOperation::CKRecordSavePolicy;
 #[cfg(all(
-    feature = "CloudKit_CKDatabaseOperation",
-    feature = "CloudKit_CKModifySubscriptionsOperation",
-    feature = "CloudKit_CKOperation"
+    feature = "CKDatabaseOperation",
+    feature = "CKModifySubscriptionsOperation",
+    feature = "CKOperation"
 ))]
 pub use self::__CKModifySubscriptionsOperation::CKModifySubscriptionsOperation;
-#[cfg(feature = "CloudKit_CKNotification")]
+#[cfg(feature = "CKNotification")]
 pub use self::__CKNotification::CKDatabaseNotification;
-#[cfg(feature = "CloudKit_CKNotification")]
+#[cfg(feature = "CKNotification")]
 pub use self::__CKNotification::CKNotification;
-#[cfg(feature = "CloudKit_CKNotification")]
+#[cfg(feature = "CKNotification")]
 pub use self::__CKNotification::CKNotificationID;
-#[cfg(feature = "CloudKit_CKNotification")]
+#[cfg(feature = "CKNotification")]
 pub use self::__CKNotification::CKNotificationType;
-#[cfg(feature = "CloudKit_CKNotification")]
+#[cfg(feature = "CKNotification")]
 pub use self::__CKNotification::CKQueryNotification;
-#[cfg(feature = "CloudKit_CKNotification")]
+#[cfg(feature = "CKNotification")]
 pub use self::__CKNotification::CKQueryNotificationReason;
-#[cfg(feature = "CloudKit_CKNotification")]
+#[cfg(feature = "CKNotification")]
 pub use self::__CKNotification::CKRecordZoneNotification;
-#[cfg(feature = "CloudKit_CKOperation")]
+#[cfg(feature = "CKOperation")]
 pub use self::__CKOperation::CKOperation;
-#[cfg(feature = "CloudKit_CKOperation")]
+#[cfg(feature = "CKOperation")]
 pub use self::__CKOperation::CKOperationConfiguration;
-#[cfg(feature = "CloudKit_CKOperation")]
+#[cfg(feature = "CKOperation")]
 pub use self::__CKOperation::CKOperationID;
-#[cfg(feature = "CloudKit_CKOperationGroup")]
+#[cfg(feature = "CKOperationGroup")]
 pub use self::__CKOperationGroup::CKOperationGroup;
-#[cfg(feature = "CloudKit_CKOperationGroup")]
+#[cfg(feature = "CKOperationGroup")]
 pub use self::__CKOperationGroup::CKOperationGroupTransferSize;
-#[cfg(feature = "CloudKit_CKQuery")]
+#[cfg(feature = "CKQuery")]
 pub use self::__CKQuery::CKQuery;
-#[cfg(feature = "CloudKit_CKQueryOperation")]
+#[cfg(feature = "CKQueryOperation")]
 pub use self::__CKQueryOperation::CKQueryCursor;
 #[cfg(all(
-    feature = "CloudKit_CKDatabaseOperation",
-    feature = "CloudKit_CKOperation",
-    feature = "CloudKit_CKQueryOperation"
+    feature = "CKDatabaseOperation",
+    feature = "CKOperation",
+    feature = "CKQueryOperation"
 ))]
 pub use self::__CKQueryOperation::CKQueryOperation;
-#[cfg(feature = "CloudKit_CKQueryOperation")]
+#[cfg(feature = "CKQueryOperation")]
 pub use self::__CKQueryOperation::CKQueryOperationMaximumResults;
-#[cfg(feature = "CloudKit_CKRecord")]
+#[cfg(feature = "CKRecord")]
 pub use self::__CKRecord::CKRecord;
-#[cfg(feature = "CloudKit_CKRecord")]
+#[cfg(feature = "CKRecord")]
 pub use self::__CKRecord::CKRecordCreationDateKey;
-#[cfg(feature = "CloudKit_CKRecord")]
+#[cfg(feature = "CKRecord")]
 pub use self::__CKRecord::CKRecordCreatorUserRecordIDKey;
-#[cfg(feature = "CloudKit_CKRecord")]
+#[cfg(feature = "CKRecord")]
 pub use self::__CKRecord::CKRecordFieldKey;
-#[cfg(feature = "CloudKit_CKRecord")]
+#[cfg(feature = "CKRecord")]
 pub use self::__CKRecord::CKRecordKeyValueSetting;
-#[cfg(feature = "CloudKit_CKRecord")]
+#[cfg(feature = "CKRecord")]
 pub use self::__CKRecord::CKRecordLastModifiedUserRecordIDKey;
-#[cfg(feature = "CloudKit_CKRecord")]
+#[cfg(feature = "CKRecord")]
 pub use self::__CKRecord::CKRecordModificationDateKey;
-#[cfg(feature = "CloudKit_CKRecord")]
+#[cfg(feature = "CKRecord")]
 pub use self::__CKRecord::CKRecordParentKey;
-#[cfg(feature = "CloudKit_CKRecord")]
+#[cfg(feature = "CKRecord")]
 pub use self::__CKRecord::CKRecordRecordIDKey;
-#[cfg(feature = "CloudKit_CKRecord")]
+#[cfg(feature = "CKRecord")]
 pub use self::__CKRecord::CKRecordShareKey;
-#[cfg(feature = "CloudKit_CKRecord")]
+#[cfg(feature = "CKRecord")]
 pub use self::__CKRecord::CKRecordType;
-#[cfg(feature = "CloudKit_CKRecord")]
+#[cfg(feature = "CKRecord")]
 pub use self::__CKRecord::CKRecordTypeUserRecord;
-#[cfg(feature = "CloudKit_CKRecord")]
+#[cfg(feature = "CKRecord")]
 pub use self::__CKRecord::CKRecordValue;
-#[cfg(feature = "CloudKit_CKRecordID")]
+#[cfg(feature = "CKRecordID")]
 pub use self::__CKRecordID::CKRecordID;
-#[cfg(feature = "CloudKit_CKRecordZone")]
+#[cfg(feature = "CKRecordZone")]
 pub use self::__CKRecordZone::CKRecordZone;
-#[cfg(feature = "CloudKit_CKRecordZone")]
+#[cfg(feature = "CKRecordZone")]
 pub use self::__CKRecordZone::CKRecordZoneCapabilities;
-#[cfg(feature = "CloudKit_CKRecordZone")]
+#[cfg(feature = "CKRecordZone")]
 pub use self::__CKRecordZone::CKRecordZoneDefaultName;
-#[cfg(feature = "CloudKit_CKRecordZoneID")]
+#[cfg(feature = "CKRecordZoneID")]
 pub use self::__CKRecordZoneID::CKRecordZoneID;
-#[cfg(feature = "CloudKit_CKReference")]
+#[cfg(feature = "CKReference")]
 pub use self::__CKReference::CKReference;
-#[cfg(feature = "CloudKit_CKReference")]
+#[cfg(feature = "CKReference")]
 pub use self::__CKReference::CKReferenceAction;
-#[cfg(feature = "CloudKit_CKServerChangeToken")]
+#[cfg(feature = "CKServerChangeToken")]
 pub use self::__CKServerChangeToken::CKServerChangeToken;
-#[cfg(feature = "CloudKit_CKShare")]
+#[cfg(feature = "CKShare")]
 pub use self::__CKShare::CKRecordNameZoneWideShare;
-#[cfg(all(feature = "CloudKit_CKRecord", feature = "CloudKit_CKShare"))]
+#[cfg(all(feature = "CKRecord", feature = "CKShare"))]
 pub use self::__CKShare::CKRecordTypeShare;
-#[cfg(all(feature = "CloudKit_CKRecord", feature = "CloudKit_CKShare"))]
+#[cfg(all(feature = "CKRecord", feature = "CKShare"))]
 pub use self::__CKShare::CKShare;
-#[cfg(all(feature = "CloudKit_CKRecord", feature = "CloudKit_CKShare"))]
+#[cfg(all(feature = "CKRecord", feature = "CKShare"))]
 pub use self::__CKShare::CKShareThumbnailImageDataKey;
-#[cfg(all(feature = "CloudKit_CKRecord", feature = "CloudKit_CKShare"))]
+#[cfg(all(feature = "CKRecord", feature = "CKShare"))]
 pub use self::__CKShare::CKShareTitleKey;
-#[cfg(all(feature = "CloudKit_CKRecord", feature = "CloudKit_CKShare"))]
+#[cfg(all(feature = "CKRecord", feature = "CKShare"))]
 pub use self::__CKShare::CKShareTypeKey;
-#[cfg(feature = "CloudKit_CKShareMetadata")]
+#[cfg(feature = "CKShareMetadata")]
 pub use self::__CKShareMetadata::CKShareMetadata;
-#[cfg(feature = "CloudKit_CKShareParticipant")]
+#[cfg(feature = "CKShareParticipant")]
 pub use self::__CKShareParticipant::CKShareParticipant;
-#[cfg(feature = "CloudKit_CKShareParticipant")]
+#[cfg(feature = "CKShareParticipant")]
 pub use self::__CKShareParticipant::CKShareParticipantAcceptanceStatus;
-#[cfg(feature = "CloudKit_CKShareParticipant")]
+#[cfg(feature = "CKShareParticipant")]
 pub use self::__CKShareParticipant::CKShareParticipantPermission;
-#[cfg(feature = "CloudKit_CKShareParticipant")]
+#[cfg(feature = "CKShareParticipant")]
 pub use self::__CKShareParticipant::CKShareParticipantRole;
-#[cfg(feature = "CloudKit_CKShareParticipant")]
+#[cfg(feature = "CKShareParticipant")]
 pub use self::__CKShareParticipant::CKShareParticipantType;
-#[cfg(feature = "CloudKit_CKSubscription")]
+#[cfg(feature = "CKSubscription")]
 pub use self::__CKSubscription::CKDatabaseSubscription;
-#[cfg(feature = "CloudKit_CKSubscription")]
+#[cfg(feature = "CKSubscription")]
 pub use self::__CKSubscription::CKNotificationInfo;
-#[cfg(feature = "CloudKit_CKSubscription")]
+#[cfg(feature = "CKSubscription")]
 pub use self::__CKSubscription::CKQuerySubscription;
-#[cfg(feature = "CloudKit_CKSubscription")]
+#[cfg(feature = "CKSubscription")]
 pub use self::__CKSubscription::CKQuerySubscriptionOptions;
-#[cfg(feature = "CloudKit_CKSubscription")]
+#[cfg(feature = "CKSubscription")]
 pub use self::__CKSubscription::CKRecordZoneSubscription;
-#[cfg(feature = "CloudKit_CKSubscription")]
+#[cfg(feature = "CKSubscription")]
 pub use self::__CKSubscription::CKSubscription;
-#[cfg(feature = "CloudKit_CKSubscription")]
+#[cfg(feature = "CKSubscription")]
 pub use self::__CKSubscription::CKSubscriptionID;
-#[cfg(feature = "CloudKit_CKSubscription")]
+#[cfg(feature = "CKSubscription")]
 pub use self::__CKSubscription::CKSubscriptionType;
-#[cfg(feature = "CloudKit_CKSyncEngine")]
+#[cfg(feature = "CKSyncEngine")]
 pub use self::__CKSyncEngine::CKSyncEngine;
-#[cfg(feature = "CloudKit_CKSyncEngine")]
+#[cfg(feature = "CKSyncEngine")]
 pub use self::__CKSyncEngine::CKSyncEngineDelegate;
-#[cfg(feature = "CloudKit_CKSyncEngine")]
+#[cfg(feature = "CKSyncEngine")]
 pub use self::__CKSyncEngine::CKSyncEngineFetchChangesContext;
-#[cfg(feature = "CloudKit_CKSyncEngine")]
+#[cfg(feature = "CKSyncEngine")]
 pub use self::__CKSyncEngine::CKSyncEngineFetchChangesOptions;
-#[cfg(feature = "CloudKit_CKSyncEngine")]
+#[cfg(feature = "CKSyncEngine")]
 pub use self::__CKSyncEngine::CKSyncEngineFetchChangesScope;
-#[cfg(feature = "CloudKit_CKSyncEngine")]
+#[cfg(feature = "CKSyncEngine")]
 pub use self::__CKSyncEngine::CKSyncEngineSendChangesContext;
-#[cfg(feature = "CloudKit_CKSyncEngine")]
+#[cfg(feature = "CKSyncEngine")]
 pub use self::__CKSyncEngine::CKSyncEngineSendChangesOptions;
-#[cfg(feature = "CloudKit_CKSyncEngine")]
+#[cfg(feature = "CKSyncEngine")]
 pub use self::__CKSyncEngine::CKSyncEngineSendChangesScope;
-#[cfg(feature = "CloudKit_CKSyncEngine")]
+#[cfg(feature = "CKSyncEngine")]
 pub use self::__CKSyncEngine::CKSyncEngineSyncReason;
-#[cfg(feature = "CloudKit_CKSyncEngineConfiguration")]
+#[cfg(feature = "CKSyncEngineConfiguration")]
 pub use self::__CKSyncEngineConfiguration::CKSyncEngineConfiguration;
-#[cfg(feature = "CloudKit_CKSyncEngineEvent")]
+#[cfg(feature = "CKSyncEngineEvent")]
 pub use self::__CKSyncEngineEvent::CKSyncEngineAccountChangeEvent;
-#[cfg(feature = "CloudKit_CKSyncEngineEvent")]
+#[cfg(feature = "CKSyncEngineEvent")]
 pub use self::__CKSyncEngineEvent::CKSyncEngineAccountChangeType;
-#[cfg(feature = "CloudKit_CKSyncEngineEvent")]
+#[cfg(feature = "CKSyncEngineEvent")]
 pub use self::__CKSyncEngineEvent::CKSyncEngineDidFetchChangesEvent;
-#[cfg(feature = "CloudKit_CKSyncEngineEvent")]
+#[cfg(feature = "CKSyncEngineEvent")]
 pub use self::__CKSyncEngineEvent::CKSyncEngineDidFetchRecordZoneChangesEvent;
-#[cfg(feature = "CloudKit_CKSyncEngineEvent")]
+#[cfg(feature = "CKSyncEngineEvent")]
 pub use self::__CKSyncEngineEvent::CKSyncEngineDidSendChangesEvent;
-#[cfg(feature = "CloudKit_CKSyncEngineEvent")]
+#[cfg(feature = "CKSyncEngineEvent")]
 pub use self::__CKSyncEngineEvent::CKSyncEngineEvent;
-#[cfg(feature = "CloudKit_CKSyncEngineEvent")]
+#[cfg(feature = "CKSyncEngineEvent")]
 pub use self::__CKSyncEngineEvent::CKSyncEngineEventType;
-#[cfg(feature = "CloudKit_CKSyncEngineEvent")]
+#[cfg(feature = "CKSyncEngineEvent")]
 pub use self::__CKSyncEngineEvent::CKSyncEngineFailedRecordSave;
-#[cfg(feature = "CloudKit_CKSyncEngineEvent")]
+#[cfg(feature = "CKSyncEngineEvent")]
 pub use self::__CKSyncEngineEvent::CKSyncEngineFailedZoneSave;
-#[cfg(feature = "CloudKit_CKSyncEngineEvent")]
+#[cfg(feature = "CKSyncEngineEvent")]
 pub use self::__CKSyncEngineEvent::CKSyncEngineFetchedDatabaseChangesEvent;
-#[cfg(feature = "CloudKit_CKSyncEngineEvent")]
+#[cfg(feature = "CKSyncEngineEvent")]
 pub use self::__CKSyncEngineEvent::CKSyncEngineFetchedRecordDeletion;
-#[cfg(feature = "CloudKit_CKSyncEngineEvent")]
+#[cfg(feature = "CKSyncEngineEvent")]
 pub use self::__CKSyncEngineEvent::CKSyncEngineFetchedRecordZoneChangesEvent;
-#[cfg(feature = "CloudKit_CKSyncEngineEvent")]
+#[cfg(feature = "CKSyncEngineEvent")]
 pub use self::__CKSyncEngineEvent::CKSyncEngineFetchedZoneDeletion;
-#[cfg(feature = "CloudKit_CKSyncEngineEvent")]
+#[cfg(feature = "CKSyncEngineEvent")]
 pub use self::__CKSyncEngineEvent::CKSyncEngineSentDatabaseChangesEvent;
-#[cfg(feature = "CloudKit_CKSyncEngineEvent")]
+#[cfg(feature = "CKSyncEngineEvent")]
 pub use self::__CKSyncEngineEvent::CKSyncEngineSentRecordZoneChangesEvent;
-#[cfg(feature = "CloudKit_CKSyncEngineEvent")]
+#[cfg(feature = "CKSyncEngineEvent")]
 pub use self::__CKSyncEngineEvent::CKSyncEngineStateUpdateEvent;
-#[cfg(feature = "CloudKit_CKSyncEngineEvent")]
+#[cfg(feature = "CKSyncEngineEvent")]
 pub use self::__CKSyncEngineEvent::CKSyncEngineWillFetchChangesEvent;
-#[cfg(feature = "CloudKit_CKSyncEngineEvent")]
+#[cfg(feature = "CKSyncEngineEvent")]
 pub use self::__CKSyncEngineEvent::CKSyncEngineWillFetchRecordZoneChangesEvent;
-#[cfg(feature = "CloudKit_CKSyncEngineEvent")]
+#[cfg(feature = "CKSyncEngineEvent")]
 pub use self::__CKSyncEngineEvent::CKSyncEngineWillSendChangesEvent;
-#[cfg(feature = "CloudKit_CKSyncEngineEvent")]
+#[cfg(feature = "CKSyncEngineEvent")]
 pub use self::__CKSyncEngineEvent::CKSyncEngineZoneDeletionReason;
-#[cfg(feature = "CloudKit_CKSyncEngineRecordZoneChangeBatch")]
+#[cfg(feature = "CKSyncEngineRecordZoneChangeBatch")]
 pub use self::__CKSyncEngineRecordZoneChangeBatch::CKSyncEngineRecordZoneChangeBatch;
-#[cfg(feature = "CloudKit_CKSyncEngineState")]
+#[cfg(feature = "CKSyncEngineState")]
 pub use self::__CKSyncEngineState::CKSyncEnginePendingDatabaseChange;
-#[cfg(feature = "CloudKit_CKSyncEngineState")]
+#[cfg(feature = "CKSyncEngineState")]
 pub use self::__CKSyncEngineState::CKSyncEnginePendingDatabaseChangeType;
-#[cfg(feature = "CloudKit_CKSyncEngineState")]
+#[cfg(feature = "CKSyncEngineState")]
 pub use self::__CKSyncEngineState::CKSyncEnginePendingRecordZoneChange;
-#[cfg(feature = "CloudKit_CKSyncEngineState")]
+#[cfg(feature = "CKSyncEngineState")]
 pub use self::__CKSyncEngineState::CKSyncEnginePendingRecordZoneChangeType;
-#[cfg(feature = "CloudKit_CKSyncEngineState")]
+#[cfg(feature = "CKSyncEngineState")]
 pub use self::__CKSyncEngineState::CKSyncEnginePendingZoneDelete;
-#[cfg(feature = "CloudKit_CKSyncEngineState")]
+#[cfg(feature = "CKSyncEngineState")]
 pub use self::__CKSyncEngineState::CKSyncEnginePendingZoneSave;
-#[cfg(feature = "CloudKit_CKSyncEngineState")]
+#[cfg(feature = "CKSyncEngineState")]
 pub use self::__CKSyncEngineState::CKSyncEngineState;
-#[cfg(feature = "CloudKit_CKSyncEngineState")]
+#[cfg(feature = "CKSyncEngineState")]
 pub use self::__CKSyncEngineState::CKSyncEngineStateSerialization;
-#[cfg(feature = "CloudKit_CKSystemSharingUIObserver")]
+#[cfg(feature = "CKSystemSharingUIObserver")]
 pub use self::__CKSystemSharingUIObserver::CKSystemSharingUIObserver;
-#[cfg(feature = "CloudKit_CKUserIdentity")]
+#[cfg(feature = "CKUserIdentity")]
 pub use self::__CKUserIdentity::CKUserIdentity;
-#[cfg(feature = "CloudKit_CKUserIdentityLookupInfo")]
+#[cfg(feature = "CKUserIdentityLookupInfo")]
 pub use self::__CKUserIdentityLookupInfo::CKUserIdentityLookupInfo;
 #[cfg(all(
-    feature = "CloudKit_CKRecord",
-    feature = "CloudKit_CKShare",
-    feature = "CloudKit_NSItemProvider_CKSharingSupport",
+    feature = "CKRecord",
+    feature = "CKShare",
+    feature = "NSItemProvider_CKSharingSupport",
     feature = "block2"
 ))]
 pub use self::__NSItemProvider_CKSharingSupport::CKSharePreparationCompletionHandler;
 #[cfg(all(
-    feature = "CloudKit_CKRecord",
-    feature = "CloudKit_CKShare",
-    feature = "CloudKit_NSItemProvider_CKSharingSupport",
+    feature = "CKRecord",
+    feature = "CKShare",
+    feature = "NSItemProvider_CKSharingSupport",
     feature = "block2"
 ))]
 pub use self::__NSItemProvider_CKSharingSupport::CKSharePreparationHandler;
-#[cfg(feature = "CloudKit_NSItemProvider_CKSharingSupport")]
+#[cfg(feature = "NSItemProvider_CKSharingSupport")]
 pub use self::__NSItemProvider_CKSharingSupport::NSItemProviderCKSharingSupport;

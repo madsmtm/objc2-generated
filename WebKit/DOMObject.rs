@@ -9,11 +9,11 @@ pub type DOMTimeStamp = c_ulonglong;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "WebKit_WebScriptObject")]
+    #[cfg(feature = "WebScriptObject")]
     #[deprecated]
     pub struct DOMObject;
 
-    #[cfg(feature = "WebKit_WebScriptObject")]
+    #[cfg(feature = "WebScriptObject")]
     unsafe impl ClassType for DOMObject {
         #[inherits(NSObject)]
         type Super = WebScriptObject;
@@ -21,14 +21,14 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "WebKit_WebScriptObject")]
+#[cfg(feature = "WebScriptObject")]
 unsafe impl NSCopying for DOMObject {}
 
-#[cfg(feature = "WebKit_WebScriptObject")]
+#[cfg(feature = "WebScriptObject")]
 unsafe impl NSObjectProtocol for DOMObject {}
 
 extern_methods!(
-    #[cfg(feature = "WebKit_WebScriptObject")]
+    #[cfg(feature = "WebScriptObject")]
     unsafe impl DOMObject {
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
@@ -38,7 +38,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "WebKit_WebScriptObject")]
+    #[cfg(feature = "WebScriptObject")]
     unsafe impl DOMObject {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -47,9 +47,9 @@ extern_methods!(
 
 extern_methods!(
     /// DOMLinkStyle
-    #[cfg(feature = "WebKit_WebScriptObject")]
+    #[cfg(feature = "WebScriptObject")]
     unsafe impl DOMObject {
-        #[cfg(feature = "WebKit_DOMStyleSheet")]
+        #[cfg(feature = "DOMStyleSheet")]
         #[method_id(@__retain_semantics Other sheet)]
         pub unsafe fn sheet(&self) -> Option<Id<DOMStyleSheet>>;
     }

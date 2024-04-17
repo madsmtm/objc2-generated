@@ -7,10 +7,10 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "HealthKit_HKLensSpecification")]
+    #[cfg(feature = "HKLensSpecification")]
     pub struct HKContactsLensSpecification;
 
-    #[cfg(feature = "HealthKit_HKLensSpecification")]
+    #[cfg(feature = "HKLensSpecification")]
     unsafe impl ClassType for HKContactsLensSpecification {
         #[inherits(NSObject)]
         type Super = HKLensSpecification;
@@ -18,30 +18,30 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "HealthKit_HKLensSpecification")]
+#[cfg(feature = "HKLensSpecification")]
 unsafe impl NSCoding for HKContactsLensSpecification {}
 
-#[cfg(feature = "HealthKit_HKLensSpecification")]
+#[cfg(feature = "HKLensSpecification")]
 unsafe impl NSCopying for HKContactsLensSpecification {}
 
-#[cfg(feature = "HealthKit_HKLensSpecification")]
+#[cfg(feature = "HKLensSpecification")]
 unsafe impl NSObjectProtocol for HKContactsLensSpecification {}
 
-#[cfg(feature = "HealthKit_HKLensSpecification")]
+#[cfg(feature = "HKLensSpecification")]
 unsafe impl NSSecureCoding for HKContactsLensSpecification {}
 
 extern_methods!(
-    #[cfg(feature = "HealthKit_HKLensSpecification")]
+    #[cfg(feature = "HKLensSpecification")]
     unsafe impl HKContactsLensSpecification {
-        #[cfg(feature = "HealthKit_HKQuantity")]
+        #[cfg(feature = "HKQuantity")]
         #[method_id(@__retain_semantics Other baseCurve)]
         pub unsafe fn baseCurve(&self) -> Option<Id<HKQuantity>>;
 
-        #[cfg(feature = "HealthKit_HKQuantity")]
+        #[cfg(feature = "HKQuantity")]
         #[method_id(@__retain_semantics Other diameter)]
         pub unsafe fn diameter(&self) -> Option<Id<HKQuantity>>;
 
-        #[cfg(feature = "HealthKit_HKQuantity")]
+        #[cfg(feature = "HKQuantity")]
         #[method_id(@__retain_semantics Init initWithSphere:cylinder:axis:addPower:baseCurve:diameter:)]
         pub unsafe fn initWithSphere_cylinder_axis_addPower_baseCurve_diameter(
             this: Allocated<Self>,

@@ -41,7 +41,7 @@ extern_protocol!(
         #[method(providerDidBegin:)]
         unsafe fn providerDidBegin(&self, provider: &CXProvider);
 
-        #[cfg(feature = "CallKit_CXTransaction")]
+        #[cfg(feature = "CXTransaction")]
         #[optional]
         #[method(provider:executeTransaction:)]
         unsafe fn provider_executeTransaction(
@@ -51,9 +51,9 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(all(
-            feature = "CallKit_CXAction",
-            feature = "CallKit_CXCallAction",
-            feature = "CallKit_CXStartCallAction"
+            feature = "CXAction",
+            feature = "CXCallAction",
+            feature = "CXStartCallAction"
         ))]
         #[optional]
         #[method(provider:performStartCallAction:)]
@@ -64,9 +64,9 @@ extern_protocol!(
         );
 
         #[cfg(all(
-            feature = "CallKit_CXAction",
-            feature = "CallKit_CXAnswerCallAction",
-            feature = "CallKit_CXCallAction"
+            feature = "CXAction",
+            feature = "CXAnswerCallAction",
+            feature = "CXCallAction"
         ))]
         #[optional]
         #[method(provider:performAnswerCallAction:)]
@@ -77,9 +77,9 @@ extern_protocol!(
         );
 
         #[cfg(all(
-            feature = "CallKit_CXAction",
-            feature = "CallKit_CXCallAction",
-            feature = "CallKit_CXEndCallAction"
+            feature = "CXAction",
+            feature = "CXCallAction",
+            feature = "CXEndCallAction"
         ))]
         #[optional]
         #[method(provider:performEndCallAction:)]
@@ -90,9 +90,9 @@ extern_protocol!(
         );
 
         #[cfg(all(
-            feature = "CallKit_CXAction",
-            feature = "CallKit_CXCallAction",
-            feature = "CallKit_CXSetHeldCallAction"
+            feature = "CXAction",
+            feature = "CXCallAction",
+            feature = "CXSetHeldCallAction"
         ))]
         #[optional]
         #[method(provider:performSetHeldCallAction:)]
@@ -103,9 +103,9 @@ extern_protocol!(
         );
 
         #[cfg(all(
-            feature = "CallKit_CXAction",
-            feature = "CallKit_CXCallAction",
-            feature = "CallKit_CXSetMutedCallAction"
+            feature = "CXAction",
+            feature = "CXCallAction",
+            feature = "CXSetMutedCallAction"
         ))]
         #[optional]
         #[method(provider:performSetMutedCallAction:)]
@@ -116,9 +116,9 @@ extern_protocol!(
         );
 
         #[cfg(all(
-            feature = "CallKit_CXAction",
-            feature = "CallKit_CXCallAction",
-            feature = "CallKit_CXSetGroupCallAction"
+            feature = "CXAction",
+            feature = "CXCallAction",
+            feature = "CXSetGroupCallAction"
         ))]
         #[optional]
         #[method(provider:performSetGroupCallAction:)]
@@ -129,9 +129,9 @@ extern_protocol!(
         );
 
         #[cfg(all(
-            feature = "CallKit_CXAction",
-            feature = "CallKit_CXCallAction",
-            feature = "CallKit_CXPlayDTMFCallAction"
+            feature = "CXAction",
+            feature = "CXCallAction",
+            feature = "CXPlayDTMFCallAction"
         ))]
         #[optional]
         #[method(provider:performPlayDTMFCallAction:)]
@@ -141,7 +141,7 @@ extern_protocol!(
             action: &CXPlayDTMFCallAction,
         );
 
-        #[cfg(feature = "CallKit_CXAction")]
+        #[cfg(feature = "CXAction")]
         #[optional]
         #[method(provider:timedOutPerformingAction:)]
         unsafe fn provider_timedOutPerformingAction(
@@ -168,7 +168,7 @@ unsafe impl NSObjectProtocol for CXProvider {}
 
 extern_methods!(
     unsafe impl CXProvider {
-        #[cfg(feature = "CallKit_CXProviderConfiguration")]
+        #[cfg(feature = "CXProviderConfiguration")]
         #[method_id(@__retain_semantics Init initWithConfiguration:)]
         pub unsafe fn initWithConfiguration(
             this: Allocated<Self>,
@@ -181,7 +181,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
-        #[cfg(all(feature = "CallKit_CXCallUpdate", feature = "block2"))]
+        #[cfg(all(feature = "CXCallUpdate", feature = "block2"))]
         #[method(reportNewIncomingCallWithUUID:update:completion:)]
         pub unsafe fn reportNewIncomingCallWithUUID_update_completion(
             &self,
@@ -190,7 +190,7 @@ extern_methods!(
             completion: &Block<dyn Fn(*mut NSError)>,
         );
 
-        #[cfg(feature = "CallKit_CXCallUpdate")]
+        #[cfg(feature = "CXCallUpdate")]
         #[method(reportCallWithUUID:updated:)]
         pub unsafe fn reportCallWithUUID_updated(&self, uuid: &NSUUID, update: &CXCallUpdate);
 
@@ -223,22 +223,22 @@ extern_methods!(
             completion: Option<&Block<dyn Fn(*mut NSError)>>,
         );
 
-        #[cfg(feature = "CallKit_CXProviderConfiguration")]
+        #[cfg(feature = "CXProviderConfiguration")]
         #[method_id(@__retain_semantics Other configuration)]
         pub unsafe fn configuration(&self) -> Id<CXProviderConfiguration>;
 
-        #[cfg(feature = "CallKit_CXProviderConfiguration")]
+        #[cfg(feature = "CXProviderConfiguration")]
         #[method(setConfiguration:)]
         pub unsafe fn setConfiguration(&self, configuration: &CXProviderConfiguration);
 
         #[method(invalidate)]
         pub unsafe fn invalidate(&self);
 
-        #[cfg(feature = "CallKit_CXTransaction")]
+        #[cfg(feature = "CXTransaction")]
         #[method_id(@__retain_semantics Other pendingTransactions)]
         pub unsafe fn pendingTransactions(&self) -> Id<NSArray<CXTransaction>>;
 
-        #[cfg(all(feature = "CallKit_CXAction", feature = "CallKit_CXCallAction"))]
+        #[cfg(all(feature = "CXAction", feature = "CXCallAction"))]
         #[method_id(@__retain_semantics Other pendingCallActionsOfClass:withCallUUID:)]
         pub unsafe fn pendingCallActionsOfClass_withCallUUID(
             &self,

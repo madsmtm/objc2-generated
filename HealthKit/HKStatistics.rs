@@ -51,7 +51,7 @@ unsafe impl NSSecureCoding for HKStatistics {}
 
 extern_methods!(
     unsafe impl HKStatistics {
-        #[cfg(feature = "HealthKit_HKObjectType")]
+        #[cfg(feature = "HKObjectType")]
         #[method_id(@__retain_semantics Other quantityType)]
         pub unsafe fn quantityType(&self) -> Id<HKQuantityType>;
 
@@ -61,49 +61,49 @@ extern_methods!(
         #[method_id(@__retain_semantics Other endDate)]
         pub unsafe fn endDate(&self) -> Id<NSDate>;
 
-        #[cfg(feature = "HealthKit_HKSource")]
+        #[cfg(feature = "HKSource")]
         #[method_id(@__retain_semantics Other sources)]
         pub unsafe fn sources(&self) -> Option<Id<NSArray<HKSource>>>;
 
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
-        #[cfg(all(feature = "HealthKit_HKQuantity", feature = "HealthKit_HKSource"))]
+        #[cfg(all(feature = "HKQuantity", feature = "HKSource"))]
         #[method_id(@__retain_semantics Other averageQuantityForSource:)]
         pub unsafe fn averageQuantityForSource(&self, source: &HKSource) -> Option<Id<HKQuantity>>;
 
-        #[cfg(feature = "HealthKit_HKQuantity")]
+        #[cfg(feature = "HKQuantity")]
         #[method_id(@__retain_semantics Other averageQuantity)]
         pub unsafe fn averageQuantity(&self) -> Option<Id<HKQuantity>>;
 
-        #[cfg(all(feature = "HealthKit_HKQuantity", feature = "HealthKit_HKSource"))]
+        #[cfg(all(feature = "HKQuantity", feature = "HKSource"))]
         #[method_id(@__retain_semantics Other minimumQuantityForSource:)]
         pub unsafe fn minimumQuantityForSource(&self, source: &HKSource) -> Option<Id<HKQuantity>>;
 
-        #[cfg(feature = "HealthKit_HKQuantity")]
+        #[cfg(feature = "HKQuantity")]
         #[method_id(@__retain_semantics Other minimumQuantity)]
         pub unsafe fn minimumQuantity(&self) -> Option<Id<HKQuantity>>;
 
-        #[cfg(all(feature = "HealthKit_HKQuantity", feature = "HealthKit_HKSource"))]
+        #[cfg(all(feature = "HKQuantity", feature = "HKSource"))]
         #[method_id(@__retain_semantics Other maximumQuantityForSource:)]
         pub unsafe fn maximumQuantityForSource(&self, source: &HKSource) -> Option<Id<HKQuantity>>;
 
-        #[cfg(feature = "HealthKit_HKQuantity")]
+        #[cfg(feature = "HKQuantity")]
         #[method_id(@__retain_semantics Other maximumQuantity)]
         pub unsafe fn maximumQuantity(&self) -> Option<Id<HKQuantity>>;
 
-        #[cfg(all(feature = "HealthKit_HKQuantity", feature = "HealthKit_HKSource"))]
+        #[cfg(all(feature = "HKQuantity", feature = "HKSource"))]
         #[method_id(@__retain_semantics Other mostRecentQuantityForSource:)]
         pub unsafe fn mostRecentQuantityForSource(
             &self,
             source: &HKSource,
         ) -> Option<Id<HKQuantity>>;
 
-        #[cfg(feature = "HealthKit_HKQuantity")]
+        #[cfg(feature = "HKQuantity")]
         #[method_id(@__retain_semantics Other mostRecentQuantity)]
         pub unsafe fn mostRecentQuantity(&self) -> Option<Id<HKQuantity>>;
 
-        #[cfg(feature = "HealthKit_HKSource")]
+        #[cfg(feature = "HKSource")]
         #[method_id(@__retain_semantics Other mostRecentQuantityDateIntervalForSource:)]
         pub unsafe fn mostRecentQuantityDateIntervalForSource(
             &self,
@@ -113,19 +113,19 @@ extern_methods!(
         #[method_id(@__retain_semantics Other mostRecentQuantityDateInterval)]
         pub unsafe fn mostRecentQuantityDateInterval(&self) -> Option<Id<NSDateInterval>>;
 
-        #[cfg(all(feature = "HealthKit_HKQuantity", feature = "HealthKit_HKSource"))]
+        #[cfg(all(feature = "HKQuantity", feature = "HKSource"))]
         #[method_id(@__retain_semantics Other sumQuantityForSource:)]
         pub unsafe fn sumQuantityForSource(&self, source: &HKSource) -> Option<Id<HKQuantity>>;
 
-        #[cfg(feature = "HealthKit_HKQuantity")]
+        #[cfg(feature = "HKQuantity")]
         #[method_id(@__retain_semantics Other sumQuantity)]
         pub unsafe fn sumQuantity(&self) -> Option<Id<HKQuantity>>;
 
-        #[cfg(feature = "HealthKit_HKQuantity")]
+        #[cfg(feature = "HKQuantity")]
         #[method_id(@__retain_semantics Other duration)]
         pub unsafe fn duration(&self) -> Option<Id<HKQuantity>>;
 
-        #[cfg(all(feature = "HealthKit_HKQuantity", feature = "HealthKit_HKSource"))]
+        #[cfg(all(feature = "HKQuantity", feature = "HKSource"))]
         #[method_id(@__retain_semantics Other durationForSource:)]
         pub unsafe fn durationForSource(&self, source: &HKSource) -> Option<Id<HKQuantity>>;
     }

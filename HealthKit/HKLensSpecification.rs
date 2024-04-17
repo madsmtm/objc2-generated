@@ -19,19 +19,19 @@ unsafe impl NSObjectProtocol for HKLensSpecification {}
 
 extern_methods!(
     unsafe impl HKLensSpecification {
-        #[cfg(feature = "HealthKit_HKQuantity")]
+        #[cfg(feature = "HKQuantity")]
         #[method_id(@__retain_semantics Other sphere)]
         pub unsafe fn sphere(&self) -> Id<HKQuantity>;
 
-        #[cfg(feature = "HealthKit_HKQuantity")]
+        #[cfg(feature = "HKQuantity")]
         #[method_id(@__retain_semantics Other cylinder)]
         pub unsafe fn cylinder(&self) -> Option<Id<HKQuantity>>;
 
-        #[cfg(feature = "HealthKit_HKQuantity")]
+        #[cfg(feature = "HKQuantity")]
         #[method_id(@__retain_semantics Other axis)]
         pub unsafe fn axis(&self) -> Option<Id<HKQuantity>>;
 
-        #[cfg(feature = "HealthKit_HKQuantity")]
+        #[cfg(feature = "HKQuantity")]
         #[method_id(@__retain_semantics Other addPower)]
         pub unsafe fn addPower(&self) -> Option<Id<HKQuantity>>;
 

@@ -33,10 +33,10 @@ unsafe impl RefEncode for NSViewControllerTransitionOptions {
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSResponder")]
+    #[cfg(feature = "NSResponder")]
     pub struct NSViewController;
 
-    #[cfg(feature = "AppKit_NSResponder")]
+    #[cfg(feature = "NSResponder")]
     unsafe impl ClassType for NSViewController {
         #[inherits(NSObject)]
         type Super = NSResponder;
@@ -44,28 +44,25 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSResponder")]
+#[cfg(feature = "NSResponder")]
 unsafe impl NSCoding for NSViewController {}
 
-#[cfg(all(feature = "AppKit_NSKeyValueBinding", feature = "AppKit_NSResponder"))]
+#[cfg(all(feature = "NSKeyValueBinding", feature = "NSResponder"))]
 unsafe impl NSEditor for NSViewController {}
 
-#[cfg(feature = "AppKit_NSResponder")]
+#[cfg(feature = "NSResponder")]
 unsafe impl NSObjectProtocol for NSViewController {}
 
-#[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSStoryboardSegue"))]
+#[cfg(all(feature = "NSResponder", feature = "NSStoryboardSegue"))]
 unsafe impl NSSeguePerforming for NSViewController {}
 
-#[cfg(all(
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSUserInterfaceItemIdentification"
-))]
+#[cfg(all(feature = "NSResponder", feature = "NSUserInterfaceItemIdentification"))]
 unsafe impl NSUserInterfaceItemIdentification for NSViewController {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSResponder")]
+    #[cfg(feature = "NSResponder")]
     unsafe impl NSViewController {
-        #[cfg(feature = "AppKit_NSNib")]
+        #[cfg(feature = "NSNib")]
         #[method_id(@__retain_semantics Init initWithNibName:bundle:)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,
@@ -76,7 +73,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
 
-        #[cfg(feature = "AppKit_NSNib")]
+        #[cfg(feature = "NSNib")]
         #[method_id(@__retain_semantics Other nibName)]
         pub unsafe fn nibName(&self) -> Option<Id<NSNibName>>;
 
@@ -95,15 +92,15 @@ extern_methods!(
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, title: Option<&NSString>);
 
-        #[cfg(feature = "AppKit_NSView")]
+        #[cfg(feature = "NSView")]
         #[method_id(@__retain_semantics Other view)]
         pub unsafe fn view(&self) -> Id<NSView>;
 
-        #[cfg(feature = "AppKit_NSView")]
+        #[cfg(feature = "NSView")]
         #[method(setView:)]
         pub unsafe fn setView(&self, view: &NSView);
 
-        #[cfg(feature = "AppKit_NSView")]
+        #[cfg(feature = "NSView")]
         #[method_id(@__retain_semantics Other viewIfLoaded)]
         pub unsafe fn viewIfLoaded(&self) -> Option<Id<NSView>>;
 
@@ -164,7 +161,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSResponder`
-    #[cfg(feature = "AppKit_NSResponder")]
+    #[cfg(feature = "NSResponder")]
     unsafe impl NSViewController {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -173,7 +170,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSResponder")]
+    #[cfg(feature = "NSResponder")]
     unsafe impl NSViewController {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
@@ -182,7 +179,7 @@ extern_methods!(
 
 extern_methods!(
     /// NSViewControllerPresentation
-    #[cfg(feature = "AppKit_NSResponder")]
+    #[cfg(feature = "NSResponder")]
     unsafe impl NSViewController {
         #[method(presentViewController:animator:)]
         pub unsafe fn presentViewController_animator(
@@ -207,7 +204,7 @@ extern_methods!(
 
 extern_methods!(
     /// NSViewControllerPresentationAndTransitionStyles
-    #[cfg(feature = "AppKit_NSResponder")]
+    #[cfg(feature = "NSResponder")]
     unsafe impl NSViewController {
         #[method(presentViewControllerAsSheet:)]
         pub unsafe fn presentViewControllerAsSheet(&self, view_controller: &NSViewController);
@@ -215,7 +212,7 @@ extern_methods!(
         #[method(presentViewControllerAsModalWindow:)]
         pub unsafe fn presentViewControllerAsModalWindow(&self, view_controller: &NSViewController);
 
-        #[cfg(all(feature = "AppKit_NSPopover", feature = "AppKit_NSView"))]
+        #[cfg(all(feature = "NSPopover", feature = "NSView"))]
         #[method(presentViewController:asPopoverRelativeToRect:ofView:preferredEdge:behavior:)]
         pub unsafe fn presentViewController_asPopoverRelativeToRect_ofView_preferredEdge_behavior(
             &self,
@@ -226,7 +223,7 @@ extern_methods!(
             behavior: NSPopoverBehavior,
         );
 
-        #[cfg(all(feature = "AppKit_NSPopover", feature = "AppKit_NSView"))]
+        #[cfg(all(feature = "NSPopover", feature = "NSView"))]
         #[method(presentViewController:asPopoverRelativeToRect:ofView:preferredEdge:behavior:hasFullSizeContent:)]
         pub unsafe fn presentViewController_asPopoverRelativeToRect_ofView_preferredEdge_behavior_hasFullSizeContent(
             &self,
@@ -252,7 +249,7 @@ extern_methods!(
 
 extern_methods!(
     /// NSViewControllerContainer
-    #[cfg(feature = "AppKit_NSResponder")]
+    #[cfg(feature = "NSResponder")]
     unsafe impl NSViewController {
         #[method_id(@__retain_semantics Other parentViewController)]
         pub unsafe fn parentViewController(&self) -> Option<Id<NSViewController>>;
@@ -297,7 +294,7 @@ extern_protocol!(
     pub unsafe trait NSViewControllerPresentationAnimator:
         NSObjectProtocol + IsMainThreadOnly
     {
-        #[cfg(feature = "AppKit_NSResponder")]
+        #[cfg(feature = "NSResponder")]
         #[method(animatePresentationOfViewController:fromViewController:)]
         unsafe fn animatePresentationOfViewController_fromViewController(
             &self,
@@ -305,7 +302,7 @@ extern_protocol!(
             from_view_controller: &NSViewController,
         );
 
-        #[cfg(feature = "AppKit_NSResponder")]
+        #[cfg(feature = "NSResponder")]
         #[method(animateDismissalOfViewController:fromViewController:)]
         unsafe fn animateDismissalOfViewController_fromViewController(
             &self,
@@ -319,9 +316,9 @@ extern_protocol!(
 
 extern_methods!(
     /// NSViewControllerStoryboardingMethods
-    #[cfg(feature = "AppKit_NSResponder")]
+    #[cfg(feature = "NSResponder")]
     unsafe impl NSViewController {
-        #[cfg(feature = "AppKit_NSStoryboard")]
+        #[cfg(feature = "NSStoryboard")]
         #[method_id(@__retain_semantics Other storyboard)]
         pub unsafe fn storyboard(&self) -> Option<Id<NSStoryboard>>;
     }
@@ -329,16 +326,16 @@ extern_methods!(
 
 extern_methods!(
     /// NSExtensionAdditions
-    #[cfg(feature = "AppKit_NSResponder")]
+    #[cfg(feature = "NSResponder")]
     unsafe impl NSViewController {
         #[method_id(@__retain_semantics Other extensionContext)]
         pub unsafe fn extensionContext(&self) -> Option<Id<NSExtensionContext>>;
 
-        #[cfg(feature = "AppKit_NSView")]
+        #[cfg(feature = "NSView")]
         #[method_id(@__retain_semantics Other sourceItemView)]
         pub unsafe fn sourceItemView(&self) -> Option<Id<NSView>>;
 
-        #[cfg(feature = "AppKit_NSView")]
+        #[cfg(feature = "NSView")]
         #[method(setSourceItemView:)]
         pub unsafe fn setSourceItemView(&self, source_item_view: Option<&NSView>);
 
@@ -356,5 +353,5 @@ extern_methods!(
     }
 );
 
-#[cfg(feature = "AppKit_NSResponder")]
+#[cfg(feature = "NSResponder")]
 unsafe impl NSExtensionRequestHandling for NSViewController {}

@@ -55,10 +55,10 @@ unsafe impl RefEncode for NSByteCountFormatterCountStyle {
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSFormatter")]
+    #[cfg(feature = "NSFormatter")]
     pub struct NSByteCountFormatter;
 
-    #[cfg(feature = "Foundation_NSFormatter")]
+    #[cfg(feature = "NSFormatter")]
     unsafe impl ClassType for NSByteCountFormatter {
         #[inherits(NSObject)]
         type Super = NSFormatter;
@@ -66,52 +66,44 @@ extern_class!(
     }
 );
 
-#[cfg(all(feature = "Foundation_NSFormatter", feature = "Foundation_NSObject"))]
+#[cfg(all(feature = "NSFormatter", feature = "NSObject"))]
 unsafe impl NSCoding for NSByteCountFormatter {}
 
-#[cfg(all(feature = "Foundation_NSFormatter", feature = "Foundation_NSObject"))]
+#[cfg(all(feature = "NSFormatter", feature = "NSObject"))]
 unsafe impl NSCopying for NSByteCountFormatter {}
 
-#[cfg(feature = "Foundation_NSFormatter")]
+#[cfg(feature = "NSFormatter")]
 unsafe impl NSObjectProtocol for NSByteCountFormatter {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSFormatter")]
+    #[cfg(feature = "NSFormatter")]
     unsafe impl NSByteCountFormatter {
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other stringFromByteCount:countStyle:)]
         pub unsafe fn stringFromByteCount_countStyle(
             byte_count: c_longlong,
             count_style: NSByteCountFormatterCountStyle,
         ) -> Id<NSString>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other stringFromByteCount:)]
         pub unsafe fn stringFromByteCount(&self, byte_count: c_longlong) -> Id<NSString>;
 
-        #[cfg(all(
-            feature = "Foundation_NSMeasurement",
-            feature = "Foundation_NSString",
-            feature = "Foundation_NSUnit"
-        ))]
+        #[cfg(all(feature = "NSMeasurement", feature = "NSString", feature = "NSUnit"))]
         #[method_id(@__retain_semantics Other stringFromMeasurement:countStyle:)]
         pub unsafe fn stringFromMeasurement_countStyle(
             measurement: &NSMeasurement<NSUnitInformationStorage>,
             count_style: NSByteCountFormatterCountStyle,
         ) -> Id<NSString>;
 
-        #[cfg(all(
-            feature = "Foundation_NSMeasurement",
-            feature = "Foundation_NSString",
-            feature = "Foundation_NSUnit"
-        ))]
+        #[cfg(all(feature = "NSMeasurement", feature = "NSString", feature = "NSUnit"))]
         #[method_id(@__retain_semantics Other stringFromMeasurement:)]
         pub unsafe fn stringFromMeasurement(
             &self,
             measurement: &NSMeasurement<NSUnitInformationStorage>,
         ) -> Id<NSString>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other stringForObjectValue:)]
         pub unsafe fn stringForObjectValue(&self, obj: Option<&AnyObject>) -> Option<Id<NSString>>;
 
@@ -173,7 +165,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSFormatter")]
+    #[cfg(feature = "NSFormatter")]
     unsafe impl NSByteCountFormatter {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

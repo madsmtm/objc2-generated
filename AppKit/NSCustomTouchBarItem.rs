@@ -7,10 +7,10 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSTouchBarItem")]
+    #[cfg(feature = "NSTouchBarItem")]
     pub struct NSCustomTouchBarItem;
 
-    #[cfg(feature = "AppKit_NSTouchBarItem")]
+    #[cfg(feature = "NSTouchBarItem")]
     unsafe impl ClassType for NSCustomTouchBarItem {
         #[inherits(NSObject)]
         type Super = NSTouchBarItem;
@@ -18,28 +18,28 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSTouchBarItem")]
+#[cfg(feature = "NSTouchBarItem")]
 unsafe impl NSCoding for NSCustomTouchBarItem {}
 
-#[cfg(feature = "AppKit_NSTouchBarItem")]
+#[cfg(feature = "NSTouchBarItem")]
 unsafe impl NSObjectProtocol for NSCustomTouchBarItem {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSTouchBarItem")]
+    #[cfg(feature = "NSTouchBarItem")]
     unsafe impl NSCustomTouchBarItem {
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[method_id(@__retain_semantics Other view)]
         pub unsafe fn view(&self) -> Id<NSView>;
 
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[method(setView:)]
         pub unsafe fn setView(&self, view: &NSView);
 
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
         #[method_id(@__retain_semantics Other viewController)]
         pub unsafe fn viewController(&self) -> Option<Id<NSViewController>>;
 
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
         #[method(setViewController:)]
         pub unsafe fn setViewController(&self, view_controller: Option<&NSViewController>);
 
@@ -53,7 +53,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSTouchBarItem`
-    #[cfg(feature = "AppKit_NSTouchBarItem")]
+    #[cfg(feature = "NSTouchBarItem")]
     unsafe impl NSCustomTouchBarItem {
         #[method_id(@__retain_semantics Init initWithIdentifier:)]
         pub unsafe fn initWithIdentifier(
@@ -71,7 +71,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSTouchBarItem")]
+    #[cfg(feature = "NSTouchBarItem")]
     unsafe impl NSCustomTouchBarItem {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;

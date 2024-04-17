@@ -25,11 +25,11 @@ unsafe impl NSObjectProtocol for NSManagedObjectID {}
 
 extern_methods!(
     unsafe impl NSManagedObjectID {
-        #[cfg(feature = "CoreData_NSEntityDescription")]
+        #[cfg(feature = "NSEntityDescription")]
         #[method_id(@__retain_semantics Other entity)]
         pub unsafe fn entity(&self) -> Id<NSEntityDescription>;
 
-        #[cfg(feature = "CoreData_NSPersistentStore")]
+        #[cfg(feature = "NSPersistentStore")]
         #[method_id(@__retain_semantics Other persistentStore)]
         pub unsafe fn persistentStore(&self) -> Option<Id<NSPersistentStore>>;
 

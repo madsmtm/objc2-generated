@@ -7,10 +7,10 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSGestureRecognizer")]
+    #[cfg(feature = "NSGestureRecognizer")]
     pub struct NSRotationGestureRecognizer;
 
-    #[cfg(feature = "AppKit_NSGestureRecognizer")]
+    #[cfg(feature = "NSGestureRecognizer")]
     unsafe impl ClassType for NSRotationGestureRecognizer {
         #[inherits(NSObject)]
         type Super = NSGestureRecognizer;
@@ -18,14 +18,14 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSGestureRecognizer")]
+#[cfg(feature = "NSGestureRecognizer")]
 unsafe impl NSCoding for NSRotationGestureRecognizer {}
 
-#[cfg(feature = "AppKit_NSGestureRecognizer")]
+#[cfg(feature = "NSGestureRecognizer")]
 unsafe impl NSObjectProtocol for NSRotationGestureRecognizer {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSGestureRecognizer")]
+    #[cfg(feature = "NSGestureRecognizer")]
     unsafe impl NSRotationGestureRecognizer {
         #[method(rotation)]
         pub unsafe fn rotation(&self) -> CGFloat;
@@ -43,7 +43,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSGestureRecognizer`
-    #[cfg(feature = "AppKit_NSGestureRecognizer")]
+    #[cfg(feature = "NSGestureRecognizer")]
     unsafe impl NSRotationGestureRecognizer {
         #[method_id(@__retain_semantics Init initWithTarget:action:)]
         pub unsafe fn initWithTarget_action(
@@ -59,7 +59,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSGestureRecognizer")]
+    #[cfg(feature = "NSGestureRecognizer")]
     unsafe impl NSRotationGestureRecognizer {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

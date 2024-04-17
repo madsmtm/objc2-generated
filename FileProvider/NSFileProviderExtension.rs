@@ -21,21 +21,21 @@ unsafe impl NSObjectProtocol for NSFileProviderExtension {}
 
 extern_methods!(
     unsafe impl NSFileProviderExtension {
-        #[cfg(feature = "FileProvider_NSFileProviderItem")]
+        #[cfg(feature = "NSFileProviderItem")]
         #[method_id(@__retain_semantics Other itemForIdentifier:error:_)]
         pub unsafe fn itemForIdentifier_error(
             &self,
             identifier: &NSFileProviderItemIdentifier,
         ) -> Result<Id<NSFileProviderItem>, Id<NSError>>;
 
-        #[cfg(feature = "FileProvider_NSFileProviderItem")]
+        #[cfg(feature = "NSFileProviderItem")]
         #[method_id(@__retain_semantics Other URLForItemWithPersistentIdentifier:)]
         pub unsafe fn URLForItemWithPersistentIdentifier(
             &self,
             identifier: &NSFileProviderItemIdentifier,
         ) -> Option<Id<NSURL>>;
 
-        #[cfg(feature = "FileProvider_NSFileProviderItem")]
+        #[cfg(feature = "NSFileProviderItem")]
         #[method_id(@__retain_semantics Other persistentIdentifierForItemAtURL:)]
         pub unsafe fn persistentIdentifierForItemAtURL(
             &self,

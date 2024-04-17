@@ -7,11 +7,11 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
+    #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     #[deprecated]
     pub struct DOMNodeIterator;
 
-    #[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
+    #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl ClassType for DOMNodeIterator {
         #[inherits(WebScriptObject, NSObject)]
         type Super = DOMObject;
@@ -19,16 +19,16 @@ extern_class!(
     }
 );
 
-#[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
+#[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
 unsafe impl NSCopying for DOMNodeIterator {}
 
-#[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
+#[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
 unsafe impl NSObjectProtocol for DOMNodeIterator {}
 
 extern_methods!(
-    #[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
+    #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMNodeIterator {
-        #[cfg(feature = "WebKit_DOMNode")]
+        #[cfg(feature = "DOMNode")]
         #[deprecated]
         #[method_id(@__retain_semantics Other root)]
         pub unsafe fn root(&self) -> Option<Id<DOMNode>>;
@@ -37,7 +37,7 @@ extern_methods!(
         #[method(whatToShow)]
         pub unsafe fn whatToShow(&self) -> c_uint;
 
-        #[cfg(feature = "WebKit_DOMNodeFilter")]
+        #[cfg(feature = "DOMNodeFilter")]
         #[deprecated]
         #[method_id(@__retain_semantics Other filter)]
         pub unsafe fn filter(&self) -> Option<Id<ProtocolObject<dyn DOMNodeFilter>>>;
@@ -46,19 +46,19 @@ extern_methods!(
         #[method(expandEntityReferences)]
         pub unsafe fn expandEntityReferences(&self) -> bool;
 
-        #[cfg(feature = "WebKit_DOMNode")]
+        #[cfg(feature = "DOMNode")]
         #[method_id(@__retain_semantics Other referenceNode)]
         pub unsafe fn referenceNode(&self) -> Option<Id<DOMNode>>;
 
         #[method(pointerBeforeReferenceNode)]
         pub unsafe fn pointerBeforeReferenceNode(&self) -> bool;
 
-        #[cfg(feature = "WebKit_DOMNode")]
+        #[cfg(feature = "DOMNode")]
         #[deprecated]
         #[method_id(@__retain_semantics Other nextNode)]
         pub unsafe fn nextNode(&self) -> Option<Id<DOMNode>>;
 
-        #[cfg(feature = "WebKit_DOMNode")]
+        #[cfg(feature = "DOMNode")]
         #[deprecated]
         #[method_id(@__retain_semantics Other previousNode)]
         pub unsafe fn previousNode(&self) -> Option<Id<DOMNode>>;
@@ -71,7 +71,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `DOMObject`
-    #[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
+    #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMNodeIterator {
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
@@ -81,7 +81,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
+    #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMNodeIterator {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

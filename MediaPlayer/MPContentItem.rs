@@ -37,11 +37,11 @@ extern_methods!(
         #[method(setSubtitle:)]
         pub unsafe fn setSubtitle(&self, subtitle: Option<&NSString>);
 
-        #[cfg(feature = "MediaPlayer_MPMediaItem")]
+        #[cfg(feature = "MPMediaItem")]
         #[method_id(@__retain_semantics Other artwork)]
         pub unsafe fn artwork(&self) -> Option<Id<MPMediaItemArtwork>>;
 
-        #[cfg(feature = "MediaPlayer_MPMediaItem")]
+        #[cfg(feature = "MPMediaItem")]
         #[method(setArtwork:)]
         pub unsafe fn setArtwork(&self, artwork: Option<&MPMediaItemArtwork>);
 

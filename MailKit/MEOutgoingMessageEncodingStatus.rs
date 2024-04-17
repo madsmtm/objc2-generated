@@ -32,7 +32,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other securityError)]
         pub unsafe fn securityError(&self) -> Option<Id<NSError>>;
 
-        #[cfg(feature = "MailKit_MEEmailAddress")]
+        #[cfg(feature = "MEEmailAddress")]
         #[method_id(@__retain_semantics Other addressesFailingEncryption)]
         pub unsafe fn addressesFailingEncryption(&self) -> Id<NSArray<MEEmailAddress>>;
 
@@ -42,7 +42,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
-        #[cfg(feature = "MailKit_MEEmailAddress")]
+        #[cfg(feature = "MEEmailAddress")]
         #[method_id(@__retain_semantics Init initWithCanSign:canEncrypt:securityError:addressesFailingEncryption:)]
         pub unsafe fn initWithCanSign_canEncrypt_securityError_addressesFailingEncryption(
             this: Allocated<Self>,

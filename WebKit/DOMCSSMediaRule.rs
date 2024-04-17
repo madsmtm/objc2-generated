@@ -8,17 +8,17 @@ use crate::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(
-        feature = "WebKit_DOMCSSRule",
-        feature = "WebKit_DOMObject",
-        feature = "WebKit_WebScriptObject"
+        feature = "DOMCSSRule",
+        feature = "DOMObject",
+        feature = "WebScriptObject"
     ))]
     #[deprecated]
     pub struct DOMCSSMediaRule;
 
     #[cfg(all(
-        feature = "WebKit_DOMCSSRule",
-        feature = "WebKit_DOMObject",
-        feature = "WebKit_WebScriptObject"
+        feature = "DOMCSSRule",
+        feature = "DOMObject",
+        feature = "WebScriptObject"
     ))]
     unsafe impl ClassType for DOMCSSMediaRule {
         #[inherits(DOMObject, WebScriptObject, NSObject)]
@@ -28,32 +28,32 @@ extern_class!(
 );
 
 #[cfg(all(
-    feature = "WebKit_DOMCSSRule",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMCSSRule",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 unsafe impl NSCopying for DOMCSSMediaRule {}
 
 #[cfg(all(
-    feature = "WebKit_DOMCSSRule",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMCSSRule",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 unsafe impl NSObjectProtocol for DOMCSSMediaRule {}
 
 extern_methods!(
     #[cfg(all(
-        feature = "WebKit_DOMCSSRule",
-        feature = "WebKit_DOMObject",
-        feature = "WebKit_WebScriptObject"
+        feature = "DOMCSSRule",
+        feature = "DOMObject",
+        feature = "WebScriptObject"
     ))]
     unsafe impl DOMCSSMediaRule {
-        #[cfg(feature = "WebKit_DOMMediaList")]
+        #[cfg(feature = "DOMMediaList")]
         #[deprecated]
         #[method_id(@__retain_semantics Other media)]
         pub unsafe fn media(&self) -> Option<Id<DOMMediaList>>;
 
-        #[cfg(feature = "WebKit_DOMCSSRuleList")]
+        #[cfg(feature = "DOMCSSRuleList")]
         #[deprecated]
         #[method_id(@__retain_semantics Other cssRules)]
         pub unsafe fn cssRules(&self) -> Option<Id<DOMCSSRuleList>>;
@@ -70,9 +70,9 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `DOMObject`
     #[cfg(all(
-        feature = "WebKit_DOMCSSRule",
-        feature = "WebKit_DOMObject",
-        feature = "WebKit_WebScriptObject"
+        feature = "DOMCSSRule",
+        feature = "DOMObject",
+        feature = "WebScriptObject"
     ))]
     unsafe impl DOMCSSMediaRule {
         #[deprecated]
@@ -84,9 +84,9 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(
-        feature = "WebKit_DOMCSSRule",
-        feature = "WebKit_DOMObject",
-        feature = "WebKit_WebScriptObject"
+        feature = "DOMCSSRule",
+        feature = "DOMObject",
+        feature = "WebScriptObject"
     ))]
     unsafe impl DOMCSSMediaRule {
         #[method_id(@__retain_semantics New new)]
@@ -97,9 +97,9 @@ extern_methods!(
 extern_methods!(
     /// DOMCSSMediaRuleDeprecated
     #[cfg(all(
-        feature = "WebKit_DOMCSSRule",
-        feature = "WebKit_DOMObject",
-        feature = "WebKit_WebScriptObject"
+        feature = "DOMCSSRule",
+        feature = "DOMObject",
+        feature = "WebScriptObject"
     ))]
     unsafe impl DOMCSSMediaRule {
         #[deprecated]

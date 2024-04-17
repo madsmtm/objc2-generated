@@ -23,11 +23,11 @@ unsafe impl NSSecureCoding for CLMonitoringRecord {}
 
 extern_methods!(
     unsafe impl CLMonitoringRecord {
-        #[cfg(feature = "CoreLocation_CLCondition")]
+        #[cfg(feature = "CLCondition")]
         #[method_id(@__retain_semantics Other condition)]
         pub unsafe fn condition(&self) -> Id<CLCondition>;
 
-        #[cfg(feature = "CoreLocation_CLMonitoringEvent")]
+        #[cfg(feature = "CLMonitoringEvent")]
         #[method_id(@__retain_semantics Other lastEvent)]
         pub unsafe fn lastEvent(&self) -> Id<CLMonitoringEvent>;
 

@@ -19,12 +19,12 @@ unsafe impl NSObjectProtocol for NSAtomicStoreCacheNode {}
 
 extern_methods!(
     unsafe impl NSAtomicStoreCacheNode {
-        #[cfg(feature = "CoreData_NSManagedObjectID")]
+        #[cfg(feature = "NSManagedObjectID")]
         #[method_id(@__retain_semantics Init initWithObjectID:)]
         pub unsafe fn initWithObjectID(this: Allocated<Self>, moid: &NSManagedObjectID)
             -> Id<Self>;
 
-        #[cfg(feature = "CoreData_NSManagedObjectID")]
+        #[cfg(feature = "NSManagedObjectID")]
         #[method_id(@__retain_semantics Other objectID)]
         pub unsafe fn objectID(&self) -> Id<NSManagedObjectID>;
 

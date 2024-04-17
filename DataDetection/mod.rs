@@ -16,28 +16,28 @@
 #[link(name = "DataDetection", kind = "framework")]
 extern "C" {}
 
-#[cfg(feature = "DataDetection_DDMatch")]
+#[cfg(feature = "DDMatch")]
 #[path = "DDMatch.rs"]
 mod __DDMatch;
-#[cfg(feature = "DataDetection_DataDetectionBase")]
+#[cfg(feature = "DataDetectionBase")]
 #[path = "DataDetectionBase.rs"]
 mod __DataDetectionBase;
 
-#[cfg(feature = "DataDetection_DDMatch")]
+#[cfg(feature = "DDMatch")]
 pub use self::__DDMatch::DDMatch;
-#[cfg(feature = "DataDetection_DDMatch")]
+#[cfg(feature = "DDMatch")]
 pub use self::__DDMatch::DDMatchCalendarEvent;
-#[cfg(feature = "DataDetection_DDMatch")]
+#[cfg(feature = "DDMatch")]
 pub use self::__DDMatch::DDMatchEmailAddress;
-#[cfg(feature = "DataDetection_DDMatch")]
+#[cfg(feature = "DDMatch")]
 pub use self::__DDMatch::DDMatchFlightNumber;
-#[cfg(feature = "DataDetection_DDMatch")]
+#[cfg(feature = "DDMatch")]
 pub use self::__DDMatch::DDMatchLink;
-#[cfg(feature = "DataDetection_DDMatch")]
+#[cfg(feature = "DDMatch")]
 pub use self::__DDMatch::DDMatchMoneyAmount;
-#[cfg(feature = "DataDetection_DDMatch")]
+#[cfg(feature = "DDMatch")]
 pub use self::__DDMatch::DDMatchPhoneNumber;
-#[cfg(feature = "DataDetection_DDMatch")]
+#[cfg(feature = "DDMatch")]
 pub use self::__DDMatch::DDMatchPostalAddress;
-#[cfg(feature = "DataDetection_DDMatch")]
+#[cfg(feature = "DDMatch")]
 pub use self::__DDMatch::DDMatchShipmentTrackingNumber;

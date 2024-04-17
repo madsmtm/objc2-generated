@@ -14,15 +14,15 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSCoding for NSIndexPath {}
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSIndexPath {}
 
 unsafe impl NSObjectProtocol for NSIndexPath {}
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSSecureCoding for NSIndexPath {}
 
 extern_methods!(
@@ -58,7 +58,7 @@ extern_methods!(
         #[method(length)]
         pub unsafe fn length(&self) -> NSUInteger;
 
-        #[cfg(feature = "Foundation_NSRange")]
+        #[cfg(feature = "NSRange")]
         #[method(getIndexes:range:)]
         pub unsafe fn getIndexes_range(
             &self,
@@ -66,7 +66,7 @@ extern_methods!(
             position_range: NSRange,
         );
 
-        #[cfg(feature = "Foundation_NSObjCRuntime")]
+        #[cfg(feature = "NSObjCRuntime")]
         #[method(compare:)]
         pub unsafe fn compare(&self, other_object: &NSIndexPath) -> NSComparisonResult;
     }

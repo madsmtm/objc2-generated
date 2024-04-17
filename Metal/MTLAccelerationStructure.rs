@@ -130,11 +130,11 @@ extern_methods!(
         #[method(setLabel:)]
         pub unsafe fn setLabel(&self, label: Option<&NSString>);
 
-        #[cfg(all(feature = "Metal_MTLBuffer", feature = "Metal_MTLResource"))]
+        #[cfg(all(feature = "MTLBuffer", feature = "MTLResource"))]
         #[method_id(@__retain_semantics Other primitiveDataBuffer)]
         pub unsafe fn primitiveDataBuffer(&self) -> Option<Id<ProtocolObject<dyn MTLBuffer>>>;
 
-        #[cfg(all(feature = "Metal_MTLBuffer", feature = "Metal_MTLResource"))]
+        #[cfg(all(feature = "MTLBuffer", feature = "MTLResource"))]
         #[method(setPrimitiveDataBuffer:)]
         pub fn setPrimitiveDataBuffer(
             &self,
@@ -285,11 +285,11 @@ unsafe impl NSObjectProtocol for MTLAccelerationStructureTriangleGeometryDescrip
 
 extern_methods!(
     unsafe impl MTLAccelerationStructureTriangleGeometryDescriptor {
-        #[cfg(all(feature = "Metal_MTLBuffer", feature = "Metal_MTLResource"))]
+        #[cfg(all(feature = "MTLBuffer", feature = "MTLResource"))]
         #[method_id(@__retain_semantics Other vertexBuffer)]
         pub unsafe fn vertexBuffer(&self) -> Option<Id<ProtocolObject<dyn MTLBuffer>>>;
 
-        #[cfg(all(feature = "Metal_MTLBuffer", feature = "Metal_MTLResource"))]
+        #[cfg(all(feature = "MTLBuffer", feature = "MTLResource"))]
         #[method(setVertexBuffer:)]
         pub fn setVertexBuffer(&self, vertex_buffer: Option<&ProtocolObject<dyn MTLBuffer>>);
 
@@ -299,11 +299,11 @@ extern_methods!(
         #[method(setVertexBufferOffset:)]
         pub unsafe fn setVertexBufferOffset(&self, vertex_buffer_offset: NSUInteger);
 
-        #[cfg(feature = "Metal_MTLStageInputOutputDescriptor")]
+        #[cfg(feature = "MTLStageInputOutputDescriptor")]
         #[method(vertexFormat)]
         pub unsafe fn vertexFormat(&self) -> MTLAttributeFormat;
 
-        #[cfg(feature = "Metal_MTLStageInputOutputDescriptor")]
+        #[cfg(feature = "MTLStageInputOutputDescriptor")]
         #[method(setVertexFormat:)]
         pub unsafe fn setVertexFormat(&self, vertex_format: MTLAttributeFormat);
 
@@ -313,11 +313,11 @@ extern_methods!(
         #[method(setVertexStride:)]
         pub fn setVertexStride(&self, vertex_stride: NSUInteger);
 
-        #[cfg(all(feature = "Metal_MTLBuffer", feature = "Metal_MTLResource"))]
+        #[cfg(all(feature = "MTLBuffer", feature = "MTLResource"))]
         #[method_id(@__retain_semantics Other indexBuffer)]
         pub unsafe fn indexBuffer(&self) -> Option<Id<ProtocolObject<dyn MTLBuffer>>>;
 
-        #[cfg(all(feature = "Metal_MTLBuffer", feature = "Metal_MTLResource"))]
+        #[cfg(all(feature = "MTLBuffer", feature = "MTLResource"))]
         #[method(setIndexBuffer:)]
         pub fn setIndexBuffer(&self, index_buffer: Option<&ProtocolObject<dyn MTLBuffer>>);
 
@@ -327,11 +327,11 @@ extern_methods!(
         #[method(setIndexBufferOffset:)]
         pub unsafe fn setIndexBufferOffset(&self, index_buffer_offset: NSUInteger);
 
-        #[cfg(feature = "Metal_MTLStageInputOutputDescriptor")]
+        #[cfg(feature = "MTLStageInputOutputDescriptor")]
         #[method(indexType)]
         pub unsafe fn indexType(&self) -> MTLIndexType;
 
-        #[cfg(feature = "Metal_MTLStageInputOutputDescriptor")]
+        #[cfg(feature = "MTLStageInputOutputDescriptor")]
         #[method(setIndexType:)]
         pub unsafe fn setIndexType(&self, index_type: MTLIndexType);
 
@@ -341,13 +341,13 @@ extern_methods!(
         #[method(setTriangleCount:)]
         pub fn setTriangleCount(&self, triangle_count: NSUInteger);
 
-        #[cfg(all(feature = "Metal_MTLBuffer", feature = "Metal_MTLResource"))]
+        #[cfg(all(feature = "MTLBuffer", feature = "MTLResource"))]
         #[method_id(@__retain_semantics Other transformationMatrixBuffer)]
         pub unsafe fn transformationMatrixBuffer(
             &self,
         ) -> Option<Id<ProtocolObject<dyn MTLBuffer>>>;
 
-        #[cfg(all(feature = "Metal_MTLBuffer", feature = "Metal_MTLResource"))]
+        #[cfg(all(feature = "MTLBuffer", feature = "MTLResource"))]
         #[method(setTransformationMatrixBuffer:)]
         pub unsafe fn setTransformationMatrixBuffer(
             &self,
@@ -396,11 +396,11 @@ unsafe impl NSObjectProtocol for MTLAccelerationStructureBoundingBoxGeometryDesc
 
 extern_methods!(
     unsafe impl MTLAccelerationStructureBoundingBoxGeometryDescriptor {
-        #[cfg(all(feature = "Metal_MTLBuffer", feature = "Metal_MTLResource"))]
+        #[cfg(all(feature = "MTLBuffer", feature = "MTLResource"))]
         #[method_id(@__retain_semantics Other boundingBoxBuffer)]
         pub unsafe fn boundingBoxBuffer(&self) -> Option<Id<ProtocolObject<dyn MTLBuffer>>>;
 
-        #[cfg(all(feature = "Metal_MTLBuffer", feature = "Metal_MTLResource"))]
+        #[cfg(all(feature = "MTLBuffer", feature = "MTLResource"))]
         #[method(setBoundingBoxBuffer:)]
         pub fn setBoundingBoxBuffer(
             &self,
@@ -455,11 +455,11 @@ unsafe impl NSObjectProtocol for MTLMotionKeyframeData {}
 
 extern_methods!(
     unsafe impl MTLMotionKeyframeData {
-        #[cfg(all(feature = "Metal_MTLBuffer", feature = "Metal_MTLResource"))]
+        #[cfg(all(feature = "MTLBuffer", feature = "MTLResource"))]
         #[method_id(@__retain_semantics Other buffer)]
         pub unsafe fn buffer(&self) -> Option<Id<ProtocolObject<dyn MTLBuffer>>>;
 
-        #[cfg(all(feature = "Metal_MTLBuffer", feature = "Metal_MTLResource"))]
+        #[cfg(all(feature = "MTLBuffer", feature = "MTLResource"))]
         #[method(setBuffer:)]
         pub unsafe fn setBuffer(&self, buffer: Option<&ProtocolObject<dyn MTLBuffer>>);
 
@@ -508,11 +508,11 @@ extern_methods!(
         #[method(setVertexBuffers:)]
         pub unsafe fn setVertexBuffers(&self, vertex_buffers: &NSArray<MTLMotionKeyframeData>);
 
-        #[cfg(feature = "Metal_MTLStageInputOutputDescriptor")]
+        #[cfg(feature = "MTLStageInputOutputDescriptor")]
         #[method(vertexFormat)]
         pub unsafe fn vertexFormat(&self) -> MTLAttributeFormat;
 
-        #[cfg(feature = "Metal_MTLStageInputOutputDescriptor")]
+        #[cfg(feature = "MTLStageInputOutputDescriptor")]
         #[method(setVertexFormat:)]
         pub unsafe fn setVertexFormat(&self, vertex_format: MTLAttributeFormat);
 
@@ -522,11 +522,11 @@ extern_methods!(
         #[method(setVertexStride:)]
         pub unsafe fn setVertexStride(&self, vertex_stride: NSUInteger);
 
-        #[cfg(all(feature = "Metal_MTLBuffer", feature = "Metal_MTLResource"))]
+        #[cfg(all(feature = "MTLBuffer", feature = "MTLResource"))]
         #[method_id(@__retain_semantics Other indexBuffer)]
         pub unsafe fn indexBuffer(&self) -> Option<Id<ProtocolObject<dyn MTLBuffer>>>;
 
-        #[cfg(all(feature = "Metal_MTLBuffer", feature = "Metal_MTLResource"))]
+        #[cfg(all(feature = "MTLBuffer", feature = "MTLResource"))]
         #[method(setIndexBuffer:)]
         pub unsafe fn setIndexBuffer(&self, index_buffer: Option<&ProtocolObject<dyn MTLBuffer>>);
 
@@ -536,11 +536,11 @@ extern_methods!(
         #[method(setIndexBufferOffset:)]
         pub unsafe fn setIndexBufferOffset(&self, index_buffer_offset: NSUInteger);
 
-        #[cfg(feature = "Metal_MTLStageInputOutputDescriptor")]
+        #[cfg(feature = "MTLStageInputOutputDescriptor")]
         #[method(indexType)]
         pub unsafe fn indexType(&self) -> MTLIndexType;
 
-        #[cfg(feature = "Metal_MTLStageInputOutputDescriptor")]
+        #[cfg(feature = "MTLStageInputOutputDescriptor")]
         #[method(setIndexType:)]
         pub unsafe fn setIndexType(&self, index_type: MTLIndexType);
 
@@ -550,13 +550,13 @@ extern_methods!(
         #[method(setTriangleCount:)]
         pub unsafe fn setTriangleCount(&self, triangle_count: NSUInteger);
 
-        #[cfg(all(feature = "Metal_MTLBuffer", feature = "Metal_MTLResource"))]
+        #[cfg(all(feature = "MTLBuffer", feature = "MTLResource"))]
         #[method_id(@__retain_semantics Other transformationMatrixBuffer)]
         pub unsafe fn transformationMatrixBuffer(
             &self,
         ) -> Option<Id<ProtocolObject<dyn MTLBuffer>>>;
 
-        #[cfg(all(feature = "Metal_MTLBuffer", feature = "Metal_MTLResource"))]
+        #[cfg(all(feature = "MTLBuffer", feature = "MTLResource"))]
         #[method(setTransformationMatrixBuffer:)]
         pub unsafe fn setTransformationMatrixBuffer(
             &self,
@@ -722,11 +722,11 @@ unsafe impl NSObjectProtocol for MTLAccelerationStructureCurveGeometryDescriptor
 
 extern_methods!(
     unsafe impl MTLAccelerationStructureCurveGeometryDescriptor {
-        #[cfg(all(feature = "Metal_MTLBuffer", feature = "Metal_MTLResource"))]
+        #[cfg(all(feature = "MTLBuffer", feature = "MTLResource"))]
         #[method_id(@__retain_semantics Other controlPointBuffer)]
         pub unsafe fn controlPointBuffer(&self) -> Option<Id<ProtocolObject<dyn MTLBuffer>>>;
 
-        #[cfg(all(feature = "Metal_MTLBuffer", feature = "Metal_MTLResource"))]
+        #[cfg(all(feature = "MTLBuffer", feature = "MTLResource"))]
         #[method(setControlPointBuffer:)]
         pub unsafe fn setControlPointBuffer(
             &self,
@@ -751,19 +751,19 @@ extern_methods!(
         #[method(setControlPointStride:)]
         pub unsafe fn setControlPointStride(&self, control_point_stride: NSUInteger);
 
-        #[cfg(feature = "Metal_MTLStageInputOutputDescriptor")]
+        #[cfg(feature = "MTLStageInputOutputDescriptor")]
         #[method(controlPointFormat)]
         pub unsafe fn controlPointFormat(&self) -> MTLAttributeFormat;
 
-        #[cfg(feature = "Metal_MTLStageInputOutputDescriptor")]
+        #[cfg(feature = "MTLStageInputOutputDescriptor")]
         #[method(setControlPointFormat:)]
         pub unsafe fn setControlPointFormat(&self, control_point_format: MTLAttributeFormat);
 
-        #[cfg(all(feature = "Metal_MTLBuffer", feature = "Metal_MTLResource"))]
+        #[cfg(all(feature = "MTLBuffer", feature = "MTLResource"))]
         #[method_id(@__retain_semantics Other radiusBuffer)]
         pub unsafe fn radiusBuffer(&self) -> Option<Id<ProtocolObject<dyn MTLBuffer>>>;
 
-        #[cfg(all(feature = "Metal_MTLBuffer", feature = "Metal_MTLResource"))]
+        #[cfg(all(feature = "MTLBuffer", feature = "MTLResource"))]
         #[method(setRadiusBuffer:)]
         pub unsafe fn setRadiusBuffer(&self, radius_buffer: Option<&ProtocolObject<dyn MTLBuffer>>);
 
@@ -773,11 +773,11 @@ extern_methods!(
         #[method(setRadiusBufferOffset:)]
         pub unsafe fn setRadiusBufferOffset(&self, radius_buffer_offset: NSUInteger);
 
-        #[cfg(feature = "Metal_MTLStageInputOutputDescriptor")]
+        #[cfg(feature = "MTLStageInputOutputDescriptor")]
         #[method(radiusFormat)]
         pub unsafe fn radiusFormat(&self) -> MTLAttributeFormat;
 
-        #[cfg(feature = "Metal_MTLStageInputOutputDescriptor")]
+        #[cfg(feature = "MTLStageInputOutputDescriptor")]
         #[method(setRadiusFormat:)]
         pub unsafe fn setRadiusFormat(&self, radius_format: MTLAttributeFormat);
 
@@ -787,11 +787,11 @@ extern_methods!(
         #[method(setRadiusStride:)]
         pub unsafe fn setRadiusStride(&self, radius_stride: NSUInteger);
 
-        #[cfg(all(feature = "Metal_MTLBuffer", feature = "Metal_MTLResource"))]
+        #[cfg(all(feature = "MTLBuffer", feature = "MTLResource"))]
         #[method_id(@__retain_semantics Other indexBuffer)]
         pub unsafe fn indexBuffer(&self) -> Option<Id<ProtocolObject<dyn MTLBuffer>>>;
 
-        #[cfg(all(feature = "Metal_MTLBuffer", feature = "Metal_MTLResource"))]
+        #[cfg(all(feature = "MTLBuffer", feature = "MTLResource"))]
         #[method(setIndexBuffer:)]
         pub unsafe fn setIndexBuffer(&self, index_buffer: Option<&ProtocolObject<dyn MTLBuffer>>);
 
@@ -801,11 +801,11 @@ extern_methods!(
         #[method(setIndexBufferOffset:)]
         pub unsafe fn setIndexBufferOffset(&self, index_buffer_offset: NSUInteger);
 
-        #[cfg(feature = "Metal_MTLStageInputOutputDescriptor")]
+        #[cfg(feature = "MTLStageInputOutputDescriptor")]
         #[method(indexType)]
         pub unsafe fn indexType(&self) -> MTLIndexType;
 
-        #[cfg(feature = "Metal_MTLStageInputOutputDescriptor")]
+        #[cfg(feature = "MTLStageInputOutputDescriptor")]
         #[method(setIndexType:)]
         pub unsafe fn setIndexType(&self, index_type: MTLIndexType);
 
@@ -893,11 +893,11 @@ extern_methods!(
         #[method(setControlPointStride:)]
         pub unsafe fn setControlPointStride(&self, control_point_stride: NSUInteger);
 
-        #[cfg(feature = "Metal_MTLStageInputOutputDescriptor")]
+        #[cfg(feature = "MTLStageInputOutputDescriptor")]
         #[method(controlPointFormat)]
         pub unsafe fn controlPointFormat(&self) -> MTLAttributeFormat;
 
-        #[cfg(feature = "Metal_MTLStageInputOutputDescriptor")]
+        #[cfg(feature = "MTLStageInputOutputDescriptor")]
         #[method(setControlPointFormat:)]
         pub unsafe fn setControlPointFormat(&self, control_point_format: MTLAttributeFormat);
 
@@ -907,11 +907,11 @@ extern_methods!(
         #[method(setRadiusBuffers:)]
         pub unsafe fn setRadiusBuffers(&self, radius_buffers: &NSArray<MTLMotionKeyframeData>);
 
-        #[cfg(feature = "Metal_MTLStageInputOutputDescriptor")]
+        #[cfg(feature = "MTLStageInputOutputDescriptor")]
         #[method(radiusFormat)]
         pub unsafe fn radiusFormat(&self) -> MTLAttributeFormat;
 
-        #[cfg(feature = "Metal_MTLStageInputOutputDescriptor")]
+        #[cfg(feature = "MTLStageInputOutputDescriptor")]
         #[method(setRadiusFormat:)]
         pub unsafe fn setRadiusFormat(&self, radius_format: MTLAttributeFormat);
 
@@ -921,11 +921,11 @@ extern_methods!(
         #[method(setRadiusStride:)]
         pub unsafe fn setRadiusStride(&self, radius_stride: NSUInteger);
 
-        #[cfg(all(feature = "Metal_MTLBuffer", feature = "Metal_MTLResource"))]
+        #[cfg(all(feature = "MTLBuffer", feature = "MTLResource"))]
         #[method_id(@__retain_semantics Other indexBuffer)]
         pub unsafe fn indexBuffer(&self) -> Option<Id<ProtocolObject<dyn MTLBuffer>>>;
 
-        #[cfg(all(feature = "Metal_MTLBuffer", feature = "Metal_MTLResource"))]
+        #[cfg(all(feature = "MTLBuffer", feature = "MTLResource"))]
         #[method(setIndexBuffer:)]
         pub unsafe fn setIndexBuffer(&self, index_buffer: Option<&ProtocolObject<dyn MTLBuffer>>);
 
@@ -935,11 +935,11 @@ extern_methods!(
         #[method(setIndexBufferOffset:)]
         pub unsafe fn setIndexBufferOffset(&self, index_buffer_offset: NSUInteger);
 
-        #[cfg(feature = "Metal_MTLStageInputOutputDescriptor")]
+        #[cfg(feature = "MTLStageInputOutputDescriptor")]
         #[method(indexType)]
         pub unsafe fn indexType(&self) -> MTLIndexType;
 
-        #[cfg(feature = "Metal_MTLStageInputOutputDescriptor")]
+        #[cfg(feature = "MTLStageInputOutputDescriptor")]
         #[method(setIndexType:)]
         pub unsafe fn setIndexType(&self, index_type: MTLIndexType);
 
@@ -989,7 +989,7 @@ extern_methods!(
     }
 );
 
-#[cfg(feature = "Metal_MTLAccelerationStructureTypes")]
+#[cfg(feature = "MTLAccelerationStructureTypes")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct MTLAccelerationStructureInstanceDescriptor {
@@ -1000,7 +1000,7 @@ pub struct MTLAccelerationStructureInstanceDescriptor {
     pub accelerationStructureIndex: u32,
 }
 
-#[cfg(feature = "Metal_MTLAccelerationStructureTypes")]
+#[cfg(feature = "MTLAccelerationStructureTypes")]
 unsafe impl Encode for MTLAccelerationStructureInstanceDescriptor {
     const ENCODING: Encoding = Encoding::Struct(
         "?",
@@ -1014,12 +1014,12 @@ unsafe impl Encode for MTLAccelerationStructureInstanceDescriptor {
     );
 }
 
-#[cfg(feature = "Metal_MTLAccelerationStructureTypes")]
+#[cfg(feature = "MTLAccelerationStructureTypes")]
 unsafe impl RefEncode for MTLAccelerationStructureInstanceDescriptor {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-#[cfg(feature = "Metal_MTLAccelerationStructureTypes")]
+#[cfg(feature = "MTLAccelerationStructureTypes")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct MTLAccelerationStructureUserIDInstanceDescriptor {
@@ -1031,7 +1031,7 @@ pub struct MTLAccelerationStructureUserIDInstanceDescriptor {
     pub userID: u32,
 }
 
-#[cfg(feature = "Metal_MTLAccelerationStructureTypes")]
+#[cfg(feature = "MTLAccelerationStructureTypes")]
 unsafe impl Encode for MTLAccelerationStructureUserIDInstanceDescriptor {
     const ENCODING: Encoding = Encoding::Struct(
         "?",
@@ -1046,7 +1046,7 @@ unsafe impl Encode for MTLAccelerationStructureUserIDInstanceDescriptor {
     );
 }
 
-#[cfg(feature = "Metal_MTLAccelerationStructureTypes")]
+#[cfg(feature = "MTLAccelerationStructureTypes")]
 unsafe impl RefEncode for MTLAccelerationStructureUserIDInstanceDescriptor {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -1115,10 +1115,7 @@ unsafe impl RefEncode for MTLAccelerationStructureMotionInstanceDescriptor {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-#[cfg(all(
-    feature = "Metal_MTLAccelerationStructureTypes",
-    feature = "Metal_MTLTypes"
-))]
+#[cfg(all(feature = "MTLAccelerationStructureTypes", feature = "MTLTypes"))]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct MTLIndirectAccelerationStructureInstanceDescriptor {
@@ -1130,10 +1127,7 @@ pub struct MTLIndirectAccelerationStructureInstanceDescriptor {
     pub accelerationStructureID: MTLResourceID,
 }
 
-#[cfg(all(
-    feature = "Metal_MTLAccelerationStructureTypes",
-    feature = "Metal_MTLTypes"
-))]
+#[cfg(all(feature = "MTLAccelerationStructureTypes", feature = "MTLTypes"))]
 unsafe impl Encode for MTLIndirectAccelerationStructureInstanceDescriptor {
     const ENCODING: Encoding = Encoding::Struct(
         "?",
@@ -1148,15 +1142,12 @@ unsafe impl Encode for MTLIndirectAccelerationStructureInstanceDescriptor {
     );
 }
 
-#[cfg(all(
-    feature = "Metal_MTLAccelerationStructureTypes",
-    feature = "Metal_MTLTypes"
-))]
+#[cfg(all(feature = "MTLAccelerationStructureTypes", feature = "MTLTypes"))]
 unsafe impl RefEncode for MTLIndirectAccelerationStructureInstanceDescriptor {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-#[cfg(feature = "Metal_MTLTypes")]
+#[cfg(feature = "MTLTypes")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct MTLIndirectAccelerationStructureMotionInstanceDescriptor {
@@ -1173,7 +1164,7 @@ pub struct MTLIndirectAccelerationStructureMotionInstanceDescriptor {
     pub motionEndTime: c_float,
 }
 
-#[cfg(feature = "Metal_MTLTypes")]
+#[cfg(feature = "MTLTypes")]
 unsafe impl Encode for MTLIndirectAccelerationStructureMotionInstanceDescriptor {
     const ENCODING: Encoding = Encoding::Struct(
         "?",
@@ -1193,7 +1184,7 @@ unsafe impl Encode for MTLIndirectAccelerationStructureMotionInstanceDescriptor 
     );
 }
 
-#[cfg(feature = "Metal_MTLTypes")]
+#[cfg(feature = "MTLTypes")]
 unsafe impl RefEncode for MTLIndirectAccelerationStructureMotionInstanceDescriptor {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -1215,11 +1206,11 @@ unsafe impl NSObjectProtocol for MTLInstanceAccelerationStructureDescriptor {}
 
 extern_methods!(
     unsafe impl MTLInstanceAccelerationStructureDescriptor {
-        #[cfg(all(feature = "Metal_MTLBuffer", feature = "Metal_MTLResource"))]
+        #[cfg(all(feature = "MTLBuffer", feature = "MTLResource"))]
         #[method_id(@__retain_semantics Other instanceDescriptorBuffer)]
         pub unsafe fn instanceDescriptorBuffer(&self) -> Option<Id<ProtocolObject<dyn MTLBuffer>>>;
 
-        #[cfg(all(feature = "Metal_MTLBuffer", feature = "Metal_MTLResource"))]
+        #[cfg(all(feature = "MTLBuffer", feature = "MTLResource"))]
         #[method(setInstanceDescriptorBuffer:)]
         pub fn setInstanceDescriptorBuffer(
             &self,
@@ -1247,13 +1238,13 @@ extern_methods!(
         #[method(setInstanceCount:)]
         pub fn setInstanceCount(&self, instance_count: NSUInteger);
 
-        #[cfg(feature = "Metal_MTLResource")]
+        #[cfg(feature = "MTLResource")]
         #[method_id(@__retain_semantics Other instancedAccelerationStructures)]
         pub unsafe fn instancedAccelerationStructures(
             &self,
         ) -> Option<Id<NSArray<ProtocolObject<dyn MTLAccelerationStructure>>>>;
 
-        #[cfg(feature = "Metal_MTLResource")]
+        #[cfg(feature = "MTLResource")]
         #[method(setInstancedAccelerationStructures:)]
         pub fn setInstancedAccelerationStructures(
             &self,
@@ -1273,11 +1264,11 @@ extern_methods!(
             instance_descriptor_type: MTLAccelerationStructureInstanceDescriptorType,
         );
 
-        #[cfg(all(feature = "Metal_MTLBuffer", feature = "Metal_MTLResource"))]
+        #[cfg(all(feature = "MTLBuffer", feature = "MTLResource"))]
         #[method_id(@__retain_semantics Other motionTransformBuffer)]
         pub unsafe fn motionTransformBuffer(&self) -> Option<Id<ProtocolObject<dyn MTLBuffer>>>;
 
-        #[cfg(all(feature = "Metal_MTLBuffer", feature = "Metal_MTLResource"))]
+        #[cfg(all(feature = "MTLBuffer", feature = "MTLResource"))]
         #[method(setMotionTransformBuffer:)]
         pub unsafe fn setMotionTransformBuffer(
             &self,
@@ -1332,11 +1323,11 @@ unsafe impl NSObjectProtocol for MTLIndirectInstanceAccelerationStructureDescrip
 
 extern_methods!(
     unsafe impl MTLIndirectInstanceAccelerationStructureDescriptor {
-        #[cfg(all(feature = "Metal_MTLBuffer", feature = "Metal_MTLResource"))]
+        #[cfg(all(feature = "MTLBuffer", feature = "MTLResource"))]
         #[method_id(@__retain_semantics Other instanceDescriptorBuffer)]
         pub unsafe fn instanceDescriptorBuffer(&self) -> Option<Id<ProtocolObject<dyn MTLBuffer>>>;
 
-        #[cfg(all(feature = "Metal_MTLBuffer", feature = "Metal_MTLResource"))]
+        #[cfg(all(feature = "MTLBuffer", feature = "MTLResource"))]
         #[method(setInstanceDescriptorBuffer:)]
         pub unsafe fn setInstanceDescriptorBuffer(
             &self,
@@ -1364,11 +1355,11 @@ extern_methods!(
         #[method(setMaxInstanceCount:)]
         pub unsafe fn setMaxInstanceCount(&self, max_instance_count: NSUInteger);
 
-        #[cfg(all(feature = "Metal_MTLBuffer", feature = "Metal_MTLResource"))]
+        #[cfg(all(feature = "MTLBuffer", feature = "MTLResource"))]
         #[method_id(@__retain_semantics Other instanceCountBuffer)]
         pub unsafe fn instanceCountBuffer(&self) -> Option<Id<ProtocolObject<dyn MTLBuffer>>>;
 
-        #[cfg(all(feature = "Metal_MTLBuffer", feature = "Metal_MTLResource"))]
+        #[cfg(all(feature = "MTLBuffer", feature = "MTLResource"))]
         #[method(setInstanceCountBuffer:)]
         pub unsafe fn setInstanceCountBuffer(
             &self,
@@ -1392,11 +1383,11 @@ extern_methods!(
             instance_descriptor_type: MTLAccelerationStructureInstanceDescriptorType,
         );
 
-        #[cfg(all(feature = "Metal_MTLBuffer", feature = "Metal_MTLResource"))]
+        #[cfg(all(feature = "MTLBuffer", feature = "MTLResource"))]
         #[method_id(@__retain_semantics Other motionTransformBuffer)]
         pub unsafe fn motionTransformBuffer(&self) -> Option<Id<ProtocolObject<dyn MTLBuffer>>>;
 
-        #[cfg(all(feature = "Metal_MTLBuffer", feature = "Metal_MTLResource"))]
+        #[cfg(all(feature = "MTLBuffer", feature = "MTLResource"))]
         #[method(setMotionTransformBuffer:)]
         pub unsafe fn setMotionTransformBuffer(
             &self,
@@ -1418,13 +1409,13 @@ extern_methods!(
         #[method(setMaxMotionTransformCount:)]
         pub unsafe fn setMaxMotionTransformCount(&self, max_motion_transform_count: NSUInteger);
 
-        #[cfg(all(feature = "Metal_MTLBuffer", feature = "Metal_MTLResource"))]
+        #[cfg(all(feature = "MTLBuffer", feature = "MTLResource"))]
         #[method_id(@__retain_semantics Other motionTransformCountBuffer)]
         pub unsafe fn motionTransformCountBuffer(
             &self,
         ) -> Option<Id<ProtocolObject<dyn MTLBuffer>>>;
 
-        #[cfg(all(feature = "Metal_MTLBuffer", feature = "Metal_MTLResource"))]
+        #[cfg(all(feature = "MTLBuffer", feature = "MTLResource"))]
         #[method(setMotionTransformCountBuffer:)]
         pub unsafe fn setMotionTransformCountBuffer(
             &self,
@@ -1457,16 +1448,16 @@ extern_methods!(
 );
 
 extern_protocol!(
-    #[cfg(feature = "Metal_MTLResource")]
+    #[cfg(feature = "MTLResource")]
     pub unsafe trait MTLAccelerationStructure: MTLResource {
         #[method(size)]
         unsafe fn size(&self) -> NSUInteger;
 
-        #[cfg(feature = "Metal_MTLTypes")]
+        #[cfg(feature = "MTLTypes")]
         #[method(gpuResourceID)]
         unsafe fn gpuResourceID(&self) -> MTLResourceID;
     }
 
-    #[cfg(feature = "Metal_MTLResource")]
+    #[cfg(feature = "MTLResource")]
     unsafe impl ProtocolType for dyn MTLAccelerationStructure {}
 );

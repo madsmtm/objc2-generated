@@ -72,11 +72,11 @@ extern_methods!(
             attributes: &NSDictionary<NSGraphicsContextAttributeKey, AnyObject>,
         ) -> Option<Id<NSGraphicsContext>>;
 
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSWindow"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
         #[method_id(@__retain_semantics Other graphicsContextWithWindow:)]
         pub unsafe fn graphicsContextWithWindow(window: &NSWindow) -> Id<NSGraphicsContext>;
 
-        #[cfg(all(feature = "AppKit_NSBitmapImageRep", feature = "AppKit_NSImageRep"))]
+        #[cfg(all(feature = "NSBitmapImageRep", feature = "NSImageRep"))]
         #[method_id(@__retain_semantics Other graphicsContextWithBitmapImageRep:)]
         pub unsafe fn graphicsContextWithBitmapImageRep(
             bitmap_rep: &NSBitmapImageRep,
@@ -151,19 +151,19 @@ extern_methods!(
         #[method(setPatternPhase:)]
         pub unsafe fn setPatternPhase(&self, pattern_phase: NSPoint);
 
-        #[cfg(feature = "AppKit_NSGraphics")]
+        #[cfg(feature = "NSGraphics")]
         #[method(compositingOperation)]
         pub unsafe fn compositingOperation(&self) -> NSCompositingOperation;
 
-        #[cfg(feature = "AppKit_NSGraphics")]
+        #[cfg(feature = "NSGraphics")]
         #[method(setCompositingOperation:)]
         pub unsafe fn setCompositingOperation(&self, compositing_operation: NSCompositingOperation);
 
-        #[cfg(feature = "AppKit_NSGraphics")]
+        #[cfg(feature = "NSGraphics")]
         #[method(colorRenderingIntent)]
         pub unsafe fn colorRenderingIntent(&self) -> NSColorRenderingIntent;
 
-        #[cfg(feature = "AppKit_NSGraphics")]
+        #[cfg(feature = "NSGraphics")]
         #[method(setColorRenderingIntent:)]
         pub unsafe fn setColorRenderingIntent(
             &self,

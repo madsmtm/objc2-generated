@@ -27,10 +27,10 @@ extern "C" {
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AuthenticationServices_ASAuthorizationRequest")]
+    #[cfg(feature = "ASAuthorizationRequest")]
     pub struct ASAuthorizationOpenIDRequest;
 
-    #[cfg(feature = "AuthenticationServices_ASAuthorizationRequest")]
+    #[cfg(feature = "ASAuthorizationRequest")]
     unsafe impl ClassType for ASAuthorizationOpenIDRequest {
         #[inherits(NSObject)]
         type Super = ASAuthorizationRequest;
@@ -38,26 +38,26 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AuthenticationServices_ASAuthorizationRequest")]
+#[cfg(feature = "ASAuthorizationRequest")]
 unsafe impl NSCoding for ASAuthorizationOpenIDRequest {}
 
-#[cfg(feature = "AuthenticationServices_ASAuthorizationRequest")]
+#[cfg(feature = "ASAuthorizationRequest")]
 unsafe impl NSCopying for ASAuthorizationOpenIDRequest {}
 
-#[cfg(feature = "AuthenticationServices_ASAuthorizationRequest")]
+#[cfg(feature = "ASAuthorizationRequest")]
 unsafe impl NSObjectProtocol for ASAuthorizationOpenIDRequest {}
 
-#[cfg(feature = "AuthenticationServices_ASAuthorizationRequest")]
+#[cfg(feature = "ASAuthorizationRequest")]
 unsafe impl NSSecureCoding for ASAuthorizationOpenIDRequest {}
 
 extern_methods!(
-    #[cfg(feature = "AuthenticationServices_ASAuthorizationRequest")]
+    #[cfg(feature = "ASAuthorizationRequest")]
     unsafe impl ASAuthorizationOpenIDRequest {
-        #[cfg(feature = "AuthenticationServices_ASAuthorization")]
+        #[cfg(feature = "ASAuthorization")]
         #[method_id(@__retain_semantics Other requestedScopes)]
         pub unsafe fn requestedScopes(&self) -> Option<Id<NSArray<ASAuthorizationScope>>>;
 
-        #[cfg(feature = "AuthenticationServices_ASAuthorization")]
+        #[cfg(feature = "ASAuthorization")]
         #[method(setRequestedScopes:)]
         pub unsafe fn setRequestedScopes(
             &self,
@@ -89,7 +89,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `ASAuthorizationRequest`
-    #[cfg(feature = "AuthenticationServices_ASAuthorizationRequest")]
+    #[cfg(feature = "ASAuthorizationRequest")]
     unsafe impl ASAuthorizationOpenIDRequest {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

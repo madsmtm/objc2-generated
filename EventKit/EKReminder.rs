@@ -7,10 +7,10 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(feature = "EventKit_EKCalendarItem", feature = "EventKit_EKObject"))]
+    #[cfg(all(feature = "EKCalendarItem", feature = "EKObject"))]
     pub struct EKReminder;
 
-    #[cfg(all(feature = "EventKit_EKCalendarItem", feature = "EventKit_EKObject"))]
+    #[cfg(all(feature = "EKCalendarItem", feature = "EKObject"))]
     unsafe impl ClassType for EKReminder {
         #[inherits(EKObject, NSObject)]
         type Super = EKCalendarItem;
@@ -18,13 +18,13 @@ extern_class!(
     }
 );
 
-#[cfg(all(feature = "EventKit_EKCalendarItem", feature = "EventKit_EKObject"))]
+#[cfg(all(feature = "EKCalendarItem", feature = "EKObject"))]
 unsafe impl NSObjectProtocol for EKReminder {}
 
 extern_methods!(
-    #[cfg(all(feature = "EventKit_EKCalendarItem", feature = "EventKit_EKObject"))]
+    #[cfg(all(feature = "EKCalendarItem", feature = "EKObject"))]
     unsafe impl EKReminder {
-        #[cfg(feature = "EventKit_EKEventStore")]
+        #[cfg(feature = "EKEventStore")]
         #[method_id(@__retain_semantics Other reminderWithEventStore:)]
         pub unsafe fn reminderWithEventStore(event_store: &EKEventStore) -> Id<EKReminder>;
 
@@ -65,7 +65,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "EventKit_EKCalendarItem", feature = "EventKit_EKObject"))]
+    #[cfg(all(feature = "EKCalendarItem", feature = "EKObject"))]
     unsafe impl EKReminder {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

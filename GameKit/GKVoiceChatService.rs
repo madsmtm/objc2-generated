@@ -25,11 +25,11 @@ extern_methods!(
         #[method(isVoIPAllowed)]
         pub unsafe fn isVoIPAllowed() -> bool;
 
-        #[cfg(feature = "GameKit_GKPublicProtocols")]
+        #[cfg(feature = "GKPublicProtocols")]
         #[method_id(@__retain_semantics Other client)]
         pub unsafe fn client(&self) -> Option<Id<ProtocolObject<dyn GKVoiceChatClient>>>;
 
-        #[cfg(feature = "GameKit_GKPublicProtocols")]
+        #[cfg(feature = "GKPublicProtocols")]
         #[method(setClient:)]
         pub unsafe fn setClient(&self, client: Option<&ProtocolObject<dyn GKVoiceChatClient>>);
 

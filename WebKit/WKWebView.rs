@@ -116,36 +116,36 @@ unsafe impl NSUserInterfaceItemIdentification for WKWebView {}
 extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     unsafe impl WKWebView {
-        #[cfg(feature = "WebKit_WKWebViewConfiguration")]
+        #[cfg(feature = "WKWebViewConfiguration")]
         #[method_id(@__retain_semantics Other configuration)]
         pub unsafe fn configuration(&self) -> Id<WKWebViewConfiguration>;
 
-        #[cfg(feature = "WebKit_WKNavigationDelegate")]
+        #[cfg(feature = "WKNavigationDelegate")]
         #[method_id(@__retain_semantics Other navigationDelegate)]
         pub unsafe fn navigationDelegate(
             &self,
         ) -> Option<Id<ProtocolObject<dyn WKNavigationDelegate>>>;
 
-        #[cfg(feature = "WebKit_WKNavigationDelegate")]
+        #[cfg(feature = "WKNavigationDelegate")]
         #[method(setNavigationDelegate:)]
         pub unsafe fn setNavigationDelegate(
             &self,
             navigation_delegate: Option<&ProtocolObject<dyn WKNavigationDelegate>>,
         );
 
-        #[cfg(feature = "WebKit_WKUIDelegate")]
+        #[cfg(feature = "WKUIDelegate")]
         #[method_id(@__retain_semantics Other UIDelegate)]
         pub unsafe fn UIDelegate(&self) -> Option<Id<ProtocolObject<dyn WKUIDelegate>>>;
 
-        #[cfg(feature = "WebKit_WKUIDelegate")]
+        #[cfg(feature = "WKUIDelegate")]
         #[method(setUIDelegate:)]
         pub unsafe fn setUIDelegate(&self, ui_delegate: Option<&ProtocolObject<dyn WKUIDelegate>>);
 
-        #[cfg(feature = "WebKit_WKBackForwardList")]
+        #[cfg(feature = "WKBackForwardList")]
         #[method_id(@__retain_semantics Other backForwardList)]
         pub unsafe fn backForwardList(&self) -> Id<WKBackForwardList>;
 
-        #[cfg(feature = "WebKit_WKWebViewConfiguration")]
+        #[cfg(feature = "WKWebViewConfiguration")]
         #[method_id(@__retain_semantics Init initWithFrame:configuration:)]
         pub unsafe fn initWithFrame_configuration(
             this: Allocated<Self>,
@@ -156,11 +156,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
 
-        #[cfg(feature = "WebKit_WKNavigation")]
+        #[cfg(feature = "WKNavigation")]
         #[method_id(@__retain_semantics Other loadRequest:)]
         pub unsafe fn loadRequest(&self, request: &NSURLRequest) -> Option<Id<WKNavigation>>;
 
-        #[cfg(feature = "WebKit_WKNavigation")]
+        #[cfg(feature = "WKNavigation")]
         #[method_id(@__retain_semantics Other loadFileURL:allowingReadAccessToURL:)]
         pub unsafe fn loadFileURL_allowingReadAccessToURL(
             &self,
@@ -168,7 +168,7 @@ extern_methods!(
             read_access_url: &NSURL,
         ) -> Option<Id<WKNavigation>>;
 
-        #[cfg(feature = "WebKit_WKNavigation")]
+        #[cfg(feature = "WKNavigation")]
         #[method_id(@__retain_semantics Other loadHTMLString:baseURL:)]
         pub unsafe fn loadHTMLString_baseURL(
             &self,
@@ -176,7 +176,7 @@ extern_methods!(
             base_url: Option<&NSURL>,
         ) -> Option<Id<WKNavigation>>;
 
-        #[cfg(feature = "WebKit_WKNavigation")]
+        #[cfg(feature = "WKNavigation")]
         #[method_id(@__retain_semantics Other loadData:MIMEType:characterEncodingName:baseURL:)]
         pub unsafe fn loadData_MIMEType_characterEncodingName_baseURL(
             &self,
@@ -186,10 +186,7 @@ extern_methods!(
             base_url: &NSURL,
         ) -> Option<Id<WKNavigation>>;
 
-        #[cfg(all(
-            feature = "WebKit_WKBackForwardListItem",
-            feature = "WebKit_WKNavigation"
-        ))]
+        #[cfg(all(feature = "WKBackForwardListItem", feature = "WKNavigation"))]
         #[method_id(@__retain_semantics Other goToBackForwardListItem:)]
         pub unsafe fn goToBackForwardListItem(
             &self,
@@ -217,19 +214,19 @@ extern_methods!(
         #[method(canGoForward)]
         pub unsafe fn canGoForward(&self) -> bool;
 
-        #[cfg(feature = "WebKit_WKNavigation")]
+        #[cfg(feature = "WKNavigation")]
         #[method_id(@__retain_semantics Other goBack)]
         pub unsafe fn goBack(&self) -> Option<Id<WKNavigation>>;
 
-        #[cfg(feature = "WebKit_WKNavigation")]
+        #[cfg(feature = "WKNavigation")]
         #[method_id(@__retain_semantics Other goForward)]
         pub unsafe fn goForward(&self) -> Option<Id<WKNavigation>>;
 
-        #[cfg(feature = "WebKit_WKNavigation")]
+        #[cfg(feature = "WKNavigation")]
         #[method_id(@__retain_semantics Other reload)]
         pub unsafe fn reload(&self) -> Option<Id<WKNavigation>>;
 
-        #[cfg(feature = "WebKit_WKNavigation")]
+        #[cfg(feature = "WKNavigation")]
         #[method_id(@__retain_semantics Other reloadFromOrigin)]
         pub unsafe fn reloadFromOrigin(&self) -> Option<Id<WKNavigation>>;
 
@@ -245,8 +242,8 @@ extern_methods!(
         );
 
         #[cfg(all(
-            feature = "WebKit_WKContentWorld",
-            feature = "WebKit_WKFrameInfo",
+            feature = "WKContentWorld",
+            feature = "WKFrameInfo",
             feature = "block2"
         ))]
         #[method(evaluateJavaScript:inFrame:inContentWorld:completionHandler:)]
@@ -259,8 +256,8 @@ extern_methods!(
         );
 
         #[cfg(all(
-            feature = "WebKit_WKContentWorld",
-            feature = "WebKit_WKFrameInfo",
+            feature = "WKContentWorld",
+            feature = "WKFrameInfo",
             feature = "block2"
         ))]
         #[method(callAsyncJavaScript:arguments:inFrame:inContentWorld:completionHandler:)]
@@ -351,7 +348,7 @@ extern_methods!(
             completion_handler: Option<&Block<dyn Fn()>>,
         );
 
-        #[cfg(all(feature = "WebKit_WKSnapshotConfiguration", feature = "block2"))]
+        #[cfg(all(feature = "WKSnapshotConfiguration", feature = "block2"))]
         #[method(takeSnapshotWithConfiguration:completionHandler:)]
         pub unsafe fn takeSnapshotWithConfiguration_completionHandler(
             &self,
@@ -359,7 +356,7 @@ extern_methods!(
             completion_handler: &Block<dyn Fn(*mut NSImage, *mut NSError)>,
         );
 
-        #[cfg(all(feature = "WebKit_WKPDFConfiguration", feature = "block2"))]
+        #[cfg(all(feature = "WKPDFConfiguration", feature = "block2"))]
         #[method(createPDFWithConfiguration:completionHandler:)]
         pub unsafe fn createPDFWithConfiguration_completionHandler(
             &self,
@@ -421,8 +418,8 @@ extern_methods!(
         pub unsafe fn setPageZoom(&self, page_zoom: CGFloat);
 
         #[cfg(all(
-            feature = "WebKit_WKFindConfiguration",
-            feature = "WebKit_WKFindResult",
+            feature = "WKFindConfiguration",
+            feature = "WKFindResult",
             feature = "block2"
         ))]
         #[method(findString:withConfiguration:completionHandler:)]
@@ -436,7 +433,7 @@ extern_methods!(
         #[method(handlesURLScheme:)]
         pub unsafe fn handlesURLScheme(url_scheme: &NSString, mtm: MainThreadMarker) -> bool;
 
-        #[cfg(all(feature = "WebKit_WKDownload", feature = "block2"))]
+        #[cfg(all(feature = "WKDownload", feature = "block2"))]
         #[method(startDownloadUsingRequest:completionHandler:)]
         pub unsafe fn startDownloadUsingRequest_completionHandler(
             &self,
@@ -444,7 +441,7 @@ extern_methods!(
             completion_handler: &Block<dyn Fn(NonNull<WKDownload>)>,
         );
 
-        #[cfg(all(feature = "WebKit_WKDownload", feature = "block2"))]
+        #[cfg(all(feature = "WKDownload", feature = "block2"))]
         #[method(resumeDownloadFromResumeData:completionHandler:)]
         pub unsafe fn resumeDownloadFromResumeData_completionHandler(
             &self,
@@ -464,7 +461,7 @@ extern_methods!(
         #[method(setInteractionState:)]
         pub unsafe fn setInteractionState(&self, interaction_state: Option<&AnyObject>);
 
-        #[cfg(feature = "WebKit_WKNavigation")]
+        #[cfg(feature = "WKNavigation")]
         #[method_id(@__retain_semantics Other loadSimulatedRequest:response:responseData:)]
         pub unsafe fn loadSimulatedRequest_response_responseData(
             &self,
@@ -473,7 +470,7 @@ extern_methods!(
             data: &NSData,
         ) -> Id<WKNavigation>;
 
-        #[cfg(feature = "WebKit_WKNavigation")]
+        #[cfg(feature = "WKNavigation")]
         #[deprecated]
         #[method_id(@__retain_semantics Other loadSimulatedRequest:withResponse:responseData:)]
         pub unsafe fn loadSimulatedRequest_withResponse_responseData(
@@ -483,7 +480,7 @@ extern_methods!(
             data: &NSData,
         ) -> Id<WKNavigation>;
 
-        #[cfg(feature = "WebKit_WKNavigation")]
+        #[cfg(feature = "WKNavigation")]
         #[method_id(@__retain_semantics Other loadFileRequest:allowingReadAccessToURL:)]
         pub unsafe fn loadFileRequest_allowingReadAccessToURL(
             &self,
@@ -491,7 +488,7 @@ extern_methods!(
             read_access_url: &NSURL,
         ) -> Id<WKNavigation>;
 
-        #[cfg(feature = "WebKit_WKNavigation")]
+        #[cfg(feature = "WKNavigation")]
         #[method_id(@__retain_semantics Other loadSimulatedRequest:responseHTMLString:)]
         pub unsafe fn loadSimulatedRequest_responseHTMLString(
             &self,
@@ -499,7 +496,7 @@ extern_methods!(
             string: &NSString,
         ) -> Id<WKNavigation>;
 
-        #[cfg(feature = "WebKit_WKNavigation")]
+        #[cfg(feature = "WKNavigation")]
         #[deprecated]
         #[method_id(@__retain_semantics Other loadSimulatedRequest:withResponseHTMLString:)]
         pub unsafe fn loadSimulatedRequest_withResponseHTMLString(

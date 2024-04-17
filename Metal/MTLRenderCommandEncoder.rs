@@ -326,9 +326,9 @@ unsafe impl RefEncode for MTLRenderStages {
 }
 
 extern_protocol!(
-    #[cfg(feature = "Metal_MTLCommandEncoder")]
+    #[cfg(feature = "MTLCommandEncoder")]
     pub unsafe trait MTLRenderCommandEncoder: MTLCommandEncoder {
-        #[cfg(feature = "Metal_MTLRenderPipeline")]
+        #[cfg(feature = "MTLRenderPipeline")]
         #[method(setRenderPipelineState:)]
         fn setRenderPipelineState(
             &self,
@@ -343,7 +343,7 @@ extern_protocol!(
             index: NSUInteger,
         );
 
-        #[cfg(all(feature = "Metal_MTLBuffer", feature = "Metal_MTLResource"))]
+        #[cfg(all(feature = "MTLBuffer", feature = "MTLResource"))]
         #[method(setVertexBuffer:offset:atIndex:)]
         unsafe fn setVertexBuffer_offset_atIndex(
             &self,
@@ -355,7 +355,7 @@ extern_protocol!(
         #[method(setVertexBufferOffset:atIndex:)]
         unsafe fn setVertexBufferOffset_atIndex(&self, offset: NSUInteger, index: NSUInteger);
 
-        #[cfg(all(feature = "Metal_MTLBuffer", feature = "Metal_MTLResource"))]
+        #[cfg(all(feature = "MTLBuffer", feature = "MTLResource"))]
         #[method(setVertexBuffers:offsets:withRange:)]
         unsafe fn setVertexBuffers_offsets_withRange(
             &self,
@@ -364,7 +364,7 @@ extern_protocol!(
             range: NSRange,
         );
 
-        #[cfg(all(feature = "Metal_MTLBuffer", feature = "Metal_MTLResource"))]
+        #[cfg(all(feature = "MTLBuffer", feature = "MTLResource"))]
         #[method(setVertexBuffer:offset:attributeStride:atIndex:)]
         unsafe fn setVertexBuffer_offset_attributeStride_atIndex(
             &self,
@@ -374,7 +374,7 @@ extern_protocol!(
             index: NSUInteger,
         );
 
-        #[cfg(all(feature = "Metal_MTLBuffer", feature = "Metal_MTLResource"))]
+        #[cfg(all(feature = "MTLBuffer", feature = "MTLResource"))]
         #[method(setVertexBuffers:offsets:attributeStrides:withRange:)]
         unsafe fn setVertexBuffers_offsets_attributeStrides_withRange(
             &self,
@@ -401,7 +401,7 @@ extern_protocol!(
             index: NSUInteger,
         );
 
-        #[cfg(all(feature = "Metal_MTLResource", feature = "Metal_MTLTexture"))]
+        #[cfg(all(feature = "MTLResource", feature = "MTLTexture"))]
         #[method(setVertexTexture:atIndex:)]
         unsafe fn setVertexTexture_atIndex(
             &self,
@@ -409,7 +409,7 @@ extern_protocol!(
             index: NSUInteger,
         );
 
-        #[cfg(all(feature = "Metal_MTLResource", feature = "Metal_MTLTexture"))]
+        #[cfg(all(feature = "MTLResource", feature = "MTLTexture"))]
         #[method(setVertexTextures:withRange:)]
         unsafe fn setVertexTextures_withRange(
             &self,
@@ -417,7 +417,7 @@ extern_protocol!(
             range: NSRange,
         );
 
-        #[cfg(feature = "Metal_MTLSampler")]
+        #[cfg(feature = "MTLSampler")]
         #[method(setVertexSamplerState:atIndex:)]
         unsafe fn setVertexSamplerState_atIndex(
             &self,
@@ -425,7 +425,7 @@ extern_protocol!(
             index: NSUInteger,
         );
 
-        #[cfg(feature = "Metal_MTLSampler")]
+        #[cfg(feature = "MTLSampler")]
         #[method(setVertexSamplerStates:withRange:)]
         unsafe fn setVertexSamplerStates_withRange(
             &self,
@@ -433,7 +433,7 @@ extern_protocol!(
             range: NSRange,
         );
 
-        #[cfg(feature = "Metal_MTLSampler")]
+        #[cfg(feature = "MTLSampler")]
         #[method(setVertexSamplerState:lodMinClamp:lodMaxClamp:atIndex:)]
         unsafe fn setVertexSamplerState_lodMinClamp_lodMaxClamp_atIndex(
             &self,
@@ -443,7 +443,7 @@ extern_protocol!(
             index: NSUInteger,
         );
 
-        #[cfg(feature = "Metal_MTLSampler")]
+        #[cfg(feature = "MTLSampler")]
         #[method(setVertexSamplerStates:lodMinClamps:lodMaxClamps:withRange:)]
         unsafe fn setVertexSamplerStates_lodMinClamps_lodMaxClamps_withRange(
             &self,
@@ -453,10 +453,7 @@ extern_protocol!(
             range: NSRange,
         );
 
-        #[cfg(all(
-            feature = "Metal_MTLResource",
-            feature = "Metal_MTLVisibleFunctionTable"
-        ))]
+        #[cfg(all(feature = "MTLResource", feature = "MTLVisibleFunctionTable"))]
         #[method(setVertexVisibleFunctionTable:atBufferIndex:)]
         unsafe fn setVertexVisibleFunctionTable_atBufferIndex(
             &self,
@@ -464,10 +461,7 @@ extern_protocol!(
             buffer_index: NSUInteger,
         );
 
-        #[cfg(all(
-            feature = "Metal_MTLResource",
-            feature = "Metal_MTLVisibleFunctionTable"
-        ))]
+        #[cfg(all(feature = "MTLResource", feature = "MTLVisibleFunctionTable"))]
         #[method(setVertexVisibleFunctionTables:withBufferRange:)]
         unsafe fn setVertexVisibleFunctionTables_withBufferRange(
             &self,
@@ -475,10 +469,7 @@ extern_protocol!(
             range: NSRange,
         );
 
-        #[cfg(all(
-            feature = "Metal_MTLIntersectionFunctionTable",
-            feature = "Metal_MTLResource"
-        ))]
+        #[cfg(all(feature = "MTLIntersectionFunctionTable", feature = "MTLResource"))]
         #[method(setVertexIntersectionFunctionTable:atBufferIndex:)]
         unsafe fn setVertexIntersectionFunctionTable_atBufferIndex(
             &self,
@@ -486,10 +477,7 @@ extern_protocol!(
             buffer_index: NSUInteger,
         );
 
-        #[cfg(all(
-            feature = "Metal_MTLIntersectionFunctionTable",
-            feature = "Metal_MTLResource"
-        ))]
+        #[cfg(all(feature = "MTLIntersectionFunctionTable", feature = "MTLResource"))]
         #[method(setVertexIntersectionFunctionTables:withBufferRange:)]
         unsafe fn setVertexIntersectionFunctionTables_withBufferRange(
             &self,
@@ -499,10 +487,7 @@ extern_protocol!(
             range: NSRange,
         );
 
-        #[cfg(all(
-            feature = "Metal_MTLAccelerationStructure",
-            feature = "Metal_MTLResource"
-        ))]
+        #[cfg(all(feature = "MTLAccelerationStructure", feature = "MTLResource"))]
         #[method(setVertexAccelerationStructure:atBufferIndex:)]
         unsafe fn setVertexAccelerationStructure_atBufferIndex(
             &self,
@@ -561,7 +546,7 @@ extern_protocol!(
             index: NSUInteger,
         );
 
-        #[cfg(all(feature = "Metal_MTLBuffer", feature = "Metal_MTLResource"))]
+        #[cfg(all(feature = "MTLBuffer", feature = "MTLResource"))]
         #[method(setFragmentBuffer:offset:atIndex:)]
         unsafe fn setFragmentBuffer_offset_atIndex(
             &self,
@@ -573,7 +558,7 @@ extern_protocol!(
         #[method(setFragmentBufferOffset:atIndex:)]
         unsafe fn setFragmentBufferOffset_atIndex(&self, offset: NSUInteger, index: NSUInteger);
 
-        #[cfg(all(feature = "Metal_MTLBuffer", feature = "Metal_MTLResource"))]
+        #[cfg(all(feature = "MTLBuffer", feature = "MTLResource"))]
         #[method(setFragmentBuffers:offsets:withRange:)]
         unsafe fn setFragmentBuffers_offsets_withRange(
             &self,
@@ -582,7 +567,7 @@ extern_protocol!(
             range: NSRange,
         );
 
-        #[cfg(all(feature = "Metal_MTLResource", feature = "Metal_MTLTexture"))]
+        #[cfg(all(feature = "MTLResource", feature = "MTLTexture"))]
         #[method(setFragmentTexture:atIndex:)]
         unsafe fn setFragmentTexture_atIndex(
             &self,
@@ -590,7 +575,7 @@ extern_protocol!(
             index: NSUInteger,
         );
 
-        #[cfg(all(feature = "Metal_MTLResource", feature = "Metal_MTLTexture"))]
+        #[cfg(all(feature = "MTLResource", feature = "MTLTexture"))]
         #[method(setFragmentTextures:withRange:)]
         unsafe fn setFragmentTextures_withRange(
             &self,
@@ -598,7 +583,7 @@ extern_protocol!(
             range: NSRange,
         );
 
-        #[cfg(feature = "Metal_MTLSampler")]
+        #[cfg(feature = "MTLSampler")]
         #[method(setFragmentSamplerState:atIndex:)]
         unsafe fn setFragmentSamplerState_atIndex(
             &self,
@@ -606,7 +591,7 @@ extern_protocol!(
             index: NSUInteger,
         );
 
-        #[cfg(feature = "Metal_MTLSampler")]
+        #[cfg(feature = "MTLSampler")]
         #[method(setFragmentSamplerStates:withRange:)]
         unsafe fn setFragmentSamplerStates_withRange(
             &self,
@@ -614,7 +599,7 @@ extern_protocol!(
             range: NSRange,
         );
 
-        #[cfg(feature = "Metal_MTLSampler")]
+        #[cfg(feature = "MTLSampler")]
         #[method(setFragmentSamplerState:lodMinClamp:lodMaxClamp:atIndex:)]
         unsafe fn setFragmentSamplerState_lodMinClamp_lodMaxClamp_atIndex(
             &self,
@@ -624,7 +609,7 @@ extern_protocol!(
             index: NSUInteger,
         );
 
-        #[cfg(feature = "Metal_MTLSampler")]
+        #[cfg(feature = "MTLSampler")]
         #[method(setFragmentSamplerStates:lodMinClamps:lodMaxClamps:withRange:)]
         unsafe fn setFragmentSamplerStates_lodMinClamps_lodMaxClamps_withRange(
             &self,
@@ -634,10 +619,7 @@ extern_protocol!(
             range: NSRange,
         );
 
-        #[cfg(all(
-            feature = "Metal_MTLResource",
-            feature = "Metal_MTLVisibleFunctionTable"
-        ))]
+        #[cfg(all(feature = "MTLResource", feature = "MTLVisibleFunctionTable"))]
         #[method(setFragmentVisibleFunctionTable:atBufferIndex:)]
         unsafe fn setFragmentVisibleFunctionTable_atBufferIndex(
             &self,
@@ -645,10 +627,7 @@ extern_protocol!(
             buffer_index: NSUInteger,
         );
 
-        #[cfg(all(
-            feature = "Metal_MTLResource",
-            feature = "Metal_MTLVisibleFunctionTable"
-        ))]
+        #[cfg(all(feature = "MTLResource", feature = "MTLVisibleFunctionTable"))]
         #[method(setFragmentVisibleFunctionTables:withBufferRange:)]
         unsafe fn setFragmentVisibleFunctionTables_withBufferRange(
             &self,
@@ -656,10 +635,7 @@ extern_protocol!(
             range: NSRange,
         );
 
-        #[cfg(all(
-            feature = "Metal_MTLIntersectionFunctionTable",
-            feature = "Metal_MTLResource"
-        ))]
+        #[cfg(all(feature = "MTLIntersectionFunctionTable", feature = "MTLResource"))]
         #[method(setFragmentIntersectionFunctionTable:atBufferIndex:)]
         unsafe fn setFragmentIntersectionFunctionTable_atBufferIndex(
             &self,
@@ -667,10 +643,7 @@ extern_protocol!(
             buffer_index: NSUInteger,
         );
 
-        #[cfg(all(
-            feature = "Metal_MTLIntersectionFunctionTable",
-            feature = "Metal_MTLResource"
-        ))]
+        #[cfg(all(feature = "MTLIntersectionFunctionTable", feature = "MTLResource"))]
         #[method(setFragmentIntersectionFunctionTables:withBufferRange:)]
         unsafe fn setFragmentIntersectionFunctionTables_withBufferRange(
             &self,
@@ -680,10 +653,7 @@ extern_protocol!(
             range: NSRange,
         );
 
-        #[cfg(all(
-            feature = "Metal_MTLAccelerationStructure",
-            feature = "Metal_MTLResource"
-        ))]
+        #[cfg(all(feature = "MTLAccelerationStructure", feature = "MTLResource"))]
         #[method(setFragmentAccelerationStructure:atBufferIndex:)]
         unsafe fn setFragmentAccelerationStructure_atBufferIndex(
             &self,
@@ -700,7 +670,7 @@ extern_protocol!(
             alpha: c_float,
         );
 
-        #[cfg(feature = "Metal_MTLDepthStencil")]
+        #[cfg(feature = "MTLDepthStencil")]
         #[method(setDepthStencilState:)]
         fn setDepthStencilState(
             &self,
@@ -720,7 +690,7 @@ extern_protocol!(
         #[method(setVisibilityResultMode:offset:)]
         fn setVisibilityResultMode_offset(&self, mode: MTLVisibilityResultMode, offset: NSUInteger);
 
-        #[cfg(feature = "Metal_MTLRenderPass")]
+        #[cfg(feature = "MTLRenderPass")]
         #[method(setColorStoreAction:atIndex:)]
         unsafe fn setColorStoreAction_atIndex(
             &self,
@@ -728,15 +698,15 @@ extern_protocol!(
             color_attachment_index: NSUInteger,
         );
 
-        #[cfg(feature = "Metal_MTLRenderPass")]
+        #[cfg(feature = "MTLRenderPass")]
         #[method(setDepthStoreAction:)]
         unsafe fn setDepthStoreAction(&self, store_action: MTLStoreAction);
 
-        #[cfg(feature = "Metal_MTLRenderPass")]
+        #[cfg(feature = "MTLRenderPass")]
         #[method(setStencilStoreAction:)]
         unsafe fn setStencilStoreAction(&self, store_action: MTLStoreAction);
 
-        #[cfg(feature = "Metal_MTLRenderPass")]
+        #[cfg(feature = "MTLRenderPass")]
         #[method(setColorStoreActionOptions:atIndex:)]
         unsafe fn setColorStoreActionOptions_atIndex(
             &self,
@@ -744,11 +714,11 @@ extern_protocol!(
             color_attachment_index: NSUInteger,
         );
 
-        #[cfg(feature = "Metal_MTLRenderPass")]
+        #[cfg(feature = "MTLRenderPass")]
         #[method(setDepthStoreActionOptions:)]
         unsafe fn setDepthStoreActionOptions(&self, store_action_options: MTLStoreActionOptions);
 
-        #[cfg(feature = "Metal_MTLRenderPass")]
+        #[cfg(feature = "MTLRenderPass")]
         #[method(setStencilStoreActionOptions:)]
         unsafe fn setStencilStoreActionOptions(&self, store_action_options: MTLStoreActionOptions);
 
@@ -760,7 +730,7 @@ extern_protocol!(
             index: NSUInteger,
         );
 
-        #[cfg(all(feature = "Metal_MTLBuffer", feature = "Metal_MTLResource"))]
+        #[cfg(all(feature = "MTLBuffer", feature = "MTLResource"))]
         #[method(setObjectBuffer:offset:atIndex:)]
         unsafe fn setObjectBuffer_offset_atIndex(
             &self,
@@ -772,7 +742,7 @@ extern_protocol!(
         #[method(setObjectBufferOffset:atIndex:)]
         unsafe fn setObjectBufferOffset_atIndex(&self, offset: NSUInteger, index: NSUInteger);
 
-        #[cfg(all(feature = "Metal_MTLBuffer", feature = "Metal_MTLResource"))]
+        #[cfg(all(feature = "MTLBuffer", feature = "MTLResource"))]
         #[method(setObjectBuffers:offsets:withRange:)]
         unsafe fn setObjectBuffers_offsets_withRange(
             &self,
@@ -781,7 +751,7 @@ extern_protocol!(
             range: NSRange,
         );
 
-        #[cfg(all(feature = "Metal_MTLResource", feature = "Metal_MTLTexture"))]
+        #[cfg(all(feature = "MTLResource", feature = "MTLTexture"))]
         #[method(setObjectTexture:atIndex:)]
         unsafe fn setObjectTexture_atIndex(
             &self,
@@ -789,7 +759,7 @@ extern_protocol!(
             index: NSUInteger,
         );
 
-        #[cfg(all(feature = "Metal_MTLResource", feature = "Metal_MTLTexture"))]
+        #[cfg(all(feature = "MTLResource", feature = "MTLTexture"))]
         #[method(setObjectTextures:withRange:)]
         unsafe fn setObjectTextures_withRange(
             &self,
@@ -797,7 +767,7 @@ extern_protocol!(
             range: NSRange,
         );
 
-        #[cfg(feature = "Metal_MTLSampler")]
+        #[cfg(feature = "MTLSampler")]
         #[method(setObjectSamplerState:atIndex:)]
         unsafe fn setObjectSamplerState_atIndex(
             &self,
@@ -805,7 +775,7 @@ extern_protocol!(
             index: NSUInteger,
         );
 
-        #[cfg(feature = "Metal_MTLSampler")]
+        #[cfg(feature = "MTLSampler")]
         #[method(setObjectSamplerStates:withRange:)]
         unsafe fn setObjectSamplerStates_withRange(
             &self,
@@ -813,7 +783,7 @@ extern_protocol!(
             range: NSRange,
         );
 
-        #[cfg(feature = "Metal_MTLSampler")]
+        #[cfg(feature = "MTLSampler")]
         #[method(setObjectSamplerState:lodMinClamp:lodMaxClamp:atIndex:)]
         unsafe fn setObjectSamplerState_lodMinClamp_lodMaxClamp_atIndex(
             &self,
@@ -823,7 +793,7 @@ extern_protocol!(
             index: NSUInteger,
         );
 
-        #[cfg(feature = "Metal_MTLSampler")]
+        #[cfg(feature = "MTLSampler")]
         #[method(setObjectSamplerStates:lodMinClamps:lodMaxClamps:withRange:)]
         unsafe fn setObjectSamplerStates_lodMinClamps_lodMaxClamps_withRange(
             &self,
@@ -848,7 +818,7 @@ extern_protocol!(
             index: NSUInteger,
         );
 
-        #[cfg(all(feature = "Metal_MTLBuffer", feature = "Metal_MTLResource"))]
+        #[cfg(all(feature = "MTLBuffer", feature = "MTLResource"))]
         #[method(setMeshBuffer:offset:atIndex:)]
         unsafe fn setMeshBuffer_offset_atIndex(
             &self,
@@ -860,7 +830,7 @@ extern_protocol!(
         #[method(setMeshBufferOffset:atIndex:)]
         unsafe fn setMeshBufferOffset_atIndex(&self, offset: NSUInteger, index: NSUInteger);
 
-        #[cfg(all(feature = "Metal_MTLBuffer", feature = "Metal_MTLResource"))]
+        #[cfg(all(feature = "MTLBuffer", feature = "MTLResource"))]
         #[method(setMeshBuffers:offsets:withRange:)]
         unsafe fn setMeshBuffers_offsets_withRange(
             &self,
@@ -869,7 +839,7 @@ extern_protocol!(
             range: NSRange,
         );
 
-        #[cfg(all(feature = "Metal_MTLResource", feature = "Metal_MTLTexture"))]
+        #[cfg(all(feature = "MTLResource", feature = "MTLTexture"))]
         #[method(setMeshTexture:atIndex:)]
         unsafe fn setMeshTexture_atIndex(
             &self,
@@ -877,7 +847,7 @@ extern_protocol!(
             index: NSUInteger,
         );
 
-        #[cfg(all(feature = "Metal_MTLResource", feature = "Metal_MTLTexture"))]
+        #[cfg(all(feature = "MTLResource", feature = "MTLTexture"))]
         #[method(setMeshTextures:withRange:)]
         unsafe fn setMeshTextures_withRange(
             &self,
@@ -885,7 +855,7 @@ extern_protocol!(
             range: NSRange,
         );
 
-        #[cfg(feature = "Metal_MTLSampler")]
+        #[cfg(feature = "MTLSampler")]
         #[method(setMeshSamplerState:atIndex:)]
         unsafe fn setMeshSamplerState_atIndex(
             &self,
@@ -893,7 +863,7 @@ extern_protocol!(
             index: NSUInteger,
         );
 
-        #[cfg(feature = "Metal_MTLSampler")]
+        #[cfg(feature = "MTLSampler")]
         #[method(setMeshSamplerStates:withRange:)]
         unsafe fn setMeshSamplerStates_withRange(
             &self,
@@ -901,7 +871,7 @@ extern_protocol!(
             range: NSRange,
         );
 
-        #[cfg(feature = "Metal_MTLSampler")]
+        #[cfg(feature = "MTLSampler")]
         #[method(setMeshSamplerState:lodMinClamp:lodMaxClamp:atIndex:)]
         unsafe fn setMeshSamplerState_lodMinClamp_lodMaxClamp_atIndex(
             &self,
@@ -911,7 +881,7 @@ extern_protocol!(
             index: NSUInteger,
         );
 
-        #[cfg(feature = "Metal_MTLSampler")]
+        #[cfg(feature = "MTLSampler")]
         #[method(setMeshSamplerStates:lodMinClamps:lodMaxClamps:withRange:)]
         unsafe fn setMeshSamplerStates_lodMinClamps_lodMaxClamps_withRange(
             &self,
@@ -921,7 +891,7 @@ extern_protocol!(
             range: NSRange,
         );
 
-        #[cfg(feature = "Metal_MTLTypes")]
+        #[cfg(feature = "MTLTypes")]
         #[method(drawMeshThreadgroups:threadsPerObjectThreadgroup:threadsPerMeshThreadgroup:)]
         unsafe fn drawMeshThreadgroups_threadsPerObjectThreadgroup_threadsPerMeshThreadgroup(
             &self,
@@ -930,7 +900,7 @@ extern_protocol!(
             threads_per_mesh_threadgroup: MTLSize,
         );
 
-        #[cfg(feature = "Metal_MTLTypes")]
+        #[cfg(feature = "MTLTypes")]
         #[method(drawMeshThreads:threadsPerObjectThreadgroup:threadsPerMeshThreadgroup:)]
         unsafe fn drawMeshThreads_threadsPerObjectThreadgroup_threadsPerMeshThreadgroup(
             &self,
@@ -939,11 +909,7 @@ extern_protocol!(
             threads_per_mesh_threadgroup: MTLSize,
         );
 
-        #[cfg(all(
-            feature = "Metal_MTLBuffer",
-            feature = "Metal_MTLResource",
-            feature = "Metal_MTLTypes"
-        ))]
+        #[cfg(all(feature = "MTLBuffer", feature = "MTLResource", feature = "MTLTypes"))]
         #[method(drawMeshThreadgroupsWithIndirectBuffer:indirectBufferOffset:threadsPerObjectThreadgroup:threadsPerMeshThreadgroup:)]
         unsafe fn drawMeshThreadgroupsWithIndirectBuffer_indirectBufferOffset_threadsPerObjectThreadgroup_threadsPerMeshThreadgroup(
             &self,
@@ -971,9 +937,9 @@ extern_protocol!(
         );
 
         #[cfg(all(
-            feature = "Metal_MTLBuffer",
-            feature = "Metal_MTLResource",
-            feature = "Metal_MTLStageInputOutputDescriptor"
+            feature = "MTLBuffer",
+            feature = "MTLResource",
+            feature = "MTLStageInputOutputDescriptor"
         ))]
         #[method(drawIndexedPrimitives:indexCount:indexType:indexBuffer:indexBufferOffset:instanceCount:)]
         unsafe fn drawIndexedPrimitives_indexCount_indexType_indexBuffer_indexBufferOffset_instanceCount(
@@ -987,9 +953,9 @@ extern_protocol!(
         );
 
         #[cfg(all(
-            feature = "Metal_MTLBuffer",
-            feature = "Metal_MTLResource",
-            feature = "Metal_MTLStageInputOutputDescriptor"
+            feature = "MTLBuffer",
+            feature = "MTLResource",
+            feature = "MTLStageInputOutputDescriptor"
         ))]
         #[method(drawIndexedPrimitives:indexCount:indexType:indexBuffer:indexBufferOffset:)]
         unsafe fn drawIndexedPrimitives_indexCount_indexType_indexBuffer_indexBufferOffset(
@@ -1012,9 +978,9 @@ extern_protocol!(
         );
 
         #[cfg(all(
-            feature = "Metal_MTLBuffer",
-            feature = "Metal_MTLResource",
-            feature = "Metal_MTLStageInputOutputDescriptor"
+            feature = "MTLBuffer",
+            feature = "MTLResource",
+            feature = "MTLStageInputOutputDescriptor"
         ))]
         #[method(drawIndexedPrimitives:indexCount:indexType:indexBuffer:indexBufferOffset:instanceCount:baseVertex:baseInstance:)]
         unsafe fn drawIndexedPrimitives_indexCount_indexType_indexBuffer_indexBufferOffset_instanceCount_baseVertex_baseInstance(
@@ -1029,7 +995,7 @@ extern_protocol!(
             base_instance: NSUInteger,
         );
 
-        #[cfg(all(feature = "Metal_MTLBuffer", feature = "Metal_MTLResource"))]
+        #[cfg(all(feature = "MTLBuffer", feature = "MTLResource"))]
         #[method(drawPrimitives:indirectBuffer:indirectBufferOffset:)]
         unsafe fn drawPrimitives_indirectBuffer_indirectBufferOffset(
             &self,
@@ -1039,9 +1005,9 @@ extern_protocol!(
         );
 
         #[cfg(all(
-            feature = "Metal_MTLBuffer",
-            feature = "Metal_MTLResource",
-            feature = "Metal_MTLStageInputOutputDescriptor"
+            feature = "MTLBuffer",
+            feature = "MTLResource",
+            feature = "MTLStageInputOutputDescriptor"
         ))]
         #[method(drawIndexedPrimitives:indexType:indexBuffer:indexBufferOffset:indirectBuffer:indirectBufferOffset:)]
         unsafe fn drawIndexedPrimitives_indexType_indexBuffer_indexBufferOffset_indirectBuffer_indirectBufferOffset(
@@ -1058,7 +1024,7 @@ extern_protocol!(
         #[method(textureBarrier)]
         unsafe fn textureBarrier(&self);
 
-        #[cfg(feature = "Metal_MTLFence")]
+        #[cfg(feature = "MTLFence")]
         #[method(updateFence:afterStages:)]
         fn updateFence_afterStages(
             &self,
@@ -1066,7 +1032,7 @@ extern_protocol!(
             stages: MTLRenderStages,
         );
 
-        #[cfg(feature = "Metal_MTLFence")]
+        #[cfg(feature = "MTLFence")]
         #[method(waitForFence:beforeStages:)]
         fn waitForFence_beforeStages(
             &self,
@@ -1074,7 +1040,7 @@ extern_protocol!(
             stages: MTLRenderStages,
         );
 
-        #[cfg(all(feature = "Metal_MTLBuffer", feature = "Metal_MTLResource"))]
+        #[cfg(all(feature = "MTLBuffer", feature = "MTLResource"))]
         #[method(setTessellationFactorBuffer:offset:instanceStride:)]
         unsafe fn setTessellationFactorBuffer_offset_instanceStride(
             &self,
@@ -1086,7 +1052,7 @@ extern_protocol!(
         #[method(setTessellationFactorScale:)]
         unsafe fn setTessellationFactorScale(&self, scale: c_float);
 
-        #[cfg(all(feature = "Metal_MTLBuffer", feature = "Metal_MTLResource"))]
+        #[cfg(all(feature = "MTLBuffer", feature = "MTLResource"))]
         #[method(drawPatches:patchStart:patchCount:patchIndexBuffer:patchIndexBufferOffset:instanceCount:baseInstance:)]
         unsafe fn drawPatches_patchStart_patchCount_patchIndexBuffer_patchIndexBufferOffset_instanceCount_baseInstance(
             &self,
@@ -1099,7 +1065,7 @@ extern_protocol!(
             base_instance: NSUInteger,
         );
 
-        #[cfg(all(feature = "Metal_MTLBuffer", feature = "Metal_MTLResource"))]
+        #[cfg(all(feature = "MTLBuffer", feature = "MTLResource"))]
         #[method(drawPatches:patchIndexBuffer:patchIndexBufferOffset:indirectBuffer:indirectBufferOffset:)]
         unsafe fn drawPatches_patchIndexBuffer_patchIndexBufferOffset_indirectBuffer_indirectBufferOffset(
             &self,
@@ -1110,7 +1076,7 @@ extern_protocol!(
             indirect_buffer_offset: NSUInteger,
         );
 
-        #[cfg(all(feature = "Metal_MTLBuffer", feature = "Metal_MTLResource"))]
+        #[cfg(all(feature = "MTLBuffer", feature = "MTLResource"))]
         #[method(drawIndexedPatches:patchStart:patchCount:patchIndexBuffer:patchIndexBufferOffset:controlPointIndexBuffer:controlPointIndexBufferOffset:instanceCount:baseInstance:)]
         unsafe fn drawIndexedPatches_patchStart_patchCount_patchIndexBuffer_patchIndexBufferOffset_controlPointIndexBuffer_controlPointIndexBufferOffset_instanceCount_baseInstance(
             &self,
@@ -1125,7 +1091,7 @@ extern_protocol!(
             base_instance: NSUInteger,
         );
 
-        #[cfg(all(feature = "Metal_MTLBuffer", feature = "Metal_MTLResource"))]
+        #[cfg(all(feature = "MTLBuffer", feature = "MTLResource"))]
         #[method(drawIndexedPatches:patchIndexBuffer:patchIndexBufferOffset:controlPointIndexBuffer:controlPointIndexBufferOffset:indirectBuffer:indirectBufferOffset:)]
         unsafe fn drawIndexedPatches_patchIndexBuffer_patchIndexBufferOffset_controlPointIndexBuffer_controlPointIndexBufferOffset_indirectBuffer_indirectBufferOffset(
             &self,
@@ -1152,7 +1118,7 @@ extern_protocol!(
             index: NSUInteger,
         );
 
-        #[cfg(all(feature = "Metal_MTLBuffer", feature = "Metal_MTLResource"))]
+        #[cfg(all(feature = "MTLBuffer", feature = "MTLResource"))]
         #[method(setTileBuffer:offset:atIndex:)]
         unsafe fn setTileBuffer_offset_atIndex(
             &self,
@@ -1164,7 +1130,7 @@ extern_protocol!(
         #[method(setTileBufferOffset:atIndex:)]
         unsafe fn setTileBufferOffset_atIndex(&self, offset: NSUInteger, index: NSUInteger);
 
-        #[cfg(all(feature = "Metal_MTLBuffer", feature = "Metal_MTLResource"))]
+        #[cfg(all(feature = "MTLBuffer", feature = "MTLResource"))]
         #[method(setTileBuffers:offsets:withRange:)]
         unsafe fn setTileBuffers_offsets_withRange(
             &self,
@@ -1173,7 +1139,7 @@ extern_protocol!(
             range: NSRange,
         );
 
-        #[cfg(all(feature = "Metal_MTLResource", feature = "Metal_MTLTexture"))]
+        #[cfg(all(feature = "MTLResource", feature = "MTLTexture"))]
         #[method(setTileTexture:atIndex:)]
         unsafe fn setTileTexture_atIndex(
             &self,
@@ -1181,7 +1147,7 @@ extern_protocol!(
             index: NSUInteger,
         );
 
-        #[cfg(all(feature = "Metal_MTLResource", feature = "Metal_MTLTexture"))]
+        #[cfg(all(feature = "MTLResource", feature = "MTLTexture"))]
         #[method(setTileTextures:withRange:)]
         unsafe fn setTileTextures_withRange(
             &self,
@@ -1189,7 +1155,7 @@ extern_protocol!(
             range: NSRange,
         );
 
-        #[cfg(feature = "Metal_MTLSampler")]
+        #[cfg(feature = "MTLSampler")]
         #[method(setTileSamplerState:atIndex:)]
         unsafe fn setTileSamplerState_atIndex(
             &self,
@@ -1197,7 +1163,7 @@ extern_protocol!(
             index: NSUInteger,
         );
 
-        #[cfg(feature = "Metal_MTLSampler")]
+        #[cfg(feature = "MTLSampler")]
         #[method(setTileSamplerStates:withRange:)]
         unsafe fn setTileSamplerStates_withRange(
             &self,
@@ -1205,7 +1171,7 @@ extern_protocol!(
             range: NSRange,
         );
 
-        #[cfg(feature = "Metal_MTLSampler")]
+        #[cfg(feature = "MTLSampler")]
         #[method(setTileSamplerState:lodMinClamp:lodMaxClamp:atIndex:)]
         unsafe fn setTileSamplerState_lodMinClamp_lodMaxClamp_atIndex(
             &self,
@@ -1215,7 +1181,7 @@ extern_protocol!(
             index: NSUInteger,
         );
 
-        #[cfg(feature = "Metal_MTLSampler")]
+        #[cfg(feature = "MTLSampler")]
         #[method(setTileSamplerStates:lodMinClamps:lodMaxClamps:withRange:)]
         unsafe fn setTileSamplerStates_lodMinClamps_lodMaxClamps_withRange(
             &self,
@@ -1225,10 +1191,7 @@ extern_protocol!(
             range: NSRange,
         );
 
-        #[cfg(all(
-            feature = "Metal_MTLResource",
-            feature = "Metal_MTLVisibleFunctionTable"
-        ))]
+        #[cfg(all(feature = "MTLResource", feature = "MTLVisibleFunctionTable"))]
         #[method(setTileVisibleFunctionTable:atBufferIndex:)]
         unsafe fn setTileVisibleFunctionTable_atBufferIndex(
             &self,
@@ -1236,10 +1199,7 @@ extern_protocol!(
             buffer_index: NSUInteger,
         );
 
-        #[cfg(all(
-            feature = "Metal_MTLResource",
-            feature = "Metal_MTLVisibleFunctionTable"
-        ))]
+        #[cfg(all(feature = "MTLResource", feature = "MTLVisibleFunctionTable"))]
         #[method(setTileVisibleFunctionTables:withBufferRange:)]
         unsafe fn setTileVisibleFunctionTables_withBufferRange(
             &self,
@@ -1247,10 +1207,7 @@ extern_protocol!(
             range: NSRange,
         );
 
-        #[cfg(all(
-            feature = "Metal_MTLIntersectionFunctionTable",
-            feature = "Metal_MTLResource"
-        ))]
+        #[cfg(all(feature = "MTLIntersectionFunctionTable", feature = "MTLResource"))]
         #[method(setTileIntersectionFunctionTable:atBufferIndex:)]
         unsafe fn setTileIntersectionFunctionTable_atBufferIndex(
             &self,
@@ -1258,10 +1215,7 @@ extern_protocol!(
             buffer_index: NSUInteger,
         );
 
-        #[cfg(all(
-            feature = "Metal_MTLIntersectionFunctionTable",
-            feature = "Metal_MTLResource"
-        ))]
+        #[cfg(all(feature = "MTLIntersectionFunctionTable", feature = "MTLResource"))]
         #[method(setTileIntersectionFunctionTables:withBufferRange:)]
         unsafe fn setTileIntersectionFunctionTables_withBufferRange(
             &self,
@@ -1271,10 +1225,7 @@ extern_protocol!(
             range: NSRange,
         );
 
-        #[cfg(all(
-            feature = "Metal_MTLAccelerationStructure",
-            feature = "Metal_MTLResource"
-        ))]
+        #[cfg(all(feature = "MTLAccelerationStructure", feature = "MTLResource"))]
         #[method(setTileAccelerationStructure:atBufferIndex:)]
         unsafe fn setTileAccelerationStructure_atBufferIndex(
             &self,
@@ -1282,7 +1233,7 @@ extern_protocol!(
             buffer_index: NSUInteger,
         );
 
-        #[cfg(feature = "Metal_MTLTypes")]
+        #[cfg(feature = "MTLTypes")]
         #[method(dispatchThreadsPerTile:)]
         unsafe fn dispatchThreadsPerTile(&self, threads_per_tile: MTLSize);
 
@@ -1294,7 +1245,7 @@ extern_protocol!(
             index: NSUInteger,
         );
 
-        #[cfg(feature = "Metal_MTLResource")]
+        #[cfg(feature = "MTLResource")]
         #[deprecated]
         #[method(useResource:usage:)]
         fn useResource_usage(
@@ -1303,7 +1254,7 @@ extern_protocol!(
             usage: MTLResourceUsage,
         );
 
-        #[cfg(feature = "Metal_MTLResource")]
+        #[cfg(feature = "MTLResource")]
         #[deprecated]
         #[method(useResources:count:usage:)]
         unsafe fn useResources_count_usage(
@@ -1313,7 +1264,7 @@ extern_protocol!(
             usage: MTLResourceUsage,
         );
 
-        #[cfg(feature = "Metal_MTLResource")]
+        #[cfg(feature = "MTLResource")]
         #[method(useResource:usage:stages:)]
         fn useResource_usage_stages(
             &self,
@@ -1322,7 +1273,7 @@ extern_protocol!(
             stages: MTLRenderStages,
         );
 
-        #[cfg(feature = "Metal_MTLResource")]
+        #[cfg(feature = "MTLResource")]
         #[method(useResources:count:usage:stages:)]
         unsafe fn useResources_count_usage_stages(
             &self,
@@ -1332,12 +1283,12 @@ extern_protocol!(
             stages: MTLRenderStages,
         );
 
-        #[cfg(feature = "Metal_MTLHeap")]
+        #[cfg(feature = "MTLHeap")]
         #[deprecated]
         #[method(useHeap:)]
         fn useHeap(&self, heap: &ProtocolObject<dyn MTLHeap>);
 
-        #[cfg(feature = "Metal_MTLHeap")]
+        #[cfg(feature = "MTLHeap")]
         #[deprecated]
         #[method(useHeaps:count:)]
         unsafe fn useHeaps_count(
@@ -1346,11 +1297,11 @@ extern_protocol!(
             count: NSUInteger,
         );
 
-        #[cfg(feature = "Metal_MTLHeap")]
+        #[cfg(feature = "MTLHeap")]
         #[method(useHeap:stages:)]
         fn useHeap_stages(&self, heap: &ProtocolObject<dyn MTLHeap>, stages: MTLRenderStages);
 
-        #[cfg(feature = "Metal_MTLHeap")]
+        #[cfg(feature = "MTLHeap")]
         #[method(useHeaps:count:stages:)]
         unsafe fn useHeaps_count_stages(
             &self,
@@ -1359,10 +1310,7 @@ extern_protocol!(
             stages: MTLRenderStages,
         );
 
-        #[cfg(all(
-            feature = "Metal_MTLIndirectCommandBuffer",
-            feature = "Metal_MTLResource"
-        ))]
+        #[cfg(all(feature = "MTLIndirectCommandBuffer", feature = "MTLResource"))]
         #[method(executeCommandsInBuffer:withRange:)]
         unsafe fn executeCommandsInBuffer_withRange(
             &self,
@@ -1371,9 +1319,9 @@ extern_protocol!(
         );
 
         #[cfg(all(
-            feature = "Metal_MTLBuffer",
-            feature = "Metal_MTLIndirectCommandBuffer",
-            feature = "Metal_MTLResource"
+            feature = "MTLBuffer",
+            feature = "MTLIndirectCommandBuffer",
+            feature = "MTLResource"
         ))]
         #[method(executeCommandsInBuffer:indirectBuffer:indirectBufferOffset:)]
         unsafe fn executeCommandsInBuffer_indirectBuffer_indirectBufferOffset(
@@ -1391,7 +1339,7 @@ extern_protocol!(
             before: MTLRenderStages,
         );
 
-        #[cfg(feature = "Metal_MTLResource")]
+        #[cfg(feature = "MTLResource")]
         #[method(memoryBarrierWithResources:count:afterStages:beforeStages:)]
         unsafe fn memoryBarrierWithResources_count_afterStages_beforeStages(
             &self,
@@ -1401,7 +1349,7 @@ extern_protocol!(
             before: MTLRenderStages,
         );
 
-        #[cfg(feature = "Metal_MTLCounters")]
+        #[cfg(feature = "MTLCounters")]
         #[method(sampleCountersInBuffer:atSampleIndex:withBarrier:)]
         unsafe fn sampleCountersInBuffer_atSampleIndex_withBarrier(
             &self,
@@ -1411,6 +1359,6 @@ extern_protocol!(
         );
     }
 
-    #[cfg(feature = "Metal_MTLCommandEncoder")]
+    #[cfg(feature = "MTLCommandEncoder")]
     unsafe impl ProtocolType for dyn MTLRenderCommandEncoder {}
 );

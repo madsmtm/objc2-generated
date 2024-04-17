@@ -9,10 +9,10 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CloudKit_CKOperation")]
+    #[cfg(feature = "CKOperation")]
     pub struct CKFetchShareParticipantsOperation;
 
-    #[cfg(feature = "CloudKit_CKOperation")]
+    #[cfg(feature = "CKOperation")]
     unsafe impl ClassType for CKFetchShareParticipantsOperation {
         #[inherits(NSOperation, NSObject)]
         type Super = CKOperation;
@@ -20,43 +20,43 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "CloudKit_CKOperation")]
+#[cfg(feature = "CKOperation")]
 unsafe impl NSObjectProtocol for CKFetchShareParticipantsOperation {}
 
 extern_methods!(
-    #[cfg(feature = "CloudKit_CKOperation")]
+    #[cfg(feature = "CKOperation")]
     unsafe impl CKFetchShareParticipantsOperation {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
-        #[cfg(feature = "CloudKit_CKUserIdentityLookupInfo")]
+        #[cfg(feature = "CKUserIdentityLookupInfo")]
         #[method_id(@__retain_semantics Init initWithUserIdentityLookupInfos:)]
         pub unsafe fn initWithUserIdentityLookupInfos(
             this: Allocated<Self>,
             user_identity_lookup_infos: &NSArray<CKUserIdentityLookupInfo>,
         ) -> Id<Self>;
 
-        #[cfg(feature = "CloudKit_CKUserIdentityLookupInfo")]
+        #[cfg(feature = "CKUserIdentityLookupInfo")]
         #[method_id(@__retain_semantics Other userIdentityLookupInfos)]
         pub unsafe fn userIdentityLookupInfos(
             &self,
         ) -> Option<Id<NSArray<CKUserIdentityLookupInfo>>>;
 
-        #[cfg(feature = "CloudKit_CKUserIdentityLookupInfo")]
+        #[cfg(feature = "CKUserIdentityLookupInfo")]
         #[method(setUserIdentityLookupInfos:)]
         pub unsafe fn setUserIdentityLookupInfos(
             &self,
             user_identity_lookup_infos: Option<&NSArray<CKUserIdentityLookupInfo>>,
         );
 
-        #[cfg(all(feature = "CloudKit_CKShareParticipant", feature = "block2"))]
+        #[cfg(all(feature = "CKShareParticipant", feature = "block2"))]
         #[deprecated = "Use perShareParticipantCompletionBlock instead, which surfaces per-share-participant errors"]
         #[method(shareParticipantFetchedBlock)]
         pub unsafe fn shareParticipantFetchedBlock(
             &self,
         ) -> *mut Block<dyn Fn(NonNull<CKShareParticipant>)>;
 
-        #[cfg(all(feature = "CloudKit_CKShareParticipant", feature = "block2"))]
+        #[cfg(all(feature = "CKShareParticipant", feature = "block2"))]
         #[deprecated = "Use perShareParticipantCompletionBlock instead, which surfaces per-share-participant errors"]
         #[method(setShareParticipantFetchedBlock:)]
         pub unsafe fn setShareParticipantFetchedBlock(
@@ -65,8 +65,8 @@ extern_methods!(
         );
 
         #[cfg(all(
-            feature = "CloudKit_CKShareParticipant",
-            feature = "CloudKit_CKUserIdentityLookupInfo",
+            feature = "CKShareParticipant",
+            feature = "CKUserIdentityLookupInfo",
             feature = "block2"
         ))]
         #[method(perShareParticipantCompletionBlock)]
@@ -77,8 +77,8 @@ extern_methods!(
         >;
 
         #[cfg(all(
-            feature = "CloudKit_CKShareParticipant",
-            feature = "CloudKit_CKUserIdentityLookupInfo",
+            feature = "CKShareParticipant",
+            feature = "CKUserIdentityLookupInfo",
             feature = "block2"
         ))]
         #[method(setPerShareParticipantCompletionBlock:)]
@@ -112,7 +112,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CloudKit_CKOperation")]
+    #[cfg(feature = "CKOperation")]
     unsafe impl CKFetchShareParticipantsOperation {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

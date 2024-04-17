@@ -27,10 +27,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
-        #[cfg(all(
-            feature = "MapKit_MKLookAroundScene",
-            feature = "MapKit_MKLookAroundSnapshotOptions"
-        ))]
+        #[cfg(all(feature = "MKLookAroundScene", feature = "MKLookAroundSnapshotOptions"))]
         #[method_id(@__retain_semantics Init initWithScene:options:)]
         pub unsafe fn initWithScene_options(
             this: Allocated<Self>,
@@ -38,7 +35,7 @@ extern_methods!(
             options: &MKLookAroundSnapshotOptions,
         ) -> Id<Self>;
 
-        #[cfg(all(feature = "MapKit_MKLookAroundSnapshot", feature = "block2"))]
+        #[cfg(all(feature = "MKLookAroundSnapshot", feature = "block2"))]
         #[method(getSnapshotWithCompletionHandler:)]
         pub unsafe fn getSnapshotWithCompletionHandler(
             &self,

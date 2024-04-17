@@ -9,14 +9,14 @@ use crate::*;
 
 extern_protocol!(
     pub unsafe trait NSScrubberDataSource: NSObjectProtocol + IsMainThreadOnly {
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[method(numberOfItemsForScrubber:)]
         unsafe fn numberOfItemsForScrubber(&self, scrubber: &NSScrubber) -> NSInteger;
 
         #[cfg(all(
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSScrubberItemView",
-            feature = "AppKit_NSView"
+            feature = "NSResponder",
+            feature = "NSScrubberItemView",
+            feature = "NSView"
         ))]
         #[method_id(@__retain_semantics Other scrubber:viewForItemAtIndex:)]
         unsafe fn scrubber_viewForItemAtIndex(
@@ -31,7 +31,7 @@ extern_protocol!(
 
 extern_protocol!(
     pub unsafe trait NSScrubberDelegate: NSObjectProtocol + IsMainThreadOnly {
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[optional]
         #[method(scrubber:didSelectItemAtIndex:)]
         unsafe fn scrubber_didSelectItemAtIndex(
@@ -40,7 +40,7 @@ extern_protocol!(
             selected_index: NSInteger,
         );
 
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[optional]
         #[method(scrubber:didHighlightItemAtIndex:)]
         unsafe fn scrubber_didHighlightItemAtIndex(
@@ -49,7 +49,7 @@ extern_protocol!(
             highlighted_index: NSInteger,
         );
 
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[optional]
         #[method(scrubber:didChangeVisibleRange:)]
         unsafe fn scrubber_didChangeVisibleRange(
@@ -58,17 +58,17 @@ extern_protocol!(
             visible_range: NSRange,
         );
 
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[optional]
         #[method(didBeginInteractingWithScrubber:)]
         unsafe fn didBeginInteractingWithScrubber(&self, scrubber: &NSScrubber);
 
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[optional]
         #[method(didFinishInteractingWithScrubber:)]
         unsafe fn didFinishInteractingWithScrubber(&self, scrubber: &NSScrubber);
 
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[optional]
         #[method(didCancelInteractingWithScrubber:)]
         unsafe fn didCancelInteractingWithScrubber(&self, scrubber: &NSScrubber);
@@ -149,9 +149,9 @@ extern_methods!(
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Id<Self>;
 
         #[cfg(all(
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSScrubberItemView",
-            feature = "AppKit_NSView"
+            feature = "NSResponder",
+            feature = "NSScrubberItemView",
+            feature = "NSView"
         ))]
         #[method_id(@__retain_semantics Other makeSelectionView)]
         pub unsafe fn makeSelectionView(&self) -> Option<Id<NSScrubberSelectionView>>;
@@ -168,10 +168,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     pub struct NSScrubber;
 
-    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl ClassType for NSScrubber {
         #[inherits(NSResponder, NSObject)]
         type Super = NSView;
@@ -180,55 +180,43 @@ extern_class!(
 );
 
 #[cfg(all(
-    feature = "AppKit_NSAccessibilityProtocols",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSView"
+    feature = "NSAccessibilityProtocols",
+    feature = "NSResponder",
+    feature = "NSView"
 ))]
 unsafe impl NSAccessibility for NSScrubber {}
 
 #[cfg(all(
-    feature = "AppKit_NSAccessibilityProtocols",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSView"
+    feature = "NSAccessibilityProtocols",
+    feature = "NSResponder",
+    feature = "NSView"
 ))]
 unsafe impl NSAccessibilityElementProtocol for NSScrubber {}
 
-#[cfg(all(
-    feature = "AppKit_NSAnimation",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSView"
-))]
+#[cfg(all(feature = "NSAnimation", feature = "NSResponder", feature = "NSView"))]
 unsafe impl NSAnimatablePropertyContainer for NSScrubber {}
 
-#[cfg(all(
-    feature = "AppKit_NSAppearance",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSView"
-))]
+#[cfg(all(feature = "NSAppearance", feature = "NSResponder", feature = "NSView"))]
 unsafe impl NSAppearanceCustomization for NSScrubber {}
 
-#[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+#[cfg(all(feature = "NSResponder", feature = "NSView"))]
 unsafe impl NSCoding for NSScrubber {}
 
-#[cfg(all(
-    feature = "AppKit_NSDragging",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSView"
-))]
+#[cfg(all(feature = "NSDragging", feature = "NSResponder", feature = "NSView"))]
 unsafe impl NSDraggingDestination for NSScrubber {}
 
-#[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+#[cfg(all(feature = "NSResponder", feature = "NSView"))]
 unsafe impl NSObjectProtocol for NSScrubber {}
 
 #[cfg(all(
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSUserInterfaceItemIdentification",
-    feature = "AppKit_NSView"
+    feature = "NSResponder",
+    feature = "NSUserInterfaceItemIdentification",
+    feature = "NSView"
 ))]
 unsafe impl NSUserInterfaceItemIdentification for NSScrubber {}
 
 extern_methods!(
-    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSScrubber {
         #[method_id(@__retain_semantics Other dataSource)]
         pub unsafe fn dataSource(&self) -> Option<Id<ProtocolObject<dyn NSScrubberDataSource>>>;
@@ -245,11 +233,11 @@ extern_methods!(
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSScrubberDelegate>>);
 
-        #[cfg(feature = "AppKit_NSScrubberLayout")]
+        #[cfg(feature = "NSScrubberLayout")]
         #[method_id(@__retain_semantics Other scrubberLayout)]
         pub unsafe fn scrubberLayout(&self) -> Id<NSScrubberLayout>;
 
-        #[cfg(feature = "AppKit_NSScrubberLayout")]
+        #[cfg(feature = "NSScrubberLayout")]
         #[method(setScrubberLayout:)]
         pub unsafe fn setScrubberLayout(&self, scrubber_layout: &NSScrubberLayout);
 
@@ -322,11 +310,11 @@ extern_methods!(
             shows_additional_content_indicators: bool,
         );
 
-        #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(feature = "NSColor")]
         #[method_id(@__retain_semantics Other backgroundColor)]
         pub unsafe fn backgroundColor(&self) -> Option<Id<NSColor>>;
 
-        #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(feature = "NSColor")]
         #[method(setBackgroundColor:)]
         pub unsafe fn setBackgroundColor(&self, background_color: Option<&NSColor>);
 
@@ -368,14 +356,14 @@ extern_methods!(
             alignment: NSScrubberAlignment,
         );
 
-        #[cfg(feature = "AppKit_NSScrubberItemView")]
+        #[cfg(feature = "NSScrubberItemView")]
         #[method_id(@__retain_semantics Other itemViewForItemAtIndex:)]
         pub unsafe fn itemViewForItemAtIndex(
             &self,
             index: NSInteger,
         ) -> Option<Id<NSScrubberItemView>>;
 
-        #[cfg(feature = "AppKit_NSUserInterfaceItemIdentification")]
+        #[cfg(feature = "NSUserInterfaceItemIdentification")]
         #[method(registerClass:forItemIdentifier:)]
         pub unsafe fn registerClass_forItemIdentifier(
             &self,
@@ -383,10 +371,7 @@ extern_methods!(
             item_identifier: &NSUserInterfaceItemIdentifier,
         );
 
-        #[cfg(all(
-            feature = "AppKit_NSNib",
-            feature = "AppKit_NSUserInterfaceItemIdentification"
-        ))]
+        #[cfg(all(feature = "NSNib", feature = "NSUserInterfaceItemIdentification"))]
         #[method(registerNib:forItemIdentifier:)]
         pub unsafe fn registerNib_forItemIdentifier(
             &self,
@@ -395,8 +380,8 @@ extern_methods!(
         );
 
         #[cfg(all(
-            feature = "AppKit_NSScrubberItemView",
-            feature = "AppKit_NSUserInterfaceItemIdentification"
+            feature = "NSScrubberItemView",
+            feature = "NSUserInterfaceItemIdentification"
         ))]
         #[method_id(@__retain_semantics Other makeItemWithIdentifier:owner:)]
         pub unsafe fn makeItemWithIdentifier_owner(
@@ -409,7 +394,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSResponder`
-    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSScrubber {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -418,7 +403,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSScrubber {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;

@@ -16,10 +16,10 @@ pub type CAShapeLayerLineCap = NSString;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "QuartzCore_CALayer")]
+    #[cfg(feature = "CALayer")]
     pub struct CAShapeLayer;
 
-    #[cfg(feature = "QuartzCore_CALayer")]
+    #[cfg(feature = "CALayer")]
     unsafe impl ClassType for CAShapeLayer {
         #[inherits(NSObject)]
         type Super = CALayer;
@@ -27,20 +27,20 @@ extern_class!(
     }
 );
 
-#[cfg(all(feature = "QuartzCore_CALayer", feature = "QuartzCore_CAMediaTiming"))]
+#[cfg(all(feature = "CALayer", feature = "CAMediaTiming"))]
 unsafe impl CAMediaTiming for CAShapeLayer {}
 
-#[cfg(feature = "QuartzCore_CALayer")]
+#[cfg(feature = "CALayer")]
 unsafe impl NSCoding for CAShapeLayer {}
 
-#[cfg(feature = "QuartzCore_CALayer")]
+#[cfg(feature = "CALayer")]
 unsafe impl NSObjectProtocol for CAShapeLayer {}
 
-#[cfg(feature = "QuartzCore_CALayer")]
+#[cfg(feature = "CALayer")]
 unsafe impl NSSecureCoding for CAShapeLayer {}
 
 extern_methods!(
-    #[cfg(feature = "QuartzCore_CALayer")]
+    #[cfg(feature = "CALayer")]
     unsafe impl CAShapeLayer {
         #[method_id(@__retain_semantics Other fillRule)]
         pub unsafe fn fillRule(&self) -> Id<CAShapeLayerFillRule>;
@@ -100,7 +100,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `CALayer`
-    #[cfg(feature = "QuartzCore_CALayer")]
+    #[cfg(feature = "CALayer")]
     unsafe impl CAShapeLayer {
         #[method_id(@__retain_semantics Other layer)]
         pub unsafe fn layer() -> Id<Self>;
@@ -115,7 +115,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "QuartzCore_CALayer")]
+    #[cfg(feature = "CALayer")]
     unsafe impl CAShapeLayer {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

@@ -25,7 +25,7 @@ unsafe impl NSObjectProtocol for CLMonitor {}
 
 extern_methods!(
     unsafe impl CLMonitor {
-        #[cfg(all(feature = "CoreLocation_CLMonitorConfiguration", feature = "block2"))]
+        #[cfg(all(feature = "CLMonitorConfiguration", feature = "block2"))]
         #[method(requestMonitorWithConfiguration:completion:)]
         pub unsafe fn requestMonitorWithConfiguration_completion(
             config: &CLMonitorConfiguration,
@@ -38,7 +38,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other monitoredIdentifiers)]
         pub unsafe fn monitoredIdentifiers(&self) -> Id<NSArray<NSString>>;
 
-        #[cfg(feature = "CoreLocation_CLCondition")]
+        #[cfg(feature = "CLCondition")]
         #[method(addConditionForMonitoring:identifier:)]
         pub unsafe fn addConditionForMonitoring_identifier(
             &self,
@@ -46,10 +46,7 @@ extern_methods!(
             identifier: &NSString,
         );
 
-        #[cfg(all(
-            feature = "CoreLocation_CLCondition",
-            feature = "CoreLocation_CLMonitoringEvent"
-        ))]
+        #[cfg(all(feature = "CLCondition", feature = "CLMonitoringEvent"))]
         #[method(addConditionForMonitoring:identifier:assumedState:)]
         pub unsafe fn addConditionForMonitoring_identifier_assumedState(
             &self,
@@ -61,7 +58,7 @@ extern_methods!(
         #[method(removeConditionFromMonitoringWithIdentifier:)]
         pub unsafe fn removeConditionFromMonitoringWithIdentifier(&self, identifier: &NSString);
 
-        #[cfg(feature = "CoreLocation_CLMonitoringRecord")]
+        #[cfg(feature = "CLMonitoringRecord")]
         #[method_id(@__retain_semantics Other monitoringRecordForIdentifier:)]
         pub unsafe fn monitoringRecordForIdentifier(
             &self,

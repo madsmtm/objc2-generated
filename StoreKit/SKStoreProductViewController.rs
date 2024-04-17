@@ -59,7 +59,7 @@ extern_methods!(
             block: Option<&Block<dyn Fn(Bool, *mut NSError)>>,
         );
 
-        #[cfg(all(feature = "StoreKit_SKAdImpression", feature = "block2"))]
+        #[cfg(all(feature = "SKAdImpression", feature = "block2"))]
         #[method(loadProductWithParameters:impression:completionBlock:)]
         pub unsafe fn loadProductWithParameters_impression_completionBlock(
             &self,

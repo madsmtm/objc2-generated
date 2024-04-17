@@ -134,12 +134,12 @@ extern_methods!(
         #[method(performBlockAndWait:)]
         pub unsafe fn performBlockAndWait(&self, block: &Block<dyn Fn() + '_>);
 
-        #[cfg(feature = "CoreData_NSPersistentStoreCoordinator")]
+        #[cfg(feature = "NSPersistentStoreCoordinator")]
         #[method_id(@__retain_semantics Other persistentStoreCoordinator)]
         pub unsafe fn persistentStoreCoordinator(&self)
             -> Option<Id<NSPersistentStoreCoordinator>>;
 
-        #[cfg(feature = "CoreData_NSPersistentStoreCoordinator")]
+        #[cfg(feature = "NSPersistentStoreCoordinator")]
         #[method(setPersistentStoreCoordinator:)]
         pub unsafe fn setPersistentStoreCoordinator(
             &self,
@@ -173,37 +173,25 @@ extern_methods!(
         #[method(concurrencyType)]
         pub unsafe fn concurrencyType(&self) -> NSManagedObjectContextConcurrencyType;
 
-        #[cfg(all(
-            feature = "CoreData_NSManagedObject",
-            feature = "CoreData_NSManagedObjectID"
-        ))]
+        #[cfg(all(feature = "NSManagedObject", feature = "NSManagedObjectID"))]
         #[method_id(@__retain_semantics Other objectRegisteredForID:)]
         pub unsafe fn objectRegisteredForID(
             &self,
             object_id: &NSManagedObjectID,
         ) -> Option<Id<NSManagedObject>>;
 
-        #[cfg(all(
-            feature = "CoreData_NSManagedObject",
-            feature = "CoreData_NSManagedObjectID"
-        ))]
+        #[cfg(all(feature = "NSManagedObject", feature = "NSManagedObjectID"))]
         #[method_id(@__retain_semantics Other objectWithID:)]
         pub unsafe fn objectWithID(&self, object_id: &NSManagedObjectID) -> Id<NSManagedObject>;
 
-        #[cfg(all(
-            feature = "CoreData_NSManagedObject",
-            feature = "CoreData_NSManagedObjectID"
-        ))]
+        #[cfg(all(feature = "NSManagedObject", feature = "NSManagedObjectID"))]
         #[method_id(@__retain_semantics Other existingObjectWithID:error:_)]
         pub unsafe fn existingObjectWithID_error(
             &self,
             object_id: &NSManagedObjectID,
         ) -> Result<Id<NSManagedObject>, Id<NSError>>;
 
-        #[cfg(all(
-            feature = "CoreData_NSFetchRequest",
-            feature = "CoreData_NSPersistentStoreRequest"
-        ))]
+        #[cfg(all(feature = "NSFetchRequest", feature = "NSPersistentStoreRequest"))]
         #[method_id(@__retain_semantics Other executeFetchRequest:error:_)]
         pub unsafe fn executeFetchRequest_error(
             &self,
@@ -211,8 +199,8 @@ extern_methods!(
         ) -> Result<Id<NSArray>, Id<NSError>>;
 
         #[cfg(all(
-            feature = "CoreData_NSPersistentStoreRequest",
-            feature = "CoreData_NSPersistentStoreResult"
+            feature = "NSPersistentStoreRequest",
+            feature = "NSPersistentStoreResult"
         ))]
         #[method_id(@__retain_semantics Other executeRequest:error:_)]
         pub unsafe fn executeRequest_error(
@@ -220,19 +208,19 @@ extern_methods!(
             request: &NSPersistentStoreRequest,
         ) -> Result<Id<NSPersistentStoreResult>, Id<NSError>>;
 
-        #[cfg(feature = "CoreData_NSManagedObject")]
+        #[cfg(feature = "NSManagedObject")]
         #[method(insertObject:)]
         pub unsafe fn insertObject(&self, object: &NSManagedObject);
 
-        #[cfg(feature = "CoreData_NSManagedObject")]
+        #[cfg(feature = "NSManagedObject")]
         #[method(deleteObject:)]
         pub unsafe fn deleteObject(&self, object: &NSManagedObject);
 
-        #[cfg(feature = "CoreData_NSManagedObject")]
+        #[cfg(feature = "NSManagedObject")]
         #[method(refreshObject:mergeChanges:)]
         pub unsafe fn refreshObject_mergeChanges(&self, object: &NSManagedObject, flag: bool);
 
-        #[cfg(feature = "CoreData_NSManagedObject")]
+        #[cfg(feature = "NSManagedObject")]
         #[method(detectConflictsForObject:)]
         pub unsafe fn detectConflictsForObject(&self, object: &NSManagedObject);
 
@@ -248,7 +236,7 @@ extern_methods!(
         #[method(processPendingChanges)]
         pub unsafe fn processPendingChanges(&self);
 
-        #[cfg(feature = "CoreData_NSPersistentStore")]
+        #[cfg(feature = "NSPersistentStore")]
         #[method(assignObject:toPersistentStore:)]
         pub unsafe fn assignObject_toPersistentStore(
             &self,
@@ -256,19 +244,19 @@ extern_methods!(
             store: &NSPersistentStore,
         );
 
-        #[cfg(feature = "CoreData_NSManagedObject")]
+        #[cfg(feature = "NSManagedObject")]
         #[method_id(@__retain_semantics Other insertedObjects)]
         pub unsafe fn insertedObjects(&self) -> Id<NSSet<NSManagedObject>>;
 
-        #[cfg(feature = "CoreData_NSManagedObject")]
+        #[cfg(feature = "NSManagedObject")]
         #[method_id(@__retain_semantics Other updatedObjects)]
         pub unsafe fn updatedObjects(&self) -> Id<NSSet<NSManagedObject>>;
 
-        #[cfg(feature = "CoreData_NSManagedObject")]
+        #[cfg(feature = "NSManagedObject")]
         #[method_id(@__retain_semantics Other deletedObjects)]
         pub unsafe fn deletedObjects(&self) -> Id<NSSet<NSManagedObject>>;
 
-        #[cfg(feature = "CoreData_NSManagedObject")]
+        #[cfg(feature = "NSManagedObject")]
         #[method_id(@__retain_semantics Other registeredObjects)]
         pub unsafe fn registeredObjects(&self) -> Id<NSSet<NSManagedObject>>;
 
@@ -327,9 +315,9 @@ extern_methods!(
         );
 
         #[cfg(all(
-            feature = "CoreData_NSManagedObject",
-            feature = "CoreData_NSManagedObjectID",
-            feature = "CoreData_NSPropertyDescription"
+            feature = "NSManagedObject",
+            feature = "NSManagedObjectID",
+            feature = "NSPropertyDescription"
         ))]
         #[method(shouldHandleInaccessibleFault:forObjectID:triggeredByProperty:)]
         pub unsafe fn shouldHandleInaccessibleFault_forObjectID_triggeredByProperty(
@@ -351,7 +339,7 @@ extern_methods!(
         #[method(setMergePolicy:)]
         pub unsafe fn setMergePolicy(&self, merge_policy: &AnyObject);
 
-        #[cfg(feature = "CoreData_NSManagedObject")]
+        #[cfg(feature = "NSManagedObject")]
         #[method(obtainPermanentIDsForObjects:error:_)]
         pub unsafe fn obtainPermanentIDsForObjects_error(
             &self,
@@ -370,11 +358,11 @@ extern_methods!(
             contexts: &NSArray<NSManagedObjectContext>,
         );
 
-        #[cfg(feature = "CoreData_NSQueryGenerationToken")]
+        #[cfg(feature = "NSQueryGenerationToken")]
         #[method_id(@__retain_semantics Other queryGenerationToken)]
         pub unsafe fn queryGenerationToken(&self) -> Option<Id<NSQueryGenerationToken>>;
 
-        #[cfg(feature = "CoreData_NSQueryGenerationToken")]
+        #[cfg(feature = "NSQueryGenerationToken")]
         #[method(setQueryGenerationFromToken:error:_)]
         pub unsafe fn setQueryGenerationFromToken_error(
             &self,

@@ -7,11 +7,11 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
+    #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     #[deprecated]
     pub struct DOMAbstractView;
 
-    #[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
+    #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl ClassType for DOMAbstractView {
         #[inherits(WebScriptObject, NSObject)]
         type Super = DOMObject;
@@ -19,16 +19,16 @@ extern_class!(
     }
 );
 
-#[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
+#[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
 unsafe impl NSCopying for DOMAbstractView {}
 
-#[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
+#[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
 unsafe impl NSObjectProtocol for DOMAbstractView {}
 
 extern_methods!(
-    #[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
+    #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMAbstractView {
-        #[cfg(all(feature = "WebKit_DOMDocument", feature = "WebKit_DOMNode"))]
+        #[cfg(all(feature = "DOMDocument", feature = "DOMNode"))]
         #[deprecated]
         #[method_id(@__retain_semantics Other document)]
         pub unsafe fn document(&self) -> Option<Id<DOMDocument>>;
@@ -37,7 +37,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `DOMObject`
-    #[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
+    #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMAbstractView {
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
@@ -47,7 +47,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
+    #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMAbstractView {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

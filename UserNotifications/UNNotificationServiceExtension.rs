@@ -22,8 +22,8 @@ unsafe impl NSObjectProtocol for UNNotificationServiceExtension {}
 extern_methods!(
     unsafe impl UNNotificationServiceExtension {
         #[cfg(all(
-            feature = "UserNotifications_UNNotificationContent",
-            feature = "UserNotifications_UNNotificationRequest",
+            feature = "UNNotificationContent",
+            feature = "UNNotificationRequest",
             feature = "block2"
         ))]
         #[method(didReceiveNotificationRequest:withContentHandler:)]

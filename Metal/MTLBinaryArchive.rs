@@ -84,25 +84,25 @@ extern_protocol!(
         #[method(setLabel:)]
         fn setLabel(&self, label: Option<&NSString>);
 
-        #[cfg(feature = "Metal_MTLDevice")]
+        #[cfg(feature = "MTLDevice")]
         #[method_id(@__retain_semantics Other device)]
         fn device(&self) -> Id<ProtocolObject<dyn MTLDevice>>;
 
-        #[cfg(feature = "Metal_MTLComputePipeline")]
+        #[cfg(feature = "MTLComputePipeline")]
         #[method(addComputePipelineFunctionsWithDescriptor:error:_)]
         fn addComputePipelineFunctionsWithDescriptor_error(
             &self,
             descriptor: &MTLComputePipelineDescriptor,
         ) -> Result<(), Id<NSError>>;
 
-        #[cfg(feature = "Metal_MTLRenderPipeline")]
+        #[cfg(feature = "MTLRenderPipeline")]
         #[method(addRenderPipelineFunctionsWithDescriptor:error:_)]
         fn addRenderPipelineFunctionsWithDescriptor_error(
             &self,
             descriptor: &MTLRenderPipelineDescriptor,
         ) -> Result<(), Id<NSError>>;
 
-        #[cfg(feature = "Metal_MTLRenderPipeline")]
+        #[cfg(feature = "MTLRenderPipeline")]
         #[method(addTileRenderPipelineFunctionsWithDescriptor:error:_)]
         unsafe fn addTileRenderPipelineFunctionsWithDescriptor_error(
             &self,
@@ -112,7 +112,7 @@ extern_protocol!(
         #[method(serializeToURL:error:_)]
         fn serializeToURL_error(&self, url: &NSURL) -> Result<(), Id<NSError>>;
 
-        #[cfg(all(feature = "Metal_MTLFunctionDescriptor", feature = "Metal_MTLLibrary"))]
+        #[cfg(all(feature = "MTLFunctionDescriptor", feature = "MTLLibrary"))]
         #[method(addFunctionWithDescriptor:library:error:_)]
         unsafe fn addFunctionWithDescriptor_library_error(
             &self,

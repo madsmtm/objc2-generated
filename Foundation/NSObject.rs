@@ -6,11 +6,11 @@ use crate::*;
 
 extern_protocol!(
     pub unsafe trait NSCoding {
-        #[cfg(feature = "Foundation_NSCoder")]
+        #[cfg(feature = "NSCoder")]
         #[method(encodeWithCoder:)]
         unsafe fn encodeWithCoder(&self, coder: &NSCoder);
 
-        #[cfg(feature = "Foundation_NSCoder")]
+        #[cfg(feature = "NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
     }
@@ -40,7 +40,7 @@ extern_category!(
         #[method(classForCoder)]
         unsafe fn classForCoder(&self) -> &'static AnyClass;
 
-        #[cfg(feature = "Foundation_NSCoder")]
+        #[cfg(feature = "NSCoder")]
         #[method_id(@__retain_semantics Other replacementObjectForCoder:)]
         unsafe fn replacementObjectForCoder(&self, coder: &NSCoder) -> Option<Id<AnyObject>>;
     }
@@ -78,7 +78,7 @@ extern_category!(
 );
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSZone")]
+    #[cfg(feature = "NSZone")]
     pub fn NSAllocateObject(
         a_class: &AnyClass,
         extra_bytes: NSUInteger,
@@ -91,7 +91,7 @@ extern "C" {
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSZone")]
+    #[cfg(feature = "NSZone")]
     #[deprecated = "Not supported"]
     pub fn NSCopyObject(
         object: &AnyObject,
@@ -101,7 +101,7 @@ extern "C" {
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSZone")]
+    #[cfg(feature = "NSZone")]
     pub fn NSShouldRetainWithZone(an_object: &AnyObject, requested_zone: *mut NSZone) -> Bool;
 }
 

@@ -28,10 +28,10 @@ unsafe impl RefEncode for CXPlayDTMFCallActionType {
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(feature = "CallKit_CXAction", feature = "CallKit_CXCallAction"))]
+    #[cfg(all(feature = "CXAction", feature = "CXCallAction"))]
     pub struct CXPlayDTMFCallAction;
 
-    #[cfg(all(feature = "CallKit_CXAction", feature = "CallKit_CXCallAction"))]
+    #[cfg(all(feature = "CXAction", feature = "CXCallAction"))]
     unsafe impl ClassType for CXPlayDTMFCallAction {
         #[inherits(CXAction, NSObject)]
         type Super = CXCallAction;
@@ -39,20 +39,20 @@ extern_class!(
     }
 );
 
-#[cfg(all(feature = "CallKit_CXAction", feature = "CallKit_CXCallAction"))]
+#[cfg(all(feature = "CXAction", feature = "CXCallAction"))]
 unsafe impl NSCoding for CXPlayDTMFCallAction {}
 
-#[cfg(all(feature = "CallKit_CXAction", feature = "CallKit_CXCallAction"))]
+#[cfg(all(feature = "CXAction", feature = "CXCallAction"))]
 unsafe impl NSCopying for CXPlayDTMFCallAction {}
 
-#[cfg(all(feature = "CallKit_CXAction", feature = "CallKit_CXCallAction"))]
+#[cfg(all(feature = "CXAction", feature = "CXCallAction"))]
 unsafe impl NSObjectProtocol for CXPlayDTMFCallAction {}
 
-#[cfg(all(feature = "CallKit_CXAction", feature = "CallKit_CXCallAction"))]
+#[cfg(all(feature = "CXAction", feature = "CXCallAction"))]
 unsafe impl NSSecureCoding for CXPlayDTMFCallAction {}
 
 extern_methods!(
-    #[cfg(all(feature = "CallKit_CXAction", feature = "CallKit_CXCallAction"))]
+    #[cfg(all(feature = "CXAction", feature = "CXCallAction"))]
     unsafe impl CXPlayDTMFCallAction {
         #[method_id(@__retain_semantics Init initWithCallUUID:digits:type:)]
         pub unsafe fn initWithCallUUID_digits_type(
@@ -85,7 +85,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `CXCallAction`
-    #[cfg(all(feature = "CallKit_CXAction", feature = "CallKit_CXCallAction"))]
+    #[cfg(all(feature = "CXAction", feature = "CXCallAction"))]
     unsafe impl CXPlayDTMFCallAction {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -94,7 +94,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "CallKit_CXAction", feature = "CallKit_CXCallAction"))]
+    #[cfg(all(feature = "CXAction", feature = "CXCallAction"))]
     unsafe impl CXPlayDTMFCallAction {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

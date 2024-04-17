@@ -23,7 +23,7 @@ unsafe impl NSSecureCoding for MEMessageEncodingResult {}
 
 extern_methods!(
     unsafe impl MEMessageEncodingResult {
-        #[cfg(feature = "MailKit_MEEncodedOutgoingMessage")]
+        #[cfg(feature = "MEEncodedOutgoingMessage")]
         #[method_id(@__retain_semantics Other encodedMessage)]
         pub unsafe fn encodedMessage(&self) -> Option<Id<MEEncodedOutgoingMessage>>;
 
@@ -39,7 +39,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
-        #[cfg(feature = "MailKit_MEEncodedOutgoingMessage")]
+        #[cfg(feature = "MEEncodedOutgoingMessage")]
         #[method_id(@__retain_semantics Init initWithEncodedMessage:signingError:encryptionError:)]
         pub unsafe fn initWithEncodedMessage_signingError_encryptionError(
             this: Allocated<Self>,

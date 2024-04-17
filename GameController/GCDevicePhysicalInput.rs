@@ -8,13 +8,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    #[cfg(feature = "GameController_GCDevicePhysicalInputState")]
+    #[cfg(feature = "GCDevicePhysicalInputState")]
     pub unsafe trait GCDevicePhysicalInput: GCDevicePhysicalInputState {
-        #[cfg(feature = "GameController_GCDevice")]
+        #[cfg(feature = "GCDevice")]
         #[method_id(@__retain_semantics Other device)]
         unsafe fn device(&self) -> Option<Id<ProtocolObject<dyn GCDevice>>>;
 
-        #[cfg(all(feature = "GameController_GCPhysicalInputElement", feature = "block2"))]
+        #[cfg(all(feature = "GCPhysicalInputElement", feature = "block2"))]
         #[method(elementValueDidChangeHandler)]
         unsafe fn elementValueDidChangeHandler(
             &self,
@@ -25,7 +25,7 @@ extern_protocol!(
             ),
         >;
 
-        #[cfg(all(feature = "GameController_GCPhysicalInputElement", feature = "block2"))]
+        #[cfg(all(feature = "GCPhysicalInputElement", feature = "block2"))]
         #[method(setElementValueDidChangeHandler:)]
         unsafe fn setElementValueDidChangeHandler(
             &self,
@@ -63,11 +63,11 @@ extern_protocol!(
         #[method(setInputStateQueueDepth:)]
         unsafe fn setInputStateQueueDepth(&self, input_state_queue_depth: NSInteger);
 
-        #[cfg(feature = "GameController_GCDevicePhysicalInputStateDiff")]
+        #[cfg(feature = "GCDevicePhysicalInputStateDiff")]
         #[method_id(@__retain_semantics Other nextInputState)]
         unsafe fn nextInputState(&self) -> Option<Id<TodoProtocols>>;
     }
 
-    #[cfg(feature = "GameController_GCDevicePhysicalInputState")]
+    #[cfg(feature = "GCDevicePhysicalInputState")]
     unsafe impl ProtocolType for dyn GCDevicePhysicalInput {}
 );

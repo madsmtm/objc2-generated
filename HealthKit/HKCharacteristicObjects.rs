@@ -25,7 +25,7 @@ unsafe impl NSSecureCoding for HKBiologicalSexObject {}
 
 extern_methods!(
     unsafe impl HKBiologicalSexObject {
-        #[cfg(feature = "HealthKit_HKCharacteristicValues")]
+        #[cfg(feature = "HKCharacteristicValues")]
         #[method(biologicalSex)]
         pub unsafe fn biologicalSex(&self) -> HKBiologicalSex;
     }
@@ -62,7 +62,7 @@ unsafe impl NSSecureCoding for HKBloodTypeObject {}
 
 extern_methods!(
     unsafe impl HKBloodTypeObject {
-        #[cfg(feature = "HealthKit_HKCharacteristicValues")]
+        #[cfg(feature = "HKCharacteristicValues")]
         #[method(bloodType)]
         pub unsafe fn bloodType(&self) -> HKBloodType;
     }
@@ -99,7 +99,7 @@ unsafe impl NSSecureCoding for HKFitzpatrickSkinTypeObject {}
 
 extern_methods!(
     unsafe impl HKFitzpatrickSkinTypeObject {
-        #[cfg(feature = "HealthKit_HKCharacteristicValues")]
+        #[cfg(feature = "HKCharacteristicValues")]
         #[method(skinType)]
         pub unsafe fn skinType(&self) -> HKFitzpatrickSkinType;
     }
@@ -136,7 +136,7 @@ unsafe impl NSSecureCoding for HKWheelchairUseObject {}
 
 extern_methods!(
     unsafe impl HKWheelchairUseObject {
-        #[cfg(feature = "HealthKit_HKCharacteristicValues")]
+        #[cfg(feature = "HKCharacteristicValues")]
         #[method(wheelchairUse)]
         pub unsafe fn wheelchairUse(&self) -> HKWheelchairUse;
     }
@@ -173,7 +173,7 @@ unsafe impl NSSecureCoding for HKActivityMoveModeObject {}
 
 extern_methods!(
     unsafe impl HKActivityMoveModeObject {
-        #[cfg(feature = "HealthKit_HKCharacteristicValues")]
+        #[cfg(feature = "HKCharacteristicValues")]
         #[method(activityMoveMode)]
         pub unsafe fn activityMoveMode(&self) -> HKActivityMoveMode;
     }

@@ -7,10 +7,10 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CoreData_NSPersistentStoreRequest")]
+    #[cfg(feature = "NSPersistentStoreRequest")]
     pub struct NSSaveChangesRequest;
 
-    #[cfg(feature = "CoreData_NSPersistentStoreRequest")]
+    #[cfg(feature = "NSPersistentStoreRequest")]
     unsafe impl ClassType for NSSaveChangesRequest {
         #[inherits(NSObject)]
         type Super = NSPersistentStoreRequest;
@@ -18,16 +18,16 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "CoreData_NSPersistentStoreRequest")]
+#[cfg(feature = "NSPersistentStoreRequest")]
 unsafe impl NSCopying for NSSaveChangesRequest {}
 
-#[cfg(feature = "CoreData_NSPersistentStoreRequest")]
+#[cfg(feature = "NSPersistentStoreRequest")]
 unsafe impl NSObjectProtocol for NSSaveChangesRequest {}
 
 extern_methods!(
-    #[cfg(feature = "CoreData_NSPersistentStoreRequest")]
+    #[cfg(feature = "NSPersistentStoreRequest")]
     unsafe impl NSSaveChangesRequest {
-        #[cfg(feature = "CoreData_NSManagedObject")]
+        #[cfg(feature = "NSManagedObject")]
         #[method_id(@__retain_semantics Init initWithInsertedObjects:updatedObjects:deletedObjects:lockedObjects:)]
         pub unsafe fn initWithInsertedObjects_updatedObjects_deletedObjects_lockedObjects(
             this: Allocated<Self>,
@@ -37,19 +37,19 @@ extern_methods!(
             locked_objects: Option<&NSSet<NSManagedObject>>,
         ) -> Id<Self>;
 
-        #[cfg(feature = "CoreData_NSManagedObject")]
+        #[cfg(feature = "NSManagedObject")]
         #[method_id(@__retain_semantics Other insertedObjects)]
         pub unsafe fn insertedObjects(&self) -> Option<Id<NSSet<NSManagedObject>>>;
 
-        #[cfg(feature = "CoreData_NSManagedObject")]
+        #[cfg(feature = "NSManagedObject")]
         #[method_id(@__retain_semantics Other updatedObjects)]
         pub unsafe fn updatedObjects(&self) -> Option<Id<NSSet<NSManagedObject>>>;
 
-        #[cfg(feature = "CoreData_NSManagedObject")]
+        #[cfg(feature = "NSManagedObject")]
         #[method_id(@__retain_semantics Other deletedObjects)]
         pub unsafe fn deletedObjects(&self) -> Option<Id<NSSet<NSManagedObject>>>;
 
-        #[cfg(feature = "CoreData_NSManagedObject")]
+        #[cfg(feature = "NSManagedObject")]
         #[method_id(@__retain_semantics Other lockedObjects)]
         pub unsafe fn lockedObjects(&self) -> Option<Id<NSSet<NSManagedObject>>>;
     }
@@ -57,7 +57,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CoreData_NSPersistentStoreRequest")]
+    #[cfg(feature = "NSPersistentStoreRequest")]
     unsafe impl NSSaveChangesRequest {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

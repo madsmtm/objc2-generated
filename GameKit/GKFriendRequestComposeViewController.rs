@@ -21,7 +21,7 @@ extern_class!(
     }
 );
 
-#[cfg(all(feature = "GameKit_GKDialogController", feature = "objc2-app-kit"))]
+#[cfg(all(feature = "GKDialogController", feature = "objc2-app-kit"))]
 unsafe impl GKViewController for GKFriendRequestComposeViewController {}
 
 #[cfg(feature = "objc2-app-kit")]
@@ -89,7 +89,7 @@ extern_methods!(
         #[method(setMessage:)]
         pub unsafe fn setMessage(&self, message: Option<&NSString>);
 
-        #[cfg(all(feature = "GameKit_GKBasePlayer", feature = "GameKit_GKPlayer"))]
+        #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
         #[method(addRecipientPlayers:)]
         pub unsafe fn addRecipientPlayers(&self, players: &NSArray<GKPlayer>);
 

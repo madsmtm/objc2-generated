@@ -8,10 +8,10 @@ use crate::*;
 extern_protocol!(
     pub unsafe trait NSColorPickingDefault: IsMainThreadOnly {
         #[cfg(all(
-            feature = "AppKit_NSColorPanel",
-            feature = "AppKit_NSPanel",
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSWindow"
+            feature = "NSColorPanel",
+            feature = "NSPanel",
+            feature = "NSResponder",
+            feature = "NSWindow"
         ))]
         #[method_id(@__retain_semantics Init initWithPickerMask:colorPanel:)]
         unsafe fn initWithPickerMask_colorPanel(
@@ -20,15 +20,15 @@ extern_protocol!(
             owning_color_panel: &NSColorPanel,
         ) -> Option<Id<Self>>;
 
-        #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(feature = "NSImage")]
         #[method_id(@__retain_semantics Other provideNewButtonImage)]
         unsafe fn provideNewButtonImage(&self) -> Id<NSImage>;
 
         #[cfg(all(
-            feature = "AppKit_NSActionCell",
-            feature = "AppKit_NSButtonCell",
-            feature = "AppKit_NSCell",
-            feature = "AppKit_NSImage"
+            feature = "NSActionCell",
+            feature = "NSButtonCell",
+            feature = "NSCell",
+            feature = "NSImage"
         ))]
         #[method(insertNewButtonImage:in:)]
         unsafe fn insertNewButtonImage_in(
@@ -43,15 +43,15 @@ extern_protocol!(
         #[method(alphaControlAddedOrRemoved:)]
         unsafe fn alphaControlAddedOrRemoved(&self, sender: Option<&AnyObject>);
 
-        #[cfg(feature = "AppKit_NSColorList")]
+        #[cfg(feature = "NSColorList")]
         #[method(attachColorList:)]
         unsafe fn attachColorList(&self, color_list: &NSColorList);
 
-        #[cfg(feature = "AppKit_NSColorList")]
+        #[cfg(feature = "NSColorList")]
         #[method(detachColorList:)]
         unsafe fn detachColorList(&self, color_list: &NSColorList);
 
-        #[cfg(feature = "AppKit_NSColorPanel")]
+        #[cfg(feature = "NSColorPanel")]
         #[method(setMode:)]
         unsafe fn setMode(&self, mode: NSColorPanelMode);
 
@@ -67,19 +67,19 @@ extern_protocol!(
 
 extern_protocol!(
     pub unsafe trait NSColorPickingCustom: NSColorPickingDefault + IsMainThreadOnly {
-        #[cfg(feature = "AppKit_NSColorPanel")]
+        #[cfg(feature = "NSColorPanel")]
         #[method(supportsMode:)]
         unsafe fn supportsMode(&self, mode: NSColorPanelMode) -> bool;
 
-        #[cfg(feature = "AppKit_NSColorPanel")]
+        #[cfg(feature = "NSColorPanel")]
         #[method(currentMode)]
         unsafe fn currentMode(&self) -> NSColorPanelMode;
 
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[method_id(@__retain_semantics Other provideNewView:)]
         unsafe fn provideNewView(&self, initial_request: bool) -> Id<NSView>;
 
-        #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(feature = "NSColor")]
         #[method(setColor:)]
         unsafe fn setColor(&self, new_color: &NSColor);
     }

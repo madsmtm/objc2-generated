@@ -7,10 +7,10 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(feature = "HealthKit_HKObject", feature = "HealthKit_HKSample"))]
+    #[cfg(all(feature = "HKObject", feature = "HKSample"))]
     pub struct HKCorrelation;
 
-    #[cfg(all(feature = "HealthKit_HKObject", feature = "HealthKit_HKSample"))]
+    #[cfg(all(feature = "HKObject", feature = "HKSample"))]
     unsafe impl ClassType for HKCorrelation {
         #[inherits(HKObject, NSObject)]
         type Super = HKSample;
@@ -18,26 +18,26 @@ extern_class!(
     }
 );
 
-#[cfg(all(feature = "HealthKit_HKObject", feature = "HealthKit_HKSample"))]
+#[cfg(all(feature = "HKObject", feature = "HKSample"))]
 unsafe impl NSCoding for HKCorrelation {}
 
-#[cfg(all(feature = "HealthKit_HKObject", feature = "HealthKit_HKSample"))]
+#[cfg(all(feature = "HKObject", feature = "HKSample"))]
 unsafe impl NSObjectProtocol for HKCorrelation {}
 
-#[cfg(all(feature = "HealthKit_HKObject", feature = "HealthKit_HKSample"))]
+#[cfg(all(feature = "HKObject", feature = "HKSample"))]
 unsafe impl NSSecureCoding for HKCorrelation {}
 
 extern_methods!(
-    #[cfg(all(feature = "HealthKit_HKObject", feature = "HealthKit_HKSample"))]
+    #[cfg(all(feature = "HKObject", feature = "HKSample"))]
     unsafe impl HKCorrelation {
-        #[cfg(feature = "HealthKit_HKObjectType")]
+        #[cfg(feature = "HKObjectType")]
         #[method_id(@__retain_semantics Other correlationType)]
         pub unsafe fn correlationType(&self) -> Id<HKCorrelationType>;
 
         #[method_id(@__retain_semantics Other objects)]
         pub unsafe fn objects(&self) -> Id<NSSet<HKSample>>;
 
-        #[cfg(feature = "HealthKit_HKObjectType")]
+        #[cfg(feature = "HKObjectType")]
         #[method_id(@__retain_semantics Other correlationWithType:startDate:endDate:objects:)]
         pub unsafe fn correlationWithType_startDate_endDate_objects(
             correlation_type: &HKCorrelationType,
@@ -46,7 +46,7 @@ extern_methods!(
             objects: &NSSet<HKSample>,
         ) -> Id<Self>;
 
-        #[cfg(feature = "HealthKit_HKObjectType")]
+        #[cfg(feature = "HKObjectType")]
         #[method_id(@__retain_semantics Other correlationWithType:startDate:endDate:objects:metadata:)]
         pub unsafe fn correlationWithType_startDate_endDate_objects_metadata(
             correlation_type: &HKCorrelationType,
@@ -56,7 +56,7 @@ extern_methods!(
             metadata: Option<&NSDictionary<NSString, AnyObject>>,
         ) -> Id<Self>;
 
-        #[cfg(all(feature = "HealthKit_HKDevice", feature = "HealthKit_HKObjectType"))]
+        #[cfg(all(feature = "HKDevice", feature = "HKObjectType"))]
         #[method_id(@__retain_semantics Other correlationWithType:startDate:endDate:objects:device:metadata:)]
         pub unsafe fn correlationWithType_startDate_endDate_objects_device_metadata(
             correlation_type: &HKCorrelationType,
@@ -67,7 +67,7 @@ extern_methods!(
             metadata: Option<&NSDictionary<NSString, AnyObject>>,
         ) -> Id<Self>;
 
-        #[cfg(feature = "HealthKit_HKObjectType")]
+        #[cfg(feature = "HKObjectType")]
         #[method_id(@__retain_semantics Other objectsForType:)]
         pub unsafe fn objectsForType(&self, object_type: &HKObjectType) -> Id<NSSet<HKSample>>;
     }
@@ -75,7 +75,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `HKObject`
-    #[cfg(all(feature = "HealthKit_HKObject", feature = "HealthKit_HKSample"))]
+    #[cfg(all(feature = "HKObject", feature = "HKSample"))]
     unsafe impl HKCorrelation {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -84,7 +84,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "HealthKit_HKObject", feature = "HealthKit_HKSample"))]
+    #[cfg(all(feature = "HKObject", feature = "HKSample"))]
     unsafe impl HKCorrelation {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

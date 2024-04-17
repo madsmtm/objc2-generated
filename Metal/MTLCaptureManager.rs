@@ -123,14 +123,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
-        #[cfg(all(feature = "Metal_MTLCaptureScope", feature = "Metal_MTLDevice"))]
+        #[cfg(all(feature = "MTLCaptureScope", feature = "MTLDevice"))]
         #[method_id(@__retain_semantics New newCaptureScopeWithDevice:)]
         pub fn newCaptureScopeWithDevice(
             &self,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Id<ProtocolObject<dyn MTLCaptureScope>>;
 
-        #[cfg(all(feature = "Metal_MTLCaptureScope", feature = "Metal_MTLCommandQueue"))]
+        #[cfg(all(feature = "MTLCaptureScope", feature = "MTLCommandQueue"))]
         #[method_id(@__retain_semantics New newCaptureScopeWithCommandQueue:)]
         pub fn newCaptureScopeWithCommandQueue(
             &self,
@@ -146,12 +146,12 @@ extern_methods!(
             descriptor: &MTLCaptureDescriptor,
         ) -> Result<(), Id<NSError>>;
 
-        #[cfg(feature = "Metal_MTLDevice")]
+        #[cfg(feature = "MTLDevice")]
         #[deprecated = "Use startCaptureWithDescriptor:error: instead"]
         #[method(startCaptureWithDevice:)]
         pub fn startCaptureWithDevice(&self, device: &ProtocolObject<dyn MTLDevice>);
 
-        #[cfg(feature = "Metal_MTLCommandQueue")]
+        #[cfg(feature = "MTLCommandQueue")]
         #[deprecated = "Use startCaptureWithDescriptor:error: instead"]
         #[method(startCaptureWithCommandQueue:)]
         pub fn startCaptureWithCommandQueue(
@@ -159,7 +159,7 @@ extern_methods!(
             command_queue: &ProtocolObject<dyn MTLCommandQueue>,
         );
 
-        #[cfg(feature = "Metal_MTLCaptureScope")]
+        #[cfg(feature = "MTLCaptureScope")]
         #[deprecated = "Use startCaptureWithDescriptor:error: instead"]
         #[method(startCaptureWithScope:)]
         pub fn startCaptureWithScope(&self, capture_scope: &ProtocolObject<dyn MTLCaptureScope>);
@@ -167,11 +167,11 @@ extern_methods!(
         #[method(stopCapture)]
         pub fn stopCapture(&self);
 
-        #[cfg(feature = "Metal_MTLCaptureScope")]
+        #[cfg(feature = "MTLCaptureScope")]
         #[method_id(@__retain_semantics Other defaultCaptureScope)]
         pub fn defaultCaptureScope(&self) -> Option<Id<ProtocolObject<dyn MTLCaptureScope>>>;
 
-        #[cfg(feature = "Metal_MTLCaptureScope")]
+        #[cfg(feature = "MTLCaptureScope")]
         #[method(setDefaultCaptureScope:)]
         pub fn setDefaultCaptureScope(
             &self,

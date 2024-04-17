@@ -8,18 +8,18 @@ use crate::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(
-        feature = "AppKit_NSControl",
-        feature = "AppKit_NSResponder",
-        feature = "AppKit_NSTextField",
-        feature = "AppKit_NSView"
+        feature = "NSControl",
+        feature = "NSResponder",
+        feature = "NSTextField",
+        feature = "NSView"
     ))]
     pub struct NSSecureTextField;
 
     #[cfg(all(
-        feature = "AppKit_NSControl",
-        feature = "AppKit_NSResponder",
-        feature = "AppKit_NSTextField",
-        feature = "AppKit_NSView"
+        feature = "NSControl",
+        feature = "NSResponder",
+        feature = "NSTextField",
+        feature = "NSView"
     ))]
     unsafe impl ClassType for NSSecureTextField {
         #[inherits(NSControl, NSView, NSResponder, NSObject)]
@@ -29,117 +29,117 @@ extern_class!(
 );
 
 #[cfg(all(
-    feature = "AppKit_NSAccessibilityProtocols",
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSTextField",
-    feature = "AppKit_NSView"
+    feature = "NSAccessibilityProtocols",
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSTextField",
+    feature = "NSView"
 ))]
 unsafe impl NSAccessibility for NSSecureTextField {}
 
 #[cfg(all(
-    feature = "AppKit_NSAccessibilityProtocols",
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSTextField",
-    feature = "AppKit_NSView"
+    feature = "NSAccessibilityProtocols",
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSTextField",
+    feature = "NSView"
 ))]
 unsafe impl NSAccessibilityElementProtocol for NSSecureTextField {}
 
 #[cfg(all(
-    feature = "AppKit_NSAccessibilityProtocols",
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSTextField",
-    feature = "AppKit_NSView"
+    feature = "NSAccessibilityProtocols",
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSTextField",
+    feature = "NSView"
 ))]
 unsafe impl NSAccessibilityNavigableStaticText for NSSecureTextField {}
 
 #[cfg(all(
-    feature = "AppKit_NSAccessibilityProtocols",
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSTextField",
-    feature = "AppKit_NSView"
+    feature = "NSAccessibilityProtocols",
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSTextField",
+    feature = "NSView"
 ))]
 unsafe impl NSAccessibilityStaticText for NSSecureTextField {}
 
 #[cfg(all(
-    feature = "AppKit_NSAnimation",
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSTextField",
-    feature = "AppKit_NSView"
+    feature = "NSAnimation",
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSTextField",
+    feature = "NSView"
 ))]
 unsafe impl NSAnimatablePropertyContainer for NSSecureTextField {}
 
 #[cfg(all(
-    feature = "AppKit_NSAppearance",
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSTextField",
-    feature = "AppKit_NSView"
+    feature = "NSAppearance",
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSTextField",
+    feature = "NSView"
 ))]
 unsafe impl NSAppearanceCustomization for NSSecureTextField {}
 
 #[cfg(all(
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSTextField",
-    feature = "AppKit_NSView"
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSTextField",
+    feature = "NSView"
 ))]
 unsafe impl NSCoding for NSSecureTextField {}
 
 #[cfg(all(
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSDragging",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSTextField",
-    feature = "AppKit_NSView"
+    feature = "NSControl",
+    feature = "NSDragging",
+    feature = "NSResponder",
+    feature = "NSTextField",
+    feature = "NSView"
 ))]
 unsafe impl NSDraggingDestination for NSSecureTextField {}
 
 #[cfg(all(
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSTextField",
-    feature = "AppKit_NSView"
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSTextField",
+    feature = "NSView"
 ))]
 unsafe impl NSObjectProtocol for NSSecureTextField {}
 
 #[cfg(all(
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSTextContent",
-    feature = "AppKit_NSTextField",
-    feature = "AppKit_NSView"
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSTextContent",
+    feature = "NSTextField",
+    feature = "NSView"
 ))]
 unsafe impl NSTextContent for NSSecureTextField {}
 
 #[cfg(all(
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSTextField",
-    feature = "AppKit_NSUserInterfaceItemIdentification",
-    feature = "AppKit_NSView"
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSTextField",
+    feature = "NSUserInterfaceItemIdentification",
+    feature = "NSView"
 ))]
 unsafe impl NSUserInterfaceItemIdentification for NSSecureTextField {}
 
 #[cfg(all(
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSTextField",
-    feature = "AppKit_NSUserInterfaceValidation",
-    feature = "AppKit_NSView"
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSTextField",
+    feature = "NSUserInterfaceValidation",
+    feature = "NSView"
 ))]
 unsafe impl NSUserInterfaceValidations for NSSecureTextField {}
 
 extern_methods!(
     #[cfg(all(
-        feature = "AppKit_NSControl",
-        feature = "AppKit_NSResponder",
-        feature = "AppKit_NSTextField",
-        feature = "AppKit_NSView"
+        feature = "NSControl",
+        feature = "NSResponder",
+        feature = "NSTextField",
+        feature = "NSView"
     ))]
     unsafe impl NSSecureTextField {}
 );
@@ -147,10 +147,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSControl`
     #[cfg(all(
-        feature = "AppKit_NSControl",
-        feature = "AppKit_NSResponder",
-        feature = "AppKit_NSTextField",
-        feature = "AppKit_NSView"
+        feature = "NSControl",
+        feature = "NSResponder",
+        feature = "NSTextField",
+        feature = "NSView"
     ))]
     unsafe impl NSSecureTextField {
         #[method_id(@__retain_semantics Init initWithFrame:)]
@@ -164,10 +164,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSResponder`
     #[cfg(all(
-        feature = "AppKit_NSControl",
-        feature = "AppKit_NSResponder",
-        feature = "AppKit_NSTextField",
-        feature = "AppKit_NSView"
+        feature = "NSControl",
+        feature = "NSResponder",
+        feature = "NSTextField",
+        feature = "NSView"
     ))]
     unsafe impl NSSecureTextField {
         #[method_id(@__retain_semantics Init init)]
@@ -178,10 +178,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(
-        feature = "AppKit_NSControl",
-        feature = "AppKit_NSResponder",
-        feature = "AppKit_NSTextField",
-        feature = "AppKit_NSView"
+        feature = "NSControl",
+        feature = "NSResponder",
+        feature = "NSTextField",
+        feature = "NSView"
     ))]
     unsafe impl NSSecureTextField {
         #[method_id(@__retain_semantics New new)]
@@ -192,16 +192,16 @@ extern_methods!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(
-        feature = "AppKit_NSActionCell",
-        feature = "AppKit_NSCell",
-        feature = "AppKit_NSTextFieldCell"
+        feature = "NSActionCell",
+        feature = "NSCell",
+        feature = "NSTextFieldCell"
     ))]
     pub struct NSSecureTextFieldCell;
 
     #[cfg(all(
-        feature = "AppKit_NSActionCell",
-        feature = "AppKit_NSCell",
-        feature = "AppKit_NSTextFieldCell"
+        feature = "NSActionCell",
+        feature = "NSCell",
+        feature = "NSTextFieldCell"
     ))]
     unsafe impl ClassType for NSSecureTextFieldCell {
         #[inherits(NSActionCell, NSCell, NSObject)]
@@ -211,55 +211,55 @@ extern_class!(
 );
 
 #[cfg(all(
-    feature = "AppKit_NSAccessibilityProtocols",
-    feature = "AppKit_NSActionCell",
-    feature = "AppKit_NSCell",
-    feature = "AppKit_NSTextFieldCell"
+    feature = "NSAccessibilityProtocols",
+    feature = "NSActionCell",
+    feature = "NSCell",
+    feature = "NSTextFieldCell"
 ))]
 unsafe impl NSAccessibility for NSSecureTextFieldCell {}
 
 #[cfg(all(
-    feature = "AppKit_NSAccessibilityProtocols",
-    feature = "AppKit_NSActionCell",
-    feature = "AppKit_NSCell",
-    feature = "AppKit_NSTextFieldCell"
+    feature = "NSAccessibilityProtocols",
+    feature = "NSActionCell",
+    feature = "NSCell",
+    feature = "NSTextFieldCell"
 ))]
 unsafe impl NSAccessibilityElementProtocol for NSSecureTextFieldCell {}
 
 #[cfg(all(
-    feature = "AppKit_NSActionCell",
-    feature = "AppKit_NSCell",
-    feature = "AppKit_NSTextFieldCell"
+    feature = "NSActionCell",
+    feature = "NSCell",
+    feature = "NSTextFieldCell"
 ))]
 unsafe impl NSCoding for NSSecureTextFieldCell {}
 
 #[cfg(all(
-    feature = "AppKit_NSActionCell",
-    feature = "AppKit_NSCell",
-    feature = "AppKit_NSTextFieldCell"
+    feature = "NSActionCell",
+    feature = "NSCell",
+    feature = "NSTextFieldCell"
 ))]
 unsafe impl NSCopying for NSSecureTextFieldCell {}
 
 #[cfg(all(
-    feature = "AppKit_NSActionCell",
-    feature = "AppKit_NSCell",
-    feature = "AppKit_NSTextFieldCell"
+    feature = "NSActionCell",
+    feature = "NSCell",
+    feature = "NSTextFieldCell"
 ))]
 unsafe impl NSObjectProtocol for NSSecureTextFieldCell {}
 
 #[cfg(all(
-    feature = "AppKit_NSActionCell",
-    feature = "AppKit_NSCell",
-    feature = "AppKit_NSTextFieldCell",
-    feature = "AppKit_NSUserInterfaceItemIdentification"
+    feature = "NSActionCell",
+    feature = "NSCell",
+    feature = "NSTextFieldCell",
+    feature = "NSUserInterfaceItemIdentification"
 ))]
 unsafe impl NSUserInterfaceItemIdentification for NSSecureTextFieldCell {}
 
 extern_methods!(
     #[cfg(all(
-        feature = "AppKit_NSActionCell",
-        feature = "AppKit_NSCell",
-        feature = "AppKit_NSTextFieldCell"
+        feature = "NSActionCell",
+        feature = "NSCell",
+        feature = "NSTextFieldCell"
     ))]
     unsafe impl NSSecureTextFieldCell {
         #[method(echosBullets)]
@@ -273,9 +273,9 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSTextFieldCell`
     #[cfg(all(
-        feature = "AppKit_NSActionCell",
-        feature = "AppKit_NSCell",
-        feature = "AppKit_NSTextFieldCell"
+        feature = "NSActionCell",
+        feature = "NSCell",
+        feature = "NSTextFieldCell"
     ))]
     unsafe impl NSSecureTextFieldCell {
         #[method_id(@__retain_semantics Init initTextCell:)]
@@ -284,7 +284,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Id<Self>;
 
-        #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(feature = "NSImage")]
         #[method_id(@__retain_semantics Init initImageCell:)]
         pub unsafe fn initImageCell(this: Allocated<Self>, image: Option<&NSImage>) -> Id<Self>;
     }
@@ -293,9 +293,9 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSCell`
     #[cfg(all(
-        feature = "AppKit_NSActionCell",
-        feature = "AppKit_NSCell",
-        feature = "AppKit_NSTextFieldCell"
+        feature = "NSActionCell",
+        feature = "NSCell",
+        feature = "NSTextFieldCell"
     ))]
     unsafe impl NSSecureTextFieldCell {
         #[method_id(@__retain_semantics Init init)]
@@ -306,9 +306,9 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(
-        feature = "AppKit_NSActionCell",
-        feature = "AppKit_NSCell",
-        feature = "AppKit_NSTextFieldCell"
+        feature = "NSActionCell",
+        feature = "NSCell",
+        feature = "NSTextFieldCell"
     ))]
     unsafe impl NSSecureTextFieldCell {
         #[method_id(@__retain_semantics New new)]

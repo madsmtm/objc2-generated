@@ -22,7 +22,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other sharedDefaults)]
         pub unsafe fn sharedDefaults() -> Id<Self>;
 
-        #[cfg(feature = "Contacts_CNContact")]
+        #[cfg(feature = "CNContact")]
         #[method(sortOrder)]
         pub unsafe fn sortOrder(&self) -> CNContactSortOrder;
 

@@ -7,7 +7,7 @@ use crate::*;
 
 extern_methods!(
     /// CLVisitExtensions
-    #[cfg(feature = "CoreLocation_CLLocationManager")]
+    #[cfg(feature = "CLLocationManager")]
     unsafe impl CLLocationManager {
         #[method(startMonitoringVisits)]
         pub unsafe fn startMonitoringVisits(&self);

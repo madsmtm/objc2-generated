@@ -16,5315 +16,4146 @@
 #[cfg_attr(feature = "apple", link(name = "Foundation", kind = "framework"))]
 extern "C" {}
 
-#[cfg(feature = "Foundation_FoundationErrors")]
+#[cfg(feature = "FoundationErrors")]
 #[path = "FoundationErrors.rs"]
 mod __FoundationErrors;
-#[cfg(feature = "Foundation_FoundationLegacySwiftCompatibility")]
+#[cfg(feature = "FoundationLegacySwiftCompatibility")]
 #[path = "FoundationLegacySwiftCompatibility.rs"]
 mod __FoundationLegacySwiftCompatibility;
-#[cfg(feature = "Foundation_NSAffineTransform")]
+#[cfg(feature = "NSAffineTransform")]
 #[path = "NSAffineTransform.rs"]
 mod __NSAffineTransform;
-#[cfg(feature = "Foundation_NSAppleEventDescriptor")]
+#[cfg(feature = "NSAppleEventDescriptor")]
 #[path = "NSAppleEventDescriptor.rs"]
 mod __NSAppleEventDescriptor;
-#[cfg(feature = "Foundation_NSAppleEventManager")]
+#[cfg(feature = "NSAppleEventManager")]
 #[path = "NSAppleEventManager.rs"]
 mod __NSAppleEventManager;
-#[cfg(feature = "Foundation_NSAppleScript")]
+#[cfg(feature = "NSAppleScript")]
 #[path = "NSAppleScript.rs"]
 mod __NSAppleScript;
-#[cfg(feature = "Foundation_NSArchiver")]
+#[cfg(feature = "NSArchiver")]
 #[path = "NSArchiver.rs"]
 mod __NSArchiver;
-#[cfg(feature = "Foundation_NSArray")]
+#[cfg(feature = "NSArray")]
 #[path = "NSArray.rs"]
 mod __NSArray;
-#[cfg(feature = "Foundation_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 #[path = "NSAttributedString.rs"]
 mod __NSAttributedString;
-#[cfg(feature = "Foundation_NSAutoreleasePool")]
+#[cfg(feature = "NSAutoreleasePool")]
 #[path = "NSAutoreleasePool.rs"]
 mod __NSAutoreleasePool;
-#[cfg(feature = "Foundation_NSBackgroundActivityScheduler")]
+#[cfg(feature = "NSBackgroundActivityScheduler")]
 #[path = "NSBackgroundActivityScheduler.rs"]
 mod __NSBackgroundActivityScheduler;
-#[cfg(feature = "Foundation_NSBundle")]
+#[cfg(feature = "NSBundle")]
 #[path = "NSBundle.rs"]
 mod __NSBundle;
-#[cfg(feature = "Foundation_NSByteCountFormatter")]
+#[cfg(feature = "NSByteCountFormatter")]
 #[path = "NSByteCountFormatter.rs"]
 mod __NSByteCountFormatter;
-#[cfg(feature = "Foundation_NSByteOrder")]
+#[cfg(feature = "NSByteOrder")]
 #[path = "NSByteOrder.rs"]
 mod __NSByteOrder;
-#[cfg(feature = "Foundation_NSCache")]
+#[cfg(feature = "NSCache")]
 #[path = "NSCache.rs"]
 mod __NSCache;
-#[cfg(feature = "Foundation_NSCalendar")]
+#[cfg(feature = "NSCalendar")]
 #[path = "NSCalendar.rs"]
 mod __NSCalendar;
-#[cfg(feature = "Foundation_NSCalendarDate")]
+#[cfg(feature = "NSCalendarDate")]
 #[path = "NSCalendarDate.rs"]
 mod __NSCalendarDate;
-#[cfg(feature = "Foundation_NSCharacterSet")]
+#[cfg(feature = "NSCharacterSet")]
 #[path = "NSCharacterSet.rs"]
 mod __NSCharacterSet;
-#[cfg(feature = "Foundation_NSClassDescription")]
+#[cfg(feature = "NSClassDescription")]
 #[path = "NSClassDescription.rs"]
 mod __NSClassDescription;
-#[cfg(feature = "Foundation_NSCoder")]
+#[cfg(feature = "NSCoder")]
 #[path = "NSCoder.rs"]
 mod __NSCoder;
-#[cfg(feature = "Foundation_NSComparisonPredicate")]
+#[cfg(feature = "NSComparisonPredicate")]
 #[path = "NSComparisonPredicate.rs"]
 mod __NSComparisonPredicate;
-#[cfg(feature = "Foundation_NSCompoundPredicate")]
+#[cfg(feature = "NSCompoundPredicate")]
 #[path = "NSCompoundPredicate.rs"]
 mod __NSCompoundPredicate;
-#[cfg(feature = "Foundation_NSConnection")]
+#[cfg(feature = "NSConnection")]
 #[path = "NSConnection.rs"]
 mod __NSConnection;
-#[cfg(feature = "Foundation_NSData")]
+#[cfg(feature = "NSData")]
 #[path = "NSData.rs"]
 mod __NSData;
-#[cfg(feature = "Foundation_NSDate")]
+#[cfg(feature = "NSDate")]
 #[path = "NSDate.rs"]
 mod __NSDate;
-#[cfg(feature = "Foundation_NSDateComponentsFormatter")]
+#[cfg(feature = "NSDateComponentsFormatter")]
 #[path = "NSDateComponentsFormatter.rs"]
 mod __NSDateComponentsFormatter;
-#[cfg(feature = "Foundation_NSDateFormatter")]
+#[cfg(feature = "NSDateFormatter")]
 #[path = "NSDateFormatter.rs"]
 mod __NSDateFormatter;
-#[cfg(feature = "Foundation_NSDateInterval")]
+#[cfg(feature = "NSDateInterval")]
 #[path = "NSDateInterval.rs"]
 mod __NSDateInterval;
-#[cfg(feature = "Foundation_NSDateIntervalFormatter")]
+#[cfg(feature = "NSDateIntervalFormatter")]
 #[path = "NSDateIntervalFormatter.rs"]
 mod __NSDateIntervalFormatter;
-#[cfg(feature = "Foundation_NSDecimal")]
+#[cfg(feature = "NSDecimal")]
 #[path = "NSDecimal.rs"]
 mod __NSDecimal;
-#[cfg(feature = "Foundation_NSDecimalNumber")]
+#[cfg(feature = "NSDecimalNumber")]
 #[path = "NSDecimalNumber.rs"]
 mod __NSDecimalNumber;
-#[cfg(feature = "Foundation_NSDictionary")]
+#[cfg(feature = "NSDictionary")]
 #[path = "NSDictionary.rs"]
 mod __NSDictionary;
-#[cfg(feature = "Foundation_NSDistantObject")]
+#[cfg(feature = "NSDistantObject")]
 #[path = "NSDistantObject.rs"]
 mod __NSDistantObject;
-#[cfg(feature = "Foundation_NSDistributedLock")]
+#[cfg(feature = "NSDistributedLock")]
 #[path = "NSDistributedLock.rs"]
 mod __NSDistributedLock;
-#[cfg(feature = "Foundation_NSDistributedNotificationCenter")]
+#[cfg(feature = "NSDistributedNotificationCenter")]
 #[path = "NSDistributedNotificationCenter.rs"]
 mod __NSDistributedNotificationCenter;
-#[cfg(feature = "Foundation_NSEnergyFormatter")]
+#[cfg(feature = "NSEnergyFormatter")]
 #[path = "NSEnergyFormatter.rs"]
 mod __NSEnergyFormatter;
-#[cfg(feature = "Foundation_NSEnumerator")]
+#[cfg(feature = "NSEnumerator")]
 #[path = "NSEnumerator.rs"]
 mod __NSEnumerator;
-#[cfg(feature = "Foundation_NSError")]
+#[cfg(feature = "NSError")]
 #[path = "NSError.rs"]
 mod __NSError;
-#[cfg(feature = "Foundation_NSException")]
+#[cfg(feature = "NSException")]
 #[path = "NSException.rs"]
 mod __NSException;
-#[cfg(feature = "Foundation_NSExpression")]
+#[cfg(feature = "NSExpression")]
 #[path = "NSExpression.rs"]
 mod __NSExpression;
-#[cfg(feature = "Foundation_NSExtensionContext")]
+#[cfg(feature = "NSExtensionContext")]
 #[path = "NSExtensionContext.rs"]
 mod __NSExtensionContext;
-#[cfg(feature = "Foundation_NSExtensionItem")]
+#[cfg(feature = "NSExtensionItem")]
 #[path = "NSExtensionItem.rs"]
 mod __NSExtensionItem;
-#[cfg(feature = "Foundation_NSExtensionRequestHandling")]
+#[cfg(feature = "NSExtensionRequestHandling")]
 #[path = "NSExtensionRequestHandling.rs"]
 mod __NSExtensionRequestHandling;
-#[cfg(feature = "Foundation_NSFileCoordinator")]
+#[cfg(feature = "NSFileCoordinator")]
 #[path = "NSFileCoordinator.rs"]
 mod __NSFileCoordinator;
-#[cfg(feature = "Foundation_NSFileHandle")]
+#[cfg(feature = "NSFileHandle")]
 #[path = "NSFileHandle.rs"]
 mod __NSFileHandle;
-#[cfg(feature = "Foundation_NSFileManager")]
+#[cfg(feature = "NSFileManager")]
 #[path = "NSFileManager.rs"]
 mod __NSFileManager;
-#[cfg(feature = "Foundation_NSFilePresenter")]
+#[cfg(feature = "NSFilePresenter")]
 #[path = "NSFilePresenter.rs"]
 mod __NSFilePresenter;
-#[cfg(feature = "Foundation_NSFileVersion")]
+#[cfg(feature = "NSFileVersion")]
 #[path = "NSFileVersion.rs"]
 mod __NSFileVersion;
-#[cfg(feature = "Foundation_NSFileWrapper")]
+#[cfg(feature = "NSFileWrapper")]
 #[path = "NSFileWrapper.rs"]
 mod __NSFileWrapper;
-#[cfg(feature = "Foundation_NSFormatter")]
+#[cfg(feature = "NSFormatter")]
 #[path = "NSFormatter.rs"]
 mod __NSFormatter;
-#[cfg(feature = "Foundation_NSGarbageCollector")]
+#[cfg(feature = "NSGarbageCollector")]
 #[path = "NSGarbageCollector.rs"]
 mod __NSGarbageCollector;
-#[cfg(feature = "Foundation_NSGeometry")]
+#[cfg(feature = "NSGeometry")]
 #[path = "NSGeometry.rs"]
 mod __NSGeometry;
-#[cfg(feature = "Foundation_NSHFSFileTypes")]
+#[cfg(feature = "NSHFSFileTypes")]
 #[path = "NSHFSFileTypes.rs"]
 mod __NSHFSFileTypes;
-#[cfg(feature = "Foundation_NSHTTPCookie")]
+#[cfg(feature = "NSHTTPCookie")]
 #[path = "NSHTTPCookie.rs"]
 mod __NSHTTPCookie;
-#[cfg(feature = "Foundation_NSHTTPCookieStorage")]
+#[cfg(feature = "NSHTTPCookieStorage")]
 #[path = "NSHTTPCookieStorage.rs"]
 mod __NSHTTPCookieStorage;
-#[cfg(feature = "Foundation_NSHashTable")]
+#[cfg(feature = "NSHashTable")]
 #[path = "NSHashTable.rs"]
 mod __NSHashTable;
-#[cfg(feature = "Foundation_NSHost")]
+#[cfg(feature = "NSHost")]
 #[path = "NSHost.rs"]
 mod __NSHost;
-#[cfg(feature = "Foundation_NSISO8601DateFormatter")]
+#[cfg(feature = "NSISO8601DateFormatter")]
 #[path = "NSISO8601DateFormatter.rs"]
 mod __NSISO8601DateFormatter;
-#[cfg(feature = "Foundation_NSIndexPath")]
+#[cfg(feature = "NSIndexPath")]
 #[path = "NSIndexPath.rs"]
 mod __NSIndexPath;
-#[cfg(feature = "Foundation_NSIndexSet")]
+#[cfg(feature = "NSIndexSet")]
 #[path = "NSIndexSet.rs"]
 mod __NSIndexSet;
-#[cfg(feature = "Foundation_NSInflectionRule")]
+#[cfg(feature = "NSInflectionRule")]
 #[path = "NSInflectionRule.rs"]
 mod __NSInflectionRule;
-#[cfg(feature = "Foundation_NSInvocation")]
+#[cfg(feature = "NSInvocation")]
 #[path = "NSInvocation.rs"]
 mod __NSInvocation;
-#[cfg(feature = "Foundation_NSItemProvider")]
+#[cfg(feature = "NSItemProvider")]
 #[path = "NSItemProvider.rs"]
 mod __NSItemProvider;
-#[cfg(feature = "Foundation_NSJSONSerialization")]
+#[cfg(feature = "NSJSONSerialization")]
 #[path = "NSJSONSerialization.rs"]
 mod __NSJSONSerialization;
-#[cfg(feature = "Foundation_NSKeyValueCoding")]
+#[cfg(feature = "NSKeyValueCoding")]
 #[path = "NSKeyValueCoding.rs"]
 mod __NSKeyValueCoding;
-#[cfg(feature = "Foundation_NSKeyValueObserving")]
+#[cfg(feature = "NSKeyValueObserving")]
 #[path = "NSKeyValueObserving.rs"]
 mod __NSKeyValueObserving;
-#[cfg(feature = "Foundation_NSKeyedArchiver")]
+#[cfg(feature = "NSKeyedArchiver")]
 #[path = "NSKeyedArchiver.rs"]
 mod __NSKeyedArchiver;
-#[cfg(feature = "Foundation_NSLengthFormatter")]
+#[cfg(feature = "NSLengthFormatter")]
 #[path = "NSLengthFormatter.rs"]
 mod __NSLengthFormatter;
-#[cfg(feature = "Foundation_NSLinguisticTagger")]
+#[cfg(feature = "NSLinguisticTagger")]
 #[path = "NSLinguisticTagger.rs"]
 mod __NSLinguisticTagger;
-#[cfg(feature = "Foundation_NSListFormatter")]
+#[cfg(feature = "NSListFormatter")]
 #[path = "NSListFormatter.rs"]
 mod __NSListFormatter;
-#[cfg(feature = "Foundation_NSLocale")]
+#[cfg(feature = "NSLocale")]
 #[path = "NSLocale.rs"]
 mod __NSLocale;
-#[cfg(feature = "Foundation_NSLock")]
+#[cfg(feature = "NSLock")]
 #[path = "NSLock.rs"]
 mod __NSLock;
-#[cfg(feature = "Foundation_NSMapTable")]
+#[cfg(feature = "NSMapTable")]
 #[path = "NSMapTable.rs"]
 mod __NSMapTable;
-#[cfg(feature = "Foundation_NSMassFormatter")]
+#[cfg(feature = "NSMassFormatter")]
 #[path = "NSMassFormatter.rs"]
 mod __NSMassFormatter;
-#[cfg(feature = "Foundation_NSMeasurement")]
+#[cfg(feature = "NSMeasurement")]
 #[path = "NSMeasurement.rs"]
 mod __NSMeasurement;
-#[cfg(feature = "Foundation_NSMeasurementFormatter")]
+#[cfg(feature = "NSMeasurementFormatter")]
 #[path = "NSMeasurementFormatter.rs"]
 mod __NSMeasurementFormatter;
-#[cfg(feature = "Foundation_NSMetadata")]
+#[cfg(feature = "NSMetadata")]
 #[path = "NSMetadata.rs"]
 mod __NSMetadata;
-#[cfg(feature = "Foundation_NSMetadataAttributes")]
+#[cfg(feature = "NSMetadataAttributes")]
 #[path = "NSMetadataAttributes.rs"]
 mod __NSMetadataAttributes;
-#[cfg(feature = "Foundation_NSMethodSignature")]
+#[cfg(feature = "NSMethodSignature")]
 #[path = "NSMethodSignature.rs"]
 mod __NSMethodSignature;
-#[cfg(feature = "Foundation_NSMorphology")]
+#[cfg(feature = "NSMorphology")]
 #[path = "NSMorphology.rs"]
 mod __NSMorphology;
-#[cfg(feature = "Foundation_NSNetServices")]
+#[cfg(feature = "NSNetServices")]
 #[path = "NSNetServices.rs"]
 mod __NSNetServices;
-#[cfg(feature = "Foundation_NSNotification")]
+#[cfg(feature = "NSNotification")]
 #[path = "NSNotification.rs"]
 mod __NSNotification;
-#[cfg(feature = "Foundation_NSNotificationQueue")]
+#[cfg(feature = "NSNotificationQueue")]
 #[path = "NSNotificationQueue.rs"]
 mod __NSNotificationQueue;
-#[cfg(feature = "Foundation_NSNull")]
+#[cfg(feature = "NSNull")]
 #[path = "NSNull.rs"]
 mod __NSNull;
-#[cfg(feature = "Foundation_NSNumberFormatter")]
+#[cfg(feature = "NSNumberFormatter")]
 #[path = "NSNumberFormatter.rs"]
 mod __NSNumberFormatter;
-#[cfg(feature = "Foundation_NSObjCRuntime")]
+#[cfg(feature = "NSObjCRuntime")]
 #[path = "NSObjCRuntime.rs"]
 mod __NSObjCRuntime;
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 #[path = "NSObject.rs"]
 mod __NSObject;
-#[cfg(feature = "Foundation_NSObjectScripting")]
+#[cfg(feature = "NSObjectScripting")]
 #[path = "NSObjectScripting.rs"]
 mod __NSObjectScripting;
-#[cfg(feature = "Foundation_NSOperation")]
+#[cfg(feature = "NSOperation")]
 #[path = "NSOperation.rs"]
 mod __NSOperation;
-#[cfg(feature = "Foundation_NSOrderedCollectionChange")]
+#[cfg(feature = "NSOrderedCollectionChange")]
 #[path = "NSOrderedCollectionChange.rs"]
 mod __NSOrderedCollectionChange;
-#[cfg(feature = "Foundation_NSOrderedCollectionDifference")]
+#[cfg(feature = "NSOrderedCollectionDifference")]
 #[path = "NSOrderedCollectionDifference.rs"]
 mod __NSOrderedCollectionDifference;
-#[cfg(feature = "Foundation_NSOrderedSet")]
+#[cfg(feature = "NSOrderedSet")]
 #[path = "NSOrderedSet.rs"]
 mod __NSOrderedSet;
-#[cfg(feature = "Foundation_NSOrthography")]
+#[cfg(feature = "NSOrthography")]
 #[path = "NSOrthography.rs"]
 mod __NSOrthography;
-#[cfg(feature = "Foundation_NSPathUtilities")]
+#[cfg(feature = "NSPathUtilities")]
 #[path = "NSPathUtilities.rs"]
 mod __NSPathUtilities;
-#[cfg(feature = "Foundation_NSPersonNameComponents")]
+#[cfg(feature = "NSPersonNameComponents")]
 #[path = "NSPersonNameComponents.rs"]
 mod __NSPersonNameComponents;
-#[cfg(feature = "Foundation_NSPersonNameComponentsFormatter")]
+#[cfg(feature = "NSPersonNameComponentsFormatter")]
 #[path = "NSPersonNameComponentsFormatter.rs"]
 mod __NSPersonNameComponentsFormatter;
-#[cfg(feature = "Foundation_NSPointerArray")]
+#[cfg(feature = "NSPointerArray")]
 #[path = "NSPointerArray.rs"]
 mod __NSPointerArray;
-#[cfg(feature = "Foundation_NSPointerFunctions")]
+#[cfg(feature = "NSPointerFunctions")]
 #[path = "NSPointerFunctions.rs"]
 mod __NSPointerFunctions;
-#[cfg(feature = "Foundation_NSPort")]
+#[cfg(feature = "NSPort")]
 #[path = "NSPort.rs"]
 mod __NSPort;
-#[cfg(feature = "Foundation_NSPortCoder")]
+#[cfg(feature = "NSPortCoder")]
 #[path = "NSPortCoder.rs"]
 mod __NSPortCoder;
-#[cfg(feature = "Foundation_NSPortMessage")]
+#[cfg(feature = "NSPortMessage")]
 #[path = "NSPortMessage.rs"]
 mod __NSPortMessage;
-#[cfg(feature = "Foundation_NSPortNameServer")]
+#[cfg(feature = "NSPortNameServer")]
 #[path = "NSPortNameServer.rs"]
 mod __NSPortNameServer;
-#[cfg(feature = "Foundation_NSPredicate")]
+#[cfg(feature = "NSPredicate")]
 #[path = "NSPredicate.rs"]
 mod __NSPredicate;
-#[cfg(feature = "Foundation_NSProcessInfo")]
+#[cfg(feature = "NSProcessInfo")]
 #[path = "NSProcessInfo.rs"]
 mod __NSProcessInfo;
-#[cfg(feature = "Foundation_NSProgress")]
+#[cfg(feature = "NSProgress")]
 #[path = "NSProgress.rs"]
 mod __NSProgress;
-#[cfg(feature = "Foundation_NSPropertyList")]
+#[cfg(feature = "NSPropertyList")]
 #[path = "NSPropertyList.rs"]
 mod __NSPropertyList;
-#[cfg(feature = "Foundation_NSProtocolChecker")]
+#[cfg(feature = "NSProtocolChecker")]
 #[path = "NSProtocolChecker.rs"]
 mod __NSProtocolChecker;
-#[cfg(feature = "Foundation_NSProxy")]
+#[cfg(feature = "NSProxy")]
 #[path = "NSProxy.rs"]
 mod __NSProxy;
-#[cfg(feature = "Foundation_NSRange")]
+#[cfg(feature = "NSRange")]
 #[path = "NSRange.rs"]
 mod __NSRange;
-#[cfg(feature = "Foundation_NSRegularExpression")]
+#[cfg(feature = "NSRegularExpression")]
 #[path = "NSRegularExpression.rs"]
 mod __NSRegularExpression;
-#[cfg(feature = "Foundation_NSRelativeDateTimeFormatter")]
+#[cfg(feature = "NSRelativeDateTimeFormatter")]
 #[path = "NSRelativeDateTimeFormatter.rs"]
 mod __NSRelativeDateTimeFormatter;
-#[cfg(feature = "Foundation_NSRunLoop")]
+#[cfg(feature = "NSRunLoop")]
 #[path = "NSRunLoop.rs"]
 mod __NSRunLoop;
-#[cfg(feature = "Foundation_NSScanner")]
+#[cfg(feature = "NSScanner")]
 #[path = "NSScanner.rs"]
 mod __NSScanner;
-#[cfg(feature = "Foundation_NSScriptClassDescription")]
+#[cfg(feature = "NSScriptClassDescription")]
 #[path = "NSScriptClassDescription.rs"]
 mod __NSScriptClassDescription;
-#[cfg(feature = "Foundation_NSScriptCoercionHandler")]
+#[cfg(feature = "NSScriptCoercionHandler")]
 #[path = "NSScriptCoercionHandler.rs"]
 mod __NSScriptCoercionHandler;
-#[cfg(feature = "Foundation_NSScriptCommand")]
+#[cfg(feature = "NSScriptCommand")]
 #[path = "NSScriptCommand.rs"]
 mod __NSScriptCommand;
-#[cfg(feature = "Foundation_NSScriptCommandDescription")]
+#[cfg(feature = "NSScriptCommandDescription")]
 #[path = "NSScriptCommandDescription.rs"]
 mod __NSScriptCommandDescription;
-#[cfg(feature = "Foundation_NSScriptExecutionContext")]
+#[cfg(feature = "NSScriptExecutionContext")]
 #[path = "NSScriptExecutionContext.rs"]
 mod __NSScriptExecutionContext;
-#[cfg(feature = "Foundation_NSScriptKeyValueCoding")]
+#[cfg(feature = "NSScriptKeyValueCoding")]
 #[path = "NSScriptKeyValueCoding.rs"]
 mod __NSScriptKeyValueCoding;
-#[cfg(feature = "Foundation_NSScriptObjectSpecifiers")]
+#[cfg(feature = "NSScriptObjectSpecifiers")]
 #[path = "NSScriptObjectSpecifiers.rs"]
 mod __NSScriptObjectSpecifiers;
-#[cfg(feature = "Foundation_NSScriptStandardSuiteCommands")]
+#[cfg(feature = "NSScriptStandardSuiteCommands")]
 #[path = "NSScriptStandardSuiteCommands.rs"]
 mod __NSScriptStandardSuiteCommands;
-#[cfg(feature = "Foundation_NSScriptSuiteRegistry")]
+#[cfg(feature = "NSScriptSuiteRegistry")]
 #[path = "NSScriptSuiteRegistry.rs"]
 mod __NSScriptSuiteRegistry;
-#[cfg(feature = "Foundation_NSScriptWhoseTests")]
+#[cfg(feature = "NSScriptWhoseTests")]
 #[path = "NSScriptWhoseTests.rs"]
 mod __NSScriptWhoseTests;
-#[cfg(feature = "Foundation_NSSet")]
+#[cfg(feature = "NSSet")]
 #[path = "NSSet.rs"]
 mod __NSSet;
-#[cfg(feature = "Foundation_NSSortDescriptor")]
+#[cfg(feature = "NSSortDescriptor")]
 #[path = "NSSortDescriptor.rs"]
 mod __NSSortDescriptor;
-#[cfg(feature = "Foundation_NSSpellServer")]
+#[cfg(feature = "NSSpellServer")]
 #[path = "NSSpellServer.rs"]
 mod __NSSpellServer;
-#[cfg(feature = "Foundation_NSStream")]
+#[cfg(feature = "NSStream")]
 #[path = "NSStream.rs"]
 mod __NSStream;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(feature = "NSString")]
 #[path = "NSString.rs"]
 mod __NSString;
-#[cfg(feature = "Foundation_NSTask")]
+#[cfg(feature = "NSTask")]
 #[path = "NSTask.rs"]
 mod __NSTask;
-#[cfg(feature = "Foundation_NSTermOfAddress")]
+#[cfg(feature = "NSTermOfAddress")]
 #[path = "NSTermOfAddress.rs"]
 mod __NSTermOfAddress;
-#[cfg(feature = "Foundation_NSTextCheckingResult")]
+#[cfg(feature = "NSTextCheckingResult")]
 #[path = "NSTextCheckingResult.rs"]
 mod __NSTextCheckingResult;
-#[cfg(feature = "Foundation_NSThread")]
+#[cfg(feature = "NSThread")]
 #[path = "NSThread.rs"]
 mod __NSThread;
-#[cfg(feature = "Foundation_NSTimeZone")]
+#[cfg(feature = "NSTimeZone")]
 #[path = "NSTimeZone.rs"]
 mod __NSTimeZone;
-#[cfg(feature = "Foundation_NSTimer")]
+#[cfg(feature = "NSTimer")]
 #[path = "NSTimer.rs"]
 mod __NSTimer;
-#[cfg(feature = "Foundation_NSURL")]
+#[cfg(feature = "NSURL")]
 #[path = "NSURL.rs"]
 mod __NSURL;
-#[cfg(feature = "Foundation_NSURLAuthenticationChallenge")]
+#[cfg(feature = "NSURLAuthenticationChallenge")]
 #[path = "NSURLAuthenticationChallenge.rs"]
 mod __NSURLAuthenticationChallenge;
-#[cfg(feature = "Foundation_NSURLCache")]
+#[cfg(feature = "NSURLCache")]
 #[path = "NSURLCache.rs"]
 mod __NSURLCache;
-#[cfg(feature = "Foundation_NSURLConnection")]
+#[cfg(feature = "NSURLConnection")]
 #[path = "NSURLConnection.rs"]
 mod __NSURLConnection;
-#[cfg(feature = "Foundation_NSURLCredential")]
+#[cfg(feature = "NSURLCredential")]
 #[path = "NSURLCredential.rs"]
 mod __NSURLCredential;
-#[cfg(feature = "Foundation_NSURLCredentialStorage")]
+#[cfg(feature = "NSURLCredentialStorage")]
 #[path = "NSURLCredentialStorage.rs"]
 mod __NSURLCredentialStorage;
-#[cfg(feature = "Foundation_NSURLDownload")]
+#[cfg(feature = "NSURLDownload")]
 #[path = "NSURLDownload.rs"]
 mod __NSURLDownload;
-#[cfg(feature = "Foundation_NSURLError")]
+#[cfg(feature = "NSURLError")]
 #[path = "NSURLError.rs"]
 mod __NSURLError;
-#[cfg(feature = "Foundation_NSURLHandle")]
+#[cfg(feature = "NSURLHandle")]
 #[path = "NSURLHandle.rs"]
 mod __NSURLHandle;
-#[cfg(feature = "Foundation_NSURLProtectionSpace")]
+#[cfg(feature = "NSURLProtectionSpace")]
 #[path = "NSURLProtectionSpace.rs"]
 mod __NSURLProtectionSpace;
-#[cfg(feature = "Foundation_NSURLProtocol")]
+#[cfg(feature = "NSURLProtocol")]
 #[path = "NSURLProtocol.rs"]
 mod __NSURLProtocol;
-#[cfg(feature = "Foundation_NSURLRequest")]
+#[cfg(feature = "NSURLRequest")]
 #[path = "NSURLRequest.rs"]
 mod __NSURLRequest;
-#[cfg(feature = "Foundation_NSURLResponse")]
+#[cfg(feature = "NSURLResponse")]
 #[path = "NSURLResponse.rs"]
 mod __NSURLResponse;
-#[cfg(feature = "Foundation_NSURLSession")]
+#[cfg(feature = "NSURLSession")]
 #[path = "NSURLSession.rs"]
 mod __NSURLSession;
-#[cfg(feature = "Foundation_NSUUID")]
+#[cfg(feature = "NSUUID")]
 #[path = "NSUUID.rs"]
 mod __NSUUID;
-#[cfg(feature = "Foundation_NSUbiquitousKeyValueStore")]
+#[cfg(feature = "NSUbiquitousKeyValueStore")]
 #[path = "NSUbiquitousKeyValueStore.rs"]
 mod __NSUbiquitousKeyValueStore;
-#[cfg(feature = "Foundation_NSUndoManager")]
+#[cfg(feature = "NSUndoManager")]
 #[path = "NSUndoManager.rs"]
 mod __NSUndoManager;
-#[cfg(feature = "Foundation_NSUnit")]
+#[cfg(feature = "NSUnit")]
 #[path = "NSUnit.rs"]
 mod __NSUnit;
-#[cfg(feature = "Foundation_NSUserActivity")]
+#[cfg(feature = "NSUserActivity")]
 #[path = "NSUserActivity.rs"]
 mod __NSUserActivity;
-#[cfg(feature = "Foundation_NSUserDefaults")]
+#[cfg(feature = "NSUserDefaults")]
 #[path = "NSUserDefaults.rs"]
 mod __NSUserDefaults;
-#[cfg(feature = "Foundation_NSUserNotification")]
+#[cfg(feature = "NSUserNotification")]
 #[path = "NSUserNotification.rs"]
 mod __NSUserNotification;
-#[cfg(feature = "Foundation_NSUserScriptTask")]
+#[cfg(feature = "NSUserScriptTask")]
 #[path = "NSUserScriptTask.rs"]
 mod __NSUserScriptTask;
-#[cfg(feature = "Foundation_NSValue")]
+#[cfg(feature = "NSValue")]
 #[path = "NSValue.rs"]
 mod __NSValue;
-#[cfg(feature = "Foundation_NSValueTransformer")]
+#[cfg(feature = "NSValueTransformer")]
 #[path = "NSValueTransformer.rs"]
 mod __NSValueTransformer;
-#[cfg(feature = "Foundation_NSXMLDTD")]
+#[cfg(feature = "NSXMLDTD")]
 #[path = "NSXMLDTD.rs"]
 mod __NSXMLDTD;
-#[cfg(feature = "Foundation_NSXMLDTDNode")]
+#[cfg(feature = "NSXMLDTDNode")]
 #[path = "NSXMLDTDNode.rs"]
 mod __NSXMLDTDNode;
-#[cfg(feature = "Foundation_NSXMLDocument")]
+#[cfg(feature = "NSXMLDocument")]
 #[path = "NSXMLDocument.rs"]
 mod __NSXMLDocument;
-#[cfg(feature = "Foundation_NSXMLElement")]
+#[cfg(feature = "NSXMLElement")]
 #[path = "NSXMLElement.rs"]
 mod __NSXMLElement;
-#[cfg(feature = "Foundation_NSXMLNode")]
+#[cfg(feature = "NSXMLNode")]
 #[path = "NSXMLNode.rs"]
 mod __NSXMLNode;
-#[cfg(feature = "Foundation_NSXMLNodeOptions")]
+#[cfg(feature = "NSXMLNodeOptions")]
 #[path = "NSXMLNodeOptions.rs"]
 mod __NSXMLNodeOptions;
-#[cfg(feature = "Foundation_NSXMLParser")]
+#[cfg(feature = "NSXMLParser")]
 #[path = "NSXMLParser.rs"]
 mod __NSXMLParser;
-#[cfg(feature = "Foundation_NSXPCConnection")]
+#[cfg(feature = "NSXPCConnection")]
 #[path = "NSXPCConnection.rs"]
 mod __NSXPCConnection;
-#[cfg(feature = "Foundation_NSZone")]
+#[cfg(feature = "NSZone")]
 #[path = "NSZone.rs"]
 mod __NSZone;
 
-#[cfg(feature = "Foundation_FoundationErrors")]
+#[cfg(feature = "FoundationErrors")]
 pub use self::__FoundationErrors::NSBundleErrorMaximum;
-#[cfg(feature = "Foundation_FoundationErrors")]
+#[cfg(feature = "FoundationErrors")]
 pub use self::__FoundationErrors::NSBundleErrorMinimum;
-#[cfg(feature = "Foundation_FoundationErrors")]
+#[cfg(feature = "FoundationErrors")]
 pub use self::__FoundationErrors::NSBundleOnDemandResourceExceededMaximumSizeError;
-#[cfg(feature = "Foundation_FoundationErrors")]
+#[cfg(feature = "FoundationErrors")]
 pub use self::__FoundationErrors::NSBundleOnDemandResourceInvalidTagError;
-#[cfg(feature = "Foundation_FoundationErrors")]
+#[cfg(feature = "FoundationErrors")]
 pub use self::__FoundationErrors::NSBundleOnDemandResourceOutOfSpaceError;
-#[cfg(feature = "Foundation_FoundationErrors")]
+#[cfg(feature = "FoundationErrors")]
 pub use self::__FoundationErrors::NSCloudSharingConflictError;
-#[cfg(feature = "Foundation_FoundationErrors")]
+#[cfg(feature = "FoundationErrors")]
 pub use self::__FoundationErrors::NSCloudSharingErrorMaximum;
-#[cfg(feature = "Foundation_FoundationErrors")]
+#[cfg(feature = "FoundationErrors")]
 pub use self::__FoundationErrors::NSCloudSharingErrorMinimum;
-#[cfg(feature = "Foundation_FoundationErrors")]
+#[cfg(feature = "FoundationErrors")]
 pub use self::__FoundationErrors::NSCloudSharingNetworkFailureError;
-#[cfg(feature = "Foundation_FoundationErrors")]
+#[cfg(feature = "FoundationErrors")]
 pub use self::__FoundationErrors::NSCloudSharingNoPermissionError;
-#[cfg(feature = "Foundation_FoundationErrors")]
+#[cfg(feature = "FoundationErrors")]
 pub use self::__FoundationErrors::NSCloudSharingOtherError;
-#[cfg(feature = "Foundation_FoundationErrors")]
+#[cfg(feature = "FoundationErrors")]
 pub use self::__FoundationErrors::NSCloudSharingQuotaExceededError;
-#[cfg(feature = "Foundation_FoundationErrors")]
+#[cfg(feature = "FoundationErrors")]
 pub use self::__FoundationErrors::NSCloudSharingTooManyParticipantsError;
-#[cfg(feature = "Foundation_FoundationErrors")]
+#[cfg(feature = "FoundationErrors")]
 pub use self::__FoundationErrors::NSCoderErrorMaximum;
-#[cfg(feature = "Foundation_FoundationErrors")]
+#[cfg(feature = "FoundationErrors")]
 pub use self::__FoundationErrors::NSCoderErrorMinimum;
-#[cfg(feature = "Foundation_FoundationErrors")]
+#[cfg(feature = "FoundationErrors")]
 pub use self::__FoundationErrors::NSCoderInvalidValueError;
-#[cfg(feature = "Foundation_FoundationErrors")]
+#[cfg(feature = "FoundationErrors")]
 pub use self::__FoundationErrors::NSCoderReadCorruptError;
-#[cfg(feature = "Foundation_FoundationErrors")]
+#[cfg(feature = "FoundationErrors")]
 pub use self::__FoundationErrors::NSCoderValueNotFoundError;
-#[cfg(feature = "Foundation_FoundationErrors")]
+#[cfg(feature = "FoundationErrors")]
 pub use self::__FoundationErrors::NSCompressionErrorMaximum;
-#[cfg(feature = "Foundation_FoundationErrors")]
+#[cfg(feature = "FoundationErrors")]
 pub use self::__FoundationErrors::NSCompressionErrorMinimum;
-#[cfg(feature = "Foundation_FoundationErrors")]
+#[cfg(feature = "FoundationErrors")]
 pub use self::__FoundationErrors::NSCompressionFailedError;
-#[cfg(feature = "Foundation_FoundationErrors")]
+#[cfg(feature = "FoundationErrors")]
 pub use self::__FoundationErrors::NSDecompressionFailedError;
-#[cfg(feature = "Foundation_FoundationErrors")]
+#[cfg(feature = "FoundationErrors")]
 pub use self::__FoundationErrors::NSExecutableArchitectureMismatchError;
-#[cfg(feature = "Foundation_FoundationErrors")]
+#[cfg(feature = "FoundationErrors")]
 pub use self::__FoundationErrors::NSExecutableErrorMaximum;
-#[cfg(feature = "Foundation_FoundationErrors")]
+#[cfg(feature = "FoundationErrors")]
 pub use self::__FoundationErrors::NSExecutableErrorMinimum;
-#[cfg(feature = "Foundation_FoundationErrors")]
+#[cfg(feature = "FoundationErrors")]
 pub use self::__FoundationErrors::NSExecutableLinkError;
-#[cfg(feature = "Foundation_FoundationErrors")]
+#[cfg(feature = "FoundationErrors")]
 pub use self::__FoundationErrors::NSExecutableLoadError;
-#[cfg(feature = "Foundation_FoundationErrors")]
+#[cfg(feature = "FoundationErrors")]
 pub use self::__FoundationErrors::NSExecutableNotLoadableError;
-#[cfg(feature = "Foundation_FoundationErrors")]
+#[cfg(feature = "FoundationErrors")]
 pub use self::__FoundationErrors::NSExecutableRuntimeMismatchError;
-#[cfg(feature = "Foundation_FoundationErrors")]
+#[cfg(feature = "FoundationErrors")]
 pub use self::__FoundationErrors::NSFeatureUnsupportedError;
-#[cfg(feature = "Foundation_FoundationErrors")]
+#[cfg(feature = "FoundationErrors")]
 pub use self::__FoundationErrors::NSFileErrorMaximum;
-#[cfg(feature = "Foundation_FoundationErrors")]
+#[cfg(feature = "FoundationErrors")]
 pub use self::__FoundationErrors::NSFileErrorMinimum;
-#[cfg(feature = "Foundation_FoundationErrors")]
+#[cfg(feature = "FoundationErrors")]
 pub use self::__FoundationErrors::NSFileLockingError;
-#[cfg(feature = "Foundation_FoundationErrors")]
+#[cfg(feature = "FoundationErrors")]
 pub use self::__FoundationErrors::NSFileManagerUnmountBusyError;
-#[cfg(feature = "Foundation_FoundationErrors")]
+#[cfg(feature = "FoundationErrors")]
 pub use self::__FoundationErrors::NSFileManagerUnmountUnknownError;
-#[cfg(feature = "Foundation_FoundationErrors")]
+#[cfg(feature = "FoundationErrors")]
 pub use self::__FoundationErrors::NSFileNoSuchFileError;
-#[cfg(feature = "Foundation_FoundationErrors")]
+#[cfg(feature = "FoundationErrors")]
 pub use self::__FoundationErrors::NSFileReadCorruptFileError;
-#[cfg(feature = "Foundation_FoundationErrors")]
+#[cfg(feature = "FoundationErrors")]
 pub use self::__FoundationErrors::NSFileReadInapplicableStringEncodingError;
-#[cfg(feature = "Foundation_FoundationErrors")]
+#[cfg(feature = "FoundationErrors")]
 pub use self::__FoundationErrors::NSFileReadInvalidFileNameError;
-#[cfg(feature = "Foundation_FoundationErrors")]
+#[cfg(feature = "FoundationErrors")]
 pub use self::__FoundationErrors::NSFileReadNoPermissionError;
-#[cfg(feature = "Foundation_FoundationErrors")]
+#[cfg(feature = "FoundationErrors")]
 pub use self::__FoundationErrors::NSFileReadNoSuchFileError;
-#[cfg(feature = "Foundation_FoundationErrors")]
+#[cfg(feature = "FoundationErrors")]
 pub use self::__FoundationErrors::NSFileReadTooLargeError;
-#[cfg(feature = "Foundation_FoundationErrors")]
+#[cfg(feature = "FoundationErrors")]
 pub use self::__FoundationErrors::NSFileReadUnknownError;
-#[cfg(feature = "Foundation_FoundationErrors")]
+#[cfg(feature = "FoundationErrors")]
 pub use self::__FoundationErrors::NSFileReadUnknownStringEncodingError;
-#[cfg(feature = "Foundation_FoundationErrors")]
+#[cfg(feature = "FoundationErrors")]
 pub use self::__FoundationErrors::NSFileReadUnsupportedSchemeError;
-#[cfg(feature = "Foundation_FoundationErrors")]
+#[cfg(feature = "FoundationErrors")]
 pub use self::__FoundationErrors::NSFileWriteFileExistsError;
-#[cfg(feature = "Foundation_FoundationErrors")]
+#[cfg(feature = "FoundationErrors")]
 pub use self::__FoundationErrors::NSFileWriteInapplicableStringEncodingError;
-#[cfg(feature = "Foundation_FoundationErrors")]
+#[cfg(feature = "FoundationErrors")]
 pub use self::__FoundationErrors::NSFileWriteInvalidFileNameError;
-#[cfg(feature = "Foundation_FoundationErrors")]
+#[cfg(feature = "FoundationErrors")]
 pub use self::__FoundationErrors::NSFileWriteNoPermissionError;
-#[cfg(feature = "Foundation_FoundationErrors")]
+#[cfg(feature = "FoundationErrors")]
 pub use self::__FoundationErrors::NSFileWriteOutOfSpaceError;
-#[cfg(feature = "Foundation_FoundationErrors")]
+#[cfg(feature = "FoundationErrors")]
 pub use self::__FoundationErrors::NSFileWriteUnknownError;
-#[cfg(feature = "Foundation_FoundationErrors")]
+#[cfg(feature = "FoundationErrors")]
 pub use self::__FoundationErrors::NSFileWriteUnsupportedSchemeError;
-#[cfg(feature = "Foundation_FoundationErrors")]
+#[cfg(feature = "FoundationErrors")]
 pub use self::__FoundationErrors::NSFileWriteVolumeReadOnlyError;
-#[cfg(feature = "Foundation_FoundationErrors")]
+#[cfg(feature = "FoundationErrors")]
 pub use self::__FoundationErrors::NSFormattingError;
-#[cfg(feature = "Foundation_FoundationErrors")]
+#[cfg(feature = "FoundationErrors")]
 pub use self::__FoundationErrors::NSFormattingErrorMaximum;
-#[cfg(feature = "Foundation_FoundationErrors")]
+#[cfg(feature = "FoundationErrors")]
 pub use self::__FoundationErrors::NSFormattingErrorMinimum;
-#[cfg(feature = "Foundation_FoundationErrors")]
+#[cfg(feature = "FoundationErrors")]
 pub use self::__FoundationErrors::NSKeyValueValidationError;
-#[cfg(feature = "Foundation_FoundationErrors")]
+#[cfg(feature = "FoundationErrors")]
 pub use self::__FoundationErrors::NSPropertyListErrorMaximum;
-#[cfg(feature = "Foundation_FoundationErrors")]
+#[cfg(feature = "FoundationErrors")]
 pub use self::__FoundationErrors::NSPropertyListErrorMinimum;
-#[cfg(feature = "Foundation_FoundationErrors")]
+#[cfg(feature = "FoundationErrors")]
 pub use self::__FoundationErrors::NSPropertyListReadCorruptError;
-#[cfg(feature = "Foundation_FoundationErrors")]
+#[cfg(feature = "FoundationErrors")]
 pub use self::__FoundationErrors::NSPropertyListReadStreamError;
-#[cfg(feature = "Foundation_FoundationErrors")]
+#[cfg(feature = "FoundationErrors")]
 pub use self::__FoundationErrors::NSPropertyListReadUnknownVersionError;
-#[cfg(feature = "Foundation_FoundationErrors")]
+#[cfg(feature = "FoundationErrors")]
 pub use self::__FoundationErrors::NSPropertyListWriteInvalidError;
-#[cfg(feature = "Foundation_FoundationErrors")]
+#[cfg(feature = "FoundationErrors")]
 pub use self::__FoundationErrors::NSPropertyListWriteStreamError;
-#[cfg(feature = "Foundation_FoundationErrors")]
+#[cfg(feature = "FoundationErrors")]
 pub use self::__FoundationErrors::NSUbiquitousFileErrorMaximum;
-#[cfg(feature = "Foundation_FoundationErrors")]
+#[cfg(feature = "FoundationErrors")]
 pub use self::__FoundationErrors::NSUbiquitousFileErrorMinimum;
-#[cfg(feature = "Foundation_FoundationErrors")]
+#[cfg(feature = "FoundationErrors")]
 pub use self::__FoundationErrors::NSUbiquitousFileNotUploadedDueToQuotaError;
-#[cfg(feature = "Foundation_FoundationErrors")]
+#[cfg(feature = "FoundationErrors")]
 pub use self::__FoundationErrors::NSUbiquitousFileUbiquityServerNotAvailable;
-#[cfg(feature = "Foundation_FoundationErrors")]
+#[cfg(feature = "FoundationErrors")]
 pub use self::__FoundationErrors::NSUbiquitousFileUnavailableError;
-#[cfg(feature = "Foundation_FoundationErrors")]
+#[cfg(feature = "FoundationErrors")]
 pub use self::__FoundationErrors::NSUserActivityConnectionUnavailableError;
-#[cfg(feature = "Foundation_FoundationErrors")]
+#[cfg(feature = "FoundationErrors")]
 pub use self::__FoundationErrors::NSUserActivityErrorMaximum;
-#[cfg(feature = "Foundation_FoundationErrors")]
+#[cfg(feature = "FoundationErrors")]
 pub use self::__FoundationErrors::NSUserActivityErrorMinimum;
-#[cfg(feature = "Foundation_FoundationErrors")]
+#[cfg(feature = "FoundationErrors")]
 pub use self::__FoundationErrors::NSUserActivityHandoffFailedError;
-#[cfg(feature = "Foundation_FoundationErrors")]
+#[cfg(feature = "FoundationErrors")]
 pub use self::__FoundationErrors::NSUserActivityHandoffUserInfoTooLargeError;
-#[cfg(feature = "Foundation_FoundationErrors")]
+#[cfg(feature = "FoundationErrors")]
 pub use self::__FoundationErrors::NSUserActivityRemoteApplicationTimedOutError;
-#[cfg(feature = "Foundation_FoundationErrors")]
+#[cfg(feature = "FoundationErrors")]
 pub use self::__FoundationErrors::NSUserCancelledError;
-#[cfg(feature = "Foundation_FoundationErrors")]
+#[cfg(feature = "FoundationErrors")]
 pub use self::__FoundationErrors::NSValidationErrorMaximum;
-#[cfg(feature = "Foundation_FoundationErrors")]
+#[cfg(feature = "FoundationErrors")]
 pub use self::__FoundationErrors::NSValidationErrorMinimum;
-#[cfg(feature = "Foundation_FoundationErrors")]
+#[cfg(feature = "FoundationErrors")]
 pub use self::__FoundationErrors::NSXPCConnectionCodeSigningRequirementFailure;
-#[cfg(feature = "Foundation_FoundationErrors")]
+#[cfg(feature = "FoundationErrors")]
 pub use self::__FoundationErrors::NSXPCConnectionErrorMaximum;
-#[cfg(feature = "Foundation_FoundationErrors")]
+#[cfg(feature = "FoundationErrors")]
 pub use self::__FoundationErrors::NSXPCConnectionErrorMinimum;
-#[cfg(feature = "Foundation_FoundationErrors")]
+#[cfg(feature = "FoundationErrors")]
 pub use self::__FoundationErrors::NSXPCConnectionInterrupted;
-#[cfg(feature = "Foundation_FoundationErrors")]
+#[cfg(feature = "FoundationErrors")]
 pub use self::__FoundationErrors::NSXPCConnectionInvalid;
-#[cfg(feature = "Foundation_FoundationErrors")]
+#[cfg(feature = "FoundationErrors")]
 pub use self::__FoundationErrors::NSXPCConnectionReplyInvalid;
-#[cfg(feature = "Foundation_NSAffineTransform")]
+#[cfg(feature = "NSAffineTransform")]
 pub use self::__NSAffineTransform::NSAffineTransform;
-#[cfg(all(
-    feature = "Foundation_NSAffineTransform",
-    feature = "Foundation_NSGeometry"
-))]
+#[cfg(all(feature = "NSAffineTransform", feature = "NSGeometry"))]
 pub use self::__NSAffineTransform::NSAffineTransformStruct;
-#[cfg(feature = "Foundation_NSAppleEventDescriptor")]
+#[cfg(feature = "NSAppleEventDescriptor")]
 pub use self::__NSAppleEventDescriptor::NSAppleEventDescriptor;
-#[cfg(feature = "Foundation_NSAppleEventDescriptor")]
+#[cfg(feature = "NSAppleEventDescriptor")]
 pub use self::__NSAppleEventDescriptor::NSAppleEventSendOptions;
-#[cfg(feature = "Foundation_NSAppleEventManager")]
+#[cfg(feature = "NSAppleEventManager")]
 pub use self::__NSAppleEventManager::NSAppleEventManager;
-#[cfg(feature = "Foundation_NSAppleEventManager")]
+#[cfg(feature = "NSAppleEventManager")]
 pub use self::__NSAppleEventManager::NSAppleEventManagerSuspensionID;
 #[cfg(all(
-    feature = "Foundation_NSAppleEventManager",
-    feature = "Foundation_NSNotification",
-    feature = "Foundation_NSString"
+    feature = "NSAppleEventManager",
+    feature = "NSNotification",
+    feature = "NSString"
 ))]
 pub use self::__NSAppleEventManager::NSAppleEventManagerWillProcessFirstEventNotification;
-#[cfg(feature = "Foundation_NSAppleEventManager")]
+#[cfg(feature = "NSAppleEventManager")]
 pub use self::__NSAppleEventManager::NSAppleEventTimeOutDefault;
-#[cfg(feature = "Foundation_NSAppleEventManager")]
+#[cfg(feature = "NSAppleEventManager")]
 pub use self::__NSAppleEventManager::NSAppleEventTimeOutNone;
-#[cfg(feature = "Foundation_NSAppleScript")]
+#[cfg(feature = "NSAppleScript")]
 pub use self::__NSAppleScript::NSAppleScript;
-#[cfg(all(feature = "Foundation_NSAppleScript", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSAppleScript", feature = "NSString"))]
 pub use self::__NSAppleScript::NSAppleScriptErrorAppName;
-#[cfg(all(feature = "Foundation_NSAppleScript", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSAppleScript", feature = "NSString"))]
 pub use self::__NSAppleScript::NSAppleScriptErrorBriefMessage;
-#[cfg(all(feature = "Foundation_NSAppleScript", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSAppleScript", feature = "NSString"))]
 pub use self::__NSAppleScript::NSAppleScriptErrorMessage;
-#[cfg(all(feature = "Foundation_NSAppleScript", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSAppleScript", feature = "NSString"))]
 pub use self::__NSAppleScript::NSAppleScriptErrorNumber;
-#[cfg(all(feature = "Foundation_NSAppleScript", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSAppleScript", feature = "NSString"))]
 pub use self::__NSAppleScript::NSAppleScriptErrorRange;
-#[cfg(all(feature = "Foundation_NSArchiver", feature = "Foundation_NSCoder"))]
+#[cfg(all(feature = "NSArchiver", feature = "NSCoder"))]
 pub use self::__NSArchiver::NSArchiver;
-#[cfg(feature = "Foundation_NSArchiver")]
+#[cfg(feature = "NSArchiver")]
 pub use self::__NSArchiver::NSObjectNSArchiverCallback;
-#[cfg(all(feature = "Foundation_NSArchiver", feature = "Foundation_NSCoder"))]
+#[cfg(all(feature = "NSArchiver", feature = "NSCoder"))]
 pub use self::__NSArchiver::NSUnarchiver;
-#[cfg(feature = "Foundation_NSArray")]
+#[cfg(feature = "NSArray")]
 pub use self::__NSArray::NSBinarySearchingOptions;
-#[cfg(all(
-    feature = "Foundation_NSAttributedString",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSAttributedString", feature = "NSString"))]
 pub use self::__NSAttributedString::NSAlternateDescriptionAttributeName;
-#[cfg(feature = "Foundation_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSAttributedString;
-#[cfg(feature = "Foundation_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSAttributedStringEnumerationOptions;
-#[cfg(all(
-    feature = "Foundation_NSAttributedString",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSAttributedString", feature = "NSString"))]
 pub use self::__NSAttributedString::NSAttributedStringFormattingContextKey;
-#[cfg(feature = "Foundation_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSAttributedStringFormattingOptions;
-#[cfg(all(
-    feature = "Foundation_NSAttributedString",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSAttributedString", feature = "NSString"))]
 pub use self::__NSAttributedString::NSAttributedStringKey;
-#[cfg(feature = "Foundation_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSAttributedStringMarkdownInterpretedSyntax;
-#[cfg(feature = "Foundation_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSAttributedStringMarkdownParsingFailurePolicy;
-#[cfg(feature = "Foundation_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSAttributedStringMarkdownParsingOptions;
-#[cfg(feature = "Foundation_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSAttributedStringMarkdownSourcePosition;
-#[cfg(all(
-    feature = "Foundation_NSAttributedString",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSAttributedString", feature = "NSString"))]
 pub use self::__NSAttributedString::NSImageURLAttributeName;
-#[cfg(all(
-    feature = "Foundation_NSAttributedString",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSAttributedString", feature = "NSString"))]
 pub use self::__NSAttributedString::NSInflectionAgreementArgumentAttributeName;
-#[cfg(all(
-    feature = "Foundation_NSAttributedString",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSAttributedString", feature = "NSString"))]
 pub use self::__NSAttributedString::NSInflectionAgreementConceptAttributeName;
-#[cfg(all(
-    feature = "Foundation_NSAttributedString",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSAttributedString", feature = "NSString"))]
 pub use self::__NSAttributedString::NSInflectionAlternativeAttributeName;
-#[cfg(all(
-    feature = "Foundation_NSAttributedString",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSAttributedString", feature = "NSString"))]
 pub use self::__NSAttributedString::NSInflectionConceptsKey;
-#[cfg(all(
-    feature = "Foundation_NSAttributedString",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSAttributedString", feature = "NSString"))]
 pub use self::__NSAttributedString::NSInflectionReferentConceptAttributeName;
-#[cfg(all(
-    feature = "Foundation_NSAttributedString",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSAttributedString", feature = "NSString"))]
 pub use self::__NSAttributedString::NSInflectionRuleAttributeName;
-#[cfg(feature = "Foundation_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSInlinePresentationIntent;
-#[cfg(all(
-    feature = "Foundation_NSAttributedString",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSAttributedString", feature = "NSString"))]
 pub use self::__NSAttributedString::NSInlinePresentationIntentAttributeName;
-#[cfg(all(
-    feature = "Foundation_NSAttributedString",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSAttributedString", feature = "NSString"))]
 pub use self::__NSAttributedString::NSLanguageIdentifierAttributeName;
-#[cfg(all(
-    feature = "Foundation_NSAttributedString",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSAttributedString", feature = "NSString"))]
 pub use self::__NSAttributedString::NSMarkdownSourcePositionAttributeName;
-#[cfg(all(
-    feature = "Foundation_NSAttributedString",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSAttributedString", feature = "NSString"))]
 pub use self::__NSAttributedString::NSMorphologyAttributeName;
-#[cfg(feature = "Foundation_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSMutableAttributedString;
-#[cfg(feature = "Foundation_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSPresentationIntent;
-#[cfg(all(
-    feature = "Foundation_NSAttributedString",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSAttributedString", feature = "NSString"))]
 pub use self::__NSAttributedString::NSPresentationIntentAttributeName;
-#[cfg(feature = "Foundation_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSPresentationIntentKind;
-#[cfg(feature = "Foundation_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSPresentationIntentTableColumnAlignment;
-#[cfg(all(
-    feature = "Foundation_NSAttributedString",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSAttributedString", feature = "NSString"))]
 pub use self::__NSAttributedString::NSReplacementIndexAttributeName;
-#[cfg(feature = "Foundation_NSAutoreleasePool")]
+#[cfg(feature = "NSAutoreleasePool")]
 pub use self::__NSAutoreleasePool::NSAutoreleasePool;
-#[cfg(all(
-    feature = "Foundation_NSBackgroundActivityScheduler",
-    feature = "block2"
-))]
+#[cfg(all(feature = "NSBackgroundActivityScheduler", feature = "block2"))]
 pub use self::__NSBackgroundActivityScheduler::NSBackgroundActivityCompletionHandler;
-#[cfg(feature = "Foundation_NSBackgroundActivityScheduler")]
+#[cfg(feature = "NSBackgroundActivityScheduler")]
 pub use self::__NSBackgroundActivityScheduler::NSBackgroundActivityResult;
-#[cfg(feature = "Foundation_NSBackgroundActivityScheduler")]
+#[cfg(feature = "NSBackgroundActivityScheduler")]
 pub use self::__NSBackgroundActivityScheduler::NSBackgroundActivityScheduler;
-#[cfg(feature = "Foundation_NSBundle")]
+#[cfg(feature = "NSBundle")]
 pub use self::__NSBundle::NSBundle;
-#[cfg(all(
-    feature = "Foundation_NSBundle",
-    feature = "Foundation_NSNotification",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSBundle", feature = "NSNotification", feature = "NSString"))]
 pub use self::__NSBundle::NSBundleDidLoadNotification;
-#[cfg(feature = "Foundation_NSBundle")]
+#[cfg(feature = "NSBundle")]
 pub use self::__NSBundle::NSBundleExecutableArchitectureARM64;
-#[cfg(feature = "Foundation_NSBundle")]
+#[cfg(feature = "NSBundle")]
 pub use self::__NSBundle::NSBundleExecutableArchitectureI386;
-#[cfg(feature = "Foundation_NSBundle")]
+#[cfg(feature = "NSBundle")]
 pub use self::__NSBundle::NSBundleExecutableArchitecturePPC;
-#[cfg(feature = "Foundation_NSBundle")]
+#[cfg(feature = "NSBundle")]
 pub use self::__NSBundle::NSBundleExecutableArchitecturePPC64;
-#[cfg(feature = "Foundation_NSBundle")]
+#[cfg(feature = "NSBundle")]
 pub use self::__NSBundle::NSBundleExecutableArchitectureX86_64;
-#[cfg(feature = "Foundation_NSBundle")]
+#[cfg(feature = "NSBundle")]
 pub use self::__NSBundle::NSBundleResourceRequest;
-#[cfg(feature = "Foundation_NSBundle")]
+#[cfg(feature = "NSBundle")]
 pub use self::__NSBundle::NSBundleResourceRequestLoadingPriorityUrgent;
-#[cfg(all(
-    feature = "Foundation_NSBundle",
-    feature = "Foundation_NSNotification",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSBundle", feature = "NSNotification", feature = "NSString"))]
 pub use self::__NSBundle::NSBundleResourceRequestLowDiskSpaceNotification;
-#[cfg(all(feature = "Foundation_NSBundle", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSBundle", feature = "NSString"))]
 pub use self::__NSBundle::NSLoadedClasses;
-#[cfg(all(
-    feature = "Foundation_NSByteCountFormatter",
-    feature = "Foundation_NSFormatter"
-))]
+#[cfg(all(feature = "NSByteCountFormatter", feature = "NSFormatter"))]
 pub use self::__NSByteCountFormatter::NSByteCountFormatter;
-#[cfg(feature = "Foundation_NSByteCountFormatter")]
+#[cfg(feature = "NSByteCountFormatter")]
 pub use self::__NSByteCountFormatter::NSByteCountFormatterCountStyle;
-#[cfg(feature = "Foundation_NSByteCountFormatter")]
+#[cfg(feature = "NSByteCountFormatter")]
 pub use self::__NSByteCountFormatter::NSByteCountFormatterUnits;
-#[cfg(feature = "Foundation_NSByteOrder")]
+#[cfg(feature = "NSByteOrder")]
 pub use self::__NSByteOrder::NSSwappedDouble;
-#[cfg(feature = "Foundation_NSByteOrder")]
+#[cfg(feature = "NSByteOrder")]
 pub use self::__NSByteOrder::NSSwappedFloat;
-#[cfg(feature = "Foundation_NSCache")]
+#[cfg(feature = "NSCache")]
 pub use self::__NSCache::NSCache;
-#[cfg(feature = "Foundation_NSCache")]
+#[cfg(feature = "NSCache")]
 pub use self::__NSCache::NSCacheDelegate;
-#[cfg(feature = "Foundation_NSCalendar")]
+#[cfg(feature = "NSCalendar")]
 pub use self::__NSCalendar::NSCalendar;
 #[cfg(all(
-    feature = "Foundation_NSCalendar",
-    feature = "Foundation_NSNotification",
-    feature = "Foundation_NSString"
+    feature = "NSCalendar",
+    feature = "NSNotification",
+    feature = "NSString"
 ))]
 pub use self::__NSCalendar::NSCalendarDayChangedNotification;
-#[cfg(all(feature = "Foundation_NSCalendar", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSCalendar", feature = "NSString"))]
 pub use self::__NSCalendar::NSCalendarIdentifier;
-#[cfg(all(feature = "Foundation_NSCalendar", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSCalendar", feature = "NSString"))]
 pub use self::__NSCalendar::NSCalendarIdentifierBuddhist;
-#[cfg(all(feature = "Foundation_NSCalendar", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSCalendar", feature = "NSString"))]
 pub use self::__NSCalendar::NSCalendarIdentifierChinese;
-#[cfg(all(feature = "Foundation_NSCalendar", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSCalendar", feature = "NSString"))]
 pub use self::__NSCalendar::NSCalendarIdentifierCoptic;
-#[cfg(all(feature = "Foundation_NSCalendar", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSCalendar", feature = "NSString"))]
 pub use self::__NSCalendar::NSCalendarIdentifierEthiopicAmeteAlem;
-#[cfg(all(feature = "Foundation_NSCalendar", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSCalendar", feature = "NSString"))]
 pub use self::__NSCalendar::NSCalendarIdentifierEthiopicAmeteMihret;
-#[cfg(all(feature = "Foundation_NSCalendar", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSCalendar", feature = "NSString"))]
 pub use self::__NSCalendar::NSCalendarIdentifierGregorian;
-#[cfg(all(feature = "Foundation_NSCalendar", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSCalendar", feature = "NSString"))]
 pub use self::__NSCalendar::NSCalendarIdentifierHebrew;
-#[cfg(all(feature = "Foundation_NSCalendar", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSCalendar", feature = "NSString"))]
 pub use self::__NSCalendar::NSCalendarIdentifierISO8601;
-#[cfg(all(feature = "Foundation_NSCalendar", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSCalendar", feature = "NSString"))]
 pub use self::__NSCalendar::NSCalendarIdentifierIndian;
-#[cfg(all(feature = "Foundation_NSCalendar", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSCalendar", feature = "NSString"))]
 pub use self::__NSCalendar::NSCalendarIdentifierIslamic;
-#[cfg(all(feature = "Foundation_NSCalendar", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSCalendar", feature = "NSString"))]
 pub use self::__NSCalendar::NSCalendarIdentifierIslamicCivil;
-#[cfg(all(feature = "Foundation_NSCalendar", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSCalendar", feature = "NSString"))]
 pub use self::__NSCalendar::NSCalendarIdentifierIslamicTabular;
-#[cfg(all(feature = "Foundation_NSCalendar", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSCalendar", feature = "NSString"))]
 pub use self::__NSCalendar::NSCalendarIdentifierIslamicUmmAlQura;
-#[cfg(all(feature = "Foundation_NSCalendar", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSCalendar", feature = "NSString"))]
 pub use self::__NSCalendar::NSCalendarIdentifierJapanese;
-#[cfg(all(feature = "Foundation_NSCalendar", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSCalendar", feature = "NSString"))]
 pub use self::__NSCalendar::NSCalendarIdentifierPersian;
-#[cfg(all(feature = "Foundation_NSCalendar", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSCalendar", feature = "NSString"))]
 pub use self::__NSCalendar::NSCalendarIdentifierRepublicOfChina;
-#[cfg(feature = "Foundation_NSCalendar")]
+#[cfg(feature = "NSCalendar")]
 pub use self::__NSCalendar::NSCalendarOptions;
-#[cfg(feature = "Foundation_NSCalendar")]
+#[cfg(feature = "NSCalendar")]
 pub use self::__NSCalendar::NSCalendarUnit;
-#[cfg(feature = "Foundation_NSCalendar")]
+#[cfg(feature = "NSCalendar")]
 pub use self::__NSCalendar::NSDateComponentUndefined;
-#[cfg(feature = "Foundation_NSCalendar")]
+#[cfg(feature = "NSCalendar")]
 pub use self::__NSCalendar::NSDateComponents;
-#[cfg(feature = "Foundation_NSCalendar")]
+#[cfg(feature = "NSCalendar")]
 pub use self::__NSCalendar::NSUndefinedDateComponent;
-#[cfg(all(feature = "Foundation_NSCalendarDate", feature = "Foundation_NSDate"))]
+#[cfg(all(feature = "NSCalendarDate", feature = "NSDate"))]
 pub use self::__NSCalendarDate::NSCalendarDate;
-#[cfg(feature = "Foundation_NSCharacterSet")]
+#[cfg(feature = "NSCharacterSet")]
 pub use self::__NSCharacterSet::NSCharacterSet;
-#[cfg(feature = "Foundation_NSCharacterSet")]
+#[cfg(feature = "NSCharacterSet")]
 pub use self::__NSCharacterSet::NSMutableCharacterSet;
-#[cfg(feature = "Foundation_NSCharacterSet")]
+#[cfg(feature = "NSCharacterSet")]
 pub use self::__NSCharacterSet::NSOpenStepUnicodeReservedBase;
-#[cfg(feature = "Foundation_NSClassDescription")]
+#[cfg(feature = "NSClassDescription")]
 pub use self::__NSClassDescription::NSClassDescription;
 #[cfg(all(
-    feature = "Foundation_NSClassDescription",
-    feature = "Foundation_NSNotification",
-    feature = "Foundation_NSString"
+    feature = "NSClassDescription",
+    feature = "NSNotification",
+    feature = "NSString"
 ))]
 pub use self::__NSClassDescription::NSClassDescriptionNeededForClassNotification;
-#[cfg(feature = "Foundation_NSClassDescription")]
+#[cfg(feature = "NSClassDescription")]
 pub use self::__NSClassDescription::NSObjectNSClassDescriptionPrimitives;
-#[cfg(feature = "Foundation_NSCoder")]
+#[cfg(feature = "NSCoder")]
 pub use self::__NSCoder::NSCoder;
-#[cfg(feature = "Foundation_NSCoder")]
+#[cfg(feature = "NSCoder")]
 pub use self::__NSCoder::NSDecodingFailurePolicy;
-#[cfg(feature = "Foundation_NSCoder")]
+#[cfg(feature = "NSCoder")]
 pub use self::__NSCoder::NXReadNSObjectFromCoder;
-#[cfg(all(
-    feature = "Foundation_NSComparisonPredicate",
-    feature = "Foundation_NSPredicate"
-))]
+#[cfg(all(feature = "NSComparisonPredicate", feature = "NSPredicate"))]
 pub use self::__NSComparisonPredicate::NSComparisonPredicate;
-#[cfg(feature = "Foundation_NSComparisonPredicate")]
+#[cfg(feature = "NSComparisonPredicate")]
 pub use self::__NSComparisonPredicate::NSComparisonPredicateModifier;
-#[cfg(feature = "Foundation_NSComparisonPredicate")]
+#[cfg(feature = "NSComparisonPredicate")]
 pub use self::__NSComparisonPredicate::NSComparisonPredicateOptions;
-#[cfg(feature = "Foundation_NSComparisonPredicate")]
+#[cfg(feature = "NSComparisonPredicate")]
 pub use self::__NSComparisonPredicate::NSPredicateOperatorType;
-#[cfg(all(
-    feature = "Foundation_NSCompoundPredicate",
-    feature = "Foundation_NSPredicate"
-))]
+#[cfg(all(feature = "NSCompoundPredicate", feature = "NSPredicate"))]
 pub use self::__NSCompoundPredicate::NSCompoundPredicate;
-#[cfg(feature = "Foundation_NSCompoundPredicate")]
+#[cfg(feature = "NSCompoundPredicate")]
 pub use self::__NSCompoundPredicate::NSCompoundPredicateType;
-#[cfg(feature = "Foundation_NSConnection")]
+#[cfg(feature = "NSConnection")]
 pub use self::__NSConnection::NSConnection;
-#[cfg(feature = "Foundation_NSConnection")]
+#[cfg(feature = "NSConnection")]
 pub use self::__NSConnection::NSConnectionDelegate;
-#[cfg(all(feature = "Foundation_NSConnection", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSConnection", feature = "NSString"))]
 pub use self::__NSConnection::NSConnectionDidDieNotification;
-#[cfg(all(feature = "Foundation_NSConnection", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSConnection", feature = "NSString"))]
 pub use self::__NSConnection::NSConnectionDidInitializeNotification;
-#[cfg(all(feature = "Foundation_NSConnection", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSConnection", feature = "NSString"))]
 pub use self::__NSConnection::NSConnectionReplyMode;
-#[cfg(feature = "Foundation_NSConnection")]
+#[cfg(feature = "NSConnection")]
 pub use self::__NSConnection::NSDistantObjectRequest;
-#[cfg(all(feature = "Foundation_NSConnection", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSConnection", feature = "NSString"))]
 pub use self::__NSConnection::NSFailedAuthenticationException;
-#[cfg(feature = "Foundation_NSData")]
+#[cfg(feature = "NSData")]
 pub use self::__NSData::NSData;
-#[cfg(feature = "Foundation_NSData")]
+#[cfg(feature = "NSData")]
 pub use self::__NSData::NSDataBase64DecodingOptions;
-#[cfg(feature = "Foundation_NSData")]
+#[cfg(feature = "NSData")]
 pub use self::__NSData::NSDataBase64EncodingOptions;
-#[cfg(feature = "Foundation_NSData")]
+#[cfg(feature = "NSData")]
 pub use self::__NSData::NSDataCompressionAlgorithm;
-#[cfg(feature = "Foundation_NSData")]
+#[cfg(feature = "NSData")]
 pub use self::__NSData::NSDataReadingOptions;
-#[cfg(feature = "Foundation_NSData")]
+#[cfg(feature = "NSData")]
 pub use self::__NSData::NSDataSearchOptions;
-#[cfg(feature = "Foundation_NSData")]
+#[cfg(feature = "NSData")]
 pub use self::__NSData::NSDataWritingOptions;
-#[cfg(feature = "Foundation_NSData")]
+#[cfg(feature = "NSData")]
 pub use self::__NSData::NSMutableData;
-#[cfg(feature = "Foundation_NSData")]
+#[cfg(feature = "NSData")]
 pub use self::__NSData::NSPurgeableData;
-#[cfg(feature = "Foundation_NSDate")]
+#[cfg(feature = "NSDate")]
 pub use self::__NSDate::NSDate;
-#[cfg(all(
-    feature = "Foundation_NSDate",
-    feature = "Foundation_NSNotification",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSDate", feature = "NSNotification", feature = "NSString"))]
 pub use self::__NSDate::NSSystemClockDidChangeNotification;
-#[cfg(feature = "Foundation_NSDate")]
+#[cfg(feature = "NSDate")]
 pub use self::__NSDate::NSTimeInterval;
-#[cfg(all(
-    feature = "Foundation_NSDateComponentsFormatter",
-    feature = "Foundation_NSFormatter"
-))]
+#[cfg(all(feature = "NSDateComponentsFormatter", feature = "NSFormatter"))]
 pub use self::__NSDateComponentsFormatter::NSDateComponentsFormatter;
-#[cfg(feature = "Foundation_NSDateComponentsFormatter")]
+#[cfg(feature = "NSDateComponentsFormatter")]
 pub use self::__NSDateComponentsFormatter::NSDateComponentsFormatterUnitsStyle;
-#[cfg(feature = "Foundation_NSDateComponentsFormatter")]
+#[cfg(feature = "NSDateComponentsFormatter")]
 pub use self::__NSDateComponentsFormatter::NSDateComponentsFormatterZeroFormattingBehavior;
-#[cfg(all(
-    feature = "Foundation_NSDateFormatter",
-    feature = "Foundation_NSFormatter"
-))]
+#[cfg(all(feature = "NSDateFormatter", feature = "NSFormatter"))]
 pub use self::__NSDateFormatter::NSDateFormatter;
-#[cfg(feature = "Foundation_NSDateFormatter")]
+#[cfg(feature = "NSDateFormatter")]
 pub use self::__NSDateFormatter::NSDateFormatterBehavior;
-#[cfg(feature = "Foundation_NSDateFormatter")]
+#[cfg(feature = "NSDateFormatter")]
 pub use self::__NSDateFormatter::NSDateFormatterStyle;
-#[cfg(feature = "Foundation_NSDateInterval")]
+#[cfg(feature = "NSDateInterval")]
 pub use self::__NSDateInterval::NSDateInterval;
-#[cfg(all(
-    feature = "Foundation_NSDateIntervalFormatter",
-    feature = "Foundation_NSFormatter"
-))]
+#[cfg(all(feature = "NSDateIntervalFormatter", feature = "NSFormatter"))]
 pub use self::__NSDateIntervalFormatter::NSDateIntervalFormatter;
-#[cfg(feature = "Foundation_NSDateIntervalFormatter")]
+#[cfg(feature = "NSDateIntervalFormatter")]
 pub use self::__NSDateIntervalFormatter::NSDateIntervalFormatterStyle;
-#[cfg(feature = "Foundation_NSDecimal")]
+#[cfg(feature = "NSDecimal")]
 pub use self::__NSDecimal::NSCalculationError;
-#[cfg(feature = "Foundation_NSDecimal")]
+#[cfg(feature = "NSDecimal")]
 pub use self::__NSDecimal::NSDecimalAdd;
-#[cfg(feature = "Foundation_NSDecimal")]
+#[cfg(feature = "NSDecimal")]
 pub use self::__NSDecimal::NSDecimalCompact;
-#[cfg(all(feature = "Foundation_NSDecimal", feature = "Foundation_NSObjCRuntime"))]
+#[cfg(all(feature = "NSDecimal", feature = "NSObjCRuntime"))]
 pub use self::__NSDecimal::NSDecimalCompare;
-#[cfg(feature = "Foundation_NSDecimal")]
+#[cfg(feature = "NSDecimal")]
 pub use self::__NSDecimal::NSDecimalCopy;
-#[cfg(feature = "Foundation_NSDecimal")]
+#[cfg(feature = "NSDecimal")]
 pub use self::__NSDecimal::NSDecimalDivide;
-#[cfg(feature = "Foundation_NSDecimal")]
+#[cfg(feature = "NSDecimal")]
 pub use self::__NSDecimal::NSDecimalMultiply;
-#[cfg(feature = "Foundation_NSDecimal")]
+#[cfg(feature = "NSDecimal")]
 pub use self::__NSDecimal::NSDecimalMultiplyByPowerOf10;
-#[cfg(feature = "Foundation_NSDecimal")]
+#[cfg(feature = "NSDecimal")]
 pub use self::__NSDecimal::NSDecimalNormalize;
-#[cfg(feature = "Foundation_NSDecimal")]
+#[cfg(feature = "NSDecimal")]
 pub use self::__NSDecimal::NSDecimalPower;
-#[cfg(feature = "Foundation_NSDecimal")]
+#[cfg(feature = "NSDecimal")]
 pub use self::__NSDecimal::NSDecimalRound;
-#[cfg(all(feature = "Foundation_NSDecimal", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSDecimal", feature = "NSString"))]
 pub use self::__NSDecimal::NSDecimalString;
-#[cfg(feature = "Foundation_NSDecimal")]
+#[cfg(feature = "NSDecimal")]
 pub use self::__NSDecimal::NSDecimalSubtract;
-#[cfg(feature = "Foundation_NSDecimal")]
+#[cfg(feature = "NSDecimal")]
 pub use self::__NSDecimal::NSRoundingMode;
-#[cfg(all(feature = "Foundation_NSDecimalNumber", feature = "Foundation_NSValue"))]
+#[cfg(all(feature = "NSDecimalNumber", feature = "NSValue"))]
 pub use self::__NSDecimalNumber::NSDecimalNumber;
-#[cfg(feature = "Foundation_NSDecimalNumber")]
+#[cfg(feature = "NSDecimalNumber")]
 pub use self::__NSDecimalNumber::NSDecimalNumberBehaviors;
 #[cfg(all(
-    feature = "Foundation_NSDecimalNumber",
-    feature = "Foundation_NSObjCRuntime",
-    feature = "Foundation_NSString"
+    feature = "NSDecimalNumber",
+    feature = "NSObjCRuntime",
+    feature = "NSString"
 ))]
 pub use self::__NSDecimalNumber::NSDecimalNumberDivideByZeroException;
 #[cfg(all(
-    feature = "Foundation_NSDecimalNumber",
-    feature = "Foundation_NSObjCRuntime",
-    feature = "Foundation_NSString"
+    feature = "NSDecimalNumber",
+    feature = "NSObjCRuntime",
+    feature = "NSString"
 ))]
 pub use self::__NSDecimalNumber::NSDecimalNumberExactnessException;
-#[cfg(feature = "Foundation_NSDecimalNumber")]
+#[cfg(feature = "NSDecimalNumber")]
 pub use self::__NSDecimalNumber::NSDecimalNumberHandler;
 #[cfg(all(
-    feature = "Foundation_NSDecimalNumber",
-    feature = "Foundation_NSObjCRuntime",
-    feature = "Foundation_NSString"
+    feature = "NSDecimalNumber",
+    feature = "NSObjCRuntime",
+    feature = "NSString"
 ))]
 pub use self::__NSDecimalNumber::NSDecimalNumberOverflowException;
 #[cfg(all(
-    feature = "Foundation_NSDecimalNumber",
-    feature = "Foundation_NSObjCRuntime",
-    feature = "Foundation_NSString"
+    feature = "NSDecimalNumber",
+    feature = "NSObjCRuntime",
+    feature = "NSString"
 ))]
 pub use self::__NSDecimalNumber::NSDecimalNumberUnderflowException;
-#[cfg(all(feature = "Foundation_NSDistantObject", feature = "Foundation_NSProxy"))]
+#[cfg(all(feature = "NSDistantObject", feature = "NSProxy"))]
 pub use self::__NSDistantObject::NSDistantObject;
-#[cfg(feature = "Foundation_NSDistributedLock")]
+#[cfg(feature = "NSDistributedLock")]
 pub use self::__NSDistributedLock::NSDistributedLock;
 #[cfg(all(
-    feature = "Foundation_NSDistributedNotificationCenter",
-    feature = "Foundation_NSNotification"
+    feature = "NSDistributedNotificationCenter",
+    feature = "NSNotification"
 ))]
 pub use self::__NSDistributedNotificationCenter::NSDistributedNotificationCenter;
-#[cfg(all(
-    feature = "Foundation_NSDistributedNotificationCenter",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSDistributedNotificationCenter", feature = "NSString"))]
 pub use self::__NSDistributedNotificationCenter::NSDistributedNotificationCenterType;
-#[cfg(feature = "Foundation_NSDistributedNotificationCenter")]
+#[cfg(feature = "NSDistributedNotificationCenter")]
 pub use self::__NSDistributedNotificationCenter::NSDistributedNotificationOptions;
-#[cfg(all(
-    feature = "Foundation_NSDistributedNotificationCenter",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSDistributedNotificationCenter", feature = "NSString"))]
 pub use self::__NSDistributedNotificationCenter::NSLocalNotificationCenterType;
-#[cfg(feature = "Foundation_NSDistributedNotificationCenter")]
+#[cfg(feature = "NSDistributedNotificationCenter")]
 pub use self::__NSDistributedNotificationCenter::NSNotificationDeliverImmediately;
-#[cfg(feature = "Foundation_NSDistributedNotificationCenter")]
+#[cfg(feature = "NSDistributedNotificationCenter")]
 pub use self::__NSDistributedNotificationCenter::NSNotificationPostToAllSessions;
-#[cfg(feature = "Foundation_NSDistributedNotificationCenter")]
+#[cfg(feature = "NSDistributedNotificationCenter")]
 pub use self::__NSDistributedNotificationCenter::NSNotificationSuspensionBehavior;
-#[cfg(all(
-    feature = "Foundation_NSEnergyFormatter",
-    feature = "Foundation_NSFormatter"
-))]
+#[cfg(all(feature = "NSEnergyFormatter", feature = "NSFormatter"))]
 pub use self::__NSEnergyFormatter::NSEnergyFormatter;
-#[cfg(feature = "Foundation_NSEnergyFormatter")]
+#[cfg(feature = "NSEnergyFormatter")]
 pub use self::__NSEnergyFormatter::NSEnergyFormatterUnit;
-#[cfg(feature = "Foundation_NSEnumerator")]
+#[cfg(feature = "NSEnumerator")]
 pub use self::__NSEnumerator::NSFastEnumeration;
-#[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSError", feature = "NSString"))]
 pub use self::__NSError::NSCocoaErrorDomain;
-#[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSError", feature = "NSString"))]
 pub use self::__NSError::NSDebugDescriptionErrorKey;
-#[cfg(feature = "Foundation_NSError")]
+#[cfg(feature = "NSError")]
 pub use self::__NSError::NSError;
-#[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSError", feature = "NSString"))]
 pub use self::__NSError::NSErrorDomain;
-#[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSError", feature = "NSString"))]
 pub use self::__NSError::NSErrorUserInfoKey;
-#[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSError", feature = "NSString"))]
 pub use self::__NSError::NSFilePathErrorKey;
-#[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSError", feature = "NSString"))]
 pub use self::__NSError::NSHelpAnchorErrorKey;
-#[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSError", feature = "NSString"))]
 pub use self::__NSError::NSLocalizedDescriptionKey;
-#[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSError", feature = "NSString"))]
 pub use self::__NSError::NSLocalizedFailureErrorKey;
-#[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSError", feature = "NSString"))]
 pub use self::__NSError::NSLocalizedFailureReasonErrorKey;
-#[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSError", feature = "NSString"))]
 pub use self::__NSError::NSLocalizedRecoveryOptionsErrorKey;
-#[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSError", feature = "NSString"))]
 pub use self::__NSError::NSLocalizedRecoverySuggestionErrorKey;
-#[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSError", feature = "NSString"))]
 pub use self::__NSError::NSMachErrorDomain;
-#[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSError", feature = "NSString"))]
 pub use self::__NSError::NSMultipleUnderlyingErrorsKey;
-#[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSError", feature = "NSString"))]
 pub use self::__NSError::NSOSStatusErrorDomain;
-#[cfg(feature = "Foundation_NSError")]
+#[cfg(feature = "NSError")]
 pub use self::__NSError::NSObjectNSErrorRecoveryAttempting;
-#[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSError", feature = "NSString"))]
 pub use self::__NSError::NSPOSIXErrorDomain;
-#[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSError", feature = "NSString"))]
 pub use self::__NSError::NSRecoveryAttempterErrorKey;
-#[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSError", feature = "NSString"))]
 pub use self::__NSError::NSStringEncodingErrorKey;
-#[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSError", feature = "NSString"))]
 pub use self::__NSError::NSURLErrorKey;
-#[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSError", feature = "NSString"))]
 pub use self::__NSError::NSUnderlyingErrorKey;
-#[cfg(feature = "Foundation_NSException")]
+#[cfg(feature = "NSException")]
 pub use self::__NSException::NSAssertionHandler;
-#[cfg(all(feature = "Foundation_NSException", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSException", feature = "NSString"))]
 pub use self::__NSException::NSAssertionHandlerKey;
 #[cfg(all(
-    feature = "Foundation_NSException",
-    feature = "Foundation_NSObjCRuntime",
-    feature = "Foundation_NSString"
+    feature = "NSException",
+    feature = "NSObjCRuntime",
+    feature = "NSString"
 ))]
 pub use self::__NSException::NSDestinationInvalidException;
-#[cfg(feature = "Foundation_NSException")]
+#[cfg(feature = "NSException")]
 pub use self::__NSException::NSException;
 #[cfg(all(
-    feature = "Foundation_NSException",
-    feature = "Foundation_NSObjCRuntime",
-    feature = "Foundation_NSString"
+    feature = "NSException",
+    feature = "NSObjCRuntime",
+    feature = "NSString"
 ))]
 pub use self::__NSException::NSGenericException;
-#[cfg(feature = "Foundation_NSException")]
+#[cfg(feature = "NSException")]
 pub use self::__NSException::NSGetUncaughtExceptionHandler;
 #[cfg(all(
-    feature = "Foundation_NSException",
-    feature = "Foundation_NSObjCRuntime",
-    feature = "Foundation_NSString"
+    feature = "NSException",
+    feature = "NSObjCRuntime",
+    feature = "NSString"
 ))]
 pub use self::__NSException::NSInconsistentArchiveException;
 #[cfg(all(
-    feature = "Foundation_NSException",
-    feature = "Foundation_NSObjCRuntime",
-    feature = "Foundation_NSString"
+    feature = "NSException",
+    feature = "NSObjCRuntime",
+    feature = "NSString"
 ))]
 pub use self::__NSException::NSInternalInconsistencyException;
 #[cfg(all(
-    feature = "Foundation_NSException",
-    feature = "Foundation_NSObjCRuntime",
-    feature = "Foundation_NSString"
+    feature = "NSException",
+    feature = "NSObjCRuntime",
+    feature = "NSString"
 ))]
 pub use self::__NSException::NSInvalidArgumentException;
 #[cfg(all(
-    feature = "Foundation_NSException",
-    feature = "Foundation_NSObjCRuntime",
-    feature = "Foundation_NSString"
+    feature = "NSException",
+    feature = "NSObjCRuntime",
+    feature = "NSString"
 ))]
 pub use self::__NSException::NSInvalidReceivePortException;
 #[cfg(all(
-    feature = "Foundation_NSException",
-    feature = "Foundation_NSObjCRuntime",
-    feature = "Foundation_NSString"
+    feature = "NSException",
+    feature = "NSObjCRuntime",
+    feature = "NSString"
 ))]
 pub use self::__NSException::NSInvalidSendPortException;
 #[cfg(all(
-    feature = "Foundation_NSException",
-    feature = "Foundation_NSObjCRuntime",
-    feature = "Foundation_NSString"
+    feature = "NSException",
+    feature = "NSObjCRuntime",
+    feature = "NSString"
 ))]
 pub use self::__NSException::NSMallocException;
 #[cfg(all(
-    feature = "Foundation_NSException",
-    feature = "Foundation_NSObjCRuntime",
-    feature = "Foundation_NSString"
+    feature = "NSException",
+    feature = "NSObjCRuntime",
+    feature = "NSString"
 ))]
 pub use self::__NSException::NSObjectInaccessibleException;
 #[cfg(all(
-    feature = "Foundation_NSException",
-    feature = "Foundation_NSObjCRuntime",
-    feature = "Foundation_NSString"
+    feature = "NSException",
+    feature = "NSObjCRuntime",
+    feature = "NSString"
 ))]
 pub use self::__NSException::NSObjectNotAvailableException;
 #[cfg(all(
-    feature = "Foundation_NSException",
-    feature = "Foundation_NSObjCRuntime",
-    feature = "Foundation_NSString"
+    feature = "NSException",
+    feature = "NSObjCRuntime",
+    feature = "NSString"
 ))]
 pub use self::__NSException::NSOldStyleException;
 #[cfg(all(
-    feature = "Foundation_NSException",
-    feature = "Foundation_NSObjCRuntime",
-    feature = "Foundation_NSString"
+    feature = "NSException",
+    feature = "NSObjCRuntime",
+    feature = "NSString"
 ))]
 pub use self::__NSException::NSPortReceiveException;
 #[cfg(all(
-    feature = "Foundation_NSException",
-    feature = "Foundation_NSObjCRuntime",
-    feature = "Foundation_NSString"
+    feature = "NSException",
+    feature = "NSObjCRuntime",
+    feature = "NSString"
 ))]
 pub use self::__NSException::NSPortSendException;
 #[cfg(all(
-    feature = "Foundation_NSException",
-    feature = "Foundation_NSObjCRuntime",
-    feature = "Foundation_NSString"
+    feature = "NSException",
+    feature = "NSObjCRuntime",
+    feature = "NSString"
 ))]
 pub use self::__NSException::NSPortTimeoutException;
 #[cfg(all(
-    feature = "Foundation_NSException",
-    feature = "Foundation_NSObjCRuntime",
-    feature = "Foundation_NSString"
+    feature = "NSException",
+    feature = "NSObjCRuntime",
+    feature = "NSString"
 ))]
 pub use self::__NSException::NSRangeException;
-#[cfg(feature = "Foundation_NSException")]
+#[cfg(feature = "NSException")]
 pub use self::__NSException::NSSetUncaughtExceptionHandler;
-#[cfg(feature = "Foundation_NSException")]
+#[cfg(feature = "NSException")]
 pub use self::__NSException::NSUncaughtExceptionHandler;
-#[cfg(feature = "Foundation_NSExpression")]
+#[cfg(feature = "NSExpression")]
 pub use self::__NSExpression::NSExpression;
-#[cfg(feature = "Foundation_NSExpression")]
+#[cfg(feature = "NSExpression")]
 pub use self::__NSExpression::NSExpressionType;
-#[cfg(feature = "Foundation_NSExtensionContext")]
+#[cfg(feature = "NSExtensionContext")]
 pub use self::__NSExtensionContext::NSExtensionContext;
-#[cfg(all(
-    feature = "Foundation_NSExtensionContext",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSExtensionContext", feature = "NSString"))]
 pub use self::__NSExtensionContext::NSExtensionHostDidBecomeActiveNotification;
-#[cfg(all(
-    feature = "Foundation_NSExtensionContext",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSExtensionContext", feature = "NSString"))]
 pub use self::__NSExtensionContext::NSExtensionHostDidEnterBackgroundNotification;
-#[cfg(all(
-    feature = "Foundation_NSExtensionContext",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSExtensionContext", feature = "NSString"))]
 pub use self::__NSExtensionContext::NSExtensionHostWillEnterForegroundNotification;
-#[cfg(all(
-    feature = "Foundation_NSExtensionContext",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSExtensionContext", feature = "NSString"))]
 pub use self::__NSExtensionContext::NSExtensionHostWillResignActiveNotification;
-#[cfg(all(
-    feature = "Foundation_NSExtensionContext",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSExtensionContext", feature = "NSString"))]
 pub use self::__NSExtensionContext::NSExtensionItemsAndErrorsKey;
-#[cfg(feature = "Foundation_NSExtensionItem")]
+#[cfg(feature = "NSExtensionItem")]
 pub use self::__NSExtensionItem::NSExtensionItem;
-#[cfg(all(
-    feature = "Foundation_NSExtensionItem",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSExtensionItem", feature = "NSString"))]
 pub use self::__NSExtensionItem::NSExtensionItemAttachmentsKey;
-#[cfg(all(
-    feature = "Foundation_NSExtensionItem",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSExtensionItem", feature = "NSString"))]
 pub use self::__NSExtensionItem::NSExtensionItemAttributedContentTextKey;
-#[cfg(all(
-    feature = "Foundation_NSExtensionItem",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSExtensionItem", feature = "NSString"))]
 pub use self::__NSExtensionItem::NSExtensionItemAttributedTitleKey;
-#[cfg(feature = "Foundation_NSExtensionRequestHandling")]
+#[cfg(feature = "NSExtensionRequestHandling")]
 pub use self::__NSExtensionRequestHandling::NSExtensionRequestHandling;
-#[cfg(feature = "Foundation_NSFileCoordinator")]
+#[cfg(feature = "NSFileCoordinator")]
 pub use self::__NSFileCoordinator::NSFileAccessIntent;
-#[cfg(feature = "Foundation_NSFileCoordinator")]
+#[cfg(feature = "NSFileCoordinator")]
 pub use self::__NSFileCoordinator::NSFileCoordinator;
-#[cfg(feature = "Foundation_NSFileCoordinator")]
+#[cfg(feature = "NSFileCoordinator")]
 pub use self::__NSFileCoordinator::NSFileCoordinatorReadingOptions;
-#[cfg(feature = "Foundation_NSFileCoordinator")]
+#[cfg(feature = "NSFileCoordinator")]
 pub use self::__NSFileCoordinator::NSFileCoordinatorWritingOptions;
-#[cfg(feature = "Foundation_NSFileHandle")]
+#[cfg(feature = "NSFileHandle")]
 pub use self::__NSFileHandle::NSFileHandle;
 #[cfg(all(
-    feature = "Foundation_NSFileHandle",
-    feature = "Foundation_NSNotification",
-    feature = "Foundation_NSString"
+    feature = "NSFileHandle",
+    feature = "NSNotification",
+    feature = "NSString"
 ))]
 pub use self::__NSFileHandle::NSFileHandleConnectionAcceptedNotification;
 #[cfg(all(
-    feature = "Foundation_NSFileHandle",
-    feature = "Foundation_NSNotification",
-    feature = "Foundation_NSString"
+    feature = "NSFileHandle",
+    feature = "NSNotification",
+    feature = "NSString"
 ))]
 pub use self::__NSFileHandle::NSFileHandleDataAvailableNotification;
-#[cfg(all(feature = "Foundation_NSFileHandle", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSFileHandle", feature = "NSString"))]
 pub use self::__NSFileHandle::NSFileHandleNotificationDataItem;
-#[cfg(all(feature = "Foundation_NSFileHandle", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSFileHandle", feature = "NSString"))]
 pub use self::__NSFileHandle::NSFileHandleNotificationFileHandleItem;
-#[cfg(all(feature = "Foundation_NSFileHandle", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSFileHandle", feature = "NSString"))]
 pub use self::__NSFileHandle::NSFileHandleNotificationMonitorModes;
 #[cfg(all(
-    feature = "Foundation_NSFileHandle",
-    feature = "Foundation_NSObjCRuntime",
-    feature = "Foundation_NSString"
+    feature = "NSFileHandle",
+    feature = "NSObjCRuntime",
+    feature = "NSString"
 ))]
 pub use self::__NSFileHandle::NSFileHandleOperationException;
 #[cfg(all(
-    feature = "Foundation_NSFileHandle",
-    feature = "Foundation_NSNotification",
-    feature = "Foundation_NSString"
+    feature = "NSFileHandle",
+    feature = "NSNotification",
+    feature = "NSString"
 ))]
 pub use self::__NSFileHandle::NSFileHandleReadCompletionNotification;
 #[cfg(all(
-    feature = "Foundation_NSFileHandle",
-    feature = "Foundation_NSNotification",
-    feature = "Foundation_NSString"
+    feature = "NSFileHandle",
+    feature = "NSNotification",
+    feature = "NSString"
 ))]
 pub use self::__NSFileHandle::NSFileHandleReadToEndOfFileCompletionNotification;
-#[cfg(feature = "Foundation_NSFileHandle")]
+#[cfg(feature = "NSFileHandle")]
 pub use self::__NSFileHandle::NSPipe;
-#[cfg(feature = "Foundation_NSFileManager")]
+#[cfg(feature = "NSFileManager")]
 pub use self::__NSFileManager::NSDirectoryEnumerationOptions;
-#[cfg(all(
-    feature = "Foundation_NSEnumerator",
-    feature = "Foundation_NSFileManager"
-))]
+#[cfg(all(feature = "NSEnumerator", feature = "NSFileManager"))]
 pub use self::__NSFileManager::NSDirectoryEnumerator;
-#[cfg(all(feature = "Foundation_NSFileManager", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSFileManager", feature = "NSString"))]
 pub use self::__NSFileManager::NSFileAppendOnly;
-#[cfg(all(feature = "Foundation_NSFileManager", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSFileManager", feature = "NSString"))]
 pub use self::__NSFileManager::NSFileAttributeKey;
-#[cfg(all(feature = "Foundation_NSFileManager", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSFileManager", feature = "NSString"))]
 pub use self::__NSFileManager::NSFileAttributeType;
-#[cfg(all(feature = "Foundation_NSFileManager", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSFileManager", feature = "NSString"))]
 pub use self::__NSFileManager::NSFileBusy;
-#[cfg(all(feature = "Foundation_NSFileManager", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSFileManager", feature = "NSString"))]
 pub use self::__NSFileManager::NSFileCreationDate;
-#[cfg(all(feature = "Foundation_NSFileManager", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSFileManager", feature = "NSString"))]
 pub use self::__NSFileManager::NSFileDeviceIdentifier;
-#[cfg(all(feature = "Foundation_NSFileManager", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSFileManager", feature = "NSString"))]
 pub use self::__NSFileManager::NSFileExtensionHidden;
-#[cfg(all(feature = "Foundation_NSFileManager", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSFileManager", feature = "NSString"))]
 pub use self::__NSFileManager::NSFileGroupOwnerAccountID;
-#[cfg(all(feature = "Foundation_NSFileManager", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSFileManager", feature = "NSString"))]
 pub use self::__NSFileManager::NSFileGroupOwnerAccountName;
-#[cfg(all(feature = "Foundation_NSFileManager", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSFileManager", feature = "NSString"))]
 pub use self::__NSFileManager::NSFileHFSCreatorCode;
-#[cfg(all(feature = "Foundation_NSFileManager", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSFileManager", feature = "NSString"))]
 pub use self::__NSFileManager::NSFileHFSTypeCode;
-#[cfg(all(feature = "Foundation_NSFileManager", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSFileManager", feature = "NSString"))]
 pub use self::__NSFileManager::NSFileImmutable;
-#[cfg(feature = "Foundation_NSFileManager")]
+#[cfg(feature = "NSFileManager")]
 pub use self::__NSFileManager::NSFileManager;
-#[cfg(feature = "Foundation_NSFileManager")]
+#[cfg(feature = "NSFileManager")]
 pub use self::__NSFileManager::NSFileManagerDelegate;
-#[cfg(feature = "Foundation_NSFileManager")]
+#[cfg(feature = "NSFileManager")]
 pub use self::__NSFileManager::NSFileManagerItemReplacementOptions;
-#[cfg(all(feature = "Foundation_NSFileManager", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSFileManager", feature = "NSString"))]
 pub use self::__NSFileManager::NSFileManagerUnmountDissentingProcessIdentifierErrorKey;
-#[cfg(feature = "Foundation_NSFileManager")]
+#[cfg(feature = "NSFileManager")]
 pub use self::__NSFileManager::NSFileManagerUnmountOptions;
-#[cfg(all(feature = "Foundation_NSFileManager", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSFileManager", feature = "NSString"))]
 pub use self::__NSFileManager::NSFileModificationDate;
-#[cfg(all(feature = "Foundation_NSFileManager", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSFileManager", feature = "NSString"))]
 pub use self::__NSFileManager::NSFileOwnerAccountID;
-#[cfg(all(feature = "Foundation_NSFileManager", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSFileManager", feature = "NSString"))]
 pub use self::__NSFileManager::NSFileOwnerAccountName;
-#[cfg(all(feature = "Foundation_NSFileManager", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSFileManager", feature = "NSString"))]
 pub use self::__NSFileManager::NSFilePosixPermissions;
-#[cfg(all(feature = "Foundation_NSFileManager", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSFileManager", feature = "NSString"))]
 pub use self::__NSFileManager::NSFileProtectionComplete;
-#[cfg(all(feature = "Foundation_NSFileManager", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSFileManager", feature = "NSString"))]
 pub use self::__NSFileManager::NSFileProtectionCompleteUnlessOpen;
-#[cfg(all(feature = "Foundation_NSFileManager", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSFileManager", feature = "NSString"))]
 pub use self::__NSFileManager::NSFileProtectionCompleteUntilFirstUserAuthentication;
-#[cfg(all(feature = "Foundation_NSFileManager", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSFileManager", feature = "NSString"))]
 pub use self::__NSFileManager::NSFileProtectionCompleteWhenUserInactive;
-#[cfg(all(feature = "Foundation_NSFileManager", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSFileManager", feature = "NSString"))]
 pub use self::__NSFileManager::NSFileProtectionKey;
-#[cfg(all(feature = "Foundation_NSFileManager", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSFileManager", feature = "NSString"))]
 pub use self::__NSFileManager::NSFileProtectionNone;
-#[cfg(all(feature = "Foundation_NSFileManager", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSFileManager", feature = "NSString"))]
 pub use self::__NSFileManager::NSFileProtectionType;
-#[cfg(feature = "Foundation_NSFileManager")]
+#[cfg(feature = "NSFileManager")]
 pub use self::__NSFileManager::NSFileProviderService;
-#[cfg(all(feature = "Foundation_NSFileManager", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSFileManager", feature = "NSString"))]
 pub use self::__NSFileManager::NSFileProviderServiceName;
-#[cfg(all(feature = "Foundation_NSFileManager", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSFileManager", feature = "NSString"))]
 pub use self::__NSFileManager::NSFileReferenceCount;
-#[cfg(all(feature = "Foundation_NSFileManager", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSFileManager", feature = "NSString"))]
 pub use self::__NSFileManager::NSFileSize;
-#[cfg(all(feature = "Foundation_NSFileManager", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSFileManager", feature = "NSString"))]
 pub use self::__NSFileManager::NSFileSystemFileNumber;
-#[cfg(all(feature = "Foundation_NSFileManager", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSFileManager", feature = "NSString"))]
 pub use self::__NSFileManager::NSFileSystemFreeNodes;
-#[cfg(all(feature = "Foundation_NSFileManager", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSFileManager", feature = "NSString"))]
 pub use self::__NSFileManager::NSFileSystemFreeSize;
-#[cfg(all(feature = "Foundation_NSFileManager", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSFileManager", feature = "NSString"))]
 pub use self::__NSFileManager::NSFileSystemNodes;
-#[cfg(all(feature = "Foundation_NSFileManager", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSFileManager", feature = "NSString"))]
 pub use self::__NSFileManager::NSFileSystemNumber;
-#[cfg(all(feature = "Foundation_NSFileManager", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSFileManager", feature = "NSString"))]
 pub use self::__NSFileManager::NSFileSystemSize;
-#[cfg(all(feature = "Foundation_NSFileManager", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSFileManager", feature = "NSString"))]
 pub use self::__NSFileManager::NSFileType;
-#[cfg(all(feature = "Foundation_NSFileManager", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSFileManager", feature = "NSString"))]
 pub use self::__NSFileManager::NSFileTypeBlockSpecial;
-#[cfg(all(feature = "Foundation_NSFileManager", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSFileManager", feature = "NSString"))]
 pub use self::__NSFileManager::NSFileTypeCharacterSpecial;
-#[cfg(all(feature = "Foundation_NSFileManager", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSFileManager", feature = "NSString"))]
 pub use self::__NSFileManager::NSFileTypeDirectory;
-#[cfg(all(feature = "Foundation_NSFileManager", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSFileManager", feature = "NSString"))]
 pub use self::__NSFileManager::NSFileTypeRegular;
-#[cfg(all(feature = "Foundation_NSFileManager", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSFileManager", feature = "NSString"))]
 pub use self::__NSFileManager::NSFileTypeSocket;
-#[cfg(all(feature = "Foundation_NSFileManager", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSFileManager", feature = "NSString"))]
 pub use self::__NSFileManager::NSFileTypeSymbolicLink;
-#[cfg(all(feature = "Foundation_NSFileManager", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSFileManager", feature = "NSString"))]
 pub use self::__NSFileManager::NSFileTypeUnknown;
-#[cfg(feature = "Foundation_NSFileManager")]
+#[cfg(feature = "NSFileManager")]
 pub use self::__NSFileManager::NSURLRelationship;
 #[cfg(all(
-    feature = "Foundation_NSFileManager",
-    feature = "Foundation_NSNotification",
-    feature = "Foundation_NSString"
+    feature = "NSFileManager",
+    feature = "NSNotification",
+    feature = "NSString"
 ))]
 pub use self::__NSFileManager::NSUbiquityIdentityDidChangeNotification;
-#[cfg(feature = "Foundation_NSFileManager")]
+#[cfg(feature = "NSFileManager")]
 pub use self::__NSFileManager::NSVolumeEnumerationOptions;
-#[cfg(feature = "Foundation_NSFilePresenter")]
+#[cfg(feature = "NSFilePresenter")]
 pub use self::__NSFilePresenter::NSFilePresenter;
-#[cfg(feature = "Foundation_NSFileVersion")]
+#[cfg(feature = "NSFileVersion")]
 pub use self::__NSFileVersion::NSFileVersion;
-#[cfg(feature = "Foundation_NSFileVersion")]
+#[cfg(feature = "NSFileVersion")]
 pub use self::__NSFileVersion::NSFileVersionAddingOptions;
-#[cfg(feature = "Foundation_NSFileVersion")]
+#[cfg(feature = "NSFileVersion")]
 pub use self::__NSFileVersion::NSFileVersionReplacingOptions;
-#[cfg(feature = "Foundation_NSFileWrapper")]
+#[cfg(feature = "NSFileWrapper")]
 pub use self::__NSFileWrapper::NSFileWrapper;
-#[cfg(feature = "Foundation_NSFileWrapper")]
+#[cfg(feature = "NSFileWrapper")]
 pub use self::__NSFileWrapper::NSFileWrapperReadingOptions;
-#[cfg(feature = "Foundation_NSFileWrapper")]
+#[cfg(feature = "NSFileWrapper")]
 pub use self::__NSFileWrapper::NSFileWrapperWritingOptions;
-#[cfg(feature = "Foundation_NSFormatter")]
+#[cfg(feature = "NSFormatter")]
 pub use self::__NSFormatter::NSFormatter;
-#[cfg(feature = "Foundation_NSFormatter")]
+#[cfg(feature = "NSFormatter")]
 pub use self::__NSFormatter::NSFormattingContext;
-#[cfg(feature = "Foundation_NSFormatter")]
+#[cfg(feature = "NSFormatter")]
 pub use self::__NSFormatter::NSFormattingUnitStyle;
-#[cfg(feature = "Foundation_NSGarbageCollector")]
+#[cfg(feature = "NSGarbageCollector")]
 pub use self::__NSGarbageCollector::NSGarbageCollector;
-#[cfg(feature = "Foundation_NSGeometry")]
+#[cfg(feature = "NSGeometry")]
 pub use self::__NSGeometry::NSAlignmentOptions;
-#[cfg(feature = "Foundation_NSGeometry")]
+#[cfg(feature = "NSGeometry")]
 pub use self::__NSGeometry::NSContainsRect;
-#[cfg(feature = "Foundation_NSGeometry")]
+#[cfg(feature = "NSGeometry")]
 pub use self::__NSGeometry::NSDivideRect;
-#[cfg(feature = "Foundation_NSGeometry")]
+#[cfg(feature = "NSGeometry")]
 pub use self::__NSGeometry::NSEdgeInsets;
-#[cfg(feature = "Foundation_NSGeometry")]
+#[cfg(feature = "NSGeometry")]
 pub use self::__NSGeometry::NSEdgeInsetsEqual;
-#[cfg(feature = "Foundation_NSGeometry")]
+#[cfg(feature = "NSGeometry")]
 pub use self::__NSGeometry::NSEdgeInsetsZero;
-#[cfg(feature = "Foundation_NSGeometry")]
+#[cfg(feature = "NSGeometry")]
 pub use self::__NSGeometry::NSEqualPoints;
-#[cfg(feature = "Foundation_NSGeometry")]
+#[cfg(feature = "NSGeometry")]
 pub use self::__NSGeometry::NSEqualRects;
-#[cfg(feature = "Foundation_NSGeometry")]
+#[cfg(feature = "NSGeometry")]
 pub use self::__NSGeometry::NSEqualSizes;
-#[cfg(feature = "Foundation_NSGeometry")]
+#[cfg(feature = "NSGeometry")]
 pub use self::__NSGeometry::NSInsetRect;
-#[cfg(feature = "Foundation_NSGeometry")]
+#[cfg(feature = "NSGeometry")]
 pub use self::__NSGeometry::NSIntegralRect;
-#[cfg(feature = "Foundation_NSGeometry")]
+#[cfg(feature = "NSGeometry")]
 pub use self::__NSGeometry::NSIntegralRectWithOptions;
-#[cfg(feature = "Foundation_NSGeometry")]
+#[cfg(feature = "NSGeometry")]
 pub use self::__NSGeometry::NSIntersectionRect;
-#[cfg(feature = "Foundation_NSGeometry")]
+#[cfg(feature = "NSGeometry")]
 pub use self::__NSGeometry::NSIntersectsRect;
-#[cfg(feature = "Foundation_NSGeometry")]
+#[cfg(feature = "NSGeometry")]
 pub use self::__NSGeometry::NSIsEmptyRect;
-#[cfg(feature = "Foundation_NSGeometry")]
+#[cfg(feature = "NSGeometry")]
 pub use self::__NSGeometry::NSMouseInRect;
-#[cfg(feature = "Foundation_NSGeometry")]
+#[cfg(feature = "NSGeometry")]
 pub use self::__NSGeometry::NSOffsetRect;
-#[cfg(feature = "Foundation_NSGeometry")]
+#[cfg(feature = "NSGeometry")]
 pub use self::__NSGeometry::NSPointArray;
-#[cfg(all(feature = "Foundation_NSGeometry", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSGeometry", feature = "NSString"))]
 pub use self::__NSGeometry::NSPointFromString;
-#[cfg(feature = "Foundation_NSGeometry")]
+#[cfg(feature = "NSGeometry")]
 pub use self::__NSGeometry::NSPointInRect;
-#[cfg(feature = "Foundation_NSGeometry")]
+#[cfg(feature = "NSGeometry")]
 pub use self::__NSGeometry::NSPointPointer;
-#[cfg(feature = "Foundation_NSGeometry")]
+#[cfg(feature = "NSGeometry")]
 pub use self::__NSGeometry::NSRectArray;
-#[cfg(all(feature = "Foundation_NSGeometry", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSGeometry", feature = "NSString"))]
 pub use self::__NSGeometry::NSRectFromString;
-#[cfg(feature = "Foundation_NSGeometry")]
+#[cfg(feature = "NSGeometry")]
 pub use self::__NSGeometry::NSRectPointer;
-#[cfg(feature = "Foundation_NSGeometry")]
+#[cfg(feature = "NSGeometry")]
 pub use self::__NSGeometry::NSSizeArray;
-#[cfg(all(feature = "Foundation_NSGeometry", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSGeometry", feature = "NSString"))]
 pub use self::__NSGeometry::NSSizeFromString;
-#[cfg(feature = "Foundation_NSGeometry")]
+#[cfg(feature = "NSGeometry")]
 pub use self::__NSGeometry::NSSizePointer;
-#[cfg(all(feature = "Foundation_NSGeometry", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSGeometry", feature = "NSString"))]
 pub use self::__NSGeometry::NSStringFromPoint;
-#[cfg(all(feature = "Foundation_NSGeometry", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSGeometry", feature = "NSString"))]
 pub use self::__NSGeometry::NSStringFromRect;
-#[cfg(all(feature = "Foundation_NSGeometry", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSGeometry", feature = "NSString"))]
 pub use self::__NSGeometry::NSStringFromSize;
-#[cfg(feature = "Foundation_NSGeometry")]
+#[cfg(feature = "NSGeometry")]
 pub use self::__NSGeometry::NSUnionRect;
-#[cfg(feature = "Foundation_NSGeometry")]
+#[cfg(feature = "NSGeometry")]
 pub use self::__NSGeometry::NSZeroPoint;
-#[cfg(feature = "Foundation_NSGeometry")]
+#[cfg(feature = "NSGeometry")]
 pub use self::__NSGeometry::NSZeroRect;
-#[cfg(feature = "Foundation_NSGeometry")]
+#[cfg(feature = "NSGeometry")]
 pub use self::__NSGeometry::NSZeroSize;
-#[cfg(all(feature = "Foundation_NSHFSFileTypes", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSHFSFileTypes", feature = "NSString"))]
 pub use self::__NSHFSFileTypes::NSFileTypeForHFSTypeCode;
-#[cfg(all(feature = "Foundation_NSHFSFileTypes", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSHFSFileTypes", feature = "NSString"))]
 pub use self::__NSHFSFileTypes::NSHFSTypeCodeFromFileType;
-#[cfg(all(feature = "Foundation_NSHFSFileTypes", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSHFSFileTypes", feature = "NSString"))]
 pub use self::__NSHFSFileTypes::NSHFSTypeOfFile;
-#[cfg(feature = "Foundation_NSHTTPCookie")]
+#[cfg(feature = "NSHTTPCookie")]
 pub use self::__NSHTTPCookie::NSHTTPCookie;
-#[cfg(all(feature = "Foundation_NSHTTPCookie", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSHTTPCookie", feature = "NSString"))]
 pub use self::__NSHTTPCookie::NSHTTPCookieComment;
-#[cfg(all(feature = "Foundation_NSHTTPCookie", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSHTTPCookie", feature = "NSString"))]
 pub use self::__NSHTTPCookie::NSHTTPCookieCommentURL;
-#[cfg(all(feature = "Foundation_NSHTTPCookie", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSHTTPCookie", feature = "NSString"))]
 pub use self::__NSHTTPCookie::NSHTTPCookieDiscard;
-#[cfg(all(feature = "Foundation_NSHTTPCookie", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSHTTPCookie", feature = "NSString"))]
 pub use self::__NSHTTPCookie::NSHTTPCookieDomain;
-#[cfg(all(feature = "Foundation_NSHTTPCookie", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSHTTPCookie", feature = "NSString"))]
 pub use self::__NSHTTPCookie::NSHTTPCookieExpires;
-#[cfg(all(feature = "Foundation_NSHTTPCookie", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSHTTPCookie", feature = "NSString"))]
 pub use self::__NSHTTPCookie::NSHTTPCookieMaximumAge;
-#[cfg(all(feature = "Foundation_NSHTTPCookie", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSHTTPCookie", feature = "NSString"))]
 pub use self::__NSHTTPCookie::NSHTTPCookieName;
-#[cfg(all(feature = "Foundation_NSHTTPCookie", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSHTTPCookie", feature = "NSString"))]
 pub use self::__NSHTTPCookie::NSHTTPCookieOriginURL;
-#[cfg(all(feature = "Foundation_NSHTTPCookie", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSHTTPCookie", feature = "NSString"))]
 pub use self::__NSHTTPCookie::NSHTTPCookiePath;
-#[cfg(all(feature = "Foundation_NSHTTPCookie", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSHTTPCookie", feature = "NSString"))]
 pub use self::__NSHTTPCookie::NSHTTPCookiePort;
-#[cfg(all(feature = "Foundation_NSHTTPCookie", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSHTTPCookie", feature = "NSString"))]
 pub use self::__NSHTTPCookie::NSHTTPCookiePropertyKey;
-#[cfg(all(feature = "Foundation_NSHTTPCookie", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSHTTPCookie", feature = "NSString"))]
 pub use self::__NSHTTPCookie::NSHTTPCookieSameSiteLax;
-#[cfg(all(feature = "Foundation_NSHTTPCookie", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSHTTPCookie", feature = "NSString"))]
 pub use self::__NSHTTPCookie::NSHTTPCookieSameSitePolicy;
-#[cfg(all(feature = "Foundation_NSHTTPCookie", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSHTTPCookie", feature = "NSString"))]
 pub use self::__NSHTTPCookie::NSHTTPCookieSameSiteStrict;
-#[cfg(all(feature = "Foundation_NSHTTPCookie", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSHTTPCookie", feature = "NSString"))]
 pub use self::__NSHTTPCookie::NSHTTPCookieSecure;
-#[cfg(all(feature = "Foundation_NSHTTPCookie", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSHTTPCookie", feature = "NSString"))]
 pub use self::__NSHTTPCookie::NSHTTPCookieStringPolicy;
-#[cfg(all(feature = "Foundation_NSHTTPCookie", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSHTTPCookie", feature = "NSString"))]
 pub use self::__NSHTTPCookie::NSHTTPCookieValue;
-#[cfg(all(feature = "Foundation_NSHTTPCookie", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSHTTPCookie", feature = "NSString"))]
 pub use self::__NSHTTPCookie::NSHTTPCookieVersion;
-#[cfg(feature = "Foundation_NSHTTPCookieStorage")]
+#[cfg(feature = "NSHTTPCookieStorage")]
 pub use self::__NSHTTPCookieStorage::NSHTTPCookieAcceptPolicy;
 #[cfg(all(
-    feature = "Foundation_NSHTTPCookieStorage",
-    feature = "Foundation_NSNotification",
-    feature = "Foundation_NSString"
+    feature = "NSHTTPCookieStorage",
+    feature = "NSNotification",
+    feature = "NSString"
 ))]
 pub use self::__NSHTTPCookieStorage::NSHTTPCookieManagerAcceptPolicyChangedNotification;
 #[cfg(all(
-    feature = "Foundation_NSHTTPCookieStorage",
-    feature = "Foundation_NSNotification",
-    feature = "Foundation_NSString"
+    feature = "NSHTTPCookieStorage",
+    feature = "NSNotification",
+    feature = "NSString"
 ))]
 pub use self::__NSHTTPCookieStorage::NSHTTPCookieManagerCookiesChangedNotification;
-#[cfg(feature = "Foundation_NSHTTPCookieStorage")]
+#[cfg(feature = "NSHTTPCookieStorage")]
 pub use self::__NSHTTPCookieStorage::NSHTTPCookieStorage;
-#[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSHashTable"))]
+#[cfg(all(feature = "NSArray", feature = "NSHashTable"))]
 pub use self::__NSHashTable::NSAllHashTableObjects;
-#[cfg(feature = "Foundation_NSHashTable")]
+#[cfg(feature = "NSHashTable")]
 pub use self::__NSHashTable::NSCompareHashTables;
-#[cfg(all(feature = "Foundation_NSHashTable", feature = "Foundation_NSZone"))]
+#[cfg(all(feature = "NSHashTable", feature = "NSZone"))]
 pub use self::__NSHashTable::NSCopyHashTableWithZone;
-#[cfg(feature = "Foundation_NSHashTable")]
+#[cfg(feature = "NSHashTable")]
 pub use self::__NSHashTable::NSCountHashTable;
-#[cfg(all(feature = "Foundation_NSHashTable", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSHashTable", feature = "NSString"))]
 pub use self::__NSHashTable::NSCreateHashTable;
-#[cfg(all(
-    feature = "Foundation_NSHashTable",
-    feature = "Foundation_NSString",
-    feature = "Foundation_NSZone"
-))]
+#[cfg(all(feature = "NSHashTable", feature = "NSString", feature = "NSZone"))]
 pub use self::__NSHashTable::NSCreateHashTableWithZone;
-#[cfg(feature = "Foundation_NSHashTable")]
+#[cfg(feature = "NSHashTable")]
 pub use self::__NSHashTable::NSEndHashTableEnumeration;
-#[cfg(feature = "Foundation_NSHashTable")]
+#[cfg(feature = "NSHashTable")]
 pub use self::__NSHashTable::NSEnumerateHashTable;
-#[cfg(feature = "Foundation_NSHashTable")]
+#[cfg(feature = "NSHashTable")]
 pub use self::__NSHashTable::NSFreeHashTable;
-#[cfg(feature = "Foundation_NSHashTable")]
+#[cfg(feature = "NSHashTable")]
 pub use self::__NSHashTable::NSHashEnumerator;
-#[cfg(feature = "Foundation_NSHashTable")]
+#[cfg(feature = "NSHashTable")]
 pub use self::__NSHashTable::NSHashGet;
-#[cfg(feature = "Foundation_NSHashTable")]
+#[cfg(feature = "NSHashTable")]
 pub use self::__NSHashTable::NSHashInsert;
-#[cfg(feature = "Foundation_NSHashTable")]
+#[cfg(feature = "NSHashTable")]
 pub use self::__NSHashTable::NSHashInsertIfAbsent;
-#[cfg(feature = "Foundation_NSHashTable")]
+#[cfg(feature = "NSHashTable")]
 pub use self::__NSHashTable::NSHashInsertKnownAbsent;
-#[cfg(feature = "Foundation_NSHashTable")]
+#[cfg(feature = "NSHashTable")]
 pub use self::__NSHashTable::NSHashRemove;
-#[cfg(feature = "Foundation_NSHashTable")]
+#[cfg(feature = "NSHashTable")]
 pub use self::__NSHashTable::NSHashTable;
-#[cfg(all(feature = "Foundation_NSHashTable", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSHashTable", feature = "NSString"))]
 pub use self::__NSHashTable::NSHashTableCallBacks;
-#[cfg(all(
-    feature = "Foundation_NSHashTable",
-    feature = "Foundation_NSPointerFunctions"
-))]
+#[cfg(all(feature = "NSHashTable", feature = "NSPointerFunctions"))]
 pub use self::__NSHashTable::NSHashTableCopyIn;
-#[cfg(all(
-    feature = "Foundation_NSHashTable",
-    feature = "Foundation_NSPointerFunctions"
-))]
+#[cfg(all(feature = "NSHashTable", feature = "NSPointerFunctions"))]
 pub use self::__NSHashTable::NSHashTableObjectPointerPersonality;
-#[cfg(feature = "Foundation_NSHashTable")]
+#[cfg(feature = "NSHashTable")]
 pub use self::__NSHashTable::NSHashTableOptions;
-#[cfg(all(
-    feature = "Foundation_NSHashTable",
-    feature = "Foundation_NSPointerFunctions"
-))]
+#[cfg(all(feature = "NSHashTable", feature = "NSPointerFunctions"))]
 pub use self::__NSHashTable::NSHashTableStrongMemory;
-#[cfg(all(
-    feature = "Foundation_NSHashTable",
-    feature = "Foundation_NSPointerFunctions"
-))]
+#[cfg(all(feature = "NSHashTable", feature = "NSPointerFunctions"))]
 pub use self::__NSHashTable::NSHashTableWeakMemory;
-#[cfg(all(
-    feature = "Foundation_NSHashTable",
-    feature = "Foundation_NSPointerFunctions"
-))]
+#[cfg(all(feature = "NSHashTable", feature = "NSPointerFunctions"))]
 pub use self::__NSHashTable::NSHashTableZeroingWeakMemory;
-#[cfg(all(feature = "Foundation_NSHashTable", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSHashTable", feature = "NSString"))]
 pub use self::__NSHashTable::NSIntHashCallBacks;
-#[cfg(all(feature = "Foundation_NSHashTable", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSHashTable", feature = "NSString"))]
 pub use self::__NSHashTable::NSIntegerHashCallBacks;
-#[cfg(feature = "Foundation_NSHashTable")]
+#[cfg(feature = "NSHashTable")]
 pub use self::__NSHashTable::NSNextHashEnumeratorItem;
-#[cfg(all(feature = "Foundation_NSHashTable", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSHashTable", feature = "NSString"))]
 pub use self::__NSHashTable::NSNonOwnedPointerHashCallBacks;
-#[cfg(all(feature = "Foundation_NSHashTable", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSHashTable", feature = "NSString"))]
 pub use self::__NSHashTable::NSNonRetainedObjectHashCallBacks;
-#[cfg(all(feature = "Foundation_NSHashTable", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSHashTable", feature = "NSString"))]
 pub use self::__NSHashTable::NSObjectHashCallBacks;
-#[cfg(all(feature = "Foundation_NSHashTable", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSHashTable", feature = "NSString"))]
 pub use self::__NSHashTable::NSOwnedObjectIdentityHashCallBacks;
-#[cfg(all(feature = "Foundation_NSHashTable", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSHashTable", feature = "NSString"))]
 pub use self::__NSHashTable::NSOwnedPointerHashCallBacks;
-#[cfg(all(feature = "Foundation_NSHashTable", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSHashTable", feature = "NSString"))]
 pub use self::__NSHashTable::NSPointerToStructHashCallBacks;
-#[cfg(feature = "Foundation_NSHashTable")]
+#[cfg(feature = "NSHashTable")]
 pub use self::__NSHashTable::NSResetHashTable;
-#[cfg(all(feature = "Foundation_NSHashTable", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSHashTable", feature = "NSString"))]
 pub use self::__NSHashTable::NSStringFromHashTable;
-#[cfg(feature = "Foundation_NSHost")]
+#[cfg(feature = "NSHost")]
 pub use self::__NSHost::NSHost;
-#[cfg(feature = "Foundation_NSISO8601DateFormatter")]
+#[cfg(feature = "NSISO8601DateFormatter")]
 pub use self::__NSISO8601DateFormatter::NSISO8601DateFormatOptions;
-#[cfg(all(
-    feature = "Foundation_NSFormatter",
-    feature = "Foundation_NSISO8601DateFormatter"
-))]
+#[cfg(all(feature = "NSFormatter", feature = "NSISO8601DateFormatter"))]
 pub use self::__NSISO8601DateFormatter::NSISO8601DateFormatter;
-#[cfg(feature = "Foundation_NSIndexPath")]
+#[cfg(feature = "NSIndexPath")]
 pub use self::__NSIndexPath::NSIndexPath;
-#[cfg(feature = "Foundation_NSIndexSet")]
+#[cfg(feature = "NSIndexSet")]
 pub use self::__NSIndexSet::NSIndexSet;
-#[cfg(feature = "Foundation_NSIndexSet")]
+#[cfg(feature = "NSIndexSet")]
 pub use self::__NSIndexSet::NSMutableIndexSet;
-#[cfg(feature = "Foundation_NSInflectionRule")]
+#[cfg(feature = "NSInflectionRule")]
 pub use self::__NSInflectionRule::NSInflectionRule;
-#[cfg(feature = "Foundation_NSInflectionRule")]
+#[cfg(feature = "NSInflectionRule")]
 pub use self::__NSInflectionRule::NSInflectionRuleExplicit;
-#[cfg(feature = "Foundation_NSInvocation")]
+#[cfg(feature = "NSInvocation")]
 pub use self::__NSInvocation::NSInvocation;
-#[cfg(all(feature = "Foundation_NSItemProvider", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSItemProvider", feature = "NSString"))]
 pub use self::__NSItemProvider::NSExtensionJavaScriptFinalizeArgumentKey;
-#[cfg(all(feature = "Foundation_NSItemProvider", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSItemProvider", feature = "NSString"))]
 pub use self::__NSItemProvider::NSExtensionJavaScriptPreprocessingResultsKey;
-#[cfg(feature = "Foundation_NSItemProvider")]
+#[cfg(feature = "NSItemProvider")]
 pub use self::__NSItemProvider::NSItemProvider;
 #[cfg(all(
-    feature = "Foundation_NSError",
-    feature = "Foundation_NSItemProvider",
-    feature = "Foundation_NSObject",
+    feature = "NSError",
+    feature = "NSItemProvider",
+    feature = "NSObject",
     feature = "block2"
 ))]
 pub use self::__NSItemProvider::NSItemProviderCompletionHandler;
-#[cfg(feature = "Foundation_NSItemProvider")]
+#[cfg(feature = "NSItemProvider")]
 pub use self::__NSItemProvider::NSItemProviderErrorCode;
-#[cfg(all(feature = "Foundation_NSItemProvider", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSItemProvider", feature = "NSString"))]
 pub use self::__NSItemProvider::NSItemProviderErrorDomain;
-#[cfg(feature = "Foundation_NSItemProvider")]
+#[cfg(feature = "NSItemProvider")]
 pub use self::__NSItemProvider::NSItemProviderFileOptions;
 #[cfg(all(
-    feature = "Foundation_NSDictionary",
-    feature = "Foundation_NSError",
-    feature = "Foundation_NSItemProvider",
-    feature = "Foundation_NSObject",
+    feature = "NSDictionary",
+    feature = "NSError",
+    feature = "NSItemProvider",
+    feature = "NSObject",
     feature = "block2"
 ))]
 pub use self::__NSItemProvider::NSItemProviderLoadHandler;
-#[cfg(all(feature = "Foundation_NSItemProvider", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSItemProvider", feature = "NSString"))]
 pub use self::__NSItemProvider::NSItemProviderPreferredImageSizeKey;
-#[cfg(feature = "Foundation_NSItemProvider")]
+#[cfg(feature = "NSItemProvider")]
 pub use self::__NSItemProvider::NSItemProviderReading;
-#[cfg(feature = "Foundation_NSItemProvider")]
+#[cfg(feature = "NSItemProvider")]
 pub use self::__NSItemProvider::NSItemProviderRepresentationVisibility;
-#[cfg(feature = "Foundation_NSItemProvider")]
+#[cfg(feature = "NSItemProvider")]
 pub use self::__NSItemProvider::NSItemProviderWriting;
-#[cfg(feature = "Foundation_NSJSONSerialization")]
+#[cfg(feature = "NSJSONSerialization")]
 pub use self::__NSJSONSerialization::NSJSONReadingOptions;
-#[cfg(feature = "Foundation_NSJSONSerialization")]
+#[cfg(feature = "NSJSONSerialization")]
 pub use self::__NSJSONSerialization::NSJSONSerialization;
-#[cfg(feature = "Foundation_NSJSONSerialization")]
+#[cfg(feature = "NSJSONSerialization")]
 pub use self::__NSJSONSerialization::NSJSONWritingOptions;
-#[cfg(all(
-    feature = "Foundation_NSKeyValueCoding",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSKeyValueCoding", feature = "NSString"))]
 pub use self::__NSKeyValueCoding::NSAverageKeyValueOperator;
-#[cfg(all(
-    feature = "Foundation_NSKeyValueCoding",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSKeyValueCoding", feature = "NSString"))]
 pub use self::__NSKeyValueCoding::NSCountKeyValueOperator;
-#[cfg(all(
-    feature = "Foundation_NSKeyValueCoding",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSKeyValueCoding", feature = "NSString"))]
 pub use self::__NSKeyValueCoding::NSDistinctUnionOfArraysKeyValueOperator;
-#[cfg(all(
-    feature = "Foundation_NSKeyValueCoding",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSKeyValueCoding", feature = "NSString"))]
 pub use self::__NSKeyValueCoding::NSDistinctUnionOfObjectsKeyValueOperator;
-#[cfg(all(
-    feature = "Foundation_NSKeyValueCoding",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSKeyValueCoding", feature = "NSString"))]
 pub use self::__NSKeyValueCoding::NSDistinctUnionOfSetsKeyValueOperator;
-#[cfg(all(
-    feature = "Foundation_NSKeyValueCoding",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSKeyValueCoding", feature = "NSString"))]
 pub use self::__NSKeyValueCoding::NSKeyValueOperator;
-#[cfg(all(
-    feature = "Foundation_NSKeyValueCoding",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSKeyValueCoding", feature = "NSString"))]
 pub use self::__NSKeyValueCoding::NSMaximumKeyValueOperator;
-#[cfg(all(
-    feature = "Foundation_NSKeyValueCoding",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSKeyValueCoding", feature = "NSString"))]
 pub use self::__NSKeyValueCoding::NSMinimumKeyValueOperator;
-#[cfg(feature = "Foundation_NSKeyValueCoding")]
+#[cfg(feature = "NSKeyValueCoding")]
 pub use self::__NSKeyValueCoding::NSObjectNSKeyValueCoding;
-#[cfg(all(
-    feature = "Foundation_NSKeyValueCoding",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSKeyValueCoding", feature = "NSString"))]
 pub use self::__NSKeyValueCoding::NSSumKeyValueOperator;
 #[cfg(all(
-    feature = "Foundation_NSKeyValueCoding",
-    feature = "Foundation_NSObjCRuntime",
-    feature = "Foundation_NSString"
+    feature = "NSKeyValueCoding",
+    feature = "NSObjCRuntime",
+    feature = "NSString"
 ))]
 pub use self::__NSKeyValueCoding::NSUndefinedKeyException;
-#[cfg(all(
-    feature = "Foundation_NSKeyValueCoding",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSKeyValueCoding", feature = "NSString"))]
 pub use self::__NSKeyValueCoding::NSUnionOfArraysKeyValueOperator;
-#[cfg(all(
-    feature = "Foundation_NSKeyValueCoding",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSKeyValueCoding", feature = "NSString"))]
 pub use self::__NSKeyValueCoding::NSUnionOfObjectsKeyValueOperator;
-#[cfg(all(
-    feature = "Foundation_NSKeyValueCoding",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSKeyValueCoding", feature = "NSString"))]
 pub use self::__NSKeyValueCoding::NSUnionOfSetsKeyValueOperator;
-#[cfg(feature = "Foundation_NSKeyValueObserving")]
+#[cfg(feature = "NSKeyValueObserving")]
 pub use self::__NSKeyValueObserving::NSKeyValueChange;
-#[cfg(all(
-    feature = "Foundation_NSKeyValueObserving",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSKeyValueObserving", feature = "NSString"))]
 pub use self::__NSKeyValueObserving::NSKeyValueChangeIndexesKey;
-#[cfg(all(
-    feature = "Foundation_NSKeyValueObserving",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSKeyValueObserving", feature = "NSString"))]
 pub use self::__NSKeyValueObserving::NSKeyValueChangeKey;
-#[cfg(all(
-    feature = "Foundation_NSKeyValueObserving",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSKeyValueObserving", feature = "NSString"))]
 pub use self::__NSKeyValueObserving::NSKeyValueChangeKindKey;
-#[cfg(all(
-    feature = "Foundation_NSKeyValueObserving",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSKeyValueObserving", feature = "NSString"))]
 pub use self::__NSKeyValueObserving::NSKeyValueChangeNewKey;
-#[cfg(all(
-    feature = "Foundation_NSKeyValueObserving",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSKeyValueObserving", feature = "NSString"))]
 pub use self::__NSKeyValueObserving::NSKeyValueChangeNotificationIsPriorKey;
-#[cfg(all(
-    feature = "Foundation_NSKeyValueObserving",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSKeyValueObserving", feature = "NSString"))]
 pub use self::__NSKeyValueObserving::NSKeyValueChangeOldKey;
-#[cfg(feature = "Foundation_NSKeyValueObserving")]
+#[cfg(feature = "NSKeyValueObserving")]
 pub use self::__NSKeyValueObserving::NSKeyValueObservingOptions;
-#[cfg(feature = "Foundation_NSKeyValueObserving")]
+#[cfg(feature = "NSKeyValueObserving")]
 pub use self::__NSKeyValueObserving::NSKeyValueSetMutationKind;
-#[cfg(feature = "Foundation_NSKeyValueObserving")]
+#[cfg(feature = "NSKeyValueObserving")]
 pub use self::__NSKeyValueObserving::NSObjectNSKeyValueObserverNotification;
-#[cfg(feature = "Foundation_NSKeyValueObserving")]
+#[cfg(feature = "NSKeyValueObserving")]
 pub use self::__NSKeyValueObserving::NSObjectNSKeyValueObserverRegistration;
-#[cfg(feature = "Foundation_NSKeyValueObserving")]
+#[cfg(feature = "NSKeyValueObserving")]
 pub use self::__NSKeyValueObserving::NSObjectNSKeyValueObserving;
-#[cfg(feature = "Foundation_NSKeyValueObserving")]
+#[cfg(feature = "NSKeyValueObserving")]
 pub use self::__NSKeyValueObserving::NSObjectNSKeyValueObservingCustomization;
 #[cfg(all(
-    feature = "Foundation_NSKeyedArchiver",
-    feature = "Foundation_NSObjCRuntime",
-    feature = "Foundation_NSString"
+    feature = "NSKeyedArchiver",
+    feature = "NSObjCRuntime",
+    feature = "NSString"
 ))]
 pub use self::__NSKeyedArchiver::NSInvalidArchiveOperationException;
 #[cfg(all(
-    feature = "Foundation_NSKeyedArchiver",
-    feature = "Foundation_NSObjCRuntime",
-    feature = "Foundation_NSString"
+    feature = "NSKeyedArchiver",
+    feature = "NSObjCRuntime",
+    feature = "NSString"
 ))]
 pub use self::__NSKeyedArchiver::NSInvalidUnarchiveOperationException;
-#[cfg(all(
-    feature = "Foundation_NSKeyedArchiver",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSKeyedArchiver", feature = "NSString"))]
 pub use self::__NSKeyedArchiver::NSKeyedArchiveRootObjectKey;
-#[cfg(all(feature = "Foundation_NSCoder", feature = "Foundation_NSKeyedArchiver"))]
+#[cfg(all(feature = "NSCoder", feature = "NSKeyedArchiver"))]
 pub use self::__NSKeyedArchiver::NSKeyedArchiver;
-#[cfg(feature = "Foundation_NSKeyedArchiver")]
+#[cfg(feature = "NSKeyedArchiver")]
 pub use self::__NSKeyedArchiver::NSKeyedArchiverDelegate;
-#[cfg(all(feature = "Foundation_NSCoder", feature = "Foundation_NSKeyedArchiver"))]
+#[cfg(all(feature = "NSCoder", feature = "NSKeyedArchiver"))]
 pub use self::__NSKeyedArchiver::NSKeyedUnarchiver;
-#[cfg(feature = "Foundation_NSKeyedArchiver")]
+#[cfg(feature = "NSKeyedArchiver")]
 pub use self::__NSKeyedArchiver::NSKeyedUnarchiverDelegate;
-#[cfg(feature = "Foundation_NSKeyedArchiver")]
+#[cfg(feature = "NSKeyedArchiver")]
 pub use self::__NSKeyedArchiver::NSObjectNSKeyedArchiverObjectSubstitution;
-#[cfg(feature = "Foundation_NSKeyedArchiver")]
+#[cfg(feature = "NSKeyedArchiver")]
 pub use self::__NSKeyedArchiver::NSObjectNSKeyedUnarchiverObjectSubstitution;
-#[cfg(all(
-    feature = "Foundation_NSFormatter",
-    feature = "Foundation_NSLengthFormatter"
-))]
+#[cfg(all(feature = "NSFormatter", feature = "NSLengthFormatter"))]
 pub use self::__NSLengthFormatter::NSLengthFormatter;
-#[cfg(feature = "Foundation_NSLengthFormatter")]
+#[cfg(feature = "NSLengthFormatter")]
 pub use self::__NSLengthFormatter::NSLengthFormatterUnit;
-#[cfg(all(
-    feature = "Foundation_NSLinguisticTagger",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSLinguisticTagger", feature = "NSString"))]
 pub use self::__NSLinguisticTagger::NSLinguisticTag;
-#[cfg(all(
-    feature = "Foundation_NSLinguisticTagger",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSLinguisticTagger", feature = "NSString"))]
 pub use self::__NSLinguisticTagger::NSLinguisticTagAdjective;
-#[cfg(all(
-    feature = "Foundation_NSLinguisticTagger",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSLinguisticTagger", feature = "NSString"))]
 pub use self::__NSLinguisticTagger::NSLinguisticTagAdverb;
-#[cfg(all(
-    feature = "Foundation_NSLinguisticTagger",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSLinguisticTagger", feature = "NSString"))]
 pub use self::__NSLinguisticTagger::NSLinguisticTagClassifier;
-#[cfg(all(
-    feature = "Foundation_NSLinguisticTagger",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSLinguisticTagger", feature = "NSString"))]
 pub use self::__NSLinguisticTagger::NSLinguisticTagCloseParenthesis;
-#[cfg(all(
-    feature = "Foundation_NSLinguisticTagger",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSLinguisticTagger", feature = "NSString"))]
 pub use self::__NSLinguisticTagger::NSLinguisticTagCloseQuote;
-#[cfg(all(
-    feature = "Foundation_NSLinguisticTagger",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSLinguisticTagger", feature = "NSString"))]
 pub use self::__NSLinguisticTagger::NSLinguisticTagConjunction;
-#[cfg(all(
-    feature = "Foundation_NSLinguisticTagger",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSLinguisticTagger", feature = "NSString"))]
 pub use self::__NSLinguisticTagger::NSLinguisticTagDash;
-#[cfg(all(
-    feature = "Foundation_NSLinguisticTagger",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSLinguisticTagger", feature = "NSString"))]
 pub use self::__NSLinguisticTagger::NSLinguisticTagDeterminer;
-#[cfg(all(
-    feature = "Foundation_NSLinguisticTagger",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSLinguisticTagger", feature = "NSString"))]
 pub use self::__NSLinguisticTagger::NSLinguisticTagIdiom;
-#[cfg(all(
-    feature = "Foundation_NSLinguisticTagger",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSLinguisticTagger", feature = "NSString"))]
 pub use self::__NSLinguisticTagger::NSLinguisticTagInterjection;
-#[cfg(all(
-    feature = "Foundation_NSLinguisticTagger",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSLinguisticTagger", feature = "NSString"))]
 pub use self::__NSLinguisticTagger::NSLinguisticTagNoun;
-#[cfg(all(
-    feature = "Foundation_NSLinguisticTagger",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSLinguisticTagger", feature = "NSString"))]
 pub use self::__NSLinguisticTagger::NSLinguisticTagNumber;
-#[cfg(all(
-    feature = "Foundation_NSLinguisticTagger",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSLinguisticTagger", feature = "NSString"))]
 pub use self::__NSLinguisticTagger::NSLinguisticTagOpenParenthesis;
-#[cfg(all(
-    feature = "Foundation_NSLinguisticTagger",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSLinguisticTagger", feature = "NSString"))]
 pub use self::__NSLinguisticTagger::NSLinguisticTagOpenQuote;
-#[cfg(all(
-    feature = "Foundation_NSLinguisticTagger",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSLinguisticTagger", feature = "NSString"))]
 pub use self::__NSLinguisticTagger::NSLinguisticTagOrganizationName;
-#[cfg(all(
-    feature = "Foundation_NSLinguisticTagger",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSLinguisticTagger", feature = "NSString"))]
 pub use self::__NSLinguisticTagger::NSLinguisticTagOther;
-#[cfg(all(
-    feature = "Foundation_NSLinguisticTagger",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSLinguisticTagger", feature = "NSString"))]
 pub use self::__NSLinguisticTagger::NSLinguisticTagOtherPunctuation;
-#[cfg(all(
-    feature = "Foundation_NSLinguisticTagger",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSLinguisticTagger", feature = "NSString"))]
 pub use self::__NSLinguisticTagger::NSLinguisticTagOtherWhitespace;
-#[cfg(all(
-    feature = "Foundation_NSLinguisticTagger",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSLinguisticTagger", feature = "NSString"))]
 pub use self::__NSLinguisticTagger::NSLinguisticTagOtherWord;
-#[cfg(all(
-    feature = "Foundation_NSLinguisticTagger",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSLinguisticTagger", feature = "NSString"))]
 pub use self::__NSLinguisticTagger::NSLinguisticTagParagraphBreak;
-#[cfg(all(
-    feature = "Foundation_NSLinguisticTagger",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSLinguisticTagger", feature = "NSString"))]
 pub use self::__NSLinguisticTagger::NSLinguisticTagParticle;
-#[cfg(all(
-    feature = "Foundation_NSLinguisticTagger",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSLinguisticTagger", feature = "NSString"))]
 pub use self::__NSLinguisticTagger::NSLinguisticTagPersonalName;
-#[cfg(all(
-    feature = "Foundation_NSLinguisticTagger",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSLinguisticTagger", feature = "NSString"))]
 pub use self::__NSLinguisticTagger::NSLinguisticTagPlaceName;
-#[cfg(all(
-    feature = "Foundation_NSLinguisticTagger",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSLinguisticTagger", feature = "NSString"))]
 pub use self::__NSLinguisticTagger::NSLinguisticTagPreposition;
-#[cfg(all(
-    feature = "Foundation_NSLinguisticTagger",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSLinguisticTagger", feature = "NSString"))]
 pub use self::__NSLinguisticTagger::NSLinguisticTagPronoun;
-#[cfg(all(
-    feature = "Foundation_NSLinguisticTagger",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSLinguisticTagger", feature = "NSString"))]
 pub use self::__NSLinguisticTagger::NSLinguisticTagPunctuation;
-#[cfg(all(
-    feature = "Foundation_NSLinguisticTagger",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSLinguisticTagger", feature = "NSString"))]
 pub use self::__NSLinguisticTagger::NSLinguisticTagScheme;
-#[cfg(all(
-    feature = "Foundation_NSLinguisticTagger",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSLinguisticTagger", feature = "NSString"))]
 pub use self::__NSLinguisticTagger::NSLinguisticTagSchemeLanguage;
-#[cfg(all(
-    feature = "Foundation_NSLinguisticTagger",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSLinguisticTagger", feature = "NSString"))]
 pub use self::__NSLinguisticTagger::NSLinguisticTagSchemeLemma;
-#[cfg(all(
-    feature = "Foundation_NSLinguisticTagger",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSLinguisticTagger", feature = "NSString"))]
 pub use self::__NSLinguisticTagger::NSLinguisticTagSchemeLexicalClass;
-#[cfg(all(
-    feature = "Foundation_NSLinguisticTagger",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSLinguisticTagger", feature = "NSString"))]
 pub use self::__NSLinguisticTagger::NSLinguisticTagSchemeNameType;
-#[cfg(all(
-    feature = "Foundation_NSLinguisticTagger",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSLinguisticTagger", feature = "NSString"))]
 pub use self::__NSLinguisticTagger::NSLinguisticTagSchemeNameTypeOrLexicalClass;
-#[cfg(all(
-    feature = "Foundation_NSLinguisticTagger",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSLinguisticTagger", feature = "NSString"))]
 pub use self::__NSLinguisticTagger::NSLinguisticTagSchemeScript;
-#[cfg(all(
-    feature = "Foundation_NSLinguisticTagger",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSLinguisticTagger", feature = "NSString"))]
 pub use self::__NSLinguisticTagger::NSLinguisticTagSchemeTokenType;
-#[cfg(all(
-    feature = "Foundation_NSLinguisticTagger",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSLinguisticTagger", feature = "NSString"))]
 pub use self::__NSLinguisticTagger::NSLinguisticTagSentenceTerminator;
-#[cfg(all(
-    feature = "Foundation_NSLinguisticTagger",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSLinguisticTagger", feature = "NSString"))]
 pub use self::__NSLinguisticTagger::NSLinguisticTagVerb;
-#[cfg(all(
-    feature = "Foundation_NSLinguisticTagger",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSLinguisticTagger", feature = "NSString"))]
 pub use self::__NSLinguisticTagger::NSLinguisticTagWhitespace;
-#[cfg(all(
-    feature = "Foundation_NSLinguisticTagger",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSLinguisticTagger", feature = "NSString"))]
 pub use self::__NSLinguisticTagger::NSLinguisticTagWord;
-#[cfg(all(
-    feature = "Foundation_NSLinguisticTagger",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSLinguisticTagger", feature = "NSString"))]
 pub use self::__NSLinguisticTagger::NSLinguisticTagWordJoiner;
-#[cfg(feature = "Foundation_NSLinguisticTagger")]
+#[cfg(feature = "NSLinguisticTagger")]
 pub use self::__NSLinguisticTagger::NSLinguisticTagger;
-#[cfg(feature = "Foundation_NSLinguisticTagger")]
+#[cfg(feature = "NSLinguisticTagger")]
 pub use self::__NSLinguisticTagger::NSLinguisticTaggerOptions;
-#[cfg(feature = "Foundation_NSLinguisticTagger")]
+#[cfg(feature = "NSLinguisticTagger")]
 pub use self::__NSLinguisticTagger::NSLinguisticTaggerUnit;
-#[cfg(all(
-    feature = "Foundation_NSFormatter",
-    feature = "Foundation_NSListFormatter"
-))]
+#[cfg(all(feature = "NSFormatter", feature = "NSListFormatter"))]
 pub use self::__NSListFormatter::NSListFormatter;
-#[cfg(all(feature = "Foundation_NSLocale", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSLocale", feature = "NSString"))]
 pub use self::__NSLocale::NSBuddhistCalendar;
-#[cfg(all(feature = "Foundation_NSLocale", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSLocale", feature = "NSString"))]
 pub use self::__NSLocale::NSChineseCalendar;
-#[cfg(all(
-    feature = "Foundation_NSLocale",
-    feature = "Foundation_NSNotification",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSLocale", feature = "NSNotification", feature = "NSString"))]
 pub use self::__NSLocale::NSCurrentLocaleDidChangeNotification;
-#[cfg(all(feature = "Foundation_NSLocale", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSLocale", feature = "NSString"))]
 pub use self::__NSLocale::NSGregorianCalendar;
-#[cfg(all(feature = "Foundation_NSLocale", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSLocale", feature = "NSString"))]
 pub use self::__NSLocale::NSHebrewCalendar;
-#[cfg(all(feature = "Foundation_NSLocale", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSLocale", feature = "NSString"))]
 pub use self::__NSLocale::NSISO8601Calendar;
-#[cfg(all(feature = "Foundation_NSLocale", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSLocale", feature = "NSString"))]
 pub use self::__NSLocale::NSIndianCalendar;
-#[cfg(all(feature = "Foundation_NSLocale", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSLocale", feature = "NSString"))]
 pub use self::__NSLocale::NSIslamicCalendar;
-#[cfg(all(feature = "Foundation_NSLocale", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSLocale", feature = "NSString"))]
 pub use self::__NSLocale::NSIslamicCivilCalendar;
-#[cfg(all(feature = "Foundation_NSLocale", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSLocale", feature = "NSString"))]
 pub use self::__NSLocale::NSJapaneseCalendar;
-#[cfg(feature = "Foundation_NSLocale")]
+#[cfg(feature = "NSLocale")]
 pub use self::__NSLocale::NSLocale;
-#[cfg(all(feature = "Foundation_NSLocale", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSLocale", feature = "NSString"))]
 pub use self::__NSLocale::NSLocaleAlternateQuotationBeginDelimiterKey;
-#[cfg(all(feature = "Foundation_NSLocale", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSLocale", feature = "NSString"))]
 pub use self::__NSLocale::NSLocaleAlternateQuotationEndDelimiterKey;
-#[cfg(all(feature = "Foundation_NSLocale", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSLocale", feature = "NSString"))]
 pub use self::__NSLocale::NSLocaleCalendar;
-#[cfg(all(feature = "Foundation_NSLocale", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSLocale", feature = "NSString"))]
 pub use self::__NSLocale::NSLocaleCollationIdentifier;
-#[cfg(all(feature = "Foundation_NSLocale", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSLocale", feature = "NSString"))]
 pub use self::__NSLocale::NSLocaleCollatorIdentifier;
-#[cfg(all(feature = "Foundation_NSLocale", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSLocale", feature = "NSString"))]
 pub use self::__NSLocale::NSLocaleCountryCode;
-#[cfg(all(feature = "Foundation_NSLocale", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSLocale", feature = "NSString"))]
 pub use self::__NSLocale::NSLocaleCurrencyCode;
-#[cfg(all(feature = "Foundation_NSLocale", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSLocale", feature = "NSString"))]
 pub use self::__NSLocale::NSLocaleCurrencySymbol;
-#[cfg(all(feature = "Foundation_NSLocale", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSLocale", feature = "NSString"))]
 pub use self::__NSLocale::NSLocaleDecimalSeparator;
-#[cfg(all(feature = "Foundation_NSLocale", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSLocale", feature = "NSString"))]
 pub use self::__NSLocale::NSLocaleExemplarCharacterSet;
-#[cfg(all(feature = "Foundation_NSLocale", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSLocale", feature = "NSString"))]
 pub use self::__NSLocale::NSLocaleGroupingSeparator;
-#[cfg(all(feature = "Foundation_NSLocale", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSLocale", feature = "NSString"))]
 pub use self::__NSLocale::NSLocaleIdentifier;
-#[cfg(all(feature = "Foundation_NSLocale", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSLocale", feature = "NSString"))]
 pub use self::__NSLocale::NSLocaleKey;
-#[cfg(all(feature = "Foundation_NSLocale", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSLocale", feature = "NSString"))]
 pub use self::__NSLocale::NSLocaleLanguageCode;
-#[cfg(feature = "Foundation_NSLocale")]
+#[cfg(feature = "NSLocale")]
 pub use self::__NSLocale::NSLocaleLanguageDirection;
-#[cfg(all(feature = "Foundation_NSLocale", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSLocale", feature = "NSString"))]
 pub use self::__NSLocale::NSLocaleMeasurementSystem;
-#[cfg(all(feature = "Foundation_NSLocale", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSLocale", feature = "NSString"))]
 pub use self::__NSLocale::NSLocaleQuotationBeginDelimiterKey;
-#[cfg(all(feature = "Foundation_NSLocale", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSLocale", feature = "NSString"))]
 pub use self::__NSLocale::NSLocaleQuotationEndDelimiterKey;
-#[cfg(all(feature = "Foundation_NSLocale", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSLocale", feature = "NSString"))]
 pub use self::__NSLocale::NSLocaleScriptCode;
-#[cfg(all(feature = "Foundation_NSLocale", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSLocale", feature = "NSString"))]
 pub use self::__NSLocale::NSLocaleUsesMetricSystem;
-#[cfg(all(feature = "Foundation_NSLocale", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSLocale", feature = "NSString"))]
 pub use self::__NSLocale::NSLocaleVariantCode;
-#[cfg(all(feature = "Foundation_NSLocale", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSLocale", feature = "NSString"))]
 pub use self::__NSLocale::NSPersianCalendar;
-#[cfg(all(feature = "Foundation_NSLocale", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSLocale", feature = "NSString"))]
 pub use self::__NSLocale::NSRepublicOfChinaCalendar;
-#[cfg(feature = "Foundation_NSLock")]
+#[cfg(feature = "NSLock")]
 pub use self::__NSLock::NSCondition;
-#[cfg(feature = "Foundation_NSLock")]
+#[cfg(feature = "NSLock")]
 pub use self::__NSLock::NSConditionLock;
-#[cfg(feature = "Foundation_NSLock")]
+#[cfg(feature = "NSLock")]
 pub use self::__NSLock::NSLock;
-#[cfg(feature = "Foundation_NSLock")]
+#[cfg(feature = "NSLock")]
 pub use self::__NSLock::NSLocking;
-#[cfg(feature = "Foundation_NSLock")]
+#[cfg(feature = "NSLock")]
 pub use self::__NSLock::NSRecursiveLock;
-#[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSMapTable"))]
+#[cfg(all(feature = "NSArray", feature = "NSMapTable"))]
 pub use self::__NSMapTable::NSAllMapTableKeys;
-#[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSMapTable"))]
+#[cfg(all(feature = "NSArray", feature = "NSMapTable"))]
 pub use self::__NSMapTable::NSAllMapTableValues;
-#[cfg(feature = "Foundation_NSMapTable")]
+#[cfg(feature = "NSMapTable")]
 pub use self::__NSMapTable::NSCompareMapTables;
-#[cfg(all(feature = "Foundation_NSMapTable", feature = "Foundation_NSZone"))]
+#[cfg(all(feature = "NSMapTable", feature = "NSZone"))]
 pub use self::__NSMapTable::NSCopyMapTableWithZone;
-#[cfg(feature = "Foundation_NSMapTable")]
+#[cfg(feature = "NSMapTable")]
 pub use self::__NSMapTable::NSCountMapTable;
-#[cfg(all(feature = "Foundation_NSMapTable", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSMapTable", feature = "NSString"))]
 pub use self::__NSMapTable::NSCreateMapTable;
-#[cfg(all(
-    feature = "Foundation_NSMapTable",
-    feature = "Foundation_NSString",
-    feature = "Foundation_NSZone"
-))]
+#[cfg(all(feature = "NSMapTable", feature = "NSString", feature = "NSZone"))]
 pub use self::__NSMapTable::NSCreateMapTableWithZone;
-#[cfg(feature = "Foundation_NSMapTable")]
+#[cfg(feature = "NSMapTable")]
 pub use self::__NSMapTable::NSEndMapTableEnumeration;
-#[cfg(feature = "Foundation_NSMapTable")]
+#[cfg(feature = "NSMapTable")]
 pub use self::__NSMapTable::NSEnumerateMapTable;
-#[cfg(all(feature = "Foundation_NSMapTable", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSMapTable", feature = "NSString"))]
 pub use self::__NSMapTable::NSIntMapKeyCallBacks;
-#[cfg(all(feature = "Foundation_NSMapTable", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSMapTable", feature = "NSString"))]
 pub use self::__NSMapTable::NSIntMapValueCallBacks;
-#[cfg(all(feature = "Foundation_NSMapTable", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSMapTable", feature = "NSString"))]
 pub use self::__NSMapTable::NSIntegerMapKeyCallBacks;
-#[cfg(all(feature = "Foundation_NSMapTable", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSMapTable", feature = "NSString"))]
 pub use self::__NSMapTable::NSIntegerMapValueCallBacks;
-#[cfg(feature = "Foundation_NSMapTable")]
+#[cfg(feature = "NSMapTable")]
 pub use self::__NSMapTable::NSMapEnumerator;
-#[cfg(feature = "Foundation_NSMapTable")]
+#[cfg(feature = "NSMapTable")]
 pub use self::__NSMapTable::NSMapGet;
-#[cfg(feature = "Foundation_NSMapTable")]
+#[cfg(feature = "NSMapTable")]
 pub use self::__NSMapTable::NSMapInsert;
-#[cfg(feature = "Foundation_NSMapTable")]
+#[cfg(feature = "NSMapTable")]
 pub use self::__NSMapTable::NSMapInsertIfAbsent;
-#[cfg(feature = "Foundation_NSMapTable")]
+#[cfg(feature = "NSMapTable")]
 pub use self::__NSMapTable::NSMapInsertKnownAbsent;
-#[cfg(feature = "Foundation_NSMapTable")]
+#[cfg(feature = "NSMapTable")]
 pub use self::__NSMapTable::NSMapMember;
-#[cfg(feature = "Foundation_NSMapTable")]
+#[cfg(feature = "NSMapTable")]
 pub use self::__NSMapTable::NSMapRemove;
-#[cfg(feature = "Foundation_NSMapTable")]
+#[cfg(feature = "NSMapTable")]
 pub use self::__NSMapTable::NSMapTable;
-#[cfg(all(
-    feature = "Foundation_NSMapTable",
-    feature = "Foundation_NSPointerFunctions"
-))]
+#[cfg(all(feature = "NSMapTable", feature = "NSPointerFunctions"))]
 pub use self::__NSMapTable::NSMapTableCopyIn;
-#[cfg(all(feature = "Foundation_NSMapTable", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSMapTable", feature = "NSString"))]
 pub use self::__NSMapTable::NSMapTableKeyCallBacks;
-#[cfg(all(
-    feature = "Foundation_NSMapTable",
-    feature = "Foundation_NSPointerFunctions"
-))]
+#[cfg(all(feature = "NSMapTable", feature = "NSPointerFunctions"))]
 pub use self::__NSMapTable::NSMapTableObjectPointerPersonality;
-#[cfg(feature = "Foundation_NSMapTable")]
+#[cfg(feature = "NSMapTable")]
 pub use self::__NSMapTable::NSMapTableOptions;
-#[cfg(all(
-    feature = "Foundation_NSMapTable",
-    feature = "Foundation_NSPointerFunctions"
-))]
+#[cfg(all(feature = "NSMapTable", feature = "NSPointerFunctions"))]
 pub use self::__NSMapTable::NSMapTableStrongMemory;
-#[cfg(all(feature = "Foundation_NSMapTable", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSMapTable", feature = "NSString"))]
 pub use self::__NSMapTable::NSMapTableValueCallBacks;
-#[cfg(all(
-    feature = "Foundation_NSMapTable",
-    feature = "Foundation_NSPointerFunctions"
-))]
+#[cfg(all(feature = "NSMapTable", feature = "NSPointerFunctions"))]
 pub use self::__NSMapTable::NSMapTableWeakMemory;
-#[cfg(all(
-    feature = "Foundation_NSMapTable",
-    feature = "Foundation_NSPointerFunctions"
-))]
+#[cfg(all(feature = "NSMapTable", feature = "NSPointerFunctions"))]
 pub use self::__NSMapTable::NSMapTableZeroingWeakMemory;
-#[cfg(feature = "Foundation_NSMapTable")]
+#[cfg(feature = "NSMapTable")]
 pub use self::__NSMapTable::NSNextMapEnumeratorPair;
-#[cfg(all(feature = "Foundation_NSMapTable", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSMapTable", feature = "NSString"))]
 pub use self::__NSMapTable::NSNonOwnedPointerMapKeyCallBacks;
-#[cfg(all(feature = "Foundation_NSMapTable", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSMapTable", feature = "NSString"))]
 pub use self::__NSMapTable::NSNonOwnedPointerMapValueCallBacks;
-#[cfg(all(feature = "Foundation_NSMapTable", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSMapTable", feature = "NSString"))]
 pub use self::__NSMapTable::NSNonOwnedPointerOrNullMapKeyCallBacks;
-#[cfg(all(feature = "Foundation_NSMapTable", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSMapTable", feature = "NSString"))]
 pub use self::__NSMapTable::NSNonRetainedObjectMapKeyCallBacks;
-#[cfg(all(feature = "Foundation_NSMapTable", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSMapTable", feature = "NSString"))]
 pub use self::__NSMapTable::NSNonRetainedObjectMapValueCallBacks;
-#[cfg(all(feature = "Foundation_NSMapTable", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSMapTable", feature = "NSString"))]
 pub use self::__NSMapTable::NSObjectMapKeyCallBacks;
-#[cfg(all(feature = "Foundation_NSMapTable", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSMapTable", feature = "NSString"))]
 pub use self::__NSMapTable::NSObjectMapValueCallBacks;
-#[cfg(all(feature = "Foundation_NSMapTable", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSMapTable", feature = "NSString"))]
 pub use self::__NSMapTable::NSOwnedPointerMapKeyCallBacks;
-#[cfg(all(feature = "Foundation_NSMapTable", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSMapTable", feature = "NSString"))]
 pub use self::__NSMapTable::NSOwnedPointerMapValueCallBacks;
-#[cfg(feature = "Foundation_NSMapTable")]
+#[cfg(feature = "NSMapTable")]
 pub use self::__NSMapTable::NSResetMapTable;
-#[cfg(all(feature = "Foundation_NSMapTable", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSMapTable", feature = "NSString"))]
 pub use self::__NSMapTable::NSStringFromMapTable;
-#[cfg(all(
-    feature = "Foundation_NSFormatter",
-    feature = "Foundation_NSMassFormatter"
-))]
+#[cfg(all(feature = "NSFormatter", feature = "NSMassFormatter"))]
 pub use self::__NSMassFormatter::NSMassFormatter;
-#[cfg(feature = "Foundation_NSMassFormatter")]
+#[cfg(feature = "NSMassFormatter")]
 pub use self::__NSMassFormatter::NSMassFormatterUnit;
-#[cfg(feature = "Foundation_NSMeasurement")]
+#[cfg(feature = "NSMeasurement")]
 pub use self::__NSMeasurement::NSMeasurement;
-#[cfg(all(
-    feature = "Foundation_NSFormatter",
-    feature = "Foundation_NSMeasurementFormatter"
-))]
+#[cfg(all(feature = "NSFormatter", feature = "NSMeasurementFormatter"))]
 pub use self::__NSMeasurementFormatter::NSMeasurementFormatter;
-#[cfg(feature = "Foundation_NSMeasurementFormatter")]
+#[cfg(feature = "NSMeasurementFormatter")]
 pub use self::__NSMeasurementFormatter::NSMeasurementFormatterUnitOptions;
-#[cfg(feature = "Foundation_NSMetadata")]
+#[cfg(feature = "NSMetadata")]
 pub use self::__NSMetadata::NSMetadataItem;
-#[cfg(feature = "Foundation_NSMetadata")]
+#[cfg(feature = "NSMetadata")]
 pub use self::__NSMetadata::NSMetadataQuery;
-#[cfg(all(feature = "Foundation_NSMetadata", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSMetadata", feature = "NSString"))]
 pub use self::__NSMetadata::NSMetadataQueryAccessibleUbiquitousExternalDocumentsScope;
-#[cfg(feature = "Foundation_NSMetadata")]
+#[cfg(feature = "NSMetadata")]
 pub use self::__NSMetadata::NSMetadataQueryAttributeValueTuple;
-#[cfg(feature = "Foundation_NSMetadata")]
+#[cfg(feature = "NSMetadata")]
 pub use self::__NSMetadata::NSMetadataQueryDelegate;
 #[cfg(all(
-    feature = "Foundation_NSMetadata",
-    feature = "Foundation_NSNotification",
-    feature = "Foundation_NSString"
+    feature = "NSMetadata",
+    feature = "NSNotification",
+    feature = "NSString"
 ))]
 pub use self::__NSMetadata::NSMetadataQueryDidFinishGatheringNotification;
 #[cfg(all(
-    feature = "Foundation_NSMetadata",
-    feature = "Foundation_NSNotification",
-    feature = "Foundation_NSString"
+    feature = "NSMetadata",
+    feature = "NSNotification",
+    feature = "NSString"
 ))]
 pub use self::__NSMetadata::NSMetadataQueryDidStartGatheringNotification;
 #[cfg(all(
-    feature = "Foundation_NSMetadata",
-    feature = "Foundation_NSNotification",
-    feature = "Foundation_NSString"
+    feature = "NSMetadata",
+    feature = "NSNotification",
+    feature = "NSString"
 ))]
 pub use self::__NSMetadata::NSMetadataQueryDidUpdateNotification;
 #[cfg(all(
-    feature = "Foundation_NSMetadata",
-    feature = "Foundation_NSNotification",
-    feature = "Foundation_NSString"
+    feature = "NSMetadata",
+    feature = "NSNotification",
+    feature = "NSString"
 ))]
 pub use self::__NSMetadata::NSMetadataQueryGatheringProgressNotification;
-#[cfg(all(feature = "Foundation_NSMetadata", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSMetadata", feature = "NSString"))]
 pub use self::__NSMetadata::NSMetadataQueryIndexedLocalComputerScope;
-#[cfg(all(feature = "Foundation_NSMetadata", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSMetadata", feature = "NSString"))]
 pub use self::__NSMetadata::NSMetadataQueryIndexedNetworkScope;
-#[cfg(all(feature = "Foundation_NSMetadata", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSMetadata", feature = "NSString"))]
 pub use self::__NSMetadata::NSMetadataQueryLocalComputerScope;
-#[cfg(all(feature = "Foundation_NSMetadata", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSMetadata", feature = "NSString"))]
 pub use self::__NSMetadata::NSMetadataQueryNetworkScope;
-#[cfg(all(feature = "Foundation_NSMetadata", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSMetadata", feature = "NSString"))]
 pub use self::__NSMetadata::NSMetadataQueryResultContentRelevanceAttribute;
-#[cfg(feature = "Foundation_NSMetadata")]
+#[cfg(feature = "NSMetadata")]
 pub use self::__NSMetadata::NSMetadataQueryResultGroup;
-#[cfg(all(feature = "Foundation_NSMetadata", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSMetadata", feature = "NSString"))]
 pub use self::__NSMetadata::NSMetadataQueryUbiquitousDataScope;
-#[cfg(all(feature = "Foundation_NSMetadata", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSMetadata", feature = "NSString"))]
 pub use self::__NSMetadata::NSMetadataQueryUbiquitousDocumentsScope;
-#[cfg(all(feature = "Foundation_NSMetadata", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSMetadata", feature = "NSString"))]
 pub use self::__NSMetadata::NSMetadataQueryUpdateAddedItemsKey;
-#[cfg(all(feature = "Foundation_NSMetadata", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSMetadata", feature = "NSString"))]
 pub use self::__NSMetadata::NSMetadataQueryUpdateChangedItemsKey;
-#[cfg(all(feature = "Foundation_NSMetadata", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSMetadata", feature = "NSString"))]
 pub use self::__NSMetadata::NSMetadataQueryUpdateRemovedItemsKey;
-#[cfg(all(feature = "Foundation_NSMetadata", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSMetadata", feature = "NSString"))]
 pub use self::__NSMetadata::NSMetadataQueryUserHomeScope;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemAcquisitionMakeKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemAcquisitionModelKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemAlbumKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemAltitudeKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemApertureKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemAppleLoopDescriptorsKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemAppleLoopsKeyFilterTypeKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemAppleLoopsLoopModeKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemAppleLoopsRootKeyKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemApplicationCategoriesKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemAttributeChangeDateKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemAudiencesKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemAudioBitRateKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemAudioChannelCountKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemAudioEncodingApplicationKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemAudioSampleRateKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemAudioTrackNumberKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemAuthorAddressesKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemAuthorEmailAddressesKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemAuthorsKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemBitsPerSampleKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemCFBundleIdentifierKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemCameraOwnerKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemCityKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemCodecsKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemColorSpaceKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemCommentKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemComposerKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemContactKeywordsKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemContentCreationDateKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemContentModificationDateKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemContentTypeKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemContentTypeTreeKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemContributorsKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemCopyrightKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemCountryKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemCoverageKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemCreatorKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemDateAddedKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemDeliveryTypeKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemDescriptionKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemDirectorKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemDisplayNameKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemDownloadedDateKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemDueDateKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemDurationSecondsKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemEXIFGPSVersionKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemEXIFVersionKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemEditorsKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemEmailAddressesKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemEncodingApplicationsKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemExecutableArchitecturesKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemExecutablePlatformKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemExposureModeKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemExposureProgramKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemExposureTimeSecondsKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemExposureTimeStringKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemFNumberKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemFSContentChangeDateKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemFSCreationDateKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemFSNameKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemFSSizeKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemFinderCommentKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemFlashOnOffKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemFocalLength35mmKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemFocalLengthKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemFontsKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemGPSAreaInformationKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemGPSDOPKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemGPSDateStampKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemGPSDestBearingKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemGPSDestDistanceKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemGPSDestLatitudeKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemGPSDestLongitudeKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemGPSDifferentalKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemGPSMapDatumKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemGPSMeasureModeKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemGPSProcessingMethodKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemGPSStatusKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemGPSTrackKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemGenreKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemHasAlphaChannelKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemHeadlineKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemISOSpeedKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemIdentifierKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemImageDirectionKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemInformationKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemInstantMessageAddressesKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemInstructionsKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemIsApplicationManagedKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemIsGeneralMIDISequenceKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemIsLikelyJunkKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemIsUbiquitousKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemKeySignatureKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemKeywordsKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemKindKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemLanguagesKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemLastUsedDateKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemLatitudeKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemLayerNamesKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemLensModelKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemLongitudeKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemLyricistKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemMaxApertureKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemMediaTypesKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemMeteringModeKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemMusicalGenreKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemMusicalInstrumentCategoryKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemMusicalInstrumentNameKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemNamedLocationKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemNumberOfPagesKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemOrganizationsKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemOrientationKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemOriginalFormatKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemOriginalSourceKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemPageHeightKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemPageWidthKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemParticipantsKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemPathKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemPerformersKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemPhoneNumbersKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemPixelCountKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemPixelHeightKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemPixelWidthKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemProducerKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemProfileNameKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemProjectsKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemPublishersKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemRecipientAddressesKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemRecipientEmailAddressesKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemRecipientsKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemRecordingDateKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemRecordingYearKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemRedEyeOnOffKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemResolutionHeightDPIKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemResolutionWidthDPIKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemRightsKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemSecurityMethodKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemSpeedKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemStarRatingKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemStateOrProvinceKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemStreamableKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemSubjectKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemTempoKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemTextContentKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemThemeKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemTimeSignatureKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemTimestampKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemTitleKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemTotalBitRateKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemURLKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemVersionKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemVideoBitRateKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemWhereFromsKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataItemWhiteBalanceKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataUbiquitousItemContainerDisplayNameKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataUbiquitousItemDownloadRequestedKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataUbiquitousItemDownloadingErrorKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataUbiquitousItemDownloadingStatusCurrent;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataUbiquitousItemDownloadingStatusDownloaded;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataUbiquitousItemDownloadingStatusKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataUbiquitousItemDownloadingStatusNotDownloaded;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataUbiquitousItemHasUnresolvedConflictsKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataUbiquitousItemIsDownloadedKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataUbiquitousItemIsDownloadingKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataUbiquitousItemIsExternalDocumentKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataUbiquitousItemIsSharedKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataUbiquitousItemIsUploadedKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataUbiquitousItemIsUploadingKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataUbiquitousItemPercentDownloadedKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataUbiquitousItemPercentUploadedKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataUbiquitousItemURLInLocalContainerKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataUbiquitousItemUploadingErrorKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataUbiquitousSharedItemCurrentUserPermissionsKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataUbiquitousSharedItemCurrentUserRoleKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataUbiquitousSharedItemMostRecentEditorNameComponentsKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataUbiquitousSharedItemOwnerNameComponentsKey;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataUbiquitousSharedItemPermissionsReadOnly;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataUbiquitousSharedItemPermissionsReadWrite;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataUbiquitousSharedItemRoleOwner;
-#[cfg(all(
-    feature = "Foundation_NSMetadataAttributes",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSMetadataAttributes", feature = "NSString"))]
 pub use self::__NSMetadataAttributes::NSMetadataUbiquitousSharedItemRoleParticipant;
-#[cfg(feature = "Foundation_NSMethodSignature")]
+#[cfg(feature = "NSMethodSignature")]
 pub use self::__NSMethodSignature::NSMethodSignature;
-#[cfg(feature = "Foundation_NSMorphology")]
+#[cfg(feature = "NSMorphology")]
 pub use self::__NSMorphology::NSGrammaticalCase;
-#[cfg(feature = "Foundation_NSMorphology")]
+#[cfg(feature = "NSMorphology")]
 pub use self::__NSMorphology::NSGrammaticalDefiniteness;
-#[cfg(feature = "Foundation_NSMorphology")]
+#[cfg(feature = "NSMorphology")]
 pub use self::__NSMorphology::NSGrammaticalDetermination;
-#[cfg(feature = "Foundation_NSMorphology")]
+#[cfg(feature = "NSMorphology")]
 pub use self::__NSMorphology::NSGrammaticalGender;
-#[cfg(feature = "Foundation_NSMorphology")]
+#[cfg(feature = "NSMorphology")]
 pub use self::__NSMorphology::NSGrammaticalNumber;
-#[cfg(feature = "Foundation_NSMorphology")]
+#[cfg(feature = "NSMorphology")]
 pub use self::__NSMorphology::NSGrammaticalPartOfSpeech;
-#[cfg(feature = "Foundation_NSMorphology")]
+#[cfg(feature = "NSMorphology")]
 pub use self::__NSMorphology::NSGrammaticalPerson;
-#[cfg(feature = "Foundation_NSMorphology")]
+#[cfg(feature = "NSMorphology")]
 pub use self::__NSMorphology::NSGrammaticalPronounType;
-#[cfg(feature = "Foundation_NSMorphology")]
+#[cfg(feature = "NSMorphology")]
 pub use self::__NSMorphology::NSMorphology;
-#[cfg(feature = "Foundation_NSMorphology")]
+#[cfg(feature = "NSMorphology")]
 pub use self::__NSMorphology::NSMorphologyCustomPronoun;
-#[cfg(feature = "Foundation_NSMorphology")]
+#[cfg(feature = "NSMorphology")]
 pub use self::__NSMorphology::NSMorphologyPronoun;
-#[cfg(feature = "Foundation_NSNetServices")]
+#[cfg(feature = "NSNetServices")]
 pub use self::__NSNetServices::NSNetService;
-#[cfg(feature = "Foundation_NSNetServices")]
+#[cfg(feature = "NSNetServices")]
 pub use self::__NSNetServices::NSNetServiceBrowser;
-#[cfg(feature = "Foundation_NSNetServices")]
+#[cfg(feature = "NSNetServices")]
 pub use self::__NSNetServices::NSNetServiceBrowserDelegate;
-#[cfg(feature = "Foundation_NSNetServices")]
+#[cfg(feature = "NSNetServices")]
 pub use self::__NSNetServices::NSNetServiceDelegate;
-#[cfg(feature = "Foundation_NSNetServices")]
+#[cfg(feature = "NSNetServices")]
 pub use self::__NSNetServices::NSNetServiceOptions;
-#[cfg(feature = "Foundation_NSNetServices")]
+#[cfg(feature = "NSNetServices")]
 pub use self::__NSNetServices::NSNetServicesError;
-#[cfg(all(feature = "Foundation_NSNetServices", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSNetServices", feature = "NSString"))]
 pub use self::__NSNetServices::NSNetServicesErrorCode;
-#[cfg(all(
-    feature = "Foundation_NSError",
-    feature = "Foundation_NSNetServices",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSError", feature = "NSNetServices", feature = "NSString"))]
 pub use self::__NSNetServices::NSNetServicesErrorDomain;
-#[cfg(feature = "Foundation_NSNotification")]
+#[cfg(feature = "NSNotification")]
 pub use self::__NSNotification::NSNotification;
-#[cfg(feature = "Foundation_NSNotification")]
+#[cfg(feature = "NSNotification")]
 pub use self::__NSNotification::NSNotificationCenter;
-#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSNotification", feature = "NSString"))]
 pub use self::__NSNotification::NSNotificationName;
-#[cfg(feature = "Foundation_NSNotificationQueue")]
+#[cfg(feature = "NSNotificationQueue")]
 pub use self::__NSNotificationQueue::NSNotificationCoalescing;
-#[cfg(feature = "Foundation_NSNotificationQueue")]
+#[cfg(feature = "NSNotificationQueue")]
 pub use self::__NSNotificationQueue::NSNotificationQueue;
-#[cfg(feature = "Foundation_NSNotificationQueue")]
+#[cfg(feature = "NSNotificationQueue")]
 pub use self::__NSNotificationQueue::NSPostingStyle;
-#[cfg(feature = "Foundation_NSNull")]
+#[cfg(feature = "NSNull")]
 pub use self::__NSNull::NSNull;
-#[cfg(all(
-    feature = "Foundation_NSFormatter",
-    feature = "Foundation_NSNumberFormatter"
-))]
+#[cfg(all(feature = "NSFormatter", feature = "NSNumberFormatter"))]
 pub use self::__NSNumberFormatter::NSNumberFormatter;
-#[cfg(feature = "Foundation_NSNumberFormatter")]
+#[cfg(feature = "NSNumberFormatter")]
 pub use self::__NSNumberFormatter::NSNumberFormatterBehavior;
-#[cfg(feature = "Foundation_NSNumberFormatter")]
+#[cfg(feature = "NSNumberFormatter")]
 pub use self::__NSNumberFormatter::NSNumberFormatterPadPosition;
-#[cfg(feature = "Foundation_NSNumberFormatter")]
+#[cfg(feature = "NSNumberFormatter")]
 pub use self::__NSNumberFormatter::NSNumberFormatterRoundingMode;
-#[cfg(feature = "Foundation_NSNumberFormatter")]
+#[cfg(feature = "NSNumberFormatter")]
 pub use self::__NSNumberFormatter::NSNumberFormatterStyle;
-#[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSObjCRuntime", feature = "NSString"))]
 pub use self::__NSObjCRuntime::NSClassFromString;
-#[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "block2"))]
+#[cfg(all(feature = "NSObjCRuntime", feature = "block2"))]
 pub use self::__NSObjCRuntime::NSComparator;
-#[cfg(feature = "Foundation_NSObjCRuntime")]
+#[cfg(feature = "NSObjCRuntime")]
 pub use self::__NSObjCRuntime::NSEnumerationOptions;
-#[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSObjCRuntime", feature = "NSString"))]
 pub use self::__NSObjCRuntime::NSExceptionName;
-#[cfg(feature = "Foundation_NSObjCRuntime")]
+#[cfg(feature = "NSObjCRuntime")]
 pub use self::__NSObjCRuntime::NSFoundationVersionNumber;
-#[cfg(feature = "Foundation_NSObjCRuntime")]
+#[cfg(feature = "NSObjCRuntime")]
 pub use self::__NSObjCRuntime::NSGetSizeAndAlignment;
-#[cfg(feature = "Foundation_NSObjCRuntime")]
+#[cfg(feature = "NSObjCRuntime")]
 pub use self::__NSObjCRuntime::NSNotFound;
-#[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSObjCRuntime", feature = "NSString"))]
 pub use self::__NSObjCRuntime::NSProtocolFromString;
-#[cfg(feature = "Foundation_NSObjCRuntime")]
+#[cfg(feature = "NSObjCRuntime")]
 pub use self::__NSObjCRuntime::NSQualityOfService;
-#[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSObjCRuntime", feature = "NSString"))]
 pub use self::__NSObjCRuntime::NSRunLoopMode;
-#[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSObjCRuntime", feature = "NSString"))]
 pub use self::__NSObjCRuntime::NSSelectorFromString;
-#[cfg(feature = "Foundation_NSObjCRuntime")]
+#[cfg(feature = "NSObjCRuntime")]
 pub use self::__NSObjCRuntime::NSSortOptions;
-#[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSObjCRuntime", feature = "NSString"))]
 pub use self::__NSObjCRuntime::NSStringFromClass;
-#[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSObjCRuntime", feature = "NSString"))]
 pub use self::__NSObjCRuntime::NSStringFromProtocol;
-#[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSObjCRuntime", feature = "NSString"))]
 pub use self::__NSObjCRuntime::NSStringFromSelector;
-#[cfg(all(feature = "Foundation_NSObject", feature = "Foundation_NSZone"))]
+#[cfg(all(feature = "NSObject", feature = "NSZone"))]
 pub use self::__NSObject::NSAllocateObject;
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 pub use self::__NSObject::NSCoding;
-#[cfg(all(feature = "Foundation_NSObject", feature = "Foundation_NSZone"))]
+#[cfg(all(feature = "NSObject", feature = "NSZone"))]
 pub use self::__NSObject::NSCopyObject;
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 pub use self::__NSObject::NSDeallocateObject;
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 pub use self::__NSObject::NSDecrementExtraRefCountWasZero;
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 pub use self::__NSObject::NSDiscardableContent;
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 pub use self::__NSObject::NSExtraRefCount;
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 pub use self::__NSObject::NSIncrementExtraRefCount;
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 pub use self::__NSObject::NSObjectNSCoderMethods;
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 pub use self::__NSObject::NSObjectNSDiscardableContentProxy;
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 pub use self::__NSObject::NSSecureCoding;
-#[cfg(all(feature = "Foundation_NSObject", feature = "Foundation_NSZone"))]
+#[cfg(all(feature = "NSObject", feature = "NSZone"))]
 pub use self::__NSObject::NSShouldRetainWithZone;
-#[cfg(feature = "Foundation_NSObjectScripting")]
+#[cfg(feature = "NSObjectScripting")]
 pub use self::__NSObjectScripting::NSObjectNSScripting;
-#[cfg(feature = "Foundation_NSOperation")]
+#[cfg(feature = "NSOperation")]
 pub use self::__NSOperation::NSBlockOperation;
-#[cfg(feature = "Foundation_NSOperation")]
+#[cfg(feature = "NSOperation")]
 pub use self::__NSOperation::NSInvocationOperation;
 #[cfg(all(
-    feature = "Foundation_NSObjCRuntime",
-    feature = "Foundation_NSOperation",
-    feature = "Foundation_NSString"
+    feature = "NSObjCRuntime",
+    feature = "NSOperation",
+    feature = "NSString"
 ))]
 pub use self::__NSOperation::NSInvocationOperationCancelledException;
 #[cfg(all(
-    feature = "Foundation_NSObjCRuntime",
-    feature = "Foundation_NSOperation",
-    feature = "Foundation_NSString"
+    feature = "NSObjCRuntime",
+    feature = "NSOperation",
+    feature = "NSString"
 ))]
 pub use self::__NSOperation::NSInvocationOperationVoidResultException;
-#[cfg(feature = "Foundation_NSOperation")]
+#[cfg(feature = "NSOperation")]
 pub use self::__NSOperation::NSOperation;
-#[cfg(feature = "Foundation_NSOperation")]
+#[cfg(feature = "NSOperation")]
 pub use self::__NSOperation::NSOperationQueue;
-#[cfg(feature = "Foundation_NSOperation")]
+#[cfg(feature = "NSOperation")]
 pub use self::__NSOperation::NSOperationQueueDefaultMaxConcurrentOperationCount;
-#[cfg(feature = "Foundation_NSOperation")]
+#[cfg(feature = "NSOperation")]
 pub use self::__NSOperation::NSOperationQueuePriority;
-#[cfg(feature = "Foundation_NSOrderedCollectionChange")]
+#[cfg(feature = "NSOrderedCollectionChange")]
 pub use self::__NSOrderedCollectionChange::NSCollectionChangeType;
-#[cfg(feature = "Foundation_NSOrderedCollectionChange")]
+#[cfg(feature = "NSOrderedCollectionChange")]
 pub use self::__NSOrderedCollectionChange::NSOrderedCollectionChange;
-#[cfg(feature = "Foundation_NSOrderedCollectionDifference")]
+#[cfg(feature = "NSOrderedCollectionDifference")]
 pub use self::__NSOrderedCollectionDifference::NSOrderedCollectionDifference;
-#[cfg(feature = "Foundation_NSOrderedCollectionDifference")]
+#[cfg(feature = "NSOrderedCollectionDifference")]
 pub use self::__NSOrderedCollectionDifference::NSOrderedCollectionDifferenceCalculationOptions;
-#[cfg(feature = "Foundation_NSOrthography")]
+#[cfg(feature = "NSOrthography")]
 pub use self::__NSOrthography::NSOrthography;
-#[cfg(all(
-    feature = "Foundation_NSPathUtilities",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSPathUtilities", feature = "NSString"))]
 pub use self::__NSPathUtilities::NSFullUserName;
-#[cfg(all(
-    feature = "Foundation_NSPathUtilities",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSPathUtilities", feature = "NSString"))]
 pub use self::__NSPathUtilities::NSHomeDirectory;
-#[cfg(all(
-    feature = "Foundation_NSPathUtilities",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSPathUtilities", feature = "NSString"))]
 pub use self::__NSPathUtilities::NSHomeDirectoryForUser;
-#[cfg(all(
-    feature = "Foundation_NSPathUtilities",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSPathUtilities", feature = "NSString"))]
 pub use self::__NSPathUtilities::NSOpenStepRootDirectory;
-#[cfg(feature = "Foundation_NSPathUtilities")]
+#[cfg(feature = "NSPathUtilities")]
 pub use self::__NSPathUtilities::NSSearchPathDirectory;
-#[cfg(feature = "Foundation_NSPathUtilities")]
+#[cfg(feature = "NSPathUtilities")]
 pub use self::__NSPathUtilities::NSSearchPathDomainMask;
-#[cfg(all(
-    feature = "Foundation_NSArray",
-    feature = "Foundation_NSPathUtilities",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSArray", feature = "NSPathUtilities", feature = "NSString"))]
 pub use self::__NSPathUtilities::NSSearchPathForDirectoriesInDomains;
-#[cfg(all(
-    feature = "Foundation_NSPathUtilities",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSPathUtilities", feature = "NSString"))]
 pub use self::__NSPathUtilities::NSTemporaryDirectory;
-#[cfg(all(
-    feature = "Foundation_NSPathUtilities",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSPathUtilities", feature = "NSString"))]
 pub use self::__NSPathUtilities::NSUserName;
-#[cfg(feature = "Foundation_NSPersonNameComponents")]
+#[cfg(feature = "NSPersonNameComponents")]
 pub use self::__NSPersonNameComponents::NSPersonNameComponents;
-#[cfg(all(
-    feature = "Foundation_NSPersonNameComponentsFormatter",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSPersonNameComponentsFormatter", feature = "NSString"))]
 pub use self::__NSPersonNameComponentsFormatter::NSPersonNameComponentDelimiter;
-#[cfg(all(
-    feature = "Foundation_NSPersonNameComponentsFormatter",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSPersonNameComponentsFormatter", feature = "NSString"))]
 pub use self::__NSPersonNameComponentsFormatter::NSPersonNameComponentFamilyName;
-#[cfg(all(
-    feature = "Foundation_NSPersonNameComponentsFormatter",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSPersonNameComponentsFormatter", feature = "NSString"))]
 pub use self::__NSPersonNameComponentsFormatter::NSPersonNameComponentGivenName;
-#[cfg(all(
-    feature = "Foundation_NSPersonNameComponentsFormatter",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSPersonNameComponentsFormatter", feature = "NSString"))]
 pub use self::__NSPersonNameComponentsFormatter::NSPersonNameComponentKey;
-#[cfg(all(
-    feature = "Foundation_NSPersonNameComponentsFormatter",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSPersonNameComponentsFormatter", feature = "NSString"))]
 pub use self::__NSPersonNameComponentsFormatter::NSPersonNameComponentMiddleName;
-#[cfg(all(
-    feature = "Foundation_NSPersonNameComponentsFormatter",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSPersonNameComponentsFormatter", feature = "NSString"))]
 pub use self::__NSPersonNameComponentsFormatter::NSPersonNameComponentNickname;
-#[cfg(all(
-    feature = "Foundation_NSPersonNameComponentsFormatter",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSPersonNameComponentsFormatter", feature = "NSString"))]
 pub use self::__NSPersonNameComponentsFormatter::NSPersonNameComponentPrefix;
-#[cfg(all(
-    feature = "Foundation_NSPersonNameComponentsFormatter",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSPersonNameComponentsFormatter", feature = "NSString"))]
 pub use self::__NSPersonNameComponentsFormatter::NSPersonNameComponentSuffix;
-#[cfg(all(
-    feature = "Foundation_NSFormatter",
-    feature = "Foundation_NSPersonNameComponentsFormatter"
-))]
+#[cfg(all(feature = "NSFormatter", feature = "NSPersonNameComponentsFormatter"))]
 pub use self::__NSPersonNameComponentsFormatter::NSPersonNameComponentsFormatter;
-#[cfg(feature = "Foundation_NSPersonNameComponentsFormatter")]
+#[cfg(feature = "NSPersonNameComponentsFormatter")]
 pub use self::__NSPersonNameComponentsFormatter::NSPersonNameComponentsFormatterOptions;
-#[cfg(feature = "Foundation_NSPersonNameComponentsFormatter")]
+#[cfg(feature = "NSPersonNameComponentsFormatter")]
 pub use self::__NSPersonNameComponentsFormatter::NSPersonNameComponentsFormatterStyle;
-#[cfg(feature = "Foundation_NSPointerArray")]
+#[cfg(feature = "NSPointerArray")]
 pub use self::__NSPointerArray::NSPointerArray;
-#[cfg(feature = "Foundation_NSPointerFunctions")]
+#[cfg(feature = "NSPointerFunctions")]
 pub use self::__NSPointerFunctions::NSPointerFunctions;
-#[cfg(feature = "Foundation_NSPointerFunctions")]
+#[cfg(feature = "NSPointerFunctions")]
 pub use self::__NSPointerFunctions::NSPointerFunctionsOptions;
-#[cfg(feature = "Foundation_NSPort")]
+#[cfg(feature = "NSPort")]
 pub use self::__NSPort::NSMachPort;
-#[cfg(feature = "Foundation_NSPort")]
+#[cfg(feature = "NSPort")]
 pub use self::__NSPort::NSMachPortDelegate;
-#[cfg(feature = "Foundation_NSPort")]
+#[cfg(feature = "NSPort")]
 pub use self::__NSPort::NSMachPortOptions;
-#[cfg(feature = "Foundation_NSPort")]
+#[cfg(feature = "NSPort")]
 pub use self::__NSPort::NSMessagePort;
-#[cfg(feature = "Foundation_NSPort")]
+#[cfg(feature = "NSPort")]
 pub use self::__NSPort::NSPort;
-#[cfg(feature = "Foundation_NSPort")]
+#[cfg(feature = "NSPort")]
 pub use self::__NSPort::NSPortDelegate;
-#[cfg(all(
-    feature = "Foundation_NSNotification",
-    feature = "Foundation_NSPort",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSNotification", feature = "NSPort", feature = "NSString"))]
 pub use self::__NSPort::NSPortDidBecomeInvalidNotification;
-#[cfg(feature = "Foundation_NSPort")]
+#[cfg(feature = "NSPort")]
 pub use self::__NSPort::NSSocketNativeHandle;
-#[cfg(feature = "Foundation_NSPort")]
+#[cfg(feature = "NSPort")]
 pub use self::__NSPort::NSSocketPort;
-#[cfg(all(feature = "Foundation_NSCoder", feature = "Foundation_NSPortCoder"))]
+#[cfg(all(feature = "NSCoder", feature = "NSPortCoder"))]
 pub use self::__NSPortCoder::NSPortCoder;
-#[cfg(feature = "Foundation_NSPortMessage")]
+#[cfg(feature = "NSPortMessage")]
 pub use self::__NSPortMessage::NSPortMessage;
-#[cfg(feature = "Foundation_NSPortNameServer")]
+#[cfg(feature = "NSPortNameServer")]
 pub use self::__NSPortNameServer::NSMachBootstrapServer;
-#[cfg(feature = "Foundation_NSPortNameServer")]
+#[cfg(feature = "NSPortNameServer")]
 pub use self::__NSPortNameServer::NSMessagePortNameServer;
-#[cfg(feature = "Foundation_NSPortNameServer")]
+#[cfg(feature = "NSPortNameServer")]
 pub use self::__NSPortNameServer::NSPortNameServer;
-#[cfg(feature = "Foundation_NSPortNameServer")]
+#[cfg(feature = "NSPortNameServer")]
 pub use self::__NSPortNameServer::NSSocketPortNameServer;
-#[cfg(feature = "Foundation_NSPredicate")]
+#[cfg(feature = "NSPredicate")]
 pub use self::__NSPredicate::NSPredicate;
-#[cfg(feature = "Foundation_NSProcessInfo")]
+#[cfg(feature = "NSProcessInfo")]
 pub use self::__NSProcessInfo::NSActivityOptions;
-#[cfg(feature = "Foundation_NSProcessInfo")]
+#[cfg(feature = "NSProcessInfo")]
 pub use self::__NSProcessInfo::NSHPUXOperatingSystem;
-#[cfg(feature = "Foundation_NSProcessInfo")]
+#[cfg(feature = "NSProcessInfo")]
 pub use self::__NSProcessInfo::NSMACHOperatingSystem;
-#[cfg(feature = "Foundation_NSProcessInfo")]
+#[cfg(feature = "NSProcessInfo")]
 pub use self::__NSProcessInfo::NSOSF1OperatingSystem;
-#[cfg(feature = "Foundation_NSProcessInfo")]
+#[cfg(feature = "NSProcessInfo")]
 pub use self::__NSProcessInfo::NSOperatingSystemVersion;
-#[cfg(feature = "Foundation_NSProcessInfo")]
+#[cfg(feature = "NSProcessInfo")]
 pub use self::__NSProcessInfo::NSProcessInfo;
 #[cfg(all(
-    feature = "Foundation_NSNotification",
-    feature = "Foundation_NSProcessInfo",
-    feature = "Foundation_NSString"
+    feature = "NSNotification",
+    feature = "NSProcessInfo",
+    feature = "NSString"
 ))]
 pub use self::__NSProcessInfo::NSProcessInfoPowerStateDidChangeNotification;
-#[cfg(feature = "Foundation_NSProcessInfo")]
+#[cfg(feature = "NSProcessInfo")]
 pub use self::__NSProcessInfo::NSProcessInfoThermalState;
 #[cfg(all(
-    feature = "Foundation_NSNotification",
-    feature = "Foundation_NSProcessInfo",
-    feature = "Foundation_NSString"
+    feature = "NSNotification",
+    feature = "NSProcessInfo",
+    feature = "NSString"
 ))]
 pub use self::__NSProcessInfo::NSProcessInfoThermalStateDidChangeNotification;
-#[cfg(feature = "Foundation_NSProcessInfo")]
+#[cfg(feature = "NSProcessInfo")]
 pub use self::__NSProcessInfo::NSSolarisOperatingSystem;
-#[cfg(feature = "Foundation_NSProcessInfo")]
+#[cfg(feature = "NSProcessInfo")]
 pub use self::__NSProcessInfo::NSSunOSOperatingSystem;
-#[cfg(feature = "Foundation_NSProcessInfo")]
+#[cfg(feature = "NSProcessInfo")]
 pub use self::__NSProcessInfo::NSWindows95OperatingSystem;
-#[cfg(feature = "Foundation_NSProcessInfo")]
+#[cfg(feature = "NSProcessInfo")]
 pub use self::__NSProcessInfo::NSWindowsNTOperatingSystem;
-#[cfg(feature = "Foundation_NSProgress")]
+#[cfg(feature = "NSProgress")]
 pub use self::__NSProgress::NSProgress;
-#[cfg(all(feature = "Foundation_NSProgress", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSProgress", feature = "NSString"))]
 pub use self::__NSProgress::NSProgressEstimatedTimeRemainingKey;
-#[cfg(all(feature = "Foundation_NSProgress", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSProgress", feature = "NSString"))]
 pub use self::__NSProgress::NSProgressFileAnimationImageKey;
-#[cfg(all(feature = "Foundation_NSProgress", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSProgress", feature = "NSString"))]
 pub use self::__NSProgress::NSProgressFileAnimationImageOriginalRectKey;
-#[cfg(all(feature = "Foundation_NSProgress", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSProgress", feature = "NSString"))]
 pub use self::__NSProgress::NSProgressFileCompletedCountKey;
-#[cfg(all(feature = "Foundation_NSProgress", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSProgress", feature = "NSString"))]
 pub use self::__NSProgress::NSProgressFileIconKey;
-#[cfg(all(feature = "Foundation_NSProgress", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSProgress", feature = "NSString"))]
 pub use self::__NSProgress::NSProgressFileOperationKind;
-#[cfg(all(feature = "Foundation_NSProgress", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSProgress", feature = "NSString"))]
 pub use self::__NSProgress::NSProgressFileOperationKindCopying;
-#[cfg(all(feature = "Foundation_NSProgress", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSProgress", feature = "NSString"))]
 pub use self::__NSProgress::NSProgressFileOperationKindDecompressingAfterDownloading;
-#[cfg(all(feature = "Foundation_NSProgress", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSProgress", feature = "NSString"))]
 pub use self::__NSProgress::NSProgressFileOperationKindDownloading;
-#[cfg(all(feature = "Foundation_NSProgress", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSProgress", feature = "NSString"))]
 pub use self::__NSProgress::NSProgressFileOperationKindDuplicating;
-#[cfg(all(feature = "Foundation_NSProgress", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSProgress", feature = "NSString"))]
 pub use self::__NSProgress::NSProgressFileOperationKindKey;
-#[cfg(all(feature = "Foundation_NSProgress", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSProgress", feature = "NSString"))]
 pub use self::__NSProgress::NSProgressFileOperationKindReceiving;
-#[cfg(all(feature = "Foundation_NSProgress", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSProgress", feature = "NSString"))]
 pub use self::__NSProgress::NSProgressFileOperationKindUploading;
-#[cfg(all(feature = "Foundation_NSProgress", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSProgress", feature = "NSString"))]
 pub use self::__NSProgress::NSProgressFileTotalCountKey;
-#[cfg(all(feature = "Foundation_NSProgress", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSProgress", feature = "NSString"))]
 pub use self::__NSProgress::NSProgressFileURLKey;
-#[cfg(all(feature = "Foundation_NSProgress", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSProgress", feature = "NSString"))]
 pub use self::__NSProgress::NSProgressKind;
-#[cfg(all(feature = "Foundation_NSProgress", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSProgress", feature = "NSString"))]
 pub use self::__NSProgress::NSProgressKindFile;
-#[cfg(all(feature = "Foundation_NSProgress", feature = "block2"))]
+#[cfg(all(feature = "NSProgress", feature = "block2"))]
 pub use self::__NSProgress::NSProgressPublishingHandler;
-#[cfg(feature = "Foundation_NSProgress")]
+#[cfg(feature = "NSProgress")]
 pub use self::__NSProgress::NSProgressReporting;
-#[cfg(all(feature = "Foundation_NSProgress", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSProgress", feature = "NSString"))]
 pub use self::__NSProgress::NSProgressThroughputKey;
-#[cfg(all(feature = "Foundation_NSProgress", feature = "block2"))]
+#[cfg(all(feature = "NSProgress", feature = "block2"))]
 pub use self::__NSProgress::NSProgressUnpublishingHandler;
-#[cfg(all(feature = "Foundation_NSProgress", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSProgress", feature = "NSString"))]
 pub use self::__NSProgress::NSProgressUserInfoKey;
-#[cfg(feature = "Foundation_NSPropertyList")]
+#[cfg(feature = "NSPropertyList")]
 pub use self::__NSPropertyList::NSPropertyListFormat;
-#[cfg(feature = "Foundation_NSPropertyList")]
+#[cfg(feature = "NSPropertyList")]
 pub use self::__NSPropertyList::NSPropertyListMutabilityOptions;
-#[cfg(feature = "Foundation_NSPropertyList")]
+#[cfg(feature = "NSPropertyList")]
 pub use self::__NSPropertyList::NSPropertyListReadOptions;
-#[cfg(feature = "Foundation_NSPropertyList")]
+#[cfg(feature = "NSPropertyList")]
 pub use self::__NSPropertyList::NSPropertyListSerialization;
-#[cfg(feature = "Foundation_NSPropertyList")]
+#[cfg(feature = "NSPropertyList")]
 pub use self::__NSPropertyList::NSPropertyListWriteOptions;
-#[cfg(all(
-    feature = "Foundation_NSProtocolChecker",
-    feature = "Foundation_NSProxy"
-))]
+#[cfg(all(feature = "NSProtocolChecker", feature = "NSProxy"))]
 pub use self::__NSProtocolChecker::NSProtocolChecker;
-#[cfg(feature = "Foundation_NSRange")]
+#[cfg(feature = "NSRange")]
 pub use self::__NSRange::NSIntersectionRange;
-#[cfg(all(feature = "Foundation_NSRange", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSRange", feature = "NSString"))]
 pub use self::__NSRange::NSRangeFromString;
-#[cfg(feature = "Foundation_NSRange")]
+#[cfg(feature = "NSRange")]
 pub use self::__NSRange::NSRangePointer;
-#[cfg(all(feature = "Foundation_NSRange", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSRange", feature = "NSString"))]
 pub use self::__NSRange::NSStringFromRange;
-#[cfg(feature = "Foundation_NSRange")]
+#[cfg(feature = "NSRange")]
 pub use self::__NSRange::NSUnionRange;
-#[cfg(feature = "Foundation_NSRegularExpression")]
+#[cfg(feature = "NSRegularExpression")]
 pub use self::__NSRegularExpression::NSDataDetector;
-#[cfg(feature = "Foundation_NSRegularExpression")]
+#[cfg(feature = "NSRegularExpression")]
 pub use self::__NSRegularExpression::NSMatchingFlags;
-#[cfg(feature = "Foundation_NSRegularExpression")]
+#[cfg(feature = "NSRegularExpression")]
 pub use self::__NSRegularExpression::NSMatchingOptions;
-#[cfg(feature = "Foundation_NSRegularExpression")]
+#[cfg(feature = "NSRegularExpression")]
 pub use self::__NSRegularExpression::NSRegularExpression;
-#[cfg(feature = "Foundation_NSRegularExpression")]
+#[cfg(feature = "NSRegularExpression")]
 pub use self::__NSRegularExpression::NSRegularExpressionOptions;
-#[cfg(all(
-    feature = "Foundation_NSFormatter",
-    feature = "Foundation_NSRelativeDateTimeFormatter"
-))]
+#[cfg(all(feature = "NSFormatter", feature = "NSRelativeDateTimeFormatter"))]
 pub use self::__NSRelativeDateTimeFormatter::NSRelativeDateTimeFormatter;
-#[cfg(feature = "Foundation_NSRelativeDateTimeFormatter")]
+#[cfg(feature = "NSRelativeDateTimeFormatter")]
 pub use self::__NSRelativeDateTimeFormatter::NSRelativeDateTimeFormatterStyle;
-#[cfg(feature = "Foundation_NSRelativeDateTimeFormatter")]
+#[cfg(feature = "NSRelativeDateTimeFormatter")]
 pub use self::__NSRelativeDateTimeFormatter::NSRelativeDateTimeFormatterUnitsStyle;
-#[cfg(all(
-    feature = "Foundation_NSObjCRuntime",
-    feature = "Foundation_NSRunLoop",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSObjCRuntime", feature = "NSRunLoop", feature = "NSString"))]
 pub use self::__NSRunLoop::NSDefaultRunLoopMode;
-#[cfg(feature = "Foundation_NSRunLoop")]
+#[cfg(feature = "NSRunLoop")]
 pub use self::__NSRunLoop::NSObjectNSDelayedPerforming;
-#[cfg(feature = "Foundation_NSRunLoop")]
+#[cfg(feature = "NSRunLoop")]
 pub use self::__NSRunLoop::NSRunLoop;
-#[cfg(all(
-    feature = "Foundation_NSObjCRuntime",
-    feature = "Foundation_NSRunLoop",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSObjCRuntime", feature = "NSRunLoop", feature = "NSString"))]
 pub use self::__NSRunLoop::NSRunLoopCommonModes;
-#[cfg(feature = "Foundation_NSScanner")]
+#[cfg(feature = "NSScanner")]
 pub use self::__NSScanner::NSScanner;
-#[cfg(feature = "Foundation_NSScriptClassDescription")]
+#[cfg(feature = "NSScriptClassDescription")]
 pub use self::__NSScriptClassDescription::NSObjectNSScriptClassDescription;
-#[cfg(all(
-    feature = "Foundation_NSClassDescription",
-    feature = "Foundation_NSScriptClassDescription"
-))]
+#[cfg(all(feature = "NSClassDescription", feature = "NSScriptClassDescription"))]
 pub use self::__NSScriptClassDescription::NSScriptClassDescription;
-#[cfg(feature = "Foundation_NSScriptCoercionHandler")]
+#[cfg(feature = "NSScriptCoercionHandler")]
 pub use self::__NSScriptCoercionHandler::NSScriptCoercionHandler;
-#[cfg(feature = "Foundation_NSScriptCommand")]
+#[cfg(feature = "NSScriptCommand")]
 pub use self::__NSScriptCommand::NSArgumentEvaluationScriptError;
-#[cfg(feature = "Foundation_NSScriptCommand")]
+#[cfg(feature = "NSScriptCommand")]
 pub use self::__NSScriptCommand::NSArgumentsWrongScriptError;
-#[cfg(feature = "Foundation_NSScriptCommand")]
+#[cfg(feature = "NSScriptCommand")]
 pub use self::__NSScriptCommand::NSCannotCreateScriptCommandError;
-#[cfg(feature = "Foundation_NSScriptCommand")]
+#[cfg(feature = "NSScriptCommand")]
 pub use self::__NSScriptCommand::NSInternalScriptError;
-#[cfg(feature = "Foundation_NSScriptCommand")]
+#[cfg(feature = "NSScriptCommand")]
 pub use self::__NSScriptCommand::NSKeySpecifierEvaluationScriptError;
-#[cfg(feature = "Foundation_NSScriptCommand")]
+#[cfg(feature = "NSScriptCommand")]
 pub use self::__NSScriptCommand::NSNoScriptError;
-#[cfg(feature = "Foundation_NSScriptCommand")]
+#[cfg(feature = "NSScriptCommand")]
 pub use self::__NSScriptCommand::NSOperationNotSupportedForKeyScriptError;
-#[cfg(feature = "Foundation_NSScriptCommand")]
+#[cfg(feature = "NSScriptCommand")]
 pub use self::__NSScriptCommand::NSReceiverEvaluationScriptError;
-#[cfg(feature = "Foundation_NSScriptCommand")]
+#[cfg(feature = "NSScriptCommand")]
 pub use self::__NSScriptCommand::NSReceiversCantHandleCommandScriptError;
-#[cfg(feature = "Foundation_NSScriptCommand")]
+#[cfg(feature = "NSScriptCommand")]
 pub use self::__NSScriptCommand::NSRequiredArgumentsMissingScriptError;
-#[cfg(feature = "Foundation_NSScriptCommand")]
+#[cfg(feature = "NSScriptCommand")]
 pub use self::__NSScriptCommand::NSScriptCommand;
-#[cfg(feature = "Foundation_NSScriptCommand")]
+#[cfg(feature = "NSScriptCommand")]
 pub use self::__NSScriptCommand::NSUnknownKeyScriptError;
-#[cfg(feature = "Foundation_NSScriptCommandDescription")]
+#[cfg(feature = "NSScriptCommandDescription")]
 pub use self::__NSScriptCommandDescription::NSScriptCommandDescription;
-#[cfg(feature = "Foundation_NSScriptExecutionContext")]
+#[cfg(feature = "NSScriptExecutionContext")]
 pub use self::__NSScriptExecutionContext::NSScriptExecutionContext;
-#[cfg(feature = "Foundation_NSScriptKeyValueCoding")]
+#[cfg(feature = "NSScriptKeyValueCoding")]
 pub use self::__NSScriptKeyValueCoding::NSObjectNSScriptKeyValueCoding;
-#[cfg(all(
-    feature = "Foundation_NSScriptKeyValueCoding",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSScriptKeyValueCoding", feature = "NSString"))]
 pub use self::__NSScriptKeyValueCoding::NSOperationNotSupportedForKeyException;
-#[cfg(feature = "Foundation_NSScriptObjectSpecifiers")]
+#[cfg(feature = "NSScriptObjectSpecifiers")]
 pub use self::__NSScriptObjectSpecifiers::NSContainerSpecifierError;
-#[cfg(feature = "Foundation_NSScriptObjectSpecifiers")]
+#[cfg(feature = "NSScriptObjectSpecifiers")]
 pub use self::__NSScriptObjectSpecifiers::NSIndexSpecifier;
-#[cfg(feature = "Foundation_NSScriptObjectSpecifiers")]
+#[cfg(feature = "NSScriptObjectSpecifiers")]
 pub use self::__NSScriptObjectSpecifiers::NSInsertionPosition;
-#[cfg(feature = "Foundation_NSScriptObjectSpecifiers")]
+#[cfg(feature = "NSScriptObjectSpecifiers")]
 pub use self::__NSScriptObjectSpecifiers::NSInternalSpecifierError;
-#[cfg(feature = "Foundation_NSScriptObjectSpecifiers")]
+#[cfg(feature = "NSScriptObjectSpecifiers")]
 pub use self::__NSScriptObjectSpecifiers::NSInvalidIndexSpecifierError;
-#[cfg(feature = "Foundation_NSScriptObjectSpecifiers")]
+#[cfg(feature = "NSScriptObjectSpecifiers")]
 pub use self::__NSScriptObjectSpecifiers::NSMiddleSpecifier;
-#[cfg(feature = "Foundation_NSScriptObjectSpecifiers")]
+#[cfg(feature = "NSScriptObjectSpecifiers")]
 pub use self::__NSScriptObjectSpecifiers::NSNameSpecifier;
-#[cfg(feature = "Foundation_NSScriptObjectSpecifiers")]
+#[cfg(feature = "NSScriptObjectSpecifiers")]
 pub use self::__NSScriptObjectSpecifiers::NSNoSpecifierError;
-#[cfg(feature = "Foundation_NSScriptObjectSpecifiers")]
+#[cfg(feature = "NSScriptObjectSpecifiers")]
 pub use self::__NSScriptObjectSpecifiers::NSNoTopLevelContainersSpecifierError;
-#[cfg(feature = "Foundation_NSScriptObjectSpecifiers")]
+#[cfg(feature = "NSScriptObjectSpecifiers")]
 pub use self::__NSScriptObjectSpecifiers::NSObjectNSScriptObjectSpecifiers;
-#[cfg(feature = "Foundation_NSScriptObjectSpecifiers")]
+#[cfg(feature = "NSScriptObjectSpecifiers")]
 pub use self::__NSScriptObjectSpecifiers::NSOperationNotSupportedForKeySpecifierError;
-#[cfg(feature = "Foundation_NSScriptObjectSpecifiers")]
+#[cfg(feature = "NSScriptObjectSpecifiers")]
 pub use self::__NSScriptObjectSpecifiers::NSPositionalSpecifier;
-#[cfg(feature = "Foundation_NSScriptObjectSpecifiers")]
+#[cfg(feature = "NSScriptObjectSpecifiers")]
 pub use self::__NSScriptObjectSpecifiers::NSPropertySpecifier;
-#[cfg(feature = "Foundation_NSScriptObjectSpecifiers")]
+#[cfg(feature = "NSScriptObjectSpecifiers")]
 pub use self::__NSScriptObjectSpecifiers::NSRandomSpecifier;
-#[cfg(feature = "Foundation_NSScriptObjectSpecifiers")]
+#[cfg(feature = "NSScriptObjectSpecifiers")]
 pub use self::__NSScriptObjectSpecifiers::NSRangeSpecifier;
-#[cfg(feature = "Foundation_NSScriptObjectSpecifiers")]
+#[cfg(feature = "NSScriptObjectSpecifiers")]
 pub use self::__NSScriptObjectSpecifiers::NSRelativePosition;
-#[cfg(feature = "Foundation_NSScriptObjectSpecifiers")]
+#[cfg(feature = "NSScriptObjectSpecifiers")]
 pub use self::__NSScriptObjectSpecifiers::NSRelativeSpecifier;
-#[cfg(feature = "Foundation_NSScriptObjectSpecifiers")]
+#[cfg(feature = "NSScriptObjectSpecifiers")]
 pub use self::__NSScriptObjectSpecifiers::NSScriptObjectSpecifier;
-#[cfg(feature = "Foundation_NSScriptObjectSpecifiers")]
+#[cfg(feature = "NSScriptObjectSpecifiers")]
 pub use self::__NSScriptObjectSpecifiers::NSUniqueIDSpecifier;
-#[cfg(feature = "Foundation_NSScriptObjectSpecifiers")]
+#[cfg(feature = "NSScriptObjectSpecifiers")]
 pub use self::__NSScriptObjectSpecifiers::NSUnknownKeySpecifierError;
-#[cfg(feature = "Foundation_NSScriptObjectSpecifiers")]
+#[cfg(feature = "NSScriptObjectSpecifiers")]
 pub use self::__NSScriptObjectSpecifiers::NSWhoseSpecifier;
-#[cfg(feature = "Foundation_NSScriptObjectSpecifiers")]
+#[cfg(feature = "NSScriptObjectSpecifiers")]
 pub use self::__NSScriptObjectSpecifiers::NSWhoseSubelementIdentifier;
-#[cfg(all(
-    feature = "Foundation_NSScriptCommand",
-    feature = "Foundation_NSScriptStandardSuiteCommands"
-))]
+#[cfg(all(feature = "NSScriptCommand", feature = "NSScriptStandardSuiteCommands"))]
 pub use self::__NSScriptStandardSuiteCommands::NSCloneCommand;
-#[cfg(all(
-    feature = "Foundation_NSScriptCommand",
-    feature = "Foundation_NSScriptStandardSuiteCommands"
-))]
+#[cfg(all(feature = "NSScriptCommand", feature = "NSScriptStandardSuiteCommands"))]
 pub use self::__NSScriptStandardSuiteCommands::NSCloseCommand;
-#[cfg(all(
-    feature = "Foundation_NSScriptCommand",
-    feature = "Foundation_NSScriptStandardSuiteCommands"
-))]
+#[cfg(all(feature = "NSScriptCommand", feature = "NSScriptStandardSuiteCommands"))]
 pub use self::__NSScriptStandardSuiteCommands::NSCountCommand;
-#[cfg(all(
-    feature = "Foundation_NSScriptCommand",
-    feature = "Foundation_NSScriptStandardSuiteCommands"
-))]
+#[cfg(all(feature = "NSScriptCommand", feature = "NSScriptStandardSuiteCommands"))]
 pub use self::__NSScriptStandardSuiteCommands::NSCreateCommand;
-#[cfg(all(
-    feature = "Foundation_NSScriptCommand",
-    feature = "Foundation_NSScriptStandardSuiteCommands"
-))]
+#[cfg(all(feature = "NSScriptCommand", feature = "NSScriptStandardSuiteCommands"))]
 pub use self::__NSScriptStandardSuiteCommands::NSDeleteCommand;
-#[cfg(all(
-    feature = "Foundation_NSScriptCommand",
-    feature = "Foundation_NSScriptStandardSuiteCommands"
-))]
+#[cfg(all(feature = "NSScriptCommand", feature = "NSScriptStandardSuiteCommands"))]
 pub use self::__NSScriptStandardSuiteCommands::NSExistsCommand;
-#[cfg(all(
-    feature = "Foundation_NSScriptCommand",
-    feature = "Foundation_NSScriptStandardSuiteCommands"
-))]
+#[cfg(all(feature = "NSScriptCommand", feature = "NSScriptStandardSuiteCommands"))]
 pub use self::__NSScriptStandardSuiteCommands::NSGetCommand;
-#[cfg(all(
-    feature = "Foundation_NSScriptCommand",
-    feature = "Foundation_NSScriptStandardSuiteCommands"
-))]
+#[cfg(all(feature = "NSScriptCommand", feature = "NSScriptStandardSuiteCommands"))]
 pub use self::__NSScriptStandardSuiteCommands::NSMoveCommand;
-#[cfg(all(
-    feature = "Foundation_NSScriptCommand",
-    feature = "Foundation_NSScriptStandardSuiteCommands"
-))]
+#[cfg(all(feature = "NSScriptCommand", feature = "NSScriptStandardSuiteCommands"))]
 pub use self::__NSScriptStandardSuiteCommands::NSQuitCommand;
-#[cfg(feature = "Foundation_NSScriptStandardSuiteCommands")]
+#[cfg(feature = "NSScriptStandardSuiteCommands")]
 pub use self::__NSScriptStandardSuiteCommands::NSSaveOptions;
-#[cfg(all(
-    feature = "Foundation_NSScriptCommand",
-    feature = "Foundation_NSScriptStandardSuiteCommands"
-))]
+#[cfg(all(feature = "NSScriptCommand", feature = "NSScriptStandardSuiteCommands"))]
 pub use self::__NSScriptStandardSuiteCommands::NSSetCommand;
-#[cfg(feature = "Foundation_NSScriptSuiteRegistry")]
+#[cfg(feature = "NSScriptSuiteRegistry")]
 pub use self::__NSScriptSuiteRegistry::NSScriptSuiteRegistry;
-#[cfg(feature = "Foundation_NSScriptWhoseTests")]
+#[cfg(feature = "NSScriptWhoseTests")]
 pub use self::__NSScriptWhoseTests::NSLogicalTest;
-#[cfg(feature = "Foundation_NSScriptWhoseTests")]
+#[cfg(feature = "NSScriptWhoseTests")]
 pub use self::__NSScriptWhoseTests::NSObjectNSComparisonMethods;
-#[cfg(feature = "Foundation_NSScriptWhoseTests")]
+#[cfg(feature = "NSScriptWhoseTests")]
 pub use self::__NSScriptWhoseTests::NSObjectNSScriptingComparisonMethods;
-#[cfg(feature = "Foundation_NSScriptWhoseTests")]
+#[cfg(feature = "NSScriptWhoseTests")]
 pub use self::__NSScriptWhoseTests::NSScriptWhoseTest;
-#[cfg(feature = "Foundation_NSScriptWhoseTests")]
+#[cfg(feature = "NSScriptWhoseTests")]
 pub use self::__NSScriptWhoseTests::NSSpecifierTest;
-#[cfg(feature = "Foundation_NSScriptWhoseTests")]
+#[cfg(feature = "NSScriptWhoseTests")]
 pub use self::__NSScriptWhoseTests::NSTestComparisonOperation;
-#[cfg(feature = "Foundation_NSSortDescriptor")]
+#[cfg(feature = "NSSortDescriptor")]
 pub use self::__NSSortDescriptor::NSSortDescriptor;
-#[cfg(all(feature = "Foundation_NSSpellServer", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSSpellServer", feature = "NSString"))]
 pub use self::__NSSpellServer::NSGrammarCorrections;
-#[cfg(all(feature = "Foundation_NSSpellServer", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSSpellServer", feature = "NSString"))]
 pub use self::__NSSpellServer::NSGrammarRange;
-#[cfg(all(feature = "Foundation_NSSpellServer", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSSpellServer", feature = "NSString"))]
 pub use self::__NSSpellServer::NSGrammarUserDescription;
-#[cfg(feature = "Foundation_NSSpellServer")]
+#[cfg(feature = "NSSpellServer")]
 pub use self::__NSSpellServer::NSSpellServer;
-#[cfg(feature = "Foundation_NSSpellServer")]
+#[cfg(feature = "NSSpellServer")]
 pub use self::__NSSpellServer::NSSpellServerDelegate;
-#[cfg(feature = "Foundation_NSStream")]
+#[cfg(feature = "NSStream")]
 pub use self::__NSStream::NSInputStream;
-#[cfg(feature = "Foundation_NSStream")]
+#[cfg(feature = "NSStream")]
 pub use self::__NSStream::NSOutputStream;
-#[cfg(feature = "Foundation_NSStream")]
+#[cfg(feature = "NSStream")]
 pub use self::__NSStream::NSStream;
-#[cfg(all(feature = "Foundation_NSStream", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSStream", feature = "NSString"))]
 pub use self::__NSStream::NSStreamDataWrittenToMemoryStreamKey;
-#[cfg(feature = "Foundation_NSStream")]
+#[cfg(feature = "NSStream")]
 pub use self::__NSStream::NSStreamDelegate;
-#[cfg(feature = "Foundation_NSStream")]
+#[cfg(feature = "NSStream")]
 pub use self::__NSStream::NSStreamEvent;
-#[cfg(all(feature = "Foundation_NSStream", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSStream", feature = "NSString"))]
 pub use self::__NSStream::NSStreamFileCurrentOffsetKey;
-#[cfg(all(feature = "Foundation_NSStream", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSStream", feature = "NSString"))]
 pub use self::__NSStream::NSStreamNetworkServiceType;
-#[cfg(all(feature = "Foundation_NSStream", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSStream", feature = "NSString"))]
 pub use self::__NSStream::NSStreamNetworkServiceTypeBackground;
-#[cfg(all(feature = "Foundation_NSStream", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSStream", feature = "NSString"))]
 pub use self::__NSStream::NSStreamNetworkServiceTypeCallSignaling;
-#[cfg(all(feature = "Foundation_NSStream", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSStream", feature = "NSString"))]
 pub use self::__NSStream::NSStreamNetworkServiceTypeValue;
-#[cfg(all(feature = "Foundation_NSStream", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSStream", feature = "NSString"))]
 pub use self::__NSStream::NSStreamNetworkServiceTypeVideo;
-#[cfg(all(feature = "Foundation_NSStream", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSStream", feature = "NSString"))]
 pub use self::__NSStream::NSStreamNetworkServiceTypeVoIP;
-#[cfg(all(feature = "Foundation_NSStream", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSStream", feature = "NSString"))]
 pub use self::__NSStream::NSStreamNetworkServiceTypeVoice;
-#[cfg(all(feature = "Foundation_NSStream", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSStream", feature = "NSString"))]
 pub use self::__NSStream::NSStreamPropertyKey;
-#[cfg(all(
-    feature = "Foundation_NSError",
-    feature = "Foundation_NSStream",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSError", feature = "NSStream", feature = "NSString"))]
 pub use self::__NSStream::NSStreamSOCKSErrorDomain;
-#[cfg(all(feature = "Foundation_NSStream", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSStream", feature = "NSString"))]
 pub use self::__NSStream::NSStreamSOCKSProxyConfiguration;
-#[cfg(all(feature = "Foundation_NSStream", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSStream", feature = "NSString"))]
 pub use self::__NSStream::NSStreamSOCKSProxyConfigurationKey;
-#[cfg(all(feature = "Foundation_NSStream", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSStream", feature = "NSString"))]
 pub use self::__NSStream::NSStreamSOCKSProxyHostKey;
-#[cfg(all(feature = "Foundation_NSStream", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSStream", feature = "NSString"))]
 pub use self::__NSStream::NSStreamSOCKSProxyPasswordKey;
-#[cfg(all(feature = "Foundation_NSStream", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSStream", feature = "NSString"))]
 pub use self::__NSStream::NSStreamSOCKSProxyPortKey;
-#[cfg(all(feature = "Foundation_NSStream", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSStream", feature = "NSString"))]
 pub use self::__NSStream::NSStreamSOCKSProxyUserKey;
-#[cfg(all(feature = "Foundation_NSStream", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSStream", feature = "NSString"))]
 pub use self::__NSStream::NSStreamSOCKSProxyVersion;
-#[cfg(all(feature = "Foundation_NSStream", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSStream", feature = "NSString"))]
 pub use self::__NSStream::NSStreamSOCKSProxyVersion4;
-#[cfg(all(feature = "Foundation_NSStream", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSStream", feature = "NSString"))]
 pub use self::__NSStream::NSStreamSOCKSProxyVersion5;
-#[cfg(all(feature = "Foundation_NSStream", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSStream", feature = "NSString"))]
 pub use self::__NSStream::NSStreamSOCKSProxyVersionKey;
-#[cfg(all(
-    feature = "Foundation_NSError",
-    feature = "Foundation_NSStream",
-    feature = "Foundation_NSString"
-))]
+#[cfg(all(feature = "NSError", feature = "NSStream", feature = "NSString"))]
 pub use self::__NSStream::NSStreamSocketSSLErrorDomain;
-#[cfg(all(feature = "Foundation_NSStream", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSStream", feature = "NSString"))]
 pub use self::__NSStream::NSStreamSocketSecurityLevel;
-#[cfg(all(feature = "Foundation_NSStream", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSStream", feature = "NSString"))]
 pub use self::__NSStream::NSStreamSocketSecurityLevelKey;
-#[cfg(all(feature = "Foundation_NSStream", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSStream", feature = "NSString"))]
 pub use self::__NSStream::NSStreamSocketSecurityLevelNegotiatedSSL;
-#[cfg(all(feature = "Foundation_NSStream", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSStream", feature = "NSString"))]
 pub use self::__NSStream::NSStreamSocketSecurityLevelNone;
-#[cfg(all(feature = "Foundation_NSStream", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSStream", feature = "NSString"))]
 pub use self::__NSStream::NSStreamSocketSecurityLevelSSLv2;
-#[cfg(all(feature = "Foundation_NSStream", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSStream", feature = "NSString"))]
 pub use self::__NSStream::NSStreamSocketSecurityLevelSSLv3;
-#[cfg(all(feature = "Foundation_NSStream", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSStream", feature = "NSString"))]
 pub use self::__NSStream::NSStreamSocketSecurityLevelTLSv1;
-#[cfg(feature = "Foundation_NSStream")]
+#[cfg(feature = "NSStream")]
 pub use self::__NSStream::NSStreamStatus;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(feature = "NSString")]
 pub use self::__NSString::unichar;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(feature = "NSString")]
 pub use self::__NSString::NSASCIIStringEncoding;
-#[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSObjCRuntime", feature = "NSString"))]
 pub use self::__NSString::NSCharacterConversionException;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(feature = "NSString")]
 pub use self::__NSString::NSConstantString;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(feature = "NSString")]
 pub use self::__NSString::NSISO2022JPStringEncoding;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(feature = "NSString")]
 pub use self::__NSString::NSISOLatin1StringEncoding;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(feature = "NSString")]
 pub use self::__NSString::NSISOLatin2StringEncoding;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(feature = "NSString")]
 pub use self::__NSString::NSJapaneseEUCStringEncoding;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(feature = "NSString")]
 pub use self::__NSString::NSMacOSRomanStringEncoding;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(feature = "NSString")]
 pub use self::__NSString::NSMutableString;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(feature = "NSString")]
 pub use self::__NSString::NSNEXTSTEPStringEncoding;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(feature = "NSString")]
 pub use self::__NSString::NSNonLossyASCIIStringEncoding;
-#[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
+#[cfg(all(feature = "NSObjCRuntime", feature = "NSString"))]
 pub use self::__NSString::NSParseErrorException;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(feature = "NSString")]
 pub use self::__NSString::NSShiftJISStringEncoding;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(feature = "NSString")]
 pub use self::__NSString::NSSimpleCString;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(feature = "NSString")]
 pub use self::__NSString::NSString;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(feature = "NSString")]
 pub use self::__NSString::NSStringCompareOptions;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(feature = "NSString")]
 pub use self::__NSString::NSStringEncoding;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(feature = "NSString")]
 pub use self::__NSString::NSStringEncodingConversionOptions;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(feature = "NSString")]
 pub use self::__NSString::NSStringEncodingDetectionAllowLossyKey;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(feature = "NSString")]
 pub use self::__NSString::NSStringEncodingDetectionDisallowedEncodingsKey;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(feature = "NSString")]
 pub use self::__NSString::NSStringEncodingDetectionFromWindowsKey;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(feature = "NSString")]
 pub use self::__NSString::NSStringEncodingDetectionLikelyLanguageKey;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(feature = "NSString")]
 pub use self::__NSString::NSStringEncodingDetectionLossySubstitutionKey;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(feature = "NSString")]
 pub use self::__NSString::NSStringEncodingDetectionOptionsKey;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(feature = "NSString")]
 pub use self::__NSString::NSStringEncodingDetectionSuggestedEncodingsKey;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(feature = "NSString")]
 pub use self::__NSString::NSStringEncodingDetectionUseOnlySuggestedEncodingsKey;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(feature = "NSString")]
 pub use self::__NSString::NSStringEnumerationOptions;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(feature = "NSString")]
 pub use self::__NSString::NSStringTransform;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(feature = "NSString")]
 pub use self::__NSString::NSStringTransformFullwidthToHalfwidth;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(feature = "NSString")]
 pub use self::__NSString::NSStringTransformHiraganaToKatakana;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(feature = "NSString")]
 pub use self::__NSString::NSStringTransformLatinToArabic;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(feature = "NSString")]
 pub use self::__NSString::NSStringTransformLatinToCyrillic;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(feature = "NSString")]
 pub use self::__NSString::NSStringTransformLatinToGreek;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(feature = "NSString")]
 pub use self::__NSString::NSStringTransformLatinToHangul;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(feature = "NSString")]
 pub use self::__NSString::NSStringTransformLatinToHebrew;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(feature = "NSString")]
 pub use self::__NSString::NSStringTransformLatinToHiragana;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(feature = "NSString")]
 pub use self::__NSString::NSStringTransformLatinToKatakana;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(feature = "NSString")]
 pub use self::__NSString::NSStringTransformLatinToThai;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(feature = "NSString")]
 pub use self::__NSString::NSStringTransformMandarinToLatin;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(feature = "NSString")]
 pub use self::__NSString::NSStringTransformStripCombiningMarks;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(feature = "NSString")]
 pub use self::__NSString::NSStringTransformStripDiacritics;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(feature = "NSString")]
 pub use self::__NSString::NSStringTransformToLatin;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(feature = "NSString")]
 pub use self::__NSString::NSStringTransformToUnicodeName;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(feature = "NSString")]
 pub use self::__NSString::NSStringTransformToXMLHex;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(feature = "NSString")]
 pub use self::__NSString::NSSymbolStringEncoding;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(feature = "NSString")]
 pub use self::__NSString::NSUTF16BigEndianStringEncoding;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(feature = "NSString")]
 pub use self::__NSString::NSUTF16LittleEndianStringEncoding;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(feature = "NSString")]
 pub use self::__NSString::NSUTF16StringEncoding;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(feature = "NSString")]
 pub use self::__NSString::NSUTF32BigEndianStringEncoding;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(feature = "NSString")]
 pub use self::__NSString::NSUTF32LittleEndianStringEncoding;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(feature = "NSString")]
 pub use self::__NSString::NSUTF32StringEncoding;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(feature = "NSString")]
 pub use self::__NSString::NSUTF8StringEncoding;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(feature = "NSString")]
 pub use self::__NSString::NSUnicodeStringEncoding;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(feature = "NSString")]
 pub use self::__NSString::NSWindowsCP1250StringEncoding;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(feature = "NSString")]
 pub use self::__NSString::NSWindowsCP1251StringEncoding;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(feature = "NSString")]
 pub use self::__NSString::NSWindowsCP1252StringEncoding;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(feature = "NSString")]
 pub use self::__NSString::NSWindowsCP1253StringEncoding;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(feature = "NSString")]
 pub use self::__NSString::NSWindowsCP1254StringEncoding;
-#[cfg(feature = "Foundation_NSTask")]
+#[cfg(feature = "NSTask")]
 pub use self::__NSTask::NSTask;
-#[cfg(all(
-    feature = "Foundation_NSNotification",
-    feature = "Foundation_NSString",
-    feature = "Foundation_NSTask"
-))]
+#[cfg(all(feature = "NSNotification", feature = "NSString", feature = "NSTask"))]
 pub use self::__NSTask::NSTaskDidTerminateNotification;
-#[cfg(feature = "Foundation_NSTask")]
+#[cfg(feature = "NSTask")]
 pub use self::__NSTask::NSTaskTerminationReason;
-#[cfg(feature = "Foundation_NSTermOfAddress")]
+#[cfg(feature = "NSTermOfAddress")]
 pub use self::__NSTermOfAddress::NSTermOfAddress;
-#[cfg(all(
-    feature = "Foundation_NSString",
-    feature = "Foundation_NSTextCheckingResult"
-))]
+#[cfg(all(feature = "NSString", feature = "NSTextCheckingResult"))]
 pub use self::__NSTextCheckingResult::NSTextCheckingAirlineKey;
-#[cfg(feature = "Foundation_NSTextCheckingResult")]
+#[cfg(feature = "NSTextCheckingResult")]
 pub use self::__NSTextCheckingResult::NSTextCheckingAllCustomTypes;
-#[cfg(feature = "Foundation_NSTextCheckingResult")]
+#[cfg(feature = "NSTextCheckingResult")]
 pub use self::__NSTextCheckingResult::NSTextCheckingAllSystemTypes;
-#[cfg(feature = "Foundation_NSTextCheckingResult")]
+#[cfg(feature = "NSTextCheckingResult")]
 pub use self::__NSTextCheckingResult::NSTextCheckingAllTypes;
-#[cfg(all(
-    feature = "Foundation_NSString",
-    feature = "Foundation_NSTextCheckingResult"
-))]
+#[cfg(all(feature = "NSString", feature = "NSTextCheckingResult"))]
 pub use self::__NSTextCheckingResult::NSTextCheckingCityKey;
-#[cfg(all(
-    feature = "Foundation_NSString",
-    feature = "Foundation_NSTextCheckingResult"
-))]
+#[cfg(all(feature = "NSString", feature = "NSTextCheckingResult"))]
 pub use self::__NSTextCheckingResult::NSTextCheckingCountryKey;
-#[cfg(all(
-    feature = "Foundation_NSString",
-    feature = "Foundation_NSTextCheckingResult"
-))]
+#[cfg(all(feature = "NSString", feature = "NSTextCheckingResult"))]
 pub use self::__NSTextCheckingResult::NSTextCheckingFlightKey;
-#[cfg(all(
-    feature = "Foundation_NSString",
-    feature = "Foundation_NSTextCheckingResult"
-))]
+#[cfg(all(feature = "NSString", feature = "NSTextCheckingResult"))]
 pub use self::__NSTextCheckingResult::NSTextCheckingJobTitleKey;
-#[cfg(all(
-    feature = "Foundation_NSString",
-    feature = "Foundation_NSTextCheckingResult"
-))]
+#[cfg(all(feature = "NSString", feature = "NSTextCheckingResult"))]
 pub use self::__NSTextCheckingResult::NSTextCheckingKey;
-#[cfg(all(
-    feature = "Foundation_NSString",
-    feature = "Foundation_NSTextCheckingResult"
-))]
+#[cfg(all(feature = "NSString", feature = "NSTextCheckingResult"))]
 pub use self::__NSTextCheckingResult::NSTextCheckingNameKey;
-#[cfg(all(
-    feature = "Foundation_NSString",
-    feature = "Foundation_NSTextCheckingResult"
-))]
+#[cfg(all(feature = "NSString", feature = "NSTextCheckingResult"))]
 pub use self::__NSTextCheckingResult::NSTextCheckingOrganizationKey;
-#[cfg(all(
-    feature = "Foundation_NSString",
-    feature = "Foundation_NSTextCheckingResult"
-))]
+#[cfg(all(feature = "NSString", feature = "NSTextCheckingResult"))]
 pub use self::__NSTextCheckingResult::NSTextCheckingPhoneKey;
-#[cfg(feature = "Foundation_NSTextCheckingResult")]
+#[cfg(feature = "NSTextCheckingResult")]
 pub use self::__NSTextCheckingResult::NSTextCheckingResult;
-#[cfg(all(
-    feature = "Foundation_NSString",
-    feature = "Foundation_NSTextCheckingResult"
-))]
+#[cfg(all(feature = "NSString", feature = "NSTextCheckingResult"))]
 pub use self::__NSTextCheckingResult::NSTextCheckingStateKey;
-#[cfg(all(
-    feature = "Foundation_NSString",
-    feature = "Foundation_NSTextCheckingResult"
-))]
+#[cfg(all(feature = "NSString", feature = "NSTextCheckingResult"))]
 pub use self::__NSTextCheckingResult::NSTextCheckingStreetKey;
-#[cfg(feature = "Foundation_NSTextCheckingResult")]
+#[cfg(feature = "NSTextCheckingResult")]
 pub use self::__NSTextCheckingResult::NSTextCheckingType;
-#[cfg(feature = "Foundation_NSTextCheckingResult")]
+#[cfg(feature = "NSTextCheckingResult")]
 pub use self::__NSTextCheckingResult::NSTextCheckingTypes;
-#[cfg(all(
-    feature = "Foundation_NSString",
-    feature = "Foundation_NSTextCheckingResult"
-))]
+#[cfg(all(feature = "NSString", feature = "NSTextCheckingResult"))]
 pub use self::__NSTextCheckingResult::NSTextCheckingZIPKey;
-#[cfg(all(
-    feature = "Foundation_NSNotification",
-    feature = "Foundation_NSString",
-    feature = "Foundation_NSThread"
-))]
+#[cfg(all(feature = "NSNotification", feature = "NSString", feature = "NSThread"))]
 pub use self::__NSThread::NSDidBecomeSingleThreadedNotification;
-#[cfg(feature = "Foundation_NSThread")]
+#[cfg(feature = "NSThread")]
 pub use self::__NSThread::NSObjectNSThreadPerformAdditions;
-#[cfg(feature = "Foundation_NSThread")]
+#[cfg(feature = "NSThread")]
 pub use self::__NSThread::NSThread;
-#[cfg(all(
-    feature = "Foundation_NSNotification",
-    feature = "Foundation_NSString",
-    feature = "Foundation_NSThread"
-))]
+#[cfg(all(feature = "NSNotification", feature = "NSString", feature = "NSThread"))]
 pub use self::__NSThread::NSThreadWillExitNotification;
-#[cfg(all(
-    feature = "Foundation_NSNotification",
-    feature = "Foundation_NSString",
-    feature = "Foundation_NSThread"
-))]
+#[cfg(all(feature = "NSNotification", feature = "NSString", feature = "NSThread"))]
 pub use self::__NSThread::NSWillBecomeMultiThreadedNotification;
 #[cfg(all(
-    feature = "Foundation_NSNotification",
-    feature = "Foundation_NSString",
-    feature = "Foundation_NSTimeZone"
+    feature = "NSNotification",
+    feature = "NSString",
+    feature = "NSTimeZone"
 ))]
 pub use self::__NSTimeZone::NSSystemTimeZoneDidChangeNotification;
-#[cfg(feature = "Foundation_NSTimeZone")]
+#[cfg(feature = "NSTimeZone")]
 pub use self::__NSTimeZone::NSTimeZone;
-#[cfg(feature = "Foundation_NSTimeZone")]
+#[cfg(feature = "NSTimeZone")]
 pub use self::__NSTimeZone::NSTimeZoneNameStyle;
-#[cfg(feature = "Foundation_NSTimer")]
+#[cfg(feature = "NSTimer")]
 pub use self::__NSTimer::NSTimer;
-#[cfg(feature = "Foundation_NSURLAuthenticationChallenge")]
+#[cfg(feature = "NSURLAuthenticationChallenge")]
 pub use self::__NSURLAuthenticationChallenge::NSURLAuthenticationChallenge;
-#[cfg(feature = "Foundation_NSURLAuthenticationChallenge")]
+#[cfg(feature = "NSURLAuthenticationChallenge")]
 pub use self::__NSURLAuthenticationChallenge::NSURLAuthenticationChallengeSender;
-#[cfg(feature = "Foundation_NSURLCache")]
+#[cfg(feature = "NSURLCache")]
 pub use self::__NSURLCache::NSCachedURLResponse;
-#[cfg(feature = "Foundation_NSURLCache")]
+#[cfg(feature = "NSURLCache")]
 pub use self::__NSURLCache::NSURLCache;
-#[cfg(feature = "Foundation_NSURLCache")]
+#[cfg(feature = "NSURLCache")]
 pub use self::__NSURLCache::NSURLCacheStoragePolicy;
-#[cfg(feature = "Foundation_NSURLConnection")]
+#[cfg(feature = "NSURLConnection")]
 pub use self::__NSURLConnection::NSURLConnection;
-#[cfg(feature = "Foundation_NSURLConnection")]
+#[cfg(feature = "NSURLConnection")]
 pub use self::__NSURLConnection::NSURLConnectionDataDelegate;
-#[cfg(feature = "Foundation_NSURLConnection")]
+#[cfg(feature = "NSURLConnection")]
 pub use self::__NSURLConnection::NSURLConnectionDelegate;
-#[cfg(feature = "Foundation_NSURLConnection")]
+#[cfg(feature = "NSURLConnection")]
 pub use self::__NSURLConnection::NSURLConnectionDownloadDelegate;
-#[cfg(feature = "Foundation_NSURLCredential")]
+#[cfg(feature = "NSURLCredential")]
 pub use self::__NSURLCredential::NSURLCredential;
-#[cfg(feature = "Foundation_NSURLCredential")]
+#[cfg(feature = "NSURLCredential")]
 pub use self::__NSURLCredential::NSURLCredentialPersistence;
-#[cfg(feature = "Foundation_NSURLCredentialStorage")]
+#[cfg(feature = "NSURLCredentialStorage")]
 pub use self::__NSURLCredentialStorage::NSURLCredentialStorage;
 #[cfg(all(
-    feature = "Foundation_NSNotification",
-    feature = "Foundation_NSString",
-    feature = "Foundation_NSURLCredentialStorage"
+    feature = "NSNotification",
+    feature = "NSString",
+    feature = "NSURLCredentialStorage"
 ))]
 pub use self::__NSURLCredentialStorage::NSURLCredentialStorageChangedNotification;
-#[cfg(all(
-    feature = "Foundation_NSString",
-    feature = "Foundation_NSURLCredentialStorage"
-))]
+#[cfg(all(feature = "NSString", feature = "NSURLCredentialStorage"))]
 pub use self::__NSURLCredentialStorage::NSURLCredentialStorageRemoveSynchronizableCredentials;
-#[cfg(feature = "Foundation_NSURLDownload")]
+#[cfg(feature = "NSURLDownload")]
 pub use self::__NSURLDownload::NSURLDownload;
-#[cfg(feature = "Foundation_NSURLDownload")]
+#[cfg(feature = "NSURLDownload")]
 pub use self::__NSURLDownload::NSURLDownloadDelegate;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURLError"))]
+#[cfg(all(feature = "NSString", feature = "NSURLError"))]
 pub use self::__NSURLError::NSErrorFailingURLStringKey;
-#[cfg(feature = "Foundation_NSURLError")]
+#[cfg(feature = "NSURLError")]
 pub use self::__NSURLError::NSURLErrorAppTransportSecurityRequiresSecureConnection;
-#[cfg(feature = "Foundation_NSURLError")]
+#[cfg(feature = "NSURLError")]
 pub use self::__NSURLError::NSURLErrorBackgroundSessionInUseByAnotherProcess;
-#[cfg(feature = "Foundation_NSURLError")]
+#[cfg(feature = "NSURLError")]
 pub use self::__NSURLError::NSURLErrorBackgroundSessionRequiresSharedContainer;
-#[cfg(feature = "Foundation_NSURLError")]
+#[cfg(feature = "NSURLError")]
 pub use self::__NSURLError::NSURLErrorBackgroundSessionWasDisconnected;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURLError"))]
+#[cfg(all(feature = "NSString", feature = "NSURLError"))]
 pub use self::__NSURLError::NSURLErrorBackgroundTaskCancelledReasonKey;
-#[cfg(feature = "Foundation_NSURLError")]
+#[cfg(feature = "NSURLError")]
 pub use self::__NSURLError::NSURLErrorBadServerResponse;
-#[cfg(feature = "Foundation_NSURLError")]
+#[cfg(feature = "NSURLError")]
 pub use self::__NSURLError::NSURLErrorBadURL;
-#[cfg(feature = "Foundation_NSURLError")]
+#[cfg(feature = "NSURLError")]
 pub use self::__NSURLError::NSURLErrorCallIsActive;
-#[cfg(feature = "Foundation_NSURLError")]
+#[cfg(feature = "NSURLError")]
 pub use self::__NSURLError::NSURLErrorCancelled;
-#[cfg(feature = "Foundation_NSURLError")]
+#[cfg(feature = "NSURLError")]
 pub use self::__NSURLError::NSURLErrorCancelledReasonBackgroundUpdatesDisabled;
-#[cfg(feature = "Foundation_NSURLError")]
+#[cfg(feature = "NSURLError")]
 pub use self::__NSURLError::NSURLErrorCancelledReasonInsufficientSystemResources;
-#[cfg(feature = "Foundation_NSURLError")]
+#[cfg(feature = "NSURLError")]
 pub use self::__NSURLError::NSURLErrorCancelledReasonUserForceQuitApplication;
-#[cfg(feature = "Foundation_NSURLError")]
+#[cfg(feature = "NSURLError")]
 pub use self::__NSURLError::NSURLErrorCannotCloseFile;
-#[cfg(feature = "Foundation_NSURLError")]
+#[cfg(feature = "NSURLError")]
 pub use self::__NSURLError::NSURLErrorCannotConnectToHost;
-#[cfg(feature = "Foundation_NSURLError")]
+#[cfg(feature = "NSURLError")]
 pub use self::__NSURLError::NSURLErrorCannotCreateFile;
-#[cfg(feature = "Foundation_NSURLError")]
+#[cfg(feature = "NSURLError")]
 pub use self::__NSURLError::NSURLErrorCannotDecodeContentData;
-#[cfg(feature = "Foundation_NSURLError")]
+#[cfg(feature = "NSURLError")]
 pub use self::__NSURLError::NSURLErrorCannotDecodeRawData;
-#[cfg(feature = "Foundation_NSURLError")]
+#[cfg(feature = "NSURLError")]
 pub use self::__NSURLError::NSURLErrorCannotFindHost;
-#[cfg(feature = "Foundation_NSURLError")]
+#[cfg(feature = "NSURLError")]
 pub use self::__NSURLError::NSURLErrorCannotLoadFromNetwork;
-#[cfg(feature = "Foundation_NSURLError")]
+#[cfg(feature = "NSURLError")]
 pub use self::__NSURLError::NSURLErrorCannotMoveFile;
-#[cfg(feature = "Foundation_NSURLError")]
+#[cfg(feature = "NSURLError")]
 pub use self::__NSURLError::NSURLErrorCannotOpenFile;
-#[cfg(feature = "Foundation_NSURLError")]
+#[cfg(feature = "NSURLError")]
 pub use self::__NSURLError::NSURLErrorCannotParseResponse;
-#[cfg(feature = "Foundation_NSURLError")]
+#[cfg(feature = "NSURLError")]
 pub use self::__NSURLError::NSURLErrorCannotRemoveFile;
-#[cfg(feature = "Foundation_NSURLError")]
+#[cfg(feature = "NSURLError")]
 pub use self::__NSURLError::NSURLErrorCannotWriteToFile;
-#[cfg(feature = "Foundation_NSURLError")]
+#[cfg(feature = "NSURLError")]
 pub use self::__NSURLError::NSURLErrorClientCertificateRejected;
-#[cfg(feature = "Foundation_NSURLError")]
+#[cfg(feature = "NSURLError")]
 pub use self::__NSURLError::NSURLErrorClientCertificateRequired;
-#[cfg(feature = "Foundation_NSURLError")]
+#[cfg(feature = "NSURLError")]
 pub use self::__NSURLError::NSURLErrorDNSLookupFailed;
-#[cfg(feature = "Foundation_NSURLError")]
+#[cfg(feature = "NSURLError")]
 pub use self::__NSURLError::NSURLErrorDataLengthExceedsMaximum;
-#[cfg(feature = "Foundation_NSURLError")]
+#[cfg(feature = "NSURLError")]
 pub use self::__NSURLError::NSURLErrorDataNotAllowed;
-#[cfg(all(
-    feature = "Foundation_NSError",
-    feature = "Foundation_NSString",
-    feature = "Foundation_NSURLError"
-))]
+#[cfg(all(feature = "NSError", feature = "NSString", feature = "NSURLError"))]
 pub use self::__NSURLError::NSURLErrorDomain;
-#[cfg(feature = "Foundation_NSURLError")]
+#[cfg(feature = "NSURLError")]
 pub use self::__NSURLError::NSURLErrorDownloadDecodingFailedMidStream;
-#[cfg(feature = "Foundation_NSURLError")]
+#[cfg(feature = "NSURLError")]
 pub use self::__NSURLError::NSURLErrorDownloadDecodingFailedToComplete;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURLError"))]
+#[cfg(all(feature = "NSString", feature = "NSURLError"))]
 pub use self::__NSURLError::NSURLErrorFailingURLErrorKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURLError"))]
+#[cfg(all(feature = "NSString", feature = "NSURLError"))]
 pub use self::__NSURLError::NSURLErrorFailingURLPeerTrustErrorKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURLError"))]
+#[cfg(all(feature = "NSString", feature = "NSURLError"))]
 pub use self::__NSURLError::NSURLErrorFailingURLStringErrorKey;
-#[cfg(feature = "Foundation_NSURLError")]
+#[cfg(feature = "NSURLError")]
 pub use self::__NSURLError::NSURLErrorFileDoesNotExist;
-#[cfg(feature = "Foundation_NSURLError")]
+#[cfg(feature = "NSURLError")]
 pub use self::__NSURLError::NSURLErrorFileIsDirectory;
-#[cfg(feature = "Foundation_NSURLError")]
+#[cfg(feature = "NSURLError")]
 pub use self::__NSURLError::NSURLErrorFileOutsideSafeArea;
-#[cfg(feature = "Foundation_NSURLError")]
+#[cfg(feature = "NSURLError")]
 pub use self::__NSURLError::NSURLErrorHTTPTooManyRedirects;
-#[cfg(feature = "Foundation_NSURLError")]
+#[cfg(feature = "NSURLError")]
 pub use self::__NSURLError::NSURLErrorInternationalRoamingOff;
-#[cfg(feature = "Foundation_NSURLError")]
+#[cfg(feature = "NSURLError")]
 pub use self::__NSURLError::NSURLErrorNetworkConnectionLost;
-#[cfg(feature = "Foundation_NSURLError")]
+#[cfg(feature = "NSURLError")]
 pub use self::__NSURLError::NSURLErrorNetworkUnavailableReason;
-#[cfg(all(
-    feature = "Foundation_NSError",
-    feature = "Foundation_NSString",
-    feature = "Foundation_NSURLError"
-))]
+#[cfg(all(feature = "NSError", feature = "NSString", feature = "NSURLError"))]
 pub use self::__NSURLError::NSURLErrorNetworkUnavailableReasonKey;
-#[cfg(feature = "Foundation_NSURLError")]
+#[cfg(feature = "NSURLError")]
 pub use self::__NSURLError::NSURLErrorNoPermissionsToReadFile;
-#[cfg(feature = "Foundation_NSURLError")]
+#[cfg(feature = "NSURLError")]
 pub use self::__NSURLError::NSURLErrorNotConnectedToInternet;
-#[cfg(feature = "Foundation_NSURLError")]
+#[cfg(feature = "NSURLError")]
 pub use self::__NSURLError::NSURLErrorRedirectToNonExistentLocation;
-#[cfg(feature = "Foundation_NSURLError")]
+#[cfg(feature = "NSURLError")]
 pub use self::__NSURLError::NSURLErrorRequestBodyStreamExhausted;
-#[cfg(feature = "Foundation_NSURLError")]
+#[cfg(feature = "NSURLError")]
 pub use self::__NSURLError::NSURLErrorResourceUnavailable;
-#[cfg(feature = "Foundation_NSURLError")]
+#[cfg(feature = "NSURLError")]
 pub use self::__NSURLError::NSURLErrorSecureConnectionFailed;
-#[cfg(feature = "Foundation_NSURLError")]
+#[cfg(feature = "NSURLError")]
 pub use self::__NSURLError::NSURLErrorServerCertificateHasBadDate;
-#[cfg(feature = "Foundation_NSURLError")]
+#[cfg(feature = "NSURLError")]
 pub use self::__NSURLError::NSURLErrorServerCertificateHasUnknownRoot;
-#[cfg(feature = "Foundation_NSURLError")]
+#[cfg(feature = "NSURLError")]
 pub use self::__NSURLError::NSURLErrorServerCertificateNotYetValid;
-#[cfg(feature = "Foundation_NSURLError")]
+#[cfg(feature = "NSURLError")]
 pub use self::__NSURLError::NSURLErrorServerCertificateUntrusted;
-#[cfg(feature = "Foundation_NSURLError")]
+#[cfg(feature = "NSURLError")]
 pub use self::__NSURLError::NSURLErrorTimedOut;
-#[cfg(feature = "Foundation_NSURLError")]
+#[cfg(feature = "NSURLError")]
 pub use self::__NSURLError::NSURLErrorUnknown;
-#[cfg(feature = "Foundation_NSURLError")]
+#[cfg(feature = "NSURLError")]
 pub use self::__NSURLError::NSURLErrorUnsupportedURL;
-#[cfg(feature = "Foundation_NSURLError")]
+#[cfg(feature = "NSURLError")]
 pub use self::__NSURLError::NSURLErrorUserAuthenticationRequired;
-#[cfg(feature = "Foundation_NSURLError")]
+#[cfg(feature = "NSURLError")]
 pub use self::__NSURLError::NSURLErrorUserCancelledAuthentication;
-#[cfg(feature = "Foundation_NSURLError")]
+#[cfg(feature = "NSURLError")]
 pub use self::__NSURLError::NSURLErrorZeroByteResource;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURLHandle"))]
+#[cfg(all(feature = "NSString", feature = "NSURLHandle"))]
 pub use self::__NSURLHandle::NSFTPPropertyActiveTransferModeKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURLHandle"))]
+#[cfg(all(feature = "NSString", feature = "NSURLHandle"))]
 pub use self::__NSURLHandle::NSFTPPropertyFTPProxy;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURLHandle"))]
+#[cfg(all(feature = "NSString", feature = "NSURLHandle"))]
 pub use self::__NSURLHandle::NSFTPPropertyFileOffsetKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURLHandle"))]
+#[cfg(all(feature = "NSString", feature = "NSURLHandle"))]
 pub use self::__NSURLHandle::NSFTPPropertyUserLoginKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURLHandle"))]
+#[cfg(all(feature = "NSString", feature = "NSURLHandle"))]
 pub use self::__NSURLHandle::NSFTPPropertyUserPasswordKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURLHandle"))]
+#[cfg(all(feature = "NSString", feature = "NSURLHandle"))]
 pub use self::__NSURLHandle::NSHTTPPropertyErrorPageDataKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURLHandle"))]
+#[cfg(all(feature = "NSString", feature = "NSURLHandle"))]
 pub use self::__NSURLHandle::NSHTTPPropertyHTTPProxy;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURLHandle"))]
+#[cfg(all(feature = "NSString", feature = "NSURLHandle"))]
 pub use self::__NSURLHandle::NSHTTPPropertyRedirectionHeadersKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURLHandle"))]
+#[cfg(all(feature = "NSString", feature = "NSURLHandle"))]
 pub use self::__NSURLHandle::NSHTTPPropertyServerHTTPVersionKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURLHandle"))]
+#[cfg(all(feature = "NSString", feature = "NSURLHandle"))]
 pub use self::__NSURLHandle::NSHTTPPropertyStatusCodeKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURLHandle"))]
+#[cfg(all(feature = "NSString", feature = "NSURLHandle"))]
 pub use self::__NSURLHandle::NSHTTPPropertyStatusReasonKey;
-#[cfg(feature = "Foundation_NSURLHandle")]
+#[cfg(feature = "NSURLHandle")]
 pub use self::__NSURLHandle::NSURLHandle;
-#[cfg(feature = "Foundation_NSURLHandle")]
+#[cfg(feature = "NSURLHandle")]
 pub use self::__NSURLHandle::NSURLHandleClient;
-#[cfg(feature = "Foundation_NSURLHandle")]
+#[cfg(feature = "NSURLHandle")]
 pub use self::__NSURLHandle::NSURLHandleStatus;
-#[cfg(all(
-    feature = "Foundation_NSString",
-    feature = "Foundation_NSURLProtectionSpace"
-))]
+#[cfg(all(feature = "NSString", feature = "NSURLProtectionSpace"))]
 pub use self::__NSURLProtectionSpace::NSURLAuthenticationMethodClientCertificate;
-#[cfg(all(
-    feature = "Foundation_NSString",
-    feature = "Foundation_NSURLProtectionSpace"
-))]
+#[cfg(all(feature = "NSString", feature = "NSURLProtectionSpace"))]
 pub use self::__NSURLProtectionSpace::NSURLAuthenticationMethodDefault;
-#[cfg(all(
-    feature = "Foundation_NSString",
-    feature = "Foundation_NSURLProtectionSpace"
-))]
+#[cfg(all(feature = "NSString", feature = "NSURLProtectionSpace"))]
 pub use self::__NSURLProtectionSpace::NSURLAuthenticationMethodHTMLForm;
-#[cfg(all(
-    feature = "Foundation_NSString",
-    feature = "Foundation_NSURLProtectionSpace"
-))]
+#[cfg(all(feature = "NSString", feature = "NSURLProtectionSpace"))]
 pub use self::__NSURLProtectionSpace::NSURLAuthenticationMethodHTTPBasic;
-#[cfg(all(
-    feature = "Foundation_NSString",
-    feature = "Foundation_NSURLProtectionSpace"
-))]
+#[cfg(all(feature = "NSString", feature = "NSURLProtectionSpace"))]
 pub use self::__NSURLProtectionSpace::NSURLAuthenticationMethodHTTPDigest;
-#[cfg(all(
-    feature = "Foundation_NSString",
-    feature = "Foundation_NSURLProtectionSpace"
-))]
+#[cfg(all(feature = "NSString", feature = "NSURLProtectionSpace"))]
 pub use self::__NSURLProtectionSpace::NSURLAuthenticationMethodNTLM;
-#[cfg(all(
-    feature = "Foundation_NSString",
-    feature = "Foundation_NSURLProtectionSpace"
-))]
+#[cfg(all(feature = "NSString", feature = "NSURLProtectionSpace"))]
 pub use self::__NSURLProtectionSpace::NSURLAuthenticationMethodNegotiate;
-#[cfg(all(
-    feature = "Foundation_NSString",
-    feature = "Foundation_NSURLProtectionSpace"
-))]
+#[cfg(all(feature = "NSString", feature = "NSURLProtectionSpace"))]
 pub use self::__NSURLProtectionSpace::NSURLAuthenticationMethodServerTrust;
-#[cfg(feature = "Foundation_NSURLProtectionSpace")]
+#[cfg(feature = "NSURLProtectionSpace")]
 pub use self::__NSURLProtectionSpace::NSURLProtectionSpace;
-#[cfg(all(
-    feature = "Foundation_NSString",
-    feature = "Foundation_NSURLProtectionSpace"
-))]
+#[cfg(all(feature = "NSString", feature = "NSURLProtectionSpace"))]
 pub use self::__NSURLProtectionSpace::NSURLProtectionSpaceFTP;
-#[cfg(all(
-    feature = "Foundation_NSString",
-    feature = "Foundation_NSURLProtectionSpace"
-))]
+#[cfg(all(feature = "NSString", feature = "NSURLProtectionSpace"))]
 pub use self::__NSURLProtectionSpace::NSURLProtectionSpaceFTPProxy;
-#[cfg(all(
-    feature = "Foundation_NSString",
-    feature = "Foundation_NSURLProtectionSpace"
-))]
+#[cfg(all(feature = "NSString", feature = "NSURLProtectionSpace"))]
 pub use self::__NSURLProtectionSpace::NSURLProtectionSpaceHTTP;
-#[cfg(all(
-    feature = "Foundation_NSString",
-    feature = "Foundation_NSURLProtectionSpace"
-))]
+#[cfg(all(feature = "NSString", feature = "NSURLProtectionSpace"))]
 pub use self::__NSURLProtectionSpace::NSURLProtectionSpaceHTTPProxy;
-#[cfg(all(
-    feature = "Foundation_NSString",
-    feature = "Foundation_NSURLProtectionSpace"
-))]
+#[cfg(all(feature = "NSString", feature = "NSURLProtectionSpace"))]
 pub use self::__NSURLProtectionSpace::NSURLProtectionSpaceHTTPS;
-#[cfg(all(
-    feature = "Foundation_NSString",
-    feature = "Foundation_NSURLProtectionSpace"
-))]
+#[cfg(all(feature = "NSString", feature = "NSURLProtectionSpace"))]
 pub use self::__NSURLProtectionSpace::NSURLProtectionSpaceHTTPSProxy;
-#[cfg(all(
-    feature = "Foundation_NSString",
-    feature = "Foundation_NSURLProtectionSpace"
-))]
+#[cfg(all(feature = "NSString", feature = "NSURLProtectionSpace"))]
 pub use self::__NSURLProtectionSpace::NSURLProtectionSpaceSOCKSProxy;
-#[cfg(feature = "Foundation_NSURLProtocol")]
+#[cfg(feature = "NSURLProtocol")]
 pub use self::__NSURLProtocol::NSURLProtocol;
-#[cfg(feature = "Foundation_NSURLProtocol")]
+#[cfg(feature = "NSURLProtocol")]
 pub use self::__NSURLProtocol::NSURLProtocolClient;
-#[cfg(feature = "Foundation_NSURLRequest")]
+#[cfg(feature = "NSURLRequest")]
 pub use self::__NSURLRequest::NSMutableURLRequest;
-#[cfg(feature = "Foundation_NSURLRequest")]
+#[cfg(feature = "NSURLRequest")]
 pub use self::__NSURLRequest::NSURLRequest;
-#[cfg(feature = "Foundation_NSURLRequest")]
+#[cfg(feature = "NSURLRequest")]
 pub use self::__NSURLRequest::NSURLRequestAttribution;
-#[cfg(feature = "Foundation_NSURLRequest")]
+#[cfg(feature = "NSURLRequest")]
 pub use self::__NSURLRequest::NSURLRequestCachePolicy;
-#[cfg(feature = "Foundation_NSURLRequest")]
+#[cfg(feature = "NSURLRequest")]
 pub use self::__NSURLRequest::NSURLRequestNetworkServiceType;
-#[cfg(feature = "Foundation_NSURLResponse")]
+#[cfg(feature = "NSURLResponse")]
 pub use self::__NSURLResponse::NSHTTPURLResponse;
-#[cfg(feature = "Foundation_NSURLResponse")]
+#[cfg(feature = "NSURLResponse")]
 pub use self::__NSURLResponse::NSURLResponse;
-#[cfg(feature = "Foundation_NSURLSession")]
+#[cfg(feature = "NSURLSession")]
 pub use self::__NSURLSession::NSURLSession;
-#[cfg(feature = "Foundation_NSURLSession")]
+#[cfg(feature = "NSURLSession")]
 pub use self::__NSURLSession::NSURLSessionAuthChallengeDisposition;
-#[cfg(feature = "Foundation_NSURLSession")]
+#[cfg(feature = "NSURLSession")]
 pub use self::__NSURLSession::NSURLSessionConfiguration;
-#[cfg(feature = "Foundation_NSURLSession")]
+#[cfg(feature = "NSURLSession")]
 pub use self::__NSURLSession::NSURLSessionDataDelegate;
-#[cfg(feature = "Foundation_NSURLSession")]
+#[cfg(feature = "NSURLSession")]
 pub use self::__NSURLSession::NSURLSessionDataTask;
-#[cfg(feature = "Foundation_NSURLSession")]
+#[cfg(feature = "NSURLSession")]
 pub use self::__NSURLSession::NSURLSessionDelayedRequestDisposition;
-#[cfg(feature = "Foundation_NSURLSession")]
+#[cfg(feature = "NSURLSession")]
 pub use self::__NSURLSession::NSURLSessionDelegate;
-#[cfg(feature = "Foundation_NSURLSession")]
+#[cfg(feature = "NSURLSession")]
 pub use self::__NSURLSession::NSURLSessionDownloadDelegate;
-#[cfg(feature = "Foundation_NSURLSession")]
+#[cfg(feature = "NSURLSession")]
 pub use self::__NSURLSession::NSURLSessionDownloadTask;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURLSession"))]
+#[cfg(all(feature = "NSString", feature = "NSURLSession"))]
 pub use self::__NSURLSession::NSURLSessionDownloadTaskResumeData;
-#[cfg(feature = "Foundation_NSURLSession")]
+#[cfg(feature = "NSURLSession")]
 pub use self::__NSURLSession::NSURLSessionMultipathServiceType;
-#[cfg(feature = "Foundation_NSURLSession")]
+#[cfg(feature = "NSURLSession")]
 pub use self::__NSURLSession::NSURLSessionResponseDisposition;
-#[cfg(feature = "Foundation_NSURLSession")]
+#[cfg(feature = "NSURLSession")]
 pub use self::__NSURLSession::NSURLSessionStreamDelegate;
-#[cfg(feature = "Foundation_NSURLSession")]
+#[cfg(feature = "NSURLSession")]
 pub use self::__NSURLSession::NSURLSessionStreamTask;
-#[cfg(feature = "Foundation_NSURLSession")]
+#[cfg(feature = "NSURLSession")]
 pub use self::__NSURLSession::NSURLSessionTask;
-#[cfg(feature = "Foundation_NSURLSession")]
+#[cfg(feature = "NSURLSession")]
 pub use self::__NSURLSession::NSURLSessionTaskDelegate;
-#[cfg(feature = "Foundation_NSURLSession")]
+#[cfg(feature = "NSURLSession")]
 pub use self::__NSURLSession::NSURLSessionTaskMetrics;
-#[cfg(feature = "Foundation_NSURLSession")]
+#[cfg(feature = "NSURLSession")]
 pub use self::__NSURLSession::NSURLSessionTaskMetricsDomainResolutionProtocol;
-#[cfg(feature = "Foundation_NSURLSession")]
+#[cfg(feature = "NSURLSession")]
 pub use self::__NSURLSession::NSURLSessionTaskMetricsResourceFetchType;
-#[cfg(feature = "Foundation_NSURLSession")]
+#[cfg(feature = "NSURLSession")]
 pub use self::__NSURLSession::NSURLSessionTaskPriorityDefault;
-#[cfg(feature = "Foundation_NSURLSession")]
+#[cfg(feature = "NSURLSession")]
 pub use self::__NSURLSession::NSURLSessionTaskPriorityHigh;
-#[cfg(feature = "Foundation_NSURLSession")]
+#[cfg(feature = "NSURLSession")]
 pub use self::__NSURLSession::NSURLSessionTaskPriorityLow;
-#[cfg(feature = "Foundation_NSURLSession")]
+#[cfg(feature = "NSURLSession")]
 pub use self::__NSURLSession::NSURLSessionTaskState;
-#[cfg(feature = "Foundation_NSURLSession")]
+#[cfg(feature = "NSURLSession")]
 pub use self::__NSURLSession::NSURLSessionTaskTransactionMetrics;
-#[cfg(feature = "Foundation_NSURLSession")]
+#[cfg(feature = "NSURLSession")]
 pub use self::__NSURLSession::NSURLSessionTransferSizeUnknown;
-#[cfg(feature = "Foundation_NSURLSession")]
+#[cfg(feature = "NSURLSession")]
 pub use self::__NSURLSession::NSURLSessionUploadTask;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURLSession"))]
+#[cfg(all(feature = "NSString", feature = "NSURLSession"))]
 pub use self::__NSURLSession::NSURLSessionUploadTaskResumeData;
-#[cfg(feature = "Foundation_NSURLSession")]
+#[cfg(feature = "NSURLSession")]
 pub use self::__NSURLSession::NSURLSessionWebSocketCloseCode;
-#[cfg(feature = "Foundation_NSURLSession")]
+#[cfg(feature = "NSURLSession")]
 pub use self::__NSURLSession::NSURLSessionWebSocketDelegate;
-#[cfg(feature = "Foundation_NSURLSession")]
+#[cfg(feature = "NSURLSession")]
 pub use self::__NSURLSession::NSURLSessionWebSocketMessage;
-#[cfg(feature = "Foundation_NSURLSession")]
+#[cfg(feature = "NSURLSession")]
 pub use self::__NSURLSession::NSURLSessionWebSocketMessageType;
-#[cfg(feature = "Foundation_NSURLSession")]
+#[cfg(feature = "NSURLSession")]
 pub use self::__NSURLSession::NSURLSessionWebSocketTask;
-#[cfg(feature = "Foundation_NSUbiquitousKeyValueStore")]
+#[cfg(feature = "NSUbiquitousKeyValueStore")]
 pub use self::__NSUbiquitousKeyValueStore::NSUbiquitousKeyValueStore;
-#[cfg(feature = "Foundation_NSUbiquitousKeyValueStore")]
+#[cfg(feature = "NSUbiquitousKeyValueStore")]
 pub use self::__NSUbiquitousKeyValueStore::NSUbiquitousKeyValueStoreAccountChange;
-#[cfg(all(
-    feature = "Foundation_NSString",
-    feature = "Foundation_NSUbiquitousKeyValueStore"
-))]
+#[cfg(all(feature = "NSString", feature = "NSUbiquitousKeyValueStore"))]
 pub use self::__NSUbiquitousKeyValueStore::NSUbiquitousKeyValueStoreChangeReasonKey;
-#[cfg(all(
-    feature = "Foundation_NSString",
-    feature = "Foundation_NSUbiquitousKeyValueStore"
-))]
+#[cfg(all(feature = "NSString", feature = "NSUbiquitousKeyValueStore"))]
 pub use self::__NSUbiquitousKeyValueStore::NSUbiquitousKeyValueStoreChangedKeysKey;
 #[cfg(all(
-    feature = "Foundation_NSNotification",
-    feature = "Foundation_NSString",
-    feature = "Foundation_NSUbiquitousKeyValueStore"
+    feature = "NSNotification",
+    feature = "NSString",
+    feature = "NSUbiquitousKeyValueStore"
 ))]
 pub use self::__NSUbiquitousKeyValueStore::NSUbiquitousKeyValueStoreDidChangeExternallyNotification;
-#[cfg(feature = "Foundation_NSUbiquitousKeyValueStore")]
+#[cfg(feature = "NSUbiquitousKeyValueStore")]
 pub use self::__NSUbiquitousKeyValueStore::NSUbiquitousKeyValueStoreInitialSyncChange;
-#[cfg(feature = "Foundation_NSUbiquitousKeyValueStore")]
+#[cfg(feature = "NSUbiquitousKeyValueStore")]
 pub use self::__NSUbiquitousKeyValueStore::NSUbiquitousKeyValueStoreQuotaViolationChange;
-#[cfg(feature = "Foundation_NSUbiquitousKeyValueStore")]
+#[cfg(feature = "NSUbiquitousKeyValueStore")]
 pub use self::__NSUbiquitousKeyValueStore::NSUbiquitousKeyValueStoreServerChange;
-#[cfg(feature = "Foundation_NSUndoManager")]
+#[cfg(feature = "NSUndoManager")]
 pub use self::__NSUndoManager::NSUndoCloseGroupingRunLoopOrdering;
-#[cfg(feature = "Foundation_NSUndoManager")]
+#[cfg(feature = "NSUndoManager")]
 pub use self::__NSUndoManager::NSUndoManager;
 #[cfg(all(
-    feature = "Foundation_NSNotification",
-    feature = "Foundation_NSString",
-    feature = "Foundation_NSUndoManager"
+    feature = "NSNotification",
+    feature = "NSString",
+    feature = "NSUndoManager"
 ))]
 pub use self::__NSUndoManager::NSUndoManagerCheckpointNotification;
 #[cfg(all(
-    feature = "Foundation_NSNotification",
-    feature = "Foundation_NSString",
-    feature = "Foundation_NSUndoManager"
+    feature = "NSNotification",
+    feature = "NSString",
+    feature = "NSUndoManager"
 ))]
 pub use self::__NSUndoManager::NSUndoManagerDidCloseUndoGroupNotification;
 #[cfg(all(
-    feature = "Foundation_NSNotification",
-    feature = "Foundation_NSString",
-    feature = "Foundation_NSUndoManager"
+    feature = "NSNotification",
+    feature = "NSString",
+    feature = "NSUndoManager"
 ))]
 pub use self::__NSUndoManager::NSUndoManagerDidOpenUndoGroupNotification;
 #[cfg(all(
-    feature = "Foundation_NSNotification",
-    feature = "Foundation_NSString",
-    feature = "Foundation_NSUndoManager"
+    feature = "NSNotification",
+    feature = "NSString",
+    feature = "NSUndoManager"
 ))]
 pub use self::__NSUndoManager::NSUndoManagerDidRedoChangeNotification;
 #[cfg(all(
-    feature = "Foundation_NSNotification",
-    feature = "Foundation_NSString",
-    feature = "Foundation_NSUndoManager"
+    feature = "NSNotification",
+    feature = "NSString",
+    feature = "NSUndoManager"
 ))]
 pub use self::__NSUndoManager::NSUndoManagerDidUndoChangeNotification;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSUndoManager"))]
+#[cfg(all(feature = "NSString", feature = "NSUndoManager"))]
 pub use self::__NSUndoManager::NSUndoManagerGroupIsDiscardableKey;
 #[cfg(all(
-    feature = "Foundation_NSNotification",
-    feature = "Foundation_NSString",
-    feature = "Foundation_NSUndoManager"
+    feature = "NSNotification",
+    feature = "NSString",
+    feature = "NSUndoManager"
 ))]
 pub use self::__NSUndoManager::NSUndoManagerWillCloseUndoGroupNotification;
 #[cfg(all(
-    feature = "Foundation_NSNotification",
-    feature = "Foundation_NSString",
-    feature = "Foundation_NSUndoManager"
+    feature = "NSNotification",
+    feature = "NSString",
+    feature = "NSUndoManager"
 ))]
 pub use self::__NSUndoManager::NSUndoManagerWillRedoChangeNotification;
 #[cfg(all(
-    feature = "Foundation_NSNotification",
-    feature = "Foundation_NSString",
-    feature = "Foundation_NSUndoManager"
+    feature = "NSNotification",
+    feature = "NSString",
+    feature = "NSUndoManager"
 ))]
 pub use self::__NSUndoManager::NSUndoManagerWillUndoChangeNotification;
-#[cfg(feature = "Foundation_NSUnit")]
+#[cfg(feature = "NSUnit")]
 pub use self::__NSUnit::NSDimension;
-#[cfg(feature = "Foundation_NSUnit")]
+#[cfg(feature = "NSUnit")]
 pub use self::__NSUnit::NSUnit;
-#[cfg(feature = "Foundation_NSUnit")]
+#[cfg(feature = "NSUnit")]
 pub use self::__NSUnit::NSUnitAcceleration;
-#[cfg(feature = "Foundation_NSUnit")]
+#[cfg(feature = "NSUnit")]
 pub use self::__NSUnit::NSUnitAngle;
-#[cfg(feature = "Foundation_NSUnit")]
+#[cfg(feature = "NSUnit")]
 pub use self::__NSUnit::NSUnitArea;
-#[cfg(feature = "Foundation_NSUnit")]
+#[cfg(feature = "NSUnit")]
 pub use self::__NSUnit::NSUnitConcentrationMass;
-#[cfg(feature = "Foundation_NSUnit")]
+#[cfg(feature = "NSUnit")]
 pub use self::__NSUnit::NSUnitConverter;
-#[cfg(feature = "Foundation_NSUnit")]
+#[cfg(feature = "NSUnit")]
 pub use self::__NSUnit::NSUnitConverterLinear;
-#[cfg(feature = "Foundation_NSUnit")]
+#[cfg(feature = "NSUnit")]
 pub use self::__NSUnit::NSUnitDispersion;
-#[cfg(feature = "Foundation_NSUnit")]
+#[cfg(feature = "NSUnit")]
 pub use self::__NSUnit::NSUnitDuration;
-#[cfg(feature = "Foundation_NSUnit")]
+#[cfg(feature = "NSUnit")]
 pub use self::__NSUnit::NSUnitElectricCharge;
-#[cfg(feature = "Foundation_NSUnit")]
+#[cfg(feature = "NSUnit")]
 pub use self::__NSUnit::NSUnitElectricCurrent;
-#[cfg(feature = "Foundation_NSUnit")]
+#[cfg(feature = "NSUnit")]
 pub use self::__NSUnit::NSUnitElectricPotentialDifference;
-#[cfg(feature = "Foundation_NSUnit")]
+#[cfg(feature = "NSUnit")]
 pub use self::__NSUnit::NSUnitElectricResistance;
-#[cfg(feature = "Foundation_NSUnit")]
+#[cfg(feature = "NSUnit")]
 pub use self::__NSUnit::NSUnitEnergy;
-#[cfg(feature = "Foundation_NSUnit")]
+#[cfg(feature = "NSUnit")]
 pub use self::__NSUnit::NSUnitFrequency;
-#[cfg(feature = "Foundation_NSUnit")]
+#[cfg(feature = "NSUnit")]
 pub use self::__NSUnit::NSUnitFuelEfficiency;
-#[cfg(feature = "Foundation_NSUnit")]
+#[cfg(feature = "NSUnit")]
 pub use self::__NSUnit::NSUnitIlluminance;
-#[cfg(feature = "Foundation_NSUnit")]
+#[cfg(feature = "NSUnit")]
 pub use self::__NSUnit::NSUnitInformationStorage;
-#[cfg(feature = "Foundation_NSUnit")]
+#[cfg(feature = "NSUnit")]
 pub use self::__NSUnit::NSUnitLength;
-#[cfg(feature = "Foundation_NSUnit")]
+#[cfg(feature = "NSUnit")]
 pub use self::__NSUnit::NSUnitMass;
-#[cfg(feature = "Foundation_NSUnit")]
+#[cfg(feature = "NSUnit")]
 pub use self::__NSUnit::NSUnitPower;
-#[cfg(feature = "Foundation_NSUnit")]
+#[cfg(feature = "NSUnit")]
 pub use self::__NSUnit::NSUnitPressure;
-#[cfg(feature = "Foundation_NSUnit")]
+#[cfg(feature = "NSUnit")]
 pub use self::__NSUnit::NSUnitSpeed;
-#[cfg(feature = "Foundation_NSUnit")]
+#[cfg(feature = "NSUnit")]
 pub use self::__NSUnit::NSUnitTemperature;
-#[cfg(feature = "Foundation_NSUnit")]
+#[cfg(feature = "NSUnit")]
 pub use self::__NSUnit::NSUnitVolume;
-#[cfg(feature = "Foundation_NSUserActivity")]
+#[cfg(feature = "NSUserActivity")]
 pub use self::__NSUserActivity::NSUserActivity;
-#[cfg(feature = "Foundation_NSUserActivity")]
+#[cfg(feature = "NSUserActivity")]
 pub use self::__NSUserActivity::NSUserActivityDelegate;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSUserActivity"))]
+#[cfg(all(feature = "NSString", feature = "NSUserActivity"))]
 pub use self::__NSUserActivity::NSUserActivityPersistentIdentifier;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSUserActivity"))]
+#[cfg(all(feature = "NSString", feature = "NSUserActivity"))]
 pub use self::__NSUserActivity::NSUserActivityTypeBrowsingWeb;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSUserDefaults"))]
+#[cfg(all(feature = "NSString", feature = "NSUserDefaults"))]
 pub use self::__NSUserDefaults::NSAMPMDesignation;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSUserDefaults"))]
+#[cfg(all(feature = "NSString", feature = "NSUserDefaults"))]
 pub use self::__NSUserDefaults::NSArgumentDomain;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSUserDefaults"))]
+#[cfg(all(feature = "NSString", feature = "NSUserDefaults"))]
 pub use self::__NSUserDefaults::NSCurrencySymbol;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSUserDefaults"))]
+#[cfg(all(feature = "NSString", feature = "NSUserDefaults"))]
 pub use self::__NSUserDefaults::NSDateFormatString;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSUserDefaults"))]
+#[cfg(all(feature = "NSString", feature = "NSUserDefaults"))]
 pub use self::__NSUserDefaults::NSDateTimeOrdering;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSUserDefaults"))]
+#[cfg(all(feature = "NSString", feature = "NSUserDefaults"))]
 pub use self::__NSUserDefaults::NSDecimalDigits;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSUserDefaults"))]
+#[cfg(all(feature = "NSString", feature = "NSUserDefaults"))]
 pub use self::__NSUserDefaults::NSDecimalSeparator;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSUserDefaults"))]
+#[cfg(all(feature = "NSString", feature = "NSUserDefaults"))]
 pub use self::__NSUserDefaults::NSEarlierTimeDesignations;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSUserDefaults"))]
+#[cfg(all(feature = "NSString", feature = "NSUserDefaults"))]
 pub use self::__NSUserDefaults::NSGlobalDomain;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSUserDefaults"))]
+#[cfg(all(feature = "NSString", feature = "NSUserDefaults"))]
 pub use self::__NSUserDefaults::NSHourNameDesignations;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSUserDefaults"))]
+#[cfg(all(feature = "NSString", feature = "NSUserDefaults"))]
 pub use self::__NSUserDefaults::NSInternationalCurrencyString;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSUserDefaults"))]
+#[cfg(all(feature = "NSString", feature = "NSUserDefaults"))]
 pub use self::__NSUserDefaults::NSLaterTimeDesignations;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSUserDefaults"))]
+#[cfg(all(feature = "NSString", feature = "NSUserDefaults"))]
 pub use self::__NSUserDefaults::NSMonthNameArray;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSUserDefaults"))]
+#[cfg(all(feature = "NSString", feature = "NSUserDefaults"))]
 pub use self::__NSUserDefaults::NSNegativeCurrencyFormatString;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSUserDefaults"))]
+#[cfg(all(feature = "NSString", feature = "NSUserDefaults"))]
 pub use self::__NSUserDefaults::NSNextDayDesignations;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSUserDefaults"))]
+#[cfg(all(feature = "NSString", feature = "NSUserDefaults"))]
 pub use self::__NSUserDefaults::NSNextNextDayDesignations;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSUserDefaults"))]
+#[cfg(all(feature = "NSString", feature = "NSUserDefaults"))]
 pub use self::__NSUserDefaults::NSPositiveCurrencyFormatString;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSUserDefaults"))]
+#[cfg(all(feature = "NSString", feature = "NSUserDefaults"))]
 pub use self::__NSUserDefaults::NSPriorDayDesignations;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSUserDefaults"))]
+#[cfg(all(feature = "NSString", feature = "NSUserDefaults"))]
 pub use self::__NSUserDefaults::NSRegistrationDomain;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSUserDefaults"))]
+#[cfg(all(feature = "NSString", feature = "NSUserDefaults"))]
 pub use self::__NSUserDefaults::NSShortDateFormatString;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSUserDefaults"))]
+#[cfg(all(feature = "NSString", feature = "NSUserDefaults"))]
 pub use self::__NSUserDefaults::NSShortMonthNameArray;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSUserDefaults"))]
+#[cfg(all(feature = "NSString", feature = "NSUserDefaults"))]
 pub use self::__NSUserDefaults::NSShortTimeDateFormatString;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSUserDefaults"))]
+#[cfg(all(feature = "NSString", feature = "NSUserDefaults"))]
 pub use self::__NSUserDefaults::NSShortWeekDayNameArray;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSUserDefaults"))]
+#[cfg(all(feature = "NSString", feature = "NSUserDefaults"))]
 pub use self::__NSUserDefaults::NSThisDayDesignations;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSUserDefaults"))]
+#[cfg(all(feature = "NSString", feature = "NSUserDefaults"))]
 pub use self::__NSUserDefaults::NSThousandsSeparator;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSUserDefaults"))]
+#[cfg(all(feature = "NSString", feature = "NSUserDefaults"))]
 pub use self::__NSUserDefaults::NSTimeDateFormatString;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSUserDefaults"))]
+#[cfg(all(feature = "NSString", feature = "NSUserDefaults"))]
 pub use self::__NSUserDefaults::NSTimeFormatString;
 #[cfg(all(
-    feature = "Foundation_NSNotification",
-    feature = "Foundation_NSString",
-    feature = "Foundation_NSUserDefaults"
+    feature = "NSNotification",
+    feature = "NSString",
+    feature = "NSUserDefaults"
 ))]
 pub use self::__NSUserDefaults::NSUbiquitousUserDefaultsCompletedInitialSyncNotification;
 #[cfg(all(
-    feature = "Foundation_NSNotification",
-    feature = "Foundation_NSString",
-    feature = "Foundation_NSUserDefaults"
+    feature = "NSNotification",
+    feature = "NSString",
+    feature = "NSUserDefaults"
 ))]
 pub use self::__NSUserDefaults::NSUbiquitousUserDefaultsDidChangeAccountsNotification;
 #[cfg(all(
-    feature = "Foundation_NSNotification",
-    feature = "Foundation_NSString",
-    feature = "Foundation_NSUserDefaults"
+    feature = "NSNotification",
+    feature = "NSString",
+    feature = "NSUserDefaults"
 ))]
 pub use self::__NSUserDefaults::NSUbiquitousUserDefaultsNoCloudAccountNotification;
-#[cfg(feature = "Foundation_NSUserDefaults")]
+#[cfg(feature = "NSUserDefaults")]
 pub use self::__NSUserDefaults::NSUserDefaults;
 #[cfg(all(
-    feature = "Foundation_NSNotification",
-    feature = "Foundation_NSString",
-    feature = "Foundation_NSUserDefaults"
+    feature = "NSNotification",
+    feature = "NSString",
+    feature = "NSUserDefaults"
 ))]
 pub use self::__NSUserDefaults::NSUserDefaultsDidChangeNotification;
 #[cfg(all(
-    feature = "Foundation_NSNotification",
-    feature = "Foundation_NSString",
-    feature = "Foundation_NSUserDefaults"
+    feature = "NSNotification",
+    feature = "NSString",
+    feature = "NSUserDefaults"
 ))]
 pub use self::__NSUserDefaults::NSUserDefaultsSizeLimitExceededNotification;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSUserDefaults"))]
+#[cfg(all(feature = "NSString", feature = "NSUserDefaults"))]
 pub use self::__NSUserDefaults::NSWeekDayNameArray;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSUserDefaults"))]
+#[cfg(all(feature = "NSString", feature = "NSUserDefaults"))]
 pub use self::__NSUserDefaults::NSYearMonthWeekDesignations;
-#[cfg(feature = "Foundation_NSUserNotification")]
+#[cfg(feature = "NSUserNotification")]
 pub use self::__NSUserNotification::NSUserNotification;
-#[cfg(feature = "Foundation_NSUserNotification")]
+#[cfg(feature = "NSUserNotification")]
 pub use self::__NSUserNotification::NSUserNotificationAction;
-#[cfg(feature = "Foundation_NSUserNotification")]
+#[cfg(feature = "NSUserNotification")]
 pub use self::__NSUserNotification::NSUserNotificationActivationType;
-#[cfg(feature = "Foundation_NSUserNotification")]
+#[cfg(feature = "NSUserNotification")]
 pub use self::__NSUserNotification::NSUserNotificationCenter;
-#[cfg(feature = "Foundation_NSUserNotification")]
+#[cfg(feature = "NSUserNotification")]
 pub use self::__NSUserNotification::NSUserNotificationCenterDelegate;
-#[cfg(all(
-    feature = "Foundation_NSString",
-    feature = "Foundation_NSUserNotification"
-))]
+#[cfg(all(feature = "NSString", feature = "NSUserNotification"))]
 pub use self::__NSUserNotification::NSUserNotificationDefaultSoundName;
-#[cfg(feature = "Foundation_NSUserScriptTask")]
+#[cfg(feature = "NSUserScriptTask")]
 pub use self::__NSUserScriptTask::NSUserAppleScriptTask;
 #[cfg(all(
-    feature = "Foundation_NSAppleEventDescriptor",
-    feature = "Foundation_NSError",
-    feature = "Foundation_NSUserScriptTask",
+    feature = "NSAppleEventDescriptor",
+    feature = "NSError",
+    feature = "NSUserScriptTask",
     feature = "block2"
 ))]
 pub use self::__NSUserScriptTask::NSUserAppleScriptTaskCompletionHandler;
-#[cfg(feature = "Foundation_NSUserScriptTask")]
+#[cfg(feature = "NSUserScriptTask")]
 pub use self::__NSUserScriptTask::NSUserAutomatorTask;
-#[cfg(all(
-    feature = "Foundation_NSError",
-    feature = "Foundation_NSUserScriptTask",
-    feature = "block2"
-))]
+#[cfg(all(feature = "NSError", feature = "NSUserScriptTask", feature = "block2"))]
 pub use self::__NSUserScriptTask::NSUserAutomatorTaskCompletionHandler;
-#[cfg(feature = "Foundation_NSUserScriptTask")]
+#[cfg(feature = "NSUserScriptTask")]
 pub use self::__NSUserScriptTask::NSUserScriptTask;
-#[cfg(all(
-    feature = "Foundation_NSError",
-    feature = "Foundation_NSUserScriptTask",
-    feature = "block2"
-))]
+#[cfg(all(feature = "NSError", feature = "NSUserScriptTask", feature = "block2"))]
 pub use self::__NSUserScriptTask::NSUserScriptTaskCompletionHandler;
-#[cfg(feature = "Foundation_NSUserScriptTask")]
+#[cfg(feature = "NSUserScriptTask")]
 pub use self::__NSUserScriptTask::NSUserUnixTask;
-#[cfg(all(
-    feature = "Foundation_NSError",
-    feature = "Foundation_NSUserScriptTask",
-    feature = "block2"
-))]
+#[cfg(all(feature = "NSError", feature = "NSUserScriptTask", feature = "block2"))]
 pub use self::__NSUserScriptTask::NSUserUnixTaskCompletionHandler;
-#[cfg(feature = "Foundation_NSValue")]
+#[cfg(feature = "NSValue")]
 pub use self::__NSValue::NSNumber;
-#[cfg(feature = "Foundation_NSValue")]
+#[cfg(feature = "NSValue")]
 pub use self::__NSValue::NSValue;
-#[cfg(all(
-    feature = "Foundation_NSString",
-    feature = "Foundation_NSValueTransformer"
-))]
+#[cfg(all(feature = "NSString", feature = "NSValueTransformer"))]
 pub use self::__NSValueTransformer::NSIsNilTransformerName;
-#[cfg(all(
-    feature = "Foundation_NSString",
-    feature = "Foundation_NSValueTransformer"
-))]
+#[cfg(all(feature = "NSString", feature = "NSValueTransformer"))]
 pub use self::__NSValueTransformer::NSIsNotNilTransformerName;
-#[cfg(all(
-    feature = "Foundation_NSString",
-    feature = "Foundation_NSValueTransformer"
-))]
+#[cfg(all(feature = "NSString", feature = "NSValueTransformer"))]
 pub use self::__NSValueTransformer::NSKeyedUnarchiveFromDataTransformerName;
-#[cfg(all(
-    feature = "Foundation_NSString",
-    feature = "Foundation_NSValueTransformer"
-))]
+#[cfg(all(feature = "NSString", feature = "NSValueTransformer"))]
 pub use self::__NSValueTransformer::NSNegateBooleanTransformerName;
-#[cfg(feature = "Foundation_NSValueTransformer")]
+#[cfg(feature = "NSValueTransformer")]
 pub use self::__NSValueTransformer::NSSecureUnarchiveFromDataTransformer;
-#[cfg(all(
-    feature = "Foundation_NSString",
-    feature = "Foundation_NSValueTransformer"
-))]
+#[cfg(all(feature = "NSString", feature = "NSValueTransformer"))]
 pub use self::__NSValueTransformer::NSSecureUnarchiveFromDataTransformerName;
-#[cfg(all(
-    feature = "Foundation_NSString",
-    feature = "Foundation_NSValueTransformer"
-))]
+#[cfg(all(feature = "NSString", feature = "NSValueTransformer"))]
 pub use self::__NSValueTransformer::NSUnarchiveFromDataTransformerName;
-#[cfg(feature = "Foundation_NSValueTransformer")]
+#[cfg(feature = "NSValueTransformer")]
 pub use self::__NSValueTransformer::NSValueTransformer;
-#[cfg(all(
-    feature = "Foundation_NSString",
-    feature = "Foundation_NSValueTransformer"
-))]
+#[cfg(all(feature = "NSString", feature = "NSValueTransformer"))]
 pub use self::__NSValueTransformer::NSValueTransformerName;
-#[cfg(all(feature = "Foundation_NSXMLDTDNode", feature = "Foundation_NSXMLNode"))]
+#[cfg(all(feature = "NSXMLDTDNode", feature = "NSXMLNode"))]
 pub use self::__NSXMLDTDNode::NSXMLDTDNode;
-#[cfg(feature = "Foundation_NSXMLDTDNode")]
+#[cfg(feature = "NSXMLDTDNode")]
 pub use self::__NSXMLDTDNode::NSXMLDTDNodeKind;
-#[cfg(all(feature = "Foundation_NSXMLDocument", feature = "Foundation_NSXMLNode"))]
+#[cfg(all(feature = "NSXMLDocument", feature = "NSXMLNode"))]
 pub use self::__NSXMLDocument::NSXMLDocument;
-#[cfg(feature = "Foundation_NSXMLDocument")]
+#[cfg(feature = "NSXMLDocument")]
 pub use self::__NSXMLDocument::NSXMLDocumentContentKind;
-#[cfg(all(feature = "Foundation_NSXMLElement", feature = "Foundation_NSXMLNode"))]
+#[cfg(all(feature = "NSXMLElement", feature = "NSXMLNode"))]
 pub use self::__NSXMLElement::NSXMLElement;
-#[cfg(feature = "Foundation_NSXMLNode")]
+#[cfg(feature = "NSXMLNode")]
 pub use self::__NSXMLNode::NSXMLNode;
-#[cfg(feature = "Foundation_NSXMLNode")]
+#[cfg(feature = "NSXMLNode")]
 pub use self::__NSXMLNode::NSXMLNodeKind;
-#[cfg(feature = "Foundation_NSXMLNodeOptions")]
+#[cfg(feature = "NSXMLNodeOptions")]
 pub use self::__NSXMLNodeOptions::NSXMLNodeOptions;
-#[cfg(feature = "Foundation_NSXMLParser")]
+#[cfg(feature = "NSXMLParser")]
 pub use self::__NSXMLParser::NSXMLParser;
-#[cfg(feature = "Foundation_NSXMLParser")]
+#[cfg(feature = "NSXMLParser")]
 pub use self::__NSXMLParser::NSXMLParserDelegate;
-#[cfg(feature = "Foundation_NSXMLParser")]
+#[cfg(feature = "NSXMLParser")]
 pub use self::__NSXMLParser::NSXMLParserError;
-#[cfg(all(
-    feature = "Foundation_NSError",
-    feature = "Foundation_NSString",
-    feature = "Foundation_NSXMLParser"
-))]
+#[cfg(all(feature = "NSError", feature = "NSString", feature = "NSXMLParser"))]
 pub use self::__NSXMLParser::NSXMLParserErrorDomain;
-#[cfg(feature = "Foundation_NSXMLParser")]
+#[cfg(feature = "NSXMLParser")]
 pub use self::__NSXMLParser::NSXMLParserExternalEntityResolvingPolicy;
-#[cfg(all(feature = "Foundation_NSCoder", feature = "Foundation_NSXPCConnection"))]
+#[cfg(all(feature = "NSCoder", feature = "NSXPCConnection"))]
 pub use self::__NSXPCConnection::NSXPCCoder;
-#[cfg(feature = "Foundation_NSXPCConnection")]
+#[cfg(feature = "NSXPCConnection")]
 pub use self::__NSXPCConnection::NSXPCConnection;
-#[cfg(feature = "Foundation_NSXPCConnection")]
+#[cfg(feature = "NSXPCConnection")]
 pub use self::__NSXPCConnection::NSXPCConnectionOptions;
-#[cfg(feature = "Foundation_NSXPCConnection")]
+#[cfg(feature = "NSXPCConnection")]
 pub use self::__NSXPCConnection::NSXPCInterface;
-#[cfg(feature = "Foundation_NSXPCConnection")]
+#[cfg(feature = "NSXPCConnection")]
 pub use self::__NSXPCConnection::NSXPCListener;
-#[cfg(feature = "Foundation_NSXPCConnection")]
+#[cfg(feature = "NSXPCConnection")]
 pub use self::__NSXPCConnection::NSXPCListenerDelegate;
-#[cfg(feature = "Foundation_NSXPCConnection")]
+#[cfg(feature = "NSXPCConnection")]
 pub use self::__NSXPCConnection::NSXPCListenerEndpoint;
-#[cfg(feature = "Foundation_NSXPCConnection")]
+#[cfg(feature = "NSXPCConnection")]
 pub use self::__NSXPCConnection::NSXPCProxyCreating;
-#[cfg(feature = "Foundation_NSZone")]
+#[cfg(feature = "NSZone")]
 pub use self::__NSZone::NSAllocateCollectable;
-#[cfg(feature = "Foundation_NSZone")]
+#[cfg(feature = "NSZone")]
 pub use self::__NSZone::NSAllocateMemoryPages;
-#[cfg(feature = "Foundation_NSZone")]
+#[cfg(feature = "NSZone")]
 pub use self::__NSZone::NSCollectorDisabledOption;
-#[cfg(feature = "Foundation_NSZone")]
+#[cfg(feature = "NSZone")]
 pub use self::__NSZone::NSCopyMemoryPages;
-#[cfg(feature = "Foundation_NSZone")]
+#[cfg(feature = "NSZone")]
 pub use self::__NSZone::NSCreateZone;
-#[cfg(feature = "Foundation_NSZone")]
+#[cfg(feature = "NSZone")]
 pub use self::__NSZone::NSDeallocateMemoryPages;
-#[cfg(feature = "Foundation_NSZone")]
+#[cfg(feature = "NSZone")]
 pub use self::__NSZone::NSDefaultMallocZone;
-#[cfg(feature = "Foundation_NSZone")]
+#[cfg(feature = "NSZone")]
 pub use self::__NSZone::NSLogPageSize;
-#[cfg(feature = "Foundation_NSZone")]
+#[cfg(feature = "NSZone")]
 pub use self::__NSZone::NSPageSize;
-#[cfg(feature = "Foundation_NSZone")]
+#[cfg(feature = "NSZone")]
 pub use self::__NSZone::NSRealMemoryAvailable;
-#[cfg(feature = "Foundation_NSZone")]
+#[cfg(feature = "NSZone")]
 pub use self::__NSZone::NSReallocateCollectable;
-#[cfg(feature = "Foundation_NSZone")]
+#[cfg(feature = "NSZone")]
 pub use self::__NSZone::NSRecycleZone;
-#[cfg(feature = "Foundation_NSZone")]
+#[cfg(feature = "NSZone")]
 pub use self::__NSZone::NSRoundDownToMultipleOfPageSize;
-#[cfg(feature = "Foundation_NSZone")]
+#[cfg(feature = "NSZone")]
 pub use self::__NSZone::NSRoundUpToMultipleOfPageSize;
-#[cfg(feature = "Foundation_NSZone")]
+#[cfg(feature = "NSZone")]
 pub use self::__NSZone::NSScannedOption;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSZone"))]
+#[cfg(all(feature = "NSString", feature = "NSZone"))]
 pub use self::__NSZone::NSSetZoneName;
-#[cfg(feature = "Foundation_NSZone")]
+#[cfg(feature = "NSZone")]
 pub use self::__NSZone::NSZoneCalloc;
-#[cfg(feature = "Foundation_NSZone")]
+#[cfg(feature = "NSZone")]
 pub use self::__NSZone::NSZoneFree;
-#[cfg(feature = "Foundation_NSZone")]
+#[cfg(feature = "NSZone")]
 pub use self::__NSZone::NSZoneFromPointer;
-#[cfg(feature = "Foundation_NSZone")]
+#[cfg(feature = "NSZone")]
 pub use self::__NSZone::NSZoneMalloc;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSZone"))]
+#[cfg(all(feature = "NSString", feature = "NSZone"))]
 pub use self::__NSZone::NSZoneName;
-#[cfg(feature = "Foundation_NSZone")]
+#[cfg(feature = "NSZone")]
 pub use self::__NSZone::NSZoneRealloc;
-#[cfg(feature = "Foundation_NSURL")]
+#[cfg(feature = "NSURL")]
 pub use self::__NSURL::NSFileSecurity;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSThumbnail1024x1024SizeKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLAddedToDirectoryDateKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLApplicationIsScriptableKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLAttributeModificationDateKey;
-#[cfg(feature = "Foundation_NSURL")]
+#[cfg(feature = "NSURL")]
 pub use self::__NSURL::NSURLBookmarkCreationOptions;
-#[cfg(feature = "Foundation_NSURL")]
+#[cfg(feature = "NSURL")]
 pub use self::__NSURL::NSURLBookmarkFileCreationOptions;
-#[cfg(feature = "Foundation_NSURL")]
+#[cfg(feature = "NSURL")]
 pub use self::__NSURL::NSURLBookmarkResolutionOptions;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLCanonicalPathKey;
-#[cfg(feature = "Foundation_NSURL")]
+#[cfg(feature = "NSURL")]
 pub use self::__NSURL::NSURLComponents;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLContentAccessDateKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLContentModificationDateKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLContentTypeKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLCreationDateKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLCustomIconKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLDirectoryEntryCountKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLDocumentIdentifierKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLEffectiveIconKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLFileAllocatedSizeKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLFileContentIdentifierKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLFileIdentifierKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLFileProtectionComplete;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLFileProtectionCompleteUnlessOpen;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLFileProtectionCompleteUntilFirstUserAuthentication;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLFileProtectionCompleteWhenUserInactive;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLFileProtectionKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLFileProtectionNone;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLFileProtectionType;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLFileResourceIdentifierKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLFileResourceType;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLFileResourceTypeBlockSpecial;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLFileResourceTypeCharacterSpecial;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLFileResourceTypeDirectory;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLFileResourceTypeKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLFileResourceTypeNamedPipe;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLFileResourceTypeRegular;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLFileResourceTypeSocket;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLFileResourceTypeSymbolicLink;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLFileResourceTypeUnknown;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLFileScheme;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLFileSecurityKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLFileSizeKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLGenerationIdentifierKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLHasHiddenExtensionKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLIsAliasFileKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLIsApplicationKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLIsDirectoryKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLIsExcludedFromBackupKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLIsExecutableKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLIsHiddenKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLIsMountTriggerKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLIsPackageKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLIsPurgeableKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLIsReadableKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLIsRegularFileKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLIsSparseKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLIsSymbolicLinkKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLIsSystemImmutableKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLIsUbiquitousItemKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLIsUserImmutableKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLIsVolumeKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLIsWritableKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLKeysOfUnsetValuesKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLLabelColorKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLLabelNumberKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLLinkCountKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLLocalizedLabelKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLLocalizedNameKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLLocalizedTypeDescriptionKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLMayHaveExtendedAttributesKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLMayShareFileContentKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLNameKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLParentDirectoryURLKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLPathKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLPreferredIOBlockSizeKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLQuarantinePropertiesKey;
-#[cfg(feature = "Foundation_NSURL")]
+#[cfg(feature = "NSURL")]
 pub use self::__NSURL::NSURLQueryItem;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLResourceKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLTagNamesKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLThumbnailDictionaryItem;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLThumbnailDictionaryKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLThumbnailKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLTotalFileAllocatedSizeKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLTotalFileSizeKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLTypeIdentifierKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLUbiquitousItemContainerDisplayNameKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLUbiquitousItemDownloadRequestedKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLUbiquitousItemDownloadingErrorKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLUbiquitousItemDownloadingStatus;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLUbiquitousItemDownloadingStatusCurrent;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLUbiquitousItemDownloadingStatusDownloaded;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLUbiquitousItemDownloadingStatusKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLUbiquitousItemDownloadingStatusNotDownloaded;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLUbiquitousItemHasUnresolvedConflictsKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLUbiquitousItemIsDownloadedKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLUbiquitousItemIsDownloadingKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLUbiquitousItemIsExcludedFromSyncKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLUbiquitousItemIsSharedKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLUbiquitousItemIsUploadedKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLUbiquitousItemIsUploadingKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLUbiquitousItemPercentDownloadedKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLUbiquitousItemPercentUploadedKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLUbiquitousItemUploadingErrorKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLUbiquitousSharedItemCurrentUserPermissionsKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLUbiquitousSharedItemCurrentUserRoleKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLUbiquitousSharedItemMostRecentEditorNameComponentsKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLUbiquitousSharedItemOwnerNameComponentsKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLUbiquitousSharedItemPermissions;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLUbiquitousSharedItemPermissionsReadOnly;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLUbiquitousSharedItemPermissionsReadWrite;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLUbiquitousSharedItemRole;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLUbiquitousSharedItemRoleOwner;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLUbiquitousSharedItemRoleParticipant;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLVolumeAvailableCapacityForImportantUsageKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLVolumeAvailableCapacityForOpportunisticUsageKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLVolumeAvailableCapacityKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLVolumeCreationDateKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLVolumeIdentifierKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLVolumeIsAutomountedKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLVolumeIsBrowsableKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLVolumeIsEjectableKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLVolumeIsEncryptedKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLVolumeIsInternalKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLVolumeIsJournalingKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLVolumeIsLocalKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLVolumeIsReadOnlyKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLVolumeIsRemovableKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLVolumeIsRootFileSystemKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLVolumeLocalizedFormatDescriptionKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLVolumeLocalizedNameKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLVolumeMaximumFileSizeKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLVolumeMountFromLocationKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLVolumeNameKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLVolumeResourceCountKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLVolumeSubtypeKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLVolumeSupportsAccessPermissionsKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLVolumeSupportsAdvisoryFileLockingKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLVolumeSupportsCasePreservedNamesKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLVolumeSupportsCaseSensitiveNamesKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLVolumeSupportsCompressionKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLVolumeSupportsExclusiveRenamingKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLVolumeSupportsExtendedSecurityKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLVolumeSupportsFileCloningKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLVolumeSupportsFileProtectionKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLVolumeSupportsHardLinksKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLVolumeSupportsImmutableFilesKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLVolumeSupportsJournalingKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLVolumeSupportsPersistentIDsKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLVolumeSupportsRenamingKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLVolumeSupportsRootDirectoryDatesKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLVolumeSupportsSparseFilesKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLVolumeSupportsSwapRenamingKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLVolumeSupportsSymbolicLinksKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLVolumeSupportsVolumeSizesKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLVolumeSupportsZeroRunsKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLVolumeTotalCapacityKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLVolumeTypeNameKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLVolumeURLForRemountingKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLVolumeURLKey;
-#[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+#[cfg(all(feature = "NSString", feature = "NSURL"))]
 pub use self::__NSURL::NSURLVolumeUUIDStringKey;
-#[cfg(feature = "Foundation_NSURL")]
+#[cfg(feature = "NSURL")]
 pub use self::__NSURL::NSURL;
-#[cfg(feature = "Foundation_NSUUID")]
+#[cfg(feature = "NSUUID")]
 pub use self::__NSUUID::NSUUID;
-#[cfg(all(feature = "Foundation_NSXMLDTD", feature = "Foundation_NSXMLNode"))]
+#[cfg(all(feature = "NSXMLDTD", feature = "NSXMLNode"))]
 pub use self::__NSXMLDTD::NSXMLDTD;

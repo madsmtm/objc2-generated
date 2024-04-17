@@ -48,12 +48,12 @@ unsafe impl NSUserInterfaceItemIdentification for WebFrameView {}
 extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     unsafe impl WebFrameView {
-        #[cfg(feature = "WebKit_WebFrame")]
+        #[cfg(feature = "WebFrame")]
         #[deprecated]
         #[method_id(@__retain_semantics Other webFrame)]
         pub unsafe fn webFrame(&self) -> Option<Id<WebFrame>>;
 
-        #[cfg(feature = "WebKit_WebDocument")]
+        #[cfg(feature = "WebDocument")]
         #[deprecated]
         #[method_id(@__retain_semantics Other documentView)]
         pub unsafe fn documentView(&self) -> Option<Id<NSView>>;

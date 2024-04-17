@@ -33,11 +33,11 @@ unsafe impl<KeyType: ?Sized, ObjectType: ?Sized> NSObjectProtocol for NSCache<Ke
 
 extern_methods!(
     unsafe impl<KeyType: Message, ObjectType: Message> NSCache<KeyType, ObjectType> {
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Id<NSString>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method(setName:)]
         pub unsafe fn setName(&self, name: &NSString);
 

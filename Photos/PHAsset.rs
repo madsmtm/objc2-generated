@@ -9,10 +9,10 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Photos_PHObject")]
+    #[cfg(feature = "PHObject")]
     pub struct PHAsset;
 
-    #[cfg(feature = "Photos_PHObject")]
+    #[cfg(feature = "PHObject")]
     unsafe impl ClassType for PHAsset {
         #[inherits(NSObject)]
         type Super = PHObject;
@@ -20,30 +20,30 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Photos_PHObject")]
+#[cfg(feature = "PHObject")]
 unsafe impl Send for PHAsset {}
 
-#[cfg(feature = "Photos_PHObject")]
+#[cfg(feature = "PHObject")]
 unsafe impl Sync for PHAsset {}
 
-#[cfg(feature = "Photos_PHObject")]
+#[cfg(feature = "PHObject")]
 unsafe impl NSCopying for PHAsset {}
 
-#[cfg(feature = "Photos_PHObject")]
+#[cfg(feature = "PHObject")]
 unsafe impl NSObjectProtocol for PHAsset {}
 
 extern_methods!(
-    #[cfg(feature = "Photos_PHObject")]
+    #[cfg(feature = "PHObject")]
     unsafe impl PHAsset {
-        #[cfg(feature = "Photos_PhotosTypes")]
+        #[cfg(feature = "PhotosTypes")]
         #[method(playbackStyle)]
         pub unsafe fn playbackStyle(&self) -> PHAssetPlaybackStyle;
 
-        #[cfg(feature = "Photos_PhotosTypes")]
+        #[cfg(feature = "PhotosTypes")]
         #[method(mediaType)]
         pub unsafe fn mediaType(&self) -> PHAssetMediaType;
 
-        #[cfg(feature = "Photos_PhotosTypes")]
+        #[cfg(feature = "PhotosTypes")]
         #[method(mediaSubtypes)]
         pub unsafe fn mediaSubtypes(&self) -> PHAssetMediaSubtype;
 
@@ -79,14 +79,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Other burstIdentifier)]
         pub unsafe fn burstIdentifier(&self) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "Photos_PhotosTypes")]
+        #[cfg(feature = "PhotosTypes")]
         #[method(burstSelectionTypes)]
         pub unsafe fn burstSelectionTypes(&self) -> PHAssetBurstSelectionType;
 
         #[method(representsBurst)]
         pub unsafe fn representsBurst(&self) -> bool;
 
-        #[cfg(feature = "Photos_PhotosTypes")]
+        #[cfg(feature = "PhotosTypes")]
         #[method(sourceType)]
         pub unsafe fn sourceType(&self) -> PHAssetSourceType;
 
@@ -96,14 +96,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Other adjustmentFormatIdentifier)]
         pub unsafe fn adjustmentFormatIdentifier(&self) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "Photos_PhotosTypes")]
+        #[cfg(feature = "PhotosTypes")]
         #[method(canPerformEditOperation:)]
         pub unsafe fn canPerformEditOperation(&self, edit_operation: PHAssetEditOperation) -> bool;
 
         #[cfg(all(
-            feature = "Photos_PHCollection",
-            feature = "Photos_PHFetchOptions",
-            feature = "Photos_PHFetchResult"
+            feature = "PHCollection",
+            feature = "PHFetchOptions",
+            feature = "PHFetchResult"
         ))]
         #[method_id(@__retain_semantics Other fetchAssetsInAssetCollection:options:)]
         pub unsafe fn fetchAssetsInAssetCollection_options(
@@ -111,7 +111,7 @@ extern_methods!(
             options: Option<&PHFetchOptions>,
         ) -> Id<PHFetchResult<PHAsset>>;
 
-        #[cfg(all(feature = "Photos_PHFetchOptions", feature = "Photos_PHFetchResult"))]
+        #[cfg(all(feature = "PHFetchOptions", feature = "PHFetchResult"))]
         #[method_id(@__retain_semantics Other fetchAssetsWithLocalIdentifiers:options:)]
         pub unsafe fn fetchAssetsWithLocalIdentifiers_options(
             identifiers: &NSArray<NSString>,
@@ -119,9 +119,9 @@ extern_methods!(
         ) -> Id<PHFetchResult<PHAsset>>;
 
         #[cfg(all(
-            feature = "Photos_PHCollection",
-            feature = "Photos_PHFetchOptions",
-            feature = "Photos_PHFetchResult"
+            feature = "PHCollection",
+            feature = "PHFetchOptions",
+            feature = "PHFetchResult"
         ))]
         #[method_id(@__retain_semantics Other fetchKeyAssetsInAssetCollection:options:)]
         pub unsafe fn fetchKeyAssetsInAssetCollection_options(
@@ -129,23 +129,23 @@ extern_methods!(
             options: Option<&PHFetchOptions>,
         ) -> Option<Id<PHFetchResult<PHAsset>>>;
 
-        #[cfg(all(feature = "Photos_PHFetchOptions", feature = "Photos_PHFetchResult"))]
+        #[cfg(all(feature = "PHFetchOptions", feature = "PHFetchResult"))]
         #[method_id(@__retain_semantics Other fetchAssetsWithBurstIdentifier:options:)]
         pub unsafe fn fetchAssetsWithBurstIdentifier_options(
             burst_identifier: &NSString,
             options: Option<&PHFetchOptions>,
         ) -> Id<PHFetchResult<PHAsset>>;
 
-        #[cfg(all(feature = "Photos_PHFetchOptions", feature = "Photos_PHFetchResult"))]
+        #[cfg(all(feature = "PHFetchOptions", feature = "PHFetchResult"))]
         #[method_id(@__retain_semantics Other fetchAssetsWithOptions:)]
         pub unsafe fn fetchAssetsWithOptions(
             options: Option<&PHFetchOptions>,
         ) -> Id<PHFetchResult<PHAsset>>;
 
         #[cfg(all(
-            feature = "Photos_PHFetchOptions",
-            feature = "Photos_PHFetchResult",
-            feature = "Photos_PhotosTypes"
+            feature = "PHFetchOptions",
+            feature = "PHFetchResult",
+            feature = "PhotosTypes"
         ))]
         #[method_id(@__retain_semantics Other fetchAssetsWithMediaType:options:)]
         pub unsafe fn fetchAssetsWithMediaType_options(
@@ -153,7 +153,7 @@ extern_methods!(
             options: Option<&PHFetchOptions>,
         ) -> Id<PHFetchResult<PHAsset>>;
 
-        #[cfg(all(feature = "Photos_PHFetchOptions", feature = "Photos_PHFetchResult"))]
+        #[cfg(all(feature = "PHFetchOptions", feature = "PHFetchResult"))]
         #[deprecated = "Will be removed in a future release"]
         #[method_id(@__retain_semantics Other fetchAssetsWithALAssetURLs:options:)]
         pub unsafe fn fetchAssetsWithALAssetURLs_options(
@@ -165,7 +165,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Photos_PHObject")]
+    #[cfg(feature = "PHObject")]
     unsafe impl PHAsset {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

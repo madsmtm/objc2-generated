@@ -16,78 +16,78 @@
 #[link(name = "MetalKit", kind = "framework")]
 extern "C" {}
 
-#[cfg(feature = "MetalKit_MTKDefines")]
+#[cfg(feature = "MTKDefines")]
 #[path = "MTKDefines.rs"]
 mod __MTKDefines;
-#[cfg(feature = "MetalKit_MTKModel")]
+#[cfg(feature = "MTKModel")]
 #[path = "MTKModel.rs"]
 mod __MTKModel;
-#[cfg(feature = "MetalKit_MTKTextureLoader")]
+#[cfg(feature = "MTKTextureLoader")]
 #[path = "MTKTextureLoader.rs"]
 mod __MTKTextureLoader;
-#[cfg(feature = "MetalKit_MTKView")]
+#[cfg(feature = "MTKView")]
 #[path = "MTKView.rs"]
 mod __MTKView;
 
-#[cfg(feature = "MetalKit_MTKModel")]
+#[cfg(feature = "MTKModel")]
 pub use self::__MTKModel::MTKMesh;
-#[cfg(feature = "MetalKit_MTKModel")]
+#[cfg(feature = "MTKModel")]
 pub use self::__MTKModel::MTKMeshBuffer;
-#[cfg(feature = "MetalKit_MTKModel")]
+#[cfg(feature = "MTKModel")]
 pub use self::__MTKModel::MTKMeshBufferAllocator;
-#[cfg(feature = "MetalKit_MTKModel")]
+#[cfg(feature = "MTKModel")]
 pub use self::__MTKModel::MTKModelError;
-#[cfg(feature = "MetalKit_MTKModel")]
+#[cfg(feature = "MTKModel")]
 pub use self::__MTKModel::MTKModelErrorDomain;
-#[cfg(feature = "MetalKit_MTKModel")]
+#[cfg(feature = "MTKModel")]
 pub use self::__MTKModel::MTKModelErrorKey;
-#[cfg(feature = "MetalKit_MTKModel")]
+#[cfg(feature = "MTKModel")]
 pub use self::__MTKModel::MTKSubmesh;
-#[cfg(feature = "MetalKit_MTKTextureLoader")]
+#[cfg(feature = "MTKTextureLoader")]
 pub use self::__MTKTextureLoader::MTKTextureLoader;
-#[cfg(all(feature = "MetalKit_MTKTextureLoader", feature = "block2"))]
+#[cfg(all(feature = "MTKTextureLoader", feature = "block2"))]
 pub use self::__MTKTextureLoader::MTKTextureLoaderArrayCallback;
-#[cfg(all(feature = "MetalKit_MTKTextureLoader", feature = "block2"))]
+#[cfg(all(feature = "MTKTextureLoader", feature = "block2"))]
 pub use self::__MTKTextureLoader::MTKTextureLoaderCallback;
-#[cfg(feature = "MetalKit_MTKTextureLoader")]
+#[cfg(feature = "MTKTextureLoader")]
 pub use self::__MTKTextureLoader::MTKTextureLoaderCubeLayout;
-#[cfg(feature = "MetalKit_MTKTextureLoader")]
+#[cfg(feature = "MTKTextureLoader")]
 pub use self::__MTKTextureLoader::MTKTextureLoaderCubeLayoutVertical;
-#[cfg(feature = "MetalKit_MTKTextureLoader")]
+#[cfg(feature = "MTKTextureLoader")]
 pub use self::__MTKTextureLoader::MTKTextureLoaderError;
-#[cfg(feature = "MetalKit_MTKTextureLoader")]
+#[cfg(feature = "MTKTextureLoader")]
 pub use self::__MTKTextureLoader::MTKTextureLoaderErrorDomain;
-#[cfg(feature = "MetalKit_MTKTextureLoader")]
+#[cfg(feature = "MTKTextureLoader")]
 pub use self::__MTKTextureLoader::MTKTextureLoaderErrorKey;
-#[cfg(feature = "MetalKit_MTKTextureLoader")]
+#[cfg(feature = "MTKTextureLoader")]
 pub use self::__MTKTextureLoader::MTKTextureLoaderOption;
-#[cfg(feature = "MetalKit_MTKTextureLoader")]
+#[cfg(feature = "MTKTextureLoader")]
 pub use self::__MTKTextureLoader::MTKTextureLoaderOptionAllocateMipmaps;
-#[cfg(feature = "MetalKit_MTKTextureLoader")]
+#[cfg(feature = "MTKTextureLoader")]
 pub use self::__MTKTextureLoader::MTKTextureLoaderOptionCubeLayout;
-#[cfg(feature = "MetalKit_MTKTextureLoader")]
+#[cfg(feature = "MTKTextureLoader")]
 pub use self::__MTKTextureLoader::MTKTextureLoaderOptionGenerateMipmaps;
-#[cfg(feature = "MetalKit_MTKTextureLoader")]
+#[cfg(feature = "MTKTextureLoader")]
 pub use self::__MTKTextureLoader::MTKTextureLoaderOptionLoadAsArray;
-#[cfg(feature = "MetalKit_MTKTextureLoader")]
+#[cfg(feature = "MTKTextureLoader")]
 pub use self::__MTKTextureLoader::MTKTextureLoaderOptionOrigin;
-#[cfg(feature = "MetalKit_MTKTextureLoader")]
+#[cfg(feature = "MTKTextureLoader")]
 pub use self::__MTKTextureLoader::MTKTextureLoaderOptionSRGB;
-#[cfg(feature = "MetalKit_MTKTextureLoader")]
+#[cfg(feature = "MTKTextureLoader")]
 pub use self::__MTKTextureLoader::MTKTextureLoaderOptionTextureCPUCacheMode;
-#[cfg(feature = "MetalKit_MTKTextureLoader")]
+#[cfg(feature = "MTKTextureLoader")]
 pub use self::__MTKTextureLoader::MTKTextureLoaderOptionTextureStorageMode;
-#[cfg(feature = "MetalKit_MTKTextureLoader")]
+#[cfg(feature = "MTKTextureLoader")]
 pub use self::__MTKTextureLoader::MTKTextureLoaderOptionTextureUsage;
-#[cfg(feature = "MetalKit_MTKTextureLoader")]
+#[cfg(feature = "MTKTextureLoader")]
 pub use self::__MTKTextureLoader::MTKTextureLoaderOrigin;
-#[cfg(feature = "MetalKit_MTKTextureLoader")]
+#[cfg(feature = "MTKTextureLoader")]
 pub use self::__MTKTextureLoader::MTKTextureLoaderOriginBottomLeft;
-#[cfg(feature = "MetalKit_MTKTextureLoader")]
+#[cfg(feature = "MTKTextureLoader")]
 pub use self::__MTKTextureLoader::MTKTextureLoaderOriginFlippedVertically;
-#[cfg(feature = "MetalKit_MTKTextureLoader")]
+#[cfg(feature = "MTKTextureLoader")]
 pub use self::__MTKTextureLoader::MTKTextureLoaderOriginTopLeft;
-#[cfg(all(feature = "MetalKit_MTKView", feature = "objc2-app-kit"))]
+#[cfg(all(feature = "MTKView", feature = "objc2-app-kit"))]
 pub use self::__MTKView::MTKView;
-#[cfg(feature = "MetalKit_MTKView")]
+#[cfg(feature = "MTKView")]
 pub use self::__MTKView::MTKViewDelegate;

@@ -23,7 +23,7 @@ unsafe impl NSSecureCoding for ILClassificationResponse {}
 
 extern_methods!(
     unsafe impl ILClassificationResponse {
-        #[cfg(feature = "IdentityLookup_ILClassificationActions")]
+        #[cfg(feature = "ILClassificationActions")]
         #[method(action)]
         pub unsafe fn action(&self) -> ILClassificationAction;
 
@@ -39,7 +39,7 @@ extern_methods!(
         #[method(setUserInfo:)]
         pub unsafe fn setUserInfo(&self, user_info: Option<&NSDictionary<NSString, AnyObject>>);
 
-        #[cfg(feature = "IdentityLookup_ILClassificationActions")]
+        #[cfg(feature = "ILClassificationActions")]
         #[method_id(@__retain_semantics Init initWithClassificationAction:)]
         pub unsafe fn initWithClassificationAction(
             this: Allocated<Self>,

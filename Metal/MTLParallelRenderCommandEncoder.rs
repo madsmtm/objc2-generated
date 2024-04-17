@@ -6,13 +6,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    #[cfg(feature = "Metal_MTLCommandEncoder")]
+    #[cfg(feature = "MTLCommandEncoder")]
     pub unsafe trait MTLParallelRenderCommandEncoder: MTLCommandEncoder {
-        #[cfg(feature = "Metal_MTLRenderCommandEncoder")]
+        #[cfg(feature = "MTLRenderCommandEncoder")]
         #[method_id(@__retain_semantics Other renderCommandEncoder)]
         fn renderCommandEncoder(&self) -> Option<Id<ProtocolObject<dyn MTLRenderCommandEncoder>>>;
 
-        #[cfg(feature = "Metal_MTLRenderPass")]
+        #[cfg(feature = "MTLRenderPass")]
         #[method(setColorStoreAction:atIndex:)]
         unsafe fn setColorStoreAction_atIndex(
             &self,
@@ -20,15 +20,15 @@ extern_protocol!(
             color_attachment_index: NSUInteger,
         );
 
-        #[cfg(feature = "Metal_MTLRenderPass")]
+        #[cfg(feature = "MTLRenderPass")]
         #[method(setDepthStoreAction:)]
         unsafe fn setDepthStoreAction(&self, store_action: MTLStoreAction);
 
-        #[cfg(feature = "Metal_MTLRenderPass")]
+        #[cfg(feature = "MTLRenderPass")]
         #[method(setStencilStoreAction:)]
         unsafe fn setStencilStoreAction(&self, store_action: MTLStoreAction);
 
-        #[cfg(feature = "Metal_MTLRenderPass")]
+        #[cfg(feature = "MTLRenderPass")]
         #[method(setColorStoreActionOptions:atIndex:)]
         unsafe fn setColorStoreActionOptions_atIndex(
             &self,
@@ -36,15 +36,15 @@ extern_protocol!(
             color_attachment_index: NSUInteger,
         );
 
-        #[cfg(feature = "Metal_MTLRenderPass")]
+        #[cfg(feature = "MTLRenderPass")]
         #[method(setDepthStoreActionOptions:)]
         unsafe fn setDepthStoreActionOptions(&self, store_action_options: MTLStoreActionOptions);
 
-        #[cfg(feature = "Metal_MTLRenderPass")]
+        #[cfg(feature = "MTLRenderPass")]
         #[method(setStencilStoreActionOptions:)]
         unsafe fn setStencilStoreActionOptions(&self, store_action_options: MTLStoreActionOptions);
     }
 
-    #[cfg(feature = "Metal_MTLCommandEncoder")]
+    #[cfg(feature = "MTLCommandEncoder")]
     unsafe impl ProtocolType for dyn MTLParallelRenderCommandEncoder {}
 );

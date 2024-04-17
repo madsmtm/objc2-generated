@@ -28,7 +28,7 @@ extern_methods!(
         #[method(matchForPredicate:)]
         pub unsafe fn matchForPredicate(&self, predicate: &NSPredicate) -> c_double;
 
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[method_id(@__retain_semantics Other templateViews)]
         pub unsafe fn templateViews(&self, mtm: MainThreadMarker) -> Id<NSArray<NSView>>;
 

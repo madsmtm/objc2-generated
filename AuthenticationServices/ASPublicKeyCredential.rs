@@ -7,7 +7,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    #[cfg(feature = "AuthenticationServices_ASAuthorizationCredential")]
+    #[cfg(feature = "ASAuthorizationCredential")]
     pub unsafe trait ASPublicKeyCredential: ASAuthorizationCredential {
         #[method_id(@__retain_semantics Other rawClientDataJSON)]
         unsafe fn rawClientDataJSON(&self) -> Id<NSData>;
@@ -16,6 +16,6 @@ extern_protocol!(
         unsafe fn credentialID(&self) -> Id<NSData>;
     }
 
-    #[cfg(feature = "AuthenticationServices_ASAuthorizationCredential")]
+    #[cfg(feature = "ASAuthorizationCredential")]
     unsafe impl ProtocolType for dyn ASPublicKeyCredential {}
 );

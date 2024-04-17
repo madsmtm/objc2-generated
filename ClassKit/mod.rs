@@ -16,129 +16,126 @@
 #[link(name = "ClassKit", kind = "framework")]
 extern "C" {}
 
-#[cfg(feature = "ClassKit_CLSActivity")]
+#[cfg(feature = "CLSActivity")]
 #[path = "CLSActivity.rs"]
 mod __CLSActivity;
-#[cfg(feature = "ClassKit_CLSActivityItem")]
+#[cfg(feature = "CLSActivityItem")]
 #[path = "CLSActivityItem.rs"]
 mod __CLSActivityItem;
-#[cfg(feature = "ClassKit_CLSBinaryItem")]
+#[cfg(feature = "CLSBinaryItem")]
 #[path = "CLSBinaryItem.rs"]
 mod __CLSBinaryItem;
-#[cfg(feature = "ClassKit_CLSContext")]
+#[cfg(feature = "CLSContext")]
 #[path = "CLSContext.rs"]
 mod __CLSContext;
-#[cfg(feature = "ClassKit_CLSContextProvider")]
+#[cfg(feature = "CLSContextProvider")]
 #[path = "CLSContextProvider.rs"]
 mod __CLSContextProvider;
-#[cfg(feature = "ClassKit_CLSDataStore")]
+#[cfg(feature = "CLSDataStore")]
 #[path = "CLSDataStore.rs"]
 mod __CLSDataStore;
-#[cfg(feature = "ClassKit_CLSDefines")]
+#[cfg(feature = "CLSDefines")]
 #[path = "CLSDefines.rs"]
 mod __CLSDefines;
-#[cfg(feature = "ClassKit_CLSObject")]
+#[cfg(feature = "CLSObject")]
 #[path = "CLSObject.rs"]
 mod __CLSObject;
-#[cfg(feature = "ClassKit_CLSProgressReportingCapability")]
+#[cfg(feature = "CLSProgressReportingCapability")]
 #[path = "CLSProgressReportingCapability.rs"]
 mod __CLSProgressReportingCapability;
-#[cfg(feature = "ClassKit_CLSQuantityItem")]
+#[cfg(feature = "CLSQuantityItem")]
 #[path = "CLSQuantityItem.rs"]
 mod __CLSQuantityItem;
-#[cfg(feature = "ClassKit_CLSScoreItem")]
+#[cfg(feature = "CLSScoreItem")]
 #[path = "CLSScoreItem.rs"]
 mod __CLSScoreItem;
-#[cfg(feature = "ClassKit_NSUserActivity_CLSDeepLinks")]
+#[cfg(feature = "NSUserActivity_CLSDeepLinks")]
 #[path = "NSUserActivity_CLSDeepLinks.rs"]
 mod __NSUserActivity_CLSDeepLinks;
 
-#[cfg(all(feature = "ClassKit_CLSActivity", feature = "ClassKit_CLSObject"))]
+#[cfg(all(feature = "CLSActivity", feature = "CLSObject"))]
 pub use self::__CLSActivity::CLSActivity;
-#[cfg(all(feature = "ClassKit_CLSActivityItem", feature = "ClassKit_CLSObject"))]
+#[cfg(all(feature = "CLSActivityItem", feature = "CLSObject"))]
 pub use self::__CLSActivityItem::CLSActivityItem;
 #[cfg(all(
-    feature = "ClassKit_CLSActivityItem",
-    feature = "ClassKit_CLSBinaryItem",
-    feature = "ClassKit_CLSObject"
+    feature = "CLSActivityItem",
+    feature = "CLSBinaryItem",
+    feature = "CLSObject"
 ))]
 pub use self::__CLSBinaryItem::CLSBinaryItem;
-#[cfg(feature = "ClassKit_CLSBinaryItem")]
+#[cfg(feature = "CLSBinaryItem")]
 pub use self::__CLSBinaryItem::CLSBinaryValueType;
-#[cfg(all(feature = "ClassKit_CLSContext", feature = "ClassKit_CLSObject"))]
+#[cfg(all(feature = "CLSContext", feature = "CLSObject"))]
 pub use self::__CLSContext::CLSContext;
-#[cfg(feature = "ClassKit_CLSContext")]
+#[cfg(feature = "CLSContext")]
 pub use self::__CLSContext::CLSContextTopic;
-#[cfg(feature = "ClassKit_CLSContext")]
+#[cfg(feature = "CLSContext")]
 pub use self::__CLSContext::CLSContextTopicArtsAndMusic;
-#[cfg(feature = "ClassKit_CLSContext")]
+#[cfg(feature = "CLSContext")]
 pub use self::__CLSContext::CLSContextTopicComputerScienceAndEngineering;
-#[cfg(feature = "ClassKit_CLSContext")]
+#[cfg(feature = "CLSContext")]
 pub use self::__CLSContext::CLSContextTopicHealthAndFitness;
-#[cfg(feature = "ClassKit_CLSContext")]
+#[cfg(feature = "CLSContext")]
 pub use self::__CLSContext::CLSContextTopicLiteracyAndWriting;
-#[cfg(feature = "ClassKit_CLSContext")]
+#[cfg(feature = "CLSContext")]
 pub use self::__CLSContext::CLSContextTopicMath;
-#[cfg(feature = "ClassKit_CLSContext")]
+#[cfg(feature = "CLSContext")]
 pub use self::__CLSContext::CLSContextTopicScience;
-#[cfg(feature = "ClassKit_CLSContext")]
+#[cfg(feature = "CLSContext")]
 pub use self::__CLSContext::CLSContextTopicSocialScience;
-#[cfg(feature = "ClassKit_CLSContext")]
+#[cfg(feature = "CLSContext")]
 pub use self::__CLSContext::CLSContextTopicWorldLanguage;
-#[cfg(feature = "ClassKit_CLSContext")]
+#[cfg(feature = "CLSContext")]
 pub use self::__CLSContext::CLSContextType;
-#[cfg(feature = "ClassKit_CLSContextProvider")]
+#[cfg(feature = "CLSContextProvider")]
 pub use self::__CLSContextProvider::CLSContextProvider;
-#[cfg(feature = "ClassKit_CLSDataStore")]
+#[cfg(feature = "CLSDataStore")]
 pub use self::__CLSDataStore::CLSDataStore;
-#[cfg(feature = "ClassKit_CLSDataStore")]
+#[cfg(feature = "CLSDataStore")]
 pub use self::__CLSDataStore::CLSDataStoreDelegate;
-#[cfg(feature = "ClassKit_CLSDefines")]
+#[cfg(feature = "CLSDefines")]
 pub use self::__CLSDefines::CLSErrorCode;
-#[cfg(feature = "ClassKit_CLSDefines")]
+#[cfg(feature = "CLSDefines")]
 pub use self::__CLSDefines::CLSErrorCodeDomain;
-#[cfg(feature = "ClassKit_CLSDefines")]
+#[cfg(feature = "CLSDefines")]
 pub use self::__CLSDefines::CLSErrorObjectKey;
-#[cfg(feature = "ClassKit_CLSDefines")]
+#[cfg(feature = "CLSDefines")]
 pub use self::__CLSDefines::CLSErrorSuccessfulObjectsKey;
-#[cfg(feature = "ClassKit_CLSDefines")]
+#[cfg(feature = "CLSDefines")]
 pub use self::__CLSDefines::CLSErrorUnderlyingErrorsKey;
-#[cfg(feature = "ClassKit_CLSDefines")]
+#[cfg(feature = "CLSDefines")]
 pub use self::__CLSDefines::CLSErrorUserInfoKey;
-#[cfg(feature = "ClassKit_CLSDefines")]
+#[cfg(feature = "CLSDefines")]
 pub use self::__CLSDefines::CLSPredicateKeyPath;
-#[cfg(feature = "ClassKit_CLSDefines")]
+#[cfg(feature = "CLSDefines")]
 pub use self::__CLSDefines::CLSPredicateKeyPathDateCreated;
-#[cfg(feature = "ClassKit_CLSDefines")]
+#[cfg(feature = "CLSDefines")]
 pub use self::__CLSDefines::CLSPredicateKeyPathIdentifier;
-#[cfg(feature = "ClassKit_CLSDefines")]
+#[cfg(feature = "CLSDefines")]
 pub use self::__CLSDefines::CLSPredicateKeyPathParent;
-#[cfg(feature = "ClassKit_CLSDefines")]
+#[cfg(feature = "CLSDefines")]
 pub use self::__CLSDefines::CLSPredicateKeyPathTitle;
-#[cfg(feature = "ClassKit_CLSDefines")]
+#[cfg(feature = "CLSDefines")]
 pub use self::__CLSDefines::CLSPredicateKeyPathTopic;
-#[cfg(feature = "ClassKit_CLSDefines")]
+#[cfg(feature = "CLSDefines")]
 pub use self::__CLSDefines::CLSPredicateKeyPathUniversalLinkURL;
-#[cfg(feature = "ClassKit_CLSObject")]
+#[cfg(feature = "CLSObject")]
 pub use self::__CLSObject::CLSObject;
-#[cfg(all(
-    feature = "ClassKit_CLSObject",
-    feature = "ClassKit_CLSProgressReportingCapability"
-))]
+#[cfg(all(feature = "CLSObject", feature = "CLSProgressReportingCapability"))]
 pub use self::__CLSProgressReportingCapability::CLSProgressReportingCapability;
-#[cfg(feature = "ClassKit_CLSProgressReportingCapability")]
+#[cfg(feature = "CLSProgressReportingCapability")]
 pub use self::__CLSProgressReportingCapability::CLSProgressReportingCapabilityKind;
 #[cfg(all(
-    feature = "ClassKit_CLSActivityItem",
-    feature = "ClassKit_CLSObject",
-    feature = "ClassKit_CLSQuantityItem"
+    feature = "CLSActivityItem",
+    feature = "CLSObject",
+    feature = "CLSQuantityItem"
 ))]
 pub use self::__CLSQuantityItem::CLSQuantityItem;
 #[cfg(all(
-    feature = "ClassKit_CLSActivityItem",
-    feature = "ClassKit_CLSObject",
-    feature = "ClassKit_CLSScoreItem"
+    feature = "CLSActivityItem",
+    feature = "CLSObject",
+    feature = "CLSScoreItem"
 ))]
 pub use self::__CLSScoreItem::CLSScoreItem;
-#[cfg(feature = "ClassKit_NSUserActivity_CLSDeepLinks")]
+#[cfg(feature = "NSUserActivity_CLSDeepLinks")]
 pub use self::__NSUserActivity_CLSDeepLinks::NSUserActivityCLSDeepLinks;

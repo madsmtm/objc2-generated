@@ -19,27 +19,27 @@ unsafe impl NSObjectProtocol for AEAssessmentSession {}
 
 extern_methods!(
     unsafe impl AEAssessmentSession {
-        #[cfg(feature = "AutomaticAssessmentConfiguration_AEAssessmentSessionDelegate")]
+        #[cfg(feature = "AEAssessmentSessionDelegate")]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Id<ProtocolObject<dyn AEAssessmentSessionDelegate>>>;
 
-        #[cfg(feature = "AutomaticAssessmentConfiguration_AEAssessmentSessionDelegate")]
+        #[cfg(feature = "AEAssessmentSessionDelegate")]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
             delegate: Option<&ProtocolObject<dyn AEAssessmentSessionDelegate>>,
         );
 
-        #[cfg(feature = "AutomaticAssessmentConfiguration_AEAssessmentConfiguration")]
+        #[cfg(feature = "AEAssessmentConfiguration")]
         #[method_id(@__retain_semantics Other configuration)]
         pub unsafe fn configuration(&self) -> Id<AEAssessmentConfiguration>;
 
         #[method(isActive)]
         pub unsafe fn isActive(&self) -> bool;
 
-        #[cfg(feature = "AutomaticAssessmentConfiguration_AEAssessmentConfiguration")]
+        #[cfg(feature = "AEAssessmentConfiguration")]
         #[method_id(@__retain_semantics Init initWithConfiguration:)]
         pub unsafe fn initWithConfiguration(
             this: Allocated<Self>,
@@ -58,7 +58,7 @@ extern_methods!(
         #[method(end)]
         pub unsafe fn end(&self);
 
-        #[cfg(feature = "AutomaticAssessmentConfiguration_AEAssessmentConfiguration")]
+        #[cfg(feature = "AEAssessmentConfiguration")]
         #[method(updateToConfiguration:)]
         pub unsafe fn updateToConfiguration(&self, configuration: &AEAssessmentConfiguration);
     }

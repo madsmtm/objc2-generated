@@ -7,20 +7,20 @@ use objc2_foundation::*;
 
 use crate::*;
 
-#[cfg(all(feature = "GameController_GCControllerElement", feature = "block2"))]
+#[cfg(all(feature = "GCControllerElement", feature = "block2"))]
 pub type GCControllerButtonValueChangedHandler =
     *mut Block<dyn Fn(NonNull<GCControllerButtonInput>, c_float, Bool)>;
 
-#[cfg(all(feature = "GameController_GCControllerElement", feature = "block2"))]
+#[cfg(all(feature = "GCControllerElement", feature = "block2"))]
 pub type GCControllerButtonTouchedChangedHandler =
     *mut Block<dyn Fn(NonNull<GCControllerButtonInput>, c_float, Bool, Bool)>;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "GameController_GCControllerElement")]
+    #[cfg(feature = "GCControllerElement")]
     pub struct GCControllerButtonInput;
 
-    #[cfg(feature = "GameController_GCControllerElement")]
+    #[cfg(feature = "GCControllerElement")]
     unsafe impl ClassType for GCControllerButtonInput {
         #[inherits(NSObject)]
         type Super = GCControllerElement;
@@ -28,11 +28,11 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "GameController_GCControllerElement")]
+#[cfg(feature = "GCControllerElement")]
 unsafe impl NSObjectProtocol for GCControllerButtonInput {}
 
 extern_methods!(
-    #[cfg(feature = "GameController_GCControllerElement")]
+    #[cfg(feature = "GCControllerElement")]
     unsafe impl GCControllerButtonInput {
         #[cfg(feature = "block2")]
         #[method(valueChangedHandler)]
@@ -83,7 +83,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "GameController_GCControllerElement")]
+    #[cfg(feature = "GCControllerElement")]
     unsafe impl GCControllerButtonInput {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

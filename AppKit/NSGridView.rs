@@ -65,10 +65,10 @@ extern "C" {
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     pub struct NSGridView;
 
-    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl ClassType for NSGridView {
         #[inherits(NSResponder, NSObject)]
         type Super = NSView;
@@ -77,55 +77,43 @@ extern_class!(
 );
 
 #[cfg(all(
-    feature = "AppKit_NSAccessibilityProtocols",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSView"
+    feature = "NSAccessibilityProtocols",
+    feature = "NSResponder",
+    feature = "NSView"
 ))]
 unsafe impl NSAccessibility for NSGridView {}
 
 #[cfg(all(
-    feature = "AppKit_NSAccessibilityProtocols",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSView"
+    feature = "NSAccessibilityProtocols",
+    feature = "NSResponder",
+    feature = "NSView"
 ))]
 unsafe impl NSAccessibilityElementProtocol for NSGridView {}
 
-#[cfg(all(
-    feature = "AppKit_NSAnimation",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSView"
-))]
+#[cfg(all(feature = "NSAnimation", feature = "NSResponder", feature = "NSView"))]
 unsafe impl NSAnimatablePropertyContainer for NSGridView {}
 
-#[cfg(all(
-    feature = "AppKit_NSAppearance",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSView"
-))]
+#[cfg(all(feature = "NSAppearance", feature = "NSResponder", feature = "NSView"))]
 unsafe impl NSAppearanceCustomization for NSGridView {}
 
-#[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+#[cfg(all(feature = "NSResponder", feature = "NSView"))]
 unsafe impl NSCoding for NSGridView {}
 
-#[cfg(all(
-    feature = "AppKit_NSDragging",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSView"
-))]
+#[cfg(all(feature = "NSDragging", feature = "NSResponder", feature = "NSView"))]
 unsafe impl NSDraggingDestination for NSGridView {}
 
-#[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+#[cfg(all(feature = "NSResponder", feature = "NSView"))]
 unsafe impl NSObjectProtocol for NSGridView {}
 
 #[cfg(all(
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSUserInterfaceItemIdentification",
-    feature = "AppKit_NSView"
+    feature = "NSResponder",
+    feature = "NSUserInterfaceItemIdentification",
+    feature = "NSView"
 ))]
 unsafe impl NSUserInterfaceItemIdentification for NSGridView {}
 
 extern_methods!(
-    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSGridView {
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Id<Self>;
@@ -247,7 +235,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSResponder`
-    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSGridView {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -256,7 +244,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSGridView {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
@@ -279,7 +267,7 @@ unsafe impl NSObjectProtocol for NSGridRow {}
 
 extern_methods!(
     unsafe impl NSGridRow {
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[method_id(@__retain_semantics Other gridView)]
         pub unsafe fn gridView(&self) -> Option<Id<NSGridView>>;
 
@@ -357,7 +345,7 @@ unsafe impl NSObjectProtocol for NSGridColumn {}
 
 extern_methods!(
     unsafe impl NSGridColumn {
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[method_id(@__retain_semantics Other gridView)]
         pub unsafe fn gridView(&self) -> Option<Id<NSGridView>>;
 
@@ -429,15 +417,15 @@ unsafe impl NSObjectProtocol for NSGridCell {}
 
 extern_methods!(
     unsafe impl NSGridCell {
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[method_id(@__retain_semantics Other contentView)]
         pub unsafe fn contentView(&self) -> Option<Id<NSView>>;
 
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[method(setContentView:)]
         pub unsafe fn setContentView(&self, content_view: Option<&NSView>);
 
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[method_id(@__retain_semantics Other emptyContentView)]
         pub unsafe fn emptyContentView(mtm: MainThreadMarker) -> Id<NSView>;
 
@@ -465,11 +453,11 @@ extern_methods!(
         #[method(setRowAlignment:)]
         pub unsafe fn setRowAlignment(&self, row_alignment: NSGridRowAlignment);
 
-        #[cfg(feature = "AppKit_NSLayoutConstraint")]
+        #[cfg(feature = "NSLayoutConstraint")]
         #[method_id(@__retain_semantics Other customPlacementConstraints)]
         pub unsafe fn customPlacementConstraints(&self) -> Id<NSArray<NSLayoutConstraint>>;
 
-        #[cfg(feature = "AppKit_NSLayoutConstraint")]
+        #[cfg(feature = "NSLayoutConstraint")]
         #[method(setCustomPlacementConstraints:)]
         pub unsafe fn setCustomPlacementConstraints(
             &self,

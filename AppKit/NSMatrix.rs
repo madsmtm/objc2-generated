@@ -26,18 +26,10 @@ unsafe impl RefEncode for NSMatrixMode {
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(
-        feature = "AppKit_NSControl",
-        feature = "AppKit_NSResponder",
-        feature = "AppKit_NSView"
-    ))]
+    #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     pub struct NSMatrix;
 
-    #[cfg(all(
-        feature = "AppKit_NSControl",
-        feature = "AppKit_NSResponder",
-        feature = "AppKit_NSView"
-    ))]
+    #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     unsafe impl ClassType for NSMatrix {
         #[inherits(NSView, NSResponder, NSObject)]
         type Super = NSControl;
@@ -46,93 +38,77 @@ extern_class!(
 );
 
 #[cfg(all(
-    feature = "AppKit_NSAccessibilityProtocols",
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSView"
+    feature = "NSAccessibilityProtocols",
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSView"
 ))]
 unsafe impl NSAccessibility for NSMatrix {}
 
 #[cfg(all(
-    feature = "AppKit_NSAccessibilityProtocols",
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSView"
+    feature = "NSAccessibilityProtocols",
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSView"
 ))]
 unsafe impl NSAccessibilityElementProtocol for NSMatrix {}
 
 #[cfg(all(
-    feature = "AppKit_NSAnimation",
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSView"
+    feature = "NSAnimation",
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSView"
 ))]
 unsafe impl NSAnimatablePropertyContainer for NSMatrix {}
 
 #[cfg(all(
-    feature = "AppKit_NSAppearance",
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSView"
+    feature = "NSAppearance",
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSView"
 ))]
 unsafe impl NSAppearanceCustomization for NSMatrix {}
 
-#[cfg(all(
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSView"
-))]
+#[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
 unsafe impl NSCoding for NSMatrix {}
 
 #[cfg(all(
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSDragging",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSView"
+    feature = "NSControl",
+    feature = "NSDragging",
+    feature = "NSResponder",
+    feature = "NSView"
 ))]
 unsafe impl NSDraggingDestination for NSMatrix {}
 
-#[cfg(all(
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSView"
-))]
+#[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
 unsafe impl NSObjectProtocol for NSMatrix {}
 
 #[cfg(all(
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSUserInterfaceItemIdentification",
-    feature = "AppKit_NSView"
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSUserInterfaceItemIdentification",
+    feature = "NSView"
 ))]
 unsafe impl NSUserInterfaceItemIdentification for NSMatrix {}
 
 #[cfg(all(
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSUserInterfaceValidation",
-    feature = "AppKit_NSView"
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSUserInterfaceValidation",
+    feature = "NSView"
 ))]
 unsafe impl NSUserInterfaceValidations for NSMatrix {}
 
-#[cfg(all(
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSView"
-))]
+#[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
 unsafe impl NSViewToolTipOwner for NSMatrix {}
 
 extern_methods!(
-    #[cfg(all(
-        feature = "AppKit_NSControl",
-        feature = "AppKit_NSResponder",
-        feature = "AppKit_NSView"
-    ))]
+    #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSMatrix {
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Id<Self>;
 
-        #[cfg(feature = "AppKit_NSCell")]
+        #[cfg(feature = "NSCell")]
         #[method_id(@__retain_semantics Init initWithFrame:mode:prototype:numberOfRows:numberOfColumns:)]
         pub unsafe fn initWithFrame_mode_prototype_numberOfRows_numberOfColumns(
             this: Allocated<Self>,
@@ -159,15 +135,15 @@ extern_methods!(
         #[method(setCellClass:)]
         pub unsafe fn setCellClass(&self, cell_class: &AnyClass);
 
-        #[cfg(feature = "AppKit_NSCell")]
+        #[cfg(feature = "NSCell")]
         #[method_id(@__retain_semantics Other prototype)]
         pub unsafe fn prototype(&self) -> Option<Id<NSCell>>;
 
-        #[cfg(feature = "AppKit_NSCell")]
+        #[cfg(feature = "NSCell")]
         #[method(setPrototype:)]
         pub unsafe fn setPrototype(&self, prototype: Option<&NSCell>);
 
-        #[cfg(feature = "AppKit_NSCell")]
+        #[cfg(feature = "NSCell")]
         #[method_id(@__retain_semantics Other makeCellAtRow:column:)]
         pub unsafe fn makeCellAtRow_column(&self, row: NSInteger, col: NSInteger) -> Id<NSCell>;
 
@@ -191,7 +167,7 @@ extern_methods!(
             flag: bool,
         );
 
-        #[cfg(feature = "AppKit_NSCell")]
+        #[cfg(feature = "NSCell")]
         #[method_id(@__retain_semantics Other cells)]
         pub unsafe fn cells(&self) -> Id<NSArray<NSCell>>;
 
@@ -209,11 +185,11 @@ extern_methods!(
             context: *mut c_void,
         );
 
-        #[cfg(feature = "AppKit_NSCell")]
+        #[cfg(feature = "NSCell")]
         #[method_id(@__retain_semantics Other selectedCell)]
         pub unsafe fn selectedCell(&self) -> Option<Id<NSCell>>;
 
-        #[cfg(feature = "AppKit_NSCell")]
+        #[cfg(feature = "NSCell")]
         #[method_id(@__retain_semantics Other selectedCells)]
         pub unsafe fn selectedCells(&self) -> Id<NSArray<NSCell>>;
 
@@ -268,19 +244,19 @@ extern_methods!(
         #[method(setScrollable:)]
         pub unsafe fn setScrollable(&self, flag: bool);
 
-        #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(feature = "NSColor")]
         #[method_id(@__retain_semantics Other backgroundColor)]
         pub unsafe fn backgroundColor(&self) -> Id<NSColor>;
 
-        #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(feature = "NSColor")]
         #[method(setBackgroundColor:)]
         pub unsafe fn setBackgroundColor(&self, background_color: &NSColor);
 
-        #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(feature = "NSColor")]
         #[method_id(@__retain_semantics Other cellBackgroundColor)]
         pub unsafe fn cellBackgroundColor(&self) -> Option<Id<NSColor>>;
 
-        #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(feature = "NSColor")]
         #[method(setCellBackgroundColor:)]
         pub unsafe fn setCellBackgroundColor(&self, cell_background_color: Option<&NSColor>);
 
@@ -317,7 +293,7 @@ extern_methods!(
         #[method(numberOfColumns)]
         pub unsafe fn numberOfColumns(&self) -> NSInteger;
 
-        #[cfg(feature = "AppKit_NSCell")]
+        #[cfg(feature = "NSCell")]
         #[method_id(@__retain_semantics Other cellAtRow:column:)]
         pub unsafe fn cellAtRow_column(&self, row: NSInteger, col: NSInteger)
             -> Option<Id<NSCell>>;
@@ -325,7 +301,7 @@ extern_methods!(
         #[method(cellFrameAtRow:column:)]
         pub unsafe fn cellFrameAtRow_column(&self, row: NSInteger, col: NSInteger) -> NSRect;
 
-        #[cfg(feature = "AppKit_NSCell")]
+        #[cfg(feature = "NSCell")]
         #[method(getRow:column:ofCell:)]
         pub unsafe fn getRow_column_ofCell(
             &self,
@@ -345,7 +321,7 @@ extern_methods!(
         #[method(renewRows:columns:)]
         pub unsafe fn renewRows_columns(&self, new_rows: NSInteger, new_cols: NSInteger);
 
-        #[cfg(feature = "AppKit_NSCell")]
+        #[cfg(feature = "NSCell")]
         #[method(putCell:atRow:column:)]
         pub unsafe fn putCell_atRow_column(
             &self,
@@ -357,14 +333,14 @@ extern_methods!(
         #[method(addRow)]
         pub unsafe fn addRow(&self);
 
-        #[cfg(feature = "AppKit_NSCell")]
+        #[cfg(feature = "NSCell")]
         #[method(addRowWithCells:)]
         pub unsafe fn addRowWithCells(&self, new_cells: &NSArray<NSCell>);
 
         #[method(insertRow:)]
         pub unsafe fn insertRow(&self, row: NSInteger);
 
-        #[cfg(feature = "AppKit_NSCell")]
+        #[cfg(feature = "NSCell")]
         #[method(insertRow:withCells:)]
         pub unsafe fn insertRow_withCells(
             &self,
@@ -378,14 +354,14 @@ extern_methods!(
         #[method(addColumn)]
         pub unsafe fn addColumn(&self);
 
-        #[cfg(feature = "AppKit_NSCell")]
+        #[cfg(feature = "NSCell")]
         #[method(addColumnWithCells:)]
         pub unsafe fn addColumnWithCells(&self, new_cells: &NSArray<NSCell>);
 
         #[method(insertColumn:)]
         pub unsafe fn insertColumn(&self, column: NSInteger);
 
-        #[cfg(feature = "AppKit_NSCell")]
+        #[cfg(feature = "NSCell")]
         #[method(insertColumn:withCells:)]
         pub unsafe fn insertColumn_withCells(
             &self,
@@ -396,7 +372,7 @@ extern_methods!(
         #[method(removeColumn:)]
         pub unsafe fn removeColumn(&self, col: NSInteger);
 
-        #[cfg(feature = "AppKit_NSCell")]
+        #[cfg(feature = "NSCell")]
         #[method_id(@__retain_semantics Other cellWithTag:)]
         pub unsafe fn cellWithTag(&self, tag: NSInteger) -> Option<Id<NSCell>>;
 
@@ -436,11 +412,11 @@ extern_methods!(
         #[method(mouseDownFlags)]
         pub unsafe fn mouseDownFlags(&self) -> NSInteger;
 
-        #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(feature = "NSEvent")]
         #[method(mouseDown:)]
         pub unsafe fn mouseDown(&self, event: &NSEvent);
 
-        #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(feature = "NSEvent")]
         #[method(performKeyEquivalent:)]
         pub unsafe fn performKeyEquivalent(&self, event: &NSEvent) -> bool;
 
@@ -456,11 +432,11 @@ extern_methods!(
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSMatrixDelegate>>);
 
-        #[cfg(feature = "AppKit_NSText")]
+        #[cfg(feature = "NSText")]
         #[method(textShouldBeginEditing:)]
         pub unsafe fn textShouldBeginEditing(&self, text_object: &NSText) -> bool;
 
-        #[cfg(feature = "AppKit_NSText")]
+        #[cfg(feature = "NSText")]
         #[method(textShouldEndEditing:)]
         pub unsafe fn textShouldEndEditing(&self, text_object: &NSText) -> bool;
 
@@ -476,7 +452,7 @@ extern_methods!(
         #[method(selectText:)]
         pub unsafe fn selectText(&self, sender: Option<&AnyObject>);
 
-        #[cfg(feature = "AppKit_NSCell")]
+        #[cfg(feature = "NSCell")]
         #[method_id(@__retain_semantics Other selectTextAtRow:column:)]
         pub unsafe fn selectTextAtRow_column(
             &self,
@@ -484,18 +460,18 @@ extern_methods!(
             col: NSInteger,
         ) -> Option<Id<NSCell>>;
 
-        #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(feature = "NSEvent")]
         #[method(acceptsFirstMouse:)]
         pub unsafe fn acceptsFirstMouse(&self, event: Option<&NSEvent>) -> bool;
 
         #[method(resetCursorRects)]
         pub unsafe fn resetCursorRects(&self);
 
-        #[cfg(feature = "AppKit_NSCell")]
+        #[cfg(feature = "NSCell")]
         #[method(setToolTip:forCell:)]
         pub unsafe fn setToolTip_forCell(&self, tool_tip_string: Option<&NSString>, cell: &NSCell);
 
-        #[cfg(feature = "AppKit_NSCell")]
+        #[cfg(feature = "NSCell")]
         #[method_id(@__retain_semantics Other toolTipForCell:)]
         pub unsafe fn toolTipForCell(&self, cell: &NSCell) -> Option<Id<NSString>>;
 
@@ -509,11 +485,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSControl`
-    #[cfg(all(
-        feature = "AppKit_NSControl",
-        feature = "AppKit_NSResponder",
-        feature = "AppKit_NSView"
-    ))]
+    #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSMatrix {
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
@@ -522,11 +494,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSResponder`
-    #[cfg(all(
-        feature = "AppKit_NSControl",
-        feature = "AppKit_NSResponder",
-        feature = "AppKit_NSView"
-    ))]
+    #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSMatrix {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -535,11 +503,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(all(
-        feature = "AppKit_NSControl",
-        feature = "AppKit_NSResponder",
-        feature = "AppKit_NSView"
-    ))]
+    #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSMatrix {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
@@ -548,11 +512,7 @@ extern_methods!(
 
 extern_methods!(
     /// NSKeyboardUI
-    #[cfg(all(
-        feature = "AppKit_NSControl",
-        feature = "AppKit_NSResponder",
-        feature = "AppKit_NSView"
-    ))]
+    #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSMatrix {
         #[method(tabKeyTraversesCells)]
         pub unsafe fn tabKeyTraversesCells(&self) -> bool;
@@ -560,20 +520,20 @@ extern_methods!(
         #[method(setTabKeyTraversesCells:)]
         pub unsafe fn setTabKeyTraversesCells(&self, tab_key_traverses_cells: bool);
 
-        #[cfg(feature = "AppKit_NSCell")]
+        #[cfg(feature = "NSCell")]
         #[method_id(@__retain_semantics Other keyCell)]
         pub unsafe fn keyCell(&self) -> Option<Id<NSCell>>;
 
-        #[cfg(feature = "AppKit_NSCell")]
+        #[cfg(feature = "NSCell")]
         #[method(setKeyCell:)]
         pub unsafe fn setKeyCell(&self, key_cell: Option<&NSCell>);
     }
 );
 
 extern_protocol!(
-    #[cfg(feature = "AppKit_NSControl")]
+    #[cfg(feature = "NSControl")]
     pub unsafe trait NSMatrixDelegate: NSControlTextEditingDelegate {}
 
-    #[cfg(feature = "AppKit_NSControl")]
+    #[cfg(feature = "NSControl")]
     unsafe impl ProtocolType for dyn NSMatrixDelegate {}
 );

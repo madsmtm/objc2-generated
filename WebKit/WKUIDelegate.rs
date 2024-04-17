@@ -75,10 +75,10 @@ unsafe impl RefEncode for WKDialogResult {
 extern_protocol!(
     pub unsafe trait WKUIDelegate: NSObjectProtocol {
         #[cfg(all(
-            feature = "WebKit_WKNavigationAction",
-            feature = "WebKit_WKWebView",
-            feature = "WebKit_WKWebViewConfiguration",
-            feature = "WebKit_WKWindowFeatures",
+            feature = "WKNavigationAction",
+            feature = "WKWebView",
+            feature = "WKWebViewConfiguration",
+            feature = "WKWindowFeatures",
             feature = "objc2-app-kit"
         ))]
         #[optional]
@@ -91,14 +91,14 @@ extern_protocol!(
             window_features: &WKWindowFeatures,
         ) -> Option<Id<WKWebView>>;
 
-        #[cfg(all(feature = "WebKit_WKWebView", feature = "objc2-app-kit"))]
+        #[cfg(all(feature = "WKWebView", feature = "objc2-app-kit"))]
         #[optional]
         #[method(webViewDidClose:)]
         unsafe fn webViewDidClose(&self, web_view: &WKWebView);
 
         #[cfg(all(
-            feature = "WebKit_WKFrameInfo",
-            feature = "WebKit_WKWebView",
+            feature = "WKFrameInfo",
+            feature = "WKWebView",
             feature = "block2",
             feature = "objc2-app-kit"
         ))]
@@ -113,8 +113,8 @@ extern_protocol!(
         );
 
         #[cfg(all(
-            feature = "WebKit_WKFrameInfo",
-            feature = "WebKit_WKWebView",
+            feature = "WKFrameInfo",
+            feature = "WKWebView",
             feature = "block2",
             feature = "objc2-app-kit"
         ))]
@@ -129,8 +129,8 @@ extern_protocol!(
         );
 
         #[cfg(all(
-            feature = "WebKit_WKFrameInfo",
-            feature = "WebKit_WKWebView",
+            feature = "WKFrameInfo",
+            feature = "WKWebView",
             feature = "block2",
             feature = "objc2-app-kit"
         ))]
@@ -146,9 +146,9 @@ extern_protocol!(
         );
 
         #[cfg(all(
-            feature = "WebKit_WKFrameInfo",
-            feature = "WebKit_WKSecurityOrigin",
-            feature = "WebKit_WKWebView",
+            feature = "WKFrameInfo",
+            feature = "WKSecurityOrigin",
+            feature = "WKWebView",
             feature = "block2",
             feature = "objc2-app-kit"
         ))]
@@ -164,9 +164,9 @@ extern_protocol!(
         );
 
         #[cfg(all(
-            feature = "WebKit_WKFrameInfo",
-            feature = "WebKit_WKSecurityOrigin",
-            feature = "WebKit_WKWebView",
+            feature = "WKFrameInfo",
+            feature = "WKSecurityOrigin",
+            feature = "WKWebView",
             feature = "block2",
             feature = "objc2-app-kit"
         ))]
@@ -181,9 +181,9 @@ extern_protocol!(
         );
 
         #[cfg(all(
-            feature = "WebKit_WKFrameInfo",
-            feature = "WebKit_WKOpenPanelParameters",
-            feature = "WebKit_WKWebView",
+            feature = "WKFrameInfo",
+            feature = "WKOpenPanelParameters",
+            feature = "WKWebView",
             feature = "block2",
             feature = "objc2-app-kit"
         ))]

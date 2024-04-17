@@ -28,7 +28,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other requestingExecutable)]
         pub unsafe fn requestingExecutable(&self) -> Option<Id<NSURL>>;
 
-        #[cfg(feature = "FileProvider_NSFileProviderDomain")]
+        #[cfg(feature = "NSFileProviderDomain")]
         #[method_id(@__retain_semantics Other domainVersion)]
         pub unsafe fn domainVersion(&self) -> Option<Id<NSFileProviderDomainVersion>>;
     }

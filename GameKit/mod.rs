@@ -16,375 +16,362 @@
 #[link(name = "GameKit", kind = "framework")]
 extern "C" {}
 
-#[cfg(feature = "GameKit_GKAccessPoint")]
+#[cfg(feature = "GKAccessPoint")]
 #[path = "GKAccessPoint.rs"]
 mod __GKAccessPoint;
-#[cfg(feature = "GameKit_GKAchievement")]
+#[cfg(feature = "GKAchievement")]
 #[path = "GKAchievement.rs"]
 mod __GKAchievement;
-#[cfg(feature = "GameKit_GKAchievementDescription")]
+#[cfg(feature = "GKAchievementDescription")]
 #[path = "GKAchievementDescription.rs"]
 mod __GKAchievementDescription;
-#[cfg(feature = "GameKit_GKAchievementViewController")]
+#[cfg(feature = "GKAchievementViewController")]
 #[path = "GKAchievementViewController.rs"]
 mod __GKAchievementViewController;
-#[cfg(feature = "GameKit_GKBasePlayer")]
+#[cfg(feature = "GKBasePlayer")]
 #[path = "GKBasePlayer.rs"]
 mod __GKBasePlayer;
-#[cfg(feature = "GameKit_GKChallenge")]
+#[cfg(feature = "GKChallenge")]
 #[path = "GKChallenge.rs"]
 mod __GKChallenge;
-#[cfg(feature = "GameKit_GKChallengeEventHandler")]
+#[cfg(feature = "GKChallengeEventHandler")]
 #[path = "GKChallengeEventHandler.rs"]
 mod __GKChallengeEventHandler;
-#[cfg(feature = "GameKit_GKChallengesViewController")]
+#[cfg(feature = "GKChallengesViewController")]
 #[path = "GKChallengesViewController.rs"]
 mod __GKChallengesViewController;
-#[cfg(feature = "GameKit_GKCloudPlayer")]
+#[cfg(feature = "GKCloudPlayer")]
 #[path = "GKCloudPlayer.rs"]
 mod __GKCloudPlayer;
-#[cfg(feature = "GameKit_GKDefines")]
+#[cfg(feature = "GKDefines")]
 #[path = "GKDefines.rs"]
 mod __GKDefines;
-#[cfg(feature = "GameKit_GKDialogController")]
+#[cfg(feature = "GKDialogController")]
 #[path = "GKDialogController.rs"]
 mod __GKDialogController;
-#[cfg(feature = "GameKit_GKError")]
+#[cfg(feature = "GKError")]
 #[path = "GKError.rs"]
 mod __GKError;
-#[cfg(feature = "GameKit_GKEventListener")]
+#[cfg(feature = "GKEventListener")]
 #[path = "GKEventListener.rs"]
 mod __GKEventListener;
-#[cfg(feature = "GameKit_GKFriendRequestComposeViewController")]
+#[cfg(feature = "GKFriendRequestComposeViewController")]
 #[path = "GKFriendRequestComposeViewController.rs"]
 mod __GKFriendRequestComposeViewController;
-#[cfg(feature = "GameKit_GKGameCenterViewController")]
+#[cfg(feature = "GKGameCenterViewController")]
 #[path = "GKGameCenterViewController.rs"]
 mod __GKGameCenterViewController;
-#[cfg(feature = "GameKit_GKGameSession")]
+#[cfg(feature = "GKGameSession")]
 #[path = "GKGameSession.rs"]
 mod __GKGameSession;
-#[cfg(feature = "GameKit_GKGameSessionError")]
+#[cfg(feature = "GKGameSessionError")]
 #[path = "GKGameSessionError.rs"]
 mod __GKGameSessionError;
-#[cfg(feature = "GameKit_GKGameSessionEventListener")]
+#[cfg(feature = "GKGameSessionEventListener")]
 #[path = "GKGameSessionEventListener.rs"]
 mod __GKGameSessionEventListener;
-#[cfg(feature = "GameKit_GKGameSessionSharingViewController")]
+#[cfg(feature = "GKGameSessionSharingViewController")]
 #[path = "GKGameSessionSharingViewController.rs"]
 mod __GKGameSessionSharingViewController;
-#[cfg(feature = "GameKit_GKLeaderboard")]
+#[cfg(feature = "GKLeaderboard")]
 #[path = "GKLeaderboard.rs"]
 mod __GKLeaderboard;
-#[cfg(feature = "GameKit_GKLeaderboardEntry")]
+#[cfg(feature = "GKLeaderboardEntry")]
 #[path = "GKLeaderboardEntry.rs"]
 mod __GKLeaderboardEntry;
-#[cfg(feature = "GameKit_GKLeaderboardScore")]
+#[cfg(feature = "GKLeaderboardScore")]
 #[path = "GKLeaderboardScore.rs"]
 mod __GKLeaderboardScore;
-#[cfg(feature = "GameKit_GKLeaderboardSet")]
+#[cfg(feature = "GKLeaderboardSet")]
 #[path = "GKLeaderboardSet.rs"]
 mod __GKLeaderboardSet;
-#[cfg(feature = "GameKit_GKLeaderboardViewController")]
+#[cfg(feature = "GKLeaderboardViewController")]
 #[path = "GKLeaderboardViewController.rs"]
 mod __GKLeaderboardViewController;
-#[cfg(feature = "GameKit_GKLocalPlayer")]
+#[cfg(feature = "GKLocalPlayer")]
 #[path = "GKLocalPlayer.rs"]
 mod __GKLocalPlayer;
-#[cfg(feature = "GameKit_GKMatch")]
+#[cfg(feature = "GKMatch")]
 #[path = "GKMatch.rs"]
 mod __GKMatch;
-#[cfg(feature = "GameKit_GKMatchmaker")]
+#[cfg(feature = "GKMatchmaker")]
 #[path = "GKMatchmaker.rs"]
 mod __GKMatchmaker;
-#[cfg(feature = "GameKit_GKMatchmakerViewController")]
+#[cfg(feature = "GKMatchmakerViewController")]
 #[path = "GKMatchmakerViewController.rs"]
 mod __GKMatchmakerViewController;
-#[cfg(feature = "GameKit_GKNotificationBanner")]
+#[cfg(feature = "GKNotificationBanner")]
 #[path = "GKNotificationBanner.rs"]
 mod __GKNotificationBanner;
-#[cfg(feature = "GameKit_GKPeerPickerController")]
+#[cfg(feature = "GKPeerPickerController")]
 #[path = "GKPeerPickerController.rs"]
 mod __GKPeerPickerController;
-#[cfg(feature = "GameKit_GKPlayer")]
+#[cfg(feature = "GKPlayer")]
 #[path = "GKPlayer.rs"]
 mod __GKPlayer;
-#[cfg(feature = "GameKit_GKPublicConstants")]
+#[cfg(feature = "GKPublicConstants")]
 #[path = "GKPublicConstants.rs"]
 mod __GKPublicConstants;
-#[cfg(feature = "GameKit_GKPublicProtocols")]
+#[cfg(feature = "GKPublicProtocols")]
 #[path = "GKPublicProtocols.rs"]
 mod __GKPublicProtocols;
-#[cfg(feature = "GameKit_GKSavedGame")]
+#[cfg(feature = "GKSavedGame")]
 #[path = "GKSavedGame.rs"]
 mod __GKSavedGame;
-#[cfg(feature = "GameKit_GKSavedGameListener")]
+#[cfg(feature = "GKSavedGameListener")]
 #[path = "GKSavedGameListener.rs"]
 mod __GKSavedGameListener;
-#[cfg(feature = "GameKit_GKScore")]
+#[cfg(feature = "GKScore")]
 #[path = "GKScore.rs"]
 mod __GKScore;
-#[cfg(feature = "GameKit_GKSession")]
+#[cfg(feature = "GKSession")]
 #[path = "GKSession.rs"]
 mod __GKSession;
-#[cfg(feature = "GameKit_GKSessionError")]
+#[cfg(feature = "GKSessionError")]
 #[path = "GKSessionError.rs"]
 mod __GKSessionError;
-#[cfg(feature = "GameKit_GKTurnBasedMatch")]
+#[cfg(feature = "GKTurnBasedMatch")]
 #[path = "GKTurnBasedMatch.rs"]
 mod __GKTurnBasedMatch;
-#[cfg(feature = "GameKit_GKTurnBasedMatchmakerViewController")]
+#[cfg(feature = "GKTurnBasedMatchmakerViewController")]
 #[path = "GKTurnBasedMatchmakerViewController.rs"]
 mod __GKTurnBasedMatchmakerViewController;
-#[cfg(feature = "GameKit_GKVoiceChat")]
+#[cfg(feature = "GKVoiceChat")]
 #[path = "GKVoiceChat.rs"]
 mod __GKVoiceChat;
-#[cfg(feature = "GameKit_GKVoiceChatService")]
+#[cfg(feature = "GKVoiceChatService")]
 #[path = "GKVoiceChatService.rs"]
 mod __GKVoiceChatService;
 
-#[cfg(feature = "GameKit_GKAccessPoint")]
+#[cfg(feature = "GKAccessPoint")]
 pub use self::__GKAccessPoint::GKAccessPoint;
-#[cfg(feature = "GameKit_GKAccessPoint")]
+#[cfg(feature = "GKAccessPoint")]
 pub use self::__GKAccessPoint::GKAccessPointLocation;
-#[cfg(feature = "GameKit_GKAchievement")]
+#[cfg(feature = "GKAchievement")]
 pub use self::__GKAchievement::GKAchievement;
-#[cfg(feature = "GameKit_GKAchievementDescription")]
+#[cfg(feature = "GKAchievementDescription")]
 pub use self::__GKAchievementDescription::GKAchievementDescription;
 #[cfg(all(
-    feature = "GameKit_GKAchievementViewController",
-    feature = "GameKit_GKGameCenterViewController",
+    feature = "GKAchievementViewController",
+    feature = "GKGameCenterViewController",
     feature = "objc2-app-kit"
 ))]
 pub use self::__GKAchievementViewController::GKAchievementViewController;
-#[cfg(feature = "GameKit_GKAchievementViewController")]
+#[cfg(feature = "GKAchievementViewController")]
 pub use self::__GKAchievementViewController::GKAchievementViewControllerDelegate;
-#[cfg(feature = "GameKit_GKBasePlayer")]
+#[cfg(feature = "GKBasePlayer")]
 pub use self::__GKBasePlayer::GKBasePlayer;
-#[cfg(feature = "GameKit_GKChallenge")]
+#[cfg(feature = "GKChallenge")]
 pub use self::__GKChallenge::GKAchievementChallenge;
-#[cfg(feature = "GameKit_GKChallenge")]
+#[cfg(feature = "GKChallenge")]
 pub use self::__GKChallenge::GKChallenge;
-#[cfg(all(
-    feature = "GameKit_GKChallenge",
-    feature = "block2",
-    feature = "objc2-app-kit"
-))]
+#[cfg(all(feature = "GKChallenge", feature = "block2", feature = "objc2-app-kit"))]
 pub use self::__GKChallenge::GKChallengeComposeCompletionBlock;
 #[cfg(all(
-    feature = "GameKit_GKBasePlayer",
-    feature = "GameKit_GKChallenge",
-    feature = "GameKit_GKPlayer",
+    feature = "GKBasePlayer",
+    feature = "GKChallenge",
+    feature = "GKPlayer",
     feature = "block2",
     feature = "objc2-app-kit"
 ))]
 pub use self::__GKChallenge::GKChallengeComposeHandler;
-#[cfg(feature = "GameKit_GKChallenge")]
+#[cfg(feature = "GKChallenge")]
 pub use self::__GKChallenge::GKChallengeState;
-#[cfg(feature = "GameKit_GKChallenge")]
+#[cfg(feature = "GKChallenge")]
 pub use self::__GKChallenge::GKScoreChallenge;
-#[cfg(feature = "GameKit_GKChallengeEventHandler")]
+#[cfg(feature = "GKChallengeEventHandler")]
 pub use self::__GKChallengeEventHandler::GKChallengeEventHandler;
-#[cfg(feature = "GameKit_GKChallengeEventHandler")]
+#[cfg(feature = "GKChallengeEventHandler")]
 pub use self::__GKChallengeEventHandler::GKChallengeEventHandlerDelegate;
-#[cfg(all(
-    feature = "GameKit_GKChallengesViewController",
-    feature = "objc2-app-kit"
-))]
+#[cfg(all(feature = "GKChallengesViewController", feature = "objc2-app-kit"))]
 pub use self::__GKChallengesViewController::GKChallengesViewController;
-#[cfg(feature = "GameKit_GKChallengesViewController")]
+#[cfg(feature = "GKChallengesViewController")]
 pub use self::__GKChallengesViewController::GKChallengesViewControllerDelegate;
-#[cfg(all(feature = "GameKit_GKBasePlayer", feature = "GameKit_GKCloudPlayer"))]
+#[cfg(all(feature = "GKBasePlayer", feature = "GKCloudPlayer"))]
 pub use self::__GKCloudPlayer::GKCloudPlayer;
-#[cfg(feature = "GameKit_GKDefines")]
+#[cfg(feature = "GKDefines")]
 pub use self::__GKDefines::GKMatchProperties;
-#[cfg(all(feature = "GameKit_GKDialogController", feature = "objc2-app-kit"))]
+#[cfg(all(feature = "GKDialogController", feature = "objc2-app-kit"))]
 pub use self::__GKDialogController::GKDialogController;
-#[cfg(feature = "GameKit_GKDialogController")]
+#[cfg(feature = "GKDialogController")]
 pub use self::__GKDialogController::GKViewController;
-#[cfg(feature = "GameKit_GKError")]
+#[cfg(feature = "GKError")]
 pub use self::__GKError::GKErrorCode;
-#[cfg(feature = "GameKit_GKError")]
+#[cfg(feature = "GKError")]
 pub use self::__GKError::GKErrorDomain;
-#[cfg(feature = "GameKit_GKEventListener")]
+#[cfg(feature = "GKEventListener")]
 pub use self::__GKEventListener::GKChallengeListener;
 #[cfg(all(
-    feature = "GameKit_GKFriendRequestComposeViewController",
+    feature = "GKFriendRequestComposeViewController",
     feature = "objc2-app-kit"
 ))]
 pub use self::__GKFriendRequestComposeViewController::GKFriendRequestComposeViewController;
-#[cfg(feature = "GameKit_GKFriendRequestComposeViewController")]
+#[cfg(feature = "GKFriendRequestComposeViewController")]
 pub use self::__GKFriendRequestComposeViewController::GKFriendRequestComposeViewControllerDelegate;
-#[cfg(feature = "GameKit_GKGameCenterViewController")]
+#[cfg(feature = "GKGameCenterViewController")]
 pub use self::__GKGameCenterViewController::GKGameCenterControllerDelegate;
-#[cfg(all(
-    feature = "GameKit_GKGameCenterViewController",
-    feature = "objc2-app-kit"
-))]
+#[cfg(all(feature = "GKGameCenterViewController", feature = "objc2-app-kit"))]
 pub use self::__GKGameCenterViewController::GKGameCenterViewController;
-#[cfg(feature = "GameKit_GKGameCenterViewController")]
+#[cfg(feature = "GKGameCenterViewController")]
 pub use self::__GKGameCenterViewController::GKGameCenterViewControllerState;
-#[cfg(feature = "GameKit_GKGameSession")]
+#[cfg(feature = "GKGameSession")]
 pub use self::__GKGameSession::GKConnectionState;
-#[cfg(feature = "GameKit_GKGameSession")]
+#[cfg(feature = "GKGameSession")]
 pub use self::__GKGameSession::GKGameSession;
-#[cfg(feature = "GameKit_GKGameSession")]
+#[cfg(feature = "GKGameSession")]
 pub use self::__GKGameSession::GKTransportType;
-#[cfg(feature = "GameKit_GKGameSessionError")]
+#[cfg(feature = "GKGameSessionError")]
 pub use self::__GKGameSessionError::GKGameSessionErrorCode;
-#[cfg(feature = "GameKit_GKGameSessionError")]
+#[cfg(feature = "GKGameSessionError")]
 pub use self::__GKGameSessionError::GKGameSessionErrorDomain;
-#[cfg(feature = "GameKit_GKGameSessionEventListener")]
+#[cfg(feature = "GKGameSessionEventListener")]
 pub use self::__GKGameSessionEventListener::GKGameSessionEventListener;
-#[cfg(feature = "GameKit_GKLeaderboard")]
+#[cfg(feature = "GKLeaderboard")]
 pub use self::__GKLeaderboard::GKLeaderboard;
-#[cfg(feature = "GameKit_GKLeaderboard")]
+#[cfg(feature = "GKLeaderboard")]
 pub use self::__GKLeaderboard::GKLeaderboardPlayerScope;
-#[cfg(feature = "GameKit_GKLeaderboard")]
+#[cfg(feature = "GKLeaderboard")]
 pub use self::__GKLeaderboard::GKLeaderboardTimeScope;
-#[cfg(feature = "GameKit_GKLeaderboard")]
+#[cfg(feature = "GKLeaderboard")]
 pub use self::__GKLeaderboard::GKLeaderboardType;
-#[cfg(feature = "GameKit_GKLeaderboardEntry")]
+#[cfg(feature = "GKLeaderboardEntry")]
 pub use self::__GKLeaderboardEntry::GKLeaderboardEntry;
-#[cfg(feature = "GameKit_GKLeaderboardScore")]
+#[cfg(feature = "GKLeaderboardScore")]
 pub use self::__GKLeaderboardScore::GKLeaderboardScore;
-#[cfg(feature = "GameKit_GKLeaderboardSet")]
+#[cfg(feature = "GKLeaderboardSet")]
 pub use self::__GKLeaderboardSet::GKLeaderboardSet;
 #[cfg(all(
-    feature = "GameKit_GKGameCenterViewController",
-    feature = "GameKit_GKLeaderboardViewController",
+    feature = "GKGameCenterViewController",
+    feature = "GKLeaderboardViewController",
     feature = "objc2-app-kit"
 ))]
 pub use self::__GKLeaderboardViewController::GKLeaderboardViewController;
-#[cfg(feature = "GameKit_GKLeaderboardViewController")]
+#[cfg(feature = "GKLeaderboardViewController")]
 pub use self::__GKLeaderboardViewController::GKLeaderboardViewControllerDelegate;
-#[cfg(feature = "GameKit_GKLocalPlayer")]
+#[cfg(feature = "GKLocalPlayer")]
 pub use self::__GKLocalPlayer::GKFriendsAuthorizationStatus;
 #[cfg(all(
-    feature = "GameKit_GKBasePlayer",
-    feature = "GameKit_GKLocalPlayer",
-    feature = "GameKit_GKPlayer"
+    feature = "GKBasePlayer",
+    feature = "GKLocalPlayer",
+    feature = "GKPlayer"
 ))]
 pub use self::__GKLocalPlayer::GKLocalPlayer;
 #[cfg(all(
-    feature = "GameKit_GKEventListener",
-    feature = "GameKit_GKLocalPlayer",
-    feature = "GameKit_GKMatchmaker",
-    feature = "GameKit_GKSavedGameListener",
-    feature = "GameKit_GKTurnBasedMatch"
+    feature = "GKEventListener",
+    feature = "GKLocalPlayer",
+    feature = "GKMatchmaker",
+    feature = "GKSavedGameListener",
+    feature = "GKTurnBasedMatch"
 ))]
 pub use self::__GKLocalPlayer::GKLocalPlayerListener;
-#[cfg(feature = "GameKit_GKLocalPlayer")]
+#[cfg(feature = "GKLocalPlayer")]
 pub use self::__GKLocalPlayer::GKPlayerAuthenticationDidChangeNotificationName;
-#[cfg(feature = "GameKit_GKMatch")]
+#[cfg(feature = "GKMatch")]
 pub use self::__GKMatch::GKMatch;
-#[cfg(feature = "GameKit_GKMatch")]
+#[cfg(feature = "GKMatch")]
 pub use self::__GKMatch::GKMatchDelegate;
-#[cfg(feature = "GameKit_GKMatch")]
+#[cfg(feature = "GKMatch")]
 pub use self::__GKMatch::GKMatchSendDataMode;
-#[cfg(feature = "GameKit_GKMatch")]
+#[cfg(feature = "GKMatch")]
 pub use self::__GKMatch::GKPlayerConnectionState;
-#[cfg(feature = "GameKit_GKMatchmaker")]
+#[cfg(feature = "GKMatchmaker")]
 pub use self::__GKMatchmaker::GKInvite;
-#[cfg(feature = "GameKit_GKMatchmaker")]
+#[cfg(feature = "GKMatchmaker")]
 pub use self::__GKMatchmaker::GKInviteEventListener;
-#[cfg(feature = "GameKit_GKMatchmaker")]
+#[cfg(feature = "GKMatchmaker")]
 pub use self::__GKMatchmaker::GKInviteRecipientResponse;
-#[cfg(feature = "GameKit_GKMatchmaker")]
+#[cfg(feature = "GKMatchmaker")]
 pub use self::__GKMatchmaker::GKInviteeResponse;
-#[cfg(feature = "GameKit_GKMatchmaker")]
+#[cfg(feature = "GKMatchmaker")]
 pub use self::__GKMatchmaker::GKMatchRequest;
-#[cfg(feature = "GameKit_GKMatchmaker")]
+#[cfg(feature = "GKMatchmaker")]
 pub use self::__GKMatchmaker::GKMatchType;
-#[cfg(feature = "GameKit_GKMatchmaker")]
+#[cfg(feature = "GKMatchmaker")]
 pub use self::__GKMatchmaker::GKMatchedPlayers;
-#[cfg(feature = "GameKit_GKMatchmaker")]
+#[cfg(feature = "GKMatchmaker")]
 pub use self::__GKMatchmaker::GKMatchmaker;
-#[cfg(all(
-    feature = "GameKit_GKMatchmakerViewController",
-    feature = "objc2-app-kit"
-))]
+#[cfg(all(feature = "GKMatchmakerViewController", feature = "objc2-app-kit"))]
 pub use self::__GKMatchmakerViewController::GKMatchmakerViewController;
-#[cfg(feature = "GameKit_GKMatchmakerViewController")]
+#[cfg(feature = "GKMatchmakerViewController")]
 pub use self::__GKMatchmakerViewController::GKMatchmakerViewControllerDelegate;
-#[cfg(feature = "GameKit_GKMatchmakerViewController")]
+#[cfg(feature = "GKMatchmakerViewController")]
 pub use self::__GKMatchmakerViewController::GKMatchmakingMode;
-#[cfg(feature = "GameKit_GKNotificationBanner")]
+#[cfg(feature = "GKNotificationBanner")]
 pub use self::__GKNotificationBanner::GKNotificationBanner;
-#[cfg(feature = "GameKit_GKPlayer")]
+#[cfg(feature = "GKPlayer")]
 pub use self::__GKPlayer::GKPhotoSize;
-#[cfg(all(feature = "GameKit_GKBasePlayer", feature = "GameKit_GKPlayer"))]
+#[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
 pub use self::__GKPlayer::GKPlayer;
-#[cfg(feature = "GameKit_GKPlayer")]
+#[cfg(feature = "GKPlayer")]
 pub use self::__GKPlayer::GKPlayerDidChangeNotificationName;
-#[cfg(feature = "GameKit_GKPlayer")]
+#[cfg(feature = "GKPlayer")]
 pub use self::__GKPlayer::GKPlayerIDNoLongerAvailable;
-#[cfg(feature = "GameKit_GKPublicConstants")]
+#[cfg(feature = "GKPublicConstants")]
 pub use self::__GKPublicConstants::GKPeerConnectionState;
-#[cfg(feature = "GameKit_GKPublicConstants")]
+#[cfg(feature = "GKPublicConstants")]
 pub use self::__GKPublicConstants::GKSendDataMode;
-#[cfg(feature = "GameKit_GKPublicConstants")]
+#[cfg(feature = "GKPublicConstants")]
 pub use self::__GKPublicConstants::GKSessionMode;
-#[cfg(feature = "GameKit_GKPublicConstants")]
+#[cfg(feature = "GKPublicConstants")]
 pub use self::__GKPublicConstants::GKVoiceChatServiceError;
-#[cfg(feature = "GameKit_GKPublicConstants")]
+#[cfg(feature = "GKPublicConstants")]
 pub use self::__GKPublicConstants::GKVoiceChatServiceErrorDomain;
-#[cfg(feature = "GameKit_GKPublicProtocols")]
+#[cfg(feature = "GKPublicProtocols")]
 pub use self::__GKPublicProtocols::GKSessionDelegate;
-#[cfg(feature = "GameKit_GKPublicProtocols")]
+#[cfg(feature = "GKPublicProtocols")]
 pub use self::__GKPublicProtocols::GKVoiceChatClient;
-#[cfg(feature = "GameKit_GKSavedGame")]
+#[cfg(feature = "GKSavedGame")]
 pub use self::__GKSavedGame::GKSavedGame;
-#[cfg(feature = "GameKit_GKSavedGameListener")]
+#[cfg(feature = "GKSavedGameListener")]
 pub use self::__GKSavedGameListener::GKSavedGameListener;
-#[cfg(feature = "GameKit_GKScore")]
+#[cfg(feature = "GKScore")]
 pub use self::__GKScore::GKScore;
-#[cfg(feature = "GameKit_GKSession")]
+#[cfg(feature = "GKSession")]
 pub use self::__GKSession::GKSession;
-#[cfg(feature = "GameKit_GKSessionError")]
+#[cfg(feature = "GKSessionError")]
 pub use self::__GKSessionError::GKSessionError;
-#[cfg(feature = "GameKit_GKSessionError")]
+#[cfg(feature = "GKSessionError")]
 pub use self::__GKSessionError::GKSessionErrorDomain;
-#[cfg(feature = "GameKit_GKTurnBasedMatch")]
+#[cfg(feature = "GKTurnBasedMatch")]
 pub use self::__GKTurnBasedMatch::GKExchangeTimeoutDefault;
-#[cfg(feature = "GameKit_GKTurnBasedMatch")]
+#[cfg(feature = "GKTurnBasedMatch")]
 pub use self::__GKTurnBasedMatch::GKExchangeTimeoutNone;
-#[cfg(feature = "GameKit_GKTurnBasedMatch")]
+#[cfg(feature = "GKTurnBasedMatch")]
 pub use self::__GKTurnBasedMatch::GKTurnBasedEventHandler;
-#[cfg(feature = "GameKit_GKTurnBasedMatch")]
+#[cfg(feature = "GKTurnBasedMatch")]
 pub use self::__GKTurnBasedMatch::GKTurnBasedEventHandlerDelegate;
-#[cfg(feature = "GameKit_GKTurnBasedMatch")]
+#[cfg(feature = "GKTurnBasedMatch")]
 pub use self::__GKTurnBasedMatch::GKTurnBasedEventListener;
-#[cfg(feature = "GameKit_GKTurnBasedMatch")]
+#[cfg(feature = "GKTurnBasedMatch")]
 pub use self::__GKTurnBasedMatch::GKTurnBasedExchange;
-#[cfg(feature = "GameKit_GKTurnBasedMatch")]
+#[cfg(feature = "GKTurnBasedMatch")]
 pub use self::__GKTurnBasedMatch::GKTurnBasedExchangeReply;
-#[cfg(feature = "GameKit_GKTurnBasedMatch")]
+#[cfg(feature = "GKTurnBasedMatch")]
 pub use self::__GKTurnBasedMatch::GKTurnBasedExchangeStatus;
-#[cfg(feature = "GameKit_GKTurnBasedMatch")]
+#[cfg(feature = "GKTurnBasedMatch")]
 pub use self::__GKTurnBasedMatch::GKTurnBasedMatch;
-#[cfg(feature = "GameKit_GKTurnBasedMatch")]
+#[cfg(feature = "GKTurnBasedMatch")]
 pub use self::__GKTurnBasedMatch::GKTurnBasedMatchOutcome;
-#[cfg(feature = "GameKit_GKTurnBasedMatch")]
+#[cfg(feature = "GKTurnBasedMatch")]
 pub use self::__GKTurnBasedMatch::GKTurnBasedMatchStatus;
-#[cfg(feature = "GameKit_GKTurnBasedMatch")]
+#[cfg(feature = "GKTurnBasedMatch")]
 pub use self::__GKTurnBasedMatch::GKTurnBasedParticipant;
-#[cfg(feature = "GameKit_GKTurnBasedMatch")]
+#[cfg(feature = "GKTurnBasedMatch")]
 pub use self::__GKTurnBasedMatch::GKTurnBasedParticipantStatus;
-#[cfg(feature = "GameKit_GKTurnBasedMatch")]
+#[cfg(feature = "GKTurnBasedMatch")]
 pub use self::__GKTurnBasedMatch::GKTurnTimeoutDefault;
-#[cfg(feature = "GameKit_GKTurnBasedMatch")]
+#[cfg(feature = "GKTurnBasedMatch")]
 pub use self::__GKTurnBasedMatch::GKTurnTimeoutNone;
 #[cfg(all(
-    feature = "GameKit_GKTurnBasedMatchmakerViewController",
+    feature = "GKTurnBasedMatchmakerViewController",
     feature = "objc2-app-kit"
 ))]
 pub use self::__GKTurnBasedMatchmakerViewController::GKTurnBasedMatchmakerViewController;
-#[cfg(feature = "GameKit_GKTurnBasedMatchmakerViewController")]
+#[cfg(feature = "GKTurnBasedMatchmakerViewController")]
 pub use self::__GKTurnBasedMatchmakerViewController::GKTurnBasedMatchmakerViewControllerDelegate;
-#[cfg(feature = "GameKit_GKVoiceChat")]
+#[cfg(feature = "GKVoiceChat")]
 pub use self::__GKVoiceChat::GKVoiceChat;
-#[cfg(feature = "GameKit_GKVoiceChat")]
+#[cfg(feature = "GKVoiceChat")]
 pub use self::__GKVoiceChat::GKVoiceChatPlayerState;
-#[cfg(feature = "GameKit_GKVoiceChatService")]
+#[cfg(feature = "GKVoiceChatService")]
 pub use self::__GKVoiceChatService::GKVoiceChatService;

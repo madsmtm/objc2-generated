@@ -19,7 +19,7 @@ unsafe impl NSObjectProtocol for NSIncrementalStoreNode {}
 
 extern_methods!(
     unsafe impl NSIncrementalStoreNode {
-        #[cfg(feature = "CoreData_NSManagedObjectID")]
+        #[cfg(feature = "NSManagedObjectID")]
         #[method_id(@__retain_semantics Init initWithObjectID:withValues:version:)]
         pub unsafe fn initWithObjectID_withValues_version(
             this: Allocated<Self>,
@@ -35,14 +35,14 @@ extern_methods!(
             version: u64,
         );
 
-        #[cfg(feature = "CoreData_NSManagedObjectID")]
+        #[cfg(feature = "NSManagedObjectID")]
         #[method_id(@__retain_semantics Other objectID)]
         pub unsafe fn objectID(&self) -> Id<NSManagedObjectID>;
 
         #[method(version)]
         pub unsafe fn version(&self) -> u64;
 
-        #[cfg(feature = "CoreData_NSPropertyDescription")]
+        #[cfg(feature = "NSPropertyDescription")]
         #[method_id(@__retain_semantics Other valueForPropertyDescription:)]
         pub unsafe fn valueForPropertyDescription(
             &self,

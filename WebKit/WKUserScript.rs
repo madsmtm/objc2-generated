@@ -57,7 +57,7 @@ extern_methods!(
             for_main_frame_only: bool,
         ) -> Id<Self>;
 
-        #[cfg(feature = "WebKit_WKContentWorld")]
+        #[cfg(feature = "WKContentWorld")]
         #[method_id(@__retain_semantics Init initWithSource:injectionTime:forMainFrameOnly:inContentWorld:)]
         pub unsafe fn initWithSource_injectionTime_forMainFrameOnly_inContentWorld(
             this: Allocated<Self>,

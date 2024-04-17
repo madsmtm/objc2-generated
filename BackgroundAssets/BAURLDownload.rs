@@ -7,10 +7,10 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "BackgroundAssets_BADownload")]
+    #[cfg(feature = "BADownload")]
     pub struct BAURLDownload;
 
-    #[cfg(feature = "BackgroundAssets_BADownload")]
+    #[cfg(feature = "BADownload")]
     unsafe impl ClassType for BAURLDownload {
         #[inherits(NSObject)]
         type Super = BADownload;
@@ -18,20 +18,20 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "BackgroundAssets_BADownload")]
+#[cfg(feature = "BADownload")]
 unsafe impl NSCoding for BAURLDownload {}
 
-#[cfg(feature = "BackgroundAssets_BADownload")]
+#[cfg(feature = "BADownload")]
 unsafe impl NSCopying for BAURLDownload {}
 
-#[cfg(feature = "BackgroundAssets_BADownload")]
+#[cfg(feature = "BADownload")]
 unsafe impl NSObjectProtocol for BAURLDownload {}
 
-#[cfg(feature = "BackgroundAssets_BADownload")]
+#[cfg(feature = "BADownload")]
 unsafe impl NSSecureCoding for BAURLDownload {}
 
 extern_methods!(
-    #[cfg(feature = "BackgroundAssets_BADownload")]
+    #[cfg(feature = "BADownload")]
     unsafe impl BAURLDownload {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

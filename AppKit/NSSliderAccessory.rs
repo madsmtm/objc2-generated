@@ -23,7 +23,7 @@ unsafe impl NSObjectProtocol for NSSliderAccessory {}
 
 extern_methods!(
     unsafe impl NSSliderAccessory {
-        #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(feature = "NSImage")]
         #[method_id(@__retain_semantics Other accessoryWithImage:)]
         pub unsafe fn accessoryWithImage(
             image: &NSImage,
@@ -59,10 +59,10 @@ extern_methods!(
     unsafe impl NSSliderAccessory {}
 );
 
-#[cfg(feature = "AppKit_NSAccessibilityProtocols")]
+#[cfg(feature = "NSAccessibilityProtocols")]
 unsafe impl NSAccessibility for NSSliderAccessory {}
 
-#[cfg(feature = "AppKit_NSAccessibilityProtocols")]
+#[cfg(feature = "NSAccessibilityProtocols")]
 unsafe impl NSAccessibilityElementProtocol for NSSliderAccessory {}
 
 extern_class!(

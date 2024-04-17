@@ -7,10 +7,10 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "EventKit_EKObject")]
+    #[cfg(feature = "EKObject")]
     pub struct EKParticipant;
 
-    #[cfg(feature = "EventKit_EKObject")]
+    #[cfg(feature = "EKObject")]
     unsafe impl ClassType for EKParticipant {
         #[inherits(NSObject)]
         type Super = EKObject;
@@ -18,14 +18,14 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "EventKit_EKObject")]
+#[cfg(feature = "EKObject")]
 unsafe impl NSCopying for EKParticipant {}
 
-#[cfg(feature = "EventKit_EKObject")]
+#[cfg(feature = "EKObject")]
 unsafe impl NSObjectProtocol for EKParticipant {}
 
 extern_methods!(
-    #[cfg(feature = "EventKit_EKObject")]
+    #[cfg(feature = "EKObject")]
     unsafe impl EKParticipant {
         #[method_id(@__retain_semantics Other URL)]
         pub unsafe fn URL(&self) -> Id<NSURL>;
@@ -33,15 +33,15 @@ extern_methods!(
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "EventKit_EKTypes")]
+        #[cfg(feature = "EKTypes")]
         #[method(participantStatus)]
         pub unsafe fn participantStatus(&self) -> EKParticipantStatus;
 
-        #[cfg(feature = "EventKit_EKTypes")]
+        #[cfg(feature = "EKTypes")]
         #[method(participantRole)]
         pub unsafe fn participantRole(&self) -> EKParticipantRole;
 
-        #[cfg(feature = "EventKit_EKTypes")]
+        #[cfg(feature = "EKTypes")]
         #[method(participantType)]
         pub unsafe fn participantType(&self) -> EKParticipantType;
 
@@ -55,7 +55,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "EventKit_EKObject")]
+    #[cfg(feature = "EKObject")]
     unsafe impl EKParticipant {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

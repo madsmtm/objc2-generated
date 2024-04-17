@@ -43,7 +43,7 @@ extern_methods!(
             phone_number: &NSString,
         ) -> Id<Self>;
 
-        #[cfg(feature = "CloudKit_CKRecordID")]
+        #[cfg(feature = "CKRecordID")]
         #[method_id(@__retain_semantics Init initWithUserRecordID:)]
         pub unsafe fn initWithUserRecordID(
             this: Allocated<Self>,
@@ -60,7 +60,7 @@ extern_methods!(
             phone_numbers: &NSArray<NSString>,
         ) -> Id<NSArray<CKUserIdentityLookupInfo>>;
 
-        #[cfg(feature = "CloudKit_CKRecordID")]
+        #[cfg(feature = "CKRecordID")]
         #[method_id(@__retain_semantics Other lookupInfosWithRecordIDs:)]
         pub unsafe fn lookupInfosWithRecordIDs(
             record_i_ds: &NSArray<CKRecordID>,
@@ -72,7 +72,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other phoneNumber)]
         pub unsafe fn phoneNumber(&self) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "CloudKit_CKRecordID")]
+        #[cfg(feature = "CKRecordID")]
         #[method_id(@__retain_semantics Other userRecordID)]
         pub unsafe fn userRecordID(&self) -> Option<Id<CKRecordID>>;
     }

@@ -55,7 +55,7 @@ extern_methods!(
         #[method(options)]
         pub unsafe fn options(&self) -> UNNotificationActionOptions;
 
-        #[cfg(feature = "UserNotifications_UNNotificationActionIcon")]
+        #[cfg(feature = "UNNotificationActionIcon")]
         #[method_id(@__retain_semantics Other icon)]
         pub unsafe fn icon(&self) -> Option<Id<UNNotificationActionIcon>>;
 
@@ -66,7 +66,7 @@ extern_methods!(
             options: UNNotificationActionOptions,
         ) -> Id<Self>;
 
-        #[cfg(feature = "UserNotifications_UNNotificationActionIcon")]
+        #[cfg(feature = "UNNotificationActionIcon")]
         #[method_id(@__retain_semantics Other actionWithIdentifier:title:options:icon:)]
         pub unsafe fn actionWithIdentifier_title_options_icon(
             identifier: &NSString,
@@ -118,7 +118,7 @@ extern_methods!(
             text_input_placeholder: &NSString,
         ) -> Id<Self>;
 
-        #[cfg(feature = "UserNotifications_UNNotificationActionIcon")]
+        #[cfg(feature = "UNNotificationActionIcon")]
         #[method_id(@__retain_semantics Other actionWithIdentifier:title:options:icon:textInputButtonTitle:textInputPlaceholder:)]
         pub unsafe fn actionWithIdentifier_title_options_icon_textInputButtonTitle_textInputPlaceholder(
             identifier: &NSString,
@@ -147,7 +147,7 @@ extern_methods!(
             options: UNNotificationActionOptions,
         ) -> Id<Self>;
 
-        #[cfg(feature = "UserNotifications_UNNotificationActionIcon")]
+        #[cfg(feature = "UNNotificationActionIcon")]
         #[method_id(@__retain_semantics Other actionWithIdentifier:title:options:icon:)]
         pub unsafe fn actionWithIdentifier_title_options_icon(
             identifier: &NSString,

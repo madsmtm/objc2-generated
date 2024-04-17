@@ -10,10 +10,10 @@ pub type CAGradientLayerType = NSString;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "QuartzCore_CALayer")]
+    #[cfg(feature = "CALayer")]
     pub struct CAGradientLayer;
 
-    #[cfg(feature = "QuartzCore_CALayer")]
+    #[cfg(feature = "CALayer")]
     unsafe impl ClassType for CAGradientLayer {
         #[inherits(NSObject)]
         type Super = CALayer;
@@ -21,20 +21,20 @@ extern_class!(
     }
 );
 
-#[cfg(all(feature = "QuartzCore_CALayer", feature = "QuartzCore_CAMediaTiming"))]
+#[cfg(all(feature = "CALayer", feature = "CAMediaTiming"))]
 unsafe impl CAMediaTiming for CAGradientLayer {}
 
-#[cfg(feature = "QuartzCore_CALayer")]
+#[cfg(feature = "CALayer")]
 unsafe impl NSCoding for CAGradientLayer {}
 
-#[cfg(feature = "QuartzCore_CALayer")]
+#[cfg(feature = "CALayer")]
 unsafe impl NSObjectProtocol for CAGradientLayer {}
 
-#[cfg(feature = "QuartzCore_CALayer")]
+#[cfg(feature = "CALayer")]
 unsafe impl NSSecureCoding for CAGradientLayer {}
 
 extern_methods!(
-    #[cfg(feature = "QuartzCore_CALayer")]
+    #[cfg(feature = "CALayer")]
     unsafe impl CAGradientLayer {
         #[method_id(@__retain_semantics Other colors)]
         pub unsafe fn colors(&self) -> Option<Id<NSArray>>;
@@ -70,7 +70,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `CALayer`
-    #[cfg(feature = "QuartzCore_CALayer")]
+    #[cfg(feature = "CALayer")]
     unsafe impl CAGradientLayer {
         #[method_id(@__retain_semantics Other layer)]
         pub unsafe fn layer() -> Id<Self>;
@@ -85,7 +85,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "QuartzCore_CALayer")]
+    #[cfg(feature = "CALayer")]
     unsafe impl CAGradientLayer {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

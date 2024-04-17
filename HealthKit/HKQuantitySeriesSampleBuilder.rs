@@ -22,9 +22,9 @@ unsafe impl NSObjectProtocol for HKQuantitySeriesSampleBuilder {}
 extern_methods!(
     unsafe impl HKQuantitySeriesSampleBuilder {
         #[cfg(all(
-            feature = "HealthKit_HKDevice",
-            feature = "HealthKit_HKHealthStore",
-            feature = "HealthKit_HKObjectType"
+            feature = "HKDevice",
+            feature = "HKHealthStore",
+            feature = "HKObjectType"
         ))]
         #[method_id(@__retain_semantics Init initWithHealthStore:quantityType:startDate:device:)]
         pub unsafe fn initWithHealthStore_quantityType_startDate_device(
@@ -38,18 +38,18 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
-        #[cfg(feature = "HealthKit_HKObjectType")]
+        #[cfg(feature = "HKObjectType")]
         #[method_id(@__retain_semantics Other quantityType)]
         pub unsafe fn quantityType(&self) -> Id<HKQuantityType>;
 
         #[method_id(@__retain_semantics Other startDate)]
         pub unsafe fn startDate(&self) -> Id<NSDate>;
 
-        #[cfg(feature = "HealthKit_HKDevice")]
+        #[cfg(feature = "HKDevice")]
         #[method_id(@__retain_semantics Other device)]
         pub unsafe fn device(&self) -> Option<Id<HKDevice>>;
 
-        #[cfg(feature = "HealthKit_HKQuantity")]
+        #[cfg(feature = "HKQuantity")]
         #[method(insertQuantity:dateInterval:error:_)]
         pub unsafe fn insertQuantity_dateInterval_error(
             &self,
@@ -57,7 +57,7 @@ extern_methods!(
             date_interval: &NSDateInterval,
         ) -> Result<(), Id<NSError>>;
 
-        #[cfg(feature = "HealthKit_HKQuantity")]
+        #[cfg(feature = "HKQuantity")]
         #[method(insertQuantity:date:error:_)]
         pub unsafe fn insertQuantity_date_error(
             &self,
@@ -66,9 +66,9 @@ extern_methods!(
         ) -> Result<(), Id<NSError>>;
 
         #[cfg(all(
-            feature = "HealthKit_HKObject",
-            feature = "HealthKit_HKQuantitySample",
-            feature = "HealthKit_HKSample",
+            feature = "HKObject",
+            feature = "HKQuantitySample",
+            feature = "HKSample",
             feature = "block2"
         ))]
         #[method(finishSeriesWithMetadata:endDate:completion:)]
@@ -80,9 +80,9 @@ extern_methods!(
         );
 
         #[cfg(all(
-            feature = "HealthKit_HKObject",
-            feature = "HealthKit_HKQuantitySample",
-            feature = "HealthKit_HKSample",
+            feature = "HKObject",
+            feature = "HKQuantitySample",
+            feature = "HKSample",
             feature = "block2"
         ))]
         #[method(finishSeriesWithMetadata:completion:)]

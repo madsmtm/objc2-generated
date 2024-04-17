@@ -9,17 +9,11 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(
-        feature = "CloudKit_CKDatabaseOperation",
-        feature = "CloudKit_CKOperation"
-    ))]
+    #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
     #[deprecated]
     pub struct CKFetchRecordChangesOperation;
 
-    #[cfg(all(
-        feature = "CloudKit_CKDatabaseOperation",
-        feature = "CloudKit_CKOperation"
-    ))]
+    #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
     unsafe impl ClassType for CKFetchRecordChangesOperation {
         #[inherits(CKOperation, NSOperation, NSObject)]
         type Super = CKDatabaseOperation;
@@ -27,26 +21,17 @@ extern_class!(
     }
 );
 
-#[cfg(all(
-    feature = "CloudKit_CKDatabaseOperation",
-    feature = "CloudKit_CKOperation"
-))]
+#[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
 unsafe impl NSObjectProtocol for CKFetchRecordChangesOperation {}
 
 extern_methods!(
-    #[cfg(all(
-        feature = "CloudKit_CKDatabaseOperation",
-        feature = "CloudKit_CKOperation"
-    ))]
+    #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
     unsafe impl CKFetchRecordChangesOperation {
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
-        #[cfg(all(
-            feature = "CloudKit_CKRecordZoneID",
-            feature = "CloudKit_CKServerChangeToken"
-        ))]
+        #[cfg(all(feature = "CKRecordZoneID", feature = "CKServerChangeToken"))]
         #[deprecated]
         #[method_id(@__retain_semantics Init initWithRecordZoneID:previousServerChangeToken:)]
         pub unsafe fn initWithRecordZoneID_previousServerChangeToken(
@@ -55,22 +40,22 @@ extern_methods!(
             previous_server_change_token: Option<&CKServerChangeToken>,
         ) -> Id<Self>;
 
-        #[cfg(feature = "CloudKit_CKRecordZoneID")]
+        #[cfg(feature = "CKRecordZoneID")]
         #[deprecated]
         #[method_id(@__retain_semantics Other recordZoneID)]
         pub unsafe fn recordZoneID(&self) -> Option<Id<CKRecordZoneID>>;
 
-        #[cfg(feature = "CloudKit_CKRecordZoneID")]
+        #[cfg(feature = "CKRecordZoneID")]
         #[deprecated]
         #[method(setRecordZoneID:)]
         pub unsafe fn setRecordZoneID(&self, record_zone_id: Option<&CKRecordZoneID>);
 
-        #[cfg(feature = "CloudKit_CKServerChangeToken")]
+        #[cfg(feature = "CKServerChangeToken")]
         #[deprecated]
         #[method_id(@__retain_semantics Other previousServerChangeToken)]
         pub unsafe fn previousServerChangeToken(&self) -> Option<Id<CKServerChangeToken>>;
 
-        #[cfg(feature = "CloudKit_CKServerChangeToken")]
+        #[cfg(feature = "CKServerChangeToken")]
         #[deprecated]
         #[method(setPreviousServerChangeToken:)]
         pub unsafe fn setPreviousServerChangeToken(
@@ -86,22 +71,22 @@ extern_methods!(
         #[method(setResultsLimit:)]
         pub unsafe fn setResultsLimit(&self, results_limit: NSUInteger);
 
-        #[cfg(feature = "CloudKit_CKRecord")]
+        #[cfg(feature = "CKRecord")]
         #[deprecated]
         #[method_id(@__retain_semantics Other desiredKeys)]
         pub unsafe fn desiredKeys(&self) -> Option<Id<NSArray<CKRecordFieldKey>>>;
 
-        #[cfg(feature = "CloudKit_CKRecord")]
+        #[cfg(feature = "CKRecord")]
         #[deprecated]
         #[method(setDesiredKeys:)]
         pub unsafe fn setDesiredKeys(&self, desired_keys: Option<&NSArray<CKRecordFieldKey>>);
 
-        #[cfg(all(feature = "CloudKit_CKRecord", feature = "block2"))]
+        #[cfg(all(feature = "CKRecord", feature = "block2"))]
         #[deprecated]
         #[method(recordChangedBlock)]
         pub unsafe fn recordChangedBlock(&self) -> *mut Block<dyn Fn(NonNull<CKRecord>)>;
 
-        #[cfg(all(feature = "CloudKit_CKRecord", feature = "block2"))]
+        #[cfg(all(feature = "CKRecord", feature = "block2"))]
         #[deprecated]
         #[method(setRecordChangedBlock:)]
         pub unsafe fn setRecordChangedBlock(
@@ -109,13 +94,13 @@ extern_methods!(
             record_changed_block: Option<&Block<dyn Fn(NonNull<CKRecord>)>>,
         );
 
-        #[cfg(all(feature = "CloudKit_CKRecordID", feature = "block2"))]
+        #[cfg(all(feature = "CKRecordID", feature = "block2"))]
         #[deprecated]
         #[method(recordWithIDWasDeletedBlock)]
         pub unsafe fn recordWithIDWasDeletedBlock(&self)
             -> *mut Block<dyn Fn(NonNull<CKRecordID>)>;
 
-        #[cfg(all(feature = "CloudKit_CKRecordID", feature = "block2"))]
+        #[cfg(all(feature = "CKRecordID", feature = "block2"))]
         #[deprecated]
         #[method(setRecordWithIDWasDeletedBlock:)]
         pub unsafe fn setRecordWithIDWasDeletedBlock(
@@ -127,14 +112,14 @@ extern_methods!(
         #[method(moreComing)]
         pub unsafe fn moreComing(&self) -> bool;
 
-        #[cfg(all(feature = "CloudKit_CKServerChangeToken", feature = "block2"))]
+        #[cfg(all(feature = "CKServerChangeToken", feature = "block2"))]
         #[deprecated]
         #[method(fetchRecordChangesCompletionBlock)]
         pub unsafe fn fetchRecordChangesCompletionBlock(
             &self,
         ) -> *mut Block<dyn Fn(*mut CKServerChangeToken, *mut NSData, *mut NSError)>;
 
-        #[cfg(all(feature = "CloudKit_CKServerChangeToken", feature = "block2"))]
+        #[cfg(all(feature = "CKServerChangeToken", feature = "block2"))]
         #[deprecated]
         #[method(setFetchRecordChangesCompletionBlock:)]
         pub unsafe fn setFetchRecordChangesCompletionBlock(
@@ -148,10 +133,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(all(
-        feature = "CloudKit_CKDatabaseOperation",
-        feature = "CloudKit_CKOperation"
-    ))]
+    #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
     unsafe impl CKFetchRecordChangesOperation {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

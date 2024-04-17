@@ -42,7 +42,7 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AuthenticationServices_ASAuthorizationProvider")]
+#[cfg(feature = "ASAuthorizationProvider")]
 unsafe impl ASAuthorizationProvider for ASAuthorizationAppleIDProvider {}
 
 unsafe impl NSObjectProtocol for ASAuthorizationAppleIDProvider {}
@@ -50,9 +50,9 @@ unsafe impl NSObjectProtocol for ASAuthorizationAppleIDProvider {}
 extern_methods!(
     unsafe impl ASAuthorizationAppleIDProvider {
         #[cfg(all(
-            feature = "AuthenticationServices_ASAuthorizationAppleIDRequest",
-            feature = "AuthenticationServices_ASAuthorizationOpenIDRequest",
-            feature = "AuthenticationServices_ASAuthorizationRequest"
+            feature = "ASAuthorizationAppleIDRequest",
+            feature = "ASAuthorizationOpenIDRequest",
+            feature = "ASAuthorizationRequest"
         ))]
         #[method_id(@__retain_semantics Other createRequest)]
         pub unsafe fn createRequest(&self) -> Id<ASAuthorizationAppleIDRequest>;

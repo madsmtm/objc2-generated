@@ -21,7 +21,7 @@ unsafe impl NSObjectProtocol for MTLFunctionConstantValues {}
 
 extern_methods!(
     unsafe impl MTLFunctionConstantValues {
-        #[cfg(feature = "Metal_MTLArgument")]
+        #[cfg(feature = "MTLArgument")]
         #[method(setConstantValue:type:atIndex:)]
         pub unsafe fn setConstantValue_type_atIndex(
             &self,
@@ -30,7 +30,7 @@ extern_methods!(
             index: NSUInteger,
         );
 
-        #[cfg(feature = "Metal_MTLArgument")]
+        #[cfg(feature = "MTLArgument")]
         #[method(setConstantValues:type:withRange:)]
         pub unsafe fn setConstantValues_type_withRange(
             &self,
@@ -39,7 +39,7 @@ extern_methods!(
             range: NSRange,
         );
 
-        #[cfg(feature = "Metal_MTLArgument")]
+        #[cfg(feature = "MTLArgument")]
         #[method(setConstantValue:type:withName:)]
         pub unsafe fn setConstantValue_type_withName(
             &self,

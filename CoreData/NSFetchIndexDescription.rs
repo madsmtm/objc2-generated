@@ -23,7 +23,7 @@ unsafe impl NSObjectProtocol for NSFetchIndexDescription {}
 
 extern_methods!(
     unsafe impl NSFetchIndexDescription {
-        #[cfg(feature = "CoreData_NSFetchIndexElementDescription")]
+        #[cfg(feature = "NSFetchIndexElementDescription")]
         #[method_id(@__retain_semantics Init initWithName:elements:)]
         pub unsafe fn initWithName_elements(
             this: Allocated<Self>,
@@ -37,15 +37,15 @@ extern_methods!(
         #[method(setName:)]
         pub unsafe fn setName(&self, name: &NSString);
 
-        #[cfg(feature = "CoreData_NSFetchIndexElementDescription")]
+        #[cfg(feature = "NSFetchIndexElementDescription")]
         #[method_id(@__retain_semantics Other elements)]
         pub unsafe fn elements(&self) -> Id<NSArray<NSFetchIndexElementDescription>>;
 
-        #[cfg(feature = "CoreData_NSFetchIndexElementDescription")]
+        #[cfg(feature = "NSFetchIndexElementDescription")]
         #[method(setElements:)]
         pub unsafe fn setElements(&self, elements: &NSArray<NSFetchIndexElementDescription>);
 
-        #[cfg(feature = "CoreData_NSEntityDescription")]
+        #[cfg(feature = "NSEntityDescription")]
         #[method_id(@__retain_semantics Other entity)]
         pub unsafe fn entity(&self) -> Option<Id<NSEntityDescription>>;
 

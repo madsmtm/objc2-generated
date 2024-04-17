@@ -82,7 +82,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
-        #[cfg(feature = "CoreWLAN_CWInterface")]
+        #[cfg(feature = "CWInterface")]
         #[method_id(@__retain_semantics Other interface)]
         pub unsafe fn interface(&self) -> Option<Id<CWInterface>>;
 
@@ -93,25 +93,25 @@ extern_methods!(
         #[method_id(@__retain_semantics Other interfaceNames)]
         pub unsafe fn interfaceNames_class() -> Option<Id<NSArray<NSString>>>;
 
-        #[cfg(feature = "CoreWLAN_CWInterface")]
+        #[cfg(feature = "CWInterface")]
         #[method_id(@__retain_semantics Other interfaceWithName:)]
         pub unsafe fn interfaceWithName(
             &self,
             interface_name: Option<&NSString>,
         ) -> Option<Id<CWInterface>>;
 
-        #[cfg(feature = "CoreWLAN_CWInterface")]
+        #[cfg(feature = "CWInterface")]
         #[method_id(@__retain_semantics Other interfaces)]
         pub unsafe fn interfaces(&self) -> Option<Id<NSArray<CWInterface>>>;
 
-        #[cfg(feature = "CoreWLAN_CoreWLANTypes")]
+        #[cfg(feature = "CoreWLANTypes")]
         #[method(startMonitoringEventWithType:error:_)]
         pub unsafe fn startMonitoringEventWithType_error(
             &self,
             r#type: CWEventType,
         ) -> Result<(), Id<NSError>>;
 
-        #[cfg(feature = "CoreWLAN_CoreWLANTypes")]
+        #[cfg(feature = "CoreWLANTypes")]
         #[method(stopMonitoringEventWithType:error:_)]
         pub unsafe fn stopMonitoringEventWithType_error(
             &self,

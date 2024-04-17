@@ -12,9 +12,9 @@ pub type NSFileProviderExtensionActionIdentifier = NSString;
 
 extern_methods!(
     /// NSFileProviderActions
-    #[cfg(feature = "FileProvider_NSFileProviderExtension")]
+    #[cfg(feature = "NSFileProviderExtension")]
     unsafe impl NSFileProviderExtension {
-        #[cfg(all(feature = "FileProvider_NSFileProviderItem", feature = "block2"))]
+        #[cfg(all(feature = "NSFileProviderItem", feature = "block2"))]
         #[method(importDocumentAtURL:toParentItemIdentifier:completionHandler:)]
         pub unsafe fn importDocumentAtURL_toParentItemIdentifier_completionHandler(
             &self,
@@ -23,7 +23,7 @@ extern_methods!(
             completion_handler: &Block<dyn Fn(*mut NSFileProviderItem, *mut NSError)>,
         );
 
-        #[cfg(all(feature = "FileProvider_NSFileProviderItem", feature = "block2"))]
+        #[cfg(all(feature = "NSFileProviderItem", feature = "block2"))]
         #[method(createDirectoryWithName:inParentItemIdentifier:completionHandler:)]
         pub unsafe fn createDirectoryWithName_inParentItemIdentifier_completionHandler(
             &self,
@@ -32,7 +32,7 @@ extern_methods!(
             completion_handler: &Block<dyn Fn(*mut NSFileProviderItem, *mut NSError)>,
         );
 
-        #[cfg(all(feature = "FileProvider_NSFileProviderItem", feature = "block2"))]
+        #[cfg(all(feature = "NSFileProviderItem", feature = "block2"))]
         #[method(renameItemWithIdentifier:toName:completionHandler:)]
         pub unsafe fn renameItemWithIdentifier_toName_completionHandler(
             &self,
@@ -41,7 +41,7 @@ extern_methods!(
             completion_handler: &Block<dyn Fn(*mut NSFileProviderItem, *mut NSError)>,
         );
 
-        #[cfg(all(feature = "FileProvider_NSFileProviderItem", feature = "block2"))]
+        #[cfg(all(feature = "NSFileProviderItem", feature = "block2"))]
         #[method(reparentItemWithIdentifier:toParentItemWithIdentifier:newName:completionHandler:)]
         pub unsafe fn reparentItemWithIdentifier_toParentItemWithIdentifier_newName_completionHandler(
             &self,
@@ -51,7 +51,7 @@ extern_methods!(
             completion_handler: &Block<dyn Fn(*mut NSFileProviderItem, *mut NSError)>,
         );
 
-        #[cfg(all(feature = "FileProvider_NSFileProviderItem", feature = "block2"))]
+        #[cfg(all(feature = "NSFileProviderItem", feature = "block2"))]
         #[method(trashItemWithIdentifier:completionHandler:)]
         pub unsafe fn trashItemWithIdentifier_completionHandler(
             &self,
@@ -59,7 +59,7 @@ extern_methods!(
             completion_handler: &Block<dyn Fn(*mut NSFileProviderItem, *mut NSError)>,
         );
 
-        #[cfg(all(feature = "FileProvider_NSFileProviderItem", feature = "block2"))]
+        #[cfg(all(feature = "NSFileProviderItem", feature = "block2"))]
         #[method(untrashItemWithIdentifier:toParentItemIdentifier:completionHandler:)]
         pub unsafe fn untrashItemWithIdentifier_toParentItemIdentifier_completionHandler(
             &self,
@@ -68,7 +68,7 @@ extern_methods!(
             completion_handler: &Block<dyn Fn(*mut NSFileProviderItem, *mut NSError)>,
         );
 
-        #[cfg(all(feature = "FileProvider_NSFileProviderItem", feature = "block2"))]
+        #[cfg(all(feature = "NSFileProviderItem", feature = "block2"))]
         #[method(deleteItemWithIdentifier:completionHandler:)]
         pub unsafe fn deleteItemWithIdentifier_completionHandler(
             &self,
@@ -76,7 +76,7 @@ extern_methods!(
             completion_handler: &Block<dyn Fn(*mut NSError)>,
         );
 
-        #[cfg(all(feature = "FileProvider_NSFileProviderItem", feature = "block2"))]
+        #[cfg(all(feature = "NSFileProviderItem", feature = "block2"))]
         #[method(setLastUsedDate:forItemIdentifier:completionHandler:)]
         pub unsafe fn setLastUsedDate_forItemIdentifier_completionHandler(
             &self,
@@ -85,7 +85,7 @@ extern_methods!(
             completion_handler: &Block<dyn Fn(*mut NSFileProviderItem, *mut NSError)>,
         );
 
-        #[cfg(all(feature = "FileProvider_NSFileProviderItem", feature = "block2"))]
+        #[cfg(all(feature = "NSFileProviderItem", feature = "block2"))]
         #[method(setTagData:forItemIdentifier:completionHandler:)]
         pub unsafe fn setTagData_forItemIdentifier_completionHandler(
             &self,
@@ -94,7 +94,7 @@ extern_methods!(
             completion_handler: &Block<dyn Fn(*mut NSFileProviderItem, *mut NSError)>,
         );
 
-        #[cfg(all(feature = "FileProvider_NSFileProviderItem", feature = "block2"))]
+        #[cfg(all(feature = "NSFileProviderItem", feature = "block2"))]
         #[method(setFavoriteRank:forItemIdentifier:completionHandler:)]
         pub unsafe fn setFavoriteRank_forItemIdentifier_completionHandler(
             &self,

@@ -123,11 +123,11 @@ unsafe impl NSObjectProtocol for NSCollectionViewCompositionalLayoutConfiguratio
 
 extern_methods!(
     unsafe impl NSCollectionViewCompositionalLayoutConfiguration {
-        #[cfg(feature = "AppKit_NSCollectionViewFlowLayout")]
+        #[cfg(feature = "NSCollectionViewFlowLayout")]
         #[method(scrollDirection)]
         pub unsafe fn scrollDirection(&self) -> NSCollectionViewScrollDirection;
 
-        #[cfg(feature = "AppKit_NSCollectionViewFlowLayout")]
+        #[cfg(feature = "NSCollectionViewFlowLayout")]
         #[method(setScrollDirection:)]
         pub unsafe fn setScrollDirection(&self, scroll_direction: NSCollectionViewScrollDirection);
 
@@ -171,10 +171,10 @@ pub type NSCollectionViewCompositionalLayoutSectionProvider = *mut Block<
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSCollectionViewLayout")]
+    #[cfg(feature = "NSCollectionViewLayout")]
     pub struct NSCollectionViewCompositionalLayout;
 
-    #[cfg(feature = "AppKit_NSCollectionViewLayout")]
+    #[cfg(feature = "NSCollectionViewLayout")]
     unsafe impl ClassType for NSCollectionViewCompositionalLayout {
         #[inherits(NSObject)]
         type Super = NSCollectionViewLayout;
@@ -182,14 +182,14 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSCollectionViewLayout")]
+#[cfg(feature = "NSCollectionViewLayout")]
 unsafe impl NSCoding for NSCollectionViewCompositionalLayout {}
 
-#[cfg(feature = "AppKit_NSCollectionViewLayout")]
+#[cfg(feature = "NSCollectionViewLayout")]
 unsafe impl NSObjectProtocol for NSCollectionViewCompositionalLayout {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSCollectionViewLayout")]
+    #[cfg(feature = "NSCollectionViewLayout")]
     unsafe impl NSCollectionViewCompositionalLayout {
         #[method_id(@__retain_semantics Init initWithSection:)]
         pub unsafe fn initWithSection(
@@ -1056,7 +1056,7 @@ extern_protocol!(
         #[method(bounds)]
         unsafe fn bounds(&self) -> NSRect;
 
-        #[cfg(feature = "AppKit_NSCollectionViewLayout")]
+        #[cfg(feature = "NSCollectionViewLayout")]
         #[method(representedElementCategory)]
         unsafe fn representedElementCategory(&self) -> NSCollectionElementCategory;
 

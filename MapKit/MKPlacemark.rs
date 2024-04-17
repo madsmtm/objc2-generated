@@ -22,7 +22,7 @@ extern_class!(
     }
 );
 
-#[cfg(all(feature = "MapKit_MKAnnotation", feature = "objc2-core-location"))]
+#[cfg(all(feature = "MKAnnotation", feature = "objc2-core-location"))]
 unsafe impl MKAnnotation for MKPlacemark {}
 
 #[cfg(feature = "objc2-core-location")]

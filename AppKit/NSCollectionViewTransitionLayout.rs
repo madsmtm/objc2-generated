@@ -9,10 +9,10 @@ pub type NSCollectionViewTransitionLayoutAnimatedKey = NSString;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSCollectionViewLayout")]
+    #[cfg(feature = "NSCollectionViewLayout")]
     pub struct NSCollectionViewTransitionLayout;
 
-    #[cfg(feature = "AppKit_NSCollectionViewLayout")]
+    #[cfg(feature = "NSCollectionViewLayout")]
     unsafe impl ClassType for NSCollectionViewTransitionLayout {
         #[inherits(NSObject)]
         type Super = NSCollectionViewLayout;
@@ -20,14 +20,14 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSCollectionViewLayout")]
+#[cfg(feature = "NSCollectionViewLayout")]
 unsafe impl NSCoding for NSCollectionViewTransitionLayout {}
 
-#[cfg(feature = "AppKit_NSCollectionViewLayout")]
+#[cfg(feature = "NSCollectionViewLayout")]
 unsafe impl NSObjectProtocol for NSCollectionViewTransitionLayout {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSCollectionViewLayout")]
+    #[cfg(feature = "NSCollectionViewLayout")]
     unsafe impl NSCollectionViewTransitionLayout {
         #[method(transitionProgress)]
         pub unsafe fn transitionProgress(&self) -> CGFloat;
@@ -65,7 +65,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSCollectionViewLayout")]
+    #[cfg(feature = "NSCollectionViewLayout")]
     unsafe impl NSCollectionViewTransitionLayout {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

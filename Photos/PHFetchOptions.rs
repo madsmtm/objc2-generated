@@ -48,11 +48,11 @@ extern_methods!(
         #[method(setIncludeAllBurstAssets:)]
         pub unsafe fn setIncludeAllBurstAssets(&self, include_all_burst_assets: bool);
 
-        #[cfg(feature = "Photos_PhotosTypes")]
+        #[cfg(feature = "PhotosTypes")]
         #[method(includeAssetSourceTypes)]
         pub unsafe fn includeAssetSourceTypes(&self) -> PHAssetSourceType;
 
-        #[cfg(feature = "Photos_PhotosTypes")]
+        #[cfg(feature = "PhotosTypes")]
         #[method(setIncludeAssetSourceTypes:)]
         pub unsafe fn setIncludeAssetSourceTypes(
             &self,

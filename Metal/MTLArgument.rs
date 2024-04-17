@@ -550,7 +550,7 @@ extern_methods!(
         #[method(textureDataType)]
         pub unsafe fn textureDataType(&self) -> MTLDataType;
 
-        #[cfg(feature = "Metal_MTLTexture")]
+        #[cfg(feature = "MTLTexture")]
         #[method(textureType)]
         pub unsafe fn textureType(&self) -> MTLTextureType;
 
@@ -635,7 +635,7 @@ extern_methods!(
         #[method(threadgroupMemoryDataSize)]
         pub fn threadgroupMemoryDataSize(&self) -> NSUInteger;
 
-        #[cfg(feature = "Metal_MTLTexture")]
+        #[cfg(feature = "MTLTexture")]
         #[deprecated]
         #[method(textureType)]
         pub fn textureType(&self) -> MTLTextureType;
@@ -722,7 +722,7 @@ extern_protocol!(
 
 extern_protocol!(
     pub unsafe trait MTLTextureBinding: MTLBinding {
-        #[cfg(feature = "Metal_MTLTexture")]
+        #[cfg(feature = "MTLTexture")]
         #[method(textureType)]
         unsafe fn textureType(&self) -> MTLTextureType;
 

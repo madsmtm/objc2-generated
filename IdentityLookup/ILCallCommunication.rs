@@ -7,10 +7,10 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "IdentityLookup_ILCommunication")]
+    #[cfg(feature = "ILCommunication")]
     pub struct ILCallCommunication;
 
-    #[cfg(feature = "IdentityLookup_ILCommunication")]
+    #[cfg(feature = "ILCommunication")]
     unsafe impl ClassType for ILCallCommunication {
         #[inherits(NSObject)]
         type Super = ILCommunication;
@@ -18,17 +18,17 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "IdentityLookup_ILCommunication")]
+#[cfg(feature = "ILCommunication")]
 unsafe impl NSCoding for ILCallCommunication {}
 
-#[cfg(feature = "IdentityLookup_ILCommunication")]
+#[cfg(feature = "ILCommunication")]
 unsafe impl NSObjectProtocol for ILCallCommunication {}
 
-#[cfg(feature = "IdentityLookup_ILCommunication")]
+#[cfg(feature = "ILCommunication")]
 unsafe impl NSSecureCoding for ILCallCommunication {}
 
 extern_methods!(
-    #[cfg(feature = "IdentityLookup_ILCommunication")]
+    #[cfg(feature = "ILCommunication")]
     unsafe impl ILCallCommunication {
         #[method(isEqualToCallCommunication:)]
         pub unsafe fn isEqualToCallCommunication(
@@ -43,7 +43,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "IdentityLookup_ILCommunication")]
+    #[cfg(feature = "ILCommunication")]
     unsafe impl ILCallCommunication {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

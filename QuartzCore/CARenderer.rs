@@ -26,11 +26,11 @@ extern_methods!(
             dict: Option<&NSDictionary>,
         ) -> Id<CARenderer>;
 
-        #[cfg(feature = "QuartzCore_CALayer")]
+        #[cfg(feature = "CALayer")]
         #[method_id(@__retain_semantics Other layer)]
         pub fn layer(&self) -> Option<Id<CALayer>>;
 
-        #[cfg(feature = "QuartzCore_CALayer")]
+        #[cfg(feature = "CALayer")]
         #[method(setLayer:)]
         pub fn setLayer(&self, layer: Option<&CALayer>);
 

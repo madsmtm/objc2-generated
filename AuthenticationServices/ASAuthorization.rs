@@ -31,11 +31,11 @@ unsafe impl NSObjectProtocol for ASAuthorization {}
 
 extern_methods!(
     unsafe impl ASAuthorization {
-        #[cfg(feature = "AuthenticationServices_ASAuthorizationProvider")]
+        #[cfg(feature = "ASAuthorizationProvider")]
         #[method_id(@__retain_semantics Other provider)]
         pub unsafe fn provider(&self) -> Id<ProtocolObject<dyn ASAuthorizationProvider>>;
 
-        #[cfg(feature = "AuthenticationServices_ASAuthorizationCredential")]
+        #[cfg(feature = "ASAuthorizationCredential")]
         #[method_id(@__retain_semantics Other credential)]
         pub unsafe fn credential(&self) -> Id<ProtocolObject<dyn ASAuthorizationCredential>>;
 

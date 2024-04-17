@@ -25,10 +25,10 @@ unsafe impl RefEncode for NSXMLDocumentContentKind {
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSXMLNode")]
+    #[cfg(feature = "NSXMLNode")]
     pub struct NSXMLDocument;
 
-    #[cfg(feature = "Foundation_NSXMLNode")]
+    #[cfg(feature = "NSXMLNode")]
     unsafe impl ClassType for NSXMLDocument {
         #[inherits(NSObject)]
         type Super = NSXMLNode;
@@ -36,22 +36,22 @@ extern_class!(
     }
 );
 
-#[cfg(all(feature = "Foundation_NSObject", feature = "Foundation_NSXMLNode"))]
+#[cfg(all(feature = "NSObject", feature = "NSXMLNode"))]
 unsafe impl NSCopying for NSXMLDocument {}
 
-#[cfg(feature = "Foundation_NSXMLNode")]
+#[cfg(feature = "NSXMLNode")]
 unsafe impl NSObjectProtocol for NSXMLDocument {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSXMLNode")]
+    #[cfg(feature = "NSXMLNode")]
     unsafe impl NSXMLDocument {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[cfg(all(
-            feature = "Foundation_NSError",
-            feature = "Foundation_NSString",
-            feature = "Foundation_NSXMLNodeOptions"
+            feature = "NSError",
+            feature = "NSString",
+            feature = "NSXMLNodeOptions"
         ))]
         #[method_id(@__retain_semantics Init initWithXMLString:options:error:_)]
         pub unsafe fn initWithXMLString_options_error(
@@ -60,11 +60,7 @@ extern_methods!(
             mask: NSXMLNodeOptions,
         ) -> Result<Id<Self>, Id<NSError>>;
 
-        #[cfg(all(
-            feature = "Foundation_NSError",
-            feature = "Foundation_NSURL",
-            feature = "Foundation_NSXMLNodeOptions"
-        ))]
+        #[cfg(all(feature = "NSError", feature = "NSURL", feature = "NSXMLNodeOptions"))]
         #[method_id(@__retain_semantics Init initWithContentsOfURL:options:error:_)]
         pub unsafe fn initWithContentsOfURL_options_error(
             this: Allocated<Self>,
@@ -72,11 +68,7 @@ extern_methods!(
             mask: NSXMLNodeOptions,
         ) -> Result<Id<Self>, Id<NSError>>;
 
-        #[cfg(all(
-            feature = "Foundation_NSData",
-            feature = "Foundation_NSError",
-            feature = "Foundation_NSXMLNodeOptions"
-        ))]
+        #[cfg(all(feature = "NSData", feature = "NSError", feature = "NSXMLNodeOptions"))]
         #[method_id(@__retain_semantics Init initWithData:options:error:_)]
         pub unsafe fn initWithData_options_error(
             this: Allocated<Self>,
@@ -84,7 +76,7 @@ extern_methods!(
             mask: NSXMLNodeOptions,
         ) -> Result<Id<Self>, Id<NSError>>;
 
-        #[cfg(feature = "Foundation_NSXMLElement")]
+        #[cfg(feature = "NSXMLElement")]
         #[method_id(@__retain_semantics Init initWithRootElement:)]
         pub unsafe fn initWithRootElement(
             this: Allocated<Self>,
@@ -94,19 +86,19 @@ extern_methods!(
         #[method(replacementClassForClass:)]
         pub unsafe fn replacementClassForClass(cls: &AnyClass) -> &'static AnyClass;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other characterEncoding)]
         pub unsafe fn characterEncoding(&self) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method(setCharacterEncoding:)]
         pub unsafe fn setCharacterEncoding(&self, character_encoding: Option<&NSString>);
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other version)]
         pub unsafe fn version(&self) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method(setVersion:)]
         pub unsafe fn setVersion(&self, version: Option<&NSString>);
 
@@ -125,34 +117,34 @@ extern_methods!(
             document_content_kind: NSXMLDocumentContentKind,
         );
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other MIMEType)]
         pub unsafe fn MIMEType(&self) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method(setMIMEType:)]
         pub unsafe fn setMIMEType(&self, mime_type: Option<&NSString>);
 
-        #[cfg(feature = "Foundation_NSXMLDTD")]
+        #[cfg(feature = "NSXMLDTD")]
         #[method_id(@__retain_semantics Other DTD)]
         pub unsafe fn DTD(&self) -> Option<Id<NSXMLDTD>>;
 
-        #[cfg(feature = "Foundation_NSXMLDTD")]
+        #[cfg(feature = "NSXMLDTD")]
         #[method(setDTD:)]
         pub unsafe fn setDTD(&self, dtd: Option<&NSXMLDTD>);
 
-        #[cfg(feature = "Foundation_NSXMLElement")]
+        #[cfg(feature = "NSXMLElement")]
         #[method(setRootElement:)]
         pub unsafe fn setRootElement(&self, root: &NSXMLElement);
 
-        #[cfg(feature = "Foundation_NSXMLElement")]
+        #[cfg(feature = "NSXMLElement")]
         #[method_id(@__retain_semantics Other rootElement)]
         pub unsafe fn rootElement(&self) -> Option<Id<NSXMLElement>>;
 
         #[method(insertChild:atIndex:)]
         pub unsafe fn insertChild_atIndex(&self, child: &NSXMLNode, index: NSUInteger);
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(feature = "NSArray")]
         #[method(insertChildren:atIndex:)]
         pub unsafe fn insertChildren_atIndex(
             &self,
@@ -163,7 +155,7 @@ extern_methods!(
         #[method(removeChildAtIndex:)]
         pub unsafe fn removeChildAtIndex(&self, index: NSUInteger);
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(feature = "NSArray")]
         #[method(setChildren:)]
         pub unsafe fn setChildren(&self, children: Option<&NSArray<NSXMLNode>>);
 
@@ -173,19 +165,19 @@ extern_methods!(
         #[method(replaceChildAtIndex:withNode:)]
         pub unsafe fn replaceChildAtIndex_withNode(&self, index: NSUInteger, node: &NSXMLNode);
 
-        #[cfg(feature = "Foundation_NSData")]
+        #[cfg(feature = "NSData")]
         #[method_id(@__retain_semantics Other XMLData)]
         pub unsafe fn XMLData(&self) -> Id<NSData>;
 
-        #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSXMLNodeOptions"))]
+        #[cfg(all(feature = "NSData", feature = "NSXMLNodeOptions"))]
         #[method_id(@__retain_semantics Other XMLDataWithOptions:)]
         pub unsafe fn XMLDataWithOptions(&self, options: NSXMLNodeOptions) -> Id<NSData>;
 
         #[cfg(all(
-            feature = "Foundation_NSData",
-            feature = "Foundation_NSDictionary",
-            feature = "Foundation_NSError",
-            feature = "Foundation_NSString"
+            feature = "NSData",
+            feature = "NSDictionary",
+            feature = "NSError",
+            feature = "NSString"
         ))]
         #[method_id(@__retain_semantics Other objectByApplyingXSLT:arguments:error:_)]
         pub unsafe fn objectByApplyingXSLT_arguments_error(
@@ -194,11 +186,7 @@ extern_methods!(
             arguments: Option<&NSDictionary<NSString, NSString>>,
         ) -> Result<Id<AnyObject>, Id<NSError>>;
 
-        #[cfg(all(
-            feature = "Foundation_NSDictionary",
-            feature = "Foundation_NSError",
-            feature = "Foundation_NSString"
-        ))]
+        #[cfg(all(feature = "NSDictionary", feature = "NSError", feature = "NSString"))]
         #[method_id(@__retain_semantics Other objectByApplyingXSLTString:arguments:error:_)]
         pub unsafe fn objectByApplyingXSLTString_arguments_error(
             &self,
@@ -207,10 +195,10 @@ extern_methods!(
         ) -> Result<Id<AnyObject>, Id<NSError>>;
 
         #[cfg(all(
-            feature = "Foundation_NSDictionary",
-            feature = "Foundation_NSError",
-            feature = "Foundation_NSString",
-            feature = "Foundation_NSURL"
+            feature = "NSDictionary",
+            feature = "NSError",
+            feature = "NSString",
+            feature = "NSURL"
         ))]
         #[method_id(@__retain_semantics Other objectByApplyingXSLTAtURL:arguments:error:_)]
         pub unsafe fn objectByApplyingXSLTAtURL_arguments_error(
@@ -219,7 +207,7 @@ extern_methods!(
             argument: Option<&NSDictionary<NSString, NSString>>,
         ) -> Result<Id<AnyObject>, Id<NSError>>;
 
-        #[cfg(feature = "Foundation_NSError")]
+        #[cfg(feature = "NSError")]
         #[method(validateAndReturnError:_)]
         pub unsafe fn validateAndReturnError(&self) -> Result<(), Id<NSError>>;
     }
@@ -227,12 +215,12 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSXMLNode`
-    #[cfg(feature = "Foundation_NSXMLNode")]
+    #[cfg(feature = "NSXMLNode")]
     unsafe impl NSXMLDocument {
         #[method_id(@__retain_semantics Init initWithKind:)]
         pub unsafe fn initWithKind(this: Allocated<Self>, kind: NSXMLNodeKind) -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSXMLNodeOptions")]
+        #[cfg(feature = "NSXMLNodeOptions")]
         #[method_id(@__retain_semantics Init initWithKind:options:)]
         pub unsafe fn initWithKind_options(
             this: Allocated<Self>,
@@ -244,7 +232,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSXMLNode")]
+    #[cfg(feature = "NSXMLNode")]
     unsafe impl NSXMLDocument {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

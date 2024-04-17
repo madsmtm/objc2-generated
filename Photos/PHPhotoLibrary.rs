@@ -53,7 +53,7 @@ unsafe impl RefEncode for PHAccessLevel {
 
 extern_protocol!(
     pub unsafe trait PHPhotoLibraryChangeObserver: NSObjectProtocol {
-        #[cfg(feature = "Photos_PHChange")]
+        #[cfg(feature = "PHChange")]
         #[method(photoLibraryDidChange:)]
         unsafe fn photoLibraryDidChange(&self, change_instance: &PHChange);
     }
@@ -140,8 +140,8 @@ extern_methods!(
         );
 
         #[cfg(all(
-            feature = "Photos_PHPersistentChangeFetchResult",
-            feature = "Photos_PHPersistentChangeToken"
+            feature = "PHPersistentChangeFetchResult",
+            feature = "PHPersistentChangeToken"
         ))]
         #[method_id(@__retain_semantics Other fetchPersistentChangesSinceToken:error:_)]
         pub unsafe fn fetchPersistentChangesSinceToken_error(
@@ -149,7 +149,7 @@ extern_methods!(
             token: &PHPersistentChangeToken,
         ) -> Result<Id<PHPersistentChangeFetchResult>, Id<NSError>>;
 
-        #[cfg(feature = "Photos_PHPersistentChangeToken")]
+        #[cfg(feature = "PHPersistentChangeToken")]
         #[method_id(@__retain_semantics Other currentChangeToken)]
         pub unsafe fn currentChangeToken(&self) -> Id<PHPersistentChangeToken>;
     }

@@ -7,10 +7,10 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSToolbarItem")]
+    #[cfg(feature = "NSToolbarItem")]
     pub struct NSMenuToolbarItem;
 
-    #[cfg(feature = "AppKit_NSToolbarItem")]
+    #[cfg(feature = "NSToolbarItem")]
     unsafe impl ClassType for NSMenuToolbarItem {
         #[inherits(NSObject)]
         type Super = NSToolbarItem;
@@ -18,20 +18,20 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSToolbarItem")]
+#[cfg(feature = "NSToolbarItem")]
 unsafe impl NSCopying for NSMenuToolbarItem {}
 
-#[cfg(feature = "AppKit_NSToolbarItem")]
+#[cfg(feature = "NSToolbarItem")]
 unsafe impl NSObjectProtocol for NSMenuToolbarItem {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSToolbarItem")]
+    #[cfg(feature = "NSToolbarItem")]
     unsafe impl NSMenuToolbarItem {
-        #[cfg(feature = "AppKit_NSMenu")]
+        #[cfg(feature = "NSMenu")]
         #[method_id(@__retain_semantics Other menu)]
         pub unsafe fn menu(&self) -> Id<NSMenu>;
 
-        #[cfg(feature = "AppKit_NSMenu")]
+        #[cfg(feature = "NSMenu")]
         #[method(setMenu:)]
         pub unsafe fn setMenu(&self, menu: &NSMenu);
 
@@ -45,9 +45,9 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSToolbarItem`
-    #[cfg(feature = "AppKit_NSToolbarItem")]
+    #[cfg(feature = "NSToolbarItem")]
     unsafe impl NSMenuToolbarItem {
-        #[cfg(feature = "AppKit_NSToolbar")]
+        #[cfg(feature = "NSToolbar")]
         #[method_id(@__retain_semantics Init initWithItemIdentifier:)]
         pub unsafe fn initWithItemIdentifier(
             this: Allocated<Self>,
@@ -58,7 +58,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSToolbarItem")]
+    #[cfg(feature = "NSToolbarItem")]
     unsafe impl NSMenuToolbarItem {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

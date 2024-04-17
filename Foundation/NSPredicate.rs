@@ -16,27 +16,27 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSCoding for NSPredicate {}
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSPredicate {}
 
 unsafe impl NSObjectProtocol for NSPredicate {}
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSSecureCoding for NSPredicate {}
 
 extern_methods!(
     unsafe impl NSPredicate {
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[method_id(@__retain_semantics Other predicateWithFormat:argumentArray:)]
         pub unsafe fn predicateWithFormat_argumentArray(
             predicate_format: &NSString,
             arguments: Option<&NSArray>,
         ) -> Id<NSPredicate>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other predicateFromMetadataQueryString:)]
         pub unsafe fn predicateFromMetadataQueryString(
             query_string: &NSString,
@@ -45,21 +45,17 @@ extern_methods!(
         #[method_id(@__retain_semantics Other predicateWithValue:)]
         pub unsafe fn predicateWithValue(value: bool) -> Id<NSPredicate>;
 
-        #[cfg(all(
-            feature = "Foundation_NSDictionary",
-            feature = "Foundation_NSString",
-            feature = "block2"
-        ))]
+        #[cfg(all(feature = "NSDictionary", feature = "NSString", feature = "block2"))]
         #[method_id(@__retain_semantics Other predicateWithBlock:)]
         pub unsafe fn predicateWithBlock(
             block: &Block<dyn Fn(*mut AnyObject, *mut NSDictionary<NSString, AnyObject>) -> Bool>,
         ) -> Id<NSPredicate>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other predicateFormat)]
         pub unsafe fn predicateFormat(&self) -> Id<NSString>;
 
-        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         #[method_id(@__retain_semantics Other predicateWithSubstitutionVariables:)]
         pub unsafe fn predicateWithSubstitutionVariables(
             &self,
@@ -69,7 +65,7 @@ extern_methods!(
         #[method(evaluateWithObject:)]
         pub unsafe fn evaluateWithObject(&self, object: Option<&AnyObject>) -> bool;
 
-        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         #[method(evaluateWithObject:substitutionVariables:)]
         pub unsafe fn evaluateWithObject_substitutionVariables(
             &self,
@@ -95,7 +91,7 @@ extern_methods!(
 
 extern_methods!(
     /// NSPredicateSupport
-    #[cfg(feature = "Foundation_NSArray")]
+    #[cfg(feature = "NSArray")]
     unsafe impl<ObjectType: Message> NSArray<ObjectType> {
         #[method_id(@__retain_semantics Other filteredArrayUsingPredicate:)]
         pub unsafe fn filteredArrayUsingPredicate(
@@ -107,7 +103,7 @@ extern_methods!(
 
 extern_methods!(
     /// NSPredicateSupport
-    #[cfg(feature = "Foundation_NSArray")]
+    #[cfg(feature = "NSArray")]
     unsafe impl<ObjectType: Message> NSMutableArray<ObjectType> {
         #[method(filterUsingPredicate:)]
         pub unsafe fn filterUsingPredicate(&mut self, predicate: &NSPredicate);
@@ -116,7 +112,7 @@ extern_methods!(
 
 extern_methods!(
     /// NSPredicateSupport
-    #[cfg(feature = "Foundation_NSSet")]
+    #[cfg(feature = "NSSet")]
     unsafe impl<ObjectType: Message> NSSet<ObjectType> {
         #[method_id(@__retain_semantics Other filteredSetUsingPredicate:)]
         pub unsafe fn filteredSetUsingPredicate(
@@ -128,7 +124,7 @@ extern_methods!(
 
 extern_methods!(
     /// NSPredicateSupport
-    #[cfg(feature = "Foundation_NSSet")]
+    #[cfg(feature = "NSSet")]
     unsafe impl<ObjectType: Message> NSMutableSet<ObjectType> {
         #[method(filterUsingPredicate:)]
         pub unsafe fn filterUsingPredicate(&mut self, predicate: &NSPredicate);
@@ -137,7 +133,7 @@ extern_methods!(
 
 extern_methods!(
     /// NSPredicateSupport
-    #[cfg(feature = "Foundation_NSOrderedSet")]
+    #[cfg(feature = "NSOrderedSet")]
     unsafe impl<ObjectType: Message> NSOrderedSet<ObjectType> {
         #[method_id(@__retain_semantics Other filteredOrderedSetUsingPredicate:)]
         pub unsafe fn filteredOrderedSetUsingPredicate(
@@ -149,7 +145,7 @@ extern_methods!(
 
 extern_methods!(
     /// NSPredicateSupport
-    #[cfg(feature = "Foundation_NSOrderedSet")]
+    #[cfg(feature = "NSOrderedSet")]
     unsafe impl<ObjectType: Message> NSMutableOrderedSet<ObjectType> {
         #[method(filterUsingPredicate:)]
         pub unsafe fn filterUsingPredicate(&mut self, p: &NSPredicate);

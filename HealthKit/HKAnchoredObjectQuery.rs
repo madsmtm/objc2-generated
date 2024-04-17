@@ -9,10 +9,10 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "HealthKit_HKQuery")]
+    #[cfg(feature = "HKQuery")]
     pub struct HKAnchoredObjectQuery;
 
-    #[cfg(feature = "HealthKit_HKQuery")]
+    #[cfg(feature = "HKQuery")]
     unsafe impl ClassType for HKAnchoredObjectQuery {
         #[inherits(NSObject)]
         type Super = HKQuery;
@@ -20,17 +20,17 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "HealthKit_HKQuery")]
+#[cfg(feature = "HKQuery")]
 unsafe impl NSObjectProtocol for HKAnchoredObjectQuery {}
 
 extern_methods!(
-    #[cfg(feature = "HealthKit_HKQuery")]
+    #[cfg(feature = "HKQuery")]
     unsafe impl HKAnchoredObjectQuery {
         #[cfg(all(
-            feature = "HealthKit_HKDeletedObject",
-            feature = "HealthKit_HKObject",
-            feature = "HealthKit_HKQueryAnchor",
-            feature = "HealthKit_HKSample",
+            feature = "HKDeletedObject",
+            feature = "HKObject",
+            feature = "HKQueryAnchor",
+            feature = "HKSample",
             feature = "block2"
         ))]
         #[method(updateHandler)]
@@ -47,10 +47,10 @@ extern_methods!(
         >;
 
         #[cfg(all(
-            feature = "HealthKit_HKDeletedObject",
-            feature = "HealthKit_HKObject",
-            feature = "HealthKit_HKQueryAnchor",
-            feature = "HealthKit_HKSample",
+            feature = "HKDeletedObject",
+            feature = "HKObject",
+            feature = "HKQueryAnchor",
+            feature = "HKSample",
             feature = "block2"
         ))]
         #[method(setUpdateHandler:)]
@@ -70,11 +70,11 @@ extern_methods!(
         );
 
         #[cfg(all(
-            feature = "HealthKit_HKDeletedObject",
-            feature = "HealthKit_HKObject",
-            feature = "HealthKit_HKObjectType",
-            feature = "HealthKit_HKQueryAnchor",
-            feature = "HealthKit_HKSample",
+            feature = "HKDeletedObject",
+            feature = "HKObject",
+            feature = "HKObjectType",
+            feature = "HKQueryAnchor",
+            feature = "HKSample",
             feature = "block2"
         ))]
         #[method_id(@__retain_semantics Init initWithType:predicate:anchor:limit:resultsHandler:)]
@@ -96,9 +96,9 @@ extern_methods!(
         ) -> Id<Self>;
 
         #[cfg(all(
-            feature = "HealthKit_HKObject",
-            feature = "HealthKit_HKObjectType",
-            feature = "HealthKit_HKSample",
+            feature = "HKObject",
+            feature = "HKObjectType",
+            feature = "HKSample",
             feature = "block2"
         ))]
         #[deprecated]
@@ -120,11 +120,11 @@ extern_methods!(
         ) -> Id<Self>;
 
         #[cfg(all(
-            feature = "HealthKit_HKDeletedObject",
-            feature = "HealthKit_HKObject",
-            feature = "HealthKit_HKQueryAnchor",
-            feature = "HealthKit_HKQueryDescriptor",
-            feature = "HealthKit_HKSample",
+            feature = "HKDeletedObject",
+            feature = "HKObject",
+            feature = "HKQueryAnchor",
+            feature = "HKQueryDescriptor",
+            feature = "HKSample",
             feature = "block2"
         ))]
         #[method_id(@__retain_semantics Init initWithQueryDescriptors:anchor:limit:resultsHandler:)]
@@ -148,7 +148,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `HKQuery`
-    #[cfg(feature = "HealthKit_HKQuery")]
+    #[cfg(feature = "HKQuery")]
     unsafe impl HKAnchoredObjectQuery {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -157,7 +157,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "HealthKit_HKQuery")]
+    #[cfg(feature = "HKQuery")]
     unsafe impl HKAnchoredObjectQuery {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

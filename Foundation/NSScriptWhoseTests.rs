@@ -37,7 +37,7 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSCoding for NSScriptWhoseTest {}
 
 unsafe impl NSObjectProtocol for NSScriptWhoseTest {}
@@ -50,7 +50,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSCoder")]
+        #[cfg(feature = "NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, in_coder: &NSCoder) -> Option<Id<Self>>;
     }
@@ -75,21 +75,21 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSCoding for NSLogicalTest {}
 
 unsafe impl NSObjectProtocol for NSLogicalTest {}
 
 extern_methods!(
     unsafe impl NSLogicalTest {
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(feature = "NSArray")]
         #[method_id(@__retain_semantics Init initAndTestWithTests:)]
         pub unsafe fn initAndTestWithTests(
             this: Allocated<Self>,
             sub_tests: &NSArray<NSSpecifierTest>,
         ) -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(feature = "NSArray")]
         #[method_id(@__retain_semantics Init initOrTestWithTests:)]
         pub unsafe fn initOrTestWithTests(
             this: Allocated<Self>,
@@ -110,7 +110,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSCoder")]
+        #[cfg(feature = "NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, in_coder: &NSCoder) -> Option<Id<Self>>;
     }
@@ -135,7 +135,7 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSCoding for NSSpecifierTest {}
 
 unsafe impl NSObjectProtocol for NSSpecifierTest {}
@@ -145,11 +145,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSCoder")]
+        #[cfg(feature = "NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, in_coder: &NSCoder) -> Option<Id<Self>>;
 
-        #[cfg(feature = "Foundation_NSScriptObjectSpecifiers")]
+        #[cfg(feature = "NSScriptObjectSpecifiers")]
         #[method_id(@__retain_semantics Init initWithObjectSpecifier:comparisonOperator:testObject:)]
         pub unsafe fn initWithObjectSpecifier_comparisonOperator_testObject(
             this: Allocated<Self>,
@@ -193,11 +193,11 @@ extern_category!(
         #[method(doesContain:)]
         unsafe fn doesContain(&self, object: &AnyObject) -> bool;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method(isLike:)]
         unsafe fn isLike(&self, object: &NSString) -> bool;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method(isCaseInsensitiveLike:)]
         unsafe fn isCaseInsensitiveLike(&self, object: &NSString) -> bool;
     }

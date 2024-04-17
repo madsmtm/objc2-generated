@@ -7,10 +7,10 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "EventKit_EKObject")]
+    #[cfg(feature = "EKObject")]
     pub struct EKCalendarItem;
 
-    #[cfg(feature = "EventKit_EKObject")]
+    #[cfg(feature = "EKObject")]
     unsafe impl ClassType for EKCalendarItem {
         #[inherits(NSObject)]
         type Super = EKObject;
@@ -18,20 +18,20 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "EventKit_EKObject")]
+#[cfg(feature = "EKObject")]
 unsafe impl NSObjectProtocol for EKCalendarItem {}
 
 extern_methods!(
-    #[cfg(feature = "EventKit_EKObject")]
+    #[cfg(feature = "EKObject")]
     unsafe impl EKCalendarItem {
         #[method_id(@__retain_semantics Other UUID)]
         pub unsafe fn UUID(&self) -> Id<NSString>;
 
-        #[cfg(feature = "EventKit_EKCalendar")]
+        #[cfg(feature = "EKCalendar")]
         #[method_id(@__retain_semantics Other calendar)]
         pub unsafe fn calendar(&self) -> Option<Id<EKCalendar>>;
 
-        #[cfg(feature = "EventKit_EKCalendar")]
+        #[cfg(feature = "EKCalendar")]
         #[method(setCalendar:)]
         pub unsafe fn setCalendar(&self, calendar: Option<&EKCalendar>);
 
@@ -89,42 +89,42 @@ extern_methods!(
         #[method(hasNotes)]
         pub unsafe fn hasNotes(&self) -> bool;
 
-        #[cfg(feature = "EventKit_EKParticipant")]
+        #[cfg(feature = "EKParticipant")]
         #[method_id(@__retain_semantics Other attendees)]
         pub unsafe fn attendees(&self) -> Option<Id<NSArray<EKParticipant>>>;
 
-        #[cfg(feature = "EventKit_EKAlarm")]
+        #[cfg(feature = "EKAlarm")]
         #[method_id(@__retain_semantics Other alarms)]
         pub unsafe fn alarms(&self) -> Option<Id<NSArray<EKAlarm>>>;
 
-        #[cfg(feature = "EventKit_EKAlarm")]
+        #[cfg(feature = "EKAlarm")]
         #[method(setAlarms:)]
         pub unsafe fn setAlarms(&self, alarms: Option<&NSArray<EKAlarm>>);
 
-        #[cfg(feature = "EventKit_EKAlarm")]
+        #[cfg(feature = "EKAlarm")]
         #[method(addAlarm:)]
         pub unsafe fn addAlarm(&self, alarm: &EKAlarm);
 
-        #[cfg(feature = "EventKit_EKAlarm")]
+        #[cfg(feature = "EKAlarm")]
         #[method(removeAlarm:)]
         pub unsafe fn removeAlarm(&self, alarm: &EKAlarm);
 
-        #[cfg(feature = "EventKit_EKRecurrenceRule")]
+        #[cfg(feature = "EKRecurrenceRule")]
         #[method_id(@__retain_semantics Other recurrenceRules)]
         pub unsafe fn recurrenceRules(&self) -> Option<Id<NSArray<EKRecurrenceRule>>>;
 
-        #[cfg(feature = "EventKit_EKRecurrenceRule")]
+        #[cfg(feature = "EKRecurrenceRule")]
         #[method(setRecurrenceRules:)]
         pub unsafe fn setRecurrenceRules(
             &self,
             recurrence_rules: Option<&NSArray<EKRecurrenceRule>>,
         );
 
-        #[cfg(feature = "EventKit_EKRecurrenceRule")]
+        #[cfg(feature = "EKRecurrenceRule")]
         #[method(addRecurrenceRule:)]
         pub unsafe fn addRecurrenceRule(&self, rule: &EKRecurrenceRule);
 
-        #[cfg(feature = "EventKit_EKRecurrenceRule")]
+        #[cfg(feature = "EKRecurrenceRule")]
         #[method(removeRecurrenceRule:)]
         pub unsafe fn removeRecurrenceRule(&self, rule: &EKRecurrenceRule);
     }
@@ -132,7 +132,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "EventKit_EKObject")]
+    #[cfg(feature = "EKObject")]
     unsafe impl EKCalendarItem {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

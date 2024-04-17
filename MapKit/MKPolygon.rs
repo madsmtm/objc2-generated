@@ -9,10 +9,10 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(feature = "MapKit_MKMultiPoint", feature = "MapKit_MKShape"))]
+    #[cfg(all(feature = "MKMultiPoint", feature = "MKShape"))]
     pub struct MKPolygon;
 
-    #[cfg(all(feature = "MapKit_MKMultiPoint", feature = "MapKit_MKShape"))]
+    #[cfg(all(feature = "MKMultiPoint", feature = "MKShape"))]
     unsafe impl ClassType for MKPolygon {
         #[inherits(MKShape, NSObject)]
         type Super = MKMultiPoint;
@@ -21,34 +21,34 @@ extern_class!(
 );
 
 #[cfg(all(
-    feature = "MapKit_MKAnnotation",
-    feature = "MapKit_MKMultiPoint",
-    feature = "MapKit_MKShape"
+    feature = "MKAnnotation",
+    feature = "MKMultiPoint",
+    feature = "MKShape"
 ))]
 unsafe impl MKAnnotation for MKPolygon {}
 
 #[cfg(all(
-    feature = "MapKit_MKAnnotation",
-    feature = "MapKit_MKMultiPoint",
-    feature = "MapKit_MKOverlay",
-    feature = "MapKit_MKShape"
+    feature = "MKAnnotation",
+    feature = "MKMultiPoint",
+    feature = "MKOverlay",
+    feature = "MKShape"
 ))]
 unsafe impl MKOverlay for MKPolygon {}
 
-#[cfg(all(feature = "MapKit_MKMultiPoint", feature = "MapKit_MKShape"))]
+#[cfg(all(feature = "MKMultiPoint", feature = "MKShape"))]
 unsafe impl NSObjectProtocol for MKPolygon {}
 
 extern_methods!(
-    #[cfg(all(feature = "MapKit_MKMultiPoint", feature = "MapKit_MKShape"))]
+    #[cfg(all(feature = "MKMultiPoint", feature = "MKShape"))]
     unsafe impl MKPolygon {
-        #[cfg(feature = "MapKit_MKGeometry")]
+        #[cfg(feature = "MKGeometry")]
         #[method_id(@__retain_semantics Other polygonWithPoints:count:)]
         pub unsafe fn polygonWithPoints_count(
             points: NonNull<MKMapPoint>,
             count: NSUInteger,
         ) -> Id<Self>;
 
-        #[cfg(feature = "MapKit_MKGeometry")]
+        #[cfg(feature = "MKGeometry")]
         #[method_id(@__retain_semantics Other polygonWithPoints:count:interiorPolygons:)]
         pub unsafe fn polygonWithPoints_count_interiorPolygons(
             points: NonNull<MKMapPoint>,
@@ -78,7 +78,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MapKit_MKMultiPoint", feature = "MapKit_MKShape"))]
+    #[cfg(all(feature = "MKMultiPoint", feature = "MKShape"))]
     unsafe impl MKPolygon {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

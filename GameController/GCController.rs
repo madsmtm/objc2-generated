@@ -58,7 +58,7 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "GameController_GCDevice")]
+#[cfg(feature = "GCDevice")]
 unsafe impl GCDevice for GCController {}
 
 unsafe impl NSObjectProtocol for GCController {}
@@ -99,49 +99,40 @@ extern_methods!(
         #[method(setPlayerIndex:)]
         pub unsafe fn setPlayerIndex(&self, player_index: GCControllerPlayerIndex);
 
-        #[cfg(feature = "GameController_GCControllerInput")]
+        #[cfg(feature = "GCControllerInput")]
         #[method_id(@__retain_semantics Other input)]
         pub unsafe fn input(&self) -> Id<GCControllerLiveInput>;
 
-        #[cfg(feature = "GameController_GCDeviceBattery")]
+        #[cfg(feature = "GCDeviceBattery")]
         #[method_id(@__retain_semantics Other battery)]
         pub unsafe fn battery(&self) -> Option<Id<GCDeviceBattery>>;
 
-        #[cfg(feature = "GameController_GCPhysicalInputProfile")]
+        #[cfg(feature = "GCPhysicalInputProfile")]
         #[method_id(@__retain_semantics Other physicalInputProfile)]
         pub unsafe fn physicalInputProfile(&self) -> Id<GCPhysicalInputProfile>;
 
-        #[cfg(all(
-            feature = "GameController_GCGamepad",
-            feature = "GameController_GCPhysicalInputProfile"
-        ))]
+        #[cfg(all(feature = "GCGamepad", feature = "GCPhysicalInputProfile"))]
         #[deprecated]
         #[method_id(@__retain_semantics Other gamepad)]
         pub unsafe fn gamepad(&self) -> Option<Id<GCGamepad>>;
 
-        #[cfg(all(
-            feature = "GameController_GCMicroGamepad",
-            feature = "GameController_GCPhysicalInputProfile"
-        ))]
+        #[cfg(all(feature = "GCMicroGamepad", feature = "GCPhysicalInputProfile"))]
         #[method_id(@__retain_semantics Other microGamepad)]
         pub unsafe fn microGamepad(&self) -> Option<Id<GCMicroGamepad>>;
 
-        #[cfg(all(
-            feature = "GameController_GCExtendedGamepad",
-            feature = "GameController_GCPhysicalInputProfile"
-        ))]
+        #[cfg(all(feature = "GCExtendedGamepad", feature = "GCPhysicalInputProfile"))]
         #[method_id(@__retain_semantics Other extendedGamepad)]
         pub unsafe fn extendedGamepad(&self) -> Option<Id<GCExtendedGamepad>>;
 
-        #[cfg(feature = "GameController_GCMotion")]
+        #[cfg(feature = "GCMotion")]
         #[method_id(@__retain_semantics Other motion)]
         pub unsafe fn motion(&self) -> Option<Id<GCMotion>>;
 
-        #[cfg(feature = "GameController_GCDeviceLight")]
+        #[cfg(feature = "GCDeviceLight")]
         #[method_id(@__retain_semantics Other light)]
         pub unsafe fn light(&self) -> Option<Id<GCDeviceLight>>;
 
-        #[cfg(feature = "GameController_GCDeviceHaptics")]
+        #[cfg(feature = "GCDeviceHaptics")]
         #[method_id(@__retain_semantics Other haptics)]
         pub unsafe fn haptics(&self) -> Option<Id<GCDeviceHaptics>>;
 

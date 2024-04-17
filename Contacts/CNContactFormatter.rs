@@ -66,30 +66,30 @@ unsafe impl NSSecureCoding for CNContactFormatter {}
 
 extern_methods!(
     unsafe impl CNContactFormatter {
-        #[cfg(feature = "Contacts_CNContact")]
+        #[cfg(feature = "CNContact")]
         #[method_id(@__retain_semantics Other descriptorForRequiredKeysForStyle:)]
         pub unsafe fn descriptorForRequiredKeysForStyle(
             style: CNContactFormatterStyle,
         ) -> Id<ProtocolObject<dyn CNKeyDescriptor>>;
 
-        #[cfg(feature = "Contacts_CNContact")]
+        #[cfg(feature = "CNContact")]
         #[method_id(@__retain_semantics Other descriptorForRequiredKeysForNameOrder)]
         pub unsafe fn descriptorForRequiredKeysForNameOrder(
         ) -> Id<ProtocolObject<dyn CNKeyDescriptor>>;
 
-        #[cfg(feature = "Contacts_CNContact")]
+        #[cfg(feature = "CNContact")]
         #[method_id(@__retain_semantics Other descriptorForRequiredKeysForDelimiter)]
         pub unsafe fn descriptorForRequiredKeysForDelimiter(
         ) -> Id<ProtocolObject<dyn CNKeyDescriptor>>;
 
-        #[cfg(feature = "Contacts_CNContact")]
+        #[cfg(feature = "CNContact")]
         #[method_id(@__retain_semantics Other stringFromContact:style:)]
         pub unsafe fn stringFromContact_style(
             contact: &CNContact,
             style: CNContactFormatterStyle,
         ) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "Contacts_CNContact")]
+        #[cfg(feature = "CNContact")]
         #[method_id(@__retain_semantics Other attributedStringFromContact:style:defaultAttributes:)]
         pub unsafe fn attributedStringFromContact_style_defaultAttributes(
             contact: &CNContact,
@@ -97,11 +97,11 @@ extern_methods!(
             attributes: Option<&NSDictionary>,
         ) -> Option<Id<NSAttributedString>>;
 
-        #[cfg(feature = "Contacts_CNContact")]
+        #[cfg(feature = "CNContact")]
         #[method(nameOrderForContact:)]
         pub unsafe fn nameOrderForContact(contact: &CNContact) -> CNContactDisplayNameOrder;
 
-        #[cfg(feature = "Contacts_CNContact")]
+        #[cfg(feature = "CNContact")]
         #[method_id(@__retain_semantics Other delimiterForContact:)]
         pub unsafe fn delimiterForContact(contact: &CNContact) -> Id<NSString>;
 
@@ -111,11 +111,11 @@ extern_methods!(
         #[method(setStyle:)]
         pub unsafe fn setStyle(&self, style: CNContactFormatterStyle);
 
-        #[cfg(feature = "Contacts_CNContact")]
+        #[cfg(feature = "CNContact")]
         #[method_id(@__retain_semantics Other stringFromContact:)]
         pub unsafe fn stringFromContact(&self, contact: &CNContact) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "Contacts_CNContact")]
+        #[cfg(feature = "CNContact")]
         #[method_id(@__retain_semantics Other attributedStringFromContact:defaultAttributes:)]
         pub unsafe fn attributedStringFromContact_defaultAttributes(
             &self,

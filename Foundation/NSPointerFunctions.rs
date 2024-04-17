@@ -43,7 +43,7 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSPointerFunctions {}
 
 unsafe impl NSObjectProtocol for NSPointerFunctions {}
@@ -116,13 +116,13 @@ extern_methods!(
             size_function: Option<unsafe extern "C" fn(NonNull<c_void>) -> NSUInteger>,
         );
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method(descriptionFunction)]
         pub unsafe fn descriptionFunction(
             &self,
         ) -> Option<unsafe extern "C" fn(NonNull<c_void>) -> *mut NSString>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method(setDescriptionFunction:)]
         pub unsafe fn setDescriptionFunction(
             &self,

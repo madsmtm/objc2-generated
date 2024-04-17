@@ -28,15 +28,15 @@ extern_methods!(
         #[method_id(@__retain_semantics Other originalRequest)]
         pub unsafe fn originalRequest(&self) -> Option<Id<NSURLRequest>>;
 
-        #[cfg(all(feature = "WebKit_WKWebView", feature = "objc2-app-kit"))]
+        #[cfg(all(feature = "WKWebView", feature = "objc2-app-kit"))]
         #[method_id(@__retain_semantics Other webView)]
         pub unsafe fn webView(&self, mtm: MainThreadMarker) -> Option<Id<WKWebView>>;
 
-        #[cfg(feature = "WebKit_WKDownloadDelegate")]
+        #[cfg(feature = "WKDownloadDelegate")]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn WKDownloadDelegate>>>;
 
-        #[cfg(feature = "WebKit_WKDownloadDelegate")]
+        #[cfg(feature = "WKDownloadDelegate")]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn WKDownloadDelegate>>);
 

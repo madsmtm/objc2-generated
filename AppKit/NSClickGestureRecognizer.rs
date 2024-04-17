@@ -7,10 +7,10 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSGestureRecognizer")]
+    #[cfg(feature = "NSGestureRecognizer")]
     pub struct NSClickGestureRecognizer;
 
-    #[cfg(feature = "AppKit_NSGestureRecognizer")]
+    #[cfg(feature = "NSGestureRecognizer")]
     unsafe impl ClassType for NSClickGestureRecognizer {
         #[inherits(NSObject)]
         type Super = NSGestureRecognizer;
@@ -18,14 +18,14 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSGestureRecognizer")]
+#[cfg(feature = "NSGestureRecognizer")]
 unsafe impl NSCoding for NSClickGestureRecognizer {}
 
-#[cfg(feature = "AppKit_NSGestureRecognizer")]
+#[cfg(feature = "NSGestureRecognizer")]
 unsafe impl NSObjectProtocol for NSClickGestureRecognizer {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSGestureRecognizer")]
+    #[cfg(feature = "NSGestureRecognizer")]
     unsafe impl NSClickGestureRecognizer {
         #[method(buttonMask)]
         pub unsafe fn buttonMask(&self) -> NSUInteger;
@@ -49,7 +49,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSGestureRecognizer`
-    #[cfg(feature = "AppKit_NSGestureRecognizer")]
+    #[cfg(feature = "NSGestureRecognizer")]
     unsafe impl NSClickGestureRecognizer {
         #[method_id(@__retain_semantics Init initWithTarget:action:)]
         pub unsafe fn initWithTarget_action(
@@ -65,7 +65,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSGestureRecognizer")]
+    #[cfg(feature = "NSGestureRecognizer")]
     unsafe impl NSClickGestureRecognizer {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

@@ -28,15 +28,11 @@ unsafe impl RefEncode for NSTextContentManagerEnumerationOptions {
 
 extern_protocol!(
     pub unsafe trait NSTextElementProvider: NSObjectProtocol {
-        #[cfg(feature = "AppKit_NSTextRange")]
+        #[cfg(feature = "NSTextRange")]
         #[method_id(@__retain_semantics Other documentRange)]
         unsafe fn documentRange(&self) -> Id<NSTextRange>;
 
-        #[cfg(all(
-            feature = "AppKit_NSTextElement",
-            feature = "AppKit_NSTextRange",
-            feature = "block2"
-        ))]
+        #[cfg(all(feature = "NSTextElement", feature = "NSTextRange", feature = "block2"))]
         #[method_id(@__retain_semantics Other enumerateTextElementsFromLocation:options:usingBlock:)]
         unsafe fn enumerateTextElementsFromLocation_options_usingBlock(
             &self,
@@ -45,7 +41,7 @@ extern_protocol!(
             block: &Block<dyn Fn(NonNull<NSTextElement>) -> Bool + '_>,
         ) -> Option<Id<ProtocolObject<dyn NSTextLocation>>>;
 
-        #[cfg(all(feature = "AppKit_NSTextElement", feature = "AppKit_NSTextRange"))]
+        #[cfg(all(feature = "NSTextElement", feature = "NSTextRange"))]
         #[method(replaceContentsInRange:withTextElements:)]
         unsafe fn replaceContentsInRange_withTextElements(
             &self,
@@ -60,7 +56,7 @@ extern_protocol!(
             completion_handler: Option<&Block<dyn Fn(*mut NSError)>>,
         );
 
-        #[cfg(feature = "AppKit_NSTextRange")]
+        #[cfg(feature = "NSTextRange")]
         #[optional]
         #[method_id(@__retain_semantics Other locationFromLocation:withOffset:)]
         unsafe fn locationFromLocation_withOffset(
@@ -69,7 +65,7 @@ extern_protocol!(
             offset: NSInteger,
         ) -> Option<Id<ProtocolObject<dyn NSTextLocation>>>;
 
-        #[cfg(feature = "AppKit_NSTextRange")]
+        #[cfg(feature = "NSTextRange")]
         #[optional]
         #[method(offsetFromLocation:toLocation:)]
         unsafe fn offsetFromLocation_toLocation(
@@ -78,7 +74,7 @@ extern_protocol!(
             to: &ProtocolObject<dyn NSTextLocation>,
         ) -> NSInteger;
 
-        #[cfg(feature = "AppKit_NSTextRange")]
+        #[cfg(feature = "NSTextRange")]
         #[optional]
         #[method_id(@__retain_semantics Other adjustedRangeFromRange:forEditingTextSelection:)]
         unsafe fn adjustedRangeFromRange_forEditingTextSelection(
@@ -128,23 +124,23 @@ extern_methods!(
             delegate: Option<&ProtocolObject<dyn NSTextContentManagerDelegate>>,
         );
 
-        #[cfg(feature = "AppKit_NSTextLayoutManager")]
+        #[cfg(feature = "NSTextLayoutManager")]
         #[method_id(@__retain_semantics Other textLayoutManagers)]
         pub unsafe fn textLayoutManagers(&self) -> Id<NSArray<NSTextLayoutManager>>;
 
-        #[cfg(feature = "AppKit_NSTextLayoutManager")]
+        #[cfg(feature = "NSTextLayoutManager")]
         #[method(addTextLayoutManager:)]
         pub unsafe fn addTextLayoutManager(&self, text_layout_manager: &NSTextLayoutManager);
 
-        #[cfg(feature = "AppKit_NSTextLayoutManager")]
+        #[cfg(feature = "NSTextLayoutManager")]
         #[method(removeTextLayoutManager:)]
         pub unsafe fn removeTextLayoutManager(&self, text_layout_manager: &NSTextLayoutManager);
 
-        #[cfg(feature = "AppKit_NSTextLayoutManager")]
+        #[cfg(feature = "NSTextLayoutManager")]
         #[method_id(@__retain_semantics Other primaryTextLayoutManager)]
         pub unsafe fn primaryTextLayoutManager(&self) -> Option<Id<NSTextLayoutManager>>;
 
-        #[cfg(feature = "AppKit_NSTextLayoutManager")]
+        #[cfg(feature = "NSTextLayoutManager")]
         #[method(setPrimaryTextLayoutManager:)]
         pub unsafe fn setPrimaryTextLayoutManager(
             &self,
@@ -158,7 +154,7 @@ extern_methods!(
             completion_handler: Option<&Block<dyn Fn(*mut NSError)>>,
         );
 
-        #[cfg(all(feature = "AppKit_NSTextElement", feature = "AppKit_NSTextRange"))]
+        #[cfg(all(feature = "NSTextElement", feature = "NSTextRange"))]
         #[method_id(@__retain_semantics Other textElementsForRange:)]
         pub unsafe fn textElementsForRange(
             &self,
@@ -175,7 +171,7 @@ extern_methods!(
             transaction: &Block<dyn Fn() + '_>,
         );
 
-        #[cfg(feature = "AppKit_NSTextRange")]
+        #[cfg(feature = "NSTextRange")]
         #[method(recordEditActionInRange:newTextRange:)]
         pub unsafe fn recordEditActionInRange_newTextRange(
             &self,
@@ -213,7 +209,7 @@ extern_methods!(
 
 extern_protocol!(
     pub unsafe trait NSTextContentManagerDelegate: NSObjectProtocol {
-        #[cfg(all(feature = "AppKit_NSTextElement", feature = "AppKit_NSTextRange"))]
+        #[cfg(all(feature = "NSTextElement", feature = "NSTextRange"))]
         #[optional]
         #[method_id(@__retain_semantics Other textContentManager:textElementAtLocation:)]
         unsafe fn textContentManager_textElementAtLocation(
@@ -222,7 +218,7 @@ extern_protocol!(
             location: &ProtocolObject<dyn NSTextLocation>,
         ) -> Option<Id<NSTextElement>>;
 
-        #[cfg(feature = "AppKit_NSTextElement")]
+        #[cfg(feature = "NSTextElement")]
         #[optional]
         #[method(textContentManager:shouldEnumerateTextElement:options:)]
         unsafe fn textContentManager_shouldEnumerateTextElement_options(
@@ -238,7 +234,7 @@ extern_protocol!(
 
 extern_protocol!(
     pub unsafe trait NSTextContentStorageDelegate: NSTextContentManagerDelegate {
-        #[cfg(feature = "AppKit_NSTextElement")]
+        #[cfg(feature = "NSTextElement")]
         #[optional]
         #[method_id(@__retain_semantics Other textContentStorage:textParagraphWithRange:)]
         unsafe fn textContentStorage_textParagraphWithRange(
@@ -270,7 +266,7 @@ unsafe impl NSSecureCoding for NSTextContentStorage {}
 
 unsafe impl NSTextElementProvider for NSTextContentStorage {}
 
-#[cfg(feature = "AppKit_NSTextStorage")]
+#[cfg(feature = "NSTextStorage")]
 unsafe impl NSTextStorageObserving for NSTextContentStorage {}
 
 extern_methods!(
@@ -292,21 +288,21 @@ extern_methods!(
         #[method(setAttributedString:)]
         pub unsafe fn setAttributedString(&self, attributed_string: Option<&NSAttributedString>);
 
-        #[cfg(feature = "AppKit_NSTextElement")]
+        #[cfg(feature = "NSTextElement")]
         #[method_id(@__retain_semantics Other attributedStringForTextElement:)]
         pub unsafe fn attributedStringForTextElement(
             &self,
             text_element: &NSTextElement,
         ) -> Option<Id<NSAttributedString>>;
 
-        #[cfg(feature = "AppKit_NSTextElement")]
+        #[cfg(feature = "NSTextElement")]
         #[method_id(@__retain_semantics Other textElementForAttributedString:)]
         pub unsafe fn textElementForAttributedString(
             &self,
             attributed_string: &NSAttributedString,
         ) -> Option<Id<NSTextElement>>;
 
-        #[cfg(feature = "AppKit_NSTextRange")]
+        #[cfg(feature = "NSTextRange")]
         #[method_id(@__retain_semantics Other locationFromLocation:withOffset:)]
         pub unsafe fn locationFromLocation_withOffset(
             &self,
@@ -314,7 +310,7 @@ extern_methods!(
             offset: NSInteger,
         ) -> Option<Id<ProtocolObject<dyn NSTextLocation>>>;
 
-        #[cfg(feature = "AppKit_NSTextRange")]
+        #[cfg(feature = "NSTextRange")]
         #[method(offsetFromLocation:toLocation:)]
         pub unsafe fn offsetFromLocation_toLocation(
             &self,
@@ -322,7 +318,7 @@ extern_methods!(
             to: &ProtocolObject<dyn NSTextLocation>,
         ) -> NSInteger;
 
-        #[cfg(feature = "AppKit_NSTextRange")]
+        #[cfg(feature = "NSTextRange")]
         #[method_id(@__retain_semantics Other adjustedRangeFromRange:forEditingTextSelection:)]
         pub unsafe fn adjustedRangeFromRange_forEditingTextSelection(
             &self,

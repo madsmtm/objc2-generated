@@ -8,17 +8,17 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    #[cfg(feature = "MapKit_MKAnnotation")]
+    #[cfg(feature = "MKAnnotation")]
     pub unsafe trait MKOverlay: MKAnnotation {
         #[cfg(feature = "objc2-core-location")]
         #[method(coordinate)]
         unsafe fn coordinate(&self) -> CLLocationCoordinate2D;
 
-        #[cfg(feature = "MapKit_MKGeometry")]
+        #[cfg(feature = "MKGeometry")]
         #[method(boundingMapRect)]
         unsafe fn boundingMapRect(&self) -> MKMapRect;
 
-        #[cfg(feature = "MapKit_MKGeometry")]
+        #[cfg(feature = "MKGeometry")]
         #[optional]
         #[method(intersectsMapRect:)]
         unsafe fn intersectsMapRect(&self, map_rect: MKMapRect) -> bool;
@@ -28,6 +28,6 @@ extern_protocol!(
         unsafe fn canReplaceMapContent(&self) -> bool;
     }
 
-    #[cfg(feature = "MapKit_MKAnnotation")]
+    #[cfg(feature = "MKAnnotation")]
     unsafe impl ProtocolType for dyn MKOverlay {}
 );

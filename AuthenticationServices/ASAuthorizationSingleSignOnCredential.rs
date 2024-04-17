@@ -16,7 +16,7 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AuthenticationServices_ASAuthorizationCredential")]
+#[cfg(feature = "ASAuthorizationCredential")]
 unsafe impl ASAuthorizationCredential for ASAuthorizationSingleSignOnCredential {}
 
 unsafe impl NSCoding for ASAuthorizationSingleSignOnCredential {}
@@ -38,7 +38,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other identityToken)]
         pub unsafe fn identityToken(&self) -> Option<Id<NSData>>;
 
-        #[cfg(feature = "AuthenticationServices_ASAuthorization")]
+        #[cfg(feature = "ASAuthorization")]
         #[method_id(@__retain_semantics Other authorizedScopes)]
         pub unsafe fn authorizedScopes(&self) -> Id<NSArray<ASAuthorizationScope>>;
 

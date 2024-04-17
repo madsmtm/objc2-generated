@@ -9,9 +9,9 @@ use crate::*;
 extern_protocol!(
     pub unsafe trait ASAuthorizationWebBrowserSecurityKeyPublicKeyCredentialProvider {
         #[cfg(all(
-            feature = "AuthenticationServices_ASAuthorizationRequest",
-            feature = "AuthenticationServices_ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest",
-            feature = "AuthenticationServices_ASPublicKeyCredentialClientData"
+            feature = "ASAuthorizationRequest",
+            feature = "ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest",
+            feature = "ASPublicKeyCredentialClientData"
         ))]
         #[method_id(@__retain_semantics Other createCredentialRegistrationRequestWithClientData:displayName:name:userID:)]
         unsafe fn createCredentialRegistrationRequestWithClientData_displayName_name_userID(
@@ -23,9 +23,9 @@ extern_protocol!(
         ) -> Id<ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest>;
 
         #[cfg(all(
-            feature = "AuthenticationServices_ASAuthorizationRequest",
-            feature = "AuthenticationServices_ASAuthorizationSecurityKeyPublicKeyCredentialAssertionRequest",
-            feature = "AuthenticationServices_ASPublicKeyCredentialClientData"
+            feature = "ASAuthorizationRequest",
+            feature = "ASAuthorizationSecurityKeyPublicKeyCredentialAssertionRequest",
+            feature = "ASPublicKeyCredentialClientData"
         ))]
         #[method_id(@__retain_semantics Other createCredentialAssertionRequestWithClientData:)]
         unsafe fn createCredentialAssertionRequestWithClientData(

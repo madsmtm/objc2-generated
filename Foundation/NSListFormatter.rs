@@ -6,10 +6,10 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSFormatter")]
+    #[cfg(feature = "NSFormatter")]
     pub struct NSListFormatter;
 
-    #[cfg(feature = "Foundation_NSFormatter")]
+    #[cfg(feature = "NSFormatter")]
     unsafe impl ClassType for NSListFormatter {
         #[inherits(NSObject)]
         type Super = NSFormatter;
@@ -17,23 +17,23 @@ extern_class!(
     }
 );
 
-#[cfg(all(feature = "Foundation_NSFormatter", feature = "Foundation_NSObject"))]
+#[cfg(all(feature = "NSFormatter", feature = "NSObject"))]
 unsafe impl NSCoding for NSListFormatter {}
 
-#[cfg(all(feature = "Foundation_NSFormatter", feature = "Foundation_NSObject"))]
+#[cfg(all(feature = "NSFormatter", feature = "NSObject"))]
 unsafe impl NSCopying for NSListFormatter {}
 
-#[cfg(feature = "Foundation_NSFormatter")]
+#[cfg(feature = "NSFormatter")]
 unsafe impl NSObjectProtocol for NSListFormatter {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSFormatter")]
+    #[cfg(feature = "NSFormatter")]
     unsafe impl NSListFormatter {
-        #[cfg(feature = "Foundation_NSLocale")]
+        #[cfg(feature = "NSLocale")]
         #[method_id(@__retain_semantics Other locale)]
         pub unsafe fn locale(&self) -> Id<NSLocale>;
 
-        #[cfg(feature = "Foundation_NSLocale")]
+        #[cfg(feature = "NSLocale")]
         #[method(setLocale:)]
         pub unsafe fn setLocale(&self, locale: Option<&NSLocale>);
 
@@ -43,15 +43,15 @@ extern_methods!(
         #[method(setItemFormatter:)]
         pub unsafe fn setItemFormatter(&self, item_formatter: Option<&NSFormatter>);
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[method_id(@__retain_semantics Other localizedStringByJoiningStrings:)]
         pub unsafe fn localizedStringByJoiningStrings(strings: &NSArray<NSString>) -> Id<NSString>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[method_id(@__retain_semantics Other stringFromItems:)]
         pub unsafe fn stringFromItems(&self, items: &NSArray) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other stringForObjectValue:)]
         pub unsafe fn stringForObjectValue(&self, obj: Option<&AnyObject>) -> Option<Id<NSString>>;
     }
@@ -59,7 +59,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSFormatter")]
+    #[cfg(feature = "NSFormatter")]
     unsafe impl NSListFormatter {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

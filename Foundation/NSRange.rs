@@ -23,18 +23,18 @@ extern "C" {
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub fn NSStringFromRange(range: NSRange) -> NonNull<NSString>;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub fn NSRangeFromString(a_string: &NSString) -> NSRange;
 }
 
 extern_methods!(
     /// NSValueRangeExtensions
-    #[cfg(feature = "Foundation_NSValue")]
+    #[cfg(feature = "NSValue")]
     unsafe impl NSValue {
         #[method_id(@__retain_semantics Other valueWithRange:)]
         pub unsafe fn valueWithRange(range: NSRange) -> Id<NSValue>;

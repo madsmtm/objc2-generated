@@ -11,7 +11,7 @@ extern_category!(
     /// Category "UTType" on [`NSItemProvider`].
     #[doc(alias = "UTType")]
     pub unsafe trait NSItemProviderUTType {
-        #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+        #[cfg(feature = "UTType")]
         #[method_id(@__retain_semantics Init initWithContentsOfURL:contentType:openInPlace:coordinated:visibility:)]
         unsafe fn initWithContentsOfURL_contentType_openInPlace_coordinated_visibility(
             this: Allocated<Self>,
@@ -22,7 +22,7 @@ extern_category!(
             visibility: NSItemProviderRepresentationVisibility,
         ) -> Id<Self>;
 
-        #[cfg(all(feature = "UniformTypeIdentifiers_UTType", feature = "block2"))]
+        #[cfg(all(feature = "UTType", feature = "block2"))]
         #[method(registerDataRepresentationForContentType:visibility:loadHandler:)]
         unsafe fn registerDataRepresentationForContentType_visibility_loadHandler(
             &self,
@@ -33,7 +33,7 @@ extern_category!(
             >,
         );
 
-        #[cfg(all(feature = "UniformTypeIdentifiers_UTType", feature = "block2"))]
+        #[cfg(all(feature = "UTType", feature = "block2"))]
         #[method(registerFileRepresentationForContentType:visibility:openInPlace:loadHandler:)]
         unsafe fn registerFileRepresentationForContentType_visibility_openInPlace_loadHandler(
             &self,
@@ -45,22 +45,22 @@ extern_category!(
             >,
         );
 
-        #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+        #[cfg(feature = "UTType")]
         #[method_id(@__retain_semantics Other registeredContentTypes)]
         unsafe fn registeredContentTypes(&self) -> Id<NSArray<UTType>>;
 
-        #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+        #[cfg(feature = "UTType")]
         #[method_id(@__retain_semantics Other registeredContentTypesForOpenInPlace)]
         unsafe fn registeredContentTypesForOpenInPlace(&self) -> Id<NSArray<UTType>>;
 
-        #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+        #[cfg(feature = "UTType")]
         #[method_id(@__retain_semantics Other registeredContentTypesConformingToContentType:)]
         unsafe fn registeredContentTypesConformingToContentType(
             &self,
             content_type: &UTType,
         ) -> Id<NSArray<UTType>>;
 
-        #[cfg(all(feature = "UniformTypeIdentifiers_UTType", feature = "block2"))]
+        #[cfg(all(feature = "UTType", feature = "block2"))]
         #[method_id(@__retain_semantics Other loadDataRepresentationForContentType:completionHandler:)]
         unsafe fn loadDataRepresentationForContentType_completionHandler(
             &self,
@@ -68,7 +68,7 @@ extern_category!(
             completion_handler: &Block<dyn Fn(*mut NSData, *mut NSError)>,
         ) -> Id<NSProgress>;
 
-        #[cfg(all(feature = "UniformTypeIdentifiers_UTType", feature = "block2"))]
+        #[cfg(all(feature = "UTType", feature = "block2"))]
         #[method_id(@__retain_semantics Other loadFileRepresentationForContentType:openInPlace:completionHandler:)]
         unsafe fn loadFileRepresentationForContentType_openInPlace_completionHandler(
             &self,

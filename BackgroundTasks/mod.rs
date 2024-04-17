@@ -16,38 +16,38 @@
 #[link(name = "BackgroundTasks", kind = "framework")]
 extern "C" {}
 
-#[cfg(feature = "BackgroundTasks_BGDefines")]
+#[cfg(feature = "BGDefines")]
 #[path = "BGDefines.rs"]
 mod __BGDefines;
-#[cfg(feature = "BackgroundTasks_BGTask")]
+#[cfg(feature = "BGTask")]
 #[path = "BGTask.rs"]
 mod __BGTask;
-#[cfg(feature = "BackgroundTasks_BGTaskRequest")]
+#[cfg(feature = "BGTaskRequest")]
 #[path = "BGTaskRequest.rs"]
 mod __BGTaskRequest;
-#[cfg(feature = "BackgroundTasks_BGTaskScheduler")]
+#[cfg(feature = "BGTaskScheduler")]
 #[path = "BGTaskScheduler.rs"]
 mod __BGTaskScheduler;
 
-#[cfg(feature = "BackgroundTasks_BGTask")]
+#[cfg(feature = "BGTask")]
 pub use self::__BGTask::BGAppRefreshTask;
-#[cfg(feature = "BackgroundTasks_BGTask")]
+#[cfg(feature = "BGTask")]
 pub use self::__BGTask::BGHealthResearchTask;
-#[cfg(feature = "BackgroundTasks_BGTask")]
+#[cfg(feature = "BGTask")]
 pub use self::__BGTask::BGProcessingTask;
-#[cfg(feature = "BackgroundTasks_BGTask")]
+#[cfg(feature = "BGTask")]
 pub use self::__BGTask::BGTask;
-#[cfg(feature = "BackgroundTasks_BGTaskRequest")]
+#[cfg(feature = "BGTaskRequest")]
 pub use self::__BGTaskRequest::BGAppRefreshTaskRequest;
-#[cfg(feature = "BackgroundTasks_BGTaskRequest")]
+#[cfg(feature = "BGTaskRequest")]
 pub use self::__BGTaskRequest::BGHealthResearchTaskRequest;
-#[cfg(feature = "BackgroundTasks_BGTaskRequest")]
+#[cfg(feature = "BGTaskRequest")]
 pub use self::__BGTaskRequest::BGProcessingTaskRequest;
-#[cfg(feature = "BackgroundTasks_BGTaskRequest")]
+#[cfg(feature = "BGTaskRequest")]
 pub use self::__BGTaskRequest::BGTaskRequest;
-#[cfg(feature = "BackgroundTasks_BGTaskScheduler")]
+#[cfg(feature = "BGTaskScheduler")]
 pub use self::__BGTaskScheduler::BGTaskScheduler;
-#[cfg(feature = "BackgroundTasks_BGTaskScheduler")]
+#[cfg(feature = "BGTaskScheduler")]
 pub use self::__BGTaskScheduler::BGTaskSchedulerErrorCode;
-#[cfg(feature = "BackgroundTasks_BGTaskScheduler")]
+#[cfg(feature = "BGTaskScheduler")]
 pub use self::__BGTaskScheduler::BGTaskSchedulerErrorDomain;

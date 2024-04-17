@@ -126,7 +126,7 @@ extern_protocol!(
         NSObjectProtocol
     {
         #[cfg(all(
-            feature = "AuthenticationServices_ASAuthorizationProviderExtensionLoginManager",
+            feature = "ASAuthorizationProviderExtensionLoginManager",
             feature = "block2"
         ))]
         #[method(beginDeviceRegistrationUsingLoginManager:options:completion:)]
@@ -138,7 +138,7 @@ extern_protocol!(
         );
 
         #[cfg(all(
-            feature = "AuthenticationServices_ASAuthorizationProviderExtensionLoginManager",
+            feature = "ASAuthorizationProviderExtensionLoginManager",
             feature = "block2"
         ))]
         #[method(beginUserRegistrationUsingLoginManager:userName:authenticationMethod:options:completion:)]

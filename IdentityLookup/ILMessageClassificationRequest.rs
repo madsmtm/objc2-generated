@@ -7,10 +7,10 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "IdentityLookup_ILClassificationRequest")]
+    #[cfg(feature = "ILClassificationRequest")]
     pub struct ILMessageClassificationRequest;
 
-    #[cfg(feature = "IdentityLookup_ILClassificationRequest")]
+    #[cfg(feature = "ILClassificationRequest")]
     unsafe impl ClassType for ILMessageClassificationRequest {
         #[inherits(NSObject)]
         type Super = ILClassificationRequest;
@@ -18,22 +18,19 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "IdentityLookup_ILClassificationRequest")]
+#[cfg(feature = "ILClassificationRequest")]
 unsafe impl NSCoding for ILMessageClassificationRequest {}
 
-#[cfg(feature = "IdentityLookup_ILClassificationRequest")]
+#[cfg(feature = "ILClassificationRequest")]
 unsafe impl NSObjectProtocol for ILMessageClassificationRequest {}
 
-#[cfg(feature = "IdentityLookup_ILClassificationRequest")]
+#[cfg(feature = "ILClassificationRequest")]
 unsafe impl NSSecureCoding for ILMessageClassificationRequest {}
 
 extern_methods!(
-    #[cfg(feature = "IdentityLookup_ILClassificationRequest")]
+    #[cfg(feature = "ILClassificationRequest")]
     unsafe impl ILMessageClassificationRequest {
-        #[cfg(all(
-            feature = "IdentityLookup_ILCommunication",
-            feature = "IdentityLookup_ILMessageCommunication"
-        ))]
+        #[cfg(all(feature = "ILCommunication", feature = "ILMessageCommunication"))]
         #[method_id(@__retain_semantics Other messageCommunications)]
         pub unsafe fn messageCommunications(&self) -> Id<NSArray<ILMessageCommunication>>;
 
@@ -44,7 +41,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "IdentityLookup_ILClassificationRequest")]
+    #[cfg(feature = "ILClassificationRequest")]
     unsafe impl ILMessageClassificationRequest {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

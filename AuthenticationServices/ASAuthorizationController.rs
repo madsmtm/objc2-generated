@@ -8,7 +8,7 @@ use crate::*;
 
 extern_protocol!(
     pub unsafe trait ASAuthorizationControllerDelegate: NSObjectProtocol {
-        #[cfg(feature = "AuthenticationServices_ASAuthorization")]
+        #[cfg(feature = "ASAuthorization")]
         #[optional]
         #[method(authorizationController:didCompleteWithAuthorization:)]
         unsafe fn authorizationController_didCompleteWithAuthorization(
@@ -25,7 +25,7 @@ extern_protocol!(
             error: &NSError,
         );
 
-        #[cfg(feature = "AuthenticationServices_ASAuthorizationCustomMethod")]
+        #[cfg(feature = "ASAuthorizationCustomMethod")]
         #[optional]
         #[method(authorizationController:didCompleteWithCustomMethod:)]
         unsafe fn authorizationController_didCompleteWithCustomMethod(
@@ -42,7 +42,7 @@ extern_protocol!(
     pub unsafe trait ASAuthorizationControllerPresentationContextProviding:
         NSObjectProtocol
     {
-        #[cfg(feature = "AuthenticationServices_ASFoundation")]
+        #[cfg(feature = "ASFoundation")]
         #[method_id(@__retain_semantics Other presentationAnchorForAuthorizationController:)]
         unsafe fn presentationAnchorForAuthorizationController(
             &self,
@@ -85,7 +85,7 @@ unsafe impl NSObjectProtocol for ASAuthorizationController {}
 
 extern_methods!(
     unsafe impl ASAuthorizationController {
-        #[cfg(feature = "AuthenticationServices_ASAuthorizationRequest")]
+        #[cfg(feature = "ASAuthorizationRequest")]
         #[method_id(@__retain_semantics Other authorizationRequests)]
         pub unsafe fn authorizationRequests(&self) -> Id<NSArray<ASAuthorizationRequest>>;
 
@@ -113,19 +113,19 @@ extern_methods!(
             >,
         );
 
-        #[cfg(feature = "AuthenticationServices_ASAuthorizationCustomMethod")]
+        #[cfg(feature = "ASAuthorizationCustomMethod")]
         #[method_id(@__retain_semantics Other customAuthorizationMethods)]
         pub unsafe fn customAuthorizationMethods(&self)
             -> Id<NSArray<ASAuthorizationCustomMethod>>;
 
-        #[cfg(feature = "AuthenticationServices_ASAuthorizationCustomMethod")]
+        #[cfg(feature = "ASAuthorizationCustomMethod")]
         #[method(setCustomAuthorizationMethods:)]
         pub unsafe fn setCustomAuthorizationMethods(
             &self,
             custom_authorization_methods: &NSArray<ASAuthorizationCustomMethod>,
         );
 
-        #[cfg(feature = "AuthenticationServices_ASAuthorizationRequest")]
+        #[cfg(feature = "ASAuthorizationRequest")]
         #[method_id(@__retain_semantics Init initWithAuthorizationRequests:)]
         pub unsafe fn initWithAuthorizationRequests(
             this: Allocated<Self>,

@@ -16,118 +16,112 @@
 #[link(name = "IdentityLookup", kind = "framework")]
 extern "C" {}
 
-#[cfg(feature = "IdentityLookup_ILBase")]
+#[cfg(feature = "ILBase")]
 #[path = "ILBase.rs"]
 mod __ILBase;
-#[cfg(feature = "IdentityLookup_ILCallClassificationRequest")]
+#[cfg(feature = "ILCallClassificationRequest")]
 #[path = "ILCallClassificationRequest.rs"]
 mod __ILCallClassificationRequest;
-#[cfg(feature = "IdentityLookup_ILCallCommunication")]
+#[cfg(feature = "ILCallCommunication")]
 #[path = "ILCallCommunication.rs"]
 mod __ILCallCommunication;
-#[cfg(feature = "IdentityLookup_ILClassificationActions")]
+#[cfg(feature = "ILClassificationActions")]
 #[path = "ILClassificationActions.rs"]
 mod __ILClassificationActions;
-#[cfg(feature = "IdentityLookup_ILClassificationRequest")]
+#[cfg(feature = "ILClassificationRequest")]
 #[path = "ILClassificationRequest.rs"]
 mod __ILClassificationRequest;
-#[cfg(feature = "IdentityLookup_ILClassificationResponse")]
+#[cfg(feature = "ILClassificationResponse")]
 #[path = "ILClassificationResponse.rs"]
 mod __ILClassificationResponse;
-#[cfg(feature = "IdentityLookup_ILCommunication")]
+#[cfg(feature = "ILCommunication")]
 #[path = "ILCommunication.rs"]
 mod __ILCommunication;
-#[cfg(feature = "IdentityLookup_ILMessageClassificationRequest")]
+#[cfg(feature = "ILMessageClassificationRequest")]
 #[path = "ILMessageClassificationRequest.rs"]
 mod __ILMessageClassificationRequest;
-#[cfg(feature = "IdentityLookup_ILMessageCommunication")]
+#[cfg(feature = "ILMessageCommunication")]
 #[path = "ILMessageCommunication.rs"]
 mod __ILMessageCommunication;
-#[cfg(feature = "IdentityLookup_ILMessageFilterAction")]
+#[cfg(feature = "ILMessageFilterAction")]
 #[path = "ILMessageFilterAction.rs"]
 mod __ILMessageFilterAction;
-#[cfg(feature = "IdentityLookup_ILMessageFilterCapabilitiesQueryHandling")]
+#[cfg(feature = "ILMessageFilterCapabilitiesQueryHandling")]
 #[path = "ILMessageFilterCapabilitiesQueryHandling.rs"]
 mod __ILMessageFilterCapabilitiesQueryHandling;
-#[cfg(feature = "IdentityLookup_ILMessageFilterCapabilitiesQueryRequest")]
+#[cfg(feature = "ILMessageFilterCapabilitiesQueryRequest")]
 #[path = "ILMessageFilterCapabilitiesQueryRequest.rs"]
 mod __ILMessageFilterCapabilitiesQueryRequest;
-#[cfg(feature = "IdentityLookup_ILMessageFilterCapabilitiesQueryResponse")]
+#[cfg(feature = "ILMessageFilterCapabilitiesQueryResponse")]
 #[path = "ILMessageFilterCapabilitiesQueryResponse.rs"]
 mod __ILMessageFilterCapabilitiesQueryResponse;
-#[cfg(feature = "IdentityLookup_ILMessageFilterError")]
+#[cfg(feature = "ILMessageFilterError")]
 #[path = "ILMessageFilterError.rs"]
 mod __ILMessageFilterError;
-#[cfg(feature = "IdentityLookup_ILMessageFilterExtension")]
+#[cfg(feature = "ILMessageFilterExtension")]
 #[path = "ILMessageFilterExtension.rs"]
 mod __ILMessageFilterExtension;
-#[cfg(feature = "IdentityLookup_ILMessageFilterExtensionContext")]
+#[cfg(feature = "ILMessageFilterExtensionContext")]
 #[path = "ILMessageFilterExtensionContext.rs"]
 mod __ILMessageFilterExtensionContext;
-#[cfg(feature = "IdentityLookup_ILMessageFilterQueryHandling")]
+#[cfg(feature = "ILMessageFilterQueryHandling")]
 #[path = "ILMessageFilterQueryHandling.rs"]
 mod __ILMessageFilterQueryHandling;
-#[cfg(feature = "IdentityLookup_ILMessageFilterQueryRequest")]
+#[cfg(feature = "ILMessageFilterQueryRequest")]
 #[path = "ILMessageFilterQueryRequest.rs"]
 mod __ILMessageFilterQueryRequest;
-#[cfg(feature = "IdentityLookup_ILMessageFilterQueryResponse")]
+#[cfg(feature = "ILMessageFilterQueryResponse")]
 #[path = "ILMessageFilterQueryResponse.rs"]
 mod __ILMessageFilterQueryResponse;
-#[cfg(feature = "IdentityLookup_ILNetworkResponse")]
+#[cfg(feature = "ILNetworkResponse")]
 #[path = "ILNetworkResponse.rs"]
 mod __ILNetworkResponse;
 
 #[cfg(all(
-    feature = "IdentityLookup_ILCallClassificationRequest",
-    feature = "IdentityLookup_ILClassificationRequest"
+    feature = "ILCallClassificationRequest",
+    feature = "ILClassificationRequest"
 ))]
 pub use self::__ILCallClassificationRequest::ILCallClassificationRequest;
-#[cfg(all(
-    feature = "IdentityLookup_ILCallCommunication",
-    feature = "IdentityLookup_ILCommunication"
-))]
+#[cfg(all(feature = "ILCallCommunication", feature = "ILCommunication"))]
 pub use self::__ILCallCommunication::ILCallCommunication;
-#[cfg(feature = "IdentityLookup_ILClassificationActions")]
+#[cfg(feature = "ILClassificationActions")]
 pub use self::__ILClassificationActions::ILClassificationAction;
-#[cfg(feature = "IdentityLookup_ILClassificationRequest")]
+#[cfg(feature = "ILClassificationRequest")]
 pub use self::__ILClassificationRequest::ILClassificationRequest;
-#[cfg(feature = "IdentityLookup_ILClassificationResponse")]
+#[cfg(feature = "ILClassificationResponse")]
 pub use self::__ILClassificationResponse::ILClassificationResponse;
-#[cfg(feature = "IdentityLookup_ILCommunication")]
+#[cfg(feature = "ILCommunication")]
 pub use self::__ILCommunication::ILCommunication;
 #[cfg(all(
-    feature = "IdentityLookup_ILClassificationRequest",
-    feature = "IdentityLookup_ILMessageClassificationRequest"
+    feature = "ILClassificationRequest",
+    feature = "ILMessageClassificationRequest"
 ))]
 pub use self::__ILMessageClassificationRequest::ILMessageClassificationRequest;
-#[cfg(all(
-    feature = "IdentityLookup_ILCommunication",
-    feature = "IdentityLookup_ILMessageCommunication"
-))]
+#[cfg(all(feature = "ILCommunication", feature = "ILMessageCommunication"))]
 pub use self::__ILMessageCommunication::ILMessageCommunication;
-#[cfg(feature = "IdentityLookup_ILMessageFilterAction")]
+#[cfg(feature = "ILMessageFilterAction")]
 pub use self::__ILMessageFilterAction::ILMessageFilterAction;
-#[cfg(feature = "IdentityLookup_ILMessageFilterAction")]
+#[cfg(feature = "ILMessageFilterAction")]
 pub use self::__ILMessageFilterAction::ILMessageFilterSubAction;
-#[cfg(feature = "IdentityLookup_ILMessageFilterCapabilitiesQueryHandling")]
+#[cfg(feature = "ILMessageFilterCapabilitiesQueryHandling")]
 pub use self::__ILMessageFilterCapabilitiesQueryHandling::ILMessageFilterCapabilitiesQueryHandling;
-#[cfg(feature = "IdentityLookup_ILMessageFilterCapabilitiesQueryRequest")]
+#[cfg(feature = "ILMessageFilterCapabilitiesQueryRequest")]
 pub use self::__ILMessageFilterCapabilitiesQueryRequest::ILMessageFilterCapabilitiesQueryRequest;
-#[cfg(feature = "IdentityLookup_ILMessageFilterCapabilitiesQueryResponse")]
+#[cfg(feature = "ILMessageFilterCapabilitiesQueryResponse")]
 pub use self::__ILMessageFilterCapabilitiesQueryResponse::ILMessageFilterCapabilitiesQueryResponse;
-#[cfg(feature = "IdentityLookup_ILMessageFilterError")]
+#[cfg(feature = "ILMessageFilterError")]
 pub use self::__ILMessageFilterError::ILMessageFilterError;
-#[cfg(feature = "IdentityLookup_ILMessageFilterError")]
+#[cfg(feature = "ILMessageFilterError")]
 pub use self::__ILMessageFilterError::ILMessageFilterErrorDomain;
-#[cfg(feature = "IdentityLookup_ILMessageFilterExtension")]
+#[cfg(feature = "ILMessageFilterExtension")]
 pub use self::__ILMessageFilterExtension::ILMessageFilterExtension;
-#[cfg(feature = "IdentityLookup_ILMessageFilterExtensionContext")]
+#[cfg(feature = "ILMessageFilterExtensionContext")]
 pub use self::__ILMessageFilterExtensionContext::ILMessageFilterExtensionContext;
-#[cfg(feature = "IdentityLookup_ILMessageFilterQueryHandling")]
+#[cfg(feature = "ILMessageFilterQueryHandling")]
 pub use self::__ILMessageFilterQueryHandling::ILMessageFilterQueryHandling;
-#[cfg(feature = "IdentityLookup_ILMessageFilterQueryRequest")]
+#[cfg(feature = "ILMessageFilterQueryRequest")]
 pub use self::__ILMessageFilterQueryRequest::ILMessageFilterQueryRequest;
-#[cfg(feature = "IdentityLookup_ILMessageFilterQueryResponse")]
+#[cfg(feature = "ILMessageFilterQueryResponse")]
 pub use self::__ILMessageFilterQueryResponse::ILMessageFilterQueryResponse;
-#[cfg(feature = "IdentityLookup_ILNetworkResponse")]
+#[cfg(feature = "ILNetworkResponse")]
 pub use self::__ILNetworkResponse::ILNetworkResponse;

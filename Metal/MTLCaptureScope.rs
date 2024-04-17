@@ -19,11 +19,11 @@ extern_protocol!(
         #[method(setLabel:)]
         unsafe fn setLabel(&self, label: Option<&NSString>);
 
-        #[cfg(feature = "Metal_MTLDevice")]
+        #[cfg(feature = "MTLDevice")]
         #[method_id(@__retain_semantics Other device)]
         unsafe fn device(&self) -> Id<ProtocolObject<dyn MTLDevice>>;
 
-        #[cfg(feature = "Metal_MTLCommandQueue")]
+        #[cfg(feature = "MTLCommandQueue")]
         #[method_id(@__retain_semantics Other commandQueue)]
         unsafe fn commandQueue(&self) -> Option<Id<ProtocolObject<dyn MTLCommandQueue>>>;
     }

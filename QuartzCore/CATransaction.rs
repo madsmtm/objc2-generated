@@ -42,11 +42,11 @@ extern_methods!(
         #[method(setAnimationDuration:)]
         pub fn setAnimationDuration(dur: CFTimeInterval);
 
-        #[cfg(feature = "QuartzCore_CAMediaTimingFunction")]
+        #[cfg(feature = "CAMediaTimingFunction")]
         #[method_id(@__retain_semantics Other animationTimingFunction)]
         pub fn animationTimingFunction() -> Option<Id<CAMediaTimingFunction>>;
 
-        #[cfg(feature = "QuartzCore_CAMediaTimingFunction")]
+        #[cfg(feature = "CAMediaTimingFunction")]
         #[method(setAnimationTimingFunction:)]
         pub fn setAnimationTimingFunction(function: Option<&CAMediaTimingFunction>);
 

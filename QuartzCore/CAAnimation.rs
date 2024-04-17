@@ -27,10 +27,10 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "QuartzCore_CALayer")]
+#[cfg(feature = "CALayer")]
 unsafe impl CAAction for CAAnimation {}
 
-#[cfg(feature = "QuartzCore_CAMediaTiming")]
+#[cfg(feature = "CAMediaTiming")]
 unsafe impl CAMediaTiming for CAAnimation {}
 
 unsafe impl NSCoding for CAAnimation {}
@@ -52,11 +52,11 @@ extern_methods!(
         #[method(shouldArchiveValueForKey:)]
         pub unsafe fn shouldArchiveValueForKey(&self, key: &NSString) -> bool;
 
-        #[cfg(feature = "QuartzCore_CAMediaTimingFunction")]
+        #[cfg(feature = "CAMediaTimingFunction")]
         #[method_id(@__retain_semantics Other timingFunction)]
         pub unsafe fn timingFunction(&self) -> Option<Id<CAMediaTimingFunction>>;
 
-        #[cfg(feature = "QuartzCore_CAMediaTimingFunction")]
+        #[cfg(feature = "CAMediaTimingFunction")]
         #[method(setTimingFunction:)]
         pub unsafe fn setTimingFunction(&self, timing_function: Option<&CAMediaTimingFunction>);
 
@@ -75,11 +75,11 @@ extern_methods!(
         #[method(setRemovedOnCompletion:)]
         pub unsafe fn setRemovedOnCompletion(&self, removed_on_completion: bool);
 
-        #[cfg(feature = "QuartzCore_CAFrameRateRange")]
+        #[cfg(feature = "CAFrameRateRange")]
         #[method(preferredFrameRateRange)]
         pub unsafe fn preferredFrameRateRange(&self) -> CAFrameRateRange;
 
-        #[cfg(feature = "QuartzCore_CAFrameRateRange")]
+        #[cfg(feature = "CAFrameRateRange")]
         #[method(setPreferredFrameRateRange:)]
         pub unsafe fn setPreferredFrameRateRange(
             &self,
@@ -124,10 +124,10 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "QuartzCore_CALayer")]
+#[cfg(feature = "CALayer")]
 unsafe impl CAAction for CAPropertyAnimation {}
 
-#[cfg(feature = "QuartzCore_CAMediaTiming")]
+#[cfg(feature = "CAMediaTiming")]
 unsafe impl CAMediaTiming for CAPropertyAnimation {}
 
 unsafe impl NSCoding for CAPropertyAnimation {}
@@ -161,11 +161,11 @@ extern_methods!(
         #[method(setCumulative:)]
         pub unsafe fn setCumulative(&self, cumulative: bool);
 
-        #[cfg(feature = "QuartzCore_CAValueFunction")]
+        #[cfg(feature = "CAValueFunction")]
         #[method_id(@__retain_semantics Other valueFunction)]
         pub unsafe fn valueFunction(&self) -> Option<Id<CAValueFunction>>;
 
-        #[cfg(feature = "QuartzCore_CAValueFunction")]
+        #[cfg(feature = "CAValueFunction")]
         #[method(setValueFunction:)]
         pub unsafe fn setValueFunction(&self, value_function: Option<&CAValueFunction>);
     }
@@ -201,10 +201,10 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "QuartzCore_CALayer")]
+#[cfg(feature = "CALayer")]
 unsafe impl CAAction for CABasicAnimation {}
 
-#[cfg(feature = "QuartzCore_CAMediaTiming")]
+#[cfg(feature = "CAMediaTiming")]
 unsafe impl CAMediaTiming for CABasicAnimation {}
 
 unsafe impl NSCoding for CABasicAnimation {}
@@ -275,10 +275,10 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "QuartzCore_CALayer")]
+#[cfg(feature = "CALayer")]
 unsafe impl CAAction for CAKeyframeAnimation {}
 
-#[cfg(feature = "QuartzCore_CAMediaTiming")]
+#[cfg(feature = "CAMediaTiming")]
 unsafe impl CAMediaTiming for CAKeyframeAnimation {}
 
 unsafe impl NSCoding for CAKeyframeAnimation {}
@@ -303,11 +303,11 @@ extern_methods!(
         #[method(setKeyTimes:)]
         pub unsafe fn setKeyTimes(&self, key_times: Option<&NSArray<NSNumber>>);
 
-        #[cfg(feature = "QuartzCore_CAMediaTimingFunction")]
+        #[cfg(feature = "CAMediaTimingFunction")]
         #[method_id(@__retain_semantics Other timingFunctions)]
         pub unsafe fn timingFunctions(&self) -> Option<Id<NSArray<CAMediaTimingFunction>>>;
 
-        #[cfg(feature = "QuartzCore_CAMediaTimingFunction")]
+        #[cfg(feature = "CAMediaTimingFunction")]
         #[method(setTimingFunctions:)]
         pub unsafe fn setTimingFunctions(
             &self,
@@ -412,10 +412,10 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "QuartzCore_CALayer")]
+#[cfg(feature = "CALayer")]
 unsafe impl CAAction for CASpringAnimation {}
 
-#[cfg(feature = "QuartzCore_CAMediaTiming")]
+#[cfg(feature = "CAMediaTiming")]
 unsafe impl CAMediaTiming for CASpringAnimation {}
 
 unsafe impl NSCoding for CASpringAnimation {}
@@ -514,10 +514,10 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "QuartzCore_CALayer")]
+#[cfg(feature = "CALayer")]
 unsafe impl CAAction for CATransition {}
 
-#[cfg(feature = "QuartzCore_CAMediaTiming")]
+#[cfg(feature = "CAMediaTiming")]
 unsafe impl CAMediaTiming for CATransition {}
 
 unsafe impl NSCoding for CATransition {}
@@ -624,10 +624,10 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "QuartzCore_CALayer")]
+#[cfg(feature = "CALayer")]
 unsafe impl CAAction for CAAnimationGroup {}
 
-#[cfg(feature = "QuartzCore_CAMediaTiming")]
+#[cfg(feature = "CAMediaTiming")]
 unsafe impl CAMediaTiming for CAAnimationGroup {}
 
 unsafe impl NSCoding for CAAnimationGroup {}

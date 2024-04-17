@@ -11,10 +11,10 @@ pub type CLBeaconMinorValue = u16;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CoreLocation_CLCondition")]
+    #[cfg(feature = "CLCondition")]
     pub struct CLBeaconIdentityCondition;
 
-    #[cfg(feature = "CoreLocation_CLCondition")]
+    #[cfg(feature = "CLCondition")]
     unsafe impl ClassType for CLBeaconIdentityCondition {
         #[inherits(NSObject)]
         type Super = CLCondition;
@@ -22,20 +22,20 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "CoreLocation_CLCondition")]
+#[cfg(feature = "CLCondition")]
 unsafe impl NSCoding for CLBeaconIdentityCondition {}
 
-#[cfg(feature = "CoreLocation_CLCondition")]
+#[cfg(feature = "CLCondition")]
 unsafe impl NSCopying for CLBeaconIdentityCondition {}
 
-#[cfg(feature = "CoreLocation_CLCondition")]
+#[cfg(feature = "CLCondition")]
 unsafe impl NSObjectProtocol for CLBeaconIdentityCondition {}
 
-#[cfg(feature = "CoreLocation_CLCondition")]
+#[cfg(feature = "CLCondition")]
 unsafe impl NSSecureCoding for CLBeaconIdentityCondition {}
 
 extern_methods!(
-    #[cfg(feature = "CoreLocation_CLCondition")]
+    #[cfg(feature = "CLCondition")]
     unsafe impl CLBeaconIdentityCondition {
         #[method_id(@__retain_semantics Other UUID)]
         pub unsafe fn UUID(&self) -> Id<NSUUID>;
@@ -68,7 +68,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `CLCondition`
-    #[cfg(feature = "CoreLocation_CLCondition")]
+    #[cfg(feature = "CLCondition")]
     unsafe impl CLBeaconIdentityCondition {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

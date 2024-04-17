@@ -23,19 +23,19 @@ unsafe impl NSSecureCoding for ILMessageFilterQueryResponse {}
 
 extern_methods!(
     unsafe impl ILMessageFilterQueryResponse {
-        #[cfg(feature = "IdentityLookup_ILMessageFilterAction")]
+        #[cfg(feature = "ILMessageFilterAction")]
         #[method(action)]
         pub unsafe fn action(&self) -> ILMessageFilterAction;
 
-        #[cfg(feature = "IdentityLookup_ILMessageFilterAction")]
+        #[cfg(feature = "ILMessageFilterAction")]
         #[method(setAction:)]
         pub unsafe fn setAction(&self, action: ILMessageFilterAction);
 
-        #[cfg(feature = "IdentityLookup_ILMessageFilterAction")]
+        #[cfg(feature = "ILMessageFilterAction")]
         #[method(subAction)]
         pub unsafe fn subAction(&self) -> ILMessageFilterSubAction;
 
-        #[cfg(feature = "IdentityLookup_ILMessageFilterAction")]
+        #[cfg(feature = "ILMessageFilterAction")]
         #[method(setSubAction:)]
         pub unsafe fn setSubAction(&self, sub_action: ILMessageFilterSubAction);
     }

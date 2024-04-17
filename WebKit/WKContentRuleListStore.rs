@@ -27,7 +27,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other storeWithURL:)]
         pub unsafe fn storeWithURL(url: Option<&NSURL>) -> Option<Id<Self>>;
 
-        #[cfg(all(feature = "WebKit_WKContentRuleList", feature = "block2"))]
+        #[cfg(all(feature = "WKContentRuleList", feature = "block2"))]
         #[method(compileContentRuleListForIdentifier:encodedContentRuleList:completionHandler:)]
         pub unsafe fn compileContentRuleListForIdentifier_encodedContentRuleList_completionHandler(
             &self,
@@ -36,7 +36,7 @@ extern_methods!(
             completion_handler: Option<&Block<dyn Fn(*mut WKContentRuleList, *mut NSError)>>,
         );
 
-        #[cfg(all(feature = "WebKit_WKContentRuleList", feature = "block2"))]
+        #[cfg(all(feature = "WKContentRuleList", feature = "block2"))]
         #[method(lookUpContentRuleListForIdentifier:completionHandler:)]
         pub unsafe fn lookUpContentRuleListForIdentifier_completionHandler(
             &self,

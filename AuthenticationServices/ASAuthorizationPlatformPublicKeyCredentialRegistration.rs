@@ -16,13 +16,13 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AuthenticationServices_ASAuthorizationCredential")]
+#[cfg(feature = "ASAuthorizationCredential")]
 unsafe impl ASAuthorizationCredential for ASAuthorizationPlatformPublicKeyCredentialRegistration {}
 
 #[cfg(all(
-    feature = "AuthenticationServices_ASAuthorizationCredential",
-    feature = "AuthenticationServices_ASAuthorizationPublicKeyCredentialRegistration",
-    feature = "AuthenticationServices_ASPublicKeyCredential"
+    feature = "ASAuthorizationCredential",
+    feature = "ASAuthorizationPublicKeyCredentialRegistration",
+    feature = "ASPublicKeyCredential"
 ))]
 unsafe impl ASAuthorizationPublicKeyCredentialRegistration
     for ASAuthorizationPlatformPublicKeyCredentialRegistration
@@ -30,8 +30,8 @@ unsafe impl ASAuthorizationPublicKeyCredentialRegistration
 }
 
 #[cfg(all(
-    feature = "AuthenticationServices_ASAuthorizationCredential",
-    feature = "AuthenticationServices_ASPublicKeyCredential"
+    feature = "ASAuthorizationCredential",
+    feature = "ASPublicKeyCredential"
 ))]
 unsafe impl ASPublicKeyCredential for ASAuthorizationPlatformPublicKeyCredentialRegistration {}
 
@@ -51,13 +51,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
-        #[cfg(feature = "AuthenticationServices_ASAuthorizationPublicKeyCredentialConstants")]
+        #[cfg(feature = "ASAuthorizationPublicKeyCredentialConstants")]
         #[method(attachment)]
         pub unsafe fn attachment(&self) -> ASAuthorizationPublicKeyCredentialAttachment;
 
-        #[cfg(
-            feature = "AuthenticationServices_ASAuthorizationPublicKeyCredentialLargeBlobRegistrationOutput"
-        )]
+        #[cfg(feature = "ASAuthorizationPublicKeyCredentialLargeBlobRegistrationOutput")]
         #[method_id(@__retain_semantics Other largeBlob)]
         pub unsafe fn largeBlob(
             &self,

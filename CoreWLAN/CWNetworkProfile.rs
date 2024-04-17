@@ -33,7 +33,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other ssidData)]
         pub unsafe fn ssidData(&self) -> Option<Id<NSData>>;
 
-        #[cfg(feature = "CoreWLAN_CoreWLANTypes")]
+        #[cfg(feature = "CoreWLANTypes")]
         #[method(security)]
         pub unsafe fn security(&self) -> CWSecurity;
 
@@ -96,11 +96,11 @@ extern_methods!(
         #[method(setSsidData:)]
         pub unsafe fn setSsidData(&self, ssid_data: Option<&NSData>);
 
-        #[cfg(feature = "CoreWLAN_CoreWLANTypes")]
+        #[cfg(feature = "CoreWLANTypes")]
         #[method(security)]
         pub unsafe fn security(&self) -> CWSecurity;
 
-        #[cfg(feature = "CoreWLAN_CoreWLANTypes")]
+        #[cfg(feature = "CoreWLANTypes")]
         #[method(setSecurity:)]
         pub unsafe fn setSecurity(&self, security: CWSecurity);
     }

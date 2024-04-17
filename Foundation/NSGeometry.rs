@@ -220,38 +220,38 @@ extern "C" {
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub fn NSStringFromPoint(a_point: NSPoint) -> NonNull<NSString>;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub fn NSStringFromSize(a_size: NSSize) -> NonNull<NSString>;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub fn NSStringFromRect(a_rect: NSRect) -> NonNull<NSString>;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub fn NSPointFromString(a_string: &NSString) -> NSPoint;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub fn NSSizeFromString(a_string: &NSString) -> NSSize;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub fn NSRectFromString(a_string: &NSString) -> NSRect;
 }
 
 extern_methods!(
     /// NSValueGeometryExtensions
-    #[cfg(feature = "Foundation_NSValue")]
+    #[cfg(feature = "NSValue")]
     unsafe impl NSValue {
         #[method_id(@__retain_semantics Other valueWithPoint:)]
         pub unsafe fn valueWithPoint(point: NSPoint) -> Id<NSValue>;
@@ -281,7 +281,7 @@ extern_methods!(
 
 extern_methods!(
     /// NSGeometryCoding
-    #[cfg(feature = "Foundation_NSCoder")]
+    #[cfg(feature = "NSCoder")]
     unsafe impl NSCoder {
         #[method(encodePoint:)]
         pub unsafe fn encodePoint(&self, point: NSPoint);
@@ -305,29 +305,29 @@ extern_methods!(
 
 extern_methods!(
     /// NSGeometryKeyedCoding
-    #[cfg(feature = "Foundation_NSCoder")]
+    #[cfg(feature = "NSCoder")]
     unsafe impl NSCoder {
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method(encodePoint:forKey:)]
         pub unsafe fn encodePoint_forKey(&self, point: NSPoint, key: &NSString);
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method(encodeSize:forKey:)]
         pub unsafe fn encodeSize_forKey(&self, size: NSSize, key: &NSString);
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method(encodeRect:forKey:)]
         pub unsafe fn encodeRect_forKey(&self, rect: NSRect, key: &NSString);
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method(decodePointForKey:)]
         pub unsafe fn decodePointForKey(&self, key: &NSString) -> NSPoint;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method(decodeSizeForKey:)]
         pub unsafe fn decodeSizeForKey(&self, key: &NSString) -> NSSize;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method(decodeRectForKey:)]
         pub unsafe fn decodeRectForKey(&self, key: &NSString) -> NSRect;
     }

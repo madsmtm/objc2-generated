@@ -9,10 +9,10 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CoreData_NSPersistentStoreRequest")]
+    #[cfg(feature = "NSPersistentStoreRequest")]
     pub struct NSBatchInsertRequest;
 
-    #[cfg(feature = "CoreData_NSPersistentStoreRequest")]
+    #[cfg(feature = "NSPersistentStoreRequest")]
     unsafe impl ClassType for NSBatchInsertRequest {
         #[inherits(NSObject)]
         type Super = NSPersistentStoreRequest;
@@ -20,19 +20,19 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "CoreData_NSPersistentStoreRequest")]
+#[cfg(feature = "NSPersistentStoreRequest")]
 unsafe impl NSCopying for NSBatchInsertRequest {}
 
-#[cfg(feature = "CoreData_NSPersistentStoreRequest")]
+#[cfg(feature = "NSPersistentStoreRequest")]
 unsafe impl NSObjectProtocol for NSBatchInsertRequest {}
 
 extern_methods!(
-    #[cfg(feature = "CoreData_NSPersistentStoreRequest")]
+    #[cfg(feature = "NSPersistentStoreRequest")]
     unsafe impl NSBatchInsertRequest {
         #[method_id(@__retain_semantics Other entityName)]
         pub unsafe fn entityName(&self) -> Id<NSString>;
 
-        #[cfg(feature = "CoreData_NSEntityDescription")]
+        #[cfg(feature = "NSEntityDescription")]
         #[method_id(@__retain_semantics Other entity)]
         pub unsafe fn entity(&self) -> Option<Id<NSEntityDescription>>;
 
@@ -62,24 +62,24 @@ extern_methods!(
             >,
         );
 
-        #[cfg(all(feature = "CoreData_NSManagedObject", feature = "block2"))]
+        #[cfg(all(feature = "NSManagedObject", feature = "block2"))]
         #[method(managedObjectHandler)]
         pub unsafe fn managedObjectHandler(
             &self,
         ) -> *mut Block<dyn Fn(NonNull<NSManagedObject>) -> Bool>;
 
-        #[cfg(all(feature = "CoreData_NSManagedObject", feature = "block2"))]
+        #[cfg(all(feature = "NSManagedObject", feature = "block2"))]
         #[method(setManagedObjectHandler:)]
         pub unsafe fn setManagedObjectHandler(
             &self,
             managed_object_handler: Option<&Block<dyn Fn(NonNull<NSManagedObject>) -> Bool>>,
         );
 
-        #[cfg(feature = "CoreData_NSPersistentStoreResult")]
+        #[cfg(feature = "NSPersistentStoreResult")]
         #[method(resultType)]
         pub unsafe fn resultType(&self) -> NSBatchInsertRequestResultType;
 
-        #[cfg(feature = "CoreData_NSPersistentStoreResult")]
+        #[cfg(feature = "NSPersistentStoreResult")]
         #[method(setResultType:)]
         pub unsafe fn setResultType(&self, result_type: NSBatchInsertRequestResultType);
 
@@ -96,7 +96,7 @@ extern_methods!(
             handler: &Block<dyn Fn(NonNull<NSMutableDictionary<NSString, AnyObject>>) -> Bool>,
         ) -> Id<Self>;
 
-        #[cfg(all(feature = "CoreData_NSManagedObject", feature = "block2"))]
+        #[cfg(all(feature = "NSManagedObject", feature = "block2"))]
         #[method_id(@__retain_semantics Other batchInsertRequestWithEntityName:managedObjectHandler:)]
         pub unsafe fn batchInsertRequestWithEntityName_managedObjectHandler(
             entity_name: &NSString,
@@ -114,7 +114,7 @@ extern_methods!(
             dictionaries: &NSArray<NSDictionary<NSString, AnyObject>>,
         ) -> Id<Self>;
 
-        #[cfg(feature = "CoreData_NSEntityDescription")]
+        #[cfg(feature = "NSEntityDescription")]
         #[method_id(@__retain_semantics Init initWithEntity:objects:)]
         pub unsafe fn initWithEntity_objects(
             this: Allocated<Self>,
@@ -122,7 +122,7 @@ extern_methods!(
             dictionaries: &NSArray<NSDictionary<NSString, AnyObject>>,
         ) -> Id<Self>;
 
-        #[cfg(all(feature = "CoreData_NSEntityDescription", feature = "block2"))]
+        #[cfg(all(feature = "NSEntityDescription", feature = "block2"))]
         #[method_id(@__retain_semantics Init initWithEntity:dictionaryHandler:)]
         pub unsafe fn initWithEntity_dictionaryHandler(
             this: Allocated<Self>,
@@ -131,8 +131,8 @@ extern_methods!(
         ) -> Id<Self>;
 
         #[cfg(all(
-            feature = "CoreData_NSEntityDescription",
-            feature = "CoreData_NSManagedObject",
+            feature = "NSEntityDescription",
+            feature = "NSManagedObject",
             feature = "block2"
         ))]
         #[method_id(@__retain_semantics Init initWithEntity:managedObjectHandler:)]
@@ -150,7 +150,7 @@ extern_methods!(
             handler: &Block<dyn Fn(NonNull<NSMutableDictionary<NSString, AnyObject>>) -> Bool>,
         ) -> Id<Self>;
 
-        #[cfg(all(feature = "CoreData_NSManagedObject", feature = "block2"))]
+        #[cfg(all(feature = "NSManagedObject", feature = "block2"))]
         #[method_id(@__retain_semantics Init initWithEntityName:managedObjectHandler:)]
         pub unsafe fn initWithEntityName_managedObjectHandler(
             this: Allocated<Self>,
@@ -162,7 +162,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CoreData_NSPersistentStoreRequest")]
+    #[cfg(feature = "NSPersistentStoreRequest")]
     unsafe impl NSBatchInsertRequest {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

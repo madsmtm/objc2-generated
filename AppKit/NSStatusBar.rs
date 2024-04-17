@@ -26,11 +26,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Other systemStatusBar)]
         pub unsafe fn systemStatusBar() -> Id<NSStatusBar>;
 
-        #[cfg(feature = "AppKit_NSStatusItem")]
+        #[cfg(feature = "NSStatusItem")]
         #[method_id(@__retain_semantics Other statusItemWithLength:)]
         pub unsafe fn statusItemWithLength(&self, length: CGFloat) -> Id<NSStatusItem>;
 
-        #[cfg(feature = "AppKit_NSStatusItem")]
+        #[cfg(feature = "NSStatusItem")]
         #[method(removeStatusItem:)]
         pub unsafe fn removeStatusItem(&self, item: &NSStatusItem);
 

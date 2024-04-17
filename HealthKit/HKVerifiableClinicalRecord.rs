@@ -43,10 +43,10 @@ extern "C" {
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(feature = "HealthKit_HKObject", feature = "HealthKit_HKSample"))]
+    #[cfg(all(feature = "HKObject", feature = "HKSample"))]
     pub struct HKVerifiableClinicalRecord;
 
-    #[cfg(all(feature = "HealthKit_HKObject", feature = "HealthKit_HKSample"))]
+    #[cfg(all(feature = "HKObject", feature = "HKSample"))]
     unsafe impl ClassType for HKVerifiableClinicalRecord {
         #[inherits(HKObject, NSObject)]
         type Super = HKSample;
@@ -54,17 +54,17 @@ extern_class!(
     }
 );
 
-#[cfg(all(feature = "HealthKit_HKObject", feature = "HealthKit_HKSample"))]
+#[cfg(all(feature = "HKObject", feature = "HKSample"))]
 unsafe impl NSCoding for HKVerifiableClinicalRecord {}
 
-#[cfg(all(feature = "HealthKit_HKObject", feature = "HealthKit_HKSample"))]
+#[cfg(all(feature = "HKObject", feature = "HKSample"))]
 unsafe impl NSObjectProtocol for HKVerifiableClinicalRecord {}
 
-#[cfg(all(feature = "HealthKit_HKObject", feature = "HealthKit_HKSample"))]
+#[cfg(all(feature = "HKObject", feature = "HKSample"))]
 unsafe impl NSSecureCoding for HKVerifiableClinicalRecord {}
 
 extern_methods!(
-    #[cfg(all(feature = "HealthKit_HKObject", feature = "HealthKit_HKSample"))]
+    #[cfg(all(feature = "HKObject", feature = "HKSample"))]
     unsafe impl HKVerifiableClinicalRecord {
         #[method_id(@__retain_semantics Other recordTypes)]
         pub unsafe fn recordTypes(&self) -> Id<NSArray<NSString>>;
@@ -72,7 +72,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other issuerIdentifier)]
         pub unsafe fn issuerIdentifier(&self) -> Id<NSString>;
 
-        #[cfg(feature = "HealthKit_HKVerifiableClinicalRecordSubject")]
+        #[cfg(feature = "HKVerifiableClinicalRecordSubject")]
         #[method_id(@__retain_semantics Other subject)]
         pub unsafe fn subject(&self) -> Id<HKVerifiableClinicalRecordSubject>;
 

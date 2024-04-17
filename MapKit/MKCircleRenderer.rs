@@ -7,16 +7,10 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(
-        feature = "MapKit_MKOverlayPathRenderer",
-        feature = "MapKit_MKOverlayRenderer"
-    ))]
+    #[cfg(all(feature = "MKOverlayPathRenderer", feature = "MKOverlayRenderer"))]
     pub struct MKCircleRenderer;
 
-    #[cfg(all(
-        feature = "MapKit_MKOverlayPathRenderer",
-        feature = "MapKit_MKOverlayRenderer"
-    ))]
+    #[cfg(all(feature = "MKOverlayPathRenderer", feature = "MKOverlayRenderer"))]
     unsafe impl ClassType for MKCircleRenderer {
         #[inherits(MKOverlayRenderer, NSObject)]
         type Super = MKOverlayPathRenderer;
@@ -24,23 +18,17 @@ extern_class!(
     }
 );
 
-#[cfg(all(
-    feature = "MapKit_MKOverlayPathRenderer",
-    feature = "MapKit_MKOverlayRenderer"
-))]
+#[cfg(all(feature = "MKOverlayPathRenderer", feature = "MKOverlayRenderer"))]
 unsafe impl NSObjectProtocol for MKCircleRenderer {}
 
 extern_methods!(
-    #[cfg(all(
-        feature = "MapKit_MKOverlayPathRenderer",
-        feature = "MapKit_MKOverlayRenderer"
-    ))]
+    #[cfg(all(feature = "MKOverlayPathRenderer", feature = "MKOverlayRenderer"))]
     unsafe impl MKCircleRenderer {
-        #[cfg(all(feature = "MapKit_MKCircle", feature = "MapKit_MKShape"))]
+        #[cfg(all(feature = "MKCircle", feature = "MKShape"))]
         #[method_id(@__retain_semantics Init initWithCircle:)]
         pub unsafe fn initWithCircle(this: Allocated<Self>, circle: &MKCircle) -> Id<Self>;
 
-        #[cfg(all(feature = "MapKit_MKCircle", feature = "MapKit_MKShape"))]
+        #[cfg(all(feature = "MKCircle", feature = "MKShape"))]
         #[method_id(@__retain_semantics Other circle)]
         pub unsafe fn circle(&self) -> Id<MKCircle>;
 
@@ -60,12 +48,9 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MKOverlayRenderer`
-    #[cfg(all(
-        feature = "MapKit_MKOverlayPathRenderer",
-        feature = "MapKit_MKOverlayRenderer"
-    ))]
+    #[cfg(all(feature = "MKOverlayPathRenderer", feature = "MKOverlayRenderer"))]
     unsafe impl MKCircleRenderer {
-        #[cfg(all(feature = "MapKit_MKAnnotation", feature = "MapKit_MKOverlay"))]
+        #[cfg(all(feature = "MKAnnotation", feature = "MKOverlay"))]
         #[method_id(@__retain_semantics Init initWithOverlay:)]
         pub unsafe fn initWithOverlay(
             this: Allocated<Self>,
@@ -76,10 +61,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(all(
-        feature = "MapKit_MKOverlayPathRenderer",
-        feature = "MapKit_MKOverlayRenderer"
-    ))]
+    #[cfg(all(feature = "MKOverlayPathRenderer", feature = "MKOverlayRenderer"))]
     unsafe impl MKCircleRenderer {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

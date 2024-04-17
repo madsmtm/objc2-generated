@@ -15,10 +15,10 @@ extern "C" {
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "GameKit_GKBasePlayer")]
+    #[cfg(feature = "GKBasePlayer")]
     pub struct GKPlayer;
 
-    #[cfg(feature = "GameKit_GKBasePlayer")]
+    #[cfg(feature = "GKBasePlayer")]
     unsafe impl ClassType for GKPlayer {
         #[inherits(NSObject)]
         type Super = GKBasePlayer;
@@ -26,11 +26,11 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "GameKit_GKBasePlayer")]
+#[cfg(feature = "GKBasePlayer")]
 unsafe impl NSObjectProtocol for GKPlayer {}
 
 extern_methods!(
-    #[cfg(feature = "GameKit_GKBasePlayer")]
+    #[cfg(feature = "GKBasePlayer")]
     unsafe impl GKPlayer {
         #[method(scopedIDsArePersistent)]
         pub unsafe fn scopedIDsArePersistent(&self) -> bool;
@@ -60,7 +60,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "GameKit_GKBasePlayer")]
+    #[cfg(feature = "GKBasePlayer")]
     unsafe impl GKPlayer {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -91,7 +91,7 @@ unsafe impl RefEncode for GKPhotoSize {
 
 extern_methods!(
     /// UI
-    #[cfg(feature = "GameKit_GKBasePlayer")]
+    #[cfg(feature = "GKBasePlayer")]
     unsafe impl GKPlayer {
         #[cfg(all(feature = "block2", feature = "objc2-app-kit"))]
         #[method(loadPhotoForSize:withCompletionHandler:)]
@@ -109,7 +109,7 @@ extern "C" {
 
 extern_methods!(
     /// Deprecated
-    #[cfg(feature = "GameKit_GKBasePlayer")]
+    #[cfg(feature = "GKBasePlayer")]
     unsafe impl GKPlayer {
         #[deprecated]
         #[method(isFriend)]

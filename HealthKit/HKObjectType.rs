@@ -35,31 +35,31 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
-        #[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+        #[cfg(feature = "HKTypeIdentifiers")]
         #[method_id(@__retain_semantics Other quantityTypeForIdentifier:)]
         pub unsafe fn quantityTypeForIdentifier(
             identifier: &HKQuantityTypeIdentifier,
         ) -> Option<Id<HKQuantityType>>;
 
-        #[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+        #[cfg(feature = "HKTypeIdentifiers")]
         #[method_id(@__retain_semantics Other categoryTypeForIdentifier:)]
         pub unsafe fn categoryTypeForIdentifier(
             identifier: &HKCategoryTypeIdentifier,
         ) -> Option<Id<HKCategoryType>>;
 
-        #[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+        #[cfg(feature = "HKTypeIdentifiers")]
         #[method_id(@__retain_semantics Other characteristicTypeForIdentifier:)]
         pub unsafe fn characteristicTypeForIdentifier(
             identifier: &HKCharacteristicTypeIdentifier,
         ) -> Option<Id<HKCharacteristicType>>;
 
-        #[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+        #[cfg(feature = "HKTypeIdentifiers")]
         #[method_id(@__retain_semantics Other correlationTypeForIdentifier:)]
         pub unsafe fn correlationTypeForIdentifier(
             identifier: &HKCorrelationTypeIdentifier,
         ) -> Option<Id<HKCorrelationType>>;
 
-        #[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+        #[cfg(feature = "HKTypeIdentifiers")]
         #[method_id(@__retain_semantics Other documentTypeForIdentifier:)]
         pub unsafe fn documentTypeForIdentifier(
             identifier: &HKDocumentTypeIdentifier,
@@ -351,11 +351,11 @@ unsafe impl NSSecureCoding for HKQuantityType {}
 
 extern_methods!(
     unsafe impl HKQuantityType {
-        #[cfg(feature = "HealthKit_HKQuantityAggregationStyle")]
+        #[cfg(feature = "HKQuantityAggregationStyle")]
         #[method(aggregationStyle)]
         pub unsafe fn aggregationStyle(&self) -> HKQuantityAggregationStyle;
 
-        #[cfg(feature = "HealthKit_HKUnit")]
+        #[cfg(feature = "HKUnit")]
         #[method(isCompatibleWithUnit:)]
         pub unsafe fn isCompatibleWithUnit(&self, unit: &HKUnit) -> bool;
     }

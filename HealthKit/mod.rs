@@ -16,1424 +16,1373 @@
 #[link(name = "HealthKit", kind = "framework")]
 extern "C" {}
 
-#[cfg(feature = "HealthKit_HKActivitySummary")]
+#[cfg(feature = "HKActivitySummary")]
 #[path = "HKActivitySummary.rs"]
 mod __HKActivitySummary;
-#[cfg(feature = "HealthKit_HKActivitySummaryQuery")]
+#[cfg(feature = "HKActivitySummaryQuery")]
 #[path = "HKActivitySummaryQuery.rs"]
 mod __HKActivitySummaryQuery;
-#[cfg(feature = "HealthKit_HKAnchoredObjectQuery")]
+#[cfg(feature = "HKAnchoredObjectQuery")]
 #[path = "HKAnchoredObjectQuery.rs"]
 mod __HKAnchoredObjectQuery;
-#[cfg(feature = "HealthKit_HKAppleWalkingSteadinessClassification")]
+#[cfg(feature = "HKAppleWalkingSteadinessClassification")]
 #[path = "HKAppleWalkingSteadinessClassification.rs"]
 mod __HKAppleWalkingSteadinessClassification;
-#[cfg(feature = "HealthKit_HKAttachment")]
+#[cfg(feature = "HKAttachment")]
 #[path = "HKAttachment.rs"]
 mod __HKAttachment;
-#[cfg(feature = "HealthKit_HKAttachmentStore")]
+#[cfg(feature = "HKAttachmentStore")]
 #[path = "HKAttachmentStore.rs"]
 mod __HKAttachmentStore;
-#[cfg(feature = "HealthKit_HKAudiogramSample")]
+#[cfg(feature = "HKAudiogramSample")]
 #[path = "HKAudiogramSample.rs"]
 mod __HKAudiogramSample;
-#[cfg(feature = "HealthKit_HKCDADocumentSample")]
+#[cfg(feature = "HKCDADocumentSample")]
 #[path = "HKCDADocumentSample.rs"]
 mod __HKCDADocumentSample;
-#[cfg(feature = "HealthKit_HKCategorySample")]
+#[cfg(feature = "HKCategorySample")]
 #[path = "HKCategorySample.rs"]
 mod __HKCategorySample;
-#[cfg(feature = "HealthKit_HKCategoryValues")]
+#[cfg(feature = "HKCategoryValues")]
 #[path = "HKCategoryValues.rs"]
 mod __HKCategoryValues;
-#[cfg(feature = "HealthKit_HKCharacteristicObjects")]
+#[cfg(feature = "HKCharacteristicObjects")]
 #[path = "HKCharacteristicObjects.rs"]
 mod __HKCharacteristicObjects;
-#[cfg(feature = "HealthKit_HKCharacteristicValues")]
+#[cfg(feature = "HKCharacteristicValues")]
 #[path = "HKCharacteristicValues.rs"]
 mod __HKCharacteristicValues;
-#[cfg(feature = "HealthKit_HKClinicalRecord")]
+#[cfg(feature = "HKClinicalRecord")]
 #[path = "HKClinicalRecord.rs"]
 mod __HKClinicalRecord;
-#[cfg(feature = "HealthKit_HKClinicalType")]
+#[cfg(feature = "HKClinicalType")]
 #[path = "HKClinicalType.rs"]
 mod __HKClinicalType;
-#[cfg(feature = "HealthKit_HKContactsLensSpecification")]
+#[cfg(feature = "HKContactsLensSpecification")]
 #[path = "HKContactsLensSpecification.rs"]
 mod __HKContactsLensSpecification;
-#[cfg(feature = "HealthKit_HKContactsPrescription")]
+#[cfg(feature = "HKContactsPrescription")]
 #[path = "HKContactsPrescription.rs"]
 mod __HKContactsPrescription;
-#[cfg(feature = "HealthKit_HKCorrelation")]
+#[cfg(feature = "HKCorrelation")]
 #[path = "HKCorrelation.rs"]
 mod __HKCorrelation;
-#[cfg(feature = "HealthKit_HKCorrelationQuery")]
+#[cfg(feature = "HKCorrelationQuery")]
 #[path = "HKCorrelationQuery.rs"]
 mod __HKCorrelationQuery;
-#[cfg(feature = "HealthKit_HKCumulativeQuantitySample")]
+#[cfg(feature = "HKCumulativeQuantitySample")]
 #[path = "HKCumulativeQuantitySample.rs"]
 mod __HKCumulativeQuantitySample;
-#[cfg(feature = "HealthKit_HKCumulativeQuantitySeriesSample")]
+#[cfg(feature = "HKCumulativeQuantitySeriesSample")]
 #[path = "HKCumulativeQuantitySeriesSample.rs"]
 mod __HKCumulativeQuantitySeriesSample;
-#[cfg(feature = "HealthKit_HKDefines")]
+#[cfg(feature = "HKDefines")]
 #[path = "HKDefines.rs"]
 mod __HKDefines;
-#[cfg(feature = "HealthKit_HKDeletedObject")]
+#[cfg(feature = "HKDeletedObject")]
 #[path = "HKDeletedObject.rs"]
 mod __HKDeletedObject;
-#[cfg(feature = "HealthKit_HKDevice")]
+#[cfg(feature = "HKDevice")]
 #[path = "HKDevice.rs"]
 mod __HKDevice;
-#[cfg(feature = "HealthKit_HKDiscreteQuantitySample")]
+#[cfg(feature = "HKDiscreteQuantitySample")]
 #[path = "HKDiscreteQuantitySample.rs"]
 mod __HKDiscreteQuantitySample;
-#[cfg(feature = "HealthKit_HKDocumentQuery")]
+#[cfg(feature = "HKDocumentQuery")]
 #[path = "HKDocumentQuery.rs"]
 mod __HKDocumentQuery;
-#[cfg(feature = "HealthKit_HKDocumentSample")]
+#[cfg(feature = "HKDocumentSample")]
 #[path = "HKDocumentSample.rs"]
 mod __HKDocumentSample;
-#[cfg(feature = "HealthKit_HKElectrocardiogram")]
+#[cfg(feature = "HKElectrocardiogram")]
 #[path = "HKElectrocardiogram.rs"]
 mod __HKElectrocardiogram;
-#[cfg(feature = "HealthKit_HKElectrocardiogramQuery")]
+#[cfg(feature = "HKElectrocardiogramQuery")]
 #[path = "HKElectrocardiogramQuery.rs"]
 mod __HKElectrocardiogramQuery;
-#[cfg(feature = "HealthKit_HKFHIRRelease")]
+#[cfg(feature = "HKFHIRRelease")]
 #[path = "HKFHIRRelease.rs"]
 mod __HKFHIRRelease;
-#[cfg(feature = "HealthKit_HKFHIRResource")]
+#[cfg(feature = "HKFHIRResource")]
 #[path = "HKFHIRResource.rs"]
 mod __HKFHIRResource;
-#[cfg(feature = "HealthKit_HKFHIRVersion")]
+#[cfg(feature = "HKFHIRVersion")]
 #[path = "HKFHIRVersion.rs"]
 mod __HKFHIRVersion;
-#[cfg(feature = "HealthKit_HKGlassesLensSpecification")]
+#[cfg(feature = "HKGlassesLensSpecification")]
 #[path = "HKGlassesLensSpecification.rs"]
 mod __HKGlassesLensSpecification;
-#[cfg(feature = "HealthKit_HKGlassesPrescription")]
+#[cfg(feature = "HKGlassesPrescription")]
 #[path = "HKGlassesPrescription.rs"]
 mod __HKGlassesPrescription;
-#[cfg(feature = "HealthKit_HKHealthStore")]
+#[cfg(feature = "HKHealthStore")]
 #[path = "HKHealthStore.rs"]
 mod __HKHealthStore;
-#[cfg(feature = "HealthKit_HKHeartbeatSeriesBuilder")]
+#[cfg(feature = "HKHeartbeatSeriesBuilder")]
 #[path = "HKHeartbeatSeriesBuilder.rs"]
 mod __HKHeartbeatSeriesBuilder;
-#[cfg(feature = "HealthKit_HKHeartbeatSeriesQuery")]
+#[cfg(feature = "HKHeartbeatSeriesQuery")]
 #[path = "HKHeartbeatSeriesQuery.rs"]
 mod __HKHeartbeatSeriesQuery;
-#[cfg(feature = "HealthKit_HKHeartbeatSeriesSample")]
+#[cfg(feature = "HKHeartbeatSeriesSample")]
 #[path = "HKHeartbeatSeriesSample.rs"]
 mod __HKHeartbeatSeriesSample;
-#[cfg(feature = "HealthKit_HKLensSpecification")]
+#[cfg(feature = "HKLensSpecification")]
 #[path = "HKLensSpecification.rs"]
 mod __HKLensSpecification;
-#[cfg(feature = "HealthKit_HKLiveWorkoutBuilder")]
+#[cfg(feature = "HKLiveWorkoutBuilder")]
 #[path = "HKLiveWorkoutBuilder.rs"]
 mod __HKLiveWorkoutBuilder;
-#[cfg(feature = "HealthKit_HKLiveWorkoutDataSource")]
+#[cfg(feature = "HKLiveWorkoutDataSource")]
 #[path = "HKLiveWorkoutDataSource.rs"]
 mod __HKLiveWorkoutDataSource;
-#[cfg(feature = "HealthKit_HKMetadata")]
+#[cfg(feature = "HKMetadata")]
 #[path = "HKMetadata.rs"]
 mod __HKMetadata;
-#[cfg(feature = "HealthKit_HKObject")]
+#[cfg(feature = "HKObject")]
 #[path = "HKObject.rs"]
 mod __HKObject;
-#[cfg(feature = "HealthKit_HKObjectType")]
+#[cfg(feature = "HKObjectType")]
 #[path = "HKObjectType.rs"]
 mod __HKObjectType;
-#[cfg(feature = "HealthKit_HKObserverQuery")]
+#[cfg(feature = "HKObserverQuery")]
 #[path = "HKObserverQuery.rs"]
 mod __HKObserverQuery;
-#[cfg(feature = "HealthKit_HKQuantity")]
+#[cfg(feature = "HKQuantity")]
 #[path = "HKQuantity.rs"]
 mod __HKQuantity;
-#[cfg(feature = "HealthKit_HKQuantityAggregationStyle")]
+#[cfg(feature = "HKQuantityAggregationStyle")]
 #[path = "HKQuantityAggregationStyle.rs"]
 mod __HKQuantityAggregationStyle;
-#[cfg(feature = "HealthKit_HKQuantitySample")]
+#[cfg(feature = "HKQuantitySample")]
 #[path = "HKQuantitySample.rs"]
 mod __HKQuantitySample;
-#[cfg(feature = "HealthKit_HKQuantitySeriesSampleBuilder")]
+#[cfg(feature = "HKQuantitySeriesSampleBuilder")]
 #[path = "HKQuantitySeriesSampleBuilder.rs"]
 mod __HKQuantitySeriesSampleBuilder;
-#[cfg(feature = "HealthKit_HKQuantitySeriesSampleQuery")]
+#[cfg(feature = "HKQuantitySeriesSampleQuery")]
 #[path = "HKQuantitySeriesSampleQuery.rs"]
 mod __HKQuantitySeriesSampleQuery;
-#[cfg(feature = "HealthKit_HKQuery")]
+#[cfg(feature = "HKQuery")]
 #[path = "HKQuery.rs"]
 mod __HKQuery;
-#[cfg(feature = "HealthKit_HKQueryAnchor")]
+#[cfg(feature = "HKQueryAnchor")]
 #[path = "HKQueryAnchor.rs"]
 mod __HKQueryAnchor;
-#[cfg(feature = "HealthKit_HKQueryDescriptor")]
+#[cfg(feature = "HKQueryDescriptor")]
 #[path = "HKQueryDescriptor.rs"]
 mod __HKQueryDescriptor;
-#[cfg(feature = "HealthKit_HKSample")]
+#[cfg(feature = "HKSample")]
 #[path = "HKSample.rs"]
 mod __HKSample;
-#[cfg(feature = "HealthKit_HKSampleQuery")]
+#[cfg(feature = "HKSampleQuery")]
 #[path = "HKSampleQuery.rs"]
 mod __HKSampleQuery;
-#[cfg(feature = "HealthKit_HKSeriesBuilder")]
+#[cfg(feature = "HKSeriesBuilder")]
 #[path = "HKSeriesBuilder.rs"]
 mod __HKSeriesBuilder;
-#[cfg(feature = "HealthKit_HKSeriesSample")]
+#[cfg(feature = "HKSeriesSample")]
 #[path = "HKSeriesSample.rs"]
 mod __HKSeriesSample;
-#[cfg(feature = "HealthKit_HKSource")]
+#[cfg(feature = "HKSource")]
 #[path = "HKSource.rs"]
 mod __HKSource;
-#[cfg(feature = "HealthKit_HKSourceQuery")]
+#[cfg(feature = "HKSourceQuery")]
 #[path = "HKSourceQuery.rs"]
 mod __HKSourceQuery;
-#[cfg(feature = "HealthKit_HKSourceRevision")]
+#[cfg(feature = "HKSourceRevision")]
 #[path = "HKSourceRevision.rs"]
 mod __HKSourceRevision;
-#[cfg(feature = "HealthKit_HKStatistics")]
+#[cfg(feature = "HKStatistics")]
 #[path = "HKStatistics.rs"]
 mod __HKStatistics;
-#[cfg(feature = "HealthKit_HKStatisticsCollectionQuery")]
+#[cfg(feature = "HKStatisticsCollectionQuery")]
 #[path = "HKStatisticsCollectionQuery.rs"]
 mod __HKStatisticsCollectionQuery;
-#[cfg(feature = "HealthKit_HKStatisticsQuery")]
+#[cfg(feature = "HKStatisticsQuery")]
 #[path = "HKStatisticsQuery.rs"]
 mod __HKStatisticsQuery;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 #[path = "HKTypeIdentifiers.rs"]
 mod __HKTypeIdentifiers;
-#[cfg(feature = "HealthKit_HKUnit")]
+#[cfg(feature = "HKUnit")]
 #[path = "HKUnit.rs"]
 mod __HKUnit;
-#[cfg(feature = "HealthKit_HKVerifiableClinicalRecord")]
+#[cfg(feature = "HKVerifiableClinicalRecord")]
 #[path = "HKVerifiableClinicalRecord.rs"]
 mod __HKVerifiableClinicalRecord;
-#[cfg(feature = "HealthKit_HKVerifiableClinicalRecordQuery")]
+#[cfg(feature = "HKVerifiableClinicalRecordQuery")]
 #[path = "HKVerifiableClinicalRecordQuery.rs"]
 mod __HKVerifiableClinicalRecordQuery;
-#[cfg(feature = "HealthKit_HKVerifiableClinicalRecordSubject")]
+#[cfg(feature = "HKVerifiableClinicalRecordSubject")]
 #[path = "HKVerifiableClinicalRecordSubject.rs"]
 mod __HKVerifiableClinicalRecordSubject;
-#[cfg(feature = "HealthKit_HKVisionPrescription")]
+#[cfg(feature = "HKVisionPrescription")]
 #[path = "HKVisionPrescription.rs"]
 mod __HKVisionPrescription;
-#[cfg(feature = "HealthKit_HKVisionPrism")]
+#[cfg(feature = "HKVisionPrism")]
 #[path = "HKVisionPrism.rs"]
 mod __HKVisionPrism;
-#[cfg(feature = "HealthKit_HKWorkout")]
+#[cfg(feature = "HKWorkout")]
 #[path = "HKWorkout.rs"]
 mod __HKWorkout;
-#[cfg(feature = "HealthKit_HKWorkoutActivity")]
+#[cfg(feature = "HKWorkoutActivity")]
 #[path = "HKWorkoutActivity.rs"]
 mod __HKWorkoutActivity;
-#[cfg(feature = "HealthKit_HKWorkoutBuilder")]
+#[cfg(feature = "HKWorkoutBuilder")]
 #[path = "HKWorkoutBuilder.rs"]
 mod __HKWorkoutBuilder;
-#[cfg(feature = "HealthKit_HKWorkoutConfiguration")]
+#[cfg(feature = "HKWorkoutConfiguration")]
 #[path = "HKWorkoutConfiguration.rs"]
 mod __HKWorkoutConfiguration;
-#[cfg(feature = "HealthKit_HKWorkoutRoute")]
+#[cfg(feature = "HKWorkoutRoute")]
 #[path = "HKWorkoutRoute.rs"]
 mod __HKWorkoutRoute;
-#[cfg(feature = "HealthKit_HKWorkoutRouteBuilder")]
+#[cfg(feature = "HKWorkoutRouteBuilder")]
 #[path = "HKWorkoutRouteBuilder.rs"]
 mod __HKWorkoutRouteBuilder;
-#[cfg(feature = "HealthKit_HKWorkoutRouteQuery")]
+#[cfg(feature = "HKWorkoutRouteQuery")]
 #[path = "HKWorkoutRouteQuery.rs"]
 mod __HKWorkoutRouteQuery;
-#[cfg(feature = "HealthKit_HKWorkoutSession")]
+#[cfg(feature = "HKWorkoutSession")]
 #[path = "HKWorkoutSession.rs"]
 mod __HKWorkoutSession;
 
-#[cfg(feature = "HealthKit_HKActivitySummary")]
+#[cfg(feature = "HKActivitySummary")]
 pub use self::__HKActivitySummary::HKActivitySummary;
-#[cfg(feature = "HealthKit_HKActivitySummary")]
+#[cfg(feature = "HKActivitySummary")]
 pub use self::__HKActivitySummary::HKPredicateKeyPathDateComponents;
-#[cfg(all(
-    feature = "HealthKit_HKActivitySummaryQuery",
-    feature = "HealthKit_HKQuery"
-))]
+#[cfg(all(feature = "HKActivitySummaryQuery", feature = "HKQuery"))]
 pub use self::__HKActivitySummaryQuery::HKActivitySummaryQuery;
-#[cfg(all(
-    feature = "HealthKit_HKAnchoredObjectQuery",
-    feature = "HealthKit_HKQuery"
-))]
+#[cfg(all(feature = "HKAnchoredObjectQuery", feature = "HKQuery"))]
 pub use self::__HKAnchoredObjectQuery::HKAnchoredObjectQuery;
-#[cfg(feature = "HealthKit_HKAppleWalkingSteadinessClassification")]
+#[cfg(feature = "HKAppleWalkingSteadinessClassification")]
 pub use self::__HKAppleWalkingSteadinessClassification::HKAppleWalkingSteadinessClassification;
 #[cfg(all(
-    feature = "HealthKit_HKAppleWalkingSteadinessClassification",
-    feature = "HealthKit_HKQuantity"
+    feature = "HKAppleWalkingSteadinessClassification",
+    feature = "HKQuantity"
 ))]
 pub use self::__HKAppleWalkingSteadinessClassification::HKAppleWalkingSteadinessClassificationForQuantity;
 #[cfg(all(
-    feature = "HealthKit_HKAppleWalkingSteadinessClassification",
-    feature = "HealthKit_HKQuantity"
+    feature = "HKAppleWalkingSteadinessClassification",
+    feature = "HKQuantity"
 ))]
 pub use self::__HKAppleWalkingSteadinessClassification::HKAppleWalkingSteadinessMaximumQuantityForClassification;
 #[cfg(all(
-    feature = "HealthKit_HKAppleWalkingSteadinessClassification",
-    feature = "HealthKit_HKQuantity"
+    feature = "HKAppleWalkingSteadinessClassification",
+    feature = "HKQuantity"
 ))]
 pub use self::__HKAppleWalkingSteadinessClassification::HKAppleWalkingSteadinessMinimumQuantityForClassification;
-#[cfg(feature = "HealthKit_HKAttachment")]
+#[cfg(feature = "HKAttachment")]
 pub use self::__HKAttachment::HKAttachment;
-#[cfg(feature = "HealthKit_HKAttachmentStore")]
+#[cfg(feature = "HKAttachmentStore")]
 pub use self::__HKAttachmentStore::HKAttachmentStore;
 #[cfg(all(
-    feature = "HealthKit_HKAudiogramSample",
-    feature = "HealthKit_HKObject",
-    feature = "HealthKit_HKSample"
+    feature = "HKAudiogramSample",
+    feature = "HKObject",
+    feature = "HKSample"
 ))]
 pub use self::__HKAudiogramSample::HKAudiogramSample;
-#[cfg(feature = "HealthKit_HKAudiogramSample")]
+#[cfg(feature = "HKAudiogramSample")]
 pub use self::__HKAudiogramSample::HKAudiogramSensitivityPoint;
-#[cfg(feature = "HealthKit_HKCDADocumentSample")]
+#[cfg(feature = "HKCDADocumentSample")]
 pub use self::__HKCDADocumentSample::HKCDADocument;
 #[cfg(all(
-    feature = "HealthKit_HKCDADocumentSample",
-    feature = "HealthKit_HKDocumentSample",
-    feature = "HealthKit_HKObject",
-    feature = "HealthKit_HKSample"
+    feature = "HKCDADocumentSample",
+    feature = "HKDocumentSample",
+    feature = "HKObject",
+    feature = "HKSample"
 ))]
 pub use self::__HKCDADocumentSample::HKCDADocumentSample;
-#[cfg(feature = "HealthKit_HKCDADocumentSample")]
+#[cfg(feature = "HKCDADocumentSample")]
 pub use self::__HKCDADocumentSample::HKDetailedCDAValidationErrorKey;
-#[cfg(feature = "HealthKit_HKCDADocumentSample")]
+#[cfg(feature = "HKCDADocumentSample")]
 pub use self::__HKCDADocumentSample::HKPredicateKeyPathCDAAuthorName;
-#[cfg(feature = "HealthKit_HKCDADocumentSample")]
+#[cfg(feature = "HKCDADocumentSample")]
 pub use self::__HKCDADocumentSample::HKPredicateKeyPathCDACustodianName;
-#[cfg(feature = "HealthKit_HKCDADocumentSample")]
+#[cfg(feature = "HKCDADocumentSample")]
 pub use self::__HKCDADocumentSample::HKPredicateKeyPathCDAPatientName;
-#[cfg(feature = "HealthKit_HKCDADocumentSample")]
+#[cfg(feature = "HKCDADocumentSample")]
 pub use self::__HKCDADocumentSample::HKPredicateKeyPathCDATitle;
 #[cfg(all(
-    feature = "HealthKit_HKCategorySample",
-    feature = "HealthKit_HKObject",
-    feature = "HealthKit_HKSample"
+    feature = "HKCategorySample",
+    feature = "HKObject",
+    feature = "HKSample"
 ))]
 pub use self::__HKCategorySample::HKCategorySample;
-#[cfg(feature = "HealthKit_HKCategorySample")]
+#[cfg(feature = "HKCategorySample")]
 pub use self::__HKCategorySample::HKPredicateKeyPathCategoryValue;
-#[cfg(feature = "HealthKit_HKCategoryValues")]
+#[cfg(feature = "HKCategoryValues")]
 pub use self::__HKCategoryValues::HKCategoryValue;
-#[cfg(feature = "HealthKit_HKCategoryValues")]
+#[cfg(feature = "HKCategoryValues")]
 pub use self::__HKCategoryValues::HKCategoryValueAppetiteChanges;
-#[cfg(feature = "HealthKit_HKCategoryValues")]
+#[cfg(feature = "HKCategoryValues")]
 pub use self::__HKCategoryValues::HKCategoryValueAppleStandHour;
-#[cfg(feature = "HealthKit_HKCategoryValues")]
+#[cfg(feature = "HKCategoryValues")]
 pub use self::__HKCategoryValues::HKCategoryValueAppleWalkingSteadinessEvent;
-#[cfg(feature = "HealthKit_HKCategoryValues")]
+#[cfg(feature = "HKCategoryValues")]
 pub use self::__HKCategoryValues::HKCategoryValueAudioExposureEvent;
-#[cfg(feature = "HealthKit_HKCategoryValues")]
+#[cfg(feature = "HKCategoryValues")]
 pub use self::__HKCategoryValues::HKCategoryValueCervicalMucusQuality;
-#[cfg(feature = "HealthKit_HKCategoryValues")]
+#[cfg(feature = "HKCategoryValues")]
 pub use self::__HKCategoryValues::HKCategoryValueContraceptive;
-#[cfg(feature = "HealthKit_HKCategoryValues")]
+#[cfg(feature = "HKCategoryValues")]
 pub use self::__HKCategoryValues::HKCategoryValueEnvironmentalAudioExposureEvent;
-#[cfg(feature = "HealthKit_HKCategoryValues")]
+#[cfg(feature = "HKCategoryValues")]
 pub use self::__HKCategoryValues::HKCategoryValueHeadphoneAudioExposureEvent;
-#[cfg(feature = "HealthKit_HKCategoryValues")]
+#[cfg(feature = "HKCategoryValues")]
 pub use self::__HKCategoryValues::HKCategoryValueLowCardioFitnessEvent;
-#[cfg(feature = "HealthKit_HKCategoryValues")]
+#[cfg(feature = "HKCategoryValues")]
 pub use self::__HKCategoryValues::HKCategoryValueMenstrualFlow;
-#[cfg(feature = "HealthKit_HKCategoryValues")]
+#[cfg(feature = "HKCategoryValues")]
 pub use self::__HKCategoryValues::HKCategoryValueOvulationTestResult;
-#[cfg(feature = "HealthKit_HKCategoryValues")]
+#[cfg(feature = "HKCategoryValues")]
 pub use self::__HKCategoryValues::HKCategoryValuePregnancyTestResult;
-#[cfg(feature = "HealthKit_HKCategoryValues")]
+#[cfg(feature = "HKCategoryValues")]
 pub use self::__HKCategoryValues::HKCategoryValuePresence;
-#[cfg(feature = "HealthKit_HKCategoryValues")]
+#[cfg(feature = "HKCategoryValues")]
 pub use self::__HKCategoryValues::HKCategoryValueProgesteroneTestResult;
-#[cfg(feature = "HealthKit_HKCategoryValues")]
+#[cfg(feature = "HKCategoryValues")]
 pub use self::__HKCategoryValues::HKCategoryValueSeverity;
-#[cfg(feature = "HealthKit_HKCategoryValues")]
+#[cfg(feature = "HKCategoryValues")]
 pub use self::__HKCategoryValues::HKCategoryValueSleepAnalysis;
-#[cfg(feature = "HealthKit_HKCharacteristicObjects")]
+#[cfg(feature = "HKCharacteristicObjects")]
 pub use self::__HKCharacteristicObjects::HKActivityMoveModeObject;
-#[cfg(feature = "HealthKit_HKCharacteristicObjects")]
+#[cfg(feature = "HKCharacteristicObjects")]
 pub use self::__HKCharacteristicObjects::HKBiologicalSexObject;
-#[cfg(feature = "HealthKit_HKCharacteristicObjects")]
+#[cfg(feature = "HKCharacteristicObjects")]
 pub use self::__HKCharacteristicObjects::HKBloodTypeObject;
-#[cfg(feature = "HealthKit_HKCharacteristicObjects")]
+#[cfg(feature = "HKCharacteristicObjects")]
 pub use self::__HKCharacteristicObjects::HKFitzpatrickSkinTypeObject;
-#[cfg(feature = "HealthKit_HKCharacteristicObjects")]
+#[cfg(feature = "HKCharacteristicObjects")]
 pub use self::__HKCharacteristicObjects::HKWheelchairUseObject;
-#[cfg(feature = "HealthKit_HKCharacteristicValues")]
+#[cfg(feature = "HKCharacteristicValues")]
 pub use self::__HKCharacteristicValues::HKActivityMoveMode;
-#[cfg(feature = "HealthKit_HKCharacteristicValues")]
+#[cfg(feature = "HKCharacteristicValues")]
 pub use self::__HKCharacteristicValues::HKBiologicalSex;
-#[cfg(feature = "HealthKit_HKCharacteristicValues")]
+#[cfg(feature = "HKCharacteristicValues")]
 pub use self::__HKCharacteristicValues::HKBloodType;
-#[cfg(feature = "HealthKit_HKCharacteristicValues")]
+#[cfg(feature = "HKCharacteristicValues")]
 pub use self::__HKCharacteristicValues::HKFitzpatrickSkinType;
-#[cfg(feature = "HealthKit_HKCharacteristicValues")]
+#[cfg(feature = "HKCharacteristicValues")]
 pub use self::__HKCharacteristicValues::HKWheelchairUse;
 #[cfg(all(
-    feature = "HealthKit_HKClinicalRecord",
-    feature = "HealthKit_HKObject",
-    feature = "HealthKit_HKSample"
+    feature = "HKClinicalRecord",
+    feature = "HKObject",
+    feature = "HKSample"
 ))]
 pub use self::__HKClinicalRecord::HKClinicalRecord;
-#[cfg(feature = "HealthKit_HKClinicalRecord")]
+#[cfg(feature = "HKClinicalRecord")]
 pub use self::__HKClinicalRecord::HKPredicateKeyPathClinicalRecordFHIRResourceIdentifier;
-#[cfg(feature = "HealthKit_HKClinicalRecord")]
+#[cfg(feature = "HKClinicalRecord")]
 pub use self::__HKClinicalRecord::HKPredicateKeyPathClinicalRecordFHIRResourceType;
-#[cfg(all(
-    feature = "HealthKit_HKClinicalType",
-    feature = "HealthKit_HKObjectType"
-))]
+#[cfg(all(feature = "HKClinicalType", feature = "HKObjectType"))]
 pub use self::__HKClinicalType::HKClinicalType;
-#[cfg(feature = "HealthKit_HKClinicalType")]
+#[cfg(feature = "HKClinicalType")]
 pub use self::__HKClinicalType::HKClinicalTypeIdentifier;
-#[cfg(feature = "HealthKit_HKClinicalType")]
+#[cfg(feature = "HKClinicalType")]
 pub use self::__HKClinicalType::HKClinicalTypeIdentifierAllergyRecord;
-#[cfg(feature = "HealthKit_HKClinicalType")]
+#[cfg(feature = "HKClinicalType")]
 pub use self::__HKClinicalType::HKClinicalTypeIdentifierClinicalNoteRecord;
-#[cfg(feature = "HealthKit_HKClinicalType")]
+#[cfg(feature = "HKClinicalType")]
 pub use self::__HKClinicalType::HKClinicalTypeIdentifierConditionRecord;
-#[cfg(feature = "HealthKit_HKClinicalType")]
+#[cfg(feature = "HKClinicalType")]
 pub use self::__HKClinicalType::HKClinicalTypeIdentifierCoverageRecord;
-#[cfg(feature = "HealthKit_HKClinicalType")]
+#[cfg(feature = "HKClinicalType")]
 pub use self::__HKClinicalType::HKClinicalTypeIdentifierImmunizationRecord;
-#[cfg(feature = "HealthKit_HKClinicalType")]
+#[cfg(feature = "HKClinicalType")]
 pub use self::__HKClinicalType::HKClinicalTypeIdentifierLabResultRecord;
-#[cfg(feature = "HealthKit_HKClinicalType")]
+#[cfg(feature = "HKClinicalType")]
 pub use self::__HKClinicalType::HKClinicalTypeIdentifierMedicationRecord;
-#[cfg(feature = "HealthKit_HKClinicalType")]
+#[cfg(feature = "HKClinicalType")]
 pub use self::__HKClinicalType::HKClinicalTypeIdentifierProcedureRecord;
-#[cfg(feature = "HealthKit_HKClinicalType")]
+#[cfg(feature = "HKClinicalType")]
 pub use self::__HKClinicalType::HKClinicalTypeIdentifierVitalSignRecord;
 #[cfg(all(
-    feature = "HealthKit_HKContactsLensSpecification",
-    feature = "HealthKit_HKLensSpecification"
+    feature = "HKContactsLensSpecification",
+    feature = "HKLensSpecification"
 ))]
 pub use self::__HKContactsLensSpecification::HKContactsLensSpecification;
 #[cfg(all(
-    feature = "HealthKit_HKContactsPrescription",
-    feature = "HealthKit_HKObject",
-    feature = "HealthKit_HKSample",
-    feature = "HealthKit_HKVisionPrescription"
+    feature = "HKContactsPrescription",
+    feature = "HKObject",
+    feature = "HKSample",
+    feature = "HKVisionPrescription"
 ))]
 pub use self::__HKContactsPrescription::HKContactsPrescription;
-#[cfg(all(
-    feature = "HealthKit_HKCorrelation",
-    feature = "HealthKit_HKObject",
-    feature = "HealthKit_HKSample"
-))]
+#[cfg(all(feature = "HKCorrelation", feature = "HKObject", feature = "HKSample"))]
 pub use self::__HKCorrelation::HKCorrelation;
-#[cfg(all(
-    feature = "HealthKit_HKCorrelationQuery",
-    feature = "HealthKit_HKQuery"
-))]
+#[cfg(all(feature = "HKCorrelationQuery", feature = "HKQuery"))]
 pub use self::__HKCorrelationQuery::HKCorrelationQuery;
 #[cfg(all(
-    feature = "HealthKit_HKCumulativeQuantitySample",
-    feature = "HealthKit_HKObject",
-    feature = "HealthKit_HKQuantitySample",
-    feature = "HealthKit_HKSample"
+    feature = "HKCumulativeQuantitySample",
+    feature = "HKObject",
+    feature = "HKQuantitySample",
+    feature = "HKSample"
 ))]
 pub use self::__HKCumulativeQuantitySample::HKCumulativeQuantitySample;
-#[cfg(feature = "HealthKit_HKCumulativeQuantitySample")]
+#[cfg(feature = "HKCumulativeQuantitySample")]
 pub use self::__HKCumulativeQuantitySample::HKPredicateKeyPathSum;
 #[cfg(all(
-    feature = "HealthKit_HKCumulativeQuantitySample",
-    feature = "HealthKit_HKCumulativeQuantitySeriesSample",
-    feature = "HealthKit_HKObject",
-    feature = "HealthKit_HKQuantitySample",
-    feature = "HealthKit_HKSample"
+    feature = "HKCumulativeQuantitySample",
+    feature = "HKCumulativeQuantitySeriesSample",
+    feature = "HKObject",
+    feature = "HKQuantitySample",
+    feature = "HKSample"
 ))]
 pub use self::__HKCumulativeQuantitySeriesSample::HKCumulativeQuantitySeriesSample;
-#[cfg(feature = "HealthKit_HKDefines")]
+#[cfg(feature = "HKDefines")]
 pub use self::__HKDefines::HKAuthorizationRequestStatus;
-#[cfg(feature = "HealthKit_HKDefines")]
+#[cfg(feature = "HKDefines")]
 pub use self::__HKDefines::HKAuthorizationStatus;
-#[cfg(feature = "HealthKit_HKDefines")]
+#[cfg(feature = "HKDefines")]
 pub use self::__HKDefines::HKCategoryValueSleepAnalysisAsleepValues;
-#[cfg(feature = "HealthKit_HKDefines")]
+#[cfg(feature = "HKDefines")]
 pub use self::__HKDefines::HKErrorCode;
-#[cfg(feature = "HealthKit_HKDefines")]
+#[cfg(feature = "HKDefines")]
 pub use self::__HKDefines::HKErrorDomain;
-#[cfg(feature = "HealthKit_HKDefines")]
+#[cfg(feature = "HKDefines")]
 pub use self::__HKDefines::HKUpdateFrequency;
-#[cfg(feature = "HealthKit_HKDeletedObject")]
+#[cfg(feature = "HKDeletedObject")]
 pub use self::__HKDeletedObject::HKDeletedObject;
-#[cfg(feature = "HealthKit_HKDevice")]
+#[cfg(feature = "HKDevice")]
 pub use self::__HKDevice::HKDevice;
-#[cfg(feature = "HealthKit_HKDevice")]
+#[cfg(feature = "HKDevice")]
 pub use self::__HKDevice::HKDevicePropertyKeyFirmwareVersion;
-#[cfg(feature = "HealthKit_HKDevice")]
+#[cfg(feature = "HKDevice")]
 pub use self::__HKDevice::HKDevicePropertyKeyHardwareVersion;
-#[cfg(feature = "HealthKit_HKDevice")]
+#[cfg(feature = "HKDevice")]
 pub use self::__HKDevice::HKDevicePropertyKeyLocalIdentifier;
-#[cfg(feature = "HealthKit_HKDevice")]
+#[cfg(feature = "HKDevice")]
 pub use self::__HKDevice::HKDevicePropertyKeyManufacturer;
-#[cfg(feature = "HealthKit_HKDevice")]
+#[cfg(feature = "HKDevice")]
 pub use self::__HKDevice::HKDevicePropertyKeyModel;
-#[cfg(feature = "HealthKit_HKDevice")]
+#[cfg(feature = "HKDevice")]
 pub use self::__HKDevice::HKDevicePropertyKeyName;
-#[cfg(feature = "HealthKit_HKDevice")]
+#[cfg(feature = "HKDevice")]
 pub use self::__HKDevice::HKDevicePropertyKeySoftwareVersion;
-#[cfg(feature = "HealthKit_HKDevice")]
+#[cfg(feature = "HKDevice")]
 pub use self::__HKDevice::HKDevicePropertyKeyUDIDeviceIdentifier;
 #[cfg(all(
-    feature = "HealthKit_HKDiscreteQuantitySample",
-    feature = "HealthKit_HKObject",
-    feature = "HealthKit_HKQuantitySample",
-    feature = "HealthKit_HKSample"
+    feature = "HKDiscreteQuantitySample",
+    feature = "HKObject",
+    feature = "HKQuantitySample",
+    feature = "HKSample"
 ))]
 pub use self::__HKDiscreteQuantitySample::HKDiscreteQuantitySample;
-#[cfg(feature = "HealthKit_HKDiscreteQuantitySample")]
+#[cfg(feature = "HKDiscreteQuantitySample")]
 pub use self::__HKDiscreteQuantitySample::HKPredicateKeyPathAverage;
-#[cfg(feature = "HealthKit_HKDiscreteQuantitySample")]
+#[cfg(feature = "HKDiscreteQuantitySample")]
 pub use self::__HKDiscreteQuantitySample::HKPredicateKeyPathMax;
-#[cfg(feature = "HealthKit_HKDiscreteQuantitySample")]
+#[cfg(feature = "HKDiscreteQuantitySample")]
 pub use self::__HKDiscreteQuantitySample::HKPredicateKeyPathMin;
-#[cfg(feature = "HealthKit_HKDiscreteQuantitySample")]
+#[cfg(feature = "HKDiscreteQuantitySample")]
 pub use self::__HKDiscreteQuantitySample::HKPredicateKeyPathMostRecent;
-#[cfg(feature = "HealthKit_HKDiscreteQuantitySample")]
+#[cfg(feature = "HKDiscreteQuantitySample")]
 pub use self::__HKDiscreteQuantitySample::HKPredicateKeyPathMostRecentDuration;
-#[cfg(feature = "HealthKit_HKDiscreteQuantitySample")]
+#[cfg(feature = "HKDiscreteQuantitySample")]
 pub use self::__HKDiscreteQuantitySample::HKPredicateKeyPathMostRecentEndDate;
-#[cfg(feature = "HealthKit_HKDiscreteQuantitySample")]
+#[cfg(feature = "HKDiscreteQuantitySample")]
 pub use self::__HKDiscreteQuantitySample::HKPredicateKeyPathMostRecentStartDate;
-#[cfg(all(feature = "HealthKit_HKDocumentQuery", feature = "HealthKit_HKQuery"))]
+#[cfg(all(feature = "HKDocumentQuery", feature = "HKQuery"))]
 pub use self::__HKDocumentQuery::HKDocumentQuery;
 #[cfg(all(
-    feature = "HealthKit_HKDocumentSample",
-    feature = "HealthKit_HKObject",
-    feature = "HealthKit_HKSample"
+    feature = "HKDocumentSample",
+    feature = "HKObject",
+    feature = "HKSample"
 ))]
 pub use self::__HKDocumentSample::HKDocumentSample;
 #[cfg(all(
-    feature = "HealthKit_HKElectrocardiogram",
-    feature = "HealthKit_HKObject",
-    feature = "HealthKit_HKSample"
+    feature = "HKElectrocardiogram",
+    feature = "HKObject",
+    feature = "HKSample"
 ))]
 pub use self::__HKElectrocardiogram::HKElectrocardiogram;
-#[cfg(feature = "HealthKit_HKElectrocardiogram")]
+#[cfg(feature = "HKElectrocardiogram")]
 pub use self::__HKElectrocardiogram::HKElectrocardiogramClassification;
-#[cfg(feature = "HealthKit_HKElectrocardiogram")]
+#[cfg(feature = "HKElectrocardiogram")]
 pub use self::__HKElectrocardiogram::HKElectrocardiogramLead;
-#[cfg(feature = "HealthKit_HKElectrocardiogram")]
+#[cfg(feature = "HKElectrocardiogram")]
 pub use self::__HKElectrocardiogram::HKElectrocardiogramSymptomsStatus;
-#[cfg(feature = "HealthKit_HKElectrocardiogram")]
+#[cfg(feature = "HKElectrocardiogram")]
 pub use self::__HKElectrocardiogram::HKPredicateKeyPathAverageHeartRate;
-#[cfg(feature = "HealthKit_HKElectrocardiogram")]
+#[cfg(feature = "HKElectrocardiogram")]
 pub use self::__HKElectrocardiogram::HKPredicateKeyPathECGClassification;
-#[cfg(feature = "HealthKit_HKElectrocardiogram")]
+#[cfg(feature = "HKElectrocardiogram")]
 pub use self::__HKElectrocardiogram::HKPredicateKeyPathECGSymptomsStatus;
-#[cfg(all(
-    feature = "HealthKit_HKElectrocardiogramQuery",
-    feature = "HealthKit_HKQuery"
-))]
+#[cfg(all(feature = "HKElectrocardiogramQuery", feature = "HKQuery"))]
 pub use self::__HKElectrocardiogramQuery::HKElectrocardiogramQuery;
-#[cfg(feature = "HealthKit_HKElectrocardiogramQuery")]
+#[cfg(feature = "HKElectrocardiogramQuery")]
 pub use self::__HKElectrocardiogramQuery::HKElectrocardiogramVoltageMeasurement;
-#[cfg(feature = "HealthKit_HKFHIRRelease")]
+#[cfg(feature = "HKFHIRRelease")]
 pub use self::__HKFHIRRelease::HKFHIRRelease;
-#[cfg(feature = "HealthKit_HKFHIRRelease")]
+#[cfg(feature = "HKFHIRRelease")]
 pub use self::__HKFHIRRelease::HKFHIRReleaseDSTU2;
-#[cfg(feature = "HealthKit_HKFHIRRelease")]
+#[cfg(feature = "HKFHIRRelease")]
 pub use self::__HKFHIRRelease::HKFHIRReleaseR4;
-#[cfg(feature = "HealthKit_HKFHIRRelease")]
+#[cfg(feature = "HKFHIRRelease")]
 pub use self::__HKFHIRRelease::HKFHIRReleaseUnknown;
-#[cfg(feature = "HealthKit_HKFHIRResource")]
+#[cfg(feature = "HKFHIRResource")]
 pub use self::__HKFHIRResource::HKFHIRResource;
-#[cfg(feature = "HealthKit_HKFHIRResource")]
+#[cfg(feature = "HKFHIRResource")]
 pub use self::__HKFHIRResource::HKFHIRResourceType;
-#[cfg(feature = "HealthKit_HKFHIRResource")]
+#[cfg(feature = "HKFHIRResource")]
 pub use self::__HKFHIRResource::HKFHIRResourceTypeAllergyIntolerance;
-#[cfg(feature = "HealthKit_HKFHIRResource")]
+#[cfg(feature = "HKFHIRResource")]
 pub use self::__HKFHIRResource::HKFHIRResourceTypeCondition;
-#[cfg(feature = "HealthKit_HKFHIRResource")]
+#[cfg(feature = "HKFHIRResource")]
 pub use self::__HKFHIRResource::HKFHIRResourceTypeCoverage;
-#[cfg(feature = "HealthKit_HKFHIRResource")]
+#[cfg(feature = "HKFHIRResource")]
 pub use self::__HKFHIRResource::HKFHIRResourceTypeDiagnosticReport;
-#[cfg(feature = "HealthKit_HKFHIRResource")]
+#[cfg(feature = "HKFHIRResource")]
 pub use self::__HKFHIRResource::HKFHIRResourceTypeDocumentReference;
-#[cfg(feature = "HealthKit_HKFHIRResource")]
+#[cfg(feature = "HKFHIRResource")]
 pub use self::__HKFHIRResource::HKFHIRResourceTypeImmunization;
-#[cfg(feature = "HealthKit_HKFHIRResource")]
+#[cfg(feature = "HKFHIRResource")]
 pub use self::__HKFHIRResource::HKFHIRResourceTypeMedicationDispense;
-#[cfg(feature = "HealthKit_HKFHIRResource")]
+#[cfg(feature = "HKFHIRResource")]
 pub use self::__HKFHIRResource::HKFHIRResourceTypeMedicationOrder;
-#[cfg(feature = "HealthKit_HKFHIRResource")]
+#[cfg(feature = "HKFHIRResource")]
 pub use self::__HKFHIRResource::HKFHIRResourceTypeMedicationRequest;
-#[cfg(feature = "HealthKit_HKFHIRResource")]
+#[cfg(feature = "HKFHIRResource")]
 pub use self::__HKFHIRResource::HKFHIRResourceTypeMedicationStatement;
-#[cfg(feature = "HealthKit_HKFHIRResource")]
+#[cfg(feature = "HKFHIRResource")]
 pub use self::__HKFHIRResource::HKFHIRResourceTypeObservation;
-#[cfg(feature = "HealthKit_HKFHIRResource")]
+#[cfg(feature = "HKFHIRResource")]
 pub use self::__HKFHIRResource::HKFHIRResourceTypeProcedure;
-#[cfg(feature = "HealthKit_HKFHIRVersion")]
+#[cfg(feature = "HKFHIRVersion")]
 pub use self::__HKFHIRVersion::HKFHIRVersion;
 #[cfg(all(
-    feature = "HealthKit_HKGlassesLensSpecification",
-    feature = "HealthKit_HKLensSpecification"
+    feature = "HKGlassesLensSpecification",
+    feature = "HKLensSpecification"
 ))]
 pub use self::__HKGlassesLensSpecification::HKGlassesLensSpecification;
 #[cfg(all(
-    feature = "HealthKit_HKGlassesPrescription",
-    feature = "HealthKit_HKObject",
-    feature = "HealthKit_HKSample",
-    feature = "HealthKit_HKVisionPrescription"
+    feature = "HKGlassesPrescription",
+    feature = "HKObject",
+    feature = "HKSample",
+    feature = "HKVisionPrescription"
 ))]
 pub use self::__HKGlassesPrescription::HKGlassesPrescription;
-#[cfg(feature = "HealthKit_HKHealthStore")]
+#[cfg(feature = "HKHealthStore")]
 pub use self::__HKHealthStore::HKHealthStore;
-#[cfg(feature = "HealthKit_HKHealthStore")]
+#[cfg(feature = "HKHealthStore")]
 pub use self::__HKHealthStore::HKUserPreferencesDidChangeNotification;
-#[cfg(all(
-    feature = "HealthKit_HKHeartbeatSeriesBuilder",
-    feature = "HealthKit_HKSeriesBuilder"
-))]
+#[cfg(all(feature = "HKHeartbeatSeriesBuilder", feature = "HKSeriesBuilder"))]
 pub use self::__HKHeartbeatSeriesBuilder::HKHeartbeatSeriesBuilder;
-#[cfg(all(
-    feature = "HealthKit_HKHeartbeatSeriesQuery",
-    feature = "HealthKit_HKQuery"
-))]
+#[cfg(all(feature = "HKHeartbeatSeriesQuery", feature = "HKQuery"))]
 pub use self::__HKHeartbeatSeriesQuery::HKHeartbeatSeriesQuery;
 #[cfg(all(
-    feature = "HealthKit_HKHeartbeatSeriesSample",
-    feature = "HealthKit_HKObject",
-    feature = "HealthKit_HKSample",
-    feature = "HealthKit_HKSeriesSample"
+    feature = "HKHeartbeatSeriesSample",
+    feature = "HKObject",
+    feature = "HKSample",
+    feature = "HKSeriesSample"
 ))]
 pub use self::__HKHeartbeatSeriesSample::HKHeartbeatSeriesSample;
-#[cfg(feature = "HealthKit_HKLensSpecification")]
+#[cfg(feature = "HKLensSpecification")]
 pub use self::__HKLensSpecification::HKLensSpecification;
-#[cfg(all(
-    feature = "HealthKit_HKLiveWorkoutBuilder",
-    feature = "HealthKit_HKWorkoutBuilder"
-))]
+#[cfg(all(feature = "HKLiveWorkoutBuilder", feature = "HKWorkoutBuilder"))]
 pub use self::__HKLiveWorkoutBuilder::HKLiveWorkoutBuilder;
-#[cfg(feature = "HealthKit_HKLiveWorkoutBuilder")]
+#[cfg(feature = "HKLiveWorkoutBuilder")]
 pub use self::__HKLiveWorkoutBuilder::HKLiveWorkoutBuilderDelegate;
-#[cfg(feature = "HealthKit_HKLiveWorkoutDataSource")]
+#[cfg(feature = "HKLiveWorkoutDataSource")]
 pub use self::__HKLiveWorkoutDataSource::HKLiveWorkoutDataSource;
-#[cfg(feature = "HealthKit_HKMetadata")]
+#[cfg(feature = "HKMetadata")]
 pub use self::__HKMetadata::HKAppleECGAlgorithmVersion;
-#[cfg(feature = "HealthKit_HKMetadata")]
+#[cfg(feature = "HKMetadata")]
 pub use self::__HKMetadata::HKBloodGlucoseMealTime;
-#[cfg(feature = "HealthKit_HKMetadata")]
+#[cfg(feature = "HKMetadata")]
 pub use self::__HKMetadata::HKBodyTemperatureSensorLocation;
-#[cfg(feature = "HealthKit_HKMetadata")]
+#[cfg(feature = "HKMetadata")]
 pub use self::__HKMetadata::HKCyclingFunctionalThresholdPowerTestType;
-#[cfg(feature = "HealthKit_HKMetadata")]
+#[cfg(feature = "HKMetadata")]
 pub use self::__HKMetadata::HKDevicePlacementSide;
-#[cfg(feature = "HealthKit_HKMetadata")]
+#[cfg(feature = "HKMetadata")]
 pub use self::__HKMetadata::HKHeartRateMotionContext;
-#[cfg(feature = "HealthKit_HKMetadata")]
+#[cfg(feature = "HKMetadata")]
 pub use self::__HKMetadata::HKHeartRateRecoveryTestType;
-#[cfg(feature = "HealthKit_HKMetadata")]
+#[cfg(feature = "HKMetadata")]
 pub use self::__HKMetadata::HKHeartRateSensorLocation;
-#[cfg(feature = "HealthKit_HKMetadata")]
+#[cfg(feature = "HKMetadata")]
 pub use self::__HKMetadata::HKInsulinDeliveryReason;
-#[cfg(feature = "HealthKit_HKMetadata")]
+#[cfg(feature = "HKMetadata")]
 pub use self::__HKMetadata::HKMetadataKeyActivityType;
-#[cfg(feature = "HealthKit_HKMetadata")]
+#[cfg(feature = "HKMetadata")]
 pub use self::__HKMetadata::HKMetadataKeyAlgorithmVersion;
-#[cfg(feature = "HealthKit_HKMetadata")]
+#[cfg(feature = "HKMetadata")]
 pub use self::__HKMetadata::HKMetadataKeyAlpineSlopeGrade;
-#[cfg(feature = "HealthKit_HKMetadata")]
+#[cfg(feature = "HKMetadata")]
 pub use self::__HKMetadata::HKMetadataKeyAppleDeviceCalibrated;
-#[cfg(feature = "HealthKit_HKMetadata")]
+#[cfg(feature = "HKMetadata")]
 pub use self::__HKMetadata::HKMetadataKeyAppleECGAlgorithmVersion;
-#[cfg(feature = "HealthKit_HKMetadata")]
+#[cfg(feature = "HKMetadata")]
 pub use self::__HKMetadata::HKMetadataKeyAppleFitnessPlusSession;
-#[cfg(feature = "HealthKit_HKMetadata")]
+#[cfg(feature = "HKMetadata")]
 pub use self::__HKMetadata::HKMetadataKeyAudioExposureDuration;
-#[cfg(feature = "HealthKit_HKMetadata")]
+#[cfg(feature = "HKMetadata")]
 pub use self::__HKMetadata::HKMetadataKeyAudioExposureLevel;
-#[cfg(feature = "HealthKit_HKMetadata")]
+#[cfg(feature = "HKMetadata")]
 pub use self::__HKMetadata::HKMetadataKeyAverageMETs;
-#[cfg(feature = "HealthKit_HKMetadata")]
+#[cfg(feature = "HKMetadata")]
 pub use self::__HKMetadata::HKMetadataKeyAverageSpeed;
-#[cfg(feature = "HealthKit_HKMetadata")]
+#[cfg(feature = "HKMetadata")]
 pub use self::__HKMetadata::HKMetadataKeyBarometricPressure;
-#[cfg(feature = "HealthKit_HKMetadata")]
+#[cfg(feature = "HKMetadata")]
 pub use self::__HKMetadata::HKMetadataKeyBloodGlucoseMealTime;
-#[cfg(feature = "HealthKit_HKMetadata")]
+#[cfg(feature = "HKMetadata")]
 pub use self::__HKMetadata::HKMetadataKeyBodyTemperatureSensorLocation;
-#[cfg(feature = "HealthKit_HKMetadata")]
+#[cfg(feature = "HKMetadata")]
 pub use self::__HKMetadata::HKMetadataKeyCoachedWorkout;
-#[cfg(feature = "HealthKit_HKMetadata")]
+#[cfg(feature = "HKMetadata")]
 pub use self::__HKMetadata::HKMetadataKeyCrossTrainerDistance;
-#[cfg(feature = "HealthKit_HKMetadata")]
+#[cfg(feature = "HKMetadata")]
 pub use self::__HKMetadata::HKMetadataKeyCyclingFunctionalThresholdPowerTestType;
-#[cfg(feature = "HealthKit_HKMetadata")]
+#[cfg(feature = "HKMetadata")]
 pub use self::__HKMetadata::HKMetadataKeyDateOfEarliestDataUsedForEstimate;
-#[cfg(feature = "HealthKit_HKMetadata")]
+#[cfg(feature = "HKMetadata")]
 pub use self::__HKMetadata::HKMetadataKeyDeviceManufacturerName;
-#[cfg(feature = "HealthKit_HKMetadata")]
+#[cfg(feature = "HKMetadata")]
 pub use self::__HKMetadata::HKMetadataKeyDeviceName;
-#[cfg(feature = "HealthKit_HKMetadata")]
+#[cfg(feature = "HKMetadata")]
 pub use self::__HKMetadata::HKMetadataKeyDevicePlacementSide;
-#[cfg(feature = "HealthKit_HKMetadata")]
+#[cfg(feature = "HKMetadata")]
 pub use self::__HKMetadata::HKMetadataKeyDeviceSerialNumber;
-#[cfg(feature = "HealthKit_HKMetadata")]
+#[cfg(feature = "HKMetadata")]
 pub use self::__HKMetadata::HKMetadataKeyDigitalSignature;
-#[cfg(feature = "HealthKit_HKMetadata")]
+#[cfg(feature = "HKMetadata")]
 pub use self::__HKMetadata::HKMetadataKeyElevationAscended;
-#[cfg(feature = "HealthKit_HKMetadata")]
+#[cfg(feature = "HKMetadata")]
 pub use self::__HKMetadata::HKMetadataKeyElevationDescended;
-#[cfg(feature = "HealthKit_HKMetadata")]
+#[cfg(feature = "HKMetadata")]
 pub use self::__HKMetadata::HKMetadataKeyExternalUUID;
-#[cfg(feature = "HealthKit_HKMetadata")]
+#[cfg(feature = "HKMetadata")]
 pub use self::__HKMetadata::HKMetadataKeyFitnessMachineDuration;
-#[cfg(feature = "HealthKit_HKMetadata")]
+#[cfg(feature = "HKMetadata")]
 pub use self::__HKMetadata::HKMetadataKeyFoodType;
-#[cfg(feature = "HealthKit_HKMetadata")]
+#[cfg(feature = "HKMetadata")]
 pub use self::__HKMetadata::HKMetadataKeyGlassesPrescriptionDescription;
-#[cfg(feature = "HealthKit_HKMetadata")]
+#[cfg(feature = "HKMetadata")]
 pub use self::__HKMetadata::HKMetadataKeyGroupFitness;
-#[cfg(feature = "HealthKit_HKMetadata")]
+#[cfg(feature = "HKMetadata")]
 pub use self::__HKMetadata::HKMetadataKeyHeadphoneGain;
-#[cfg(feature = "HealthKit_HKMetadata")]
+#[cfg(feature = "HKMetadata")]
 pub use self::__HKMetadata::HKMetadataKeyHeartRateEventThreshold;
-#[cfg(feature = "HealthKit_HKMetadata")]
+#[cfg(feature = "HKMetadata")]
 pub use self::__HKMetadata::HKMetadataKeyHeartRateMotionContext;
-#[cfg(feature = "HealthKit_HKMetadata")]
+#[cfg(feature = "HKMetadata")]
 pub use self::__HKMetadata::HKMetadataKeyHeartRateRecoveryActivityDuration;
-#[cfg(feature = "HealthKit_HKMetadata")]
+#[cfg(feature = "HKMetadata")]
 pub use self::__HKMetadata::HKMetadataKeyHeartRateRecoveryActivityType;
-#[cfg(feature = "HealthKit_HKMetadata")]
+#[cfg(feature = "HKMetadata")]
 pub use self::__HKMetadata::HKMetadataKeyHeartRateRecoveryMaxObservedRecoveryHeartRate;
-#[cfg(feature = "HealthKit_HKMetadata")]
+#[cfg(feature = "HKMetadata")]
 pub use self::__HKMetadata::HKMetadataKeyHeartRateRecoveryTestType;
-#[cfg(feature = "HealthKit_HKMetadata")]
+#[cfg(feature = "HKMetadata")]
 pub use self::__HKMetadata::HKMetadataKeyHeartRateSensorLocation;
-#[cfg(feature = "HealthKit_HKMetadata")]
+#[cfg(feature = "HKMetadata")]
 pub use self::__HKMetadata::HKMetadataKeyIndoorBikeDistance;
-#[cfg(feature = "HealthKit_HKMetadata")]
+#[cfg(feature = "HKMetadata")]
 pub use self::__HKMetadata::HKMetadataKeyIndoorWorkout;
-#[cfg(feature = "HealthKit_HKMetadata")]
+#[cfg(feature = "HKMetadata")]
 pub use self::__HKMetadata::HKMetadataKeyInsulinDeliveryReason;
-#[cfg(feature = "HealthKit_HKMetadata")]
+#[cfg(feature = "HKMetadata")]
 pub use self::__HKMetadata::HKMetadataKeyLapLength;
-#[cfg(feature = "HealthKit_HKMetadata")]
+#[cfg(feature = "HKMetadata")]
 pub use self::__HKMetadata::HKMetadataKeyLowCardioFitnessEventThreshold;
-#[cfg(feature = "HealthKit_HKMetadata")]
+#[cfg(feature = "HKMetadata")]
 pub use self::__HKMetadata::HKMetadataKeyMaximumLightIntensity;
-#[cfg(feature = "HealthKit_HKMetadata")]
+#[cfg(feature = "HKMetadata")]
 pub use self::__HKMetadata::HKMetadataKeyMaximumSpeed;
-#[cfg(feature = "HealthKit_HKMetadata")]
+#[cfg(feature = "HKMetadata")]
 pub use self::__HKMetadata::HKMetadataKeyMenstrualCycleStart;
-#[cfg(feature = "HealthKit_HKMetadata")]
+#[cfg(feature = "HKMetadata")]
 pub use self::__HKMetadata::HKMetadataKeyPhysicalEffortEstimationType;
-#[cfg(feature = "HealthKit_HKMetadata")]
+#[cfg(feature = "HKMetadata")]
 pub use self::__HKMetadata::HKMetadataKeyQuantityClampedToLowerBound;
-#[cfg(feature = "HealthKit_HKMetadata")]
+#[cfg(feature = "HKMetadata")]
 pub use self::__HKMetadata::HKMetadataKeyQuantityClampedToUpperBound;
-#[cfg(feature = "HealthKit_HKMetadata")]
+#[cfg(feature = "HKMetadata")]
 pub use self::__HKMetadata::HKMetadataKeyReferenceRangeLowerLimit;
-#[cfg(feature = "HealthKit_HKMetadata")]
+#[cfg(feature = "HKMetadata")]
 pub use self::__HKMetadata::HKMetadataKeyReferenceRangeUpperLimit;
-#[cfg(feature = "HealthKit_HKMetadata")]
+#[cfg(feature = "HKMetadata")]
 pub use self::__HKMetadata::HKMetadataKeySWOLFScore;
-#[cfg(feature = "HealthKit_HKMetadata")]
+#[cfg(feature = "HKMetadata")]
 pub use self::__HKMetadata::HKMetadataKeySessionEstimate;
-#[cfg(feature = "HealthKit_HKMetadata")]
+#[cfg(feature = "HKMetadata")]
 pub use self::__HKMetadata::HKMetadataKeySexualActivityProtectionUsed;
-#[cfg(feature = "HealthKit_HKMetadata")]
+#[cfg(feature = "HKMetadata")]
 pub use self::__HKMetadata::HKMetadataKeySwimmingLocationType;
-#[cfg(feature = "HealthKit_HKMetadata")]
+#[cfg(feature = "HKMetadata")]
 pub use self::__HKMetadata::HKMetadataKeySwimmingStrokeStyle;
-#[cfg(feature = "HealthKit_HKMetadata")]
+#[cfg(feature = "HKMetadata")]
 pub use self::__HKMetadata::HKMetadataKeySyncIdentifier;
-#[cfg(feature = "HealthKit_HKMetadata")]
+#[cfg(feature = "HKMetadata")]
 pub use self::__HKMetadata::HKMetadataKeySyncVersion;
-#[cfg(feature = "HealthKit_HKMetadata")]
+#[cfg(feature = "HKMetadata")]
 pub use self::__HKMetadata::HKMetadataKeyTimeZone;
-#[cfg(feature = "HealthKit_HKMetadata")]
+#[cfg(feature = "HKMetadata")]
 pub use self::__HKMetadata::HKMetadataKeyUDIDeviceIdentifier;
-#[cfg(feature = "HealthKit_HKMetadata")]
+#[cfg(feature = "HKMetadata")]
 pub use self::__HKMetadata::HKMetadataKeyUDIProductionIdentifier;
-#[cfg(feature = "HealthKit_HKMetadata")]
+#[cfg(feature = "HKMetadata")]
 pub use self::__HKMetadata::HKMetadataKeyUserMotionContext;
-#[cfg(feature = "HealthKit_HKMetadata")]
+#[cfg(feature = "HKMetadata")]
 pub use self::__HKMetadata::HKMetadataKeyVO2MaxTestType;
-#[cfg(feature = "HealthKit_HKMetadata")]
+#[cfg(feature = "HKMetadata")]
 pub use self::__HKMetadata::HKMetadataKeyVO2MaxValue;
-#[cfg(feature = "HealthKit_HKMetadata")]
+#[cfg(feature = "HKMetadata")]
 pub use self::__HKMetadata::HKMetadataKeyWasTakenInLab;
-#[cfg(feature = "HealthKit_HKMetadata")]
+#[cfg(feature = "HKMetadata")]
 pub use self::__HKMetadata::HKMetadataKeyWasUserEntered;
-#[cfg(feature = "HealthKit_HKMetadata")]
+#[cfg(feature = "HKMetadata")]
 pub use self::__HKMetadata::HKMetadataKeyWaterSalinity;
-#[cfg(feature = "HealthKit_HKMetadata")]
+#[cfg(feature = "HKMetadata")]
 pub use self::__HKMetadata::HKMetadataKeyWeatherCondition;
-#[cfg(feature = "HealthKit_HKMetadata")]
+#[cfg(feature = "HKMetadata")]
 pub use self::__HKMetadata::HKMetadataKeyWeatherHumidity;
-#[cfg(feature = "HealthKit_HKMetadata")]
+#[cfg(feature = "HKMetadata")]
 pub use self::__HKMetadata::HKMetadataKeyWeatherTemperature;
-#[cfg(feature = "HealthKit_HKMetadata")]
+#[cfg(feature = "HKMetadata")]
 pub use self::__HKMetadata::HKMetadataKeyWorkoutBrandName;
-#[cfg(feature = "HealthKit_HKMetadata")]
+#[cfg(feature = "HKMetadata")]
 pub use self::__HKMetadata::HKPhysicalEffortEstimationType;
-#[cfg(feature = "HealthKit_HKMetadata")]
+#[cfg(feature = "HKMetadata")]
 pub use self::__HKMetadata::HKSwimmingStrokeStyle;
-#[cfg(feature = "HealthKit_HKMetadata")]
+#[cfg(feature = "HKMetadata")]
 pub use self::__HKMetadata::HKUserMotionContext;
-#[cfg(feature = "HealthKit_HKMetadata")]
+#[cfg(feature = "HKMetadata")]
 pub use self::__HKMetadata::HKVO2MaxTestType;
-#[cfg(feature = "HealthKit_HKMetadata")]
+#[cfg(feature = "HKMetadata")]
 pub use self::__HKMetadata::HKWaterSalinity;
-#[cfg(feature = "HealthKit_HKMetadata")]
+#[cfg(feature = "HKMetadata")]
 pub use self::__HKMetadata::HKWeatherCondition;
-#[cfg(feature = "HealthKit_HKMetadata")]
+#[cfg(feature = "HKMetadata")]
 pub use self::__HKMetadata::HKWorkoutSwimmingLocationType;
-#[cfg(feature = "HealthKit_HKObject")]
+#[cfg(feature = "HKObject")]
 pub use self::__HKObject::HKObject;
-#[cfg(feature = "HealthKit_HKObject")]
+#[cfg(feature = "HKObject")]
 pub use self::__HKObject::HKPredicateKeyPathCorrelation;
-#[cfg(feature = "HealthKit_HKObject")]
+#[cfg(feature = "HKObject")]
 pub use self::__HKObject::HKPredicateKeyPathDevice;
-#[cfg(feature = "HealthKit_HKObject")]
+#[cfg(feature = "HKObject")]
 pub use self::__HKObject::HKPredicateKeyPathMetadata;
-#[cfg(feature = "HealthKit_HKObject")]
+#[cfg(feature = "HKObject")]
 pub use self::__HKObject::HKPredicateKeyPathSource;
-#[cfg(feature = "HealthKit_HKObject")]
+#[cfg(feature = "HKObject")]
 pub use self::__HKObject::HKPredicateKeyPathSourceRevision;
-#[cfg(feature = "HealthKit_HKObject")]
+#[cfg(feature = "HKObject")]
 pub use self::__HKObject::HKPredicateKeyPathUUID;
-#[cfg(feature = "HealthKit_HKObject")]
+#[cfg(feature = "HKObject")]
 pub use self::__HKObject::HKPredicateKeyPathWorkout;
-#[cfg(feature = "HealthKit_HKObjectType")]
+#[cfg(feature = "HKObjectType")]
 pub use self::__HKObjectType::HKActivitySummaryType;
-#[cfg(feature = "HealthKit_HKObjectType")]
+#[cfg(feature = "HKObjectType")]
 pub use self::__HKObjectType::HKAudiogramSampleType;
-#[cfg(feature = "HealthKit_HKObjectType")]
+#[cfg(feature = "HKObjectType")]
 pub use self::__HKObjectType::HKCategoryType;
-#[cfg(feature = "HealthKit_HKObjectType")]
+#[cfg(feature = "HKObjectType")]
 pub use self::__HKObjectType::HKCharacteristicType;
-#[cfg(feature = "HealthKit_HKObjectType")]
+#[cfg(feature = "HKObjectType")]
 pub use self::__HKObjectType::HKCorrelationType;
-#[cfg(feature = "HealthKit_HKObjectType")]
+#[cfg(feature = "HKObjectType")]
 pub use self::__HKObjectType::HKDocumentType;
-#[cfg(feature = "HealthKit_HKObjectType")]
+#[cfg(feature = "HKObjectType")]
 pub use self::__HKObjectType::HKElectrocardiogramType;
-#[cfg(feature = "HealthKit_HKObjectType")]
+#[cfg(feature = "HKObjectType")]
 pub use self::__HKObjectType::HKObjectType;
-#[cfg(feature = "HealthKit_HKObjectType")]
+#[cfg(feature = "HKObjectType")]
 pub use self::__HKObjectType::HKPrescriptionType;
-#[cfg(feature = "HealthKit_HKObjectType")]
+#[cfg(feature = "HKObjectType")]
 pub use self::__HKObjectType::HKQuantityType;
-#[cfg(feature = "HealthKit_HKObjectType")]
+#[cfg(feature = "HKObjectType")]
 pub use self::__HKObjectType::HKSampleType;
-#[cfg(feature = "HealthKit_HKObjectType")]
+#[cfg(feature = "HKObjectType")]
 pub use self::__HKObjectType::HKSeriesType;
-#[cfg(feature = "HealthKit_HKObjectType")]
+#[cfg(feature = "HKObjectType")]
 pub use self::__HKObjectType::HKWorkoutType;
-#[cfg(all(feature = "HealthKit_HKObserverQuery", feature = "HealthKit_HKQuery"))]
+#[cfg(all(feature = "HKObserverQuery", feature = "HKQuery"))]
 pub use self::__HKObserverQuery::HKObserverQuery;
-#[cfg(all(feature = "HealthKit_HKObserverQuery", feature = "block2"))]
+#[cfg(all(feature = "HKObserverQuery", feature = "block2"))]
 pub use self::__HKObserverQuery::HKObserverQueryCompletionHandler;
-#[cfg(feature = "HealthKit_HKQuantity")]
+#[cfg(feature = "HKQuantity")]
 pub use self::__HKQuantity::HKQuantity;
-#[cfg(feature = "HealthKit_HKQuantityAggregationStyle")]
+#[cfg(feature = "HKQuantityAggregationStyle")]
 pub use self::__HKQuantityAggregationStyle::HKQuantityAggregationStyle;
-#[cfg(feature = "HealthKit_HKQuantitySample")]
+#[cfg(feature = "HKQuantitySample")]
 pub use self::__HKQuantitySample::HKPredicateKeyPathCount;
-#[cfg(feature = "HealthKit_HKQuantitySample")]
+#[cfg(feature = "HKQuantitySample")]
 pub use self::__HKQuantitySample::HKPredicateKeyPathQuantity;
 #[cfg(all(
-    feature = "HealthKit_HKObject",
-    feature = "HealthKit_HKQuantitySample",
-    feature = "HealthKit_HKSample"
+    feature = "HKObject",
+    feature = "HKQuantitySample",
+    feature = "HKSample"
 ))]
 pub use self::__HKQuantitySample::HKQuantitySample;
-#[cfg(feature = "HealthKit_HKQuantitySeriesSampleBuilder")]
+#[cfg(feature = "HKQuantitySeriesSampleBuilder")]
 pub use self::__HKQuantitySeriesSampleBuilder::HKQuantitySeriesSampleBuilder;
-#[cfg(all(
-    feature = "HealthKit_HKQuantitySeriesSampleQuery",
-    feature = "HealthKit_HKQuery"
-))]
+#[cfg(all(feature = "HKQuantitySeriesSampleQuery", feature = "HKQuery"))]
 pub use self::__HKQuantitySeriesSampleQuery::HKQuantitySeriesSampleQuery;
-#[cfg(feature = "HealthKit_HKQuery")]
+#[cfg(feature = "HKQuery")]
 pub use self::__HKQuery::HKQuery;
-#[cfg(feature = "HealthKit_HKQuery")]
+#[cfg(feature = "HKQuery")]
 pub use self::__HKQuery::HKQueryOptions;
-#[cfg(feature = "HealthKit_HKQueryAnchor")]
+#[cfg(feature = "HKQueryAnchor")]
 pub use self::__HKQueryAnchor::HKQueryAnchor;
-#[cfg(feature = "HealthKit_HKQueryDescriptor")]
+#[cfg(feature = "HKQueryDescriptor")]
 pub use self::__HKQueryDescriptor::HKQueryDescriptor;
-#[cfg(feature = "HealthKit_HKSample")]
+#[cfg(feature = "HKSample")]
 pub use self::__HKSample::HKPredicateKeyPathEndDate;
-#[cfg(feature = "HealthKit_HKSample")]
+#[cfg(feature = "HKSample")]
 pub use self::__HKSample::HKPredicateKeyPathStartDate;
-#[cfg(all(feature = "HealthKit_HKObject", feature = "HealthKit_HKSample"))]
+#[cfg(all(feature = "HKObject", feature = "HKSample"))]
 pub use self::__HKSample::HKSample;
-#[cfg(feature = "HealthKit_HKSample")]
+#[cfg(feature = "HKSample")]
 pub use self::__HKSample::HKSampleSortIdentifierEndDate;
-#[cfg(feature = "HealthKit_HKSample")]
+#[cfg(feature = "HKSample")]
 pub use self::__HKSample::HKSampleSortIdentifierStartDate;
-#[cfg(feature = "HealthKit_HKSampleQuery")]
+#[cfg(feature = "HKSampleQuery")]
 pub use self::__HKSampleQuery::HKObjectQueryNoLimit;
-#[cfg(all(feature = "HealthKit_HKQuery", feature = "HealthKit_HKSampleQuery"))]
+#[cfg(all(feature = "HKQuery", feature = "HKSampleQuery"))]
 pub use self::__HKSampleQuery::HKSampleQuery;
-#[cfg(feature = "HealthKit_HKSeriesBuilder")]
+#[cfg(feature = "HKSeriesBuilder")]
 pub use self::__HKSeriesBuilder::HKSeriesBuilder;
-#[cfg(all(
-    feature = "HealthKit_HKObject",
-    feature = "HealthKit_HKSample",
-    feature = "HealthKit_HKSeriesSample"
-))]
+#[cfg(all(feature = "HKObject", feature = "HKSample", feature = "HKSeriesSample"))]
 pub use self::__HKSeriesSample::HKSeriesSample;
-#[cfg(feature = "HealthKit_HKSource")]
+#[cfg(feature = "HKSource")]
 pub use self::__HKSource::HKSource;
-#[cfg(all(feature = "HealthKit_HKQuery", feature = "HealthKit_HKSourceQuery"))]
+#[cfg(all(feature = "HKQuery", feature = "HKSourceQuery"))]
 pub use self::__HKSourceQuery::HKSourceQuery;
-#[cfg(feature = "HealthKit_HKSourceRevision")]
+#[cfg(feature = "HKSourceRevision")]
 pub use self::__HKSourceRevision::HKSourceRevision;
-#[cfg(feature = "HealthKit_HKSourceRevision")]
+#[cfg(feature = "HKSourceRevision")]
 pub use self::__HKSourceRevision::HKSourceRevisionAnyOperatingSystem;
-#[cfg(feature = "HealthKit_HKSourceRevision")]
+#[cfg(feature = "HKSourceRevision")]
 pub use self::__HKSourceRevision::HKSourceRevisionAnyProductType;
-#[cfg(feature = "HealthKit_HKSourceRevision")]
+#[cfg(feature = "HKSourceRevision")]
 pub use self::__HKSourceRevision::HKSourceRevisionAnyVersion;
-#[cfg(feature = "HealthKit_HKStatistics")]
+#[cfg(feature = "HKStatistics")]
 pub use self::__HKStatistics::HKStatistics;
-#[cfg(feature = "HealthKit_HKStatistics")]
+#[cfg(feature = "HKStatistics")]
 pub use self::__HKStatistics::HKStatisticsOptions;
-#[cfg(feature = "HealthKit_HKStatisticsCollectionQuery")]
+#[cfg(feature = "HKStatisticsCollectionQuery")]
 pub use self::__HKStatisticsCollectionQuery::HKStatisticsCollection;
-#[cfg(all(
-    feature = "HealthKit_HKQuery",
-    feature = "HealthKit_HKStatisticsCollectionQuery"
-))]
+#[cfg(all(feature = "HKQuery", feature = "HKStatisticsCollectionQuery"))]
 pub use self::__HKStatisticsCollectionQuery::HKStatisticsCollectionQuery;
-#[cfg(all(feature = "HealthKit_HKQuery", feature = "HealthKit_HKStatisticsQuery"))]
+#[cfg(all(feature = "HKQuery", feature = "HKStatisticsQuery"))]
 pub use self::__HKStatisticsQuery::HKStatisticsQuery;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKCategoryTypeIdentifier;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKCategoryTypeIdentifierAbdominalCramps;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKCategoryTypeIdentifierAcne;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKCategoryTypeIdentifierAppetiteChanges;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKCategoryTypeIdentifierAppleStandHour;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKCategoryTypeIdentifierAppleWalkingSteadinessEvent;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKCategoryTypeIdentifierAudioExposureEvent;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKCategoryTypeIdentifierBladderIncontinence;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKCategoryTypeIdentifierBloating;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKCategoryTypeIdentifierBreastPain;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKCategoryTypeIdentifierCervicalMucusQuality;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKCategoryTypeIdentifierChestTightnessOrPain;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKCategoryTypeIdentifierChills;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKCategoryTypeIdentifierConstipation;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKCategoryTypeIdentifierContraceptive;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKCategoryTypeIdentifierCoughing;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKCategoryTypeIdentifierDiarrhea;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKCategoryTypeIdentifierDizziness;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKCategoryTypeIdentifierDrySkin;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKCategoryTypeIdentifierEnvironmentalAudioExposureEvent;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKCategoryTypeIdentifierFainting;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKCategoryTypeIdentifierFatigue;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKCategoryTypeIdentifierFever;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKCategoryTypeIdentifierGeneralizedBodyAche;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKCategoryTypeIdentifierHairLoss;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKCategoryTypeIdentifierHandwashingEvent;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKCategoryTypeIdentifierHeadache;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKCategoryTypeIdentifierHeadphoneAudioExposureEvent;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKCategoryTypeIdentifierHeartburn;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKCategoryTypeIdentifierHighHeartRateEvent;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKCategoryTypeIdentifierHotFlashes;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKCategoryTypeIdentifierInfrequentMenstrualCycles;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKCategoryTypeIdentifierIntermenstrualBleeding;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKCategoryTypeIdentifierIrregularHeartRhythmEvent;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKCategoryTypeIdentifierIrregularMenstrualCycles;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKCategoryTypeIdentifierLactation;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKCategoryTypeIdentifierLossOfSmell;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKCategoryTypeIdentifierLossOfTaste;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKCategoryTypeIdentifierLowCardioFitnessEvent;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKCategoryTypeIdentifierLowHeartRateEvent;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKCategoryTypeIdentifierLowerBackPain;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKCategoryTypeIdentifierMemoryLapse;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKCategoryTypeIdentifierMenstrualFlow;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKCategoryTypeIdentifierMindfulSession;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKCategoryTypeIdentifierMoodChanges;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKCategoryTypeIdentifierNausea;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKCategoryTypeIdentifierNightSweats;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKCategoryTypeIdentifierOvulationTestResult;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKCategoryTypeIdentifierPelvicPain;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKCategoryTypeIdentifierPersistentIntermenstrualBleeding;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKCategoryTypeIdentifierPregnancy;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKCategoryTypeIdentifierPregnancyTestResult;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKCategoryTypeIdentifierProgesteroneTestResult;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKCategoryTypeIdentifierProlongedMenstrualPeriods;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKCategoryTypeIdentifierRapidPoundingOrFlutteringHeartbeat;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKCategoryTypeIdentifierRunnyNose;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKCategoryTypeIdentifierSexualActivity;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKCategoryTypeIdentifierShortnessOfBreath;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKCategoryTypeIdentifierSinusCongestion;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKCategoryTypeIdentifierSkippedHeartbeat;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKCategoryTypeIdentifierSleepAnalysis;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKCategoryTypeIdentifierSleepChanges;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKCategoryTypeIdentifierSoreThroat;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKCategoryTypeIdentifierToothbrushingEvent;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKCategoryTypeIdentifierVaginalDryness;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKCategoryTypeIdentifierVomiting;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKCategoryTypeIdentifierWheezing;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKCharacteristicTypeIdentifier;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKCharacteristicTypeIdentifierActivityMoveMode;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKCharacteristicTypeIdentifierBiologicalSex;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKCharacteristicTypeIdentifierBloodType;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKCharacteristicTypeIdentifierDateOfBirth;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKCharacteristicTypeIdentifierFitzpatrickSkinType;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKCharacteristicTypeIdentifierWheelchairUse;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKCorrelationTypeIdentifier;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKCorrelationTypeIdentifierBloodPressure;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKCorrelationTypeIdentifierFood;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKDataTypeIdentifierHeartbeatSeries;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKDocumentTypeIdentifier;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKDocumentTypeIdentifierCDA;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifier;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierActiveEnergyBurned;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierAppleExerciseTime;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierAppleMoveTime;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierAppleSleepingWristTemperature;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierAppleStandTime;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierAppleWalkingSteadiness;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierAtrialFibrillationBurden;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierBasalBodyTemperature;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierBasalEnergyBurned;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierBloodAlcoholContent;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierBloodGlucose;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierBloodPressureDiastolic;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierBloodPressureSystolic;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierBodyFatPercentage;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierBodyMass;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierBodyMassIndex;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierBodyTemperature;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierCyclingCadence;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierCyclingFunctionalThresholdPower;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierCyclingPower;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierCyclingSpeed;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierDietaryBiotin;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierDietaryCaffeine;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierDietaryCalcium;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierDietaryCarbohydrates;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierDietaryChloride;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierDietaryCholesterol;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierDietaryChromium;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierDietaryCopper;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierDietaryEnergyConsumed;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierDietaryFatMonounsaturated;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierDietaryFatPolyunsaturated;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierDietaryFatSaturated;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierDietaryFatTotal;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierDietaryFiber;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierDietaryFolate;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierDietaryIodine;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierDietaryIron;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierDietaryMagnesium;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierDietaryManganese;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierDietaryMolybdenum;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierDietaryNiacin;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierDietaryPantothenicAcid;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierDietaryPhosphorus;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierDietaryPotassium;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierDietaryProtein;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierDietaryRiboflavin;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierDietarySelenium;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierDietarySodium;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierDietarySugar;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierDietaryThiamin;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierDietaryVitaminA;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierDietaryVitaminB12;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierDietaryVitaminB6;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierDietaryVitaminC;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierDietaryVitaminD;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierDietaryVitaminE;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierDietaryVitaminK;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierDietaryWater;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierDietaryZinc;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierDistanceCycling;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierDistanceDownhillSnowSports;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierDistanceSwimming;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierDistanceWalkingRunning;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierDistanceWheelchair;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierElectrodermalActivity;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierEnvironmentalAudioExposure;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierEnvironmentalSoundReduction;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierFlightsClimbed;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierForcedExpiratoryVolume1;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierForcedVitalCapacity;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierHeadphoneAudioExposure;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierHeartRate;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierHeartRateRecoveryOneMinute;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierHeartRateVariabilitySDNN;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierHeight;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierInhalerUsage;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierInsulinDelivery;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierLeanBodyMass;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierNikeFuel;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierNumberOfAlcoholicBeverages;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierNumberOfTimesFallen;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierOxygenSaturation;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierPeakExpiratoryFlowRate;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierPeripheralPerfusionIndex;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierPhysicalEffort;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierPushCount;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierRespiratoryRate;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierRestingHeartRate;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierRunningGroundContactTime;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierRunningPower;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierRunningSpeed;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierRunningStrideLength;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierRunningVerticalOscillation;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierSixMinuteWalkTestDistance;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierStairAscentSpeed;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierStairDescentSpeed;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierStepCount;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierSwimmingStrokeCount;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierTimeInDaylight;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierUVExposure;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierUnderwaterDepth;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierVO2Max;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierWaistCircumference;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierWalkingAsymmetryPercentage;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierWalkingDoubleSupportPercentage;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierWalkingHeartRateAverage;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierWalkingSpeed;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierWalkingStepLength;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierWaterTemperature;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKVisionPrescriptionTypeIdentifier;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKWorkoutRouteTypeIdentifier;
-#[cfg(feature = "HealthKit_HKTypeIdentifiers")]
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKWorkoutTypeIdentifier;
-#[cfg(feature = "HealthKit_HKUnit")]
+#[cfg(feature = "HKUnit")]
 pub use self::__HKUnit::HKMetricPrefix;
-#[cfg(feature = "HealthKit_HKUnit")]
+#[cfg(feature = "HKUnit")]
 pub use self::__HKUnit::HKUnit;
 #[cfg(all(
-    feature = "HealthKit_HKObject",
-    feature = "HealthKit_HKSample",
-    feature = "HealthKit_HKVerifiableClinicalRecord"
+    feature = "HKObject",
+    feature = "HKSample",
+    feature = "HKVerifiableClinicalRecord"
 ))]
 pub use self::__HKVerifiableClinicalRecord::HKVerifiableClinicalRecord;
-#[cfg(feature = "HealthKit_HKVerifiableClinicalRecord")]
+#[cfg(feature = "HKVerifiableClinicalRecord")]
 pub use self::__HKVerifiableClinicalRecord::HKVerifiableClinicalRecordCredentialType;
-#[cfg(feature = "HealthKit_HKVerifiableClinicalRecord")]
+#[cfg(feature = "HKVerifiableClinicalRecord")]
 pub use self::__HKVerifiableClinicalRecord::HKVerifiableClinicalRecordCredentialTypeCOVID19;
-#[cfg(feature = "HealthKit_HKVerifiableClinicalRecord")]
+#[cfg(feature = "HKVerifiableClinicalRecord")]
 pub use self::__HKVerifiableClinicalRecord::HKVerifiableClinicalRecordCredentialTypeImmunization;
-#[cfg(feature = "HealthKit_HKVerifiableClinicalRecord")]
+#[cfg(feature = "HKVerifiableClinicalRecord")]
 pub use self::__HKVerifiableClinicalRecord::HKVerifiableClinicalRecordCredentialTypeLaboratory;
-#[cfg(feature = "HealthKit_HKVerifiableClinicalRecord")]
+#[cfg(feature = "HKVerifiableClinicalRecord")]
 pub use self::__HKVerifiableClinicalRecord::HKVerifiableClinicalRecordCredentialTypeRecovery;
-#[cfg(feature = "HealthKit_HKVerifiableClinicalRecord")]
+#[cfg(feature = "HKVerifiableClinicalRecord")]
 pub use self::__HKVerifiableClinicalRecord::HKVerifiableClinicalRecordSourceType;
-#[cfg(feature = "HealthKit_HKVerifiableClinicalRecord")]
+#[cfg(feature = "HKVerifiableClinicalRecord")]
 pub use self::__HKVerifiableClinicalRecord::HKVerifiableClinicalRecordSourceTypeEUDigitalCOVIDCertificate;
-#[cfg(feature = "HealthKit_HKVerifiableClinicalRecord")]
+#[cfg(feature = "HKVerifiableClinicalRecord")]
 pub use self::__HKVerifiableClinicalRecord::HKVerifiableClinicalRecordSourceTypeSMARTHealthCard;
-#[cfg(all(
-    feature = "HealthKit_HKQuery",
-    feature = "HealthKit_HKVerifiableClinicalRecordQuery"
-))]
+#[cfg(all(feature = "HKQuery", feature = "HKVerifiableClinicalRecordQuery"))]
 pub use self::__HKVerifiableClinicalRecordQuery::HKVerifiableClinicalRecordQuery;
-#[cfg(feature = "HealthKit_HKVerifiableClinicalRecordSubject")]
+#[cfg(feature = "HKVerifiableClinicalRecordSubject")]
 pub use self::__HKVerifiableClinicalRecordSubject::HKVerifiableClinicalRecordSubject;
 #[cfg(all(
-    feature = "HealthKit_HKObject",
-    feature = "HealthKit_HKSample",
-    feature = "HealthKit_HKVisionPrescription"
+    feature = "HKObject",
+    feature = "HKSample",
+    feature = "HKVisionPrescription"
 ))]
 pub use self::__HKVisionPrescription::HKVisionPrescription;
-#[cfg(feature = "HealthKit_HKVisionPrescription")]
+#[cfg(feature = "HKVisionPrescription")]
 pub use self::__HKVisionPrescription::HKVisionPrescriptionType;
-#[cfg(feature = "HealthKit_HKVisionPrism")]
+#[cfg(feature = "HKVisionPrism")]
 pub use self::__HKVisionPrism::HKPrismBase;
-#[cfg(feature = "HealthKit_HKVisionPrism")]
+#[cfg(feature = "HKVisionPrism")]
 pub use self::__HKVisionPrism::HKVisionEye;
-#[cfg(feature = "HealthKit_HKVisionPrism")]
+#[cfg(feature = "HKVisionPrism")]
 pub use self::__HKVisionPrism::HKVisionPrism;
-#[cfg(feature = "HealthKit_HKWorkout")]
+#[cfg(feature = "HKWorkout")]
 pub use self::__HKWorkout::HKPredicateKeyPathWorkoutActivity;
-#[cfg(feature = "HealthKit_HKWorkout")]
+#[cfg(feature = "HKWorkout")]
 pub use self::__HKWorkout::HKPredicateKeyPathWorkoutAverageQuantity;
-#[cfg(feature = "HealthKit_HKWorkout")]
+#[cfg(feature = "HKWorkout")]
 pub use self::__HKWorkout::HKPredicateKeyPathWorkoutDuration;
-#[cfg(feature = "HealthKit_HKWorkout")]
+#[cfg(feature = "HKWorkout")]
 pub use self::__HKWorkout::HKPredicateKeyPathWorkoutMaximumQuantity;
-#[cfg(feature = "HealthKit_HKWorkout")]
+#[cfg(feature = "HKWorkout")]
 pub use self::__HKWorkout::HKPredicateKeyPathWorkoutMinimumQuantity;
-#[cfg(feature = "HealthKit_HKWorkout")]
+#[cfg(feature = "HKWorkout")]
 pub use self::__HKWorkout::HKPredicateKeyPathWorkoutSumQuantity;
-#[cfg(feature = "HealthKit_HKWorkout")]
+#[cfg(feature = "HKWorkout")]
 pub use self::__HKWorkout::HKPredicateKeyPathWorkoutTotalDistance;
-#[cfg(feature = "HealthKit_HKWorkout")]
+#[cfg(feature = "HKWorkout")]
 pub use self::__HKWorkout::HKPredicateKeyPathWorkoutTotalEnergyBurned;
-#[cfg(feature = "HealthKit_HKWorkout")]
+#[cfg(feature = "HKWorkout")]
 pub use self::__HKWorkout::HKPredicateKeyPathWorkoutTotalFlightsClimbed;
-#[cfg(feature = "HealthKit_HKWorkout")]
+#[cfg(feature = "HKWorkout")]
 pub use self::__HKWorkout::HKPredicateKeyPathWorkoutTotalSwimmingStrokeCount;
-#[cfg(feature = "HealthKit_HKWorkout")]
+#[cfg(feature = "HKWorkout")]
 pub use self::__HKWorkout::HKPredicateKeyPathWorkoutType;
-#[cfg(all(
-    feature = "HealthKit_HKObject",
-    feature = "HealthKit_HKSample",
-    feature = "HealthKit_HKWorkout"
-))]
+#[cfg(all(feature = "HKObject", feature = "HKSample", feature = "HKWorkout"))]
 pub use self::__HKWorkout::HKWorkout;
-#[cfg(feature = "HealthKit_HKWorkout")]
+#[cfg(feature = "HKWorkout")]
 pub use self::__HKWorkout::HKWorkoutActivityType;
-#[cfg(feature = "HealthKit_HKWorkout")]
+#[cfg(feature = "HKWorkout")]
 pub use self::__HKWorkout::HKWorkoutEvent;
-#[cfg(feature = "HealthKit_HKWorkout")]
+#[cfg(feature = "HKWorkout")]
 pub use self::__HKWorkout::HKWorkoutEventType;
-#[cfg(feature = "HealthKit_HKWorkout")]
+#[cfg(feature = "HKWorkout")]
 pub use self::__HKWorkout::HKWorkoutSortIdentifierDuration;
-#[cfg(feature = "HealthKit_HKWorkout")]
+#[cfg(feature = "HKWorkout")]
 pub use self::__HKWorkout::HKWorkoutSortIdentifierTotalDistance;
-#[cfg(feature = "HealthKit_HKWorkout")]
+#[cfg(feature = "HKWorkout")]
 pub use self::__HKWorkout::HKWorkoutSortIdentifierTotalEnergyBurned;
-#[cfg(feature = "HealthKit_HKWorkout")]
+#[cfg(feature = "HKWorkout")]
 pub use self::__HKWorkout::HKWorkoutSortIdentifierTotalFlightsClimbed;
-#[cfg(feature = "HealthKit_HKWorkout")]
+#[cfg(feature = "HKWorkout")]
 pub use self::__HKWorkout::HKWorkoutSortIdentifierTotalSwimmingStrokeCount;
-#[cfg(feature = "HealthKit_HKWorkoutActivity")]
+#[cfg(feature = "HKWorkoutActivity")]
 pub use self::__HKWorkoutActivity::HKPredicateKeyPathWorkoutActivityAverageQuantity;
-#[cfg(feature = "HealthKit_HKWorkoutActivity")]
+#[cfg(feature = "HKWorkoutActivity")]
 pub use self::__HKWorkoutActivity::HKPredicateKeyPathWorkoutActivityDuration;
-#[cfg(feature = "HealthKit_HKWorkoutActivity")]
+#[cfg(feature = "HKWorkoutActivity")]
 pub use self::__HKWorkoutActivity::HKPredicateKeyPathWorkoutActivityEndDate;
-#[cfg(feature = "HealthKit_HKWorkoutActivity")]
+#[cfg(feature = "HKWorkoutActivity")]
 pub use self::__HKWorkoutActivity::HKPredicateKeyPathWorkoutActivityMaximumQuantity;
-#[cfg(feature = "HealthKit_HKWorkoutActivity")]
+#[cfg(feature = "HKWorkoutActivity")]
 pub use self::__HKWorkoutActivity::HKPredicateKeyPathWorkoutActivityMinimumQuantity;
-#[cfg(feature = "HealthKit_HKWorkoutActivity")]
+#[cfg(feature = "HKWorkoutActivity")]
 pub use self::__HKWorkoutActivity::HKPredicateKeyPathWorkoutActivityStartDate;
-#[cfg(feature = "HealthKit_HKWorkoutActivity")]
+#[cfg(feature = "HKWorkoutActivity")]
 pub use self::__HKWorkoutActivity::HKPredicateKeyPathWorkoutActivitySumQuantity;
-#[cfg(feature = "HealthKit_HKWorkoutActivity")]
+#[cfg(feature = "HKWorkoutActivity")]
 pub use self::__HKWorkoutActivity::HKPredicateKeyPathWorkoutActivityType;
-#[cfg(feature = "HealthKit_HKWorkoutActivity")]
+#[cfg(feature = "HKWorkoutActivity")]
 pub use self::__HKWorkoutActivity::HKWorkoutActivity;
-#[cfg(feature = "HealthKit_HKWorkoutBuilder")]
+#[cfg(feature = "HKWorkoutBuilder")]
 pub use self::__HKWorkoutBuilder::HKWorkoutBuilder;
-#[cfg(feature = "HealthKit_HKWorkoutConfiguration")]
+#[cfg(feature = "HKWorkoutConfiguration")]
 pub use self::__HKWorkoutConfiguration::HKWorkoutConfiguration;
-#[cfg(feature = "HealthKit_HKWorkoutConfiguration")]
+#[cfg(feature = "HKWorkoutConfiguration")]
 pub use self::__HKWorkoutConfiguration::HKWorkoutSessionLocationType;
 #[cfg(all(
-    feature = "HealthKit_HKObject",
-    feature = "HealthKit_HKSample",
-    feature = "HealthKit_HKSeriesSample",
-    feature = "HealthKit_HKWorkoutRoute"
+    feature = "HKObject",
+    feature = "HKSample",
+    feature = "HKSeriesSample",
+    feature = "HKWorkoutRoute"
 ))]
 pub use self::__HKWorkoutRoute::HKWorkoutRoute;
-#[cfg(all(
-    feature = "HealthKit_HKSeriesBuilder",
-    feature = "HealthKit_HKWorkoutRouteBuilder"
-))]
+#[cfg(all(feature = "HKSeriesBuilder", feature = "HKWorkoutRouteBuilder"))]
 pub use self::__HKWorkoutRouteBuilder::HKWorkoutRouteBuilder;
-#[cfg(all(
-    feature = "HealthKit_HKQuery",
-    feature = "HealthKit_HKWorkoutRouteQuery"
-))]
+#[cfg(all(feature = "HKQuery", feature = "HKWorkoutRouteQuery"))]
 pub use self::__HKWorkoutRouteQuery::HKWorkoutRouteQuery;
-#[cfg(feature = "HealthKit_HKWorkoutSession")]
+#[cfg(feature = "HKWorkoutSession")]
 pub use self::__HKWorkoutSession::HKWorkoutSession;
-#[cfg(feature = "HealthKit_HKWorkoutSession")]
+#[cfg(feature = "HKWorkoutSession")]
 pub use self::__HKWorkoutSession::HKWorkoutSessionDelegate;
-#[cfg(feature = "HealthKit_HKWorkoutSession")]
+#[cfg(feature = "HKWorkoutSession")]
 pub use self::__HKWorkoutSession::HKWorkoutSessionState;
-#[cfg(feature = "HealthKit_HKWorkoutSession")]
+#[cfg(feature = "HKWorkoutSession")]
 pub use self::__HKWorkoutSession::HKWorkoutSessionType;

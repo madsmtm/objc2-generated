@@ -33,11 +33,11 @@ extern_methods!(
         #[method(setConfiguration:)]
         pub unsafe fn setConfiguration(&self, configuration: Option<&CKOperationConfiguration>);
 
-        #[cfg(feature = "CloudKit_CKOperationGroup")]
+        #[cfg(feature = "CKOperationGroup")]
         #[method_id(@__retain_semantics Other group)]
         pub unsafe fn group(&self) -> Option<Id<CKOperationGroup>>;
 
-        #[cfg(feature = "CloudKit_CKOperationGroup")]
+        #[cfg(feature = "CKOperationGroup")]
         #[method(setGroup:)]
         pub unsafe fn setGroup(&self, group: Option<&CKOperationGroup>);
 
@@ -79,11 +79,11 @@ unsafe impl NSObjectProtocol for CKOperationConfiguration {}
 
 extern_methods!(
     unsafe impl CKOperationConfiguration {
-        #[cfg(feature = "CloudKit_CKContainer")]
+        #[cfg(feature = "CKContainer")]
         #[method_id(@__retain_semantics Other container)]
         pub unsafe fn container(&self) -> Option<Id<CKContainer>>;
 
-        #[cfg(feature = "CloudKit_CKContainer")]
+        #[cfg(feature = "CKContainer")]
         #[method(setContainer:)]
         pub unsafe fn setContainer(&self, container: Option<&CKContainer>);
 
@@ -139,12 +139,12 @@ extern_methods!(
 extern_methods!(
     /// CKOperationDeprecated
     unsafe impl CKOperation {
-        #[cfg(feature = "CloudKit_CKContainer")]
+        #[cfg(feature = "CKContainer")]
         #[deprecated = "Use CKOperationConfiguration"]
         #[method_id(@__retain_semantics Other container)]
         pub unsafe fn container(&self) -> Option<Id<CKContainer>>;
 
-        #[cfg(feature = "CloudKit_CKContainer")]
+        #[cfg(feature = "CKContainer")]
         #[deprecated = "Use CKOperationConfiguration"]
         #[method(setContainer:)]
         pub unsafe fn setContainer(&self, container: Option<&CKContainer>);

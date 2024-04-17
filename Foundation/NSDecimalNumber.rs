@@ -5,35 +5,35 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern "C" {
-    #[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
+    #[cfg(all(feature = "NSObjCRuntime", feature = "NSString"))]
     pub static NSDecimalNumberExactnessException: &'static NSExceptionName;
 }
 
 extern "C" {
-    #[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
+    #[cfg(all(feature = "NSObjCRuntime", feature = "NSString"))]
     pub static NSDecimalNumberOverflowException: &'static NSExceptionName;
 }
 
 extern "C" {
-    #[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
+    #[cfg(all(feature = "NSObjCRuntime", feature = "NSString"))]
     pub static NSDecimalNumberUnderflowException: &'static NSExceptionName;
 }
 
 extern "C" {
-    #[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
+    #[cfg(all(feature = "NSObjCRuntime", feature = "NSString"))]
     pub static NSDecimalNumberDivideByZeroException: &'static NSExceptionName;
 }
 
 extern_protocol!(
     pub unsafe trait NSDecimalNumberBehaviors {
-        #[cfg(feature = "Foundation_NSDecimal")]
+        #[cfg(feature = "NSDecimal")]
         #[method(roundingMode)]
         unsafe fn roundingMode(&self) -> NSRoundingMode;
 
         #[method(scale)]
         unsafe fn scale(&self) -> c_short;
 
-        #[cfg(all(feature = "Foundation_NSDecimal", feature = "Foundation_NSValue"))]
+        #[cfg(all(feature = "NSDecimal", feature = "NSValue"))]
         #[method_id(@__retain_semantics Other exceptionDuringOperation:error:leftOperand:rightOperand:)]
         unsafe fn exceptionDuringOperation_error_leftOperand_rightOperand(
             &self,
@@ -49,10 +49,10 @@ extern_protocol!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Hash)]
-    #[cfg(feature = "Foundation_NSValue")]
+    #[cfg(feature = "NSValue")]
     pub struct NSDecimalNumber;
 
-    #[cfg(feature = "Foundation_NSValue")]
+    #[cfg(feature = "NSValue")]
     unsafe impl ClassType for NSDecimalNumber {
         #[inherits(NSValue, NSObject)]
         type Super = NSNumber;
@@ -60,26 +60,26 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSValue")]
+#[cfg(feature = "NSValue")]
 unsafe impl Send for NSDecimalNumber {}
 
-#[cfg(feature = "Foundation_NSValue")]
+#[cfg(feature = "NSValue")]
 unsafe impl Sync for NSDecimalNumber {}
 
-#[cfg(all(feature = "Foundation_NSObject", feature = "Foundation_NSValue"))]
+#[cfg(all(feature = "NSObject", feature = "NSValue"))]
 unsafe impl NSCoding for NSDecimalNumber {}
 
-#[cfg(all(feature = "Foundation_NSObject", feature = "Foundation_NSValue"))]
+#[cfg(all(feature = "NSObject", feature = "NSValue"))]
 unsafe impl NSCopying for NSDecimalNumber {}
 
-#[cfg(feature = "Foundation_NSValue")]
+#[cfg(feature = "NSValue")]
 unsafe impl NSObjectProtocol for NSDecimalNumber {}
 
-#[cfg(all(feature = "Foundation_NSObject", feature = "Foundation_NSValue"))]
+#[cfg(all(feature = "NSObject", feature = "NSValue"))]
 unsafe impl NSSecureCoding for NSDecimalNumber {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSValue")]
+    #[cfg(feature = "NSValue")]
     unsafe impl NSDecimalNumber {
         #[method_id(@__retain_semantics Init initWithMantissa:exponent:isNegative:)]
         pub unsafe fn initWithMantissa_exponent_isNegative(
@@ -89,18 +89,18 @@ extern_methods!(
             flag: bool,
         ) -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSDecimal")]
+        #[cfg(feature = "NSDecimal")]
         #[method_id(@__retain_semantics Init initWithDecimal:)]
         pub unsafe fn initWithDecimal(this: Allocated<Self>, dcm: NSDecimal) -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Init initWithString:)]
         pub unsafe fn initWithString(
             this: Allocated<Self>,
             number_value: Option<&NSString>,
         ) -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Init initWithString:locale:)]
         pub unsafe fn initWithString_locale(
             this: Allocated<Self>,
@@ -108,11 +108,11 @@ extern_methods!(
             locale: Option<&AnyObject>,
         ) -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other descriptionWithLocale:)]
         pub unsafe fn descriptionWithLocale(&self, locale: Option<&AnyObject>) -> Id<NSString>;
 
-        #[cfg(feature = "Foundation_NSDecimal")]
+        #[cfg(feature = "NSDecimal")]
         #[method(decimalValue)]
         pub unsafe fn decimalValue(&self) -> NSDecimal;
 
@@ -123,17 +123,17 @@ extern_methods!(
             flag: bool,
         ) -> Id<NSDecimalNumber>;
 
-        #[cfg(feature = "Foundation_NSDecimal")]
+        #[cfg(feature = "NSDecimal")]
         #[method_id(@__retain_semantics Other decimalNumberWithDecimal:)]
         pub unsafe fn decimalNumberWithDecimal(dcm: NSDecimal) -> Id<NSDecimalNumber>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other decimalNumberWithString:)]
         pub unsafe fn decimalNumberWithString(
             number_value: Option<&NSString>,
         ) -> Id<NSDecimalNumber>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other decimalNumberWithString:locale:)]
         pub unsafe fn decimalNumberWithString_locale(
             number_value: Option<&NSString>,
@@ -239,7 +239,7 @@ extern_methods!(
             behavior: Option<&ProtocolObject<dyn NSDecimalNumberBehaviors>>,
         ) -> Id<NSDecimalNumber>;
 
-        #[cfg(feature = "Foundation_NSObjCRuntime")]
+        #[cfg(feature = "NSObjCRuntime")]
         #[method(compare:)]
         pub unsafe fn compare(&self, decimal_number: &NSNumber) -> NSComparisonResult;
 
@@ -261,9 +261,9 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSNumber`
-    #[cfg(feature = "Foundation_NSValue")]
+    #[cfg(feature = "NSValue")]
     unsafe impl NSDecimalNumber {
-        #[cfg(feature = "Foundation_NSCoder")]
+        #[cfg(feature = "NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
     }
@@ -271,7 +271,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSValue`
-    #[cfg(feature = "Foundation_NSValue")]
+    #[cfg(feature = "NSValue")]
     unsafe impl NSDecimalNumber {
         #[method_id(@__retain_semantics Init initWithBytes:objCType:)]
         pub unsafe fn initWithBytes_objCType(
@@ -284,7 +284,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSValue")]
+    #[cfg(feature = "NSValue")]
     unsafe impl NSDecimalNumber {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -308,7 +308,7 @@ unsafe impl Send for NSDecimalNumberHandler {}
 
 unsafe impl Sync for NSDecimalNumberHandler {}
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSCoding for NSDecimalNumberHandler {}
 
 unsafe impl NSDecimalNumberBehaviors for NSDecimalNumberHandler {}
@@ -320,7 +320,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other defaultDecimalNumberHandler)]
         pub unsafe fn defaultDecimalNumberHandler() -> Id<NSDecimalNumberHandler>;
 
-        #[cfg(feature = "Foundation_NSDecimal")]
+        #[cfg(feature = "NSDecimal")]
         #[method_id(@__retain_semantics Init initWithRoundingMode:scale:raiseOnExactness:raiseOnOverflow:raiseOnUnderflow:raiseOnDivideByZero:)]
         pub unsafe fn initWithRoundingMode_scale_raiseOnExactness_raiseOnOverflow_raiseOnUnderflow_raiseOnDivideByZero(
             this: Allocated<Self>,
@@ -332,7 +332,7 @@ extern_methods!(
             divide_by_zero: bool,
         ) -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSDecimal")]
+        #[cfg(feature = "NSDecimal")]
         #[method_id(@__retain_semantics Other decimalNumberHandlerWithRoundingMode:scale:raiseOnExactness:raiseOnOverflow:raiseOnUnderflow:raiseOnDivideByZero:)]
         pub unsafe fn decimalNumberHandlerWithRoundingMode_scale_raiseOnExactness_raiseOnOverflow_raiseOnUnderflow_raiseOnDivideByZero(
             rounding_mode: NSRoundingMode,
@@ -358,9 +358,9 @@ extern_methods!(
 
 extern_methods!(
     /// NSDecimalNumberExtensions
-    #[cfg(feature = "Foundation_NSValue")]
+    #[cfg(feature = "NSValue")]
     unsafe impl NSNumber {
-        #[cfg(feature = "Foundation_NSDecimal")]
+        #[cfg(feature = "NSDecimal")]
         #[method(decimalValue)]
         pub unsafe fn decimalValue(&self) -> NSDecimal;
     }
@@ -368,9 +368,9 @@ extern_methods!(
 
 extern_methods!(
     /// NSDecimalNumberScanning
-    #[cfg(feature = "Foundation_NSScanner")]
+    #[cfg(feature = "NSScanner")]
     unsafe impl NSScanner {
-        #[cfg(feature = "Foundation_NSDecimal")]
+        #[cfg(feature = "NSDecimal")]
         #[method(scanDecimal:)]
         pub unsafe fn scanDecimal(&self, dcm: *mut NSDecimal) -> bool;
     }

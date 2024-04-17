@@ -7,11 +7,11 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
+    #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     #[deprecated]
     pub struct DOMCSSStyleDeclaration;
 
-    #[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
+    #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl ClassType for DOMCSSStyleDeclaration {
         #[inherits(WebScriptObject, NSObject)]
         type Super = DOMObject;
@@ -19,14 +19,14 @@ extern_class!(
     }
 );
 
-#[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
+#[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
 unsafe impl NSCopying for DOMCSSStyleDeclaration {}
 
-#[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
+#[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
 unsafe impl NSObjectProtocol for DOMCSSStyleDeclaration {}
 
 extern_methods!(
-    #[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
+    #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMCSSStyleDeclaration {
         #[deprecated]
         #[method_id(@__retain_semantics Other cssText)]
@@ -40,7 +40,7 @@ extern_methods!(
         #[method(length)]
         pub unsafe fn length(&self) -> c_uint;
 
-        #[cfg(feature = "WebKit_DOMCSSRule")]
+        #[cfg(feature = "DOMCSSRule")]
         #[deprecated]
         #[method_id(@__retain_semantics Other parentRule)]
         pub unsafe fn parentRule(&self) -> Option<Id<DOMCSSRule>>;
@@ -52,7 +52,7 @@ extern_methods!(
             property_name: Option<&NSString>,
         ) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "WebKit_DOMCSSValue")]
+        #[cfg(feature = "DOMCSSValue")]
         #[deprecated]
         #[method_id(@__retain_semantics Other getPropertyCSSValue:)]
         pub unsafe fn getPropertyCSSValue(
@@ -100,7 +100,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `DOMObject`
-    #[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
+    #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMCSSStyleDeclaration {
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
@@ -110,7 +110,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
+    #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMCSSStyleDeclaration {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -119,7 +119,7 @@ extern_methods!(
 
 extern_methods!(
     /// DOMCSSStyleDeclarationDeprecated
-    #[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
+    #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMCSSStyleDeclaration {
         #[deprecated]
         #[method(setProperty:::)]

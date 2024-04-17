@@ -16,141 +16,138 @@
 #[link(name = "MailKit", kind = "framework")]
 extern "C" {}
 
-#[cfg(feature = "MailKit_MEAddressAnnotation")]
+#[cfg(feature = "MEAddressAnnotation")]
 #[path = "MEAddressAnnotation.rs"]
 mod __MEAddressAnnotation;
-#[cfg(feature = "MailKit_MEComposeContext")]
+#[cfg(feature = "MEComposeContext")]
 #[path = "MEComposeContext.rs"]
 mod __MEComposeContext;
-#[cfg(feature = "MailKit_MEComposeSession")]
+#[cfg(feature = "MEComposeSession")]
 #[path = "MEComposeSession.rs"]
 mod __MEComposeSession;
-#[cfg(feature = "MailKit_MEContentBlocker")]
+#[cfg(feature = "MEContentBlocker")]
 #[path = "MEContentBlocker.rs"]
 mod __MEContentBlocker;
-#[cfg(feature = "MailKit_MEDecodedMessage")]
+#[cfg(feature = "MEDecodedMessage")]
 #[path = "MEDecodedMessage.rs"]
 mod __MEDecodedMessage;
-#[cfg(feature = "MailKit_MEDecodedMessageBanner")]
+#[cfg(feature = "MEDecodedMessageBanner")]
 #[path = "MEDecodedMessageBanner.rs"]
 mod __MEDecodedMessageBanner;
-#[cfg(feature = "MailKit_MEEmailAddress")]
+#[cfg(feature = "MEEmailAddress")]
 #[path = "MEEmailAddress.rs"]
 mod __MEEmailAddress;
-#[cfg(feature = "MailKit_MEEncodedOutgoingMessage")]
+#[cfg(feature = "MEEncodedOutgoingMessage")]
 #[path = "MEEncodedOutgoingMessage.rs"]
 mod __MEEncodedOutgoingMessage;
-#[cfg(feature = "MailKit_MEExtension")]
+#[cfg(feature = "MEExtension")]
 #[path = "MEExtension.rs"]
 mod __MEExtension;
-#[cfg(feature = "MailKit_MEExtensionManager")]
+#[cfg(feature = "MEExtensionManager")]
 #[path = "MEExtensionManager.rs"]
 mod __MEExtensionManager;
-#[cfg(feature = "MailKit_MEExtensionViewController")]
+#[cfg(feature = "MEExtensionViewController")]
 #[path = "MEExtensionViewController.rs"]
 mod __MEExtensionViewController;
-#[cfg(feature = "MailKit_MEMessage")]
+#[cfg(feature = "MEMessage")]
 #[path = "MEMessage.rs"]
 mod __MEMessage;
-#[cfg(feature = "MailKit_MEMessageAction")]
+#[cfg(feature = "MEMessageAction")]
 #[path = "MEMessageAction.rs"]
 mod __MEMessageAction;
-#[cfg(feature = "MailKit_MEMessageActionDecision")]
+#[cfg(feature = "MEMessageActionDecision")]
 #[path = "MEMessageActionDecision.rs"]
 mod __MEMessageActionDecision;
-#[cfg(feature = "MailKit_MEMessageActionHandler")]
+#[cfg(feature = "MEMessageActionHandler")]
 #[path = "MEMessageActionHandler.rs"]
 mod __MEMessageActionHandler;
-#[cfg(feature = "MailKit_MEMessageDecoder")]
+#[cfg(feature = "MEMessageDecoder")]
 #[path = "MEMessageDecoder.rs"]
 mod __MEMessageDecoder;
-#[cfg(feature = "MailKit_MEMessageEncoder")]
+#[cfg(feature = "MEMessageEncoder")]
 #[path = "MEMessageEncoder.rs"]
 mod __MEMessageEncoder;
-#[cfg(feature = "MailKit_MEMessageEncodingResult")]
+#[cfg(feature = "MEMessageEncodingResult")]
 #[path = "MEMessageEncodingResult.rs"]
 mod __MEMessageEncodingResult;
-#[cfg(feature = "MailKit_MEMessageSecurityHandler")]
+#[cfg(feature = "MEMessageSecurityHandler")]
 #[path = "MEMessageSecurityHandler.rs"]
 mod __MEMessageSecurityHandler;
-#[cfg(feature = "MailKit_MEMessageSecurityInformation")]
+#[cfg(feature = "MEMessageSecurityInformation")]
 #[path = "MEMessageSecurityInformation.rs"]
 mod __MEMessageSecurityInformation;
-#[cfg(feature = "MailKit_MEMessageSigner")]
+#[cfg(feature = "MEMessageSigner")]
 #[path = "MEMessageSigner.rs"]
 mod __MEMessageSigner;
-#[cfg(feature = "MailKit_MEOutgoingMessageEncodingStatus")]
+#[cfg(feature = "MEOutgoingMessageEncodingStatus")]
 #[path = "MEOutgoingMessageEncodingStatus.rs"]
 mod __MEOutgoingMessageEncodingStatus;
 
-#[cfg(feature = "MailKit_MEAddressAnnotation")]
+#[cfg(feature = "MEAddressAnnotation")]
 pub use self::__MEAddressAnnotation::MEAddressAnnotation;
-#[cfg(feature = "MailKit_MEComposeContext")]
+#[cfg(feature = "MEComposeContext")]
 pub use self::__MEComposeContext::MEComposeContext;
-#[cfg(feature = "MailKit_MEComposeContext")]
+#[cfg(feature = "MEComposeContext")]
 pub use self::__MEComposeContext::MEComposeUserAction;
-#[cfg(feature = "MailKit_MEComposeSession")]
+#[cfg(feature = "MEComposeSession")]
 pub use self::__MEComposeSession::MEComposeSession;
-#[cfg(feature = "MailKit_MEComposeSession")]
+#[cfg(feature = "MEComposeSession")]
 pub use self::__MEComposeSession::MEComposeSessionErrorCode;
-#[cfg(feature = "MailKit_MEComposeSession")]
+#[cfg(feature = "MEComposeSession")]
 pub use self::__MEComposeSession::MEComposeSessionErrorDomain;
-#[cfg(feature = "MailKit_MEComposeSession")]
+#[cfg(feature = "MEComposeSession")]
 pub use self::__MEComposeSession::MEComposeSessionHandler;
-#[cfg(feature = "MailKit_MEContentBlocker")]
+#[cfg(feature = "MEContentBlocker")]
 pub use self::__MEContentBlocker::MEContentBlocker;
-#[cfg(feature = "MailKit_MEDecodedMessage")]
+#[cfg(feature = "MEDecodedMessage")]
 pub use self::__MEDecodedMessage::MEDecodedMessage;
-#[cfg(feature = "MailKit_MEDecodedMessageBanner")]
+#[cfg(feature = "MEDecodedMessageBanner")]
 pub use self::__MEDecodedMessageBanner::MEDecodedMessageBanner;
-#[cfg(feature = "MailKit_MEEmailAddress")]
+#[cfg(feature = "MEEmailAddress")]
 pub use self::__MEEmailAddress::MEEmailAddress;
-#[cfg(feature = "MailKit_MEEncodedOutgoingMessage")]
+#[cfg(feature = "MEEncodedOutgoingMessage")]
 pub use self::__MEEncodedOutgoingMessage::MEEncodedOutgoingMessage;
-#[cfg(feature = "MailKit_MEExtension")]
+#[cfg(feature = "MEExtension")]
 pub use self::__MEExtension::MEExtension;
-#[cfg(feature = "MailKit_MEExtensionManager")]
+#[cfg(feature = "MEExtensionManager")]
 pub use self::__MEExtensionManager::MEExtensionManager;
-#[cfg(all(
-    feature = "MailKit_MEExtensionViewController",
-    feature = "objc2-app-kit"
-))]
+#[cfg(all(feature = "MEExtensionViewController", feature = "objc2-app-kit"))]
 pub use self::__MEExtensionViewController::MEExtensionViewController;
-#[cfg(feature = "MailKit_MEMessage")]
+#[cfg(feature = "MEMessage")]
 pub use self::__MEMessage::MEMessage;
-#[cfg(feature = "MailKit_MEMessage")]
+#[cfg(feature = "MEMessage")]
 pub use self::__MEMessage::MEMessageEncryptionState;
-#[cfg(feature = "MailKit_MEMessage")]
+#[cfg(feature = "MEMessage")]
 pub use self::__MEMessage::MEMessageState;
-#[cfg(feature = "MailKit_MEMessageAction")]
+#[cfg(feature = "MEMessageAction")]
 pub use self::__MEMessageAction::MEMessageAction;
-#[cfg(feature = "MailKit_MEMessageAction")]
+#[cfg(feature = "MEMessageAction")]
 pub use self::__MEMessageAction::MEMessageActionFlag;
-#[cfg(feature = "MailKit_MEMessageAction")]
+#[cfg(feature = "MEMessageAction")]
 pub use self::__MEMessageAction::MEMessageActionMessageColor;
-#[cfg(feature = "MailKit_MEMessageActionDecision")]
+#[cfg(feature = "MEMessageActionDecision")]
 pub use self::__MEMessageActionDecision::MEMessageActionDecision;
-#[cfg(feature = "MailKit_MEMessageActionHandler")]
+#[cfg(feature = "MEMessageActionHandler")]
 pub use self::__MEMessageActionHandler::MEMessageActionHandler;
-#[cfg(feature = "MailKit_MEMessageDecoder")]
+#[cfg(feature = "MEMessageDecoder")]
 pub use self::__MEMessageDecoder::MEMessageDecoder;
-#[cfg(feature = "MailKit_MEMessageEncoder")]
+#[cfg(feature = "MEMessageEncoder")]
 pub use self::__MEMessageEncoder::MEMessageEncoder;
-#[cfg(feature = "MailKit_MEMessageEncodingResult")]
+#[cfg(feature = "MEMessageEncodingResult")]
 pub use self::__MEMessageEncodingResult::MEMessageEncodingResult;
-#[cfg(feature = "MailKit_MEMessageSecurityHandler")]
+#[cfg(feature = "MEMessageSecurityHandler")]
 pub use self::__MEMessageSecurityHandler::MEMessageSecurityErrorCode;
-#[cfg(feature = "MailKit_MEMessageSecurityHandler")]
+#[cfg(feature = "MEMessageSecurityHandler")]
 pub use self::__MEMessageSecurityHandler::MEMessageSecurityErrorDomain;
 #[cfg(all(
-    feature = "MailKit_MEMessageDecoder",
-    feature = "MailKit_MEMessageEncoder",
-    feature = "MailKit_MEMessageSecurityHandler"
+    feature = "MEMessageDecoder",
+    feature = "MEMessageEncoder",
+    feature = "MEMessageSecurityHandler"
 ))]
 pub use self::__MEMessageSecurityHandler::MEMessageSecurityHandler;
-#[cfg(feature = "MailKit_MEMessageSecurityInformation")]
+#[cfg(feature = "MEMessageSecurityInformation")]
 pub use self::__MEMessageSecurityInformation::MEMessageSecurityInformation;
-#[cfg(feature = "MailKit_MEMessageSigner")]
+#[cfg(feature = "MEMessageSigner")]
 pub use self::__MEMessageSigner::MEMessageSigner;
-#[cfg(feature = "MailKit_MEOutgoingMessageEncodingStatus")]
+#[cfg(feature = "MEOutgoingMessageEncodingStatus")]
 pub use self::__MEOutgoingMessageEncodingStatus::MEOutgoingMessageEncodingStatus;

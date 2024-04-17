@@ -44,20 +44,20 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSCoding for NSExpression {}
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSExpression {}
 
 unsafe impl NSObjectProtocol for NSExpression {}
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSSecureCoding for NSExpression {}
 
 extern_methods!(
     unsafe impl NSExpression {
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[method_id(@__retain_semantics Other expressionWithFormat:argumentArray:)]
         pub unsafe fn expressionWithFormat_argumentArray(
             expression_format: &NSString,
@@ -70,22 +70,22 @@ extern_methods!(
         #[method_id(@__retain_semantics Other expressionForEvaluatedObject)]
         pub unsafe fn expressionForEvaluatedObject() -> Id<NSExpression>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other expressionForVariable:)]
         pub unsafe fn expressionForVariable(string: &NSString) -> Id<NSExpression>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other expressionForKeyPath:)]
         pub unsafe fn expressionForKeyPath(key_path: &NSString) -> Id<NSExpression>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[method_id(@__retain_semantics Other expressionForFunction:arguments:)]
         pub unsafe fn expressionForFunction_arguments(
             name: &NSString,
             parameters: &NSArray,
         ) -> Id<NSExpression>;
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(feature = "NSArray")]
         #[method_id(@__retain_semantics Other expressionForAggregate:)]
         pub unsafe fn expressionForAggregate(
             subexpressions: &NSArray<NSExpression>,
@@ -109,7 +109,7 @@ extern_methods!(
             right: &NSExpression,
         ) -> Id<NSExpression>;
 
-        #[cfg(all(feature = "Foundation_NSPredicate", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSPredicate", feature = "NSString"))]
         #[method_id(@__retain_semantics Other expressionForSubquery:usingIteratorVariable:predicate:)]
         pub unsafe fn expressionForSubquery_usingIteratorVariable_predicate(
             expression: &NSExpression,
@@ -117,7 +117,7 @@ extern_methods!(
             predicate: &NSPredicate,
         ) -> Id<NSExpression>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[method_id(@__retain_semantics Other expressionForFunction:selectorName:arguments:)]
         pub unsafe fn expressionForFunction_selectorName_arguments(
             target: &NSExpression,
@@ -128,11 +128,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other expressionForAnyKey)]
         pub unsafe fn expressionForAnyKey() -> Id<NSExpression>;
 
-        #[cfg(all(
-            feature = "Foundation_NSArray",
-            feature = "Foundation_NSDictionary",
-            feature = "block2"
-        ))]
+        #[cfg(all(feature = "NSArray", feature = "NSDictionary", feature = "block2"))]
         #[method_id(@__retain_semantics Other expressionForBlock:arguments:)]
         pub unsafe fn expressionForBlock_arguments(
             block: &Block<
@@ -145,7 +141,7 @@ extern_methods!(
             arguments: Option<&NSArray<NSExpression>>,
         ) -> Id<NSExpression>;
 
-        #[cfg(feature = "Foundation_NSPredicate")]
+        #[cfg(feature = "NSPredicate")]
         #[method_id(@__retain_semantics Other expressionForConditional:trueExpression:falseExpression:)]
         pub unsafe fn expressionForConditional_trueExpression_falseExpression(
             predicate: &NSPredicate,
@@ -159,7 +155,7 @@ extern_methods!(
             r#type: NSExpressionType,
         ) -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSCoder")]
+        #[cfg(feature = "NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
 
@@ -169,29 +165,29 @@ extern_methods!(
         #[method_id(@__retain_semantics Other constantValue)]
         pub unsafe fn constantValue(&self) -> Option<Id<AnyObject>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other keyPath)]
         pub unsafe fn keyPath(&self) -> Id<NSString>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other function)]
         pub unsafe fn function(&self) -> Id<NSString>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other variable)]
         pub unsafe fn variable(&self) -> Id<NSString>;
 
         #[method_id(@__retain_semantics Other operand)]
         pub unsafe fn operand(&self) -> Id<NSExpression>;
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(feature = "NSArray")]
         #[method_id(@__retain_semantics Other arguments)]
         pub unsafe fn arguments(&self) -> Option<Id<NSArray<NSExpression>>>;
 
         #[method_id(@__retain_semantics Other collection)]
         pub unsafe fn collection(&self) -> Id<AnyObject>;
 
-        #[cfg(feature = "Foundation_NSPredicate")]
+        #[cfg(feature = "NSPredicate")]
         #[method_id(@__retain_semantics Other predicate)]
         pub unsafe fn predicate(&self) -> Id<NSPredicate>;
 
@@ -207,11 +203,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other falseExpression)]
         pub unsafe fn falseExpression(&self) -> Id<NSExpression>;
 
-        #[cfg(all(
-            feature = "Foundation_NSArray",
-            feature = "Foundation_NSDictionary",
-            feature = "block2"
-        ))]
+        #[cfg(all(feature = "NSArray", feature = "NSDictionary", feature = "block2"))]
         #[method(expressionBlock)]
         pub unsafe fn expressionBlock(
             &self,
@@ -225,7 +217,7 @@ extern_methods!(
             >,
         >;
 
-        #[cfg(feature = "Foundation_NSDictionary")]
+        #[cfg(feature = "NSDictionary")]
         #[method_id(@__retain_semantics Other expressionValueWithObject:context:)]
         pub unsafe fn expressionValueWithObject_context(
             &self,

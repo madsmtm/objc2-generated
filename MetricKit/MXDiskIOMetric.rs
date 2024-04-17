@@ -7,10 +7,10 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MetricKit_MXMetric")]
+    #[cfg(feature = "MXMetric")]
     pub struct MXDiskIOMetric;
 
-    #[cfg(feature = "MetricKit_MXMetric")]
+    #[cfg(feature = "MXMetric")]
     unsafe impl ClassType for MXDiskIOMetric {
         #[inherits(NSObject)]
         type Super = MXMetric;
@@ -18,17 +18,17 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "MetricKit_MXMetric")]
+#[cfg(feature = "MXMetric")]
 unsafe impl NSCoding for MXDiskIOMetric {}
 
-#[cfg(feature = "MetricKit_MXMetric")]
+#[cfg(feature = "MXMetric")]
 unsafe impl NSObjectProtocol for MXDiskIOMetric {}
 
-#[cfg(feature = "MetricKit_MXMetric")]
+#[cfg(feature = "MXMetric")]
 unsafe impl NSSecureCoding for MXDiskIOMetric {}
 
 extern_methods!(
-    #[cfg(feature = "MetricKit_MXMetric")]
+    #[cfg(feature = "MXMetric")]
     unsafe impl MXDiskIOMetric {
         #[method_id(@__retain_semantics Other cumulativeLogicalWrites)]
         pub unsafe fn cumulativeLogicalWrites(&self)
@@ -38,7 +38,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MetricKit_MXMetric")]
+    #[cfg(feature = "MXMetric")]
     unsafe impl MXDiskIOMetric {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

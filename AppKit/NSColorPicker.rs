@@ -15,7 +15,7 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSColorPicking")]
+#[cfg(feature = "NSColorPicking")]
 unsafe impl NSColorPickingDefault for NSColorPicker {}
 
 unsafe impl NSObjectProtocol for NSColorPicker {}
@@ -23,10 +23,10 @@ unsafe impl NSObjectProtocol for NSColorPicker {}
 extern_methods!(
     unsafe impl NSColorPicker {
         #[cfg(all(
-            feature = "AppKit_NSColorPanel",
-            feature = "AppKit_NSPanel",
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSWindow"
+            feature = "NSColorPanel",
+            feature = "NSPanel",
+            feature = "NSResponder",
+            feature = "NSWindow"
         ))]
         #[method_id(@__retain_semantics Init initWithPickerMask:colorPanel:)]
         pub unsafe fn initWithPickerMask_colorPanel(
@@ -36,23 +36,23 @@ extern_methods!(
         ) -> Option<Id<Self>>;
 
         #[cfg(all(
-            feature = "AppKit_NSColorPanel",
-            feature = "AppKit_NSPanel",
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSWindow"
+            feature = "NSColorPanel",
+            feature = "NSPanel",
+            feature = "NSResponder",
+            feature = "NSWindow"
         ))]
         #[method_id(@__retain_semantics Other colorPanel)]
         pub unsafe fn colorPanel(&self) -> Id<NSColorPanel>;
 
-        #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(feature = "NSImage")]
         #[method_id(@__retain_semantics Other provideNewButtonImage)]
         pub unsafe fn provideNewButtonImage(&self) -> Id<NSImage>;
 
         #[cfg(all(
-            feature = "AppKit_NSActionCell",
-            feature = "AppKit_NSButtonCell",
-            feature = "AppKit_NSCell",
-            feature = "AppKit_NSImage"
+            feature = "NSActionCell",
+            feature = "NSButtonCell",
+            feature = "NSCell",
+            feature = "NSImage"
         ))]
         #[method(insertNewButtonImage:in:)]
         pub unsafe fn insertNewButtonImage_in(
@@ -64,15 +64,15 @@ extern_methods!(
         #[method(viewSizeChanged:)]
         pub unsafe fn viewSizeChanged(&self, sender: Option<&AnyObject>);
 
-        #[cfg(feature = "AppKit_NSColorList")]
+        #[cfg(feature = "NSColorList")]
         #[method(attachColorList:)]
         pub unsafe fn attachColorList(&self, color_list: &NSColorList);
 
-        #[cfg(feature = "AppKit_NSColorList")]
+        #[cfg(feature = "NSColorList")]
         #[method(detachColorList:)]
         pub unsafe fn detachColorList(&self, color_list: &NSColorList);
 
-        #[cfg(feature = "AppKit_NSColorPanel")]
+        #[cfg(feature = "NSColorPanel")]
         #[method(setMode:)]
         pub unsafe fn setMode(&self, mode: NSColorPanelMode);
 

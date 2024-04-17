@@ -7,7 +7,7 @@ use crate::*;
 
 extern_protocol!(
     pub unsafe trait MEMessageDecoder: NSObjectProtocol {
-        #[cfg(feature = "MailKit_MEDecodedMessage")]
+        #[cfg(feature = "MEDecodedMessage")]
         #[method_id(@__retain_semantics Other decodedMessageForMessageData:)]
         unsafe fn decodedMessageForMessageData(
             &self,

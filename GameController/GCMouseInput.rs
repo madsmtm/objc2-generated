@@ -7,15 +7,15 @@ use objc2_foundation::*;
 
 use crate::*;
 
-#[cfg(all(feature = "GameController_GCPhysicalInputProfile", feature = "block2"))]
+#[cfg(all(feature = "GCPhysicalInputProfile", feature = "block2"))]
 pub type GCMouseMoved = *mut Block<dyn Fn(NonNull<GCMouseInput>, c_float, c_float)>;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "GameController_GCPhysicalInputProfile")]
+    #[cfg(feature = "GCPhysicalInputProfile")]
     pub struct GCMouseInput;
 
-    #[cfg(feature = "GameController_GCPhysicalInputProfile")]
+    #[cfg(feature = "GCPhysicalInputProfile")]
     unsafe impl ClassType for GCMouseInput {
         #[inherits(NSObject)]
         type Super = GCPhysicalInputProfile;
@@ -23,11 +23,11 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "GameController_GCPhysicalInputProfile")]
+#[cfg(feature = "GCPhysicalInputProfile")]
 unsafe impl NSObjectProtocol for GCMouseInput {}
 
 extern_methods!(
-    #[cfg(feature = "GameController_GCPhysicalInputProfile")]
+    #[cfg(feature = "GCPhysicalInputProfile")]
     unsafe impl GCMouseInput {
         #[cfg(feature = "block2")]
         #[method(mouseMovedHandler)]
@@ -38,38 +38,26 @@ extern_methods!(
         pub unsafe fn setMouseMovedHandler(&self, mouse_moved_handler: GCMouseMoved);
 
         #[cfg(all(
-            feature = "GameController_GCControllerDirectionPad",
-            feature = "GameController_GCControllerElement",
-            feature = "GameController_GCDeviceCursor"
+            feature = "GCControllerDirectionPad",
+            feature = "GCControllerElement",
+            feature = "GCDeviceCursor"
         ))]
         #[method_id(@__retain_semantics Other scroll)]
         pub unsafe fn scroll(&self) -> Id<GCDeviceCursor>;
 
-        #[cfg(all(
-            feature = "GameController_GCControllerButtonInput",
-            feature = "GameController_GCControllerElement"
-        ))]
+        #[cfg(all(feature = "GCControllerButtonInput", feature = "GCControllerElement"))]
         #[method_id(@__retain_semantics Other leftButton)]
         pub unsafe fn leftButton(&self) -> Id<GCControllerButtonInput>;
 
-        #[cfg(all(
-            feature = "GameController_GCControllerButtonInput",
-            feature = "GameController_GCControllerElement"
-        ))]
+        #[cfg(all(feature = "GCControllerButtonInput", feature = "GCControllerElement"))]
         #[method_id(@__retain_semantics Other rightButton)]
         pub unsafe fn rightButton(&self) -> Option<Id<GCControllerButtonInput>>;
 
-        #[cfg(all(
-            feature = "GameController_GCControllerButtonInput",
-            feature = "GameController_GCControllerElement"
-        ))]
+        #[cfg(all(feature = "GCControllerButtonInput", feature = "GCControllerElement"))]
         #[method_id(@__retain_semantics Other middleButton)]
         pub unsafe fn middleButton(&self) -> Option<Id<GCControllerButtonInput>>;
 
-        #[cfg(all(
-            feature = "GameController_GCControllerButtonInput",
-            feature = "GameController_GCControllerElement"
-        ))]
+        #[cfg(all(feature = "GCControllerButtonInput", feature = "GCControllerElement"))]
         #[method_id(@__retain_semantics Other auxiliaryButtons)]
         pub unsafe fn auxiliaryButtons(&self) -> Option<Id<NSArray<GCControllerButtonInput>>>;
     }
@@ -77,7 +65,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "GameController_GCPhysicalInputProfile")]
+    #[cfg(feature = "GCPhysicalInputProfile")]
     unsafe impl GCMouseInput {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

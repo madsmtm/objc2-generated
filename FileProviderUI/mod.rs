@@ -16,26 +16,26 @@
 #[link(name = "FileProviderUI", kind = "framework")]
 extern "C" {}
 
-#[cfg(feature = "FileProviderUI_FPUIActionExtensionContext")]
+#[cfg(feature = "FPUIActionExtensionContext")]
 #[path = "FPUIActionExtensionContext.rs"]
 mod __FPUIActionExtensionContext;
-#[cfg(feature = "FileProviderUI_FPUIActionExtensionViewController")]
+#[cfg(feature = "FPUIActionExtensionViewController")]
 #[path = "FPUIActionExtensionViewController.rs"]
 mod __FPUIActionExtensionViewController;
-#[cfg(feature = "FileProviderUI_FPUIBase")]
+#[cfg(feature = "FPUIBase")]
 #[path = "FPUIBase.rs"]
 mod __FPUIBase;
 
-#[cfg(feature = "FileProviderUI_FPUIActionExtensionContext")]
+#[cfg(feature = "FPUIActionExtensionContext")]
 pub use self::__FPUIActionExtensionContext::FPUIActionExtensionContext;
-#[cfg(feature = "FileProviderUI_FPUIActionExtensionContext")]
+#[cfg(feature = "FPUIActionExtensionContext")]
 pub use self::__FPUIActionExtensionContext::FPUIActionIdentifier;
-#[cfg(feature = "FileProviderUI_FPUIActionExtensionContext")]
+#[cfg(feature = "FPUIActionExtensionContext")]
 pub use self::__FPUIActionExtensionContext::FPUIErrorDomain;
-#[cfg(feature = "FileProviderUI_FPUIActionExtensionContext")]
+#[cfg(feature = "FPUIActionExtensionContext")]
 pub use self::__FPUIActionExtensionContext::FPUIExtensionErrorCode;
 #[cfg(all(
-    feature = "FileProviderUI_FPUIActionExtensionViewController",
+    feature = "FPUIActionExtensionViewController",
     feature = "objc2-app-kit"
 ))]
 pub use self::__FPUIActionExtensionViewController::FPUIActionExtensionViewController;

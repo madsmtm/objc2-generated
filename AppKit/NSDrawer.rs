@@ -30,11 +30,11 @@ unsafe impl RefEncode for NSDrawerState {
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSResponder")]
+    #[cfg(feature = "NSResponder")]
     #[deprecated = "Drawers are deprecated; consider using NSSplitViewController"]
     pub struct NSDrawer;
 
-    #[cfg(feature = "AppKit_NSResponder")]
+    #[cfg(feature = "NSResponder")]
     unsafe impl ClassType for NSDrawer {
         #[inherits(NSObject)]
         type Super = NSResponder;
@@ -42,26 +42,20 @@ extern_class!(
     }
 );
 
-#[cfg(all(
-    feature = "AppKit_NSAccessibilityProtocols",
-    feature = "AppKit_NSResponder"
-))]
+#[cfg(all(feature = "NSAccessibilityProtocols", feature = "NSResponder"))]
 unsafe impl NSAccessibility for NSDrawer {}
 
-#[cfg(all(
-    feature = "AppKit_NSAccessibilityProtocols",
-    feature = "AppKit_NSResponder"
-))]
+#[cfg(all(feature = "NSAccessibilityProtocols", feature = "NSResponder"))]
 unsafe impl NSAccessibilityElementProtocol for NSDrawer {}
 
-#[cfg(feature = "AppKit_NSResponder")]
+#[cfg(feature = "NSResponder")]
 unsafe impl NSCoding for NSDrawer {}
 
-#[cfg(feature = "AppKit_NSResponder")]
+#[cfg(feature = "NSResponder")]
 unsafe impl NSObjectProtocol for NSDrawer {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSResponder")]
+    #[cfg(feature = "NSResponder")]
     unsafe impl NSDrawer {
         #[method_id(@__retain_semantics Init initWithContentSize:preferredEdge:)]
         pub unsafe fn initWithContentSize_preferredEdge(
@@ -70,19 +64,19 @@ extern_methods!(
             edge: NSRectEdge,
         ) -> Id<Self>;
 
-        #[cfg(feature = "AppKit_NSWindow")]
+        #[cfg(feature = "NSWindow")]
         #[method_id(@__retain_semantics Other parentWindow)]
         pub unsafe fn parentWindow(&self) -> Option<Id<NSWindow>>;
 
-        #[cfg(feature = "AppKit_NSWindow")]
+        #[cfg(feature = "NSWindow")]
         #[method(setParentWindow:)]
         pub unsafe fn setParentWindow(&self, parent_window: Option<&NSWindow>);
 
-        #[cfg(feature = "AppKit_NSView")]
+        #[cfg(feature = "NSView")]
         #[method_id(@__retain_semantics Other contentView)]
         pub unsafe fn contentView(&self) -> Option<Id<NSView>>;
 
-        #[cfg(feature = "AppKit_NSView")]
+        #[cfg(feature = "NSView")]
         #[method(setContentView:)]
         pub unsafe fn setContentView(&self, content_view: Option<&NSView>);
 
@@ -156,7 +150,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSResponder`
-    #[cfg(feature = "AppKit_NSResponder")]
+    #[cfg(feature = "NSResponder")]
     unsafe impl NSDrawer {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -168,7 +162,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSResponder")]
+    #[cfg(feature = "NSResponder")]
     unsafe impl NSDrawer {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
@@ -177,7 +171,7 @@ extern_methods!(
 
 extern_methods!(
     /// NSDrawers
-    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSWindow"))]
+    #[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
     unsafe impl NSWindow {
         #[deprecated = "Drawers are deprecated; consider using NSSplitViewController"]
         #[method_id(@__retain_semantics Other drawers)]
@@ -187,19 +181,19 @@ extern_methods!(
 
 extern_protocol!(
     pub unsafe trait NSDrawerDelegate: NSObjectProtocol {
-        #[cfg(feature = "AppKit_NSResponder")]
+        #[cfg(feature = "NSResponder")]
         #[deprecated = "Drawers are deprecated; consider using NSSplitViewController"]
         #[optional]
         #[method(drawerShouldOpen:)]
         unsafe fn drawerShouldOpen(&self, sender: &NSDrawer) -> bool;
 
-        #[cfg(feature = "AppKit_NSResponder")]
+        #[cfg(feature = "NSResponder")]
         #[deprecated = "Drawers are deprecated; consider using NSSplitViewController"]
         #[optional]
         #[method(drawerShouldClose:)]
         unsafe fn drawerShouldClose(&self, sender: &NSDrawer) -> bool;
 
-        #[cfg(feature = "AppKit_NSResponder")]
+        #[cfg(feature = "NSResponder")]
         #[deprecated = "Drawers are deprecated; consider using NSSplitViewController"]
         #[optional]
         #[method(drawerWillResizeContents:toSize:)]

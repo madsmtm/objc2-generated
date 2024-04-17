@@ -441,7 +441,7 @@ extern "C" {
 }
 
 extern "C" {
-    #[cfg(feature = "AppKit_NSColor")]
+    #[cfg(feature = "NSColor")]
     pub fn NSRectFillListWithColors(
         rects: NonNull<NSRect>,
         colors: NonNull<NonNull<NSColor>>,
@@ -462,7 +462,7 @@ extern "C" {
 }
 
 extern "C" {
-    #[cfg(feature = "AppKit_NSColor")]
+    #[cfg(feature = "NSColor")]
     pub fn NSRectFillListWithColorsUsingOperation(
         rects: NonNull<NSRect>,
         colors: NonNull<NonNull<NSColor>>,
@@ -526,7 +526,7 @@ extern "C" {
 }
 
 extern "C" {
-    #[cfg(feature = "AppKit_NSColor")]
+    #[cfg(feature = "NSColor")]
     #[deprecated = "Use -[NSBitmapImageRep colorAtX:y:] to interrogate pixel values.  If necessary, use -[NSView cacheDisplayInRect:toBitmapImageRep:] to snapshot a view hierarchy into an NSBitmapImageRep."]
     pub fn NSReadPixel(passed_point: NSPoint) -> *mut NSColor;
 }
@@ -551,7 +551,7 @@ extern "C" {
 }
 
 extern "C" {
-    #[cfg(feature = "AppKit_NSColor")]
+    #[cfg(feature = "NSColor")]
     pub fn NSDrawColorTiledRects(
         bounds_rect: NSRect,
         clip_rect: NSRect,

@@ -183,27 +183,27 @@ extern_methods!(
         #[method(setVerticalAlignment:)]
         pub unsafe fn setVerticalAlignment(&self, vertical_alignment: NSTextBlockVerticalAlignment);
 
-        #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(feature = "NSColor")]
         #[method_id(@__retain_semantics Other backgroundColor)]
         pub unsafe fn backgroundColor(&self) -> Option<Id<NSColor>>;
 
-        #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(feature = "NSColor")]
         #[method(setBackgroundColor:)]
         pub unsafe fn setBackgroundColor(&self, background_color: Option<&NSColor>);
 
-        #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(feature = "NSColor")]
         #[method(setBorderColor:forEdge:)]
         pub unsafe fn setBorderColor_forEdge(&self, color: Option<&NSColor>, edge: NSRectEdge);
 
-        #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(feature = "NSColor")]
         #[method(setBorderColor:)]
         pub unsafe fn setBorderColor(&self, color: Option<&NSColor>);
 
-        #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(feature = "NSColor")]
         #[method_id(@__retain_semantics Other borderColorForEdge:)]
         pub unsafe fn borderColorForEdge(&self, edge: NSRectEdge) -> Option<Id<NSColor>>;
 
-        #[cfg(feature = "AppKit_NSTextContainer")]
+        #[cfg(feature = "NSTextContainer")]
         #[method(rectForLayoutAtPoint:inRect:textContainer:characterRange:)]
         pub unsafe fn rectForLayoutAtPoint_inRect_textContainer_characterRange(
             &self,
@@ -213,7 +213,7 @@ extern_methods!(
             char_range: NSRange,
         ) -> NSRect;
 
-        #[cfg(feature = "AppKit_NSTextContainer")]
+        #[cfg(feature = "NSTextContainer")]
         #[method(boundsRectForContentRect:inRect:textContainer:characterRange:)]
         pub unsafe fn boundsRectForContentRect_inRect_textContainer_characterRange(
             &self,
@@ -224,9 +224,9 @@ extern_methods!(
         ) -> NSRect;
 
         #[cfg(all(
-            feature = "AppKit_NSLayoutManager",
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSView"
+            feature = "NSLayoutManager",
+            feature = "NSResponder",
+            feature = "NSView"
         ))]
         #[method(drawBackgroundWithFrame:inView:characterRange:layoutManager:)]
         pub unsafe fn drawBackgroundWithFrame_inView_characterRange_layoutManager(
@@ -356,7 +356,7 @@ extern_methods!(
         #[method(setHidesEmptyCells:)]
         pub unsafe fn setHidesEmptyCells(&self, hides_empty_cells: bool);
 
-        #[cfg(feature = "AppKit_NSTextContainer")]
+        #[cfg(feature = "NSTextContainer")]
         #[method(rectForBlock:layoutAtPoint:inRect:textContainer:characterRange:)]
         pub unsafe fn rectForBlock_layoutAtPoint_inRect_textContainer_characterRange(
             &self,
@@ -367,7 +367,7 @@ extern_methods!(
             char_range: NSRange,
         ) -> NSRect;
 
-        #[cfg(feature = "AppKit_NSTextContainer")]
+        #[cfg(feature = "NSTextContainer")]
         #[method(boundsRectForBlock:contentRect:inRect:textContainer:characterRange:)]
         pub unsafe fn boundsRectForBlock_contentRect_inRect_textContainer_characterRange(
             &self,
@@ -379,9 +379,9 @@ extern_methods!(
         ) -> NSRect;
 
         #[cfg(all(
-            feature = "AppKit_NSLayoutManager",
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSView"
+            feature = "NSLayoutManager",
+            feature = "NSResponder",
+            feature = "NSView"
         ))]
         #[method(drawBackgroundForBlock:withFrame:inView:characterRange:layoutManager:)]
         pub unsafe fn drawBackgroundForBlock_withFrame_inView_characterRange_layoutManager(

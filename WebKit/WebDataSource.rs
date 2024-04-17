@@ -31,14 +31,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Other data)]
         pub unsafe fn data(&self) -> Id<NSData>;
 
-        #[cfg(feature = "WebKit_WebDocument")]
+        #[cfg(feature = "WebDocument")]
         #[deprecated]
         #[method_id(@__retain_semantics Other representation)]
         pub unsafe fn representation(
             &self,
         ) -> Option<Id<ProtocolObject<dyn WebDocumentRepresentation>>>;
 
-        #[cfg(feature = "WebKit_WebFrame")]
+        #[cfg(feature = "WebFrame")]
         #[deprecated]
         #[method_id(@__retain_semantics Other webFrame)]
         pub unsafe fn webFrame(&self) -> Option<Id<WebFrame>>;
@@ -71,12 +71,12 @@ extern_methods!(
         #[method_id(@__retain_semantics Other unreachableURL)]
         pub unsafe fn unreachableURL(&self) -> Option<Id<NSURL>>;
 
-        #[cfg(feature = "WebKit_WebArchive")]
+        #[cfg(feature = "WebArchive")]
         #[deprecated]
         #[method_id(@__retain_semantics Other webArchive)]
         pub unsafe fn webArchive(&self) -> Option<Id<WebArchive>>;
 
-        #[cfg(feature = "WebKit_WebResource")]
+        #[cfg(feature = "WebResource")]
         #[deprecated]
         #[method_id(@__retain_semantics Other mainResource)]
         pub unsafe fn mainResource(&self) -> Option<Id<WebResource>>;
@@ -85,12 +85,12 @@ extern_methods!(
         #[method_id(@__retain_semantics Other subresources)]
         pub unsafe fn subresources(&self) -> Id<NSArray>;
 
-        #[cfg(feature = "WebKit_WebResource")]
+        #[cfg(feature = "WebResource")]
         #[deprecated]
         #[method_id(@__retain_semantics Other subresourceForURL:)]
         pub unsafe fn subresourceForURL(&self, url: Option<&NSURL>) -> Option<Id<WebResource>>;
 
-        #[cfg(feature = "WebKit_WebResource")]
+        #[cfg(feature = "WebResource")]
         #[deprecated]
         #[method(addSubresource:)]
         pub unsafe fn addSubresource(&self, subresource: Option<&WebResource>);

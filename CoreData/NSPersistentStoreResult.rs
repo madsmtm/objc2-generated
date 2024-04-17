@@ -131,7 +131,7 @@ unsafe impl NSObjectProtocol for NSPersistentStoreAsynchronousResult {}
 
 extern_methods!(
     unsafe impl NSPersistentStoreAsynchronousResult {
-        #[cfg(feature = "CoreData_NSManagedObjectContext")]
+        #[cfg(feature = "NSManagedObjectContext")]
         #[method_id(@__retain_semantics Other managedObjectContext)]
         pub unsafe fn managedObjectContext(&self) -> Id<NSManagedObjectContext>;
 
@@ -184,10 +184,7 @@ unsafe impl<ResultType: ?Sized> NSObjectProtocol for NSAsynchronousFetchResult<R
 
 extern_methods!(
     unsafe impl<ResultType: Message> NSAsynchronousFetchResult<ResultType> {
-        #[cfg(all(
-            feature = "CoreData_NSFetchRequest",
-            feature = "CoreData_NSPersistentStoreRequest"
-        ))]
+        #[cfg(all(feature = "NSFetchRequest", feature = "NSPersistentStoreRequest"))]
         #[method_id(@__retain_semantics Other fetchRequest)]
         pub unsafe fn fetchRequest(&self) -> Id<NSAsynchronousFetchRequest<ResultType>>;
 

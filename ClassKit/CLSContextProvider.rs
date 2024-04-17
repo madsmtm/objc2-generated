@@ -9,11 +9,7 @@ use crate::*;
 
 extern_protocol!(
     pub unsafe trait CLSContextProvider {
-        #[cfg(all(
-            feature = "ClassKit_CLSContext",
-            feature = "ClassKit_CLSObject",
-            feature = "block2"
-        ))]
+        #[cfg(all(feature = "CLSContext", feature = "CLSObject", feature = "block2"))]
         #[method(updateDescendantsOfContext:completion:)]
         unsafe fn updateDescendantsOfContext_completion(
             &self,

@@ -20,17 +20,17 @@ unsafe impl Send for NSFileHandle {}
 
 unsafe impl Sync for NSFileHandle {}
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSCoding for NSFileHandle {}
 
 unsafe impl NSObjectProtocol for NSFileHandle {}
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSSecureCoding for NSFileHandle {}
 
 extern_methods!(
     unsafe impl NSFileHandle {
-        #[cfg(feature = "Foundation_NSData")]
+        #[cfg(feature = "NSData")]
         #[method_id(@__retain_semantics Other availableData)]
         pub unsafe fn availableData(&self) -> Id<NSData>;
 
@@ -41,53 +41,53 @@ extern_methods!(
             closeopt: bool,
         ) -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSCoder")]
+        #[cfg(feature = "NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
 
-        #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSError"))]
+        #[cfg(all(feature = "NSData", feature = "NSError"))]
         #[method_id(@__retain_semantics Other readDataToEndOfFileAndReturnError:_)]
         pub unsafe fn readDataToEndOfFileAndReturnError(&self) -> Result<Id<NSData>, Id<NSError>>;
 
-        #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSError"))]
+        #[cfg(all(feature = "NSData", feature = "NSError"))]
         #[method_id(@__retain_semantics Other readDataUpToLength:error:_)]
         pub unsafe fn readDataUpToLength_error(
             &self,
             length: NSUInteger,
         ) -> Result<Id<NSData>, Id<NSError>>;
 
-        #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSError"))]
+        #[cfg(all(feature = "NSData", feature = "NSError"))]
         #[method(writeData:error:_)]
         pub unsafe fn writeData_error(&self, data: &NSData) -> Result<(), Id<NSError>>;
 
-        #[cfg(feature = "Foundation_NSError")]
+        #[cfg(feature = "NSError")]
         #[method(getOffset:error:_)]
         pub unsafe fn getOffset_error(
             &self,
             offset_in_file: NonNull<c_ulonglong>,
         ) -> Result<(), Id<NSError>>;
 
-        #[cfg(feature = "Foundation_NSError")]
+        #[cfg(feature = "NSError")]
         #[method(seekToEndReturningOffset:error:_)]
         pub unsafe fn seekToEndReturningOffset_error(
             &self,
             offset_in_file: *mut c_ulonglong,
         ) -> Result<(), Id<NSError>>;
 
-        #[cfg(feature = "Foundation_NSError")]
+        #[cfg(feature = "NSError")]
         #[method(seekToOffset:error:_)]
         pub unsafe fn seekToOffset_error(&self, offset: c_ulonglong) -> Result<(), Id<NSError>>;
 
-        #[cfg(feature = "Foundation_NSError")]
+        #[cfg(feature = "NSError")]
         #[method(truncateAtOffset:error:_)]
         pub unsafe fn truncateAtOffset_error(&self, offset: c_ulonglong)
             -> Result<(), Id<NSError>>;
 
-        #[cfg(feature = "Foundation_NSError")]
+        #[cfg(feature = "NSError")]
         #[method(synchronizeAndReturnError:_)]
         pub unsafe fn synchronizeAndReturnError(&self) -> Result<(), Id<NSError>>;
 
-        #[cfg(feature = "Foundation_NSError")]
+        #[cfg(feature = "NSError")]
         #[method(closeAndReturnError:_)]
         pub unsafe fn closeAndReturnError(&self) -> Result<(), Id<NSError>>;
     }
@@ -119,83 +119,79 @@ extern_methods!(
         #[method_id(@__retain_semantics Other fileHandleWithNullDevice)]
         pub unsafe fn fileHandleWithNullDevice() -> Id<NSFileHandle>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other fileHandleForReadingAtPath:)]
         pub unsafe fn fileHandleForReadingAtPath(path: &NSString) -> Option<Id<Self>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other fileHandleForWritingAtPath:)]
         pub unsafe fn fileHandleForWritingAtPath(path: &NSString) -> Option<Id<Self>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other fileHandleForUpdatingAtPath:)]
         pub unsafe fn fileHandleForUpdatingAtPath(path: &NSString) -> Option<Id<Self>>;
 
-        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
+        #[cfg(all(feature = "NSError", feature = "NSURL"))]
         #[method_id(@__retain_semantics Other fileHandleForReadingFromURL:error:_)]
         pub unsafe fn fileHandleForReadingFromURL_error(
             url: &NSURL,
         ) -> Result<Id<Self>, Id<NSError>>;
 
-        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
+        #[cfg(all(feature = "NSError", feature = "NSURL"))]
         #[method_id(@__retain_semantics Other fileHandleForWritingToURL:error:_)]
         pub unsafe fn fileHandleForWritingToURL_error(url: &NSURL)
             -> Result<Id<Self>, Id<NSError>>;
 
-        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
+        #[cfg(all(feature = "NSError", feature = "NSURL"))]
         #[method_id(@__retain_semantics Other fileHandleForUpdatingURL:error:_)]
         pub unsafe fn fileHandleForUpdatingURL_error(url: &NSURL) -> Result<Id<Self>, Id<NSError>>;
     }
 );
 
 extern "C" {
-    #[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
+    #[cfg(all(feature = "NSObjCRuntime", feature = "NSString"))]
     pub static NSFileHandleOperationException: &'static NSExceptionName;
 }
 
 extern "C" {
-    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSFileHandleReadCompletionNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSFileHandleReadToEndOfFileCompletionNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSFileHandleConnectionAcceptedNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSFileHandleDataAvailableNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSFileHandleNotificationDataItem: &'static NSString;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSFileHandleNotificationFileHandleItem: &'static NSString;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSFileHandleNotificationMonitorModes: &'static NSString;
 }
 
 extern_methods!(
     /// NSFileHandleAsynchronousAccess
     unsafe impl NSFileHandle {
-        #[cfg(all(
-            feature = "Foundation_NSArray",
-            feature = "Foundation_NSObjCRuntime",
-            feature = "Foundation_NSString"
-        ))]
+        #[cfg(all(feature = "NSArray", feature = "NSObjCRuntime", feature = "NSString"))]
         #[method(readInBackgroundAndNotifyForModes:)]
         pub unsafe fn readInBackgroundAndNotifyForModes(
             &self,
@@ -205,11 +201,7 @@ extern_methods!(
         #[method(readInBackgroundAndNotify)]
         pub unsafe fn readInBackgroundAndNotify(&self);
 
-        #[cfg(all(
-            feature = "Foundation_NSArray",
-            feature = "Foundation_NSObjCRuntime",
-            feature = "Foundation_NSString"
-        ))]
+        #[cfg(all(feature = "NSArray", feature = "NSObjCRuntime", feature = "NSString"))]
         #[method(readToEndOfFileInBackgroundAndNotifyForModes:)]
         pub unsafe fn readToEndOfFileInBackgroundAndNotifyForModes(
             &self,
@@ -219,11 +211,7 @@ extern_methods!(
         #[method(readToEndOfFileInBackgroundAndNotify)]
         pub unsafe fn readToEndOfFileInBackgroundAndNotify(&self);
 
-        #[cfg(all(
-            feature = "Foundation_NSArray",
-            feature = "Foundation_NSObjCRuntime",
-            feature = "Foundation_NSString"
-        ))]
+        #[cfg(all(feature = "NSArray", feature = "NSObjCRuntime", feature = "NSString"))]
         #[method(acceptConnectionInBackgroundAndNotifyForModes:)]
         pub unsafe fn acceptConnectionInBackgroundAndNotifyForModes(
             &self,
@@ -233,11 +221,7 @@ extern_methods!(
         #[method(acceptConnectionInBackgroundAndNotify)]
         pub unsafe fn acceptConnectionInBackgroundAndNotify(&self);
 
-        #[cfg(all(
-            feature = "Foundation_NSArray",
-            feature = "Foundation_NSObjCRuntime",
-            feature = "Foundation_NSString"
-        ))]
+        #[cfg(all(feature = "NSArray", feature = "NSObjCRuntime", feature = "NSString"))]
         #[method(waitForDataInBackgroundAndNotifyForModes:)]
         pub unsafe fn waitForDataInBackgroundAndNotifyForModes(
             &self,
@@ -284,17 +268,17 @@ extern_methods!(
 
 extern_methods!(
     unsafe impl NSFileHandle {
-        #[cfg(feature = "Foundation_NSData")]
+        #[cfg(feature = "NSData")]
         #[deprecated]
         #[method_id(@__retain_semantics Other readDataToEndOfFile)]
         pub unsafe fn readDataToEndOfFile(&self) -> Id<NSData>;
 
-        #[cfg(feature = "Foundation_NSData")]
+        #[cfg(feature = "NSData")]
         #[deprecated]
         #[method_id(@__retain_semantics Other readDataOfLength:)]
         pub unsafe fn readDataOfLength(&self, length: NSUInteger) -> Id<NSData>;
 
-        #[cfg(feature = "Foundation_NSData")]
+        #[cfg(feature = "NSData")]
         #[deprecated]
         #[method(writeData:)]
         pub unsafe fn writeData(&self, data: &NSData);

@@ -19,11 +19,11 @@ unsafe impl NSObjectProtocol for NSWindowTabGroup {}
 
 extern_methods!(
     unsafe impl NSWindowTabGroup {
-        #[cfg(feature = "AppKit_NSWindow")]
+        #[cfg(feature = "NSWindow")]
         #[method_id(@__retain_semantics Other identifier)]
         pub unsafe fn identifier(&self) -> Id<NSWindowTabbingIdentifier>;
 
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSWindow"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
         #[method_id(@__retain_semantics Other windows)]
         pub fn windows(&self) -> Id<NSArray<NSWindow>>;
 
@@ -36,23 +36,23 @@ extern_methods!(
         #[method(isTabBarVisible)]
         pub unsafe fn isTabBarVisible(&self) -> bool;
 
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSWindow"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
         #[method_id(@__retain_semantics Other selectedWindow)]
         pub unsafe fn selectedWindow(&self) -> Option<Id<NSWindow>>;
 
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSWindow"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
         #[method(setSelectedWindow:)]
         pub fn setSelectedWindow(&self, selected_window: Option<&NSWindow>);
 
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSWindow"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
         #[method(addWindow:)]
         pub unsafe fn addWindow(&self, window: &NSWindow);
 
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSWindow"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
         #[method(insertWindow:atIndex:)]
         pub unsafe fn insertWindow_atIndex(&self, window: &NSWindow, index: NSInteger);
 
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSWindow"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
         #[method(removeWindow:)]
         pub unsafe fn removeWindow(&self, window: &NSWindow);
     }

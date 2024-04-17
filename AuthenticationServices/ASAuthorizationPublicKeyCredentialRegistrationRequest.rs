@@ -37,26 +37,26 @@ extern_protocol!(
         #[method(setChallenge:)]
         unsafe fn setChallenge(&self, challenge: &NSData);
 
-        #[cfg(feature = "AuthenticationServices_ASAuthorizationPublicKeyCredentialConstants")]
+        #[cfg(feature = "ASAuthorizationPublicKeyCredentialConstants")]
         #[method_id(@__retain_semantics Other userVerificationPreference)]
         unsafe fn userVerificationPreference(
             &self,
         ) -> Id<ASAuthorizationPublicKeyCredentialUserVerificationPreference>;
 
-        #[cfg(feature = "AuthenticationServices_ASAuthorizationPublicKeyCredentialConstants")]
+        #[cfg(feature = "ASAuthorizationPublicKeyCredentialConstants")]
         #[method(setUserVerificationPreference:)]
         unsafe fn setUserVerificationPreference(
             &self,
             user_verification_preference: &ASAuthorizationPublicKeyCredentialUserVerificationPreference,
         );
 
-        #[cfg(feature = "AuthenticationServices_ASAuthorizationPublicKeyCredentialConstants")]
+        #[cfg(feature = "ASAuthorizationPublicKeyCredentialConstants")]
         #[method_id(@__retain_semantics Other attestationPreference)]
         unsafe fn attestationPreference(
             &self,
         ) -> Id<ASAuthorizationPublicKeyCredentialAttestationKind>;
 
-        #[cfg(feature = "AuthenticationServices_ASAuthorizationPublicKeyCredentialConstants")]
+        #[cfg(feature = "ASAuthorizationPublicKeyCredentialConstants")]
         #[method(setAttestationPreference:)]
         unsafe fn setAttestationPreference(
             &self,

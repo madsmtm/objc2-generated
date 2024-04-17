@@ -76,7 +76,7 @@ unsafe impl NSSecureCoding for HKFHIRResource {}
 
 extern_methods!(
     unsafe impl HKFHIRResource {
-        #[cfg(feature = "HealthKit_HKFHIRVersion")]
+        #[cfg(feature = "HKFHIRVersion")]
         #[method_id(@__retain_semantics Other FHIRVersion)]
         pub unsafe fn FHIRVersion(&self) -> Id<HKFHIRVersion>;
 

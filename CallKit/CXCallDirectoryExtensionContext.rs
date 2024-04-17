@@ -49,14 +49,14 @@ extern_methods!(
         #[method(isIncremental)]
         pub unsafe fn isIncremental(&self) -> bool;
 
-        #[cfg(feature = "CallKit_CXCallDirectory")]
+        #[cfg(feature = "CXCallDirectory")]
         #[method(addBlockingEntryWithNextSequentialPhoneNumber:)]
         pub unsafe fn addBlockingEntryWithNextSequentialPhoneNumber(
             &self,
             phone_number: CXCallDirectoryPhoneNumber,
         );
 
-        #[cfg(feature = "CallKit_CXCallDirectory")]
+        #[cfg(feature = "CXCallDirectory")]
         #[method(removeBlockingEntryWithPhoneNumber:)]
         pub unsafe fn removeBlockingEntryWithPhoneNumber(
             &self,
@@ -66,7 +66,7 @@ extern_methods!(
         #[method(removeAllBlockingEntries)]
         pub unsafe fn removeAllBlockingEntries(&self);
 
-        #[cfg(feature = "CallKit_CXCallDirectory")]
+        #[cfg(feature = "CXCallDirectory")]
         #[method(addIdentificationEntryWithNextSequentialPhoneNumber:label:)]
         pub unsafe fn addIdentificationEntryWithNextSequentialPhoneNumber_label(
             &self,
@@ -74,7 +74,7 @@ extern_methods!(
             label: &NSString,
         );
 
-        #[cfg(feature = "CallKit_CXCallDirectory")]
+        #[cfg(feature = "CXCallDirectory")]
         #[method(removeIdentificationEntryWithPhoneNumber:)]
         pub unsafe fn removeIdentificationEntryWithPhoneNumber(
             &self,

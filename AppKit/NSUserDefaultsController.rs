@@ -7,10 +7,10 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSController")]
+    #[cfg(feature = "NSController")]
     pub struct NSUserDefaultsController;
 
-    #[cfg(feature = "AppKit_NSController")]
+    #[cfg(feature = "NSController")]
     unsafe impl ClassType for NSUserDefaultsController {
         #[inherits(NSObject)]
         type Super = NSController;
@@ -18,20 +18,20 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSController")]
+#[cfg(feature = "NSController")]
 unsafe impl NSCoding for NSUserDefaultsController {}
 
-#[cfg(all(feature = "AppKit_NSController", feature = "AppKit_NSKeyValueBinding"))]
+#[cfg(all(feature = "NSController", feature = "NSKeyValueBinding"))]
 unsafe impl NSEditor for NSUserDefaultsController {}
 
-#[cfg(all(feature = "AppKit_NSController", feature = "AppKit_NSKeyValueBinding"))]
+#[cfg(all(feature = "NSController", feature = "NSKeyValueBinding"))]
 unsafe impl NSEditorRegistration for NSUserDefaultsController {}
 
-#[cfg(feature = "AppKit_NSController")]
+#[cfg(feature = "NSController")]
 unsafe impl NSObjectProtocol for NSUserDefaultsController {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSController")]
+    #[cfg(feature = "NSController")]
     unsafe impl NSUserDefaultsController {
         #[method_id(@__retain_semantics Other sharedUserDefaultsController)]
         pub unsafe fn sharedUserDefaultsController(
@@ -85,7 +85,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSController`
-    #[cfg(feature = "AppKit_NSController")]
+    #[cfg(feature = "NSController")]
     unsafe impl NSUserDefaultsController {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -94,7 +94,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSController")]
+    #[cfg(feature = "NSController")]
     unsafe impl NSUserDefaultsController {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;

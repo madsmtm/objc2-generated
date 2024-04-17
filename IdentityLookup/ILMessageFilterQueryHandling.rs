@@ -10,9 +10,9 @@ use crate::*;
 extern_protocol!(
     pub unsafe trait ILMessageFilterQueryHandling: NSObjectProtocol {
         #[cfg(all(
-            feature = "IdentityLookup_ILMessageFilterExtensionContext",
-            feature = "IdentityLookup_ILMessageFilterQueryRequest",
-            feature = "IdentityLookup_ILMessageFilterQueryResponse",
+            feature = "ILMessageFilterExtensionContext",
+            feature = "ILMessageFilterQueryRequest",
+            feature = "ILMessageFilterQueryResponse",
             feature = "block2"
         ))]
         #[method(handleQueryRequest:context:completion:)]

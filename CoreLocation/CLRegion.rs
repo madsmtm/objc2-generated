@@ -68,7 +68,7 @@ unsafe impl NSSecureCoding for CLRegion {}
 
 extern_methods!(
     unsafe impl CLRegion {
-        #[cfg(feature = "CoreLocation_CLLocation")]
+        #[cfg(feature = "CLLocation")]
         #[deprecated = "Please see CLCircularRegion"]
         #[method_id(@__retain_semantics Init initCircularRegionWithCenter:radius:identifier:)]
         pub unsafe fn initCircularRegionWithCenter_radius_identifier(
@@ -78,12 +78,12 @@ extern_methods!(
             identifier: &NSString,
         ) -> Id<Self>;
 
-        #[cfg(feature = "CoreLocation_CLLocation")]
+        #[cfg(feature = "CLLocation")]
         #[deprecated = "Please see CLCircularRegion"]
         #[method(center)]
         pub unsafe fn center(&self) -> CLLocationCoordinate2D;
 
-        #[cfg(feature = "CoreLocation_CLLocation")]
+        #[cfg(feature = "CLLocation")]
         #[deprecated = "Please see CLCircularRegion"]
         #[method(radius)]
         pub unsafe fn radius(&self) -> CLLocationDistance;
@@ -103,7 +103,7 @@ extern_methods!(
         #[method(setNotifyOnExit:)]
         pub unsafe fn setNotifyOnExit(&self, notify_on_exit: bool);
 
-        #[cfg(feature = "CoreLocation_CLLocation")]
+        #[cfg(feature = "CLLocation")]
         #[deprecated = "Please see CLCircularRegion"]
         #[method(containsCoordinate:)]
         pub unsafe fn containsCoordinate(&self, coordinate: CLLocationCoordinate2D) -> bool;

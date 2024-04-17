@@ -28,7 +28,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other UUID)]
         pub unsafe fn UUID(&self) -> Id<NSUUID>;
 
-        #[cfg(feature = "HealthKit_HKWorkoutConfiguration")]
+        #[cfg(feature = "HKWorkoutConfiguration")]
         #[method_id(@__retain_semantics Other workoutConfiguration)]
         pub unsafe fn workoutConfiguration(&self) -> Id<HKWorkoutConfiguration>;
 
@@ -44,15 +44,15 @@ extern_methods!(
         #[method(duration)]
         pub unsafe fn duration(&self) -> NSTimeInterval;
 
-        #[cfg(feature = "HealthKit_HKWorkout")]
+        #[cfg(feature = "HKWorkout")]
         #[method_id(@__retain_semantics Other workoutEvents)]
         pub unsafe fn workoutEvents(&self) -> Id<NSArray<HKWorkoutEvent>>;
 
-        #[cfg(all(feature = "HealthKit_HKObjectType", feature = "HealthKit_HKStatistics"))]
+        #[cfg(all(feature = "HKObjectType", feature = "HKStatistics"))]
         #[method_id(@__retain_semantics Other allStatistics)]
         pub unsafe fn allStatistics(&self) -> Id<NSDictionary<HKQuantityType, HKStatistics>>;
 
-        #[cfg(all(feature = "HealthKit_HKObjectType", feature = "HealthKit_HKStatistics"))]
+        #[cfg(all(feature = "HKObjectType", feature = "HKStatistics"))]
         #[method_id(@__retain_semantics Other statisticsForType:)]
         pub unsafe fn statisticsForType(
             &self,
@@ -65,7 +65,7 @@ extern_methods!(
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
 
-        #[cfg(feature = "HealthKit_HKWorkoutConfiguration")]
+        #[cfg(feature = "HKWorkoutConfiguration")]
         #[method_id(@__retain_semantics Init initWithWorkoutConfiguration:startDate:endDate:metadata:)]
         pub unsafe fn initWithWorkoutConfiguration_startDate_endDate_metadata(
             this: Allocated<Self>,

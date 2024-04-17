@@ -7,16 +7,16 @@ use objc2_foundation::*;
 
 use crate::*;
 
-#[cfg(all(feature = "GameController_GCControllerElement", feature = "block2"))]
+#[cfg(all(feature = "GCControllerElement", feature = "block2"))]
 pub type GCControllerDirectionPadValueChangedHandler =
     *mut Block<dyn Fn(NonNull<GCControllerDirectionPad>, c_float, c_float)>;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "GameController_GCControllerElement")]
+    #[cfg(feature = "GCControllerElement")]
     pub struct GCControllerDirectionPad;
 
-    #[cfg(feature = "GameController_GCControllerElement")]
+    #[cfg(feature = "GCControllerElement")]
     unsafe impl ClassType for GCControllerDirectionPad {
         #[inherits(NSObject)]
         type Super = GCControllerElement;
@@ -24,11 +24,11 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "GameController_GCControllerElement")]
+#[cfg(feature = "GCControllerElement")]
 unsafe impl NSObjectProtocol for GCControllerDirectionPad {}
 
 extern_methods!(
-    #[cfg(feature = "GameController_GCControllerElement")]
+    #[cfg(feature = "GCControllerElement")]
     unsafe impl GCControllerDirectionPad {
         #[cfg(feature = "block2")]
         #[method(valueChangedHandler)]
@@ -41,27 +41,27 @@ extern_methods!(
             value_changed_handler: GCControllerDirectionPadValueChangedHandler,
         );
 
-        #[cfg(feature = "GameController_GCControllerAxisInput")]
+        #[cfg(feature = "GCControllerAxisInput")]
         #[method_id(@__retain_semantics Other xAxis)]
         pub unsafe fn xAxis(&self) -> Id<GCControllerAxisInput>;
 
-        #[cfg(feature = "GameController_GCControllerAxisInput")]
+        #[cfg(feature = "GCControllerAxisInput")]
         #[method_id(@__retain_semantics Other yAxis)]
         pub unsafe fn yAxis(&self) -> Id<GCControllerAxisInput>;
 
-        #[cfg(feature = "GameController_GCControllerButtonInput")]
+        #[cfg(feature = "GCControllerButtonInput")]
         #[method_id(@__retain_semantics Other up)]
         pub unsafe fn up(&self) -> Id<GCControllerButtonInput>;
 
-        #[cfg(feature = "GameController_GCControllerButtonInput")]
+        #[cfg(feature = "GCControllerButtonInput")]
         #[method_id(@__retain_semantics Other down)]
         pub unsafe fn down(&self) -> Id<GCControllerButtonInput>;
 
-        #[cfg(feature = "GameController_GCControllerButtonInput")]
+        #[cfg(feature = "GCControllerButtonInput")]
         #[method_id(@__retain_semantics Other left)]
         pub unsafe fn left(&self) -> Id<GCControllerButtonInput>;
 
-        #[cfg(feature = "GameController_GCControllerButtonInput")]
+        #[cfg(feature = "GCControllerButtonInput")]
         #[method_id(@__retain_semantics Other right)]
         pub unsafe fn right(&self) -> Id<GCControllerButtonInput>;
 
@@ -72,7 +72,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "GameController_GCControllerElement")]
+    #[cfg(feature = "GCControllerElement")]
     unsafe impl GCControllerDirectionPad {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

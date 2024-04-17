@@ -19,7 +19,7 @@ unsafe impl NSObjectProtocol for GKLeaderboardEntry {}
 
 extern_methods!(
     unsafe impl GKLeaderboardEntry {
-        #[cfg(all(feature = "GameKit_GKBasePlayer", feature = "GameKit_GKPlayer"))]
+        #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
         #[method_id(@__retain_semantics Other player)]
         pub unsafe fn player(&self) -> Id<GKPlayer>;
 

@@ -10,8 +10,8 @@ use crate::*;
 extern_protocol!(
     pub unsafe trait WKURLSchemeHandler: NSObjectProtocol {
         #[cfg(all(
-            feature = "WebKit_WKURLSchemeTask",
-            feature = "WebKit_WKWebView",
+            feature = "WKURLSchemeTask",
+            feature = "WKWebView",
             feature = "objc2-app-kit"
         ))]
         #[method(webView:startURLSchemeTask:)]
@@ -22,8 +22,8 @@ extern_protocol!(
         );
 
         #[cfg(all(
-            feature = "WebKit_WKURLSchemeTask",
-            feature = "WebKit_WKWebView",
+            feature = "WKURLSchemeTask",
+            feature = "WKWebView",
             feature = "objc2-app-kit"
         ))]
         #[method(webView:stopURLSchemeTask:)]

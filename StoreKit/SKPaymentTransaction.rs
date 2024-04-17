@@ -54,11 +54,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Other originalTransaction)]
         pub unsafe fn originalTransaction(&self) -> Option<Id<SKPaymentTransaction>>;
 
-        #[cfg(feature = "StoreKit_SKPayment")]
+        #[cfg(feature = "SKPayment")]
         #[method_id(@__retain_semantics Other payment)]
         pub unsafe fn payment(&self) -> Id<SKPayment>;
 
-        #[cfg(feature = "StoreKit_SKDownload")]
+        #[cfg(feature = "SKDownload")]
         #[deprecated = "Hosted content is no longer supported"]
         #[method_id(@__retain_semantics Other downloads)]
         pub unsafe fn downloads(&self) -> Id<NSArray<SKDownload>>;

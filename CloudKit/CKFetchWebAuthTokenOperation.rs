@@ -9,16 +9,10 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(
-        feature = "CloudKit_CKDatabaseOperation",
-        feature = "CloudKit_CKOperation"
-    ))]
+    #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
     pub struct CKFetchWebAuthTokenOperation;
 
-    #[cfg(all(
-        feature = "CloudKit_CKDatabaseOperation",
-        feature = "CloudKit_CKOperation"
-    ))]
+    #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
     unsafe impl ClassType for CKFetchWebAuthTokenOperation {
         #[inherits(CKOperation, NSOperation, NSObject)]
         type Super = CKDatabaseOperation;
@@ -26,17 +20,11 @@ extern_class!(
     }
 );
 
-#[cfg(all(
-    feature = "CloudKit_CKDatabaseOperation",
-    feature = "CloudKit_CKOperation"
-))]
+#[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
 unsafe impl NSObjectProtocol for CKFetchWebAuthTokenOperation {}
 
 extern_methods!(
-    #[cfg(all(
-        feature = "CloudKit_CKDatabaseOperation",
-        feature = "CloudKit_CKOperation"
-    ))]
+    #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
     unsafe impl CKFetchWebAuthTokenOperation {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -69,10 +57,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(all(
-        feature = "CloudKit_CKDatabaseOperation",
-        feature = "CloudKit_CKOperation"
-    ))]
+    #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
     unsafe impl CKFetchWebAuthTokenOperation {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

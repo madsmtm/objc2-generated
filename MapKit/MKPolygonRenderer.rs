@@ -7,16 +7,10 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(
-        feature = "MapKit_MKOverlayPathRenderer",
-        feature = "MapKit_MKOverlayRenderer"
-    ))]
+    #[cfg(all(feature = "MKOverlayPathRenderer", feature = "MKOverlayRenderer"))]
     pub struct MKPolygonRenderer;
 
-    #[cfg(all(
-        feature = "MapKit_MKOverlayPathRenderer",
-        feature = "MapKit_MKOverlayRenderer"
-    ))]
+    #[cfg(all(feature = "MKOverlayPathRenderer", feature = "MKOverlayRenderer"))]
     unsafe impl ClassType for MKPolygonRenderer {
         #[inherits(MKOverlayRenderer, NSObject)]
         type Super = MKOverlayPathRenderer;
@@ -24,31 +18,17 @@ extern_class!(
     }
 );
 
-#[cfg(all(
-    feature = "MapKit_MKOverlayPathRenderer",
-    feature = "MapKit_MKOverlayRenderer"
-))]
+#[cfg(all(feature = "MKOverlayPathRenderer", feature = "MKOverlayRenderer"))]
 unsafe impl NSObjectProtocol for MKPolygonRenderer {}
 
 extern_methods!(
-    #[cfg(all(
-        feature = "MapKit_MKOverlayPathRenderer",
-        feature = "MapKit_MKOverlayRenderer"
-    ))]
+    #[cfg(all(feature = "MKOverlayPathRenderer", feature = "MKOverlayRenderer"))]
     unsafe impl MKPolygonRenderer {
-        #[cfg(all(
-            feature = "MapKit_MKMultiPoint",
-            feature = "MapKit_MKPolygon",
-            feature = "MapKit_MKShape"
-        ))]
+        #[cfg(all(feature = "MKMultiPoint", feature = "MKPolygon", feature = "MKShape"))]
         #[method_id(@__retain_semantics Init initWithPolygon:)]
         pub unsafe fn initWithPolygon(this: Allocated<Self>, polygon: &MKPolygon) -> Id<Self>;
 
-        #[cfg(all(
-            feature = "MapKit_MKMultiPoint",
-            feature = "MapKit_MKPolygon",
-            feature = "MapKit_MKShape"
-        ))]
+        #[cfg(all(feature = "MKMultiPoint", feature = "MKPolygon", feature = "MKShape"))]
         #[method_id(@__retain_semantics Other polygon)]
         pub unsafe fn polygon(&self) -> Id<MKPolygon>;
 
@@ -68,12 +48,9 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MKOverlayRenderer`
-    #[cfg(all(
-        feature = "MapKit_MKOverlayPathRenderer",
-        feature = "MapKit_MKOverlayRenderer"
-    ))]
+    #[cfg(all(feature = "MKOverlayPathRenderer", feature = "MKOverlayRenderer"))]
     unsafe impl MKPolygonRenderer {
-        #[cfg(all(feature = "MapKit_MKAnnotation", feature = "MapKit_MKOverlay"))]
+        #[cfg(all(feature = "MKAnnotation", feature = "MKOverlay"))]
         #[method_id(@__retain_semantics Init initWithOverlay:)]
         pub unsafe fn initWithOverlay(
             this: Allocated<Self>,
@@ -84,10 +61,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(all(
-        feature = "MapKit_MKOverlayPathRenderer",
-        feature = "MapKit_MKOverlayRenderer"
-    ))]
+    #[cfg(all(feature = "MKOverlayPathRenderer", feature = "MKOverlayRenderer"))]
     unsafe impl MKPolygonRenderer {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

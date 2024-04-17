@@ -40,15 +40,15 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSCoding for NSAppleEventDescriptor {}
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSAppleEventDescriptor {}
 
 unsafe impl NSObjectProtocol for NSAppleEventDescriptor {}
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSSecureCoding for NSAppleEventDescriptor {}
 
 extern_methods!(
@@ -71,15 +71,15 @@ extern_methods!(
         #[method_id(@__retain_semantics Other descriptorWithTypeCode:)]
         pub unsafe fn descriptorWithTypeCode(type_code: OSType) -> Id<NSAppleEventDescriptor>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other descriptorWithString:)]
         pub unsafe fn descriptorWithString(string: &NSString) -> Id<NSAppleEventDescriptor>;
 
-        #[cfg(feature = "Foundation_NSDate")]
+        #[cfg(feature = "NSDate")]
         #[method_id(@__retain_semantics Other descriptorWithDate:)]
         pub unsafe fn descriptorWithDate(date: &NSDate) -> Id<NSAppleEventDescriptor>;
 
-        #[cfg(feature = "Foundation_NSURL")]
+        #[cfg(feature = "NSURL")]
         #[method_id(@__retain_semantics Other descriptorWithFileURL:)]
         pub unsafe fn descriptorWithFileURL(file_url: &NSURL) -> Id<NSAppleEventDescriptor>;
 
@@ -92,13 +92,13 @@ extern_methods!(
         #[method_id(@__retain_semantics Other currentProcessDescriptor)]
         pub unsafe fn currentProcessDescriptor() -> Id<NSAppleEventDescriptor>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other descriptorWithBundleIdentifier:)]
         pub unsafe fn descriptorWithBundleIdentifier(
             bundle_identifier: &NSString,
         ) -> Id<NSAppleEventDescriptor>;
 
-        #[cfg(feature = "Foundation_NSURL")]
+        #[cfg(feature = "NSURL")]
         #[method_id(@__retain_semantics Other descriptorWithApplicationURL:)]
         pub unsafe fn descriptorWithApplicationURL(
             application_url: &NSURL,
@@ -110,7 +110,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initRecordDescriptor)]
         pub unsafe fn initRecordDescriptor(this: Allocated<Self>) -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSData")]
+        #[cfg(feature = "NSData")]
         #[method_id(@__retain_semantics Other data)]
         pub unsafe fn data(&self) -> Id<NSData>;
 
@@ -129,15 +129,15 @@ extern_methods!(
         #[method(typeCodeValue)]
         pub unsafe fn typeCodeValue(&self) -> OSType;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other stringValue)]
         pub unsafe fn stringValue(&self) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "Foundation_NSDate")]
+        #[cfg(feature = "NSDate")]
         #[method_id(@__retain_semantics Other dateValue)]
         pub unsafe fn dateValue(&self) -> Option<Id<NSDate>>;
 
-        #[cfg(feature = "Foundation_NSURL")]
+        #[cfg(feature = "NSURL")]
         #[method_id(@__retain_semantics Other fileURLValue)]
         pub unsafe fn fileURLValue(&self) -> Option<Id<NSURL>>;
 

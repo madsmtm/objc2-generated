@@ -8,21 +8,21 @@ use crate::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(
-        feature = "WebKit_DOMElement",
-        feature = "WebKit_DOMHTMLElement",
-        feature = "WebKit_DOMNode",
-        feature = "WebKit_DOMObject",
-        feature = "WebKit_WebScriptObject"
+        feature = "DOMElement",
+        feature = "DOMHTMLElement",
+        feature = "DOMNode",
+        feature = "DOMObject",
+        feature = "WebScriptObject"
     ))]
     #[deprecated]
     pub struct DOMHTMLOptionElement;
 
     #[cfg(all(
-        feature = "WebKit_DOMElement",
-        feature = "WebKit_DOMHTMLElement",
-        feature = "WebKit_DOMNode",
-        feature = "WebKit_DOMObject",
-        feature = "WebKit_WebScriptObject"
+        feature = "DOMElement",
+        feature = "DOMHTMLElement",
+        feature = "DOMNode",
+        feature = "DOMObject",
+        feature = "WebScriptObject"
     ))]
     unsafe impl ClassType for DOMHTMLOptionElement {
         #[inherits(DOMElement, DOMNode, DOMObject, WebScriptObject, NSObject)]
@@ -32,40 +32,40 @@ extern_class!(
 );
 
 #[cfg(all(
-    feature = "WebKit_DOMElement",
-    feature = "WebKit_DOMEventTarget",
-    feature = "WebKit_DOMHTMLElement",
-    feature = "WebKit_DOMNode",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMElement",
+    feature = "DOMEventTarget",
+    feature = "DOMHTMLElement",
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 unsafe impl DOMEventTarget for DOMHTMLOptionElement {}
 
 #[cfg(all(
-    feature = "WebKit_DOMElement",
-    feature = "WebKit_DOMHTMLElement",
-    feature = "WebKit_DOMNode",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMElement",
+    feature = "DOMHTMLElement",
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 unsafe impl NSCopying for DOMHTMLOptionElement {}
 
 #[cfg(all(
-    feature = "WebKit_DOMElement",
-    feature = "WebKit_DOMHTMLElement",
-    feature = "WebKit_DOMNode",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMElement",
+    feature = "DOMHTMLElement",
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 unsafe impl NSObjectProtocol for DOMHTMLOptionElement {}
 
 extern_methods!(
     #[cfg(all(
-        feature = "WebKit_DOMElement",
-        feature = "WebKit_DOMHTMLElement",
-        feature = "WebKit_DOMNode",
-        feature = "WebKit_DOMObject",
-        feature = "WebKit_WebScriptObject"
+        feature = "DOMElement",
+        feature = "DOMHTMLElement",
+        feature = "DOMNode",
+        feature = "DOMObject",
+        feature = "WebScriptObject"
     ))]
     unsafe impl DOMHTMLOptionElement {
         #[deprecated]
@@ -76,7 +76,7 @@ extern_methods!(
         #[method(setDisabled:)]
         pub unsafe fn setDisabled(&self, disabled: bool);
 
-        #[cfg(feature = "WebKit_DOMHTMLFormElement")]
+        #[cfg(feature = "DOMHTMLFormElement")]
         #[deprecated]
         #[method_id(@__retain_semantics Other form)]
         pub unsafe fn form(&self) -> Option<Id<DOMHTMLFormElement>>;
@@ -126,11 +126,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `DOMObject`
     #[cfg(all(
-        feature = "WebKit_DOMElement",
-        feature = "WebKit_DOMHTMLElement",
-        feature = "WebKit_DOMNode",
-        feature = "WebKit_DOMObject",
-        feature = "WebKit_WebScriptObject"
+        feature = "DOMElement",
+        feature = "DOMHTMLElement",
+        feature = "DOMNode",
+        feature = "DOMObject",
+        feature = "WebScriptObject"
     ))]
     unsafe impl DOMHTMLOptionElement {
         #[deprecated]
@@ -142,11 +142,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(
-        feature = "WebKit_DOMElement",
-        feature = "WebKit_DOMHTMLElement",
-        feature = "WebKit_DOMNode",
-        feature = "WebKit_DOMObject",
-        feature = "WebKit_WebScriptObject"
+        feature = "DOMElement",
+        feature = "DOMHTMLElement",
+        feature = "DOMNode",
+        feature = "DOMObject",
+        feature = "WebScriptObject"
     ))]
     unsafe impl DOMHTMLOptionElement {
         #[method_id(@__retain_semantics New new)]

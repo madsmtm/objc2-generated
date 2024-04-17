@@ -19,10 +19,7 @@ unsafe impl NSObjectProtocol for NSTextCheckingController {}
 
 extern_methods!(
     unsafe impl NSTextCheckingController {
-        #[cfg(all(
-            feature = "AppKit_NSTextCheckingClient",
-            feature = "AppKit_NSTextInputClient"
-        ))]
+        #[cfg(all(feature = "NSTextCheckingClient", feature = "NSTextInputClient"))]
         #[method_id(@__retain_semantics Init initWithClient:)]
         pub unsafe fn initWithClient(
             this: Allocated<Self>,
@@ -32,10 +29,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
-        #[cfg(all(
-            feature = "AppKit_NSTextCheckingClient",
-            feature = "AppKit_NSTextInputClient"
-        ))]
+        #[cfg(all(feature = "NSTextCheckingClient", feature = "NSTextInputClient"))]
         #[method_id(@__retain_semantics Other client)]
         pub unsafe fn client(&self) -> Id<ProtocolObject<dyn NSTextCheckingClient>>;
 
@@ -54,7 +48,7 @@ extern_methods!(
         #[method(considerTextCheckingForRange:)]
         pub unsafe fn considerTextCheckingForRange(&self, range: NSRange);
 
-        #[cfg(feature = "AppKit_NSSpellChecker")]
+        #[cfg(feature = "NSSpellChecker")]
         #[method(checkTextInRange:types:options:)]
         pub unsafe fn checkTextInRange_types_options(
             &self,
@@ -90,7 +84,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other validAnnotations)]
         pub unsafe fn validAnnotations(&self) -> Id<NSArray<NSAttributedStringKey>>;
 
-        #[cfg(feature = "AppKit_NSMenu")]
+        #[cfg(feature = "NSMenu")]
         #[method_id(@__retain_semantics Other menuAtIndex:clickedOnSelection:effectiveRange:)]
         pub unsafe fn menuAtIndex_clickedOnSelection_effectiveRange(
             &self,

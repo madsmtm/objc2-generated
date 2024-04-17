@@ -11,10 +11,10 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "HealthKit_HKSeriesBuilder")]
+    #[cfg(feature = "HKSeriesBuilder")]
     pub struct HKWorkoutRouteBuilder;
 
-    #[cfg(feature = "HealthKit_HKSeriesBuilder")]
+    #[cfg(feature = "HKSeriesBuilder")]
     unsafe impl ClassType for HKWorkoutRouteBuilder {
         #[inherits(NSObject)]
         type Super = HKSeriesBuilder;
@@ -22,13 +22,13 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "HealthKit_HKSeriesBuilder")]
+#[cfg(feature = "HKSeriesBuilder")]
 unsafe impl NSObjectProtocol for HKWorkoutRouteBuilder {}
 
 extern_methods!(
-    #[cfg(feature = "HealthKit_HKSeriesBuilder")]
+    #[cfg(feature = "HKSeriesBuilder")]
     unsafe impl HKWorkoutRouteBuilder {
-        #[cfg(all(feature = "HealthKit_HKDevice", feature = "HealthKit_HKHealthStore"))]
+        #[cfg(all(feature = "HKDevice", feature = "HKHealthStore"))]
         #[method_id(@__retain_semantics Init initWithHealthStore:device:)]
         pub unsafe fn initWithHealthStore_device(
             this: Allocated<Self>,
@@ -53,11 +53,11 @@ extern_methods!(
         );
 
         #[cfg(all(
-            feature = "HealthKit_HKObject",
-            feature = "HealthKit_HKSample",
-            feature = "HealthKit_HKSeriesSample",
-            feature = "HealthKit_HKWorkout",
-            feature = "HealthKit_HKWorkoutRoute",
+            feature = "HKObject",
+            feature = "HKSample",
+            feature = "HKSeriesSample",
+            feature = "HKWorkout",
+            feature = "HKWorkoutRoute",
             feature = "block2"
         ))]
         #[method(finishRouteWithWorkout:metadata:completion:)]
@@ -72,7 +72,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `HKSeriesBuilder`
-    #[cfg(feature = "HealthKit_HKSeriesBuilder")]
+    #[cfg(feature = "HKSeriesBuilder")]
     unsafe impl HKWorkoutRouteBuilder {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -81,7 +81,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "HealthKit_HKSeriesBuilder")]
+    #[cfg(feature = "HKSeriesBuilder")]
     unsafe impl HKWorkoutRouteBuilder {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

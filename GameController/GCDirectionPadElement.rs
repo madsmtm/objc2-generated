@@ -6,49 +6,37 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    #[cfg(feature = "GameController_GCPhysicalInputElement")]
+    #[cfg(feature = "GCPhysicalInputElement")]
     pub unsafe trait GCDirectionPadElement: GCPhysicalInputElement {
-        #[cfg(feature = "GameController_GCAxis2DInput")]
+        #[cfg(feature = "GCAxis2DInput")]
         #[method_id(@__retain_semantics Other xyAxes)]
         unsafe fn xyAxes(&self) -> Id<ProtocolObject<dyn GCAxis2DInput>>;
 
-        #[cfg(feature = "GameController_GCAxisInput")]
+        #[cfg(feature = "GCAxisInput")]
         #[method_id(@__retain_semantics Other xAxis)]
         unsafe fn xAxis(&self) -> Id<ProtocolObject<dyn GCAxisInput>>;
 
-        #[cfg(feature = "GameController_GCAxisInput")]
+        #[cfg(feature = "GCAxisInput")]
         #[method_id(@__retain_semantics Other yAxis)]
         unsafe fn yAxis(&self) -> Id<ProtocolObject<dyn GCAxisInput>>;
 
-        #[cfg(all(
-            feature = "GameController_GCLinearInput",
-            feature = "GameController_GCPressedStateInput"
-        ))]
+        #[cfg(all(feature = "GCLinearInput", feature = "GCPressedStateInput"))]
         #[method_id(@__retain_semantics Other up)]
         unsafe fn up(&self) -> Id<TodoProtocols>;
 
-        #[cfg(all(
-            feature = "GameController_GCLinearInput",
-            feature = "GameController_GCPressedStateInput"
-        ))]
+        #[cfg(all(feature = "GCLinearInput", feature = "GCPressedStateInput"))]
         #[method_id(@__retain_semantics Other down)]
         unsafe fn down(&self) -> Id<TodoProtocols>;
 
-        #[cfg(all(
-            feature = "GameController_GCLinearInput",
-            feature = "GameController_GCPressedStateInput"
-        ))]
+        #[cfg(all(feature = "GCLinearInput", feature = "GCPressedStateInput"))]
         #[method_id(@__retain_semantics Other left)]
         unsafe fn left(&self) -> Id<TodoProtocols>;
 
-        #[cfg(all(
-            feature = "GameController_GCLinearInput",
-            feature = "GameController_GCPressedStateInput"
-        ))]
+        #[cfg(all(feature = "GCLinearInput", feature = "GCPressedStateInput"))]
         #[method_id(@__retain_semantics Other right)]
         unsafe fn right(&self) -> Id<TodoProtocols>;
     }
 
-    #[cfg(feature = "GameController_GCPhysicalInputElement")]
+    #[cfg(feature = "GCPhysicalInputElement")]
     unsafe impl ProtocolType for dyn GCDirectionPadElement {}
 );

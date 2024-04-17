@@ -21,11 +21,11 @@ unsafe impl NSObjectProtocol for MKLocalSearchResponse {}
 
 extern_methods!(
     unsafe impl MKLocalSearchResponse {
-        #[cfg(feature = "MapKit_MKMapItem")]
+        #[cfg(feature = "MKMapItem")]
         #[method_id(@__retain_semantics Other mapItems)]
         pub unsafe fn mapItems(&self) -> Id<NSArray<MKMapItem>>;
 
-        #[cfg(all(feature = "MapKit_MKGeometry", feature = "objc2-core-location"))]
+        #[cfg(all(feature = "MKGeometry", feature = "objc2-core-location"))]
         #[method(boundingRegion)]
         pub unsafe fn boundingRegion(&self) -> MKCoordinateRegion;
     }

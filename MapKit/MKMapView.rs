@@ -103,36 +103,36 @@ extern_methods!(
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn MKMapViewDelegate>>);
 
-        #[cfg(feature = "MapKit_MKTypes")]
+        #[cfg(feature = "MKTypes")]
         #[deprecated]
         #[method(mapType)]
         pub unsafe fn mapType(&self) -> MKMapType;
 
-        #[cfg(feature = "MapKit_MKTypes")]
+        #[cfg(feature = "MKTypes")]
         #[deprecated]
         #[method(setMapType:)]
         pub unsafe fn setMapType(&self, map_type: MKMapType);
 
-        #[cfg(feature = "MapKit_MKMapConfiguration")]
+        #[cfg(feature = "MKMapConfiguration")]
         #[method_id(@__retain_semantics Other preferredConfiguration)]
         pub unsafe fn preferredConfiguration(&self) -> Id<MKMapConfiguration>;
 
-        #[cfg(feature = "MapKit_MKMapConfiguration")]
+        #[cfg(feature = "MKMapConfiguration")]
         #[method(setPreferredConfiguration:)]
         pub unsafe fn setPreferredConfiguration(
             &self,
             preferred_configuration: &MKMapConfiguration,
         );
 
-        #[cfg(all(feature = "MapKit_MKGeometry", feature = "objc2-core-location"))]
+        #[cfg(all(feature = "MKGeometry", feature = "objc2-core-location"))]
         #[method(region)]
         pub unsafe fn region(&self) -> MKCoordinateRegion;
 
-        #[cfg(all(feature = "MapKit_MKGeometry", feature = "objc2-core-location"))]
+        #[cfg(all(feature = "MKGeometry", feature = "objc2-core-location"))]
         #[method(setRegion:)]
         pub unsafe fn setRegion(&self, region: MKCoordinateRegion);
 
-        #[cfg(all(feature = "MapKit_MKGeometry", feature = "objc2-core-location"))]
+        #[cfg(all(feature = "MKGeometry", feature = "objc2-core-location"))]
         #[method(setRegion:animated:)]
         pub unsafe fn setRegion_animated(&self, region: MKCoordinateRegion, animated: bool);
 
@@ -152,27 +152,27 @@ extern_methods!(
             animated: bool,
         );
 
-        #[cfg(all(feature = "MapKit_MKGeometry", feature = "objc2-core-location"))]
+        #[cfg(all(feature = "MKGeometry", feature = "objc2-core-location"))]
         #[method(regionThatFits:)]
         pub unsafe fn regionThatFits(&self, region: MKCoordinateRegion) -> MKCoordinateRegion;
 
-        #[cfg(feature = "MapKit_MKGeometry")]
+        #[cfg(feature = "MKGeometry")]
         #[method(visibleMapRect)]
         pub unsafe fn visibleMapRect(&self) -> MKMapRect;
 
-        #[cfg(feature = "MapKit_MKGeometry")]
+        #[cfg(feature = "MKGeometry")]
         #[method(setVisibleMapRect:)]
         pub unsafe fn setVisibleMapRect(&self, visible_map_rect: MKMapRect);
 
-        #[cfg(feature = "MapKit_MKGeometry")]
+        #[cfg(feature = "MKGeometry")]
         #[method(setVisibleMapRect:animated:)]
         pub unsafe fn setVisibleMapRect_animated(&self, map_rect: MKMapRect, animate: bool);
 
-        #[cfg(feature = "MapKit_MKGeometry")]
+        #[cfg(feature = "MKGeometry")]
         #[method(mapRectThatFits:)]
         pub unsafe fn mapRectThatFits(&self, map_rect: MKMapRect) -> MKMapRect;
 
-        #[cfg(feature = "MapKit_MKGeometry")]
+        #[cfg(feature = "MKGeometry")]
         #[method(setVisibleMapRect:edgePadding:animated:)]
         pub unsafe fn setVisibleMapRect_edgePadding_animated(
             &self,
@@ -181,7 +181,7 @@ extern_methods!(
             animate: bool,
         );
 
-        #[cfg(feature = "MapKit_MKGeometry")]
+        #[cfg(feature = "MKGeometry")]
         #[method(mapRectThatFits:edgePadding:)]
         pub unsafe fn mapRectThatFits_edgePadding(
             &self,
@@ -189,27 +189,27 @@ extern_methods!(
             insets: NSEdgeInsets,
         ) -> MKMapRect;
 
-        #[cfg(feature = "MapKit_MKMapCamera")]
+        #[cfg(feature = "MKMapCamera")]
         #[method_id(@__retain_semantics Other camera)]
         pub unsafe fn camera(&self) -> Id<MKMapCamera>;
 
-        #[cfg(feature = "MapKit_MKMapCamera")]
+        #[cfg(feature = "MKMapCamera")]
         #[method(setCamera:)]
         pub unsafe fn setCamera(&self, camera: &MKMapCamera);
 
-        #[cfg(feature = "MapKit_MKMapCamera")]
+        #[cfg(feature = "MKMapCamera")]
         #[method(setCamera:animated:)]
         pub unsafe fn setCamera_animated(&self, camera: &MKMapCamera, animated: bool);
 
-        #[cfg(feature = "MapKit_MKMapCameraZoomRange")]
+        #[cfg(feature = "MKMapCameraZoomRange")]
         #[method_id(@__retain_semantics Other cameraZoomRange)]
         pub unsafe fn cameraZoomRange(&self) -> Id<MKMapCameraZoomRange>;
 
-        #[cfg(feature = "MapKit_MKMapCameraZoomRange")]
+        #[cfg(feature = "MKMapCameraZoomRange")]
         #[method(setCameraZoomRange:)]
         pub unsafe fn setCameraZoomRange(&self, camera_zoom_range: Option<&MKMapCameraZoomRange>);
 
-        #[cfg(feature = "MapKit_MKMapCameraZoomRange")]
+        #[cfg(feature = "MKMapCameraZoomRange")]
         #[method(setCameraZoomRange:animated:)]
         pub unsafe fn setCameraZoomRange_animated(
             &self,
@@ -217,15 +217,15 @@ extern_methods!(
             animated: bool,
         );
 
-        #[cfg(feature = "MapKit_MKMapCameraBoundary")]
+        #[cfg(feature = "MKMapCameraBoundary")]
         #[method_id(@__retain_semantics Other cameraBoundary)]
         pub unsafe fn cameraBoundary(&self) -> Option<Id<MKMapCameraBoundary>>;
 
-        #[cfg(feature = "MapKit_MKMapCameraBoundary")]
+        #[cfg(feature = "MKMapCameraBoundary")]
         #[method(setCameraBoundary:)]
         pub unsafe fn setCameraBoundary(&self, camera_boundary: Option<&MKMapCameraBoundary>);
 
-        #[cfg(feature = "MapKit_MKMapCameraBoundary")]
+        #[cfg(feature = "MKMapCameraBoundary")]
         #[method(setCameraBoundary:animated:)]
         pub unsafe fn setCameraBoundary_animated(
             &self,
@@ -249,7 +249,7 @@ extern_methods!(
             view: Option<&NSView>,
         ) -> CLLocationCoordinate2D;
 
-        #[cfg(all(feature = "MapKit_MKGeometry", feature = "objc2-core-location"))]
+        #[cfg(all(feature = "MKGeometry", feature = "objc2-core-location"))]
         #[method(convertRegion:toRectToView:)]
         pub unsafe fn convertRegion_toRectToView(
             &self,
@@ -257,7 +257,7 @@ extern_methods!(
             view: Option<&NSView>,
         ) -> CGRect;
 
-        #[cfg(all(feature = "MapKit_MKGeometry", feature = "objc2-core-location"))]
+        #[cfg(all(feature = "MKGeometry", feature = "objc2-core-location"))]
         #[method(convertRect:toRegionFromView:)]
         pub unsafe fn convertRect_toRegionFromView(
             &self,
@@ -295,11 +295,11 @@ extern_methods!(
         #[method(setShowsUserTrackingButton:)]
         pub unsafe fn setShowsUserTrackingButton(&self, shows_user_tracking_button: bool);
 
-        #[cfg(feature = "MapKit_MKTypes")]
+        #[cfg(feature = "MKTypes")]
         #[method(pitchButtonVisibility)]
         pub unsafe fn pitchButtonVisibility(&self) -> MKFeatureVisibility;
 
-        #[cfg(feature = "MapKit_MKTypes")]
+        #[cfg(feature = "MKTypes")]
         #[method(setPitchButtonVisibility:)]
         pub unsafe fn setPitchButtonVisibility(&self, pitch_button_visibility: MKFeatureVisibility);
 
@@ -327,12 +327,12 @@ extern_methods!(
         #[method(setShowsScale:)]
         pub unsafe fn setShowsScale(&self, shows_scale: bool);
 
-        #[cfg(feature = "MapKit_MKPointOfInterestFilter")]
+        #[cfg(feature = "MKPointOfInterestFilter")]
         #[deprecated]
         #[method_id(@__retain_semantics Other pointOfInterestFilter)]
         pub unsafe fn pointOfInterestFilter(&self) -> Option<Id<MKPointOfInterestFilter>>;
 
-        #[cfg(feature = "MapKit_MKPointOfInterestFilter")]
+        #[cfg(feature = "MKPointOfInterestFilter")]
         #[deprecated]
         #[method(setPointOfInterestFilter:)]
         pub unsafe fn setPointOfInterestFilter(
@@ -370,7 +370,7 @@ extern_methods!(
         #[method(setShowsUserLocation:)]
         pub unsafe fn setShowsUserLocation(&self, shows_user_location: bool);
 
-        #[cfg(feature = "MapKit_MKUserLocation")]
+        #[cfg(feature = "MKUserLocation")]
         #[method_id(@__retain_semantics Other userLocation)]
         pub unsafe fn userLocation(&self) -> Id<MKUserLocation>;
 
@@ -386,54 +386,54 @@ extern_methods!(
         #[method(isUserLocationVisible)]
         pub unsafe fn isUserLocationVisible(&self) -> bool;
 
-        #[cfg(feature = "MapKit_MKAnnotation")]
+        #[cfg(feature = "MKAnnotation")]
         #[method(addAnnotation:)]
         pub unsafe fn addAnnotation(&self, annotation: &ProtocolObject<dyn MKAnnotation>);
 
-        #[cfg(feature = "MapKit_MKAnnotation")]
+        #[cfg(feature = "MKAnnotation")]
         #[method(addAnnotations:)]
         pub unsafe fn addAnnotations(
             &self,
             annotations: &NSArray<ProtocolObject<dyn MKAnnotation>>,
         );
 
-        #[cfg(feature = "MapKit_MKAnnotation")]
+        #[cfg(feature = "MKAnnotation")]
         #[method(removeAnnotation:)]
         pub unsafe fn removeAnnotation(&self, annotation: &ProtocolObject<dyn MKAnnotation>);
 
-        #[cfg(feature = "MapKit_MKAnnotation")]
+        #[cfg(feature = "MKAnnotation")]
         #[method(removeAnnotations:)]
         pub unsafe fn removeAnnotations(
             &self,
             annotations: &NSArray<ProtocolObject<dyn MKAnnotation>>,
         );
 
-        #[cfg(feature = "MapKit_MKAnnotation")]
+        #[cfg(feature = "MKAnnotation")]
         #[method_id(@__retain_semantics Other annotations)]
         pub unsafe fn annotations(&self) -> Id<NSArray<ProtocolObject<dyn MKAnnotation>>>;
 
-        #[cfg(all(feature = "MapKit_MKAnnotation", feature = "MapKit_MKGeometry"))]
+        #[cfg(all(feature = "MKAnnotation", feature = "MKGeometry"))]
         #[method_id(@__retain_semantics Other annotationsInMapRect:)]
         pub unsafe fn annotationsInMapRect(
             &self,
             map_rect: MKMapRect,
         ) -> Id<NSSet<ProtocolObject<dyn MKAnnotation>>>;
 
-        #[cfg(all(feature = "MapKit_MKAnnotation", feature = "MapKit_MKAnnotationView"))]
+        #[cfg(all(feature = "MKAnnotation", feature = "MKAnnotationView"))]
         #[method_id(@__retain_semantics Other viewForAnnotation:)]
         pub unsafe fn viewForAnnotation(
             &self,
             annotation: &ProtocolObject<dyn MKAnnotation>,
         ) -> Option<Id<MKAnnotationView>>;
 
-        #[cfg(feature = "MapKit_MKAnnotationView")]
+        #[cfg(feature = "MKAnnotationView")]
         #[method_id(@__retain_semantics Other dequeueReusableAnnotationViewWithIdentifier:)]
         pub unsafe fn dequeueReusableAnnotationViewWithIdentifier(
             &self,
             identifier: &NSString,
         ) -> Option<Id<MKAnnotationView>>;
 
-        #[cfg(all(feature = "MapKit_MKAnnotation", feature = "MapKit_MKAnnotationView"))]
+        #[cfg(all(feature = "MKAnnotation", feature = "MKAnnotationView"))]
         #[method_id(@__retain_semantics Other dequeueReusableAnnotationViewWithIdentifier:forAnnotation:)]
         pub unsafe fn dequeueReusableAnnotationViewWithIdentifier_forAnnotation(
             &self,
@@ -448,7 +448,7 @@ extern_methods!(
             identifier: &NSString,
         );
 
-        #[cfg(feature = "MapKit_MKAnnotation")]
+        #[cfg(feature = "MKAnnotation")]
         #[method(selectAnnotation:animated:)]
         pub unsafe fn selectAnnotation_animated(
             &self,
@@ -456,7 +456,7 @@ extern_methods!(
             animated: bool,
         );
 
-        #[cfg(feature = "MapKit_MKAnnotation")]
+        #[cfg(feature = "MKAnnotation")]
         #[method(deselectAnnotation:animated:)]
         pub unsafe fn deselectAnnotation_animated(
             &self,
@@ -464,11 +464,11 @@ extern_methods!(
             animated: bool,
         );
 
-        #[cfg(feature = "MapKit_MKAnnotation")]
+        #[cfg(feature = "MKAnnotation")]
         #[method_id(@__retain_semantics Other selectedAnnotations)]
         pub unsafe fn selectedAnnotations(&self) -> Id<NSArray<ProtocolObject<dyn MKAnnotation>>>;
 
-        #[cfg(feature = "MapKit_MKAnnotation")]
+        #[cfg(feature = "MKAnnotation")]
         #[method(setSelectedAnnotations:)]
         pub unsafe fn setSelectedAnnotations(
             &self,
@@ -478,7 +478,7 @@ extern_methods!(
         #[method(annotationVisibleRect)]
         pub unsafe fn annotationVisibleRect(&self) -> CGRect;
 
-        #[cfg(feature = "MapKit_MKAnnotation")]
+        #[cfg(feature = "MKAnnotation")]
         #[method(showAnnotations:animated:)]
         pub unsafe fn showAnnotations_animated(
             &self,
@@ -522,7 +522,7 @@ extern_methods!(
     /// OverlaysAPI
     #[cfg(feature = "objc2-app-kit")]
     unsafe impl MKMapView {
-        #[cfg(all(feature = "MapKit_MKAnnotation", feature = "MapKit_MKOverlay"))]
+        #[cfg(all(feature = "MKAnnotation", feature = "MKOverlay"))]
         #[method(addOverlay:level:)]
         pub unsafe fn addOverlay_level(
             &self,
@@ -530,7 +530,7 @@ extern_methods!(
             level: MKOverlayLevel,
         );
 
-        #[cfg(all(feature = "MapKit_MKAnnotation", feature = "MapKit_MKOverlay"))]
+        #[cfg(all(feature = "MKAnnotation", feature = "MKOverlay"))]
         #[method(addOverlays:level:)]
         pub unsafe fn addOverlays_level(
             &self,
@@ -538,15 +538,15 @@ extern_methods!(
             level: MKOverlayLevel,
         );
 
-        #[cfg(all(feature = "MapKit_MKAnnotation", feature = "MapKit_MKOverlay"))]
+        #[cfg(all(feature = "MKAnnotation", feature = "MKOverlay"))]
         #[method(removeOverlay:)]
         pub unsafe fn removeOverlay(&self, overlay: &ProtocolObject<dyn MKOverlay>);
 
-        #[cfg(all(feature = "MapKit_MKAnnotation", feature = "MapKit_MKOverlay"))]
+        #[cfg(all(feature = "MKAnnotation", feature = "MKOverlay"))]
         #[method(removeOverlays:)]
         pub unsafe fn removeOverlays(&self, overlays: &NSArray<ProtocolObject<dyn MKOverlay>>);
 
-        #[cfg(all(feature = "MapKit_MKAnnotation", feature = "MapKit_MKOverlay"))]
+        #[cfg(all(feature = "MKAnnotation", feature = "MKOverlay"))]
         #[method(insertOverlay:atIndex:level:)]
         pub unsafe fn insertOverlay_atIndex_level(
             &self,
@@ -555,7 +555,7 @@ extern_methods!(
             level: MKOverlayLevel,
         );
 
-        #[cfg(all(feature = "MapKit_MKAnnotation", feature = "MapKit_MKOverlay"))]
+        #[cfg(all(feature = "MKAnnotation", feature = "MKOverlay"))]
         #[method(insertOverlay:aboveOverlay:)]
         pub unsafe fn insertOverlay_aboveOverlay(
             &self,
@@ -563,7 +563,7 @@ extern_methods!(
             sibling: &ProtocolObject<dyn MKOverlay>,
         );
 
-        #[cfg(all(feature = "MapKit_MKAnnotation", feature = "MapKit_MKOverlay"))]
+        #[cfg(all(feature = "MKAnnotation", feature = "MKOverlay"))]
         #[method(insertOverlay:belowOverlay:)]
         pub unsafe fn insertOverlay_belowOverlay(
             &self,
@@ -571,7 +571,7 @@ extern_methods!(
             sibling: &ProtocolObject<dyn MKOverlay>,
         );
 
-        #[cfg(all(feature = "MapKit_MKAnnotation", feature = "MapKit_MKOverlay"))]
+        #[cfg(all(feature = "MKAnnotation", feature = "MKOverlay"))]
         #[method(exchangeOverlay:withOverlay:)]
         pub unsafe fn exchangeOverlay_withOverlay(
             &self,
@@ -579,11 +579,11 @@ extern_methods!(
             overlay2: &ProtocolObject<dyn MKOverlay>,
         );
 
-        #[cfg(all(feature = "MapKit_MKAnnotation", feature = "MapKit_MKOverlay"))]
+        #[cfg(all(feature = "MKAnnotation", feature = "MKOverlay"))]
         #[method_id(@__retain_semantics Other overlays)]
         pub unsafe fn overlays(&self) -> Id<NSArray<ProtocolObject<dyn MKOverlay>>>;
 
-        #[cfg(all(feature = "MapKit_MKAnnotation", feature = "MapKit_MKOverlay"))]
+        #[cfg(all(feature = "MKAnnotation", feature = "MKOverlay"))]
         #[method_id(@__retain_semantics Other overlaysInLevel:)]
         pub unsafe fn overlaysInLevel(
             &self,
@@ -591,9 +591,9 @@ extern_methods!(
         ) -> Id<NSArray<ProtocolObject<dyn MKOverlay>>>;
 
         #[cfg(all(
-            feature = "MapKit_MKAnnotation",
-            feature = "MapKit_MKOverlay",
-            feature = "MapKit_MKOverlayRenderer"
+            feature = "MKAnnotation",
+            feature = "MKOverlay",
+            feature = "MKOverlayRenderer"
         ))]
         #[method_id(@__retain_semantics Other rendererForOverlay:)]
         pub unsafe fn rendererForOverlay(
@@ -601,15 +601,15 @@ extern_methods!(
             overlay: &ProtocolObject<dyn MKOverlay>,
         ) -> Option<Id<MKOverlayRenderer>>;
 
-        #[cfg(all(feature = "MapKit_MKAnnotation", feature = "MapKit_MKOverlay"))]
+        #[cfg(all(feature = "MKAnnotation", feature = "MKOverlay"))]
         #[method(addOverlay:)]
         pub unsafe fn addOverlay(&self, overlay: &ProtocolObject<dyn MKOverlay>);
 
-        #[cfg(all(feature = "MapKit_MKAnnotation", feature = "MapKit_MKOverlay"))]
+        #[cfg(all(feature = "MKAnnotation", feature = "MKOverlay"))]
         #[method(addOverlays:)]
         pub unsafe fn addOverlays(&self, overlays: &NSArray<ProtocolObject<dyn MKOverlay>>);
 
-        #[cfg(all(feature = "MapKit_MKAnnotation", feature = "MapKit_MKOverlay"))]
+        #[cfg(all(feature = "MKAnnotation", feature = "MKOverlay"))]
         #[method(insertOverlay:atIndex:)]
         pub unsafe fn insertOverlay_atIndex(
             &self,
@@ -673,8 +673,8 @@ extern_protocol!(
         );
 
         #[cfg(all(
-            feature = "MapKit_MKAnnotation",
-            feature = "MapKit_MKAnnotationView",
+            feature = "MKAnnotation",
+            feature = "MKAnnotationView",
             feature = "objc2-app-kit"
         ))]
         #[optional]
@@ -685,7 +685,7 @@ extern_protocol!(
             annotation: &ProtocolObject<dyn MKAnnotation>,
         ) -> Option<Id<MKAnnotationView>>;
 
-        #[cfg(all(feature = "MapKit_MKAnnotationView", feature = "objc2-app-kit"))]
+        #[cfg(all(feature = "MKAnnotationView", feature = "objc2-app-kit"))]
         #[optional]
         #[method(mapView:didAddAnnotationViews:)]
         unsafe fn mapView_didAddAnnotationViews(
@@ -694,7 +694,7 @@ extern_protocol!(
             views: &NSArray<MKAnnotationView>,
         );
 
-        #[cfg(all(feature = "MapKit_MKAnnotationView", feature = "objc2-app-kit"))]
+        #[cfg(all(feature = "MKAnnotationView", feature = "objc2-app-kit"))]
         #[optional]
         #[method(mapView:didSelectAnnotationView:)]
         unsafe fn mapView_didSelectAnnotationView(
@@ -703,7 +703,7 @@ extern_protocol!(
             view: &MKAnnotationView,
         );
 
-        #[cfg(all(feature = "MapKit_MKAnnotationView", feature = "objc2-app-kit"))]
+        #[cfg(all(feature = "MKAnnotationView", feature = "objc2-app-kit"))]
         #[optional]
         #[method(mapView:didDeselectAnnotationView:)]
         unsafe fn mapView_didDeselectAnnotationView(
@@ -712,7 +712,7 @@ extern_protocol!(
             view: &MKAnnotationView,
         );
 
-        #[cfg(all(feature = "MapKit_MKAnnotation", feature = "objc2-app-kit"))]
+        #[cfg(all(feature = "MKAnnotation", feature = "objc2-app-kit"))]
         #[optional]
         #[method(mapView:didSelectAnnotation:)]
         unsafe fn mapView_didSelectAnnotation(
@@ -721,7 +721,7 @@ extern_protocol!(
             annotation: &ProtocolObject<dyn MKAnnotation>,
         );
 
-        #[cfg(all(feature = "MapKit_MKAnnotation", feature = "objc2-app-kit"))]
+        #[cfg(all(feature = "MKAnnotation", feature = "objc2-app-kit"))]
         #[optional]
         #[method(mapView:didDeselectAnnotation:)]
         unsafe fn mapView_didDeselectAnnotation(
@@ -740,7 +740,7 @@ extern_protocol!(
         #[method(mapViewDidStopLocatingUser:)]
         unsafe fn mapViewDidStopLocatingUser(&self, map_view: &MKMapView);
 
-        #[cfg(all(feature = "MapKit_MKUserLocation", feature = "objc2-app-kit"))]
+        #[cfg(all(feature = "MKUserLocation", feature = "objc2-app-kit"))]
         #[optional]
         #[method(mapView:didUpdateUserLocation:)]
         unsafe fn mapView_didUpdateUserLocation(
@@ -758,7 +758,7 @@ extern_protocol!(
             error: &NSError,
         );
 
-        #[cfg(all(feature = "MapKit_MKAnnotationView", feature = "objc2-app-kit"))]
+        #[cfg(all(feature = "MKAnnotationView", feature = "objc2-app-kit"))]
         #[optional]
         #[method(mapView:annotationView:didChangeDragState:fromOldState:)]
         unsafe fn mapView_annotationView_didChangeDragState_fromOldState(
@@ -780,9 +780,9 @@ extern_protocol!(
         );
 
         #[cfg(all(
-            feature = "MapKit_MKAnnotation",
-            feature = "MapKit_MKOverlay",
-            feature = "MapKit_MKOverlayRenderer",
+            feature = "MKAnnotation",
+            feature = "MKOverlay",
+            feature = "MKOverlayRenderer",
             feature = "objc2-app-kit"
         ))]
         #[optional]
@@ -793,7 +793,7 @@ extern_protocol!(
             overlay: &ProtocolObject<dyn MKOverlay>,
         ) -> Id<MKOverlayRenderer>;
 
-        #[cfg(all(feature = "MapKit_MKOverlayRenderer", feature = "objc2-app-kit"))]
+        #[cfg(all(feature = "MKOverlayRenderer", feature = "objc2-app-kit"))]
         #[optional]
         #[method(mapView:didAddOverlayRenderers:)]
         unsafe fn mapView_didAddOverlayRenderers(
@@ -803,8 +803,8 @@ extern_protocol!(
         );
 
         #[cfg(all(
-            feature = "MapKit_MKAnnotation",
-            feature = "MapKit_MKClusterAnnotation",
+            feature = "MKAnnotation",
+            feature = "MKClusterAnnotation",
             feature = "objc2-app-kit"
         ))]
         #[optional]

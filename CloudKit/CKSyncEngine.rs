@@ -25,7 +25,7 @@ unsafe impl NSObjectProtocol for CKSyncEngine {}
 
 extern_methods!(
     unsafe impl CKSyncEngine {
-        #[cfg(feature = "CloudKit_CKSyncEngineConfiguration")]
+        #[cfg(feature = "CKSyncEngineConfiguration")]
         #[method_id(@__retain_semantics Init initWithConfiguration:)]
         pub unsafe fn initWithConfiguration(
             this: Allocated<Self>,
@@ -38,11 +38,11 @@ extern_methods!(
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
 
-        #[cfg(feature = "CloudKit_CKDatabase")]
+        #[cfg(feature = "CKDatabase")]
         #[method_id(@__retain_semantics Other database)]
         pub unsafe fn database(&self) -> Id<CKDatabase>;
 
-        #[cfg(feature = "CloudKit_CKSyncEngineState")]
+        #[cfg(feature = "CKSyncEngineState")]
         #[method_id(@__retain_semantics Other state)]
         pub unsafe fn state(&self) -> Id<CKSyncEngineState>;
 
@@ -87,7 +87,7 @@ extern_methods!(
 
 extern_protocol!(
     pub unsafe trait CKSyncEngineDelegate: NSObjectProtocol {
-        #[cfg(feature = "CloudKit_CKSyncEngineEvent")]
+        #[cfg(feature = "CKSyncEngineEvent")]
         #[method(syncEngine:handleEvent:)]
         unsafe fn syncEngine_handleEvent(
             &self,
@@ -95,7 +95,7 @@ extern_protocol!(
             event: &CKSyncEngineEvent,
         );
 
-        #[cfg(feature = "CloudKit_CKSyncEngineRecordZoneChangeBatch")]
+        #[cfg(feature = "CKSyncEngineRecordZoneChangeBatch")]
         #[method_id(@__retain_semantics Other syncEngine:nextRecordZoneChangeBatchForContext:)]
         unsafe fn syncEngine_nextRecordZoneChangeBatchForContext(
             &self,
@@ -141,19 +141,19 @@ extern_methods!(
         #[method(setScope:)]
         pub unsafe fn setScope(&self, scope: &CKSyncEngineFetchChangesScope);
 
-        #[cfg(feature = "CloudKit_CKOperationGroup")]
+        #[cfg(feature = "CKOperationGroup")]
         #[method_id(@__retain_semantics Other operationGroup)]
         pub unsafe fn operationGroup(&self) -> Id<CKOperationGroup>;
 
-        #[cfg(feature = "CloudKit_CKOperationGroup")]
+        #[cfg(feature = "CKOperationGroup")]
         #[method(setOperationGroup:)]
         pub unsafe fn setOperationGroup(&self, operation_group: &CKOperationGroup);
 
-        #[cfg(feature = "CloudKit_CKRecordZoneID")]
+        #[cfg(feature = "CKRecordZoneID")]
         #[method_id(@__retain_semantics Other prioritizedZoneIDs)]
         pub unsafe fn prioritizedZoneIDs(&self) -> Id<NSArray<CKRecordZoneID>>;
 
-        #[cfg(feature = "CloudKit_CKRecordZoneID")]
+        #[cfg(feature = "CKRecordZoneID")]
         #[method(setPrioritizedZoneIDs:)]
         pub unsafe fn setPrioritizedZoneIDs(&self, prioritized_zone_i_ds: &NSArray<CKRecordZoneID>);
 
@@ -196,29 +196,29 @@ unsafe impl NSObjectProtocol for CKSyncEngineFetchChangesScope {}
 
 extern_methods!(
     unsafe impl CKSyncEngineFetchChangesScope {
-        #[cfg(feature = "CloudKit_CKRecordZoneID")]
+        #[cfg(feature = "CKRecordZoneID")]
         #[method_id(@__retain_semantics Other zoneIDs)]
         pub unsafe fn zoneIDs(&self) -> Option<Id<NSSet<CKRecordZoneID>>>;
 
-        #[cfg(feature = "CloudKit_CKRecordZoneID")]
+        #[cfg(feature = "CKRecordZoneID")]
         #[method_id(@__retain_semantics Other excludedZoneIDs)]
         pub unsafe fn excludedZoneIDs(&self) -> Id<NSSet<CKRecordZoneID>>;
 
-        #[cfg(feature = "CloudKit_CKRecordZoneID")]
+        #[cfg(feature = "CKRecordZoneID")]
         #[method_id(@__retain_semantics Init initWithZoneIDs:)]
         pub unsafe fn initWithZoneIDs(
             this: Allocated<Self>,
             zone_i_ds: Option<&NSSet<CKRecordZoneID>>,
         ) -> Id<Self>;
 
-        #[cfg(feature = "CloudKit_CKRecordZoneID")]
+        #[cfg(feature = "CKRecordZoneID")]
         #[method_id(@__retain_semantics Init initWithExcludedZoneIDs:)]
         pub unsafe fn initWithExcludedZoneIDs(
             this: Allocated<Self>,
             zone_i_ds: &NSSet<CKRecordZoneID>,
         ) -> Id<Self>;
 
-        #[cfg(feature = "CloudKit_CKRecordZoneID")]
+        #[cfg(feature = "CKRecordZoneID")]
         #[method(containsZoneID:)]
         pub unsafe fn containsZoneID(&self, zone_id: &CKRecordZoneID) -> bool;
     }
@@ -261,11 +261,11 @@ extern_methods!(
         #[method(setScope:)]
         pub unsafe fn setScope(&self, scope: &CKSyncEngineSendChangesScope);
 
-        #[cfg(feature = "CloudKit_CKOperationGroup")]
+        #[cfg(feature = "CKOperationGroup")]
         #[method_id(@__retain_semantics Other operationGroup)]
         pub unsafe fn operationGroup(&self) -> Id<CKOperationGroup>;
 
-        #[cfg(feature = "CloudKit_CKOperationGroup")]
+        #[cfg(feature = "CKOperationGroup")]
         #[method(setOperationGroup:)]
         pub unsafe fn setOperationGroup(&self, operation_group: &CKOperationGroup);
 
@@ -308,44 +308,44 @@ unsafe impl NSObjectProtocol for CKSyncEngineSendChangesScope {}
 
 extern_methods!(
     unsafe impl CKSyncEngineSendChangesScope {
-        #[cfg(feature = "CloudKit_CKRecordZoneID")]
+        #[cfg(feature = "CKRecordZoneID")]
         #[method_id(@__retain_semantics Other zoneIDs)]
         pub unsafe fn zoneIDs(&self) -> Option<Id<NSSet<CKRecordZoneID>>>;
 
-        #[cfg(feature = "CloudKit_CKRecordZoneID")]
+        #[cfg(feature = "CKRecordZoneID")]
         #[method_id(@__retain_semantics Other excludedZoneIDs)]
         pub unsafe fn excludedZoneIDs(&self) -> Id<NSSet<CKRecordZoneID>>;
 
-        #[cfg(feature = "CloudKit_CKRecordID")]
+        #[cfg(feature = "CKRecordID")]
         #[method_id(@__retain_semantics Other recordIDs)]
         pub unsafe fn recordIDs(&self) -> Option<Id<NSSet<CKRecordID>>>;
 
-        #[cfg(feature = "CloudKit_CKRecordZoneID")]
+        #[cfg(feature = "CKRecordZoneID")]
         #[method_id(@__retain_semantics Init initWithZoneIDs:)]
         pub unsafe fn initWithZoneIDs(
             this: Allocated<Self>,
             zone_i_ds: Option<&NSSet<CKRecordZoneID>>,
         ) -> Id<Self>;
 
-        #[cfg(feature = "CloudKit_CKRecordZoneID")]
+        #[cfg(feature = "CKRecordZoneID")]
         #[method_id(@__retain_semantics Init initWithExcludedZoneIDs:)]
         pub unsafe fn initWithExcludedZoneIDs(
             this: Allocated<Self>,
             excluded_zone_i_ds: &NSSet<CKRecordZoneID>,
         ) -> Id<Self>;
 
-        #[cfg(feature = "CloudKit_CKRecordID")]
+        #[cfg(feature = "CKRecordID")]
         #[method_id(@__retain_semantics Init initWithRecordIDs:)]
         pub unsafe fn initWithRecordIDs(
             this: Allocated<Self>,
             record_i_ds: Option<&NSSet<CKRecordID>>,
         ) -> Id<Self>;
 
-        #[cfg(feature = "CloudKit_CKRecordID")]
+        #[cfg(feature = "CKRecordID")]
         #[method(containsRecordID:)]
         pub unsafe fn containsRecordID(&self, record_id: &CKRecordID) -> bool;
 
-        #[cfg(feature = "CloudKit_CKSyncEngineState")]
+        #[cfg(feature = "CKSyncEngineState")]
         #[method(containsPendingRecordZoneChange:)]
         pub unsafe fn containsPendingRecordZoneChange(
             &self,

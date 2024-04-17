@@ -7,10 +7,10 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSWindow"))]
+    #[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
     pub struct NSPanel;
 
-    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSWindow"))]
+    #[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
     unsafe impl ClassType for NSPanel {
         #[inherits(NSResponder, NSObject)]
         type Super = NSWindow;
@@ -19,62 +19,54 @@ extern_class!(
 );
 
 #[cfg(all(
-    feature = "AppKit_NSAccessibilityProtocols",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSWindow"
+    feature = "NSAccessibilityProtocols",
+    feature = "NSResponder",
+    feature = "NSWindow"
 ))]
 unsafe impl NSAccessibility for NSPanel {}
 
 #[cfg(all(
-    feature = "AppKit_NSAccessibilityProtocols",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSWindow"
+    feature = "NSAccessibilityProtocols",
+    feature = "NSResponder",
+    feature = "NSWindow"
 ))]
 unsafe impl NSAccessibilityElementProtocol for NSPanel {}
 
-#[cfg(all(
-    feature = "AppKit_NSAnimation",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSWindow"
-))]
+#[cfg(all(feature = "NSAnimation", feature = "NSResponder", feature = "NSWindow"))]
 unsafe impl NSAnimatablePropertyContainer for NSPanel {}
 
 #[cfg(all(
-    feature = "AppKit_NSAppearance",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSWindow"
+    feature = "NSAppearance",
+    feature = "NSResponder",
+    feature = "NSWindow"
 ))]
 unsafe impl NSAppearanceCustomization for NSPanel {}
 
-#[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSWindow"))]
+#[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
 unsafe impl NSCoding for NSPanel {}
 
-#[cfg(all(
-    feature = "AppKit_NSMenu",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSWindow"
-))]
+#[cfg(all(feature = "NSMenu", feature = "NSResponder", feature = "NSWindow"))]
 unsafe impl NSMenuItemValidation for NSPanel {}
 
-#[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSWindow"))]
+#[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
 unsafe impl NSObjectProtocol for NSPanel {}
 
 #[cfg(all(
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSUserInterfaceItemIdentification",
-    feature = "AppKit_NSWindow"
+    feature = "NSResponder",
+    feature = "NSUserInterfaceItemIdentification",
+    feature = "NSWindow"
 ))]
 unsafe impl NSUserInterfaceItemIdentification for NSPanel {}
 
 #[cfg(all(
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSUserInterfaceValidation",
-    feature = "AppKit_NSWindow"
+    feature = "NSResponder",
+    feature = "NSUserInterfaceValidation",
+    feature = "NSWindow"
 ))]
 unsafe impl NSUserInterfaceValidations for NSPanel {}
 
 extern_methods!(
-    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSWindow"))]
+    #[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
     unsafe impl NSPanel {
         #[method(isFloatingPanel)]
         pub unsafe fn isFloatingPanel(&self) -> bool;
@@ -98,9 +90,9 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSWindow`
-    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSWindow"))]
+    #[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
     unsafe impl NSPanel {
-        #[cfg(feature = "AppKit_NSGraphics")]
+        #[cfg(feature = "NSGraphics")]
         #[method_id(@__retain_semantics Init initWithContentRect:styleMask:backing:defer:)]
         pub unsafe fn initWithContentRect_styleMask_backing_defer(
             this: Allocated<Self>,
@@ -110,7 +102,7 @@ extern_methods!(
             flag: bool,
         ) -> Id<Self>;
 
-        #[cfg(all(feature = "AppKit_NSGraphics", feature = "AppKit_NSScreen"))]
+        #[cfg(all(feature = "NSGraphics", feature = "NSScreen"))]
         #[method_id(@__retain_semantics Init initWithContentRect:styleMask:backing:defer:screen:)]
         pub unsafe fn initWithContentRect_styleMask_backing_defer_screen(
             this: Allocated<Self>,
@@ -124,7 +116,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Id<Self>;
 
-        #[cfg(feature = "AppKit_NSViewController")]
+        #[cfg(feature = "NSViewController")]
         #[method_id(@__retain_semantics Other windowWithContentViewController:)]
         pub unsafe fn windowWithContentViewController(
             content_view_controller: &NSViewController,
@@ -134,7 +126,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSResponder`
-    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSWindow"))]
+    #[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
     unsafe impl NSPanel {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -143,7 +135,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSWindow"))]
+    #[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
     unsafe impl NSPanel {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;

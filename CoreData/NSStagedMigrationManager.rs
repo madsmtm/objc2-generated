@@ -19,18 +19,18 @@ unsafe impl NSObjectProtocol for NSStagedMigrationManager {}
 
 extern_methods!(
     unsafe impl NSStagedMigrationManager {
-        #[cfg(feature = "CoreData_NSMigrationStage")]
+        #[cfg(feature = "NSMigrationStage")]
         #[method_id(@__retain_semantics Other stages)]
         pub unsafe fn stages(&self) -> Id<NSArray<NSMigrationStage>>;
 
-        #[cfg(feature = "CoreData_NSPersistentContainer")]
+        #[cfg(feature = "NSPersistentContainer")]
         #[method_id(@__retain_semantics Other container)]
         pub unsafe fn container(&self) -> Option<Id<NSPersistentContainer>>;
 
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
-        #[cfg(feature = "CoreData_NSMigrationStage")]
+        #[cfg(feature = "NSMigrationStage")]
         #[method_id(@__retain_semantics Init initWithMigrationStages:)]
         pub unsafe fn initWithMigrationStages(
             this: Allocated<Self>,

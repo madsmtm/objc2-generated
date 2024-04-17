@@ -7,10 +7,10 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Contacts_CNPostalAddress")]
+    #[cfg(feature = "CNPostalAddress")]
     pub struct CNMutablePostalAddress;
 
-    #[cfg(feature = "Contacts_CNPostalAddress")]
+    #[cfg(feature = "CNPostalAddress")]
     unsafe impl ClassType for CNMutablePostalAddress {
         #[inherits(NSObject)]
         type Super = CNPostalAddress;
@@ -18,23 +18,23 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Contacts_CNPostalAddress")]
+#[cfg(feature = "CNPostalAddress")]
 unsafe impl NSCoding for CNMutablePostalAddress {}
 
-#[cfg(feature = "Contacts_CNPostalAddress")]
+#[cfg(feature = "CNPostalAddress")]
 unsafe impl NSCopying for CNMutablePostalAddress {}
 
-#[cfg(feature = "Contacts_CNPostalAddress")]
+#[cfg(feature = "CNPostalAddress")]
 unsafe impl NSMutableCopying for CNMutablePostalAddress {}
 
-#[cfg(feature = "Contacts_CNPostalAddress")]
+#[cfg(feature = "CNPostalAddress")]
 unsafe impl NSObjectProtocol for CNMutablePostalAddress {}
 
-#[cfg(feature = "Contacts_CNPostalAddress")]
+#[cfg(feature = "CNPostalAddress")]
 unsafe impl NSSecureCoding for CNMutablePostalAddress {}
 
 extern_methods!(
-    #[cfg(feature = "Contacts_CNPostalAddress")]
+    #[cfg(feature = "CNPostalAddress")]
     unsafe impl CNMutablePostalAddress {
         #[method_id(@__retain_semantics Other street)]
         pub unsafe fn street(&self) -> Id<NSString>;
@@ -88,7 +88,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Contacts_CNPostalAddress")]
+    #[cfg(feature = "CNPostalAddress")]
     unsafe impl CNMutablePostalAddress {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

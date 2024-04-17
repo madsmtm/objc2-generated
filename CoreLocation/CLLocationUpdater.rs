@@ -47,7 +47,7 @@ extern_methods!(
         #[method(isStationary)]
         pub unsafe fn isStationary(&self) -> bool;
 
-        #[cfg(feature = "CoreLocation_CLLocation")]
+        #[cfg(feature = "CLLocation")]
         #[method_id(@__retain_semantics Other location)]
         pub unsafe fn location(&self) -> Option<Id<CLLocation>>;
     }

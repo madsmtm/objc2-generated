@@ -357,9 +357,9 @@ extern_methods!(
         pub unsafe fn defaultManager() -> Id<PHImageManager>;
 
         #[cfg(all(
-            feature = "Photos_PHAsset",
-            feature = "Photos_PHObject",
-            feature = "Photos_PhotosTypes",
+            feature = "PHAsset",
+            feature = "PHObject",
+            feature = "PhotosTypes",
             feature = "block2",
             feature = "objc2-app-kit"
         ))]
@@ -377,10 +377,10 @@ extern_methods!(
         pub unsafe fn cancelImageRequest(&self, request_id: PHImageRequestID);
 
         #[cfg(all(
-            feature = "Photos_PHAsset",
-            feature = "Photos_PHLivePhoto",
-            feature = "Photos_PHObject",
-            feature = "Photos_PhotosTypes",
+            feature = "PHAsset",
+            feature = "PHLivePhoto",
+            feature = "PHObject",
+            feature = "PhotosTypes",
             feature = "block2"
         ))]
         #[method(requestLivePhotoForAsset:targetSize:contentMode:options:resultHandler:)]
@@ -430,11 +430,7 @@ extern_methods!(
             allows_caching_high_quality_images: bool,
         );
 
-        #[cfg(all(
-            feature = "Photos_PHAsset",
-            feature = "Photos_PHObject",
-            feature = "Photos_PhotosTypes"
-        ))]
+        #[cfg(all(feature = "PHAsset", feature = "PHObject", feature = "PhotosTypes"))]
         #[method(startCachingImagesForAssets:targetSize:contentMode:options:)]
         pub unsafe fn startCachingImagesForAssets_targetSize_contentMode_options(
             &self,
@@ -444,11 +440,7 @@ extern_methods!(
             options: Option<&PHImageRequestOptions>,
         );
 
-        #[cfg(all(
-            feature = "Photos_PHAsset",
-            feature = "Photos_PHObject",
-            feature = "Photos_PhotosTypes"
-        ))]
+        #[cfg(all(feature = "PHAsset", feature = "PHObject", feature = "PhotosTypes"))]
         #[method(stopCachingImagesForAssets:targetSize:contentMode:options:)]
         pub unsafe fn stopCachingImagesForAssets_targetSize_contentMode_options(
             &self,

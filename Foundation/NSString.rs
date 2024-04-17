@@ -85,18 +85,18 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSCoding for NSString {}
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSString {}
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSMutableCopying for NSString {}
 
 unsafe impl NSObjectProtocol for NSString {}
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSSecureCoding for NSString {}
 
 extern_methods!(
@@ -110,7 +110,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub fn init(this: Allocated<Self>) -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSCoder")]
+        #[cfg(feature = "NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
     }
@@ -232,19 +232,19 @@ extern_methods!(
         #[method_id(@__retain_semantics Other substringToIndex:)]
         pub unsafe fn substringToIndex(&self, to: NSUInteger) -> Id<NSString>;
 
-        #[cfg(feature = "Foundation_NSRange")]
+        #[cfg(feature = "NSRange")]
         #[method_id(@__retain_semantics Other substringWithRange:)]
         pub unsafe fn substringWithRange(&self, range: NSRange) -> Id<NSString>;
 
-        #[cfg(feature = "Foundation_NSRange")]
+        #[cfg(feature = "NSRange")]
         #[method(getCharacters:range:)]
         pub unsafe fn getCharacters_range(&self, buffer: NonNull<unichar>, range: NSRange);
 
-        #[cfg(feature = "Foundation_NSObjCRuntime")]
+        #[cfg(feature = "NSObjCRuntime")]
         #[method(compare:)]
         pub fn compare(&self, string: &NSString) -> NSComparisonResult;
 
-        #[cfg(feature = "Foundation_NSObjCRuntime")]
+        #[cfg(feature = "NSObjCRuntime")]
         #[method(compare:options:)]
         pub unsafe fn compare_options(
             &self,
@@ -252,7 +252,7 @@ extern_methods!(
             mask: NSStringCompareOptions,
         ) -> NSComparisonResult;
 
-        #[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSRange"))]
+        #[cfg(all(feature = "NSObjCRuntime", feature = "NSRange"))]
         #[method(compare:options:range:)]
         pub unsafe fn compare_options_range(
             &self,
@@ -261,7 +261,7 @@ extern_methods!(
             range_of_receiver_to_compare: NSRange,
         ) -> NSComparisonResult;
 
-        #[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSRange"))]
+        #[cfg(all(feature = "NSObjCRuntime", feature = "NSRange"))]
         #[method(compare:options:range:locale:)]
         pub unsafe fn compare_options_range_locale(
             &self,
@@ -271,22 +271,22 @@ extern_methods!(
             locale: Option<&AnyObject>,
         ) -> NSComparisonResult;
 
-        #[cfg(feature = "Foundation_NSObjCRuntime")]
+        #[cfg(feature = "NSObjCRuntime")]
         #[method(caseInsensitiveCompare:)]
         pub unsafe fn caseInsensitiveCompare(&self, string: &NSString) -> NSComparisonResult;
 
-        #[cfg(feature = "Foundation_NSObjCRuntime")]
+        #[cfg(feature = "NSObjCRuntime")]
         #[method(localizedCompare:)]
         pub unsafe fn localizedCompare(&self, string: &NSString) -> NSComparisonResult;
 
-        #[cfg(feature = "Foundation_NSObjCRuntime")]
+        #[cfg(feature = "NSObjCRuntime")]
         #[method(localizedCaseInsensitiveCompare:)]
         pub unsafe fn localizedCaseInsensitiveCompare(
             &self,
             string: &NSString,
         ) -> NSComparisonResult;
 
-        #[cfg(feature = "Foundation_NSObjCRuntime")]
+        #[cfg(feature = "NSObjCRuntime")]
         #[method(localizedStandardCompare:)]
         pub unsafe fn localizedStandardCompare(&self, string: &NSString) -> NSComparisonResult;
 
@@ -315,15 +315,15 @@ extern_methods!(
         #[method(localizedStandardContainsString:)]
         pub unsafe fn localizedStandardContainsString(&self, str: &NSString) -> bool;
 
-        #[cfg(feature = "Foundation_NSRange")]
+        #[cfg(feature = "NSRange")]
         #[method(localizedStandardRangeOfString:)]
         pub unsafe fn localizedStandardRangeOfString(&self, str: &NSString) -> NSRange;
 
-        #[cfg(feature = "Foundation_NSRange")]
+        #[cfg(feature = "NSRange")]
         #[method(rangeOfString:)]
         pub unsafe fn rangeOfString(&self, search_string: &NSString) -> NSRange;
 
-        #[cfg(feature = "Foundation_NSRange")]
+        #[cfg(feature = "NSRange")]
         #[method(rangeOfString:options:)]
         pub unsafe fn rangeOfString_options(
             &self,
@@ -331,7 +331,7 @@ extern_methods!(
             mask: NSStringCompareOptions,
         ) -> NSRange;
 
-        #[cfg(feature = "Foundation_NSRange")]
+        #[cfg(feature = "NSRange")]
         #[method(rangeOfString:options:range:)]
         pub unsafe fn rangeOfString_options_range(
             &self,
@@ -340,7 +340,7 @@ extern_methods!(
             range_of_receiver_to_search: NSRange,
         ) -> NSRange;
 
-        #[cfg(all(feature = "Foundation_NSLocale", feature = "Foundation_NSRange"))]
+        #[cfg(all(feature = "NSLocale", feature = "NSRange"))]
         #[method(rangeOfString:options:range:locale:)]
         pub unsafe fn rangeOfString_options_range_locale(
             &self,
@@ -350,11 +350,11 @@ extern_methods!(
             locale: Option<&NSLocale>,
         ) -> NSRange;
 
-        #[cfg(all(feature = "Foundation_NSCharacterSet", feature = "Foundation_NSRange"))]
+        #[cfg(all(feature = "NSCharacterSet", feature = "NSRange"))]
         #[method(rangeOfCharacterFromSet:)]
         pub unsafe fn rangeOfCharacterFromSet(&self, search_set: &NSCharacterSet) -> NSRange;
 
-        #[cfg(all(feature = "Foundation_NSCharacterSet", feature = "Foundation_NSRange"))]
+        #[cfg(all(feature = "NSCharacterSet", feature = "NSRange"))]
         #[method(rangeOfCharacterFromSet:options:)]
         pub unsafe fn rangeOfCharacterFromSet_options(
             &self,
@@ -362,7 +362,7 @@ extern_methods!(
             mask: NSStringCompareOptions,
         ) -> NSRange;
 
-        #[cfg(all(feature = "Foundation_NSCharacterSet", feature = "Foundation_NSRange"))]
+        #[cfg(all(feature = "NSCharacterSet", feature = "NSRange"))]
         #[method(rangeOfCharacterFromSet:options:range:)]
         pub unsafe fn rangeOfCharacterFromSet_options_range(
             &self,
@@ -371,11 +371,11 @@ extern_methods!(
             range_of_receiver_to_search: NSRange,
         ) -> NSRange;
 
-        #[cfg(feature = "Foundation_NSRange")]
+        #[cfg(feature = "NSRange")]
         #[method(rangeOfComposedCharacterSequenceAtIndex:)]
         pub unsafe fn rangeOfComposedCharacterSequenceAtIndex(&self, index: NSUInteger) -> NSRange;
 
-        #[cfg(feature = "Foundation_NSRange")]
+        #[cfg(feature = "NSRange")]
         #[method(rangeOfComposedCharacterSequencesForRange:)]
         pub unsafe fn rangeOfComposedCharacterSequencesForRange(&self, range: NSRange) -> NSRange;
 
@@ -418,20 +418,20 @@ extern_methods!(
         #[method_id(@__retain_semantics Other localizedCapitalizedString)]
         pub unsafe fn localizedCapitalizedString(&self) -> Id<NSString>;
 
-        #[cfg(feature = "Foundation_NSLocale")]
+        #[cfg(feature = "NSLocale")]
         #[method_id(@__retain_semantics Other uppercaseStringWithLocale:)]
         pub unsafe fn uppercaseStringWithLocale(&self, locale: Option<&NSLocale>) -> Id<NSString>;
 
-        #[cfg(feature = "Foundation_NSLocale")]
+        #[cfg(feature = "NSLocale")]
         #[method_id(@__retain_semantics Other lowercaseStringWithLocale:)]
         pub unsafe fn lowercaseStringWithLocale(&self, locale: Option<&NSLocale>) -> Id<NSString>;
 
-        #[cfg(feature = "Foundation_NSLocale")]
+        #[cfg(feature = "NSLocale")]
         #[method_id(@__retain_semantics Other capitalizedStringWithLocale:)]
         pub unsafe fn capitalizedStringWithLocale(&self, locale: Option<&NSLocale>)
             -> Id<NSString>;
 
-        #[cfg(feature = "Foundation_NSRange")]
+        #[cfg(feature = "NSRange")]
         #[method(getLineStart:end:contentsEnd:forRange:)]
         pub unsafe fn getLineStart_end_contentsEnd_forRange(
             &self,
@@ -441,11 +441,11 @@ extern_methods!(
             range: NSRange,
         );
 
-        #[cfg(feature = "Foundation_NSRange")]
+        #[cfg(feature = "NSRange")]
         #[method(lineRangeForRange:)]
         pub unsafe fn lineRangeForRange(&self, range: NSRange) -> NSRange;
 
-        #[cfg(feature = "Foundation_NSRange")]
+        #[cfg(feature = "NSRange")]
         #[method(getParagraphStart:end:contentsEnd:forRange:)]
         pub unsafe fn getParagraphStart_end_contentsEnd_forRange(
             &self,
@@ -455,11 +455,11 @@ extern_methods!(
             range: NSRange,
         );
 
-        #[cfg(feature = "Foundation_NSRange")]
+        #[cfg(feature = "NSRange")]
         #[method(paragraphRangeForRange:)]
         pub unsafe fn paragraphRangeForRange(&self, range: NSRange) -> NSRange;
 
-        #[cfg(all(feature = "Foundation_NSRange", feature = "block2"))]
+        #[cfg(all(feature = "NSRange", feature = "block2"))]
         #[method(enumerateSubstringsInRange:options:usingBlock:)]
         pub unsafe fn enumerateSubstringsInRange_options_usingBlock(
             &self,
@@ -484,7 +484,7 @@ extern_methods!(
         #[method(smallestEncoding)]
         pub unsafe fn smallestEncoding(&self) -> NSStringEncoding;
 
-        #[cfg(feature = "Foundation_NSData")]
+        #[cfg(feature = "NSData")]
         #[method_id(@__retain_semantics Other dataUsingEncoding:allowLossyConversion:)]
         pub unsafe fn dataUsingEncoding_allowLossyConversion(
             &self,
@@ -492,7 +492,7 @@ extern_methods!(
             lossy: bool,
         ) -> Option<Id<NSData>>;
 
-        #[cfg(feature = "Foundation_NSData")]
+        #[cfg(feature = "NSData")]
         #[method_id(@__retain_semantics Other dataUsingEncoding:)]
         pub unsafe fn dataUsingEncoding(&self, encoding: NSStringEncoding) -> Option<Id<NSData>>;
 
@@ -510,7 +510,7 @@ extern_methods!(
             encoding: NSStringEncoding,
         ) -> bool;
 
-        #[cfg(feature = "Foundation_NSRange")]
+        #[cfg(feature = "NSRange")]
         #[method(getBytes:maxLength:usedLength:encoding:options:range:remainingRange:)]
         pub unsafe fn getBytes_maxLength_usedLength_encoding_options_range_remainingRange(
             &self,
@@ -551,21 +551,21 @@ extern_methods!(
         #[method_id(@__retain_semantics Other precomposedStringWithCompatibilityMapping)]
         pub unsafe fn precomposedStringWithCompatibilityMapping(&self) -> Id<NSString>;
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(feature = "NSArray")]
         #[method_id(@__retain_semantics Other componentsSeparatedByString:)]
         pub unsafe fn componentsSeparatedByString(
             &self,
             separator: &NSString,
         ) -> Id<NSArray<NSString>>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSCharacterSet"))]
+        #[cfg(all(feature = "NSArray", feature = "NSCharacterSet"))]
         #[method_id(@__retain_semantics Other componentsSeparatedByCharactersInSet:)]
         pub unsafe fn componentsSeparatedByCharactersInSet(
             &self,
             separator: &NSCharacterSet,
         ) -> Id<NSArray<NSString>>;
 
-        #[cfg(feature = "Foundation_NSCharacterSet")]
+        #[cfg(feature = "NSCharacterSet")]
         #[method_id(@__retain_semantics Other stringByTrimmingCharactersInSet:)]
         pub unsafe fn stringByTrimmingCharactersInSet(&self, set: &NSCharacterSet) -> Id<NSString>;
 
@@ -577,7 +577,7 @@ extern_methods!(
             pad_index: NSUInteger,
         ) -> Id<NSString>;
 
-        #[cfg(feature = "Foundation_NSLocale")]
+        #[cfg(feature = "NSLocale")]
         #[method_id(@__retain_semantics Other stringByFoldingWithOptions:locale:)]
         pub unsafe fn stringByFoldingWithOptions_locale(
             &self,
@@ -585,7 +585,7 @@ extern_methods!(
             locale: Option<&NSLocale>,
         ) -> Id<NSString>;
 
-        #[cfg(feature = "Foundation_NSRange")]
+        #[cfg(feature = "NSRange")]
         #[method_id(@__retain_semantics Other stringByReplacingOccurrencesOfString:withString:options:range:)]
         pub unsafe fn stringByReplacingOccurrencesOfString_withString_options_range(
             &self,
@@ -602,7 +602,7 @@ extern_methods!(
             replacement: &NSString,
         ) -> Id<NSString>;
 
-        #[cfg(feature = "Foundation_NSRange")]
+        #[cfg(feature = "NSRange")]
         #[method_id(@__retain_semantics Other stringByReplacingCharactersInRange:withString:)]
         pub unsafe fn stringByReplacingCharactersInRange_withString(
             &self,
@@ -617,7 +617,7 @@ extern_methods!(
             reverse: bool,
         ) -> Option<Id<NSString>>;
 
-        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
+        #[cfg(all(feature = "NSError", feature = "NSURL"))]
         #[method(writeToURL:atomically:encoding:error:_)]
         pub unsafe fn writeToURL_atomically_encoding_error(
             &self,
@@ -626,7 +626,7 @@ extern_methods!(
             enc: NSStringEncoding,
         ) -> Result<(), Id<NSError>>;
 
-        #[cfg(feature = "Foundation_NSError")]
+        #[cfg(feature = "NSError")]
         #[method(writeToFile:atomically:encoding:error:_)]
         pub unsafe fn writeToFile_atomically_encoding_error(
             &self,
@@ -674,7 +674,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithString:)]
         pub fn initWithString(this: Allocated<Self>, a_string: &NSString) -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSData")]
+        #[cfg(feature = "NSData")]
         #[method_id(@__retain_semantics Init initWithData:encoding:)]
         pub unsafe fn initWithData_encoding(
             this: Allocated<Self>,
@@ -739,7 +739,7 @@ extern_methods!(
             enc: NSStringEncoding,
         ) -> Option<Id<Self>>;
 
-        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
+        #[cfg(all(feature = "NSError", feature = "NSURL"))]
         #[method_id(@__retain_semantics Init initWithContentsOfURL:encoding:error:_)]
         pub unsafe fn initWithContentsOfURL_encoding_error(
             this: Allocated<Self>,
@@ -747,7 +747,7 @@ extern_methods!(
             enc: NSStringEncoding,
         ) -> Result<Id<Self>, Id<NSError>>;
 
-        #[cfg(feature = "Foundation_NSError")]
+        #[cfg(feature = "NSError")]
         #[method_id(@__retain_semantics Init initWithContentsOfFile:encoding:error:_)]
         pub unsafe fn initWithContentsOfFile_encoding_error(
             this: Allocated<Self>,
@@ -755,21 +755,21 @@ extern_methods!(
             enc: NSStringEncoding,
         ) -> Result<Id<Self>, Id<NSError>>;
 
-        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
+        #[cfg(all(feature = "NSError", feature = "NSURL"))]
         #[method_id(@__retain_semantics Other stringWithContentsOfURL:encoding:error:_)]
         pub unsafe fn stringWithContentsOfURL_encoding_error(
             url: &NSURL,
             enc: NSStringEncoding,
         ) -> Result<Id<Self>, Id<NSError>>;
 
-        #[cfg(feature = "Foundation_NSError")]
+        #[cfg(feature = "NSError")]
         #[method_id(@__retain_semantics Other stringWithContentsOfFile:encoding:error:_)]
         pub unsafe fn stringWithContentsOfFile_encoding_error(
             path: &NSString,
             enc: NSStringEncoding,
         ) -> Result<Id<Self>, Id<NSError>>;
 
-        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
+        #[cfg(all(feature = "NSError", feature = "NSURL"))]
         #[method_id(@__retain_semantics Init initWithContentsOfURL:usedEncoding:error:_)]
         pub unsafe fn initWithContentsOfURL_usedEncoding_error(
             this: Allocated<Self>,
@@ -777,7 +777,7 @@ extern_methods!(
             enc: *mut NSStringEncoding,
         ) -> Result<Id<Self>, Id<NSError>>;
 
-        #[cfg(feature = "Foundation_NSError")]
+        #[cfg(feature = "NSError")]
         #[method_id(@__retain_semantics Init initWithContentsOfFile:usedEncoding:error:_)]
         pub unsafe fn initWithContentsOfFile_usedEncoding_error(
             this: Allocated<Self>,
@@ -785,14 +785,14 @@ extern_methods!(
             enc: *mut NSStringEncoding,
         ) -> Result<Id<Self>, Id<NSError>>;
 
-        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
+        #[cfg(all(feature = "NSError", feature = "NSURL"))]
         #[method_id(@__retain_semantics Other stringWithContentsOfURL:usedEncoding:error:_)]
         pub unsafe fn stringWithContentsOfURL_usedEncoding_error(
             url: &NSURL,
             enc: *mut NSStringEncoding,
         ) -> Result<Id<Self>, Id<NSError>>;
 
-        #[cfg(feature = "Foundation_NSError")]
+        #[cfg(feature = "NSError")]
         #[method_id(@__retain_semantics Other stringWithContentsOfFile:usedEncoding:error:_)]
         pub unsafe fn stringWithContentsOfFile_usedEncoding_error(
             path: &NSString,
@@ -839,7 +839,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithString:)]
         pub fn initWithString(this: Allocated<Self>, a_string: &NSString) -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSData")]
+        #[cfg(feature = "NSData")]
         #[method_id(@__retain_semantics Init initWithData:encoding:)]
         pub unsafe fn initWithData_encoding(
             this: Allocated<Self>,
@@ -904,7 +904,7 @@ extern_methods!(
             enc: NSStringEncoding,
         ) -> Option<Id<Self>>;
 
-        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
+        #[cfg(all(feature = "NSError", feature = "NSURL"))]
         #[method_id(@__retain_semantics Init initWithContentsOfURL:encoding:error:_)]
         pub unsafe fn initWithContentsOfURL_encoding_error(
             this: Allocated<Self>,
@@ -912,7 +912,7 @@ extern_methods!(
             enc: NSStringEncoding,
         ) -> Result<Id<Self>, Id<NSError>>;
 
-        #[cfg(feature = "Foundation_NSError")]
+        #[cfg(feature = "NSError")]
         #[method_id(@__retain_semantics Init initWithContentsOfFile:encoding:error:_)]
         pub unsafe fn initWithContentsOfFile_encoding_error(
             this: Allocated<Self>,
@@ -920,21 +920,21 @@ extern_methods!(
             enc: NSStringEncoding,
         ) -> Result<Id<Self>, Id<NSError>>;
 
-        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
+        #[cfg(all(feature = "NSError", feature = "NSURL"))]
         #[method_id(@__retain_semantics Other stringWithContentsOfURL:encoding:error:_)]
         pub unsafe fn stringWithContentsOfURL_encoding_error(
             url: &NSURL,
             enc: NSStringEncoding,
         ) -> Result<Id<Self>, Id<NSError>>;
 
-        #[cfg(feature = "Foundation_NSError")]
+        #[cfg(feature = "NSError")]
         #[method_id(@__retain_semantics Other stringWithContentsOfFile:encoding:error:_)]
         pub unsafe fn stringWithContentsOfFile_encoding_error(
             path: &NSString,
             enc: NSStringEncoding,
         ) -> Result<Id<Self>, Id<NSError>>;
 
-        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
+        #[cfg(all(feature = "NSError", feature = "NSURL"))]
         #[method_id(@__retain_semantics Init initWithContentsOfURL:usedEncoding:error:_)]
         pub unsafe fn initWithContentsOfURL_usedEncoding_error(
             this: Allocated<Self>,
@@ -942,7 +942,7 @@ extern_methods!(
             enc: *mut NSStringEncoding,
         ) -> Result<Id<Self>, Id<NSError>>;
 
-        #[cfg(feature = "Foundation_NSError")]
+        #[cfg(feature = "NSError")]
         #[method_id(@__retain_semantics Init initWithContentsOfFile:usedEncoding:error:_)]
         pub unsafe fn initWithContentsOfFile_usedEncoding_error(
             this: Allocated<Self>,
@@ -950,14 +950,14 @@ extern_methods!(
             enc: *mut NSStringEncoding,
         ) -> Result<Id<Self>, Id<NSError>>;
 
-        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
+        #[cfg(all(feature = "NSError", feature = "NSURL"))]
         #[method_id(@__retain_semantics Other stringWithContentsOfURL:usedEncoding:error:_)]
         pub unsafe fn stringWithContentsOfURL_usedEncoding_error(
             url: &NSURL,
             enc: *mut NSStringEncoding,
         ) -> Result<Id<Self>, Id<NSError>>;
 
-        #[cfg(feature = "Foundation_NSError")]
+        #[cfg(feature = "NSError")]
         #[method_id(@__retain_semantics Other stringWithContentsOfFile:usedEncoding:error:_)]
         pub unsafe fn stringWithContentsOfFile_usedEncoding_error(
             path: &NSString,
@@ -1006,7 +1006,7 @@ extern "C" {
 extern_methods!(
     /// NSStringEncodingDetection
     unsafe impl NSString {
-        #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSDictionary"))]
+        #[cfg(all(feature = "NSData", feature = "NSDictionary"))]
         #[method(stringEncodingForData:encodingOptions:convertedString:usedLossyConversion:)]
         pub unsafe fn stringEncodingForData_encodingOptions_convertedString_usedLossyConversion(
             data: &NSData,
@@ -1022,10 +1022,10 @@ extern_methods!(
     unsafe impl NSString {}
 );
 
-#[cfg(feature = "Foundation_NSItemProvider")]
+#[cfg(feature = "NSItemProvider")]
 unsafe impl NSItemProviderReading for NSString {}
 
-#[cfg(feature = "Foundation_NSItemProvider")]
+#[cfg(feature = "NSItemProvider")]
 unsafe impl NSItemProviderWriting for NSString {}
 
 extern_class!(
@@ -1039,23 +1039,23 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSCoding for NSMutableString {}
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSMutableString {}
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSMutableCopying for NSMutableString {}
 
 unsafe impl NSObjectProtocol for NSMutableString {}
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSSecureCoding for NSMutableString {}
 
 extern_methods!(
     unsafe impl NSMutableString {
-        #[cfg(feature = "Foundation_NSRange")]
+        #[cfg(feature = "NSRange")]
         #[method(replaceCharactersInRange:withString:)]
         pub unsafe fn replaceCharactersInRange_withString(
             &mut self,
@@ -1071,7 +1071,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub fn init(this: Allocated<Self>) -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSCoder")]
+        #[cfg(feature = "NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
     }
@@ -1098,7 +1098,7 @@ extern_methods!(
         #[method(insertString:atIndex:)]
         pub unsafe fn insertString_atIndex(&mut self, a_string: &NSString, loc: NSUInteger);
 
-        #[cfg(feature = "Foundation_NSRange")]
+        #[cfg(feature = "NSRange")]
         #[method(deleteCharactersInRange:)]
         pub unsafe fn deleteCharactersInRange(&mut self, range: NSRange);
 
@@ -1108,7 +1108,7 @@ extern_methods!(
         #[method(setString:)]
         pub fn setString(&mut self, a_string: &NSString);
 
-        #[cfg(feature = "Foundation_NSRange")]
+        #[cfg(feature = "NSRange")]
         #[method(replaceOccurrencesOfString:withString:options:range:)]
         pub unsafe fn replaceOccurrencesOfString_withString_options_range(
             &mut self,
@@ -1118,7 +1118,7 @@ extern_methods!(
             search_range: NSRange,
         ) -> NSUInteger;
 
-        #[cfg(feature = "Foundation_NSRange")]
+        #[cfg(feature = "NSRange")]
         #[method(applyTransform:reverse:range:updatedRange:)]
         pub unsafe fn applyTransform_reverse_range_updatedRange(
             &mut self,
@@ -1138,12 +1138,12 @@ extern_methods!(
 );
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSObjCRuntime")]
+    #[cfg(feature = "NSObjCRuntime")]
     pub static NSCharacterConversionException: &'static NSExceptionName;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSObjCRuntime")]
+    #[cfg(feature = "NSObjCRuntime")]
     pub static NSParseErrorException: &'static NSExceptionName;
 }
 
@@ -1153,7 +1153,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other propertyList)]
         pub unsafe fn propertyList(&self) -> Id<AnyObject>;
 
-        #[cfg(feature = "Foundation_NSDictionary")]
+        #[cfg(feature = "NSDictionary")]
         #[method_id(@__retain_semantics Other propertyListFromStringsFileFormat)]
         pub unsafe fn propertyListFromStringsFileFormat(&self) -> Option<Id<NSDictionary>>;
     }
@@ -1182,7 +1182,7 @@ extern_methods!(
         #[method(getCString:maxLength:)]
         pub unsafe fn getCString_maxLength(&self, bytes: NonNull<c_char>, max_length: NSUInteger);
 
-        #[cfg(feature = "Foundation_NSRange")]
+        #[cfg(feature = "NSRange")]
         #[deprecated = "Use -getCString:maxLength:encoding: instead"]
         #[method(getCString:maxLength:range:remainingRange:)]
         pub unsafe fn getCString_maxLength_range_remainingRange(
@@ -1201,7 +1201,7 @@ extern_methods!(
             use_auxiliary_file: bool,
         ) -> bool;
 
-        #[cfg(feature = "Foundation_NSURL")]
+        #[cfg(feature = "NSURL")]
         #[deprecated = "Use -writeToURL:atomically:encoding:error: instead"]
         #[method(writeToURL:atomically:)]
         pub unsafe fn writeToURL_atomically(&self, url: &NSURL, atomically: bool) -> bool;
@@ -1213,7 +1213,7 @@ extern_methods!(
             path: &NSString,
         ) -> Option<Id<Self>>;
 
-        #[cfg(feature = "Foundation_NSURL")]
+        #[cfg(feature = "NSURL")]
         #[deprecated = "Use -initWithContentsOfURL:encoding:error: instead"]
         #[method_id(@__retain_semantics Init initWithContentsOfURL:)]
         pub unsafe fn initWithContentsOfURL(this: Allocated<Self>, url: &NSURL)
@@ -1223,7 +1223,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other stringWithContentsOfFile:)]
         pub unsafe fn stringWithContentsOfFile(path: &NSString) -> Option<Id<AnyObject>>;
 
-        #[cfg(feature = "Foundation_NSURL")]
+        #[cfg(feature = "NSURL")]
         #[deprecated = "Use +stringWithContentsOfURL:encoding:error: instead"]
         #[method_id(@__retain_semantics Other stringWithContentsOfURL:)]
         pub unsafe fn stringWithContentsOfURL(url: &NSURL) -> Option<Id<AnyObject>>;
@@ -1280,7 +1280,7 @@ extern_methods!(
             path: &NSString,
         ) -> Option<Id<Self>>;
 
-        #[cfg(feature = "Foundation_NSURL")]
+        #[cfg(feature = "NSURL")]
         #[deprecated = "Use -initWithContentsOfURL:encoding:error: instead"]
         #[method_id(@__retain_semantics Init initWithContentsOfURL:)]
         pub unsafe fn initWithContentsOfURL(this: Allocated<Self>, url: &NSURL)
@@ -1323,12 +1323,12 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSCoding for NSSimpleCString {}
 
 unsafe impl NSObjectProtocol for NSSimpleCString {}
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSSecureCoding for NSSimpleCString {}
 
 extern_methods!(
@@ -1341,7 +1341,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSCoder")]
+        #[cfg(feature = "NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
     }
@@ -1366,12 +1366,12 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSCoding for NSConstantString {}
 
 unsafe impl NSObjectProtocol for NSConstantString {}
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSSecureCoding for NSConstantString {}
 
 extern_methods!(
@@ -1384,7 +1384,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSCoder")]
+        #[cfg(feature = "NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
     }

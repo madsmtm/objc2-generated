@@ -10,9 +10,9 @@ use crate::*;
 extern_methods!(
     /// DOMNodeExtensions
     #[cfg(all(
-        feature = "WebKit_DOMNode",
-        feature = "WebKit_DOMObject",
-        feature = "WebKit_WebScriptObject"
+        feature = "DOMNode",
+        feature = "DOMObject",
+        feature = "WebScriptObject"
     ))]
     unsafe impl DOMNode {
         #[method(boundingBox)]
@@ -26,10 +26,10 @@ extern_methods!(
 extern_methods!(
     /// DOMElementAppKitExtensions
     #[cfg(all(
-        feature = "WebKit_DOMElement",
-        feature = "WebKit_DOMNode",
-        feature = "WebKit_DOMObject",
-        feature = "WebKit_WebScriptObject"
+        feature = "DOMElement",
+        feature = "DOMNode",
+        feature = "DOMObject",
+        feature = "WebScriptObject"
     ))]
     unsafe impl DOMElement {
         #[cfg(feature = "objc2-app-kit")]
@@ -41,14 +41,14 @@ extern_methods!(
 extern_methods!(
     /// DOMHTMLDocumentExtensions
     #[cfg(all(
-        feature = "WebKit_DOMDocument",
-        feature = "WebKit_DOMHTMLDocument",
-        feature = "WebKit_DOMNode",
-        feature = "WebKit_DOMObject",
-        feature = "WebKit_WebScriptObject"
+        feature = "DOMDocument",
+        feature = "DOMHTMLDocument",
+        feature = "DOMNode",
+        feature = "DOMObject",
+        feature = "WebScriptObject"
     ))]
     unsafe impl DOMHTMLDocument {
-        #[cfg(feature = "WebKit_DOMDocumentFragment")]
+        #[cfg(feature = "DOMDocumentFragment")]
         #[method_id(@__retain_semantics Other createDocumentFragmentWithMarkupString:baseURL:)]
         pub unsafe fn createDocumentFragmentWithMarkupString_baseURL(
             &self,
@@ -56,7 +56,7 @@ extern_methods!(
             base_url: Option<&NSURL>,
         ) -> Option<Id<DOMDocumentFragment>>;
 
-        #[cfg(feature = "WebKit_DOMDocumentFragment")]
+        #[cfg(feature = "DOMDocumentFragment")]
         #[method_id(@__retain_semantics Other createDocumentFragmentWithText:)]
         pub unsafe fn createDocumentFragmentWithText(
             &self,

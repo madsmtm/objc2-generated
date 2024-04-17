@@ -21,7 +21,7 @@ unsafe impl NSObjectProtocol for NSTextContainer {}
 
 unsafe impl NSSecureCoding for NSTextContainer {}
 
-#[cfg(feature = "AppKit_NSLayoutManager")]
+#[cfg(feature = "NSLayoutManager")]
 unsafe impl NSTextLayoutOrientationProvider for NSTextContainer {}
 
 extern_methods!(
@@ -32,19 +32,19 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Id<Self>;
 
-        #[cfg(feature = "AppKit_NSLayoutManager")]
+        #[cfg(feature = "NSLayoutManager")]
         #[method_id(@__retain_semantics Other layoutManager)]
         pub unsafe fn layoutManager(&self) -> Option<Id<NSLayoutManager>>;
 
-        #[cfg(feature = "AppKit_NSLayoutManager")]
+        #[cfg(feature = "NSLayoutManager")]
         #[method(setLayoutManager:)]
         pub unsafe fn setLayoutManager(&self, layout_manager: Option<&NSLayoutManager>);
 
-        #[cfg(feature = "AppKit_NSLayoutManager")]
+        #[cfg(feature = "NSLayoutManager")]
         #[method(replaceLayoutManager:)]
         pub unsafe fn replaceLayoutManager(&self, new_layout_manager: &NSLayoutManager);
 
-        #[cfg(feature = "AppKit_NSTextLayoutManager")]
+        #[cfg(feature = "NSTextLayoutManager")]
         #[method_id(@__retain_semantics Other textLayoutManager)]
         pub unsafe fn textLayoutManager(&self) -> Option<Id<NSTextLayoutManager>>;
 
@@ -54,19 +54,19 @@ extern_methods!(
         #[method(setSize:)]
         pub unsafe fn setSize(&self, size: NSSize);
 
-        #[cfg(feature = "AppKit_NSBezierPath")]
+        #[cfg(feature = "NSBezierPath")]
         #[method_id(@__retain_semantics Other exclusionPaths)]
         pub unsafe fn exclusionPaths(&self) -> Id<NSArray<NSBezierPath>>;
 
-        #[cfg(feature = "AppKit_NSBezierPath")]
+        #[cfg(feature = "NSBezierPath")]
         #[method(setExclusionPaths:)]
         pub unsafe fn setExclusionPaths(&self, exclusion_paths: &NSArray<NSBezierPath>);
 
-        #[cfg(feature = "AppKit_NSParagraphStyle")]
+        #[cfg(feature = "NSParagraphStyle")]
         #[method(lineBreakMode)]
         pub unsafe fn lineBreakMode(&self) -> NSLineBreakMode;
 
-        #[cfg(feature = "AppKit_NSParagraphStyle")]
+        #[cfg(feature = "NSParagraphStyle")]
         #[method(setLineBreakMode:)]
         pub unsafe fn setLineBreakMode(&self, line_break_mode: NSLineBreakMode);
 
@@ -82,7 +82,7 @@ extern_methods!(
         #[method(setMaximumNumberOfLines:)]
         pub unsafe fn setMaximumNumberOfLines(&self, maximum_number_of_lines: NSUInteger);
 
-        #[cfg(feature = "AppKit_NSText")]
+        #[cfg(feature = "NSText")]
         #[method(lineFragmentRectForProposedRect:atIndex:writingDirection:remainingRect:)]
         pub unsafe fn lineFragmentRectForProposedRect_atIndex_writingDirection_remainingRect(
             &self,
@@ -108,19 +108,19 @@ extern_methods!(
         pub unsafe fn setHeightTracksTextView(&self, height_tracks_text_view: bool);
 
         #[cfg(all(
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSText",
-            feature = "AppKit_NSTextView",
-            feature = "AppKit_NSView"
+            feature = "NSResponder",
+            feature = "NSText",
+            feature = "NSTextView",
+            feature = "NSView"
         ))]
         #[method_id(@__retain_semantics Other textView)]
         pub unsafe fn textView(&self, mtm: MainThreadMarker) -> Option<Id<NSTextView>>;
 
         #[cfg(all(
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSText",
-            feature = "AppKit_NSTextView",
-            feature = "AppKit_NSView"
+            feature = "NSResponder",
+            feature = "NSText",
+            feature = "NSTextView",
+            feature = "NSView"
         ))]
         #[method(setTextView:)]
         pub unsafe fn setTextView(&self, text_view: Option<&NSTextView>);

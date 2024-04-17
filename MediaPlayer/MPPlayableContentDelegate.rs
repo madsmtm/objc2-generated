@@ -10,7 +10,7 @@ use crate::*;
 extern_protocol!(
     #[deprecated = "Use CarPlay framework"]
     pub unsafe trait MPPlayableContentDelegate: NSObjectProtocol {
-        #[cfg(all(feature = "MediaPlayer_MPPlayableContentManager", feature = "block2"))]
+        #[cfg(all(feature = "MPPlayableContentManager", feature = "block2"))]
         #[deprecated = "Use CarPlay framework"]
         #[optional]
         #[method(playableContentManager:initiatePlaybackOfContentItemAtIndexPath:completionHandler:)]
@@ -21,7 +21,7 @@ extern_protocol!(
             completion_handler: &Block<dyn Fn(*mut NSError)>,
         );
 
-        #[cfg(all(feature = "MediaPlayer_MPPlayableContentManager", feature = "block2"))]
+        #[cfg(all(feature = "MPPlayableContentManager", feature = "block2"))]
         #[deprecated = "Use Intents framework for initiating playback queues."]
         #[optional]
         #[method(playableContentManager:initializePlaybackQueueWithCompletionHandler:)]
@@ -31,7 +31,7 @@ extern_protocol!(
             completion_handler: &Block<dyn Fn(*mut NSError)>,
         );
 
-        #[cfg(all(feature = "MediaPlayer_MPPlayableContentManager", feature = "block2"))]
+        #[cfg(all(feature = "MPPlayableContentManager", feature = "block2"))]
         #[deprecated = "Use Intents framework for initiating playback queues."]
         #[optional]
         #[method(playableContentManager:initializePlaybackQueueWithContentItems:completionHandler:)]
@@ -43,8 +43,8 @@ extern_protocol!(
         );
 
         #[cfg(all(
-            feature = "MediaPlayer_MPPlayableContentManager",
-            feature = "MediaPlayer_MPPlayableContentManagerContext"
+            feature = "MPPlayableContentManager",
+            feature = "MPPlayableContentManagerContext"
         ))]
         #[deprecated = "Use CarPlay framework"]
         #[optional]

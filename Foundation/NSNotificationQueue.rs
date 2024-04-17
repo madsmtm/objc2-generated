@@ -59,14 +59,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Other defaultQueue)]
         pub unsafe fn defaultQueue() -> Id<NSNotificationQueue>;
 
-        #[cfg(feature = "Foundation_NSNotification")]
+        #[cfg(feature = "NSNotification")]
         #[method_id(@__retain_semantics Init initWithNotificationCenter:)]
         pub unsafe fn initWithNotificationCenter(
             this: Allocated<Self>,
             notification_center: &NSNotificationCenter,
         ) -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSNotification")]
+        #[cfg(feature = "NSNotification")]
         #[method(enqueueNotification:postingStyle:)]
         pub unsafe fn enqueueNotification_postingStyle(
             &self,
@@ -75,10 +75,10 @@ extern_methods!(
         );
 
         #[cfg(all(
-            feature = "Foundation_NSArray",
-            feature = "Foundation_NSNotification",
-            feature = "Foundation_NSObjCRuntime",
-            feature = "Foundation_NSString"
+            feature = "NSArray",
+            feature = "NSNotification",
+            feature = "NSObjCRuntime",
+            feature = "NSString"
         ))]
         #[method(enqueueNotification:postingStyle:coalesceMask:forModes:)]
         pub unsafe fn enqueueNotification_postingStyle_coalesceMask_forModes(
@@ -89,7 +89,7 @@ extern_methods!(
             modes: Option<&NSArray<NSRunLoopMode>>,
         );
 
-        #[cfg(feature = "Foundation_NSNotification")]
+        #[cfg(feature = "NSNotification")]
         #[method(dequeueNotificationsMatching:coalesceMask:)]
         pub unsafe fn dequeueNotificationsMatching_coalesceMask(
             &self,

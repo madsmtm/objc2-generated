@@ -55,7 +55,7 @@ extern_methods!(
         #[method(enableCollectorForPointer:)]
         pub unsafe fn enableCollectorForPointer(&self, ptr: NonNull<c_void>);
 
-        #[cfg(feature = "Foundation_NSZone")]
+        #[cfg(feature = "NSZone")]
         #[deprecated = "Building Garbage Collected apps is no longer supported."]
         #[method(zone)]
         pub unsafe fn zone(&self) -> NonNull<NSZone>;

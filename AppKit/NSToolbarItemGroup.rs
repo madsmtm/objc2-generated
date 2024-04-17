@@ -49,10 +49,10 @@ unsafe impl RefEncode for NSToolbarItemGroupControlRepresentation {
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSToolbarItem")]
+    #[cfg(feature = "NSToolbarItem")]
     pub struct NSToolbarItemGroup;
 
-    #[cfg(feature = "AppKit_NSToolbarItem")]
+    #[cfg(feature = "NSToolbarItem")]
     unsafe impl ClassType for NSToolbarItemGroup {
         #[inherits(NSObject)]
         type Super = NSToolbarItem;
@@ -60,16 +60,16 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSToolbarItem")]
+#[cfg(feature = "NSToolbarItem")]
 unsafe impl NSCopying for NSToolbarItemGroup {}
 
-#[cfg(feature = "AppKit_NSToolbarItem")]
+#[cfg(feature = "NSToolbarItem")]
 unsafe impl NSObjectProtocol for NSToolbarItemGroup {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSToolbarItem")]
+    #[cfg(feature = "NSToolbarItem")]
     unsafe impl NSToolbarItemGroup {
-        #[cfg(feature = "AppKit_NSToolbar")]
+        #[cfg(feature = "NSToolbar")]
         #[method_id(@__retain_semantics Other groupWithItemIdentifier:titles:selectionMode:labels:target:action:)]
         pub unsafe fn groupWithItemIdentifier_titles_selectionMode_labels_target_action(
             item_identifier: &NSToolbarItemIdentifier,
@@ -81,7 +81,7 @@ extern_methods!(
             mtm: MainThreadMarker,
         ) -> Id<Self>;
 
-        #[cfg(all(feature = "AppKit_NSImage", feature = "AppKit_NSToolbar"))]
+        #[cfg(all(feature = "NSImage", feature = "NSToolbar"))]
         #[method_id(@__retain_semantics Other groupWithItemIdentifier:images:selectionMode:labels:target:action:)]
         pub unsafe fn groupWithItemIdentifier_images_selectionMode_labels_target_action(
             item_identifier: &NSToolbarItemIdentifier,
@@ -130,9 +130,9 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSToolbarItem`
-    #[cfg(feature = "AppKit_NSToolbarItem")]
+    #[cfg(feature = "NSToolbarItem")]
     unsafe impl NSToolbarItemGroup {
-        #[cfg(feature = "AppKit_NSToolbar")]
+        #[cfg(feature = "NSToolbar")]
         #[method_id(@__retain_semantics Init initWithItemIdentifier:)]
         pub unsafe fn initWithItemIdentifier(
             this: Allocated<Self>,
@@ -143,7 +143,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSToolbarItem")]
+    #[cfg(feature = "NSToolbarItem")]
     unsafe impl NSToolbarItemGroup {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

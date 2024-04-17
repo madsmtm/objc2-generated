@@ -9,11 +9,11 @@ extern_category!(
     /// Category "NSExtensions" on [`NSFileWrapper`].
     #[doc(alias = "NSExtensions")]
     pub unsafe trait NSFileWrapperNSExtensions {
-        #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(feature = "NSImage")]
         #[method_id(@__retain_semantics Other icon)]
         unsafe fn icon(&self) -> Option<Id<NSImage>>;
 
-        #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(feature = "NSImage")]
         #[method(setIcon:)]
         unsafe fn setIcon(&self, icon: Option<&NSImage>);
     }

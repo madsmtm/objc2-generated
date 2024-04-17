@@ -41,15 +41,15 @@ unsafe impl Send for NSURLCredential {}
 
 unsafe impl Sync for NSURLCredential {}
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSCoding for NSURLCredential {}
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSURLCredential {}
 
 unsafe impl NSObjectProtocol for NSURLCredential {}
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSSecureCoding for NSURLCredential {}
 
 extern_methods!(
@@ -73,7 +73,7 @@ extern_methods!(
 extern_methods!(
     /// NSInternetPassword
     unsafe impl NSURLCredential {
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Init initWithUser:password:persistence:)]
         pub unsafe fn initWithUser_password_persistence(
             this: Allocated<Self>,
@@ -82,7 +82,7 @@ extern_methods!(
             persistence: NSURLCredentialPersistence,
         ) -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other credentialWithUser:password:persistence:)]
         pub unsafe fn credentialWithUser_password_persistence(
             user: &NSString,
@@ -90,11 +90,11 @@ extern_methods!(
             persistence: NSURLCredentialPersistence,
         ) -> Id<NSURLCredential>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other user)]
         pub unsafe fn user(&self) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other password)]
         pub unsafe fn password(&self) -> Option<Id<NSString>>;
 
@@ -106,7 +106,7 @@ extern_methods!(
 extern_methods!(
     /// NSClientCertificate
     unsafe impl NSURLCredential {
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(feature = "NSArray")]
         #[method_id(@__retain_semantics Other certificates)]
         pub unsafe fn certificates(&self) -> Id<NSArray>;
     }

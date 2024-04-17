@@ -29,8 +29,8 @@ extern_methods!(
         pub unsafe fn name(&self) -> Id<NSString>;
 
         #[cfg(all(
-            feature = "CoreLocation_CLMonitor",
-            feature = "CoreLocation_CLMonitoringEvent",
+            feature = "CLMonitor",
+            feature = "CLMonitoringEvent",
             feature = "block2"
         ))]
         #[method(eventHandler)]

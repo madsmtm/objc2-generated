@@ -81,7 +81,7 @@ extern_protocol!(
         #[method(speechRecognitionDidDetectSpeech:)]
         unsafe fn speechRecognitionDidDetectSpeech(&self, task: &SFSpeechRecognitionTask);
 
-        #[cfg(feature = "Speech_SFTranscription")]
+        #[cfg(feature = "SFTranscription")]
         #[optional]
         #[method(speechRecognitionTask:didHypothesizeTranscription:)]
         unsafe fn speechRecognitionTask_didHypothesizeTranscription(
@@ -90,7 +90,7 @@ extern_protocol!(
             transcription: &SFTranscription,
         );
 
-        #[cfg(feature = "Speech_SFSpeechRecognitionResult")]
+        #[cfg(feature = "SFSpeechRecognitionResult")]
         #[optional]
         #[method(speechRecognitionTask:didFinishRecognition:)]
         unsafe fn speechRecognitionTask_didFinishRecognition(

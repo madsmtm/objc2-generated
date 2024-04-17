@@ -8,19 +8,19 @@ use crate::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(
-        feature = "AppKit_NSControl",
-        feature = "AppKit_NSMatrix",
-        feature = "AppKit_NSResponder",
-        feature = "AppKit_NSView"
+        feature = "NSControl",
+        feature = "NSMatrix",
+        feature = "NSResponder",
+        feature = "NSView"
     ))]
     #[deprecated = "Use NSTextField directly instead, and consider NSStackView for layout assistance"]
     pub struct NSForm;
 
     #[cfg(all(
-        feature = "AppKit_NSControl",
-        feature = "AppKit_NSMatrix",
-        feature = "AppKit_NSResponder",
-        feature = "AppKit_NSView"
+        feature = "NSControl",
+        feature = "NSMatrix",
+        feature = "NSResponder",
+        feature = "NSView"
     ))]
     unsafe impl ClassType for NSForm {
         #[inherits(NSControl, NSView, NSResponder, NSObject)]
@@ -30,98 +30,98 @@ extern_class!(
 );
 
 #[cfg(all(
-    feature = "AppKit_NSAccessibilityProtocols",
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSMatrix",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSView"
+    feature = "NSAccessibilityProtocols",
+    feature = "NSControl",
+    feature = "NSMatrix",
+    feature = "NSResponder",
+    feature = "NSView"
 ))]
 unsafe impl NSAccessibility for NSForm {}
 
 #[cfg(all(
-    feature = "AppKit_NSAccessibilityProtocols",
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSMatrix",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSView"
+    feature = "NSAccessibilityProtocols",
+    feature = "NSControl",
+    feature = "NSMatrix",
+    feature = "NSResponder",
+    feature = "NSView"
 ))]
 unsafe impl NSAccessibilityElementProtocol for NSForm {}
 
 #[cfg(all(
-    feature = "AppKit_NSAnimation",
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSMatrix",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSView"
+    feature = "NSAnimation",
+    feature = "NSControl",
+    feature = "NSMatrix",
+    feature = "NSResponder",
+    feature = "NSView"
 ))]
 unsafe impl NSAnimatablePropertyContainer for NSForm {}
 
 #[cfg(all(
-    feature = "AppKit_NSAppearance",
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSMatrix",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSView"
+    feature = "NSAppearance",
+    feature = "NSControl",
+    feature = "NSMatrix",
+    feature = "NSResponder",
+    feature = "NSView"
 ))]
 unsafe impl NSAppearanceCustomization for NSForm {}
 
 #[cfg(all(
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSMatrix",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSView"
+    feature = "NSControl",
+    feature = "NSMatrix",
+    feature = "NSResponder",
+    feature = "NSView"
 ))]
 unsafe impl NSCoding for NSForm {}
 
 #[cfg(all(
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSDragging",
-    feature = "AppKit_NSMatrix",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSView"
+    feature = "NSControl",
+    feature = "NSDragging",
+    feature = "NSMatrix",
+    feature = "NSResponder",
+    feature = "NSView"
 ))]
 unsafe impl NSDraggingDestination for NSForm {}
 
 #[cfg(all(
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSMatrix",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSView"
+    feature = "NSControl",
+    feature = "NSMatrix",
+    feature = "NSResponder",
+    feature = "NSView"
 ))]
 unsafe impl NSObjectProtocol for NSForm {}
 
 #[cfg(all(
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSMatrix",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSUserInterfaceItemIdentification",
-    feature = "AppKit_NSView"
+    feature = "NSControl",
+    feature = "NSMatrix",
+    feature = "NSResponder",
+    feature = "NSUserInterfaceItemIdentification",
+    feature = "NSView"
 ))]
 unsafe impl NSUserInterfaceItemIdentification for NSForm {}
 
 #[cfg(all(
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSMatrix",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSUserInterfaceValidation",
-    feature = "AppKit_NSView"
+    feature = "NSControl",
+    feature = "NSMatrix",
+    feature = "NSResponder",
+    feature = "NSUserInterfaceValidation",
+    feature = "NSView"
 ))]
 unsafe impl NSUserInterfaceValidations for NSForm {}
 
 #[cfg(all(
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSMatrix",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSView"
+    feature = "NSControl",
+    feature = "NSMatrix",
+    feature = "NSResponder",
+    feature = "NSView"
 ))]
 unsafe impl NSViewToolTipOwner for NSForm {}
 
 extern_methods!(
     #[cfg(all(
-        feature = "AppKit_NSControl",
-        feature = "AppKit_NSMatrix",
-        feature = "AppKit_NSResponder",
-        feature = "AppKit_NSView"
+        feature = "NSControl",
+        feature = "NSMatrix",
+        feature = "NSResponder",
+        feature = "NSView"
     ))]
     unsafe impl NSForm {
         #[method(indexOfSelectedItem)]
@@ -139,19 +139,19 @@ extern_methods!(
         #[method(setBezeled:)]
         pub unsafe fn setBezeled(&self, flag: bool);
 
-        #[cfg(feature = "AppKit_NSText")]
+        #[cfg(feature = "NSText")]
         #[method(setTitleAlignment:)]
         pub unsafe fn setTitleAlignment(&self, mode: NSTextAlignment);
 
-        #[cfg(feature = "AppKit_NSText")]
+        #[cfg(feature = "NSText")]
         #[method(setTextAlignment:)]
         pub unsafe fn setTextAlignment(&self, mode: NSTextAlignment);
 
-        #[cfg(feature = "AppKit_NSFont")]
+        #[cfg(feature = "NSFont")]
         #[method(setTitleFont:)]
         pub unsafe fn setTitleFont(&self, font_obj: &NSFont);
 
-        #[cfg(feature = "AppKit_NSFont")]
+        #[cfg(feature = "NSFont")]
         #[method(setTextFont:)]
         pub unsafe fn setTextFont(&self, font_obj: &NSFont);
 
@@ -161,19 +161,11 @@ extern_methods!(
         #[method(drawCellAtIndex:)]
         pub unsafe fn drawCellAtIndex(&self, index: NSInteger);
 
-        #[cfg(all(
-            feature = "AppKit_NSActionCell",
-            feature = "AppKit_NSCell",
-            feature = "AppKit_NSFormCell"
-        ))]
+        #[cfg(all(feature = "NSActionCell", feature = "NSCell", feature = "NSFormCell"))]
         #[method_id(@__retain_semantics Other addEntry:)]
         pub unsafe fn addEntry(&self, title: &NSString) -> Id<NSFormCell>;
 
-        #[cfg(all(
-            feature = "AppKit_NSActionCell",
-            feature = "AppKit_NSCell",
-            feature = "AppKit_NSFormCell"
-        ))]
+        #[cfg(all(feature = "NSActionCell", feature = "NSCell", feature = "NSFormCell"))]
         #[method_id(@__retain_semantics Other insertEntry:atIndex:)]
         pub unsafe fn insertEntry_atIndex(
             &self,
@@ -193,11 +185,11 @@ extern_methods!(
         #[method(setFrameSize:)]
         pub unsafe fn setFrameSize(&self, new_size: NSSize);
 
-        #[cfg(feature = "AppKit_NSText")]
+        #[cfg(feature = "NSText")]
         #[method(setTitleBaseWritingDirection:)]
         pub unsafe fn setTitleBaseWritingDirection(&self, writing_direction: NSWritingDirection);
 
-        #[cfg(feature = "AppKit_NSText")]
+        #[cfg(feature = "NSText")]
         #[method(setTextBaseWritingDirection:)]
         pub unsafe fn setTextBaseWritingDirection(&self, writing_direction: NSWritingDirection);
 
@@ -212,16 +204,16 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSMatrix`
     #[cfg(all(
-        feature = "AppKit_NSControl",
-        feature = "AppKit_NSMatrix",
-        feature = "AppKit_NSResponder",
-        feature = "AppKit_NSView"
+        feature = "NSControl",
+        feature = "NSMatrix",
+        feature = "NSResponder",
+        feature = "NSView"
     ))]
     unsafe impl NSForm {
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Id<Self>;
 
-        #[cfg(feature = "AppKit_NSCell")]
+        #[cfg(feature = "NSCell")]
         #[method_id(@__retain_semantics Init initWithFrame:mode:prototype:numberOfRows:numberOfColumns:)]
         pub unsafe fn initWithFrame_mode_prototype_numberOfRows_numberOfColumns(
             this: Allocated<Self>,
@@ -247,10 +239,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSControl`
     #[cfg(all(
-        feature = "AppKit_NSControl",
-        feature = "AppKit_NSMatrix",
-        feature = "AppKit_NSResponder",
-        feature = "AppKit_NSView"
+        feature = "NSControl",
+        feature = "NSMatrix",
+        feature = "NSResponder",
+        feature = "NSView"
     ))]
     unsafe impl NSForm {
         #[method_id(@__retain_semantics Init initWithCoder:)]
@@ -261,10 +253,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSResponder`
     #[cfg(all(
-        feature = "AppKit_NSControl",
-        feature = "AppKit_NSMatrix",
-        feature = "AppKit_NSResponder",
-        feature = "AppKit_NSView"
+        feature = "NSControl",
+        feature = "NSMatrix",
+        feature = "NSResponder",
+        feature = "NSView"
     ))]
     unsafe impl NSForm {
         #[method_id(@__retain_semantics Init init)]
@@ -275,10 +267,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(
-        feature = "AppKit_NSControl",
-        feature = "AppKit_NSMatrix",
-        feature = "AppKit_NSResponder",
-        feature = "AppKit_NSView"
+        feature = "NSControl",
+        feature = "NSMatrix",
+        feature = "NSResponder",
+        feature = "NSView"
     ))]
     unsafe impl NSForm {
         #[method_id(@__retain_semantics New new)]

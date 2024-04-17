@@ -15,10 +15,10 @@ extern "C" {
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(feature = "HealthKit_HKObject", feature = "HealthKit_HKSample"))]
+    #[cfg(all(feature = "HKObject", feature = "HKSample"))]
     pub struct HKClinicalRecord;
 
-    #[cfg(all(feature = "HealthKit_HKObject", feature = "HealthKit_HKSample"))]
+    #[cfg(all(feature = "HKObject", feature = "HKSample"))]
     unsafe impl ClassType for HKClinicalRecord {
         #[inherits(HKObject, NSObject)]
         type Super = HKSample;
@@ -26,32 +26,29 @@ extern_class!(
     }
 );
 
-#[cfg(all(feature = "HealthKit_HKObject", feature = "HealthKit_HKSample"))]
+#[cfg(all(feature = "HKObject", feature = "HKSample"))]
 unsafe impl NSCoding for HKClinicalRecord {}
 
-#[cfg(all(feature = "HealthKit_HKObject", feature = "HealthKit_HKSample"))]
+#[cfg(all(feature = "HKObject", feature = "HKSample"))]
 unsafe impl NSCopying for HKClinicalRecord {}
 
-#[cfg(all(feature = "HealthKit_HKObject", feature = "HealthKit_HKSample"))]
+#[cfg(all(feature = "HKObject", feature = "HKSample"))]
 unsafe impl NSObjectProtocol for HKClinicalRecord {}
 
-#[cfg(all(feature = "HealthKit_HKObject", feature = "HealthKit_HKSample"))]
+#[cfg(all(feature = "HKObject", feature = "HKSample"))]
 unsafe impl NSSecureCoding for HKClinicalRecord {}
 
 extern_methods!(
-    #[cfg(all(feature = "HealthKit_HKObject", feature = "HealthKit_HKSample"))]
+    #[cfg(all(feature = "HKObject", feature = "HKSample"))]
     unsafe impl HKClinicalRecord {
-        #[cfg(all(
-            feature = "HealthKit_HKClinicalType",
-            feature = "HealthKit_HKObjectType"
-        ))]
+        #[cfg(all(feature = "HKClinicalType", feature = "HKObjectType"))]
         #[method_id(@__retain_semantics Other clinicalType)]
         pub unsafe fn clinicalType(&self) -> Id<HKClinicalType>;
 
         #[method_id(@__retain_semantics Other displayName)]
         pub unsafe fn displayName(&self) -> Id<NSString>;
 
-        #[cfg(feature = "HealthKit_HKFHIRResource")]
+        #[cfg(feature = "HKFHIRResource")]
         #[method_id(@__retain_semantics Other FHIRResource)]
         pub unsafe fn FHIRResource(&self) -> Option<Id<HKFHIRResource>>;
 

@@ -24,20 +24,20 @@ extern "C" {
 extern_protocol!(
     pub unsafe trait NSComboBoxDataSource: NSObjectProtocol + IsMainThreadOnly {
         #[cfg(all(
-            feature = "AppKit_NSControl",
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSTextField",
-            feature = "AppKit_NSView"
+            feature = "NSControl",
+            feature = "NSResponder",
+            feature = "NSTextField",
+            feature = "NSView"
         ))]
         #[optional]
         #[method(numberOfItemsInComboBox:)]
         unsafe fn numberOfItemsInComboBox(&self, combo_box: &NSComboBox) -> NSInteger;
 
         #[cfg(all(
-            feature = "AppKit_NSControl",
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSTextField",
-            feature = "AppKit_NSView"
+            feature = "NSControl",
+            feature = "NSResponder",
+            feature = "NSTextField",
+            feature = "NSView"
         ))]
         #[optional]
         #[method_id(@__retain_semantics Other comboBox:objectValueForItemAtIndex:)]
@@ -48,10 +48,10 @@ extern_protocol!(
         ) -> Option<Id<AnyObject>>;
 
         #[cfg(all(
-            feature = "AppKit_NSControl",
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSTextField",
-            feature = "AppKit_NSView"
+            feature = "NSControl",
+            feature = "NSResponder",
+            feature = "NSTextField",
+            feature = "NSView"
         ))]
         #[optional]
         #[method(comboBox:indexOfItemWithStringValue:)]
@@ -62,10 +62,10 @@ extern_protocol!(
         ) -> NSUInteger;
 
         #[cfg(all(
-            feature = "AppKit_NSControl",
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSTextField",
-            feature = "AppKit_NSView"
+            feature = "NSControl",
+            feature = "NSResponder",
+            feature = "NSTextField",
+            feature = "NSView"
         ))]
         #[optional]
         #[method_id(@__retain_semantics Other comboBox:completedString:)]
@@ -80,7 +80,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    #[cfg(all(feature = "AppKit_NSControl", feature = "AppKit_NSTextField"))]
+    #[cfg(all(feature = "NSControl", feature = "NSTextField"))]
     pub unsafe trait NSComboBoxDelegate: NSTextFieldDelegate + IsMainThreadOnly {
         #[optional]
         #[method(comboBoxWillPopUp:)]
@@ -99,25 +99,25 @@ extern_protocol!(
         unsafe fn comboBoxSelectionIsChanging(&self, notification: &NSNotification);
     }
 
-    #[cfg(all(feature = "AppKit_NSControl", feature = "AppKit_NSTextField"))]
+    #[cfg(all(feature = "NSControl", feature = "NSTextField"))]
     unsafe impl ProtocolType for dyn NSComboBoxDelegate {}
 );
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(
-        feature = "AppKit_NSControl",
-        feature = "AppKit_NSResponder",
-        feature = "AppKit_NSTextField",
-        feature = "AppKit_NSView"
+        feature = "NSControl",
+        feature = "NSResponder",
+        feature = "NSTextField",
+        feature = "NSView"
     ))]
     pub struct NSComboBox;
 
     #[cfg(all(
-        feature = "AppKit_NSControl",
-        feature = "AppKit_NSResponder",
-        feature = "AppKit_NSTextField",
-        feature = "AppKit_NSView"
+        feature = "NSControl",
+        feature = "NSResponder",
+        feature = "NSTextField",
+        feature = "NSView"
     ))]
     unsafe impl ClassType for NSComboBox {
         #[inherits(NSControl, NSView, NSResponder, NSObject)]
@@ -127,117 +127,117 @@ extern_class!(
 );
 
 #[cfg(all(
-    feature = "AppKit_NSAccessibilityProtocols",
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSTextField",
-    feature = "AppKit_NSView"
+    feature = "NSAccessibilityProtocols",
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSTextField",
+    feature = "NSView"
 ))]
 unsafe impl NSAccessibility for NSComboBox {}
 
 #[cfg(all(
-    feature = "AppKit_NSAccessibilityProtocols",
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSTextField",
-    feature = "AppKit_NSView"
+    feature = "NSAccessibilityProtocols",
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSTextField",
+    feature = "NSView"
 ))]
 unsafe impl NSAccessibilityElementProtocol for NSComboBox {}
 
 #[cfg(all(
-    feature = "AppKit_NSAccessibilityProtocols",
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSTextField",
-    feature = "AppKit_NSView"
+    feature = "NSAccessibilityProtocols",
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSTextField",
+    feature = "NSView"
 ))]
 unsafe impl NSAccessibilityNavigableStaticText for NSComboBox {}
 
 #[cfg(all(
-    feature = "AppKit_NSAccessibilityProtocols",
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSTextField",
-    feature = "AppKit_NSView"
+    feature = "NSAccessibilityProtocols",
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSTextField",
+    feature = "NSView"
 ))]
 unsafe impl NSAccessibilityStaticText for NSComboBox {}
 
 #[cfg(all(
-    feature = "AppKit_NSAnimation",
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSTextField",
-    feature = "AppKit_NSView"
+    feature = "NSAnimation",
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSTextField",
+    feature = "NSView"
 ))]
 unsafe impl NSAnimatablePropertyContainer for NSComboBox {}
 
 #[cfg(all(
-    feature = "AppKit_NSAppearance",
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSTextField",
-    feature = "AppKit_NSView"
+    feature = "NSAppearance",
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSTextField",
+    feature = "NSView"
 ))]
 unsafe impl NSAppearanceCustomization for NSComboBox {}
 
 #[cfg(all(
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSTextField",
-    feature = "AppKit_NSView"
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSTextField",
+    feature = "NSView"
 ))]
 unsafe impl NSCoding for NSComboBox {}
 
 #[cfg(all(
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSDragging",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSTextField",
-    feature = "AppKit_NSView"
+    feature = "NSControl",
+    feature = "NSDragging",
+    feature = "NSResponder",
+    feature = "NSTextField",
+    feature = "NSView"
 ))]
 unsafe impl NSDraggingDestination for NSComboBox {}
 
 #[cfg(all(
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSTextField",
-    feature = "AppKit_NSView"
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSTextField",
+    feature = "NSView"
 ))]
 unsafe impl NSObjectProtocol for NSComboBox {}
 
 #[cfg(all(
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSTextContent",
-    feature = "AppKit_NSTextField",
-    feature = "AppKit_NSView"
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSTextContent",
+    feature = "NSTextField",
+    feature = "NSView"
 ))]
 unsafe impl NSTextContent for NSComboBox {}
 
 #[cfg(all(
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSTextField",
-    feature = "AppKit_NSUserInterfaceItemIdentification",
-    feature = "AppKit_NSView"
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSTextField",
+    feature = "NSUserInterfaceItemIdentification",
+    feature = "NSView"
 ))]
 unsafe impl NSUserInterfaceItemIdentification for NSComboBox {}
 
 #[cfg(all(
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSTextField",
-    feature = "AppKit_NSUserInterfaceValidation",
-    feature = "AppKit_NSView"
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSTextField",
+    feature = "NSUserInterfaceValidation",
+    feature = "NSView"
 ))]
 unsafe impl NSUserInterfaceValidations for NSComboBox {}
 
 extern_methods!(
     #[cfg(all(
-        feature = "AppKit_NSControl",
-        feature = "AppKit_NSResponder",
-        feature = "AppKit_NSTextField",
-        feature = "AppKit_NSView"
+        feature = "NSControl",
+        feature = "NSResponder",
+        feature = "NSTextField",
+        feature = "NSView"
     ))]
     unsafe impl NSComboBox {
         #[method(hasVerticalScroller)]
@@ -363,10 +363,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSControl`
     #[cfg(all(
-        feature = "AppKit_NSControl",
-        feature = "AppKit_NSResponder",
-        feature = "AppKit_NSTextField",
-        feature = "AppKit_NSView"
+        feature = "NSControl",
+        feature = "NSResponder",
+        feature = "NSTextField",
+        feature = "NSView"
     ))]
     unsafe impl NSComboBox {
         #[method_id(@__retain_semantics Init initWithFrame:)]
@@ -380,10 +380,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSResponder`
     #[cfg(all(
-        feature = "AppKit_NSControl",
-        feature = "AppKit_NSResponder",
-        feature = "AppKit_NSTextField",
-        feature = "AppKit_NSView"
+        feature = "NSControl",
+        feature = "NSResponder",
+        feature = "NSTextField",
+        feature = "NSView"
     ))]
     unsafe impl NSComboBox {
         #[method_id(@__retain_semantics Init init)]
@@ -394,10 +394,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(
-        feature = "AppKit_NSControl",
-        feature = "AppKit_NSResponder",
-        feature = "AppKit_NSTextField",
-        feature = "AppKit_NSView"
+        feature = "NSControl",
+        feature = "NSResponder",
+        feature = "NSTextField",
+        feature = "NSView"
     ))]
     unsafe impl NSComboBox {
         #[method_id(@__retain_semantics New new)]

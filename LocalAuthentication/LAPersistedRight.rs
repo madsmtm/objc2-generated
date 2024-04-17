@@ -7,10 +7,10 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "LocalAuthentication_LARight")]
+    #[cfg(feature = "LARight")]
     pub struct LAPersistedRight;
 
-    #[cfg(feature = "LocalAuthentication_LARight")]
+    #[cfg(feature = "LARight")]
     unsafe impl ClassType for LAPersistedRight {
         #[inherits(NSObject)]
         type Super = LARight;
@@ -18,17 +18,17 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "LocalAuthentication_LARight")]
+#[cfg(feature = "LARight")]
 unsafe impl NSObjectProtocol for LAPersistedRight {}
 
 extern_methods!(
-    #[cfg(feature = "LocalAuthentication_LARight")]
+    #[cfg(feature = "LARight")]
     unsafe impl LAPersistedRight {
-        #[cfg(feature = "LocalAuthentication_LAPrivateKey")]
+        #[cfg(feature = "LAPrivateKey")]
         #[method_id(@__retain_semantics Other key)]
         pub unsafe fn key(&self) -> Id<LAPrivateKey>;
 
-        #[cfg(feature = "LocalAuthentication_LASecret")]
+        #[cfg(feature = "LASecret")]
         #[method_id(@__retain_semantics Other secret)]
         pub unsafe fn secret(&self) -> Id<LASecret>;
 
@@ -42,9 +42,9 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `LARight`
-    #[cfg(feature = "LocalAuthentication_LARight")]
+    #[cfg(feature = "LARight")]
     unsafe impl LAPersistedRight {
-        #[cfg(feature = "LocalAuthentication_LARequirement")]
+        #[cfg(feature = "LARequirement")]
         #[method_id(@__retain_semantics Init initWithRequirement:)]
         pub unsafe fn initWithRequirement(
             this: Allocated<Self>,

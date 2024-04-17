@@ -6,7 +6,7 @@ use crate::*;
 
 extern_protocol!(
     pub unsafe trait NSExtensionRequestHandling: NSObjectProtocol {
-        #[cfg(feature = "Foundation_NSExtensionContext")]
+        #[cfg(feature = "NSExtensionContext")]
         #[method(beginRequestWithExtensionContext:)]
         unsafe fn beginRequestWithExtensionContext(&self, context: &NSExtensionContext);
     }

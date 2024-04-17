@@ -7,7 +7,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
-#[cfg(all(feature = "MapKit_MKMapSnapshot", feature = "block2"))]
+#[cfg(all(feature = "MKMapSnapshot", feature = "block2"))]
 pub type MKMapSnapshotCompletionHandler = *mut Block<dyn Fn(*mut MKMapSnapshot, *mut NSError)>;
 
 extern_class!(
@@ -24,14 +24,14 @@ unsafe impl NSObjectProtocol for MKMapSnapshotter {}
 
 extern_methods!(
     unsafe impl MKMapSnapshotter {
-        #[cfg(feature = "MapKit_MKMapSnapshotOptions")]
+        #[cfg(feature = "MKMapSnapshotOptions")]
         #[method_id(@__retain_semantics Init initWithOptions:)]
         pub unsafe fn initWithOptions(
             this: Allocated<Self>,
             options: &MKMapSnapshotOptions,
         ) -> Id<Self>;
 
-        #[cfg(all(feature = "MapKit_MKMapSnapshot", feature = "block2"))]
+        #[cfg(all(feature = "MKMapSnapshot", feature = "block2"))]
         #[method(startWithCompletionHandler:)]
         pub unsafe fn startWithCompletionHandler(
             &self,

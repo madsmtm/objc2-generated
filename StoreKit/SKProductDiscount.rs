@@ -72,7 +72,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other identifier)]
         pub unsafe fn identifier(&self) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "StoreKit_SKProduct")]
+        #[cfg(feature = "SKProduct")]
         #[method_id(@__retain_semantics Other subscriptionPeriod)]
         pub unsafe fn subscriptionPeriod(&self) -> Id<SKProductSubscriptionPeriod>;
 

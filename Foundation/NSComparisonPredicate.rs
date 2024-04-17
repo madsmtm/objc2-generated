@@ -71,10 +71,10 @@ unsafe impl RefEncode for NSPredicateOperatorType {
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSPredicate")]
+    #[cfg(feature = "NSPredicate")]
     pub struct NSComparisonPredicate;
 
-    #[cfg(feature = "Foundation_NSPredicate")]
+    #[cfg(feature = "NSPredicate")]
     unsafe impl ClassType for NSComparisonPredicate {
         #[inherits(NSObject)]
         type Super = NSPredicate;
@@ -82,22 +82,22 @@ extern_class!(
     }
 );
 
-#[cfg(all(feature = "Foundation_NSObject", feature = "Foundation_NSPredicate"))]
+#[cfg(all(feature = "NSObject", feature = "NSPredicate"))]
 unsafe impl NSCoding for NSComparisonPredicate {}
 
-#[cfg(all(feature = "Foundation_NSObject", feature = "Foundation_NSPredicate"))]
+#[cfg(all(feature = "NSObject", feature = "NSPredicate"))]
 unsafe impl NSCopying for NSComparisonPredicate {}
 
-#[cfg(feature = "Foundation_NSPredicate")]
+#[cfg(feature = "NSPredicate")]
 unsafe impl NSObjectProtocol for NSComparisonPredicate {}
 
-#[cfg(all(feature = "Foundation_NSObject", feature = "Foundation_NSPredicate"))]
+#[cfg(all(feature = "NSObject", feature = "NSPredicate"))]
 unsafe impl NSSecureCoding for NSComparisonPredicate {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSPredicate")]
+    #[cfg(feature = "NSPredicate")]
     unsafe impl NSComparisonPredicate {
-        #[cfg(feature = "Foundation_NSExpression")]
+        #[cfg(feature = "NSExpression")]
         #[method_id(@__retain_semantics Other predicateWithLeftExpression:rightExpression:modifier:type:options:)]
         pub unsafe fn predicateWithLeftExpression_rightExpression_modifier_type_options(
             lhs: &NSExpression,
@@ -107,7 +107,7 @@ extern_methods!(
             options: NSComparisonPredicateOptions,
         ) -> Id<NSComparisonPredicate>;
 
-        #[cfg(feature = "Foundation_NSExpression")]
+        #[cfg(feature = "NSExpression")]
         #[method_id(@__retain_semantics Other predicateWithLeftExpression:rightExpression:customSelector:)]
         pub unsafe fn predicateWithLeftExpression_rightExpression_customSelector(
             lhs: &NSExpression,
@@ -115,7 +115,7 @@ extern_methods!(
             selector: Sel,
         ) -> Id<NSComparisonPredicate>;
 
-        #[cfg(feature = "Foundation_NSExpression")]
+        #[cfg(feature = "NSExpression")]
         #[method_id(@__retain_semantics Init initWithLeftExpression:rightExpression:modifier:type:options:)]
         pub unsafe fn initWithLeftExpression_rightExpression_modifier_type_options(
             this: Allocated<Self>,
@@ -126,7 +126,7 @@ extern_methods!(
             options: NSComparisonPredicateOptions,
         ) -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSExpression")]
+        #[cfg(feature = "NSExpression")]
         #[method_id(@__retain_semantics Init initWithLeftExpression:rightExpression:customSelector:)]
         pub unsafe fn initWithLeftExpression_rightExpression_customSelector(
             this: Allocated<Self>,
@@ -135,7 +135,7 @@ extern_methods!(
             selector: Sel,
         ) -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSCoder")]
+        #[cfg(feature = "NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
 
@@ -145,11 +145,11 @@ extern_methods!(
         #[method(comparisonPredicateModifier)]
         pub unsafe fn comparisonPredicateModifier(&self) -> NSComparisonPredicateModifier;
 
-        #[cfg(feature = "Foundation_NSExpression")]
+        #[cfg(feature = "NSExpression")]
         #[method_id(@__retain_semantics Other leftExpression)]
         pub unsafe fn leftExpression(&self) -> Id<NSExpression>;
 
-        #[cfg(feature = "Foundation_NSExpression")]
+        #[cfg(feature = "NSExpression")]
         #[method_id(@__retain_semantics Other rightExpression)]
         pub unsafe fn rightExpression(&self) -> Id<NSExpression>;
 
@@ -163,7 +163,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSPredicate")]
+    #[cfg(feature = "NSPredicate")]
     unsafe impl NSComparisonPredicate {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

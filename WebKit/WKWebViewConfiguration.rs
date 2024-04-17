@@ -63,38 +63,38 @@ unsafe impl NSSecureCoding for WKWebViewConfiguration {}
 
 extern_methods!(
     unsafe impl WKWebViewConfiguration {
-        #[cfg(feature = "WebKit_WKProcessPool")]
+        #[cfg(feature = "WKProcessPool")]
         #[method_id(@__retain_semantics Other processPool)]
         pub unsafe fn processPool(&self) -> Id<WKProcessPool>;
 
-        #[cfg(feature = "WebKit_WKProcessPool")]
+        #[cfg(feature = "WKProcessPool")]
         #[method(setProcessPool:)]
         pub unsafe fn setProcessPool(&self, process_pool: &WKProcessPool);
 
-        #[cfg(feature = "WebKit_WKPreferences")]
+        #[cfg(feature = "WKPreferences")]
         #[method_id(@__retain_semantics Other preferences)]
         pub unsafe fn preferences(&self) -> Id<WKPreferences>;
 
-        #[cfg(feature = "WebKit_WKPreferences")]
+        #[cfg(feature = "WKPreferences")]
         #[method(setPreferences:)]
         pub unsafe fn setPreferences(&self, preferences: &WKPreferences);
 
-        #[cfg(feature = "WebKit_WKUserContentController")]
+        #[cfg(feature = "WKUserContentController")]
         #[method_id(@__retain_semantics Other userContentController)]
         pub unsafe fn userContentController(&self) -> Id<WKUserContentController>;
 
-        #[cfg(feature = "WebKit_WKUserContentController")]
+        #[cfg(feature = "WKUserContentController")]
         #[method(setUserContentController:)]
         pub unsafe fn setUserContentController(
             &self,
             user_content_controller: &WKUserContentController,
         );
 
-        #[cfg(feature = "WebKit_WKWebsiteDataStore")]
+        #[cfg(feature = "WKWebsiteDataStore")]
         #[method_id(@__retain_semantics Other websiteDataStore)]
         pub unsafe fn websiteDataStore(&self) -> Id<WKWebsiteDataStore>;
 
-        #[cfg(feature = "WebKit_WKWebsiteDataStore")]
+        #[cfg(feature = "WKWebsiteDataStore")]
         #[method(setWebsiteDataStore:)]
         pub unsafe fn setWebsiteDataStore(&self, website_data_store: &WKWebsiteDataStore);
 
@@ -140,11 +140,11 @@ extern_methods!(
             media_types_requiring_user_action_for_playback: WKAudiovisualMediaTypes,
         );
 
-        #[cfg(feature = "WebKit_WKWebpagePreferences")]
+        #[cfg(feature = "WKWebpagePreferences")]
         #[method_id(@__retain_semantics Other defaultWebpagePreferences)]
         pub unsafe fn defaultWebpagePreferences(&self) -> Id<WKWebpagePreferences>;
 
-        #[cfg(feature = "WebKit_WKWebpagePreferences")]
+        #[cfg(feature = "WKWebpagePreferences")]
         #[method(setDefaultWebpagePreferences:)]
         pub unsafe fn setDefaultWebpagePreferences(
             &self,
@@ -175,7 +175,7 @@ extern_methods!(
             user_interface_direction_policy: WKUserInterfaceDirectionPolicy,
         );
 
-        #[cfg(feature = "WebKit_WKURLSchemeHandler")]
+        #[cfg(feature = "WKURLSchemeHandler")]
         #[method(setURLSchemeHandler:forURLScheme:)]
         pub unsafe fn setURLSchemeHandler_forURLScheme(
             &self,
@@ -183,7 +183,7 @@ extern_methods!(
             url_scheme: &NSString,
         );
 
-        #[cfg(feature = "WebKit_WKURLSchemeHandler")]
+        #[cfg(feature = "WKURLSchemeHandler")]
         #[method_id(@__retain_semantics Other urlSchemeHandlerForURLScheme:)]
         pub unsafe fn urlSchemeHandlerForURLScheme(
             &self,

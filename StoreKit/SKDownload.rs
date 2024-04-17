@@ -97,7 +97,7 @@ extern_methods!(
         #[method(timeRemaining)]
         pub unsafe fn timeRemaining(&self) -> NSTimeInterval;
 
-        #[cfg(feature = "StoreKit_SKPaymentTransaction")]
+        #[cfg(feature = "SKPaymentTransaction")]
         #[deprecated = "Hosted content is no longer supported"]
         #[method_id(@__retain_semantics Other transaction)]
         pub unsafe fn transaction(&self) -> Id<SKPaymentTransaction>;

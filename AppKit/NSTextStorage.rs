@@ -43,15 +43,15 @@ unsafe impl NSSecureCoding for NSTextStorage {}
 
 extern_methods!(
     unsafe impl NSTextStorage {
-        #[cfg(feature = "AppKit_NSLayoutManager")]
+        #[cfg(feature = "NSLayoutManager")]
         #[method_id(@__retain_semantics Other layoutManagers)]
         pub unsafe fn layoutManagers(&self) -> Id<NSArray<NSLayoutManager>>;
 
-        #[cfg(feature = "AppKit_NSLayoutManager")]
+        #[cfg(feature = "NSLayoutManager")]
         #[method(addLayoutManager:)]
         pub unsafe fn addLayoutManager(&mut self, a_layout_manager: &NSLayoutManager);
 
-        #[cfg(feature = "AppKit_NSLayoutManager")]
+        #[cfg(feature = "NSLayoutManager")]
         #[method(removeLayoutManager:)]
         pub unsafe fn removeLayoutManager(&mut self, a_layout_manager: &NSLayoutManager);
 

@@ -7,7 +7,7 @@ use crate::*;
 
 extern_methods!(
     /// Scripting
-    #[cfg(feature = "AppKit_NSTextStorage")]
+    #[cfg(feature = "NSTextStorage")]
     unsafe impl NSTextStorage {
         #[method_id(@__retain_semantics Other attributeRuns)]
         pub unsafe fn attributeRuns(&self) -> Id<NSArray<NSTextStorage>>;
@@ -33,19 +33,19 @@ extern_methods!(
         #[method(setCharacters:)]
         pub unsafe fn setCharacters(&mut self, characters: &NSArray<NSTextStorage>);
 
-        #[cfg(feature = "AppKit_NSFont")]
+        #[cfg(feature = "NSFont")]
         #[method_id(@__retain_semantics Other font)]
         pub unsafe fn font(&self) -> Option<Id<NSFont>>;
 
-        #[cfg(feature = "AppKit_NSFont")]
+        #[cfg(feature = "NSFont")]
         #[method(setFont:)]
         pub unsafe fn setFont(&mut self, font: Option<&NSFont>);
 
-        #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(feature = "NSColor")]
         #[method_id(@__retain_semantics Other foregroundColor)]
         pub unsafe fn foregroundColor(&self) -> Option<Id<NSColor>>;
 
-        #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(feature = "NSColor")]
         #[method(setForegroundColor:)]
         pub unsafe fn setForegroundColor(&mut self, foreground_color: Option<&NSColor>);
     }

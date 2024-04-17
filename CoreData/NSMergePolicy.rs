@@ -39,7 +39,7 @@ unsafe impl NSObjectProtocol for NSMergeConflict {}
 
 extern_methods!(
     unsafe impl NSMergeConflict {
-        #[cfg(feature = "CoreData_NSManagedObject")]
+        #[cfg(feature = "NSManagedObject")]
         #[method_id(@__retain_semantics Other sourceObject)]
         pub unsafe fn sourceObject(&self) -> Id<NSManagedObject>;
 
@@ -58,7 +58,7 @@ extern_methods!(
         #[method(oldVersionNumber)]
         pub unsafe fn oldVersionNumber(&self) -> NSUInteger;
 
-        #[cfg(feature = "CoreData_NSManagedObject")]
+        #[cfg(feature = "NSManagedObject")]
         #[method_id(@__retain_semantics Init initWithSource:newVersion:oldVersion:cachedSnapshot:persistedSnapshot:)]
         pub unsafe fn initWithSource_newVersion_oldVersion_cachedSnapshot_persistedSnapshot(
             this: Allocated<Self>,
@@ -102,21 +102,21 @@ extern_methods!(
         #[method_id(@__retain_semantics Other constraintValues)]
         pub unsafe fn constraintValues(&self) -> Id<NSDictionary<NSString, AnyObject>>;
 
-        #[cfg(feature = "CoreData_NSManagedObject")]
+        #[cfg(feature = "NSManagedObject")]
         #[method_id(@__retain_semantics Other databaseObject)]
         pub unsafe fn databaseObject(&self) -> Option<Id<NSManagedObject>>;
 
         #[method_id(@__retain_semantics Other databaseSnapshot)]
         pub unsafe fn databaseSnapshot(&self) -> Option<Id<NSDictionary<NSString, AnyObject>>>;
 
-        #[cfg(feature = "CoreData_NSManagedObject")]
+        #[cfg(feature = "NSManagedObject")]
         #[method_id(@__retain_semantics Other conflictingObjects)]
         pub unsafe fn conflictingObjects(&self) -> Id<NSArray<NSManagedObject>>;
 
         #[method_id(@__retain_semantics Other conflictingSnapshots)]
         pub unsafe fn conflictingSnapshots(&self) -> Id<NSArray<NSDictionary>>;
 
-        #[cfg(feature = "CoreData_NSManagedObject")]
+        #[cfg(feature = "NSManagedObject")]
         #[method_id(@__retain_semantics Init initWithConstraint:databaseObject:databaseSnapshot:conflictingObjects:conflictingSnapshots:)]
         pub unsafe fn initWithConstraint_databaseObject_databaseSnapshot_conflictingObjects_conflictingSnapshots(
             this: Allocated<Self>,

@@ -84,18 +84,10 @@ unsafe impl RefEncode for NSSegmentDistribution {
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(
-        feature = "AppKit_NSControl",
-        feature = "AppKit_NSResponder",
-        feature = "AppKit_NSView"
-    ))]
+    #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     pub struct NSSegmentedControl;
 
-    #[cfg(all(
-        feature = "AppKit_NSControl",
-        feature = "AppKit_NSResponder",
-        feature = "AppKit_NSView"
-    ))]
+    #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     unsafe impl ClassType for NSSegmentedControl {
         #[inherits(NSView, NSResponder, NSObject)]
         type Super = NSControl;
@@ -104,81 +96,69 @@ extern_class!(
 );
 
 #[cfg(all(
-    feature = "AppKit_NSAccessibilityProtocols",
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSView"
+    feature = "NSAccessibilityProtocols",
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSView"
 ))]
 unsafe impl NSAccessibility for NSSegmentedControl {}
 
 #[cfg(all(
-    feature = "AppKit_NSAccessibilityProtocols",
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSView"
+    feature = "NSAccessibilityProtocols",
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSView"
 ))]
 unsafe impl NSAccessibilityElementProtocol for NSSegmentedControl {}
 
 #[cfg(all(
-    feature = "AppKit_NSAnimation",
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSView"
+    feature = "NSAnimation",
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSView"
 ))]
 unsafe impl NSAnimatablePropertyContainer for NSSegmentedControl {}
 
 #[cfg(all(
-    feature = "AppKit_NSAppearance",
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSView"
+    feature = "NSAppearance",
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSView"
 ))]
 unsafe impl NSAppearanceCustomization for NSSegmentedControl {}
 
-#[cfg(all(
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSView"
-))]
+#[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
 unsafe impl NSCoding for NSSegmentedControl {}
 
 #[cfg(all(
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSDragging",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSView"
+    feature = "NSControl",
+    feature = "NSDragging",
+    feature = "NSResponder",
+    feature = "NSView"
 ))]
 unsafe impl NSDraggingDestination for NSSegmentedControl {}
 
-#[cfg(all(
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSView"
-))]
+#[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
 unsafe impl NSObjectProtocol for NSSegmentedControl {}
 
 #[cfg(all(
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSUserInterfaceCompression",
-    feature = "AppKit_NSView"
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSUserInterfaceCompression",
+    feature = "NSView"
 ))]
 unsafe impl NSUserInterfaceCompression for NSSegmentedControl {}
 
 #[cfg(all(
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSUserInterfaceItemIdentification",
-    feature = "AppKit_NSView"
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSUserInterfaceItemIdentification",
+    feature = "NSView"
 ))]
 unsafe impl NSUserInterfaceItemIdentification for NSSegmentedControl {}
 
 extern_methods!(
-    #[cfg(all(
-        feature = "AppKit_NSControl",
-        feature = "AppKit_NSResponder",
-        feature = "AppKit_NSView"
-    ))]
+    #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSSegmentedControl {
         #[method(segmentCount)]
         pub unsafe fn segmentCount(&self) -> NSInteger;
@@ -201,15 +181,15 @@ extern_methods!(
         #[method(widthForSegment:)]
         pub unsafe fn widthForSegment(&self, segment: NSInteger) -> CGFloat;
 
-        #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(feature = "NSImage")]
         #[method(setImage:forSegment:)]
         pub unsafe fn setImage_forSegment(&self, image: Option<&NSImage>, segment: NSInteger);
 
-        #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(feature = "NSImage")]
         #[method_id(@__retain_semantics Other imageForSegment:)]
         pub unsafe fn imageForSegment(&self, segment: NSInteger) -> Option<Id<NSImage>>;
 
-        #[cfg(feature = "AppKit_NSCell")]
+        #[cfg(feature = "NSCell")]
         #[method(setImageScaling:forSegment:)]
         pub unsafe fn setImageScaling_forSegment(
             &self,
@@ -217,7 +197,7 @@ extern_methods!(
             segment: NSInteger,
         );
 
-        #[cfg(feature = "AppKit_NSCell")]
+        #[cfg(feature = "NSCell")]
         #[method(imageScalingForSegment:)]
         pub unsafe fn imageScalingForSegment(&self, segment: NSInteger) -> NSImageScaling;
 
@@ -227,11 +207,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Other labelForSegment:)]
         pub unsafe fn labelForSegment(&self, segment: NSInteger) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "AppKit_NSMenu")]
+        #[cfg(feature = "NSMenu")]
         #[method(setMenu:forSegment:)]
         pub unsafe fn setMenu_forSegment(&self, menu: Option<&NSMenu>, segment: NSInteger);
 
-        #[cfg(feature = "AppKit_NSMenu")]
+        #[cfg(feature = "NSMenu")]
         #[method_id(@__retain_semantics Other menuForSegment:)]
         pub unsafe fn menuForSegment(&self, segment: NSInteger) -> Option<Id<NSMenu>>;
 
@@ -290,11 +270,11 @@ extern_methods!(
         #[method(doubleValueForSelectedSegment)]
         pub unsafe fn doubleValueForSelectedSegment(&self) -> c_double;
 
-        #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(feature = "NSColor")]
         #[method_id(@__retain_semantics Other selectedSegmentBezelColor)]
         pub unsafe fn selectedSegmentBezelColor(&self) -> Option<Id<NSColor>>;
 
-        #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(feature = "NSColor")]
         #[method(setSelectedSegmentBezelColor:)]
         pub unsafe fn setSelectedSegmentBezelColor(
             &self,
@@ -304,7 +284,7 @@ extern_methods!(
         #[method(indexOfSelectedItem)]
         pub unsafe fn indexOfSelectedItem(&self) -> NSInteger;
 
-        #[cfg(feature = "AppKit_NSText")]
+        #[cfg(feature = "NSText")]
         #[method(setAlignment:forSegment:)]
         pub unsafe fn setAlignment_forSegment(
             &self,
@@ -312,7 +292,7 @@ extern_methods!(
             segment: NSInteger,
         );
 
-        #[cfg(feature = "AppKit_NSText")]
+        #[cfg(feature = "NSText")]
         #[method(alignmentForSegment:)]
         pub unsafe fn alignmentForSegment(&self, segment: NSInteger) -> NSTextAlignment;
 
@@ -322,21 +302,21 @@ extern_methods!(
         #[method(setSegmentDistribution:)]
         pub unsafe fn setSegmentDistribution(&self, segment_distribution: NSSegmentDistribution);
 
-        #[cfg(feature = "AppKit_NSUserInterfaceCompression")]
+        #[cfg(feature = "NSUserInterfaceCompression")]
         #[method(compressWithPrioritizedCompressionOptions:)]
         pub unsafe fn compressWithPrioritizedCompressionOptions(
             &self,
             prioritized_options: &NSArray<NSUserInterfaceCompressionOptions>,
         );
 
-        #[cfg(feature = "AppKit_NSUserInterfaceCompression")]
+        #[cfg(feature = "NSUserInterfaceCompression")]
         #[method(minimumSizeWithPrioritizedCompressionOptions:)]
         pub unsafe fn minimumSizeWithPrioritizedCompressionOptions(
             &self,
             prioritized_options: &NSArray<NSUserInterfaceCompressionOptions>,
         ) -> NSSize;
 
-        #[cfg(feature = "AppKit_NSUserInterfaceCompression")]
+        #[cfg(feature = "NSUserInterfaceCompression")]
         #[method_id(@__retain_semantics Other activeCompressionOptions)]
         pub unsafe fn activeCompressionOptions(&self) -> Id<NSUserInterfaceCompressionOptions>;
     }
@@ -344,11 +324,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSControl`
-    #[cfg(all(
-        feature = "AppKit_NSControl",
-        feature = "AppKit_NSResponder",
-        feature = "AppKit_NSView"
-    ))]
+    #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSSegmentedControl {
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Id<Self>;
@@ -360,11 +336,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSResponder`
-    #[cfg(all(
-        feature = "AppKit_NSControl",
-        feature = "AppKit_NSResponder",
-        feature = "AppKit_NSView"
-    ))]
+    #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSSegmentedControl {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -373,11 +345,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(all(
-        feature = "AppKit_NSControl",
-        feature = "AppKit_NSResponder",
-        feature = "AppKit_NSView"
-    ))]
+    #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSSegmentedControl {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
@@ -386,11 +354,7 @@ extern_methods!(
 
 extern_methods!(
     /// NSSegmentedControlConvenience
-    #[cfg(all(
-        feature = "AppKit_NSControl",
-        feature = "AppKit_NSResponder",
-        feature = "AppKit_NSView"
-    ))]
+    #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSSegmentedControl {
         #[method_id(@__retain_semantics Other segmentedControlWithLabels:trackingMode:target:action:)]
         pub unsafe fn segmentedControlWithLabels_trackingMode_target_action(
@@ -401,7 +365,7 @@ extern_methods!(
             mtm: MainThreadMarker,
         ) -> Id<Self>;
 
-        #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(feature = "NSImage")]
         #[method_id(@__retain_semantics Other segmentedControlWithImages:trackingMode:target:action:)]
         pub unsafe fn segmentedControlWithImages_trackingMode_target_action(
             images: &NSArray<NSImage>,

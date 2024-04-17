@@ -113,11 +113,11 @@ unsafe impl NSObjectProtocol for MTLRenderPassAttachmentDescriptor {}
 
 extern_methods!(
     unsafe impl MTLRenderPassAttachmentDescriptor {
-        #[cfg(all(feature = "Metal_MTLResource", feature = "Metal_MTLTexture"))]
+        #[cfg(all(feature = "MTLResource", feature = "MTLTexture"))]
         #[method_id(@__retain_semantics Other texture)]
         pub fn texture(&self) -> Option<Id<ProtocolObject<dyn MTLTexture>>>;
 
-        #[cfg(all(feature = "Metal_MTLResource", feature = "Metal_MTLTexture"))]
+        #[cfg(all(feature = "MTLResource", feature = "MTLTexture"))]
         #[method(setTexture:)]
         pub fn setTexture(&self, texture: Option<&ProtocolObject<dyn MTLTexture>>);
 
@@ -139,11 +139,11 @@ extern_methods!(
         #[method(setDepthPlane:)]
         pub fn setDepthPlane(&self, depth_plane: NSUInteger);
 
-        #[cfg(all(feature = "Metal_MTLResource", feature = "Metal_MTLTexture"))]
+        #[cfg(all(feature = "MTLResource", feature = "MTLTexture"))]
         #[method_id(@__retain_semantics Other resolveTexture)]
         pub fn resolveTexture(&self) -> Option<Id<ProtocolObject<dyn MTLTexture>>>;
 
-        #[cfg(all(feature = "Metal_MTLResource", feature = "Metal_MTLTexture"))]
+        #[cfg(all(feature = "MTLResource", feature = "MTLTexture"))]
         #[method(setResolveTexture:)]
         pub fn setResolveTexture(&self, resolve_texture: Option<&ProtocolObject<dyn MTLTexture>>);
 
@@ -422,11 +422,11 @@ unsafe impl NSObjectProtocol for MTLRenderPassSampleBufferAttachmentDescriptor {
 
 extern_methods!(
     unsafe impl MTLRenderPassSampleBufferAttachmentDescriptor {
-        #[cfg(feature = "Metal_MTLCounters")]
+        #[cfg(feature = "MTLCounters")]
         #[method_id(@__retain_semantics Other sampleBuffer)]
         pub fn sampleBuffer(&self) -> Option<Id<ProtocolObject<dyn MTLCounterSampleBuffer>>>;
 
-        #[cfg(feature = "Metal_MTLCounters")]
+        #[cfg(feature = "MTLCounters")]
         #[method(setSampleBuffer:)]
         pub fn setSampleBuffer(
             &self,
@@ -553,11 +553,11 @@ extern_methods!(
             stencil_attachment: Option<&MTLRenderPassStencilAttachmentDescriptor>,
         );
 
-        #[cfg(all(feature = "Metal_MTLBuffer", feature = "Metal_MTLResource"))]
+        #[cfg(all(feature = "MTLBuffer", feature = "MTLResource"))]
         #[method_id(@__retain_semantics Other visibilityResultBuffer)]
         pub fn visibilityResultBuffer(&self) -> Option<Id<ProtocolObject<dyn MTLBuffer>>>;
 
-        #[cfg(all(feature = "Metal_MTLBuffer", feature = "Metal_MTLResource"))]
+        #[cfg(all(feature = "MTLBuffer", feature = "MTLResource"))]
         #[method(setVisibilityResultBuffer:)]
         pub fn setVisibilityResultBuffer(
             &self,
@@ -612,7 +612,7 @@ extern_methods!(
         #[method(setRenderTargetHeight:)]
         pub fn setRenderTargetHeight(&self, render_target_height: NSUInteger);
 
-        #[cfg(feature = "Metal_MTLTypes")]
+        #[cfg(feature = "MTLTypes")]
         #[method(setSamplePositions:count:)]
         pub unsafe fn setSamplePositions_count(
             &self,
@@ -620,7 +620,7 @@ extern_methods!(
             count: NSUInteger,
         );
 
-        #[cfg(feature = "Metal_MTLTypes")]
+        #[cfg(feature = "MTLTypes")]
         #[method(getSamplePositions:count:)]
         pub unsafe fn getSamplePositions_count(
             &self,
@@ -628,13 +628,13 @@ extern_methods!(
             count: NSUInteger,
         ) -> NSUInteger;
 
-        #[cfg(feature = "Metal_MTLRasterizationRate")]
+        #[cfg(feature = "MTLRasterizationRate")]
         #[method_id(@__retain_semantics Other rasterizationRateMap)]
         pub fn rasterizationRateMap(
             &self,
         ) -> Option<Id<ProtocolObject<dyn MTLRasterizationRateMap>>>;
 
-        #[cfg(feature = "Metal_MTLRasterizationRate")]
+        #[cfg(feature = "MTLRasterizationRate")]
         #[method(setRasterizationRateMap:)]
         pub fn setRasterizationRateMap(
             &self,

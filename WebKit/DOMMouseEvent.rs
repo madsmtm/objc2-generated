@@ -8,19 +8,19 @@ use crate::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(
-        feature = "WebKit_DOMEvent",
-        feature = "WebKit_DOMObject",
-        feature = "WebKit_DOMUIEvent",
-        feature = "WebKit_WebScriptObject"
+        feature = "DOMEvent",
+        feature = "DOMObject",
+        feature = "DOMUIEvent",
+        feature = "WebScriptObject"
     ))]
     #[deprecated]
     pub struct DOMMouseEvent;
 
     #[cfg(all(
-        feature = "WebKit_DOMEvent",
-        feature = "WebKit_DOMObject",
-        feature = "WebKit_DOMUIEvent",
-        feature = "WebKit_WebScriptObject"
+        feature = "DOMEvent",
+        feature = "DOMObject",
+        feature = "DOMUIEvent",
+        feature = "WebScriptObject"
     ))]
     unsafe impl ClassType for DOMMouseEvent {
         #[inherits(DOMEvent, DOMObject, WebScriptObject, NSObject)]
@@ -30,27 +30,27 @@ extern_class!(
 );
 
 #[cfg(all(
-    feature = "WebKit_DOMEvent",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_DOMUIEvent",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMEvent",
+    feature = "DOMObject",
+    feature = "DOMUIEvent",
+    feature = "WebScriptObject"
 ))]
 unsafe impl NSCopying for DOMMouseEvent {}
 
 #[cfg(all(
-    feature = "WebKit_DOMEvent",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_DOMUIEvent",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMEvent",
+    feature = "DOMObject",
+    feature = "DOMUIEvent",
+    feature = "WebScriptObject"
 ))]
 unsafe impl NSObjectProtocol for DOMMouseEvent {}
 
 extern_methods!(
     #[cfg(all(
-        feature = "WebKit_DOMEvent",
-        feature = "WebKit_DOMObject",
-        feature = "WebKit_DOMUIEvent",
-        feature = "WebKit_WebScriptObject"
+        feature = "DOMEvent",
+        feature = "DOMObject",
+        feature = "DOMUIEvent",
+        feature = "WebScriptObject"
     ))]
     unsafe impl DOMMouseEvent {
         #[deprecated]
@@ -89,7 +89,7 @@ extern_methods!(
         #[method(button)]
         pub unsafe fn button(&self) -> c_short;
 
-        #[cfg(feature = "WebKit_DOMEventTarget")]
+        #[cfg(feature = "DOMEventTarget")]
         #[deprecated]
         #[method_id(@__retain_semantics Other relatedTarget)]
         pub unsafe fn relatedTarget(&self) -> Option<Id<ProtocolObject<dyn DOMEventTarget>>>;
@@ -106,15 +106,15 @@ extern_methods!(
         #[method(y)]
         pub unsafe fn y(&self) -> c_int;
 
-        #[cfg(feature = "WebKit_DOMNode")]
+        #[cfg(feature = "DOMNode")]
         #[method_id(@__retain_semantics Other fromElement)]
         pub unsafe fn fromElement(&self) -> Option<Id<DOMNode>>;
 
-        #[cfg(feature = "WebKit_DOMNode")]
+        #[cfg(feature = "DOMNode")]
         #[method_id(@__retain_semantics Other toElement)]
         pub unsafe fn toElement(&self) -> Option<Id<DOMNode>>;
 
-        #[cfg(all(feature = "WebKit_DOMAbstractView", feature = "WebKit_DOMEventTarget"))]
+        #[cfg(all(feature = "DOMAbstractView", feature = "DOMEventTarget"))]
         #[method(initMouseEvent:canBubble:cancelable:view:detail:screenX:screenY:clientX:clientY:ctrlKey:altKey:shiftKey:metaKey:button:relatedTarget:)]
         pub unsafe fn initMouseEvent_canBubble_cancelable_view_detail_screenX_screenY_clientX_clientY_ctrlKey_altKey_shiftKey_metaKey_button_relatedTarget(
             &self,
@@ -140,10 +140,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `DOMObject`
     #[cfg(all(
-        feature = "WebKit_DOMEvent",
-        feature = "WebKit_DOMObject",
-        feature = "WebKit_DOMUIEvent",
-        feature = "WebKit_WebScriptObject"
+        feature = "DOMEvent",
+        feature = "DOMObject",
+        feature = "DOMUIEvent",
+        feature = "WebScriptObject"
     ))]
     unsafe impl DOMMouseEvent {
         #[deprecated]
@@ -155,10 +155,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(
-        feature = "WebKit_DOMEvent",
-        feature = "WebKit_DOMObject",
-        feature = "WebKit_DOMUIEvent",
-        feature = "WebKit_WebScriptObject"
+        feature = "DOMEvent",
+        feature = "DOMObject",
+        feature = "DOMUIEvent",
+        feature = "WebScriptObject"
     ))]
     unsafe impl DOMMouseEvent {
         #[method_id(@__retain_semantics New new)]
@@ -169,13 +169,13 @@ extern_methods!(
 extern_methods!(
     /// DOMMouseEventDeprecated
     #[cfg(all(
-        feature = "WebKit_DOMEvent",
-        feature = "WebKit_DOMObject",
-        feature = "WebKit_DOMUIEvent",
-        feature = "WebKit_WebScriptObject"
+        feature = "DOMEvent",
+        feature = "DOMObject",
+        feature = "DOMUIEvent",
+        feature = "WebScriptObject"
     ))]
     unsafe impl DOMMouseEvent {
-        #[cfg(all(feature = "WebKit_DOMAbstractView", feature = "WebKit_DOMEventTarget"))]
+        #[cfg(all(feature = "DOMAbstractView", feature = "DOMEventTarget"))]
         #[deprecated]
         #[method(initMouseEvent:::::::::::::::)]
         pub unsafe fn initMouseEvent(

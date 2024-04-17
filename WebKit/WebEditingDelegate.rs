@@ -36,10 +36,10 @@ extern_protocol!(
     #[deprecated]
     pub unsafe trait WebEditingDelegate: NSObjectProtocol {
         #[cfg(all(
-            feature = "WebKit_DOMObject",
-            feature = "WebKit_DOMRange",
-            feature = "WebKit_WebScriptObject",
-            feature = "WebKit_WebView",
+            feature = "DOMObject",
+            feature = "DOMRange",
+            feature = "WebScriptObject",
+            feature = "WebView",
             feature = "objc2-app-kit"
         ))]
         #[deprecated]
@@ -52,10 +52,10 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(all(
-            feature = "WebKit_DOMObject",
-            feature = "WebKit_DOMRange",
-            feature = "WebKit_WebScriptObject",
-            feature = "WebKit_WebView",
+            feature = "DOMObject",
+            feature = "DOMRange",
+            feature = "WebScriptObject",
+            feature = "WebView",
             feature = "objc2-app-kit"
         ))]
         #[deprecated]
@@ -68,11 +68,11 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(all(
-            feature = "WebKit_DOMNode",
-            feature = "WebKit_DOMObject",
-            feature = "WebKit_DOMRange",
-            feature = "WebKit_WebScriptObject",
-            feature = "WebKit_WebView",
+            feature = "DOMNode",
+            feature = "DOMObject",
+            feature = "DOMRange",
+            feature = "WebScriptObject",
+            feature = "WebView",
             feature = "objc2-app-kit"
         ))]
         #[deprecated]
@@ -87,10 +87,10 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(all(
-            feature = "WebKit_DOMObject",
-            feature = "WebKit_DOMRange",
-            feature = "WebKit_WebScriptObject",
-            feature = "WebKit_WebView",
+            feature = "DOMObject",
+            feature = "DOMRange",
+            feature = "WebScriptObject",
+            feature = "WebView",
             feature = "objc2-app-kit"
         ))]
         #[deprecated]
@@ -105,10 +105,10 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(all(
-            feature = "WebKit_DOMObject",
-            feature = "WebKit_DOMRange",
-            feature = "WebKit_WebScriptObject",
-            feature = "WebKit_WebView",
+            feature = "DOMObject",
+            feature = "DOMRange",
+            feature = "WebScriptObject",
+            feature = "WebView",
             feature = "objc2-app-kit"
         ))]
         #[deprecated]
@@ -121,10 +121,10 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(all(
-            feature = "WebKit_DOMObject",
-            feature = "WebKit_DOMRange",
-            feature = "WebKit_WebScriptObject",
-            feature = "WebKit_WebView",
+            feature = "DOMObject",
+            feature = "DOMRange",
+            feature = "WebScriptObject",
+            feature = "WebView",
             feature = "objc2-app-kit"
         ))]
         #[deprecated]
@@ -140,11 +140,11 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(all(
-            feature = "WebKit_DOMCSSStyleDeclaration",
-            feature = "WebKit_DOMObject",
-            feature = "WebKit_DOMRange",
-            feature = "WebKit_WebScriptObject",
-            feature = "WebKit_WebView",
+            feature = "DOMCSSStyleDeclaration",
+            feature = "DOMObject",
+            feature = "DOMRange",
+            feature = "WebScriptObject",
+            feature = "WebView",
             feature = "objc2-app-kit"
         ))]
         #[deprecated]
@@ -158,10 +158,10 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(all(
-            feature = "WebKit_DOMCSSStyleDeclaration",
-            feature = "WebKit_DOMObject",
-            feature = "WebKit_WebScriptObject",
-            feature = "WebKit_WebView",
+            feature = "DOMCSSStyleDeclaration",
+            feature = "DOMObject",
+            feature = "WebScriptObject",
+            feature = "WebView",
             feature = "objc2-app-kit"
         ))]
         #[deprecated]
@@ -174,7 +174,7 @@ extern_protocol!(
             proposed_style: Option<&DOMCSSStyleDeclaration>,
         ) -> bool;
 
-        #[cfg(all(feature = "WebKit_WebView", feature = "objc2-app-kit"))]
+        #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
         #[deprecated]
         #[optional]
         #[method(webView:doCommandBySelector:)]
@@ -209,7 +209,7 @@ extern_protocol!(
         #[method(webViewDidChangeSelection:)]
         unsafe fn webViewDidChangeSelection(&self, notification: Option<&NSNotification>);
 
-        #[cfg(all(feature = "WebKit_WebView", feature = "objc2-app-kit"))]
+        #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
         #[deprecated]
         #[optional]
         #[method_id(@__retain_semantics Other undoManagerForWebView:)]

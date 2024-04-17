@@ -6,21 +6,21 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSProxy")]
+    #[cfg(feature = "NSProxy")]
     pub struct NSProtocolChecker;
 
-    #[cfg(feature = "Foundation_NSProxy")]
+    #[cfg(feature = "NSProxy")]
     unsafe impl ClassType for NSProtocolChecker {
         type Super = NSProxy;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Foundation_NSProxy")]
+#[cfg(feature = "NSProxy")]
 unsafe impl NSObjectProtocol for NSProtocolChecker {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSProxy")]
+    #[cfg(feature = "NSProxy")]
     unsafe impl NSProtocolChecker {
         #[method_id(@__retain_semantics Other protocol)]
         pub unsafe fn protocol(&self) -> Id<AnyProtocol>;
@@ -32,7 +32,7 @@ extern_methods!(
 
 extern_methods!(
     /// NSProtocolCheckerCreation
-    #[cfg(feature = "Foundation_NSProxy")]
+    #[cfg(feature = "NSProxy")]
     unsafe impl NSProtocolChecker {
         #[method_id(@__retain_semantics Other protocolCheckerWithTarget:protocol:)]
         pub unsafe fn protocolCheckerWithTarget_protocol(

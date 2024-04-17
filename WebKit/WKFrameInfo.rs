@@ -29,11 +29,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Other request)]
         pub unsafe fn request(&self) -> Id<NSURLRequest>;
 
-        #[cfg(feature = "WebKit_WKSecurityOrigin")]
+        #[cfg(feature = "WKSecurityOrigin")]
         #[method_id(@__retain_semantics Other securityOrigin)]
         pub unsafe fn securityOrigin(&self) -> Id<WKSecurityOrigin>;
 
-        #[cfg(all(feature = "WebKit_WKWebView", feature = "objc2-app-kit"))]
+        #[cfg(all(feature = "WKWebView", feature = "objc2-app-kit"))]
         #[method_id(@__retain_semantics Other webView)]
         pub unsafe fn webView(&self, mtm: MainThreadMarker) -> Option<Id<WKWebView>>;
     }

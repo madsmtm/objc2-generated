@@ -24,11 +24,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
-        #[cfg(feature = "CallKit_CXCallObserver")]
+        #[cfg(feature = "CXCallObserver")]
         #[method_id(@__retain_semantics Other callObserver)]
         pub unsafe fn callObserver(&self) -> Id<CXCallObserver>;
 
-        #[cfg(all(feature = "CallKit_CXTransaction", feature = "block2"))]
+        #[cfg(all(feature = "CXTransaction", feature = "block2"))]
         #[method(requestTransaction:completion:)]
         pub unsafe fn requestTransaction_completion(
             &self,
@@ -36,7 +36,7 @@ extern_methods!(
             completion: &Block<dyn Fn(*mut NSError)>,
         );
 
-        #[cfg(all(feature = "CallKit_CXAction", feature = "block2"))]
+        #[cfg(all(feature = "CXAction", feature = "block2"))]
         #[method(requestTransactionWithActions:completion:)]
         pub unsafe fn requestTransactionWithActions_completion(
             &self,
@@ -44,7 +44,7 @@ extern_methods!(
             completion: &Block<dyn Fn(*mut NSError)>,
         );
 
-        #[cfg(all(feature = "CallKit_CXAction", feature = "block2"))]
+        #[cfg(all(feature = "CXAction", feature = "block2"))]
         #[method(requestTransactionWithAction:completion:)]
         pub unsafe fn requestTransactionWithAction_completion(
             &self,

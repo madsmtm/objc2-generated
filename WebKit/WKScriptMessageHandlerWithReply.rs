@@ -10,8 +10,8 @@ use crate::*;
 extern_protocol!(
     pub unsafe trait WKScriptMessageHandlerWithReply: NSObjectProtocol {
         #[cfg(all(
-            feature = "WebKit_WKScriptMessage",
-            feature = "WebKit_WKUserContentController",
+            feature = "WKScriptMessage",
+            feature = "WKUserContentController",
             feature = "block2"
         ))]
         #[method(userContentController:didReceiveScriptMessage:replyHandler:)]

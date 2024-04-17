@@ -6,20 +6,17 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    #[cfg(feature = "GameController_GCPhysicalInputElement")]
+    #[cfg(feature = "GCPhysicalInputElement")]
     pub unsafe trait GCButtonElement: GCPhysicalInputElement {
-        #[cfg(all(
-            feature = "GameController_GCLinearInput",
-            feature = "GameController_GCPressedStateInput"
-        ))]
+        #[cfg(all(feature = "GCLinearInput", feature = "GCPressedStateInput"))]
         #[method_id(@__retain_semantics Other pressedInput)]
         unsafe fn pressedInput(&self) -> Id<TodoProtocols>;
 
-        #[cfg(feature = "GameController_GCTouchedStateInput")]
+        #[cfg(feature = "GCTouchedStateInput")]
         #[method_id(@__retain_semantics Other touchedInput)]
         unsafe fn touchedInput(&self) -> Option<Id<ProtocolObject<dyn GCTouchedStateInput>>>;
     }
 
-    #[cfg(feature = "GameController_GCPhysicalInputElement")]
+    #[cfg(feature = "GCPhysicalInputElement")]
     unsafe impl ProtocolType for dyn GCButtonElement {}
 );

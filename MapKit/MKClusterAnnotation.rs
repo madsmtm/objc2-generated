@@ -15,7 +15,7 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "MapKit_MKAnnotation")]
+#[cfg(feature = "MKAnnotation")]
 unsafe impl MKAnnotation for MKClusterAnnotation {}
 
 unsafe impl NSObjectProtocol for MKClusterAnnotation {}
@@ -34,14 +34,14 @@ extern_methods!(
         #[method(setSubtitle:)]
         pub unsafe fn setSubtitle(&self, subtitle: Option<&NSString>);
 
-        #[cfg(feature = "MapKit_MKAnnotation")]
+        #[cfg(feature = "MKAnnotation")]
         #[method_id(@__retain_semantics Other memberAnnotations)]
         pub unsafe fn memberAnnotations(&self) -> Id<NSArray<ProtocolObject<dyn MKAnnotation>>>;
 
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
-        #[cfg(feature = "MapKit_MKAnnotation")]
+        #[cfg(feature = "MKAnnotation")]
         #[method_id(@__retain_semantics Init initWithMemberAnnotations:)]
         pub unsafe fn initWithMemberAnnotations(
             this: Allocated<Self>,

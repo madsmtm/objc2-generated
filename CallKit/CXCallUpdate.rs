@@ -21,11 +21,11 @@ unsafe impl NSObjectProtocol for CXCallUpdate {}
 
 extern_methods!(
     unsafe impl CXCallUpdate {
-        #[cfg(feature = "CallKit_CXHandle")]
+        #[cfg(feature = "CXHandle")]
         #[method_id(@__retain_semantics Other remoteHandle)]
         pub unsafe fn remoteHandle(&self) -> Option<Id<CXHandle>>;
 
-        #[cfg(feature = "CallKit_CXHandle")]
+        #[cfg(feature = "CXHandle")]
         #[method(setRemoteHandle:)]
         pub unsafe fn setRemoteHandle(&self, remote_handle: Option<&CXHandle>);
 

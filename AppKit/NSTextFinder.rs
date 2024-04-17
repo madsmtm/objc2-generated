@@ -231,7 +231,7 @@ extern_protocol!(
         #[method(didReplaceCharacters)]
         unsafe fn didReplaceCharacters(&self);
 
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[optional]
         #[method_id(@__retain_semantics Other contentViewAtIndex:effectiveCharacterRange:)]
         unsafe fn contentViewAtIndex_effectiveCharacterRange(
@@ -249,7 +249,7 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other visibleCharacterRanges)]
         unsafe fn visibleCharacterRanges(&self) -> Id<NSArray<NSValue>>;
 
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[optional]
         #[method(drawCharactersInRange:forContentView:)]
         unsafe fn drawCharactersInRange_forContentView(&self, range: NSRange, view: &NSView);
@@ -260,11 +260,11 @@ extern_protocol!(
 
 extern_protocol!(
     pub unsafe trait NSTextFinderBarContainer: NSObjectProtocol {
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[method_id(@__retain_semantics Other findBarView)]
         unsafe fn findBarView(&self, mtm: MainThreadMarker) -> Option<Id<NSView>>;
 
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[method(setFindBarView:)]
         unsafe fn setFindBarView(&self, find_bar_view: Option<&NSView>);
 
@@ -277,7 +277,7 @@ extern_protocol!(
         #[method(findBarViewDidChangeHeight)]
         unsafe fn findBarViewDidChangeHeight(&self);
 
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[optional]
         #[method_id(@__retain_semantics Other contentView)]
         unsafe fn contentView(&self, mtm: MainThreadMarker) -> Option<Id<NSView>>;

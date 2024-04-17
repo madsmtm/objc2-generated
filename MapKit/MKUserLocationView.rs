@@ -9,10 +9,10 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(feature = "MapKit_MKAnnotationView", feature = "objc2-app-kit"))]
+    #[cfg(all(feature = "MKAnnotationView", feature = "objc2-app-kit"))]
     pub struct MKUserLocationView;
 
-    #[cfg(all(feature = "MapKit_MKAnnotationView", feature = "objc2-app-kit"))]
+    #[cfg(all(feature = "MKAnnotationView", feature = "objc2-app-kit"))]
     unsafe impl ClassType for MKUserLocationView {
         #[inherits(NSView, NSResponder, NSObject)]
         type Super = MKAnnotationView;
@@ -20,40 +20,40 @@ extern_class!(
     }
 );
 
-#[cfg(all(feature = "MapKit_MKAnnotationView", feature = "objc2-app-kit"))]
+#[cfg(all(feature = "MKAnnotationView", feature = "objc2-app-kit"))]
 unsafe impl NSAccessibility for MKUserLocationView {}
 
-#[cfg(all(feature = "MapKit_MKAnnotationView", feature = "objc2-app-kit"))]
+#[cfg(all(feature = "MKAnnotationView", feature = "objc2-app-kit"))]
 unsafe impl NSAccessibilityElementProtocol for MKUserLocationView {}
 
-#[cfg(all(feature = "MapKit_MKAnnotationView", feature = "objc2-app-kit"))]
+#[cfg(all(feature = "MKAnnotationView", feature = "objc2-app-kit"))]
 unsafe impl NSAnimatablePropertyContainer for MKUserLocationView {}
 
-#[cfg(all(feature = "MapKit_MKAnnotationView", feature = "objc2-app-kit"))]
+#[cfg(all(feature = "MKAnnotationView", feature = "objc2-app-kit"))]
 unsafe impl NSAppearanceCustomization for MKUserLocationView {}
 
-#[cfg(all(feature = "MapKit_MKAnnotationView", feature = "objc2-app-kit"))]
+#[cfg(all(feature = "MKAnnotationView", feature = "objc2-app-kit"))]
 unsafe impl NSCoding for MKUserLocationView {}
 
-#[cfg(all(feature = "MapKit_MKAnnotationView", feature = "objc2-app-kit"))]
+#[cfg(all(feature = "MKAnnotationView", feature = "objc2-app-kit"))]
 unsafe impl NSDraggingDestination for MKUserLocationView {}
 
-#[cfg(all(feature = "MapKit_MKAnnotationView", feature = "objc2-app-kit"))]
+#[cfg(all(feature = "MKAnnotationView", feature = "objc2-app-kit"))]
 unsafe impl NSObjectProtocol for MKUserLocationView {}
 
-#[cfg(all(feature = "MapKit_MKAnnotationView", feature = "objc2-app-kit"))]
+#[cfg(all(feature = "MKAnnotationView", feature = "objc2-app-kit"))]
 unsafe impl NSUserInterfaceItemIdentification for MKUserLocationView {}
 
 extern_methods!(
-    #[cfg(all(feature = "MapKit_MKAnnotationView", feature = "objc2-app-kit"))]
+    #[cfg(all(feature = "MKAnnotationView", feature = "objc2-app-kit"))]
     unsafe impl MKUserLocationView {}
 );
 
 extern_methods!(
     /// Methods declared on superclass `MKAnnotationView`
-    #[cfg(all(feature = "MapKit_MKAnnotationView", feature = "objc2-app-kit"))]
+    #[cfg(all(feature = "MKAnnotationView", feature = "objc2-app-kit"))]
     unsafe impl MKUserLocationView {
-        #[cfg(feature = "MapKit_MKAnnotation")]
+        #[cfg(feature = "MKAnnotation")]
         #[method_id(@__retain_semantics Init initWithAnnotation:reuseIdentifier:)]
         pub unsafe fn initWithAnnotation_reuseIdentifier(
             this: Allocated<Self>,
@@ -69,7 +69,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSView`
-    #[cfg(all(feature = "MapKit_MKAnnotationView", feature = "objc2-app-kit"))]
+    #[cfg(all(feature = "MKAnnotationView", feature = "objc2-app-kit"))]
     unsafe impl MKUserLocationView {
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Id<Self>;
@@ -78,7 +78,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSResponder`
-    #[cfg(all(feature = "MapKit_MKAnnotationView", feature = "objc2-app-kit"))]
+    #[cfg(all(feature = "MKAnnotationView", feature = "objc2-app-kit"))]
     unsafe impl MKUserLocationView {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -87,7 +87,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MapKit_MKAnnotationView", feature = "objc2-app-kit"))]
+    #[cfg(all(feature = "MKAnnotationView", feature = "objc2-app-kit"))]
     unsafe impl MKUserLocationView {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;

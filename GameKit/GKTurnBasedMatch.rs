@@ -108,7 +108,7 @@ unsafe impl NSObjectProtocol for GKTurnBasedParticipant {}
 
 extern_methods!(
     unsafe impl GKTurnBasedParticipant {
-        #[cfg(all(feature = "GameKit_GKBasePlayer", feature = "GameKit_GKPlayer"))]
+        #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
         #[method_id(@__retain_semantics Other player)]
         pub unsafe fn player(&self) -> Option<Id<GKPlayer>>;
 
@@ -151,7 +151,7 @@ extern_methods!(
 
 extern_protocol!(
     pub unsafe trait GKTurnBasedEventListener {
-        #[cfg(all(feature = "GameKit_GKBasePlayer", feature = "GameKit_GKPlayer"))]
+        #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
         #[optional]
         #[method(player:didRequestMatchWithOtherPlayers:)]
         unsafe fn player_didRequestMatchWithOtherPlayers(
@@ -160,7 +160,7 @@ extern_protocol!(
             players_to_invite: &NSArray<GKPlayer>,
         );
 
-        #[cfg(all(feature = "GameKit_GKBasePlayer", feature = "GameKit_GKPlayer"))]
+        #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
         #[optional]
         #[method(player:receivedTurnEventForMatch:didBecomeActive:)]
         unsafe fn player_receivedTurnEventForMatch_didBecomeActive(
@@ -170,12 +170,12 @@ extern_protocol!(
             did_become_active: bool,
         );
 
-        #[cfg(all(feature = "GameKit_GKBasePlayer", feature = "GameKit_GKPlayer"))]
+        #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
         #[optional]
         #[method(player:matchEnded:)]
         unsafe fn player_matchEnded(&self, player: &GKPlayer, r#match: &GKTurnBasedMatch);
 
-        #[cfg(all(feature = "GameKit_GKBasePlayer", feature = "GameKit_GKPlayer"))]
+        #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
         #[optional]
         #[method(player:receivedExchangeRequest:forMatch:)]
         unsafe fn player_receivedExchangeRequest_forMatch(
@@ -185,7 +185,7 @@ extern_protocol!(
             r#match: &GKTurnBasedMatch,
         );
 
-        #[cfg(all(feature = "GameKit_GKBasePlayer", feature = "GameKit_GKPlayer"))]
+        #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
         #[optional]
         #[method(player:receivedExchangeCancellation:forMatch:)]
         unsafe fn player_receivedExchangeCancellation_forMatch(
@@ -195,7 +195,7 @@ extern_protocol!(
             r#match: &GKTurnBasedMatch,
         );
 
-        #[cfg(all(feature = "GameKit_GKBasePlayer", feature = "GameKit_GKPlayer"))]
+        #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
         #[optional]
         #[method(player:receivedExchangeReplies:forCompletedExchange:forMatch:)]
         unsafe fn player_receivedExchangeReplies_forCompletedExchange_forMatch(
@@ -206,12 +206,12 @@ extern_protocol!(
             r#match: &GKTurnBasedMatch,
         );
 
-        #[cfg(all(feature = "GameKit_GKBasePlayer", feature = "GameKit_GKPlayer"))]
+        #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
         #[optional]
         #[method(player:wantsToQuitMatch:)]
         unsafe fn player_wantsToQuitMatch(&self, player: &GKPlayer, r#match: &GKTurnBasedMatch);
 
-        #[cfg(all(feature = "GameKit_GKBasePlayer", feature = "GameKit_GKPlayer"))]
+        #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
         #[deprecated]
         #[optional]
         #[method(player:didRequestMatchWithPlayers:)]
@@ -296,7 +296,7 @@ extern_methods!(
         #[method(exchangeMaxInitiatedExchangesPerPlayer)]
         pub unsafe fn exchangeMaxInitiatedExchangesPerPlayer(&self) -> NSUInteger;
 
-        #[cfg(all(feature = "GameKit_GKMatchmaker", feature = "block2"))]
+        #[cfg(all(feature = "GKMatchmaker", feature = "block2"))]
         #[method(findMatchForRequest:withCompletionHandler:)]
         pub unsafe fn findMatchForRequest_withCompletionHandler(
             request: &GKMatchRequest,
@@ -390,11 +390,7 @@ extern_methods!(
             completion_handler: Option<&Block<dyn Fn(*mut NSError)>>,
         );
 
-        #[cfg(all(
-            feature = "GameKit_GKAchievement",
-            feature = "GameKit_GKScore",
-            feature = "block2"
-        ))]
+        #[cfg(all(feature = "GKAchievement", feature = "GKScore", feature = "block2"))]
         #[deprecated]
         #[method(endMatchInTurnWithMatchData:scores:achievements:completionHandler:)]
         pub unsafe fn endMatchInTurnWithMatchData_scores_achievements_completionHandler(
@@ -405,7 +401,7 @@ extern_methods!(
             completion_handler: Option<&Block<dyn Fn(*mut NSError)>>,
         );
 
-        #[cfg(all(feature = "GameKit_GKLeaderboardScore", feature = "block2"))]
+        #[cfg(all(feature = "GKLeaderboardScore", feature = "block2"))]
         #[method(endMatchInTurnWithMatchData:leaderboardScores:achievements:completionHandler:)]
         pub unsafe fn endMatchInTurnWithMatchData_leaderboardScores_achievements_completionHandler(
             &self,

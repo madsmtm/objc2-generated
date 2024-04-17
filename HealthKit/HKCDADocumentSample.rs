@@ -8,16 +8,16 @@ use crate::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(
-        feature = "HealthKit_HKDocumentSample",
-        feature = "HealthKit_HKObject",
-        feature = "HealthKit_HKSample"
+        feature = "HKDocumentSample",
+        feature = "HKObject",
+        feature = "HKSample"
     ))]
     pub struct HKCDADocumentSample;
 
     #[cfg(all(
-        feature = "HealthKit_HKDocumentSample",
-        feature = "HealthKit_HKObject",
-        feature = "HealthKit_HKSample"
+        feature = "HKDocumentSample",
+        feature = "HKObject",
+        feature = "HKSample"
     ))]
     unsafe impl ClassType for HKCDADocumentSample {
         #[inherits(HKSample, HKObject, NSObject)]
@@ -27,31 +27,31 @@ extern_class!(
 );
 
 #[cfg(all(
-    feature = "HealthKit_HKDocumentSample",
-    feature = "HealthKit_HKObject",
-    feature = "HealthKit_HKSample"
+    feature = "HKDocumentSample",
+    feature = "HKObject",
+    feature = "HKSample"
 ))]
 unsafe impl NSCoding for HKCDADocumentSample {}
 
 #[cfg(all(
-    feature = "HealthKit_HKDocumentSample",
-    feature = "HealthKit_HKObject",
-    feature = "HealthKit_HKSample"
+    feature = "HKDocumentSample",
+    feature = "HKObject",
+    feature = "HKSample"
 ))]
 unsafe impl NSObjectProtocol for HKCDADocumentSample {}
 
 #[cfg(all(
-    feature = "HealthKit_HKDocumentSample",
-    feature = "HealthKit_HKObject",
-    feature = "HealthKit_HKSample"
+    feature = "HKDocumentSample",
+    feature = "HKObject",
+    feature = "HKSample"
 ))]
 unsafe impl NSSecureCoding for HKCDADocumentSample {}
 
 extern_methods!(
     #[cfg(all(
-        feature = "HealthKit_HKDocumentSample",
-        feature = "HealthKit_HKObject",
-        feature = "HealthKit_HKSample"
+        feature = "HKDocumentSample",
+        feature = "HKObject",
+        feature = "HKSample"
     ))]
     unsafe impl HKCDADocumentSample {
         #[method_id(@__retain_semantics Other document)]
@@ -70,9 +70,9 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `HKObject`
     #[cfg(all(
-        feature = "HealthKit_HKDocumentSample",
-        feature = "HealthKit_HKObject",
-        feature = "HealthKit_HKSample"
+        feature = "HKDocumentSample",
+        feature = "HKObject",
+        feature = "HKSample"
     ))]
     unsafe impl HKCDADocumentSample {
         #[method_id(@__retain_semantics Init init)]
@@ -83,9 +83,9 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(
-        feature = "HealthKit_HKDocumentSample",
-        feature = "HealthKit_HKObject",
-        feature = "HealthKit_HKSample"
+        feature = "HKDocumentSample",
+        feature = "HKObject",
+        feature = "HKSample"
     ))]
     unsafe impl HKCDADocumentSample {
         #[method_id(@__retain_semantics New new)]

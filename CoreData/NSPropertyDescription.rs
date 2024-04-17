@@ -23,7 +23,7 @@ unsafe impl NSObjectProtocol for NSPropertyDescription {}
 
 extern_methods!(
     unsafe impl NSPropertyDescription {
-        #[cfg(feature = "CoreData_NSEntityDescription")]
+        #[cfg(feature = "NSEntityDescription")]
         #[method_id(@__retain_semantics Other entity)]
         pub unsafe fn entity(&self) -> Id<NSEntityDescription>;
 

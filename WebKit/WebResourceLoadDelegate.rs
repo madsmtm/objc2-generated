@@ -11,8 +11,8 @@ extern_protocol!(
     #[deprecated]
     pub unsafe trait WebResourceLoadDelegate: NSObjectProtocol {
         #[cfg(all(
-            feature = "WebKit_WebDataSource",
-            feature = "WebKit_WebView",
+            feature = "WebDataSource",
+            feature = "WebView",
             feature = "objc2-app-kit"
         ))]
         #[deprecated]
@@ -26,8 +26,8 @@ extern_protocol!(
         ) -> Option<Id<AnyObject>>;
 
         #[cfg(all(
-            feature = "WebKit_WebDataSource",
-            feature = "WebKit_WebView",
+            feature = "WebDataSource",
+            feature = "WebView",
             feature = "objc2-app-kit"
         ))]
         #[deprecated]
@@ -43,8 +43,8 @@ extern_protocol!(
         ) -> Option<Id<NSURLRequest>>;
 
         #[cfg(all(
-            feature = "WebKit_WebDataSource",
-            feature = "WebKit_WebView",
+            feature = "WebDataSource",
+            feature = "WebView",
             feature = "objc2-app-kit"
         ))]
         #[deprecated]
@@ -59,8 +59,8 @@ extern_protocol!(
         );
 
         #[cfg(all(
-            feature = "WebKit_WebDataSource",
-            feature = "WebKit_WebView",
+            feature = "WebDataSource",
+            feature = "WebView",
             feature = "objc2-app-kit"
         ))]
         #[deprecated]
@@ -75,8 +75,8 @@ extern_protocol!(
         );
 
         #[cfg(all(
-            feature = "WebKit_WebDataSource",
-            feature = "WebKit_WebView",
+            feature = "WebDataSource",
+            feature = "WebView",
             feature = "objc2-app-kit"
         ))]
         #[deprecated]
@@ -91,8 +91,8 @@ extern_protocol!(
         );
 
         #[cfg(all(
-            feature = "WebKit_WebDataSource",
-            feature = "WebKit_WebView",
+            feature = "WebDataSource",
+            feature = "WebView",
             feature = "objc2-app-kit"
         ))]
         #[deprecated]
@@ -107,8 +107,8 @@ extern_protocol!(
         );
 
         #[cfg(all(
-            feature = "WebKit_WebDataSource",
-            feature = "WebKit_WebView",
+            feature = "WebDataSource",
+            feature = "WebView",
             feature = "objc2-app-kit"
         ))]
         #[deprecated]
@@ -122,8 +122,8 @@ extern_protocol!(
         );
 
         #[cfg(all(
-            feature = "WebKit_WebDataSource",
-            feature = "WebKit_WebView",
+            feature = "WebDataSource",
+            feature = "WebView",
             feature = "objc2-app-kit"
         ))]
         #[deprecated]
@@ -138,8 +138,8 @@ extern_protocol!(
         );
 
         #[cfg(all(
-            feature = "WebKit_WebDataSource",
-            feature = "WebKit_WebView",
+            feature = "WebDataSource",
+            feature = "WebView",
             feature = "objc2-app-kit"
         ))]
         #[deprecated]

@@ -55,7 +55,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other sharedScheduler)]
         pub unsafe fn sharedScheduler() -> Id<BGTaskScheduler>;
 
-        #[cfg(feature = "BackgroundTasks_BGTaskRequest")]
+        #[cfg(feature = "BGTaskRequest")]
         #[method(submitTaskRequest:error:_)]
         pub unsafe fn submitTaskRequest_error(
             &self,
@@ -68,7 +68,7 @@ extern_methods!(
         #[method(cancelAllTaskRequests)]
         pub unsafe fn cancelAllTaskRequests(&self);
 
-        #[cfg(all(feature = "BackgroundTasks_BGTaskRequest", feature = "block2"))]
+        #[cfg(all(feature = "BGTaskRequest", feature = "block2"))]
         #[method(getPendingTaskRequestsWithCompletionHandler:)]
         pub unsafe fn getPendingTaskRequestsWithCompletionHandler(
             &self,

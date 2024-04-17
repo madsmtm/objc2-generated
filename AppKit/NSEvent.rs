@@ -570,14 +570,14 @@ extern_methods!(
         #[method(timestamp)]
         pub unsafe fn timestamp(&self) -> NSTimeInterval;
 
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSWindow"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
         #[method_id(@__retain_semantics Other window)]
         pub unsafe fn window(&self, mtm: MainThreadMarker) -> Option<Id<NSWindow>>;
 
         #[method(windowNumber)]
         pub unsafe fn windowNumber(&self) -> NSInteger;
 
-        #[cfg(feature = "AppKit_NSGraphicsContext")]
+        #[cfg(feature = "NSGraphicsContext")]
         #[deprecated = "This method always returns nil. If you need access to the current drawing context, use [NSGraphicsContext currentContext] inside of a draw operation."]
         #[method_id(@__retain_semantics Other context)]
         pub unsafe fn context(&self) -> Option<Id<NSGraphicsContext>>;
@@ -645,7 +645,7 @@ extern_methods!(
         #[method(userData)]
         pub unsafe fn userData(&self) -> *mut c_void;
 
-        #[cfg(feature = "AppKit_NSTrackingArea")]
+        #[cfg(feature = "NSTrackingArea")]
         #[method_id(@__retain_semantics Other trackingArea)]
         pub unsafe fn trackingArea(&self) -> Option<Id<NSTrackingArea>>;
 
@@ -730,11 +730,7 @@ extern_methods!(
         #[method(isEnteringProximity)]
         pub unsafe fn isEnteringProximity(&self) -> bool;
 
-        #[cfg(all(
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSTouch",
-            feature = "AppKit_NSView"
-        ))]
+        #[cfg(all(feature = "NSResponder", feature = "NSTouch", feature = "NSView"))]
         #[method_id(@__retain_semantics Other touchesMatchingPhase:inView:)]
         pub unsafe fn touchesMatchingPhase_inView(
             &self,
@@ -742,19 +738,15 @@ extern_methods!(
             view: Option<&NSView>,
         ) -> Id<NSSet<NSTouch>>;
 
-        #[cfg(feature = "AppKit_NSTouch")]
+        #[cfg(feature = "NSTouch")]
         #[method_id(@__retain_semantics Other allTouches)]
         pub unsafe fn allTouches(&self) -> Id<NSSet<NSTouch>>;
 
-        #[cfg(all(
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSTouch",
-            feature = "AppKit_NSView"
-        ))]
+        #[cfg(all(feature = "NSResponder", feature = "NSTouch", feature = "NSView"))]
         #[method_id(@__retain_semantics Other touchesForView:)]
         pub unsafe fn touchesForView(&self, view: &NSView) -> Id<NSSet<NSTouch>>;
 
-        #[cfg(feature = "AppKit_NSTouch")]
+        #[cfg(feature = "NSTouch")]
         #[method_id(@__retain_semantics Other coalescedTouchesForTouch:)]
         pub unsafe fn coalescedTouchesForTouch(&self, touch: &NSTouch) -> Id<NSArray<NSTouch>>;
 
@@ -795,7 +787,7 @@ extern_methods!(
         #[method(stopPeriodicEvents)]
         pub unsafe fn stopPeriodicEvents();
 
-        #[cfg(feature = "AppKit_NSGraphicsContext")]
+        #[cfg(feature = "NSGraphicsContext")]
         #[method_id(@__retain_semantics Other mouseEventWithType:location:modifierFlags:timestamp:windowNumber:context:eventNumber:clickCount:pressure:)]
         pub unsafe fn mouseEventWithType_location_modifierFlags_timestamp_windowNumber_context_eventNumber_clickCount_pressure(
             r#type: NSEventType,
@@ -809,7 +801,7 @@ extern_methods!(
             pressure: c_float,
         ) -> Option<Id<NSEvent>>;
 
-        #[cfg(feature = "AppKit_NSGraphicsContext")]
+        #[cfg(feature = "NSGraphicsContext")]
         #[method_id(@__retain_semantics Other keyEventWithType:location:modifierFlags:timestamp:windowNumber:context:characters:charactersIgnoringModifiers:isARepeat:keyCode:)]
         pub unsafe fn keyEventWithType_location_modifierFlags_timestamp_windowNumber_context_characters_charactersIgnoringModifiers_isARepeat_keyCode(
             r#type: NSEventType,
@@ -824,7 +816,7 @@ extern_methods!(
             code: c_ushort,
         ) -> Option<Id<NSEvent>>;
 
-        #[cfg(feature = "AppKit_NSGraphicsContext")]
+        #[cfg(feature = "NSGraphicsContext")]
         #[method_id(@__retain_semantics Other enterExitEventWithType:location:modifierFlags:timestamp:windowNumber:context:eventNumber:trackingNumber:userData:)]
         pub unsafe fn enterExitEventWithType_location_modifierFlags_timestamp_windowNumber_context_eventNumber_trackingNumber_userData(
             r#type: NSEventType,
@@ -838,7 +830,7 @@ extern_methods!(
             data: *mut c_void,
         ) -> Option<Id<NSEvent>>;
 
-        #[cfg(feature = "AppKit_NSGraphicsContext")]
+        #[cfg(feature = "NSGraphicsContext")]
         #[method_id(@__retain_semantics Other otherEventWithType:location:modifierFlags:timestamp:windowNumber:context:subtype:data1:data2:)]
         pub unsafe fn otherEventWithType_location_modifierFlags_timestamp_windowNumber_context_subtype_data1_data2(
             r#type: NSEventType,

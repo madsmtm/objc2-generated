@@ -5,771 +5,771 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 // NS_TYPED_EXTENSIBLE_ENUM
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(feature = "NSString")]
 pub type NSURLResourceKey = NSString;
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLFileScheme: &'static NSString;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLKeysOfUnsetValuesKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLNameKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLLocalizedNameKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLIsRegularFileKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLIsDirectoryKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLIsSymbolicLinkKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLIsVolumeKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLIsPackageKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLIsApplicationKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLApplicationIsScriptableKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLIsSystemImmutableKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLIsUserImmutableKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLIsHiddenKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLHasHiddenExtensionKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLCreationDateKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLContentAccessDateKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLContentModificationDateKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLAttributeModificationDateKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLLinkCountKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLParentDirectoryURLKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLVolumeURLKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLTypeIdentifierKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLContentTypeKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLLocalizedTypeDescriptionKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLLabelNumberKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLLabelColorKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLLocalizedLabelKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLEffectiveIconKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLCustomIconKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLFileResourceIdentifierKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLVolumeIdentifierKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLPreferredIOBlockSizeKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLIsReadableKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLIsWritableKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLIsExecutableKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLFileSecurityKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLIsExcludedFromBackupKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLTagNamesKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLPathKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLCanonicalPathKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLIsMountTriggerKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLGenerationIdentifierKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLDocumentIdentifierKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLAddedToDirectoryDateKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLQuarantinePropertiesKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLFileResourceTypeKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLFileIdentifierKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLFileContentIdentifierKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLMayShareFileContentKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLMayHaveExtendedAttributesKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLIsPurgeableKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLIsSparseKey: &'static NSURLResourceKey;
 }
 
 // NS_TYPED_ENUM
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(feature = "NSString")]
 pub type NSURLFileResourceType = NSString;
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLFileResourceTypeNamedPipe: &'static NSURLFileResourceType;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLFileResourceTypeCharacterSpecial: &'static NSURLFileResourceType;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLFileResourceTypeDirectory: &'static NSURLFileResourceType;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLFileResourceTypeBlockSpecial: &'static NSURLFileResourceType;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLFileResourceTypeRegular: &'static NSURLFileResourceType;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLFileResourceTypeSymbolicLink: &'static NSURLFileResourceType;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLFileResourceTypeSocket: &'static NSURLFileResourceType;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLFileResourceTypeUnknown: &'static NSURLFileResourceType;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLThumbnailDictionaryKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLThumbnailKey: &'static NSURLResourceKey;
 }
 
 // NS_TYPED_EXTENSIBLE_ENUM
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(feature = "NSString")]
 pub type NSURLThumbnailDictionaryItem = NSString;
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSThumbnail1024x1024SizeKey: &'static NSURLThumbnailDictionaryItem;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLFileSizeKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLFileAllocatedSizeKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLTotalFileSizeKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLTotalFileAllocatedSizeKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLIsAliasFileKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLFileProtectionKey: &'static NSURLResourceKey;
 }
 
 // NS_TYPED_ENUM
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(feature = "NSString")]
 pub type NSURLFileProtectionType = NSString;
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLFileProtectionNone: &'static NSURLFileProtectionType;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLFileProtectionComplete: &'static NSURLFileProtectionType;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLFileProtectionCompleteUnlessOpen: &'static NSURLFileProtectionType;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLFileProtectionCompleteUntilFirstUserAuthentication:
         &'static NSURLFileProtectionType;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLFileProtectionCompleteWhenUserInactive: &'static NSURLFileProtectionType;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLDirectoryEntryCountKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLVolumeLocalizedFormatDescriptionKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLVolumeTotalCapacityKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLVolumeAvailableCapacityKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLVolumeResourceCountKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLVolumeSupportsPersistentIDsKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLVolumeSupportsSymbolicLinksKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLVolumeSupportsHardLinksKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLVolumeSupportsJournalingKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLVolumeIsJournalingKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLVolumeSupportsSparseFilesKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLVolumeSupportsZeroRunsKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLVolumeSupportsCaseSensitiveNamesKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLVolumeSupportsCasePreservedNamesKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLVolumeSupportsRootDirectoryDatesKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLVolumeSupportsVolumeSizesKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLVolumeSupportsRenamingKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLVolumeSupportsAdvisoryFileLockingKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLVolumeSupportsExtendedSecurityKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLVolumeIsBrowsableKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLVolumeMaximumFileSizeKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLVolumeIsEjectableKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLVolumeIsRemovableKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLVolumeIsInternalKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLVolumeIsAutomountedKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLVolumeIsLocalKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLVolumeIsReadOnlyKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLVolumeCreationDateKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLVolumeURLForRemountingKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLVolumeUUIDStringKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLVolumeNameKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLVolumeLocalizedNameKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLVolumeIsEncryptedKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLVolumeIsRootFileSystemKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLVolumeSupportsCompressionKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLVolumeSupportsFileCloningKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLVolumeSupportsSwapRenamingKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLVolumeSupportsExclusiveRenamingKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLVolumeSupportsImmutableFilesKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLVolumeSupportsAccessPermissionsKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLVolumeSupportsFileProtectionKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLVolumeAvailableCapacityForImportantUsageKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLVolumeAvailableCapacityForOpportunisticUsageKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLVolumeTypeNameKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLVolumeSubtypeKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLVolumeMountFromLocationKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLIsUbiquitousItemKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLUbiquitousItemHasUnresolvedConflictsKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLUbiquitousItemIsDownloadedKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLUbiquitousItemIsDownloadingKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLUbiquitousItemIsUploadedKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLUbiquitousItemIsUploadingKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLUbiquitousItemPercentDownloadedKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLUbiquitousItemPercentUploadedKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLUbiquitousItemDownloadingStatusKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLUbiquitousItemDownloadingErrorKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLUbiquitousItemUploadingErrorKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLUbiquitousItemDownloadRequestedKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLUbiquitousItemContainerDisplayNameKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLUbiquitousItemIsExcludedFromSyncKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLUbiquitousItemIsSharedKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLUbiquitousSharedItemCurrentUserRoleKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLUbiquitousSharedItemCurrentUserPermissionsKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLUbiquitousSharedItemOwnerNameComponentsKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLUbiquitousSharedItemMostRecentEditorNameComponentsKey:
         &'static NSURLResourceKey;
 }
 
 // NS_TYPED_ENUM
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(feature = "NSString")]
 pub type NSURLUbiquitousItemDownloadingStatus = NSString;
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLUbiquitousItemDownloadingStatusNotDownloaded:
         &'static NSURLUbiquitousItemDownloadingStatus;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLUbiquitousItemDownloadingStatusDownloaded:
         &'static NSURLUbiquitousItemDownloadingStatus;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLUbiquitousItemDownloadingStatusCurrent:
         &'static NSURLUbiquitousItemDownloadingStatus;
 }
 
 // NS_TYPED_ENUM
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(feature = "NSString")]
 pub type NSURLUbiquitousSharedItemRole = NSString;
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLUbiquitousSharedItemRoleOwner: &'static NSURLUbiquitousSharedItemRole;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLUbiquitousSharedItemRoleParticipant: &'static NSURLUbiquitousSharedItemRole;
 }
 
 // NS_TYPED_ENUM
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(feature = "NSString")]
 pub type NSURLUbiquitousSharedItemPermissions = NSString;
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLUbiquitousSharedItemPermissionsReadOnly:
         &'static NSURLUbiquitousSharedItemPermissions;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLUbiquitousSharedItemPermissionsReadWrite:
         &'static NSURLUbiquitousSharedItemPermissions;
 }
@@ -831,20 +831,20 @@ unsafe impl Send for NSURL {}
 
 unsafe impl Sync for NSURL {}
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSCoding for NSURL {}
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSURL {}
 
 unsafe impl NSObjectProtocol for NSURL {}
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSSecureCoding for NSURL {}
 
 extern_methods!(
     unsafe impl NSURL {
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[deprecated = "Use NSURLComponents instead, which lets you create a valid URL with any valid combination of URL components and subcomponents (not just scheme, host and path), and lets you set components and subcomponents with either percent-encoded or un-percent-encoded strings."]
         #[method_id(@__retain_semantics Init initWithScheme:host:path:)]
         pub unsafe fn initWithScheme_host_path(
@@ -854,7 +854,7 @@ extern_methods!(
             path: &NSString,
         ) -> Option<Id<Self>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Init initFileURLWithPath:isDirectory:relativeToURL:)]
         pub unsafe fn initFileURLWithPath_isDirectory_relativeToURL(
             this: Allocated<Self>,
@@ -863,7 +863,7 @@ extern_methods!(
             base_url: Option<&NSURL>,
         ) -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Init initFileURLWithPath:relativeToURL:)]
         pub unsafe fn initFileURLWithPath_relativeToURL(
             this: Allocated<Self>,
@@ -871,7 +871,7 @@ extern_methods!(
             base_url: Option<&NSURL>,
         ) -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Init initFileURLWithPath:isDirectory:)]
         pub unsafe fn initFileURLWithPath_isDirectory(
             this: Allocated<Self>,
@@ -879,11 +879,11 @@ extern_methods!(
             is_dir: bool,
         ) -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Init initFileURLWithPath:)]
         pub unsafe fn initFileURLWithPath(this: Allocated<Self>, path: &NSString) -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other fileURLWithPath:isDirectory:relativeToURL:)]
         pub unsafe fn fileURLWithPath_isDirectory_relativeToURL(
             path: &NSString,
@@ -891,18 +891,18 @@ extern_methods!(
             base_url: Option<&NSURL>,
         ) -> Id<NSURL>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other fileURLWithPath:relativeToURL:)]
         pub unsafe fn fileURLWithPath_relativeToURL(
             path: &NSString,
             base_url: Option<&NSURL>,
         ) -> Id<NSURL>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other fileURLWithPath:isDirectory:)]
         pub unsafe fn fileURLWithPath_isDirectory(path: &NSString, is_dir: bool) -> Id<NSURL>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other fileURLWithPath:)]
         pub unsafe fn fileURLWithPath(path: &NSString) -> Id<NSURL>;
 
@@ -921,14 +921,14 @@ extern_methods!(
             base_url: Option<&NSURL>,
         ) -> Id<NSURL>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Init initWithString:)]
         pub unsafe fn initWithString(
             this: Allocated<Self>,
             url_string: &NSString,
         ) -> Option<Id<Self>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Init initWithString:relativeToURL:)]
         pub unsafe fn initWithString_relativeToURL(
             this: Allocated<Self>,
@@ -936,18 +936,18 @@ extern_methods!(
             base_url: Option<&NSURL>,
         ) -> Option<Id<Self>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other URLWithString:)]
         pub unsafe fn URLWithString(url_string: &NSString) -> Option<Id<Self>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other URLWithString:relativeToURL:)]
         pub unsafe fn URLWithString_relativeToURL(
             url_string: &NSString,
             base_url: Option<&NSURL>,
         ) -> Option<Id<Self>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Init initWithString:encodingInvalidCharacters:)]
         pub unsafe fn initWithString_encodingInvalidCharacters(
             this: Allocated<Self>,
@@ -955,14 +955,14 @@ extern_methods!(
             encoding_invalid_characters: bool,
         ) -> Option<Id<Self>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other URLWithString:encodingInvalidCharacters:)]
         pub unsafe fn URLWithString_encodingInvalidCharacters(
             url_string: &NSString,
             encoding_invalid_characters: bool,
         ) -> Option<Id<Self>>;
 
-        #[cfg(feature = "Foundation_NSData")]
+        #[cfg(feature = "NSData")]
         #[method_id(@__retain_semantics Init initWithDataRepresentation:relativeToURL:)]
         pub unsafe fn initWithDataRepresentation_relativeToURL(
             this: Allocated<Self>,
@@ -970,14 +970,14 @@ extern_methods!(
             base_url: Option<&NSURL>,
         ) -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSData")]
+        #[cfg(feature = "NSData")]
         #[method_id(@__retain_semantics Other URLWithDataRepresentation:relativeToURL:)]
         pub unsafe fn URLWithDataRepresentation_relativeToURL(
             data: &NSData,
             base_url: Option<&NSURL>,
         ) -> Id<NSURL>;
 
-        #[cfg(feature = "Foundation_NSData")]
+        #[cfg(feature = "NSData")]
         #[method_id(@__retain_semantics Init initAbsoluteURLWithDataRepresentation:relativeToURL:)]
         pub unsafe fn initAbsoluteURLWithDataRepresentation_relativeToURL(
             this: Allocated<Self>,
@@ -985,22 +985,22 @@ extern_methods!(
             base_url: Option<&NSURL>,
         ) -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSData")]
+        #[cfg(feature = "NSData")]
         #[method_id(@__retain_semantics Other absoluteURLWithDataRepresentation:relativeToURL:)]
         pub unsafe fn absoluteURLWithDataRepresentation_relativeToURL(
             data: &NSData,
             base_url: Option<&NSURL>,
         ) -> Id<NSURL>;
 
-        #[cfg(feature = "Foundation_NSData")]
+        #[cfg(feature = "NSData")]
         #[method_id(@__retain_semantics Other dataRepresentation)]
         pub unsafe fn dataRepresentation(&self) -> Id<NSData>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other absoluteString)]
         pub unsafe fn absoluteString(&self) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other relativeString)]
         pub unsafe fn relativeString(&self) -> Id<NSString>;
 
@@ -1010,48 +1010,48 @@ extern_methods!(
         #[method_id(@__retain_semantics Other absoluteURL)]
         pub unsafe fn absoluteURL(&self) -> Option<Id<NSURL>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other scheme)]
         pub unsafe fn scheme(&self) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other resourceSpecifier)]
         pub unsafe fn resourceSpecifier(&self) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other host)]
         pub unsafe fn host(&self) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "Foundation_NSValue")]
+        #[cfg(feature = "NSValue")]
         #[method_id(@__retain_semantics Other port)]
         pub unsafe fn port(&self) -> Option<Id<NSNumber>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other user)]
         pub unsafe fn user(&self) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other password)]
         pub unsafe fn password(&self) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other path)]
         pub unsafe fn path(&self) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other fragment)]
         pub unsafe fn fragment(&self) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[deprecated = "The parameterString method is deprecated. Post deprecation for applications linked with or after the macOS 10.15, and for all iOS, watchOS, and tvOS applications, parameterString will always return nil, and the path method will return the complete path including the semicolon separator and params component if the URL string contains them."]
         #[method_id(@__retain_semantics Other parameterString)]
         pub unsafe fn parameterString(&self) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other query)]
         pub unsafe fn query(&self) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other relativePath)]
         pub unsafe fn relativePath(&self) -> Option<Id<NSString>>;
 
@@ -1083,7 +1083,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other filePathURL)]
         pub unsafe fn filePathURL(&self) -> Option<Id<NSURL>>;
 
-        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSError", feature = "NSString"))]
         #[method(getResourceValue:forKey:error:_)]
         pub unsafe fn getResourceValue_forKey_error(
             &self,
@@ -1092,10 +1092,10 @@ extern_methods!(
         ) -> Result<(), Id<NSError>>;
 
         #[cfg(all(
-            feature = "Foundation_NSArray",
-            feature = "Foundation_NSDictionary",
-            feature = "Foundation_NSError",
-            feature = "Foundation_NSString"
+            feature = "NSArray",
+            feature = "NSDictionary",
+            feature = "NSError",
+            feature = "NSString"
         ))]
         #[method_id(@__retain_semantics Other resourceValuesForKeys:error:_)]
         pub unsafe fn resourceValuesForKeys_error(
@@ -1103,7 +1103,7 @@ extern_methods!(
             keys: &NSArray<NSURLResourceKey>,
         ) -> Result<Id<NSDictionary<NSURLResourceKey, AnyObject>>, Id<NSError>>;
 
-        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSError", feature = "NSString"))]
         #[method(setResourceValue:forKey:error:_)]
         pub unsafe fn setResourceValue_forKey_error(
             &self,
@@ -1111,25 +1111,21 @@ extern_methods!(
             key: &NSURLResourceKey,
         ) -> Result<(), Id<NSError>>;
 
-        #[cfg(all(
-            feature = "Foundation_NSDictionary",
-            feature = "Foundation_NSError",
-            feature = "Foundation_NSString"
-        ))]
+        #[cfg(all(feature = "NSDictionary", feature = "NSError", feature = "NSString"))]
         #[method(setResourceValues:error:_)]
         pub unsafe fn setResourceValues_error(
             &self,
             keyed_values: &NSDictionary<NSURLResourceKey, AnyObject>,
         ) -> Result<(), Id<NSError>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method(removeCachedResourceValueForKey:)]
         pub unsafe fn removeCachedResourceValueForKey(&self, key: &NSURLResourceKey);
 
         #[method(removeAllCachedResourceValues)]
         pub unsafe fn removeAllCachedResourceValues(&self);
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method(setTemporaryResourceValue:forKey:)]
         pub unsafe fn setTemporaryResourceValue_forKey(
             &self,
@@ -1138,10 +1134,10 @@ extern_methods!(
         );
 
         #[cfg(all(
-            feature = "Foundation_NSArray",
-            feature = "Foundation_NSData",
-            feature = "Foundation_NSError",
-            feature = "Foundation_NSString"
+            feature = "NSArray",
+            feature = "NSData",
+            feature = "NSError",
+            feature = "NSString"
         ))]
         #[method_id(@__retain_semantics Other bookmarkDataWithOptions:includingResourceValuesForKeys:relativeToURL:error:_)]
         pub unsafe fn bookmarkDataWithOptions_includingResourceValuesForKeys_relativeToURL_error(
@@ -1151,7 +1147,7 @@ extern_methods!(
             relative_url: Option<&NSURL>,
         ) -> Result<Id<NSData>, Id<NSError>>;
 
-        #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSError"))]
+        #[cfg(all(feature = "NSData", feature = "NSError"))]
         #[method_id(@__retain_semantics Init initByResolvingBookmarkData:options:relativeToURL:bookmarkDataIsStale:error:_)]
         pub unsafe fn initByResolvingBookmarkData_options_relativeToURL_bookmarkDataIsStale_error(
             this: Allocated<Self>,
@@ -1161,7 +1157,7 @@ extern_methods!(
             is_stale: *mut Bool,
         ) -> Result<Id<Self>, Id<NSError>>;
 
-        #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSError"))]
+        #[cfg(all(feature = "NSData", feature = "NSError"))]
         #[method_id(@__retain_semantics Other URLByResolvingBookmarkData:options:relativeToURL:bookmarkDataIsStale:error:_)]
         pub unsafe fn URLByResolvingBookmarkData_options_relativeToURL_bookmarkDataIsStale_error(
             bookmark_data: &NSData,
@@ -1171,10 +1167,10 @@ extern_methods!(
         ) -> Result<Id<Self>, Id<NSError>>;
 
         #[cfg(all(
-            feature = "Foundation_NSArray",
-            feature = "Foundation_NSData",
-            feature = "Foundation_NSDictionary",
-            feature = "Foundation_NSString"
+            feature = "NSArray",
+            feature = "NSData",
+            feature = "NSDictionary",
+            feature = "NSString"
         ))]
         #[method_id(@__retain_semantics Other resourceValuesForKeys:fromBookmarkData:)]
         pub unsafe fn resourceValuesForKeys_fromBookmarkData(
@@ -1182,7 +1178,7 @@ extern_methods!(
             bookmark_data: &NSData,
         ) -> Option<Id<NSDictionary<NSURLResourceKey, AnyObject>>>;
 
-        #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSError"))]
+        #[cfg(all(feature = "NSData", feature = "NSError"))]
         #[method(writeBookmarkData:toURL:options:error:_)]
         pub unsafe fn writeBookmarkData_toURL_options_error(
             bookmark_data: &NSData,
@@ -1190,13 +1186,13 @@ extern_methods!(
             options: NSURLBookmarkFileCreationOptions,
         ) -> Result<(), Id<NSError>>;
 
-        #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSError"))]
+        #[cfg(all(feature = "NSData", feature = "NSError"))]
         #[method_id(@__retain_semantics Other bookmarkDataWithContentsOfURL:error:_)]
         pub unsafe fn bookmarkDataWithContentsOfURL_error(
             bookmark_file_url: &NSURL,
         ) -> Result<Id<NSData>, Id<NSError>>;
 
-        #[cfg(feature = "Foundation_NSError")]
+        #[cfg(feature = "NSError")]
         #[method_id(@__retain_semantics Other URLByResolvingAliasFileAtURL:options:error:_)]
         pub unsafe fn URLByResolvingAliasFileAtURL_options_error(
             url: &NSURL,
@@ -1225,7 +1221,7 @@ extern_methods!(
 extern_methods!(
     /// NSPromisedItems
     unsafe impl NSURL {
-        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSError", feature = "NSString"))]
         #[method(getPromisedItemResourceValue:forKey:error:_)]
         pub unsafe fn getPromisedItemResourceValue_forKey_error(
             &self,
@@ -1234,10 +1230,10 @@ extern_methods!(
         ) -> Result<(), Id<NSError>>;
 
         #[cfg(all(
-            feature = "Foundation_NSArray",
-            feature = "Foundation_NSDictionary",
-            feature = "Foundation_NSError",
-            feature = "Foundation_NSString"
+            feature = "NSArray",
+            feature = "NSDictionary",
+            feature = "NSError",
+            feature = "NSString"
         ))]
         #[method_id(@__retain_semantics Other promisedItemResourceValuesForKeys:error:_)]
         pub unsafe fn promisedItemResourceValuesForKeys_error(
@@ -1245,7 +1241,7 @@ extern_methods!(
             keys: &NSArray<NSURLResourceKey>,
         ) -> Result<Id<NSDictionary<NSURLResourceKey, AnyObject>>, Id<NSError>>;
 
-        #[cfg(feature = "Foundation_NSError")]
+        #[cfg(feature = "NSError")]
         #[method(checkPromisedItemIsReachableAndReturnError:_)]
         pub unsafe fn checkPromisedItemIsReachableAndReturnError(&self) -> Result<(), Id<NSError>>;
     }
@@ -1256,10 +1252,10 @@ extern_methods!(
     unsafe impl NSURL {}
 );
 
-#[cfg(feature = "Foundation_NSItemProvider")]
+#[cfg(feature = "NSItemProvider")]
 unsafe impl NSItemProviderReading for NSURL {}
 
-#[cfg(feature = "Foundation_NSItemProvider")]
+#[cfg(feature = "NSItemProvider")]
 unsafe impl NSItemProviderWriting for NSURL {}
 
 extern_class!(
@@ -1276,20 +1272,20 @@ unsafe impl Send for NSURLQueryItem {}
 
 unsafe impl Sync for NSURLQueryItem {}
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSCoding for NSURLQueryItem {}
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSURLQueryItem {}
 
 unsafe impl NSObjectProtocol for NSURLQueryItem {}
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSSecureCoding for NSURLQueryItem {}
 
 extern_methods!(
     unsafe impl NSURLQueryItem {
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Init initWithName:value:)]
         pub unsafe fn initWithName_value(
             this: Allocated<Self>,
@@ -1297,18 +1293,18 @@ extern_methods!(
             value: Option<&NSString>,
         ) -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other queryItemWithName:value:)]
         pub unsafe fn queryItemWithName_value(
             name: &NSString,
             value: Option<&NSString>,
         ) -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Id<NSString>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other value)]
         pub unsafe fn value(&self) -> Option<Id<NSString>>;
     }
@@ -1335,7 +1331,7 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSURLComponents {}
 
 unsafe impl NSObjectProtocol for NSURLComponents {}
@@ -1358,18 +1354,18 @@ extern_methods!(
             resolve: bool,
         ) -> Option<Id<Self>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Init initWithString:)]
         pub unsafe fn initWithString(
             this: Allocated<Self>,
             url_string: &NSString,
         ) -> Option<Id<Self>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other componentsWithString:)]
         pub unsafe fn componentsWithString(url_string: &NSString) -> Option<Id<Self>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Init initWithString:encodingInvalidCharacters:)]
         pub unsafe fn initWithString_encodingInvalidCharacters(
             this: Allocated<Self>,
@@ -1377,7 +1373,7 @@ extern_methods!(
             encoding_invalid_characters: bool,
         ) -> Option<Id<Self>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other componentsWithString:encodingInvalidCharacters:)]
         pub unsafe fn componentsWithString_encodingInvalidCharacters(
             url_string: &NSString,
@@ -1390,177 +1386,177 @@ extern_methods!(
         #[method_id(@__retain_semantics Other URLRelativeToURL:)]
         pub unsafe fn URLRelativeToURL(&self, base_url: Option<&NSURL>) -> Option<Id<NSURL>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other string)]
         pub unsafe fn string(&self) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other scheme)]
         pub unsafe fn scheme(&self) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method(setScheme:)]
         pub unsafe fn setScheme(&self, scheme: Option<&NSString>);
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other user)]
         pub unsafe fn user(&self) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method(setUser:)]
         pub unsafe fn setUser(&self, user: Option<&NSString>);
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other password)]
         pub unsafe fn password(&self) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method(setPassword:)]
         pub unsafe fn setPassword(&self, password: Option<&NSString>);
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other host)]
         pub unsafe fn host(&self) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method(setHost:)]
         pub unsafe fn setHost(&self, host: Option<&NSString>);
 
-        #[cfg(feature = "Foundation_NSValue")]
+        #[cfg(feature = "NSValue")]
         #[method_id(@__retain_semantics Other port)]
         pub unsafe fn port(&self) -> Option<Id<NSNumber>>;
 
-        #[cfg(feature = "Foundation_NSValue")]
+        #[cfg(feature = "NSValue")]
         #[method(setPort:)]
         pub unsafe fn setPort(&self, port: Option<&NSNumber>);
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other path)]
         pub unsafe fn path(&self) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method(setPath:)]
         pub unsafe fn setPath(&self, path: Option<&NSString>);
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other query)]
         pub unsafe fn query(&self) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method(setQuery:)]
         pub unsafe fn setQuery(&self, query: Option<&NSString>);
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other fragment)]
         pub unsafe fn fragment(&self) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method(setFragment:)]
         pub unsafe fn setFragment(&self, fragment: Option<&NSString>);
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other percentEncodedUser)]
         pub unsafe fn percentEncodedUser(&self) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method(setPercentEncodedUser:)]
         pub unsafe fn setPercentEncodedUser(&self, percent_encoded_user: Option<&NSString>);
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other percentEncodedPassword)]
         pub unsafe fn percentEncodedPassword(&self) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method(setPercentEncodedPassword:)]
         pub unsafe fn setPercentEncodedPassword(&self, percent_encoded_password: Option<&NSString>);
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[deprecated = "Use encodedHost instead"]
         #[method_id(@__retain_semantics Other percentEncodedHost)]
         pub unsafe fn percentEncodedHost(&self) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[deprecated = "Use encodedHost instead"]
         #[method(setPercentEncodedHost:)]
         pub unsafe fn setPercentEncodedHost(&self, percent_encoded_host: Option<&NSString>);
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other percentEncodedPath)]
         pub unsafe fn percentEncodedPath(&self) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method(setPercentEncodedPath:)]
         pub unsafe fn setPercentEncodedPath(&self, percent_encoded_path: Option<&NSString>);
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other percentEncodedQuery)]
         pub unsafe fn percentEncodedQuery(&self) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method(setPercentEncodedQuery:)]
         pub unsafe fn setPercentEncodedQuery(&self, percent_encoded_query: Option<&NSString>);
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other percentEncodedFragment)]
         pub unsafe fn percentEncodedFragment(&self) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method(setPercentEncodedFragment:)]
         pub unsafe fn setPercentEncodedFragment(&self, percent_encoded_fragment: Option<&NSString>);
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other encodedHost)]
         pub unsafe fn encodedHost(&self) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method(setEncodedHost:)]
         pub unsafe fn setEncodedHost(&self, encoded_host: Option<&NSString>);
 
-        #[cfg(feature = "Foundation_NSRange")]
+        #[cfg(feature = "NSRange")]
         #[method(rangeOfScheme)]
         pub unsafe fn rangeOfScheme(&self) -> NSRange;
 
-        #[cfg(feature = "Foundation_NSRange")]
+        #[cfg(feature = "NSRange")]
         #[method(rangeOfUser)]
         pub unsafe fn rangeOfUser(&self) -> NSRange;
 
-        #[cfg(feature = "Foundation_NSRange")]
+        #[cfg(feature = "NSRange")]
         #[method(rangeOfPassword)]
         pub unsafe fn rangeOfPassword(&self) -> NSRange;
 
-        #[cfg(feature = "Foundation_NSRange")]
+        #[cfg(feature = "NSRange")]
         #[method(rangeOfHost)]
         pub unsafe fn rangeOfHost(&self) -> NSRange;
 
-        #[cfg(feature = "Foundation_NSRange")]
+        #[cfg(feature = "NSRange")]
         #[method(rangeOfPort)]
         pub unsafe fn rangeOfPort(&self) -> NSRange;
 
-        #[cfg(feature = "Foundation_NSRange")]
+        #[cfg(feature = "NSRange")]
         #[method(rangeOfPath)]
         pub unsafe fn rangeOfPath(&self) -> NSRange;
 
-        #[cfg(feature = "Foundation_NSRange")]
+        #[cfg(feature = "NSRange")]
         #[method(rangeOfQuery)]
         pub unsafe fn rangeOfQuery(&self) -> NSRange;
 
-        #[cfg(feature = "Foundation_NSRange")]
+        #[cfg(feature = "NSRange")]
         #[method(rangeOfFragment)]
         pub unsafe fn rangeOfFragment(&self) -> NSRange;
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(feature = "NSArray")]
         #[method_id(@__retain_semantics Other queryItems)]
         pub unsafe fn queryItems(&self) -> Option<Id<NSArray<NSURLQueryItem>>>;
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(feature = "NSArray")]
         #[method(setQueryItems:)]
         pub unsafe fn setQueryItems(&self, query_items: Option<&NSArray<NSURLQueryItem>>);
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(feature = "NSArray")]
         #[method_id(@__retain_semantics Other percentEncodedQueryItems)]
         pub unsafe fn percentEncodedQueryItems(&self) -> Option<Id<NSArray<NSURLQueryItem>>>;
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(feature = "NSArray")]
         #[method(setPercentEncodedQueryItems:)]
         pub unsafe fn setPercentEncodedQueryItems(
             &self,
@@ -1579,7 +1575,7 @@ extern_methods!(
 
 extern_methods!(
     /// NSURLUtilities
-    #[cfg(feature = "Foundation_NSCharacterSet")]
+    #[cfg(feature = "NSCharacterSet")]
     unsafe impl NSCharacterSet {
         #[method_id(@__retain_semantics Other URLUserAllowedCharacterSet)]
         pub unsafe fn URLUserAllowedCharacterSet() -> Id<NSCharacterSet>;
@@ -1603,9 +1599,9 @@ extern_methods!(
 
 extern_methods!(
     /// NSURLUtilities
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     unsafe impl NSString {
-        #[cfg(feature = "Foundation_NSCharacterSet")]
+        #[cfg(feature = "NSCharacterSet")]
         #[method_id(@__retain_semantics Other stringByAddingPercentEncodingWithAllowedCharacters:)]
         pub unsafe fn stringByAddingPercentEncodingWithAllowedCharacters(
             &self,
@@ -1634,32 +1630,32 @@ extern_methods!(
 extern_methods!(
     /// NSURLPathUtilities
     unsafe impl NSURL {
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[method_id(@__retain_semantics Other fileURLWithPathComponents:)]
         pub unsafe fn fileURLWithPathComponents(
             components: &NSArray<NSString>,
         ) -> Option<Id<NSURL>>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[method_id(@__retain_semantics Other pathComponents)]
         pub unsafe fn pathComponents(&self) -> Option<Id<NSArray<NSString>>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other lastPathComponent)]
         pub unsafe fn lastPathComponent(&self) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other pathExtension)]
         pub unsafe fn pathExtension(&self) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other URLByAppendingPathComponent:)]
         pub unsafe fn URLByAppendingPathComponent(
             &self,
             path_component: &NSString,
         ) -> Option<Id<NSURL>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other URLByAppendingPathComponent:isDirectory:)]
         pub unsafe fn URLByAppendingPathComponent_isDirectory(
             &self,
@@ -1670,7 +1666,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other URLByDeletingLastPathComponent)]
         pub unsafe fn URLByDeletingLastPathComponent(&self) -> Option<Id<NSURL>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other URLByAppendingPathExtension:)]
         pub unsafe fn URLByAppendingPathExtension(
             &self,
@@ -1680,7 +1676,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other URLByDeletingPathExtension)]
         pub unsafe fn URLByDeletingPathExtension(&self) -> Option<Id<NSURL>>;
 
-        #[cfg(feature = "Foundation_NSError")]
+        #[cfg(feature = "NSError")]
         #[method(checkResourceIsReachableAndReturnError:_)]
         pub unsafe fn checkResourceIsReachableAndReturnError(&self) -> Result<(), Id<NSError>>;
 
@@ -1702,20 +1698,20 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSCoding for NSFileSecurity {}
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSFileSecurity {}
 
 unsafe impl NSObjectProtocol for NSFileSecurity {}
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSSecureCoding for NSFileSecurity {}
 
 extern_methods!(
     unsafe impl NSFileSecurity {
-        #[cfg(feature = "Foundation_NSCoder")]
+        #[cfg(feature = "NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
     }
@@ -1735,7 +1731,7 @@ extern_methods!(
 extern_methods!(
     /// NSURLLoading
     unsafe impl NSURL {
-        #[cfg(feature = "Foundation_NSData")]
+        #[cfg(feature = "NSData")]
         #[deprecated = "Use NSURLConnection instead"]
         #[method_id(@__retain_semantics Other resourceDataUsingCache:)]
         pub unsafe fn resourceDataUsingCache(&self, should_use_cache: bool) -> Option<Id<NSData>>;
@@ -1748,17 +1744,17 @@ extern_methods!(
             should_use_cache: bool,
         );
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[deprecated = "Use NSURLConnection instead"]
         #[method_id(@__retain_semantics Other propertyForKey:)]
         pub unsafe fn propertyForKey(&self, property_key: &NSString) -> Option<Id<AnyObject>>;
 
-        #[cfg(feature = "Foundation_NSData")]
+        #[cfg(feature = "NSData")]
         #[deprecated = "Use NSURLConnection instead"]
         #[method(setResourceData:)]
         pub unsafe fn setResourceData(&self, data: &NSData) -> bool;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[deprecated = "Use NSURLConnection instead"]
         #[method(setProperty:forKey:)]
         pub unsafe fn setProperty_forKey(
@@ -1767,7 +1763,7 @@ extern_methods!(
             property_key: &NSString,
         ) -> bool;
 
-        #[cfg(feature = "Foundation_NSURLHandle")]
+        #[cfg(feature = "NSURLHandle")]
         #[deprecated = "Use NSURLConnection instead"]
         #[method_id(@__retain_semantics Other URLHandleUsingCache:)]
         pub unsafe fn URLHandleUsingCache(&self, should_use_cache: bool)

@@ -68,10 +68,10 @@ unsafe impl RefEncode for NSDatePickerElementFlags {
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(feature = "AppKit_NSActionCell", feature = "AppKit_NSCell"))]
+    #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
     pub struct NSDatePickerCell;
 
-    #[cfg(all(feature = "AppKit_NSActionCell", feature = "AppKit_NSCell"))]
+    #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
     unsafe impl ClassType for NSDatePickerCell {
         #[inherits(NSCell, NSObject)]
         type Super = NSActionCell;
@@ -80,37 +80,37 @@ extern_class!(
 );
 
 #[cfg(all(
-    feature = "AppKit_NSAccessibilityProtocols",
-    feature = "AppKit_NSActionCell",
-    feature = "AppKit_NSCell"
+    feature = "NSAccessibilityProtocols",
+    feature = "NSActionCell",
+    feature = "NSCell"
 ))]
 unsafe impl NSAccessibility for NSDatePickerCell {}
 
 #[cfg(all(
-    feature = "AppKit_NSAccessibilityProtocols",
-    feature = "AppKit_NSActionCell",
-    feature = "AppKit_NSCell"
+    feature = "NSAccessibilityProtocols",
+    feature = "NSActionCell",
+    feature = "NSCell"
 ))]
 unsafe impl NSAccessibilityElementProtocol for NSDatePickerCell {}
 
-#[cfg(all(feature = "AppKit_NSActionCell", feature = "AppKit_NSCell"))]
+#[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
 unsafe impl NSCoding for NSDatePickerCell {}
 
-#[cfg(all(feature = "AppKit_NSActionCell", feature = "AppKit_NSCell"))]
+#[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
 unsafe impl NSCopying for NSDatePickerCell {}
 
-#[cfg(all(feature = "AppKit_NSActionCell", feature = "AppKit_NSCell"))]
+#[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
 unsafe impl NSObjectProtocol for NSDatePickerCell {}
 
 #[cfg(all(
-    feature = "AppKit_NSActionCell",
-    feature = "AppKit_NSCell",
-    feature = "AppKit_NSUserInterfaceItemIdentification"
+    feature = "NSActionCell",
+    feature = "NSCell",
+    feature = "NSUserInterfaceItemIdentification"
 ))]
 unsafe impl NSUserInterfaceItemIdentification for NSDatePickerCell {}
 
 extern_methods!(
-    #[cfg(all(feature = "AppKit_NSActionCell", feature = "AppKit_NSCell"))]
+    #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
     unsafe impl NSDatePickerCell {
         #[method_id(@__retain_semantics Init initTextCell:)]
         pub unsafe fn initTextCell(this: Allocated<Self>, string: &NSString) -> Id<Self>;
@@ -118,7 +118,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Id<Self>;
 
-        #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(feature = "NSImage")]
         #[method_id(@__retain_semantics Init initImageCell:)]
         pub unsafe fn initImageCell(this: Allocated<Self>, image: Option<&NSImage>) -> Id<Self>;
 
@@ -134,19 +134,19 @@ extern_methods!(
         #[method(setDrawsBackground:)]
         pub unsafe fn setDrawsBackground(&self, draws_background: bool);
 
-        #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(feature = "NSColor")]
         #[method_id(@__retain_semantics Other backgroundColor)]
         pub unsafe fn backgroundColor(&self) -> Id<NSColor>;
 
-        #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(feature = "NSColor")]
         #[method(setBackgroundColor:)]
         pub unsafe fn setBackgroundColor(&self, background_color: &NSColor);
 
-        #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(feature = "NSColor")]
         #[method_id(@__retain_semantics Other textColor)]
         pub unsafe fn textColor(&self) -> Id<NSColor>;
 
-        #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(feature = "NSColor")]
         #[method(setTextColor:)]
         pub unsafe fn setTextColor(&self, text_color: &NSColor);
 
@@ -217,7 +217,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSCell`
-    #[cfg(all(feature = "AppKit_NSActionCell", feature = "AppKit_NSCell"))]
+    #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
     unsafe impl NSDatePickerCell {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -226,7 +226,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "AppKit_NSActionCell", feature = "AppKit_NSCell"))]
+    #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
     unsafe impl NSDatePickerCell {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
@@ -235,7 +235,7 @@ extern_methods!(
 
 extern_protocol!(
     pub unsafe trait NSDatePickerCellDelegate: NSObjectProtocol + IsMainThreadOnly {
-        #[cfg(all(feature = "AppKit_NSActionCell", feature = "AppKit_NSCell"))]
+        #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
         #[optional]
         #[method(datePickerCell:validateProposedDateValue:timeInterval:)]
         unsafe fn datePickerCell_validateProposedDateValue_timeInterval(

@@ -7,18 +7,10 @@ use objc2_foundation::*;
 
 use crate::*;
 
-#[cfg(all(
-    feature = "CloudKit_CKRecord",
-    feature = "CloudKit_CKShare",
-    feature = "block2"
-))]
+#[cfg(all(feature = "CKRecord", feature = "CKShare", feature = "block2"))]
 pub type CKSharePreparationCompletionHandler = *mut Block<dyn Fn(*mut CKShare, *mut NSError)>;
 
-#[cfg(all(
-    feature = "CloudKit_CKRecord",
-    feature = "CloudKit_CKShare",
-    feature = "block2"
-))]
+#[cfg(all(feature = "CKRecord", feature = "CKShare", feature = "block2"))]
 pub type CKSharePreparationHandler = *mut Block<dyn Fn(CKSharePreparationCompletionHandler)>;
 
 extern_category!(
@@ -26,10 +18,10 @@ extern_category!(
     #[doc(alias = "CKSharingSupport")]
     pub unsafe trait NSItemProviderCKSharingSupport {
         #[cfg(all(
-            feature = "CloudKit_CKAllowedSharingOptions",
-            feature = "CloudKit_CKContainer",
-            feature = "CloudKit_CKRecord",
-            feature = "CloudKit_CKShare",
+            feature = "CKAllowedSharingOptions",
+            feature = "CKContainer",
+            feature = "CKRecord",
+            feature = "CKShare",
             feature = "block2"
         ))]
         #[method(registerCKShareWithContainer:allowedSharingOptions:preparationHandler:)]
@@ -41,10 +33,10 @@ extern_category!(
         );
 
         #[cfg(all(
-            feature = "CloudKit_CKAllowedSharingOptions",
-            feature = "CloudKit_CKContainer",
-            feature = "CloudKit_CKRecord",
-            feature = "CloudKit_CKShare"
+            feature = "CKAllowedSharingOptions",
+            feature = "CKContainer",
+            feature = "CKRecord",
+            feature = "CKShare"
         ))]
         #[method(registerCKShare:container:allowedSharingOptions:)]
         unsafe fn registerCKShare_container_allowedSharingOptions(

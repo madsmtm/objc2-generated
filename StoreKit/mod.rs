@@ -16,262 +16,256 @@
 #[link(name = "StoreKit", kind = "framework")]
 extern "C" {}
 
-#[cfg(feature = "StoreKit_SKANError")]
+#[cfg(feature = "SKANError")]
 #[path = "SKANError.rs"]
 mod __SKANError;
-#[cfg(feature = "StoreKit_SKAdImpression")]
+#[cfg(feature = "SKAdImpression")]
 #[path = "SKAdImpression.rs"]
 mod __SKAdImpression;
-#[cfg(feature = "StoreKit_SKAdNetwork")]
+#[cfg(feature = "SKAdNetwork")]
 #[path = "SKAdNetwork.rs"]
 mod __SKAdNetwork;
-#[cfg(feature = "StoreKit_SKArcadeService")]
+#[cfg(feature = "SKArcadeService")]
 #[path = "SKArcadeService.rs"]
 mod __SKArcadeService;
-#[cfg(feature = "StoreKit_SKCloudServiceController")]
+#[cfg(feature = "SKCloudServiceController")]
 #[path = "SKCloudServiceController.rs"]
 mod __SKCloudServiceController;
-#[cfg(feature = "StoreKit_SKCloudServiceSetupViewController")]
+#[cfg(feature = "SKCloudServiceSetupViewController")]
 #[path = "SKCloudServiceSetupViewController.rs"]
 mod __SKCloudServiceSetupViewController;
-#[cfg(feature = "StoreKit_SKDownload")]
+#[cfg(feature = "SKDownload")]
 #[path = "SKDownload.rs"]
 mod __SKDownload;
-#[cfg(feature = "StoreKit_SKError")]
+#[cfg(feature = "SKError")]
 #[path = "SKError.rs"]
 mod __SKError;
-#[cfg(feature = "StoreKit_SKOverlay")]
+#[cfg(feature = "SKOverlay")]
 #[path = "SKOverlay.rs"]
 mod __SKOverlay;
-#[cfg(feature = "StoreKit_SKOverlayConfiguration")]
+#[cfg(feature = "SKOverlayConfiguration")]
 #[path = "SKOverlayConfiguration.rs"]
 mod __SKOverlayConfiguration;
-#[cfg(feature = "StoreKit_SKOverlayTransitionContext")]
+#[cfg(feature = "SKOverlayTransitionContext")]
 #[path = "SKOverlayTransitionContext.rs"]
 mod __SKOverlayTransitionContext;
-#[cfg(feature = "StoreKit_SKPayment")]
+#[cfg(feature = "SKPayment")]
 #[path = "SKPayment.rs"]
 mod __SKPayment;
-#[cfg(feature = "StoreKit_SKPaymentDiscount")]
+#[cfg(feature = "SKPaymentDiscount")]
 #[path = "SKPaymentDiscount.rs"]
 mod __SKPaymentDiscount;
-#[cfg(feature = "StoreKit_SKPaymentQueue")]
+#[cfg(feature = "SKPaymentQueue")]
 #[path = "SKPaymentQueue.rs"]
 mod __SKPaymentQueue;
-#[cfg(feature = "StoreKit_SKPaymentTransaction")]
+#[cfg(feature = "SKPaymentTransaction")]
 #[path = "SKPaymentTransaction.rs"]
 mod __SKPaymentTransaction;
-#[cfg(feature = "StoreKit_SKProduct")]
+#[cfg(feature = "SKProduct")]
 #[path = "SKProduct.rs"]
 mod __SKProduct;
-#[cfg(feature = "StoreKit_SKProductDiscount")]
+#[cfg(feature = "SKProductDiscount")]
 #[path = "SKProductDiscount.rs"]
 mod __SKProductDiscount;
-#[cfg(feature = "StoreKit_SKProductStorePromotionController")]
+#[cfg(feature = "SKProductStorePromotionController")]
 #[path = "SKProductStorePromotionController.rs"]
 mod __SKProductStorePromotionController;
-#[cfg(feature = "StoreKit_SKProductsRequest")]
+#[cfg(feature = "SKProductsRequest")]
 #[path = "SKProductsRequest.rs"]
 mod __SKProductsRequest;
-#[cfg(feature = "StoreKit_SKReceiptRefreshRequest")]
+#[cfg(feature = "SKReceiptRefreshRequest")]
 #[path = "SKReceiptRefreshRequest.rs"]
 mod __SKReceiptRefreshRequest;
-#[cfg(feature = "StoreKit_SKRequest")]
+#[cfg(feature = "SKRequest")]
 #[path = "SKRequest.rs"]
 mod __SKRequest;
-#[cfg(feature = "StoreKit_SKStoreProductViewController")]
+#[cfg(feature = "SKStoreProductViewController")]
 #[path = "SKStoreProductViewController.rs"]
 mod __SKStoreProductViewController;
-#[cfg(feature = "StoreKit_SKStoreReviewController")]
+#[cfg(feature = "SKStoreReviewController")]
 #[path = "SKStoreReviewController.rs"]
 mod __SKStoreReviewController;
-#[cfg(feature = "StoreKit_SKStorefront")]
+#[cfg(feature = "SKStorefront")]
 #[path = "SKStorefront.rs"]
 mod __SKStorefront;
-#[cfg(feature = "StoreKit_StoreKitDefines")]
+#[cfg(feature = "StoreKitDefines")]
 #[path = "StoreKitDefines.rs"]
 mod __StoreKitDefines;
 
-#[cfg(feature = "StoreKit_SKANError")]
+#[cfg(feature = "SKANError")]
 pub use self::__SKANError::SKANError;
-#[cfg(feature = "StoreKit_SKANError")]
+#[cfg(feature = "SKANError")]
 pub use self::__SKANError::SKANErrorDomain;
-#[cfg(feature = "StoreKit_SKAdImpression")]
+#[cfg(feature = "SKAdImpression")]
 pub use self::__SKAdImpression::SKAdImpression;
-#[cfg(feature = "StoreKit_SKAdNetwork")]
+#[cfg(feature = "SKAdNetwork")]
 pub use self::__SKAdNetwork::SKAdNetwork;
-#[cfg(feature = "StoreKit_SKAdNetwork")]
+#[cfg(feature = "SKAdNetwork")]
 pub use self::__SKAdNetwork::SKAdNetworkCoarseConversionValue;
-#[cfg(feature = "StoreKit_SKAdNetwork")]
+#[cfg(feature = "SKAdNetwork")]
 pub use self::__SKAdNetwork::SKAdNetworkCoarseConversionValueHigh;
-#[cfg(feature = "StoreKit_SKAdNetwork")]
+#[cfg(feature = "SKAdNetwork")]
 pub use self::__SKAdNetwork::SKAdNetworkCoarseConversionValueLow;
-#[cfg(feature = "StoreKit_SKAdNetwork")]
+#[cfg(feature = "SKAdNetwork")]
 pub use self::__SKAdNetwork::SKAdNetworkCoarseConversionValueMedium;
-#[cfg(feature = "StoreKit_SKAdNetwork")]
+#[cfg(feature = "SKAdNetwork")]
 pub use self::__SKAdNetwork::SKStoreProductParameterAdNetworkAttributionSignature;
-#[cfg(feature = "StoreKit_SKAdNetwork")]
+#[cfg(feature = "SKAdNetwork")]
 pub use self::__SKAdNetwork::SKStoreProductParameterAdNetworkCampaignIdentifier;
-#[cfg(feature = "StoreKit_SKAdNetwork")]
+#[cfg(feature = "SKAdNetwork")]
 pub use self::__SKAdNetwork::SKStoreProductParameterAdNetworkIdentifier;
-#[cfg(feature = "StoreKit_SKAdNetwork")]
+#[cfg(feature = "SKAdNetwork")]
 pub use self::__SKAdNetwork::SKStoreProductParameterAdNetworkNonce;
-#[cfg(feature = "StoreKit_SKAdNetwork")]
+#[cfg(feature = "SKAdNetwork")]
 pub use self::__SKAdNetwork::SKStoreProductParameterAdNetworkSourceAppStoreIdentifier;
-#[cfg(feature = "StoreKit_SKAdNetwork")]
+#[cfg(feature = "SKAdNetwork")]
 pub use self::__SKAdNetwork::SKStoreProductParameterAdNetworkSourceIdentifier;
-#[cfg(feature = "StoreKit_SKAdNetwork")]
+#[cfg(feature = "SKAdNetwork")]
 pub use self::__SKAdNetwork::SKStoreProductParameterAdNetworkTimestamp;
-#[cfg(feature = "StoreKit_SKAdNetwork")]
+#[cfg(feature = "SKAdNetwork")]
 pub use self::__SKAdNetwork::SKStoreProductParameterAdNetworkVersion;
-#[cfg(feature = "StoreKit_SKArcadeService")]
+#[cfg(feature = "SKArcadeService")]
 pub use self::__SKArcadeService::SKArcadeService;
-#[cfg(feature = "StoreKit_SKCloudServiceController")]
+#[cfg(feature = "SKCloudServiceController")]
 pub use self::__SKCloudServiceController::SKCloudServiceAuthorizationStatus;
-#[cfg(feature = "StoreKit_SKCloudServiceController")]
+#[cfg(feature = "SKCloudServiceController")]
 pub use self::__SKCloudServiceController::SKCloudServiceCapabilitiesDidChangeNotification;
-#[cfg(feature = "StoreKit_SKCloudServiceController")]
+#[cfg(feature = "SKCloudServiceController")]
 pub use self::__SKCloudServiceController::SKCloudServiceCapability;
-#[cfg(feature = "StoreKit_SKCloudServiceController")]
+#[cfg(feature = "SKCloudServiceController")]
 pub use self::__SKCloudServiceController::SKCloudServiceController;
-#[cfg(feature = "StoreKit_SKCloudServiceController")]
+#[cfg(feature = "SKCloudServiceController")]
 pub use self::__SKCloudServiceController::SKStorefrontCountryCodeDidChangeNotification;
-#[cfg(feature = "StoreKit_SKCloudServiceController")]
+#[cfg(feature = "SKCloudServiceController")]
 pub use self::__SKCloudServiceController::SKStorefrontIdentifierDidChangeNotification;
-#[cfg(feature = "StoreKit_SKCloudServiceSetupViewController")]
+#[cfg(feature = "SKCloudServiceSetupViewController")]
 pub use self::__SKCloudServiceSetupViewController::SKCloudServiceSetupAction;
-#[cfg(feature = "StoreKit_SKCloudServiceSetupViewController")]
+#[cfg(feature = "SKCloudServiceSetupViewController")]
 pub use self::__SKCloudServiceSetupViewController::SKCloudServiceSetupActionSubscribe;
-#[cfg(feature = "StoreKit_SKCloudServiceSetupViewController")]
+#[cfg(feature = "SKCloudServiceSetupViewController")]
 pub use self::__SKCloudServiceSetupViewController::SKCloudServiceSetupMessageIdentifier;
-#[cfg(feature = "StoreKit_SKCloudServiceSetupViewController")]
+#[cfg(feature = "SKCloudServiceSetupViewController")]
 pub use self::__SKCloudServiceSetupViewController::SKCloudServiceSetupMessageIdentifierAddMusic;
-#[cfg(feature = "StoreKit_SKCloudServiceSetupViewController")]
+#[cfg(feature = "SKCloudServiceSetupViewController")]
 pub use self::__SKCloudServiceSetupViewController::SKCloudServiceSetupMessageIdentifierConnect;
-#[cfg(feature = "StoreKit_SKCloudServiceSetupViewController")]
+#[cfg(feature = "SKCloudServiceSetupViewController")]
 pub use self::__SKCloudServiceSetupViewController::SKCloudServiceSetupMessageIdentifierJoin;
-#[cfg(feature = "StoreKit_SKCloudServiceSetupViewController")]
+#[cfg(feature = "SKCloudServiceSetupViewController")]
 pub use self::__SKCloudServiceSetupViewController::SKCloudServiceSetupMessageIdentifierPlayMusic;
-#[cfg(feature = "StoreKit_SKCloudServiceSetupViewController")]
+#[cfg(feature = "SKCloudServiceSetupViewController")]
 pub use self::__SKCloudServiceSetupViewController::SKCloudServiceSetupOptionsActionKey;
-#[cfg(feature = "StoreKit_SKCloudServiceSetupViewController")]
+#[cfg(feature = "SKCloudServiceSetupViewController")]
 pub use self::__SKCloudServiceSetupViewController::SKCloudServiceSetupOptionsAffiliateTokenKey;
-#[cfg(feature = "StoreKit_SKCloudServiceSetupViewController")]
+#[cfg(feature = "SKCloudServiceSetupViewController")]
 pub use self::__SKCloudServiceSetupViewController::SKCloudServiceSetupOptionsCampaignTokenKey;
-#[cfg(feature = "StoreKit_SKCloudServiceSetupViewController")]
+#[cfg(feature = "SKCloudServiceSetupViewController")]
 pub use self::__SKCloudServiceSetupViewController::SKCloudServiceSetupOptionsITunesItemIdentifierKey;
-#[cfg(feature = "StoreKit_SKCloudServiceSetupViewController")]
+#[cfg(feature = "SKCloudServiceSetupViewController")]
 pub use self::__SKCloudServiceSetupViewController::SKCloudServiceSetupOptionsKey;
-#[cfg(feature = "StoreKit_SKCloudServiceSetupViewController")]
+#[cfg(feature = "SKCloudServiceSetupViewController")]
 pub use self::__SKCloudServiceSetupViewController::SKCloudServiceSetupOptionsMessageIdentifierKey;
 #[cfg(all(
-    feature = "StoreKit_SKCloudServiceSetupViewController",
+    feature = "SKCloudServiceSetupViewController",
     feature = "objc2-app-kit"
 ))]
 pub use self::__SKCloudServiceSetupViewController::SKCloudServiceSetupViewController;
-#[cfg(feature = "StoreKit_SKCloudServiceSetupViewController")]
+#[cfg(feature = "SKCloudServiceSetupViewController")]
 pub use self::__SKCloudServiceSetupViewController::SKCloudServiceSetupViewControllerDelegate;
-#[cfg(feature = "StoreKit_SKDownload")]
+#[cfg(feature = "SKDownload")]
 pub use self::__SKDownload::SKDownload;
-#[cfg(feature = "StoreKit_SKDownload")]
+#[cfg(feature = "SKDownload")]
 pub use self::__SKDownload::SKDownloadState;
-#[cfg(feature = "StoreKit_SKDownload")]
+#[cfg(feature = "SKDownload")]
 pub use self::__SKDownload::SKDownloadTimeRemainingUnknown;
-#[cfg(feature = "StoreKit_SKError")]
+#[cfg(feature = "SKError")]
 pub use self::__SKError::SKErrorCode;
-#[cfg(feature = "StoreKit_SKError")]
+#[cfg(feature = "SKError")]
 pub use self::__SKError::SKErrorDomain;
-#[cfg(feature = "StoreKit_SKOverlay")]
+#[cfg(feature = "SKOverlay")]
 pub use self::__SKOverlay::SKOverlay;
-#[cfg(feature = "StoreKit_SKOverlay")]
+#[cfg(feature = "SKOverlay")]
 pub use self::__SKOverlay::SKOverlayDelegate;
-#[cfg(feature = "StoreKit_SKOverlayConfiguration")]
+#[cfg(feature = "SKOverlayConfiguration")]
 pub use self::__SKOverlayConfiguration::SKOverlayAppClipConfiguration;
-#[cfg(feature = "StoreKit_SKOverlayConfiguration")]
+#[cfg(feature = "SKOverlayConfiguration")]
 pub use self::__SKOverlayConfiguration::SKOverlayAppConfiguration;
-#[cfg(feature = "StoreKit_SKOverlayConfiguration")]
+#[cfg(feature = "SKOverlayConfiguration")]
 pub use self::__SKOverlayConfiguration::SKOverlayConfiguration;
-#[cfg(feature = "StoreKit_SKOverlayConfiguration")]
+#[cfg(feature = "SKOverlayConfiguration")]
 pub use self::__SKOverlayConfiguration::SKOverlayPosition;
-#[cfg(feature = "StoreKit_SKOverlayTransitionContext")]
+#[cfg(feature = "SKOverlayTransitionContext")]
 pub use self::__SKOverlayTransitionContext::SKOverlayTransitionContext;
-#[cfg(feature = "StoreKit_SKPayment")]
+#[cfg(feature = "SKPayment")]
 pub use self::__SKPayment::SKMutablePayment;
-#[cfg(feature = "StoreKit_SKPayment")]
+#[cfg(feature = "SKPayment")]
 pub use self::__SKPayment::SKPayment;
-#[cfg(feature = "StoreKit_SKPaymentDiscount")]
+#[cfg(feature = "SKPaymentDiscount")]
 pub use self::__SKPaymentDiscount::SKPaymentDiscount;
-#[cfg(feature = "StoreKit_SKPaymentQueue")]
+#[cfg(feature = "SKPaymentQueue")]
 pub use self::__SKPaymentQueue::SKPaymentQueue;
-#[cfg(feature = "StoreKit_SKPaymentQueue")]
+#[cfg(feature = "SKPaymentQueue")]
 pub use self::__SKPaymentQueue::SKPaymentQueueDelegate;
-#[cfg(feature = "StoreKit_SKPaymentQueue")]
+#[cfg(feature = "SKPaymentQueue")]
 pub use self::__SKPaymentQueue::SKPaymentTransactionObserver;
-#[cfg(feature = "StoreKit_SKPaymentTransaction")]
+#[cfg(feature = "SKPaymentTransaction")]
 pub use self::__SKPaymentTransaction::SKPaymentTransaction;
-#[cfg(feature = "StoreKit_SKPaymentTransaction")]
+#[cfg(feature = "SKPaymentTransaction")]
 pub use self::__SKPaymentTransaction::SKPaymentTransactionState;
-#[cfg(feature = "StoreKit_SKProduct")]
+#[cfg(feature = "SKProduct")]
 pub use self::__SKProduct::SKProduct;
-#[cfg(feature = "StoreKit_SKProduct")]
+#[cfg(feature = "SKProduct")]
 pub use self::__SKProduct::SKProductPeriodUnit;
-#[cfg(feature = "StoreKit_SKProduct")]
+#[cfg(feature = "SKProduct")]
 pub use self::__SKProduct::SKProductSubscriptionPeriod;
-#[cfg(feature = "StoreKit_SKProductDiscount")]
+#[cfg(feature = "SKProductDiscount")]
 pub use self::__SKProductDiscount::SKProductDiscount;
-#[cfg(feature = "StoreKit_SKProductDiscount")]
+#[cfg(feature = "SKProductDiscount")]
 pub use self::__SKProductDiscount::SKProductDiscountPaymentMode;
-#[cfg(feature = "StoreKit_SKProductDiscount")]
+#[cfg(feature = "SKProductDiscount")]
 pub use self::__SKProductDiscount::SKProductDiscountType;
-#[cfg(feature = "StoreKit_SKProductStorePromotionController")]
+#[cfg(feature = "SKProductStorePromotionController")]
 pub use self::__SKProductStorePromotionController::SKProductStorePromotionController;
-#[cfg(feature = "StoreKit_SKProductStorePromotionController")]
+#[cfg(feature = "SKProductStorePromotionController")]
 pub use self::__SKProductStorePromotionController::SKProductStorePromotionVisibility;
-#[cfg(all(feature = "StoreKit_SKProductsRequest", feature = "StoreKit_SKRequest"))]
+#[cfg(all(feature = "SKProductsRequest", feature = "SKRequest"))]
 pub use self::__SKProductsRequest::SKProductsRequest;
-#[cfg(all(feature = "StoreKit_SKProductsRequest", feature = "StoreKit_SKRequest"))]
+#[cfg(all(feature = "SKProductsRequest", feature = "SKRequest"))]
 pub use self::__SKProductsRequest::SKProductsRequestDelegate;
-#[cfg(feature = "StoreKit_SKProductsRequest")]
+#[cfg(feature = "SKProductsRequest")]
 pub use self::__SKProductsRequest::SKProductsResponse;
-#[cfg(feature = "StoreKit_SKReceiptRefreshRequest")]
+#[cfg(feature = "SKReceiptRefreshRequest")]
 pub use self::__SKReceiptRefreshRequest::SKReceiptPropertyIsExpired;
-#[cfg(feature = "StoreKit_SKReceiptRefreshRequest")]
+#[cfg(feature = "SKReceiptRefreshRequest")]
 pub use self::__SKReceiptRefreshRequest::SKReceiptPropertyIsRevoked;
-#[cfg(feature = "StoreKit_SKReceiptRefreshRequest")]
+#[cfg(feature = "SKReceiptRefreshRequest")]
 pub use self::__SKReceiptRefreshRequest::SKReceiptPropertyIsVolumePurchase;
-#[cfg(all(
-    feature = "StoreKit_SKReceiptRefreshRequest",
-    feature = "StoreKit_SKRequest"
-))]
+#[cfg(all(feature = "SKReceiptRefreshRequest", feature = "SKRequest"))]
 pub use self::__SKReceiptRefreshRequest::SKReceiptRefreshRequest;
-#[cfg(feature = "StoreKit_SKReceiptRefreshRequest")]
+#[cfg(feature = "SKReceiptRefreshRequest")]
 pub use self::__SKReceiptRefreshRequest::SKTerminateForInvalidReceipt;
-#[cfg(feature = "StoreKit_SKRequest")]
+#[cfg(feature = "SKRequest")]
 pub use self::__SKRequest::SKRequest;
-#[cfg(feature = "StoreKit_SKRequest")]
+#[cfg(feature = "SKRequest")]
 pub use self::__SKRequest::SKRequestDelegate;
-#[cfg(feature = "StoreKit_SKStoreProductViewController")]
+#[cfg(feature = "SKStoreProductViewController")]
 pub use self::__SKStoreProductViewController::SKStoreProductParameterAdvertisingPartnerToken;
-#[cfg(feature = "StoreKit_SKStoreProductViewController")]
+#[cfg(feature = "SKStoreProductViewController")]
 pub use self::__SKStoreProductViewController::SKStoreProductParameterAffiliateToken;
-#[cfg(feature = "StoreKit_SKStoreProductViewController")]
+#[cfg(feature = "SKStoreProductViewController")]
 pub use self::__SKStoreProductViewController::SKStoreProductParameterCampaignToken;
-#[cfg(feature = "StoreKit_SKStoreProductViewController")]
+#[cfg(feature = "SKStoreProductViewController")]
 pub use self::__SKStoreProductViewController::SKStoreProductParameterCustomProductPageIdentifier;
-#[cfg(feature = "StoreKit_SKStoreProductViewController")]
+#[cfg(feature = "SKStoreProductViewController")]
 pub use self::__SKStoreProductViewController::SKStoreProductParameterITunesItemIdentifier;
-#[cfg(feature = "StoreKit_SKStoreProductViewController")]
+#[cfg(feature = "SKStoreProductViewController")]
 pub use self::__SKStoreProductViewController::SKStoreProductParameterProductIdentifier;
-#[cfg(feature = "StoreKit_SKStoreProductViewController")]
+#[cfg(feature = "SKStoreProductViewController")]
 pub use self::__SKStoreProductViewController::SKStoreProductParameterProviderToken;
-#[cfg(all(
-    feature = "StoreKit_SKStoreProductViewController",
-    feature = "objc2-app-kit"
-))]
+#[cfg(all(feature = "SKStoreProductViewController", feature = "objc2-app-kit"))]
 pub use self::__SKStoreProductViewController::SKStoreProductViewController;
-#[cfg(feature = "StoreKit_SKStoreProductViewController")]
+#[cfg(feature = "SKStoreProductViewController")]
 pub use self::__SKStoreProductViewController::SKStoreProductViewControllerDelegate;
-#[cfg(feature = "StoreKit_SKStoreReviewController")]
+#[cfg(feature = "SKStoreReviewController")]
 pub use self::__SKStoreReviewController::SKStoreReviewController;
-#[cfg(feature = "StoreKit_SKStorefront")]
+#[cfg(feature = "SKStorefront")]
 pub use self::__SKStorefront::SKStorefront;

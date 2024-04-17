@@ -19,7 +19,7 @@ unsafe impl NSObjectProtocol for LAPrivateKey {}
 
 extern_methods!(
     unsafe impl LAPrivateKey {
-        #[cfg(feature = "LocalAuthentication_LAPublicKey")]
+        #[cfg(feature = "LAPublicKey")]
         #[method_id(@__retain_semantics Other publicKey)]
         pub unsafe fn publicKey(&self) -> Id<LAPublicKey>;
 

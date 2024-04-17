@@ -76,7 +76,7 @@ extern_methods!(
         pub unsafe fn additionalHeaderFields(&self)
             -> Option<Id<NSDictionary<NSString, NSString>>>;
 
-        #[cfg(feature = "AuthenticationServices_ASWebAuthenticationSessionCallback")]
+        #[cfg(feature = "ASWebAuthenticationSessionCallback")]
         #[method_id(@__retain_semantics Other callback)]
         pub unsafe fn callback(&self) -> Option<Id<ASWebAuthenticationSessionCallback>>;
 

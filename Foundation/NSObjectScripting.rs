@@ -8,25 +8,25 @@ extern_category!(
     /// Category "NSScripting" on [`NSObject`].
     #[doc(alias = "NSScripting")]
     pub unsafe trait NSObjectNSScripting {
-        #[cfg(feature = "Foundation_NSScriptObjectSpecifiers")]
+        #[cfg(feature = "NSScriptObjectSpecifiers")]
         #[method_id(@__retain_semantics Other scriptingValueForSpecifier:)]
         unsafe fn scriptingValueForSpecifier(
             &self,
             object_specifier: &NSScriptObjectSpecifier,
         ) -> Option<Id<AnyObject>>;
 
-        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         #[method_id(@__retain_semantics Other scriptingProperties)]
         unsafe fn scriptingProperties(&self) -> Option<Id<NSDictionary<NSString, AnyObject>>>;
 
-        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         #[method(setScriptingProperties:)]
         unsafe fn setScriptingProperties(
             &self,
             scripting_properties: Option<&NSDictionary<NSString, AnyObject>>,
         );
 
-        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         #[method_id(@__retain_semantics CopyOrMutCopy copyScriptingValue:forKey:withProperties:)]
         unsafe fn copyScriptingValue_forKey_withProperties(
             &self,
@@ -35,7 +35,7 @@ extern_category!(
             properties: &NSDictionary<NSString, AnyObject>,
         ) -> Option<Id<AnyObject>>;
 
-        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         #[method_id(@__retain_semantics New newScriptingObjectOfClass:forValueForKey:withContentsValue:properties:)]
         unsafe fn newScriptingObjectOfClass_forValueForKey_withContentsValue_properties(
             &self,

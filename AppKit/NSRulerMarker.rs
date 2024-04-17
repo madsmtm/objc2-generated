@@ -24,10 +24,10 @@ unsafe impl NSObjectProtocol for NSRulerMarker {}
 extern_methods!(
     unsafe impl NSRulerMarker {
         #[cfg(all(
-            feature = "AppKit_NSImage",
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSRulerView",
-            feature = "AppKit_NSView"
+            feature = "NSImage",
+            feature = "NSResponder",
+            feature = "NSRulerView",
+            feature = "NSView"
         ))]
         #[method_id(@__retain_semantics Init initWithRulerView:markerLocation:image:imageOrigin:)]
         pub unsafe fn initWithRulerView_markerLocation_image_imageOrigin(
@@ -44,11 +44,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
-        #[cfg(all(
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSRulerView",
-            feature = "AppKit_NSView"
-        ))]
+        #[cfg(all(feature = "NSResponder", feature = "NSRulerView", feature = "NSView"))]
         #[method_id(@__retain_semantics Other ruler)]
         pub unsafe fn ruler(&self, mtm: MainThreadMarker) -> Option<Id<NSRulerView>>;
 
@@ -58,11 +54,11 @@ extern_methods!(
         #[method(setMarkerLocation:)]
         pub unsafe fn setMarkerLocation(&self, marker_location: CGFloat);
 
-        #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(feature = "NSImage")]
         #[method_id(@__retain_semantics Other image)]
         pub unsafe fn image(&self) -> Id<NSImage>;
 
-        #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(feature = "NSImage")]
         #[method(setImage:)]
         pub unsafe fn setImage(&self, image: &NSImage);
 
@@ -105,7 +101,7 @@ extern_methods!(
         #[method(drawRect:)]
         pub unsafe fn drawRect(&self, rect: NSRect);
 
-        #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(feature = "NSEvent")]
         #[method(trackMouse:adding:)]
         pub unsafe fn trackMouse_adding(&self, mouse_down_event: &NSEvent, is_adding: bool)
             -> bool;

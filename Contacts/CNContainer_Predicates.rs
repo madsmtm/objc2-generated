@@ -7,7 +7,7 @@ use crate::*;
 
 extern_methods!(
     /// Predicates
-    #[cfg(feature = "Contacts_CNContainer")]
+    #[cfg(feature = "CNContainer")]
     unsafe impl CNContainer {
         #[method_id(@__retain_semantics Other predicateForContainersWithIdentifiers:)]
         pub unsafe fn predicateForContainersWithIdentifiers(

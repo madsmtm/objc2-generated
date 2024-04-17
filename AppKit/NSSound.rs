@@ -6,7 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    #[cfg(feature = "AppKit_NSPasteboard")]
+    #[cfg(feature = "NSPasteboard")]
     pub static NSSoundPboardType: &'static NSPasteboardType;
 }
 
@@ -30,10 +30,10 @@ unsafe impl NSCopying for NSSound {}
 
 unsafe impl NSObjectProtocol for NSSound {}
 
-#[cfg(feature = "AppKit_NSPasteboard")]
+#[cfg(feature = "NSPasteboard")]
 unsafe impl NSPasteboardReading for NSSound {}
 
-#[cfg(feature = "AppKit_NSPasteboard")]
+#[cfg(feature = "NSPasteboard")]
 unsafe impl NSPasteboardWriting for NSSound {}
 
 unsafe impl NSSecureCoding for NSSound {}
@@ -66,21 +66,21 @@ extern_methods!(
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Option<Id<NSSoundName>>;
 
-        #[cfg(feature = "AppKit_NSPasteboard")]
+        #[cfg(feature = "NSPasteboard")]
         #[method(canInitWithPasteboard:)]
         pub unsafe fn canInitWithPasteboard(pasteboard: &NSPasteboard) -> bool;
 
         #[method_id(@__retain_semantics Other soundUnfilteredTypes)]
         pub unsafe fn soundUnfilteredTypes() -> Id<NSArray<NSString>>;
 
-        #[cfg(feature = "AppKit_NSPasteboard")]
+        #[cfg(feature = "NSPasteboard")]
         #[method_id(@__retain_semantics Init initWithPasteboard:)]
         pub unsafe fn initWithPasteboard(
             this: Allocated<Self>,
             pasteboard: &NSPasteboard,
         ) -> Option<Id<Self>>;
 
-        #[cfg(feature = "AppKit_NSPasteboard")]
+        #[cfg(feature = "NSPasteboard")]
         #[method(writeToPasteboard:)]
         pub unsafe fn writeToPasteboard(&self, pasteboard: &NSPasteboard);
 

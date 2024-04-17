@@ -19,7 +19,7 @@ unsafe impl NSObjectProtocol for NSManagedObjectModelReference {}
 
 extern_methods!(
     unsafe impl NSManagedObjectModelReference {
-        #[cfg(feature = "CoreData_NSManagedObjectModel")]
+        #[cfg(feature = "NSManagedObjectModel")]
         #[method_id(@__retain_semantics Other resolvedModel)]
         pub unsafe fn resolvedModel(&self) -> Id<NSManagedObjectModel>;
 
@@ -29,7 +29,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
-        #[cfg(feature = "CoreData_NSManagedObjectModel")]
+        #[cfg(feature = "NSManagedObjectModel")]
         #[method_id(@__retain_semantics Init initWithModel:versionChecksum:)]
         pub unsafe fn initWithModel_versionChecksum(
             this: Allocated<Self>,

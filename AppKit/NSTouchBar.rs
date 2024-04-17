@@ -40,76 +40,76 @@ extern_methods!(
             customization_identifier: Option<&NSTouchBarCustomizationIdentifier>,
         );
 
-        #[cfg(feature = "AppKit_NSTouchBarItem")]
+        #[cfg(feature = "NSTouchBarItem")]
         #[method_id(@__retain_semantics Other customizationAllowedItemIdentifiers)]
         pub unsafe fn customizationAllowedItemIdentifiers(
             &self,
         ) -> Id<NSArray<NSTouchBarItemIdentifier>>;
 
-        #[cfg(feature = "AppKit_NSTouchBarItem")]
+        #[cfg(feature = "NSTouchBarItem")]
         #[method(setCustomizationAllowedItemIdentifiers:)]
         pub unsafe fn setCustomizationAllowedItemIdentifiers(
             &self,
             customization_allowed_item_identifiers: &NSArray<NSTouchBarItemIdentifier>,
         );
 
-        #[cfg(feature = "AppKit_NSTouchBarItem")]
+        #[cfg(feature = "NSTouchBarItem")]
         #[method_id(@__retain_semantics Other customizationRequiredItemIdentifiers)]
         pub unsafe fn customizationRequiredItemIdentifiers(
             &self,
         ) -> Id<NSArray<NSTouchBarItemIdentifier>>;
 
-        #[cfg(feature = "AppKit_NSTouchBarItem")]
+        #[cfg(feature = "NSTouchBarItem")]
         #[method(setCustomizationRequiredItemIdentifiers:)]
         pub unsafe fn setCustomizationRequiredItemIdentifiers(
             &self,
             customization_required_item_identifiers: &NSArray<NSTouchBarItemIdentifier>,
         );
 
-        #[cfg(feature = "AppKit_NSTouchBarItem")]
+        #[cfg(feature = "NSTouchBarItem")]
         #[method_id(@__retain_semantics Other defaultItemIdentifiers)]
         pub unsafe fn defaultItemIdentifiers(&self) -> Id<NSArray<NSTouchBarItemIdentifier>>;
 
-        #[cfg(feature = "AppKit_NSTouchBarItem")]
+        #[cfg(feature = "NSTouchBarItem")]
         #[method(setDefaultItemIdentifiers:)]
         pub unsafe fn setDefaultItemIdentifiers(
             &self,
             default_item_identifiers: &NSArray<NSTouchBarItemIdentifier>,
         );
 
-        #[cfg(feature = "AppKit_NSTouchBarItem")]
+        #[cfg(feature = "NSTouchBarItem")]
         #[method_id(@__retain_semantics Other itemIdentifiers)]
         pub unsafe fn itemIdentifiers(&self) -> Id<NSArray<NSTouchBarItemIdentifier>>;
 
-        #[cfg(feature = "AppKit_NSTouchBarItem")]
+        #[cfg(feature = "NSTouchBarItem")]
         #[method_id(@__retain_semantics Other principalItemIdentifier)]
         pub unsafe fn principalItemIdentifier(&self) -> Option<Id<NSTouchBarItemIdentifier>>;
 
-        #[cfg(feature = "AppKit_NSTouchBarItem")]
+        #[cfg(feature = "NSTouchBarItem")]
         #[method(setPrincipalItemIdentifier:)]
         pub unsafe fn setPrincipalItemIdentifier(
             &self,
             principal_item_identifier: Option<&NSTouchBarItemIdentifier>,
         );
 
-        #[cfg(feature = "AppKit_NSTouchBarItem")]
+        #[cfg(feature = "NSTouchBarItem")]
         #[method_id(@__retain_semantics Other escapeKeyReplacementItemIdentifier)]
         pub unsafe fn escapeKeyReplacementItemIdentifier(
             &self,
         ) -> Option<Id<NSTouchBarItemIdentifier>>;
 
-        #[cfg(feature = "AppKit_NSTouchBarItem")]
+        #[cfg(feature = "NSTouchBarItem")]
         #[method(setEscapeKeyReplacementItemIdentifier:)]
         pub unsafe fn setEscapeKeyReplacementItemIdentifier(
             &self,
             escape_key_replacement_item_identifier: Option<&NSTouchBarItemIdentifier>,
         );
 
-        #[cfg(feature = "AppKit_NSTouchBarItem")]
+        #[cfg(feature = "NSTouchBarItem")]
         #[method_id(@__retain_semantics Other templateItems)]
         pub unsafe fn templateItems(&self) -> Id<NSSet<NSTouchBarItem>>;
 
-        #[cfg(feature = "AppKit_NSTouchBarItem")]
+        #[cfg(feature = "NSTouchBarItem")]
         #[method(setTemplateItems:)]
         pub unsafe fn setTemplateItems(&self, template_items: &NSSet<NSTouchBarItem>);
 
@@ -119,7 +119,7 @@ extern_methods!(
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSTouchBarDelegate>>);
 
-        #[cfg(feature = "AppKit_NSTouchBarItem")]
+        #[cfg(feature = "NSTouchBarItem")]
         #[method_id(@__retain_semantics Other itemForIdentifier:)]
         pub unsafe fn itemForIdentifier(
             &self,
@@ -150,7 +150,7 @@ extern_methods!(
 
 extern_protocol!(
     pub unsafe trait NSTouchBarDelegate: NSObjectProtocol + IsMainThreadOnly {
-        #[cfg(feature = "AppKit_NSTouchBarItem")]
+        #[cfg(feature = "NSTouchBarItem")]
         #[optional]
         #[method_id(@__retain_semantics Other touchBar:makeItemForIdentifier:)]
         unsafe fn touchBar_makeItemForIdentifier(
@@ -174,7 +174,7 @@ extern_protocol!(
 
 extern_methods!(
     /// NSTouchBarProvider
-    #[cfg(feature = "AppKit_NSResponder")]
+    #[cfg(feature = "NSResponder")]
     unsafe impl NSResponder {
         #[method_id(@__retain_semantics Other touchBar)]
         pub unsafe fn touchBar(&self) -> Option<Id<NSTouchBar>>;
@@ -187,12 +187,12 @@ extern_methods!(
     }
 );
 
-#[cfg(feature = "AppKit_NSResponder")]
+#[cfg(feature = "NSResponder")]
 unsafe impl NSTouchBarProvider for NSResponder {}
 
 extern_methods!(
     /// NSTouchBarCustomization
-    #[cfg(all(feature = "AppKit_NSApplication", feature = "AppKit_NSResponder"))]
+    #[cfg(all(feature = "NSApplication", feature = "NSResponder"))]
     unsafe impl NSApplication {
         #[method(isAutomaticCustomizeTouchBarMenuItemEnabled)]
         pub unsafe fn isAutomaticCustomizeTouchBarMenuItemEnabled(&self) -> bool;

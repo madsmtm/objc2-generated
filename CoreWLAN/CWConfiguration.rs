@@ -27,7 +27,7 @@ unsafe impl NSSecureCoding for CWConfiguration {}
 
 extern_methods!(
     unsafe impl CWConfiguration {
-        #[cfg(feature = "CoreWLAN_CWNetworkProfile")]
+        #[cfg(feature = "CWNetworkProfile")]
         #[method_id(@__retain_semantics Other networkProfiles)]
         pub unsafe fn networkProfiles(&self) -> Id<NSOrderedSet<CWNetworkProfile>>;
 
@@ -94,11 +94,11 @@ unsafe impl NSSecureCoding for CWMutableConfiguration {}
 
 extern_methods!(
     unsafe impl CWMutableConfiguration {
-        #[cfg(feature = "CoreWLAN_CWNetworkProfile")]
+        #[cfg(feature = "CWNetworkProfile")]
         #[method_id(@__retain_semantics Other networkProfiles)]
         pub unsafe fn networkProfiles(&self) -> Id<NSOrderedSet<CWNetworkProfile>>;
 
-        #[cfg(feature = "CoreWLAN_CWNetworkProfile")]
+        #[cfg(feature = "CWNetworkProfile")]
         #[method(setNetworkProfiles:)]
         pub unsafe fn setNetworkProfiles(&self, network_profiles: &NSOrderedSet<CWNetworkProfile>);
 

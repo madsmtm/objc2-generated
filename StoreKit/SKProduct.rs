@@ -125,14 +125,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Other subscriptionPeriod)]
         pub unsafe fn subscriptionPeriod(&self) -> Option<Id<SKProductSubscriptionPeriod>>;
 
-        #[cfg(feature = "StoreKit_SKProductDiscount")]
+        #[cfg(feature = "SKProductDiscount")]
         #[method_id(@__retain_semantics Other introductoryPrice)]
         pub unsafe fn introductoryPrice(&self) -> Option<Id<SKProductDiscount>>;
 
         #[method_id(@__retain_semantics Other subscriptionGroupIdentifier)]
         pub unsafe fn subscriptionGroupIdentifier(&self) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "StoreKit_SKProductDiscount")]
+        #[cfg(feature = "SKProductDiscount")]
         #[method_id(@__retain_semantics Other discounts)]
         pub unsafe fn discounts(&self) -> Id<NSArray<SKProductDiscount>>;
     }

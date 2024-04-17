@@ -136,13 +136,13 @@ extern_methods!(
             >,
         );
 
-        #[cfg(feature = "AppKit_NSAccessibilityProtocols")]
+        #[cfg(feature = "NSAccessibilityProtocols")]
         #[method_id(@__retain_semantics Other itemLoadingDelegate)]
         pub unsafe fn itemLoadingDelegate(
             &self,
         ) -> Option<Id<ProtocolObject<dyn NSAccessibilityElementLoading>>>;
 
-        #[cfg(feature = "AppKit_NSAccessibilityProtocols")]
+        #[cfg(feature = "NSAccessibilityProtocols")]
         #[method(setItemLoadingDelegate:)]
         pub unsafe fn setItemLoadingDelegate(
             &self,
@@ -233,14 +233,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
-        #[cfg(feature = "AppKit_NSAccessibilityProtocols")]
+        #[cfg(feature = "NSAccessibilityProtocols")]
         #[method_id(@__retain_semantics Init initWithTargetElement:)]
         pub unsafe fn initWithTargetElement(
             this: Allocated<Self>,
             target_element: &ProtocolObject<dyn NSAccessibilityElementProtocol>,
         ) -> Id<Self>;
 
-        #[cfg(feature = "AppKit_NSAccessibilityConstants")]
+        #[cfg(feature = "NSAccessibilityConstants")]
         #[method_id(@__retain_semantics Init initWithItemLoadingToken:customLabel:)]
         pub unsafe fn initWithItemLoadingToken_customLabel(
             this: Allocated<Self>,
@@ -248,13 +248,13 @@ extern_methods!(
             custom_label: &NSString,
         ) -> Id<Self>;
 
-        #[cfg(feature = "AppKit_NSAccessibilityProtocols")]
+        #[cfg(feature = "NSAccessibilityProtocols")]
         #[method_id(@__retain_semantics Other targetElement)]
         pub unsafe fn targetElement(
             &self,
         ) -> Option<Id<ProtocolObject<dyn NSAccessibilityElementProtocol>>>;
 
-        #[cfg(feature = "AppKit_NSAccessibilityConstants")]
+        #[cfg(feature = "NSAccessibilityConstants")]
         #[method_id(@__retain_semantics Other itemLoadingToken)]
         pub unsafe fn itemLoadingToken(&self) -> Option<Id<NSAccessibilityLoadingToken>>;
 

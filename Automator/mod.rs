@@ -16,64 +16,64 @@
 #[link(name = "Automator", kind = "framework")]
 extern "C" {}
 
-#[cfg(feature = "Automator_AMAction")]
+#[cfg(feature = "AMAction")]
 #[path = "AMAction.rs"]
 mod __AMAction;
-#[cfg(feature = "Automator_AMAppleScriptAction")]
+#[cfg(feature = "AMAppleScriptAction")]
 #[path = "AMAppleScriptAction.rs"]
 mod __AMAppleScriptAction;
-#[cfg(feature = "Automator_AMAttributesForAnalyzer")]
+#[cfg(feature = "AMAttributesForAnalyzer")]
 #[path = "AMAttributesForAnalyzer.rs"]
 mod __AMAttributesForAnalyzer;
-#[cfg(feature = "Automator_AMBundleAction")]
+#[cfg(feature = "AMBundleAction")]
 #[path = "AMBundleAction.rs"]
 mod __AMBundleAction;
-#[cfg(feature = "Automator_AMShellScriptAction")]
+#[cfg(feature = "AMShellScriptAction")]
 #[path = "AMShellScriptAction.rs"]
 mod __AMShellScriptAction;
-#[cfg(feature = "Automator_AMWorkflow")]
+#[cfg(feature = "AMWorkflow")]
 #[path = "AMWorkflow.rs"]
 mod __AMWorkflow;
-#[cfg(feature = "Automator_AMWorkflowController")]
+#[cfg(feature = "AMWorkflowController")]
 #[path = "AMWorkflowController.rs"]
 mod __AMWorkflowController;
-#[cfg(feature = "Automator_AMWorkflowView")]
+#[cfg(feature = "AMWorkflowView")]
 #[path = "AMWorkflowView.rs"]
 mod __AMWorkflowView;
-#[cfg(feature = "Automator_AMWorkspace")]
+#[cfg(feature = "AMWorkspace")]
 #[path = "AMWorkspace.rs"]
 mod __AMWorkspace;
-#[cfg(feature = "Automator_AutomatorErrors")]
+#[cfg(feature = "AutomatorErrors")]
 #[path = "AutomatorErrors.rs"]
 mod __AutomatorErrors;
 
-#[cfg(feature = "Automator_AMAction")]
+#[cfg(feature = "AMAction")]
 pub use self::__AMAction::AMAction;
-#[cfg(feature = "Automator_AMAction")]
+#[cfg(feature = "AMAction")]
 pub use self::__AMAction::AMLogLevel;
 #[cfg(all(
-    feature = "Automator_AMAction",
-    feature = "Automator_AMAppleScriptAction",
-    feature = "Automator_AMBundleAction"
+    feature = "AMAction",
+    feature = "AMAppleScriptAction",
+    feature = "AMBundleAction"
 ))]
 pub use self::__AMAppleScriptAction::AMAppleScriptAction;
-#[cfg(all(feature = "Automator_AMAction", feature = "Automator_AMBundleAction"))]
+#[cfg(all(feature = "AMAction", feature = "AMBundleAction"))]
 pub use self::__AMBundleAction::AMBundleAction;
 #[cfg(all(
-    feature = "Automator_AMAction",
-    feature = "Automator_AMBundleAction",
-    feature = "Automator_AMShellScriptAction"
+    feature = "AMAction",
+    feature = "AMBundleAction",
+    feature = "AMShellScriptAction"
 ))]
 pub use self::__AMShellScriptAction::AMShellScriptAction;
-#[cfg(feature = "Automator_AMWorkflow")]
+#[cfg(feature = "AMWorkflow")]
 pub use self::__AMWorkflow::AMWorkflow;
-#[cfg(all(feature = "Automator_AMWorkflowController", feature = "objc2-app-kit"))]
+#[cfg(all(feature = "AMWorkflowController", feature = "objc2-app-kit"))]
 pub use self::__AMWorkflowController::AMWorkflowController;
-#[cfg(feature = "Automator_AMWorkflowController")]
+#[cfg(feature = "AMWorkflowController")]
 pub use self::__AMWorkflowController::AMWorkflowControllerDelegate;
-#[cfg(all(feature = "Automator_AMWorkflowView", feature = "objc2-app-kit"))]
+#[cfg(all(feature = "AMWorkflowView", feature = "objc2-app-kit"))]
 pub use self::__AMWorkflowView::AMWorkflowView;
-#[cfg(feature = "Automator_AMWorkspace")]
+#[cfg(feature = "AMWorkspace")]
 pub use self::__AMWorkspace::AMWorkspace;
-#[cfg(feature = "Automator_AutomatorErrors")]
+#[cfg(feature = "AutomatorErrors")]
 pub use self::__AutomatorErrors::AMErrorCode;

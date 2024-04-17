@@ -7,10 +7,10 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MetricKit_MXMetric")]
+    #[cfg(feature = "MXMetric")]
     pub struct MXAppResponsivenessMetric;
 
-    #[cfg(feature = "MetricKit_MXMetric")]
+    #[cfg(feature = "MXMetric")]
     unsafe impl ClassType for MXAppResponsivenessMetric {
         #[inherits(NSObject)]
         type Super = MXMetric;
@@ -18,19 +18,19 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "MetricKit_MXMetric")]
+#[cfg(feature = "MXMetric")]
 unsafe impl NSCoding for MXAppResponsivenessMetric {}
 
-#[cfg(feature = "MetricKit_MXMetric")]
+#[cfg(feature = "MXMetric")]
 unsafe impl NSObjectProtocol for MXAppResponsivenessMetric {}
 
-#[cfg(feature = "MetricKit_MXMetric")]
+#[cfg(feature = "MXMetric")]
 unsafe impl NSSecureCoding for MXAppResponsivenessMetric {}
 
 extern_methods!(
-    #[cfg(feature = "MetricKit_MXMetric")]
+    #[cfg(feature = "MXMetric")]
     unsafe impl MXAppResponsivenessMetric {
-        #[cfg(feature = "MetricKit_MXHistogram")]
+        #[cfg(feature = "MXHistogram")]
         #[method_id(@__retain_semantics Other histogrammedApplicationHangTime)]
         pub unsafe fn histogrammedApplicationHangTime(&self) -> Id<MXHistogram<NSUnitDuration>>;
     }
@@ -38,7 +38,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MetricKit_MXMetric")]
+    #[cfg(feature = "MXMetric")]
     unsafe impl MXAppResponsivenessMetric {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

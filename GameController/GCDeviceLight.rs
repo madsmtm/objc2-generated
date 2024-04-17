@@ -19,11 +19,11 @@ unsafe impl NSObjectProtocol for GCDeviceLight {}
 
 extern_methods!(
     unsafe impl GCDeviceLight {
-        #[cfg(feature = "GameController_GCColor")]
+        #[cfg(feature = "GCColor")]
         #[method_id(@__retain_semantics Other color)]
         pub unsafe fn color(&self) -> Id<GCColor>;
 
-        #[cfg(feature = "GameController_GCColor")]
+        #[cfg(feature = "GCColor")]
         #[method(setColor:)]
         pub unsafe fn setColor(&self, color: &GCColor);
 

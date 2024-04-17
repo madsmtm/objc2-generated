@@ -57,12 +57,12 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
-        #[cfg(feature = "Metal_MTLTypes")]
+        #[cfg(feature = "MTLTypes")]
         #[method_id(@__retain_semantics Init initWithSampleCount:)]
         pub unsafe fn initWithSampleCount(this: Allocated<Self>, sample_count: MTLSize)
             -> Id<Self>;
 
-        #[cfg(feature = "Metal_MTLTypes")]
+        #[cfg(feature = "MTLTypes")]
         #[method_id(@__retain_semantics Init initWithSampleCount:horizontal:vertical:)]
         pub unsafe fn initWithSampleCount_horizontal_vertical(
             this: Allocated<Self>,
@@ -71,7 +71,7 @@ extern_methods!(
             vertical: NonNull<c_float>,
         ) -> Id<Self>;
 
-        #[cfg(feature = "Metal_MTLTypes")]
+        #[cfg(feature = "MTLTypes")]
         #[method(maxSampleCount)]
         pub unsafe fn maxSampleCount(&self) -> MTLSize;
 
@@ -157,20 +157,20 @@ unsafe impl NSObjectProtocol for MTLRasterizationRateMapDescriptor {}
 
 extern_methods!(
     unsafe impl MTLRasterizationRateMapDescriptor {
-        #[cfg(feature = "Metal_MTLTypes")]
+        #[cfg(feature = "MTLTypes")]
         #[method_id(@__retain_semantics Other rasterizationRateMapDescriptorWithScreenSize:)]
         pub unsafe fn rasterizationRateMapDescriptorWithScreenSize(
             screen_size: MTLSize,
         ) -> Id<MTLRasterizationRateMapDescriptor>;
 
-        #[cfg(feature = "Metal_MTLTypes")]
+        #[cfg(feature = "MTLTypes")]
         #[method_id(@__retain_semantics Other rasterizationRateMapDescriptorWithScreenSize:layer:)]
         pub unsafe fn rasterizationRateMapDescriptorWithScreenSize_layer(
             screen_size: MTLSize,
             layer: &MTLRasterizationRateLayerDescriptor,
         ) -> Id<MTLRasterizationRateMapDescriptor>;
 
-        #[cfg(feature = "Metal_MTLTypes")]
+        #[cfg(feature = "MTLTypes")]
         #[method_id(@__retain_semantics Other rasterizationRateMapDescriptorWithScreenSize:layerCount:layers:)]
         pub unsafe fn rasterizationRateMapDescriptorWithScreenSize_layerCount_layers(
             screen_size: MTLSize,
@@ -194,11 +194,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Other layers)]
         pub unsafe fn layers(&self) -> Id<MTLRasterizationRateLayerArray>;
 
-        #[cfg(feature = "Metal_MTLTypes")]
+        #[cfg(feature = "MTLTypes")]
         #[method(screenSize)]
         pub unsafe fn screenSize(&self) -> MTLSize;
 
-        #[cfg(feature = "Metal_MTLTypes")]
+        #[cfg(feature = "MTLTypes")]
         #[method(setScreenSize:)]
         pub unsafe fn setScreenSize(&self, screen_size: MTLSize);
 
@@ -226,29 +226,29 @@ extern_methods!(
 
 extern_protocol!(
     pub unsafe trait MTLRasterizationRateMap: NSObjectProtocol {
-        #[cfg(feature = "Metal_MTLDevice")]
+        #[cfg(feature = "MTLDevice")]
         #[method_id(@__retain_semantics Other device)]
         unsafe fn device(&self) -> Id<ProtocolObject<dyn MTLDevice>>;
 
         #[method_id(@__retain_semantics Other label)]
         unsafe fn label(&self) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "Metal_MTLTypes")]
+        #[cfg(feature = "MTLTypes")]
         #[method(screenSize)]
         unsafe fn screenSize(&self) -> MTLSize;
 
-        #[cfg(feature = "Metal_MTLTypes")]
+        #[cfg(feature = "MTLTypes")]
         #[method(physicalGranularity)]
         unsafe fn physicalGranularity(&self) -> MTLSize;
 
         #[method(layerCount)]
         unsafe fn layerCount(&self) -> NSUInteger;
 
-        #[cfg(feature = "Metal_MTLDevice")]
+        #[cfg(feature = "MTLDevice")]
         #[method(parameterBufferSizeAndAlign)]
         unsafe fn parameterBufferSizeAndAlign(&self) -> MTLSizeAndAlign;
 
-        #[cfg(all(feature = "Metal_MTLBuffer", feature = "Metal_MTLResource"))]
+        #[cfg(all(feature = "MTLBuffer", feature = "MTLResource"))]
         #[method(copyParameterDataToBuffer:offset:)]
         unsafe fn copyParameterDataToBuffer_offset(
             &self,
@@ -256,11 +256,11 @@ extern_protocol!(
             offset: NSUInteger,
         );
 
-        #[cfg(feature = "Metal_MTLTypes")]
+        #[cfg(feature = "MTLTypes")]
         #[method(physicalSizeForLayer:)]
         unsafe fn physicalSizeForLayer(&self, layer_index: NSUInteger) -> MTLSize;
 
-        #[cfg(feature = "Metal_MTLTypes")]
+        #[cfg(feature = "MTLTypes")]
         #[method(mapScreenToPhysicalCoordinates:forLayer:)]
         unsafe fn mapScreenToPhysicalCoordinates_forLayer(
             &self,
@@ -268,7 +268,7 @@ extern_protocol!(
             layer_index: NSUInteger,
         ) -> MTLCoordinate2D;
 
-        #[cfg(feature = "Metal_MTLTypes")]
+        #[cfg(feature = "MTLTypes")]
         #[method(mapPhysicalToScreenCoordinates:forLayer:)]
         unsafe fn mapPhysicalToScreenCoordinates_forLayer(
             &self,

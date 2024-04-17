@@ -25,18 +25,18 @@ unsafe impl NSSecureCoding for EKRecurrenceDayOfWeek {}
 
 extern_methods!(
     unsafe impl EKRecurrenceDayOfWeek {
-        #[cfg(feature = "EventKit_EKTypes")]
+        #[cfg(feature = "EKTypes")]
         #[method_id(@__retain_semantics Other dayOfWeek:)]
         pub unsafe fn dayOfWeek(day_of_the_week: EKWeekday) -> Id<Self>;
 
-        #[cfg(feature = "EventKit_EKTypes")]
+        #[cfg(feature = "EKTypes")]
         #[method_id(@__retain_semantics Other dayOfWeek:weekNumber:)]
         pub unsafe fn dayOfWeek_weekNumber(
             day_of_the_week: EKWeekday,
             week_number: NSInteger,
         ) -> Id<Self>;
 
-        #[cfg(feature = "EventKit_EKTypes")]
+        #[cfg(feature = "EKTypes")]
         #[method_id(@__retain_semantics Init initWithDayOfTheWeek:weekNumber:)]
         pub unsafe fn initWithDayOfTheWeek_weekNumber(
             this: Allocated<Self>,
@@ -44,7 +44,7 @@ extern_methods!(
             week_number: NSInteger,
         ) -> Id<Self>;
 
-        #[cfg(feature = "EventKit_EKTypes")]
+        #[cfg(feature = "EKTypes")]
         #[method(dayOfTheWeek)]
         pub unsafe fn dayOfTheWeek(&self) -> EKWeekday;
 

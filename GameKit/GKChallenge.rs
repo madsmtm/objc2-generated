@@ -59,11 +59,11 @@ extern_methods!(
         #[method(decline)]
         pub unsafe fn decline(&self);
 
-        #[cfg(all(feature = "GameKit_GKBasePlayer", feature = "GameKit_GKPlayer"))]
+        #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
         #[method_id(@__retain_semantics Other issuingPlayer)]
         pub unsafe fn issuingPlayer(&self) -> Option<Id<GKPlayer>>;
 
-        #[cfg(all(feature = "GameKit_GKBasePlayer", feature = "GameKit_GKPlayer"))]
+        #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
         #[method_id(@__retain_semantics Other receivingPlayer)]
         pub unsafe fn receivingPlayer(&self) -> Option<Id<GKPlayer>>;
 
@@ -124,12 +124,12 @@ unsafe impl NSSecureCoding for GKScoreChallenge {}
 
 extern_methods!(
     unsafe impl GKScoreChallenge {
-        #[cfg(feature = "GameKit_GKScore")]
+        #[cfg(feature = "GKScore")]
         #[deprecated]
         #[method_id(@__retain_semantics Other score)]
         pub unsafe fn score(&self) -> Option<Id<GKScore>>;
 
-        #[cfg(feature = "GameKit_GKLeaderboardEntry")]
+        #[cfg(feature = "GKLeaderboardEntry")]
         #[method_id(@__retain_semantics Other leaderboardEntry)]
         pub unsafe fn leaderboardEntry(&self) -> Option<Id<GKLeaderboardEntry>>;
     }
@@ -165,7 +165,7 @@ unsafe impl NSSecureCoding for GKAchievementChallenge {}
 
 extern_methods!(
     unsafe impl GKAchievementChallenge {
-        #[cfg(feature = "GameKit_GKAchievement")]
+        #[cfg(feature = "GKAchievement")]
         #[method_id(@__retain_semantics Other achievement)]
         pub unsafe fn achievement(&self) -> Option<Id<GKAchievement>>;
     }
@@ -184,7 +184,7 @@ extern_methods!(
 
 extern_methods!(
     /// GKChallenge
-    #[cfg(feature = "GameKit_GKScore")]
+    #[cfg(feature = "GKScore")]
     unsafe impl GKScore {
         #[cfg(feature = "block2")]
         #[deprecated]
@@ -195,7 +195,7 @@ extern_methods!(
             completion_handler: Option<&Block<dyn Fn(*mut NSError)>>,
         );
 
-        #[cfg(all(feature = "GameKit_GKLeaderboardScore", feature = "block2"))]
+        #[cfg(all(feature = "GKLeaderboardScore", feature = "block2"))]
         #[method(reportLeaderboardScores:withEligibleChallenges:withCompletionHandler:)]
         pub unsafe fn reportLeaderboardScores_withEligibleChallenges_withCompletionHandler(
             scores: &NSArray<GKLeaderboardScore>,
@@ -207,13 +207,9 @@ extern_methods!(
 
 extern_methods!(
     /// GKChallenge
-    #[cfg(feature = "GameKit_GKAchievement")]
+    #[cfg(feature = "GKAchievement")]
     unsafe impl GKAchievement {
-        #[cfg(all(
-            feature = "GameKit_GKBasePlayer",
-            feature = "GameKit_GKPlayer",
-            feature = "block2"
-        ))]
+        #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer", feature = "block2"))]
         #[method(selectChallengeablePlayers:withCompletionHandler:)]
         pub unsafe fn selectChallengeablePlayers_withCompletionHandler(
             &self,
@@ -233,7 +229,7 @@ extern_methods!(
 
 extern_methods!(
     /// GKChallengeObsoleted
-    #[cfg(feature = "GameKit_GKScore")]
+    #[cfg(feature = "GKScore")]
     unsafe impl GKScore {
         #[deprecated]
         #[method(issueChallengeToPlayers:message:)]
@@ -247,7 +243,7 @@ extern_methods!(
 
 extern_methods!(
     /// GKChallengeObsoleted
-    #[cfg(feature = "GameKit_GKAchievement")]
+    #[cfg(feature = "GKAchievement")]
     unsafe impl GKAchievement {
         #[deprecated]
         #[method(issueChallengeToPlayers:message:)]
@@ -273,8 +269,8 @@ pub type GKChallengeComposeCompletionBlock =
     *mut Block<dyn Fn(NonNull<NSViewController>, Bool, *mut NSArray<NSString>)>;
 
 #[cfg(all(
-    feature = "GameKit_GKBasePlayer",
-    feature = "GameKit_GKPlayer",
+    feature = "GKBasePlayer",
+    feature = "GKPlayer",
     feature = "block2",
     feature = "objc2-app-kit"
 ))]
@@ -283,11 +279,11 @@ pub type GKChallengeComposeHandler =
 
 extern_methods!(
     /// GKChallengeUI
-    #[cfg(feature = "GameKit_GKScore")]
+    #[cfg(feature = "GKScore")]
     unsafe impl GKScore {
         #[cfg(all(
-            feature = "GameKit_GKBasePlayer",
-            feature = "GameKit_GKPlayer",
+            feature = "GKBasePlayer",
+            feature = "GKPlayer",
             feature = "block2",
             feature = "objc2-app-kit"
         ))]
@@ -302,8 +298,8 @@ extern_methods!(
         ) -> Id<NSViewController>;
 
         #[cfg(all(
-            feature = "GameKit_GKBasePlayer",
-            feature = "GameKit_GKPlayer",
+            feature = "GKBasePlayer",
+            feature = "GKPlayer",
             feature = "block2",
             feature = "objc2-app-kit"
         ))]
@@ -320,11 +316,11 @@ extern_methods!(
 
 extern_methods!(
     /// GKChallengeUI
-    #[cfg(feature = "GameKit_GKLeaderboardEntry")]
+    #[cfg(feature = "GKLeaderboardEntry")]
     unsafe impl GKLeaderboardEntry {
         #[cfg(all(
-            feature = "GameKit_GKBasePlayer",
-            feature = "GameKit_GKPlayer",
+            feature = "GKBasePlayer",
+            feature = "GKPlayer",
             feature = "block2",
             feature = "objc2-app-kit"
         ))]
@@ -339,8 +335,8 @@ extern_methods!(
         ) -> Id<NSViewController>;
 
         #[cfg(all(
-            feature = "GameKit_GKBasePlayer",
-            feature = "GameKit_GKPlayer",
+            feature = "GKBasePlayer",
+            feature = "GKPlayer",
             feature = "block2",
             feature = "objc2-app-kit"
         ))]
@@ -357,11 +353,11 @@ extern_methods!(
 
 extern_methods!(
     /// GKChallengeUI
-    #[cfg(feature = "GameKit_GKAchievement")]
+    #[cfg(feature = "GKAchievement")]
     unsafe impl GKAchievement {
         #[cfg(all(
-            feature = "GameKit_GKBasePlayer",
-            feature = "GameKit_GKPlayer",
+            feature = "GKBasePlayer",
+            feature = "GKPlayer",
             feature = "block2",
             feature = "objc2-app-kit"
         ))]
@@ -376,8 +372,8 @@ extern_methods!(
         ) -> Id<NSViewController>;
 
         #[cfg(all(
-            feature = "GameKit_GKBasePlayer",
-            feature = "GameKit_GKPlayer",
+            feature = "GKBasePlayer",
+            feature = "GKPlayer",
             feature = "block2",
             feature = "objc2-app-kit"
         ))]
@@ -394,12 +390,12 @@ extern_methods!(
 
 extern_methods!(
     /// GKChallengeObsoletedUI
-    #[cfg(feature = "GameKit_GKScore")]
+    #[cfg(feature = "GKScore")]
     unsafe impl GKScore {}
 );
 
 extern_methods!(
     /// GKChallengeObsoletedUI
-    #[cfg(feature = "GameKit_GKAchievement")]
+    #[cfg(feature = "GKAchievement")]
     unsafe impl GKAchievement {}
 );

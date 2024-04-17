@@ -25,14 +25,14 @@ unsafe impl NSObjectProtocol for PHChange {}
 
 extern_methods!(
     unsafe impl PHChange {
-        #[cfg(feature = "Photos_PHObject")]
+        #[cfg(feature = "PHObject")]
         #[method_id(@__retain_semantics Other changeDetailsForObject:)]
         pub unsafe fn changeDetailsForObject(
             &self,
             object: &PHObject,
         ) -> Option<Id<PHObjectChangeDetails>>;
 
-        #[cfg(feature = "Photos_PHFetchResult")]
+        #[cfg(feature = "PHFetchResult")]
         #[method_id(@__retain_semantics Other changeDetailsForFetchResult:)]
         pub unsafe fn changeDetailsForFetchResult(
             &self,
@@ -129,11 +129,11 @@ unsafe impl<ObjectType: ?Sized> NSObjectProtocol for PHFetchResultChangeDetails<
 
 extern_methods!(
     unsafe impl<ObjectType: Message> PHFetchResultChangeDetails<ObjectType> {
-        #[cfg(feature = "Photos_PHFetchResult")]
+        #[cfg(feature = "PHFetchResult")]
         #[method_id(@__retain_semantics Other fetchResultBeforeChanges)]
         pub unsafe fn fetchResultBeforeChanges(&self) -> Id<PHFetchResult<ObjectType>>;
 
-        #[cfg(feature = "Photos_PHFetchResult")]
+        #[cfg(feature = "PHFetchResult")]
         #[method_id(@__retain_semantics Other fetchResultAfterChanges)]
         pub unsafe fn fetchResultAfterChanges(&self) -> Id<PHFetchResult<ObjectType>>;
 
@@ -168,7 +168,7 @@ extern_methods!(
         #[method(hasMoves)]
         pub unsafe fn hasMoves(&self) -> bool;
 
-        #[cfg(feature = "Photos_PHFetchResult")]
+        #[cfg(feature = "PHFetchResult")]
         #[method_id(@__retain_semantics Other changeDetailsFromFetchResult:toFetchResult:changedObjects:)]
         pub unsafe fn changeDetailsFromFetchResult_toFetchResult_changedObjects(
             from_result: &PHFetchResult<ObjectType>,

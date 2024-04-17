@@ -9,10 +9,10 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Automator_AMAction")]
+    #[cfg(feature = "AMAction")]
     pub struct AMBundleAction;
 
-    #[cfg(feature = "Automator_AMAction")]
+    #[cfg(feature = "AMAction")]
     unsafe impl ClassType for AMBundleAction {
         #[inherits(NSObject)]
         type Super = AMAction;
@@ -20,20 +20,20 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Automator_AMAction")]
+#[cfg(feature = "AMAction")]
 unsafe impl NSCoding for AMBundleAction {}
 
-#[cfg(feature = "Automator_AMAction")]
+#[cfg(feature = "AMAction")]
 unsafe impl NSCopying for AMBundleAction {}
 
-#[cfg(feature = "Automator_AMAction")]
+#[cfg(feature = "AMAction")]
 unsafe impl NSObjectProtocol for AMBundleAction {}
 
-#[cfg(feature = "Automator_AMAction")]
+#[cfg(feature = "AMAction")]
 unsafe impl NSSecureCoding for AMBundleAction {}
 
 extern_methods!(
-    #[cfg(feature = "Automator_AMAction")]
+    #[cfg(feature = "AMAction")]
     unsafe impl AMBundleAction {
         #[method(awakeFromBundle)]
         pub unsafe fn awakeFromBundle(&self);
@@ -61,7 +61,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `AMAction`
-    #[cfg(feature = "Automator_AMAction")]
+    #[cfg(feature = "AMAction")]
     unsafe impl AMBundleAction {
         #[method_id(@__retain_semantics Init initWithDefinition:fromArchive:)]
         pub unsafe fn initWithDefinition_fromArchive(
@@ -80,7 +80,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Automator_AMAction")]
+    #[cfg(feature = "AMAction")]
     unsafe impl AMBundleAction {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

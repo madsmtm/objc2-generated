@@ -89,15 +89,15 @@ extern_methods!(
         #[method(setEnabled:)]
         pub unsafe fn setEnabled(&self, enabled: bool);
 
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[method_id(@__retain_semantics Other view)]
         pub unsafe fn view(&self) -> Option<Id<NSView>>;
 
-        #[cfg(feature = "AppKit_NSPressureConfiguration")]
+        #[cfg(feature = "NSPressureConfiguration")]
         #[method_id(@__retain_semantics Other pressureConfiguration)]
         pub unsafe fn pressureConfiguration(&self) -> Id<NSPressureConfiguration>;
 
-        #[cfg(feature = "AppKit_NSPressureConfiguration")]
+        #[cfg(feature = "NSPressureConfiguration")]
         #[method(setPressureConfiguration:)]
         pub unsafe fn setPressureConfiguration(
             &self,
@@ -149,7 +149,7 @@ extern_methods!(
         #[method(setDelaysRotationEvents:)]
         pub unsafe fn setDelaysRotationEvents(&self, delays_rotation_events: bool);
 
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[method(locationInView:)]
         pub unsafe fn locationInView(&self, view: Option<&NSView>) -> NSPoint;
     }
@@ -169,11 +169,11 @@ extern_methods!(
 extern_methods!(
     /// NSTouchBar
     unsafe impl NSGestureRecognizer {
-        #[cfg(feature = "AppKit_NSTouch")]
+        #[cfg(feature = "NSTouch")]
         #[method(allowedTouchTypes)]
         pub unsafe fn allowedTouchTypes(&self) -> NSTouchTypeMask;
 
-        #[cfg(feature = "AppKit_NSTouch")]
+        #[cfg(feature = "NSTouch")]
         #[method(setAllowedTouchTypes:)]
         pub unsafe fn setAllowedTouchTypes(&self, allowed_touch_types: NSTouchTypeMask);
     }
@@ -183,7 +183,7 @@ extern_protocol!(
     pub unsafe trait NSGestureRecognizerDelegate:
         NSObjectProtocol + IsMainThreadOnly
     {
-        #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(feature = "NSEvent")]
         #[optional]
         #[method(gestureRecognizer:shouldAttemptToRecognizeWithEvent:)]
         unsafe fn gestureRecognizer_shouldAttemptToRecognizeWithEvent(
@@ -223,7 +223,7 @@ extern_protocol!(
             other_gesture_recognizer: &NSGestureRecognizer,
         ) -> bool;
 
-        #[cfg(feature = "AppKit_NSTouch")]
+        #[cfg(feature = "NSTouch")]
         #[optional]
         #[method(gestureRecognizer:shouldReceiveTouch:)]
         unsafe fn gestureRecognizer_shouldReceiveTouch(
@@ -269,83 +269,83 @@ extern_methods!(
             other_gesture_recognizer: &NSGestureRecognizer,
         ) -> bool;
 
-        #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(feature = "NSEvent")]
         #[method(mouseDown:)]
         pub unsafe fn mouseDown(&self, event: &NSEvent);
 
-        #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(feature = "NSEvent")]
         #[method(rightMouseDown:)]
         pub unsafe fn rightMouseDown(&self, event: &NSEvent);
 
-        #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(feature = "NSEvent")]
         #[method(otherMouseDown:)]
         pub unsafe fn otherMouseDown(&self, event: &NSEvent);
 
-        #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(feature = "NSEvent")]
         #[method(mouseUp:)]
         pub unsafe fn mouseUp(&self, event: &NSEvent);
 
-        #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(feature = "NSEvent")]
         #[method(rightMouseUp:)]
         pub unsafe fn rightMouseUp(&self, event: &NSEvent);
 
-        #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(feature = "NSEvent")]
         #[method(otherMouseUp:)]
         pub unsafe fn otherMouseUp(&self, event: &NSEvent);
 
-        #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(feature = "NSEvent")]
         #[method(mouseDragged:)]
         pub unsafe fn mouseDragged(&self, event: &NSEvent);
 
-        #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(feature = "NSEvent")]
         #[method(rightMouseDragged:)]
         pub unsafe fn rightMouseDragged(&self, event: &NSEvent);
 
-        #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(feature = "NSEvent")]
         #[method(otherMouseDragged:)]
         pub unsafe fn otherMouseDragged(&self, event: &NSEvent);
 
-        #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(feature = "NSEvent")]
         #[method(keyDown:)]
         pub unsafe fn keyDown(&self, event: &NSEvent);
 
-        #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(feature = "NSEvent")]
         #[method(keyUp:)]
         pub unsafe fn keyUp(&self, event: &NSEvent);
 
-        #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(feature = "NSEvent")]
         #[method(flagsChanged:)]
         pub unsafe fn flagsChanged(&self, event: &NSEvent);
 
-        #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(feature = "NSEvent")]
         #[method(tabletPoint:)]
         pub unsafe fn tabletPoint(&self, event: &NSEvent);
 
-        #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(feature = "NSEvent")]
         #[method(magnifyWithEvent:)]
         pub unsafe fn magnifyWithEvent(&self, event: &NSEvent);
 
-        #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(feature = "NSEvent")]
         #[method(rotateWithEvent:)]
         pub unsafe fn rotateWithEvent(&self, event: &NSEvent);
 
-        #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(feature = "NSEvent")]
         #[method(pressureChangeWithEvent:)]
         pub unsafe fn pressureChangeWithEvent(&self, event: &NSEvent);
 
-        #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(feature = "NSEvent")]
         #[method(touchesBeganWithEvent:)]
         pub unsafe fn touchesBeganWithEvent(&self, event: &NSEvent);
 
-        #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(feature = "NSEvent")]
         #[method(touchesMovedWithEvent:)]
         pub unsafe fn touchesMovedWithEvent(&self, event: &NSEvent);
 
-        #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(feature = "NSEvent")]
         #[method(touchesEndedWithEvent:)]
         pub unsafe fn touchesEndedWithEvent(&self, event: &NSEvent);
 
-        #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(feature = "NSEvent")]
         #[method(touchesCancelledWithEvent:)]
         pub unsafe fn touchesCancelledWithEvent(&self, event: &NSEvent);
     }

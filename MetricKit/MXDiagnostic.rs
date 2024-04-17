@@ -23,14 +23,14 @@ unsafe impl NSSecureCoding for MXDiagnostic {}
 
 extern_methods!(
     unsafe impl MXDiagnostic {
-        #[cfg(feature = "MetricKit_MXMetaData")]
+        #[cfg(feature = "MXMetaData")]
         #[method_id(@__retain_semantics Other metaData)]
         pub unsafe fn metaData(&self) -> Id<MXMetaData>;
 
         #[method_id(@__retain_semantics Other applicationVersion)]
         pub unsafe fn applicationVersion(&self) -> Id<NSString>;
 
-        #[cfg(feature = "MetricKit_MXSignpostRecord")]
+        #[cfg(feature = "MXSignpostRecord")]
         #[method_id(@__retain_semantics Other signpostData)]
         pub unsafe fn signpostData(&self) -> Option<Id<NSArray<MXSignpostRecord>>>;
 

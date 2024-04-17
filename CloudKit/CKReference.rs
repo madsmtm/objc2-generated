@@ -54,7 +54,7 @@ extern_methods!(
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
 
-        #[cfg(feature = "CloudKit_CKRecordID")]
+        #[cfg(feature = "CKRecordID")]
         #[method_id(@__retain_semantics Init initWithRecordID:action:)]
         pub unsafe fn initWithRecordID_action(
             this: Allocated<Self>,
@@ -62,7 +62,7 @@ extern_methods!(
             action: CKReferenceAction,
         ) -> Id<Self>;
 
-        #[cfg(feature = "CloudKit_CKRecord")]
+        #[cfg(feature = "CKRecord")]
         #[method_id(@__retain_semantics Init initWithRecord:action:)]
         pub unsafe fn initWithRecord_action(
             this: Allocated<Self>,
@@ -73,7 +73,7 @@ extern_methods!(
         #[method(referenceAction)]
         pub unsafe fn referenceAction(&self) -> CKReferenceAction;
 
-        #[cfg(feature = "CloudKit_CKRecordID")]
+        #[cfg(feature = "CKRecordID")]
         #[method_id(@__retain_semantics Other recordID)]
         pub unsafe fn recordID(&self) -> Id<CKRecordID>;
     }

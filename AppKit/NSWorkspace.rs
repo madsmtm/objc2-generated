@@ -47,7 +47,7 @@ extern_methods!(
         #[method(openURL:)]
         pub unsafe fn openURL(&self, url: &NSURL) -> bool;
 
-        #[cfg(all(feature = "AppKit_NSRunningApplication", feature = "block2"))]
+        #[cfg(all(feature = "NSRunningApplication", feature = "block2"))]
         #[method(openURL:configuration:completionHandler:)]
         pub unsafe fn openURL_configuration_completionHandler(
             &self,
@@ -56,7 +56,7 @@ extern_methods!(
             completion_handler: Option<&Block<dyn Fn(*mut NSRunningApplication, *mut NSError)>>,
         );
 
-        #[cfg(all(feature = "AppKit_NSRunningApplication", feature = "block2"))]
+        #[cfg(all(feature = "NSRunningApplication", feature = "block2"))]
         #[method(openURLs:withApplicationAtURL:configuration:completionHandler:)]
         pub unsafe fn openURLs_withApplicationAtURL_configuration_completionHandler(
             &self,
@@ -66,7 +66,7 @@ extern_methods!(
             completion_handler: Option<&Block<dyn Fn(*mut NSRunningApplication, *mut NSError)>>,
         );
 
-        #[cfg(all(feature = "AppKit_NSRunningApplication", feature = "block2"))]
+        #[cfg(all(feature = "NSRunningApplication", feature = "block2"))]
         #[method(openApplicationAtURL:configuration:completionHandler:)]
         pub unsafe fn openApplicationAtURL_configuration_completionHandler(
             &self,
@@ -94,15 +94,15 @@ extern_methods!(
         #[method(isFilePackageAtPath:)]
         pub unsafe fn isFilePackageAtPath(&self, full_path: &NSString) -> bool;
 
-        #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(feature = "NSImage")]
         #[method_id(@__retain_semantics Other iconForFile:)]
         pub unsafe fn iconForFile(&self, full_path: &NSString) -> Id<NSImage>;
 
-        #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(feature = "NSImage")]
         #[method_id(@__retain_semantics Other iconForFiles:)]
         pub unsafe fn iconForFiles(&self, full_paths: &NSArray<NSString>) -> Option<Id<NSImage>>;
 
-        #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(feature = "NSImage")]
         #[method(setIcon:forFile:options:)]
         pub unsafe fn setIcon_forFile_options(
             &self,
@@ -114,7 +114,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other fileLabels)]
         pub unsafe fn fileLabels(&self) -> Id<NSArray<NSString>>;
 
-        #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(feature = "NSColor")]
         #[method_id(@__retain_semantics Other fileLabelColors)]
         pub unsafe fn fileLabelColors(&self) -> Id<NSArray<NSColor>>;
 
@@ -205,11 +205,11 @@ extern_methods!(
             completion_handler: Option<&Block<dyn Fn(*mut NSError)>>,
         );
 
-        #[cfg(feature = "AppKit_NSRunningApplication")]
+        #[cfg(feature = "NSRunningApplication")]
         #[method_id(@__retain_semantics Other frontmostApplication)]
         pub unsafe fn frontmostApplication(&self) -> Option<Id<NSRunningApplication>>;
 
-        #[cfg(feature = "AppKit_NSRunningApplication")]
+        #[cfg(feature = "NSRunningApplication")]
         #[method_id(@__retain_semantics Other menuBarOwningApplication)]
         pub unsafe fn menuBarOwningApplication(&self) -> Option<Id<NSRunningApplication>>;
     }
@@ -354,7 +354,7 @@ extern "C" {
 extern_methods!(
     /// NSDesktopImages
     unsafe impl NSWorkspace {
-        #[cfg(feature = "AppKit_NSScreen")]
+        #[cfg(feature = "NSScreen")]
         #[method(setDesktopImageURL:forScreen:options:error:_)]
         pub unsafe fn setDesktopImageURL_forScreen_options_error(
             &self,
@@ -363,11 +363,11 @@ extern_methods!(
             options: &NSDictionary<NSWorkspaceDesktopImageOptionKey, AnyObject>,
         ) -> Result<(), Id<NSError>>;
 
-        #[cfg(feature = "AppKit_NSScreen")]
+        #[cfg(feature = "NSScreen")]
         #[method_id(@__retain_semantics Other desktopImageURLForScreen:)]
         pub unsafe fn desktopImageURLForScreen(&self, screen: &NSScreen) -> Option<Id<NSURL>>;
 
-        #[cfg(feature = "AppKit_NSScreen")]
+        #[cfg(feature = "NSScreen")]
         #[method_id(@__retain_semantics Other desktopImageOptionsForScreen:)]
         pub unsafe fn desktopImageOptionsForScreen(
             &self,
@@ -642,7 +642,7 @@ extern_methods!(
         #[method(launchApplication:)]
         pub unsafe fn launchApplication(&self, app_name: &NSString) -> bool;
 
-        #[cfg(feature = "AppKit_NSRunningApplication")]
+        #[cfg(feature = "NSRunningApplication")]
         #[deprecated = "Use -[NSWorkspace openApplicationAtURL:configuration:completionHandler:] instead."]
         #[method_id(@__retain_semantics Other launchApplicationAtURL:options:configuration:error:_)]
         pub unsafe fn launchApplicationAtURL_options_configuration_error(
@@ -652,7 +652,7 @@ extern_methods!(
             configuration: &NSDictionary<NSWorkspaceLaunchConfigurationKey, AnyObject>,
         ) -> Result<Id<NSRunningApplication>, Id<NSError>>;
 
-        #[cfg(feature = "AppKit_NSRunningApplication")]
+        #[cfg(feature = "NSRunningApplication")]
         #[deprecated = "Use -[NSWorkspace openURL:configuration:completionHandler:] instead."]
         #[method_id(@__retain_semantics Other openURL:options:configuration:error:_)]
         pub unsafe fn openURL_options_configuration_error(
@@ -662,7 +662,7 @@ extern_methods!(
             configuration: &NSDictionary<NSWorkspaceLaunchConfigurationKey, AnyObject>,
         ) -> Result<Id<NSRunningApplication>, Id<NSError>>;
 
-        #[cfg(feature = "AppKit_NSRunningApplication")]
+        #[cfg(feature = "NSRunningApplication")]
         #[deprecated = "Use -[NSWorkspace openURLs:withApplicationAtURL:configuration:completionHandler:] instead."]
         #[method_id(@__retain_semantics Other openURLs:withApplicationAtURL:options:configuration:error:_)]
         pub unsafe fn openURLs_withApplicationAtURL_options_configuration_error(
@@ -726,7 +726,7 @@ extern_methods!(
         #[method(noteUserDefaultsChanged)]
         pub unsafe fn noteUserDefaultsChanged(&self);
 
-        #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(feature = "NSImage")]
         #[deprecated]
         #[method(slideImage:from:to:)]
         pub unsafe fn slideImage_from_to(
@@ -772,11 +772,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other launchedApplications)]
         pub unsafe fn launchedApplications(&self) -> Option<Id<NSArray>>;
 
-        #[cfg(all(
-            feature = "AppKit_NSImage",
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSView"
-        ))]
+        #[cfg(all(feature = "NSImage", feature = "NSResponder", feature = "NSView"))]
         #[deprecated = "Use -[NSWorkspace openURL:] instead."]
         #[method(openFile:fromImage:at:inView:)]
         pub unsafe fn openFile_fromImage_at_inView(
@@ -807,7 +803,7 @@ extern_methods!(
             r#type: Option<&mut Option<Id<NSString>>>,
         ) -> bool;
 
-        #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(feature = "NSImage")]
         #[deprecated = "Use -[NSWorkspace iconForContentType:] instead."]
         #[method_id(@__retain_semantics Other iconForFileType:)]
         pub unsafe fn iconForFileType(&self, file_type: &NSString) -> Id<NSImage>;

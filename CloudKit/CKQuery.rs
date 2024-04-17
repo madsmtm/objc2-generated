@@ -34,7 +34,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, a_decoder: &NSCoder) -> Id<Self>;
 
-        #[cfg(feature = "CloudKit_CKRecord")]
+        #[cfg(feature = "CKRecord")]
         #[method_id(@__retain_semantics Init initWithRecordType:predicate:)]
         pub unsafe fn initWithRecordType_predicate(
             this: Allocated<Self>,
@@ -42,7 +42,7 @@ extern_methods!(
             predicate: &NSPredicate,
         ) -> Id<Self>;
 
-        #[cfg(feature = "CloudKit_CKRecord")]
+        #[cfg(feature = "CKRecord")]
         #[method_id(@__retain_semantics Other recordType)]
         pub unsafe fn recordType(&self) -> Id<CKRecordType>;
 

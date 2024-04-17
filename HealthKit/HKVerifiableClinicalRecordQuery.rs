@@ -9,10 +9,10 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "HealthKit_HKQuery")]
+    #[cfg(feature = "HKQuery")]
     pub struct HKVerifiableClinicalRecordQuery;
 
-    #[cfg(feature = "HealthKit_HKQuery")]
+    #[cfg(feature = "HKQuery")]
     unsafe impl ClassType for HKVerifiableClinicalRecordQuery {
         #[inherits(NSObject)]
         type Super = HKQuery;
@@ -20,16 +20,16 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "HealthKit_HKQuery")]
+#[cfg(feature = "HKQuery")]
 unsafe impl NSObjectProtocol for HKVerifiableClinicalRecordQuery {}
 
 extern_methods!(
-    #[cfg(feature = "HealthKit_HKQuery")]
+    #[cfg(feature = "HKQuery")]
     unsafe impl HKVerifiableClinicalRecordQuery {
         #[method_id(@__retain_semantics Other recordTypes)]
         pub unsafe fn recordTypes(&self) -> Id<NSArray<NSString>>;
 
-        #[cfg(feature = "HealthKit_HKVerifiableClinicalRecord")]
+        #[cfg(feature = "HKVerifiableClinicalRecord")]
         #[method_id(@__retain_semantics Other sourceTypes)]
         pub unsafe fn sourceTypes(&self) -> Id<NSArray<HKVerifiableClinicalRecordSourceType>>;
 
@@ -40,9 +40,9 @@ extern_methods!(
         pub unsafe fn new() -> Id<Self>;
 
         #[cfg(all(
-            feature = "HealthKit_HKObject",
-            feature = "HealthKit_HKSample",
-            feature = "HealthKit_HKVerifiableClinicalRecord",
+            feature = "HKObject",
+            feature = "HKSample",
+            feature = "HKVerifiableClinicalRecord",
             feature = "block2"
         ))]
         #[method_id(@__retain_semantics Init initWithRecordTypes:predicate:resultsHandler:)]
@@ -60,9 +60,9 @@ extern_methods!(
         ) -> Id<Self>;
 
         #[cfg(all(
-            feature = "HealthKit_HKObject",
-            feature = "HealthKit_HKSample",
-            feature = "HealthKit_HKVerifiableClinicalRecord",
+            feature = "HKObject",
+            feature = "HKSample",
+            feature = "HKVerifiableClinicalRecord",
             feature = "block2"
         ))]
         #[method_id(@__retain_semantics Init initWithRecordTypes:sourceTypes:predicate:resultsHandler:)]

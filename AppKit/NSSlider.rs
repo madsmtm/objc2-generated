@@ -7,18 +7,10 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(
-        feature = "AppKit_NSControl",
-        feature = "AppKit_NSResponder",
-        feature = "AppKit_NSView"
-    ))]
+    #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     pub struct NSSlider;
 
-    #[cfg(all(
-        feature = "AppKit_NSControl",
-        feature = "AppKit_NSResponder",
-        feature = "AppKit_NSView"
-    ))]
+    #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     unsafe impl ClassType for NSSlider {
         #[inherits(NSView, NSResponder, NSObject)]
         type Super = NSControl;
@@ -27,87 +19,75 @@ extern_class!(
 );
 
 #[cfg(all(
-    feature = "AppKit_NSAccessibilityProtocols",
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSView"
+    feature = "NSAccessibilityProtocols",
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSView"
 ))]
 unsafe impl NSAccessibility for NSSlider {}
 
 #[cfg(all(
-    feature = "AppKit_NSAccessibilityProtocols",
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSView"
+    feature = "NSAccessibilityProtocols",
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSView"
 ))]
 unsafe impl NSAccessibilityElementProtocol for NSSlider {}
 
 #[cfg(all(
-    feature = "AppKit_NSAccessibilityProtocols",
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSView"
+    feature = "NSAccessibilityProtocols",
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSView"
 ))]
 unsafe impl NSAccessibilitySlider for NSSlider {}
 
 #[cfg(all(
-    feature = "AppKit_NSAnimation",
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSView"
+    feature = "NSAnimation",
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSView"
 ))]
 unsafe impl NSAnimatablePropertyContainer for NSSlider {}
 
 #[cfg(all(
-    feature = "AppKit_NSAppearance",
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSView"
+    feature = "NSAppearance",
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSView"
 ))]
 unsafe impl NSAppearanceCustomization for NSSlider {}
 
-#[cfg(all(
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSView"
-))]
+#[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
 unsafe impl NSCoding for NSSlider {}
 
 #[cfg(all(
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSDragging",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSView"
+    feature = "NSControl",
+    feature = "NSDragging",
+    feature = "NSResponder",
+    feature = "NSView"
 ))]
 unsafe impl NSDraggingDestination for NSSlider {}
 
-#[cfg(all(
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSView"
-))]
+#[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
 unsafe impl NSObjectProtocol for NSSlider {}
 
 #[cfg(all(
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSUserInterfaceItemIdentification",
-    feature = "AppKit_NSView"
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSUserInterfaceItemIdentification",
+    feature = "NSView"
 ))]
 unsafe impl NSUserInterfaceItemIdentification for NSSlider {}
 
 extern_methods!(
-    #[cfg(all(
-        feature = "AppKit_NSControl",
-        feature = "AppKit_NSResponder",
-        feature = "AppKit_NSView"
-    ))]
+    #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSSlider {
-        #[cfg(feature = "AppKit_NSSliderCell")]
+        #[cfg(feature = "NSSliderCell")]
         #[method(sliderType)]
         pub unsafe fn sliderType(&self) -> NSSliderType;
 
-        #[cfg(feature = "AppKit_NSSliderCell")]
+        #[cfg(feature = "NSSliderCell")]
         #[method(setSliderType:)]
         pub unsafe fn setSliderType(&self, slider_type: NSSliderType);
 
@@ -132,18 +112,18 @@ extern_methods!(
         #[method(knobThickness)]
         pub unsafe fn knobThickness(&self) -> CGFloat;
 
-        #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(feature = "NSEvent")]
         #[method(acceptsFirstMouse:)]
         pub unsafe fn acceptsFirstMouse(&self, event: Option<&NSEvent>) -> bool;
 
         #[method(setVertical:)]
         pub unsafe fn setVertical(&self, vertical: bool);
 
-        #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(feature = "NSColor")]
         #[method_id(@__retain_semantics Other trackFillColor)]
         pub unsafe fn trackFillColor(&self) -> Option<Id<NSColor>>;
 
-        #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(feature = "NSColor")]
         #[method(setTrackFillColor:)]
         pub unsafe fn setTrackFillColor(&self, track_fill_color: Option<&NSColor>);
     }
@@ -151,11 +131,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSControl`
-    #[cfg(all(
-        feature = "AppKit_NSControl",
-        feature = "AppKit_NSResponder",
-        feature = "AppKit_NSView"
-    ))]
+    #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSSlider {
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Id<Self>;
@@ -167,11 +143,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSResponder`
-    #[cfg(all(
-        feature = "AppKit_NSControl",
-        feature = "AppKit_NSResponder",
-        feature = "AppKit_NSView"
-    ))]
+    #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSSlider {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -180,11 +152,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(all(
-        feature = "AppKit_NSControl",
-        feature = "AppKit_NSResponder",
-        feature = "AppKit_NSView"
-    ))]
+    #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSSlider {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
@@ -193,21 +161,13 @@ extern_methods!(
 
 extern_methods!(
     /// NSSliderVerticalGetter
-    #[cfg(all(
-        feature = "AppKit_NSControl",
-        feature = "AppKit_NSResponder",
-        feature = "AppKit_NSView"
-    ))]
+    #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSSlider {}
 );
 
 extern_methods!(
     /// NSTickMarkSupport
-    #[cfg(all(
-        feature = "AppKit_NSControl",
-        feature = "AppKit_NSResponder",
-        feature = "AppKit_NSView"
-    ))]
+    #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSSlider {
         #[method(numberOfTickMarks)]
         pub unsafe fn numberOfTickMarks(&self) -> NSInteger;
@@ -215,11 +175,11 @@ extern_methods!(
         #[method(setNumberOfTickMarks:)]
         pub unsafe fn setNumberOfTickMarks(&self, number_of_tick_marks: NSInteger);
 
-        #[cfg(feature = "AppKit_NSSliderCell")]
+        #[cfg(feature = "NSSliderCell")]
         #[method(tickMarkPosition)]
         pub unsafe fn tickMarkPosition(&self) -> NSTickMarkPosition;
 
-        #[cfg(feature = "AppKit_NSSliderCell")]
+        #[cfg(feature = "NSSliderCell")]
         #[method(setTickMarkPosition:)]
         pub unsafe fn setTickMarkPosition(&self, tick_mark_position: NSTickMarkPosition);
 
@@ -245,11 +205,7 @@ extern_methods!(
 
 extern_methods!(
     /// NSSliderConvenience
-    #[cfg(all(
-        feature = "AppKit_NSControl",
-        feature = "AppKit_NSResponder",
-        feature = "AppKit_NSView"
-    ))]
+    #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSSlider {
         #[method_id(@__retain_semantics Other sliderWithTarget:action:)]
         pub unsafe fn sliderWithTarget_action(
@@ -272,13 +228,9 @@ extern_methods!(
 
 extern_methods!(
     /// NSSliderDeprecated
-    #[cfg(all(
-        feature = "AppKit_NSControl",
-        feature = "AppKit_NSResponder",
-        feature = "AppKit_NSView"
-    ))]
+    #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSSlider {
-        #[cfg(feature = "AppKit_NSCell")]
+        #[cfg(feature = "NSCell")]
         #[deprecated = "-setTitleCell: had no effect since 10.0"]
         #[method(setTitleCell:)]
         pub unsafe fn setTitleCell(&self, cell: Option<&NSCell>);
@@ -287,22 +239,22 @@ extern_methods!(
         #[method_id(@__retain_semantics Other titleCell)]
         pub unsafe fn titleCell(&self) -> Option<Id<AnyObject>>;
 
-        #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(feature = "NSColor")]
         #[deprecated = "-setTitleColor: had no effect since 10.0"]
         #[method(setTitleColor:)]
         pub unsafe fn setTitleColor(&self, new_color: Option<&NSColor>);
 
-        #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(feature = "NSColor")]
         #[deprecated = "-titleColor has returned nil since 10.0"]
         #[method_id(@__retain_semantics Other titleColor)]
         pub unsafe fn titleColor(&self) -> Option<Id<NSColor>>;
 
-        #[cfg(feature = "AppKit_NSFont")]
+        #[cfg(feature = "NSFont")]
         #[deprecated = "-setTitleFont: had no effect since 10.0"]
         #[method(setTitleFont:)]
         pub unsafe fn setTitleFont(&self, font_obj: Option<&NSFont>);
 
-        #[cfg(feature = "AppKit_NSFont")]
+        #[cfg(feature = "NSFont")]
         #[deprecated = "-titleFont has returned nil since 10.0"]
         #[method_id(@__retain_semantics Other titleFont)]
         pub unsafe fn titleFont(&self) -> Option<Id<NSFont>>;
@@ -319,12 +271,12 @@ extern_methods!(
         #[method(setKnobThickness:)]
         pub unsafe fn setKnobThickness(&self, thickness: CGFloat);
 
-        #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(feature = "NSImage")]
         #[deprecated = "-setImage: had no effect since 10.0"]
         #[method(setImage:)]
         pub unsafe fn setImage(&self, background_image: Option<&NSImage>);
 
-        #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(feature = "NSImage")]
         #[deprecated = "-image has returned nil since 10.0"]
         #[method_id(@__retain_semantics Other image)]
         pub unsafe fn image(&self) -> Option<Id<NSImage>>;

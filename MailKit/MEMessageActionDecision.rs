@@ -26,11 +26,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Other invokeAgainWithBody)]
         pub unsafe fn invokeAgainWithBody() -> Id<MEMessageActionDecision>;
 
-        #[cfg(feature = "MailKit_MEMessageAction")]
+        #[cfg(feature = "MEMessageAction")]
         #[method_id(@__retain_semantics Other decisionApplyingAction:)]
         pub unsafe fn decisionApplyingAction(action: &MEMessageAction) -> Id<Self>;
 
-        #[cfg(feature = "MailKit_MEMessageAction")]
+        #[cfg(feature = "MEMessageAction")]
         #[method_id(@__retain_semantics Other decisionApplyingActions:)]
         pub unsafe fn decisionApplyingActions(actions: &NSArray<MEMessageAction>) -> Id<Self>;
 

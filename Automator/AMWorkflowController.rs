@@ -35,19 +35,19 @@ unsafe impl NSObjectProtocol for AMWorkflowController {}
 extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     unsafe impl AMWorkflowController {
-        #[cfg(feature = "Automator_AMWorkflow")]
+        #[cfg(feature = "AMWorkflow")]
         #[method_id(@__retain_semantics Other workflow)]
         pub unsafe fn workflow(&self) -> Option<Id<AMWorkflow>>;
 
-        #[cfg(feature = "Automator_AMWorkflow")]
+        #[cfg(feature = "AMWorkflow")]
         #[method(setWorkflow:)]
         pub unsafe fn setWorkflow(&self, workflow: Option<&AMWorkflow>);
 
-        #[cfg(feature = "Automator_AMWorkflowView")]
+        #[cfg(feature = "AMWorkflowView")]
         #[method_id(@__retain_semantics Other workflowView)]
         pub unsafe fn workflowView(&self) -> Option<Id<AMWorkflowView>>;
 
-        #[cfg(feature = "Automator_AMWorkflowView")]
+        #[cfg(feature = "AMWorkflowView")]
         #[method(setWorkflowView:)]
         pub unsafe fn setWorkflowView(&self, workflow_view: Option<&AMWorkflowView>);
 
@@ -131,7 +131,7 @@ extern_protocol!(
         #[method(workflowControllerDidStop:)]
         unsafe fn workflowControllerDidStop(&self, controller: &AMWorkflowController);
 
-        #[cfg(all(feature = "Automator_AMAction", feature = "objc2-app-kit"))]
+        #[cfg(all(feature = "AMAction", feature = "objc2-app-kit"))]
         #[optional]
         #[method(workflowController:willRunAction:)]
         unsafe fn workflowController_willRunAction(
@@ -140,7 +140,7 @@ extern_protocol!(
             action: &AMAction,
         );
 
-        #[cfg(all(feature = "Automator_AMAction", feature = "objc2-app-kit"))]
+        #[cfg(all(feature = "AMAction", feature = "objc2-app-kit"))]
         #[optional]
         #[method(workflowController:didRunAction:)]
         unsafe fn workflowController_didRunAction(

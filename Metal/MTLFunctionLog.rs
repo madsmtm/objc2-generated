@@ -54,7 +54,7 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other encoderLabel)]
         unsafe fn encoderLabel(&self) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "Metal_MTLLibrary")]
+        #[cfg(feature = "MTLLibrary")]
         #[method_id(@__retain_semantics Other function)]
         unsafe fn function(&self) -> Option<Id<ProtocolObject<dyn MTLFunction>>>;
 

@@ -46,17 +46,14 @@ __inner_extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSEnumerator")]
+#[cfg(feature = "NSEnumerator")]
 unsafe impl<ObjectType: ?Sized> NSFastEnumeration for NSOrderedCollectionDifference<ObjectType> {}
 
 unsafe impl<ObjectType: ?Sized> NSObjectProtocol for NSOrderedCollectionDifference<ObjectType> {}
 
 extern_methods!(
     unsafe impl<ObjectType: Message> NSOrderedCollectionDifference<ObjectType> {
-        #[cfg(all(
-            feature = "Foundation_NSArray",
-            feature = "Foundation_NSOrderedCollectionChange"
-        ))]
+        #[cfg(all(feature = "NSArray", feature = "NSOrderedCollectionChange"))]
         #[method_id(@__retain_semantics Init initWithChanges:)]
         pub unsafe fn initWithChanges(
             this: Allocated<Self>,
@@ -64,9 +61,9 @@ extern_methods!(
         ) -> Id<Self>;
 
         #[cfg(all(
-            feature = "Foundation_NSArray",
-            feature = "Foundation_NSIndexSet",
-            feature = "Foundation_NSOrderedCollectionChange"
+            feature = "NSArray",
+            feature = "NSIndexSet",
+            feature = "NSOrderedCollectionChange"
         ))]
         #[method_id(@__retain_semantics Init initWithInsertIndexes:insertedObjects:removeIndexes:removedObjects:additionalChanges:)]
         pub unsafe fn initWithInsertIndexes_insertedObjects_removeIndexes_removedObjects_additionalChanges(
@@ -78,7 +75,7 @@ extern_methods!(
             changes: &NSArray<NSOrderedCollectionChange<ObjectType>>,
         ) -> Id<Self>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSIndexSet"))]
+        #[cfg(all(feature = "NSArray", feature = "NSIndexSet"))]
         #[method_id(@__retain_semantics Init initWithInsertIndexes:insertedObjects:removeIndexes:removedObjects:)]
         pub unsafe fn initWithInsertIndexes_insertedObjects_removeIndexes_removedObjects(
             this: Allocated<Self>,
@@ -88,24 +85,18 @@ extern_methods!(
             removed_objects: Option<&NSArray<ObjectType>>,
         ) -> Id<Self>;
 
-        #[cfg(all(
-            feature = "Foundation_NSArray",
-            feature = "Foundation_NSOrderedCollectionChange"
-        ))]
+        #[cfg(all(feature = "NSArray", feature = "NSOrderedCollectionChange"))]
         #[method_id(@__retain_semantics Other insertions)]
         pub unsafe fn insertions(&self) -> Id<NSArray<NSOrderedCollectionChange<ObjectType>>>;
 
-        #[cfg(all(
-            feature = "Foundation_NSArray",
-            feature = "Foundation_NSOrderedCollectionChange"
-        ))]
+        #[cfg(all(feature = "NSArray", feature = "NSOrderedCollectionChange"))]
         #[method_id(@__retain_semantics Other removals)]
         pub unsafe fn removals(&self) -> Id<NSArray<NSOrderedCollectionChange<ObjectType>>>;
 
         #[method(hasChanges)]
         pub unsafe fn hasChanges(&self) -> bool;
 
-        #[cfg(all(feature = "Foundation_NSOrderedCollectionChange", feature = "block2"))]
+        #[cfg(all(feature = "NSOrderedCollectionChange", feature = "block2"))]
         #[method_id(@__retain_semantics Other differenceByTransformingChangesWithBlock:)]
         pub unsafe fn differenceByTransformingChangesWithBlock(
             &self,

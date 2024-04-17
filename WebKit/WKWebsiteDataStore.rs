@@ -43,7 +43,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other allWebsiteDataTypes)]
         pub unsafe fn allWebsiteDataTypes() -> Id<NSSet<NSString>>;
 
-        #[cfg(all(feature = "WebKit_WKWebsiteDataRecord", feature = "block2"))]
+        #[cfg(all(feature = "WKWebsiteDataRecord", feature = "block2"))]
         #[method(fetchDataRecordsOfTypes:completionHandler:)]
         pub unsafe fn fetchDataRecordsOfTypes_completionHandler(
             &self,
@@ -51,7 +51,7 @@ extern_methods!(
             completion_handler: &Block<dyn Fn(NonNull<NSArray<WKWebsiteDataRecord>>)>,
         );
 
-        #[cfg(all(feature = "WebKit_WKWebsiteDataRecord", feature = "block2"))]
+        #[cfg(all(feature = "WKWebsiteDataRecord", feature = "block2"))]
         #[method(removeDataOfTypes:forDataRecords:completionHandler:)]
         pub unsafe fn removeDataOfTypes_forDataRecords_completionHandler(
             &self,
@@ -69,7 +69,7 @@ extern_methods!(
             completion_handler: &Block<dyn Fn()>,
         );
 
-        #[cfg(feature = "WebKit_WKHTTPCookieStore")]
+        #[cfg(feature = "WKHTTPCookieStore")]
         #[method_id(@__retain_semantics Other httpCookieStore)]
         pub unsafe fn httpCookieStore(&self) -> Id<WKHTTPCookieStore>;
 

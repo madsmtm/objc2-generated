@@ -16,25 +16,19 @@
 #[link(name = "LocalAuthenticationEmbeddedUI", kind = "framework")]
 extern "C" {}
 
-#[cfg(feature = "LocalAuthenticationEmbeddedUI_LAAuthenticationView")]
+#[cfg(feature = "LAAuthenticationView")]
 #[path = "LAAuthenticationView.rs"]
 mod __LAAuthenticationView;
-#[cfg(feature = "LocalAuthenticationEmbeddedUI_LAPresentationContext")]
+#[cfg(feature = "LAPresentationContext")]
 #[path = "LAPresentationContext.rs"]
 mod __LAPresentationContext;
-#[cfg(feature = "LocalAuthenticationEmbeddedUI_LARight_UI")]
+#[cfg(feature = "LARight_UI")]
 #[path = "LARight_UI.rs"]
 mod __LARight_UI;
 
-#[cfg(all(
-    feature = "LocalAuthenticationEmbeddedUI_LAAuthenticationView",
-    feature = "objc2-app-kit"
-))]
+#[cfg(all(feature = "LAAuthenticationView", feature = "objc2-app-kit"))]
 pub use self::__LAAuthenticationView::LAAuthenticationView;
-#[cfg(all(
-    feature = "LocalAuthenticationEmbeddedUI_LAPresentationContext",
-    feature = "objc2-app-kit"
-))]
+#[cfg(all(feature = "LAPresentationContext", feature = "objc2-app-kit"))]
 pub use self::__LAPresentationContext::LAPresentationContext;
-#[cfg(feature = "LocalAuthenticationEmbeddedUI_LARight_UI")]
+#[cfg(feature = "LARight_UI")]
 pub use self::__LARight_UI::LARightUI;

@@ -26,10 +26,10 @@ unsafe impl RefEncode for MKStandardMapEmphasisStyle {
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MapKit_MKMapConfiguration")]
+    #[cfg(feature = "MKMapConfiguration")]
     pub struct MKStandardMapConfiguration;
 
-    #[cfg(feature = "MapKit_MKMapConfiguration")]
+    #[cfg(feature = "MKMapConfiguration")]
     unsafe impl ClassType for MKStandardMapConfiguration {
         #[inherits(NSObject)]
         type Super = MKMapConfiguration;
@@ -37,20 +37,20 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "MapKit_MKMapConfiguration")]
+#[cfg(feature = "MKMapConfiguration")]
 unsafe impl NSCoding for MKStandardMapConfiguration {}
 
-#[cfg(feature = "MapKit_MKMapConfiguration")]
+#[cfg(feature = "MKMapConfiguration")]
 unsafe impl NSCopying for MKStandardMapConfiguration {}
 
-#[cfg(feature = "MapKit_MKMapConfiguration")]
+#[cfg(feature = "MKMapConfiguration")]
 unsafe impl NSObjectProtocol for MKStandardMapConfiguration {}
 
-#[cfg(feature = "MapKit_MKMapConfiguration")]
+#[cfg(feature = "MKMapConfiguration")]
 unsafe impl NSSecureCoding for MKStandardMapConfiguration {}
 
 extern_methods!(
-    #[cfg(feature = "MapKit_MKMapConfiguration")]
+    #[cfg(feature = "MKMapConfiguration")]
     unsafe impl MKStandardMapConfiguration {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -80,11 +80,11 @@ extern_methods!(
         #[method(setEmphasisStyle:)]
         pub unsafe fn setEmphasisStyle(&self, emphasis_style: MKStandardMapEmphasisStyle);
 
-        #[cfg(feature = "MapKit_MKPointOfInterestFilter")]
+        #[cfg(feature = "MKPointOfInterestFilter")]
         #[method_id(@__retain_semantics Other pointOfInterestFilter)]
         pub unsafe fn pointOfInterestFilter(&self) -> Option<Id<MKPointOfInterestFilter>>;
 
-        #[cfg(feature = "MapKit_MKPointOfInterestFilter")]
+        #[cfg(feature = "MKPointOfInterestFilter")]
         #[method(setPointOfInterestFilter:)]
         pub unsafe fn setPointOfInterestFilter(
             &self,
@@ -101,7 +101,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MKMapConfiguration`
-    #[cfg(feature = "MapKit_MKMapConfiguration")]
+    #[cfg(feature = "MKMapConfiguration")]
     unsafe impl MKStandardMapConfiguration {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

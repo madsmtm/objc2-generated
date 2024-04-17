@@ -16,21 +16,21 @@
 #[link(name = "DeviceCheck", kind = "framework")]
 extern "C" {}
 
-#[cfg(feature = "DeviceCheck_DCAppAttestService")]
+#[cfg(feature = "DCAppAttestService")]
 #[path = "DCAppAttestService.rs"]
 mod __DCAppAttestService;
-#[cfg(feature = "DeviceCheck_DCDevice")]
+#[cfg(feature = "DCDevice")]
 #[path = "DCDevice.rs"]
 mod __DCDevice;
-#[cfg(feature = "DeviceCheck_DCError")]
+#[cfg(feature = "DCError")]
 #[path = "DCError.rs"]
 mod __DCError;
 
-#[cfg(feature = "DeviceCheck_DCAppAttestService")]
+#[cfg(feature = "DCAppAttestService")]
 pub use self::__DCAppAttestService::DCAppAttestService;
-#[cfg(feature = "DeviceCheck_DCDevice")]
+#[cfg(feature = "DCDevice")]
 pub use self::__DCDevice::DCDevice;
-#[cfg(feature = "DeviceCheck_DCError")]
+#[cfg(feature = "DCError")]
 pub use self::__DCError::DCError;
-#[cfg(feature = "DeviceCheck_DCError")]
+#[cfg(feature = "DCError")]
 pub use self::__DCError::DCErrorDomain;

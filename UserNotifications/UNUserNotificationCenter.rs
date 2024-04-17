@@ -77,34 +77,25 @@ extern_methods!(
             completion_handler: &Block<dyn Fn(Bool, *mut NSError)>,
         );
 
-        #[cfg(feature = "UserNotifications_UNNotificationCategory")]
+        #[cfg(feature = "UNNotificationCategory")]
         #[method(setNotificationCategories:)]
         pub unsafe fn setNotificationCategories(&self, categories: &NSSet<UNNotificationCategory>);
 
-        #[cfg(all(
-            feature = "UserNotifications_UNNotificationCategory",
-            feature = "block2"
-        ))]
+        #[cfg(all(feature = "UNNotificationCategory", feature = "block2"))]
         #[method(getNotificationCategoriesWithCompletionHandler:)]
         pub unsafe fn getNotificationCategoriesWithCompletionHandler(
             &self,
             completion_handler: &Block<dyn Fn(NonNull<NSSet<UNNotificationCategory>>)>,
         );
 
-        #[cfg(all(
-            feature = "UserNotifications_UNNotificationSettings",
-            feature = "block2"
-        ))]
+        #[cfg(all(feature = "UNNotificationSettings", feature = "block2"))]
         #[method(getNotificationSettingsWithCompletionHandler:)]
         pub unsafe fn getNotificationSettingsWithCompletionHandler(
             &self,
             completion_handler: &Block<dyn Fn(NonNull<UNNotificationSettings>)>,
         );
 
-        #[cfg(all(
-            feature = "UserNotifications_UNNotificationRequest",
-            feature = "block2"
-        ))]
+        #[cfg(all(feature = "UNNotificationRequest", feature = "block2"))]
         #[method(addNotificationRequest:withCompletionHandler:)]
         pub unsafe fn addNotificationRequest_withCompletionHandler(
             &self,
@@ -112,10 +103,7 @@ extern_methods!(
             completion_handler: Option<&Block<dyn Fn(*mut NSError)>>,
         );
 
-        #[cfg(all(
-            feature = "UserNotifications_UNNotificationRequest",
-            feature = "block2"
-        ))]
+        #[cfg(all(feature = "UNNotificationRequest", feature = "block2"))]
         #[method(getPendingNotificationRequestsWithCompletionHandler:)]
         pub unsafe fn getPendingNotificationRequestsWithCompletionHandler(
             &self,
@@ -131,7 +119,7 @@ extern_methods!(
         #[method(removeAllPendingNotificationRequests)]
         pub unsafe fn removeAllPendingNotificationRequests(&self);
 
-        #[cfg(all(feature = "UserNotifications_UNNotification", feature = "block2"))]
+        #[cfg(all(feature = "UNNotification", feature = "block2"))]
         #[method(getDeliveredNotificationsWithCompletionHandler:)]
         pub unsafe fn getDeliveredNotificationsWithCompletionHandler(
             &self,
@@ -191,7 +179,7 @@ pub static UNNotificationPresentationOptionNone: UNNotificationPresentationOptio
 
 extern_protocol!(
     pub unsafe trait UNUserNotificationCenterDelegate: NSObjectProtocol {
-        #[cfg(all(feature = "UserNotifications_UNNotification", feature = "block2"))]
+        #[cfg(all(feature = "UNNotification", feature = "block2"))]
         #[optional]
         #[method(userNotificationCenter:willPresentNotification:withCompletionHandler:)]
         unsafe fn userNotificationCenter_willPresentNotification_withCompletionHandler(
@@ -201,10 +189,7 @@ extern_protocol!(
             completion_handler: &Block<dyn Fn(UNNotificationPresentationOptions)>,
         );
 
-        #[cfg(all(
-            feature = "UserNotifications_UNNotificationResponse",
-            feature = "block2"
-        ))]
+        #[cfg(all(feature = "UNNotificationResponse", feature = "block2"))]
         #[optional]
         #[method(userNotificationCenter:didReceiveNotificationResponse:withCompletionHandler:)]
         unsafe fn userNotificationCenter_didReceiveNotificationResponse_withCompletionHandler(
@@ -214,7 +199,7 @@ extern_protocol!(
             completion_handler: &Block<dyn Fn()>,
         );
 
-        #[cfg(feature = "UserNotifications_UNNotification")]
+        #[cfg(feature = "UNNotification")]
         #[optional]
         #[method(userNotificationCenter:openSettingsForNotification:)]
         unsafe fn userNotificationCenter_openSettingsForNotification(

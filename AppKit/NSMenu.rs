@@ -57,13 +57,13 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSAccessibilityProtocols")]
+#[cfg(feature = "NSAccessibilityProtocols")]
 unsafe impl NSAccessibility for NSMenu {}
 
-#[cfg(feature = "AppKit_NSAccessibilityProtocols")]
+#[cfg(feature = "NSAccessibilityProtocols")]
 unsafe impl NSAccessibilityElementProtocol for NSMenu {}
 
-#[cfg(feature = "AppKit_NSAppearance")]
+#[cfg(feature = "NSAppearance")]
 unsafe impl NSAppearanceCustomization for NSMenu {}
 
 unsafe impl NSCoding for NSMenu {}
@@ -72,7 +72,7 @@ unsafe impl NSCopying for NSMenu {}
 
 unsafe impl NSObjectProtocol for NSMenu {}
 
-#[cfg(feature = "AppKit_NSUserInterfaceItemIdentification")]
+#[cfg(feature = "NSUserInterfaceItemIdentification")]
 unsafe impl NSUserInterfaceItemIdentification for NSMenu {}
 
 extern_methods!(
@@ -89,11 +89,7 @@ extern_methods!(
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, title: &NSString);
 
-        #[cfg(all(
-            feature = "AppKit_NSEvent",
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSView"
-        ))]
+        #[cfg(all(feature = "NSEvent", feature = "NSResponder", feature = "NSView"))]
         #[method(popUpContextMenu:withEvent:forView:)]
         pub unsafe fn popUpContextMenu_withEvent_forView(
             menu: &NSMenu,
@@ -102,10 +98,10 @@ extern_methods!(
         );
 
         #[cfg(all(
-            feature = "AppKit_NSEvent",
-            feature = "AppKit_NSFont",
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSView"
+            feature = "NSEvent",
+            feature = "NSFont",
+            feature = "NSResponder",
+            feature = "NSView"
         ))]
         #[method(popUpContextMenu:withEvent:forView:withFont:)]
         pub unsafe fn popUpContextMenu_withEvent_forView_withFont(
@@ -115,11 +111,7 @@ extern_methods!(
             font: Option<&NSFont>,
         );
 
-        #[cfg(all(
-            feature = "AppKit_NSMenuItem",
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSView"
-        ))]
+        #[cfg(all(feature = "NSMenuItem", feature = "NSResponder", feature = "NSView"))]
         #[method(popUpMenuPositioningItem:atLocation:inView:)]
         pub unsafe fn popUpMenuPositioningItem_atLocation_inView(
             &self,
@@ -140,15 +132,15 @@ extern_methods!(
         #[method(setSupermenu:)]
         pub unsafe fn setSupermenu(&self, supermenu: Option<&NSMenu>);
 
-        #[cfg(feature = "AppKit_NSMenuItem")]
+        #[cfg(feature = "NSMenuItem")]
         #[method(insertItem:atIndex:)]
         pub unsafe fn insertItem_atIndex(&self, new_item: &NSMenuItem, index: NSInteger);
 
-        #[cfg(feature = "AppKit_NSMenuItem")]
+        #[cfg(feature = "NSMenuItem")]
         #[method(addItem:)]
         pub fn addItem(&self, new_item: &NSMenuItem);
 
-        #[cfg(feature = "AppKit_NSMenuItem")]
+        #[cfg(feature = "NSMenuItem")]
         #[method_id(@__retain_semantics Other insertItemWithTitle:action:keyEquivalent:atIndex:)]
         pub unsafe fn insertItemWithTitle_action_keyEquivalent_atIndex(
             &self,
@@ -158,7 +150,7 @@ extern_methods!(
             index: NSInteger,
         ) -> Id<NSMenuItem>;
 
-        #[cfg(feature = "AppKit_NSMenuItem")]
+        #[cfg(feature = "NSMenuItem")]
         #[method_id(@__retain_semantics Other addItemWithTitle:action:keyEquivalent:)]
         pub unsafe fn addItemWithTitle_action_keyEquivalent(
             &self,
@@ -170,33 +162,33 @@ extern_methods!(
         #[method(removeItemAtIndex:)]
         pub unsafe fn removeItemAtIndex(&self, index: NSInteger);
 
-        #[cfg(feature = "AppKit_NSMenuItem")]
+        #[cfg(feature = "NSMenuItem")]
         #[method(removeItem:)]
         pub unsafe fn removeItem(&self, item: &NSMenuItem);
 
-        #[cfg(feature = "AppKit_NSMenuItem")]
+        #[cfg(feature = "NSMenuItem")]
         #[method(setSubmenu:forItem:)]
         pub unsafe fn setSubmenu_forItem(&self, menu: Option<&NSMenu>, item: &NSMenuItem);
 
         #[method(removeAllItems)]
         pub unsafe fn removeAllItems(&self);
 
-        #[cfg(feature = "AppKit_NSMenuItem")]
+        #[cfg(feature = "NSMenuItem")]
         #[method_id(@__retain_semantics Other itemArray)]
         pub unsafe fn itemArray(&self) -> Id<NSArray<NSMenuItem>>;
 
-        #[cfg(feature = "AppKit_NSMenuItem")]
+        #[cfg(feature = "NSMenuItem")]
         #[method(setItemArray:)]
         pub unsafe fn setItemArray(&self, item_array: &NSArray<NSMenuItem>);
 
         #[method(numberOfItems)]
         pub unsafe fn numberOfItems(&self) -> NSInteger;
 
-        #[cfg(feature = "AppKit_NSMenuItem")]
+        #[cfg(feature = "NSMenuItem")]
         #[method_id(@__retain_semantics Other itemAtIndex:)]
         pub unsafe fn itemAtIndex(&self, index: NSInteger) -> Option<Id<NSMenuItem>>;
 
-        #[cfg(feature = "AppKit_NSMenuItem")]
+        #[cfg(feature = "NSMenuItem")]
         #[method(indexOfItem:)]
         pub unsafe fn indexOfItem(&self, item: &NSMenuItem) -> NSInteger;
 
@@ -222,11 +214,11 @@ extern_methods!(
             action_selector: Option<Sel>,
         ) -> NSInteger;
 
-        #[cfg(feature = "AppKit_NSMenuItem")]
+        #[cfg(feature = "NSMenuItem")]
         #[method_id(@__retain_semantics Other itemWithTitle:)]
         pub unsafe fn itemWithTitle(&self, title: &NSString) -> Option<Id<NSMenuItem>>;
 
-        #[cfg(feature = "AppKit_NSMenuItem")]
+        #[cfg(feature = "NSMenuItem")]
         #[method_id(@__retain_semantics Other itemWithTag:)]
         pub unsafe fn itemWithTag(&self, tag: NSInteger) -> Option<Id<NSMenuItem>>;
 
@@ -239,11 +231,11 @@ extern_methods!(
         #[method(update)]
         pub unsafe fn update(&self);
 
-        #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(feature = "NSEvent")]
         #[method(performKeyEquivalent:)]
         pub unsafe fn performKeyEquivalent(&self, event: &NSEvent) -> bool;
 
-        #[cfg(feature = "AppKit_NSMenuItem")]
+        #[cfg(feature = "NSMenuItem")]
         #[method(itemChanged:)]
         pub unsafe fn itemChanged(&self, item: &NSMenuItem);
 
@@ -265,7 +257,7 @@ extern_methods!(
         #[method(cancelTrackingWithoutAnimation)]
         pub unsafe fn cancelTrackingWithoutAnimation(&self);
 
-        #[cfg(feature = "AppKit_NSMenuItem")]
+        #[cfg(feature = "NSMenuItem")]
         #[method_id(@__retain_semantics Other highlightedItem)]
         pub unsafe fn highlightedItem(&self) -> Option<Id<NSMenuItem>>;
 
@@ -278,11 +270,11 @@ extern_methods!(
         #[method(size)]
         pub unsafe fn size(&self) -> NSSize;
 
-        #[cfg(feature = "AppKit_NSFont")]
+        #[cfg(feature = "NSFont")]
         #[method_id(@__retain_semantics Other font)]
         pub unsafe fn font(&self) -> Option<Id<NSFont>>;
 
-        #[cfg(feature = "AppKit_NSFont")]
+        #[cfg(feature = "NSFont")]
         #[method(setFont:)]
         pub unsafe fn setFont(&self, font: Option<&NSFont>);
 
@@ -298,11 +290,11 @@ extern_methods!(
         #[method(setShowsStateColumn:)]
         pub unsafe fn setShowsStateColumn(&self, shows_state_column: bool);
 
-        #[cfg(feature = "AppKit_NSUserInterfaceLayout")]
+        #[cfg(feature = "NSUserInterfaceLayout")]
         #[method(userInterfaceLayoutDirection)]
         pub unsafe fn userInterfaceLayoutDirection(&self) -> NSUserInterfaceLayoutDirection;
 
-        #[cfg(feature = "AppKit_NSUserInterfaceLayout")]
+        #[cfg(feature = "NSUserInterfaceLayout")]
         #[method(setUserInterfaceLayoutDirection:)]
         pub unsafe fn setUserInterfaceLayoutDirection(
             &self,
@@ -325,7 +317,7 @@ extern_methods!(
 extern_methods!(
     /// NSPaletteMenus
     unsafe impl NSMenu {
-        #[cfg(all(feature = "AppKit_NSColor", feature = "block2"))]
+        #[cfg(all(feature = "NSColor", feature = "block2"))]
         #[method_id(@__retain_semantics Other paletteMenuWithColors:titles:selectionHandler:)]
         pub unsafe fn paletteMenuWithColors_titles_selectionHandler(
             colors: &NSArray<NSColor>,
@@ -334,11 +326,7 @@ extern_methods!(
             mtm: MainThreadMarker,
         ) -> Id<Self>;
 
-        #[cfg(all(
-            feature = "AppKit_NSColor",
-            feature = "AppKit_NSImage",
-            feature = "block2"
-        ))]
+        #[cfg(all(feature = "NSColor", feature = "NSImage", feature = "block2"))]
         #[method_id(@__retain_semantics Other paletteMenuWithColors:titles:templateImage:selectionHandler:)]
         pub unsafe fn paletteMenuWithColors_titles_templateImage_selectionHandler(
             colors: &NSArray<NSColor>,
@@ -360,11 +348,11 @@ extern_methods!(
         #[method(setSelectionMode:)]
         pub unsafe fn setSelectionMode(&self, selection_mode: NSMenuSelectionMode);
 
-        #[cfg(feature = "AppKit_NSMenuItem")]
+        #[cfg(feature = "NSMenuItem")]
         #[method_id(@__retain_semantics Other selectedItems)]
         pub unsafe fn selectedItems(&self) -> Id<NSArray<NSMenuItem>>;
 
-        #[cfg(feature = "AppKit_NSMenuItem")]
+        #[cfg(feature = "NSMenuItem")]
         #[method(setSelectedItems:)]
         pub unsafe fn setSelectedItems(&self, selected_items: &NSArray<NSMenuItem>);
     }
@@ -380,7 +368,7 @@ extern_methods!(
 
 extern_protocol!(
     pub unsafe trait NSMenuItemValidation: NSObjectProtocol + IsMainThreadOnly {
-        #[cfg(feature = "AppKit_NSMenuItem")]
+        #[cfg(feature = "NSMenuItem")]
         #[method(validateMenuItem:)]
         unsafe fn validateMenuItem(&self, menu_item: &NSMenuItem) -> bool;
     }
@@ -398,7 +386,7 @@ extern_protocol!(
         #[method(numberOfItemsInMenu:)]
         unsafe fn numberOfItemsInMenu(&self, menu: &NSMenu) -> NSInteger;
 
-        #[cfg(feature = "AppKit_NSMenuItem")]
+        #[cfg(feature = "NSMenuItem")]
         #[optional]
         #[method(menu:updateItem:atIndex:shouldCancel:)]
         unsafe fn menu_updateItem_atIndex_shouldCancel(
@@ -417,12 +405,12 @@ extern_protocol!(
         #[method(menuDidClose:)]
         unsafe fn menuDidClose(&self, menu: &NSMenu);
 
-        #[cfg(feature = "AppKit_NSMenuItem")]
+        #[cfg(feature = "NSMenuItem")]
         #[optional]
         #[method(menu:willHighlightItem:)]
         unsafe fn menu_willHighlightItem(&self, menu: &NSMenu, item: Option<&NSMenuItem>);
 
-        #[cfg(feature = "AppKit_NSScreen")]
+        #[cfg(feature = "NSScreen")]
         #[optional]
         #[method(confinementRectForMenu:onScreen:)]
         unsafe fn confinementRectForMenu_onScreen(
@@ -551,7 +539,7 @@ extern_methods!(
         #[method(setMenuChangedMessagesEnabled:)]
         pub unsafe fn setMenuChangedMessagesEnabled(&self, menu_changed_messages_enabled: bool);
 
-        #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(feature = "NSEvent")]
         #[deprecated]
         #[method(helpRequested:)]
         pub unsafe fn helpRequested(&self, event_ptr: &NSEvent);

@@ -139,46 +139,31 @@ extern_methods!(
         #[method(imageDataAvailable)]
         pub unsafe fn imageDataAvailable(&self) -> bool;
 
-        #[cfg(all(
-            feature = "Contacts_CNLabeledValue",
-            feature = "Contacts_CNPhoneNumber"
-        ))]
+        #[cfg(all(feature = "CNLabeledValue", feature = "CNPhoneNumber"))]
         #[method_id(@__retain_semantics Other phoneNumbers)]
         pub unsafe fn phoneNumbers(&self) -> Id<NSArray<CNLabeledValue<CNPhoneNumber>>>;
 
-        #[cfg(feature = "Contacts_CNLabeledValue")]
+        #[cfg(feature = "CNLabeledValue")]
         #[method_id(@__retain_semantics Other emailAddresses)]
         pub unsafe fn emailAddresses(&self) -> Id<NSArray<CNLabeledValue<NSString>>>;
 
-        #[cfg(all(
-            feature = "Contacts_CNLabeledValue",
-            feature = "Contacts_CNPostalAddress"
-        ))]
+        #[cfg(all(feature = "CNLabeledValue", feature = "CNPostalAddress"))]
         #[method_id(@__retain_semantics Other postalAddresses)]
         pub unsafe fn postalAddresses(&self) -> Id<NSArray<CNLabeledValue<CNPostalAddress>>>;
 
-        #[cfg(feature = "Contacts_CNLabeledValue")]
+        #[cfg(feature = "CNLabeledValue")]
         #[method_id(@__retain_semantics Other urlAddresses)]
         pub unsafe fn urlAddresses(&self) -> Id<NSArray<CNLabeledValue<NSString>>>;
 
-        #[cfg(all(
-            feature = "Contacts_CNContactRelation",
-            feature = "Contacts_CNLabeledValue"
-        ))]
+        #[cfg(all(feature = "CNContactRelation", feature = "CNLabeledValue"))]
         #[method_id(@__retain_semantics Other contactRelations)]
         pub unsafe fn contactRelations(&self) -> Id<NSArray<CNLabeledValue<CNContactRelation>>>;
 
-        #[cfg(all(
-            feature = "Contacts_CNLabeledValue",
-            feature = "Contacts_CNSocialProfile"
-        ))]
+        #[cfg(all(feature = "CNLabeledValue", feature = "CNSocialProfile"))]
         #[method_id(@__retain_semantics Other socialProfiles)]
         pub unsafe fn socialProfiles(&self) -> Id<NSArray<CNLabeledValue<CNSocialProfile>>>;
 
-        #[cfg(all(
-            feature = "Contacts_CNInstantMessageAddress",
-            feature = "Contacts_CNLabeledValue"
-        ))]
+        #[cfg(all(feature = "CNInstantMessageAddress", feature = "CNLabeledValue"))]
         #[method_id(@__retain_semantics Other instantMessageAddresses)]
         pub unsafe fn instantMessageAddresses(
             &self,
@@ -190,7 +175,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other nonGregorianBirthday)]
         pub unsafe fn nonGregorianBirthday(&self) -> Option<Id<NSDateComponents>>;
 
-        #[cfg(feature = "Contacts_CNLabeledValue")]
+        #[cfg(feature = "CNLabeledValue")]
         #[method_id(@__retain_semantics Other dates)]
         pub unsafe fn dates(&self) -> Id<NSArray<CNLabeledValue<NSDateComponents>>>;
 

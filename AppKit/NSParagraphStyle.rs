@@ -80,7 +80,7 @@ extern_methods!(
         pub unsafe fn columnTerminatorsForLocale(a_locale: Option<&NSLocale>)
             -> Id<NSCharacterSet>;
 
-        #[cfg(feature = "AppKit_NSText")]
+        #[cfg(feature = "NSText")]
         #[method_id(@__retain_semantics Init initWithTextAlignment:location:options:)]
         pub unsafe fn initWithTextAlignment_location_options(
             this: Allocated<Self>,
@@ -89,7 +89,7 @@ extern_methods!(
             options: &NSDictionary<NSTextTabOptionKey, AnyObject>,
         ) -> Id<Self>;
 
-        #[cfg(feature = "AppKit_NSText")]
+        #[cfg(feature = "NSText")]
         #[method(alignment)]
         pub unsafe fn alignment(&self) -> NSTextAlignment;
 
@@ -137,7 +137,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other defaultParagraphStyle)]
         pub unsafe fn defaultParagraphStyle() -> Id<NSParagraphStyle>;
 
-        #[cfg(feature = "AppKit_NSText")]
+        #[cfg(feature = "NSText")]
         #[method(defaultWritingDirectionForLanguage:)]
         pub unsafe fn defaultWritingDirectionForLanguage(
             language_name: Option<&NSString>,
@@ -149,7 +149,7 @@ extern_methods!(
         #[method(paragraphSpacing)]
         pub unsafe fn paragraphSpacing(&self) -> CGFloat;
 
-        #[cfg(feature = "AppKit_NSText")]
+        #[cfg(feature = "NSText")]
         #[method(alignment)]
         pub unsafe fn alignment(&self) -> NSTextAlignment;
 
@@ -171,7 +171,7 @@ extern_methods!(
         #[method(lineBreakMode)]
         pub unsafe fn lineBreakMode(&self) -> NSLineBreakMode;
 
-        #[cfg(feature = "AppKit_NSText")]
+        #[cfg(feature = "NSText")]
         #[method(baseWritingDirection)]
         pub unsafe fn baseWritingDirection(&self) -> NSWritingDirection;
 
@@ -199,11 +199,11 @@ extern_methods!(
         #[method(tighteningFactorForTruncation)]
         pub unsafe fn tighteningFactorForTruncation(&self) -> c_float;
 
-        #[cfg(feature = "AppKit_NSTextTable")]
+        #[cfg(feature = "NSTextTable")]
         #[method_id(@__retain_semantics Other textBlocks)]
         pub unsafe fn textBlocks(&self) -> Id<NSArray<NSTextBlock>>;
 
-        #[cfg(feature = "AppKit_NSTextList")]
+        #[cfg(feature = "NSTextList")]
         #[method_id(@__retain_semantics Other textLists)]
         pub unsafe fn textLists(&self) -> Id<NSArray<NSTextList>>;
 
@@ -261,11 +261,11 @@ extern_methods!(
         #[method(setParagraphSpacing:)]
         pub unsafe fn setParagraphSpacing(&self, paragraph_spacing: CGFloat);
 
-        #[cfg(feature = "AppKit_NSText")]
+        #[cfg(feature = "NSText")]
         #[method(alignment)]
         pub unsafe fn alignment(&self) -> NSTextAlignment;
 
-        #[cfg(feature = "AppKit_NSText")]
+        #[cfg(feature = "NSText")]
         #[method(setAlignment:)]
         pub unsafe fn setAlignment(&self, alignment: NSTextAlignment);
 
@@ -305,11 +305,11 @@ extern_methods!(
         #[method(setMaximumLineHeight:)]
         pub unsafe fn setMaximumLineHeight(&self, maximum_line_height: CGFloat);
 
-        #[cfg(feature = "AppKit_NSText")]
+        #[cfg(feature = "NSText")]
         #[method(baseWritingDirection)]
         pub unsafe fn baseWritingDirection(&self) -> NSWritingDirection;
 
-        #[cfg(feature = "AppKit_NSText")]
+        #[cfg(feature = "NSText")]
         #[method(setBaseWritingDirection:)]
         pub unsafe fn setBaseWritingDirection(&self, base_writing_direction: NSWritingDirection);
 
@@ -376,19 +376,19 @@ extern_methods!(
             tightening_factor_for_truncation: c_float,
         );
 
-        #[cfg(feature = "AppKit_NSTextTable")]
+        #[cfg(feature = "NSTextTable")]
         #[method_id(@__retain_semantics Other textBlocks)]
         pub unsafe fn textBlocks(&self) -> Id<NSArray<NSTextBlock>>;
 
-        #[cfg(feature = "AppKit_NSTextTable")]
+        #[cfg(feature = "NSTextTable")]
         #[method(setTextBlocks:)]
         pub unsafe fn setTextBlocks(&self, text_blocks: &NSArray<NSTextBlock>);
 
-        #[cfg(feature = "AppKit_NSTextList")]
+        #[cfg(feature = "NSTextList")]
         #[method_id(@__retain_semantics Other textLists)]
         pub unsafe fn textLists(&self) -> Id<NSArray<NSTextList>>;
 
-        #[cfg(feature = "AppKit_NSTextList")]
+        #[cfg(feature = "NSTextList")]
         #[method(setTextLists:)]
         pub unsafe fn setTextLists(&self, text_lists: &NSArray<NSTextList>);
 

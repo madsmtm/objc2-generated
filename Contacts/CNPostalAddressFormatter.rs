@@ -41,14 +41,14 @@ unsafe impl NSObjectProtocol for CNPostalAddressFormatter {}
 
 extern_methods!(
     unsafe impl CNPostalAddressFormatter {
-        #[cfg(feature = "Contacts_CNPostalAddress")]
+        #[cfg(feature = "CNPostalAddress")]
         #[method_id(@__retain_semantics Other stringFromPostalAddress:style:)]
         pub unsafe fn stringFromPostalAddress_style(
             postal_address: &CNPostalAddress,
             style: CNPostalAddressFormatterStyle,
         ) -> Id<NSString>;
 
-        #[cfg(feature = "Contacts_CNPostalAddress")]
+        #[cfg(feature = "CNPostalAddress")]
         #[method_id(@__retain_semantics Other attributedStringFromPostalAddress:style:withDefaultAttributes:)]
         pub unsafe fn attributedStringFromPostalAddress_style_withDefaultAttributes(
             postal_address: &CNPostalAddress,
@@ -62,14 +62,14 @@ extern_methods!(
         #[method(setStyle:)]
         pub unsafe fn setStyle(&self, style: CNPostalAddressFormatterStyle);
 
-        #[cfg(feature = "Contacts_CNPostalAddress")]
+        #[cfg(feature = "CNPostalAddress")]
         #[method_id(@__retain_semantics Other stringFromPostalAddress:)]
         pub unsafe fn stringFromPostalAddress(
             &self,
             postal_address: &CNPostalAddress,
         ) -> Id<NSString>;
 
-        #[cfg(feature = "Contacts_CNPostalAddress")]
+        #[cfg(feature = "CNPostalAddress")]
         #[method_id(@__retain_semantics Other attributedStringFromPostalAddress:withDefaultAttributes:)]
         pub unsafe fn attributedStringFromPostalAddress_withDefaultAttributes(
             &self,

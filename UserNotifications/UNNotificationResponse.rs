@@ -33,7 +33,7 @@ unsafe impl NSSecureCoding for UNNotificationResponse {}
 
 extern_methods!(
     unsafe impl UNNotificationResponse {
-        #[cfg(feature = "UserNotifications_UNNotification")]
+        #[cfg(feature = "UNNotification")]
         #[method_id(@__retain_semantics Other notification)]
         pub unsafe fn notification(&self) -> Id<UNNotification>;
 

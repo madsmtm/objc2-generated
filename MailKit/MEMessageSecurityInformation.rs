@@ -23,7 +23,7 @@ unsafe impl NSSecureCoding for MEMessageSecurityInformation {}
 
 extern_methods!(
     unsafe impl MEMessageSecurityInformation {
-        #[cfg(feature = "MailKit_MEMessageSigner")]
+        #[cfg(feature = "MEMessageSigner")]
         #[method_id(@__retain_semantics Other signers)]
         pub unsafe fn signers(&self) -> Id<NSArray<MEMessageSigner>>;
 
@@ -48,7 +48,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
-        #[cfg(feature = "MailKit_MEMessageSigner")]
+        #[cfg(feature = "MEMessageSigner")]
         #[method_id(@__retain_semantics Init initWithSigners:isEncrypted:signingError:encryptionError:)]
         pub unsafe fn initWithSigners_isEncrypted_signingError_encryptionError(
             this: Allocated<Self>,
@@ -58,7 +58,7 @@ extern_methods!(
             encryption_error: Option<&NSError>,
         ) -> Id<Self>;
 
-        #[cfg(feature = "MailKit_MEMessageSigner")]
+        #[cfg(feature = "MEMessageSigner")]
         #[method_id(@__retain_semantics Init initWithSigners:isEncrypted:signingError:encryptionError:shouldBlockRemoteContent:localizedRemoteContentBlockingReason:)]
         pub unsafe fn initWithSigners_isEncrypted_signingError_encryptionError_shouldBlockRemoteContent_localizedRemoteContentBlockingReason(
             this: Allocated<Self>,

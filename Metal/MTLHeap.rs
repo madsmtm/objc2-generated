@@ -48,43 +48,43 @@ extern_methods!(
         #[method(setSize:)]
         pub fn setSize(&self, size: NSUInteger);
 
-        #[cfg(feature = "Metal_MTLResource")]
+        #[cfg(feature = "MTLResource")]
         #[method(storageMode)]
         pub fn storageMode(&self) -> MTLStorageMode;
 
-        #[cfg(feature = "Metal_MTLResource")]
+        #[cfg(feature = "MTLResource")]
         #[method(setStorageMode:)]
         pub fn setStorageMode(&self, storage_mode: MTLStorageMode);
 
-        #[cfg(feature = "Metal_MTLResource")]
+        #[cfg(feature = "MTLResource")]
         #[method(cpuCacheMode)]
         pub fn cpuCacheMode(&self) -> MTLCPUCacheMode;
 
-        #[cfg(feature = "Metal_MTLResource")]
+        #[cfg(feature = "MTLResource")]
         #[method(setCpuCacheMode:)]
         pub fn setCpuCacheMode(&self, cpu_cache_mode: MTLCPUCacheMode);
 
-        #[cfg(feature = "Metal_MTLDevice")]
+        #[cfg(feature = "MTLDevice")]
         #[method(sparsePageSize)]
         pub unsafe fn sparsePageSize(&self) -> MTLSparsePageSize;
 
-        #[cfg(feature = "Metal_MTLDevice")]
+        #[cfg(feature = "MTLDevice")]
         #[method(setSparsePageSize:)]
         pub unsafe fn setSparsePageSize(&self, sparse_page_size: MTLSparsePageSize);
 
-        #[cfg(feature = "Metal_MTLResource")]
+        #[cfg(feature = "MTLResource")]
         #[method(hazardTrackingMode)]
         pub fn hazardTrackingMode(&self) -> MTLHazardTrackingMode;
 
-        #[cfg(feature = "Metal_MTLResource")]
+        #[cfg(feature = "MTLResource")]
         #[method(setHazardTrackingMode:)]
         pub fn setHazardTrackingMode(&self, hazard_tracking_mode: MTLHazardTrackingMode);
 
-        #[cfg(feature = "Metal_MTLResource")]
+        #[cfg(feature = "MTLResource")]
         #[method(resourceOptions)]
         pub fn resourceOptions(&self) -> MTLResourceOptions;
 
-        #[cfg(feature = "Metal_MTLResource")]
+        #[cfg(feature = "MTLResource")]
         #[method(setResourceOptions:)]
         pub fn setResourceOptions(&self, resource_options: MTLResourceOptions);
 
@@ -115,23 +115,23 @@ extern_protocol!(
         #[method(setLabel:)]
         fn setLabel(&self, label: Option<&NSString>);
 
-        #[cfg(feature = "Metal_MTLDevice")]
+        #[cfg(feature = "MTLDevice")]
         #[method_id(@__retain_semantics Other device)]
         fn device(&self) -> Id<ProtocolObject<dyn MTLDevice>>;
 
-        #[cfg(feature = "Metal_MTLResource")]
+        #[cfg(feature = "MTLResource")]
         #[method(storageMode)]
         fn storageMode(&self) -> MTLStorageMode;
 
-        #[cfg(feature = "Metal_MTLResource")]
+        #[cfg(feature = "MTLResource")]
         #[method(cpuCacheMode)]
         fn cpuCacheMode(&self) -> MTLCPUCacheMode;
 
-        #[cfg(feature = "Metal_MTLResource")]
+        #[cfg(feature = "MTLResource")]
         #[method(hazardTrackingMode)]
         fn hazardTrackingMode(&self) -> MTLHazardTrackingMode;
 
-        #[cfg(feature = "Metal_MTLResource")]
+        #[cfg(feature = "MTLResource")]
         #[method(resourceOptions)]
         fn resourceOptions(&self) -> MTLResourceOptions;
 
@@ -147,7 +147,7 @@ extern_protocol!(
         #[method(maxAvailableSizeWithAlignment:)]
         fn maxAvailableSizeWithAlignment(&self, alignment: NSUInteger) -> NSUInteger;
 
-        #[cfg(all(feature = "Metal_MTLBuffer", feature = "Metal_MTLResource"))]
+        #[cfg(all(feature = "MTLBuffer", feature = "MTLResource"))]
         #[method_id(@__retain_semantics New newBufferWithLength:options:)]
         fn newBufferWithLength_options(
             &self,
@@ -155,21 +155,21 @@ extern_protocol!(
             options: MTLResourceOptions,
         ) -> Option<Id<ProtocolObject<dyn MTLBuffer>>>;
 
-        #[cfg(all(feature = "Metal_MTLResource", feature = "Metal_MTLTexture"))]
+        #[cfg(all(feature = "MTLResource", feature = "MTLTexture"))]
         #[method_id(@__retain_semantics New newTextureWithDescriptor:)]
         fn newTextureWithDescriptor(
             &self,
             descriptor: &MTLTextureDescriptor,
         ) -> Option<Id<ProtocolObject<dyn MTLTexture>>>;
 
-        #[cfg(feature = "Metal_MTLResource")]
+        #[cfg(feature = "MTLResource")]
         #[method(setPurgeableState:)]
         fn setPurgeableState(&self, state: MTLPurgeableState) -> MTLPurgeableState;
 
         #[method(type)]
         unsafe fn r#type(&self) -> MTLHeapType;
 
-        #[cfg(all(feature = "Metal_MTLBuffer", feature = "Metal_MTLResource"))]
+        #[cfg(all(feature = "MTLBuffer", feature = "MTLResource"))]
         #[method_id(@__retain_semantics New newBufferWithLength:options:offset:)]
         unsafe fn newBufferWithLength_options_offset(
             &self,
@@ -178,7 +178,7 @@ extern_protocol!(
             offset: NSUInteger,
         ) -> Option<Id<ProtocolObject<dyn MTLBuffer>>>;
 
-        #[cfg(all(feature = "Metal_MTLResource", feature = "Metal_MTLTexture"))]
+        #[cfg(all(feature = "MTLResource", feature = "MTLTexture"))]
         #[method_id(@__retain_semantics New newTextureWithDescriptor:offset:)]
         unsafe fn newTextureWithDescriptor_offset(
             &self,
@@ -186,30 +186,21 @@ extern_protocol!(
             offset: NSUInteger,
         ) -> Option<Id<ProtocolObject<dyn MTLTexture>>>;
 
-        #[cfg(all(
-            feature = "Metal_MTLAccelerationStructure",
-            feature = "Metal_MTLResource"
-        ))]
+        #[cfg(all(feature = "MTLAccelerationStructure", feature = "MTLResource"))]
         #[method_id(@__retain_semantics New newAccelerationStructureWithSize:)]
         unsafe fn newAccelerationStructureWithSize(
             &self,
             size: NSUInteger,
         ) -> Option<Id<ProtocolObject<dyn MTLAccelerationStructure>>>;
 
-        #[cfg(all(
-            feature = "Metal_MTLAccelerationStructure",
-            feature = "Metal_MTLResource"
-        ))]
+        #[cfg(all(feature = "MTLAccelerationStructure", feature = "MTLResource"))]
         #[method_id(@__retain_semantics New newAccelerationStructureWithDescriptor:)]
         unsafe fn newAccelerationStructureWithDescriptor(
             &self,
             descriptor: &MTLAccelerationStructureDescriptor,
         ) -> Option<Id<ProtocolObject<dyn MTLAccelerationStructure>>>;
 
-        #[cfg(all(
-            feature = "Metal_MTLAccelerationStructure",
-            feature = "Metal_MTLResource"
-        ))]
+        #[cfg(all(feature = "MTLAccelerationStructure", feature = "MTLResource"))]
         #[method_id(@__retain_semantics New newAccelerationStructureWithSize:offset:)]
         unsafe fn newAccelerationStructureWithSize_offset(
             &self,
@@ -217,10 +208,7 @@ extern_protocol!(
             offset: NSUInteger,
         ) -> Option<Id<ProtocolObject<dyn MTLAccelerationStructure>>>;
 
-        #[cfg(all(
-            feature = "Metal_MTLAccelerationStructure",
-            feature = "Metal_MTLResource"
-        ))]
+        #[cfg(all(feature = "MTLAccelerationStructure", feature = "MTLResource"))]
         #[method_id(@__retain_semantics New newAccelerationStructureWithDescriptor:offset:)]
         unsafe fn newAccelerationStructureWithDescriptor_offset(
             &self,

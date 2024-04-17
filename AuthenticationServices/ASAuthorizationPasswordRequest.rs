@@ -8,10 +8,10 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AuthenticationServices_ASAuthorizationRequest")]
+    #[cfg(feature = "ASAuthorizationRequest")]
     pub struct ASAuthorizationPasswordRequest;
 
-    #[cfg(feature = "AuthenticationServices_ASAuthorizationRequest")]
+    #[cfg(feature = "ASAuthorizationRequest")]
     unsafe impl ClassType for ASAuthorizationPasswordRequest {
         #[inherits(NSObject)]
         type Super = ASAuthorizationRequest;
@@ -19,26 +19,26 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AuthenticationServices_ASAuthorizationRequest")]
+#[cfg(feature = "ASAuthorizationRequest")]
 unsafe impl NSCoding for ASAuthorizationPasswordRequest {}
 
-#[cfg(feature = "AuthenticationServices_ASAuthorizationRequest")]
+#[cfg(feature = "ASAuthorizationRequest")]
 unsafe impl NSCopying for ASAuthorizationPasswordRequest {}
 
-#[cfg(feature = "AuthenticationServices_ASAuthorizationRequest")]
+#[cfg(feature = "ASAuthorizationRequest")]
 unsafe impl NSObjectProtocol for ASAuthorizationPasswordRequest {}
 
-#[cfg(feature = "AuthenticationServices_ASAuthorizationRequest")]
+#[cfg(feature = "ASAuthorizationRequest")]
 unsafe impl NSSecureCoding for ASAuthorizationPasswordRequest {}
 
 extern_methods!(
-    #[cfg(feature = "AuthenticationServices_ASAuthorizationRequest")]
+    #[cfg(feature = "ASAuthorizationRequest")]
     unsafe impl ASAuthorizationPasswordRequest {}
 );
 
 extern_methods!(
     /// Methods declared on superclass `ASAuthorizationRequest`
-    #[cfg(feature = "AuthenticationServices_ASAuthorizationRequest")]
+    #[cfg(feature = "ASAuthorizationRequest")]
     unsafe impl ASAuthorizationPasswordRequest {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

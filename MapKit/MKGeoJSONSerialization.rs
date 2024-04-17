@@ -66,7 +66,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other properties)]
         pub unsafe fn properties(&self) -> Option<Id<NSData>>;
 
-        #[cfg(feature = "MapKit_MKShape")]
+        #[cfg(feature = "MKShape")]
         #[method_id(@__retain_semantics Other geometry)]
         pub unsafe fn geometry(&self) -> Id<NSArray<MKShape>>;
     }
@@ -85,70 +85,54 @@ extern_methods!(
 
 extern_methods!(
     /// MKGeoJSONSerialization
-    #[cfg(all(feature = "MapKit_MKPointAnnotation", feature = "MapKit_MKShape"))]
+    #[cfg(all(feature = "MKPointAnnotation", feature = "MKShape"))]
     unsafe impl MKPointAnnotation {}
 );
 
-#[cfg(all(feature = "MapKit_MKPointAnnotation", feature = "MapKit_MKShape"))]
+#[cfg(all(feature = "MKPointAnnotation", feature = "MKShape"))]
 unsafe impl MKGeoJSONObject for MKPointAnnotation {}
 
 extern_methods!(
     /// MKGeoJSONSerialization
-    #[cfg(all(feature = "MapKit_MKMultiPoint", feature = "MapKit_MKShape"))]
+    #[cfg(all(feature = "MKMultiPoint", feature = "MKShape"))]
     unsafe impl MKMultiPoint {}
 );
 
-#[cfg(all(feature = "MapKit_MKMultiPoint", feature = "MapKit_MKShape"))]
+#[cfg(all(feature = "MKMultiPoint", feature = "MKShape"))]
 unsafe impl MKGeoJSONObject for MKMultiPoint {}
 
 extern_methods!(
     /// MKGeoJSONSerialization
-    #[cfg(all(feature = "MapKit_MKMultiPolyline", feature = "MapKit_MKShape"))]
+    #[cfg(all(feature = "MKMultiPolyline", feature = "MKShape"))]
     unsafe impl MKMultiPolyline {}
 );
 
-#[cfg(all(feature = "MapKit_MKMultiPolyline", feature = "MapKit_MKShape"))]
+#[cfg(all(feature = "MKMultiPolyline", feature = "MKShape"))]
 unsafe impl MKGeoJSONObject for MKMultiPolyline {}
 
 extern_methods!(
     /// MKGeoJSONSerialization
-    #[cfg(all(feature = "MapKit_MKMultiPolygon", feature = "MapKit_MKShape"))]
+    #[cfg(all(feature = "MKMultiPolygon", feature = "MKShape"))]
     unsafe impl MKMultiPolygon {}
 );
 
-#[cfg(all(feature = "MapKit_MKMultiPolygon", feature = "MapKit_MKShape"))]
+#[cfg(all(feature = "MKMultiPolygon", feature = "MKShape"))]
 unsafe impl MKGeoJSONObject for MKMultiPolygon {}
 
 extern_methods!(
     /// MKGeoJSONSerialization
-    #[cfg(all(
-        feature = "MapKit_MKMultiPoint",
-        feature = "MapKit_MKPolyline",
-        feature = "MapKit_MKShape"
-    ))]
+    #[cfg(all(feature = "MKMultiPoint", feature = "MKPolyline", feature = "MKShape"))]
     unsafe impl MKPolyline {}
 );
 
-#[cfg(all(
-    feature = "MapKit_MKMultiPoint",
-    feature = "MapKit_MKPolyline",
-    feature = "MapKit_MKShape"
-))]
+#[cfg(all(feature = "MKMultiPoint", feature = "MKPolyline", feature = "MKShape"))]
 unsafe impl MKGeoJSONObject for MKPolyline {}
 
 extern_methods!(
     /// MKGeoJSONSerialization
-    #[cfg(all(
-        feature = "MapKit_MKMultiPoint",
-        feature = "MapKit_MKPolygon",
-        feature = "MapKit_MKShape"
-    ))]
+    #[cfg(all(feature = "MKMultiPoint", feature = "MKPolygon", feature = "MKShape"))]
     unsafe impl MKPolygon {}
 );
 
-#[cfg(all(
-    feature = "MapKit_MKMultiPoint",
-    feature = "MapKit_MKPolygon",
-    feature = "MapKit_MKShape"
-))]
+#[cfg(all(feature = "MKMultiPoint", feature = "MKPolygon", feature = "MKShape"))]
 unsafe impl MKGeoJSONObject for MKPolygon {}

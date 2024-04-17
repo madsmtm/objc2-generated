@@ -11,40 +11,40 @@ extern "C" {
 }
 
 // NS_TYPED_EXTENSIBLE_ENUM
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(feature = "NSString")]
 pub type NSExceptionName = NSString;
 
 // NS_TYPED_EXTENSIBLE_ENUM
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(feature = "NSString")]
 pub type NSRunLoopMode = NSString;
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub fn NSStringFromSelector(a_selector: Sel) -> NonNull<NSString>;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub fn NSSelectorFromString(a_selector_name: &NSString) -> Sel;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub fn NSStringFromClass(a_class: &AnyClass) -> NonNull<NSString>;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub fn NSClassFromString(a_class_name: &NSString) -> *const AnyClass;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub fn NSStringFromProtocol(proto: &AnyProtocol) -> NonNull<NSString>;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub fn NSProtocolFromString(namestr: &NSString) -> *mut AnyProtocol;
 }
 

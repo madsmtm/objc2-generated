@@ -8,21 +8,17 @@ use crate::*;
 
 extern_protocol!(
     pub unsafe trait ASAuthorizationWebBrowserPlatformPublicKeyCredentialRegistrationRequest {
-        #[cfg(feature = "AuthenticationServices_ASPublicKeyCredentialClientData")]
+        #[cfg(feature = "ASPublicKeyCredentialClientData")]
         #[method_id(@__retain_semantics Other clientData)]
         unsafe fn clientData(&self) -> Option<Id<ASPublicKeyCredentialClientData>>;
 
-        #[cfg(
-            feature = "AuthenticationServices_ASAuthorizationPlatformPublicKeyCredentialDescriptor"
-        )]
+        #[cfg(feature = "ASAuthorizationPlatformPublicKeyCredentialDescriptor")]
         #[method_id(@__retain_semantics Other excludedCredentials)]
         unsafe fn excludedCredentials(
             &self,
         ) -> Option<Id<NSArray<ASAuthorizationPlatformPublicKeyCredentialDescriptor>>>;
 
-        #[cfg(
-            feature = "AuthenticationServices_ASAuthorizationPlatformPublicKeyCredentialDescriptor"
-        )]
+        #[cfg(feature = "ASAuthorizationPlatformPublicKeyCredentialDescriptor")]
         #[method(setExcludedCredentials:)]
         unsafe fn setExcludedCredentials(
             &self,

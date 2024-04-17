@@ -8,7 +8,7 @@ use crate::*;
 extern_protocol!(
     #[deprecated]
     pub unsafe trait GKSessionDelegate: NSObjectProtocol {
-        #[cfg(all(feature = "GameKit_GKPublicConstants", feature = "GameKit_GKSession"))]
+        #[cfg(all(feature = "GKPublicConstants", feature = "GKSession"))]
         #[deprecated]
         #[optional]
         #[method(session:peer:didChangeState:)]
@@ -19,7 +19,7 @@ extern_protocol!(
             state: GKPeerConnectionState,
         );
 
-        #[cfg(feature = "GameKit_GKSession")]
+        #[cfg(feature = "GKSession")]
         #[deprecated]
         #[optional]
         #[method(session:didReceiveConnectionRequestFromPeer:)]
@@ -29,7 +29,7 @@ extern_protocol!(
             peer_id: &NSString,
         );
 
-        #[cfg(feature = "GameKit_GKSession")]
+        #[cfg(feature = "GKSession")]
         #[deprecated]
         #[optional]
         #[method(session:connectionWithPeerFailed:withError:)]
@@ -40,7 +40,7 @@ extern_protocol!(
             error: &NSError,
         );
 
-        #[cfg(feature = "GameKit_GKSession")]
+        #[cfg(feature = "GKSession")]
         #[deprecated]
         #[optional]
         #[method(session:didFailWithError:)]
@@ -53,7 +53,7 @@ extern_protocol!(
 extern_protocol!(
     #[deprecated]
     pub unsafe trait GKVoiceChatClient: NSObjectProtocol {
-        #[cfg(feature = "GameKit_GKVoiceChatService")]
+        #[cfg(feature = "GKVoiceChatService")]
         #[deprecated]
         #[method(voiceChatService:sendData:toParticipantID:)]
         unsafe fn voiceChatService_sendData_toParticipantID(
@@ -67,7 +67,7 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other participantID)]
         unsafe fn participantID(&self) -> Id<NSString>;
 
-        #[cfg(feature = "GameKit_GKVoiceChatService")]
+        #[cfg(feature = "GKVoiceChatService")]
         #[deprecated]
         #[optional]
         #[method(voiceChatService:sendRealTimeData:toParticipantID:)]
@@ -78,7 +78,7 @@ extern_protocol!(
             participant_id: &NSString,
         );
 
-        #[cfg(feature = "GameKit_GKVoiceChatService")]
+        #[cfg(feature = "GKVoiceChatService")]
         #[deprecated]
         #[optional]
         #[method(voiceChatService:didStartWithParticipantID:)]
@@ -88,7 +88,7 @@ extern_protocol!(
             participant_id: &NSString,
         );
 
-        #[cfg(feature = "GameKit_GKVoiceChatService")]
+        #[cfg(feature = "GKVoiceChatService")]
         #[deprecated]
         #[optional]
         #[method(voiceChatService:didNotStartWithParticipantID:error:)]
@@ -99,7 +99,7 @@ extern_protocol!(
             error: Option<&NSError>,
         );
 
-        #[cfg(feature = "GameKit_GKVoiceChatService")]
+        #[cfg(feature = "GKVoiceChatService")]
         #[deprecated]
         #[optional]
         #[method(voiceChatService:didStopWithParticipantID:error:)]
@@ -110,7 +110,7 @@ extern_protocol!(
             error: Option<&NSError>,
         );
 
-        #[cfg(feature = "GameKit_GKVoiceChatService")]
+        #[cfg(feature = "GKVoiceChatService")]
         #[deprecated]
         #[optional]
         #[method(voiceChatService:didReceiveInvitationFromParticipantID:callID:)]

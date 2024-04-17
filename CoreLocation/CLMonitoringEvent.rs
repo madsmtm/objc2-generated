@@ -49,7 +49,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other identifier)]
         pub unsafe fn identifier(&self) -> Id<NSString>;
 
-        #[cfg(feature = "CoreLocation_CLCondition")]
+        #[cfg(feature = "CLCondition")]
         #[method_id(@__retain_semantics Other refinement)]
         pub unsafe fn refinement(&self) -> Option<Id<CLCondition>>;
 

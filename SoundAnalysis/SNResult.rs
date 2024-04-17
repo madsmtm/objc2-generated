@@ -13,7 +13,7 @@ extern_protocol!(
 
 extern_protocol!(
     pub unsafe trait SNResultsObserving: NSObjectProtocol {
-        #[cfg(feature = "SoundAnalysis_SNRequest")]
+        #[cfg(feature = "SNRequest")]
         #[method(request:didProduceResult:)]
         unsafe fn request_didProduceResult(
             &self,
@@ -21,7 +21,7 @@ extern_protocol!(
             result: &ProtocolObject<dyn SNResult>,
         );
 
-        #[cfg(feature = "SoundAnalysis_SNRequest")]
+        #[cfg(feature = "SNRequest")]
         #[optional]
         #[method(request:didFailWithError:)]
         unsafe fn request_didFailWithError(
@@ -30,7 +30,7 @@ extern_protocol!(
             error: &NSError,
         );
 
-        #[cfg(feature = "SoundAnalysis_SNRequest")]
+        #[cfg(feature = "SNRequest")]
         #[optional]
         #[method(requestDidComplete:)]
         unsafe fn requestDidComplete(&self, request: &ProtocolObject<dyn SNRequest>);

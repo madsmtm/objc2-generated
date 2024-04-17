@@ -6,11 +6,11 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSCoder")]
+    #[cfg(feature = "NSCoder")]
     #[deprecated = "Use NSXPCConnection instead"]
     pub struct NSPortCoder;
 
-    #[cfg(feature = "Foundation_NSCoder")]
+    #[cfg(feature = "NSCoder")]
     unsafe impl ClassType for NSPortCoder {
         #[inherits(NSObject)]
         type Super = NSCoder;
@@ -18,11 +18,11 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSCoder")]
+#[cfg(feature = "NSCoder")]
 unsafe impl NSObjectProtocol for NSPortCoder {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSCoder")]
+    #[cfg(feature = "NSCoder")]
     unsafe impl NSPortCoder {
         #[deprecated = "Use NSXPCConnection instead"]
         #[method(isBycopy)]
@@ -32,22 +32,22 @@ extern_methods!(
         #[method(isByref)]
         pub unsafe fn isByref(&self) -> bool;
 
-        #[cfg(feature = "Foundation_NSPort")]
+        #[cfg(feature = "NSPort")]
         #[deprecated = "Use NSXPCConnection instead"]
         #[method(encodePortObject:)]
         pub unsafe fn encodePortObject(&self, aport: &NSPort);
 
-        #[cfg(feature = "Foundation_NSPort")]
+        #[cfg(feature = "NSPort")]
         #[deprecated = "Use NSXPCConnection instead"]
         #[method_id(@__retain_semantics Other decodePortObject)]
         pub unsafe fn decodePortObject(&self) -> Option<Id<NSPort>>;
 
-        #[cfg(feature = "Foundation_NSConnection")]
+        #[cfg(feature = "NSConnection")]
         #[deprecated]
         #[method_id(@__retain_semantics Other connection)]
         pub unsafe fn connection(&self) -> Option<Id<NSConnection>>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSPort"))]
+        #[cfg(all(feature = "NSArray", feature = "NSPort"))]
         #[deprecated]
         #[method_id(@__retain_semantics Other portCoderWithReceivePort:sendPort:components:)]
         pub unsafe fn portCoderWithReceivePort_sendPort_components(
@@ -56,7 +56,7 @@ extern_methods!(
             comps: Option<&NSArray>,
         ) -> Id<AnyObject>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSPort"))]
+        #[cfg(all(feature = "NSArray", feature = "NSPort"))]
         #[deprecated]
         #[method_id(@__retain_semantics Init initWithReceivePort:sendPort:components:)]
         pub unsafe fn initWithReceivePort_sendPort_components(
@@ -74,7 +74,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSCoder")]
+    #[cfg(feature = "NSCoder")]
     unsafe impl NSPortCoder {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

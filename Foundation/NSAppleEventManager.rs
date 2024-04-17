@@ -15,7 +15,7 @@ extern "C" {
 }
 
 extern "C" {
-    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSAppleEventManagerWillProcessFirstEventNotification: &'static NSNotificationName;
 }
 
@@ -36,25 +36,25 @@ extern_methods!(
         #[method_id(@__retain_semantics Other sharedAppleEventManager)]
         pub unsafe fn sharedAppleEventManager() -> Id<NSAppleEventManager>;
 
-        #[cfg(feature = "Foundation_NSAppleEventDescriptor")]
+        #[cfg(feature = "NSAppleEventDescriptor")]
         #[method_id(@__retain_semantics Other currentAppleEvent)]
         pub unsafe fn currentAppleEvent(&self) -> Option<Id<NSAppleEventDescriptor>>;
 
-        #[cfg(feature = "Foundation_NSAppleEventDescriptor")]
+        #[cfg(feature = "NSAppleEventDescriptor")]
         #[method_id(@__retain_semantics Other currentReplyAppleEvent)]
         pub unsafe fn currentReplyAppleEvent(&self) -> Option<Id<NSAppleEventDescriptor>>;
 
         #[method(suspendCurrentAppleEvent)]
         pub unsafe fn suspendCurrentAppleEvent(&self) -> NSAppleEventManagerSuspensionID;
 
-        #[cfg(feature = "Foundation_NSAppleEventDescriptor")]
+        #[cfg(feature = "NSAppleEventDescriptor")]
         #[method_id(@__retain_semantics Other appleEventForSuspensionID:)]
         pub unsafe fn appleEventForSuspensionID(
             &self,
             suspension_id: NSAppleEventManagerSuspensionID,
         ) -> Id<NSAppleEventDescriptor>;
 
-        #[cfg(feature = "Foundation_NSAppleEventDescriptor")]
+        #[cfg(feature = "NSAppleEventDescriptor")]
         #[method_id(@__retain_semantics Other replyAppleEventForSuspensionID:)]
         pub unsafe fn replyAppleEventForSuspensionID(
             &self,

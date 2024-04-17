@@ -15,14 +15,14 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSAccessibilityProtocols")]
+#[cfg(feature = "NSAccessibilityProtocols")]
 unsafe impl NSAccessibility for NSAccessibilityElement {}
 
 unsafe impl NSObjectProtocol for NSAccessibilityElement {}
 
 extern_methods!(
     unsafe impl NSAccessibilityElement {
-        #[cfg(feature = "AppKit_NSAccessibilityConstants")]
+        #[cfg(feature = "NSAccessibilityConstants")]
         #[method_id(@__retain_semantics Other accessibilityElementWithRole:frame:label:parent:)]
         pub unsafe fn accessibilityElementWithRole_frame_label_parent(
             role: &NSAccessibilityRole,

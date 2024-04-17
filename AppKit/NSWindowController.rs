@@ -7,10 +7,10 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSResponder")]
+    #[cfg(feature = "NSResponder")]
     pub struct NSWindowController;
 
-    #[cfg(feature = "AppKit_NSResponder")]
+    #[cfg(feature = "NSResponder")]
     unsafe impl ClassType for NSWindowController {
         #[inherits(NSObject)]
         type Super = NSResponder;
@@ -18,33 +18,33 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSResponder")]
+#[cfg(feature = "NSResponder")]
 unsafe impl NSCoding for NSWindowController {}
 
-#[cfg(feature = "AppKit_NSResponder")]
+#[cfg(feature = "NSResponder")]
 unsafe impl NSObjectProtocol for NSWindowController {}
 
-#[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSStoryboardSegue"))]
+#[cfg(all(feature = "NSResponder", feature = "NSStoryboardSegue"))]
 unsafe impl NSSeguePerforming for NSWindowController {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSResponder")]
+    #[cfg(feature = "NSResponder")]
     unsafe impl NSWindowController {
-        #[cfg(feature = "AppKit_NSWindow")]
+        #[cfg(feature = "NSWindow")]
         #[method_id(@__retain_semantics Init initWithWindow:)]
         pub unsafe fn initWithWindow(this: Allocated<Self>, window: Option<&NSWindow>) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
 
-        #[cfg(feature = "AppKit_NSNib")]
+        #[cfg(feature = "NSNib")]
         #[method_id(@__retain_semantics Init initWithWindowNibName:)]
         pub unsafe fn initWithWindowNibName(
             this: Allocated<Self>,
             window_nib_name: &NSNibName,
         ) -> Id<Self>;
 
-        #[cfg(feature = "AppKit_NSNib")]
+        #[cfg(feature = "NSNib")]
         #[method_id(@__retain_semantics Init initWithWindowNibName:owner:)]
         pub unsafe fn initWithWindowNibName_owner(
             this: Allocated<Self>,
@@ -59,7 +59,7 @@ extern_methods!(
             owner: &AnyObject,
         ) -> Id<Self>;
 
-        #[cfg(feature = "AppKit_NSNib")]
+        #[cfg(feature = "NSNib")]
         #[method_id(@__retain_semantics Other windowNibName)]
         pub unsafe fn windowNibName(&self) -> Option<Id<NSNibName>>;
 
@@ -69,11 +69,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Other owner)]
         pub unsafe fn owner(&self) -> Option<Id<AnyObject>>;
 
-        #[cfg(feature = "AppKit_NSWindow")]
+        #[cfg(feature = "NSWindow")]
         #[method_id(@__retain_semantics Other windowFrameAutosaveName)]
         pub unsafe fn windowFrameAutosaveName(&self) -> Id<NSWindowFrameAutosaveName>;
 
-        #[cfg(feature = "AppKit_NSWindow")]
+        #[cfg(feature = "NSWindow")]
         #[method(setWindowFrameAutosaveName:)]
         pub unsafe fn setWindowFrameAutosaveName(
             &self,
@@ -86,13 +86,13 @@ extern_methods!(
         #[method(setShouldCascadeWindows:)]
         pub unsafe fn setShouldCascadeWindows(&self, should_cascade_windows: bool);
 
-        #[cfg(feature = "AppKit_NSPreviewRepresentingActivityItem")]
+        #[cfg(feature = "NSPreviewRepresentingActivityItem")]
         #[method_id(@__retain_semantics Other previewRepresentableActivityItems)]
         pub unsafe fn previewRepresentableActivityItems(
             &self,
         ) -> Option<Id<NSArray<ProtocolObject<dyn NSPreviewRepresentableActivityItem>>>>;
 
-        #[cfg(feature = "AppKit_NSPreviewRepresentingActivityItem")]
+        #[cfg(feature = "NSPreviewRepresentingActivityItem")]
         #[method(setPreviewRepresentableActivityItems:)]
         pub unsafe fn setPreviewRepresentableActivityItems(
             &self,
@@ -125,22 +125,22 @@ extern_methods!(
             display_name: &NSString,
         ) -> Id<NSString>;
 
-        #[cfg(feature = "AppKit_NSViewController")]
+        #[cfg(feature = "NSViewController")]
         #[method_id(@__retain_semantics Other contentViewController)]
         pub unsafe fn contentViewController(&self) -> Option<Id<NSViewController>>;
 
-        #[cfg(feature = "AppKit_NSViewController")]
+        #[cfg(feature = "NSViewController")]
         #[method(setContentViewController:)]
         pub unsafe fn setContentViewController(
             &self,
             content_view_controller: Option<&NSViewController>,
         );
 
-        #[cfg(feature = "AppKit_NSWindow")]
+        #[cfg(feature = "NSWindow")]
         #[method_id(@__retain_semantics Other window)]
         pub unsafe fn window(&self) -> Option<Id<NSWindow>>;
 
-        #[cfg(feature = "AppKit_NSWindow")]
+        #[cfg(feature = "NSWindow")]
         #[method(setWindow:)]
         pub unsafe fn setWindow(&self, window: Option<&NSWindow>);
 
@@ -166,7 +166,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSResponder`
-    #[cfg(feature = "AppKit_NSResponder")]
+    #[cfg(feature = "NSResponder")]
     unsafe impl NSWindowController {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -175,7 +175,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSResponder")]
+    #[cfg(feature = "NSResponder")]
     unsafe impl NSWindowController {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
@@ -184,9 +184,9 @@ extern_methods!(
 
 extern_methods!(
     /// NSWindowControllerStoryboardingMethods
-    #[cfg(feature = "AppKit_NSResponder")]
+    #[cfg(feature = "NSResponder")]
     unsafe impl NSWindowController {
-        #[cfg(feature = "AppKit_NSStoryboard")]
+        #[cfg(feature = "NSStoryboard")]
         #[method_id(@__retain_semantics Other storyboard)]
         pub unsafe fn storyboard(&self) -> Option<Id<NSStoryboard>>;
     }
@@ -194,7 +194,7 @@ extern_methods!(
 
 extern_methods!(
     /// NSWindowControllerDismissing
-    #[cfg(feature = "AppKit_NSResponder")]
+    #[cfg(feature = "NSResponder")]
     unsafe impl NSWindowController {
         #[method(dismissController:)]
         pub unsafe fn dismissController(&self, sender: Option<&AnyObject>);

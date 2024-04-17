@@ -90,7 +90,7 @@ extern_methods!(
             heading: CLLocationDirection,
         ) -> Id<Self>;
 
-        #[cfg(feature = "MapKit_MKMapItem")]
+        #[cfg(feature = "MKMapItem")]
         #[method_id(@__retain_semantics Other cameraLookingAtMapItem:forViewSize:allowPitch:)]
         pub unsafe fn cameraLookingAtMapItem_forViewSize_allowPitch(
             map_item: &MKMapItem,

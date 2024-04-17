@@ -9,16 +9,10 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(
-        feature = "CloudKit_CKDatabaseOperation",
-        feature = "CloudKit_CKOperation"
-    ))]
+    #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
     pub struct CKFetchRecordZoneChangesOperation;
 
-    #[cfg(all(
-        feature = "CloudKit_CKDatabaseOperation",
-        feature = "CloudKit_CKOperation"
-    ))]
+    #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
     unsafe impl ClassType for CKFetchRecordZoneChangesOperation {
         #[inherits(CKOperation, NSOperation, NSObject)]
         type Super = CKDatabaseOperation;
@@ -26,22 +20,16 @@ extern_class!(
     }
 );
 
-#[cfg(all(
-    feature = "CloudKit_CKDatabaseOperation",
-    feature = "CloudKit_CKOperation"
-))]
+#[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
 unsafe impl NSObjectProtocol for CKFetchRecordZoneChangesOperation {}
 
 extern_methods!(
-    #[cfg(all(
-        feature = "CloudKit_CKDatabaseOperation",
-        feature = "CloudKit_CKOperation"
-    ))]
+    #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
     unsafe impl CKFetchRecordZoneChangesOperation {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
-        #[cfg(feature = "CloudKit_CKRecordZoneID")]
+        #[cfg(feature = "CKRecordZoneID")]
         #[method_id(@__retain_semantics Init initWithRecordZoneIDs:configurationsByRecordZoneID:)]
         pub unsafe fn initWithRecordZoneIDs_configurationsByRecordZoneID(
             this: Allocated<Self>,
@@ -51,21 +39,21 @@ extern_methods!(
             >,
         ) -> Id<Self>;
 
-        #[cfg(feature = "CloudKit_CKRecordZoneID")]
+        #[cfg(feature = "CKRecordZoneID")]
         #[method_id(@__retain_semantics Other recordZoneIDs)]
         pub unsafe fn recordZoneIDs(&self) -> Option<Id<NSArray<CKRecordZoneID>>>;
 
-        #[cfg(feature = "CloudKit_CKRecordZoneID")]
+        #[cfg(feature = "CKRecordZoneID")]
         #[method(setRecordZoneIDs:)]
         pub unsafe fn setRecordZoneIDs(&self, record_zone_i_ds: Option<&NSArray<CKRecordZoneID>>);
 
-        #[cfg(feature = "CloudKit_CKRecordZoneID")]
+        #[cfg(feature = "CKRecordZoneID")]
         #[method_id(@__retain_semantics Other configurationsByRecordZoneID)]
         pub unsafe fn configurationsByRecordZoneID(
             &self,
         ) -> Option<Id<NSDictionary<CKRecordZoneID, CKFetchRecordZoneChangesConfiguration>>>;
 
-        #[cfg(feature = "CloudKit_CKRecordZoneID")]
+        #[cfg(feature = "CKRecordZoneID")]
         #[method(setConfigurationsByRecordZoneID:)]
         pub unsafe fn setConfigurationsByRecordZoneID(
             &self,
@@ -80,12 +68,12 @@ extern_methods!(
         #[method(setFetchAllChanges:)]
         pub unsafe fn setFetchAllChanges(&self, fetch_all_changes: bool);
 
-        #[cfg(all(feature = "CloudKit_CKRecord", feature = "block2"))]
+        #[cfg(all(feature = "CKRecord", feature = "block2"))]
         #[deprecated = "Use recordWasChangedBlock instead, which surfaces per-record errors"]
         #[method(recordChangedBlock)]
         pub unsafe fn recordChangedBlock(&self) -> *mut Block<dyn Fn(NonNull<CKRecord>)>;
 
-        #[cfg(all(feature = "CloudKit_CKRecord", feature = "block2"))]
+        #[cfg(all(feature = "CKRecord", feature = "block2"))]
         #[deprecated = "Use recordWasChangedBlock instead, which surfaces per-record errors"]
         #[method(setRecordChangedBlock:)]
         pub unsafe fn setRecordChangedBlock(
@@ -93,21 +81,13 @@ extern_methods!(
             record_changed_block: Option<&Block<dyn Fn(NonNull<CKRecord>)>>,
         );
 
-        #[cfg(all(
-            feature = "CloudKit_CKRecord",
-            feature = "CloudKit_CKRecordID",
-            feature = "block2"
-        ))]
+        #[cfg(all(feature = "CKRecord", feature = "CKRecordID", feature = "block2"))]
         #[method(recordWasChangedBlock)]
         pub unsafe fn recordWasChangedBlock(
             &self,
         ) -> *mut Block<dyn Fn(NonNull<CKRecordID>, *mut CKRecord, *mut NSError)>;
 
-        #[cfg(all(
-            feature = "CloudKit_CKRecord",
-            feature = "CloudKit_CKRecordID",
-            feature = "block2"
-        ))]
+        #[cfg(all(feature = "CKRecord", feature = "CKRecordID", feature = "block2"))]
         #[method(setRecordWasChangedBlock:)]
         pub unsafe fn setRecordWasChangedBlock(
             &self,
@@ -116,21 +96,13 @@ extern_methods!(
             >,
         );
 
-        #[cfg(all(
-            feature = "CloudKit_CKRecord",
-            feature = "CloudKit_CKRecordID",
-            feature = "block2"
-        ))]
+        #[cfg(all(feature = "CKRecord", feature = "CKRecordID", feature = "block2"))]
         #[method(recordWithIDWasDeletedBlock)]
         pub unsafe fn recordWithIDWasDeletedBlock(
             &self,
         ) -> *mut Block<dyn Fn(NonNull<CKRecordID>, NonNull<CKRecordType>)>;
 
-        #[cfg(all(
-            feature = "CloudKit_CKRecord",
-            feature = "CloudKit_CKRecordID",
-            feature = "block2"
-        ))]
+        #[cfg(all(feature = "CKRecord", feature = "CKRecordID", feature = "block2"))]
         #[method(setRecordWithIDWasDeletedBlock:)]
         pub unsafe fn setRecordWithIDWasDeletedBlock(
             &self,
@@ -140,8 +112,8 @@ extern_methods!(
         );
 
         #[cfg(all(
-            feature = "CloudKit_CKRecordZoneID",
-            feature = "CloudKit_CKServerChangeToken",
+            feature = "CKRecordZoneID",
+            feature = "CKServerChangeToken",
             feature = "block2"
         ))]
         #[method(recordZoneChangeTokensUpdatedBlock)]
@@ -150,8 +122,8 @@ extern_methods!(
         ) -> *mut Block<dyn Fn(NonNull<CKRecordZoneID>, *mut CKServerChangeToken, *mut NSData)>;
 
         #[cfg(all(
-            feature = "CloudKit_CKRecordZoneID",
-            feature = "CloudKit_CKServerChangeToken",
+            feature = "CKRecordZoneID",
+            feature = "CKServerChangeToken",
             feature = "block2"
         ))]
         #[method(setRecordZoneChangeTokensUpdatedBlock:)]
@@ -163,8 +135,8 @@ extern_methods!(
         );
 
         #[cfg(all(
-            feature = "CloudKit_CKRecordZoneID",
-            feature = "CloudKit_CKServerChangeToken",
+            feature = "CKRecordZoneID",
+            feature = "CKServerChangeToken",
             feature = "block2"
         ))]
         #[method(recordZoneFetchCompletionBlock)]
@@ -181,8 +153,8 @@ extern_methods!(
         >;
 
         #[cfg(all(
-            feature = "CloudKit_CKRecordZoneID",
-            feature = "CloudKit_CKServerChangeToken",
+            feature = "CKRecordZoneID",
+            feature = "CKServerChangeToken",
             feature = "block2"
         ))]
         #[method(setRecordZoneFetchCompletionBlock:)]
@@ -218,10 +190,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(all(
-        feature = "CloudKit_CKDatabaseOperation",
-        feature = "CloudKit_CKOperation"
-    ))]
+    #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
     unsafe impl CKFetchRecordZoneChangesOperation {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -230,12 +199,9 @@ extern_methods!(
 
 extern_methods!(
     /// Deprecated
-    #[cfg(all(
-        feature = "CloudKit_CKDatabaseOperation",
-        feature = "CloudKit_CKOperation"
-    ))]
+    #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
     unsafe impl CKFetchRecordZoneChangesOperation {
-        #[cfg(feature = "CloudKit_CKRecordZoneID")]
+        #[cfg(feature = "CKRecordZoneID")]
         #[deprecated]
         #[method_id(@__retain_semantics Init initWithRecordZoneIDs:optionsByRecordZoneID:)]
         pub unsafe fn initWithRecordZoneIDs_optionsByRecordZoneID(
@@ -246,14 +212,14 @@ extern_methods!(
             >,
         ) -> Id<Self>;
 
-        #[cfg(feature = "CloudKit_CKRecordZoneID")]
+        #[cfg(feature = "CKRecordZoneID")]
         #[deprecated]
         #[method_id(@__retain_semantics Other optionsByRecordZoneID)]
         pub unsafe fn optionsByRecordZoneID(
             &self,
         ) -> Option<Id<NSDictionary<CKRecordZoneID, CKFetchRecordZoneChangesOptions>>>;
 
-        #[cfg(feature = "CloudKit_CKRecordZoneID")]
+        #[cfg(feature = "CKRecordZoneID")]
         #[deprecated]
         #[method(setOptionsByRecordZoneID:)]
         pub unsafe fn setOptionsByRecordZoneID(
@@ -285,11 +251,11 @@ unsafe impl NSSecureCoding for CKFetchRecordZoneChangesConfiguration {}
 
 extern_methods!(
     unsafe impl CKFetchRecordZoneChangesConfiguration {
-        #[cfg(feature = "CloudKit_CKServerChangeToken")]
+        #[cfg(feature = "CKServerChangeToken")]
         #[method_id(@__retain_semantics Other previousServerChangeToken)]
         pub unsafe fn previousServerChangeToken(&self) -> Option<Id<CKServerChangeToken>>;
 
-        #[cfg(feature = "CloudKit_CKServerChangeToken")]
+        #[cfg(feature = "CKServerChangeToken")]
         #[method(setPreviousServerChangeToken:)]
         pub unsafe fn setPreviousServerChangeToken(
             &self,
@@ -302,11 +268,11 @@ extern_methods!(
         #[method(setResultsLimit:)]
         pub unsafe fn setResultsLimit(&self, results_limit: NSUInteger);
 
-        #[cfg(feature = "CloudKit_CKRecord")]
+        #[cfg(feature = "CKRecord")]
         #[method_id(@__retain_semantics Other desiredKeys)]
         pub unsafe fn desiredKeys(&self) -> Option<Id<NSArray<CKRecordFieldKey>>>;
 
-        #[cfg(feature = "CloudKit_CKRecord")]
+        #[cfg(feature = "CKRecord")]
         #[method(setDesiredKeys:)]
         pub unsafe fn setDesiredKeys(&self, desired_keys: Option<&NSArray<CKRecordFieldKey>>);
     }
@@ -344,12 +310,12 @@ unsafe impl NSSecureCoding for CKFetchRecordZoneChangesOptions {}
 
 extern_methods!(
     unsafe impl CKFetchRecordZoneChangesOptions {
-        #[cfg(feature = "CloudKit_CKServerChangeToken")]
+        #[cfg(feature = "CKServerChangeToken")]
         #[deprecated]
         #[method_id(@__retain_semantics Other previousServerChangeToken)]
         pub unsafe fn previousServerChangeToken(&self) -> Option<Id<CKServerChangeToken>>;
 
-        #[cfg(feature = "CloudKit_CKServerChangeToken")]
+        #[cfg(feature = "CKServerChangeToken")]
         #[deprecated]
         #[method(setPreviousServerChangeToken:)]
         pub unsafe fn setPreviousServerChangeToken(
@@ -365,12 +331,12 @@ extern_methods!(
         #[method(setResultsLimit:)]
         pub unsafe fn setResultsLimit(&self, results_limit: NSUInteger);
 
-        #[cfg(feature = "CloudKit_CKRecord")]
+        #[cfg(feature = "CKRecord")]
         #[deprecated]
         #[method_id(@__retain_semantics Other desiredKeys)]
         pub unsafe fn desiredKeys(&self) -> Option<Id<NSArray<CKRecordFieldKey>>>;
 
-        #[cfg(feature = "CloudKit_CKRecord")]
+        #[cfg(feature = "CKRecord")]
         #[deprecated]
         #[method(setDesiredKeys:)]
         pub unsafe fn setDesiredKeys(&self, desired_keys: Option<&NSArray<CKRecordFieldKey>>);

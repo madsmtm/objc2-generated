@@ -10,9 +10,9 @@ use crate::*;
 extern_protocol!(
     pub unsafe trait BADownloaderExtension: NSObjectProtocol {
         #[cfg(all(
-            feature = "BackgroundAssets_BAAppExtensionInfo",
-            feature = "BackgroundAssets_BADownload",
-            feature = "BackgroundAssets_BATypes"
+            feature = "BAAppExtensionInfo",
+            feature = "BADownload",
+            feature = "BATypes"
         ))]
         #[optional]
         #[method_id(@__retain_semantics Other downloadsForRequest:manifestURL:extensionInfo:)]
@@ -23,7 +23,7 @@ extern_protocol!(
             extension_info: &BAAppExtensionInfo,
         ) -> Id<NSSet<BADownload>>;
 
-        #[cfg(all(feature = "BackgroundAssets_BADownload", feature = "block2"))]
+        #[cfg(all(feature = "BADownload", feature = "block2"))]
         #[optional]
         #[method(backgroundDownload:didReceiveChallenge:completionHandler:)]
         unsafe fn backgroundDownload_didReceiveChallenge_completionHandler(
@@ -35,12 +35,12 @@ extern_protocol!(
             >,
         );
 
-        #[cfg(feature = "BackgroundAssets_BADownload")]
+        #[cfg(feature = "BADownload")]
         #[optional]
         #[method(backgroundDownload:failedWithError:)]
         unsafe fn backgroundDownload_failedWithError(&self, download: &BADownload, error: &NSError);
 
-        #[cfg(feature = "BackgroundAssets_BADownload")]
+        #[cfg(feature = "BADownload")]
         #[optional]
         #[method(backgroundDownload:finishedWithFileURL:)]
         unsafe fn backgroundDownload_finishedWithFileURL(

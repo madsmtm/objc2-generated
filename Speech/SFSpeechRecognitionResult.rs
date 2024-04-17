@@ -25,18 +25,18 @@ unsafe impl NSSecureCoding for SFSpeechRecognitionResult {}
 
 extern_methods!(
     unsafe impl SFSpeechRecognitionResult {
-        #[cfg(feature = "Speech_SFTranscription")]
+        #[cfg(feature = "SFTranscription")]
         #[method_id(@__retain_semantics Other bestTranscription)]
         pub unsafe fn bestTranscription(&self) -> Id<SFTranscription>;
 
-        #[cfg(feature = "Speech_SFTranscription")]
+        #[cfg(feature = "SFTranscription")]
         #[method_id(@__retain_semantics Other transcriptions)]
         pub unsafe fn transcriptions(&self) -> Id<NSArray<SFTranscription>>;
 
         #[method(isFinal)]
         pub unsafe fn isFinal(&self) -> bool;
 
-        #[cfg(feature = "Speech_SFSpeechRecognitionMetadata")]
+        #[cfg(feature = "SFSpeechRecognitionMetadata")]
         #[method_id(@__retain_semantics Other speechRecognitionMetadata)]
         pub unsafe fn speechRecognitionMetadata(&self) -> Option<Id<SFSpeechRecognitionMetadata>>;
     }

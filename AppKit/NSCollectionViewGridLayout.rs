@@ -7,10 +7,10 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSCollectionViewLayout")]
+    #[cfg(feature = "NSCollectionViewLayout")]
     pub struct NSCollectionViewGridLayout;
 
-    #[cfg(feature = "AppKit_NSCollectionViewLayout")]
+    #[cfg(feature = "NSCollectionViewLayout")]
     unsafe impl ClassType for NSCollectionViewGridLayout {
         #[inherits(NSObject)]
         type Super = NSCollectionViewLayout;
@@ -18,14 +18,14 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSCollectionViewLayout")]
+#[cfg(feature = "NSCollectionViewLayout")]
 unsafe impl NSCoding for NSCollectionViewGridLayout {}
 
-#[cfg(feature = "AppKit_NSCollectionViewLayout")]
+#[cfg(feature = "NSCollectionViewLayout")]
 unsafe impl NSObjectProtocol for NSCollectionViewGridLayout {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSCollectionViewLayout")]
+    #[cfg(feature = "NSCollectionViewLayout")]
     unsafe impl NSCollectionViewGridLayout {
         #[method(margins)]
         pub unsafe fn margins(&self) -> NSEdgeInsets;
@@ -69,11 +69,11 @@ extern_methods!(
         #[method(setMaximumItemSize:)]
         pub unsafe fn setMaximumItemSize(&self, maximum_item_size: NSSize);
 
-        #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(feature = "NSColor")]
         #[method_id(@__retain_semantics Other backgroundColors)]
         pub unsafe fn backgroundColors(&self) -> Id<NSArray<NSColor>>;
 
-        #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(feature = "NSColor")]
         #[method(setBackgroundColors:)]
         pub unsafe fn setBackgroundColors(&self, background_colors: Option<&NSArray<NSColor>>);
     }
@@ -81,7 +81,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSCollectionViewLayout")]
+    #[cfg(feature = "NSCollectionViewLayout")]
     unsafe impl NSCollectionViewGridLayout {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

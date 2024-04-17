@@ -28,11 +28,11 @@ extern_methods!(
         #[method(channelNumber)]
         pub unsafe fn channelNumber(&self) -> NSInteger;
 
-        #[cfg(feature = "CoreWLAN_CoreWLANTypes")]
+        #[cfg(feature = "CoreWLANTypes")]
         #[method(channelWidth)]
         pub unsafe fn channelWidth(&self) -> CWChannelWidth;
 
-        #[cfg(feature = "CoreWLAN_CoreWLANTypes")]
+        #[cfg(feature = "CoreWLANTypes")]
         #[method(channelBand)]
         pub unsafe fn channelBand(&self) -> CWChannelBand;
 

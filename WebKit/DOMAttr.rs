@@ -8,17 +8,17 @@ use crate::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(
-        feature = "WebKit_DOMNode",
-        feature = "WebKit_DOMObject",
-        feature = "WebKit_WebScriptObject"
+        feature = "DOMNode",
+        feature = "DOMObject",
+        feature = "WebScriptObject"
     ))]
     #[deprecated]
     pub struct DOMAttr;
 
     #[cfg(all(
-        feature = "WebKit_DOMNode",
-        feature = "WebKit_DOMObject",
-        feature = "WebKit_WebScriptObject"
+        feature = "DOMNode",
+        feature = "DOMObject",
+        feature = "WebScriptObject"
     ))]
     unsafe impl ClassType for DOMAttr {
         #[inherits(DOMObject, WebScriptObject, NSObject)]
@@ -28,32 +28,32 @@ extern_class!(
 );
 
 #[cfg(all(
-    feature = "WebKit_DOMEventTarget",
-    feature = "WebKit_DOMNode",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMEventTarget",
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 unsafe impl DOMEventTarget for DOMAttr {}
 
 #[cfg(all(
-    feature = "WebKit_DOMNode",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 unsafe impl NSCopying for DOMAttr {}
 
 #[cfg(all(
-    feature = "WebKit_DOMNode",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 unsafe impl NSObjectProtocol for DOMAttr {}
 
 extern_methods!(
     #[cfg(all(
-        feature = "WebKit_DOMNode",
-        feature = "WebKit_DOMObject",
-        feature = "WebKit_WebScriptObject"
+        feature = "DOMNode",
+        feature = "DOMObject",
+        feature = "WebScriptObject"
     ))]
     unsafe impl DOMAttr {
         #[deprecated]
@@ -72,12 +72,12 @@ extern_methods!(
         #[method(setValue:)]
         pub unsafe fn setValue(&self, value: Option<&NSString>);
 
-        #[cfg(feature = "WebKit_DOMElement")]
+        #[cfg(feature = "DOMElement")]
         #[deprecated]
         #[method_id(@__retain_semantics Other ownerElement)]
         pub unsafe fn ownerElement(&self) -> Option<Id<DOMElement>>;
 
-        #[cfg(feature = "WebKit_DOMCSSStyleDeclaration")]
+        #[cfg(feature = "DOMCSSStyleDeclaration")]
         #[method_id(@__retain_semantics Other style)]
         pub unsafe fn style(&self) -> Option<Id<DOMCSSStyleDeclaration>>;
     }
@@ -86,9 +86,9 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `DOMObject`
     #[cfg(all(
-        feature = "WebKit_DOMNode",
-        feature = "WebKit_DOMObject",
-        feature = "WebKit_WebScriptObject"
+        feature = "DOMNode",
+        feature = "DOMObject",
+        feature = "WebScriptObject"
     ))]
     unsafe impl DOMAttr {
         #[deprecated]
@@ -100,9 +100,9 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(
-        feature = "WebKit_DOMNode",
-        feature = "WebKit_DOMObject",
-        feature = "WebKit_WebScriptObject"
+        feature = "DOMNode",
+        feature = "DOMObject",
+        feature = "WebScriptObject"
     ))]
     unsafe impl DOMAttr {
         #[method_id(@__retain_semantics New new)]

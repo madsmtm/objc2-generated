@@ -26,25 +26,25 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSCoding for NSScriptCommand {}
 
 unsafe impl NSObjectProtocol for NSScriptCommand {}
 
 extern_methods!(
     unsafe impl NSScriptCommand {
-        #[cfg(feature = "Foundation_NSScriptCommandDescription")]
+        #[cfg(feature = "NSScriptCommandDescription")]
         #[method_id(@__retain_semantics Init initWithCommandDescription:)]
         pub unsafe fn initWithCommandDescription(
             this: Allocated<Self>,
             command_def: &NSScriptCommandDescription,
         ) -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSCoder")]
+        #[cfg(feature = "NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, in_coder: &NSCoder) -> Option<Id<Self>>;
 
-        #[cfg(feature = "Foundation_NSScriptCommandDescription")]
+        #[cfg(feature = "NSScriptCommandDescription")]
         #[method_id(@__retain_semantics Other commandDescription)]
         pub unsafe fn commandDescription(&self) -> Id<NSScriptCommandDescription>;
 
@@ -54,11 +54,11 @@ extern_methods!(
         #[method(setDirectParameter:)]
         pub unsafe fn setDirectParameter(&self, direct_parameter: Option<&AnyObject>);
 
-        #[cfg(feature = "Foundation_NSScriptObjectSpecifiers")]
+        #[cfg(feature = "NSScriptObjectSpecifiers")]
         #[method_id(@__retain_semantics Other receiversSpecifier)]
         pub unsafe fn receiversSpecifier(&self) -> Option<Id<NSScriptObjectSpecifier>>;
 
-        #[cfg(feature = "Foundation_NSScriptObjectSpecifiers")]
+        #[cfg(feature = "NSScriptObjectSpecifiers")]
         #[method(setReceiversSpecifier:)]
         pub unsafe fn setReceiversSpecifier(
             &self,
@@ -68,15 +68,15 @@ extern_methods!(
         #[method_id(@__retain_semantics Other evaluatedReceivers)]
         pub unsafe fn evaluatedReceivers(&self) -> Option<Id<AnyObject>>;
 
-        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         #[method_id(@__retain_semantics Other arguments)]
         pub unsafe fn arguments(&self) -> Option<Id<NSDictionary<NSString, AnyObject>>>;
 
-        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         #[method(setArguments:)]
         pub unsafe fn setArguments(&self, arguments: Option<&NSDictionary<NSString, AnyObject>>);
 
-        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         #[method_id(@__retain_semantics Other evaluatedArguments)]
         pub unsafe fn evaluatedArguments(&self) -> Option<Id<NSDictionary<NSString, AnyObject>>>;
 
@@ -95,44 +95,44 @@ extern_methods!(
         #[method(setScriptErrorNumber:)]
         pub unsafe fn setScriptErrorNumber(&self, script_error_number: NSInteger);
 
-        #[cfg(feature = "Foundation_NSAppleEventDescriptor")]
+        #[cfg(feature = "NSAppleEventDescriptor")]
         #[method_id(@__retain_semantics Other scriptErrorOffendingObjectDescriptor)]
         pub unsafe fn scriptErrorOffendingObjectDescriptor(
             &self,
         ) -> Option<Id<NSAppleEventDescriptor>>;
 
-        #[cfg(feature = "Foundation_NSAppleEventDescriptor")]
+        #[cfg(feature = "NSAppleEventDescriptor")]
         #[method(setScriptErrorOffendingObjectDescriptor:)]
         pub unsafe fn setScriptErrorOffendingObjectDescriptor(
             &self,
             script_error_offending_object_descriptor: Option<&NSAppleEventDescriptor>,
         );
 
-        #[cfg(feature = "Foundation_NSAppleEventDescriptor")]
+        #[cfg(feature = "NSAppleEventDescriptor")]
         #[method_id(@__retain_semantics Other scriptErrorExpectedTypeDescriptor)]
         pub unsafe fn scriptErrorExpectedTypeDescriptor(
             &self,
         ) -> Option<Id<NSAppleEventDescriptor>>;
 
-        #[cfg(feature = "Foundation_NSAppleEventDescriptor")]
+        #[cfg(feature = "NSAppleEventDescriptor")]
         #[method(setScriptErrorExpectedTypeDescriptor:)]
         pub unsafe fn setScriptErrorExpectedTypeDescriptor(
             &self,
             script_error_expected_type_descriptor: Option<&NSAppleEventDescriptor>,
         );
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other scriptErrorString)]
         pub unsafe fn scriptErrorString(&self) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method(setScriptErrorString:)]
         pub unsafe fn setScriptErrorString(&self, script_error_string: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other currentCommand)]
         pub unsafe fn currentCommand() -> Option<Id<NSScriptCommand>>;
 
-        #[cfg(feature = "Foundation_NSAppleEventDescriptor")]
+        #[cfg(feature = "NSAppleEventDescriptor")]
         #[method_id(@__retain_semantics Other appleEvent)]
         pub unsafe fn appleEvent(&self) -> Option<Id<NSAppleEventDescriptor>>;
 

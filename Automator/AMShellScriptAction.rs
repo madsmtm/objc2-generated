@@ -7,10 +7,10 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(feature = "Automator_AMAction", feature = "Automator_AMBundleAction"))]
+    #[cfg(all(feature = "AMAction", feature = "AMBundleAction"))]
     pub struct AMShellScriptAction;
 
-    #[cfg(all(feature = "Automator_AMAction", feature = "Automator_AMBundleAction"))]
+    #[cfg(all(feature = "AMAction", feature = "AMBundleAction"))]
     unsafe impl ClassType for AMShellScriptAction {
         #[inherits(AMAction, NSObject)]
         type Super = AMBundleAction;
@@ -18,20 +18,20 @@ extern_class!(
     }
 );
 
-#[cfg(all(feature = "Automator_AMAction", feature = "Automator_AMBundleAction"))]
+#[cfg(all(feature = "AMAction", feature = "AMBundleAction"))]
 unsafe impl NSCoding for AMShellScriptAction {}
 
-#[cfg(all(feature = "Automator_AMAction", feature = "Automator_AMBundleAction"))]
+#[cfg(all(feature = "AMAction", feature = "AMBundleAction"))]
 unsafe impl NSCopying for AMShellScriptAction {}
 
-#[cfg(all(feature = "Automator_AMAction", feature = "Automator_AMBundleAction"))]
+#[cfg(all(feature = "AMAction", feature = "AMBundleAction"))]
 unsafe impl NSObjectProtocol for AMShellScriptAction {}
 
-#[cfg(all(feature = "Automator_AMAction", feature = "Automator_AMBundleAction"))]
+#[cfg(all(feature = "AMAction", feature = "AMBundleAction"))]
 unsafe impl NSSecureCoding for AMShellScriptAction {}
 
 extern_methods!(
-    #[cfg(all(feature = "Automator_AMAction", feature = "Automator_AMBundleAction"))]
+    #[cfg(all(feature = "AMAction", feature = "AMBundleAction"))]
     unsafe impl AMShellScriptAction {
         #[method(remapLineEndings)]
         pub unsafe fn remapLineEndings(&self) -> bool;
@@ -46,7 +46,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `AMAction`
-    #[cfg(all(feature = "Automator_AMAction", feature = "Automator_AMBundleAction"))]
+    #[cfg(all(feature = "AMAction", feature = "AMBundleAction"))]
     unsafe impl AMShellScriptAction {
         #[method_id(@__retain_semantics Init initWithDefinition:fromArchive:)]
         pub unsafe fn initWithDefinition_fromArchive(
@@ -65,7 +65,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "Automator_AMAction", feature = "Automator_AMBundleAction"))]
+    #[cfg(all(feature = "AMAction", feature = "AMBundleAction"))]
     unsafe impl AMShellScriptAction {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

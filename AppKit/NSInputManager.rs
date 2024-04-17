@@ -127,12 +127,12 @@ extern_methods!(
         #[method_id(@__retain_semantics Other language)]
         pub unsafe fn language(&self) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(feature = "NSImage")]
         #[deprecated]
         #[method_id(@__retain_semantics Other image)]
         pub unsafe fn image(&self) -> Option<Id<NSImage>>;
 
-        #[cfg(feature = "AppKit_NSInputServer")]
+        #[cfg(feature = "NSInputServer")]
         #[deprecated]
         #[method_id(@__retain_semantics Other server)]
         pub unsafe fn server(&self) -> Option<Id<NSInputServer>>;
@@ -141,7 +141,7 @@ extern_methods!(
         #[method(wantsToHandleMouseEvents)]
         pub unsafe fn wantsToHandleMouseEvents(&self) -> bool;
 
-        #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(feature = "NSEvent")]
         #[deprecated]
         #[method(handleMouseEvent:)]
         pub unsafe fn handleMouseEvent(&self, mouse_event: Option<&NSEvent>) -> bool;

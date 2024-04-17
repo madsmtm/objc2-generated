@@ -48,41 +48,33 @@ extern_methods!(
         #[method_id(@__retain_semantics Other sharedHTTPCookieStorage)]
         pub unsafe fn sharedHTTPCookieStorage() -> Id<NSHTTPCookieStorage>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other sharedCookieStorageForGroupContainerIdentifier:)]
         pub unsafe fn sharedCookieStorageForGroupContainerIdentifier(
             identifier: &NSString,
         ) -> Id<NSHTTPCookieStorage>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSHTTPCookie"))]
+        #[cfg(all(feature = "NSArray", feature = "NSHTTPCookie"))]
         #[method_id(@__retain_semantics Other cookies)]
         pub unsafe fn cookies(&self) -> Option<Id<NSArray<NSHTTPCookie>>>;
 
-        #[cfg(feature = "Foundation_NSHTTPCookie")]
+        #[cfg(feature = "NSHTTPCookie")]
         #[method(setCookie:)]
         pub unsafe fn setCookie(&self, cookie: &NSHTTPCookie);
 
-        #[cfg(feature = "Foundation_NSHTTPCookie")]
+        #[cfg(feature = "NSHTTPCookie")]
         #[method(deleteCookie:)]
         pub unsafe fn deleteCookie(&self, cookie: &NSHTTPCookie);
 
-        #[cfg(feature = "Foundation_NSDate")]
+        #[cfg(feature = "NSDate")]
         #[method(removeCookiesSinceDate:)]
         pub unsafe fn removeCookiesSinceDate(&self, date: &NSDate);
 
-        #[cfg(all(
-            feature = "Foundation_NSArray",
-            feature = "Foundation_NSHTTPCookie",
-            feature = "Foundation_NSURL"
-        ))]
+        #[cfg(all(feature = "NSArray", feature = "NSHTTPCookie", feature = "NSURL"))]
         #[method_id(@__retain_semantics Other cookiesForURL:)]
         pub unsafe fn cookiesForURL(&self, url: &NSURL) -> Option<Id<NSArray<NSHTTPCookie>>>;
 
-        #[cfg(all(
-            feature = "Foundation_NSArray",
-            feature = "Foundation_NSHTTPCookie",
-            feature = "Foundation_NSURL"
-        ))]
+        #[cfg(all(feature = "NSArray", feature = "NSHTTPCookie", feature = "NSURL"))]
         #[method(setCookies:forURL:mainDocumentURL:)]
         pub unsafe fn setCookies_forURL_mainDocumentURL(
             &self,
@@ -98,9 +90,9 @@ extern_methods!(
         pub unsafe fn setCookieAcceptPolicy(&self, cookie_accept_policy: NSHTTPCookieAcceptPolicy);
 
         #[cfg(all(
-            feature = "Foundation_NSArray",
-            feature = "Foundation_NSHTTPCookie",
-            feature = "Foundation_NSSortDescriptor"
+            feature = "NSArray",
+            feature = "NSHTTPCookie",
+            feature = "NSSortDescriptor"
         ))]
         #[method_id(@__retain_semantics Other sortedCookiesUsingDescriptors:)]
         pub unsafe fn sortedCookiesUsingDescriptors(
@@ -125,9 +117,9 @@ extern_methods!(
     /// NSURLSessionTaskAdditions
     unsafe impl NSHTTPCookieStorage {
         #[cfg(all(
-            feature = "Foundation_NSArray",
-            feature = "Foundation_NSHTTPCookie",
-            feature = "Foundation_NSURLSession"
+            feature = "NSArray",
+            feature = "NSHTTPCookie",
+            feature = "NSURLSession"
         ))]
         #[method(storeCookies:forTask:)]
         pub unsafe fn storeCookies_forTask(
@@ -137,9 +129,9 @@ extern_methods!(
         );
 
         #[cfg(all(
-            feature = "Foundation_NSArray",
-            feature = "Foundation_NSHTTPCookie",
-            feature = "Foundation_NSURLSession",
+            feature = "NSArray",
+            feature = "NSHTTPCookie",
+            feature = "NSURLSession",
             feature = "block2"
         ))]
         #[method(getCookiesForTask:completionHandler:)]
@@ -152,11 +144,11 @@ extern_methods!(
 );
 
 extern "C" {
-    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSHTTPCookieManagerAcceptPolicyChangedNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSHTTPCookieManagerCookiesChangedNotification: &'static NSNotificationName;
 }

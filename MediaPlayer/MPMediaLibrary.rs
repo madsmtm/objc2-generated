@@ -69,7 +69,7 @@ extern_methods!(
             completion_handler: &Block<dyn Fn(MPMediaLibraryAuthorizationStatus)>,
         );
 
-        #[cfg(all(feature = "MediaPlayer_MPMediaEntity", feature = "block2"))]
+        #[cfg(all(feature = "MPMediaEntity", feature = "block2"))]
         #[method(addItemWithProductID:completionHandler:)]
         pub unsafe fn addItemWithProductID_completionHandler(
             &self,
@@ -80,9 +80,9 @@ extern_methods!(
         );
 
         #[cfg(all(
-            feature = "MediaPlayer_MPMediaEntity",
-            feature = "MediaPlayer_MPMediaItemCollection",
-            feature = "MediaPlayer_MPMediaPlaylist",
+            feature = "MPMediaEntity",
+            feature = "MPMediaItemCollection",
+            feature = "MPMediaPlaylist",
             feature = "block2"
         ))]
         #[method(getPlaylistWithUUID:creationMetadata:completionHandler:)]

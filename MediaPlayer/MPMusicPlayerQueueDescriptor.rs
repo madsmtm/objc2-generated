@@ -42,49 +42,34 @@ unsafe impl NSObjectProtocol for MPMusicPlayerMediaItemQueueDescriptor {}
 
 extern_methods!(
     unsafe impl MPMusicPlayerMediaItemQueueDescriptor {
-        #[cfg(feature = "MediaPlayer_MPMediaQuery")]
+        #[cfg(feature = "MPMediaQuery")]
         #[method_id(@__retain_semantics Init initWithQuery:)]
         pub unsafe fn initWithQuery(this: Allocated<Self>, query: &MPMediaQuery) -> Id<Self>;
 
-        #[cfg(all(
-            feature = "MediaPlayer_MPMediaEntity",
-            feature = "MediaPlayer_MPMediaItemCollection"
-        ))]
+        #[cfg(all(feature = "MPMediaEntity", feature = "MPMediaItemCollection"))]
         #[method_id(@__retain_semantics Init initWithItemCollection:)]
         pub unsafe fn initWithItemCollection(
             this: Allocated<Self>,
             item_collection: &MPMediaItemCollection,
         ) -> Id<Self>;
 
-        #[cfg(feature = "MediaPlayer_MPMediaQuery")]
+        #[cfg(feature = "MPMediaQuery")]
         #[method_id(@__retain_semantics Other query)]
         pub unsafe fn query(&self) -> Id<MPMediaQuery>;
 
-        #[cfg(all(
-            feature = "MediaPlayer_MPMediaEntity",
-            feature = "MediaPlayer_MPMediaItemCollection"
-        ))]
+        #[cfg(all(feature = "MPMediaEntity", feature = "MPMediaItemCollection"))]
         #[method_id(@__retain_semantics Other itemCollection)]
         pub unsafe fn itemCollection(&self) -> Id<MPMediaItemCollection>;
 
-        #[cfg(all(
-            feature = "MediaPlayer_MPMediaEntity",
-            feature = "MediaPlayer_MPMediaItem"
-        ))]
+        #[cfg(all(feature = "MPMediaEntity", feature = "MPMediaItem"))]
         #[method_id(@__retain_semantics Other startItem)]
         pub unsafe fn startItem(&self) -> Option<Id<MPMediaItem>>;
 
-        #[cfg(all(
-            feature = "MediaPlayer_MPMediaEntity",
-            feature = "MediaPlayer_MPMediaItem"
-        ))]
+        #[cfg(all(feature = "MPMediaEntity", feature = "MPMediaItem"))]
         #[method(setStartItem:)]
         pub unsafe fn setStartItem(&self, start_item: Option<&MPMediaItem>);
 
-        #[cfg(all(
-            feature = "MediaPlayer_MPMediaEntity",
-            feature = "MediaPlayer_MPMediaItem"
-        ))]
+        #[cfg(all(feature = "MPMediaEntity", feature = "MPMediaItem"))]
         #[method(setStartTime:forItem:)]
         pub unsafe fn setStartTime_forItem(
             &self,
@@ -92,10 +77,7 @@ extern_methods!(
             media_item: &MPMediaItem,
         );
 
-        #[cfg(all(
-            feature = "MediaPlayer_MPMediaEntity",
-            feature = "MediaPlayer_MPMediaItem"
-        ))]
+        #[cfg(all(feature = "MPMediaEntity", feature = "MPMediaItem"))]
         #[method(setEndTime:forItem:)]
         pub unsafe fn setEndTime_forItem(&self, end_time: NSTimeInterval, media_item: &MPMediaItem);
     }

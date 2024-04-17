@@ -181,11 +181,11 @@ extern_methods!(
         #[method(setLodAverage:)]
         pub fn setLodAverage(&self, lod_average: bool);
 
-        #[cfg(feature = "Metal_MTLDepthStencil")]
+        #[cfg(feature = "MTLDepthStencil")]
         #[method(compareFunction)]
         pub fn compareFunction(&self) -> MTLCompareFunction;
 
-        #[cfg(feature = "Metal_MTLDepthStencil")]
+        #[cfg(feature = "MTLDepthStencil")]
         #[method(setCompareFunction:)]
         pub fn setCompareFunction(&self, compare_function: MTLCompareFunction);
 
@@ -226,11 +226,11 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other label)]
         fn label(&self) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "Metal_MTLDevice")]
+        #[cfg(feature = "MTLDevice")]
         #[method_id(@__retain_semantics Other device)]
         fn device(&self) -> Id<ProtocolObject<dyn MTLDevice>>;
 
-        #[cfg(feature = "Metal_MTLTypes")]
+        #[cfg(feature = "MTLTypes")]
         #[method(gpuResourceID)]
         unsafe fn gpuResourceID(&self) -> MTLResourceID;
     }

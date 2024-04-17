@@ -31,11 +31,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Other departureDate)]
         pub unsafe fn departureDate(&self) -> Id<NSDate>;
 
-        #[cfg(feature = "CoreLocation_CLLocation")]
+        #[cfg(feature = "CLLocation")]
         #[method(coordinate)]
         pub unsafe fn coordinate(&self) -> CLLocationCoordinate2D;
 
-        #[cfg(feature = "CoreLocation_CLLocation")]
+        #[cfg(feature = "CLLocation")]
         #[method(horizontalAccuracy)]
         pub unsafe fn horizontalAccuracy(&self) -> CLLocationAccuracy;
     }

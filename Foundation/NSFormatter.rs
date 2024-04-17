@@ -62,24 +62,24 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSCoding for NSFormatter {}
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSFormatter {}
 
 unsafe impl NSObjectProtocol for NSFormatter {}
 
 extern_methods!(
     unsafe impl NSFormatter {
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other stringForObjectValue:)]
         pub unsafe fn stringForObjectValue(&self, obj: Option<&AnyObject>) -> Option<Id<NSString>>;
 
         #[cfg(all(
-            feature = "Foundation_NSAttributedString",
-            feature = "Foundation_NSDictionary",
-            feature = "Foundation_NSString"
+            feature = "NSAttributedString",
+            feature = "NSDictionary",
+            feature = "NSString"
         ))]
         #[method_id(@__retain_semantics Other attributedStringForObjectValue:withDefaultAttributes:)]
         pub unsafe fn attributedStringForObjectValue_withDefaultAttributes(
@@ -88,11 +88,11 @@ extern_methods!(
             attrs: Option<&NSDictionary<NSAttributedStringKey, AnyObject>>,
         ) -> Option<Id<NSAttributedString>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other editingStringForObjectValue:)]
         pub unsafe fn editingStringForObjectValue(&self, obj: &AnyObject) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method(getObjectValue:forString:errorDescription:)]
         pub unsafe fn getObjectValue_forString_errorDescription(
             &self,
@@ -101,7 +101,7 @@ extern_methods!(
             error: Option<&mut Option<Id<NSString>>>,
         ) -> bool;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method(isPartialStringValid:newEditingString:errorDescription:)]
         pub unsafe fn isPartialStringValid_newEditingString_errorDescription(
             &self,
@@ -110,7 +110,7 @@ extern_methods!(
             error: Option<&mut Option<Id<NSString>>>,
         ) -> bool;
 
-        #[cfg(all(feature = "Foundation_NSRange", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSRange", feature = "NSString"))]
         #[method(isPartialStringValid:proposedSelectedRange:originalString:originalSelectedRange:errorDescription:)]
         pub unsafe fn isPartialStringValid_proposedSelectedRange_originalString_originalSelectedRange_errorDescription(
             &self,

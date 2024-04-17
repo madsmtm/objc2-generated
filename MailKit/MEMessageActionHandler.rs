@@ -10,8 +10,8 @@ use crate::*;
 extern_protocol!(
     pub unsafe trait MEMessageActionHandler: NSObjectProtocol {
         #[cfg(all(
-            feature = "MailKit_MEMessage",
-            feature = "MailKit_MEMessageActionDecision",
+            feature = "MEMessage",
+            feature = "MEMessageActionDecision",
             feature = "block2"
         ))]
         #[method(decideActionForMessage:completionHandler:)]

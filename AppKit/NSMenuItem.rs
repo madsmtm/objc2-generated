@@ -15,10 +15,10 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSAccessibilityProtocols")]
+#[cfg(feature = "NSAccessibilityProtocols")]
 unsafe impl NSAccessibility for NSMenuItem {}
 
-#[cfg(feature = "AppKit_NSAccessibilityProtocols")]
+#[cfg(feature = "NSAccessibilityProtocols")]
 unsafe impl NSAccessibilityElementProtocol for NSMenuItem {}
 
 unsafe impl NSCoding for NSMenuItem {}
@@ -27,10 +27,10 @@ unsafe impl NSCopying for NSMenuItem {}
 
 unsafe impl NSObjectProtocol for NSMenuItem {}
 
-#[cfg(feature = "AppKit_NSUserInterfaceItemIdentification")]
+#[cfg(feature = "NSUserInterfaceItemIdentification")]
 unsafe impl NSUserInterfaceItemIdentification for NSMenuItem {}
 
-#[cfg(feature = "AppKit_NSUserInterfaceValidation")]
+#[cfg(feature = "NSUserInterfaceValidation")]
 unsafe impl NSValidatedUserInterfaceItem for NSMenuItem {}
 
 extern_methods!(
@@ -61,22 +61,22 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Id<Self>;
 
-        #[cfg(feature = "AppKit_NSMenu")]
+        #[cfg(feature = "NSMenu")]
         #[method_id(@__retain_semantics Other menu)]
         pub unsafe fn menu(&self) -> Option<Id<NSMenu>>;
 
-        #[cfg(feature = "AppKit_NSMenu")]
+        #[cfg(feature = "NSMenu")]
         #[method(setMenu:)]
         pub unsafe fn setMenu(&self, menu: Option<&NSMenu>);
 
         #[method(hasSubmenu)]
         pub unsafe fn hasSubmenu(&self) -> bool;
 
-        #[cfg(feature = "AppKit_NSMenu")]
+        #[cfg(feature = "NSMenu")]
         #[method_id(@__retain_semantics Other submenu)]
         pub unsafe fn submenu(&self) -> Option<Id<NSMenu>>;
 
-        #[cfg(feature = "AppKit_NSMenu")]
+        #[cfg(feature = "NSMenu")]
         #[method(setSubmenu:)]
         pub fn setSubmenu(&self, submenu: Option<&NSMenu>);
 
@@ -107,11 +107,11 @@ extern_methods!(
         #[method(setKeyEquivalent:)]
         pub unsafe fn setKeyEquivalent(&self, key_equivalent: &NSString);
 
-        #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(feature = "NSEvent")]
         #[method(keyEquivalentModifierMask)]
         pub unsafe fn keyEquivalentModifierMask(&self) -> NSEventModifierFlags;
 
-        #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(feature = "NSEvent")]
         #[method(setKeyEquivalentModifierMask:)]
         pub fn setKeyEquivalentModifierMask(
             &self,
@@ -148,43 +148,43 @@ extern_methods!(
             allows_automatic_key_equivalent_mirroring: bool,
         );
 
-        #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(feature = "NSImage")]
         #[method_id(@__retain_semantics Other image)]
         pub unsafe fn image(&self) -> Option<Id<NSImage>>;
 
-        #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(feature = "NSImage")]
         #[method(setImage:)]
         pub unsafe fn setImage(&self, image: Option<&NSImage>);
 
-        #[cfg(feature = "AppKit_NSCell")]
+        #[cfg(feature = "NSCell")]
         #[method(state)]
         pub unsafe fn state(&self) -> NSControlStateValue;
 
-        #[cfg(feature = "AppKit_NSCell")]
+        #[cfg(feature = "NSCell")]
         #[method(setState:)]
         pub unsafe fn setState(&self, state: NSControlStateValue);
 
-        #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(feature = "NSImage")]
         #[method_id(@__retain_semantics Other onStateImage)]
         pub unsafe fn onStateImage(&self) -> Option<Id<NSImage>>;
 
-        #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(feature = "NSImage")]
         #[method(setOnStateImage:)]
         pub unsafe fn setOnStateImage(&self, on_state_image: Option<&NSImage>);
 
-        #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(feature = "NSImage")]
         #[method_id(@__retain_semantics Other offStateImage)]
         pub unsafe fn offStateImage(&self) -> Option<Id<NSImage>>;
 
-        #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(feature = "NSImage")]
         #[method(setOffStateImage:)]
         pub unsafe fn setOffStateImage(&self, off_state_image: Option<&NSImage>);
 
-        #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(feature = "NSImage")]
         #[method_id(@__retain_semantics Other mixedStateImage)]
         pub unsafe fn mixedStateImage(&self) -> Option<Id<NSImage>>;
 
-        #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(feature = "NSImage")]
         #[method(setMixedStateImage:)]
         pub unsafe fn setMixedStateImage(&self, mixed_state_image: Option<&NSImage>);
 
@@ -230,11 +230,11 @@ extern_methods!(
         #[method(setRepresentedObject:)]
         pub unsafe fn setRepresentedObject(&self, represented_object: Option<&AnyObject>);
 
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[method_id(@__retain_semantics Other view)]
         pub unsafe fn view(&self) -> Option<Id<NSView>>;
 
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[method(setView:)]
         pub unsafe fn setView(&self, view: Option<&NSView>);
 
@@ -256,11 +256,11 @@ extern_methods!(
         #[method(setToolTip:)]
         pub unsafe fn setToolTip(&self, tool_tip: Option<&NSString>);
 
-        #[cfg(feature = "AppKit_NSMenuItemBadge")]
+        #[cfg(feature = "NSMenuItemBadge")]
         #[method_id(@__retain_semantics Other badge)]
         pub unsafe fn badge(&self) -> Option<Id<NSMenuItemBadge>>;
 
-        #[cfg(feature = "AppKit_NSMenuItemBadge")]
+        #[cfg(feature = "NSMenuItemBadge")]
         #[method(setBadge:)]
         pub unsafe fn setBadge(&self, badge: Option<&NSMenuItemBadge>);
     }
@@ -279,7 +279,7 @@ extern_methods!(
 
 extern_methods!(
     /// NSViewEnclosingMenuItem
-    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSView {
         #[method_id(@__retain_semantics Other enclosingMenuItem)]
         pub unsafe fn enclosingMenuItem(&self) -> Option<Id<NSMenuItem>>;
@@ -287,7 +287,7 @@ extern_methods!(
 );
 
 extern "C" {
-    #[cfg(feature = "AppKit_NSUserInterfaceItemIdentification")]
+    #[cfg(feature = "NSUserInterfaceItemIdentification")]
     pub static NSMenuItemImportFromDeviceIdentifier: &'static NSUserInterfaceItemIdentifier;
 }
 

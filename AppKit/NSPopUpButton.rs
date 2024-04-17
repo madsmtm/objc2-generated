@@ -8,18 +8,18 @@ use crate::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(
-        feature = "AppKit_NSButton",
-        feature = "AppKit_NSControl",
-        feature = "AppKit_NSResponder",
-        feature = "AppKit_NSView"
+        feature = "NSButton",
+        feature = "NSControl",
+        feature = "NSResponder",
+        feature = "NSView"
     ))]
     pub struct NSPopUpButton;
 
     #[cfg(all(
-        feature = "AppKit_NSButton",
-        feature = "AppKit_NSControl",
-        feature = "AppKit_NSResponder",
-        feature = "AppKit_NSView"
+        feature = "NSButton",
+        feature = "NSControl",
+        feature = "NSResponder",
+        feature = "NSView"
     ))]
     unsafe impl ClassType for NSPopUpButton {
         #[inherits(NSControl, NSView, NSResponder, NSObject)]
@@ -29,108 +29,108 @@ extern_class!(
 );
 
 #[cfg(all(
-    feature = "AppKit_NSAccessibilityProtocols",
-    feature = "AppKit_NSButton",
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSView"
+    feature = "NSAccessibilityProtocols",
+    feature = "NSButton",
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSView"
 ))]
 unsafe impl NSAccessibility for NSPopUpButton {}
 
 #[cfg(all(
-    feature = "AppKit_NSAccessibilityProtocols",
-    feature = "AppKit_NSButton",
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSView"
+    feature = "NSAccessibilityProtocols",
+    feature = "NSButton",
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSView"
 ))]
 unsafe impl NSAccessibilityButton for NSPopUpButton {}
 
 #[cfg(all(
-    feature = "AppKit_NSAccessibilityProtocols",
-    feature = "AppKit_NSButton",
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSView"
+    feature = "NSAccessibilityProtocols",
+    feature = "NSButton",
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSView"
 ))]
 unsafe impl NSAccessibilityElementProtocol for NSPopUpButton {}
 
 #[cfg(all(
-    feature = "AppKit_NSAnimation",
-    feature = "AppKit_NSButton",
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSView"
+    feature = "NSAnimation",
+    feature = "NSButton",
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSView"
 ))]
 unsafe impl NSAnimatablePropertyContainer for NSPopUpButton {}
 
 #[cfg(all(
-    feature = "AppKit_NSAppearance",
-    feature = "AppKit_NSButton",
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSView"
+    feature = "NSAppearance",
+    feature = "NSButton",
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSView"
 ))]
 unsafe impl NSAppearanceCustomization for NSPopUpButton {}
 
 #[cfg(all(
-    feature = "AppKit_NSButton",
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSView"
+    feature = "NSButton",
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSView"
 ))]
 unsafe impl NSCoding for NSPopUpButton {}
 
 #[cfg(all(
-    feature = "AppKit_NSButton",
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSDragging",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSView"
+    feature = "NSButton",
+    feature = "NSControl",
+    feature = "NSDragging",
+    feature = "NSResponder",
+    feature = "NSView"
 ))]
 unsafe impl NSDraggingDestination for NSPopUpButton {}
 
 #[cfg(all(
-    feature = "AppKit_NSButton",
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSView"
+    feature = "NSButton",
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSView"
 ))]
 unsafe impl NSObjectProtocol for NSPopUpButton {}
 
 #[cfg(all(
-    feature = "AppKit_NSButton",
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSUserInterfaceCompression",
-    feature = "AppKit_NSView"
+    feature = "NSButton",
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSUserInterfaceCompression",
+    feature = "NSView"
 ))]
 unsafe impl NSUserInterfaceCompression for NSPopUpButton {}
 
 #[cfg(all(
-    feature = "AppKit_NSButton",
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSUserInterfaceItemIdentification",
-    feature = "AppKit_NSView"
+    feature = "NSButton",
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSUserInterfaceItemIdentification",
+    feature = "NSView"
 ))]
 unsafe impl NSUserInterfaceItemIdentification for NSPopUpButton {}
 
 #[cfg(all(
-    feature = "AppKit_NSButton",
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSUserInterfaceValidation",
-    feature = "AppKit_NSView"
+    feature = "NSButton",
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSUserInterfaceValidation",
+    feature = "NSView"
 ))]
 unsafe impl NSUserInterfaceValidations for NSPopUpButton {}
 
 extern_methods!(
     #[cfg(all(
-        feature = "AppKit_NSButton",
-        feature = "AppKit_NSControl",
-        feature = "AppKit_NSResponder",
-        feature = "AppKit_NSView"
+        feature = "NSButton",
+        feature = "NSControl",
+        feature = "NSResponder",
+        feature = "NSView"
     ))]
     unsafe impl NSPopUpButton {
         #[method_id(@__retain_semantics Init initWithFrame:pullsDown:)]
@@ -140,11 +140,11 @@ extern_methods!(
             flag: bool,
         ) -> Id<Self>;
 
-        #[cfg(feature = "AppKit_NSMenu")]
+        #[cfg(feature = "NSMenu")]
         #[method_id(@__retain_semantics Other menu)]
         pub unsafe fn menu(&self) -> Option<Id<NSMenu>>;
 
-        #[cfg(feature = "AppKit_NSMenu")]
+        #[cfg(feature = "NSMenu")]
         #[method(setMenu:)]
         pub unsafe fn setMenu(&self, menu: Option<&NSMenu>);
 
@@ -184,14 +184,14 @@ extern_methods!(
         #[method(removeAllItems)]
         pub unsafe fn removeAllItems(&self);
 
-        #[cfg(feature = "AppKit_NSMenuItem")]
+        #[cfg(feature = "NSMenuItem")]
         #[method_id(@__retain_semantics Other itemArray)]
         pub unsafe fn itemArray(&self) -> Id<NSArray<NSMenuItem>>;
 
         #[method(numberOfItems)]
         pub unsafe fn numberOfItems(&self) -> NSInteger;
 
-        #[cfg(feature = "AppKit_NSMenuItem")]
+        #[cfg(feature = "NSMenuItem")]
         #[method(indexOfItem:)]
         pub unsafe fn indexOfItem(&self, item: &NSMenuItem) -> NSInteger;
 
@@ -212,19 +212,19 @@ extern_methods!(
             action_selector: Option<Sel>,
         ) -> NSInteger;
 
-        #[cfg(feature = "AppKit_NSMenuItem")]
+        #[cfg(feature = "NSMenuItem")]
         #[method_id(@__retain_semantics Other itemAtIndex:)]
         pub unsafe fn itemAtIndex(&self, index: NSInteger) -> Option<Id<NSMenuItem>>;
 
-        #[cfg(feature = "AppKit_NSMenuItem")]
+        #[cfg(feature = "NSMenuItem")]
         #[method_id(@__retain_semantics Other itemWithTitle:)]
         pub unsafe fn itemWithTitle(&self, title: &NSString) -> Option<Id<NSMenuItem>>;
 
-        #[cfg(feature = "AppKit_NSMenuItem")]
+        #[cfg(feature = "NSMenuItem")]
         #[method_id(@__retain_semantics Other lastItem)]
         pub unsafe fn lastItem(&self) -> Option<Id<NSMenuItem>>;
 
-        #[cfg(feature = "AppKit_NSMenuItem")]
+        #[cfg(feature = "NSMenuItem")]
         #[method(selectItem:)]
         pub unsafe fn selectItem(&self, item: Option<&NSMenuItem>);
 
@@ -240,7 +240,7 @@ extern_methods!(
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, string: &NSString);
 
-        #[cfg(feature = "AppKit_NSMenuItem")]
+        #[cfg(feature = "NSMenuItem")]
         #[method_id(@__retain_semantics Other selectedItem)]
         pub unsafe fn selectedItem(&self) -> Option<Id<NSMenuItem>>;
 
@@ -267,13 +267,13 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSButton`
     #[cfg(all(
-        feature = "AppKit_NSButton",
-        feature = "AppKit_NSControl",
-        feature = "AppKit_NSResponder",
-        feature = "AppKit_NSView"
+        feature = "NSButton",
+        feature = "NSControl",
+        feature = "NSResponder",
+        feature = "NSView"
     ))]
     unsafe impl NSPopUpButton {
-        #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(feature = "NSImage")]
         #[method_id(@__retain_semantics Other buttonWithTitle:image:target:action:)]
         pub unsafe fn buttonWithTitle_image_target_action(
             title: &NSString,
@@ -291,7 +291,7 @@ extern_methods!(
             mtm: MainThreadMarker,
         ) -> Id<Self>;
 
-        #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(feature = "NSImage")]
         #[method_id(@__retain_semantics Other buttonWithImage:target:action:)]
         pub unsafe fn buttonWithImage_target_action(
             image: &NSImage,
@@ -321,10 +321,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSControl`
     #[cfg(all(
-        feature = "AppKit_NSButton",
-        feature = "AppKit_NSControl",
-        feature = "AppKit_NSResponder",
-        feature = "AppKit_NSView"
+        feature = "NSButton",
+        feature = "NSControl",
+        feature = "NSResponder",
+        feature = "NSView"
     ))]
     unsafe impl NSPopUpButton {
         #[method_id(@__retain_semantics Init initWithFrame:)]
@@ -338,10 +338,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSResponder`
     #[cfg(all(
-        feature = "AppKit_NSButton",
-        feature = "AppKit_NSControl",
-        feature = "AppKit_NSResponder",
-        feature = "AppKit_NSView"
+        feature = "NSButton",
+        feature = "NSControl",
+        feature = "NSResponder",
+        feature = "NSView"
     ))]
     unsafe impl NSPopUpButton {
         #[method_id(@__retain_semantics Init init)]
@@ -352,10 +352,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(
-        feature = "AppKit_NSButton",
-        feature = "AppKit_NSControl",
-        feature = "AppKit_NSResponder",
-        feature = "AppKit_NSView"
+        feature = "NSButton",
+        feature = "NSControl",
+        feature = "NSResponder",
+        feature = "NSView"
     ))]
     unsafe impl NSPopUpButton {
         #[method_id(@__retain_semantics New new)]

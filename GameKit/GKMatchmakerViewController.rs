@@ -45,7 +45,7 @@ extern_class!(
     }
 );
 
-#[cfg(all(feature = "GameKit_GKDialogController", feature = "objc2-app-kit"))]
+#[cfg(all(feature = "GKDialogController", feature = "objc2-app-kit"))]
 unsafe impl GKViewController for GKMatchmakerViewController {}
 
 #[cfg(feature = "objc2-app-kit")]
@@ -77,7 +77,7 @@ extern_methods!(
             matchmaker_delegate: Option<&ProtocolObject<dyn GKMatchmakerViewControllerDelegate>>,
         );
 
-        #[cfg(feature = "GameKit_GKMatchmaker")]
+        #[cfg(feature = "GKMatchmaker")]
         #[method_id(@__retain_semantics Other matchRequest)]
         pub unsafe fn matchRequest(&self) -> Id<GKMatchRequest>;
 
@@ -99,22 +99,22 @@ extern_methods!(
         #[method(setCanStartWithMinimumPlayers:)]
         pub unsafe fn setCanStartWithMinimumPlayers(&self, can_start_with_minimum_players: bool);
 
-        #[cfg(feature = "GameKit_GKMatchmaker")]
+        #[cfg(feature = "GKMatchmaker")]
         #[method_id(@__retain_semantics Init initWithMatchRequest:)]
         pub unsafe fn initWithMatchRequest(
             this: Allocated<Self>,
             request: &GKMatchRequest,
         ) -> Option<Id<Self>>;
 
-        #[cfg(feature = "GameKit_GKMatchmaker")]
+        #[cfg(feature = "GKMatchmaker")]
         #[method_id(@__retain_semantics Init initWithInvite:)]
         pub unsafe fn initWithInvite(this: Allocated<Self>, invite: &GKInvite) -> Option<Id<Self>>;
 
-        #[cfg(feature = "GameKit_GKMatch")]
+        #[cfg(feature = "GKMatch")]
         #[method(addPlayersToMatch:)]
         pub unsafe fn addPlayersToMatch(&self, r#match: &GKMatch);
 
-        #[cfg(all(feature = "GameKit_GKBasePlayer", feature = "GameKit_GKPlayer"))]
+        #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
         #[method(setHostedPlayer:didConnect:)]
         pub unsafe fn setHostedPlayer_didConnect(&self, player: &GKPlayer, connected: bool);
 
@@ -192,7 +192,7 @@ extern_protocol!(
             error: &NSError,
         );
 
-        #[cfg(all(feature = "GameKit_GKMatch", feature = "objc2-app-kit"))]
+        #[cfg(all(feature = "GKMatch", feature = "objc2-app-kit"))]
         #[optional]
         #[method(matchmakerViewController:didFindMatch:)]
         unsafe fn matchmakerViewController_didFindMatch(
@@ -202,8 +202,8 @@ extern_protocol!(
         );
 
         #[cfg(all(
-            feature = "GameKit_GKBasePlayer",
-            feature = "GameKit_GKPlayer",
+            feature = "GKBasePlayer",
+            feature = "GKPlayer",
             feature = "objc2-app-kit"
         ))]
         #[optional]
@@ -215,8 +215,8 @@ extern_protocol!(
         );
 
         #[cfg(all(
-            feature = "GameKit_GKBasePlayer",
-            feature = "GameKit_GKPlayer",
+            feature = "GKBasePlayer",
+            feature = "GKPlayer",
             feature = "objc2-app-kit"
         ))]
         #[optional]
@@ -228,9 +228,9 @@ extern_protocol!(
         );
 
         #[cfg(all(
-            feature = "GameKit_GKBasePlayer",
-            feature = "GameKit_GKDefines",
-            feature = "GameKit_GKPlayer",
+            feature = "GKBasePlayer",
+            feature = "GKDefines",
+            feature = "GKPlayer",
             feature = "block2",
             feature = "objc2-app-kit"
         ))]

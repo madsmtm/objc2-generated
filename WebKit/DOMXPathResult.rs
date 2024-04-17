@@ -28,11 +28,11 @@ pub const DOM_FIRST_ORDERED_NODE_TYPE: c_uint = 9;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
+    #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     #[deprecated]
     pub struct DOMXPathResult;
 
-    #[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
+    #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl ClassType for DOMXPathResult {
         #[inherits(WebScriptObject, NSObject)]
         type Super = DOMObject;
@@ -40,14 +40,14 @@ extern_class!(
     }
 );
 
-#[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
+#[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
 unsafe impl NSCopying for DOMXPathResult {}
 
-#[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
+#[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
 unsafe impl NSObjectProtocol for DOMXPathResult {}
 
 extern_methods!(
-    #[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
+    #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMXPathResult {
         #[deprecated]
         #[method(resultType)]
@@ -65,7 +65,7 @@ extern_methods!(
         #[method(booleanValue)]
         pub unsafe fn booleanValue(&self) -> bool;
 
-        #[cfg(feature = "WebKit_DOMNode")]
+        #[cfg(feature = "DOMNode")]
         #[deprecated]
         #[method_id(@__retain_semantics Other singleNodeValue)]
         pub unsafe fn singleNodeValue(&self) -> Option<Id<DOMNode>>;
@@ -78,12 +78,12 @@ extern_methods!(
         #[method(snapshotLength)]
         pub unsafe fn snapshotLength(&self) -> c_uint;
 
-        #[cfg(feature = "WebKit_DOMNode")]
+        #[cfg(feature = "DOMNode")]
         #[deprecated]
         #[method_id(@__retain_semantics Other iterateNext)]
         pub unsafe fn iterateNext(&self) -> Option<Id<DOMNode>>;
 
-        #[cfg(feature = "WebKit_DOMNode")]
+        #[cfg(feature = "DOMNode")]
         #[deprecated]
         #[method_id(@__retain_semantics Other snapshotItem:)]
         pub unsafe fn snapshotItem(&self, index: c_uint) -> Option<Id<DOMNode>>;
@@ -92,7 +92,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `DOMObject`
-    #[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
+    #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMXPathResult {
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
@@ -102,7 +102,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
+    #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMXPathResult {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

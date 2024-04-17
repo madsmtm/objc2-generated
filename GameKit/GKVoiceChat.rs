@@ -47,25 +47,17 @@ extern_methods!(
         #[method(stop)]
         pub unsafe fn stop(&self);
 
-        #[cfg(all(feature = "GameKit_GKBasePlayer", feature = "GameKit_GKPlayer"))]
+        #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
         #[method(setPlayer:muted:)]
         pub unsafe fn setPlayer_muted(&self, player: &GKPlayer, is_muted: bool);
 
-        #[cfg(all(
-            feature = "GameKit_GKBasePlayer",
-            feature = "GameKit_GKPlayer",
-            feature = "block2"
-        ))]
+        #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer", feature = "block2"))]
         #[method(playerVoiceChatStateDidChangeHandler)]
         pub unsafe fn playerVoiceChatStateDidChangeHandler(
             &self,
         ) -> NonNull<Block<dyn Fn(NonNull<GKPlayer>, GKVoiceChatPlayerState)>>;
 
-        #[cfg(all(
-            feature = "GameKit_GKBasePlayer",
-            feature = "GameKit_GKPlayer",
-            feature = "block2"
-        ))]
+        #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer", feature = "block2"))]
         #[method(setPlayerVoiceChatStateDidChangeHandler:)]
         pub unsafe fn setPlayerVoiceChatStateDidChangeHandler(
             &self,
@@ -89,7 +81,7 @@ extern_methods!(
         #[method(setVolume:)]
         pub unsafe fn setVolume(&self, volume: c_float);
 
-        #[cfg(all(feature = "GameKit_GKBasePlayer", feature = "GameKit_GKPlayer"))]
+        #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
         #[method_id(@__retain_semantics Other players)]
         pub unsafe fn players(&self) -> Id<NSArray<GKPlayer>>;
 

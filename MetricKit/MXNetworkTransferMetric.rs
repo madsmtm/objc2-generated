@@ -7,10 +7,10 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MetricKit_MXMetric")]
+    #[cfg(feature = "MXMetric")]
     pub struct MXNetworkTransferMetric;
 
-    #[cfg(feature = "MetricKit_MXMetric")]
+    #[cfg(feature = "MXMetric")]
     unsafe impl ClassType for MXNetworkTransferMetric {
         #[inherits(NSObject)]
         type Super = MXMetric;
@@ -18,17 +18,17 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "MetricKit_MXMetric")]
+#[cfg(feature = "MXMetric")]
 unsafe impl NSCoding for MXNetworkTransferMetric {}
 
-#[cfg(feature = "MetricKit_MXMetric")]
+#[cfg(feature = "MXMetric")]
 unsafe impl NSObjectProtocol for MXNetworkTransferMetric {}
 
-#[cfg(feature = "MetricKit_MXMetric")]
+#[cfg(feature = "MXMetric")]
 unsafe impl NSSecureCoding for MXNetworkTransferMetric {}
 
 extern_methods!(
-    #[cfg(feature = "MetricKit_MXMetric")]
+    #[cfg(feature = "MXMetric")]
     unsafe impl MXNetworkTransferMetric {
         #[method_id(@__retain_semantics Other cumulativeWifiUpload)]
         pub unsafe fn cumulativeWifiUpload(&self) -> Id<NSMeasurement<NSUnitInformationStorage>>;
@@ -50,7 +50,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MetricKit_MXMetric")]
+    #[cfg(feature = "MXMetric")]
     unsafe impl MXNetworkTransferMetric {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

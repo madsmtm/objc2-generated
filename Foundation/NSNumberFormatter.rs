@@ -91,10 +91,10 @@ unsafe impl RefEncode for NSNumberFormatterRoundingMode {
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSFormatter")]
+    #[cfg(feature = "NSFormatter")]
     pub struct NSNumberFormatter;
 
-    #[cfg(feature = "Foundation_NSFormatter")]
+    #[cfg(feature = "NSFormatter")]
     unsafe impl ClassType for NSNumberFormatter {
         #[inherits(NSObject)]
         type Super = NSFormatter;
@@ -102,23 +102,23 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSFormatter")]
+#[cfg(feature = "NSFormatter")]
 unsafe impl Send for NSNumberFormatter {}
 
-#[cfg(feature = "Foundation_NSFormatter")]
+#[cfg(feature = "NSFormatter")]
 unsafe impl Sync for NSNumberFormatter {}
 
-#[cfg(all(feature = "Foundation_NSFormatter", feature = "Foundation_NSObject"))]
+#[cfg(all(feature = "NSFormatter", feature = "NSObject"))]
 unsafe impl NSCoding for NSNumberFormatter {}
 
-#[cfg(all(feature = "Foundation_NSFormatter", feature = "Foundation_NSObject"))]
+#[cfg(all(feature = "NSFormatter", feature = "NSObject"))]
 unsafe impl NSCopying for NSNumberFormatter {}
 
-#[cfg(feature = "Foundation_NSFormatter")]
+#[cfg(feature = "NSFormatter")]
 unsafe impl NSObjectProtocol for NSNumberFormatter {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSFormatter")]
+    #[cfg(feature = "NSFormatter")]
     unsafe impl NSNumberFormatter {
         #[method(formattingContext)]
         pub unsafe fn formattingContext(&self) -> NSFormattingContext;
@@ -126,11 +126,7 @@ extern_methods!(
         #[method(setFormattingContext:)]
         pub unsafe fn setFormattingContext(&self, formatting_context: NSFormattingContext);
 
-        #[cfg(all(
-            feature = "Foundation_NSError",
-            feature = "Foundation_NSRange",
-            feature = "Foundation_NSString"
-        ))]
+        #[cfg(all(feature = "NSError", feature = "NSRange", feature = "NSString"))]
         #[method(getObjectValue:forString:range:error:_)]
         pub unsafe fn getObjectValue_forString_range_error(
             &self,
@@ -139,15 +135,15 @@ extern_methods!(
             rangep: *mut NSRange,
         ) -> Result<(), Id<NSError>>;
 
-        #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSValue"))]
+        #[cfg(all(feature = "NSString", feature = "NSValue"))]
         #[method_id(@__retain_semantics Other stringFromNumber:)]
         pub unsafe fn stringFromNumber(&self, number: &NSNumber) -> Option<Id<NSString>>;
 
-        #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSValue"))]
+        #[cfg(all(feature = "NSString", feature = "NSValue"))]
         #[method_id(@__retain_semantics Other numberFromString:)]
         pub unsafe fn numberFromString(&self, string: &NSString) -> Option<Id<NSNumber>>;
 
-        #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSValue"))]
+        #[cfg(all(feature = "NSString", feature = "NSValue"))]
         #[method_id(@__retain_semantics Other localizedStringFromNumber:numberStyle:)]
         pub unsafe fn localizedStringFromNumber_numberStyle(
             num: &NSNumber,
@@ -166,11 +162,11 @@ extern_methods!(
         #[method(setNumberStyle:)]
         pub unsafe fn setNumberStyle(&self, number_style: NSNumberFormatterStyle);
 
-        #[cfg(feature = "Foundation_NSLocale")]
+        #[cfg(feature = "NSLocale")]
         #[method_id(@__retain_semantics Other locale)]
         pub unsafe fn locale(&self) -> Id<NSLocale>;
 
-        #[cfg(feature = "Foundation_NSLocale")]
+        #[cfg(feature = "NSLocale")]
         #[method(setLocale:)]
         pub unsafe fn setLocale(&self, locale: Option<&NSLocale>);
 
@@ -186,42 +182,42 @@ extern_methods!(
         #[method(setFormatterBehavior:)]
         pub unsafe fn setFormatterBehavior(&self, formatter_behavior: NSNumberFormatterBehavior);
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other negativeFormat)]
         pub unsafe fn negativeFormat(&self) -> Id<NSString>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method(setNegativeFormat:)]
         pub unsafe fn setNegativeFormat(&self, negative_format: Option<&NSString>);
 
-        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         #[method_id(@__retain_semantics Other textAttributesForNegativeValues)]
         pub unsafe fn textAttributesForNegativeValues(
             &self,
         ) -> Option<Id<NSDictionary<NSString, AnyObject>>>;
 
-        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         #[method(setTextAttributesForNegativeValues:)]
         pub unsafe fn setTextAttributesForNegativeValues(
             &self,
             text_attributes_for_negative_values: Option<&NSDictionary<NSString, AnyObject>>,
         );
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other positiveFormat)]
         pub unsafe fn positiveFormat(&self) -> Id<NSString>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method(setPositiveFormat:)]
         pub unsafe fn setPositiveFormat(&self, positive_format: Option<&NSString>);
 
-        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         #[method_id(@__retain_semantics Other textAttributesForPositiveValues)]
         pub unsafe fn textAttributesForPositiveValues(
             &self,
         ) -> Option<Id<NSDictionary<NSString, AnyObject>>>;
 
-        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         #[method(setTextAttributesForPositiveValues:)]
         pub unsafe fn setTextAttributesForPositiveValues(
             &self,
@@ -234,11 +230,11 @@ extern_methods!(
         #[method(setAllowsFloats:)]
         pub unsafe fn setAllowsFloats(&self, allows_floats: bool);
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other decimalSeparator)]
         pub unsafe fn decimalSeparator(&self) -> Id<NSString>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method(setDecimalSeparator:)]
         pub unsafe fn setDecimalSeparator(&self, decimal_separator: Option<&NSString>);
 
@@ -248,11 +244,11 @@ extern_methods!(
         #[method(setAlwaysShowsDecimalSeparator:)]
         pub unsafe fn setAlwaysShowsDecimalSeparator(&self, always_shows_decimal_separator: bool);
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other currencyDecimalSeparator)]
         pub unsafe fn currencyDecimalSeparator(&self) -> Id<NSString>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method(setCurrencyDecimalSeparator:)]
         pub unsafe fn setCurrencyDecimalSeparator(
             &self,
@@ -265,212 +261,212 @@ extern_methods!(
         #[method(setUsesGroupingSeparator:)]
         pub unsafe fn setUsesGroupingSeparator(&self, uses_grouping_separator: bool);
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other groupingSeparator)]
         pub unsafe fn groupingSeparator(&self) -> Id<NSString>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method(setGroupingSeparator:)]
         pub unsafe fn setGroupingSeparator(&self, grouping_separator: Option<&NSString>);
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other zeroSymbol)]
         pub unsafe fn zeroSymbol(&self) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method(setZeroSymbol:)]
         pub unsafe fn setZeroSymbol(&self, zero_symbol: Option<&NSString>);
 
-        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         #[method_id(@__retain_semantics Other textAttributesForZero)]
         pub unsafe fn textAttributesForZero(&self)
             -> Option<Id<NSDictionary<NSString, AnyObject>>>;
 
-        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         #[method(setTextAttributesForZero:)]
         pub unsafe fn setTextAttributesForZero(
             &self,
             text_attributes_for_zero: Option<&NSDictionary<NSString, AnyObject>>,
         );
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other nilSymbol)]
         pub unsafe fn nilSymbol(&self) -> Id<NSString>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method(setNilSymbol:)]
         pub unsafe fn setNilSymbol(&self, nil_symbol: &NSString);
 
-        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         #[method_id(@__retain_semantics Other textAttributesForNil)]
         pub unsafe fn textAttributesForNil(&self) -> Option<Id<NSDictionary<NSString, AnyObject>>>;
 
-        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         #[method(setTextAttributesForNil:)]
         pub unsafe fn setTextAttributesForNil(
             &self,
             text_attributes_for_nil: Option<&NSDictionary<NSString, AnyObject>>,
         );
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other notANumberSymbol)]
         pub unsafe fn notANumberSymbol(&self) -> Id<NSString>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method(setNotANumberSymbol:)]
         pub unsafe fn setNotANumberSymbol(&self, not_a_number_symbol: Option<&NSString>);
 
-        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         #[method_id(@__retain_semantics Other textAttributesForNotANumber)]
         pub unsafe fn textAttributesForNotANumber(
             &self,
         ) -> Option<Id<NSDictionary<NSString, AnyObject>>>;
 
-        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         #[method(setTextAttributesForNotANumber:)]
         pub unsafe fn setTextAttributesForNotANumber(
             &self,
             text_attributes_for_not_a_number: Option<&NSDictionary<NSString, AnyObject>>,
         );
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other positiveInfinitySymbol)]
         pub unsafe fn positiveInfinitySymbol(&self) -> Id<NSString>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method(setPositiveInfinitySymbol:)]
         pub unsafe fn setPositiveInfinitySymbol(&self, positive_infinity_symbol: &NSString);
 
-        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         #[method_id(@__retain_semantics Other textAttributesForPositiveInfinity)]
         pub unsafe fn textAttributesForPositiveInfinity(
             &self,
         ) -> Option<Id<NSDictionary<NSString, AnyObject>>>;
 
-        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         #[method(setTextAttributesForPositiveInfinity:)]
         pub unsafe fn setTextAttributesForPositiveInfinity(
             &self,
             text_attributes_for_positive_infinity: Option<&NSDictionary<NSString, AnyObject>>,
         );
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other negativeInfinitySymbol)]
         pub unsafe fn negativeInfinitySymbol(&self) -> Id<NSString>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method(setNegativeInfinitySymbol:)]
         pub unsafe fn setNegativeInfinitySymbol(&self, negative_infinity_symbol: &NSString);
 
-        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         #[method_id(@__retain_semantics Other textAttributesForNegativeInfinity)]
         pub unsafe fn textAttributesForNegativeInfinity(
             &self,
         ) -> Option<Id<NSDictionary<NSString, AnyObject>>>;
 
-        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         #[method(setTextAttributesForNegativeInfinity:)]
         pub unsafe fn setTextAttributesForNegativeInfinity(
             &self,
             text_attributes_for_negative_infinity: Option<&NSDictionary<NSString, AnyObject>>,
         );
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other positivePrefix)]
         pub unsafe fn positivePrefix(&self) -> Id<NSString>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method(setPositivePrefix:)]
         pub unsafe fn setPositivePrefix(&self, positive_prefix: Option<&NSString>);
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other positiveSuffix)]
         pub unsafe fn positiveSuffix(&self) -> Id<NSString>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method(setPositiveSuffix:)]
         pub unsafe fn setPositiveSuffix(&self, positive_suffix: Option<&NSString>);
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other negativePrefix)]
         pub unsafe fn negativePrefix(&self) -> Id<NSString>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method(setNegativePrefix:)]
         pub unsafe fn setNegativePrefix(&self, negative_prefix: Option<&NSString>);
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other negativeSuffix)]
         pub unsafe fn negativeSuffix(&self) -> Id<NSString>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method(setNegativeSuffix:)]
         pub unsafe fn setNegativeSuffix(&self, negative_suffix: Option<&NSString>);
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other currencyCode)]
         pub unsafe fn currencyCode(&self) -> Id<NSString>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method(setCurrencyCode:)]
         pub unsafe fn setCurrencyCode(&self, currency_code: Option<&NSString>);
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other currencySymbol)]
         pub unsafe fn currencySymbol(&self) -> Id<NSString>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method(setCurrencySymbol:)]
         pub unsafe fn setCurrencySymbol(&self, currency_symbol: Option<&NSString>);
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other internationalCurrencySymbol)]
         pub unsafe fn internationalCurrencySymbol(&self) -> Id<NSString>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method(setInternationalCurrencySymbol:)]
         pub unsafe fn setInternationalCurrencySymbol(
             &self,
             international_currency_symbol: Option<&NSString>,
         );
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other percentSymbol)]
         pub unsafe fn percentSymbol(&self) -> Id<NSString>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method(setPercentSymbol:)]
         pub unsafe fn setPercentSymbol(&self, percent_symbol: Option<&NSString>);
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other perMillSymbol)]
         pub unsafe fn perMillSymbol(&self) -> Id<NSString>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method(setPerMillSymbol:)]
         pub unsafe fn setPerMillSymbol(&self, per_mill_symbol: Option<&NSString>);
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other minusSign)]
         pub unsafe fn minusSign(&self) -> Id<NSString>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method(setMinusSign:)]
         pub unsafe fn setMinusSign(&self, minus_sign: Option<&NSString>);
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other plusSign)]
         pub unsafe fn plusSign(&self) -> Id<NSString>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method(setPlusSign:)]
         pub unsafe fn setPlusSign(&self, plus_sign: Option<&NSString>);
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other exponentSymbol)]
         pub unsafe fn exponentSymbol(&self) -> Id<NSString>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method(setExponentSymbol:)]
         pub unsafe fn setExponentSymbol(&self, exponent_symbol: Option<&NSString>);
 
@@ -486,11 +482,11 @@ extern_methods!(
         #[method(setSecondaryGroupingSize:)]
         pub unsafe fn setSecondaryGroupingSize(&self, secondary_grouping_size: NSUInteger);
 
-        #[cfg(feature = "Foundation_NSValue")]
+        #[cfg(feature = "NSValue")]
         #[method_id(@__retain_semantics Other multiplier)]
         pub unsafe fn multiplier(&self) -> Option<Id<NSNumber>>;
 
-        #[cfg(feature = "Foundation_NSValue")]
+        #[cfg(feature = "NSValue")]
         #[method(setMultiplier:)]
         pub unsafe fn setMultiplier(&self, multiplier: Option<&NSNumber>);
 
@@ -500,11 +496,11 @@ extern_methods!(
         #[method(setFormatWidth:)]
         pub unsafe fn setFormatWidth(&self, format_width: NSUInteger);
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other paddingCharacter)]
         pub unsafe fn paddingCharacter(&self) -> Id<NSString>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method(setPaddingCharacter:)]
         pub unsafe fn setPaddingCharacter(&self, padding_character: Option<&NSString>);
 
@@ -520,11 +516,11 @@ extern_methods!(
         #[method(setRoundingMode:)]
         pub unsafe fn setRoundingMode(&self, rounding_mode: NSNumberFormatterRoundingMode);
 
-        #[cfg(feature = "Foundation_NSValue")]
+        #[cfg(feature = "NSValue")]
         #[method_id(@__retain_semantics Other roundingIncrement)]
         pub unsafe fn roundingIncrement(&self) -> Id<NSNumber>;
 
-        #[cfg(feature = "Foundation_NSValue")]
+        #[cfg(feature = "NSValue")]
         #[method(setRoundingIncrement:)]
         pub unsafe fn setRoundingIncrement(&self, rounding_increment: Option<&NSNumber>);
 
@@ -552,27 +548,27 @@ extern_methods!(
         #[method(setMaximumFractionDigits:)]
         pub unsafe fn setMaximumFractionDigits(&self, maximum_fraction_digits: NSUInteger);
 
-        #[cfg(feature = "Foundation_NSValue")]
+        #[cfg(feature = "NSValue")]
         #[method_id(@__retain_semantics Other minimum)]
         pub unsafe fn minimum(&self) -> Option<Id<NSNumber>>;
 
-        #[cfg(feature = "Foundation_NSValue")]
+        #[cfg(feature = "NSValue")]
         #[method(setMinimum:)]
         pub unsafe fn setMinimum(&self, minimum: Option<&NSNumber>);
 
-        #[cfg(feature = "Foundation_NSValue")]
+        #[cfg(feature = "NSValue")]
         #[method_id(@__retain_semantics Other maximum)]
         pub unsafe fn maximum(&self) -> Option<Id<NSNumber>>;
 
-        #[cfg(feature = "Foundation_NSValue")]
+        #[cfg(feature = "NSValue")]
         #[method(setMaximum:)]
         pub unsafe fn setMaximum(&self, maximum: Option<&NSNumber>);
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other currencyGroupingSeparator)]
         pub unsafe fn currencyGroupingSeparator(&self) -> Id<NSString>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method(setCurrencyGroupingSeparator:)]
         pub unsafe fn setCurrencyGroupingSeparator(
             &self,
@@ -616,7 +612,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSFormatter")]
+    #[cfg(feature = "NSFormatter")]
     unsafe impl NSNumberFormatter {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -628,7 +624,7 @@ extern_methods!(
 
 extern_methods!(
     /// NSNumberFormatterCompatibility
-    #[cfg(feature = "Foundation_NSFormatter")]
+    #[cfg(feature = "NSFormatter")]
     unsafe impl NSNumberFormatter {
         #[method(hasThousandSeparators)]
         pub unsafe fn hasThousandSeparators(&self) -> bool;
@@ -636,11 +632,11 @@ extern_methods!(
         #[method(setHasThousandSeparators:)]
         pub unsafe fn setHasThousandSeparators(&self, has_thousand_separators: bool);
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other thousandSeparator)]
         pub unsafe fn thousandSeparator(&self) -> Id<NSString>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method(setThousandSeparator:)]
         pub unsafe fn setThousandSeparator(&self, thousand_separator: Option<&NSString>);
 
@@ -650,52 +646,52 @@ extern_methods!(
         #[method(setLocalizesFormat:)]
         pub unsafe fn setLocalizesFormat(&self, localizes_format: bool);
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other format)]
         pub unsafe fn format(&self) -> Id<NSString>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method(setFormat:)]
         pub unsafe fn setFormat(&self, format: &NSString);
 
-        #[cfg(feature = "Foundation_NSAttributedString")]
+        #[cfg(feature = "NSAttributedString")]
         #[method_id(@__retain_semantics Other attributedStringForZero)]
         pub unsafe fn attributedStringForZero(&self) -> Id<NSAttributedString>;
 
-        #[cfg(feature = "Foundation_NSAttributedString")]
+        #[cfg(feature = "NSAttributedString")]
         #[method(setAttributedStringForZero:)]
         pub unsafe fn setAttributedStringForZero(
             &self,
             attributed_string_for_zero: &NSAttributedString,
         );
 
-        #[cfg(feature = "Foundation_NSAttributedString")]
+        #[cfg(feature = "NSAttributedString")]
         #[method_id(@__retain_semantics Other attributedStringForNil)]
         pub unsafe fn attributedStringForNil(&self) -> Id<NSAttributedString>;
 
-        #[cfg(feature = "Foundation_NSAttributedString")]
+        #[cfg(feature = "NSAttributedString")]
         #[method(setAttributedStringForNil:)]
         pub unsafe fn setAttributedStringForNil(
             &self,
             attributed_string_for_nil: &NSAttributedString,
         );
 
-        #[cfg(feature = "Foundation_NSAttributedString")]
+        #[cfg(feature = "NSAttributedString")]
         #[method_id(@__retain_semantics Other attributedStringForNotANumber)]
         pub unsafe fn attributedStringForNotANumber(&self) -> Id<NSAttributedString>;
 
-        #[cfg(feature = "Foundation_NSAttributedString")]
+        #[cfg(feature = "NSAttributedString")]
         #[method(setAttributedStringForNotANumber:)]
         pub unsafe fn setAttributedStringForNotANumber(
             &self,
             attributed_string_for_not_a_number: &NSAttributedString,
         );
 
-        #[cfg(feature = "Foundation_NSDecimalNumber")]
+        #[cfg(feature = "NSDecimalNumber")]
         #[method_id(@__retain_semantics Other roundingBehavior)]
         pub unsafe fn roundingBehavior(&self) -> Id<NSDecimalNumberHandler>;
 
-        #[cfg(feature = "Foundation_NSDecimalNumber")]
+        #[cfg(feature = "NSDecimalNumber")]
         #[method(setRoundingBehavior:)]
         pub unsafe fn setRoundingBehavior(&self, rounding_behavior: &NSDecimalNumberHandler);
     }

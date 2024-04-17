@@ -45,11 +45,11 @@ unsafe impl NSObjectProtocol for OSAScriptController {}
 
 extern_methods!(
     unsafe impl OSAScriptController {
-        #[cfg(feature = "OSAKit_OSAScriptView")]
+        #[cfg(feature = "OSAScriptView")]
         #[method_id(@__retain_semantics Other scriptView)]
         pub unsafe fn scriptView(&self) -> Option<Id<OSAScriptView>>;
 
-        #[cfg(feature = "OSAKit_OSAScriptView")]
+        #[cfg(feature = "OSAScriptView")]
         #[method(setScriptView:)]
         pub unsafe fn setScriptView(&self, script_view: Option<&OSAScriptView>);
 
@@ -59,19 +59,19 @@ extern_methods!(
         #[method(setResultView:)]
         pub unsafe fn setResultView(&self, result_view: Option<&NSTextView>);
 
-        #[cfg(feature = "OSAKit_OSAScript")]
+        #[cfg(feature = "OSAScript")]
         #[method_id(@__retain_semantics Other script)]
         pub unsafe fn script(&self) -> Option<Id<OSAScript>>;
 
-        #[cfg(feature = "OSAKit_OSAScript")]
+        #[cfg(feature = "OSAScript")]
         #[method(setScript:)]
         pub unsafe fn setScript(&self, script: Option<&OSAScript>);
 
-        #[cfg(feature = "OSAKit_OSALanguage")]
+        #[cfg(feature = "OSALanguage")]
         #[method_id(@__retain_semantics Other language)]
         pub unsafe fn language(&self) -> Option<Id<OSALanguage>>;
 
-        #[cfg(feature = "OSAKit_OSALanguage")]
+        #[cfg(feature = "OSALanguage")]
         #[method(setLanguage:)]
         pub unsafe fn setLanguage(&self, language: Option<&OSALanguage>);
 

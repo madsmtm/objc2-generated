@@ -65,30 +65,30 @@ extern_methods!(
         #[method_id(@__retain_semantics Other processInfo)]
         pub fn processInfo() -> Id<NSProcessInfo>;
 
-        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         #[method_id(@__retain_semantics Other environment)]
         pub unsafe fn environment(&self) -> Id<NSDictionary<NSString, NSString>>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[method_id(@__retain_semantics Other arguments)]
         pub unsafe fn arguments(&self) -> Id<NSArray<NSString>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other hostName)]
         pub unsafe fn hostName(&self) -> Id<NSString>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other processName)]
         pub fn processName(&self) -> Id<NSString>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method(setProcessName:)]
         pub unsafe fn setProcessName(&self, process_name: &NSString);
 
         #[method(processIdentifier)]
         pub unsafe fn processIdentifier(&self) -> c_int;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other globallyUniqueString)]
         pub unsafe fn globallyUniqueString(&self) -> Id<NSString>;
 
@@ -96,12 +96,12 @@ extern_methods!(
         #[method(operatingSystem)]
         pub unsafe fn operatingSystem(&self) -> NSUInteger;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[deprecated = "-operatingSystemName always returns NSMACHOperatingSystem, use -operatingSystemVersionString instead"]
         #[method_id(@__retain_semantics Other operatingSystemName)]
         pub unsafe fn operatingSystemName(&self) -> Id<NSString>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other operatingSystemVersionString)]
         pub unsafe fn operatingSystemVersionString(&self) -> Id<NSString>;
 
@@ -123,7 +123,7 @@ extern_methods!(
             version: NSOperatingSystemVersion,
         ) -> bool;
 
-        #[cfg(feature = "Foundation_NSDate")]
+        #[cfg(feature = "NSDate")]
         #[method(systemUptime)]
         pub unsafe fn systemUptime(&self) -> NSTimeInterval;
 
@@ -133,11 +133,11 @@ extern_methods!(
         #[method(enableSuddenTermination)]
         pub unsafe fn enableSuddenTermination(&self);
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method(disableAutomaticTermination:)]
         pub unsafe fn disableAutomaticTermination(&self, reason: &NSString);
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method(enableAutomaticTermination:)]
         pub unsafe fn enableAutomaticTermination(&self, reason: &NSString);
 
@@ -199,7 +199,7 @@ unsafe impl RefEncode for NSActivityOptions {
 extern_methods!(
     /// NSProcessInfoActivity
     unsafe impl NSProcessInfo {
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other beginActivityWithOptions:reason:)]
         pub unsafe fn beginActivityWithOptions_reason(
             &self,
@@ -210,7 +210,7 @@ extern_methods!(
         #[method(endActivity:)]
         pub unsafe fn endActivity(&self, activity: &NSObject);
 
-        #[cfg(all(feature = "Foundation_NSString", feature = "block2"))]
+        #[cfg(all(feature = "NSString", feature = "block2"))]
         #[method(performActivityWithOptions:reason:usingBlock:)]
         pub unsafe fn performActivityWithOptions_reason_usingBlock(
             &self,
@@ -219,7 +219,7 @@ extern_methods!(
             block: &Block<dyn Fn()>,
         );
 
-        #[cfg(all(feature = "Foundation_NSString", feature = "block2"))]
+        #[cfg(all(feature = "NSString", feature = "block2"))]
         #[method(performExpiringActivityWithReason:usingBlock:)]
         pub unsafe fn performExpiringActivityWithReason_usingBlock(
             &self,
@@ -232,11 +232,11 @@ extern_methods!(
 extern_methods!(
     /// NSUserInformation
     unsafe impl NSProcessInfo {
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other userName)]
         pub unsafe fn userName(&self) -> Id<NSString>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other fullUserName)]
         pub unsafe fn fullUserName(&self) -> Id<NSString>;
     }
@@ -282,12 +282,12 @@ extern_methods!(
 );
 
 extern "C" {
-    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSProcessInfoThermalStateDidChangeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSProcessInfoPowerStateDidChangeNotification: &'static NSNotificationName;
 }
 

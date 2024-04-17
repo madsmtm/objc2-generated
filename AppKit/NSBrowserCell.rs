@@ -7,10 +7,10 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSCell")]
+    #[cfg(feature = "NSCell")]
     pub struct NSBrowserCell;
 
-    #[cfg(feature = "AppKit_NSCell")]
+    #[cfg(feature = "NSCell")]
     unsafe impl ClassType for NSBrowserCell {
         #[inherits(NSObject)]
         type Super = NSCell;
@@ -18,53 +18,46 @@ extern_class!(
     }
 );
 
-#[cfg(all(feature = "AppKit_NSAccessibilityProtocols", feature = "AppKit_NSCell"))]
+#[cfg(all(feature = "NSAccessibilityProtocols", feature = "NSCell"))]
 unsafe impl NSAccessibility for NSBrowserCell {}
 
-#[cfg(all(feature = "AppKit_NSAccessibilityProtocols", feature = "AppKit_NSCell"))]
+#[cfg(all(feature = "NSAccessibilityProtocols", feature = "NSCell"))]
 unsafe impl NSAccessibilityElementProtocol for NSBrowserCell {}
 
-#[cfg(feature = "AppKit_NSCell")]
+#[cfg(feature = "NSCell")]
 unsafe impl NSCoding for NSBrowserCell {}
 
-#[cfg(feature = "AppKit_NSCell")]
+#[cfg(feature = "NSCell")]
 unsafe impl NSCopying for NSBrowserCell {}
 
-#[cfg(feature = "AppKit_NSCell")]
+#[cfg(feature = "NSCell")]
 unsafe impl NSObjectProtocol for NSBrowserCell {}
 
-#[cfg(all(
-    feature = "AppKit_NSCell",
-    feature = "AppKit_NSUserInterfaceItemIdentification"
-))]
+#[cfg(all(feature = "NSCell", feature = "NSUserInterfaceItemIdentification"))]
 unsafe impl NSUserInterfaceItemIdentification for NSBrowserCell {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSCell")]
+    #[cfg(feature = "NSCell")]
     unsafe impl NSBrowserCell {
         #[method_id(@__retain_semantics Init initTextCell:)]
         pub unsafe fn initTextCell(this: Allocated<Self>, string: &NSString) -> Id<Self>;
 
-        #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(feature = "NSImage")]
         #[method_id(@__retain_semantics Init initImageCell:)]
         pub unsafe fn initImageCell(this: Allocated<Self>, image: Option<&NSImage>) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Id<Self>;
 
-        #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(feature = "NSImage")]
         #[method_id(@__retain_semantics Other branchImage)]
         pub unsafe fn branchImage(mtm: MainThreadMarker) -> Option<Id<NSImage>>;
 
-        #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(feature = "NSImage")]
         #[method_id(@__retain_semantics Other highlightedBranchImage)]
         pub unsafe fn highlightedBranchImage(mtm: MainThreadMarker) -> Option<Id<NSImage>>;
 
-        #[cfg(all(
-            feature = "AppKit_NSColor",
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSView"
-        ))]
+        #[cfg(all(feature = "NSColor", feature = "NSResponder", feature = "NSView"))]
         #[method_id(@__retain_semantics Other highlightColorInView:)]
         pub unsafe fn highlightColorInView(&self, control_view: &NSView) -> Option<Id<NSColor>>;
 
@@ -86,19 +79,19 @@ extern_methods!(
         #[method(set)]
         pub unsafe fn set(&self);
 
-        #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(feature = "NSImage")]
         #[method_id(@__retain_semantics Other image)]
         pub unsafe fn image(&self) -> Option<Id<NSImage>>;
 
-        #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(feature = "NSImage")]
         #[method(setImage:)]
         pub unsafe fn setImage(&self, image: Option<&NSImage>);
 
-        #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(feature = "NSImage")]
         #[method_id(@__retain_semantics Other alternateImage)]
         pub unsafe fn alternateImage(&self) -> Option<Id<NSImage>>;
 
-        #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(feature = "NSImage")]
         #[method(setAlternateImage:)]
         pub unsafe fn setAlternateImage(&self, alternate_image: Option<&NSImage>);
     }
@@ -106,7 +99,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSCell`
-    #[cfg(feature = "AppKit_NSCell")]
+    #[cfg(feature = "NSCell")]
     unsafe impl NSBrowserCell {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -115,7 +108,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSCell")]
+    #[cfg(feature = "NSCell")]
     unsafe impl NSBrowserCell {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;

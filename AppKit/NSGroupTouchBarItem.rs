@@ -7,10 +7,10 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSTouchBarItem")]
+    #[cfg(feature = "NSTouchBarItem")]
     pub struct NSGroupTouchBarItem;
 
-    #[cfg(feature = "AppKit_NSTouchBarItem")]
+    #[cfg(feature = "NSTouchBarItem")]
     unsafe impl ClassType for NSGroupTouchBarItem {
         #[inherits(NSObject)]
         type Super = NSTouchBarItem;
@@ -18,14 +18,14 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSTouchBarItem")]
+#[cfg(feature = "NSTouchBarItem")]
 unsafe impl NSCoding for NSGroupTouchBarItem {}
 
-#[cfg(feature = "AppKit_NSTouchBarItem")]
+#[cfg(feature = "NSTouchBarItem")]
 unsafe impl NSObjectProtocol for NSGroupTouchBarItem {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSTouchBarItem")]
+    #[cfg(feature = "NSTouchBarItem")]
     unsafe impl NSGroupTouchBarItem {
         #[method_id(@__retain_semantics Other groupItemWithIdentifier:items:)]
         pub unsafe fn groupItemWithIdentifier_items(
@@ -34,7 +34,7 @@ extern_methods!(
             mtm: MainThreadMarker,
         ) -> Id<Self>;
 
-        #[cfg(feature = "AppKit_NSUserInterfaceCompression")]
+        #[cfg(feature = "NSUserInterfaceCompression")]
         #[method_id(@__retain_semantics Other groupItemWithIdentifier:items:allowedCompressionOptions:)]
         pub unsafe fn groupItemWithIdentifier_items_allowedCompressionOptions(
             identifier: &NSTouchBarItemIdentifier,
@@ -49,11 +49,11 @@ extern_methods!(
             mtm: MainThreadMarker,
         ) -> Id<Self>;
 
-        #[cfg(feature = "AppKit_NSTouchBar")]
+        #[cfg(feature = "NSTouchBar")]
         #[method_id(@__retain_semantics Other groupTouchBar)]
         pub unsafe fn groupTouchBar(&self) -> Id<NSTouchBar>;
 
-        #[cfg(feature = "AppKit_NSTouchBar")]
+        #[cfg(feature = "NSTouchBar")]
         #[method(setGroupTouchBar:)]
         pub unsafe fn setGroupTouchBar(&self, group_touch_bar: &NSTouchBar);
 
@@ -63,11 +63,11 @@ extern_methods!(
         #[method(setCustomizationLabel:)]
         pub unsafe fn setCustomizationLabel(&self, customization_label: Option<&NSString>);
 
-        #[cfg(feature = "AppKit_NSUserInterfaceLayout")]
+        #[cfg(feature = "NSUserInterfaceLayout")]
         #[method(groupUserInterfaceLayoutDirection)]
         pub unsafe fn groupUserInterfaceLayoutDirection(&self) -> NSUserInterfaceLayoutDirection;
 
-        #[cfg(feature = "AppKit_NSUserInterfaceLayout")]
+        #[cfg(feature = "NSUserInterfaceLayout")]
         #[method(setGroupUserInterfaceLayoutDirection:)]
         pub unsafe fn setGroupUserInterfaceLayoutDirection(
             &self,
@@ -86,17 +86,17 @@ extern_methods!(
         #[method(setPreferredItemWidth:)]
         pub unsafe fn setPreferredItemWidth(&self, preferred_item_width: CGFloat);
 
-        #[cfg(feature = "AppKit_NSUserInterfaceCompression")]
+        #[cfg(feature = "NSUserInterfaceCompression")]
         #[method_id(@__retain_semantics Other effectiveCompressionOptions)]
         pub unsafe fn effectiveCompressionOptions(&self) -> Id<NSUserInterfaceCompressionOptions>;
 
-        #[cfg(feature = "AppKit_NSUserInterfaceCompression")]
+        #[cfg(feature = "NSUserInterfaceCompression")]
         #[method_id(@__retain_semantics Other prioritizedCompressionOptions)]
         pub unsafe fn prioritizedCompressionOptions(
             &self,
         ) -> Id<NSArray<NSUserInterfaceCompressionOptions>>;
 
-        #[cfg(feature = "AppKit_NSUserInterfaceCompression")]
+        #[cfg(feature = "NSUserInterfaceCompression")]
         #[method(setPrioritizedCompressionOptions:)]
         pub unsafe fn setPrioritizedCompressionOptions(
             &self,
@@ -107,7 +107,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSTouchBarItem`
-    #[cfg(feature = "AppKit_NSTouchBarItem")]
+    #[cfg(feature = "NSTouchBarItem")]
     unsafe impl NSGroupTouchBarItem {
         #[method_id(@__retain_semantics Init initWithIdentifier:)]
         pub unsafe fn initWithIdentifier(
@@ -125,7 +125,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSTouchBarItem")]
+    #[cfg(feature = "NSTouchBarItem")]
     unsafe impl NSGroupTouchBarItem {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;

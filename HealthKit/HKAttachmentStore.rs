@@ -23,7 +23,7 @@ unsafe impl NSObjectProtocol for HKAttachmentStore {}
 
 extern_methods!(
     unsafe impl HKAttachmentStore {
-        #[cfg(feature = "HealthKit_HKHealthStore")]
+        #[cfg(feature = "HKHealthStore")]
         #[method_id(@__retain_semantics Init initWithHealthStore:)]
         pub unsafe fn initWithHealthStore(
             this: Allocated<Self>,
@@ -31,8 +31,8 @@ extern_methods!(
         ) -> Id<Self>;
 
         #[cfg(all(
-            feature = "HealthKit_HKAttachment",
-            feature = "HealthKit_HKObject",
+            feature = "HKAttachment",
+            feature = "HKObject",
             feature = "block2",
             feature = "objc2-uniform-type-identifiers"
         ))]
@@ -47,11 +47,7 @@ extern_methods!(
             completion: &Block<dyn Fn(*mut HKAttachment, *mut NSError)>,
         );
 
-        #[cfg(all(
-            feature = "HealthKit_HKAttachment",
-            feature = "HealthKit_HKObject",
-            feature = "block2"
-        ))]
+        #[cfg(all(feature = "HKAttachment", feature = "HKObject", feature = "block2"))]
         #[method(removeAttachment:fromObject:completion:)]
         pub unsafe fn removeAttachment_fromObject_completion(
             &self,
@@ -60,11 +56,7 @@ extern_methods!(
             completion: &Block<dyn Fn(Bool, *mut NSError)>,
         );
 
-        #[cfg(all(
-            feature = "HealthKit_HKAttachment",
-            feature = "HealthKit_HKObject",
-            feature = "block2"
-        ))]
+        #[cfg(all(feature = "HKAttachment", feature = "HKObject", feature = "block2"))]
         #[method(getAttachmentsForObject:completion:)]
         pub unsafe fn getAttachmentsForObject_completion(
             &self,
@@ -72,7 +64,7 @@ extern_methods!(
             completion: &Block<dyn Fn(*mut NSArray<HKAttachment>, *mut NSError)>,
         );
 
-        #[cfg(all(feature = "HealthKit_HKAttachment", feature = "block2"))]
+        #[cfg(all(feature = "HKAttachment", feature = "block2"))]
         #[method_id(@__retain_semantics Other getDataForAttachment:completion:)]
         pub unsafe fn getDataForAttachment_completion(
             &self,
@@ -80,7 +72,7 @@ extern_methods!(
             completion: &Block<dyn Fn(*mut NSData, *mut NSError)>,
         ) -> Id<NSProgress>;
 
-        #[cfg(all(feature = "HealthKit_HKAttachment", feature = "block2"))]
+        #[cfg(all(feature = "HKAttachment", feature = "block2"))]
         #[method_id(@__retain_semantics Other streamDataForAttachment:dataHandler:)]
         pub unsafe fn streamDataForAttachment_dataHandler(
             &self,

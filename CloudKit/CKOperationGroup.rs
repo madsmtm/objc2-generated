@@ -63,11 +63,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Other operationGroupID)]
         pub unsafe fn operationGroupID(&self) -> Id<NSString>;
 
-        #[cfg(feature = "CloudKit_CKOperation")]
+        #[cfg(feature = "CKOperation")]
         #[method_id(@__retain_semantics Other defaultConfiguration)]
         pub unsafe fn defaultConfiguration(&self) -> Id<CKOperationConfiguration>;
 
-        #[cfg(feature = "CloudKit_CKOperation")]
+        #[cfg(feature = "CKOperation")]
         #[method(setDefaultConfiguration:)]
         pub unsafe fn setDefaultConfiguration(
             &self,

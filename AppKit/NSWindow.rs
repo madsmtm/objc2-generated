@@ -7,10 +7,10 @@ use objc2_foundation::*;
 
 use crate::*;
 
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub static NSAppKitVersionNumberWithCustomSheetPosition: NSAppKitVersion = 686.0 as _;
 
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub static NSAppKitVersionNumberWithDeferredWindowDisplaySupport: NSAppKitVersion = 1019.0 as _;
 
 // NS_OPTIONS
@@ -55,10 +55,10 @@ unsafe impl RefEncode for NSWindowStyleMask {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub static NSModalResponseOK: NSModalResponse = 1;
 
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub static NSModalResponseCancel: NSModalResponse = 0;
 
 pub const NSDisplayWindowRunLoopOrdering: c_uint = 600000;
@@ -365,10 +365,10 @@ pub type NSWindowTabbingIdentifier = NSString;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSResponder")]
+    #[cfg(feature = "NSResponder")]
     pub struct NSWindow;
 
-    #[cfg(feature = "AppKit_NSResponder")]
+    #[cfg(feature = "NSResponder")]
     unsafe impl ClassType for NSWindow {
         #[inherits(NSObject)]
         type Super = NSResponder;
@@ -376,47 +376,35 @@ extern_class!(
     }
 );
 
-#[cfg(all(
-    feature = "AppKit_NSAccessibilityProtocols",
-    feature = "AppKit_NSResponder"
-))]
+#[cfg(all(feature = "NSAccessibilityProtocols", feature = "NSResponder"))]
 unsafe impl NSAccessibility for NSWindow {}
 
-#[cfg(all(
-    feature = "AppKit_NSAccessibilityProtocols",
-    feature = "AppKit_NSResponder"
-))]
+#[cfg(all(feature = "NSAccessibilityProtocols", feature = "NSResponder"))]
 unsafe impl NSAccessibilityElementProtocol for NSWindow {}
 
-#[cfg(all(feature = "AppKit_NSAnimation", feature = "AppKit_NSResponder"))]
+#[cfg(all(feature = "NSAnimation", feature = "NSResponder"))]
 unsafe impl NSAnimatablePropertyContainer for NSWindow {}
 
-#[cfg(all(feature = "AppKit_NSAppearance", feature = "AppKit_NSResponder"))]
+#[cfg(all(feature = "NSAppearance", feature = "NSResponder"))]
 unsafe impl NSAppearanceCustomization for NSWindow {}
 
-#[cfg(feature = "AppKit_NSResponder")]
+#[cfg(feature = "NSResponder")]
 unsafe impl NSCoding for NSWindow {}
 
-#[cfg(all(feature = "AppKit_NSMenu", feature = "AppKit_NSResponder"))]
+#[cfg(all(feature = "NSMenu", feature = "NSResponder"))]
 unsafe impl NSMenuItemValidation for NSWindow {}
 
-#[cfg(feature = "AppKit_NSResponder")]
+#[cfg(feature = "NSResponder")]
 unsafe impl NSObjectProtocol for NSWindow {}
 
-#[cfg(all(
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSUserInterfaceItemIdentification"
-))]
+#[cfg(all(feature = "NSResponder", feature = "NSUserInterfaceItemIdentification"))]
 unsafe impl NSUserInterfaceItemIdentification for NSWindow {}
 
-#[cfg(all(
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSUserInterfaceValidation"
-))]
+#[cfg(all(feature = "NSResponder", feature = "NSUserInterfaceValidation"))]
 unsafe impl NSUserInterfaceValidations for NSWindow {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSResponder")]
+    #[cfg(feature = "NSResponder")]
     unsafe impl NSWindow {
         #[method(frameRectForContentRect:styleMask:)]
         pub unsafe fn frameRectForContentRect_styleMask(
@@ -439,7 +427,7 @@ extern_methods!(
             mtm: MainThreadMarker,
         ) -> CGFloat;
 
-        #[cfg(feature = "AppKit_NSGraphics")]
+        #[cfg(feature = "NSGraphics")]
         #[method(defaultDepthLimit)]
         pub unsafe fn defaultDepthLimit(mtm: MainThreadMarker) -> NSWindowDepth;
 
@@ -449,7 +437,7 @@ extern_methods!(
         #[method(contentRectForFrameRect:)]
         pub fn contentRectForFrameRect(&self, frame_rect: NSRect) -> NSRect;
 
-        #[cfg(feature = "AppKit_NSGraphics")]
+        #[cfg(feature = "NSGraphics")]
         #[method_id(@__retain_semantics Init initWithContentRect:styleMask:backing:defer:)]
         pub unsafe fn initWithContentRect_styleMask_backing_defer(
             this: Allocated<Self>,
@@ -459,7 +447,7 @@ extern_methods!(
             flag: bool,
         ) -> Id<Self>;
 
-        #[cfg(all(feature = "AppKit_NSGraphics", feature = "AppKit_NSScreen"))]
+        #[cfg(all(feature = "NSGraphics", feature = "NSScreen"))]
         #[method_id(@__retain_semantics Init initWithContentRect:styleMask:backing:defer:screen:)]
         pub unsafe fn initWithContentRect_styleMask_backing_defer_screen(
             this: Allocated<Self>,
@@ -510,8 +498,8 @@ extern_methods!(
         pub unsafe fn contentLayoutGuide(&self) -> Option<Id<AnyObject>>;
 
         #[cfg(all(
-            feature = "AppKit_NSTitlebarAccessoryViewController",
-            feature = "AppKit_NSViewController"
+            feature = "NSTitlebarAccessoryViewController",
+            feature = "NSViewController"
         ))]
         #[method_id(@__retain_semantics Other titlebarAccessoryViewControllers)]
         pub unsafe fn titlebarAccessoryViewControllers(
@@ -519,8 +507,8 @@ extern_methods!(
         ) -> Id<NSArray<NSTitlebarAccessoryViewController>>;
 
         #[cfg(all(
-            feature = "AppKit_NSTitlebarAccessoryViewController",
-            feature = "AppKit_NSViewController"
+            feature = "NSTitlebarAccessoryViewController",
+            feature = "NSViewController"
         ))]
         #[method(setTitlebarAccessoryViewControllers:)]
         pub unsafe fn setTitlebarAccessoryViewControllers(
@@ -529,8 +517,8 @@ extern_methods!(
         );
 
         #[cfg(all(
-            feature = "AppKit_NSTitlebarAccessoryViewController",
-            feature = "AppKit_NSViewController"
+            feature = "NSTitlebarAccessoryViewController",
+            feature = "NSViewController"
         ))]
         #[method(addTitlebarAccessoryViewController:)]
         pub unsafe fn addTitlebarAccessoryViewController(
@@ -539,8 +527,8 @@ extern_methods!(
         );
 
         #[cfg(all(
-            feature = "AppKit_NSTitlebarAccessoryViewController",
-            feature = "AppKit_NSViewController"
+            feature = "NSTitlebarAccessoryViewController",
+            feature = "NSViewController"
         ))]
         #[method(insertTitlebarAccessoryViewController:atIndex:)]
         pub unsafe fn insertTitlebarAccessoryViewController_atIndex(
@@ -573,11 +561,11 @@ extern_methods!(
         #[method(setExcludedFromWindowsMenu:)]
         pub unsafe fn setExcludedFromWindowsMenu(&self, excluded_from_windows_menu: bool);
 
-        #[cfg(feature = "AppKit_NSView")]
+        #[cfg(feature = "NSView")]
         #[method_id(@__retain_semantics Other contentView)]
         pub fn contentView(&self) -> Option<Id<NSView>>;
 
-        #[cfg(feature = "AppKit_NSView")]
+        #[cfg(feature = "NSView")]
         #[method(setContentView:)]
         pub fn setContentView(&self, content_view: Option<&NSView>);
 
@@ -596,7 +584,7 @@ extern_methods!(
         #[method(setStyleMask:)]
         pub fn setStyleMask(&self, style_mask: NSWindowStyleMask);
 
-        #[cfg(all(feature = "AppKit_NSText", feature = "AppKit_NSView"))]
+        #[cfg(all(feature = "NSText", feature = "NSView"))]
         #[method_id(@__retain_semantics Other fieldEditor:forObject:)]
         pub unsafe fn fieldEditor_forObject(
             &self,
@@ -607,7 +595,7 @@ extern_methods!(
         #[method(endEditingFor:)]
         pub unsafe fn endEditingFor(&self, object: Option<&AnyObject>);
 
-        #[cfg(feature = "AppKit_NSScreen")]
+        #[cfg(feature = "NSScreen")]
         #[method(constrainFrameRect:toScreen:)]
         pub unsafe fn constrainFrameRect_toScreen(
             &self,
@@ -701,7 +689,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other firstResponder)]
         pub fn firstResponder(&self) -> Option<Id<NSResponder>>;
 
-        #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(feature = "NSEvent")]
         #[method(resizeFlags)]
         pub unsafe fn resizeFlags(&self) -> NSEventModifierFlags;
 
@@ -732,7 +720,7 @@ extern_methods!(
         #[method(tryToPerform:with:)]
         pub unsafe fn tryToPerform_with(&self, action: Sel, object: Option<&AnyObject>) -> bool;
 
-        #[cfg(feature = "AppKit_NSPasteboard")]
+        #[cfg(feature = "NSPasteboard")]
         #[method_id(@__retain_semantics Other validRequestorForSendType:returnType:)]
         pub unsafe fn validRequestorForSendType_returnType(
             &self,
@@ -740,11 +728,11 @@ extern_methods!(
             return_type: Option<&NSPasteboardType>,
         ) -> Option<Id<AnyObject>>;
 
-        #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(feature = "NSColor")]
         #[method_id(@__retain_semantics Other backgroundColor)]
         pub unsafe fn backgroundColor(&self) -> Id<NSColor>;
 
-        #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(feature = "NSColor")]
         #[method(setBackgroundColor:)]
         pub fn setBackgroundColor(&self, background_color: Option<&NSColor>);
 
@@ -810,7 +798,7 @@ extern_methods!(
         #[method(orderOut:)]
         pub fn orderOut(&self, sender: Option<&AnyObject>);
 
-        #[cfg(feature = "AppKit_NSGraphics")]
+        #[cfg(feature = "NSGraphics")]
         #[method(orderWindow:relativeTo:)]
         pub unsafe fn orderWindow_relativeTo(
             &self,
@@ -821,11 +809,11 @@ extern_methods!(
         #[method(orderFrontRegardless)]
         pub unsafe fn orderFrontRegardless(&self);
 
-        #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(feature = "NSImage")]
         #[method_id(@__retain_semantics Other miniwindowImage)]
         pub unsafe fn miniwindowImage(&self) -> Option<Id<NSImage>>;
 
-        #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(feature = "NSImage")]
         #[method(setMiniwindowImage:)]
         pub unsafe fn setMiniwindowImage(&self, miniwindow_image: Option<&NSImage>);
 
@@ -835,7 +823,7 @@ extern_methods!(
         #[method(setMiniwindowTitle:)]
         pub unsafe fn setMiniwindowTitle(&self, miniwindow_title: Option<&NSString>);
 
-        #[cfg(feature = "AppKit_NSDockTile")]
+        #[cfg(feature = "NSDockTile")]
         #[method_id(@__retain_semantics Other dockTile)]
         pub unsafe fn dockTile(&self) -> Id<NSDockTile>;
 
@@ -951,11 +939,11 @@ extern_methods!(
             allows_tool_tips_when_application_is_inactive: bool,
         );
 
-        #[cfg(feature = "AppKit_NSGraphics")]
+        #[cfg(feature = "NSGraphics")]
         #[method(backingType)]
         pub unsafe fn backingType(&self) -> NSBackingStoreType;
 
-        #[cfg(feature = "AppKit_NSGraphics")]
+        #[cfg(feature = "NSGraphics")]
         #[method(setBackingType:)]
         pub unsafe fn setBackingType(&self, backing_type: NSBackingStoreType);
 
@@ -965,11 +953,11 @@ extern_methods!(
         #[method(setLevel:)]
         pub fn setLevel(&self, level: NSWindowLevel);
 
-        #[cfg(feature = "AppKit_NSGraphics")]
+        #[cfg(feature = "NSGraphics")]
         #[method(depthLimit)]
         pub unsafe fn depthLimit(&self) -> NSWindowDepth;
 
-        #[cfg(feature = "AppKit_NSGraphics")]
+        #[cfg(feature = "NSGraphics")]
         #[method(setDepthLimit:)]
         pub unsafe fn setDepthLimit(&self, depth_limit: NSWindowDepth);
 
@@ -979,11 +967,11 @@ extern_methods!(
         #[method(hasDynamicDepthLimit)]
         pub unsafe fn hasDynamicDepthLimit(&self) -> bool;
 
-        #[cfg(feature = "AppKit_NSScreen")]
+        #[cfg(feature = "NSScreen")]
         #[method_id(@__retain_semantics Other screen)]
         pub fn screen(&self) -> Option<Id<NSScreen>>;
 
-        #[cfg(feature = "AppKit_NSScreen")]
+        #[cfg(feature = "NSScreen")]
         #[method_id(@__retain_semantics Other deepestScreen)]
         pub unsafe fn deepestScreen(&self) -> Option<Id<NSScreen>>;
 
@@ -1123,21 +1111,21 @@ extern_methods!(
         #[method(setMaxFullScreenContentSize:)]
         pub unsafe fn setMaxFullScreenContentSize(&self, max_full_screen_content_size: NSSize);
 
-        #[cfg(feature = "AppKit_NSGraphics")]
+        #[cfg(feature = "NSGraphics")]
         #[method_id(@__retain_semantics Other deviceDescription)]
         pub unsafe fn deviceDescription(
             &self,
         ) -> Id<NSDictionary<NSDeviceDescriptionKey, AnyObject>>;
 
-        #[cfg(feature = "AppKit_NSWindowController")]
+        #[cfg(feature = "NSWindowController")]
         #[method_id(@__retain_semantics Other windowController)]
         pub unsafe fn windowController(&self) -> Option<Id<NSWindowController>>;
 
-        #[cfg(feature = "AppKit_NSWindowController")]
+        #[cfg(feature = "NSWindowController")]
         #[method(setWindowController:)]
         pub unsafe fn setWindowController(&self, window_controller: Option<&NSWindowController>);
 
-        #[cfg(all(feature = "AppKit_NSApplication", feature = "block2"))]
+        #[cfg(all(feature = "NSApplication", feature = "block2"))]
         #[method(beginSheet:completionHandler:)]
         pub unsafe fn beginSheet_completionHandler(
             &self,
@@ -1145,7 +1133,7 @@ extern_methods!(
             handler: Option<&Block<dyn Fn(NSModalResponse)>>,
         );
 
-        #[cfg(all(feature = "AppKit_NSApplication", feature = "block2"))]
+        #[cfg(all(feature = "NSApplication", feature = "block2"))]
         #[method(beginCriticalSheet:completionHandler:)]
         pub unsafe fn beginCriticalSheet_completionHandler(
             &self,
@@ -1156,7 +1144,7 @@ extern_methods!(
         #[method(endSheet:)]
         pub unsafe fn endSheet(&self, sheet_window: &NSWindow);
 
-        #[cfg(feature = "AppKit_NSApplication")]
+        #[cfg(feature = "NSApplication")]
         #[method(endSheet:returnCode:)]
         pub unsafe fn endSheet_returnCode(
             &self,
@@ -1176,11 +1164,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other sheetParent)]
         pub unsafe fn sheetParent(&self) -> Option<Id<NSWindow>>;
 
-        #[cfg(all(
-            feature = "AppKit_NSButton",
-            feature = "AppKit_NSControl",
-            feature = "AppKit_NSView"
-        ))]
+        #[cfg(all(feature = "NSButton", feature = "NSControl", feature = "NSView"))]
         #[method_id(@__retain_semantics Other standardWindowButton:forStyleMask:)]
         pub unsafe fn standardWindowButton_forStyleMask(
             b: NSWindowButton,
@@ -1188,15 +1172,11 @@ extern_methods!(
             mtm: MainThreadMarker,
         ) -> Option<Id<NSButton>>;
 
-        #[cfg(all(
-            feature = "AppKit_NSButton",
-            feature = "AppKit_NSControl",
-            feature = "AppKit_NSView"
-        ))]
+        #[cfg(all(feature = "NSButton", feature = "NSControl", feature = "NSView"))]
         #[method_id(@__retain_semantics Other standardWindowButton:)]
         pub fn standardWindowButton(&self, b: NSWindowButton) -> Option<Id<NSButton>>;
 
-        #[cfg(feature = "AppKit_NSGraphics")]
+        #[cfg(feature = "NSGraphics")]
         #[method(addChildWindow:ordered:)]
         pub unsafe fn addChildWindow_ordered(
             &self,
@@ -1216,23 +1196,23 @@ extern_methods!(
         #[method(setParentWindow:)]
         pub unsafe fn setParentWindow(&self, parent_window: Option<&NSWindow>);
 
-        #[cfg(feature = "AppKit_NSAppearance")]
+        #[cfg(feature = "NSAppearance")]
         #[method_id(@__retain_semantics Other appearanceSource)]
         pub unsafe fn appearanceSource(&self) -> Option<Id<NSObject>>;
 
-        #[cfg(feature = "AppKit_NSAppearance")]
+        #[cfg(feature = "NSAppearance")]
         #[method(setAppearanceSource:)]
         pub unsafe fn setAppearanceSource(&self, appearance_source: Option<&NSObject>);
 
-        #[cfg(feature = "AppKit_NSColorSpace")]
+        #[cfg(feature = "NSColorSpace")]
         #[method_id(@__retain_semantics Other colorSpace)]
         pub unsafe fn colorSpace(&self) -> Option<Id<NSColorSpace>>;
 
-        #[cfg(feature = "AppKit_NSColorSpace")]
+        #[cfg(feature = "NSColorSpace")]
         #[method(setColorSpace:)]
         pub unsafe fn setColorSpace(&self, color_space: Option<&NSColorSpace>);
 
-        #[cfg(feature = "AppKit_NSGraphics")]
+        #[cfg(feature = "NSGraphics")]
         #[method(canRepresentDisplayGamut:)]
         pub unsafe fn canRepresentDisplayGamut(&self, display_gamut: NSDisplayGamut) -> bool;
 
@@ -1261,32 +1241,32 @@ extern_methods!(
             titlebar_separator_style: NSTitlebarSeparatorStyle,
         );
 
-        #[cfg(feature = "AppKit_NSViewController")]
+        #[cfg(feature = "NSViewController")]
         #[method_id(@__retain_semantics Other contentViewController)]
         pub unsafe fn contentViewController(&self) -> Option<Id<NSViewController>>;
 
-        #[cfg(feature = "AppKit_NSViewController")]
+        #[cfg(feature = "NSViewController")]
         #[method(setContentViewController:)]
         pub unsafe fn setContentViewController(
             &self,
             content_view_controller: Option<&NSViewController>,
         );
 
-        #[cfg(feature = "AppKit_NSViewController")]
+        #[cfg(feature = "NSViewController")]
         #[method_id(@__retain_semantics Other windowWithContentViewController:)]
         pub unsafe fn windowWithContentViewController(
             content_view_controller: &NSViewController,
         ) -> Id<Self>;
 
-        #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(feature = "NSEvent")]
         #[method(performWindowDragWithEvent:)]
         pub fn performWindowDragWithEvent(&self, event: &NSEvent);
 
-        #[cfg(feature = "AppKit_NSView")]
+        #[cfg(feature = "NSView")]
         #[method_id(@__retain_semantics Other initialFirstResponder)]
         pub unsafe fn initialFirstResponder(&self) -> Option<Id<NSView>>;
 
-        #[cfg(feature = "AppKit_NSView")]
+        #[cfg(feature = "NSView")]
         #[method(setInitialFirstResponder:)]
         pub fn setInitialFirstResponder(&self, initial_first_responder: Option<&NSView>);
 
@@ -1296,30 +1276,22 @@ extern_methods!(
         #[method(selectPreviousKeyView:)]
         pub fn selectPreviousKeyView(&self, sender: Option<&AnyObject>);
 
-        #[cfg(feature = "AppKit_NSView")]
+        #[cfg(feature = "NSView")]
         #[method(selectKeyViewFollowingView:)]
         pub unsafe fn selectKeyViewFollowingView(&self, view: &NSView);
 
-        #[cfg(feature = "AppKit_NSView")]
+        #[cfg(feature = "NSView")]
         #[method(selectKeyViewPrecedingView:)]
         pub unsafe fn selectKeyViewPrecedingView(&self, view: &NSView);
 
         #[method(keyViewSelectionDirection)]
         pub unsafe fn keyViewSelectionDirection(&self) -> NSSelectionDirection;
 
-        #[cfg(all(
-            feature = "AppKit_NSActionCell",
-            feature = "AppKit_NSButtonCell",
-            feature = "AppKit_NSCell"
-        ))]
+        #[cfg(all(feature = "NSActionCell", feature = "NSButtonCell", feature = "NSCell"))]
         #[method_id(@__retain_semantics Other defaultButtonCell)]
         pub unsafe fn defaultButtonCell(&self) -> Option<Id<NSButtonCell>>;
 
-        #[cfg(all(
-            feature = "AppKit_NSActionCell",
-            feature = "AppKit_NSButtonCell",
-            feature = "AppKit_NSCell"
-        ))]
+        #[cfg(all(feature = "NSActionCell", feature = "NSButtonCell", feature = "NSCell"))]
         #[method(setDefaultButtonCell:)]
         pub unsafe fn setDefaultButtonCell(&self, default_button_cell: Option<&NSButtonCell>);
 
@@ -1338,11 +1310,11 @@ extern_methods!(
         #[method(recalculateKeyViewLoop)]
         pub unsafe fn recalculateKeyViewLoop(&self);
 
-        #[cfg(feature = "AppKit_NSToolbar")]
+        #[cfg(feature = "NSToolbar")]
         #[method_id(@__retain_semantics Other toolbar)]
         pub unsafe fn toolbar(&self) -> Option<Id<NSToolbar>>;
 
-        #[cfg(feature = "AppKit_NSToolbar")]
+        #[cfg(feature = "NSToolbar")]
         #[method(setToolbar:)]
         pub unsafe fn setToolbar(&self, toolbar: Option<&NSToolbar>);
 
@@ -1406,7 +1378,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other tabbedWindows)]
         pub unsafe fn tabbedWindows(&self) -> Option<Id<NSArray<NSWindow>>>;
 
-        #[cfg(feature = "AppKit_NSGraphics")]
+        #[cfg(feature = "NSGraphics")]
         #[method(addTabbedWindow:ordered:)]
         pub unsafe fn addTabbedWindow_ordered(
             &self,
@@ -1414,11 +1386,11 @@ extern_methods!(
             ordered: NSWindowOrderingMode,
         );
 
-        #[cfg(feature = "AppKit_NSWindowTab")]
+        #[cfg(feature = "NSWindowTab")]
         #[method_id(@__retain_semantics Other tab)]
         pub unsafe fn tab(&self) -> Id<NSWindowTab>;
 
-        #[cfg(feature = "AppKit_NSWindowTabGroup")]
+        #[cfg(feature = "NSWindowTabGroup")]
         #[method_id(@__retain_semantics Other tabGroup)]
         pub fn tabGroup(&self) -> Option<Id<NSWindowTabGroup>>;
 
@@ -1433,7 +1405,7 @@ extern_methods!(
         #[method(hasActiveWindowSharingSession)]
         pub unsafe fn hasActiveWindowSharingSession(&self) -> bool;
 
-        #[cfg(feature = "AppKit_NSUserInterfaceLayout")]
+        #[cfg(feature = "NSUserInterfaceLayout")]
         #[method(windowTitlebarLayoutDirection)]
         pub unsafe fn windowTitlebarLayoutDirection(&self) -> NSUserInterfaceLayoutDirection;
     }
@@ -1441,7 +1413,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSResponder`
-    #[cfg(feature = "AppKit_NSResponder")]
+    #[cfg(feature = "NSResponder")]
     unsafe impl NSWindow {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -1450,7 +1422,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSResponder")]
+    #[cfg(feature = "NSResponder")]
     unsafe impl NSWindow {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
@@ -1459,9 +1431,9 @@ extern_methods!(
 
 extern_methods!(
     /// NSEvent
-    #[cfg(feature = "AppKit_NSResponder")]
+    #[cfg(feature = "NSResponder")]
     unsafe impl NSWindow {
-        #[cfg(all(feature = "AppKit_NSEvent", feature = "block2"))]
+        #[cfg(all(feature = "NSEvent", feature = "block2"))]
         #[method(trackEventsMatchingMask:timeout:mode:handler:)]
         pub unsafe fn trackEventsMatchingMask_timeout_mode_handler(
             &self,
@@ -1471,11 +1443,11 @@ extern_methods!(
             tracking_handler: &Block<dyn Fn(*mut NSEvent, NonNull<Bool>) + '_>,
         );
 
-        #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(feature = "NSEvent")]
         #[method_id(@__retain_semantics Other nextEventMatchingMask:)]
         pub unsafe fn nextEventMatchingMask(&self, mask: NSEventMask) -> Option<Id<NSEvent>>;
 
-        #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(feature = "NSEvent")]
         #[method_id(@__retain_semantics Other nextEventMatchingMask:untilDate:inMode:dequeue:)]
         pub unsafe fn nextEventMatchingMask_untilDate_inMode_dequeue(
             &self,
@@ -1485,7 +1457,7 @@ extern_methods!(
             deq_flag: bool,
         ) -> Option<Id<NSEvent>>;
 
-        #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(feature = "NSEvent")]
         #[method(discardEventsMatchingMask:beforeEvent:)]
         pub unsafe fn discardEventsMatchingMask_beforeEvent(
             &self,
@@ -1493,15 +1465,15 @@ extern_methods!(
             last_event: Option<&NSEvent>,
         );
 
-        #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(feature = "NSEvent")]
         #[method(postEvent:atStart:)]
         pub unsafe fn postEvent_atStart(&self, event: &NSEvent, flag: bool);
 
-        #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(feature = "NSEvent")]
         #[method(sendEvent:)]
         pub fn sendEvent(&self, event: &NSEvent);
 
-        #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(feature = "NSEvent")]
         #[method_id(@__retain_semantics Other currentEvent)]
         pub unsafe fn currentEvent(&self) -> Option<Id<NSEvent>>;
 
@@ -1524,7 +1496,7 @@ extern_methods!(
 
 extern_methods!(
     /// NSCursorRect
-    #[cfg(feature = "AppKit_NSResponder")]
+    #[cfg(feature = "NSResponder")]
     unsafe impl NSWindow {
         #[method(disableCursorRects)]
         pub unsafe fn disableCursorRects(&self);
@@ -1538,7 +1510,7 @@ extern_methods!(
         #[method(areCursorRectsEnabled)]
         pub unsafe fn areCursorRectsEnabled(&self) -> bool;
 
-        #[cfg(feature = "AppKit_NSView")]
+        #[cfg(feature = "NSView")]
         #[method(invalidateCursorRectsForView:)]
         pub fn invalidateCursorRectsForView(&self, view: &NSView);
 
@@ -1549,13 +1521,9 @@ extern_methods!(
 
 extern_methods!(
     /// NSDrag
-    #[cfg(feature = "AppKit_NSResponder")]
+    #[cfg(feature = "NSResponder")]
     unsafe impl NSWindow {
-        #[cfg(all(
-            feature = "AppKit_NSEvent",
-            feature = "AppKit_NSImage",
-            feature = "AppKit_NSPasteboard"
-        ))]
+        #[cfg(all(feature = "NSEvent", feature = "NSImage", feature = "NSPasteboard"))]
         #[method(dragImage:at:offset:event:pasteboard:source:slideBack:)]
         pub unsafe fn dragImage_at_offset_event_pasteboard_source_slideBack(
             &self,
@@ -1568,7 +1536,7 @@ extern_methods!(
             slide_flag: bool,
         );
 
-        #[cfg(feature = "AppKit_NSPasteboard")]
+        #[cfg(feature = "NSPasteboard")]
         #[method(registerForDraggedTypes:)]
         pub fn registerForDraggedTypes(&self, new_types: &NSArray<NSPasteboardType>);
 
@@ -1579,7 +1547,7 @@ extern_methods!(
 
 extern_methods!(
     /// NSCarbonExtensions
-    #[cfg(feature = "AppKit_NSResponder")]
+    #[cfg(feature = "NSResponder")]
     unsafe impl NSWindow {
         #[method_id(@__retain_semantics Init initWithWindowRef:)]
         pub unsafe fn initWithWindowRef(
@@ -1594,18 +1562,18 @@ extern_methods!(
 
 extern_methods!(
     /// NSDisplayLink
-    #[cfg(feature = "AppKit_NSResponder")]
+    #[cfg(feature = "NSResponder")]
     unsafe impl NSWindow {}
 );
 
 extern_protocol!(
     pub unsafe trait NSWindowDelegate: NSObjectProtocol + IsMainThreadOnly {
-        #[cfg(feature = "AppKit_NSResponder")]
+        #[cfg(feature = "NSResponder")]
         #[optional]
         #[method(windowShouldClose:)]
         unsafe fn windowShouldClose(&self, sender: &NSWindow) -> bool;
 
-        #[cfg(feature = "AppKit_NSResponder")]
+        #[cfg(feature = "NSResponder")]
         #[optional]
         #[method_id(@__retain_semantics Other windowWillReturnFieldEditor:toObject:)]
         unsafe fn windowWillReturnFieldEditor_toObject(
@@ -1614,12 +1582,12 @@ extern_protocol!(
             client: Option<&AnyObject>,
         ) -> Option<Id<AnyObject>>;
 
-        #[cfg(feature = "AppKit_NSResponder")]
+        #[cfg(feature = "NSResponder")]
         #[optional]
         #[method(windowWillResize:toSize:)]
         unsafe fn windowWillResize_toSize(&self, sender: &NSWindow, frame_size: NSSize) -> NSSize;
 
-        #[cfg(feature = "AppKit_NSResponder")]
+        #[cfg(feature = "NSResponder")]
         #[optional]
         #[method(windowWillUseStandardFrame:defaultFrame:)]
         unsafe fn windowWillUseStandardFrame_defaultFrame(
@@ -1628,12 +1596,12 @@ extern_protocol!(
             new_frame: NSRect,
         ) -> NSRect;
 
-        #[cfg(feature = "AppKit_NSResponder")]
+        #[cfg(feature = "NSResponder")]
         #[optional]
         #[method(windowShouldZoom:toFrame:)]
         unsafe fn windowShouldZoom_toFrame(&self, window: &NSWindow, new_frame: NSRect) -> bool;
 
-        #[cfg(feature = "AppKit_NSResponder")]
+        #[cfg(feature = "NSResponder")]
         #[optional]
         #[method_id(@__retain_semantics Other windowWillReturnUndoManager:)]
         unsafe fn windowWillReturnUndoManager(
@@ -1641,7 +1609,7 @@ extern_protocol!(
             window: &NSWindow,
         ) -> Option<Id<NSUndoManager>>;
 
-        #[cfg(feature = "AppKit_NSResponder")]
+        #[cfg(feature = "NSResponder")]
         #[optional]
         #[method(window:willPositionSheet:usingRect:)]
         unsafe fn window_willPositionSheet_usingRect(
@@ -1651,7 +1619,7 @@ extern_protocol!(
             rect: NSRect,
         ) -> NSRect;
 
-        #[cfg(all(feature = "AppKit_NSMenu", feature = "AppKit_NSResponder"))]
+        #[cfg(all(feature = "NSMenu", feature = "NSResponder"))]
         #[optional]
         #[method(window:shouldPopUpDocumentPathMenu:)]
         unsafe fn window_shouldPopUpDocumentPathMenu(
@@ -1660,11 +1628,7 @@ extern_protocol!(
             menu: &NSMenu,
         ) -> bool;
 
-        #[cfg(all(
-            feature = "AppKit_NSEvent",
-            feature = "AppKit_NSPasteboard",
-            feature = "AppKit_NSResponder"
-        ))]
+        #[cfg(all(feature = "NSEvent", feature = "NSPasteboard", feature = "NSResponder"))]
         #[optional]
         #[method(window:shouldDragDocumentWithEvent:from:withPasteboard:)]
         unsafe fn window_shouldDragDocumentWithEvent_from_withPasteboard(
@@ -1675,7 +1639,7 @@ extern_protocol!(
             pasteboard: &NSPasteboard,
         ) -> bool;
 
-        #[cfg(feature = "AppKit_NSResponder")]
+        #[cfg(feature = "NSResponder")]
         #[optional]
         #[method(window:willUseFullScreenContentSize:)]
         unsafe fn window_willUseFullScreenContentSize(
@@ -1684,7 +1648,7 @@ extern_protocol!(
             proposed_size: NSSize,
         ) -> NSSize;
 
-        #[cfg(all(feature = "AppKit_NSApplication", feature = "AppKit_NSResponder"))]
+        #[cfg(all(feature = "NSApplication", feature = "NSResponder"))]
         #[optional]
         #[method(window:willUseFullScreenPresentationOptions:)]
         unsafe fn window_willUseFullScreenPresentationOptions(
@@ -1693,7 +1657,7 @@ extern_protocol!(
             proposed_options: NSApplicationPresentationOptions,
         ) -> NSApplicationPresentationOptions;
 
-        #[cfg(feature = "AppKit_NSResponder")]
+        #[cfg(feature = "NSResponder")]
         #[optional]
         #[method_id(@__retain_semantics Other customWindowsToEnterFullScreenForWindow:)]
         unsafe fn customWindowsToEnterFullScreenForWindow(
@@ -1701,7 +1665,7 @@ extern_protocol!(
             window: &NSWindow,
         ) -> Option<Id<NSArray<NSWindow>>>;
 
-        #[cfg(feature = "AppKit_NSResponder")]
+        #[cfg(feature = "NSResponder")]
         #[optional]
         #[method(window:startCustomAnimationToEnterFullScreenWithDuration:)]
         unsafe fn window_startCustomAnimationToEnterFullScreenWithDuration(
@@ -1710,12 +1674,12 @@ extern_protocol!(
             duration: NSTimeInterval,
         );
 
-        #[cfg(feature = "AppKit_NSResponder")]
+        #[cfg(feature = "NSResponder")]
         #[optional]
         #[method(windowDidFailToEnterFullScreen:)]
         unsafe fn windowDidFailToEnterFullScreen(&self, window: &NSWindow);
 
-        #[cfg(feature = "AppKit_NSResponder")]
+        #[cfg(feature = "NSResponder")]
         #[optional]
         #[method_id(@__retain_semantics Other customWindowsToExitFullScreenForWindow:)]
         unsafe fn customWindowsToExitFullScreenForWindow(
@@ -1723,7 +1687,7 @@ extern_protocol!(
             window: &NSWindow,
         ) -> Option<Id<NSArray<NSWindow>>>;
 
-        #[cfg(feature = "AppKit_NSResponder")]
+        #[cfg(feature = "NSResponder")]
         #[optional]
         #[method(window:startCustomAnimationToExitFullScreenWithDuration:)]
         unsafe fn window_startCustomAnimationToExitFullScreenWithDuration(
@@ -1732,7 +1696,7 @@ extern_protocol!(
             duration: NSTimeInterval,
         );
 
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSScreen"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSScreen"))]
         #[optional]
         #[method_id(@__retain_semantics Other customWindowsToEnterFullScreenForWindow:onScreen:)]
         unsafe fn customWindowsToEnterFullScreenForWindow_onScreen(
@@ -1741,7 +1705,7 @@ extern_protocol!(
             screen: &NSScreen,
         ) -> Option<Id<NSArray<NSWindow>>>;
 
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSScreen"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSScreen"))]
         #[optional]
         #[method(window:startCustomAnimationToEnterFullScreenOnScreen:withDuration:)]
         unsafe fn window_startCustomAnimationToEnterFullScreenOnScreen_withDuration(
@@ -1751,12 +1715,12 @@ extern_protocol!(
             duration: NSTimeInterval,
         );
 
-        #[cfg(feature = "AppKit_NSResponder")]
+        #[cfg(feature = "NSResponder")]
         #[optional]
         #[method(windowDidFailToExitFullScreen:)]
         unsafe fn windowDidFailToExitFullScreen(&self, window: &NSWindow);
 
-        #[cfg(feature = "AppKit_NSResponder")]
+        #[cfg(feature = "NSResponder")]
         #[optional]
         #[method(window:willResizeForVersionBrowserWithMaxPreferredSize:maxAllowedSize:)]
         unsafe fn window_willResizeForVersionBrowserWithMaxPreferredSize_maxAllowedSize(
@@ -1766,20 +1730,17 @@ extern_protocol!(
             max_allowed_frame_size: NSSize,
         ) -> NSSize;
 
-        #[cfg(feature = "AppKit_NSResponder")]
+        #[cfg(feature = "NSResponder")]
         #[optional]
         #[method(window:willEncodeRestorableState:)]
         unsafe fn window_willEncodeRestorableState(&self, window: &NSWindow, state: &NSCoder);
 
-        #[cfg(feature = "AppKit_NSResponder")]
+        #[cfg(feature = "NSResponder")]
         #[optional]
         #[method(window:didDecodeRestorableState:)]
         unsafe fn window_didDecodeRestorableState(&self, window: &NSWindow, state: &NSCoder);
 
-        #[cfg(all(
-            feature = "AppKit_NSPreviewRepresentingActivityItem",
-            feature = "AppKit_NSResponder"
-        ))]
+        #[cfg(all(feature = "NSPreviewRepresentingActivityItem", feature = "NSResponder"))]
         #[optional]
         #[method_id(@__retain_semantics Other previewRepresentableActivityItemsForWindow:)]
         unsafe fn previewRepresentableActivityItemsForWindow(
@@ -2055,7 +2016,7 @@ unsafe impl RefEncode for NSWindowBackingLocation {
 
 extern_methods!(
     /// NSDeprecated
-    #[cfg(feature = "AppKit_NSResponder")]
+    #[cfg(feature = "NSResponder")]
     unsafe impl NSWindow {
         #[deprecated = "This method shouldn’t be used as it doesn’t work in all drawing situations; instead, a subview should be used that implements the desired drawing behavior"]
         #[method(cacheImageInRect:)]
@@ -2069,7 +2030,7 @@ extern_methods!(
         #[method(discardCachedImage)]
         pub unsafe fn discardCachedImage(&self);
 
-        #[cfg(feature = "AppKit_NSMenu")]
+        #[cfg(feature = "NSMenu")]
         #[deprecated = "This method does not do anything and should not be called."]
         #[method(menuChanged:)]
         pub unsafe fn menuChanged(menu: &NSMenu);
@@ -2126,7 +2087,7 @@ extern_methods!(
         #[method(setAutodisplay:)]
         pub unsafe fn setAutodisplay(&self, autodisplay: bool);
 
-        #[cfg(feature = "AppKit_NSGraphicsContext")]
+        #[cfg(feature = "NSGraphicsContext")]
         #[deprecated = "Add instances of NSView to display content in a window."]
         #[method_id(@__retain_semantics Other graphicsContext)]
         pub unsafe fn graphicsContext(&self) -> Option<Id<NSGraphicsContext>>;

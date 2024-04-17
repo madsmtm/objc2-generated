@@ -71,17 +71,17 @@ unsafe impl NSSecureCoding for HKWorkoutSession {}
 
 extern_methods!(
     unsafe impl HKWorkoutSession {
-        #[cfg(feature = "HealthKit_HKWorkout")]
+        #[cfg(feature = "HKWorkout")]
         #[deprecated]
         #[method(activityType)]
         pub unsafe fn activityType(&self) -> HKWorkoutActivityType;
 
-        #[cfg(feature = "HealthKit_HKWorkoutConfiguration")]
+        #[cfg(feature = "HKWorkoutConfiguration")]
         #[deprecated]
         #[method(locationType)]
         pub unsafe fn locationType(&self) -> HKWorkoutSessionLocationType;
 
-        #[cfg(feature = "HealthKit_HKWorkoutConfiguration")]
+        #[cfg(feature = "HKWorkoutConfiguration")]
         #[method_id(@__retain_semantics Other workoutConfiguration)]
         pub unsafe fn workoutConfiguration(&self) -> Id<HKWorkoutConfiguration>;
 
@@ -106,14 +106,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Other endDate)]
         pub unsafe fn endDate(&self) -> Option<Id<NSDate>>;
 
-        #[cfg(feature = "HealthKit_HKWorkoutActivity")]
+        #[cfg(feature = "HKWorkoutActivity")]
         #[method_id(@__retain_semantics Other currentActivity)]
         pub unsafe fn currentActivity(&self) -> Id<HKWorkoutActivity>;
 
-        #[cfg(all(
-            feature = "HealthKit_HKWorkout",
-            feature = "HealthKit_HKWorkoutConfiguration"
-        ))]
+        #[cfg(all(feature = "HKWorkout", feature = "HKWorkoutConfiguration"))]
         #[deprecated]
         #[method_id(@__retain_semantics Init initWithActivityType:locationType:)]
         pub unsafe fn initWithActivityType_locationType(
@@ -122,7 +119,7 @@ extern_methods!(
             location_type: HKWorkoutSessionLocationType,
         ) -> Id<Self>;
 
-        #[cfg(feature = "HealthKit_HKWorkoutConfiguration")]
+        #[cfg(feature = "HKWorkoutConfiguration")]
         #[deprecated]
         #[method_id(@__retain_semantics Init initWithConfiguration:error:_)]
         pub unsafe fn initWithConfiguration_error(
@@ -130,10 +127,7 @@ extern_methods!(
             workout_configuration: &HKWorkoutConfiguration,
         ) -> Result<Id<Self>, Id<NSError>>;
 
-        #[cfg(all(
-            feature = "HealthKit_HKHealthStore",
-            feature = "HealthKit_HKWorkoutConfiguration"
-        ))]
+        #[cfg(all(feature = "HKHealthStore", feature = "HKWorkoutConfiguration"))]
         #[method_id(@__retain_semantics Init initWithHealthStore:configuration:error:_)]
         pub unsafe fn initWithHealthStore_configuration_error(
             this: Allocated<Self>,
@@ -162,14 +156,11 @@ extern_methods!(
         #[method(resume)]
         pub unsafe fn resume(&self);
 
-        #[cfg(all(
-            feature = "HealthKit_HKLiveWorkoutBuilder",
-            feature = "HealthKit_HKWorkoutBuilder"
-        ))]
+        #[cfg(all(feature = "HKLiveWorkoutBuilder", feature = "HKWorkoutBuilder"))]
         #[method_id(@__retain_semantics Other associatedWorkoutBuilder)]
         pub unsafe fn associatedWorkoutBuilder(&self) -> Id<HKLiveWorkoutBuilder>;
 
-        #[cfg(feature = "HealthKit_HKWorkoutConfiguration")]
+        #[cfg(feature = "HKWorkoutConfiguration")]
         #[method(beginNewActivityWithConfiguration:date:metadata:)]
         pub unsafe fn beginNewActivityWithConfiguration_date_metadata(
             &self,
@@ -231,7 +222,7 @@ extern_protocol!(
             error: &NSError,
         );
 
-        #[cfg(feature = "HealthKit_HKWorkout")]
+        #[cfg(feature = "HKWorkout")]
         #[optional]
         #[method(workoutSession:didGenerateEvent:)]
         unsafe fn workoutSession_didGenerateEvent(
@@ -240,7 +231,7 @@ extern_protocol!(
             event: &HKWorkoutEvent,
         );
 
-        #[cfg(feature = "HealthKit_HKWorkoutConfiguration")]
+        #[cfg(feature = "HKWorkoutConfiguration")]
         #[optional]
         #[method(workoutSession:didBeginActivityWithConfiguration:date:)]
         unsafe fn workoutSession_didBeginActivityWithConfiguration_date(
@@ -250,7 +241,7 @@ extern_protocol!(
             date: &NSDate,
         );
 
-        #[cfg(feature = "HealthKit_HKWorkoutConfiguration")]
+        #[cfg(feature = "HKWorkoutConfiguration")]
         #[optional]
         #[method(workoutSession:didEndActivityWithConfiguration:date:)]
         unsafe fn workoutSession_didEndActivityWithConfiguration_date(

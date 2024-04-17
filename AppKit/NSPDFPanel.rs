@@ -42,11 +42,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Other panel)]
         pub unsafe fn panel(mtm: MainThreadMarker) -> Id<NSPDFPanel>;
 
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
         #[method_id(@__retain_semantics Other accessoryController)]
         pub unsafe fn accessoryController(&self) -> Option<Id<NSViewController>>;
 
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
         #[method(setAccessoryController:)]
         pub unsafe fn setAccessoryController(
             &self,
@@ -66,9 +66,9 @@ extern_methods!(
         pub unsafe fn setDefaultFileName(&self, default_file_name: &NSString);
 
         #[cfg(all(
-            feature = "AppKit_NSPDFInfo",
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSWindow",
+            feature = "NSPDFInfo",
+            feature = "NSResponder",
+            feature = "NSWindow",
             feature = "block2"
         ))]
         #[method(beginSheetWithPDFInfo:modalForWindow:completionHandler:)]

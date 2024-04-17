@@ -28,10 +28,10 @@ extern_methods!(
         pub unsafe fn sharedCredentialStorage() -> Id<NSURLCredentialStorage>;
 
         #[cfg(all(
-            feature = "Foundation_NSDictionary",
-            feature = "Foundation_NSString",
-            feature = "Foundation_NSURLCredential",
-            feature = "Foundation_NSURLProtectionSpace"
+            feature = "NSDictionary",
+            feature = "NSString",
+            feature = "NSURLCredential",
+            feature = "NSURLProtectionSpace"
         ))]
         #[method_id(@__retain_semantics Other credentialsForProtectionSpace:)]
         pub unsafe fn credentialsForProtectionSpace(
@@ -40,20 +40,17 @@ extern_methods!(
         ) -> Option<Id<NSDictionary<NSString, NSURLCredential>>>;
 
         #[cfg(all(
-            feature = "Foundation_NSDictionary",
-            feature = "Foundation_NSString",
-            feature = "Foundation_NSURLCredential",
-            feature = "Foundation_NSURLProtectionSpace"
+            feature = "NSDictionary",
+            feature = "NSString",
+            feature = "NSURLCredential",
+            feature = "NSURLProtectionSpace"
         ))]
         #[method_id(@__retain_semantics Other allCredentials)]
         pub unsafe fn allCredentials(
             &self,
         ) -> Id<NSDictionary<NSURLProtectionSpace, NSDictionary<NSString, NSURLCredential>>>;
 
-        #[cfg(all(
-            feature = "Foundation_NSURLCredential",
-            feature = "Foundation_NSURLProtectionSpace"
-        ))]
+        #[cfg(all(feature = "NSURLCredential", feature = "NSURLProtectionSpace"))]
         #[method(setCredential:forProtectionSpace:)]
         pub unsafe fn setCredential_forProtectionSpace(
             &self,
@@ -61,10 +58,7 @@ extern_methods!(
             space: &NSURLProtectionSpace,
         );
 
-        #[cfg(all(
-            feature = "Foundation_NSURLCredential",
-            feature = "Foundation_NSURLProtectionSpace"
-        ))]
+        #[cfg(all(feature = "NSURLCredential", feature = "NSURLProtectionSpace"))]
         #[method(removeCredential:forProtectionSpace:)]
         pub unsafe fn removeCredential_forProtectionSpace(
             &self,
@@ -73,10 +67,10 @@ extern_methods!(
         );
 
         #[cfg(all(
-            feature = "Foundation_NSDictionary",
-            feature = "Foundation_NSString",
-            feature = "Foundation_NSURLCredential",
-            feature = "Foundation_NSURLProtectionSpace"
+            feature = "NSDictionary",
+            feature = "NSString",
+            feature = "NSURLCredential",
+            feature = "NSURLProtectionSpace"
         ))]
         #[method(removeCredential:forProtectionSpace:options:)]
         pub unsafe fn removeCredential_forProtectionSpace_options(
@@ -86,20 +80,14 @@ extern_methods!(
             options: Option<&NSDictionary<NSString, AnyObject>>,
         );
 
-        #[cfg(all(
-            feature = "Foundation_NSURLCredential",
-            feature = "Foundation_NSURLProtectionSpace"
-        ))]
+        #[cfg(all(feature = "NSURLCredential", feature = "NSURLProtectionSpace"))]
         #[method_id(@__retain_semantics Other defaultCredentialForProtectionSpace:)]
         pub unsafe fn defaultCredentialForProtectionSpace(
             &self,
             space: &NSURLProtectionSpace,
         ) -> Option<Id<NSURLCredential>>;
 
-        #[cfg(all(
-            feature = "Foundation_NSURLCredential",
-            feature = "Foundation_NSURLProtectionSpace"
-        ))]
+        #[cfg(all(feature = "NSURLCredential", feature = "NSURLProtectionSpace"))]
         #[method(setDefaultCredential:forProtectionSpace:)]
         pub unsafe fn setDefaultCredential_forProtectionSpace(
             &self,
@@ -124,11 +112,11 @@ extern_methods!(
     /// NSURLSessionTaskAdditions
     unsafe impl NSURLCredentialStorage {
         #[cfg(all(
-            feature = "Foundation_NSDictionary",
-            feature = "Foundation_NSString",
-            feature = "Foundation_NSURLCredential",
-            feature = "Foundation_NSURLProtectionSpace",
-            feature = "Foundation_NSURLSession",
+            feature = "NSDictionary",
+            feature = "NSString",
+            feature = "NSURLCredential",
+            feature = "NSURLProtectionSpace",
+            feature = "NSURLSession",
             feature = "block2"
         ))]
         #[method(getCredentialsForProtectionSpace:task:completionHandler:)]
@@ -140,9 +128,9 @@ extern_methods!(
         );
 
         #[cfg(all(
-            feature = "Foundation_NSURLCredential",
-            feature = "Foundation_NSURLProtectionSpace",
-            feature = "Foundation_NSURLSession"
+            feature = "NSURLCredential",
+            feature = "NSURLProtectionSpace",
+            feature = "NSURLSession"
         ))]
         #[method(setCredential:forProtectionSpace:task:)]
         pub unsafe fn setCredential_forProtectionSpace_task(
@@ -153,11 +141,11 @@ extern_methods!(
         );
 
         #[cfg(all(
-            feature = "Foundation_NSDictionary",
-            feature = "Foundation_NSString",
-            feature = "Foundation_NSURLCredential",
-            feature = "Foundation_NSURLProtectionSpace",
-            feature = "Foundation_NSURLSession"
+            feature = "NSDictionary",
+            feature = "NSString",
+            feature = "NSURLCredential",
+            feature = "NSURLProtectionSpace",
+            feature = "NSURLSession"
         ))]
         #[method(removeCredential:forProtectionSpace:options:task:)]
         pub unsafe fn removeCredential_forProtectionSpace_options_task(
@@ -169,9 +157,9 @@ extern_methods!(
         );
 
         #[cfg(all(
-            feature = "Foundation_NSURLCredential",
-            feature = "Foundation_NSURLProtectionSpace",
-            feature = "Foundation_NSURLSession",
+            feature = "NSURLCredential",
+            feature = "NSURLProtectionSpace",
+            feature = "NSURLSession",
             feature = "block2"
         ))]
         #[method(getDefaultCredentialForProtectionSpace:task:completionHandler:)]
@@ -183,9 +171,9 @@ extern_methods!(
         );
 
         #[cfg(all(
-            feature = "Foundation_NSURLCredential",
-            feature = "Foundation_NSURLProtectionSpace",
-            feature = "Foundation_NSURLSession"
+            feature = "NSURLCredential",
+            feature = "NSURLProtectionSpace",
+            feature = "NSURLSession"
         ))]
         #[method(setDefaultCredential:forProtectionSpace:task:)]
         pub unsafe fn setDefaultCredential_forProtectionSpace_task(
@@ -198,11 +186,11 @@ extern_methods!(
 );
 
 extern "C" {
-    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSURLCredentialStorageChangedNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLCredentialStorageRemoveSynchronizableCredentials: &'static NSString;
 }

@@ -19,12 +19,12 @@ extern_class!(
 
 unsafe impl NSCoding for NSDocumentController {}
 
-#[cfg(feature = "AppKit_NSMenu")]
+#[cfg(feature = "NSMenu")]
 unsafe impl NSMenuItemValidation for NSDocumentController {}
 
 unsafe impl NSObjectProtocol for NSDocumentController {}
 
-#[cfg(feature = "AppKit_NSUserInterfaceValidation")]
+#[cfg(feature = "NSUserInterfaceValidation")]
 unsafe impl NSUserInterfaceValidations for NSDocumentController {}
 
 extern_methods!(
@@ -38,48 +38,44 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
 
-        #[cfg(feature = "AppKit_NSDocument")]
+        #[cfg(feature = "NSDocument")]
         #[method_id(@__retain_semantics Other documents)]
         pub unsafe fn documents(&self) -> Id<NSArray<NSDocument>>;
 
-        #[cfg(feature = "AppKit_NSDocument")]
+        #[cfg(feature = "NSDocument")]
         #[method_id(@__retain_semantics Other currentDocument)]
         pub unsafe fn currentDocument(&self) -> Option<Id<NSDocument>>;
 
         #[method_id(@__retain_semantics Other currentDirectory)]
         pub unsafe fn currentDirectory(&self) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "AppKit_NSDocument")]
+        #[cfg(feature = "NSDocument")]
         #[method_id(@__retain_semantics Other documentForURL:)]
         pub unsafe fn documentForURL(&self, url: &NSURL) -> Option<Id<NSDocument>>;
 
-        #[cfg(all(
-            feature = "AppKit_NSDocument",
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSWindow"
-        ))]
+        #[cfg(all(feature = "NSDocument", feature = "NSResponder", feature = "NSWindow"))]
         #[method_id(@__retain_semantics Other documentForWindow:)]
         pub unsafe fn documentForWindow(&self, window: &NSWindow) -> Option<Id<NSDocument>>;
 
-        #[cfg(feature = "AppKit_NSDocument")]
+        #[cfg(feature = "NSDocument")]
         #[method(addDocument:)]
         pub unsafe fn addDocument(&self, document: &NSDocument);
 
-        #[cfg(feature = "AppKit_NSDocument")]
+        #[cfg(feature = "NSDocument")]
         #[method(removeDocument:)]
         pub unsafe fn removeDocument(&self, document: &NSDocument);
 
         #[method(newDocument:)]
         pub unsafe fn newDocument(&self, sender: Option<&AnyObject>);
 
-        #[cfg(feature = "AppKit_NSDocument")]
+        #[cfg(feature = "NSDocument")]
         #[method_id(@__retain_semantics Other openUntitledDocumentAndDisplay:error:_)]
         pub unsafe fn openUntitledDocumentAndDisplay_error(
             &self,
             display_document: bool,
         ) -> Result<Id<NSDocument>, Id<NSError>>;
 
-        #[cfg(feature = "AppKit_NSDocument")]
+        #[cfg(feature = "NSDocument")]
         #[method_id(@__retain_semantics Other makeUntitledDocumentOfType:error:_)]
         pub unsafe fn makeUntitledDocumentOfType_error(
             &self,
@@ -93,11 +89,11 @@ extern_methods!(
         pub unsafe fn URLsFromRunningOpenPanel(&self) -> Option<Id<NSArray<NSURL>>>;
 
         #[cfg(all(
-            feature = "AppKit_NSOpenPanel",
-            feature = "AppKit_NSPanel",
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSSavePanel",
-            feature = "AppKit_NSWindow"
+            feature = "NSOpenPanel",
+            feature = "NSPanel",
+            feature = "NSResponder",
+            feature = "NSSavePanel",
+            feature = "NSWindow"
         ))]
         #[method(runModalOpenPanel:forTypes:)]
         pub unsafe fn runModalOpenPanel_forTypes(
@@ -114,11 +110,11 @@ extern_methods!(
         );
 
         #[cfg(all(
-            feature = "AppKit_NSOpenPanel",
-            feature = "AppKit_NSPanel",
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSSavePanel",
-            feature = "AppKit_NSWindow",
+            feature = "NSOpenPanel",
+            feature = "NSPanel",
+            feature = "NSResponder",
+            feature = "NSSavePanel",
+            feature = "NSWindow",
             feature = "block2"
         ))]
         #[method(beginOpenPanel:forTypes:completionHandler:)]
@@ -129,7 +125,7 @@ extern_methods!(
             completion_handler: &Block<dyn Fn(NSInteger)>,
         );
 
-        #[cfg(all(feature = "AppKit_NSDocument", feature = "block2"))]
+        #[cfg(all(feature = "NSDocument", feature = "block2"))]
         #[method(openDocumentWithContentsOfURL:display:completionHandler:)]
         pub unsafe fn openDocumentWithContentsOfURL_display_completionHandler(
             &self,
@@ -138,7 +134,7 @@ extern_methods!(
             completion_handler: &Block<dyn Fn(*mut NSDocument, Bool, *mut NSError)>,
         );
 
-        #[cfg(feature = "AppKit_NSDocument")]
+        #[cfg(feature = "NSDocument")]
         #[method_id(@__retain_semantics Other makeDocumentWithContentsOfURL:ofType:error:_)]
         pub unsafe fn makeDocumentWithContentsOfURL_ofType_error(
             &self,
@@ -146,7 +142,7 @@ extern_methods!(
             type_name: &NSString,
         ) -> Result<Id<NSDocument>, Id<NSError>>;
 
-        #[cfg(all(feature = "AppKit_NSDocument", feature = "block2"))]
+        #[cfg(all(feature = "NSDocument", feature = "block2"))]
         #[method(reopenDocumentForURL:withContentsOfURL:display:completionHandler:)]
         pub unsafe fn reopenDocumentForURL_withContentsOfURL_display_completionHandler(
             &self,
@@ -156,7 +152,7 @@ extern_methods!(
             completion_handler: &Block<dyn Fn(*mut NSDocument, Bool, *mut NSError)>,
         );
 
-        #[cfg(feature = "AppKit_NSDocument")]
+        #[cfg(feature = "NSDocument")]
         #[method_id(@__retain_semantics Other makeDocumentForURL:withContentsOfURL:ofType:error:_)]
         pub unsafe fn makeDocumentForURL_withContentsOfURL_ofType_error(
             &self,
@@ -195,7 +191,7 @@ extern_methods!(
             context_info: *mut c_void,
         );
 
-        #[cfg(feature = "AppKit_NSDocument")]
+        #[cfg(feature = "NSDocument")]
         #[method_id(@__retain_semantics Other duplicateDocumentWithContentsOfURL:copying:displayName:error:_)]
         pub unsafe fn duplicateDocumentWithContentsOfURL_copying_displayName_error(
             &self,
@@ -207,11 +203,11 @@ extern_methods!(
         #[method(allowsAutomaticShareMenu)]
         pub unsafe fn allowsAutomaticShareMenu(&self) -> bool;
 
-        #[cfg(feature = "AppKit_NSMenuItem")]
+        #[cfg(feature = "NSMenuItem")]
         #[method_id(@__retain_semantics Other standardShareMenuItem)]
         pub unsafe fn standardShareMenuItem(&self) -> Id<NSMenuItem>;
 
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSWindow"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
         #[method(presentError:modalForWindow:delegate:didPresentSelector:contextInfo:)]
         pub unsafe fn presentError_modalForWindow_delegate_didPresentSelector_contextInfo(
             &self,
@@ -234,7 +230,7 @@ extern_methods!(
         #[method(clearRecentDocuments:)]
         pub unsafe fn clearRecentDocuments(&self, sender: Option<&AnyObject>);
 
-        #[cfg(feature = "AppKit_NSDocument")]
+        #[cfg(feature = "NSDocument")]
         #[method(noteNewRecentDocument:)]
         pub unsafe fn noteNewRecentDocument(&self, document: &NSDocument);
 
@@ -265,7 +261,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other displayNameForType:)]
         pub unsafe fn displayNameForType(&self, type_name: &NSString) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "AppKit_NSUserInterfaceValidation")]
+        #[cfg(feature = "NSUserInterfaceValidation")]
         #[method(validateUserInterfaceItem:)]
         pub unsafe fn validateUserInterfaceItem(
             &self,

@@ -47,18 +47,18 @@ unsafe impl NSUserInterfaceItemIdentification for MKPitchControl {}
 extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     unsafe impl MKPitchControl {
-        #[cfg(feature = "MapKit_MKMapView")]
+        #[cfg(feature = "MKMapView")]
         #[method_id(@__retain_semantics Other pitchControlWithMapView:)]
         pub unsafe fn pitchControlWithMapView(
             map_view: Option<&MKMapView>,
             mtm: MainThreadMarker,
         ) -> Id<Self>;
 
-        #[cfg(feature = "MapKit_MKMapView")]
+        #[cfg(feature = "MKMapView")]
         #[method_id(@__retain_semantics Other mapView)]
         pub unsafe fn mapView(&self) -> Option<Id<MKMapView>>;
 
-        #[cfg(feature = "MapKit_MKMapView")]
+        #[cfg(feature = "MKMapView")]
         #[method(setMapView:)]
         pub unsafe fn setMapView(&self, map_view: Option<&MKMapView>);
     }

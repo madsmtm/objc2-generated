@@ -208,11 +208,7 @@ extern_methods!(
             >,
         ) -> NSInteger;
 
-        #[cfg(all(
-            feature = "AppKit_NSMenu",
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSView"
-        ))]
+        #[cfg(all(feature = "NSMenu", feature = "NSResponder", feature = "NSView"))]
         #[method_id(@__retain_semantics Other menuForResult:string:options:atLocation:inView:)]
         pub unsafe fn menuForResult_string_options_atLocation_inView(
             &self,
@@ -242,38 +238,30 @@ extern_methods!(
             detail: &NSDictionary<NSString, AnyObject>,
         );
 
-        #[cfg(all(
-            feature = "AppKit_NSPanel",
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSWindow"
-        ))]
+        #[cfg(all(feature = "NSPanel", feature = "NSResponder", feature = "NSWindow"))]
         #[method_id(@__retain_semantics Other spellingPanel)]
         pub unsafe fn spellingPanel(&self, mtm: MainThreadMarker) -> Id<NSPanel>;
 
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[method_id(@__retain_semantics Other accessoryView)]
         pub unsafe fn accessoryView(&self, mtm: MainThreadMarker) -> Option<Id<NSView>>;
 
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[method(setAccessoryView:)]
         pub unsafe fn setAccessoryView(&self, accessory_view: Option<&NSView>);
 
-        #[cfg(all(
-            feature = "AppKit_NSPanel",
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSWindow"
-        ))]
+        #[cfg(all(feature = "NSPanel", feature = "NSResponder", feature = "NSWindow"))]
         #[method_id(@__retain_semantics Other substitutionsPanel)]
         pub unsafe fn substitutionsPanel(&self, mtm: MainThreadMarker) -> Id<NSPanel>;
 
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
         #[method_id(@__retain_semantics Other substitutionsPanelAccessoryViewController)]
         pub unsafe fn substitutionsPanelAccessoryViewController(
             &self,
             mtm: MainThreadMarker,
         ) -> Option<Id<NSViewController>>;
 
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
         #[method(setSubstitutionsPanelAccessoryViewController:)]
         pub unsafe fn setSubstitutionsPanelAccessoryViewController(
             &self,
@@ -351,11 +339,7 @@ extern_methods!(
             tag: NSInteger,
         );
 
-        #[cfg(all(
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSView",
-            feature = "block2"
-        ))]
+        #[cfg(all(feature = "NSResponder", feature = "NSView", feature = "block2"))]
         #[method(showCorrectionIndicatorOfType:primaryString:alternativeStrings:forStringInRect:view:completionHandler:)]
         pub unsafe fn showCorrectionIndicatorOfType_primaryString_alternativeStrings_forStringInRect_view_completionHandler(
             &self,
@@ -367,11 +351,11 @@ extern_methods!(
             completion_block: Option<&Block<dyn Fn(*mut NSString)>>,
         );
 
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[method(dismissCorrectionIndicatorForView:)]
         pub unsafe fn dismissCorrectionIndicatorForView(&self, view: &NSView);
 
-        #[cfg(feature = "AppKit_NSTextInputClient")]
+        #[cfg(feature = "NSTextInputClient")]
         #[method(showInlinePredictionForCandidates:client:)]
         pub unsafe fn showInlinePredictionForCandidates_client(
             &self,

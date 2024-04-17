@@ -11,17 +11,17 @@ pub const DOM_ALLOW_KEYBOARD_INPUT: c_uint = 1;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(
-        feature = "WebKit_DOMNode",
-        feature = "WebKit_DOMObject",
-        feature = "WebKit_WebScriptObject"
+        feature = "DOMNode",
+        feature = "DOMObject",
+        feature = "WebScriptObject"
     ))]
     #[deprecated]
     pub struct DOMElement;
 
     #[cfg(all(
-        feature = "WebKit_DOMNode",
-        feature = "WebKit_DOMObject",
-        feature = "WebKit_WebScriptObject"
+        feature = "DOMNode",
+        feature = "DOMObject",
+        feature = "WebScriptObject"
     ))]
     unsafe impl ClassType for DOMElement {
         #[inherits(DOMObject, WebScriptObject, NSObject)]
@@ -31,39 +31,39 @@ extern_class!(
 );
 
 #[cfg(all(
-    feature = "WebKit_DOMEventTarget",
-    feature = "WebKit_DOMNode",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMEventTarget",
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 unsafe impl DOMEventTarget for DOMElement {}
 
 #[cfg(all(
-    feature = "WebKit_DOMNode",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 unsafe impl NSCopying for DOMElement {}
 
 #[cfg(all(
-    feature = "WebKit_DOMNode",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 unsafe impl NSObjectProtocol for DOMElement {}
 
 extern_methods!(
     #[cfg(all(
-        feature = "WebKit_DOMNode",
-        feature = "WebKit_DOMObject",
-        feature = "WebKit_WebScriptObject"
+        feature = "DOMNode",
+        feature = "DOMObject",
+        feature = "WebScriptObject"
     ))]
     unsafe impl DOMElement {
         #[deprecated]
         #[method_id(@__retain_semantics Other tagName)]
         pub unsafe fn tagName(&self) -> Id<NSString>;
 
-        #[cfg(feature = "WebKit_DOMCSSStyleDeclaration")]
+        #[cfg(feature = "DOMCSSStyleDeclaration")]
         #[deprecated]
         #[method_id(@__retain_semantics Other style)]
         pub unsafe fn style(&self) -> Option<Id<DOMCSSStyleDeclaration>>;
@@ -179,23 +179,23 @@ extern_methods!(
         #[method(removeAttribute:)]
         pub unsafe fn removeAttribute(&self, name: Option<&NSString>);
 
-        #[cfg(feature = "WebKit_DOMAttr")]
+        #[cfg(feature = "DOMAttr")]
         #[deprecated]
         #[method_id(@__retain_semantics Other getAttributeNode:)]
         pub unsafe fn getAttributeNode(&self, name: Option<&NSString>) -> Option<Id<DOMAttr>>;
 
-        #[cfg(feature = "WebKit_DOMAttr")]
+        #[cfg(feature = "DOMAttr")]
         #[deprecated]
         #[method_id(@__retain_semantics Other setAttributeNode:)]
         pub unsafe fn setAttributeNode(&self, new_attr: Option<&DOMAttr>) -> Option<Id<DOMAttr>>;
 
-        #[cfg(feature = "WebKit_DOMAttr")]
+        #[cfg(feature = "DOMAttr")]
         #[deprecated]
         #[method_id(@__retain_semantics Other removeAttributeNode:)]
         pub unsafe fn removeAttributeNode(&self, old_attr: Option<&DOMAttr>)
             -> Option<Id<DOMAttr>>;
 
-        #[cfg(feature = "WebKit_DOMNodeList")]
+        #[cfg(feature = "DOMNodeList")]
         #[deprecated]
         #[method_id(@__retain_semantics Other getElementsByTagName:)]
         pub unsafe fn getElementsByTagName(
@@ -225,7 +225,7 @@ extern_methods!(
             local_name: Option<&NSString>,
         );
 
-        #[cfg(feature = "WebKit_DOMNodeList")]
+        #[cfg(feature = "DOMNodeList")]
         #[method_id(@__retain_semantics Other getElementsByTagNameNS:localName:)]
         pub unsafe fn getElementsByTagNameNS_localName(
             &self,
@@ -233,7 +233,7 @@ extern_methods!(
             local_name: Option<&NSString>,
         ) -> Option<Id<DOMNodeList>>;
 
-        #[cfg(feature = "WebKit_DOMAttr")]
+        #[cfg(feature = "DOMAttr")]
         #[method_id(@__retain_semantics Other getAttributeNodeNS:localName:)]
         pub unsafe fn getAttributeNodeNS_localName(
             &self,
@@ -241,7 +241,7 @@ extern_methods!(
             local_name: Option<&NSString>,
         ) -> Option<Id<DOMAttr>>;
 
-        #[cfg(feature = "WebKit_DOMAttr")]
+        #[cfg(feature = "DOMAttr")]
         #[deprecated]
         #[method_id(@__retain_semantics Other setAttributeNodeNS:)]
         pub unsafe fn setAttributeNodeNS(&self, new_attr: Option<&DOMAttr>) -> Option<Id<DOMAttr>>;
@@ -275,7 +275,7 @@ extern_methods!(
         #[method(scrollByPages:)]
         pub unsafe fn scrollByPages(&self, pages: c_int);
 
-        #[cfg(feature = "WebKit_DOMNodeList")]
+        #[cfg(feature = "DOMNodeList")]
         #[method_id(@__retain_semantics Other getElementsByClassName:)]
         pub unsafe fn getElementsByClassName(
             &self,
@@ -288,7 +288,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other querySelector:)]
         pub unsafe fn querySelector(&self, selectors: Option<&NSString>) -> Option<Id<DOMElement>>;
 
-        #[cfg(feature = "WebKit_DOMNodeList")]
+        #[cfg(feature = "DOMNodeList")]
         #[method_id(@__retain_semantics Other querySelectorAll:)]
         pub unsafe fn querySelectorAll(
             &self,
@@ -300,9 +300,9 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `DOMObject`
     #[cfg(all(
-        feature = "WebKit_DOMNode",
-        feature = "WebKit_DOMObject",
-        feature = "WebKit_WebScriptObject"
+        feature = "DOMNode",
+        feature = "DOMObject",
+        feature = "WebScriptObject"
     ))]
     unsafe impl DOMElement {
         #[deprecated]
@@ -314,9 +314,9 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(
-        feature = "WebKit_DOMNode",
-        feature = "WebKit_DOMObject",
-        feature = "WebKit_WebScriptObject"
+        feature = "DOMNode",
+        feature = "DOMObject",
+        feature = "WebScriptObject"
     ))]
     unsafe impl DOMElement {
         #[method_id(@__retain_semantics New new)]
@@ -327,9 +327,9 @@ extern_methods!(
 extern_methods!(
     /// DOMElementDeprecated
     #[cfg(all(
-        feature = "WebKit_DOMNode",
-        feature = "WebKit_DOMObject",
-        feature = "WebKit_WebScriptObject"
+        feature = "DOMNode",
+        feature = "DOMObject",
+        feature = "WebScriptObject"
     ))]
     unsafe impl DOMElement {
         #[deprecated]
@@ -361,7 +361,7 @@ extern_methods!(
             local_name: Option<&NSString>,
         );
 
-        #[cfg(feature = "WebKit_DOMNodeList")]
+        #[cfg(feature = "DOMNodeList")]
         #[deprecated]
         #[method_id(@__retain_semantics Other getElementsByTagNameNS::)]
         pub unsafe fn getElementsByTagNameNS(
@@ -370,7 +370,7 @@ extern_methods!(
             local_name: Option<&NSString>,
         ) -> Option<Id<DOMNodeList>>;
 
-        #[cfg(feature = "WebKit_DOMAttr")]
+        #[cfg(feature = "DOMAttr")]
         #[deprecated]
         #[method_id(@__retain_semantics Other getAttributeNodeNS::)]
         pub unsafe fn getAttributeNodeNS(

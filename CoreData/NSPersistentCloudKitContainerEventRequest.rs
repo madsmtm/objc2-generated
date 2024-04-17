@@ -7,10 +7,10 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CoreData_NSPersistentStoreRequest")]
+    #[cfg(feature = "NSPersistentStoreRequest")]
     pub struct NSPersistentCloudKitContainerEventRequest;
 
-    #[cfg(feature = "CoreData_NSPersistentStoreRequest")]
+    #[cfg(feature = "NSPersistentStoreRequest")]
     unsafe impl ClassType for NSPersistentCloudKitContainerEventRequest {
         #[inherits(NSObject)]
         type Super = NSPersistentStoreRequest;
@@ -18,20 +18,20 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "CoreData_NSPersistentStoreRequest")]
+#[cfg(feature = "NSPersistentStoreRequest")]
 unsafe impl NSCopying for NSPersistentCloudKitContainerEventRequest {}
 
-#[cfg(feature = "CoreData_NSPersistentStoreRequest")]
+#[cfg(feature = "NSPersistentStoreRequest")]
 unsafe impl NSObjectProtocol for NSPersistentCloudKitContainerEventRequest {}
 
 extern_methods!(
-    #[cfg(feature = "CoreData_NSPersistentStoreRequest")]
+    #[cfg(feature = "NSPersistentStoreRequest")]
     unsafe impl NSPersistentCloudKitContainerEventRequest {
-        #[cfg(feature = "CoreData_NSPersistentStoreResult")]
+        #[cfg(feature = "NSPersistentStoreResult")]
         #[method(resultType)]
         pub unsafe fn resultType(&self) -> NSPersistentCloudKitContainerEventResultType;
 
-        #[cfg(feature = "CoreData_NSPersistentStoreResult")]
+        #[cfg(feature = "NSPersistentStoreResult")]
         #[method(setResultType:)]
         pub unsafe fn setResultType(
             &self,
@@ -41,17 +41,17 @@ extern_methods!(
         #[method_id(@__retain_semantics Other fetchEventsAfterDate:)]
         pub unsafe fn fetchEventsAfterDate(date: &NSDate) -> Id<Self>;
 
-        #[cfg(feature = "CoreData_NSPersistentCloudKitContainerEvent")]
+        #[cfg(feature = "NSPersistentCloudKitContainerEvent")]
         #[method_id(@__retain_semantics Other fetchEventsAfterEvent:)]
         pub unsafe fn fetchEventsAfterEvent(
             event: Option<&NSPersistentCloudKitContainerEvent>,
         ) -> Id<Self>;
 
-        #[cfg(feature = "CoreData_NSFetchRequest")]
+        #[cfg(feature = "NSFetchRequest")]
         #[method_id(@__retain_semantics Other fetchEventsMatchingFetchRequest:)]
         pub unsafe fn fetchEventsMatchingFetchRequest(fetch_request: &NSFetchRequest) -> Id<Self>;
 
-        #[cfg(feature = "CoreData_NSFetchRequest")]
+        #[cfg(feature = "NSFetchRequest")]
         #[method_id(@__retain_semantics Other fetchRequestForEvents)]
         pub unsafe fn fetchRequestForEvents() -> Id<NSFetchRequest>;
     }
@@ -59,7 +59,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CoreData_NSPersistentStoreRequest")]
+    #[cfg(feature = "NSPersistentStoreRequest")]
     unsafe impl NSPersistentCloudKitContainerEventRequest {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

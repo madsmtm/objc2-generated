@@ -19,11 +19,11 @@ unsafe impl NSObjectProtocol for SFSpeechRecognitionRequest {}
 
 extern_methods!(
     unsafe impl SFSpeechRecognitionRequest {
-        #[cfg(feature = "Speech_SFSpeechRecognitionTaskHint")]
+        #[cfg(feature = "SFSpeechRecognitionTaskHint")]
         #[method(taskHint)]
         pub unsafe fn taskHint(&self) -> SFSpeechRecognitionTaskHint;
 
-        #[cfg(feature = "Speech_SFSpeechRecognitionTaskHint")]
+        #[cfg(feature = "SFSpeechRecognitionTaskHint")]
         #[method(setTaskHint:)]
         pub unsafe fn setTaskHint(&self, task_hint: SFSpeechRecognitionTaskHint);
 
@@ -59,13 +59,13 @@ extern_methods!(
         #[method(setAddsPunctuation:)]
         pub unsafe fn setAddsPunctuation(&self, adds_punctuation: bool);
 
-        #[cfg(feature = "Speech_SFSpeechLanguageModel")]
+        #[cfg(feature = "SFSpeechLanguageModel")]
         #[method_id(@__retain_semantics Other customizedLanguageModel)]
         pub unsafe fn customizedLanguageModel(
             &self,
         ) -> Option<Id<SFSpeechLanguageModelConfiguration>>;
 
-        #[cfg(feature = "Speech_SFSpeechLanguageModel")]
+        #[cfg(feature = "SFSpeechLanguageModel")]
         #[method(setCustomizedLanguageModel:)]
         pub unsafe fn setCustomizedLanguageModel(
             &self,

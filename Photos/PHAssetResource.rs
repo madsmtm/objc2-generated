@@ -19,7 +19,7 @@ unsafe impl NSObjectProtocol for PHAssetResource {}
 
 extern_methods!(
     unsafe impl PHAssetResource {
-        #[cfg(feature = "Photos_PhotosTypes")]
+        #[cfg(feature = "PhotosTypes")]
         #[method(type)]
         pub unsafe fn r#type(&self) -> PHAssetResourceType;
 
@@ -38,11 +38,11 @@ extern_methods!(
         #[method(pixelHeight)]
         pub unsafe fn pixelHeight(&self) -> NSInteger;
 
-        #[cfg(all(feature = "Photos_PHAsset", feature = "Photos_PHObject"))]
+        #[cfg(all(feature = "PHAsset", feature = "PHObject"))]
         #[method_id(@__retain_semantics Other assetResourcesForAsset:)]
         pub unsafe fn assetResourcesForAsset(asset: &PHAsset) -> Id<NSArray<PHAssetResource>>;
 
-        #[cfg(feature = "Photos_PHLivePhoto")]
+        #[cfg(feature = "PHLivePhoto")]
         #[method_id(@__retain_semantics Other assetResourcesForLivePhoto:)]
         pub unsafe fn assetResourcesForLivePhoto(
             live_photo: &PHLivePhoto,

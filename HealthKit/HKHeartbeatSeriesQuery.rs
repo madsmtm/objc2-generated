@@ -9,10 +9,10 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "HealthKit_HKQuery")]
+    #[cfg(feature = "HKQuery")]
     pub struct HKHeartbeatSeriesQuery;
 
-    #[cfg(feature = "HealthKit_HKQuery")]
+    #[cfg(feature = "HKQuery")]
     unsafe impl ClassType for HKHeartbeatSeriesQuery {
         #[inherits(NSObject)]
         type Super = HKQuery;
@@ -20,17 +20,17 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "HealthKit_HKQuery")]
+#[cfg(feature = "HKQuery")]
 unsafe impl NSObjectProtocol for HKHeartbeatSeriesQuery {}
 
 extern_methods!(
-    #[cfg(feature = "HealthKit_HKQuery")]
+    #[cfg(feature = "HKQuery")]
     unsafe impl HKHeartbeatSeriesQuery {
         #[cfg(all(
-            feature = "HealthKit_HKHeartbeatSeriesSample",
-            feature = "HealthKit_HKObject",
-            feature = "HealthKit_HKSample",
-            feature = "HealthKit_HKSeriesSample",
+            feature = "HKHeartbeatSeriesSample",
+            feature = "HKObject",
+            feature = "HKSample",
+            feature = "HKSeriesSample",
             feature = "block2"
         ))]
         #[method_id(@__retain_semantics Init initWithHeartbeatSeries:dataHandler:)]
@@ -46,7 +46,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `HKQuery`
-    #[cfg(feature = "HealthKit_HKQuery")]
+    #[cfg(feature = "HKQuery")]
     unsafe impl HKHeartbeatSeriesQuery {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -55,7 +55,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "HealthKit_HKQuery")]
+    #[cfg(feature = "HKQuery")]
     unsafe impl HKHeartbeatSeriesQuery {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

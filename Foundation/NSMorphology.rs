@@ -244,15 +244,15 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSCoding for NSMorphology {}
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSMorphology {}
 
 unsafe impl NSObjectProtocol for NSMorphology {}
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSSecureCoding for NSMorphology {}
 
 extern_methods!(
@@ -328,15 +328,15 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSCoding for NSMorphologyPronoun {}
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSMorphologyPronoun {}
 
 unsafe impl NSObjectProtocol for NSMorphologyPronoun {}
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSSecureCoding for NSMorphologyPronoun {}
 
 extern_methods!(
@@ -347,7 +347,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Init initWithPronoun:morphology:dependentMorphology:)]
         pub unsafe fn initWithPronoun_morphology_dependentMorphology(
             this: Allocated<Self>,
@@ -356,7 +356,7 @@ extern_methods!(
             dependent_morphology: Option<&NSMorphology>,
         ) -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other pronoun)]
         pub unsafe fn pronoun(&self) -> Id<NSString>;
 
@@ -371,7 +371,7 @@ extern_methods!(
 extern_methods!(
     /// NSCustomPronouns
     unsafe impl NSMorphology {
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[deprecated = "Use NSTermOfAddress instead"]
         #[method_id(@__retain_semantics Other customPronounForLanguage:)]
         pub unsafe fn customPronounForLanguage(
@@ -379,7 +379,7 @@ extern_methods!(
             language: &NSString,
         ) -> Option<Id<NSMorphologyCustomPronoun>>;
 
-        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSError", feature = "NSString"))]
         #[deprecated = "Use NSTermOfAddress instead"]
         #[method(setCustomPronoun:forLanguage:error:_)]
         pub unsafe fn setCustomPronoun_forLanguage_error(
@@ -401,65 +401,65 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSCoding for NSMorphologyCustomPronoun {}
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSMorphologyCustomPronoun {}
 
 unsafe impl NSObjectProtocol for NSMorphologyCustomPronoun {}
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSSecureCoding for NSMorphologyCustomPronoun {}
 
 extern_methods!(
     unsafe impl NSMorphologyCustomPronoun {
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[deprecated = "Use NSTermOfAddress instead"]
         #[method(isSupportedForLanguage:)]
         pub unsafe fn isSupportedForLanguage(language: &NSString) -> bool;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[deprecated = "Use NSTermOfAddress instead"]
         #[method_id(@__retain_semantics Other requiredKeysForLanguage:)]
         pub unsafe fn requiredKeysForLanguage(language: &NSString) -> Id<NSArray<NSString>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[deprecated = "Use NSTermOfAddress instead"]
         #[method_id(@__retain_semantics Other subjectForm)]
         pub unsafe fn subjectForm(&self) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[deprecated = "Use NSTermOfAddress instead"]
         #[method(setSubjectForm:)]
         pub unsafe fn setSubjectForm(&self, subject_form: Option<&NSString>);
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[deprecated = "Use NSTermOfAddress instead"]
         #[method_id(@__retain_semantics Other objectForm)]
         pub unsafe fn objectForm(&self) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[deprecated = "Use NSTermOfAddress instead"]
         #[method(setObjectForm:)]
         pub unsafe fn setObjectForm(&self, object_form: Option<&NSString>);
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[deprecated = "Use NSTermOfAddress instead"]
         #[method_id(@__retain_semantics Other possessiveForm)]
         pub unsafe fn possessiveForm(&self) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[deprecated = "Use NSTermOfAddress instead"]
         #[method(setPossessiveForm:)]
         pub unsafe fn setPossessiveForm(&self, possessive_form: Option<&NSString>);
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[deprecated = "Use NSTermOfAddress instead"]
         #[method_id(@__retain_semantics Other possessiveAdjectiveForm)]
         pub unsafe fn possessiveAdjectiveForm(&self) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[deprecated = "Use NSTermOfAddress instead"]
         #[method(setPossessiveAdjectiveForm:)]
         pub unsafe fn setPossessiveAdjectiveForm(
@@ -467,12 +467,12 @@ extern_methods!(
             possessive_adjective_form: Option<&NSString>,
         );
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[deprecated = "Use NSTermOfAddress instead"]
         #[method_id(@__retain_semantics Other reflexiveForm)]
         pub unsafe fn reflexiveForm(&self) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[deprecated = "Use NSTermOfAddress instead"]
         #[method(setReflexiveForm:)]
         pub unsafe fn setReflexiveForm(&self, reflexive_form: Option<&NSString>);

@@ -20,14 +20,14 @@ unsafe impl NSObjectProtocol for MPPlayableContentManager {}
 
 extern_methods!(
     unsafe impl MPPlayableContentManager {
-        #[cfg(feature = "MediaPlayer_MPPlayableContentDataSource")]
+        #[cfg(feature = "MPPlayableContentDataSource")]
         #[deprecated = "Use CarPlay framework"]
         #[method_id(@__retain_semantics Other dataSource)]
         pub unsafe fn dataSource(
             &self,
         ) -> Option<Id<ProtocolObject<dyn MPPlayableContentDataSource>>>;
 
-        #[cfg(feature = "MediaPlayer_MPPlayableContentDataSource")]
+        #[cfg(feature = "MPPlayableContentDataSource")]
         #[deprecated = "Use CarPlay framework"]
         #[method(setDataSource:)]
         pub unsafe fn setDataSource(
@@ -35,12 +35,12 @@ extern_methods!(
             data_source: Option<&ProtocolObject<dyn MPPlayableContentDataSource>>,
         );
 
-        #[cfg(feature = "MediaPlayer_MPPlayableContentDelegate")]
+        #[cfg(feature = "MPPlayableContentDelegate")]
         #[deprecated = "Use CarPlay framework"]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn MPPlayableContentDelegate>>>;
 
-        #[cfg(feature = "MediaPlayer_MPPlayableContentDelegate")]
+        #[cfg(feature = "MPPlayableContentDelegate")]
         #[deprecated = "Use CarPlay framework"]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -48,7 +48,7 @@ extern_methods!(
             delegate: Option<&ProtocolObject<dyn MPPlayableContentDelegate>>,
         );
 
-        #[cfg(feature = "MediaPlayer_MPPlayableContentManagerContext")]
+        #[cfg(feature = "MPPlayableContentManagerContext")]
         #[deprecated = "Use CarPlay framework"]
         #[method_id(@__retain_semantics Other context)]
         pub unsafe fn context(&self) -> Id<MPPlayableContentManagerContext>;

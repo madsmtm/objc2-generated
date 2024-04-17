@@ -10,10 +10,10 @@ pub type CAScrollLayerScrollMode = NSString;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "QuartzCore_CALayer")]
+    #[cfg(feature = "CALayer")]
     pub struct CAScrollLayer;
 
-    #[cfg(feature = "QuartzCore_CALayer")]
+    #[cfg(feature = "CALayer")]
     unsafe impl ClassType for CAScrollLayer {
         #[inherits(NSObject)]
         type Super = CALayer;
@@ -21,20 +21,20 @@ extern_class!(
     }
 );
 
-#[cfg(all(feature = "QuartzCore_CALayer", feature = "QuartzCore_CAMediaTiming"))]
+#[cfg(all(feature = "CALayer", feature = "CAMediaTiming"))]
 unsafe impl CAMediaTiming for CAScrollLayer {}
 
-#[cfg(feature = "QuartzCore_CALayer")]
+#[cfg(feature = "CALayer")]
 unsafe impl NSCoding for CAScrollLayer {}
 
-#[cfg(feature = "QuartzCore_CALayer")]
+#[cfg(feature = "CALayer")]
 unsafe impl NSObjectProtocol for CAScrollLayer {}
 
-#[cfg(feature = "QuartzCore_CALayer")]
+#[cfg(feature = "CALayer")]
 unsafe impl NSSecureCoding for CAScrollLayer {}
 
 extern_methods!(
-    #[cfg(feature = "QuartzCore_CALayer")]
+    #[cfg(feature = "CALayer")]
     unsafe impl CAScrollLayer {
         #[method(scrollToPoint:)]
         pub unsafe fn scrollToPoint(&self, p: CGPoint);
@@ -52,7 +52,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `CALayer`
-    #[cfg(feature = "QuartzCore_CALayer")]
+    #[cfg(feature = "CALayer")]
     unsafe impl CAScrollLayer {
         #[method_id(@__retain_semantics Other layer)]
         pub unsafe fn layer() -> Id<Self>;
@@ -67,7 +67,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "QuartzCore_CALayer")]
+    #[cfg(feature = "CALayer")]
     unsafe impl CAScrollLayer {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -76,7 +76,7 @@ extern_methods!(
 
 extern_methods!(
     /// CALayerScrolling
-    #[cfg(feature = "QuartzCore_CALayer")]
+    #[cfg(feature = "CALayer")]
     unsafe impl CALayer {
         #[method(scrollPoint:)]
         pub unsafe fn scrollPoint(&self, p: CGPoint);

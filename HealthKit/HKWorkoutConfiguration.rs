@@ -46,11 +46,11 @@ unsafe impl NSSecureCoding for HKWorkoutConfiguration {}
 
 extern_methods!(
     unsafe impl HKWorkoutConfiguration {
-        #[cfg(feature = "HealthKit_HKWorkout")]
+        #[cfg(feature = "HKWorkout")]
         #[method(activityType)]
         pub unsafe fn activityType(&self) -> HKWorkoutActivityType;
 
-        #[cfg(feature = "HealthKit_HKWorkout")]
+        #[cfg(feature = "HKWorkout")]
         #[method(setActivityType:)]
         pub unsafe fn setActivityType(&self, activity_type: HKWorkoutActivityType);
 
@@ -60,22 +60,22 @@ extern_methods!(
         #[method(setLocationType:)]
         pub unsafe fn setLocationType(&self, location_type: HKWorkoutSessionLocationType);
 
-        #[cfg(feature = "HealthKit_HKMetadata")]
+        #[cfg(feature = "HKMetadata")]
         #[method(swimmingLocationType)]
         pub unsafe fn swimmingLocationType(&self) -> HKWorkoutSwimmingLocationType;
 
-        #[cfg(feature = "HealthKit_HKMetadata")]
+        #[cfg(feature = "HKMetadata")]
         #[method(setSwimmingLocationType:)]
         pub unsafe fn setSwimmingLocationType(
             &self,
             swimming_location_type: HKWorkoutSwimmingLocationType,
         );
 
-        #[cfg(feature = "HealthKit_HKQuantity")]
+        #[cfg(feature = "HKQuantity")]
         #[method_id(@__retain_semantics Other lapLength)]
         pub unsafe fn lapLength(&self) -> Option<Id<HKQuantity>>;
 
-        #[cfg(feature = "HealthKit_HKQuantity")]
+        #[cfg(feature = "HKQuantity")]
         #[method(setLapLength:)]
         pub unsafe fn setLapLength(&self, lap_length: Option<&HKQuantity>);
     }

@@ -82,7 +82,7 @@ unsafe impl RefEncode for MPMusicShuffleMode {
 
 extern_protocol!(
     pub unsafe trait MPSystemMusicPlayerController: NSObjectProtocol {
-        #[cfg(feature = "MediaPlayer_MPMusicPlayerQueueDescriptor")]
+        #[cfg(feature = "MPMusicPlayerQueueDescriptor")]
         #[method(openToPlayQueueDescriptor:)]
         unsafe fn openToPlayQueueDescriptor(&self, queue_descriptor: &MPMusicPlayerQueueDescriptor);
     }
@@ -100,7 +100,7 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "MediaPlayer_MPMediaPlayback")]
+#[cfg(feature = "MPMediaPlayback")]
 unsafe impl MPMediaPlayback for MPMusicPlayerController {}
 
 unsafe impl NSObjectProtocol for MPMusicPlayerController {}
@@ -110,7 +110,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other applicationMusicPlayer)]
         pub unsafe fn applicationMusicPlayer() -> Id<MPMusicPlayerController>;
 
-        #[cfg(feature = "MediaPlayer_MPMusicPlayerApplicationController")]
+        #[cfg(feature = "MPMusicPlayerApplicationController")]
         #[method_id(@__retain_semantics Other applicationQueuePlayer)]
         pub unsafe fn applicationQueuePlayer() -> Id<MPMusicPlayerApplicationController>;
 
@@ -146,46 +146,37 @@ extern_methods!(
         #[method(setVolume:)]
         pub unsafe fn setVolume(&self, volume: c_float);
 
-        #[cfg(all(
-            feature = "MediaPlayer_MPMediaEntity",
-            feature = "MediaPlayer_MPMediaItem"
-        ))]
+        #[cfg(all(feature = "MPMediaEntity", feature = "MPMediaItem"))]
         #[method_id(@__retain_semantics Other nowPlayingItem)]
         pub unsafe fn nowPlayingItem(&self) -> Option<Id<MPMediaItem>>;
 
-        #[cfg(all(
-            feature = "MediaPlayer_MPMediaEntity",
-            feature = "MediaPlayer_MPMediaItem"
-        ))]
+        #[cfg(all(feature = "MPMediaEntity", feature = "MPMediaItem"))]
         #[method(setNowPlayingItem:)]
         pub unsafe fn setNowPlayingItem(&self, now_playing_item: Option<&MPMediaItem>);
 
         #[method(indexOfNowPlayingItem)]
         pub unsafe fn indexOfNowPlayingItem(&self) -> NSUInteger;
 
-        #[cfg(feature = "MediaPlayer_MPMediaQuery")]
+        #[cfg(feature = "MPMediaQuery")]
         #[method(setQueueWithQuery:)]
         pub unsafe fn setQueueWithQuery(&self, query: &MPMediaQuery);
 
-        #[cfg(all(
-            feature = "MediaPlayer_MPMediaEntity",
-            feature = "MediaPlayer_MPMediaItemCollection"
-        ))]
+        #[cfg(all(feature = "MPMediaEntity", feature = "MPMediaItemCollection"))]
         #[method(setQueueWithItemCollection:)]
         pub unsafe fn setQueueWithItemCollection(&self, item_collection: &MPMediaItemCollection);
 
         #[method(setQueueWithStoreIDs:)]
         pub unsafe fn setQueueWithStoreIDs(&self, store_i_ds: &NSArray<NSString>);
 
-        #[cfg(feature = "MediaPlayer_MPMusicPlayerQueueDescriptor")]
+        #[cfg(feature = "MPMusicPlayerQueueDescriptor")]
         #[method(setQueueWithDescriptor:)]
         pub unsafe fn setQueueWithDescriptor(&self, descriptor: &MPMusicPlayerQueueDescriptor);
 
-        #[cfg(feature = "MediaPlayer_MPMusicPlayerQueueDescriptor")]
+        #[cfg(feature = "MPMusicPlayerQueueDescriptor")]
         #[method(prependQueueDescriptor:)]
         pub unsafe fn prependQueueDescriptor(&self, descriptor: &MPMusicPlayerQueueDescriptor);
 
-        #[cfg(feature = "MediaPlayer_MPMusicPlayerQueueDescriptor")]
+        #[cfg(feature = "MPMusicPlayerQueueDescriptor")]
         #[method(appendQueueDescriptor:)]
         pub unsafe fn appendQueueDescriptor(&self, descriptor: &MPMusicPlayerQueueDescriptor);
 

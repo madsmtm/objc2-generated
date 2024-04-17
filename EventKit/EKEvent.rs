@@ -55,10 +55,10 @@ unsafe impl RefEncode for EKEventStatus {
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(feature = "EventKit_EKCalendarItem", feature = "EventKit_EKObject"))]
+    #[cfg(all(feature = "EKCalendarItem", feature = "EKObject"))]
     pub struct EKEvent;
 
-    #[cfg(all(feature = "EventKit_EKCalendarItem", feature = "EventKit_EKObject"))]
+    #[cfg(all(feature = "EKCalendarItem", feature = "EKObject"))]
     unsafe impl ClassType for EKEvent {
         #[inherits(EKObject, NSObject)]
         type Super = EKCalendarItem;
@@ -66,13 +66,13 @@ extern_class!(
     }
 );
 
-#[cfg(all(feature = "EventKit_EKCalendarItem", feature = "EventKit_EKObject"))]
+#[cfg(all(feature = "EKCalendarItem", feature = "EKObject"))]
 unsafe impl NSObjectProtocol for EKEvent {}
 
 extern_methods!(
-    #[cfg(all(feature = "EventKit_EKCalendarItem", feature = "EventKit_EKObject"))]
+    #[cfg(all(feature = "EKCalendarItem", feature = "EKObject"))]
     unsafe impl EKEvent {
-        #[cfg(feature = "EventKit_EKEventStore")]
+        #[cfg(feature = "EKEventStore")]
         #[method_id(@__retain_semantics Other eventWithEventStore:)]
         pub unsafe fn eventWithEventStore(event_store: &EKEventStore) -> Id<EKEvent>;
 
@@ -97,11 +97,11 @@ extern_methods!(
         #[method(setEndDate:)]
         pub unsafe fn setEndDate(&self, end_date: Option<&NSDate>);
 
-        #[cfg(feature = "EventKit_EKStructuredLocation")]
+        #[cfg(feature = "EKStructuredLocation")]
         #[method_id(@__retain_semantics Other structuredLocation)]
         pub unsafe fn structuredLocation(&self) -> Option<Id<EKStructuredLocation>>;
 
-        #[cfg(feature = "EventKit_EKStructuredLocation")]
+        #[cfg(feature = "EKStructuredLocation")]
         #[method(setStructuredLocation:)]
         pub unsafe fn setStructuredLocation(
             &self,
@@ -111,7 +111,7 @@ extern_methods!(
         #[method(compareStartDateWithEvent:)]
         pub unsafe fn compareStartDateWithEvent(&self, other: &EKEvent) -> NSComparisonResult;
 
-        #[cfg(feature = "EventKit_EKParticipant")]
+        #[cfg(feature = "EKParticipant")]
         #[method_id(@__retain_semantics Other organizer)]
         pub unsafe fn organizer(&self) -> Option<Id<EKParticipant>>;
 
@@ -147,7 +147,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "EventKit_EKCalendarItem", feature = "EventKit_EKObject"))]
+    #[cfg(all(feature = "EKCalendarItem", feature = "EKObject"))]
     unsafe impl EKEvent {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

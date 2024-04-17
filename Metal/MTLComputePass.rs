@@ -21,12 +21,12 @@ unsafe impl NSObjectProtocol for MTLComputePassSampleBufferAttachmentDescriptor 
 
 extern_methods!(
     unsafe impl MTLComputePassSampleBufferAttachmentDescriptor {
-        #[cfg(feature = "Metal_MTLCounters")]
+        #[cfg(feature = "MTLCounters")]
         #[method_id(@__retain_semantics Other sampleBuffer)]
         pub unsafe fn sampleBuffer(&self)
             -> Option<Id<ProtocolObject<dyn MTLCounterSampleBuffer>>>;
 
-        #[cfg(feature = "Metal_MTLCounters")]
+        #[cfg(feature = "MTLCounters")]
         #[method(setSampleBuffer:)]
         pub unsafe fn setSampleBuffer(
             &self,
@@ -120,11 +120,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Other computePassDescriptor)]
         pub unsafe fn computePassDescriptor() -> Id<MTLComputePassDescriptor>;
 
-        #[cfg(feature = "Metal_MTLCommandBuffer")]
+        #[cfg(feature = "MTLCommandBuffer")]
         #[method(dispatchType)]
         pub unsafe fn dispatchType(&self) -> MTLDispatchType;
 
-        #[cfg(feature = "Metal_MTLCommandBuffer")]
+        #[cfg(feature = "MTLCommandBuffer")]
         #[method(setDispatchType:)]
         pub unsafe fn setDispatchType(&self, dispatch_type: MTLDispatchType);
 

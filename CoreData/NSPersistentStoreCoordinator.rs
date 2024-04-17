@@ -215,18 +215,18 @@ unsafe impl NSObjectProtocol for NSPersistentStoreCoordinator {}
 
 extern_methods!(
     unsafe impl NSPersistentStoreCoordinator {
-        #[cfg(feature = "CoreData_NSManagedObjectModel")]
+        #[cfg(feature = "NSManagedObjectModel")]
         #[method_id(@__retain_semantics Init initWithManagedObjectModel:)]
         pub unsafe fn initWithManagedObjectModel(
             this: Allocated<Self>,
             model: &NSManagedObjectModel,
         ) -> Id<Self>;
 
-        #[cfg(feature = "CoreData_NSManagedObjectModel")]
+        #[cfg(feature = "NSManagedObjectModel")]
         #[method_id(@__retain_semantics Other managedObjectModel)]
         pub unsafe fn managedObjectModel(&self) -> Id<NSManagedObjectModel>;
 
-        #[cfg(feature = "CoreData_NSPersistentStore")]
+        #[cfg(feature = "NSPersistentStore")]
         #[method_id(@__retain_semantics Other persistentStores)]
         pub unsafe fn persistentStores(&self) -> Id<NSArray<NSPersistentStore>>;
 
@@ -236,15 +236,15 @@ extern_methods!(
         #[method(setName:)]
         pub unsafe fn setName(&self, name: Option<&NSString>);
 
-        #[cfg(feature = "CoreData_NSPersistentStore")]
+        #[cfg(feature = "NSPersistentStore")]
         #[method_id(@__retain_semantics Other persistentStoreForURL:)]
         pub unsafe fn persistentStoreForURL(&self, url: &NSURL) -> Option<Id<NSPersistentStore>>;
 
-        #[cfg(feature = "CoreData_NSPersistentStore")]
+        #[cfg(feature = "NSPersistentStore")]
         #[method_id(@__retain_semantics Other URLForPersistentStore:)]
         pub unsafe fn URLForPersistentStore(&self, store: &NSPersistentStore) -> Id<NSURL>;
 
-        #[cfg(feature = "CoreData_NSPersistentStore")]
+        #[cfg(feature = "NSPersistentStore")]
         #[method(setURL:forPersistentStore:)]
         pub unsafe fn setURL_forPersistentStore(
             &self,
@@ -252,7 +252,7 @@ extern_methods!(
             store: &NSPersistentStore,
         ) -> bool;
 
-        #[cfg(feature = "CoreData_NSPersistentStore")]
+        #[cfg(feature = "NSPersistentStore")]
         #[method_id(@__retain_semantics Other addPersistentStoreWithType:configuration:URL:options:error:_)]
         pub unsafe fn addPersistentStoreWithType_configuration_URL_options_error(
             &self,
@@ -262,7 +262,7 @@ extern_methods!(
             options: Option<&NSDictionary>,
         ) -> Result<Id<NSPersistentStore>, Id<NSError>>;
 
-        #[cfg(all(feature = "CoreData_NSPersistentStoreDescription", feature = "block2"))]
+        #[cfg(all(feature = "NSPersistentStoreDescription", feature = "block2"))]
         #[method(addPersistentStoreWithDescription:completionHandler:)]
         pub unsafe fn addPersistentStoreWithDescription_completionHandler(
             &self,
@@ -270,14 +270,14 @@ extern_methods!(
             block: &Block<dyn Fn(NonNull<NSPersistentStoreDescription>, *mut NSError)>,
         );
 
-        #[cfg(feature = "CoreData_NSPersistentStore")]
+        #[cfg(feature = "NSPersistentStore")]
         #[method(removePersistentStore:error:_)]
         pub unsafe fn removePersistentStore_error(
             &self,
             store: &NSPersistentStore,
         ) -> Result<(), Id<NSError>>;
 
-        #[cfg(feature = "CoreData_NSPersistentStore")]
+        #[cfg(feature = "NSPersistentStore")]
         #[method(setMetadata:forPersistentStore:)]
         pub unsafe fn setMetadata_forPersistentStore(
             &self,
@@ -285,14 +285,14 @@ extern_methods!(
             store: &NSPersistentStore,
         );
 
-        #[cfg(feature = "CoreData_NSPersistentStore")]
+        #[cfg(feature = "NSPersistentStore")]
         #[method_id(@__retain_semantics Other metadataForPersistentStore:)]
         pub unsafe fn metadataForPersistentStore(
             &self,
             store: &NSPersistentStore,
         ) -> Id<NSDictionary<NSString, AnyObject>>;
 
-        #[cfg(feature = "CoreData_NSManagedObjectID")]
+        #[cfg(feature = "NSManagedObjectID")]
         #[method_id(@__retain_semantics Other managedObjectIDForURIRepresentation:)]
         pub unsafe fn managedObjectIDForURIRepresentation(
             &self,
@@ -300,8 +300,8 @@ extern_methods!(
         ) -> Option<Id<NSManagedObjectID>>;
 
         #[cfg(all(
-            feature = "CoreData_NSManagedObjectContext",
-            feature = "CoreData_NSPersistentStoreRequest"
+            feature = "NSManagedObjectContext",
+            feature = "NSPersistentStoreRequest"
         ))]
         #[method_id(@__retain_semantics Other executeRequest:withContext:error:_)]
         pub unsafe fn executeRequest_withContext_error(
@@ -338,7 +338,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other elementsDerivedFromExternalRecordURL:)]
         pub unsafe fn elementsDerivedFromExternalRecordURL(file_url: &NSURL) -> Id<NSDictionary>;
 
-        #[cfg(feature = "CoreData_NSPersistentStore")]
+        #[cfg(feature = "NSPersistentStore")]
         #[deprecated = "Spotlight integration is deprecated. Use CoreSpotlight integration instead."]
         #[method_id(@__retain_semantics Other importStoreWithIdentifier:fromExternalRecordsDirectory:toURL:options:withType:error:_)]
         pub unsafe fn importStoreWithIdentifier_fromExternalRecordsDirectory_toURL_options_withType_error(
@@ -350,7 +350,7 @@ extern_methods!(
             store_type: &NSString,
         ) -> Result<Id<NSPersistentStore>, Id<NSError>>;
 
-        #[cfg(feature = "CoreData_NSPersistentStore")]
+        #[cfg(feature = "NSPersistentStore")]
         #[method_id(@__retain_semantics Other migratePersistentStore:toURL:options:withType:error:_)]
         pub unsafe fn migratePersistentStore_toURL_options_withType_error(
             &self,
@@ -386,7 +386,7 @@ extern_methods!(
         #[method(performBlockAndWait:)]
         pub unsafe fn performBlockAndWait(&self, block: &Block<dyn Fn() + '_>);
 
-        #[cfg(feature = "CoreData_NSPersistentHistoryToken")]
+        #[cfg(feature = "NSPersistentHistoryToken")]
         #[method_id(@__retain_semantics Other currentPersistentHistoryTokenFromStores:)]
         pub unsafe fn currentPersistentHistoryTokenFromStores(
             &self,

@@ -5,32 +5,32 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern "C" {
-    #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
+    #[cfg(all(feature = "NSError", feature = "NSString"))]
     pub static NSURLErrorDomain: &'static NSErrorDomain;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLErrorFailingURLErrorKey: &'static NSString;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLErrorFailingURLStringErrorKey: &'static NSString;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSErrorFailingURLStringKey: &'static NSString;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLErrorFailingURLPeerTrustErrorKey: &'static NSString;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLErrorBackgroundTaskCancelledReasonKey: &'static NSString;
 }
 
@@ -39,7 +39,7 @@ pub const NSURLErrorCancelledReasonBackgroundUpdatesDisabled: NSInteger = 1;
 pub const NSURLErrorCancelledReasonInsufficientSystemResources: NSInteger = 2;
 
 extern "C" {
-    #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
+    #[cfg(all(feature = "NSError", feature = "NSString"))]
     pub static NSURLErrorNetworkUnavailableReasonKey: &'static NSErrorUserInfoKey;
 }
 

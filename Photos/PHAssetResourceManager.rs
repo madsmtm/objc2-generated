@@ -74,7 +74,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other defaultManager)]
         pub unsafe fn defaultManager() -> Id<PHAssetResourceManager>;
 
-        #[cfg(all(feature = "Photos_PHAssetResource", feature = "block2"))]
+        #[cfg(all(feature = "PHAssetResource", feature = "block2"))]
         #[method(requestDataForAssetResource:options:dataReceivedHandler:completionHandler:)]
         pub unsafe fn requestDataForAssetResource_options_dataReceivedHandler_completionHandler(
             &self,
@@ -84,7 +84,7 @@ extern_methods!(
             completion_handler: &Block<dyn Fn(*mut NSError)>,
         ) -> PHAssetResourceDataRequestID;
 
-        #[cfg(all(feature = "Photos_PHAssetResource", feature = "block2"))]
+        #[cfg(all(feature = "PHAssetResource", feature = "block2"))]
         #[method(writeDataForAssetResource:toFile:options:completionHandler:)]
         pub unsafe fn writeDataForAssetResource_toFile_options_completionHandler(
             &self,

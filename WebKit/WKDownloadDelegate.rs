@@ -28,7 +28,7 @@ unsafe impl RefEncode for WKDownloadRedirectPolicy {
 
 extern_protocol!(
     pub unsafe trait WKDownloadDelegate: NSObjectProtocol {
-        #[cfg(all(feature = "WebKit_WKDownload", feature = "block2"))]
+        #[cfg(all(feature = "WKDownload", feature = "block2"))]
         #[method(download:decideDestinationUsingResponse:suggestedFilename:completionHandler:)]
         unsafe fn download_decideDestinationUsingResponse_suggestedFilename_completionHandler(
             &self,
@@ -38,7 +38,7 @@ extern_protocol!(
             completion_handler: &Block<dyn Fn(*mut NSURL)>,
         );
 
-        #[cfg(all(feature = "WebKit_WKDownload", feature = "block2"))]
+        #[cfg(all(feature = "WKDownload", feature = "block2"))]
         #[optional]
         #[method(download:willPerformHTTPRedirection:newRequest:decisionHandler:)]
         unsafe fn download_willPerformHTTPRedirection_newRequest_decisionHandler(
@@ -49,7 +49,7 @@ extern_protocol!(
             decision_handler: &Block<dyn Fn(WKDownloadRedirectPolicy)>,
         );
 
-        #[cfg(all(feature = "WebKit_WKDownload", feature = "block2"))]
+        #[cfg(all(feature = "WKDownload", feature = "block2"))]
         #[optional]
         #[method(download:didReceiveAuthenticationChallenge:completionHandler:)]
         unsafe fn download_didReceiveAuthenticationChallenge_completionHandler(
@@ -61,12 +61,12 @@ extern_protocol!(
             >,
         );
 
-        #[cfg(feature = "WebKit_WKDownload")]
+        #[cfg(feature = "WKDownload")]
         #[optional]
         #[method(downloadDidFinish:)]
         unsafe fn downloadDidFinish(&self, download: &WKDownload);
 
-        #[cfg(feature = "WebKit_WKDownload")]
+        #[cfg(feature = "WKDownload")]
         #[optional]
         #[method(download:didFailWithError:resumeData:)]
         unsafe fn download_didFailWithError_resumeData(

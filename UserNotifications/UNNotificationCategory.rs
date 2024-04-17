@@ -52,7 +52,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other identifier)]
         pub unsafe fn identifier(&self) -> Id<NSString>;
 
-        #[cfg(feature = "UserNotifications_UNNotificationAction")]
+        #[cfg(feature = "UNNotificationAction")]
         #[method_id(@__retain_semantics Other actions)]
         pub unsafe fn actions(&self) -> Id<NSArray<UNNotificationAction>>;
 
@@ -68,7 +68,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other categorySummaryFormat)]
         pub unsafe fn categorySummaryFormat(&self) -> Id<NSString>;
 
-        #[cfg(feature = "UserNotifications_UNNotificationAction")]
+        #[cfg(feature = "UNNotificationAction")]
         #[method_id(@__retain_semantics Other categoryWithIdentifier:actions:intentIdentifiers:options:)]
         pub unsafe fn categoryWithIdentifier_actions_intentIdentifiers_options(
             identifier: &NSString,
@@ -77,7 +77,7 @@ extern_methods!(
             options: UNNotificationCategoryOptions,
         ) -> Id<Self>;
 
-        #[cfg(feature = "UserNotifications_UNNotificationAction")]
+        #[cfg(feature = "UNNotificationAction")]
         #[method_id(@__retain_semantics Other categoryWithIdentifier:actions:intentIdentifiers:hiddenPreviewsBodyPlaceholder:options:)]
         pub unsafe fn categoryWithIdentifier_actions_intentIdentifiers_hiddenPreviewsBodyPlaceholder_options(
             identifier: &NSString,
@@ -87,7 +87,7 @@ extern_methods!(
             options: UNNotificationCategoryOptions,
         ) -> Id<Self>;
 
-        #[cfg(feature = "UserNotifications_UNNotificationAction")]
+        #[cfg(feature = "UNNotificationAction")]
         #[method_id(@__retain_semantics Other categoryWithIdentifier:actions:intentIdentifiers:hiddenPreviewsBodyPlaceholder:categorySummaryFormat:options:)]
         pub unsafe fn categoryWithIdentifier_actions_intentIdentifiers_hiddenPreviewsBodyPlaceholder_categorySummaryFormat_options(
             identifier: &NSString,

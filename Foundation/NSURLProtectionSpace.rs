@@ -5,77 +5,77 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLProtectionSpaceHTTP: &'static NSString;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLProtectionSpaceHTTPS: &'static NSString;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLProtectionSpaceFTP: &'static NSString;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLProtectionSpaceHTTPProxy: &'static NSString;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLProtectionSpaceHTTPSProxy: &'static NSString;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLProtectionSpaceFTPProxy: &'static NSString;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLProtectionSpaceSOCKSProxy: &'static NSString;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLAuthenticationMethodDefault: &'static NSString;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLAuthenticationMethodHTTPBasic: &'static NSString;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLAuthenticationMethodHTTPDigest: &'static NSString;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLAuthenticationMethodHTMLForm: &'static NSString;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLAuthenticationMethodNTLM: &'static NSString;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLAuthenticationMethodNegotiate: &'static NSString;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLAuthenticationMethodClientCertificate: &'static NSString;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSURLAuthenticationMethodServerTrust: &'static NSString;
 }
 
@@ -93,20 +93,20 @@ unsafe impl Send for NSURLProtectionSpace {}
 
 unsafe impl Sync for NSURLProtectionSpace {}
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSCoding for NSURLProtectionSpace {}
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSURLProtectionSpace {}
 
 unsafe impl NSObjectProtocol for NSURLProtectionSpace {}
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSSecureCoding for NSURLProtectionSpace {}
 
 extern_methods!(
     unsafe impl NSURLProtectionSpace {
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Init initWithHost:port:protocol:realm:authenticationMethod:)]
         pub unsafe fn initWithHost_port_protocol_realm_authenticationMethod(
             this: Allocated<Self>,
@@ -117,7 +117,7 @@ extern_methods!(
             authentication_method: Option<&NSString>,
         ) -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Init initWithProxyHost:port:type:realm:authenticationMethod:)]
         pub unsafe fn initWithProxyHost_port_type_realm_authenticationMethod(
             this: Allocated<Self>,
@@ -128,7 +128,7 @@ extern_methods!(
             authentication_method: Option<&NSString>,
         ) -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other realm)]
         pub unsafe fn realm(&self) -> Option<Id<NSString>>;
 
@@ -138,22 +138,22 @@ extern_methods!(
         #[method(isProxy)]
         pub unsafe fn isProxy(&self) -> bool;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other host)]
         pub unsafe fn host(&self) -> Id<NSString>;
 
         #[method(port)]
         pub unsafe fn port(&self) -> NSInteger;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other proxyType)]
         pub unsafe fn proxyType(&self) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other protocol)]
         pub unsafe fn protocol(&self) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other authenticationMethod)]
         pub unsafe fn authenticationMethod(&self) -> Id<NSString>;
     }
@@ -173,7 +173,7 @@ extern_methods!(
 extern_methods!(
     /// NSClientCertificateSpace
     unsafe impl NSURLProtectionSpace {
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSData"))]
+        #[cfg(all(feature = "NSArray", feature = "NSData"))]
         #[method_id(@__retain_semantics Other distinguishedNames)]
         pub unsafe fn distinguishedNames(&self) -> Option<Id<NSArray<NSData>>>;
     }

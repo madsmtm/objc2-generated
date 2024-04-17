@@ -7,17 +7,11 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(
-        feature = "GameController_GCExtendedGamepad",
-        feature = "GameController_GCPhysicalInputProfile"
-    ))]
+    #[cfg(all(feature = "GCExtendedGamepad", feature = "GCPhysicalInputProfile"))]
     #[deprecated = "GCExtendedGamepadSnapshot has been deprecated, use [GCController controllerWithExtendedGamepad] instead"]
     pub struct GCExtendedGamepadSnapshot;
 
-    #[cfg(all(
-        feature = "GameController_GCExtendedGamepad",
-        feature = "GameController_GCPhysicalInputProfile"
-    ))]
+    #[cfg(all(feature = "GCExtendedGamepad", feature = "GCPhysicalInputProfile"))]
     unsafe impl ClassType for GCExtendedGamepadSnapshot {
         #[inherits(GCPhysicalInputProfile, NSObject)]
         type Super = GCExtendedGamepad;
@@ -25,17 +19,11 @@ extern_class!(
     }
 );
 
-#[cfg(all(
-    feature = "GameController_GCExtendedGamepad",
-    feature = "GameController_GCPhysicalInputProfile"
-))]
+#[cfg(all(feature = "GCExtendedGamepad", feature = "GCPhysicalInputProfile"))]
 unsafe impl NSObjectProtocol for GCExtendedGamepadSnapshot {}
 
 extern_methods!(
-    #[cfg(all(
-        feature = "GameController_GCExtendedGamepad",
-        feature = "GameController_GCPhysicalInputProfile"
-    ))]
+    #[cfg(all(feature = "GCExtendedGamepad", feature = "GCPhysicalInputProfile"))]
     unsafe impl GCExtendedGamepadSnapshot {
         #[deprecated = "GCExtendedGamepadSnapshot has been deprecated, use [GCController controllerWithExtendedGamepad] instead"]
         #[method_id(@__retain_semantics Other snapshotData)]
@@ -49,7 +37,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithSnapshotData:)]
         pub unsafe fn initWithSnapshotData(this: Allocated<Self>, data: &NSData) -> Id<Self>;
 
-        #[cfg(feature = "GameController_GCController")]
+        #[cfg(feature = "GCController")]
         #[deprecated = "GCExtendedGamepadSnapshot has been deprecated, use [GCController controllerWithExtendedGamepad] instead"]
         #[method_id(@__retain_semantics Init initWithController:snapshotData:)]
         pub unsafe fn initWithController_snapshotData(
@@ -62,10 +50,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(all(
-        feature = "GameController_GCExtendedGamepad",
-        feature = "GameController_GCPhysicalInputProfile"
-    ))]
+    #[cfg(all(feature = "GCExtendedGamepad", feature = "GCPhysicalInputProfile"))]
     unsafe impl GCExtendedGamepadSnapshot {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

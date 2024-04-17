@@ -9,10 +9,10 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "HealthKit_HKQuery")]
+    #[cfg(feature = "HKQuery")]
     pub struct HKActivitySummaryQuery;
 
-    #[cfg(feature = "HealthKit_HKQuery")]
+    #[cfg(feature = "HKQuery")]
     unsafe impl ClassType for HKActivitySummaryQuery {
         #[inherits(NSObject)]
         type Super = HKQuery;
@@ -20,13 +20,13 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "HealthKit_HKQuery")]
+#[cfg(feature = "HKQuery")]
 unsafe impl NSObjectProtocol for HKActivitySummaryQuery {}
 
 extern_methods!(
-    #[cfg(feature = "HealthKit_HKQuery")]
+    #[cfg(feature = "HKQuery")]
     unsafe impl HKActivitySummaryQuery {
-        #[cfg(all(feature = "HealthKit_HKActivitySummary", feature = "block2"))]
+        #[cfg(all(feature = "HKActivitySummary", feature = "block2"))]
         #[method(updateHandler)]
         pub unsafe fn updateHandler(
             &self,
@@ -34,7 +34,7 @@ extern_methods!(
             dyn Fn(NonNull<HKActivitySummaryQuery>, *mut NSArray<HKActivitySummary>, *mut NSError),
         >;
 
-        #[cfg(all(feature = "HealthKit_HKActivitySummary", feature = "block2"))]
+        #[cfg(all(feature = "HKActivitySummary", feature = "block2"))]
         #[method(setUpdateHandler:)]
         pub unsafe fn setUpdateHandler(
             &self,
@@ -49,7 +49,7 @@ extern_methods!(
             >,
         );
 
-        #[cfg(all(feature = "HealthKit_HKActivitySummary", feature = "block2"))]
+        #[cfg(all(feature = "HKActivitySummary", feature = "block2"))]
         #[method_id(@__retain_semantics Init initWithPredicate:resultsHandler:)]
         pub unsafe fn initWithPredicate_resultsHandler(
             this: Allocated<Self>,
@@ -67,7 +67,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `HKQuery`
-    #[cfg(feature = "HealthKit_HKQuery")]
+    #[cfg(feature = "HKQuery")]
     unsafe impl HKActivitySummaryQuery {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -76,7 +76,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "HealthKit_HKQuery")]
+    #[cfg(feature = "HKQuery")]
     unsafe impl HKActivitySummaryQuery {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

@@ -7,7 +7,7 @@ use crate::*;
 
 extern_methods!(
     /// Predicates
-    #[cfg(feature = "Contacts_CNContact")]
+    #[cfg(feature = "CNContact")]
     unsafe impl CNContact {
         #[method_id(@__retain_semantics Other predicateForContactsMatchingName:)]
         pub unsafe fn predicateForContactsMatchingName(name: &NSString) -> Id<NSPredicate>;
@@ -17,7 +17,7 @@ extern_methods!(
             email_address: &NSString,
         ) -> Id<NSPredicate>;
 
-        #[cfg(feature = "Contacts_CNPhoneNumber")]
+        #[cfg(feature = "CNPhoneNumber")]
         #[method_id(@__retain_semantics Other predicateForContactsMatchingPhoneNumber:)]
         pub unsafe fn predicateForContactsMatchingPhoneNumber(
             phone_number: &CNPhoneNumber,

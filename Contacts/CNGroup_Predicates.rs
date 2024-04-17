@@ -7,7 +7,7 @@ use crate::*;
 
 extern_methods!(
     /// Predicates
-    #[cfg(feature = "Contacts_CNGroup")]
+    #[cfg(feature = "CNGroup")]
     unsafe impl CNGroup {
         #[method_id(@__retain_semantics Other predicateForGroupsWithIdentifiers:)]
         pub unsafe fn predicateForGroupsWithIdentifiers(

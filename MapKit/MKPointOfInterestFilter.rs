@@ -31,25 +31,25 @@ extern_methods!(
         #[method_id(@__retain_semantics Other filterExcludingAllCategories)]
         pub unsafe fn filterExcludingAllCategories() -> Id<MKPointOfInterestFilter>;
 
-        #[cfg(feature = "MapKit_MKPointOfInterestCategory")]
+        #[cfg(feature = "MKPointOfInterestCategory")]
         #[method_id(@__retain_semantics Init initIncludingCategories:)]
         pub unsafe fn initIncludingCategories(
             this: Allocated<Self>,
             categories: &NSArray<MKPointOfInterestCategory>,
         ) -> Id<Self>;
 
-        #[cfg(feature = "MapKit_MKPointOfInterestCategory")]
+        #[cfg(feature = "MKPointOfInterestCategory")]
         #[method_id(@__retain_semantics Init initExcludingCategories:)]
         pub unsafe fn initExcludingCategories(
             this: Allocated<Self>,
             categories: &NSArray<MKPointOfInterestCategory>,
         ) -> Id<Self>;
 
-        #[cfg(feature = "MapKit_MKPointOfInterestCategory")]
+        #[cfg(feature = "MKPointOfInterestCategory")]
         #[method(includesCategory:)]
         pub unsafe fn includesCategory(&self, category: &MKPointOfInterestCategory) -> bool;
 
-        #[cfg(feature = "MapKit_MKPointOfInterestCategory")]
+        #[cfg(feature = "MKPointOfInterestCategory")]
         #[method(excludesCategory:)]
         pub unsafe fn excludesCategory(&self, category: &MKPointOfInterestCategory) -> bool;
     }

@@ -39,7 +39,7 @@ unsafe impl NSUserInterfaceItemIdentification for FPUIActionExtensionViewControl
 extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     unsafe impl FPUIActionExtensionViewController {
-        #[cfg(feature = "FileProviderUI_FPUIActionExtensionContext")]
+        #[cfg(feature = "FPUIActionExtensionContext")]
         #[method_id(@__retain_semantics Other extensionContext)]
         pub unsafe fn extensionContext(&self) -> Id<FPUIActionExtensionContext>;
 

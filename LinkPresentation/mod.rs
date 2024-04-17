@@ -16,29 +16,29 @@
 #[link(name = "LinkPresentation", kind = "framework")]
 extern "C" {}
 
-#[cfg(feature = "LinkPresentation_LPError")]
+#[cfg(feature = "LPError")]
 #[path = "LPError.rs"]
 mod __LPError;
-#[cfg(feature = "LinkPresentation_LPFoundation")]
+#[cfg(feature = "LPFoundation")]
 #[path = "LPFoundation.rs"]
 mod __LPFoundation;
-#[cfg(feature = "LinkPresentation_LPLinkMetadata")]
+#[cfg(feature = "LPLinkMetadata")]
 #[path = "LPLinkMetadata.rs"]
 mod __LPLinkMetadata;
-#[cfg(feature = "LinkPresentation_LPLinkView")]
+#[cfg(feature = "LPLinkView")]
 #[path = "LPLinkView.rs"]
 mod __LPLinkView;
-#[cfg(feature = "LinkPresentation_LPMetadataProvider")]
+#[cfg(feature = "LPMetadataProvider")]
 #[path = "LPMetadataProvider.rs"]
 mod __LPMetadataProvider;
 
-#[cfg(feature = "LinkPresentation_LPError")]
+#[cfg(feature = "LPError")]
 pub use self::__LPError::LPErrorCode;
-#[cfg(feature = "LinkPresentation_LPError")]
+#[cfg(feature = "LPError")]
 pub use self::__LPError::LPErrorDomain;
-#[cfg(feature = "LinkPresentation_LPLinkMetadata")]
+#[cfg(feature = "LPLinkMetadata")]
 pub use self::__LPLinkMetadata::LPLinkMetadata;
-#[cfg(all(feature = "LinkPresentation_LPLinkView", feature = "objc2-app-kit"))]
+#[cfg(all(feature = "LPLinkView", feature = "objc2-app-kit"))]
 pub use self::__LPLinkView::LPLinkView;
-#[cfg(feature = "LinkPresentation_LPMetadataProvider")]
+#[cfg(feature = "LPMetadataProvider")]
 pub use self::__LPMetadataProvider::LPMetadataProvider;

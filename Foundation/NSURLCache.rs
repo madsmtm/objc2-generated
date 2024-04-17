@@ -38,20 +38,20 @@ unsafe impl Send for NSCachedURLResponse {}
 
 unsafe impl Sync for NSCachedURLResponse {}
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSCoding for NSCachedURLResponse {}
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSCachedURLResponse {}
 
 unsafe impl NSObjectProtocol for NSCachedURLResponse {}
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSSecureCoding for NSCachedURLResponse {}
 
 extern_methods!(
     unsafe impl NSCachedURLResponse {
-        #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSURLResponse"))]
+        #[cfg(all(feature = "NSData", feature = "NSURLResponse"))]
         #[method_id(@__retain_semantics Init initWithResponse:data:)]
         pub unsafe fn initWithResponse_data(
             this: Allocated<Self>,
@@ -60,9 +60,9 @@ extern_methods!(
         ) -> Id<Self>;
 
         #[cfg(all(
-            feature = "Foundation_NSData",
-            feature = "Foundation_NSDictionary",
-            feature = "Foundation_NSURLResponse"
+            feature = "NSData",
+            feature = "NSDictionary",
+            feature = "NSURLResponse"
         ))]
         #[method_id(@__retain_semantics Init initWithResponse:data:userInfo:storagePolicy:)]
         pub unsafe fn initWithResponse_data_userInfo_storagePolicy(
@@ -73,15 +73,15 @@ extern_methods!(
             storage_policy: NSURLCacheStoragePolicy,
         ) -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSURLResponse")]
+        #[cfg(feature = "NSURLResponse")]
         #[method_id(@__retain_semantics Other response)]
         pub unsafe fn response(&self) -> Id<NSURLResponse>;
 
-        #[cfg(feature = "Foundation_NSData")]
+        #[cfg(feature = "NSData")]
         #[method_id(@__retain_semantics Other data)]
         pub unsafe fn data(&self) -> Id<NSData>;
 
-        #[cfg(feature = "Foundation_NSDictionary")]
+        #[cfg(feature = "NSDictionary")]
         #[method_id(@__retain_semantics Other userInfo)]
         pub unsafe fn userInfo(&self) -> Option<Id<NSDictionary>>;
 
@@ -125,7 +125,7 @@ extern_methods!(
         #[method(setSharedURLCache:)]
         pub unsafe fn setSharedURLCache(shared_url_cache: &NSURLCache);
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[deprecated]
         #[method_id(@__retain_semantics Init initWithMemoryCapacity:diskCapacity:diskPath:)]
         pub unsafe fn initWithMemoryCapacity_diskCapacity_diskPath(
@@ -135,7 +135,7 @@ extern_methods!(
             path: Option<&NSString>,
         ) -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSURL")]
+        #[cfg(feature = "NSURL")]
         #[method_id(@__retain_semantics Init initWithMemoryCapacity:diskCapacity:directoryURL:)]
         pub unsafe fn initWithMemoryCapacity_diskCapacity_directoryURL(
             this: Allocated<Self>,
@@ -144,14 +144,14 @@ extern_methods!(
             directory_url: Option<&NSURL>,
         ) -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSURLRequest")]
+        #[cfg(feature = "NSURLRequest")]
         #[method_id(@__retain_semantics Other cachedResponseForRequest:)]
         pub unsafe fn cachedResponseForRequest(
             &self,
             request: &NSURLRequest,
         ) -> Option<Id<NSCachedURLResponse>>;
 
-        #[cfg(feature = "Foundation_NSURLRequest")]
+        #[cfg(feature = "NSURLRequest")]
         #[method(storeCachedResponse:forRequest:)]
         pub unsafe fn storeCachedResponse_forRequest(
             &self,
@@ -159,14 +159,14 @@ extern_methods!(
             request: &NSURLRequest,
         );
 
-        #[cfg(feature = "Foundation_NSURLRequest")]
+        #[cfg(feature = "NSURLRequest")]
         #[method(removeCachedResponseForRequest:)]
         pub unsafe fn removeCachedResponseForRequest(&self, request: &NSURLRequest);
 
         #[method(removeAllCachedResponses)]
         pub unsafe fn removeAllCachedResponses(&self);
 
-        #[cfg(feature = "Foundation_NSDate")]
+        #[cfg(feature = "NSDate")]
         #[method(removeCachedResponsesSinceDate:)]
         pub unsafe fn removeCachedResponsesSinceDate(&self, date: &NSDate);
 
@@ -204,7 +204,7 @@ extern_methods!(
 extern_methods!(
     /// NSURLSessionTaskAdditions
     unsafe impl NSURLCache {
-        #[cfg(feature = "Foundation_NSURLSession")]
+        #[cfg(feature = "NSURLSession")]
         #[method(storeCachedResponse:forDataTask:)]
         pub unsafe fn storeCachedResponse_forDataTask(
             &self,
@@ -212,7 +212,7 @@ extern_methods!(
             data_task: &NSURLSessionDataTask,
         );
 
-        #[cfg(all(feature = "Foundation_NSURLSession", feature = "block2"))]
+        #[cfg(all(feature = "NSURLSession", feature = "block2"))]
         #[method(getCachedResponseForDataTask:completionHandler:)]
         pub unsafe fn getCachedResponseForDataTask_completionHandler(
             &self,
@@ -220,7 +220,7 @@ extern_methods!(
             completion_handler: &Block<dyn Fn(*mut NSCachedURLResponse)>,
         );
 
-        #[cfg(feature = "Foundation_NSURLSession")]
+        #[cfg(feature = "NSURLSession")]
         #[method(removeCachedResponseForDataTask:)]
         pub unsafe fn removeCachedResponseForDataTask(&self, data_task: &NSURLSessionDataTask);
     }

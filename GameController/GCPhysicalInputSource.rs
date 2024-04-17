@@ -32,7 +32,7 @@ unsafe impl RefEncode for GCPhysicalInputSourceDirection {
 
 extern_protocol!(
     pub unsafe trait GCPhysicalInputSource: NSObjectProtocol {
-        #[cfg(feature = "GameController_GCInputNames")]
+        #[cfg(feature = "GCInputNames")]
         #[method_id(@__retain_semantics Other elementAliases)]
         unsafe fn elementAliases(&self) -> Id<NSSet<NSString>>;
 

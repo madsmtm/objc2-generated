@@ -47,26 +47,26 @@ unsafe impl NSUserInterfaceItemIdentification for MKCompassButton {}
 extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     unsafe impl MKCompassButton {
-        #[cfg(feature = "MapKit_MKMapView")]
+        #[cfg(feature = "MKMapView")]
         #[method_id(@__retain_semantics Other compassButtonWithMapView:)]
         pub unsafe fn compassButtonWithMapView(
             map_view: Option<&MKMapView>,
             mtm: MainThreadMarker,
         ) -> Id<Self>;
 
-        #[cfg(feature = "MapKit_MKMapView")]
+        #[cfg(feature = "MKMapView")]
         #[method_id(@__retain_semantics Other mapView)]
         pub unsafe fn mapView(&self) -> Option<Id<MKMapView>>;
 
-        #[cfg(feature = "MapKit_MKMapView")]
+        #[cfg(feature = "MKMapView")]
         #[method(setMapView:)]
         pub unsafe fn setMapView(&self, map_view: Option<&MKMapView>);
 
-        #[cfg(feature = "MapKit_MKTypes")]
+        #[cfg(feature = "MKTypes")]
         #[method(compassVisibility)]
         pub unsafe fn compassVisibility(&self) -> MKFeatureVisibility;
 
-        #[cfg(feature = "MapKit_MKTypes")]
+        #[cfg(feature = "MKTypes")]
         #[method(setCompassVisibility:)]
         pub unsafe fn setCompassVisibility(&self, compass_visibility: MKFeatureVisibility);
     }

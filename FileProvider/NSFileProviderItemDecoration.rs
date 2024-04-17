@@ -9,13 +9,13 @@ use crate::*;
 pub type NSFileProviderItemDecorationIdentifier = NSString;
 
 extern_protocol!(
-    #[cfg(feature = "FileProvider_NSFileProviderItem")]
+    #[cfg(feature = "NSFileProviderItem")]
     pub unsafe trait NSFileProviderItemDecorating: NSFileProviderItemProtocol {
         #[method_id(@__retain_semantics Other decorations)]
         unsafe fn decorations(&self)
             -> Option<Id<NSArray<NSFileProviderItemDecorationIdentifier>>>;
     }
 
-    #[cfg(feature = "FileProvider_NSFileProviderItem")]
+    #[cfg(feature = "NSFileProviderItem")]
     unsafe impl ProtocolType for dyn NSFileProviderItemDecorating {}
 );

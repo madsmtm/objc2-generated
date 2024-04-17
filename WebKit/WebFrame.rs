@@ -23,8 +23,8 @@ unsafe impl NSObjectProtocol for WebFrame {}
 extern_methods!(
     unsafe impl WebFrame {
         #[cfg(all(
-            feature = "WebKit_WebFrameView",
-            feature = "WebKit_WebView",
+            feature = "WebFrameView",
+            feature = "WebView",
             feature = "objc2-app-kit"
         ))]
         #[deprecated]
@@ -40,32 +40,32 @@ extern_methods!(
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Id<NSString>;
 
-        #[cfg(all(feature = "WebKit_WebView", feature = "objc2-app-kit"))]
+        #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
         #[deprecated]
         #[method_id(@__retain_semantics Other webView)]
         pub unsafe fn webView(&self, mtm: MainThreadMarker) -> Option<Id<WebView>>;
 
-        #[cfg(all(feature = "WebKit_WebFrameView", feature = "objc2-app-kit"))]
+        #[cfg(all(feature = "WebFrameView", feature = "objc2-app-kit"))]
         #[deprecated]
         #[method_id(@__retain_semantics Other frameView)]
         pub unsafe fn frameView(&self, mtm: MainThreadMarker) -> Option<Id<WebFrameView>>;
 
         #[cfg(all(
-            feature = "WebKit_DOMDocument",
-            feature = "WebKit_DOMNode",
-            feature = "WebKit_DOMObject",
-            feature = "WebKit_WebScriptObject"
+            feature = "DOMDocument",
+            feature = "DOMNode",
+            feature = "DOMObject",
+            feature = "WebScriptObject"
         ))]
         #[deprecated]
         #[method_id(@__retain_semantics Other DOMDocument)]
         pub unsafe fn DOMDocument(&self) -> Option<Id<DOMDocument>>;
 
         #[cfg(all(
-            feature = "WebKit_DOMElement",
-            feature = "WebKit_DOMHTMLElement",
-            feature = "WebKit_DOMNode",
-            feature = "WebKit_DOMObject",
-            feature = "WebKit_WebScriptObject"
+            feature = "DOMElement",
+            feature = "DOMHTMLElement",
+            feature = "DOMNode",
+            feature = "DOMObject",
+            feature = "WebScriptObject"
         ))]
         #[deprecated]
         #[method_id(@__retain_semantics Other frameElement)]
@@ -98,17 +98,17 @@ extern_methods!(
             unreachable_url: Option<&NSURL>,
         );
 
-        #[cfg(feature = "WebKit_WebArchive")]
+        #[cfg(feature = "WebArchive")]
         #[deprecated]
         #[method(loadArchive:)]
         pub unsafe fn loadArchive(&self, archive: Option<&WebArchive>);
 
-        #[cfg(feature = "WebKit_WebDataSource")]
+        #[cfg(feature = "WebDataSource")]
         #[deprecated]
         #[method_id(@__retain_semantics Other dataSource)]
         pub unsafe fn dataSource(&self) -> Option<Id<WebDataSource>>;
 
-        #[cfg(feature = "WebKit_WebDataSource")]
+        #[cfg(feature = "WebDataSource")]
         #[deprecated]
         #[method_id(@__retain_semantics Other provisionalDataSource)]
         pub unsafe fn provisionalDataSource(&self) -> Option<Id<WebDataSource>>;
@@ -137,7 +137,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other childFrames)]
         pub unsafe fn childFrames(&self) -> Id<NSArray>;
 
-        #[cfg(feature = "WebKit_WebScriptObject")]
+        #[cfg(feature = "WebScriptObject")]
         #[deprecated]
         #[method_id(@__retain_semantics Other windowObject)]
         pub unsafe fn windowObject(&self) -> Option<Id<WebScriptObject>>;

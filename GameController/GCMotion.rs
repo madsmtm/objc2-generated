@@ -118,7 +118,7 @@ unsafe impl NSObjectProtocol for GCMotion {}
 
 extern_methods!(
     unsafe impl GCMotion {
-        #[cfg(feature = "GameController_GCController")]
+        #[cfg(feature = "GCController")]
         #[method_id(@__retain_semantics Other controller)]
         pub unsafe fn controller(&self) -> Option<Id<GCController>>;
 

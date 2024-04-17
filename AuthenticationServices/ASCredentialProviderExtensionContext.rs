@@ -23,10 +23,7 @@ unsafe impl NSObjectProtocol for ASCredentialProviderExtensionContext {}
 
 extern_methods!(
     unsafe impl ASCredentialProviderExtensionContext {
-        #[cfg(all(
-            feature = "AuthenticationServices_ASPasswordCredential",
-            feature = "block2"
-        ))]
+        #[cfg(all(feature = "ASPasswordCredential", feature = "block2"))]
         #[method(completeRequestWithSelectedCredential:completionHandler:)]
         pub unsafe fn completeRequestWithSelectedCredential_completionHandler(
             &self,
@@ -34,10 +31,7 @@ extern_methods!(
             completion_handler: Option<&Block<dyn Fn(Bool)>>,
         );
 
-        #[cfg(all(
-            feature = "AuthenticationServices_ASPasskeyAssertionCredential",
-            feature = "block2"
-        ))]
+        #[cfg(all(feature = "ASPasskeyAssertionCredential", feature = "block2"))]
         #[method(completeAssertionRequestWithSelectedPasskeyCredential:completionHandler:)]
         pub unsafe fn completeAssertionRequestWithSelectedPasskeyCredential_completionHandler(
             &self,
@@ -45,10 +39,7 @@ extern_methods!(
             completion_handler: Option<&Block<dyn Fn(Bool)>>,
         );
 
-        #[cfg(all(
-            feature = "AuthenticationServices_ASPasskeyRegistrationCredential",
-            feature = "block2"
-        ))]
+        #[cfg(all(feature = "ASPasskeyRegistrationCredential", feature = "block2"))]
         #[method(completeRegistrationRequestWithSelectedPasskeyCredential:completionHandler:)]
         pub unsafe fn completeRegistrationRequestWithSelectedPasskeyCredential_completionHandler(
             &self,

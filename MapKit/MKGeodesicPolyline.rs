@@ -9,18 +9,10 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(
-        feature = "MapKit_MKMultiPoint",
-        feature = "MapKit_MKPolyline",
-        feature = "MapKit_MKShape"
-    ))]
+    #[cfg(all(feature = "MKMultiPoint", feature = "MKPolyline", feature = "MKShape"))]
     pub struct MKGeodesicPolyline;
 
-    #[cfg(all(
-        feature = "MapKit_MKMultiPoint",
-        feature = "MapKit_MKPolyline",
-        feature = "MapKit_MKShape"
-    ))]
+    #[cfg(all(feature = "MKMultiPoint", feature = "MKPolyline", feature = "MKShape"))]
     unsafe impl ClassType for MKGeodesicPolyline {
         #[inherits(MKMultiPoint, MKShape, NSObject)]
         type Super = MKPolyline;
@@ -29,37 +21,29 @@ extern_class!(
 );
 
 #[cfg(all(
-    feature = "MapKit_MKAnnotation",
-    feature = "MapKit_MKMultiPoint",
-    feature = "MapKit_MKPolyline",
-    feature = "MapKit_MKShape"
+    feature = "MKAnnotation",
+    feature = "MKMultiPoint",
+    feature = "MKPolyline",
+    feature = "MKShape"
 ))]
 unsafe impl MKAnnotation for MKGeodesicPolyline {}
 
 #[cfg(all(
-    feature = "MapKit_MKAnnotation",
-    feature = "MapKit_MKMultiPoint",
-    feature = "MapKit_MKOverlay",
-    feature = "MapKit_MKPolyline",
-    feature = "MapKit_MKShape"
+    feature = "MKAnnotation",
+    feature = "MKMultiPoint",
+    feature = "MKOverlay",
+    feature = "MKPolyline",
+    feature = "MKShape"
 ))]
 unsafe impl MKOverlay for MKGeodesicPolyline {}
 
-#[cfg(all(
-    feature = "MapKit_MKMultiPoint",
-    feature = "MapKit_MKPolyline",
-    feature = "MapKit_MKShape"
-))]
+#[cfg(all(feature = "MKMultiPoint", feature = "MKPolyline", feature = "MKShape"))]
 unsafe impl NSObjectProtocol for MKGeodesicPolyline {}
 
 extern_methods!(
-    #[cfg(all(
-        feature = "MapKit_MKMultiPoint",
-        feature = "MapKit_MKPolyline",
-        feature = "MapKit_MKShape"
-    ))]
+    #[cfg(all(feature = "MKMultiPoint", feature = "MKPolyline", feature = "MKShape"))]
     unsafe impl MKGeodesicPolyline {
-        #[cfg(feature = "MapKit_MKGeometry")]
+        #[cfg(feature = "MKGeometry")]
         #[method_id(@__retain_semantics Other polylineWithPoints:count:)]
         pub unsafe fn polylineWithPoints_count(
             points: NonNull<MKMapPoint>,
@@ -77,11 +61,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(all(
-        feature = "MapKit_MKMultiPoint",
-        feature = "MapKit_MKPolyline",
-        feature = "MapKit_MKShape"
-    ))]
+    #[cfg(all(feature = "MKMultiPoint", feature = "MKPolyline", feature = "MKShape"))]
     unsafe impl MKGeodesicPolyline {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

@@ -28,7 +28,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other formattedString)]
         pub unsafe fn formattedString(&self) -> Id<NSString>;
 
-        #[cfg(feature = "Speech_SFTranscriptionSegment")]
+        #[cfg(feature = "SFTranscriptionSegment")]
         #[method_id(@__retain_semantics Other segments)]
         pub unsafe fn segments(&self) -> Id<NSArray<SFTranscriptionSegment>>;
 

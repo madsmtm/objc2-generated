@@ -7,11 +7,11 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
+    #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     #[deprecated]
     pub struct DOMXPathExpression;
 
-    #[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
+    #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl ClassType for DOMXPathExpression {
         #[inherits(WebScriptObject, NSObject)]
         type Super = DOMObject;
@@ -19,16 +19,16 @@ extern_class!(
     }
 );
 
-#[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
+#[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
 unsafe impl NSCopying for DOMXPathExpression {}
 
-#[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
+#[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
 unsafe impl NSObjectProtocol for DOMXPathExpression {}
 
 extern_methods!(
-    #[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
+    #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMXPathExpression {
-        #[cfg(all(feature = "WebKit_DOMNode", feature = "WebKit_DOMXPathResult"))]
+        #[cfg(all(feature = "DOMNode", feature = "DOMXPathResult"))]
         #[method_id(@__retain_semantics Other evaluate:type:inResult:)]
         pub unsafe fn evaluate_type_inResult(
             &self,
@@ -41,7 +41,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `DOMObject`
-    #[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
+    #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMXPathExpression {
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
@@ -51,7 +51,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
+    #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMXPathExpression {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -60,9 +60,9 @@ extern_methods!(
 
 extern_methods!(
     /// DOMXPathExpressionDeprecated
-    #[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
+    #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMXPathExpression {
-        #[cfg(all(feature = "WebKit_DOMNode", feature = "WebKit_DOMXPathResult"))]
+        #[cfg(all(feature = "DOMNode", feature = "DOMXPathResult"))]
         #[deprecated]
         #[method_id(@__retain_semantics Other evaluate:::)]
         pub unsafe fn evaluate(

@@ -7,10 +7,10 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MetricKit_MXMetric")]
+    #[cfg(feature = "MXMetric")]
     pub struct MXDisplayMetric;
 
-    #[cfg(feature = "MetricKit_MXMetric")]
+    #[cfg(feature = "MXMetric")]
     unsafe impl ClassType for MXDisplayMetric {
         #[inherits(NSObject)]
         type Super = MXMetric;
@@ -18,19 +18,19 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "MetricKit_MXMetric")]
+#[cfg(feature = "MXMetric")]
 unsafe impl NSCoding for MXDisplayMetric {}
 
-#[cfg(feature = "MetricKit_MXMetric")]
+#[cfg(feature = "MXMetric")]
 unsafe impl NSObjectProtocol for MXDisplayMetric {}
 
-#[cfg(feature = "MetricKit_MXMetric")]
+#[cfg(feature = "MXMetric")]
 unsafe impl NSSecureCoding for MXDisplayMetric {}
 
 extern_methods!(
-    #[cfg(feature = "MetricKit_MXMetric")]
+    #[cfg(feature = "MXMetric")]
     unsafe impl MXDisplayMetric {
-        #[cfg(all(feature = "MetricKit_MXAverage", feature = "MetricKit_MXUnit"))]
+        #[cfg(all(feature = "MXAverage", feature = "MXUnit"))]
         #[method_id(@__retain_semantics Other averagePixelLuminance)]
         pub unsafe fn averagePixelLuminance(
             &self,
@@ -40,7 +40,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MetricKit_MXMetric")]
+    #[cfg(feature = "MXMetric")]
     unsafe impl MXDisplayMetric {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

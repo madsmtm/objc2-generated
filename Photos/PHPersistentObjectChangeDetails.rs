@@ -23,7 +23,7 @@ unsafe impl NSObjectProtocol for PHPersistentObjectChangeDetails {}
 
 extern_methods!(
     unsafe impl PHPersistentObjectChangeDetails {
-        #[cfg(feature = "Photos_PhotosTypes")]
+        #[cfg(feature = "PhotosTypes")]
         #[method(objectType)]
         pub unsafe fn objectType(&self) -> PHObjectType;
 

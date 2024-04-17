@@ -74,27 +74,27 @@ extern_methods!(
         #[method_id(@__retain_semantics Other subject)]
         pub unsafe fn subject(&self) -> Id<NSString>;
 
-        #[cfg(feature = "MailKit_MEEmailAddress")]
+        #[cfg(feature = "MEEmailAddress")]
         #[method_id(@__retain_semantics Other fromAddress)]
         pub unsafe fn fromAddress(&self) -> Id<MEEmailAddress>;
 
-        #[cfg(feature = "MailKit_MEEmailAddress")]
+        #[cfg(feature = "MEEmailAddress")]
         #[method_id(@__retain_semantics Other toAddresses)]
         pub unsafe fn toAddresses(&self) -> Id<NSArray<MEEmailAddress>>;
 
-        #[cfg(feature = "MailKit_MEEmailAddress")]
+        #[cfg(feature = "MEEmailAddress")]
         #[method_id(@__retain_semantics Other ccAddresses)]
         pub unsafe fn ccAddresses(&self) -> Id<NSArray<MEEmailAddress>>;
 
-        #[cfg(feature = "MailKit_MEEmailAddress")]
+        #[cfg(feature = "MEEmailAddress")]
         #[method_id(@__retain_semantics Other bccAddresses)]
         pub unsafe fn bccAddresses(&self) -> Id<NSArray<MEEmailAddress>>;
 
-        #[cfg(feature = "MailKit_MEEmailAddress")]
+        #[cfg(feature = "MEEmailAddress")]
         #[method_id(@__retain_semantics Other replyToAddresses)]
         pub unsafe fn replyToAddresses(&self) -> Id<NSArray<MEEmailAddress>>;
 
-        #[cfg(feature = "MailKit_MEEmailAddress")]
+        #[cfg(feature = "MEEmailAddress")]
         #[method_id(@__retain_semantics Other allRecipientAddresses)]
         pub unsafe fn allRecipientAddresses(&self) -> Id<NSArray<MEEmailAddress>>;
 

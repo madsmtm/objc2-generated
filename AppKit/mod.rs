@@ -16,7266 +16,7097 @@
 #[cfg_attr(feature = "apple", link(name = "AppKit", kind = "framework"))]
 extern "C" {}
 
-#[cfg(feature = "AppKit_AppKitDefines")]
+#[cfg(feature = "AppKitDefines")]
 #[path = "AppKitDefines.rs"]
 mod __AppKitDefines;
-#[cfg(feature = "AppKit_AppKitErrors")]
+#[cfg(feature = "AppKitErrors")]
 #[path = "AppKitErrors.rs"]
 mod __AppKitErrors;
-#[cfg(feature = "AppKit_NSATSTypesetter")]
+#[cfg(feature = "NSATSTypesetter")]
 #[path = "NSATSTypesetter.rs"]
 mod __NSATSTypesetter;
-#[cfg(feature = "AppKit_NSAccessibility")]
+#[cfg(feature = "NSAccessibility")]
 #[path = "NSAccessibility.rs"]
 mod __NSAccessibility;
-#[cfg(feature = "AppKit_NSAccessibilityColor")]
+#[cfg(feature = "NSAccessibilityColor")]
 #[path = "NSAccessibilityColor.rs"]
 mod __NSAccessibilityColor;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 #[path = "NSAccessibilityConstants.rs"]
 mod __NSAccessibilityConstants;
-#[cfg(feature = "AppKit_NSAccessibilityCustomAction")]
+#[cfg(feature = "NSAccessibilityCustomAction")]
 #[path = "NSAccessibilityCustomAction.rs"]
 mod __NSAccessibilityCustomAction;
-#[cfg(feature = "AppKit_NSAccessibilityCustomRotor")]
+#[cfg(feature = "NSAccessibilityCustomRotor")]
 #[path = "NSAccessibilityCustomRotor.rs"]
 mod __NSAccessibilityCustomRotor;
-#[cfg(feature = "AppKit_NSAccessibilityElement")]
+#[cfg(feature = "NSAccessibilityElement")]
 #[path = "NSAccessibilityElement.rs"]
 mod __NSAccessibilityElement;
-#[cfg(feature = "AppKit_NSAccessibilityProtocols")]
+#[cfg(feature = "NSAccessibilityProtocols")]
 #[path = "NSAccessibilityProtocols.rs"]
 mod __NSAccessibilityProtocols;
-#[cfg(feature = "AppKit_NSActionCell")]
+#[cfg(feature = "NSActionCell")]
 #[path = "NSActionCell.rs"]
 mod __NSActionCell;
-#[cfg(feature = "AppKit_NSAffineTransform")]
+#[cfg(feature = "NSAffineTransform")]
 #[path = "NSAffineTransform.rs"]
 mod __NSAffineTransform;
-#[cfg(feature = "AppKit_NSAlert")]
+#[cfg(feature = "NSAlert")]
 #[path = "NSAlert.rs"]
 mod __NSAlert;
-#[cfg(feature = "AppKit_NSAlignmentFeedbackFilter")]
+#[cfg(feature = "NSAlignmentFeedbackFilter")]
 #[path = "NSAlignmentFeedbackFilter.rs"]
 mod __NSAlignmentFeedbackFilter;
-#[cfg(feature = "AppKit_NSAnimation")]
+#[cfg(feature = "NSAnimation")]
 #[path = "NSAnimation.rs"]
 mod __NSAnimation;
-#[cfg(feature = "AppKit_NSAnimationContext")]
+#[cfg(feature = "NSAnimationContext")]
 #[path = "NSAnimationContext.rs"]
 mod __NSAnimationContext;
-#[cfg(feature = "AppKit_NSAppearance")]
+#[cfg(feature = "NSAppearance")]
 #[path = "NSAppearance.rs"]
 mod __NSAppearance;
-#[cfg(feature = "AppKit_NSAppleScriptExtensions")]
+#[cfg(feature = "NSAppleScriptExtensions")]
 #[path = "NSAppleScriptExtensions.rs"]
 mod __NSAppleScriptExtensions;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 #[path = "NSApplication.rs"]
 mod __NSApplication;
-#[cfg(feature = "AppKit_NSApplicationScripting")]
+#[cfg(feature = "NSApplicationScripting")]
 #[path = "NSApplicationScripting.rs"]
 mod __NSApplicationScripting;
-#[cfg(feature = "AppKit_NSArrayController")]
+#[cfg(feature = "NSArrayController")]
 #[path = "NSArrayController.rs"]
 mod __NSArrayController;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 #[path = "NSAttributedString.rs"]
 mod __NSAttributedString;
-#[cfg(feature = "AppKit_NSBezierPath")]
+#[cfg(feature = "NSBezierPath")]
 #[path = "NSBezierPath.rs"]
 mod __NSBezierPath;
-#[cfg(feature = "AppKit_NSBitmapImageRep")]
+#[cfg(feature = "NSBitmapImageRep")]
 #[path = "NSBitmapImageRep.rs"]
 mod __NSBitmapImageRep;
-#[cfg(feature = "AppKit_NSBox")]
+#[cfg(feature = "NSBox")]
 #[path = "NSBox.rs"]
 mod __NSBox;
-#[cfg(feature = "AppKit_NSBrowser")]
+#[cfg(feature = "NSBrowser")]
 #[path = "NSBrowser.rs"]
 mod __NSBrowser;
-#[cfg(feature = "AppKit_NSBrowserCell")]
+#[cfg(feature = "NSBrowserCell")]
 #[path = "NSBrowserCell.rs"]
 mod __NSBrowserCell;
-#[cfg(feature = "AppKit_NSButton")]
+#[cfg(feature = "NSButton")]
 #[path = "NSButton.rs"]
 mod __NSButton;
-#[cfg(feature = "AppKit_NSButtonCell")]
+#[cfg(feature = "NSButtonCell")]
 #[path = "NSButtonCell.rs"]
 mod __NSButtonCell;
-#[cfg(feature = "AppKit_NSButtonTouchBarItem")]
+#[cfg(feature = "NSButtonTouchBarItem")]
 #[path = "NSButtonTouchBarItem.rs"]
 mod __NSButtonTouchBarItem;
-#[cfg(feature = "AppKit_NSCIImageRep")]
+#[cfg(feature = "NSCIImageRep")]
 #[path = "NSCIImageRep.rs"]
 mod __NSCIImageRep;
-#[cfg(feature = "AppKit_NSCachedImageRep")]
+#[cfg(feature = "NSCachedImageRep")]
 #[path = "NSCachedImageRep.rs"]
 mod __NSCachedImageRep;
-#[cfg(feature = "AppKit_NSCandidateListTouchBarItem")]
+#[cfg(feature = "NSCandidateListTouchBarItem")]
 #[path = "NSCandidateListTouchBarItem.rs"]
 mod __NSCandidateListTouchBarItem;
-#[cfg(feature = "AppKit_NSCell")]
+#[cfg(feature = "NSCell")]
 #[path = "NSCell.rs"]
 mod __NSCell;
-#[cfg(feature = "AppKit_NSClickGestureRecognizer")]
+#[cfg(feature = "NSClickGestureRecognizer")]
 #[path = "NSClickGestureRecognizer.rs"]
 mod __NSClickGestureRecognizer;
-#[cfg(feature = "AppKit_NSClipView")]
+#[cfg(feature = "NSClipView")]
 #[path = "NSClipView.rs"]
 mod __NSClipView;
-#[cfg(feature = "AppKit_NSCollectionView")]
+#[cfg(feature = "NSCollectionView")]
 #[path = "NSCollectionView.rs"]
 mod __NSCollectionView;
-#[cfg(feature = "AppKit_NSCollectionViewCompositionalLayout")]
+#[cfg(feature = "NSCollectionViewCompositionalLayout")]
 #[path = "NSCollectionViewCompositionalLayout.rs"]
 mod __NSCollectionViewCompositionalLayout;
-#[cfg(feature = "AppKit_NSCollectionViewFlowLayout")]
+#[cfg(feature = "NSCollectionViewFlowLayout")]
 #[path = "NSCollectionViewFlowLayout.rs"]
 mod __NSCollectionViewFlowLayout;
-#[cfg(feature = "AppKit_NSCollectionViewGridLayout")]
+#[cfg(feature = "NSCollectionViewGridLayout")]
 #[path = "NSCollectionViewGridLayout.rs"]
 mod __NSCollectionViewGridLayout;
-#[cfg(feature = "AppKit_NSCollectionViewLayout")]
+#[cfg(feature = "NSCollectionViewLayout")]
 #[path = "NSCollectionViewLayout.rs"]
 mod __NSCollectionViewLayout;
-#[cfg(feature = "AppKit_NSCollectionViewTransitionLayout")]
+#[cfg(feature = "NSCollectionViewTransitionLayout")]
 #[path = "NSCollectionViewTransitionLayout.rs"]
 mod __NSCollectionViewTransitionLayout;
-#[cfg(feature = "AppKit_NSColor")]
+#[cfg(feature = "NSColor")]
 #[path = "NSColor.rs"]
 mod __NSColor;
-#[cfg(feature = "AppKit_NSColorList")]
+#[cfg(feature = "NSColorList")]
 #[path = "NSColorList.rs"]
 mod __NSColorList;
-#[cfg(feature = "AppKit_NSColorPanel")]
+#[cfg(feature = "NSColorPanel")]
 #[path = "NSColorPanel.rs"]
 mod __NSColorPanel;
-#[cfg(feature = "AppKit_NSColorPicker")]
+#[cfg(feature = "NSColorPicker")]
 #[path = "NSColorPicker.rs"]
 mod __NSColorPicker;
-#[cfg(feature = "AppKit_NSColorPickerTouchBarItem")]
+#[cfg(feature = "NSColorPickerTouchBarItem")]
 #[path = "NSColorPickerTouchBarItem.rs"]
 mod __NSColorPickerTouchBarItem;
-#[cfg(feature = "AppKit_NSColorPicking")]
+#[cfg(feature = "NSColorPicking")]
 #[path = "NSColorPicking.rs"]
 mod __NSColorPicking;
-#[cfg(feature = "AppKit_NSColorSampler")]
+#[cfg(feature = "NSColorSampler")]
 #[path = "NSColorSampler.rs"]
 mod __NSColorSampler;
-#[cfg(feature = "AppKit_NSColorSpace")]
+#[cfg(feature = "NSColorSpace")]
 #[path = "NSColorSpace.rs"]
 mod __NSColorSpace;
-#[cfg(feature = "AppKit_NSColorWell")]
+#[cfg(feature = "NSColorWell")]
 #[path = "NSColorWell.rs"]
 mod __NSColorWell;
-#[cfg(feature = "AppKit_NSComboBox")]
+#[cfg(feature = "NSComboBox")]
 #[path = "NSComboBox.rs"]
 mod __NSComboBox;
-#[cfg(feature = "AppKit_NSComboBoxCell")]
+#[cfg(feature = "NSComboBoxCell")]
 #[path = "NSComboBoxCell.rs"]
 mod __NSComboBoxCell;
-#[cfg(feature = "AppKit_NSComboButton")]
+#[cfg(feature = "NSComboButton")]
 #[path = "NSComboButton.rs"]
 mod __NSComboButton;
-#[cfg(feature = "AppKit_NSControl")]
+#[cfg(feature = "NSControl")]
 #[path = "NSControl.rs"]
 mod __NSControl;
-#[cfg(feature = "AppKit_NSController")]
+#[cfg(feature = "NSController")]
 #[path = "NSController.rs"]
 mod __NSController;
-#[cfg(feature = "AppKit_NSCursor")]
+#[cfg(feature = "NSCursor")]
 #[path = "NSCursor.rs"]
 mod __NSCursor;
-#[cfg(feature = "AppKit_NSCustomImageRep")]
+#[cfg(feature = "NSCustomImageRep")]
 #[path = "NSCustomImageRep.rs"]
 mod __NSCustomImageRep;
-#[cfg(feature = "AppKit_NSCustomTouchBarItem")]
+#[cfg(feature = "NSCustomTouchBarItem")]
 #[path = "NSCustomTouchBarItem.rs"]
 mod __NSCustomTouchBarItem;
-#[cfg(feature = "AppKit_NSDataAsset")]
+#[cfg(feature = "NSDataAsset")]
 #[path = "NSDataAsset.rs"]
 mod __NSDataAsset;
-#[cfg(feature = "AppKit_NSDatePicker")]
+#[cfg(feature = "NSDatePicker")]
 #[path = "NSDatePicker.rs"]
 mod __NSDatePicker;
-#[cfg(feature = "AppKit_NSDatePickerCell")]
+#[cfg(feature = "NSDatePickerCell")]
 #[path = "NSDatePickerCell.rs"]
 mod __NSDatePickerCell;
-#[cfg(feature = "AppKit_NSDictionaryController")]
+#[cfg(feature = "NSDictionaryController")]
 #[path = "NSDictionaryController.rs"]
 mod __NSDictionaryController;
-#[cfg(feature = "AppKit_NSDiffableDataSource")]
+#[cfg(feature = "NSDiffableDataSource")]
 #[path = "NSDiffableDataSource.rs"]
 mod __NSDiffableDataSource;
-#[cfg(feature = "AppKit_NSDockTile")]
+#[cfg(feature = "NSDockTile")]
 #[path = "NSDockTile.rs"]
 mod __NSDockTile;
-#[cfg(feature = "AppKit_NSDocument")]
+#[cfg(feature = "NSDocument")]
 #[path = "NSDocument.rs"]
 mod __NSDocument;
-#[cfg(feature = "AppKit_NSDocumentController")]
+#[cfg(feature = "NSDocumentController")]
 #[path = "NSDocumentController.rs"]
 mod __NSDocumentController;
-#[cfg(feature = "AppKit_NSDocumentScripting")]
+#[cfg(feature = "NSDocumentScripting")]
 #[path = "NSDocumentScripting.rs"]
 mod __NSDocumentScripting;
-#[cfg(feature = "AppKit_NSDragging")]
+#[cfg(feature = "NSDragging")]
 #[path = "NSDragging.rs"]
 mod __NSDragging;
-#[cfg(feature = "AppKit_NSDraggingItem")]
+#[cfg(feature = "NSDraggingItem")]
 #[path = "NSDraggingItem.rs"]
 mod __NSDraggingItem;
-#[cfg(feature = "AppKit_NSDraggingSession")]
+#[cfg(feature = "NSDraggingSession")]
 #[path = "NSDraggingSession.rs"]
 mod __NSDraggingSession;
-#[cfg(feature = "AppKit_NSDrawer")]
+#[cfg(feature = "NSDrawer")]
 #[path = "NSDrawer.rs"]
 mod __NSDrawer;
-#[cfg(feature = "AppKit_NSEPSImageRep")]
+#[cfg(feature = "NSEPSImageRep")]
 #[path = "NSEPSImageRep.rs"]
 mod __NSEPSImageRep;
-#[cfg(feature = "AppKit_NSErrors")]
+#[cfg(feature = "NSErrors")]
 #[path = "NSErrors.rs"]
 mod __NSErrors;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 #[path = "NSEvent.rs"]
 mod __NSEvent;
-#[cfg(feature = "AppKit_NSFilePromiseProvider")]
+#[cfg(feature = "NSFilePromiseProvider")]
 #[path = "NSFilePromiseProvider.rs"]
 mod __NSFilePromiseProvider;
-#[cfg(feature = "AppKit_NSFilePromiseReceiver")]
+#[cfg(feature = "NSFilePromiseReceiver")]
 #[path = "NSFilePromiseReceiver.rs"]
 mod __NSFilePromiseReceiver;
-#[cfg(feature = "AppKit_NSFileWrapperExtensions")]
+#[cfg(feature = "NSFileWrapperExtensions")]
 #[path = "NSFileWrapperExtensions.rs"]
 mod __NSFileWrapperExtensions;
-#[cfg(feature = "AppKit_NSFont")]
+#[cfg(feature = "NSFont")]
 #[path = "NSFont.rs"]
 mod __NSFont;
-#[cfg(feature = "AppKit_NSFontAssetRequest")]
+#[cfg(feature = "NSFontAssetRequest")]
 #[path = "NSFontAssetRequest.rs"]
 mod __NSFontAssetRequest;
-#[cfg(feature = "AppKit_NSFontCollection")]
+#[cfg(feature = "NSFontCollection")]
 #[path = "NSFontCollection.rs"]
 mod __NSFontCollection;
-#[cfg(feature = "AppKit_NSFontDescriptor")]
+#[cfg(feature = "NSFontDescriptor")]
 #[path = "NSFontDescriptor.rs"]
 mod __NSFontDescriptor;
-#[cfg(feature = "AppKit_NSFontManager")]
+#[cfg(feature = "NSFontManager")]
 #[path = "NSFontManager.rs"]
 mod __NSFontManager;
-#[cfg(feature = "AppKit_NSFontPanel")]
+#[cfg(feature = "NSFontPanel")]
 #[path = "NSFontPanel.rs"]
 mod __NSFontPanel;
-#[cfg(feature = "AppKit_NSForm")]
+#[cfg(feature = "NSForm")]
 #[path = "NSForm.rs"]
 mod __NSForm;
-#[cfg(feature = "AppKit_NSFormCell")]
+#[cfg(feature = "NSFormCell")]
 #[path = "NSFormCell.rs"]
 mod __NSFormCell;
-#[cfg(feature = "AppKit_NSGestureRecognizer")]
+#[cfg(feature = "NSGestureRecognizer")]
 #[path = "NSGestureRecognizer.rs"]
 mod __NSGestureRecognizer;
-#[cfg(feature = "AppKit_NSGlyphGenerator")]
+#[cfg(feature = "NSGlyphGenerator")]
 #[path = "NSGlyphGenerator.rs"]
 mod __NSGlyphGenerator;
-#[cfg(feature = "AppKit_NSGlyphInfo")]
+#[cfg(feature = "NSGlyphInfo")]
 #[path = "NSGlyphInfo.rs"]
 mod __NSGlyphInfo;
-#[cfg(feature = "AppKit_NSGradient")]
+#[cfg(feature = "NSGradient")]
 #[path = "NSGradient.rs"]
 mod __NSGradient;
-#[cfg(feature = "AppKit_NSGraphics")]
+#[cfg(feature = "NSGraphics")]
 #[path = "NSGraphics.rs"]
 mod __NSGraphics;
-#[cfg(feature = "AppKit_NSGraphicsContext")]
+#[cfg(feature = "NSGraphicsContext")]
 #[path = "NSGraphicsContext.rs"]
 mod __NSGraphicsContext;
-#[cfg(feature = "AppKit_NSGridView")]
+#[cfg(feature = "NSGridView")]
 #[path = "NSGridView.rs"]
 mod __NSGridView;
-#[cfg(feature = "AppKit_NSGroupTouchBarItem")]
+#[cfg(feature = "NSGroupTouchBarItem")]
 #[path = "NSGroupTouchBarItem.rs"]
 mod __NSGroupTouchBarItem;
-#[cfg(feature = "AppKit_NSHapticFeedback")]
+#[cfg(feature = "NSHapticFeedback")]
 #[path = "NSHapticFeedback.rs"]
 mod __NSHapticFeedback;
-#[cfg(feature = "AppKit_NSHelpManager")]
+#[cfg(feature = "NSHelpManager")]
 #[path = "NSHelpManager.rs"]
 mod __NSHelpManager;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 #[path = "NSImage.rs"]
 mod __NSImage;
-#[cfg(feature = "AppKit_NSImageCell")]
+#[cfg(feature = "NSImageCell")]
 #[path = "NSImageCell.rs"]
 mod __NSImageCell;
-#[cfg(feature = "AppKit_NSImageRep")]
+#[cfg(feature = "NSImageRep")]
 #[path = "NSImageRep.rs"]
 mod __NSImageRep;
-#[cfg(feature = "AppKit_NSImageView")]
+#[cfg(feature = "NSImageView")]
 #[path = "NSImageView.rs"]
 mod __NSImageView;
-#[cfg(feature = "AppKit_NSInputManager")]
+#[cfg(feature = "NSInputManager")]
 #[path = "NSInputManager.rs"]
 mod __NSInputManager;
-#[cfg(feature = "AppKit_NSInputServer")]
+#[cfg(feature = "NSInputServer")]
 #[path = "NSInputServer.rs"]
 mod __NSInputServer;
-#[cfg(feature = "AppKit_NSInterfaceStyle")]
+#[cfg(feature = "NSInterfaceStyle")]
 #[path = "NSInterfaceStyle.rs"]
 mod __NSInterfaceStyle;
-#[cfg(feature = "AppKit_NSItemProvider")]
+#[cfg(feature = "NSItemProvider")]
 #[path = "NSItemProvider.rs"]
 mod __NSItemProvider;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 #[path = "NSKeyValueBinding.rs"]
 mod __NSKeyValueBinding;
-#[cfg(feature = "AppKit_NSLayoutAnchor")]
+#[cfg(feature = "NSLayoutAnchor")]
 #[path = "NSLayoutAnchor.rs"]
 mod __NSLayoutAnchor;
-#[cfg(feature = "AppKit_NSLayoutConstraint")]
+#[cfg(feature = "NSLayoutConstraint")]
 #[path = "NSLayoutConstraint.rs"]
 mod __NSLayoutConstraint;
-#[cfg(feature = "AppKit_NSLayoutGuide")]
+#[cfg(feature = "NSLayoutGuide")]
 #[path = "NSLayoutGuide.rs"]
 mod __NSLayoutGuide;
-#[cfg(feature = "AppKit_NSLayoutManager")]
+#[cfg(feature = "NSLayoutManager")]
 #[path = "NSLayoutManager.rs"]
 mod __NSLayoutManager;
-#[cfg(feature = "AppKit_NSLevelIndicator")]
+#[cfg(feature = "NSLevelIndicator")]
 #[path = "NSLevelIndicator.rs"]
 mod __NSLevelIndicator;
-#[cfg(feature = "AppKit_NSLevelIndicatorCell")]
+#[cfg(feature = "NSLevelIndicatorCell")]
 #[path = "NSLevelIndicatorCell.rs"]
 mod __NSLevelIndicatorCell;
-#[cfg(feature = "AppKit_NSMagnificationGestureRecognizer")]
+#[cfg(feature = "NSMagnificationGestureRecognizer")]
 #[path = "NSMagnificationGestureRecognizer.rs"]
 mod __NSMagnificationGestureRecognizer;
-#[cfg(feature = "AppKit_NSMatrix")]
+#[cfg(feature = "NSMatrix")]
 #[path = "NSMatrix.rs"]
 mod __NSMatrix;
-#[cfg(feature = "AppKit_NSMediaLibraryBrowserController")]
+#[cfg(feature = "NSMediaLibraryBrowserController")]
 #[path = "NSMediaLibraryBrowserController.rs"]
 mod __NSMediaLibraryBrowserController;
-#[cfg(feature = "AppKit_NSMenu")]
+#[cfg(feature = "NSMenu")]
 #[path = "NSMenu.rs"]
 mod __NSMenu;
-#[cfg(feature = "AppKit_NSMenuItem")]
+#[cfg(feature = "NSMenuItem")]
 #[path = "NSMenuItem.rs"]
 mod __NSMenuItem;
-#[cfg(feature = "AppKit_NSMenuItemBadge")]
+#[cfg(feature = "NSMenuItemBadge")]
 #[path = "NSMenuItemBadge.rs"]
 mod __NSMenuItemBadge;
-#[cfg(feature = "AppKit_NSMenuItemCell")]
+#[cfg(feature = "NSMenuItemCell")]
 #[path = "NSMenuItemCell.rs"]
 mod __NSMenuItemCell;
-#[cfg(feature = "AppKit_NSMenuToolbarItem")]
+#[cfg(feature = "NSMenuToolbarItem")]
 #[path = "NSMenuToolbarItem.rs"]
 mod __NSMenuToolbarItem;
-#[cfg(feature = "AppKit_NSMovie")]
+#[cfg(feature = "NSMovie")]
 #[path = "NSMovie.rs"]
 mod __NSMovie;
-#[cfg(feature = "AppKit_NSNib")]
+#[cfg(feature = "NSNib")]
 #[path = "NSNib.rs"]
 mod __NSNib;
-#[cfg(feature = "AppKit_NSNibDeclarations")]
+#[cfg(feature = "NSNibDeclarations")]
 #[path = "NSNibDeclarations.rs"]
 mod __NSNibDeclarations;
-#[cfg(feature = "AppKit_NSNibLoading")]
+#[cfg(feature = "NSNibLoading")]
 #[path = "NSNibLoading.rs"]
 mod __NSNibLoading;
-#[cfg(feature = "AppKit_NSObjectController")]
+#[cfg(feature = "NSObjectController")]
 #[path = "NSObjectController.rs"]
 mod __NSObjectController;
-#[cfg(feature = "AppKit_NSOpenGL")]
+#[cfg(feature = "NSOpenGL")]
 #[path = "NSOpenGL.rs"]
 mod __NSOpenGL;
-#[cfg(feature = "AppKit_NSOpenGLLayer")]
+#[cfg(feature = "NSOpenGLLayer")]
 #[path = "NSOpenGLLayer.rs"]
 mod __NSOpenGLLayer;
-#[cfg(feature = "AppKit_NSOpenGLView")]
+#[cfg(feature = "NSOpenGLView")]
 #[path = "NSOpenGLView.rs"]
 mod __NSOpenGLView;
-#[cfg(feature = "AppKit_NSOpenPanel")]
+#[cfg(feature = "NSOpenPanel")]
 #[path = "NSOpenPanel.rs"]
 mod __NSOpenPanel;
-#[cfg(feature = "AppKit_NSOutlineView")]
+#[cfg(feature = "NSOutlineView")]
 #[path = "NSOutlineView.rs"]
 mod __NSOutlineView;
-#[cfg(feature = "AppKit_NSPDFImageRep")]
+#[cfg(feature = "NSPDFImageRep")]
 #[path = "NSPDFImageRep.rs"]
 mod __NSPDFImageRep;
-#[cfg(feature = "AppKit_NSPDFInfo")]
+#[cfg(feature = "NSPDFInfo")]
 #[path = "NSPDFInfo.rs"]
 mod __NSPDFInfo;
-#[cfg(feature = "AppKit_NSPDFPanel")]
+#[cfg(feature = "NSPDFPanel")]
 #[path = "NSPDFPanel.rs"]
 mod __NSPDFPanel;
-#[cfg(feature = "AppKit_NSPICTImageRep")]
+#[cfg(feature = "NSPICTImageRep")]
 #[path = "NSPICTImageRep.rs"]
 mod __NSPICTImageRep;
-#[cfg(feature = "AppKit_NSPageController")]
+#[cfg(feature = "NSPageController")]
 #[path = "NSPageController.rs"]
 mod __NSPageController;
-#[cfg(feature = "AppKit_NSPageLayout")]
+#[cfg(feature = "NSPageLayout")]
 #[path = "NSPageLayout.rs"]
 mod __NSPageLayout;
-#[cfg(feature = "AppKit_NSPanGestureRecognizer")]
+#[cfg(feature = "NSPanGestureRecognizer")]
 #[path = "NSPanGestureRecognizer.rs"]
 mod __NSPanGestureRecognizer;
-#[cfg(feature = "AppKit_NSPanel")]
+#[cfg(feature = "NSPanel")]
 #[path = "NSPanel.rs"]
 mod __NSPanel;
-#[cfg(feature = "AppKit_NSParagraphStyle")]
+#[cfg(feature = "NSParagraphStyle")]
 #[path = "NSParagraphStyle.rs"]
 mod __NSParagraphStyle;
-#[cfg(feature = "AppKit_NSPasteboard")]
+#[cfg(feature = "NSPasteboard")]
 #[path = "NSPasteboard.rs"]
 mod __NSPasteboard;
-#[cfg(feature = "AppKit_NSPasteboardItem")]
+#[cfg(feature = "NSPasteboardItem")]
 #[path = "NSPasteboardItem.rs"]
 mod __NSPasteboardItem;
-#[cfg(feature = "AppKit_NSPathCell")]
+#[cfg(feature = "NSPathCell")]
 #[path = "NSPathCell.rs"]
 mod __NSPathCell;
-#[cfg(feature = "AppKit_NSPathComponentCell")]
+#[cfg(feature = "NSPathComponentCell")]
 #[path = "NSPathComponentCell.rs"]
 mod __NSPathComponentCell;
-#[cfg(feature = "AppKit_NSPathControl")]
+#[cfg(feature = "NSPathControl")]
 #[path = "NSPathControl.rs"]
 mod __NSPathControl;
-#[cfg(feature = "AppKit_NSPathControlItem")]
+#[cfg(feature = "NSPathControlItem")]
 #[path = "NSPathControlItem.rs"]
 mod __NSPathControlItem;
-#[cfg(feature = "AppKit_NSPersistentDocument")]
+#[cfg(feature = "NSPersistentDocument")]
 #[path = "NSPersistentDocument.rs"]
 mod __NSPersistentDocument;
-#[cfg(feature = "AppKit_NSPickerTouchBarItem")]
+#[cfg(feature = "NSPickerTouchBarItem")]
 #[path = "NSPickerTouchBarItem.rs"]
 mod __NSPickerTouchBarItem;
-#[cfg(feature = "AppKit_NSPopUpButton")]
+#[cfg(feature = "NSPopUpButton")]
 #[path = "NSPopUpButton.rs"]
 mod __NSPopUpButton;
-#[cfg(feature = "AppKit_NSPopUpButtonCell")]
+#[cfg(feature = "NSPopUpButtonCell")]
 #[path = "NSPopUpButtonCell.rs"]
 mod __NSPopUpButtonCell;
-#[cfg(feature = "AppKit_NSPopover")]
+#[cfg(feature = "NSPopover")]
 #[path = "NSPopover.rs"]
 mod __NSPopover;
-#[cfg(feature = "AppKit_NSPopoverTouchBarItem")]
+#[cfg(feature = "NSPopoverTouchBarItem")]
 #[path = "NSPopoverTouchBarItem.rs"]
 mod __NSPopoverTouchBarItem;
-#[cfg(feature = "AppKit_NSPredicateEditor")]
+#[cfg(feature = "NSPredicateEditor")]
 #[path = "NSPredicateEditor.rs"]
 mod __NSPredicateEditor;
-#[cfg(feature = "AppKit_NSPredicateEditorRowTemplate")]
+#[cfg(feature = "NSPredicateEditorRowTemplate")]
 #[path = "NSPredicateEditorRowTemplate.rs"]
 mod __NSPredicateEditorRowTemplate;
-#[cfg(feature = "AppKit_NSPressGestureRecognizer")]
+#[cfg(feature = "NSPressGestureRecognizer")]
 #[path = "NSPressGestureRecognizer.rs"]
 mod __NSPressGestureRecognizer;
-#[cfg(feature = "AppKit_NSPressureConfiguration")]
+#[cfg(feature = "NSPressureConfiguration")]
 #[path = "NSPressureConfiguration.rs"]
 mod __NSPressureConfiguration;
-#[cfg(feature = "AppKit_NSPreviewRepresentingActivityItem")]
+#[cfg(feature = "NSPreviewRepresentingActivityItem")]
 #[path = "NSPreviewRepresentingActivityItem.rs"]
 mod __NSPreviewRepresentingActivityItem;
-#[cfg(feature = "AppKit_NSPrintInfo")]
+#[cfg(feature = "NSPrintInfo")]
 #[path = "NSPrintInfo.rs"]
 mod __NSPrintInfo;
-#[cfg(feature = "AppKit_NSPrintOperation")]
+#[cfg(feature = "NSPrintOperation")]
 #[path = "NSPrintOperation.rs"]
 mod __NSPrintOperation;
-#[cfg(feature = "AppKit_NSPrintPanel")]
+#[cfg(feature = "NSPrintPanel")]
 #[path = "NSPrintPanel.rs"]
 mod __NSPrintPanel;
-#[cfg(feature = "AppKit_NSPrinter")]
+#[cfg(feature = "NSPrinter")]
 #[path = "NSPrinter.rs"]
 mod __NSPrinter;
-#[cfg(feature = "AppKit_NSProgressIndicator")]
+#[cfg(feature = "NSProgressIndicator")]
 #[path = "NSProgressIndicator.rs"]
 mod __NSProgressIndicator;
-#[cfg(feature = "AppKit_NSResponder")]
+#[cfg(feature = "NSResponder")]
 #[path = "NSResponder.rs"]
 mod __NSResponder;
-#[cfg(feature = "AppKit_NSRotationGestureRecognizer")]
+#[cfg(feature = "NSRotationGestureRecognizer")]
 #[path = "NSRotationGestureRecognizer.rs"]
 mod __NSRotationGestureRecognizer;
-#[cfg(feature = "AppKit_NSRuleEditor")]
+#[cfg(feature = "NSRuleEditor")]
 #[path = "NSRuleEditor.rs"]
 mod __NSRuleEditor;
-#[cfg(feature = "AppKit_NSRulerMarker")]
+#[cfg(feature = "NSRulerMarker")]
 #[path = "NSRulerMarker.rs"]
 mod __NSRulerMarker;
-#[cfg(feature = "AppKit_NSRulerView")]
+#[cfg(feature = "NSRulerView")]
 #[path = "NSRulerView.rs"]
 mod __NSRulerView;
-#[cfg(feature = "AppKit_NSRunningApplication")]
+#[cfg(feature = "NSRunningApplication")]
 #[path = "NSRunningApplication.rs"]
 mod __NSRunningApplication;
-#[cfg(feature = "AppKit_NSSavePanel")]
+#[cfg(feature = "NSSavePanel")]
 #[path = "NSSavePanel.rs"]
 mod __NSSavePanel;
-#[cfg(feature = "AppKit_NSScreen")]
+#[cfg(feature = "NSScreen")]
 #[path = "NSScreen.rs"]
 mod __NSScreen;
-#[cfg(feature = "AppKit_NSScrollView")]
+#[cfg(feature = "NSScrollView")]
 #[path = "NSScrollView.rs"]
 mod __NSScrollView;
-#[cfg(feature = "AppKit_NSScroller")]
+#[cfg(feature = "NSScroller")]
 #[path = "NSScroller.rs"]
 mod __NSScroller;
-#[cfg(feature = "AppKit_NSScrubber")]
+#[cfg(feature = "NSScrubber")]
 #[path = "NSScrubber.rs"]
 mod __NSScrubber;
-#[cfg(feature = "AppKit_NSScrubberItemView")]
+#[cfg(feature = "NSScrubberItemView")]
 #[path = "NSScrubberItemView.rs"]
 mod __NSScrubberItemView;
-#[cfg(feature = "AppKit_NSScrubberLayout")]
+#[cfg(feature = "NSScrubberLayout")]
 #[path = "NSScrubberLayout.rs"]
 mod __NSScrubberLayout;
-#[cfg(feature = "AppKit_NSSearchField")]
+#[cfg(feature = "NSSearchField")]
 #[path = "NSSearchField.rs"]
 mod __NSSearchField;
-#[cfg(feature = "AppKit_NSSearchFieldCell")]
+#[cfg(feature = "NSSearchFieldCell")]
 #[path = "NSSearchFieldCell.rs"]
 mod __NSSearchFieldCell;
-#[cfg(feature = "AppKit_NSSearchToolbarItem")]
+#[cfg(feature = "NSSearchToolbarItem")]
 #[path = "NSSearchToolbarItem.rs"]
 mod __NSSearchToolbarItem;
-#[cfg(feature = "AppKit_NSSecureTextField")]
+#[cfg(feature = "NSSecureTextField")]
 #[path = "NSSecureTextField.rs"]
 mod __NSSecureTextField;
-#[cfg(feature = "AppKit_NSSegmentedCell")]
+#[cfg(feature = "NSSegmentedCell")]
 #[path = "NSSegmentedCell.rs"]
 mod __NSSegmentedCell;
-#[cfg(feature = "AppKit_NSSegmentedControl")]
+#[cfg(feature = "NSSegmentedControl")]
 #[path = "NSSegmentedControl.rs"]
 mod __NSSegmentedControl;
-#[cfg(feature = "AppKit_NSShadow")]
+#[cfg(feature = "NSShadow")]
 #[path = "NSShadow.rs"]
 mod __NSShadow;
-#[cfg(feature = "AppKit_NSSharingService")]
+#[cfg(feature = "NSSharingService")]
 #[path = "NSSharingService.rs"]
 mod __NSSharingService;
-#[cfg(feature = "AppKit_NSSharingServicePickerToolbarItem")]
+#[cfg(feature = "NSSharingServicePickerToolbarItem")]
 #[path = "NSSharingServicePickerToolbarItem.rs"]
 mod __NSSharingServicePickerToolbarItem;
-#[cfg(feature = "AppKit_NSSharingServicePickerTouchBarItem")]
+#[cfg(feature = "NSSharingServicePickerTouchBarItem")]
 #[path = "NSSharingServicePickerTouchBarItem.rs"]
 mod __NSSharingServicePickerTouchBarItem;
-#[cfg(feature = "AppKit_NSSlider")]
+#[cfg(feature = "NSSlider")]
 #[path = "NSSlider.rs"]
 mod __NSSlider;
-#[cfg(feature = "AppKit_NSSliderAccessory")]
+#[cfg(feature = "NSSliderAccessory")]
 #[path = "NSSliderAccessory.rs"]
 mod __NSSliderAccessory;
-#[cfg(feature = "AppKit_NSSliderCell")]
+#[cfg(feature = "NSSliderCell")]
 #[path = "NSSliderCell.rs"]
 mod __NSSliderCell;
-#[cfg(feature = "AppKit_NSSliderTouchBarItem")]
+#[cfg(feature = "NSSliderTouchBarItem")]
 #[path = "NSSliderTouchBarItem.rs"]
 mod __NSSliderTouchBarItem;
-#[cfg(feature = "AppKit_NSSound")]
+#[cfg(feature = "NSSound")]
 #[path = "NSSound.rs"]
 mod __NSSound;
-#[cfg(feature = "AppKit_NSSpeechRecognizer")]
+#[cfg(feature = "NSSpeechRecognizer")]
 #[path = "NSSpeechRecognizer.rs"]
 mod __NSSpeechRecognizer;
-#[cfg(feature = "AppKit_NSSpeechSynthesizer")]
+#[cfg(feature = "NSSpeechSynthesizer")]
 #[path = "NSSpeechSynthesizer.rs"]
 mod __NSSpeechSynthesizer;
-#[cfg(feature = "AppKit_NSSpellChecker")]
+#[cfg(feature = "NSSpellChecker")]
 #[path = "NSSpellChecker.rs"]
 mod __NSSpellChecker;
-#[cfg(feature = "AppKit_NSSpellProtocol")]
+#[cfg(feature = "NSSpellProtocol")]
 #[path = "NSSpellProtocol.rs"]
 mod __NSSpellProtocol;
-#[cfg(feature = "AppKit_NSSplitView")]
+#[cfg(feature = "NSSplitView")]
 #[path = "NSSplitView.rs"]
 mod __NSSplitView;
-#[cfg(feature = "AppKit_NSSplitViewController")]
+#[cfg(feature = "NSSplitViewController")]
 #[path = "NSSplitViewController.rs"]
 mod __NSSplitViewController;
-#[cfg(feature = "AppKit_NSSplitViewItem")]
+#[cfg(feature = "NSSplitViewItem")]
 #[path = "NSSplitViewItem.rs"]
 mod __NSSplitViewItem;
-#[cfg(feature = "AppKit_NSStackView")]
+#[cfg(feature = "NSStackView")]
 #[path = "NSStackView.rs"]
 mod __NSStackView;
-#[cfg(feature = "AppKit_NSStatusBar")]
+#[cfg(feature = "NSStatusBar")]
 #[path = "NSStatusBar.rs"]
 mod __NSStatusBar;
-#[cfg(feature = "AppKit_NSStatusBarButton")]
+#[cfg(feature = "NSStatusBarButton")]
 #[path = "NSStatusBarButton.rs"]
 mod __NSStatusBarButton;
-#[cfg(feature = "AppKit_NSStatusItem")]
+#[cfg(feature = "NSStatusItem")]
 #[path = "NSStatusItem.rs"]
 mod __NSStatusItem;
-#[cfg(feature = "AppKit_NSStepper")]
+#[cfg(feature = "NSStepper")]
 #[path = "NSStepper.rs"]
 mod __NSStepper;
-#[cfg(feature = "AppKit_NSStepperCell")]
+#[cfg(feature = "NSStepperCell")]
 #[path = "NSStepperCell.rs"]
 mod __NSStepperCell;
-#[cfg(feature = "AppKit_NSStepperTouchBarItem")]
+#[cfg(feature = "NSStepperTouchBarItem")]
 #[path = "NSStepperTouchBarItem.rs"]
 mod __NSStepperTouchBarItem;
-#[cfg(feature = "AppKit_NSStoryboard")]
+#[cfg(feature = "NSStoryboard")]
 #[path = "NSStoryboard.rs"]
 mod __NSStoryboard;
-#[cfg(feature = "AppKit_NSStoryboardSegue")]
+#[cfg(feature = "NSStoryboardSegue")]
 #[path = "NSStoryboardSegue.rs"]
 mod __NSStoryboardSegue;
-#[cfg(feature = "AppKit_NSStringDrawing")]
+#[cfg(feature = "NSStringDrawing")]
 #[path = "NSStringDrawing.rs"]
 mod __NSStringDrawing;
-#[cfg(feature = "AppKit_NSSwitch")]
+#[cfg(feature = "NSSwitch")]
 #[path = "NSSwitch.rs"]
 mod __NSSwitch;
-#[cfg(feature = "AppKit_NSTabView")]
+#[cfg(feature = "NSTabView")]
 #[path = "NSTabView.rs"]
 mod __NSTabView;
-#[cfg(feature = "AppKit_NSTabViewController")]
+#[cfg(feature = "NSTabViewController")]
 #[path = "NSTabViewController.rs"]
 mod __NSTabViewController;
-#[cfg(feature = "AppKit_NSTabViewItem")]
+#[cfg(feature = "NSTabViewItem")]
 #[path = "NSTabViewItem.rs"]
 mod __NSTabViewItem;
-#[cfg(feature = "AppKit_NSTableCellView")]
+#[cfg(feature = "NSTableCellView")]
 #[path = "NSTableCellView.rs"]
 mod __NSTableCellView;
-#[cfg(feature = "AppKit_NSTableColumn")]
+#[cfg(feature = "NSTableColumn")]
 #[path = "NSTableColumn.rs"]
 mod __NSTableColumn;
-#[cfg(feature = "AppKit_NSTableHeaderCell")]
+#[cfg(feature = "NSTableHeaderCell")]
 #[path = "NSTableHeaderCell.rs"]
 mod __NSTableHeaderCell;
-#[cfg(feature = "AppKit_NSTableHeaderView")]
+#[cfg(feature = "NSTableHeaderView")]
 #[path = "NSTableHeaderView.rs"]
 mod __NSTableHeaderView;
-#[cfg(feature = "AppKit_NSTableRowView")]
+#[cfg(feature = "NSTableRowView")]
 #[path = "NSTableRowView.rs"]
 mod __NSTableRowView;
-#[cfg(feature = "AppKit_NSTableView")]
+#[cfg(feature = "NSTableView")]
 #[path = "NSTableView.rs"]
 mod __NSTableView;
-#[cfg(feature = "AppKit_NSTableViewDiffableDataSource")]
+#[cfg(feature = "NSTableViewDiffableDataSource")]
 #[path = "NSTableViewDiffableDataSource.rs"]
 mod __NSTableViewDiffableDataSource;
-#[cfg(feature = "AppKit_NSTableViewRowAction")]
+#[cfg(feature = "NSTableViewRowAction")]
 #[path = "NSTableViewRowAction.rs"]
 mod __NSTableViewRowAction;
-#[cfg(feature = "AppKit_NSText")]
+#[cfg(feature = "NSText")]
 #[path = "NSText.rs"]
 mod __NSText;
-#[cfg(feature = "AppKit_NSTextAlternatives")]
+#[cfg(feature = "NSTextAlternatives")]
 #[path = "NSTextAlternatives.rs"]
 mod __NSTextAlternatives;
-#[cfg(feature = "AppKit_NSTextAttachment")]
+#[cfg(feature = "NSTextAttachment")]
 #[path = "NSTextAttachment.rs"]
 mod __NSTextAttachment;
-#[cfg(feature = "AppKit_NSTextAttachmentCell")]
+#[cfg(feature = "NSTextAttachmentCell")]
 #[path = "NSTextAttachmentCell.rs"]
 mod __NSTextAttachmentCell;
-#[cfg(feature = "AppKit_NSTextCheckingClient")]
+#[cfg(feature = "NSTextCheckingClient")]
 #[path = "NSTextCheckingClient.rs"]
 mod __NSTextCheckingClient;
-#[cfg(feature = "AppKit_NSTextCheckingController")]
+#[cfg(feature = "NSTextCheckingController")]
 #[path = "NSTextCheckingController.rs"]
 mod __NSTextCheckingController;
-#[cfg(feature = "AppKit_NSTextContainer")]
+#[cfg(feature = "NSTextContainer")]
 #[path = "NSTextContainer.rs"]
 mod __NSTextContainer;
-#[cfg(feature = "AppKit_NSTextContent")]
+#[cfg(feature = "NSTextContent")]
 #[path = "NSTextContent.rs"]
 mod __NSTextContent;
-#[cfg(feature = "AppKit_NSTextContentManager")]
+#[cfg(feature = "NSTextContentManager")]
 #[path = "NSTextContentManager.rs"]
 mod __NSTextContentManager;
-#[cfg(feature = "AppKit_NSTextElement")]
+#[cfg(feature = "NSTextElement")]
 #[path = "NSTextElement.rs"]
 mod __NSTextElement;
-#[cfg(feature = "AppKit_NSTextField")]
+#[cfg(feature = "NSTextField")]
 #[path = "NSTextField.rs"]
 mod __NSTextField;
-#[cfg(feature = "AppKit_NSTextFieldCell")]
+#[cfg(feature = "NSTextFieldCell")]
 #[path = "NSTextFieldCell.rs"]
 mod __NSTextFieldCell;
-#[cfg(feature = "AppKit_NSTextFinder")]
+#[cfg(feature = "NSTextFinder")]
 #[path = "NSTextFinder.rs"]
 mod __NSTextFinder;
-#[cfg(feature = "AppKit_NSTextInputClient")]
+#[cfg(feature = "NSTextInputClient")]
 #[path = "NSTextInputClient.rs"]
 mod __NSTextInputClient;
-#[cfg(feature = "AppKit_NSTextInputContext")]
+#[cfg(feature = "NSTextInputContext")]
 #[path = "NSTextInputContext.rs"]
 mod __NSTextInputContext;
-#[cfg(feature = "AppKit_NSTextInsertionIndicator")]
+#[cfg(feature = "NSTextInsertionIndicator")]
 #[path = "NSTextInsertionIndicator.rs"]
 mod __NSTextInsertionIndicator;
-#[cfg(feature = "AppKit_NSTextLayoutFragment")]
+#[cfg(feature = "NSTextLayoutFragment")]
 #[path = "NSTextLayoutFragment.rs"]
 mod __NSTextLayoutFragment;
-#[cfg(feature = "AppKit_NSTextLayoutManager")]
+#[cfg(feature = "NSTextLayoutManager")]
 #[path = "NSTextLayoutManager.rs"]
 mod __NSTextLayoutManager;
-#[cfg(feature = "AppKit_NSTextLineFragment")]
+#[cfg(feature = "NSTextLineFragment")]
 #[path = "NSTextLineFragment.rs"]
 mod __NSTextLineFragment;
-#[cfg(feature = "AppKit_NSTextList")]
+#[cfg(feature = "NSTextList")]
 #[path = "NSTextList.rs"]
 mod __NSTextList;
-#[cfg(feature = "AppKit_NSTextListElement")]
+#[cfg(feature = "NSTextListElement")]
 #[path = "NSTextListElement.rs"]
 mod __NSTextListElement;
-#[cfg(feature = "AppKit_NSTextRange")]
+#[cfg(feature = "NSTextRange")]
 #[path = "NSTextRange.rs"]
 mod __NSTextRange;
-#[cfg(feature = "AppKit_NSTextSelection")]
+#[cfg(feature = "NSTextSelection")]
 #[path = "NSTextSelection.rs"]
 mod __NSTextSelection;
-#[cfg(feature = "AppKit_NSTextSelectionNavigation")]
+#[cfg(feature = "NSTextSelectionNavigation")]
 #[path = "NSTextSelectionNavigation.rs"]
 mod __NSTextSelectionNavigation;
-#[cfg(feature = "AppKit_NSTextStorage")]
+#[cfg(feature = "NSTextStorage")]
 #[path = "NSTextStorage.rs"]
 mod __NSTextStorage;
-#[cfg(feature = "AppKit_NSTextStorageScripting")]
+#[cfg(feature = "NSTextStorageScripting")]
 #[path = "NSTextStorageScripting.rs"]
 mod __NSTextStorageScripting;
-#[cfg(feature = "AppKit_NSTextTable")]
+#[cfg(feature = "NSTextTable")]
 #[path = "NSTextTable.rs"]
 mod __NSTextTable;
-#[cfg(feature = "AppKit_NSTextView")]
+#[cfg(feature = "NSTextView")]
 #[path = "NSTextView.rs"]
 mod __NSTextView;
-#[cfg(feature = "AppKit_NSTextViewportLayoutController")]
+#[cfg(feature = "NSTextViewportLayoutController")]
 #[path = "NSTextViewportLayoutController.rs"]
 mod __NSTextViewportLayoutController;
-#[cfg(feature = "AppKit_NSTintConfiguration")]
+#[cfg(feature = "NSTintConfiguration")]
 #[path = "NSTintConfiguration.rs"]
 mod __NSTintConfiguration;
-#[cfg(feature = "AppKit_NSTitlebarAccessoryViewController")]
+#[cfg(feature = "NSTitlebarAccessoryViewController")]
 #[path = "NSTitlebarAccessoryViewController.rs"]
 mod __NSTitlebarAccessoryViewController;
-#[cfg(feature = "AppKit_NSTokenField")]
+#[cfg(feature = "NSTokenField")]
 #[path = "NSTokenField.rs"]
 mod __NSTokenField;
-#[cfg(feature = "AppKit_NSTokenFieldCell")]
+#[cfg(feature = "NSTokenFieldCell")]
 #[path = "NSTokenFieldCell.rs"]
 mod __NSTokenFieldCell;
-#[cfg(feature = "AppKit_NSToolbar")]
+#[cfg(feature = "NSToolbar")]
 #[path = "NSToolbar.rs"]
 mod __NSToolbar;
-#[cfg(feature = "AppKit_NSToolbarItem")]
+#[cfg(feature = "NSToolbarItem")]
 #[path = "NSToolbarItem.rs"]
 mod __NSToolbarItem;
-#[cfg(feature = "AppKit_NSToolbarItemGroup")]
+#[cfg(feature = "NSToolbarItemGroup")]
 #[path = "NSToolbarItemGroup.rs"]
 mod __NSToolbarItemGroup;
-#[cfg(feature = "AppKit_NSTouch")]
+#[cfg(feature = "NSTouch")]
 #[path = "NSTouch.rs"]
 mod __NSTouch;
-#[cfg(feature = "AppKit_NSTouchBar")]
+#[cfg(feature = "NSTouchBar")]
 #[path = "NSTouchBar.rs"]
 mod __NSTouchBar;
-#[cfg(feature = "AppKit_NSTouchBarItem")]
+#[cfg(feature = "NSTouchBarItem")]
 #[path = "NSTouchBarItem.rs"]
 mod __NSTouchBarItem;
-#[cfg(feature = "AppKit_NSTrackingArea")]
+#[cfg(feature = "NSTrackingArea")]
 #[path = "NSTrackingArea.rs"]
 mod __NSTrackingArea;
-#[cfg(feature = "AppKit_NSTrackingSeparatorToolbarItem")]
+#[cfg(feature = "NSTrackingSeparatorToolbarItem")]
 #[path = "NSTrackingSeparatorToolbarItem.rs"]
 mod __NSTrackingSeparatorToolbarItem;
-#[cfg(feature = "AppKit_NSTreeController")]
+#[cfg(feature = "NSTreeController")]
 #[path = "NSTreeController.rs"]
 mod __NSTreeController;
-#[cfg(feature = "AppKit_NSTreeNode")]
+#[cfg(feature = "NSTreeNode")]
 #[path = "NSTreeNode.rs"]
 mod __NSTreeNode;
-#[cfg(feature = "AppKit_NSTypesetter")]
+#[cfg(feature = "NSTypesetter")]
 #[path = "NSTypesetter.rs"]
 mod __NSTypesetter;
-#[cfg(feature = "AppKit_NSUserActivity")]
+#[cfg(feature = "NSUserActivity")]
 #[path = "NSUserActivity.rs"]
 mod __NSUserActivity;
-#[cfg(feature = "AppKit_NSUserDefaultsController")]
+#[cfg(feature = "NSUserDefaultsController")]
 #[path = "NSUserDefaultsController.rs"]
 mod __NSUserDefaultsController;
-#[cfg(feature = "AppKit_NSUserInterfaceCompression")]
+#[cfg(feature = "NSUserInterfaceCompression")]
 #[path = "NSUserInterfaceCompression.rs"]
 mod __NSUserInterfaceCompression;
-#[cfg(feature = "AppKit_NSUserInterfaceItemIdentification")]
+#[cfg(feature = "NSUserInterfaceItemIdentification")]
 #[path = "NSUserInterfaceItemIdentification.rs"]
 mod __NSUserInterfaceItemIdentification;
-#[cfg(feature = "AppKit_NSUserInterfaceItemSearching")]
+#[cfg(feature = "NSUserInterfaceItemSearching")]
 #[path = "NSUserInterfaceItemSearching.rs"]
 mod __NSUserInterfaceItemSearching;
-#[cfg(feature = "AppKit_NSUserInterfaceLayout")]
+#[cfg(feature = "NSUserInterfaceLayout")]
 #[path = "NSUserInterfaceLayout.rs"]
 mod __NSUserInterfaceLayout;
-#[cfg(feature = "AppKit_NSUserInterfaceValidation")]
+#[cfg(feature = "NSUserInterfaceValidation")]
 #[path = "NSUserInterfaceValidation.rs"]
 mod __NSUserInterfaceValidation;
-#[cfg(feature = "AppKit_NSView")]
+#[cfg(feature = "NSView")]
 #[path = "NSView.rs"]
 mod __NSView;
-#[cfg(feature = "AppKit_NSViewController")]
+#[cfg(feature = "NSViewController")]
 #[path = "NSViewController.rs"]
 mod __NSViewController;
-#[cfg(feature = "AppKit_NSVisualEffectView")]
+#[cfg(feature = "NSVisualEffectView")]
 #[path = "NSVisualEffectView.rs"]
 mod __NSVisualEffectView;
-#[cfg(feature = "AppKit_NSWindow")]
+#[cfg(feature = "NSWindow")]
 #[path = "NSWindow.rs"]
 mod __NSWindow;
-#[cfg(feature = "AppKit_NSWindowController")]
+#[cfg(feature = "NSWindowController")]
 #[path = "NSWindowController.rs"]
 mod __NSWindowController;
-#[cfg(feature = "AppKit_NSWindowRestoration")]
+#[cfg(feature = "NSWindowRestoration")]
 #[path = "NSWindowRestoration.rs"]
 mod __NSWindowRestoration;
-#[cfg(feature = "AppKit_NSWindowScripting")]
+#[cfg(feature = "NSWindowScripting")]
 #[path = "NSWindowScripting.rs"]
 mod __NSWindowScripting;
-#[cfg(feature = "AppKit_NSWindowTab")]
+#[cfg(feature = "NSWindowTab")]
 #[path = "NSWindowTab.rs"]
 mod __NSWindowTab;
-#[cfg(feature = "AppKit_NSWindowTabGroup")]
+#[cfg(feature = "NSWindowTabGroup")]
 #[path = "NSWindowTabGroup.rs"]
 mod __NSWindowTabGroup;
-#[cfg(feature = "AppKit_NSWorkspace")]
+#[cfg(feature = "NSWorkspace")]
 #[path = "NSWorkspace.rs"]
 mod __NSWorkspace;
 
-#[cfg(feature = "AppKit_AppKitErrors")]
+#[cfg(feature = "AppKitErrors")]
 pub use self::__AppKitErrors::NSFontAssetDownloadError;
-#[cfg(feature = "AppKit_AppKitErrors")]
+#[cfg(feature = "AppKitErrors")]
 pub use self::__AppKitErrors::NSFontErrorMaximum;
-#[cfg(feature = "AppKit_AppKitErrors")]
+#[cfg(feature = "AppKitErrors")]
 pub use self::__AppKitErrors::NSFontErrorMinimum;
-#[cfg(feature = "AppKit_AppKitErrors")]
+#[cfg(feature = "AppKitErrors")]
 pub use self::__AppKitErrors::NSServiceApplicationLaunchFailedError;
-#[cfg(feature = "AppKit_AppKitErrors")]
+#[cfg(feature = "AppKitErrors")]
 pub use self::__AppKitErrors::NSServiceApplicationNotFoundError;
-#[cfg(feature = "AppKit_AppKitErrors")]
+#[cfg(feature = "AppKitErrors")]
 pub use self::__AppKitErrors::NSServiceErrorMaximum;
-#[cfg(feature = "AppKit_AppKitErrors")]
+#[cfg(feature = "AppKitErrors")]
 pub use self::__AppKitErrors::NSServiceErrorMinimum;
-#[cfg(feature = "AppKit_AppKitErrors")]
+#[cfg(feature = "AppKitErrors")]
 pub use self::__AppKitErrors::NSServiceInvalidPasteboardDataError;
-#[cfg(feature = "AppKit_AppKitErrors")]
+#[cfg(feature = "AppKitErrors")]
 pub use self::__AppKitErrors::NSServiceMalformedServiceDictionaryError;
-#[cfg(feature = "AppKit_AppKitErrors")]
+#[cfg(feature = "AppKitErrors")]
 pub use self::__AppKitErrors::NSServiceMiscellaneousError;
-#[cfg(feature = "AppKit_AppKitErrors")]
+#[cfg(feature = "AppKitErrors")]
 pub use self::__AppKitErrors::NSServiceRequestTimedOutError;
-#[cfg(feature = "AppKit_AppKitErrors")]
+#[cfg(feature = "AppKitErrors")]
 pub use self::__AppKitErrors::NSSharingServiceErrorMaximum;
-#[cfg(feature = "AppKit_AppKitErrors")]
+#[cfg(feature = "AppKitErrors")]
 pub use self::__AppKitErrors::NSSharingServiceErrorMinimum;
-#[cfg(feature = "AppKit_AppKitErrors")]
+#[cfg(feature = "AppKitErrors")]
 pub use self::__AppKitErrors::NSSharingServiceNotConfiguredError;
-#[cfg(feature = "AppKit_AppKitErrors")]
+#[cfg(feature = "AppKitErrors")]
 pub use self::__AppKitErrors::NSTextReadInapplicableDocumentTypeError;
-#[cfg(feature = "AppKit_AppKitErrors")]
+#[cfg(feature = "AppKitErrors")]
 pub use self::__AppKitErrors::NSTextReadWriteErrorMaximum;
-#[cfg(feature = "AppKit_AppKitErrors")]
+#[cfg(feature = "AppKitErrors")]
 pub use self::__AppKitErrors::NSTextReadWriteErrorMinimum;
-#[cfg(feature = "AppKit_AppKitErrors")]
+#[cfg(feature = "AppKitErrors")]
 pub use self::__AppKitErrors::NSTextWriteInapplicableDocumentTypeError;
-#[cfg(feature = "AppKit_AppKitErrors")]
+#[cfg(feature = "AppKitErrors")]
 pub use self::__AppKitErrors::NSWindowSharingErrorMaximum;
-#[cfg(feature = "AppKit_AppKitErrors")]
+#[cfg(feature = "AppKitErrors")]
 pub use self::__AppKitErrors::NSWindowSharingErrorMinimum;
-#[cfg(feature = "AppKit_AppKitErrors")]
+#[cfg(feature = "AppKitErrors")]
 pub use self::__AppKitErrors::NSWindowSharingRequestAlreadyRequested;
-#[cfg(feature = "AppKit_AppKitErrors")]
+#[cfg(feature = "AppKitErrors")]
 pub use self::__AppKitErrors::NSWindowSharingRequestNoEligibleSession;
-#[cfg(feature = "AppKit_AppKitErrors")]
+#[cfg(feature = "AppKitErrors")]
 pub use self::__AppKitErrors::NSWindowSharingRequestUnspecifiedError;
-#[cfg(feature = "AppKit_AppKitErrors")]
+#[cfg(feature = "AppKitErrors")]
 pub use self::__AppKitErrors::NSWorkspaceAuthorizationInvalidError;
-#[cfg(feature = "AppKit_AppKitErrors")]
+#[cfg(feature = "AppKitErrors")]
 pub use self::__AppKitErrors::NSWorkspaceErrorMaximum;
-#[cfg(feature = "AppKit_AppKitErrors")]
+#[cfg(feature = "AppKitErrors")]
 pub use self::__AppKitErrors::NSWorkspaceErrorMinimum;
-#[cfg(all(feature = "AppKit_NSATSTypesetter", feature = "AppKit_NSTypesetter"))]
+#[cfg(all(feature = "NSATSTypesetter", feature = "NSTypesetter"))]
 pub use self::__NSATSTypesetter::NSATSTypesetter;
-#[cfg(all(
-    feature = "AppKit_NSAccessibility",
-    feature = "AppKit_NSAccessibilityConstants"
-))]
+#[cfg(all(feature = "NSAccessibility", feature = "NSAccessibilityConstants"))]
 pub use self::__NSAccessibility::NSAccessibilityActionDescription;
 #[cfg(all(
-    feature = "AppKit_NSAccessibility",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSView"
+    feature = "NSAccessibility",
+    feature = "NSResponder",
+    feature = "NSView"
 ))]
 pub use self::__NSAccessibility::NSAccessibilityFrameInView;
 #[cfg(all(
-    feature = "AppKit_NSAccessibility",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSView"
+    feature = "NSAccessibility",
+    feature = "NSResponder",
+    feature = "NSView"
 ))]
 pub use self::__NSAccessibility::NSAccessibilityPointInView;
-#[cfg(all(
-    feature = "AppKit_NSAccessibility",
-    feature = "AppKit_NSAccessibilityConstants"
-))]
+#[cfg(all(feature = "NSAccessibility", feature = "NSAccessibilityConstants"))]
 pub use self::__NSAccessibility::NSAccessibilityPostNotification;
-#[cfg(all(
-    feature = "AppKit_NSAccessibility",
-    feature = "AppKit_NSAccessibilityConstants"
-))]
+#[cfg(all(feature = "NSAccessibility", feature = "NSAccessibilityConstants"))]
 pub use self::__NSAccessibility::NSAccessibilityRaiseBadArgumentException;
-#[cfg(all(
-    feature = "AppKit_NSAccessibility",
-    feature = "AppKit_NSAccessibilityConstants"
-))]
+#[cfg(all(feature = "NSAccessibility", feature = "NSAccessibilityConstants"))]
 pub use self::__NSAccessibility::NSAccessibilityRoleDescription;
-#[cfg(feature = "AppKit_NSAccessibility")]
+#[cfg(feature = "NSAccessibility")]
 pub use self::__NSAccessibility::NSAccessibilityRoleDescriptionForUIElement;
-#[cfg(feature = "AppKit_NSAccessibility")]
+#[cfg(feature = "NSAccessibility")]
 pub use self::__NSAccessibility::NSAccessibilitySetMayContainProtectedContent;
-#[cfg(feature = "AppKit_NSAccessibility")]
+#[cfg(feature = "NSAccessibility")]
 pub use self::__NSAccessibility::NSAccessibilityUnignoredAncestor;
-#[cfg(feature = "AppKit_NSAccessibility")]
+#[cfg(feature = "NSAccessibility")]
 pub use self::__NSAccessibility::NSAccessibilityUnignoredChildren;
-#[cfg(feature = "AppKit_NSAccessibility")]
+#[cfg(feature = "NSAccessibility")]
 pub use self::__NSAccessibility::NSAccessibilityUnignoredChildrenForOnlyChild;
-#[cfg(feature = "AppKit_NSAccessibility")]
+#[cfg(feature = "NSAccessibility")]
 pub use self::__NSAccessibility::NSAccessibilityUnignoredDescendant;
-#[cfg(feature = "AppKit_NSAccessibility")]
+#[cfg(feature = "NSAccessibility")]
 pub use self::__NSAccessibility::NSObjectNSAccessibility;
-#[cfg(feature = "AppKit_NSAccessibility")]
+#[cfg(feature = "NSAccessibility")]
 pub use self::__NSAccessibility::NSWorkspaceAccessibilityDisplayOptionsDidChangeNotification;
-#[cfg(feature = "AppKit_NSAccessibilityColor")]
+#[cfg(feature = "NSAccessibilityColor")]
 pub use self::__NSAccessibilityColor::NSAccessibilityColor;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityActionName;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityActivationPointAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityAllowedValuesAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityAlternateUIVisibleAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityAnnotationAttributeKey;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityAnnotationElement;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityAnnotationLabel;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityAnnotationLocation;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityAnnotationPosition;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityAnnotationTextAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityAnnouncementKey;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityAnnouncementRequestedNotification;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityApplicationActivatedNotification;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityApplicationDeactivatedNotification;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityApplicationHiddenNotification;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityApplicationRole;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityApplicationShownNotification;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityAscendingSortDirectionValue;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityAttachmentTextAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityAttributeName;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityAttributedStringForRangeParameterizedAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityAutocorrectedTextAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityBackgroundColorTextAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityBoundsForRangeParameterizedAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityBrowserRole;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityBusyIndicatorRole;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityButtonRole;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityCancelAction;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityCancelButtonAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityCellForColumnAndRowParameterizedAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityCellRole;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityCenterTabStopMarkerTypeValue;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityCentimetersUnitValue;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityCheckBoxRole;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityChildrenAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityClearButtonAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityCloseButtonAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityCloseButtonSubrole;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityCollectionListSubrole;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityColorWellRole;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityColumnCountAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityColumnHeaderUIElementsAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityColumnIndexRangeAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityColumnRole;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityColumnTitlesAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityColumnsAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityComboBoxRole;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityConfirmAction;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityContainsProtectedContentAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityContentListSubrole;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityContentsAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityCreatedNotification;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityCriticalValueAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityCustomTextAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityDecimalTabStopMarkerTypeValue;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityDecrementAction;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityDecrementArrowSubrole;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityDecrementButtonAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityDecrementPageSubrole;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityDefaultButtonAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityDefinitionListSubrole;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityDeleteAction;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityDescendingSortDirectionValue;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityDescriptionAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityDescriptionListSubrole;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityDialogSubrole;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityDisclosedByRowAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityDisclosedRowsAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityDisclosingAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityDisclosureLevelAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityDisclosureTriangleRole;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityDocumentAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityDrawerCreatedNotification;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityDrawerRole;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityEditedAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityEnabledAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityErrorCodeExceptionInfo;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityExpandedAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityExtrasMenuBarAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityFilenameAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityFirstLineIndentMarkerTypeValue;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityFloatingWindowSubrole;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityFocusedAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityFocusedUIElementAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityFocusedUIElementChangedNotification;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityFocusedWindowAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityFocusedWindowChangedNotification;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityFontAttributeKey;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityFontFamilyKey;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityFontNameKey;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityFontSizeKey;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityFontTextAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityForegroundColorTextAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityFrontmostAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityFullScreenButtonAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityFullScreenButtonSubrole;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityGridRole;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityGroupRole;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityGrowAreaAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityGrowAreaRole;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityHandleRole;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityHandlesAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityHeadIndentMarkerTypeValue;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityHeaderAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityHelpAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityHelpTagCreatedNotification;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityHelpTagRole;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityHiddenAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityHorizontalOrientationValue;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityHorizontalScrollBarAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityHorizontalUnitDescriptionAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityHorizontalUnitsAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityIdentifierAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityImageRole;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityInchesUnitValue;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityIncrementAction;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityIncrementArrowSubrole;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityIncrementButtonAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityIncrementPageSubrole;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityIncrementorRole;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityIndexAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityInsertionPointLineNumberAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityLabelUIElementsAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityLabelValueAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityLanguageTextAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityLayoutAreaRole;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityLayoutChangedNotification;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityLayoutItemRole;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityLayoutPointForScreenPointParameterizedAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityLayoutSizeForScreenSizeParameterizedAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityLeftTabStopMarkerTypeValue;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityLevelIndicatorRole;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityLineForIndexParameterizedAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityLinkRole;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityLinkTextAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityLinkedUIElementsAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityListItemIndexTextAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityListItemLevelTextAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityListItemPrefixTextAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityListRole;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityLoadingToken;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityMainAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityMainWindowAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityMainWindowChangedNotification;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityMarkedMisspelledTextAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityMarkerGroupUIElementAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityMarkerTypeAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityMarkerTypeDescriptionAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityMarkerUIElementsAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityMarkerValuesAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityMatteContentUIElementAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityMatteHoleAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityMatteRole;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityMaxValueAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityMenuBarAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityMenuBarItemRole;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityMenuBarRole;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityMenuButtonRole;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityMenuItemRole;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityMenuRole;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityMinValueAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityMinimizeButtonAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityMinimizeButtonSubrole;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityMinimizedAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityMisspelledTextAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityModalAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityMovedNotification;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityNextContentsAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityNotificationName;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityNotificationUserInfoKey;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityNumberOfCharactersAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityOrderedByRowAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityOrientation;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityOrientationAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityOrientationValue;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityOutlineRole;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityOutlineRowSubrole;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityOverflowButtonAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityPageRole;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityParameterizedAttributeName;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityParentAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityPicasUnitValue;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityPickAction;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityPlaceholderValueAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityPointsUnitValue;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityPopUpButtonRole;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityPopoverRole;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityPositionAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityPostNotificationWithUserInfo;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityPressAction;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityPreviousContentsAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityPriorityKey;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityPriorityLevel;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityProgressIndicatorRole;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityProxyAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityRTFForRangeParameterizedAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityRadioButtonRole;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityRadioGroupRole;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityRaiseAction;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityRangeForIndexParameterizedAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityRangeForLineParameterizedAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityRangeForPositionParameterizedAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityRatingIndicatorSubrole;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityRelevanceIndicatorRole;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityRequiredAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityResizedNotification;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityRightTabStopMarkerTypeValue;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityRole;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityRoleAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityRoleDescriptionAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityRowCollapsedNotification;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityRowCountAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityRowCountChangedNotification;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityRowExpandedNotification;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityRowHeaderUIElementsAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityRowIndexRangeAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityRowRole;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityRowsAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityRulerMarkerRole;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityRulerMarkerType;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityRulerMarkerTypeValue;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityRulerRole;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityRulerUnitValue;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityScreenPointForLayoutPointParameterizedAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityScreenSizeForLayoutSizeParameterizedAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityScrollAreaRole;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityScrollBarRole;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilitySearchButtonAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilitySearchFieldSubrole;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilitySearchMenuAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilitySectionListSubrole;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilitySecureTextFieldSubrole;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilitySelectedAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilitySelectedCellsAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilitySelectedCellsChangedNotification;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilitySelectedChildrenAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilitySelectedChildrenChangedNotification;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilitySelectedChildrenMovedNotification;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilitySelectedColumnsAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilitySelectedColumnsChangedNotification;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilitySelectedRowsAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilitySelectedRowsChangedNotification;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilitySelectedTextAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilitySelectedTextChangedNotification;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilitySelectedTextRangeAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilitySelectedTextRangesAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityServesAsTitleForUIElementsAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityShadowTextAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilitySharedCharacterRangeAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilitySharedFocusElementsAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilitySharedTextUIElementsAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilitySheetCreatedNotification;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilitySheetRole;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityShowAlternateUIAction;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityShowDefaultUIAction;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityShowMenuAction;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityShownMenuAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilitySizeAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilitySliderRole;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilitySortButtonRole;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilitySortButtonSubrole;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilitySortDirection;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilitySortDirectionAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilitySortDirectionValue;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilitySplitGroupRole;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilitySplitterRole;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilitySplittersAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityStandardWindowSubrole;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityStaticTextRole;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityStrikethroughColorTextAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityStrikethroughTextAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityStringForRangeParameterizedAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityStyleRangeForIndexParameterizedAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilitySubrole;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilitySubroleAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilitySuperscriptTextAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilitySwitchSubrole;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilitySystemDialogSubrole;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilitySystemFloatingWindowSubrole;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilitySystemWideRole;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityTabButtonSubrole;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityTabGroupRole;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityTableRole;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityTableRowSubrole;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityTabsAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityTailIndentMarkerTypeValue;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityTextAlignmentAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityTextAreaRole;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityTextAttachmentSubrole;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityTextFieldRole;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityTextLinkSubrole;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityTimelineSubrole;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityTitleAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityTitleChangedNotification;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityTitleUIElementAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityToggleSubrole;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityToolbarButtonAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityToolbarButtonSubrole;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityToolbarRole;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityTopLevelUIElementAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityUIElementDestroyedNotification;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityUIElementsKey;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityURLAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityUnderlineColorTextAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityUnderlineTextAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityUnitDescriptionAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityUnits;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityUnitsAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityUnitsChangedNotification;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityUnknownMarkerTypeValue;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityUnknownOrientationValue;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityUnknownRole;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityUnknownSortDirectionValue;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityUnknownSubrole;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityUnknownUnitValue;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityValueAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityValueChangedNotification;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityValueDescriptionAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityValueIndicatorRole;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityVerticalOrientationValue;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityVerticalScrollBarAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityVerticalUnitDescriptionAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityVerticalUnitsAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityVisibleCellsAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityVisibleCharacterRangeAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityVisibleChildrenAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityVisibleColumnsAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityVisibleNameKey;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityVisibleRowsAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityWarningValueAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityWindowAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityWindowCreatedNotification;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityWindowDeminiaturizedNotification;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityWindowMiniaturizedNotification;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityWindowMovedNotification;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityWindowResizedNotification;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityWindowRole;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityWindowsAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityZoomButtonAttribute;
-#[cfg(feature = "AppKit_NSAccessibilityConstants")]
+#[cfg(feature = "NSAccessibilityConstants")]
 pub use self::__NSAccessibilityConstants::NSAccessibilityZoomButtonSubrole;
-#[cfg(feature = "AppKit_NSAccessibilityCustomAction")]
+#[cfg(feature = "NSAccessibilityCustomAction")]
 pub use self::__NSAccessibilityCustomAction::NSAccessibilityCustomAction;
-#[cfg(feature = "AppKit_NSAccessibilityCustomRotor")]
+#[cfg(feature = "NSAccessibilityCustomRotor")]
 pub use self::__NSAccessibilityCustomRotor::NSAccessibilityCustomRotor;
-#[cfg(feature = "AppKit_NSAccessibilityCustomRotor")]
+#[cfg(feature = "NSAccessibilityCustomRotor")]
 pub use self::__NSAccessibilityCustomRotor::NSAccessibilityCustomRotorItemResult;
-#[cfg(feature = "AppKit_NSAccessibilityCustomRotor")]
+#[cfg(feature = "NSAccessibilityCustomRotor")]
 pub use self::__NSAccessibilityCustomRotor::NSAccessibilityCustomRotorItemSearchDelegate;
-#[cfg(feature = "AppKit_NSAccessibilityCustomRotor")]
+#[cfg(feature = "NSAccessibilityCustomRotor")]
 pub use self::__NSAccessibilityCustomRotor::NSAccessibilityCustomRotorSearchDirection;
-#[cfg(feature = "AppKit_NSAccessibilityCustomRotor")]
+#[cfg(feature = "NSAccessibilityCustomRotor")]
 pub use self::__NSAccessibilityCustomRotor::NSAccessibilityCustomRotorSearchParameters;
-#[cfg(feature = "AppKit_NSAccessibilityCustomRotor")]
+#[cfg(feature = "NSAccessibilityCustomRotor")]
 pub use self::__NSAccessibilityCustomRotor::NSAccessibilityCustomRotorType;
-#[cfg(feature = "AppKit_NSAccessibilityElement")]
+#[cfg(feature = "NSAccessibilityElement")]
 pub use self::__NSAccessibilityElement::NSAccessibilityElement;
-#[cfg(feature = "AppKit_NSAccessibilityProtocols")]
+#[cfg(feature = "NSAccessibilityProtocols")]
 pub use self::__NSAccessibilityProtocols::NSAccessibility;
-#[cfg(feature = "AppKit_NSAccessibilityProtocols")]
+#[cfg(feature = "NSAccessibilityProtocols")]
 pub use self::__NSAccessibilityProtocols::NSAccessibilityButton;
-#[cfg(feature = "AppKit_NSAccessibilityProtocols")]
+#[cfg(feature = "NSAccessibilityProtocols")]
 pub use self::__NSAccessibilityProtocols::NSAccessibilityCheckBox;
-#[cfg(feature = "AppKit_NSAccessibilityProtocols")]
+#[cfg(feature = "NSAccessibilityProtocols")]
 pub use self::__NSAccessibilityProtocols::NSAccessibilityContainsTransientUI;
-#[cfg(feature = "AppKit_NSAccessibilityProtocols")]
+#[cfg(feature = "NSAccessibilityProtocols")]
 pub use self::__NSAccessibilityProtocols::NSAccessibilityElementLoading;
-#[cfg(feature = "AppKit_NSAccessibilityProtocols")]
+#[cfg(feature = "NSAccessibilityProtocols")]
 pub use self::__NSAccessibilityProtocols::NSAccessibilityElementProtocol;
-#[cfg(feature = "AppKit_NSAccessibilityProtocols")]
+#[cfg(feature = "NSAccessibilityProtocols")]
 pub use self::__NSAccessibilityProtocols::NSAccessibilityGroup;
-#[cfg(feature = "AppKit_NSAccessibilityProtocols")]
+#[cfg(feature = "NSAccessibilityProtocols")]
 pub use self::__NSAccessibilityProtocols::NSAccessibilityImage;
-#[cfg(feature = "AppKit_NSAccessibilityProtocols")]
+#[cfg(feature = "NSAccessibilityProtocols")]
 pub use self::__NSAccessibilityProtocols::NSAccessibilityLayoutArea;
-#[cfg(feature = "AppKit_NSAccessibilityProtocols")]
+#[cfg(feature = "NSAccessibilityProtocols")]
 pub use self::__NSAccessibilityProtocols::NSAccessibilityLayoutItem;
-#[cfg(feature = "AppKit_NSAccessibilityProtocols")]
+#[cfg(feature = "NSAccessibilityProtocols")]
 pub use self::__NSAccessibilityProtocols::NSAccessibilityList;
-#[cfg(feature = "AppKit_NSAccessibilityProtocols")]
+#[cfg(feature = "NSAccessibilityProtocols")]
 pub use self::__NSAccessibilityProtocols::NSAccessibilityNavigableStaticText;
-#[cfg(feature = "AppKit_NSAccessibilityProtocols")]
+#[cfg(feature = "NSAccessibilityProtocols")]
 pub use self::__NSAccessibilityProtocols::NSAccessibilityOutline;
-#[cfg(feature = "AppKit_NSAccessibilityProtocols")]
+#[cfg(feature = "NSAccessibilityProtocols")]
 pub use self::__NSAccessibilityProtocols::NSAccessibilityProgressIndicator;
-#[cfg(feature = "AppKit_NSAccessibilityProtocols")]
+#[cfg(feature = "NSAccessibilityProtocols")]
 pub use self::__NSAccessibilityProtocols::NSAccessibilityRadioButton;
-#[cfg(feature = "AppKit_NSAccessibilityProtocols")]
+#[cfg(feature = "NSAccessibilityProtocols")]
 pub use self::__NSAccessibilityProtocols::NSAccessibilityRow;
-#[cfg(feature = "AppKit_NSAccessibilityProtocols")]
+#[cfg(feature = "NSAccessibilityProtocols")]
 pub use self::__NSAccessibilityProtocols::NSAccessibilitySlider;
-#[cfg(feature = "AppKit_NSAccessibilityProtocols")]
+#[cfg(feature = "NSAccessibilityProtocols")]
 pub use self::__NSAccessibilityProtocols::NSAccessibilityStaticText;
-#[cfg(feature = "AppKit_NSAccessibilityProtocols")]
+#[cfg(feature = "NSAccessibilityProtocols")]
 pub use self::__NSAccessibilityProtocols::NSAccessibilityStepper;
-#[cfg(feature = "AppKit_NSAccessibilityProtocols")]
+#[cfg(feature = "NSAccessibilityProtocols")]
 pub use self::__NSAccessibilityProtocols::NSAccessibilitySwitch;
-#[cfg(feature = "AppKit_NSAccessibilityProtocols")]
+#[cfg(feature = "NSAccessibilityProtocols")]
 pub use self::__NSAccessibilityProtocols::NSAccessibilityTable;
-#[cfg(all(feature = "AppKit_NSActionCell", feature = "AppKit_NSCell"))]
+#[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
 pub use self::__NSActionCell::NSActionCell;
-#[cfg(feature = "AppKit_NSAffineTransform")]
+#[cfg(feature = "NSAffineTransform")]
 pub use self::__NSAffineTransform::NSAffineTransformNSAppKitAdditions;
-#[cfg(feature = "AppKit_NSAlert")]
+#[cfg(feature = "NSAlert")]
 pub use self::__NSAlert::NSAlert;
-#[cfg(feature = "AppKit_NSAlert")]
+#[cfg(feature = "NSAlert")]
 pub use self::__NSAlert::NSAlertDelegate;
-#[cfg(all(feature = "AppKit_NSAlert", feature = "AppKit_NSApplication"))]
+#[cfg(all(feature = "NSAlert", feature = "NSApplication"))]
 pub use self::__NSAlert::NSAlertFirstButtonReturn;
-#[cfg(all(feature = "AppKit_NSAlert", feature = "AppKit_NSApplication"))]
+#[cfg(all(feature = "NSAlert", feature = "NSApplication"))]
 pub use self::__NSAlert::NSAlertSecondButtonReturn;
-#[cfg(feature = "AppKit_NSAlert")]
+#[cfg(feature = "NSAlert")]
 pub use self::__NSAlert::NSAlertStyle;
-#[cfg(all(feature = "AppKit_NSAlert", feature = "AppKit_NSApplication"))]
+#[cfg(all(feature = "NSAlert", feature = "NSApplication"))]
 pub use self::__NSAlert::NSAlertThirdButtonReturn;
-#[cfg(feature = "AppKit_NSAlert")]
+#[cfg(feature = "NSAlert")]
 pub use self::__NSAlert::NSCriticalAlertStyle;
-#[cfg(feature = "AppKit_NSAlert")]
+#[cfg(feature = "NSAlert")]
 pub use self::__NSAlert::NSInformationalAlertStyle;
-#[cfg(feature = "AppKit_NSAlert")]
+#[cfg(feature = "NSAlert")]
 pub use self::__NSAlert::NSWarningAlertStyle;
-#[cfg(feature = "AppKit_NSAlignmentFeedbackFilter")]
+#[cfg(feature = "NSAlignmentFeedbackFilter")]
 pub use self::__NSAlignmentFeedbackFilter::NSAlignmentFeedbackFilter;
-#[cfg(feature = "AppKit_NSAlignmentFeedbackFilter")]
+#[cfg(feature = "NSAlignmentFeedbackFilter")]
 pub use self::__NSAlignmentFeedbackFilter::NSAlignmentFeedbackToken;
-#[cfg(feature = "AppKit_NSAnimation")]
+#[cfg(feature = "NSAnimation")]
 pub use self::__NSAnimation::NSAnimatablePropertyContainer;
-#[cfg(feature = "AppKit_NSAnimation")]
+#[cfg(feature = "NSAnimation")]
 pub use self::__NSAnimation::NSAnimatablePropertyKey;
-#[cfg(feature = "AppKit_NSAnimation")]
+#[cfg(feature = "NSAnimation")]
 pub use self::__NSAnimation::NSAnimation;
-#[cfg(feature = "AppKit_NSAnimation")]
+#[cfg(feature = "NSAnimation")]
 pub use self::__NSAnimation::NSAnimationBlockingMode;
-#[cfg(feature = "AppKit_NSAnimation")]
+#[cfg(feature = "NSAnimation")]
 pub use self::__NSAnimation::NSAnimationCurve;
-#[cfg(feature = "AppKit_NSAnimation")]
+#[cfg(feature = "NSAnimation")]
 pub use self::__NSAnimation::NSAnimationDelegate;
-#[cfg(feature = "AppKit_NSAnimation")]
+#[cfg(feature = "NSAnimation")]
 pub use self::__NSAnimation::NSAnimationProgress;
-#[cfg(feature = "AppKit_NSAnimation")]
+#[cfg(feature = "NSAnimation")]
 pub use self::__NSAnimation::NSAnimationProgressMark;
-#[cfg(feature = "AppKit_NSAnimation")]
+#[cfg(feature = "NSAnimation")]
 pub use self::__NSAnimation::NSAnimationProgressMarkNotification;
-#[cfg(feature = "AppKit_NSAnimation")]
+#[cfg(feature = "NSAnimation")]
 pub use self::__NSAnimation::NSAnimationTriggerOrderIn;
-#[cfg(feature = "AppKit_NSAnimation")]
+#[cfg(feature = "NSAnimation")]
 pub use self::__NSAnimation::NSAnimationTriggerOrderOut;
-#[cfg(feature = "AppKit_NSAnimation")]
+#[cfg(feature = "NSAnimation")]
 pub use self::__NSAnimation::NSViewAnimation;
-#[cfg(feature = "AppKit_NSAnimation")]
+#[cfg(feature = "NSAnimation")]
 pub use self::__NSAnimation::NSViewAnimationEffectKey;
-#[cfg(feature = "AppKit_NSAnimation")]
+#[cfg(feature = "NSAnimation")]
 pub use self::__NSAnimation::NSViewAnimationEffectName;
-#[cfg(feature = "AppKit_NSAnimation")]
+#[cfg(feature = "NSAnimation")]
 pub use self::__NSAnimation::NSViewAnimationEndFrameKey;
-#[cfg(feature = "AppKit_NSAnimation")]
+#[cfg(feature = "NSAnimation")]
 pub use self::__NSAnimation::NSViewAnimationFadeInEffect;
-#[cfg(feature = "AppKit_NSAnimation")]
+#[cfg(feature = "NSAnimation")]
 pub use self::__NSAnimation::NSViewAnimationFadeOutEffect;
-#[cfg(feature = "AppKit_NSAnimation")]
+#[cfg(feature = "NSAnimation")]
 pub use self::__NSAnimation::NSViewAnimationKey;
-#[cfg(feature = "AppKit_NSAnimation")]
+#[cfg(feature = "NSAnimation")]
 pub use self::__NSAnimation::NSViewAnimationStartFrameKey;
-#[cfg(feature = "AppKit_NSAnimation")]
+#[cfg(feature = "NSAnimation")]
 pub use self::__NSAnimation::NSViewAnimationTargetKey;
-#[cfg(feature = "AppKit_NSAnimationContext")]
+#[cfg(feature = "NSAnimationContext")]
 pub use self::__NSAnimationContext::NSAnimationContext;
-#[cfg(feature = "AppKit_NSAppearance")]
+#[cfg(feature = "NSAppearance")]
 pub use self::__NSAppearance::NSAppearance;
-#[cfg(feature = "AppKit_NSAppearance")]
+#[cfg(feature = "NSAppearance")]
 pub use self::__NSAppearance::NSAppearanceCustomization;
-#[cfg(feature = "AppKit_NSAppearance")]
+#[cfg(feature = "NSAppearance")]
 pub use self::__NSAppearance::NSAppearanceName;
-#[cfg(feature = "AppKit_NSAppearance")]
+#[cfg(feature = "NSAppearance")]
 pub use self::__NSAppearance::NSAppearanceNameAccessibilityHighContrastAqua;
-#[cfg(feature = "AppKit_NSAppearance")]
+#[cfg(feature = "NSAppearance")]
 pub use self::__NSAppearance::NSAppearanceNameAccessibilityHighContrastDarkAqua;
-#[cfg(feature = "AppKit_NSAppearance")]
+#[cfg(feature = "NSAppearance")]
 pub use self::__NSAppearance::NSAppearanceNameAccessibilityHighContrastVibrantDark;
-#[cfg(feature = "AppKit_NSAppearance")]
+#[cfg(feature = "NSAppearance")]
 pub use self::__NSAppearance::NSAppearanceNameAccessibilityHighContrastVibrantLight;
-#[cfg(feature = "AppKit_NSAppearance")]
+#[cfg(feature = "NSAppearance")]
 pub use self::__NSAppearance::NSAppearanceNameAqua;
-#[cfg(feature = "AppKit_NSAppearance")]
+#[cfg(feature = "NSAppearance")]
 pub use self::__NSAppearance::NSAppearanceNameDarkAqua;
-#[cfg(feature = "AppKit_NSAppearance")]
+#[cfg(feature = "NSAppearance")]
 pub use self::__NSAppearance::NSAppearanceNameLightContent;
-#[cfg(feature = "AppKit_NSAppearance")]
+#[cfg(feature = "NSAppearance")]
 pub use self::__NSAppearance::NSAppearanceNameVibrantDark;
-#[cfg(feature = "AppKit_NSAppearance")]
+#[cfg(feature = "NSAppearance")]
 pub use self::__NSAppearance::NSAppearanceNameVibrantLight;
-#[cfg(feature = "AppKit_NSAppleScriptExtensions")]
+#[cfg(feature = "NSAppleScriptExtensions")]
 pub use self::__NSAppleScriptExtensions::NSAppleScriptNSExtensions;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSAboutPanelOptionApplicationIcon;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSAboutPanelOptionApplicationName;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSAboutPanelOptionApplicationVersion;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSAboutPanelOptionCredits;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSAboutPanelOptionKey;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSAboutPanelOptionVersion;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSAppKitVersion;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSAppKitVersionNumber;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSAppKitVersionNumber10_0;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSAppKitVersionNumber10_1;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSAppKitVersionNumber10_10;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSAppKitVersionNumber10_10_2;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSAppKitVersionNumber10_10_3;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSAppKitVersionNumber10_10_4;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSAppKitVersionNumber10_10_5;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSAppKitVersionNumber10_10_Max;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSAppKitVersionNumber10_11;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSAppKitVersionNumber10_11_1;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSAppKitVersionNumber10_11_2;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSAppKitVersionNumber10_11_3;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSAppKitVersionNumber10_12;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSAppKitVersionNumber10_12_1;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSAppKitVersionNumber10_12_2;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSAppKitVersionNumber10_13;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSAppKitVersionNumber10_13_1;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSAppKitVersionNumber10_13_2;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSAppKitVersionNumber10_13_4;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSAppKitVersionNumber10_14;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSAppKitVersionNumber10_14_1;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSAppKitVersionNumber10_14_2;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSAppKitVersionNumber10_14_3;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSAppKitVersionNumber10_14_4;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSAppKitVersionNumber10_14_5;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSAppKitVersionNumber10_15;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSAppKitVersionNumber10_15_1;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSAppKitVersionNumber10_15_2;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSAppKitVersionNumber10_15_3;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSAppKitVersionNumber10_15_4;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSAppKitVersionNumber10_15_5;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSAppKitVersionNumber10_15_6;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSAppKitVersionNumber10_2;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSAppKitVersionNumber10_2_3;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSAppKitVersionNumber10_3;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSAppKitVersionNumber10_3_2;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSAppKitVersionNumber10_3_3;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSAppKitVersionNumber10_3_5;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSAppKitVersionNumber10_3_7;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSAppKitVersionNumber10_3_9;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSAppKitVersionNumber10_4;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSAppKitVersionNumber10_4_1;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSAppKitVersionNumber10_4_3;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSAppKitVersionNumber10_4_4;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSAppKitVersionNumber10_4_7;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSAppKitVersionNumber10_5;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSAppKitVersionNumber10_5_2;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSAppKitVersionNumber10_5_3;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSAppKitVersionNumber10_6;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSAppKitVersionNumber10_7;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSAppKitVersionNumber10_7_2;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSAppKitVersionNumber10_7_3;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSAppKitVersionNumber10_7_4;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSAppKitVersionNumber10_8;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSAppKitVersionNumber10_9;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSAppKitVersionNumber11_0;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSAppKitVersionNumber11_1;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSAppKitVersionNumber11_2;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSAppKitVersionNumber11_3;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSAppKitVersionNumber11_4;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSAppKitVersionNumber11_5;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSAppKitVersionNumber12_0;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSAppKitVersionNumber12_1;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSAppKitVersionNumber12_2;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSAppKitVersionNumber12_3;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSAppKitVersionNumber12_4;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSAppKitVersionNumber12_5;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSAppKitVersionNumber13_0;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSAppKitVersionNumber13_1;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSAppKitVersionNumber13_2;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSAppKitVersionNumber13_3;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSAppKitVersionNumber13_4;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSAppKitVersionNumber13_5;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSAppKitVersionNumber13_6;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSAppKitVersionNumber14_0;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSAppKitVersionNumber14_1;
-#[cfg(all(feature = "AppKit_NSApplication", feature = "AppKit_NSResponder"))]
+#[cfg(all(feature = "NSApplication", feature = "NSResponder"))]
 pub use self::__NSApplication::NSApplication;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSApplicationDelegate;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSApplicationDelegateReply;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSApplicationDidBecomeActiveNotification;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSApplicationDidChangeOcclusionStateNotification;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSApplicationDidChangeScreenParametersNotification;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSApplicationDidFinishLaunchingNotification;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSApplicationDidHideNotification;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSApplicationDidResignActiveNotification;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSApplicationDidUnhideNotification;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSApplicationDidUpdateNotification;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSApplicationLaunchIsDefaultLaunchKey;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSApplicationLaunchRemoteNotificationKey;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSApplicationLaunchUserNotificationKey;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSApplicationLoad;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSApplicationMain;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSApplicationOcclusionState;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSApplicationPresentationOptions;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSApplicationPrintReply;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSApplicationProtectedDataDidBecomeAvailableNotification;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSApplicationProtectedDataWillBecomeUnavailableNotification;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSApplicationTerminateReply;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSApplicationWillBecomeActiveNotification;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSApplicationWillFinishLaunchingNotification;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSApplicationWillHideNotification;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSApplicationWillResignActiveNotification;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSApplicationWillTerminateNotification;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSApplicationWillUnhideNotification;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSApplicationWillUpdateNotification;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSEventTrackingRunLoopMode;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSModalPanelRunLoopMode;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSModalResponse;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSModalResponseAbort;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSModalResponseContinue;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSModalResponseStop;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSModalSession;
-#[cfg(all(feature = "AppKit_NSApplication", feature = "AppKit_NSPasteboard"))]
+#[cfg(all(feature = "NSApplication", feature = "NSPasteboard"))]
 pub use self::__NSApplication::NSPerformService;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSRegisterServicesProvider;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSRemoteNotificationType;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSRequestUserAttentionType;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSRunAbortedResponse;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSRunContinuesResponse;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSRunStoppedResponse;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSServiceProviderName;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSServicesMenuRequestor;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSSetShowsServicesMenuItem;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSShowsServicesMenuItem;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSUnregisterServicesProvider;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSUpdateDynamicServices;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSUpdateWindowsRunLoopOrdering;
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSWindowListOptions;
 #[cfg(all(
-    feature = "AppKit_NSArrayController",
-    feature = "AppKit_NSController",
-    feature = "AppKit_NSObjectController"
+    feature = "NSArrayController",
+    feature = "NSController",
+    feature = "NSObjectController"
 ))]
 pub use self::__NSArrayController::NSArrayController;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSAppearanceDocumentAttribute;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSAttachmentAttributeName;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSAttributedStringAttributeFixing;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSAttributedStringDocumentAttributeKey;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSAttributedStringDocumentFormats;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSAttributedStringDocumentReadingOptionKey;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSAttributedStringDocumentType;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSAttributedStringKitAdditions;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSAttributedStringNSDeprecatedKitAdditions;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSAttributedStringPasteboardAdditions;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSAuthorDocumentAttribute;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSBackgroundColorAttributeName;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSBackgroundColorDocumentAttribute;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSBaseURLDocumentOption;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSBaselineOffsetAttributeName;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSBottomMarginDocumentAttribute;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSCategoryDocumentAttribute;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSCharacterEncodingDocumentAttribute;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSCharacterEncodingDocumentOption;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSCharacterShapeAttributeName;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSCocoaVersionDocumentAttribute;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSCommentDocumentAttribute;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSCompanyDocumentAttribute;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSConvertedDocumentAttribute;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSCopyrightDocumentAttribute;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSCreationTimeDocumentAttribute;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSCursorAttributeName;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSDefaultAttributesDocumentAttribute;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSDefaultAttributesDocumentOption;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSDefaultFontExcludedDocumentAttribute;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSDefaultTabIntervalDocumentAttribute;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSDocFormatTextDocumentType;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSDocumentTypeDocumentAttribute;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSDocumentTypeDocumentOption;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSEditorDocumentAttribute;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSExcludedElementsDocumentAttribute;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSExpansionAttributeName;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSFileTypeDocumentAttribute;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSFileTypeDocumentOption;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSFontAttributeName;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSForegroundColorAttributeName;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSGlyphInfoAttributeName;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSHTMLTextDocumentType;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSHyphenationFactorDocumentAttribute;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSKernAttributeName;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSKeywordsDocumentAttribute;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSLeftMarginDocumentAttribute;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSLigatureAttributeName;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSLinkAttributeName;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSMacSimpleTextDocumentType;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSManagerDocumentAttribute;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSMarkedClauseSegmentAttributeName;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSModificationTimeDocumentAttribute;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSMutableAttributedStringDocumentFormats;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSMutableAttributedStringKitAdditions;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSNoUnderlineStyle;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSObliquenessAttributeName;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSOfficeOpenXMLTextDocumentType;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSOpenDocumentTextDocumentType;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSPaperSizeDocumentAttribute;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSParagraphStyleAttributeName;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSPlainTextDocumentType;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSPrefixSpacesDocumentAttribute;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSRTFDTextDocumentType;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSRTFTextDocumentType;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSReadOnlyDocumentAttribute;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSRightMarginDocumentAttribute;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSShadowAttributeName;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSSingleUnderlineStyle;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSSourceTextScalingDocumentAttribute;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSSourceTextScalingDocumentOption;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSSpellingState;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSSpellingStateAttributeName;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSStrikethroughColorAttributeName;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSStrikethroughStyleAttributeName;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSStrokeColorAttributeName;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSStrokeWidthAttributeName;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSSubjectDocumentAttribute;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSSuperscriptAttributeName;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSTargetTextScalingDocumentOption;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSTextAlternativesAttributeName;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSTextEffectAttributeName;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSTextEffectLetterpressStyle;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSTextEffectStyle;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSTextEncodingNameDocumentAttribute;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSTextEncodingNameDocumentOption;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSTextLayoutSectionKey;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSTextLayoutSectionOrientation;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSTextLayoutSectionRange;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSTextLayoutSectionsAttribute;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSTextScalingDocumentAttribute;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSTextScalingType;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSTextSizeMultiplierDocumentOption;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSTimeoutDocumentOption;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSTitleDocumentAttribute;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSToolTipAttributeName;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSTopMarginDocumentAttribute;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSTrackingAttributeName;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSUnderlineByWord;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSUnderlineByWordMask;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSUnderlineColorAttributeName;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSUnderlinePatternDash;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSUnderlinePatternDashDot;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSUnderlinePatternDashDotDot;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSUnderlinePatternDot;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSUnderlinePatternSolid;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSUnderlineStrikethroughMask;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSUnderlineStyle;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSUnderlineStyleAttributeName;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSUsesScreenFontsDocumentAttribute;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSVerticalGlyphFormAttributeName;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSViewModeDocumentAttribute;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSViewSizeDocumentAttribute;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSViewZoomDocumentAttribute;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSWebArchiveTextDocumentType;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSWebPreferencesDocumentOption;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSWebResourceLoadDelegateDocumentOption;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSWordMLTextDocumentType;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSWritingDirectionAttributeName;
-#[cfg(feature = "AppKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSWritingDirectionFormatType;
-#[cfg(feature = "AppKit_NSBezierPath")]
+#[cfg(feature = "NSBezierPath")]
 pub use self::__NSBezierPath::NSBevelLineJoinStyle;
-#[cfg(feature = "AppKit_NSBezierPath")]
+#[cfg(feature = "NSBezierPath")]
 pub use self::__NSBezierPath::NSBezierPath;
-#[cfg(feature = "AppKit_NSBezierPath")]
+#[cfg(feature = "NSBezierPath")]
 pub use self::__NSBezierPath::NSBezierPathElement;
-#[cfg(feature = "AppKit_NSBezierPath")]
+#[cfg(feature = "NSBezierPath")]
 pub use self::__NSBezierPath::NSButtLineCapStyle;
-#[cfg(feature = "AppKit_NSBezierPath")]
+#[cfg(feature = "NSBezierPath")]
 pub use self::__NSBezierPath::NSClosePathBezierPathElement;
-#[cfg(feature = "AppKit_NSBezierPath")]
+#[cfg(feature = "NSBezierPath")]
 pub use self::__NSBezierPath::NSCurveToBezierPathElement;
-#[cfg(feature = "AppKit_NSBezierPath")]
+#[cfg(feature = "NSBezierPath")]
 pub use self::__NSBezierPath::NSEvenOddWindingRule;
-#[cfg(feature = "AppKit_NSBezierPath")]
+#[cfg(feature = "NSBezierPath")]
 pub use self::__NSBezierPath::NSLineCapStyle;
-#[cfg(feature = "AppKit_NSBezierPath")]
+#[cfg(feature = "NSBezierPath")]
 pub use self::__NSBezierPath::NSLineJoinStyle;
-#[cfg(feature = "AppKit_NSBezierPath")]
+#[cfg(feature = "NSBezierPath")]
 pub use self::__NSBezierPath::NSLineToBezierPathElement;
-#[cfg(feature = "AppKit_NSBezierPath")]
+#[cfg(feature = "NSBezierPath")]
 pub use self::__NSBezierPath::NSMiterLineJoinStyle;
-#[cfg(feature = "AppKit_NSBezierPath")]
+#[cfg(feature = "NSBezierPath")]
 pub use self::__NSBezierPath::NSMoveToBezierPathElement;
-#[cfg(feature = "AppKit_NSBezierPath")]
+#[cfg(feature = "NSBezierPath")]
 pub use self::__NSBezierPath::NSNonZeroWindingRule;
-#[cfg(feature = "AppKit_NSBezierPath")]
+#[cfg(feature = "NSBezierPath")]
 pub use self::__NSBezierPath::NSRoundLineCapStyle;
-#[cfg(feature = "AppKit_NSBezierPath")]
+#[cfg(feature = "NSBezierPath")]
 pub use self::__NSBezierPath::NSRoundLineJoinStyle;
-#[cfg(feature = "AppKit_NSBezierPath")]
+#[cfg(feature = "NSBezierPath")]
 pub use self::__NSBezierPath::NSSquareLineCapStyle;
-#[cfg(feature = "AppKit_NSBezierPath")]
+#[cfg(feature = "NSBezierPath")]
 pub use self::__NSBezierPath::NSWindingRule;
-#[cfg(feature = "AppKit_NSBitmapImageRep")]
+#[cfg(feature = "NSBitmapImageRep")]
 pub use self::__NSBitmapImageRep::NS16BitBigEndianBitmapFormat;
-#[cfg(feature = "AppKit_NSBitmapImageRep")]
+#[cfg(feature = "NSBitmapImageRep")]
 pub use self::__NSBitmapImageRep::NS16BitLittleEndianBitmapFormat;
-#[cfg(feature = "AppKit_NSBitmapImageRep")]
+#[cfg(feature = "NSBitmapImageRep")]
 pub use self::__NSBitmapImageRep::NS32BitBigEndianBitmapFormat;
-#[cfg(feature = "AppKit_NSBitmapImageRep")]
+#[cfg(feature = "NSBitmapImageRep")]
 pub use self::__NSBitmapImageRep::NS32BitLittleEndianBitmapFormat;
-#[cfg(feature = "AppKit_NSBitmapImageRep")]
+#[cfg(feature = "NSBitmapImageRep")]
 pub use self::__NSBitmapImageRep::NSAlphaFirstBitmapFormat;
-#[cfg(feature = "AppKit_NSBitmapImageRep")]
+#[cfg(feature = "NSBitmapImageRep")]
 pub use self::__NSBitmapImageRep::NSAlphaNonpremultipliedBitmapFormat;
-#[cfg(feature = "AppKit_NSBitmapImageRep")]
+#[cfg(feature = "NSBitmapImageRep")]
 pub use self::__NSBitmapImageRep::NSBMPFileType;
-#[cfg(feature = "AppKit_NSBitmapImageRep")]
+#[cfg(feature = "NSBitmapImageRep")]
 pub use self::__NSBitmapImageRep::NSBitmapFormat;
-#[cfg(feature = "AppKit_NSBitmapImageRep")]
+#[cfg(feature = "NSBitmapImageRep")]
 pub use self::__NSBitmapImageRep::NSBitmapImageFileType;
-#[cfg(all(feature = "AppKit_NSBitmapImageRep", feature = "AppKit_NSImageRep"))]
+#[cfg(all(feature = "NSBitmapImageRep", feature = "NSImageRep"))]
 pub use self::__NSBitmapImageRep::NSBitmapImageRep;
-#[cfg(feature = "AppKit_NSBitmapImageRep")]
+#[cfg(feature = "NSBitmapImageRep")]
 pub use self::__NSBitmapImageRep::NSBitmapImageRepPropertyKey;
-#[cfg(feature = "AppKit_NSBitmapImageRep")]
+#[cfg(feature = "NSBitmapImageRep")]
 pub use self::__NSBitmapImageRep::NSFloatingPointSamplesBitmapFormat;
-#[cfg(feature = "AppKit_NSBitmapImageRep")]
+#[cfg(feature = "NSBitmapImageRep")]
 pub use self::__NSBitmapImageRep::NSGIFFileType;
-#[cfg(feature = "AppKit_NSBitmapImageRep")]
+#[cfg(feature = "NSBitmapImageRep")]
 pub use self::__NSBitmapImageRep::NSImageColorSyncProfileData;
-#[cfg(feature = "AppKit_NSBitmapImageRep")]
+#[cfg(feature = "NSBitmapImageRep")]
 pub use self::__NSBitmapImageRep::NSImageCompressionFactor;
-#[cfg(feature = "AppKit_NSBitmapImageRep")]
+#[cfg(feature = "NSBitmapImageRep")]
 pub use self::__NSBitmapImageRep::NSImageCompressionMethod;
-#[cfg(feature = "AppKit_NSBitmapImageRep")]
+#[cfg(feature = "NSBitmapImageRep")]
 pub use self::__NSBitmapImageRep::NSImageCurrentFrame;
-#[cfg(feature = "AppKit_NSBitmapImageRep")]
+#[cfg(feature = "NSBitmapImageRep")]
 pub use self::__NSBitmapImageRep::NSImageCurrentFrameDuration;
-#[cfg(feature = "AppKit_NSBitmapImageRep")]
+#[cfg(feature = "NSBitmapImageRep")]
 pub use self::__NSBitmapImageRep::NSImageDitherTransparency;
-#[cfg(feature = "AppKit_NSBitmapImageRep")]
+#[cfg(feature = "NSBitmapImageRep")]
 pub use self::__NSBitmapImageRep::NSImageEXIFData;
-#[cfg(feature = "AppKit_NSBitmapImageRep")]
+#[cfg(feature = "NSBitmapImageRep")]
 pub use self::__NSBitmapImageRep::NSImageFallbackBackgroundColor;
-#[cfg(feature = "AppKit_NSBitmapImageRep")]
+#[cfg(feature = "NSBitmapImageRep")]
 pub use self::__NSBitmapImageRep::NSImageFrameCount;
-#[cfg(feature = "AppKit_NSBitmapImageRep")]
+#[cfg(feature = "NSBitmapImageRep")]
 pub use self::__NSBitmapImageRep::NSImageGamma;
-#[cfg(feature = "AppKit_NSBitmapImageRep")]
+#[cfg(feature = "NSBitmapImageRep")]
 pub use self::__NSBitmapImageRep::NSImageIPTCData;
-#[cfg(feature = "AppKit_NSBitmapImageRep")]
+#[cfg(feature = "NSBitmapImageRep")]
 pub use self::__NSBitmapImageRep::NSImageInterlaced;
-#[cfg(feature = "AppKit_NSBitmapImageRep")]
+#[cfg(feature = "NSBitmapImageRep")]
 pub use self::__NSBitmapImageRep::NSImageLoopCount;
-#[cfg(feature = "AppKit_NSBitmapImageRep")]
+#[cfg(feature = "NSBitmapImageRep")]
 pub use self::__NSBitmapImageRep::NSImageProgressive;
-#[cfg(feature = "AppKit_NSBitmapImageRep")]
+#[cfg(feature = "NSBitmapImageRep")]
 pub use self::__NSBitmapImageRep::NSImageRGBColorTable;
-#[cfg(feature = "AppKit_NSBitmapImageRep")]
+#[cfg(feature = "NSBitmapImageRep")]
 pub use self::__NSBitmapImageRep::NSImageRepLoadStatus;
-#[cfg(feature = "AppKit_NSBitmapImageRep")]
+#[cfg(feature = "NSBitmapImageRep")]
 pub use self::__NSBitmapImageRep::NSJPEG2000FileType;
-#[cfg(feature = "AppKit_NSBitmapImageRep")]
+#[cfg(feature = "NSBitmapImageRep")]
 pub use self::__NSBitmapImageRep::NSJPEGFileType;
-#[cfg(feature = "AppKit_NSBitmapImageRep")]
+#[cfg(feature = "NSBitmapImageRep")]
 pub use self::__NSBitmapImageRep::NSPNGFileType;
-#[cfg(feature = "AppKit_NSBitmapImageRep")]
+#[cfg(feature = "NSBitmapImageRep")]
 pub use self::__NSBitmapImageRep::NSTIFFCompression;
-#[cfg(feature = "AppKit_NSBitmapImageRep")]
+#[cfg(feature = "NSBitmapImageRep")]
 pub use self::__NSBitmapImageRep::NSTIFFFileType;
-#[cfg(all(
-    feature = "AppKit_NSBox",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSView"
-))]
+#[cfg(all(feature = "NSBox", feature = "NSResponder", feature = "NSView"))]
 pub use self::__NSBox::NSBox;
-#[cfg(feature = "AppKit_NSBox")]
+#[cfg(feature = "NSBox")]
 pub use self::__NSBox::NSBoxOldStyle;
-#[cfg(feature = "AppKit_NSBox")]
+#[cfg(feature = "NSBox")]
 pub use self::__NSBox::NSBoxSecondary;
-#[cfg(feature = "AppKit_NSBox")]
+#[cfg(feature = "NSBox")]
 pub use self::__NSBox::NSBoxType;
-#[cfg(feature = "AppKit_NSBox")]
+#[cfg(feature = "NSBox")]
 pub use self::__NSBox::NSTitlePosition;
-#[cfg(all(feature = "AppKit_NSApplication", feature = "AppKit_NSBrowser"))]
+#[cfg(all(feature = "NSApplication", feature = "NSBrowser"))]
 pub use self::__NSBrowser::NSAppKitVersionNumberWithColumnResizingBrowser;
-#[cfg(all(feature = "AppKit_NSApplication", feature = "AppKit_NSBrowser"))]
+#[cfg(all(feature = "NSApplication", feature = "NSBrowser"))]
 pub use self::__NSBrowser::NSAppKitVersionNumberWithContinuousScrollingBrowser;
 #[cfg(all(
-    feature = "AppKit_NSBrowser",
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSView"
+    feature = "NSBrowser",
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSView"
 ))]
 pub use self::__NSBrowser::NSBrowser;
-#[cfg(feature = "AppKit_NSBrowser")]
+#[cfg(feature = "NSBrowser")]
 pub use self::__NSBrowser::NSBrowserColumnConfigurationDidChangeNotification;
-#[cfg(feature = "AppKit_NSBrowser")]
+#[cfg(feature = "NSBrowser")]
 pub use self::__NSBrowser::NSBrowserColumnResizingType;
-#[cfg(feature = "AppKit_NSBrowser")]
+#[cfg(feature = "NSBrowser")]
 pub use self::__NSBrowser::NSBrowserColumnsAutosaveName;
-#[cfg(feature = "AppKit_NSBrowser")]
+#[cfg(feature = "NSBrowser")]
 pub use self::__NSBrowser::NSBrowserDelegate;
-#[cfg(feature = "AppKit_NSBrowser")]
+#[cfg(feature = "NSBrowser")]
 pub use self::__NSBrowser::NSBrowserDropOperation;
-#[cfg(all(feature = "AppKit_NSBrowserCell", feature = "AppKit_NSCell"))]
+#[cfg(all(feature = "NSBrowserCell", feature = "NSCell"))]
 pub use self::__NSBrowserCell::NSBrowserCell;
 #[cfg(all(
-    feature = "AppKit_NSButton",
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSView"
+    feature = "NSButton",
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSView"
 ))]
 pub use self::__NSButton::NSButton;
-#[cfg(feature = "AppKit_NSButtonCell")]
+#[cfg(feature = "NSButtonCell")]
 pub use self::__NSButtonCell::NSAcceleratorButton;
-#[cfg(feature = "AppKit_NSButtonCell")]
+#[cfg(feature = "NSButtonCell")]
 pub use self::__NSButtonCell::NSBezelStyle;
-#[cfg(all(
-    feature = "AppKit_NSActionCell",
-    feature = "AppKit_NSButtonCell",
-    feature = "AppKit_NSCell"
-))]
+#[cfg(all(feature = "NSActionCell", feature = "NSButtonCell", feature = "NSCell"))]
 pub use self::__NSButtonCell::NSButtonCell;
-#[cfg(feature = "AppKit_NSButtonCell")]
+#[cfg(feature = "NSButtonCell")]
 pub use self::__NSButtonCell::NSButtonType;
-#[cfg(feature = "AppKit_NSButtonCell")]
+#[cfg(feature = "NSButtonCell")]
 pub use self::__NSButtonCell::NSCircularBezelStyle;
-#[cfg(feature = "AppKit_NSButtonCell")]
+#[cfg(feature = "NSButtonCell")]
 pub use self::__NSButtonCell::NSDisclosureBezelStyle;
-#[cfg(feature = "AppKit_NSButtonCell")]
+#[cfg(feature = "NSButtonCell")]
 pub use self::__NSButtonCell::NSGradientType;
-#[cfg(feature = "AppKit_NSButtonCell")]
+#[cfg(feature = "NSButtonCell")]
 pub use self::__NSButtonCell::NSHelpButtonBezelStyle;
-#[cfg(feature = "AppKit_NSButtonCell")]
+#[cfg(feature = "NSButtonCell")]
 pub use self::__NSButtonCell::NSInlineBezelStyle;
-#[cfg(feature = "AppKit_NSButtonCell")]
+#[cfg(feature = "NSButtonCell")]
 pub use self::__NSButtonCell::NSMomentaryChangeButton;
-#[cfg(feature = "AppKit_NSButtonCell")]
+#[cfg(feature = "NSButtonCell")]
 pub use self::__NSButtonCell::NSMomentaryLight;
-#[cfg(feature = "AppKit_NSButtonCell")]
+#[cfg(feature = "NSButtonCell")]
 pub use self::__NSButtonCell::NSMomentaryLightButton;
-#[cfg(feature = "AppKit_NSButtonCell")]
+#[cfg(feature = "NSButtonCell")]
 pub use self::__NSButtonCell::NSMomentaryPushButton;
-#[cfg(feature = "AppKit_NSButtonCell")]
+#[cfg(feature = "NSButtonCell")]
 pub use self::__NSButtonCell::NSMomentaryPushInButton;
-#[cfg(feature = "AppKit_NSButtonCell")]
+#[cfg(feature = "NSButtonCell")]
 pub use self::__NSButtonCell::NSMultiLevelAcceleratorButton;
-#[cfg(feature = "AppKit_NSButtonCell")]
+#[cfg(feature = "NSButtonCell")]
 pub use self::__NSButtonCell::NSOnOffButton;
-#[cfg(feature = "AppKit_NSButtonCell")]
+#[cfg(feature = "NSButtonCell")]
 pub use self::__NSButtonCell::NSPushOnPushOffButton;
-#[cfg(feature = "AppKit_NSButtonCell")]
+#[cfg(feature = "NSButtonCell")]
 pub use self::__NSButtonCell::NSRadioButton;
-#[cfg(feature = "AppKit_NSButtonCell")]
+#[cfg(feature = "NSButtonCell")]
 pub use self::__NSButtonCell::NSRecessedBezelStyle;
-#[cfg(feature = "AppKit_NSButtonCell")]
+#[cfg(feature = "NSButtonCell")]
 pub use self::__NSButtonCell::NSRegularSquareBezelStyle;
-#[cfg(feature = "AppKit_NSButtonCell")]
+#[cfg(feature = "NSButtonCell")]
 pub use self::__NSButtonCell::NSRoundRectBezelStyle;
-#[cfg(feature = "AppKit_NSButtonCell")]
+#[cfg(feature = "NSButtonCell")]
 pub use self::__NSButtonCell::NSRoundedBezelStyle;
-#[cfg(feature = "AppKit_NSButtonCell")]
+#[cfg(feature = "NSButtonCell")]
 pub use self::__NSButtonCell::NSRoundedDisclosureBezelStyle;
-#[cfg(feature = "AppKit_NSButtonCell")]
+#[cfg(feature = "NSButtonCell")]
 pub use self::__NSButtonCell::NSShadowlessSquareBezelStyle;
-#[cfg(feature = "AppKit_NSButtonCell")]
+#[cfg(feature = "NSButtonCell")]
 pub use self::__NSButtonCell::NSSmallIconButtonBezelStyle;
-#[cfg(feature = "AppKit_NSButtonCell")]
+#[cfg(feature = "NSButtonCell")]
 pub use self::__NSButtonCell::NSSmallSquareBezelStyle;
-#[cfg(feature = "AppKit_NSButtonCell")]
+#[cfg(feature = "NSButtonCell")]
 pub use self::__NSButtonCell::NSSwitchButton;
-#[cfg(feature = "AppKit_NSButtonCell")]
+#[cfg(feature = "NSButtonCell")]
 pub use self::__NSButtonCell::NSTexturedRoundedBezelStyle;
-#[cfg(feature = "AppKit_NSButtonCell")]
+#[cfg(feature = "NSButtonCell")]
 pub use self::__NSButtonCell::NSTexturedSquareBezelStyle;
-#[cfg(feature = "AppKit_NSButtonCell")]
+#[cfg(feature = "NSButtonCell")]
 pub use self::__NSButtonCell::NSThickSquareBezelStyle;
-#[cfg(feature = "AppKit_NSButtonCell")]
+#[cfg(feature = "NSButtonCell")]
 pub use self::__NSButtonCell::NSThickerSquareBezelStyle;
-#[cfg(feature = "AppKit_NSButtonCell")]
+#[cfg(feature = "NSButtonCell")]
 pub use self::__NSButtonCell::NSToggleButton;
-#[cfg(all(
-    feature = "AppKit_NSButtonTouchBarItem",
-    feature = "AppKit_NSTouchBarItem"
-))]
+#[cfg(all(feature = "NSButtonTouchBarItem", feature = "NSTouchBarItem"))]
 pub use self::__NSButtonTouchBarItem::NSButtonTouchBarItem;
-#[cfg(all(feature = "AppKit_NSCachedImageRep", feature = "AppKit_NSImageRep"))]
+#[cfg(all(feature = "NSCachedImageRep", feature = "NSImageRep"))]
 pub use self::__NSCachedImageRep::NSCachedImageRep;
-#[cfg(all(
-    feature = "AppKit_NSCandidateListTouchBarItem",
-    feature = "AppKit_NSTouchBarItem"
-))]
+#[cfg(all(feature = "NSCandidateListTouchBarItem", feature = "NSTouchBarItem"))]
 pub use self::__NSCandidateListTouchBarItem::NSCandidateListTouchBarItem;
-#[cfg(feature = "AppKit_NSCandidateListTouchBarItem")]
+#[cfg(feature = "NSCandidateListTouchBarItem")]
 pub use self::__NSCandidateListTouchBarItem::NSCandidateListTouchBarItemDelegate;
-#[cfg(all(
-    feature = "AppKit_NSCandidateListTouchBarItem",
-    feature = "AppKit_NSTouchBarItem"
-))]
+#[cfg(all(feature = "NSCandidateListTouchBarItem", feature = "NSTouchBarItem"))]
 pub use self::__NSCandidateListTouchBarItem::NSTouchBarItemIdentifierCandidateList;
-#[cfg(feature = "AppKit_NSCell")]
+#[cfg(feature = "NSCell")]
 pub use self::__NSCell::NSAnyType;
-#[cfg(feature = "AppKit_NSCell")]
+#[cfg(feature = "NSCell")]
 pub use self::__NSCell::NSBackgroundStyle;
-#[cfg(feature = "AppKit_NSCell")]
+#[cfg(feature = "NSCell")]
 pub use self::__NSCell::NSBackgroundStyleDark;
-#[cfg(feature = "AppKit_NSCell")]
+#[cfg(feature = "NSCell")]
 pub use self::__NSCell::NSBackgroundStyleLight;
-#[cfg(feature = "AppKit_NSCell")]
+#[cfg(feature = "NSCell")]
 pub use self::__NSCell::NSCell;
-#[cfg(feature = "AppKit_NSCell")]
+#[cfg(feature = "NSCell")]
 pub use self::__NSCell::NSCellAttribute;
-#[cfg(feature = "AppKit_NSCell")]
+#[cfg(feature = "NSCell")]
 pub use self::__NSCell::NSCellHitResult;
-#[cfg(feature = "AppKit_NSCell")]
+#[cfg(feature = "NSCell")]
 pub use self::__NSCell::NSCellImagePosition;
-#[cfg(feature = "AppKit_NSCell")]
+#[cfg(feature = "NSCell")]
 pub use self::__NSCell::NSCellStateValue;
-#[cfg(feature = "AppKit_NSCell")]
+#[cfg(feature = "NSCell")]
 pub use self::__NSCell::NSCellStyleMask;
-#[cfg(feature = "AppKit_NSCell")]
+#[cfg(feature = "NSCell")]
 pub use self::__NSCell::NSCellType;
-#[cfg(feature = "AppKit_NSCell")]
+#[cfg(feature = "NSCell")]
 pub use self::__NSCell::NSControlSize;
-#[cfg(feature = "AppKit_NSCell")]
+#[cfg(feature = "NSCell")]
 pub use self::__NSCell::NSControlStateValue;
-#[cfg(feature = "AppKit_NSCell")]
+#[cfg(feature = "NSCell")]
 pub use self::__NSCell::NSControlStateValueMixed;
-#[cfg(feature = "AppKit_NSCell")]
+#[cfg(feature = "NSCell")]
 pub use self::__NSCell::NSControlStateValueOff;
-#[cfg(feature = "AppKit_NSCell")]
+#[cfg(feature = "NSCell")]
 pub use self::__NSCell::NSControlStateValueOn;
-#[cfg(feature = "AppKit_NSCell")]
+#[cfg(feature = "NSCell")]
 pub use self::__NSCell::NSControlTint;
-#[cfg(feature = "AppKit_NSCell")]
+#[cfg(feature = "NSCell")]
 pub use self::__NSCell::NSControlTintDidChangeNotification;
-#[cfg(feature = "AppKit_NSCell")]
+#[cfg(feature = "NSCell")]
 pub use self::__NSCell::NSDoubleType;
-#[cfg(all(
-    feature = "AppKit_NSCell",
-    feature = "AppKit_NSGraphics",
-    feature = "AppKit_NSImage"
-))]
+#[cfg(all(feature = "NSCell", feature = "NSGraphics", feature = "NSImage"))]
 pub use self::__NSCell::NSDrawNinePartImage;
-#[cfg(all(
-    feature = "AppKit_NSCell",
-    feature = "AppKit_NSGraphics",
-    feature = "AppKit_NSImage"
-))]
+#[cfg(all(feature = "NSCell", feature = "NSGraphics", feature = "NSImage"))]
 pub use self::__NSCell::NSDrawThreePartImage;
-#[cfg(feature = "AppKit_NSCell")]
+#[cfg(feature = "NSCell")]
 pub use self::__NSCell::NSFloatType;
-#[cfg(feature = "AppKit_NSCell")]
+#[cfg(feature = "NSCell")]
 pub use self::__NSCell::NSImageScaling;
-#[cfg(feature = "AppKit_NSCell")]
+#[cfg(feature = "NSCell")]
 pub use self::__NSCell::NSIntType;
-#[cfg(feature = "AppKit_NSCell")]
+#[cfg(feature = "NSCell")]
 pub use self::__NSCell::NSMiniControlSize;
-#[cfg(feature = "AppKit_NSCell")]
+#[cfg(feature = "NSCell")]
 pub use self::__NSCell::NSMixedState;
-#[cfg(feature = "AppKit_NSCell")]
+#[cfg(feature = "NSCell")]
 pub use self::__NSCell::NSOffState;
-#[cfg(feature = "AppKit_NSCell")]
+#[cfg(feature = "NSCell")]
 pub use self::__NSCell::NSOnState;
-#[cfg(feature = "AppKit_NSCell")]
+#[cfg(feature = "NSCell")]
 pub use self::__NSCell::NSPositiveDoubleType;
-#[cfg(feature = "AppKit_NSCell")]
+#[cfg(feature = "NSCell")]
 pub use self::__NSCell::NSPositiveFloatType;
-#[cfg(feature = "AppKit_NSCell")]
+#[cfg(feature = "NSCell")]
 pub use self::__NSCell::NSPositiveIntType;
-#[cfg(feature = "AppKit_NSCell")]
+#[cfg(feature = "NSCell")]
 pub use self::__NSCell::NSRegularControlSize;
-#[cfg(feature = "AppKit_NSCell")]
+#[cfg(feature = "NSCell")]
 pub use self::__NSCell::NSSmallControlSize;
-#[cfg(all(
-    feature = "AppKit_NSClickGestureRecognizer",
-    feature = "AppKit_NSGestureRecognizer"
-))]
+#[cfg(all(feature = "NSClickGestureRecognizer", feature = "NSGestureRecognizer"))]
 pub use self::__NSClickGestureRecognizer::NSClickGestureRecognizer;
-#[cfg(all(
-    feature = "AppKit_NSClipView",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSView"
-))]
+#[cfg(all(feature = "NSClipView", feature = "NSResponder", feature = "NSView"))]
 pub use self::__NSClipView::NSClipView;
 #[cfg(all(
-    feature = "AppKit_NSCollectionView",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSView"
+    feature = "NSCollectionView",
+    feature = "NSResponder",
+    feature = "NSView"
 ))]
 pub use self::__NSCollectionView::NSCollectionView;
-#[cfg(feature = "AppKit_NSCollectionView")]
+#[cfg(feature = "NSCollectionView")]
 pub use self::__NSCollectionView::NSCollectionViewDataSource;
-#[cfg(feature = "AppKit_NSCollectionView")]
+#[cfg(feature = "NSCollectionView")]
 pub use self::__NSCollectionView::NSCollectionViewDelegate;
-#[cfg(feature = "AppKit_NSCollectionView")]
+#[cfg(feature = "NSCollectionView")]
 pub use self::__NSCollectionView::NSCollectionViewDropOperation;
 #[cfg(all(
-    feature = "AppKit_NSCollectionView",
-    feature = "AppKit_NSUserInterfaceItemIdentification"
+    feature = "NSCollectionView",
+    feature = "NSUserInterfaceItemIdentification"
 ))]
 pub use self::__NSCollectionView::NSCollectionViewElement;
 #[cfg(all(
-    feature = "AppKit_NSCollectionView",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSViewController"
+    feature = "NSCollectionView",
+    feature = "NSResponder",
+    feature = "NSViewController"
 ))]
 pub use self::__NSCollectionView::NSCollectionViewItem;
-#[cfg(feature = "AppKit_NSCollectionView")]
+#[cfg(feature = "NSCollectionView")]
 pub use self::__NSCollectionView::NSCollectionViewItemHighlightState;
-#[cfg(feature = "AppKit_NSCollectionView")]
+#[cfg(feature = "NSCollectionView")]
 pub use self::__NSCollectionView::NSCollectionViewPrefetching;
-#[cfg(feature = "AppKit_NSCollectionView")]
+#[cfg(feature = "NSCollectionView")]
 pub use self::__NSCollectionView::NSCollectionViewScrollPosition;
 #[cfg(all(
-    feature = "AppKit_NSCollectionView",
-    feature = "AppKit_NSUserInterfaceItemIdentification"
+    feature = "NSCollectionView",
+    feature = "NSUserInterfaceItemIdentification"
 ))]
 pub use self::__NSCollectionView::NSCollectionViewSectionHeaderView;
-#[cfg(feature = "AppKit_NSCollectionView")]
+#[cfg(feature = "NSCollectionView")]
 pub use self::__NSCollectionView::NSCollectionViewSupplementaryElementKind;
-#[cfg(feature = "AppKit_NSCollectionView")]
+#[cfg(feature = "NSCollectionView")]
 pub use self::__NSCollectionView::NSIndexPathNSCollectionViewAdditions;
-#[cfg(feature = "AppKit_NSCollectionView")]
+#[cfg(feature = "NSCollectionView")]
 pub use self::__NSCollectionView::NSSetNSCollectionViewAdditions;
-#[cfg(feature = "AppKit_NSCollectionViewCompositionalLayout")]
+#[cfg(feature = "NSCollectionViewCompositionalLayout")]
 pub use self::__NSCollectionViewCompositionalLayout::NSCollectionLayoutAnchor;
-#[cfg(feature = "AppKit_NSCollectionViewCompositionalLayout")]
+#[cfg(feature = "NSCollectionViewCompositionalLayout")]
 pub use self::__NSCollectionViewCompositionalLayout::NSCollectionLayoutBoundarySupplementaryItem;
-#[cfg(feature = "AppKit_NSCollectionViewCompositionalLayout")]
+#[cfg(feature = "NSCollectionViewCompositionalLayout")]
 pub use self::__NSCollectionViewCompositionalLayout::NSCollectionLayoutContainer;
-#[cfg(feature = "AppKit_NSCollectionViewCompositionalLayout")]
+#[cfg(feature = "NSCollectionViewCompositionalLayout")]
 pub use self::__NSCollectionViewCompositionalLayout::NSCollectionLayoutDecorationItem;
-#[cfg(feature = "AppKit_NSCollectionViewCompositionalLayout")]
+#[cfg(feature = "NSCollectionViewCompositionalLayout")]
 pub use self::__NSCollectionViewCompositionalLayout::NSCollectionLayoutDimension;
-#[cfg(feature = "AppKit_NSCollectionViewCompositionalLayout")]
+#[cfg(feature = "NSCollectionViewCompositionalLayout")]
 pub use self::__NSCollectionViewCompositionalLayout::NSCollectionLayoutEdgeSpacing;
-#[cfg(feature = "AppKit_NSCollectionViewCompositionalLayout")]
+#[cfg(feature = "NSCollectionViewCompositionalLayout")]
 pub use self::__NSCollectionViewCompositionalLayout::NSCollectionLayoutEnvironment;
-#[cfg(feature = "AppKit_NSCollectionViewCompositionalLayout")]
+#[cfg(feature = "NSCollectionViewCompositionalLayout")]
 pub use self::__NSCollectionViewCompositionalLayout::NSCollectionLayoutGroup;
-#[cfg(feature = "AppKit_NSCollectionViewCompositionalLayout")]
+#[cfg(feature = "NSCollectionViewCompositionalLayout")]
 pub use self::__NSCollectionViewCompositionalLayout::NSCollectionLayoutGroupCustomItem;
-#[cfg(all(
-    feature = "AppKit_NSCollectionViewCompositionalLayout",
-    feature = "block2"
-))]
+#[cfg(all(feature = "NSCollectionViewCompositionalLayout", feature = "block2"))]
 pub use self::__NSCollectionViewCompositionalLayout::NSCollectionLayoutGroupCustomItemProvider;
-#[cfg(feature = "AppKit_NSCollectionViewCompositionalLayout")]
+#[cfg(feature = "NSCollectionViewCompositionalLayout")]
 pub use self::__NSCollectionViewCompositionalLayout::NSCollectionLayoutItem;
-#[cfg(feature = "AppKit_NSCollectionViewCompositionalLayout")]
+#[cfg(feature = "NSCollectionViewCompositionalLayout")]
 pub use self::__NSCollectionViewCompositionalLayout::NSCollectionLayoutSection;
-#[cfg(feature = "AppKit_NSCollectionViewCompositionalLayout")]
+#[cfg(feature = "NSCollectionViewCompositionalLayout")]
 pub use self::__NSCollectionViewCompositionalLayout::NSCollectionLayoutSectionOrthogonalScrollingBehavior;
-#[cfg(all(
-    feature = "AppKit_NSCollectionViewCompositionalLayout",
-    feature = "block2"
-))]
+#[cfg(all(feature = "NSCollectionViewCompositionalLayout", feature = "block2"))]
 pub use self::__NSCollectionViewCompositionalLayout::NSCollectionLayoutSectionVisibleItemsInvalidationHandler;
-#[cfg(feature = "AppKit_NSCollectionViewCompositionalLayout")]
+#[cfg(feature = "NSCollectionViewCompositionalLayout")]
 pub use self::__NSCollectionViewCompositionalLayout::NSCollectionLayoutSize;
-#[cfg(feature = "AppKit_NSCollectionViewCompositionalLayout")]
+#[cfg(feature = "NSCollectionViewCompositionalLayout")]
 pub use self::__NSCollectionViewCompositionalLayout::NSCollectionLayoutSpacing;
-#[cfg(feature = "AppKit_NSCollectionViewCompositionalLayout")]
+#[cfg(feature = "NSCollectionViewCompositionalLayout")]
 pub use self::__NSCollectionViewCompositionalLayout::NSCollectionLayoutSupplementaryItem;
-#[cfg(feature = "AppKit_NSCollectionViewCompositionalLayout")]
+#[cfg(feature = "NSCollectionViewCompositionalLayout")]
 pub use self::__NSCollectionViewCompositionalLayout::NSCollectionLayoutVisibleItem;
 #[cfg(all(
-    feature = "AppKit_NSCollectionViewCompositionalLayout",
-    feature = "AppKit_NSCollectionViewLayout"
+    feature = "NSCollectionViewCompositionalLayout",
+    feature = "NSCollectionViewLayout"
 ))]
 pub use self::__NSCollectionViewCompositionalLayout::NSCollectionViewCompositionalLayout;
-#[cfg(feature = "AppKit_NSCollectionViewCompositionalLayout")]
+#[cfg(feature = "NSCollectionViewCompositionalLayout")]
 pub use self::__NSCollectionViewCompositionalLayout::NSCollectionViewCompositionalLayoutConfiguration;
-#[cfg(all(
-    feature = "AppKit_NSCollectionViewCompositionalLayout",
-    feature = "block2"
-))]
+#[cfg(all(feature = "NSCollectionViewCompositionalLayout", feature = "block2"))]
 pub use self::__NSCollectionViewCompositionalLayout::NSCollectionViewCompositionalLayoutSectionProvider;
-#[cfg(feature = "AppKit_NSCollectionViewCompositionalLayout")]
+#[cfg(feature = "NSCollectionViewCompositionalLayout")]
 pub use self::__NSCollectionViewCompositionalLayout::NSDirectionalEdgeInsets;
-#[cfg(feature = "AppKit_NSCollectionViewCompositionalLayout")]
+#[cfg(feature = "NSCollectionViewCompositionalLayout")]
 pub use self::__NSCollectionViewCompositionalLayout::NSDirectionalEdgeInsetsZero;
-#[cfg(feature = "AppKit_NSCollectionViewCompositionalLayout")]
+#[cfg(feature = "NSCollectionViewCompositionalLayout")]
 pub use self::__NSCollectionViewCompositionalLayout::NSDirectionalRectEdge;
-#[cfg(feature = "AppKit_NSCollectionViewCompositionalLayout")]
+#[cfg(feature = "NSCollectionViewCompositionalLayout")]
 pub use self::__NSCollectionViewCompositionalLayout::NSRectAlignment;
-#[cfg(all(
-    feature = "AppKit_NSCollectionView",
-    feature = "AppKit_NSCollectionViewFlowLayout"
-))]
+#[cfg(all(feature = "NSCollectionView", feature = "NSCollectionViewFlowLayout"))]
 pub use self::__NSCollectionViewFlowLayout::NSCollectionElementKindSectionFooter;
-#[cfg(all(
-    feature = "AppKit_NSCollectionView",
-    feature = "AppKit_NSCollectionViewFlowLayout"
-))]
+#[cfg(all(feature = "NSCollectionView", feature = "NSCollectionViewFlowLayout"))]
 pub use self::__NSCollectionViewFlowLayout::NSCollectionElementKindSectionHeader;
-#[cfg(all(
-    feature = "AppKit_NSCollectionView",
-    feature = "AppKit_NSCollectionViewFlowLayout"
-))]
+#[cfg(all(feature = "NSCollectionView", feature = "NSCollectionViewFlowLayout"))]
 pub use self::__NSCollectionViewFlowLayout::NSCollectionViewDelegateFlowLayout;
 #[cfg(all(
-    feature = "AppKit_NSCollectionViewFlowLayout",
-    feature = "AppKit_NSCollectionViewLayout"
+    feature = "NSCollectionViewFlowLayout",
+    feature = "NSCollectionViewLayout"
 ))]
 pub use self::__NSCollectionViewFlowLayout::NSCollectionViewFlowLayout;
 #[cfg(all(
-    feature = "AppKit_NSCollectionViewFlowLayout",
-    feature = "AppKit_NSCollectionViewLayout"
+    feature = "NSCollectionViewFlowLayout",
+    feature = "NSCollectionViewLayout"
 ))]
 pub use self::__NSCollectionViewFlowLayout::NSCollectionViewFlowLayoutInvalidationContext;
-#[cfg(feature = "AppKit_NSCollectionViewFlowLayout")]
+#[cfg(feature = "NSCollectionViewFlowLayout")]
 pub use self::__NSCollectionViewFlowLayout::NSCollectionViewScrollDirection;
 #[cfg(all(
-    feature = "AppKit_NSCollectionViewGridLayout",
-    feature = "AppKit_NSCollectionViewLayout"
+    feature = "NSCollectionViewGridLayout",
+    feature = "NSCollectionViewLayout"
 ))]
 pub use self::__NSCollectionViewGridLayout::NSCollectionViewGridLayout;
-#[cfg(feature = "AppKit_NSCollectionViewLayout")]
+#[cfg(feature = "NSCollectionViewLayout")]
 pub use self::__NSCollectionViewLayout::NSCollectionElementCategory;
-#[cfg(all(
-    feature = "AppKit_NSCollectionView",
-    feature = "AppKit_NSCollectionViewLayout"
-))]
+#[cfg(all(feature = "NSCollectionView", feature = "NSCollectionViewLayout"))]
 pub use self::__NSCollectionViewLayout::NSCollectionElementKindInterItemGapIndicator;
-#[cfg(feature = "AppKit_NSCollectionViewLayout")]
+#[cfg(feature = "NSCollectionViewLayout")]
 pub use self::__NSCollectionViewLayout::NSCollectionUpdateAction;
-#[cfg(feature = "AppKit_NSCollectionViewLayout")]
+#[cfg(feature = "NSCollectionViewLayout")]
 pub use self::__NSCollectionViewLayout::NSCollectionViewDecorationElementKind;
-#[cfg(feature = "AppKit_NSCollectionViewLayout")]
+#[cfg(feature = "NSCollectionViewLayout")]
 pub use self::__NSCollectionViewLayout::NSCollectionViewLayout;
-#[cfg(feature = "AppKit_NSCollectionViewLayout")]
+#[cfg(feature = "NSCollectionViewLayout")]
 pub use self::__NSCollectionViewLayout::NSCollectionViewLayoutAttributes;
-#[cfg(feature = "AppKit_NSCollectionViewLayout")]
+#[cfg(feature = "NSCollectionViewLayout")]
 pub use self::__NSCollectionViewLayout::NSCollectionViewLayoutInvalidationContext;
-#[cfg(feature = "AppKit_NSCollectionViewLayout")]
+#[cfg(feature = "NSCollectionViewLayout")]
 pub use self::__NSCollectionViewLayout::NSCollectionViewUpdateItem;
 #[cfg(all(
-    feature = "AppKit_NSCollectionViewLayout",
-    feature = "AppKit_NSCollectionViewTransitionLayout"
+    feature = "NSCollectionViewLayout",
+    feature = "NSCollectionViewTransitionLayout"
 ))]
 pub use self::__NSCollectionViewTransitionLayout::NSCollectionViewTransitionLayout;
-#[cfg(feature = "AppKit_NSCollectionViewTransitionLayout")]
+#[cfg(feature = "NSCollectionViewTransitionLayout")]
 pub use self::__NSCollectionViewTransitionLayout::NSCollectionViewTransitionLayoutAnimatedKey;
-#[cfg(all(feature = "AppKit_NSApplication", feature = "AppKit_NSColor"))]
+#[cfg(all(feature = "NSApplication", feature = "NSColor"))]
 pub use self::__NSColor::NSAppKitVersionNumberWithPatternColorLeakFix;
-#[cfg(feature = "AppKit_NSColor")]
+#[cfg(feature = "NSColor")]
 pub use self::__NSColor::NSColor;
-#[cfg(feature = "AppKit_NSColor")]
+#[cfg(feature = "NSColor")]
 pub use self::__NSColor::NSColorSystemEffect;
-#[cfg(feature = "AppKit_NSColor")]
+#[cfg(feature = "NSColor")]
 pub use self::__NSColor::NSColorType;
-#[cfg(feature = "AppKit_NSColor")]
+#[cfg(feature = "NSColor")]
 pub use self::__NSColor::NSSystemColorsDidChangeNotification;
-#[cfg(feature = "AppKit_NSColorList")]
+#[cfg(feature = "NSColorList")]
 pub use self::__NSColorList::NSColorList;
-#[cfg(feature = "AppKit_NSColorList")]
+#[cfg(feature = "NSColorList")]
 pub use self::__NSColorList::NSColorListDidChangeNotification;
-#[cfg(feature = "AppKit_NSColorList")]
+#[cfg(feature = "NSColorList")]
 pub use self::__NSColorList::NSColorListName;
-#[cfg(feature = "AppKit_NSColorList")]
+#[cfg(feature = "NSColorList")]
 pub use self::__NSColorList::NSColorName;
-#[cfg(feature = "AppKit_NSColorPanel")]
+#[cfg(feature = "NSColorPanel")]
 pub use self::__NSColorPanel::NSCMYKModeColorPanel;
-#[cfg(feature = "AppKit_NSColorPanel")]
+#[cfg(feature = "NSColorPanel")]
 pub use self::__NSColorPanel::NSColorChanging;
-#[cfg(feature = "AppKit_NSColorPanel")]
+#[cfg(feature = "NSColorPanel")]
 pub use self::__NSColorPanel::NSColorListModeColorPanel;
 #[cfg(all(
-    feature = "AppKit_NSColorPanel",
-    feature = "AppKit_NSPanel",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSWindow"
+    feature = "NSColorPanel",
+    feature = "NSPanel",
+    feature = "NSResponder",
+    feature = "NSWindow"
 ))]
 pub use self::__NSColorPanel::NSColorPanel;
-#[cfg(feature = "AppKit_NSColorPanel")]
+#[cfg(feature = "NSColorPanel")]
 pub use self::__NSColorPanel::NSColorPanelColorDidChangeNotification;
-#[cfg(feature = "AppKit_NSColorPanel")]
+#[cfg(feature = "NSColorPanel")]
 pub use self::__NSColorPanel::NSColorPanelMode;
-#[cfg(feature = "AppKit_NSColorPanel")]
+#[cfg(feature = "NSColorPanel")]
 pub use self::__NSColorPanel::NSColorPanelOptions;
-#[cfg(feature = "AppKit_NSColorPanel")]
+#[cfg(feature = "NSColorPanel")]
 pub use self::__NSColorPanel::NSCrayonModeColorPanel;
-#[cfg(feature = "AppKit_NSColorPanel")]
+#[cfg(feature = "NSColorPanel")]
 pub use self::__NSColorPanel::NSCustomPaletteModeColorPanel;
-#[cfg(feature = "AppKit_NSColorPanel")]
+#[cfg(feature = "NSColorPanel")]
 pub use self::__NSColorPanel::NSGrayModeColorPanel;
-#[cfg(feature = "AppKit_NSColorPanel")]
+#[cfg(feature = "NSColorPanel")]
 pub use self::__NSColorPanel::NSHSBModeColorPanel;
-#[cfg(feature = "AppKit_NSColorPanel")]
+#[cfg(feature = "NSColorPanel")]
 pub use self::__NSColorPanel::NSNoModeColorPanel;
-#[cfg(feature = "AppKit_NSColorPanel")]
+#[cfg(feature = "NSColorPanel")]
 pub use self::__NSColorPanel::NSRGBModeColorPanel;
-#[cfg(feature = "AppKit_NSColorPanel")]
+#[cfg(feature = "NSColorPanel")]
 pub use self::__NSColorPanel::NSWheelModeColorPanel;
-#[cfg(feature = "AppKit_NSColorPicker")]
+#[cfg(feature = "NSColorPicker")]
 pub use self::__NSColorPicker::NSColorPicker;
-#[cfg(all(
-    feature = "AppKit_NSColorPickerTouchBarItem",
-    feature = "AppKit_NSTouchBarItem"
-))]
+#[cfg(all(feature = "NSColorPickerTouchBarItem", feature = "NSTouchBarItem"))]
 pub use self::__NSColorPickerTouchBarItem::NSColorPickerTouchBarItem;
-#[cfg(feature = "AppKit_NSColorPicking")]
+#[cfg(feature = "NSColorPicking")]
 pub use self::__NSColorPicking::NSColorPickingCustom;
-#[cfg(feature = "AppKit_NSColorPicking")]
+#[cfg(feature = "NSColorPicking")]
 pub use self::__NSColorPicking::NSColorPickingDefault;
-#[cfg(feature = "AppKit_NSColorSampler")]
+#[cfg(feature = "NSColorSampler")]
 pub use self::__NSColorSampler::NSColorSampler;
-#[cfg(feature = "AppKit_NSColorSpace")]
+#[cfg(feature = "NSColorSpace")]
 pub use self::__NSColorSpace::NSCMYKColorSpaceModel;
-#[cfg(feature = "AppKit_NSColorSpace")]
+#[cfg(feature = "NSColorSpace")]
 pub use self::__NSColorSpace::NSColorSpace;
-#[cfg(feature = "AppKit_NSColorSpace")]
+#[cfg(feature = "NSColorSpace")]
 pub use self::__NSColorSpace::NSColorSpaceModel;
-#[cfg(feature = "AppKit_NSColorSpace")]
+#[cfg(feature = "NSColorSpace")]
 pub use self::__NSColorSpace::NSDeviceNColorSpaceModel;
-#[cfg(feature = "AppKit_NSColorSpace")]
+#[cfg(feature = "NSColorSpace")]
 pub use self::__NSColorSpace::NSGrayColorSpaceModel;
-#[cfg(feature = "AppKit_NSColorSpace")]
+#[cfg(feature = "NSColorSpace")]
 pub use self::__NSColorSpace::NSIndexedColorSpaceModel;
-#[cfg(feature = "AppKit_NSColorSpace")]
+#[cfg(feature = "NSColorSpace")]
 pub use self::__NSColorSpace::NSLABColorSpaceModel;
-#[cfg(feature = "AppKit_NSColorSpace")]
+#[cfg(feature = "NSColorSpace")]
 pub use self::__NSColorSpace::NSPatternColorSpaceModel;
-#[cfg(feature = "AppKit_NSColorSpace")]
+#[cfg(feature = "NSColorSpace")]
 pub use self::__NSColorSpace::NSRGBColorSpaceModel;
-#[cfg(feature = "AppKit_NSColorSpace")]
+#[cfg(feature = "NSColorSpace")]
 pub use self::__NSColorSpace::NSUnknownColorSpaceModel;
 #[cfg(all(
-    feature = "AppKit_NSColorWell",
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSView"
+    feature = "NSColorWell",
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSView"
 ))]
 pub use self::__NSColorWell::NSColorWell;
-#[cfg(feature = "AppKit_NSColorWell")]
+#[cfg(feature = "NSColorWell")]
 pub use self::__NSColorWell::NSColorWellStyle;
 #[cfg(all(
-    feature = "AppKit_NSComboBox",
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSTextField",
-    feature = "AppKit_NSView"
+    feature = "NSComboBox",
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSTextField",
+    feature = "NSView"
 ))]
 pub use self::__NSComboBox::NSComboBox;
-#[cfg(feature = "AppKit_NSComboBox")]
+#[cfg(feature = "NSComboBox")]
 pub use self::__NSComboBox::NSComboBoxDataSource;
-#[cfg(all(
-    feature = "AppKit_NSComboBox",
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSTextField"
-))]
+#[cfg(all(feature = "NSComboBox", feature = "NSControl", feature = "NSTextField"))]
 pub use self::__NSComboBox::NSComboBoxDelegate;
-#[cfg(feature = "AppKit_NSComboBox")]
+#[cfg(feature = "NSComboBox")]
 pub use self::__NSComboBox::NSComboBoxSelectionDidChangeNotification;
-#[cfg(feature = "AppKit_NSComboBox")]
+#[cfg(feature = "NSComboBox")]
 pub use self::__NSComboBox::NSComboBoxSelectionIsChangingNotification;
-#[cfg(feature = "AppKit_NSComboBox")]
+#[cfg(feature = "NSComboBox")]
 pub use self::__NSComboBox::NSComboBoxWillDismissNotification;
-#[cfg(feature = "AppKit_NSComboBox")]
+#[cfg(feature = "NSComboBox")]
 pub use self::__NSComboBox::NSComboBoxWillPopUpNotification;
 #[cfg(all(
-    feature = "AppKit_NSActionCell",
-    feature = "AppKit_NSCell",
-    feature = "AppKit_NSComboBoxCell",
-    feature = "AppKit_NSTextFieldCell"
+    feature = "NSActionCell",
+    feature = "NSCell",
+    feature = "NSComboBoxCell",
+    feature = "NSTextFieldCell"
 ))]
 pub use self::__NSComboBoxCell::NSComboBoxCell;
-#[cfg(feature = "AppKit_NSComboBoxCell")]
+#[cfg(feature = "NSComboBoxCell")]
 pub use self::__NSComboBoxCell::NSComboBoxCellDataSource;
 #[cfg(all(
-    feature = "AppKit_NSComboButton",
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSView"
+    feature = "NSComboButton",
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSView"
 ))]
 pub use self::__NSComboButton::NSComboButton;
-#[cfg(feature = "AppKit_NSComboButton")]
+#[cfg(feature = "NSComboButton")]
 pub use self::__NSComboButton::NSComboButtonStyle;
-#[cfg(all(
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSView"
-))]
+#[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
 pub use self::__NSControl::NSControl;
-#[cfg(feature = "AppKit_NSControl")]
+#[cfg(feature = "NSControl")]
 pub use self::__NSControl::NSControlTextDidBeginEditingNotification;
-#[cfg(feature = "AppKit_NSControl")]
+#[cfg(feature = "NSControl")]
 pub use self::__NSControl::NSControlTextDidChangeNotification;
-#[cfg(feature = "AppKit_NSControl")]
+#[cfg(feature = "NSControl")]
 pub use self::__NSControl::NSControlTextDidEndEditingNotification;
-#[cfg(feature = "AppKit_NSControl")]
+#[cfg(feature = "NSControl")]
 pub use self::__NSControl::NSControlTextEditingDelegate;
-#[cfg(feature = "AppKit_NSController")]
+#[cfg(feature = "NSController")]
 pub use self::__NSController::NSController;
-#[cfg(all(feature = "AppKit_NSApplication", feature = "AppKit_NSCursor"))]
+#[cfg(all(feature = "NSApplication", feature = "NSCursor"))]
 pub use self::__NSCursor::NSAppKitVersionNumberWithCursorSizeSupport;
-#[cfg(feature = "AppKit_NSCursor")]
+#[cfg(feature = "NSCursor")]
 pub use self::__NSCursor::NSCursor;
-#[cfg(all(feature = "AppKit_NSCustomImageRep", feature = "AppKit_NSImageRep"))]
+#[cfg(all(feature = "NSCustomImageRep", feature = "NSImageRep"))]
 pub use self::__NSCustomImageRep::NSCustomImageRep;
-#[cfg(all(
-    feature = "AppKit_NSCustomTouchBarItem",
-    feature = "AppKit_NSTouchBarItem"
-))]
+#[cfg(all(feature = "NSCustomTouchBarItem", feature = "NSTouchBarItem"))]
 pub use self::__NSCustomTouchBarItem::NSCustomTouchBarItem;
-#[cfg(feature = "AppKit_NSDataAsset")]
+#[cfg(feature = "NSDataAsset")]
 pub use self::__NSDataAsset::NSDataAsset;
-#[cfg(feature = "AppKit_NSDataAsset")]
+#[cfg(feature = "NSDataAsset")]
 pub use self::__NSDataAsset::NSDataAssetName;
 #[cfg(all(
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSDatePicker",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSView"
+    feature = "NSControl",
+    feature = "NSDatePicker",
+    feature = "NSResponder",
+    feature = "NSView"
 ))]
 pub use self::__NSDatePicker::NSDatePicker;
-#[cfg(feature = "AppKit_NSDatePickerCell")]
+#[cfg(feature = "NSDatePickerCell")]
 pub use self::__NSDatePickerCell::NSClockAndCalendarDatePickerStyle;
 #[cfg(all(
-    feature = "AppKit_NSActionCell",
-    feature = "AppKit_NSCell",
-    feature = "AppKit_NSDatePickerCell"
+    feature = "NSActionCell",
+    feature = "NSCell",
+    feature = "NSDatePickerCell"
 ))]
 pub use self::__NSDatePickerCell::NSDatePickerCell;
-#[cfg(feature = "AppKit_NSDatePickerCell")]
+#[cfg(feature = "NSDatePickerCell")]
 pub use self::__NSDatePickerCell::NSDatePickerCellDelegate;
-#[cfg(feature = "AppKit_NSDatePickerCell")]
+#[cfg(feature = "NSDatePickerCell")]
 pub use self::__NSDatePickerCell::NSDatePickerElementFlags;
-#[cfg(feature = "AppKit_NSDatePickerCell")]
+#[cfg(feature = "NSDatePickerCell")]
 pub use self::__NSDatePickerCell::NSDatePickerMode;
-#[cfg(feature = "AppKit_NSDatePickerCell")]
+#[cfg(feature = "NSDatePickerCell")]
 pub use self::__NSDatePickerCell::NSDatePickerStyle;
-#[cfg(feature = "AppKit_NSDatePickerCell")]
+#[cfg(feature = "NSDatePickerCell")]
 pub use self::__NSDatePickerCell::NSEraDatePickerElementFlag;
-#[cfg(feature = "AppKit_NSDatePickerCell")]
+#[cfg(feature = "NSDatePickerCell")]
 pub use self::__NSDatePickerCell::NSHourMinuteDatePickerElementFlag;
-#[cfg(feature = "AppKit_NSDatePickerCell")]
+#[cfg(feature = "NSDatePickerCell")]
 pub use self::__NSDatePickerCell::NSHourMinuteSecondDatePickerElementFlag;
-#[cfg(feature = "AppKit_NSDatePickerCell")]
+#[cfg(feature = "NSDatePickerCell")]
 pub use self::__NSDatePickerCell::NSRangeDateMode;
-#[cfg(feature = "AppKit_NSDatePickerCell")]
+#[cfg(feature = "NSDatePickerCell")]
 pub use self::__NSDatePickerCell::NSSingleDateMode;
-#[cfg(feature = "AppKit_NSDatePickerCell")]
+#[cfg(feature = "NSDatePickerCell")]
 pub use self::__NSDatePickerCell::NSTextFieldAndStepperDatePickerStyle;
-#[cfg(feature = "AppKit_NSDatePickerCell")]
+#[cfg(feature = "NSDatePickerCell")]
 pub use self::__NSDatePickerCell::NSTextFieldDatePickerStyle;
-#[cfg(feature = "AppKit_NSDatePickerCell")]
+#[cfg(feature = "NSDatePickerCell")]
 pub use self::__NSDatePickerCell::NSTimeZoneDatePickerElementFlag;
-#[cfg(feature = "AppKit_NSDatePickerCell")]
+#[cfg(feature = "NSDatePickerCell")]
 pub use self::__NSDatePickerCell::NSYearMonthDatePickerElementFlag;
-#[cfg(feature = "AppKit_NSDatePickerCell")]
+#[cfg(feature = "NSDatePickerCell")]
 pub use self::__NSDatePickerCell::NSYearMonthDayDatePickerElementFlag;
 #[cfg(all(
-    feature = "AppKit_NSArrayController",
-    feature = "AppKit_NSController",
-    feature = "AppKit_NSDictionaryController",
-    feature = "AppKit_NSObjectController"
+    feature = "NSArrayController",
+    feature = "NSController",
+    feature = "NSDictionaryController",
+    feature = "NSObjectController"
 ))]
 pub use self::__NSDictionaryController::NSDictionaryController;
-#[cfg(feature = "AppKit_NSDictionaryController")]
+#[cfg(feature = "NSDictionaryController")]
 pub use self::__NSDictionaryController::NSDictionaryControllerKeyValuePair;
-#[cfg(feature = "AppKit_NSDiffableDataSource")]
+#[cfg(feature = "NSDiffableDataSource")]
 pub use self::__NSDiffableDataSource::NSCollectionViewDiffableDataSource;
 #[cfg(all(
-    feature = "AppKit_NSCollectionView",
-    feature = "AppKit_NSDiffableDataSource",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSView",
+    feature = "NSCollectionView",
+    feature = "NSDiffableDataSource",
+    feature = "NSResponder",
+    feature = "NSView",
     feature = "block2"
 ))]
 pub use self::__NSDiffableDataSource::NSCollectionViewDiffableDataSourceSupplementaryViewProvider;
-#[cfg(feature = "AppKit_NSDiffableDataSource")]
+#[cfg(feature = "NSDiffableDataSource")]
 pub use self::__NSDiffableDataSource::NSDiffableDataSourceSnapshot;
-#[cfg(all(feature = "AppKit_NSApplication", feature = "AppKit_NSDockTile"))]
+#[cfg(all(feature = "NSApplication", feature = "NSDockTile"))]
 pub use self::__NSDockTile::NSAppKitVersionNumberWithDockTilePlugInSupport;
-#[cfg(feature = "AppKit_NSDockTile")]
+#[cfg(feature = "NSDockTile")]
 pub use self::__NSDockTile::NSDockTile;
-#[cfg(feature = "AppKit_NSDockTile")]
+#[cfg(feature = "NSDockTile")]
 pub use self::__NSDockTile::NSDockTilePlugIn;
-#[cfg(feature = "AppKit_NSDocument")]
+#[cfg(feature = "NSDocument")]
 pub use self::__NSDocument::NSDocument;
-#[cfg(feature = "AppKit_NSDocument")]
+#[cfg(feature = "NSDocument")]
 pub use self::__NSDocument::NSDocumentChangeType;
-#[cfg(feature = "AppKit_NSDocument")]
+#[cfg(feature = "NSDocument")]
 pub use self::__NSDocument::NSSaveOperationType;
-#[cfg(feature = "AppKit_NSDocumentController")]
+#[cfg(feature = "NSDocumentController")]
 pub use self::__NSDocumentController::NSDocumentController;
-#[cfg(feature = "AppKit_NSDragging")]
+#[cfg(feature = "NSDragging")]
 pub use self::__NSDragging::NSDragOperation;
-#[cfg(feature = "AppKit_NSDragging")]
+#[cfg(feature = "NSDragging")]
 pub use self::__NSDragging::NSDraggingContext;
-#[cfg(feature = "AppKit_NSDragging")]
+#[cfg(feature = "NSDragging")]
 pub use self::__NSDragging::NSDraggingDestination;
-#[cfg(feature = "AppKit_NSDragging")]
+#[cfg(feature = "NSDragging")]
 pub use self::__NSDragging::NSDraggingFormation;
-#[cfg(feature = "AppKit_NSDragging")]
+#[cfg(feature = "NSDragging")]
 pub use self::__NSDragging::NSDraggingInfo;
-#[cfg(feature = "AppKit_NSDragging")]
+#[cfg(feature = "NSDragging")]
 pub use self::__NSDragging::NSDraggingItemEnumerationOptions;
-#[cfg(feature = "AppKit_NSDragging")]
+#[cfg(feature = "NSDragging")]
 pub use self::__NSDragging::NSDraggingSource;
-#[cfg(feature = "AppKit_NSDragging")]
+#[cfg(feature = "NSDragging")]
 pub use self::__NSDragging::NSSpringLoadingDestination;
-#[cfg(feature = "AppKit_NSDragging")]
+#[cfg(feature = "NSDragging")]
 pub use self::__NSDragging::NSSpringLoadingHighlight;
-#[cfg(feature = "AppKit_NSDragging")]
+#[cfg(feature = "NSDragging")]
 pub use self::__NSDragging::NSSpringLoadingOptions;
-#[cfg(feature = "AppKit_NSDraggingItem")]
+#[cfg(feature = "NSDraggingItem")]
 pub use self::__NSDraggingItem::NSDraggingImageComponent;
-#[cfg(feature = "AppKit_NSDraggingItem")]
+#[cfg(feature = "NSDraggingItem")]
 pub use self::__NSDraggingItem::NSDraggingImageComponentIconKey;
-#[cfg(feature = "AppKit_NSDraggingItem")]
+#[cfg(feature = "NSDraggingItem")]
 pub use self::__NSDraggingItem::NSDraggingImageComponentKey;
-#[cfg(feature = "AppKit_NSDraggingItem")]
+#[cfg(feature = "NSDraggingItem")]
 pub use self::__NSDraggingItem::NSDraggingImageComponentLabelKey;
-#[cfg(feature = "AppKit_NSDraggingItem")]
+#[cfg(feature = "NSDraggingItem")]
 pub use self::__NSDraggingItem::NSDraggingItem;
-#[cfg(feature = "AppKit_NSDraggingSession")]
+#[cfg(feature = "NSDraggingSession")]
 pub use self::__NSDraggingSession::NSDraggingSession;
-#[cfg(all(feature = "AppKit_NSDrawer", feature = "AppKit_NSResponder"))]
+#[cfg(all(feature = "NSDrawer", feature = "NSResponder"))]
 pub use self::__NSDrawer::NSDrawer;
-#[cfg(feature = "AppKit_NSDrawer")]
+#[cfg(feature = "NSDrawer")]
 pub use self::__NSDrawer::NSDrawerDelegate;
-#[cfg(feature = "AppKit_NSDrawer")]
+#[cfg(feature = "NSDrawer")]
 pub use self::__NSDrawer::NSDrawerDidCloseNotification;
-#[cfg(feature = "AppKit_NSDrawer")]
+#[cfg(feature = "NSDrawer")]
 pub use self::__NSDrawer::NSDrawerDidOpenNotification;
-#[cfg(feature = "AppKit_NSDrawer")]
+#[cfg(feature = "NSDrawer")]
 pub use self::__NSDrawer::NSDrawerState;
-#[cfg(feature = "AppKit_NSDrawer")]
+#[cfg(feature = "NSDrawer")]
 pub use self::__NSDrawer::NSDrawerWillCloseNotification;
-#[cfg(feature = "AppKit_NSDrawer")]
+#[cfg(feature = "NSDrawer")]
 pub use self::__NSDrawer::NSDrawerWillOpenNotification;
-#[cfg(all(feature = "AppKit_NSEPSImageRep", feature = "AppKit_NSImageRep"))]
+#[cfg(all(feature = "NSEPSImageRep", feature = "NSImageRep"))]
 pub use self::__NSEPSImageRep::NSEPSImageRep;
-#[cfg(feature = "AppKit_NSErrors")]
+#[cfg(feature = "NSErrors")]
 pub use self::__NSErrors::NSAbortModalException;
-#[cfg(feature = "AppKit_NSErrors")]
+#[cfg(feature = "NSErrors")]
 pub use self::__NSErrors::NSAbortPrintingException;
-#[cfg(feature = "AppKit_NSErrors")]
+#[cfg(feature = "NSErrors")]
 pub use self::__NSErrors::NSAccessibilityException;
-#[cfg(feature = "AppKit_NSErrors")]
+#[cfg(feature = "NSErrors")]
 pub use self::__NSErrors::NSAppKitIgnoredException;
-#[cfg(feature = "AppKit_NSErrors")]
+#[cfg(feature = "NSErrors")]
 pub use self::__NSErrors::NSAppKitVirtualMemoryException;
-#[cfg(feature = "AppKit_NSErrors")]
+#[cfg(feature = "NSErrors")]
 pub use self::__NSErrors::NSBadBitmapParametersException;
-#[cfg(feature = "AppKit_NSErrors")]
+#[cfg(feature = "NSErrors")]
 pub use self::__NSErrors::NSBadComparisonException;
-#[cfg(feature = "AppKit_NSErrors")]
+#[cfg(feature = "NSErrors")]
 pub use self::__NSErrors::NSBadRTFColorTableException;
-#[cfg(feature = "AppKit_NSErrors")]
+#[cfg(feature = "NSErrors")]
 pub use self::__NSErrors::NSBadRTFDirectiveException;
-#[cfg(feature = "AppKit_NSErrors")]
+#[cfg(feature = "NSErrors")]
 pub use self::__NSErrors::NSBadRTFFontTableException;
-#[cfg(feature = "AppKit_NSErrors")]
+#[cfg(feature = "NSErrors")]
 pub use self::__NSErrors::NSBadRTFStyleSheetException;
-#[cfg(feature = "AppKit_NSErrors")]
+#[cfg(feature = "NSErrors")]
 pub use self::__NSErrors::NSBrowserIllegalDelegateException;
-#[cfg(feature = "AppKit_NSErrors")]
+#[cfg(feature = "NSErrors")]
 pub use self::__NSErrors::NSColorListIOException;
-#[cfg(feature = "AppKit_NSErrors")]
+#[cfg(feature = "NSErrors")]
 pub use self::__NSErrors::NSColorListNotEditableException;
-#[cfg(feature = "AppKit_NSErrors")]
+#[cfg(feature = "NSErrors")]
 pub use self::__NSErrors::NSDraggingException;
-#[cfg(feature = "AppKit_NSErrors")]
+#[cfg(feature = "NSErrors")]
 pub use self::__NSErrors::NSFontUnavailableException;
-#[cfg(feature = "AppKit_NSErrors")]
+#[cfg(feature = "NSErrors")]
 pub use self::__NSErrors::NSIllegalSelectorException;
-#[cfg(feature = "AppKit_NSErrors")]
+#[cfg(feature = "NSErrors")]
 pub use self::__NSErrors::NSImageCacheException;
-#[cfg(feature = "AppKit_NSErrors")]
+#[cfg(feature = "NSErrors")]
 pub use self::__NSErrors::NSNibLoadingException;
-#[cfg(feature = "AppKit_NSErrors")]
+#[cfg(feature = "NSErrors")]
 pub use self::__NSErrors::NSPPDIncludeNotFoundException;
-#[cfg(feature = "AppKit_NSErrors")]
+#[cfg(feature = "NSErrors")]
 pub use self::__NSErrors::NSPPDIncludeStackOverflowException;
-#[cfg(feature = "AppKit_NSErrors")]
+#[cfg(feature = "NSErrors")]
 pub use self::__NSErrors::NSPPDIncludeStackUnderflowException;
-#[cfg(feature = "AppKit_NSErrors")]
+#[cfg(feature = "NSErrors")]
 pub use self::__NSErrors::NSPPDParseException;
-#[cfg(feature = "AppKit_NSErrors")]
+#[cfg(feature = "NSErrors")]
 pub use self::__NSErrors::NSPasteboardCommunicationException;
-#[cfg(feature = "AppKit_NSErrors")]
+#[cfg(feature = "NSErrors")]
 pub use self::__NSErrors::NSPrintPackageException;
-#[cfg(feature = "AppKit_NSErrors")]
+#[cfg(feature = "NSErrors")]
 pub use self::__NSErrors::NSPrintingCommunicationException;
-#[cfg(feature = "AppKit_NSErrors")]
+#[cfg(feature = "NSErrors")]
 pub use self::__NSErrors::NSRTFPropertyStackOverflowException;
-#[cfg(feature = "AppKit_NSErrors")]
+#[cfg(feature = "NSErrors")]
 pub use self::__NSErrors::NSTIFFException;
-#[cfg(feature = "AppKit_NSErrors")]
+#[cfg(feature = "NSErrors")]
 pub use self::__NSErrors::NSTextLineTooLongException;
-#[cfg(feature = "AppKit_NSErrors")]
+#[cfg(feature = "NSErrors")]
 pub use self::__NSErrors::NSTextNoSelectionException;
-#[cfg(feature = "AppKit_NSErrors")]
+#[cfg(feature = "NSErrors")]
 pub use self::__NSErrors::NSTextReadException;
-#[cfg(feature = "AppKit_NSErrors")]
+#[cfg(feature = "NSErrors")]
 pub use self::__NSErrors::NSTextWriteException;
-#[cfg(feature = "AppKit_NSErrors")]
+#[cfg(feature = "NSErrors")]
 pub use self::__NSErrors::NSTypedStreamVersionException;
-#[cfg(feature = "AppKit_NSErrors")]
+#[cfg(feature = "NSErrors")]
 pub use self::__NSErrors::NSWindowServerCommunicationException;
-#[cfg(feature = "AppKit_NSErrors")]
+#[cfg(feature = "NSErrors")]
 pub use self::__NSErrors::NSWordTablesReadException;
-#[cfg(feature = "AppKit_NSErrors")]
+#[cfg(feature = "NSErrors")]
 pub use self::__NSErrors::NSWordTablesWriteException;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSAWTEventType;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSAlphaShiftKeyMask;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSAlternateKeyMask;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSAnyEventMask;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSAppKitDefined;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSAppKitDefinedMask;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSApplicationActivatedEventType;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSApplicationDeactivatedEventType;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSApplicationDefined;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSApplicationDefinedMask;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSBeginFunctionKey;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSBreakFunctionKey;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSClearDisplayFunctionKey;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSClearLineFunctionKey;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSCommandKeyMask;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSControlKeyMask;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSCursorPointingDevice;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSCursorUpdate;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSCursorUpdateMask;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSDeleteCharFunctionKey;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSDeleteFunctionKey;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSDeleteLineFunctionKey;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSDeviceIndependentModifierFlagsMask;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSDownArrowFunctionKey;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSEndFunctionKey;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSEraserPointingDevice;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSEvent;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSEventButtonMask;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSEventGestureAxis;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSEventMask;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSEventModifierFlags;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSEventPhase;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSEventSubtype;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSEventSwipeTrackingOptions;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSEventType;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSExecuteFunctionKey;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSF10FunctionKey;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSF11FunctionKey;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSF12FunctionKey;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSF13FunctionKey;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSF14FunctionKey;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSF15FunctionKey;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSF16FunctionKey;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSF17FunctionKey;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSF18FunctionKey;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSF19FunctionKey;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSF1FunctionKey;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSF20FunctionKey;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSF21FunctionKey;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSF22FunctionKey;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSF23FunctionKey;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSF24FunctionKey;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSF25FunctionKey;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSF26FunctionKey;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSF27FunctionKey;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSF28FunctionKey;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSF29FunctionKey;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSF2FunctionKey;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSF30FunctionKey;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSF31FunctionKey;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSF32FunctionKey;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSF33FunctionKey;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSF34FunctionKey;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSF35FunctionKey;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSF3FunctionKey;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSF4FunctionKey;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSF5FunctionKey;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSF6FunctionKey;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSF7FunctionKey;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSF8FunctionKey;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSF9FunctionKey;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSFindFunctionKey;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSFlagsChanged;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSFlagsChangedMask;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSFunctionKeyMask;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSHelpFunctionKey;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSHelpKeyMask;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSHomeFunctionKey;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSInsertCharFunctionKey;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSInsertFunctionKey;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSInsertLineFunctionKey;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSKeyDown;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSKeyDownMask;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSKeyUp;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSKeyUpMask;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSLeftArrowFunctionKey;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSLeftMouseDown;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSLeftMouseDownMask;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSLeftMouseDragged;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSLeftMouseDraggedMask;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSLeftMouseUp;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSLeftMouseUpMask;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSMenuFunctionKey;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSModeSwitchFunctionKey;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSMouseEntered;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSMouseEnteredMask;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSMouseEventSubtype;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSMouseExited;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSMouseExitedMask;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSMouseMoved;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSMouseMovedMask;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSNextFunctionKey;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSNumericPadKeyMask;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSOtherMouseDown;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSOtherMouseDownMask;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSOtherMouseDragged;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSOtherMouseDraggedMask;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSOtherMouseUp;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSOtherMouseUpMask;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSPageDownFunctionKey;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSPageUpFunctionKey;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSPauseFunctionKey;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSPenLowerSideMask;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSPenPointingDevice;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSPenTipMask;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSPenUpperSideMask;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSPeriodic;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSPeriodicMask;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSPointingDeviceType;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSPowerOffEventType;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSPressureBehavior;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSPrevFunctionKey;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSPrintFunctionKey;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSPrintScreenFunctionKey;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSRedoFunctionKey;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSResetFunctionKey;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSRightArrowFunctionKey;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSRightMouseDown;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSRightMouseDownMask;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSRightMouseDragged;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSRightMouseDraggedMask;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSRightMouseUp;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSRightMouseUpMask;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSScreenChangedEventType;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSScrollLockFunctionKey;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSScrollWheel;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSScrollWheelMask;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSSelectFunctionKey;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSShiftKeyMask;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSStopFunctionKey;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSSysReqFunctionKey;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSSystemDefined;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSSystemDefinedMask;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSSystemFunctionKey;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSTabletPoint;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSTabletPointEventSubtype;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSTabletPointMask;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSTabletProximity;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSTabletProximityEventSubtype;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSTabletProximityMask;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSTouchEventSubtype;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSUndoFunctionKey;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSUnknownPointingDevice;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSUpArrowFunctionKey;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSUserFunctionKey;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSWindowExposedEventType;
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "NSEvent")]
 pub use self::__NSEvent::NSWindowMovedEventType;
-#[cfg(feature = "AppKit_NSFilePromiseProvider")]
+#[cfg(feature = "NSFilePromiseProvider")]
 pub use self::__NSFilePromiseProvider::NSFilePromiseProvider;
-#[cfg(feature = "AppKit_NSFilePromiseProvider")]
+#[cfg(feature = "NSFilePromiseProvider")]
 pub use self::__NSFilePromiseProvider::NSFilePromiseProviderDelegate;
-#[cfg(feature = "AppKit_NSFilePromiseReceiver")]
+#[cfg(feature = "NSFilePromiseReceiver")]
 pub use self::__NSFilePromiseReceiver::NSFilePromiseReceiver;
-#[cfg(feature = "AppKit_NSFileWrapperExtensions")]
+#[cfg(feature = "NSFileWrapperExtensions")]
 pub use self::__NSFileWrapperExtensions::NSFileWrapperNSExtensions;
-#[cfg(feature = "AppKit_NSFont")]
+#[cfg(feature = "NSFont")]
 pub use self::__NSFont::NSAntialiasThresholdChangedNotification;
-#[cfg(feature = "AppKit_NSFont")]
+#[cfg(feature = "NSFont")]
 pub use self::__NSFont::NSControlGlyph;
-#[cfg(feature = "AppKit_NSFont")]
+#[cfg(feature = "NSFont")]
 pub use self::__NSFont::NSConvertGlyphsToPackedGlyphs;
-#[cfg(feature = "AppKit_NSFont")]
+#[cfg(feature = "NSFont")]
 pub use self::__NSFont::NSFont;
-#[cfg(feature = "AppKit_NSFont")]
+#[cfg(feature = "NSFont")]
 pub use self::__NSFont::NSFontIdentityMatrix;
-#[cfg(feature = "AppKit_NSFont")]
+#[cfg(feature = "NSFont")]
 pub use self::__NSFont::NSFontRenderingMode;
-#[cfg(feature = "AppKit_NSFont")]
+#[cfg(feature = "NSFont")]
 pub use self::__NSFont::NSFontSetChangedNotification;
-#[cfg(feature = "AppKit_NSFont")]
+#[cfg(feature = "NSFont")]
 pub use self::__NSFont::NSGlyph;
-#[cfg(feature = "AppKit_NSFont")]
+#[cfg(feature = "NSFont")]
 pub use self::__NSFont::NSMultibyteGlyphPacking;
-#[cfg(feature = "AppKit_NSFont")]
+#[cfg(feature = "NSFont")]
 pub use self::__NSFont::NSNullGlyph;
-#[cfg(feature = "AppKit_NSFontAssetRequest")]
+#[cfg(feature = "NSFontAssetRequest")]
 pub use self::__NSFontAssetRequest::NSFontAssetRequest;
-#[cfg(feature = "AppKit_NSFontAssetRequest")]
+#[cfg(feature = "NSFontAssetRequest")]
 pub use self::__NSFontAssetRequest::NSFontAssetRequestOptions;
-#[cfg(feature = "AppKit_NSFontCollection")]
+#[cfg(feature = "NSFontCollection")]
 pub use self::__NSFontCollection::NSFontCollection;
-#[cfg(feature = "AppKit_NSFontCollection")]
+#[cfg(feature = "NSFontCollection")]
 pub use self::__NSFontCollection::NSFontCollectionActionKey;
-#[cfg(feature = "AppKit_NSFontCollection")]
+#[cfg(feature = "NSFontCollection")]
 pub use self::__NSFontCollection::NSFontCollectionActionTypeKey;
-#[cfg(feature = "AppKit_NSFontCollection")]
+#[cfg(feature = "NSFontCollection")]
 pub use self::__NSFontCollection::NSFontCollectionAllFonts;
-#[cfg(feature = "AppKit_NSFontCollection")]
+#[cfg(feature = "NSFontCollection")]
 pub use self::__NSFontCollection::NSFontCollectionDidChangeNotification;
-#[cfg(feature = "AppKit_NSFontCollection")]
+#[cfg(feature = "NSFontCollection")]
 pub use self::__NSFontCollection::NSFontCollectionDisallowAutoActivationOption;
-#[cfg(feature = "AppKit_NSFontCollection")]
+#[cfg(feature = "NSFontCollection")]
 pub use self::__NSFontCollection::NSFontCollectionFavorites;
-#[cfg(feature = "AppKit_NSFontCollection")]
+#[cfg(feature = "NSFontCollection")]
 pub use self::__NSFontCollection::NSFontCollectionIncludeDisabledFontsOption;
-#[cfg(feature = "AppKit_NSFontCollection")]
+#[cfg(feature = "NSFontCollection")]
 pub use self::__NSFontCollection::NSFontCollectionMatchingOptionKey;
-#[cfg(feature = "AppKit_NSFontCollection")]
+#[cfg(feature = "NSFontCollection")]
 pub use self::__NSFontCollection::NSFontCollectionName;
-#[cfg(feature = "AppKit_NSFontCollection")]
+#[cfg(feature = "NSFontCollection")]
 pub use self::__NSFontCollection::NSFontCollectionNameKey;
-#[cfg(feature = "AppKit_NSFontCollection")]
+#[cfg(feature = "NSFontCollection")]
 pub use self::__NSFontCollection::NSFontCollectionOldNameKey;
-#[cfg(feature = "AppKit_NSFontCollection")]
+#[cfg(feature = "NSFontCollection")]
 pub use self::__NSFontCollection::NSFontCollectionRecentlyUsed;
-#[cfg(feature = "AppKit_NSFontCollection")]
+#[cfg(feature = "NSFontCollection")]
 pub use self::__NSFontCollection::NSFontCollectionRemoveDuplicatesOption;
-#[cfg(feature = "AppKit_NSFontCollection")]
+#[cfg(feature = "NSFontCollection")]
 pub use self::__NSFontCollection::NSFontCollectionUser;
-#[cfg(feature = "AppKit_NSFontCollection")]
+#[cfg(feature = "NSFontCollection")]
 pub use self::__NSFontCollection::NSFontCollectionUserInfoKey;
-#[cfg(feature = "AppKit_NSFontCollection")]
+#[cfg(feature = "NSFontCollection")]
 pub use self::__NSFontCollection::NSFontCollectionVisibility;
-#[cfg(feature = "AppKit_NSFontCollection")]
+#[cfg(feature = "NSFontCollection")]
 pub use self::__NSFontCollection::NSFontCollectionVisibilityKey;
-#[cfg(feature = "AppKit_NSFontCollection")]
+#[cfg(feature = "NSFontCollection")]
 pub use self::__NSFontCollection::NSFontCollectionWasHidden;
-#[cfg(feature = "AppKit_NSFontCollection")]
+#[cfg(feature = "NSFontCollection")]
 pub use self::__NSFontCollection::NSFontCollectionWasRenamed;
-#[cfg(feature = "AppKit_NSFontCollection")]
+#[cfg(feature = "NSFontCollection")]
 pub use self::__NSFontCollection::NSFontCollectionWasShown;
-#[cfg(feature = "AppKit_NSFontCollection")]
+#[cfg(feature = "NSFontCollection")]
 pub use self::__NSFontCollection::NSMutableFontCollection;
-#[cfg(feature = "AppKit_NSFontDescriptor")]
+#[cfg(feature = "NSFontDescriptor")]
 pub use self::__NSFontDescriptor::NSFontBoldTrait;
-#[cfg(feature = "AppKit_NSFontDescriptor")]
+#[cfg(feature = "NSFontDescriptor")]
 pub use self::__NSFontDescriptor::NSFontCascadeListAttribute;
-#[cfg(feature = "AppKit_NSFontDescriptor")]
+#[cfg(feature = "NSFontDescriptor")]
 pub use self::__NSFontDescriptor::NSFontCharacterSetAttribute;
-#[cfg(feature = "AppKit_NSFontDescriptor")]
+#[cfg(feature = "NSFontDescriptor")]
 pub use self::__NSFontDescriptor::NSFontClarendonSerifsClass;
-#[cfg(feature = "AppKit_NSFontDescriptor")]
+#[cfg(feature = "NSFontDescriptor")]
 pub use self::__NSFontDescriptor::NSFontColorAttribute;
-#[cfg(feature = "AppKit_NSFontDescriptor")]
+#[cfg(feature = "NSFontDescriptor")]
 pub use self::__NSFontDescriptor::NSFontCondensedTrait;
-#[cfg(feature = "AppKit_NSFontDescriptor")]
+#[cfg(feature = "NSFontDescriptor")]
 pub use self::__NSFontDescriptor::NSFontDescriptor;
-#[cfg(feature = "AppKit_NSFontDescriptor")]
+#[cfg(feature = "NSFontDescriptor")]
 pub use self::__NSFontDescriptor::NSFontDescriptorAttributeName;
-#[cfg(feature = "AppKit_NSFontDescriptor")]
+#[cfg(feature = "NSFontDescriptor")]
 pub use self::__NSFontDescriptor::NSFontDescriptorFeatureKey;
-#[cfg(feature = "AppKit_NSFontDescriptor")]
+#[cfg(feature = "NSFontDescriptor")]
 pub use self::__NSFontDescriptor::NSFontDescriptorSymbolicTraits;
-#[cfg(feature = "AppKit_NSFontDescriptor")]
+#[cfg(feature = "NSFontDescriptor")]
 pub use self::__NSFontDescriptor::NSFontDescriptorSystemDesign;
-#[cfg(feature = "AppKit_NSFontDescriptor")]
+#[cfg(feature = "NSFontDescriptor")]
 pub use self::__NSFontDescriptor::NSFontDescriptorSystemDesignDefault;
-#[cfg(feature = "AppKit_NSFontDescriptor")]
+#[cfg(feature = "NSFontDescriptor")]
 pub use self::__NSFontDescriptor::NSFontDescriptorSystemDesignMonospaced;
-#[cfg(feature = "AppKit_NSFontDescriptor")]
+#[cfg(feature = "NSFontDescriptor")]
 pub use self::__NSFontDescriptor::NSFontDescriptorSystemDesignRounded;
-#[cfg(feature = "AppKit_NSFontDescriptor")]
+#[cfg(feature = "NSFontDescriptor")]
 pub use self::__NSFontDescriptor::NSFontDescriptorSystemDesignSerif;
-#[cfg(feature = "AppKit_NSFontDescriptor")]
+#[cfg(feature = "NSFontDescriptor")]
 pub use self::__NSFontDescriptor::NSFontDescriptorTraitKey;
-#[cfg(feature = "AppKit_NSFontDescriptor")]
+#[cfg(feature = "NSFontDescriptor")]
 pub use self::__NSFontDescriptor::NSFontDescriptorVariationKey;
-#[cfg(feature = "AppKit_NSFontDescriptor")]
+#[cfg(feature = "NSFontDescriptor")]
 pub use self::__NSFontDescriptor::NSFontExpandedTrait;
-#[cfg(feature = "AppKit_NSFontDescriptor")]
+#[cfg(feature = "NSFontDescriptor")]
 pub use self::__NSFontDescriptor::NSFontFaceAttribute;
-#[cfg(feature = "AppKit_NSFontDescriptor")]
+#[cfg(feature = "NSFontDescriptor")]
 pub use self::__NSFontDescriptor::NSFontFamilyAttribute;
-#[cfg(feature = "AppKit_NSFontDescriptor")]
+#[cfg(feature = "NSFontDescriptor")]
 pub use self::__NSFontDescriptor::NSFontFamilyClass;
-#[cfg(feature = "AppKit_NSFontDescriptor")]
+#[cfg(feature = "NSFontDescriptor")]
 pub use self::__NSFontDescriptor::NSFontFamilyClassMask;
-#[cfg(feature = "AppKit_NSFontDescriptor")]
+#[cfg(feature = "NSFontDescriptor")]
 pub use self::__NSFontDescriptor::NSFontFeatureSelectorIdentifierKey;
-#[cfg(feature = "AppKit_NSFontDescriptor")]
+#[cfg(feature = "NSFontDescriptor")]
 pub use self::__NSFontDescriptor::NSFontFeatureSettingsAttribute;
-#[cfg(feature = "AppKit_NSFontDescriptor")]
+#[cfg(feature = "NSFontDescriptor")]
 pub use self::__NSFontDescriptor::NSFontFeatureTypeIdentifierKey;
-#[cfg(feature = "AppKit_NSFontDescriptor")]
+#[cfg(feature = "NSFontDescriptor")]
 pub use self::__NSFontDescriptor::NSFontFixedAdvanceAttribute;
-#[cfg(feature = "AppKit_NSFontDescriptor")]
+#[cfg(feature = "NSFontDescriptor")]
 pub use self::__NSFontDescriptor::NSFontFreeformSerifsClass;
-#[cfg(feature = "AppKit_NSFontDescriptor")]
+#[cfg(feature = "NSFontDescriptor")]
 pub use self::__NSFontDescriptor::NSFontItalicTrait;
-#[cfg(feature = "AppKit_NSFontDescriptor")]
+#[cfg(feature = "NSFontDescriptor")]
 pub use self::__NSFontDescriptor::NSFontMatrixAttribute;
-#[cfg(feature = "AppKit_NSFontDescriptor")]
+#[cfg(feature = "NSFontDescriptor")]
 pub use self::__NSFontDescriptor::NSFontModernSerifsClass;
-#[cfg(feature = "AppKit_NSFontDescriptor")]
+#[cfg(feature = "NSFontDescriptor")]
 pub use self::__NSFontDescriptor::NSFontMonoSpaceTrait;
-#[cfg(feature = "AppKit_NSFontDescriptor")]
+#[cfg(feature = "NSFontDescriptor")]
 pub use self::__NSFontDescriptor::NSFontNameAttribute;
-#[cfg(feature = "AppKit_NSFontDescriptor")]
+#[cfg(feature = "NSFontDescriptor")]
 pub use self::__NSFontDescriptor::NSFontOldStyleSerifsClass;
-#[cfg(feature = "AppKit_NSFontDescriptor")]
+#[cfg(feature = "NSFontDescriptor")]
 pub use self::__NSFontDescriptor::NSFontOrnamentalsClass;
-#[cfg(feature = "AppKit_NSFontDescriptor")]
+#[cfg(feature = "NSFontDescriptor")]
 pub use self::__NSFontDescriptor::NSFontSansSerifClass;
-#[cfg(feature = "AppKit_NSFontDescriptor")]
+#[cfg(feature = "NSFontDescriptor")]
 pub use self::__NSFontDescriptor::NSFontScriptsClass;
-#[cfg(feature = "AppKit_NSFontDescriptor")]
+#[cfg(feature = "NSFontDescriptor")]
 pub use self::__NSFontDescriptor::NSFontSizeAttribute;
-#[cfg(feature = "AppKit_NSFontDescriptor")]
+#[cfg(feature = "NSFontDescriptor")]
 pub use self::__NSFontDescriptor::NSFontSlabSerifsClass;
-#[cfg(feature = "AppKit_NSFontDescriptor")]
+#[cfg(feature = "NSFontDescriptor")]
 pub use self::__NSFontDescriptor::NSFontSlantTrait;
-#[cfg(feature = "AppKit_NSFontDescriptor")]
+#[cfg(feature = "NSFontDescriptor")]
 pub use self::__NSFontDescriptor::NSFontSymbolicClass;
-#[cfg(feature = "AppKit_NSFontDescriptor")]
+#[cfg(feature = "NSFontDescriptor")]
 pub use self::__NSFontDescriptor::NSFontSymbolicTrait;
-#[cfg(feature = "AppKit_NSFontDescriptor")]
+#[cfg(feature = "NSFontDescriptor")]
 pub use self::__NSFontDescriptor::NSFontSymbolicTraits;
-#[cfg(feature = "AppKit_NSFontDescriptor")]
+#[cfg(feature = "NSFontDescriptor")]
 pub use self::__NSFontDescriptor::NSFontTextStyle;
-#[cfg(feature = "AppKit_NSFontDescriptor")]
+#[cfg(feature = "NSFontDescriptor")]
 pub use self::__NSFontDescriptor::NSFontTextStyleBody;
-#[cfg(feature = "AppKit_NSFontDescriptor")]
+#[cfg(feature = "NSFontDescriptor")]
 pub use self::__NSFontDescriptor::NSFontTextStyleCallout;
-#[cfg(feature = "AppKit_NSFontDescriptor")]
+#[cfg(feature = "NSFontDescriptor")]
 pub use self::__NSFontDescriptor::NSFontTextStyleCaption1;
-#[cfg(feature = "AppKit_NSFontDescriptor")]
+#[cfg(feature = "NSFontDescriptor")]
 pub use self::__NSFontDescriptor::NSFontTextStyleCaption2;
-#[cfg(feature = "AppKit_NSFontDescriptor")]
+#[cfg(feature = "NSFontDescriptor")]
 pub use self::__NSFontDescriptor::NSFontTextStyleFootnote;
-#[cfg(feature = "AppKit_NSFontDescriptor")]
+#[cfg(feature = "NSFontDescriptor")]
 pub use self::__NSFontDescriptor::NSFontTextStyleHeadline;
-#[cfg(feature = "AppKit_NSFontDescriptor")]
+#[cfg(feature = "NSFontDescriptor")]
 pub use self::__NSFontDescriptor::NSFontTextStyleLargeTitle;
-#[cfg(feature = "AppKit_NSFontDescriptor")]
+#[cfg(feature = "NSFontDescriptor")]
 pub use self::__NSFontDescriptor::NSFontTextStyleOptionKey;
-#[cfg(feature = "AppKit_NSFontDescriptor")]
+#[cfg(feature = "NSFontDescriptor")]
 pub use self::__NSFontDescriptor::NSFontTextStyleSubheadline;
-#[cfg(feature = "AppKit_NSFontDescriptor")]
+#[cfg(feature = "NSFontDescriptor")]
 pub use self::__NSFontDescriptor::NSFontTextStyleTitle1;
-#[cfg(feature = "AppKit_NSFontDescriptor")]
+#[cfg(feature = "NSFontDescriptor")]
 pub use self::__NSFontDescriptor::NSFontTextStyleTitle2;
-#[cfg(feature = "AppKit_NSFontDescriptor")]
+#[cfg(feature = "NSFontDescriptor")]
 pub use self::__NSFontDescriptor::NSFontTextStyleTitle3;
-#[cfg(feature = "AppKit_NSFontDescriptor")]
+#[cfg(feature = "NSFontDescriptor")]
 pub use self::__NSFontDescriptor::NSFontTraitsAttribute;
-#[cfg(feature = "AppKit_NSFontDescriptor")]
+#[cfg(feature = "NSFontDescriptor")]
 pub use self::__NSFontDescriptor::NSFontTransitionalSerifsClass;
-#[cfg(feature = "AppKit_NSFontDescriptor")]
+#[cfg(feature = "NSFontDescriptor")]
 pub use self::__NSFontDescriptor::NSFontUIOptimizedTrait;
-#[cfg(feature = "AppKit_NSFontDescriptor")]
+#[cfg(feature = "NSFontDescriptor")]
 pub use self::__NSFontDescriptor::NSFontUnknownClass;
-#[cfg(feature = "AppKit_NSFontDescriptor")]
+#[cfg(feature = "NSFontDescriptor")]
 pub use self::__NSFontDescriptor::NSFontVariationAttribute;
-#[cfg(feature = "AppKit_NSFontDescriptor")]
+#[cfg(feature = "NSFontDescriptor")]
 pub use self::__NSFontDescriptor::NSFontVariationAxisDefaultValueKey;
-#[cfg(feature = "AppKit_NSFontDescriptor")]
+#[cfg(feature = "NSFontDescriptor")]
 pub use self::__NSFontDescriptor::NSFontVariationAxisIdentifierKey;
-#[cfg(feature = "AppKit_NSFontDescriptor")]
+#[cfg(feature = "NSFontDescriptor")]
 pub use self::__NSFontDescriptor::NSFontVariationAxisMaximumValueKey;
-#[cfg(feature = "AppKit_NSFontDescriptor")]
+#[cfg(feature = "NSFontDescriptor")]
 pub use self::__NSFontDescriptor::NSFontVariationAxisMinimumValueKey;
-#[cfg(feature = "AppKit_NSFontDescriptor")]
+#[cfg(feature = "NSFontDescriptor")]
 pub use self::__NSFontDescriptor::NSFontVariationAxisNameKey;
-#[cfg(feature = "AppKit_NSFontDescriptor")]
+#[cfg(feature = "NSFontDescriptor")]
 pub use self::__NSFontDescriptor::NSFontVerticalTrait;
-#[cfg(feature = "AppKit_NSFontDescriptor")]
+#[cfg(feature = "NSFontDescriptor")]
 pub use self::__NSFontDescriptor::NSFontVisibleNameAttribute;
-#[cfg(feature = "AppKit_NSFontDescriptor")]
+#[cfg(feature = "NSFontDescriptor")]
 pub use self::__NSFontDescriptor::NSFontWeight;
-#[cfg(feature = "AppKit_NSFontDescriptor")]
+#[cfg(feature = "NSFontDescriptor")]
 pub use self::__NSFontDescriptor::NSFontWeightBlack;
-#[cfg(feature = "AppKit_NSFontDescriptor")]
+#[cfg(feature = "NSFontDescriptor")]
 pub use self::__NSFontDescriptor::NSFontWeightBold;
-#[cfg(feature = "AppKit_NSFontDescriptor")]
+#[cfg(feature = "NSFontDescriptor")]
 pub use self::__NSFontDescriptor::NSFontWeightHeavy;
-#[cfg(feature = "AppKit_NSFontDescriptor")]
+#[cfg(feature = "NSFontDescriptor")]
 pub use self::__NSFontDescriptor::NSFontWeightLight;
-#[cfg(feature = "AppKit_NSFontDescriptor")]
+#[cfg(feature = "NSFontDescriptor")]
 pub use self::__NSFontDescriptor::NSFontWeightMedium;
-#[cfg(feature = "AppKit_NSFontDescriptor")]
+#[cfg(feature = "NSFontDescriptor")]
 pub use self::__NSFontDescriptor::NSFontWeightRegular;
-#[cfg(feature = "AppKit_NSFontDescriptor")]
+#[cfg(feature = "NSFontDescriptor")]
 pub use self::__NSFontDescriptor::NSFontWeightSemibold;
-#[cfg(feature = "AppKit_NSFontDescriptor")]
+#[cfg(feature = "NSFontDescriptor")]
 pub use self::__NSFontDescriptor::NSFontWeightThin;
-#[cfg(feature = "AppKit_NSFontDescriptor")]
+#[cfg(feature = "NSFontDescriptor")]
 pub use self::__NSFontDescriptor::NSFontWeightTrait;
-#[cfg(feature = "AppKit_NSFontDescriptor")]
+#[cfg(feature = "NSFontDescriptor")]
 pub use self::__NSFontDescriptor::NSFontWeightUltraLight;
-#[cfg(feature = "AppKit_NSFontDescriptor")]
+#[cfg(feature = "NSFontDescriptor")]
 pub use self::__NSFontDescriptor::NSFontWidth;
-#[cfg(feature = "AppKit_NSFontDescriptor")]
+#[cfg(feature = "NSFontDescriptor")]
 pub use self::__NSFontDescriptor::NSFontWidthCompressed;
-#[cfg(feature = "AppKit_NSFontDescriptor")]
+#[cfg(feature = "NSFontDescriptor")]
 pub use self::__NSFontDescriptor::NSFontWidthCondensed;
-#[cfg(feature = "AppKit_NSFontDescriptor")]
+#[cfg(feature = "NSFontDescriptor")]
 pub use self::__NSFontDescriptor::NSFontWidthExpanded;
-#[cfg(feature = "AppKit_NSFontDescriptor")]
+#[cfg(feature = "NSFontDescriptor")]
 pub use self::__NSFontDescriptor::NSFontWidthStandard;
-#[cfg(feature = "AppKit_NSFontDescriptor")]
+#[cfg(feature = "NSFontDescriptor")]
 pub use self::__NSFontDescriptor::NSFontWidthTrait;
-#[cfg(feature = "AppKit_NSFontManager")]
+#[cfg(feature = "NSFontManager")]
 pub use self::__NSFontManager::NSFontAction;
-#[cfg(feature = "AppKit_NSFontManager")]
+#[cfg(feature = "NSFontManager")]
 pub use self::__NSFontManager::NSFontCollectionOptions;
-#[cfg(feature = "AppKit_NSFontManager")]
+#[cfg(feature = "NSFontManager")]
 pub use self::__NSFontManager::NSFontManager;
-#[cfg(feature = "AppKit_NSFontManager")]
+#[cfg(feature = "NSFontManager")]
 pub use self::__NSFontManager::NSFontTraitMask;
-#[cfg(feature = "AppKit_NSFontPanel")]
+#[cfg(feature = "NSFontPanel")]
 pub use self::__NSFontPanel::NSFPCurrentField;
-#[cfg(feature = "AppKit_NSFontPanel")]
+#[cfg(feature = "NSFontPanel")]
 pub use self::__NSFontPanel::NSFPPreviewButton;
-#[cfg(feature = "AppKit_NSFontPanel")]
+#[cfg(feature = "NSFontPanel")]
 pub use self::__NSFontPanel::NSFPPreviewField;
-#[cfg(feature = "AppKit_NSFontPanel")]
+#[cfg(feature = "NSFontPanel")]
 pub use self::__NSFontPanel::NSFPRevertButton;
-#[cfg(feature = "AppKit_NSFontPanel")]
+#[cfg(feature = "NSFontPanel")]
 pub use self::__NSFontPanel::NSFPSetButton;
-#[cfg(feature = "AppKit_NSFontPanel")]
+#[cfg(feature = "NSFontPanel")]
 pub use self::__NSFontPanel::NSFPSizeField;
-#[cfg(feature = "AppKit_NSFontPanel")]
+#[cfg(feature = "NSFontPanel")]
 pub use self::__NSFontPanel::NSFPSizeTitle;
-#[cfg(feature = "AppKit_NSFontPanel")]
+#[cfg(feature = "NSFontPanel")]
 pub use self::__NSFontPanel::NSFontChanging;
 #[cfg(all(
-    feature = "AppKit_NSFontPanel",
-    feature = "AppKit_NSPanel",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSWindow"
+    feature = "NSFontPanel",
+    feature = "NSPanel",
+    feature = "NSResponder",
+    feature = "NSWindow"
 ))]
 pub use self::__NSFontPanel::NSFontPanel;
-#[cfg(feature = "AppKit_NSFontPanel")]
+#[cfg(feature = "NSFontPanel")]
 pub use self::__NSFontPanel::NSFontPanelAllEffectsModeMask;
-#[cfg(feature = "AppKit_NSFontPanel")]
+#[cfg(feature = "NSFontPanel")]
 pub use self::__NSFontPanel::NSFontPanelAllModesMask;
-#[cfg(feature = "AppKit_NSFontPanel")]
+#[cfg(feature = "NSFontPanel")]
 pub use self::__NSFontPanel::NSFontPanelCollectionModeMask;
-#[cfg(feature = "AppKit_NSFontPanel")]
+#[cfg(feature = "NSFontPanel")]
 pub use self::__NSFontPanel::NSFontPanelDocumentColorEffectModeMask;
-#[cfg(feature = "AppKit_NSFontPanel")]
+#[cfg(feature = "NSFontPanel")]
 pub use self::__NSFontPanel::NSFontPanelFaceModeMask;
-#[cfg(feature = "AppKit_NSFontPanel")]
+#[cfg(feature = "NSFontPanel")]
 pub use self::__NSFontPanel::NSFontPanelModeMask;
-#[cfg(feature = "AppKit_NSFontPanel")]
+#[cfg(feature = "NSFontPanel")]
 pub use self::__NSFontPanel::NSFontPanelShadowEffectModeMask;
-#[cfg(feature = "AppKit_NSFontPanel")]
+#[cfg(feature = "NSFontPanel")]
 pub use self::__NSFontPanel::NSFontPanelSizeModeMask;
-#[cfg(feature = "AppKit_NSFontPanel")]
+#[cfg(feature = "NSFontPanel")]
 pub use self::__NSFontPanel::NSFontPanelStandardModesMask;
-#[cfg(feature = "AppKit_NSFontPanel")]
+#[cfg(feature = "NSFontPanel")]
 pub use self::__NSFontPanel::NSFontPanelStrikethroughEffectModeMask;
-#[cfg(feature = "AppKit_NSFontPanel")]
+#[cfg(feature = "NSFontPanel")]
 pub use self::__NSFontPanel::NSFontPanelTextColorEffectModeMask;
-#[cfg(feature = "AppKit_NSFontPanel")]
+#[cfg(feature = "NSFontPanel")]
 pub use self::__NSFontPanel::NSFontPanelUnderlineEffectModeMask;
 #[cfg(all(
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSForm",
-    feature = "AppKit_NSMatrix",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSView"
+    feature = "NSControl",
+    feature = "NSForm",
+    feature = "NSMatrix",
+    feature = "NSResponder",
+    feature = "NSView"
 ))]
 pub use self::__NSForm::NSForm;
-#[cfg(all(
-    feature = "AppKit_NSActionCell",
-    feature = "AppKit_NSCell",
-    feature = "AppKit_NSFormCell"
-))]
+#[cfg(all(feature = "NSActionCell", feature = "NSCell", feature = "NSFormCell"))]
 pub use self::__NSFormCell::NSFormCell;
-#[cfg(feature = "AppKit_NSGestureRecognizer")]
+#[cfg(feature = "NSGestureRecognizer")]
 pub use self::__NSGestureRecognizer::NSGestureRecognizer;
-#[cfg(feature = "AppKit_NSGestureRecognizer")]
+#[cfg(feature = "NSGestureRecognizer")]
 pub use self::__NSGestureRecognizer::NSGestureRecognizerDelegate;
-#[cfg(feature = "AppKit_NSGestureRecognizer")]
+#[cfg(feature = "NSGestureRecognizer")]
 pub use self::__NSGestureRecognizer::NSGestureRecognizerState;
-#[cfg(feature = "AppKit_NSGlyphGenerator")]
+#[cfg(feature = "NSGlyphGenerator")]
 pub use self::__NSGlyphGenerator::NSGlyphGenerator;
-#[cfg(feature = "AppKit_NSGlyphGenerator")]
+#[cfg(feature = "NSGlyphGenerator")]
 pub use self::__NSGlyphGenerator::NSGlyphStorage;
-#[cfg(feature = "AppKit_NSGlyphGenerator")]
+#[cfg(feature = "NSGlyphGenerator")]
 pub use self::__NSGlyphGenerator::NSShowControlGlyphs;
-#[cfg(feature = "AppKit_NSGlyphGenerator")]
+#[cfg(feature = "NSGlyphGenerator")]
 pub use self::__NSGlyphGenerator::NSShowInvisibleGlyphs;
-#[cfg(feature = "AppKit_NSGlyphGenerator")]
+#[cfg(feature = "NSGlyphGenerator")]
 pub use self::__NSGlyphGenerator::NSWantsBidiLevels;
-#[cfg(feature = "AppKit_NSGlyphInfo")]
+#[cfg(feature = "NSGlyphInfo")]
 pub use self::__NSGlyphInfo::NSCharacterCollection;
-#[cfg(feature = "AppKit_NSGlyphInfo")]
+#[cfg(feature = "NSGlyphInfo")]
 pub use self::__NSGlyphInfo::NSGlyphInfo;
-#[cfg(feature = "AppKit_NSGradient")]
+#[cfg(feature = "NSGradient")]
 pub use self::__NSGradient::NSGradient;
-#[cfg(feature = "AppKit_NSGradient")]
+#[cfg(feature = "NSGradient")]
 pub use self::__NSGradient::NSGradientDrawingOptions;
-#[cfg(feature = "AppKit_NSGraphics")]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSAnimationEffect;
-#[cfg(feature = "AppKit_NSGraphics")]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSAvailableWindowDepths;
-#[cfg(feature = "AppKit_NSGraphics")]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSBackingStoreType;
-#[cfg(feature = "AppKit_NSGraphics")]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSBeep;
-#[cfg(feature = "AppKit_NSGraphics")]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSBestDepth;
-#[cfg(feature = "AppKit_NSGraphics")]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSBitsPerPixelFromDepth;
-#[cfg(feature = "AppKit_NSGraphics")]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSBitsPerSampleFromDepth;
-#[cfg(feature = "AppKit_NSGraphics")]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSBlack;
-#[cfg(feature = "AppKit_NSGraphics")]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSCalibratedBlackColorSpace;
-#[cfg(feature = "AppKit_NSGraphics")]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSCalibratedRGBColorSpace;
-#[cfg(feature = "AppKit_NSGraphics")]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSCalibratedWhiteColorSpace;
-#[cfg(feature = "AppKit_NSGraphics")]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSColorRenderingIntent;
-#[cfg(feature = "AppKit_NSGraphics")]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSColorSpaceFromDepth;
-#[cfg(feature = "AppKit_NSGraphics")]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSColorSpaceName;
-#[cfg(feature = "AppKit_NSGraphics")]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSCompositeClear;
-#[cfg(feature = "AppKit_NSGraphics")]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSCompositeColor;
-#[cfg(feature = "AppKit_NSGraphics")]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSCompositeColorBurn;
-#[cfg(feature = "AppKit_NSGraphics")]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSCompositeColorDodge;
-#[cfg(feature = "AppKit_NSGraphics")]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSCompositeCopy;
-#[cfg(feature = "AppKit_NSGraphics")]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSCompositeDarken;
-#[cfg(feature = "AppKit_NSGraphics")]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSCompositeDestinationAtop;
-#[cfg(feature = "AppKit_NSGraphics")]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSCompositeDestinationIn;
-#[cfg(feature = "AppKit_NSGraphics")]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSCompositeDestinationOut;
-#[cfg(feature = "AppKit_NSGraphics")]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSCompositeDestinationOver;
-#[cfg(feature = "AppKit_NSGraphics")]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSCompositeDifference;
-#[cfg(feature = "AppKit_NSGraphics")]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSCompositeExclusion;
-#[cfg(feature = "AppKit_NSGraphics")]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSCompositeHardLight;
-#[cfg(feature = "AppKit_NSGraphics")]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSCompositeHighlight;
-#[cfg(feature = "AppKit_NSGraphics")]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSCompositeHue;
-#[cfg(feature = "AppKit_NSGraphics")]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSCompositeLighten;
-#[cfg(feature = "AppKit_NSGraphics")]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSCompositeLuminosity;
-#[cfg(feature = "AppKit_NSGraphics")]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSCompositeMultiply;
-#[cfg(feature = "AppKit_NSGraphics")]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSCompositeOverlay;
-#[cfg(feature = "AppKit_NSGraphics")]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSCompositePlusDarker;
-#[cfg(feature = "AppKit_NSGraphics")]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSCompositePlusLighter;
-#[cfg(feature = "AppKit_NSGraphics")]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSCompositeSaturation;
-#[cfg(feature = "AppKit_NSGraphics")]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSCompositeScreen;
-#[cfg(feature = "AppKit_NSGraphics")]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSCompositeSoftLight;
-#[cfg(feature = "AppKit_NSGraphics")]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSCompositeSourceAtop;
-#[cfg(feature = "AppKit_NSGraphics")]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSCompositeSourceIn;
-#[cfg(feature = "AppKit_NSGraphics")]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSCompositeSourceOut;
-#[cfg(feature = "AppKit_NSGraphics")]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSCompositeSourceOver;
-#[cfg(feature = "AppKit_NSGraphics")]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSCompositeXOR;
-#[cfg(feature = "AppKit_NSGraphics")]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSCompositingOperation;
-#[cfg(feature = "AppKit_NSGraphics")]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSCopyBits;
-#[cfg(feature = "AppKit_NSGraphics")]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSCountWindows;
-#[cfg(feature = "AppKit_NSGraphics")]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSCountWindowsForContext;
-#[cfg(feature = "AppKit_NSGraphics")]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSCustomColorSpace;
-#[cfg(feature = "AppKit_NSGraphics")]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSDarkGray;
-#[cfg(feature = "AppKit_NSGraphics")]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSDeviceBitsPerSample;
-#[cfg(feature = "AppKit_NSGraphics")]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSDeviceBlackColorSpace;
-#[cfg(feature = "AppKit_NSGraphics")]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSDeviceCMYKColorSpace;
-#[cfg(feature = "AppKit_NSGraphics")]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSDeviceColorSpaceName;
-#[cfg(feature = "AppKit_NSGraphics")]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSDeviceDescriptionKey;
-#[cfg(feature = "AppKit_NSGraphics")]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSDeviceIsPrinter;
-#[cfg(feature = "AppKit_NSGraphics")]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSDeviceIsScreen;
-#[cfg(feature = "AppKit_NSGraphics")]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSDeviceRGBColorSpace;
-#[cfg(feature = "AppKit_NSGraphics")]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSDeviceResolution;
-#[cfg(feature = "AppKit_NSGraphics")]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSDeviceSize;
-#[cfg(feature = "AppKit_NSGraphics")]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSDeviceWhiteColorSpace;
-#[cfg(feature = "AppKit_NSGraphics")]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSDisableScreenUpdates;
-#[cfg(feature = "AppKit_NSGraphics")]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSDisplayGamut;
-#[cfg(feature = "AppKit_NSGraphics")]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSDottedFrameRect;
-#[cfg(feature = "AppKit_NSGraphics")]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSDrawButton;
-#[cfg(all(feature = "AppKit_NSColor", feature = "AppKit_NSGraphics"))]
+#[cfg(all(feature = "NSColor", feature = "NSGraphics"))]
 pub use self::__NSGraphics::NSDrawColorTiledRects;
-#[cfg(feature = "AppKit_NSGraphics")]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSDrawDarkBezel;
-#[cfg(feature = "AppKit_NSGraphics")]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSDrawGrayBezel;
-#[cfg(feature = "AppKit_NSGraphics")]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSDrawGroove;
-#[cfg(feature = "AppKit_NSGraphics")]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSDrawLightBezel;
-#[cfg(feature = "AppKit_NSGraphics")]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSDrawTiledRects;
-#[cfg(feature = "AppKit_NSGraphics")]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSDrawWhiteBezel;
-#[cfg(feature = "AppKit_NSGraphics")]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSDrawWindowBackground;
-#[cfg(feature = "AppKit_NSGraphics")]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSEnableScreenUpdates;
-#[cfg(feature = "AppKit_NSGraphics")]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSEraseRect;
-#[cfg(feature = "AppKit_NSGraphics")]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSFocusRingPlacement;
-#[cfg(feature = "AppKit_NSGraphics")]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSFocusRingType;
-#[cfg(feature = "AppKit_NSGraphics")]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSFrameRect;
-#[cfg(feature = "AppKit_NSGraphics")]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSFrameRectWithWidth;
-#[cfg(feature = "AppKit_NSGraphics")]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSFrameRectWithWidthUsingOperation;
-#[cfg(feature = "AppKit_NSGraphics")]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSGetWindowServerMemory;
-#[cfg(feature = "AppKit_NSGraphics")]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSHighlightRect;
-#[cfg(feature = "AppKit_NSGraphics")]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSLightGray;
-#[cfg(feature = "AppKit_NSGraphics")]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSNamedColorSpace;
-#[cfg(feature = "AppKit_NSGraphics")]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSNumberOfColorComponents;
-#[cfg(feature = "AppKit_NSGraphics")]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSPatternColorSpace;
-#[cfg(feature = "AppKit_NSGraphics")]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSPlanarFromDepth;
-#[cfg(all(feature = "AppKit_NSColor", feature = "AppKit_NSGraphics"))]
+#[cfg(all(feature = "NSColor", feature = "NSGraphics"))]
 pub use self::__NSGraphics::NSReadPixel;
-#[cfg(feature = "AppKit_NSGraphics")]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSRectClip;
-#[cfg(feature = "AppKit_NSGraphics")]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSRectClipList;
-#[cfg(feature = "AppKit_NSGraphics")]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSRectFill;
-#[cfg(feature = "AppKit_NSGraphics")]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSRectFillList;
-#[cfg(feature = "AppKit_NSGraphics")]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSRectFillListUsingOperation;
-#[cfg(all(feature = "AppKit_NSColor", feature = "AppKit_NSGraphics"))]
+#[cfg(all(feature = "NSColor", feature = "NSGraphics"))]
 pub use self::__NSGraphics::NSRectFillListWithColors;
-#[cfg(all(feature = "AppKit_NSColor", feature = "AppKit_NSGraphics"))]
+#[cfg(all(feature = "NSColor", feature = "NSGraphics"))]
 pub use self::__NSGraphics::NSRectFillListWithColorsUsingOperation;
-#[cfg(feature = "AppKit_NSGraphics")]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSRectFillListWithGrays;
-#[cfg(feature = "AppKit_NSGraphics")]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSRectFillUsingOperation;
-#[cfg(feature = "AppKit_NSGraphics")]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSSetFocusRingStyle;
-#[cfg(feature = "AppKit_NSGraphics")]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSShowAnimationEffect;
-#[cfg(feature = "AppKit_NSGraphics")]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSWhite;
-#[cfg(feature = "AppKit_NSGraphics")]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSWindowDepth;
-#[cfg(feature = "AppKit_NSGraphics")]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSWindowList;
-#[cfg(feature = "AppKit_NSGraphics")]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSWindowListForContext;
-#[cfg(feature = "AppKit_NSGraphics")]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSWindowOrderingMode;
-#[cfg(feature = "AppKit_NSGraphicsContext")]
+#[cfg(feature = "NSGraphicsContext")]
 pub use self::__NSGraphicsContext::NSGraphicsContext;
-#[cfg(feature = "AppKit_NSGraphicsContext")]
+#[cfg(feature = "NSGraphicsContext")]
 pub use self::__NSGraphicsContext::NSGraphicsContextAttributeKey;
-#[cfg(feature = "AppKit_NSGraphicsContext")]
+#[cfg(feature = "NSGraphicsContext")]
 pub use self::__NSGraphicsContext::NSGraphicsContextDestinationAttributeName;
-#[cfg(feature = "AppKit_NSGraphicsContext")]
+#[cfg(feature = "NSGraphicsContext")]
 pub use self::__NSGraphicsContext::NSGraphicsContextPDFFormat;
-#[cfg(feature = "AppKit_NSGraphicsContext")]
+#[cfg(feature = "NSGraphicsContext")]
 pub use self::__NSGraphicsContext::NSGraphicsContextPSFormat;
-#[cfg(feature = "AppKit_NSGraphicsContext")]
+#[cfg(feature = "NSGraphicsContext")]
 pub use self::__NSGraphicsContext::NSGraphicsContextRepresentationFormatAttributeName;
-#[cfg(feature = "AppKit_NSGraphicsContext")]
+#[cfg(feature = "NSGraphicsContext")]
 pub use self::__NSGraphicsContext::NSGraphicsContextRepresentationFormatName;
-#[cfg(feature = "AppKit_NSGraphicsContext")]
+#[cfg(feature = "NSGraphicsContext")]
 pub use self::__NSGraphicsContext::NSImageInterpolation;
-#[cfg(feature = "AppKit_NSGridView")]
+#[cfg(feature = "NSGridView")]
 pub use self::__NSGridView::NSGridCell;
-#[cfg(feature = "AppKit_NSGridView")]
+#[cfg(feature = "NSGridView")]
 pub use self::__NSGridView::NSGridCellPlacement;
-#[cfg(feature = "AppKit_NSGridView")]
+#[cfg(feature = "NSGridView")]
 pub use self::__NSGridView::NSGridColumn;
-#[cfg(feature = "AppKit_NSGridView")]
+#[cfg(feature = "NSGridView")]
 pub use self::__NSGridView::NSGridRow;
-#[cfg(feature = "AppKit_NSGridView")]
+#[cfg(feature = "NSGridView")]
 pub use self::__NSGridView::NSGridRowAlignment;
-#[cfg(all(
-    feature = "AppKit_NSGridView",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSView"
-))]
+#[cfg(all(feature = "NSGridView", feature = "NSResponder", feature = "NSView"))]
 pub use self::__NSGridView::NSGridView;
-#[cfg(feature = "AppKit_NSGridView")]
+#[cfg(feature = "NSGridView")]
 pub use self::__NSGridView::NSGridViewSizeForContent;
-#[cfg(all(
-    feature = "AppKit_NSGroupTouchBarItem",
-    feature = "AppKit_NSTouchBarItem"
-))]
+#[cfg(all(feature = "NSGroupTouchBarItem", feature = "NSTouchBarItem"))]
 pub use self::__NSGroupTouchBarItem::NSGroupTouchBarItem;
-#[cfg(feature = "AppKit_NSHapticFeedback")]
+#[cfg(feature = "NSHapticFeedback")]
 pub use self::__NSHapticFeedback::NSHapticFeedbackManager;
-#[cfg(feature = "AppKit_NSHapticFeedback")]
+#[cfg(feature = "NSHapticFeedback")]
 pub use self::__NSHapticFeedback::NSHapticFeedbackPattern;
-#[cfg(feature = "AppKit_NSHapticFeedback")]
+#[cfg(feature = "NSHapticFeedback")]
 pub use self::__NSHapticFeedback::NSHapticFeedbackPerformanceTime;
-#[cfg(feature = "AppKit_NSHapticFeedback")]
+#[cfg(feature = "NSHapticFeedback")]
 pub use self::__NSHapticFeedback::NSHapticFeedbackPerformer;
-#[cfg(feature = "AppKit_NSHelpManager")]
+#[cfg(feature = "NSHelpManager")]
 pub use self::__NSHelpManager::NSBundleHelpExtension;
-#[cfg(feature = "AppKit_NSHelpManager")]
+#[cfg(feature = "NSHelpManager")]
 pub use self::__NSHelpManager::NSContextHelpModeDidActivateNotification;
-#[cfg(feature = "AppKit_NSHelpManager")]
+#[cfg(feature = "NSHelpManager")]
 pub use self::__NSHelpManager::NSContextHelpModeDidDeactivateNotification;
-#[cfg(feature = "AppKit_NSHelpManager")]
+#[cfg(feature = "NSHelpManager")]
 pub use self::__NSHelpManager::NSHelpAnchorName;
-#[cfg(feature = "AppKit_NSHelpManager")]
+#[cfg(feature = "NSHelpManager")]
 pub use self::__NSHelpManager::NSHelpBookName;
-#[cfg(feature = "AppKit_NSHelpManager")]
+#[cfg(feature = "NSHelpManager")]
 pub use self::__NSHelpManager::NSHelpManager;
-#[cfg(feature = "AppKit_NSHelpManager")]
+#[cfg(feature = "NSHelpManager")]
 pub use self::__NSHelpManager::NSHelpManagerContextHelpKey;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSBundleImageExtension;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImage;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageCacheMode;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageDelegate;
-#[cfg(all(feature = "AppKit_NSImage", feature = "AppKit_NSImageRep"))]
+#[cfg(all(feature = "NSImage", feature = "NSImageRep"))]
 pub use self::__NSImage::NSImageHintCTM;
-#[cfg(all(feature = "AppKit_NSImage", feature = "AppKit_NSImageRep"))]
+#[cfg(all(feature = "NSImage", feature = "NSImageRep"))]
 pub use self::__NSImage::NSImageHintInterpolation;
-#[cfg(all(feature = "AppKit_NSImage", feature = "AppKit_NSImageRep"))]
+#[cfg(all(feature = "NSImage", feature = "NSImageRep"))]
 pub use self::__NSImage::NSImageHintUserInterfaceLayoutDirection;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageLoadStatus;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageName;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameActionTemplate;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameAddTemplate;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameAdvanced;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameApplicationIcon;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameBluetoothTemplate;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameBonjour;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameBookmarksTemplate;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameCaution;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameColorPanel;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameColumnViewTemplate;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameComputer;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameDotMac;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameEnterFullScreenTemplate;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameEveryone;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameExitFullScreenTemplate;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameFlowViewTemplate;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameFolder;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameFolderBurnable;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameFolderSmart;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameFollowLinkFreestandingTemplate;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameFontPanel;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameGoBackTemplate;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameGoForwardTemplate;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameGoLeftTemplate;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameGoRightTemplate;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameHomeTemplate;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameIChatTheaterTemplate;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameIconViewTemplate;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameInfo;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameInvalidDataFreestandingTemplate;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameLeftFacingTriangleTemplate;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameListViewTemplate;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameLockLockedTemplate;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameLockUnlockedTemplate;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameMenuMixedStateTemplate;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameMenuOnStateTemplate;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameMobileMe;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameMultipleDocuments;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameNetwork;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNamePathTemplate;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNamePreferencesGeneral;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameQuickLookTemplate;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameRefreshFreestandingTemplate;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameRefreshTemplate;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameRemoveTemplate;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameRevealFreestandingTemplate;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameRightFacingTriangleTemplate;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameShareTemplate;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameSlideshowTemplate;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameSmartBadgeTemplate;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameStatusAvailable;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameStatusNone;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameStatusPartiallyAvailable;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameStatusUnavailable;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameStopProgressFreestandingTemplate;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameStopProgressTemplate;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameTouchBarAddDetailTemplate;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameTouchBarAddTemplate;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameTouchBarAlarmTemplate;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameTouchBarAudioInputMuteTemplate;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameTouchBarAudioInputTemplate;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameTouchBarAudioOutputMuteTemplate;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameTouchBarAudioOutputVolumeHighTemplate;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameTouchBarAudioOutputVolumeLowTemplate;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameTouchBarAudioOutputVolumeMediumTemplate;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameTouchBarAudioOutputVolumeOffTemplate;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameTouchBarBookmarksTemplate;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameTouchBarColorPickerFill;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameTouchBarColorPickerFont;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameTouchBarColorPickerStroke;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameTouchBarCommunicationAudioTemplate;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameTouchBarCommunicationVideoTemplate;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameTouchBarComposeTemplate;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameTouchBarDeleteTemplate;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameTouchBarDownloadTemplate;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameTouchBarEnterFullScreenTemplate;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameTouchBarExitFullScreenTemplate;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameTouchBarFastForwardTemplate;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameTouchBarFolderCopyToTemplate;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameTouchBarFolderMoveToTemplate;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameTouchBarFolderTemplate;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameTouchBarGetInfoTemplate;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameTouchBarGoBackTemplate;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameTouchBarGoDownTemplate;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameTouchBarGoForwardTemplate;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameTouchBarGoUpTemplate;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameTouchBarHistoryTemplate;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameTouchBarIconViewTemplate;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameTouchBarListViewTemplate;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameTouchBarMailTemplate;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameTouchBarNewFolderTemplate;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameTouchBarNewMessageTemplate;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameTouchBarOpenInBrowserTemplate;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameTouchBarPauseTemplate;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameTouchBarPlayPauseTemplate;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameTouchBarPlayTemplate;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameTouchBarPlayheadTemplate;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameTouchBarQuickLookTemplate;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameTouchBarRecordStartTemplate;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameTouchBarRecordStopTemplate;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameTouchBarRefreshTemplate;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameTouchBarRemoveTemplate;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameTouchBarRewindTemplate;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameTouchBarRotateLeftTemplate;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameTouchBarRotateRightTemplate;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameTouchBarSearchTemplate;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameTouchBarShareTemplate;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameTouchBarSidebarTemplate;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameTouchBarSkipAhead15SecondsTemplate;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameTouchBarSkipAhead30SecondsTemplate;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameTouchBarSkipAheadTemplate;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameTouchBarSkipBack15SecondsTemplate;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameTouchBarSkipBack30SecondsTemplate;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameTouchBarSkipBackTemplate;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameTouchBarSkipToEndTemplate;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameTouchBarSkipToStartTemplate;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameTouchBarSlideshowTemplate;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameTouchBarTagIconTemplate;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameTouchBarTextBoldTemplate;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameTouchBarTextBoxTemplate;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameTouchBarTextCenterAlignTemplate;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameTouchBarTextItalicTemplate;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameTouchBarTextJustifiedAlignTemplate;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameTouchBarTextLeftAlignTemplate;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameTouchBarTextListTemplate;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameTouchBarTextRightAlignTemplate;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameTouchBarTextStrikethroughTemplate;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameTouchBarTextUnderlineTemplate;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameTouchBarUserAddTemplate;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameTouchBarUserGroupTemplate;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameTouchBarUserTemplate;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameTouchBarVolumeDownTemplate;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameTouchBarVolumeUpTemplate;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameTrashEmpty;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameTrashFull;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameUser;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameUserAccounts;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameUserGroup;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameUserGuest;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageSymbolConfiguration;
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageSymbolScale;
-#[cfg(feature = "AppKit_NSImageCell")]
+#[cfg(feature = "NSImageCell")]
 pub use self::__NSImageCell::NSImageAlignment;
-#[cfg(all(feature = "AppKit_NSCell", feature = "AppKit_NSImageCell"))]
+#[cfg(all(feature = "NSCell", feature = "NSImageCell"))]
 pub use self::__NSImageCell::NSImageCell;
-#[cfg(feature = "AppKit_NSImageCell")]
+#[cfg(feature = "NSImageCell")]
 pub use self::__NSImageCell::NSImageFrameStyle;
-#[cfg(feature = "AppKit_NSImageRep")]
+#[cfg(feature = "NSImageRep")]
 pub use self::__NSImageRep::NSImageHintKey;
-#[cfg(feature = "AppKit_NSImageRep")]
+#[cfg(feature = "NSImageRep")]
 pub use self::__NSImageRep::NSImageLayoutDirection;
-#[cfg(feature = "AppKit_NSImageRep")]
+#[cfg(feature = "NSImageRep")]
 pub use self::__NSImageRep::NSImageRep;
-#[cfg(feature = "AppKit_NSImageRep")]
+#[cfg(feature = "NSImageRep")]
 pub use self::__NSImageRep::NSImageRepMatchesDevice;
-#[cfg(feature = "AppKit_NSImageRep")]
+#[cfg(feature = "NSImageRep")]
 pub use self::__NSImageRep::NSImageRepRegistryDidChangeNotification;
-#[cfg(feature = "AppKit_NSImageView")]
+#[cfg(feature = "NSImageView")]
 pub use self::__NSImageView::NSImageDynamicRange;
 #[cfg(all(
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSImageView",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSView"
+    feature = "NSControl",
+    feature = "NSImageView",
+    feature = "NSResponder",
+    feature = "NSView"
 ))]
 pub use self::__NSImageView::NSImageView;
-#[cfg(feature = "AppKit_NSInputManager")]
+#[cfg(feature = "NSInputManager")]
 pub use self::__NSInputManager::NSInputManager;
-#[cfg(feature = "AppKit_NSInputManager")]
+#[cfg(feature = "NSInputManager")]
 pub use self::__NSInputManager::NSTextInput;
-#[cfg(feature = "AppKit_NSInputServer")]
+#[cfg(feature = "NSInputServer")]
 pub use self::__NSInputServer::NSInputServer;
-#[cfg(feature = "AppKit_NSInputServer")]
+#[cfg(feature = "NSInputServer")]
 pub use self::__NSInputServer::NSInputServerMouseTracker;
-#[cfg(feature = "AppKit_NSInputServer")]
+#[cfg(feature = "NSInputServer")]
 pub use self::__NSInputServer::NSInputServiceProvider;
-#[cfg(feature = "AppKit_NSInterfaceStyle")]
+#[cfg(feature = "NSInterfaceStyle")]
 pub use self::__NSInterfaceStyle::NSInterfaceStyle;
-#[cfg(feature = "AppKit_NSInterfaceStyle")]
+#[cfg(feature = "NSInterfaceStyle")]
 pub use self::__NSInterfaceStyle::NSInterfaceStyleDefault;
-#[cfg(all(feature = "AppKit_NSInterfaceStyle", feature = "AppKit_NSResponder"))]
+#[cfg(all(feature = "NSInterfaceStyle", feature = "NSResponder"))]
 pub use self::__NSInterfaceStyle::NSInterfaceStyleForKey;
-#[cfg(feature = "AppKit_NSInterfaceStyle")]
+#[cfg(feature = "NSInterfaceStyle")]
 pub use self::__NSInterfaceStyle::NSMacintoshInterfaceStyle;
-#[cfg(feature = "AppKit_NSInterfaceStyle")]
+#[cfg(feature = "NSInterfaceStyle")]
 pub use self::__NSInterfaceStyle::NSNextStepInterfaceStyle;
-#[cfg(feature = "AppKit_NSInterfaceStyle")]
+#[cfg(feature = "NSInterfaceStyle")]
 pub use self::__NSInterfaceStyle::NSNoInterfaceStyle;
-#[cfg(feature = "AppKit_NSInterfaceStyle")]
+#[cfg(feature = "NSInterfaceStyle")]
 pub use self::__NSInterfaceStyle::NSWindows95InterfaceStyle;
-#[cfg(feature = "AppKit_NSItemProvider")]
+#[cfg(feature = "NSItemProvider")]
 pub use self::__NSItemProvider::NSItemProviderNSItemSourceInfo;
-#[cfg(feature = "AppKit_NSItemProvider")]
+#[cfg(feature = "NSItemProvider")]
 pub use self::__NSItemProvider::NSTypeIdentifierAddressText;
-#[cfg(feature = "AppKit_NSItemProvider")]
+#[cfg(feature = "NSItemProvider")]
 pub use self::__NSItemProvider::NSTypeIdentifierDateText;
-#[cfg(feature = "AppKit_NSItemProvider")]
+#[cfg(feature = "NSItemProvider")]
 pub use self::__NSItemProvider::NSTypeIdentifierPhoneNumberText;
-#[cfg(feature = "AppKit_NSItemProvider")]
+#[cfg(feature = "NSItemProvider")]
 pub use self::__NSItemProvider::NSTypeIdentifierTransitInformationText;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSAlignmentBinding;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSAllowsEditingMultipleValuesSelectionBindingOption;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSAllowsNullArgumentBindingOption;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSAlternateImageBinding;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSAlternateTitleBinding;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSAlwaysPresentsApplicationModalAlertsBindingOption;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSAnimateBinding;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSAnimationDelayBinding;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSArgumentBinding;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSAttributedStringBinding;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSBindingInfoKey;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSBindingName;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSBindingOption;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSBindingSelectionMarker;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSConditionallySetsEditableBindingOption;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSConditionallySetsEnabledBindingOption;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSConditionallySetsHiddenBindingOption;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSContentArrayBinding;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSContentArrayForMultipleSelectionBinding;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSContentBinding;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSContentDictionaryBinding;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSContentHeightBinding;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSContentObjectBinding;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSContentObjectsBinding;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSContentPlacementTagBindingOption;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSContentSetBinding;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSContentValuesBinding;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSContentWidthBinding;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSContinuouslyUpdatesValueBindingOption;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSCreatesSortDescriptorBindingOption;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSCriticalValueBinding;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSDataBinding;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSDeletesObjectsOnRemoveBindingsOption;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSDisplayNameBindingOption;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSDisplayPatternBindingOption;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSDisplayPatternTitleBinding;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSDisplayPatternValueBinding;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSDocumentEditedBinding;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSDoubleClickArgumentBinding;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSDoubleClickTargetBinding;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSEditableBinding;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSEditor;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSEditorRegistration;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSEnabledBinding;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSExcludedKeysBinding;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSFilterPredicateBinding;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSFontBinding;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSFontBoldBinding;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSFontFamilyNameBinding;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSFontItalicBinding;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSFontNameBinding;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSFontSizeBinding;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSHandlesContentAsCompoundValueBindingOption;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSHeaderTitleBinding;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSHiddenBinding;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSImageBinding;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSIncludedKeysBinding;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSInitialKeyBinding;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSInitialValueBinding;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSInsertsNullPlaceholderBindingOption;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSInvokesSeparatelyWithArrayObjectsBindingOption;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSIsControllerMarker;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSIsIndeterminateBinding;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSLabelBinding;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSLocalizedKeyDictionaryBinding;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSManagedObjectContextBinding;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSMaxValueBinding;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSMaxWidthBinding;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSMaximumRecentsBinding;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSMinValueBinding;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSMinWidthBinding;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSMixedStateImageBinding;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSMultipleValuesMarker;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSMultipleValuesPlaceholderBindingOption;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSNoSelectionMarker;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSNoSelectionPlaceholderBindingOption;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSNotApplicableMarker;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSNotApplicablePlaceholderBindingOption;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSNullPlaceholderBindingOption;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSObjectNSKeyValueBindingCreation;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSObservedKeyPathKey;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSObservedObjectKey;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSOffStateImageBinding;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSOnStateImageBinding;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSOptionsKey;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSPositioningRectBinding;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSPredicateBinding;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSPredicateFormatBindingOption;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSRaisesForNotApplicableKeysBindingOption;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSRecentSearchesBinding;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSRepresentedFilenameBinding;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSRowHeightBinding;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSSelectedIdentifierBinding;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSSelectedIndexBinding;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSSelectedLabelBinding;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSSelectedObjectBinding;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSSelectedObjectsBinding;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSSelectedTagBinding;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSSelectedValueBinding;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSSelectedValuesBinding;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSSelectionIndexPathsBinding;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSSelectionIndexesBinding;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSSelectorNameBindingOption;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSSelectsAllWhenSettingContentBindingOption;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSSortDescriptorsBinding;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSTargetBinding;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSTextColorBinding;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSTitleBinding;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSToolTipBinding;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSTransparentBinding;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSValidatesImmediatelyBindingOption;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSValueBinding;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSValuePathBinding;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSValueTransformerBindingOption;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSValueTransformerNameBindingOption;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSValueURLBinding;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSVisibleBinding;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSWarningValueBinding;
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 pub use self::__NSKeyValueBinding::NSWidthBinding;
-#[cfg(feature = "AppKit_NSLayoutAnchor")]
+#[cfg(feature = "NSLayoutAnchor")]
 pub use self::__NSLayoutAnchor::NSLayoutAnchor;
-#[cfg(feature = "AppKit_NSLayoutAnchor")]
+#[cfg(feature = "NSLayoutAnchor")]
 pub use self::__NSLayoutAnchor::NSLayoutDimension;
-#[cfg(feature = "AppKit_NSLayoutAnchor")]
+#[cfg(feature = "NSLayoutAnchor")]
 pub use self::__NSLayoutAnchor::NSLayoutXAxisAnchor;
-#[cfg(feature = "AppKit_NSLayoutAnchor")]
+#[cfg(feature = "NSLayoutAnchor")]
 pub use self::__NSLayoutAnchor::NSLayoutYAxisAnchor;
-#[cfg(feature = "AppKit_NSLayoutConstraint")]
+#[cfg(feature = "NSLayoutConstraint")]
 pub use self::__NSLayoutConstraint::NSLayoutAttribute;
-#[cfg(feature = "AppKit_NSLayoutConstraint")]
+#[cfg(feature = "NSLayoutConstraint")]
 pub use self::__NSLayoutConstraint::NSLayoutConstraint;
-#[cfg(feature = "AppKit_NSLayoutConstraint")]
+#[cfg(feature = "NSLayoutConstraint")]
 pub use self::__NSLayoutConstraint::NSLayoutConstraintOrientation;
-#[cfg(feature = "AppKit_NSLayoutConstraint")]
+#[cfg(feature = "NSLayoutConstraint")]
 pub use self::__NSLayoutConstraint::NSLayoutFormatOptions;
-#[cfg(feature = "AppKit_NSLayoutConstraint")]
+#[cfg(feature = "NSLayoutConstraint")]
 pub use self::__NSLayoutConstraint::NSLayoutPriority;
-#[cfg(feature = "AppKit_NSLayoutConstraint")]
+#[cfg(feature = "NSLayoutConstraint")]
 pub use self::__NSLayoutConstraint::NSLayoutPriorityDefaultHigh;
-#[cfg(feature = "AppKit_NSLayoutConstraint")]
+#[cfg(feature = "NSLayoutConstraint")]
 pub use self::__NSLayoutConstraint::NSLayoutPriorityDefaultLow;
-#[cfg(feature = "AppKit_NSLayoutConstraint")]
+#[cfg(feature = "NSLayoutConstraint")]
 pub use self::__NSLayoutConstraint::NSLayoutPriorityDragThatCanResizeWindow;
-#[cfg(feature = "AppKit_NSLayoutConstraint")]
+#[cfg(feature = "NSLayoutConstraint")]
 pub use self::__NSLayoutConstraint::NSLayoutPriorityDragThatCannotResizeWindow;
-#[cfg(feature = "AppKit_NSLayoutConstraint")]
+#[cfg(feature = "NSLayoutConstraint")]
 pub use self::__NSLayoutConstraint::NSLayoutPriorityFittingSizeCompression;
-#[cfg(feature = "AppKit_NSLayoutConstraint")]
+#[cfg(feature = "NSLayoutConstraint")]
 pub use self::__NSLayoutConstraint::NSLayoutPriorityRequired;
-#[cfg(feature = "AppKit_NSLayoutConstraint")]
+#[cfg(feature = "NSLayoutConstraint")]
 pub use self::__NSLayoutConstraint::NSLayoutPriorityWindowSizeStayPut;
-#[cfg(feature = "AppKit_NSLayoutConstraint")]
+#[cfg(feature = "NSLayoutConstraint")]
 pub use self::__NSLayoutConstraint::NSLayoutRelation;
-#[cfg(feature = "AppKit_NSLayoutConstraint")]
+#[cfg(feature = "NSLayoutConstraint")]
 pub use self::__NSLayoutConstraint::NSViewNoInstrinsicMetric;
-#[cfg(feature = "AppKit_NSLayoutConstraint")]
+#[cfg(feature = "NSLayoutConstraint")]
 pub use self::__NSLayoutConstraint::NSViewNoIntrinsicMetric;
-#[cfg(feature = "AppKit_NSLayoutGuide")]
+#[cfg(feature = "NSLayoutGuide")]
 pub use self::__NSLayoutGuide::NSLayoutGuide;
-#[cfg(feature = "AppKit_NSLayoutManager")]
+#[cfg(feature = "NSLayoutManager")]
 pub use self::__NSLayoutManager::NSControlCharacterAction;
-#[cfg(feature = "AppKit_NSLayoutManager")]
+#[cfg(feature = "NSLayoutManager")]
 pub use self::__NSLayoutManager::NSGlyphAttributeBidiLevel;
-#[cfg(feature = "AppKit_NSLayoutManager")]
+#[cfg(feature = "NSLayoutManager")]
 pub use self::__NSLayoutManager::NSGlyphAttributeElastic;
-#[cfg(feature = "AppKit_NSLayoutManager")]
+#[cfg(feature = "NSLayoutManager")]
 pub use self::__NSLayoutManager::NSGlyphAttributeInscribe;
-#[cfg(feature = "AppKit_NSLayoutManager")]
+#[cfg(feature = "NSLayoutManager")]
 pub use self::__NSLayoutManager::NSGlyphAttributeSoft;
-#[cfg(feature = "AppKit_NSLayoutManager")]
+#[cfg(feature = "NSLayoutManager")]
 pub use self::__NSLayoutManager::NSGlyphInscription;
-#[cfg(feature = "AppKit_NSLayoutManager")]
+#[cfg(feature = "NSLayoutManager")]
 pub use self::__NSLayoutManager::NSGlyphProperty;
-#[cfg(feature = "AppKit_NSLayoutManager")]
+#[cfg(feature = "NSLayoutManager")]
 pub use self::__NSLayoutManager::NSLayoutManager;
-#[cfg(feature = "AppKit_NSLayoutManager")]
+#[cfg(feature = "NSLayoutManager")]
 pub use self::__NSLayoutManager::NSLayoutManagerDelegate;
-#[cfg(feature = "AppKit_NSLayoutManager")]
+#[cfg(feature = "NSLayoutManager")]
 pub use self::__NSLayoutManager::NSTextLayoutOrientation;
-#[cfg(feature = "AppKit_NSLayoutManager")]
+#[cfg(feature = "NSLayoutManager")]
 pub use self::__NSLayoutManager::NSTextLayoutOrientationProvider;
-#[cfg(feature = "AppKit_NSLayoutManager")]
+#[cfg(feature = "NSLayoutManager")]
 pub use self::__NSLayoutManager::NSTypesetterBehavior;
 #[cfg(all(
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSLevelIndicator",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSView"
+    feature = "NSControl",
+    feature = "NSLevelIndicator",
+    feature = "NSResponder",
+    feature = "NSView"
 ))]
 pub use self::__NSLevelIndicator::NSLevelIndicator;
-#[cfg(feature = "AppKit_NSLevelIndicator")]
+#[cfg(feature = "NSLevelIndicator")]
 pub use self::__NSLevelIndicator::NSLevelIndicatorPlaceholderVisibility;
-#[cfg(feature = "AppKit_NSLevelIndicatorCell")]
+#[cfg(feature = "NSLevelIndicatorCell")]
 pub use self::__NSLevelIndicatorCell::NSContinuousCapacityLevelIndicatorStyle;
-#[cfg(feature = "AppKit_NSLevelIndicatorCell")]
+#[cfg(feature = "NSLevelIndicatorCell")]
 pub use self::__NSLevelIndicatorCell::NSDiscreteCapacityLevelIndicatorStyle;
 #[cfg(all(
-    feature = "AppKit_NSActionCell",
-    feature = "AppKit_NSCell",
-    feature = "AppKit_NSLevelIndicatorCell"
+    feature = "NSActionCell",
+    feature = "NSCell",
+    feature = "NSLevelIndicatorCell"
 ))]
 pub use self::__NSLevelIndicatorCell::NSLevelIndicatorCell;
-#[cfg(feature = "AppKit_NSLevelIndicatorCell")]
+#[cfg(feature = "NSLevelIndicatorCell")]
 pub use self::__NSLevelIndicatorCell::NSLevelIndicatorStyle;
-#[cfg(feature = "AppKit_NSLevelIndicatorCell")]
+#[cfg(feature = "NSLevelIndicatorCell")]
 pub use self::__NSLevelIndicatorCell::NSRatingLevelIndicatorStyle;
-#[cfg(feature = "AppKit_NSLevelIndicatorCell")]
+#[cfg(feature = "NSLevelIndicatorCell")]
 pub use self::__NSLevelIndicatorCell::NSRelevancyLevelIndicatorStyle;
 #[cfg(all(
-    feature = "AppKit_NSGestureRecognizer",
-    feature = "AppKit_NSMagnificationGestureRecognizer"
+    feature = "NSGestureRecognizer",
+    feature = "NSMagnificationGestureRecognizer"
 ))]
 pub use self::__NSMagnificationGestureRecognizer::NSMagnificationGestureRecognizer;
 #[cfg(all(
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSMatrix",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSView"
+    feature = "NSControl",
+    feature = "NSMatrix",
+    feature = "NSResponder",
+    feature = "NSView"
 ))]
 pub use self::__NSMatrix::NSMatrix;
-#[cfg(all(feature = "AppKit_NSControl", feature = "AppKit_NSMatrix"))]
+#[cfg(all(feature = "NSControl", feature = "NSMatrix"))]
 pub use self::__NSMatrix::NSMatrixDelegate;
-#[cfg(feature = "AppKit_NSMatrix")]
+#[cfg(feature = "NSMatrix")]
 pub use self::__NSMatrix::NSMatrixMode;
-#[cfg(feature = "AppKit_NSMediaLibraryBrowserController")]
+#[cfg(feature = "NSMediaLibraryBrowserController")]
 pub use self::__NSMediaLibraryBrowserController::NSMediaLibrary;
-#[cfg(feature = "AppKit_NSMediaLibraryBrowserController")]
+#[cfg(feature = "NSMediaLibraryBrowserController")]
 pub use self::__NSMediaLibraryBrowserController::NSMediaLibraryBrowserController;
-#[cfg(feature = "AppKit_NSMenu")]
+#[cfg(feature = "NSMenu")]
 pub use self::__NSMenu::NSMenu;
-#[cfg(feature = "AppKit_NSMenu")]
+#[cfg(feature = "NSMenu")]
 pub use self::__NSMenu::NSMenuDelegate;
-#[cfg(feature = "AppKit_NSMenu")]
+#[cfg(feature = "NSMenu")]
 pub use self::__NSMenu::NSMenuDidAddItemNotification;
-#[cfg(feature = "AppKit_NSMenu")]
+#[cfg(feature = "NSMenu")]
 pub use self::__NSMenu::NSMenuDidBeginTrackingNotification;
-#[cfg(feature = "AppKit_NSMenu")]
+#[cfg(feature = "NSMenu")]
 pub use self::__NSMenu::NSMenuDidChangeItemNotification;
-#[cfg(feature = "AppKit_NSMenu")]
+#[cfg(feature = "NSMenu")]
 pub use self::__NSMenu::NSMenuDidEndTrackingNotification;
-#[cfg(feature = "AppKit_NSMenu")]
+#[cfg(feature = "NSMenu")]
 pub use self::__NSMenu::NSMenuDidRemoveItemNotification;
-#[cfg(feature = "AppKit_NSMenu")]
+#[cfg(feature = "NSMenu")]
 pub use self::__NSMenu::NSMenuDidSendActionNotification;
-#[cfg(feature = "AppKit_NSMenu")]
+#[cfg(feature = "NSMenu")]
 pub use self::__NSMenu::NSMenuItemValidation;
-#[cfg(feature = "AppKit_NSMenu")]
+#[cfg(feature = "NSMenu")]
 pub use self::__NSMenu::NSMenuPresentationStyle;
-#[cfg(feature = "AppKit_NSMenu")]
+#[cfg(feature = "NSMenu")]
 pub use self::__NSMenu::NSMenuProperties;
-#[cfg(feature = "AppKit_NSMenu")]
+#[cfg(feature = "NSMenu")]
 pub use self::__NSMenu::NSMenuSelectionMode;
-#[cfg(feature = "AppKit_NSMenu")]
+#[cfg(feature = "NSMenu")]
 pub use self::__NSMenu::NSMenuWillSendActionNotification;
-#[cfg(feature = "AppKit_NSMenuItem")]
+#[cfg(feature = "NSMenuItem")]
 pub use self::__NSMenuItem::NSMenuItem;
-#[cfg(all(
-    feature = "AppKit_NSMenuItem",
-    feature = "AppKit_NSUserInterfaceItemIdentification"
-))]
+#[cfg(all(feature = "NSMenuItem", feature = "NSUserInterfaceItemIdentification"))]
 pub use self::__NSMenuItem::NSMenuItemImportFromDeviceIdentifier;
-#[cfg(feature = "AppKit_NSMenuItemBadge")]
+#[cfg(feature = "NSMenuItemBadge")]
 pub use self::__NSMenuItemBadge::NSMenuItemBadge;
-#[cfg(feature = "AppKit_NSMenuItemBadge")]
+#[cfg(feature = "NSMenuItemBadge")]
 pub use self::__NSMenuItemBadge::NSMenuItemBadgeType;
 #[cfg(all(
-    feature = "AppKit_NSActionCell",
-    feature = "AppKit_NSButtonCell",
-    feature = "AppKit_NSCell",
-    feature = "AppKit_NSMenuItemCell"
+    feature = "NSActionCell",
+    feature = "NSButtonCell",
+    feature = "NSCell",
+    feature = "NSMenuItemCell"
 ))]
 pub use self::__NSMenuItemCell::NSMenuItemCell;
-#[cfg(all(feature = "AppKit_NSMenuToolbarItem", feature = "AppKit_NSToolbarItem"))]
+#[cfg(all(feature = "NSMenuToolbarItem", feature = "NSToolbarItem"))]
 pub use self::__NSMenuToolbarItem::NSMenuToolbarItem;
-#[cfg(feature = "AppKit_NSMovie")]
+#[cfg(feature = "NSMovie")]
 pub use self::__NSMovie::NSMovie;
-#[cfg(feature = "AppKit_NSNib")]
+#[cfg(feature = "NSNib")]
 pub use self::__NSNib::NSNib;
-#[cfg(feature = "AppKit_NSNib")]
+#[cfg(feature = "NSNib")]
 pub use self::__NSNib::NSNibName;
-#[cfg(feature = "AppKit_NSNib")]
+#[cfg(feature = "NSNib")]
 pub use self::__NSNib::NSNibOwner;
-#[cfg(feature = "AppKit_NSNib")]
+#[cfg(feature = "NSNib")]
 pub use self::__NSNib::NSNibTopLevelObjects;
-#[cfg(feature = "AppKit_NSNibLoading")]
+#[cfg(feature = "NSNibLoading")]
 pub use self::__NSNibLoading::NSObjectNSNibAwaking;
-#[cfg(all(feature = "AppKit_NSController", feature = "AppKit_NSObjectController"))]
+#[cfg(all(feature = "NSController", feature = "NSObjectController"))]
 pub use self::__NSObjectController::NSObjectController;
-#[cfg(feature = "AppKit_NSOpenGL")]
+#[cfg(feature = "NSOpenGL")]
 pub use self::__NSOpenGL::NSOpenGLCPCurrentRendererID;
-#[cfg(feature = "AppKit_NSOpenGL")]
+#[cfg(feature = "NSOpenGL")]
 pub use self::__NSOpenGL::NSOpenGLCPGPUFragmentProcessing;
-#[cfg(feature = "AppKit_NSOpenGL")]
+#[cfg(feature = "NSOpenGL")]
 pub use self::__NSOpenGL::NSOpenGLCPGPUVertexProcessing;
-#[cfg(feature = "AppKit_NSOpenGL")]
+#[cfg(feature = "NSOpenGL")]
 pub use self::__NSOpenGL::NSOpenGLCPHasDrawable;
-#[cfg(feature = "AppKit_NSOpenGL")]
+#[cfg(feature = "NSOpenGL")]
 pub use self::__NSOpenGL::NSOpenGLCPMPSwapsInFlight;
-#[cfg(feature = "AppKit_NSOpenGL")]
+#[cfg(feature = "NSOpenGL")]
 pub use self::__NSOpenGL::NSOpenGLCPRasterizationEnable;
-#[cfg(feature = "AppKit_NSOpenGL")]
+#[cfg(feature = "NSOpenGL")]
 pub use self::__NSOpenGL::NSOpenGLCPReclaimResources;
-#[cfg(feature = "AppKit_NSOpenGL")]
+#[cfg(feature = "NSOpenGL")]
 pub use self::__NSOpenGL::NSOpenGLCPStateValidation;
-#[cfg(feature = "AppKit_NSOpenGL")]
+#[cfg(feature = "NSOpenGL")]
 pub use self::__NSOpenGL::NSOpenGLCPSurfaceBackingSize;
-#[cfg(feature = "AppKit_NSOpenGL")]
+#[cfg(feature = "NSOpenGL")]
 pub use self::__NSOpenGL::NSOpenGLCPSurfaceOpacity;
-#[cfg(feature = "AppKit_NSOpenGL")]
+#[cfg(feature = "NSOpenGL")]
 pub use self::__NSOpenGL::NSOpenGLCPSurfaceOrder;
-#[cfg(feature = "AppKit_NSOpenGL")]
+#[cfg(feature = "NSOpenGL")]
 pub use self::__NSOpenGL::NSOpenGLCPSurfaceSurfaceVolatile;
-#[cfg(feature = "AppKit_NSOpenGL")]
+#[cfg(feature = "NSOpenGL")]
 pub use self::__NSOpenGL::NSOpenGLCPSwapInterval;
-#[cfg(feature = "AppKit_NSOpenGL")]
+#[cfg(feature = "NSOpenGL")]
 pub use self::__NSOpenGL::NSOpenGLCPSwapRectangle;
-#[cfg(feature = "AppKit_NSOpenGL")]
+#[cfg(feature = "NSOpenGL")]
 pub use self::__NSOpenGL::NSOpenGLCPSwapRectangleEnable;
-#[cfg(feature = "AppKit_NSOpenGL")]
+#[cfg(feature = "NSOpenGL")]
 pub use self::__NSOpenGL::NSOpenGLContextParameter;
-#[cfg(feature = "AppKit_NSOpenGL")]
+#[cfg(feature = "NSOpenGL")]
 pub use self::__NSOpenGL::NSOpenGLGlobalOption;
-#[cfg(feature = "AppKit_NSOpenGL")]
+#[cfg(feature = "NSOpenGL")]
 pub use self::__NSOpenGL::NSOpenGLPFAAccelerated;
-#[cfg(feature = "AppKit_NSOpenGL")]
+#[cfg(feature = "NSOpenGL")]
 pub use self::__NSOpenGL::NSOpenGLPFAAcceleratedCompute;
-#[cfg(feature = "AppKit_NSOpenGL")]
+#[cfg(feature = "NSOpenGL")]
 pub use self::__NSOpenGL::NSOpenGLPFAAccumSize;
-#[cfg(feature = "AppKit_NSOpenGL")]
+#[cfg(feature = "NSOpenGL")]
 pub use self::__NSOpenGL::NSOpenGLPFAAllRenderers;
-#[cfg(feature = "AppKit_NSOpenGL")]
+#[cfg(feature = "NSOpenGL")]
 pub use self::__NSOpenGL::NSOpenGLPFAAllowOfflineRenderers;
-#[cfg(feature = "AppKit_NSOpenGL")]
+#[cfg(feature = "NSOpenGL")]
 pub use self::__NSOpenGL::NSOpenGLPFAAlphaSize;
-#[cfg(feature = "AppKit_NSOpenGL")]
+#[cfg(feature = "NSOpenGL")]
 pub use self::__NSOpenGL::NSOpenGLPFAAuxBuffers;
-#[cfg(feature = "AppKit_NSOpenGL")]
+#[cfg(feature = "NSOpenGL")]
 pub use self::__NSOpenGL::NSOpenGLPFAAuxDepthStencil;
-#[cfg(feature = "AppKit_NSOpenGL")]
+#[cfg(feature = "NSOpenGL")]
 pub use self::__NSOpenGL::NSOpenGLPFABackingStore;
-#[cfg(feature = "AppKit_NSOpenGL")]
+#[cfg(feature = "NSOpenGL")]
 pub use self::__NSOpenGL::NSOpenGLPFAClosestPolicy;
-#[cfg(feature = "AppKit_NSOpenGL")]
+#[cfg(feature = "NSOpenGL")]
 pub use self::__NSOpenGL::NSOpenGLPFAColorFloat;
-#[cfg(feature = "AppKit_NSOpenGL")]
+#[cfg(feature = "NSOpenGL")]
 pub use self::__NSOpenGL::NSOpenGLPFAColorSize;
-#[cfg(feature = "AppKit_NSOpenGL")]
+#[cfg(feature = "NSOpenGL")]
 pub use self::__NSOpenGL::NSOpenGLPFACompliant;
-#[cfg(feature = "AppKit_NSOpenGL")]
+#[cfg(feature = "NSOpenGL")]
 pub use self::__NSOpenGL::NSOpenGLPFADepthSize;
-#[cfg(feature = "AppKit_NSOpenGL")]
+#[cfg(feature = "NSOpenGL")]
 pub use self::__NSOpenGL::NSOpenGLPFADoubleBuffer;
-#[cfg(feature = "AppKit_NSOpenGL")]
+#[cfg(feature = "NSOpenGL")]
 pub use self::__NSOpenGL::NSOpenGLPFAFullScreen;
-#[cfg(feature = "AppKit_NSOpenGL")]
+#[cfg(feature = "NSOpenGL")]
 pub use self::__NSOpenGL::NSOpenGLPFAMPSafe;
-#[cfg(feature = "AppKit_NSOpenGL")]
+#[cfg(feature = "NSOpenGL")]
 pub use self::__NSOpenGL::NSOpenGLPFAMaximumPolicy;
-#[cfg(feature = "AppKit_NSOpenGL")]
+#[cfg(feature = "NSOpenGL")]
 pub use self::__NSOpenGL::NSOpenGLPFAMinimumPolicy;
-#[cfg(feature = "AppKit_NSOpenGL")]
+#[cfg(feature = "NSOpenGL")]
 pub use self::__NSOpenGL::NSOpenGLPFAMultiScreen;
-#[cfg(feature = "AppKit_NSOpenGL")]
+#[cfg(feature = "NSOpenGL")]
 pub use self::__NSOpenGL::NSOpenGLPFAMultisample;
-#[cfg(feature = "AppKit_NSOpenGL")]
+#[cfg(feature = "NSOpenGL")]
 pub use self::__NSOpenGL::NSOpenGLPFANoRecovery;
-#[cfg(feature = "AppKit_NSOpenGL")]
+#[cfg(feature = "NSOpenGL")]
 pub use self::__NSOpenGL::NSOpenGLPFAOffScreen;
-#[cfg(feature = "AppKit_NSOpenGL")]
+#[cfg(feature = "NSOpenGL")]
 pub use self::__NSOpenGL::NSOpenGLPFAOpenGLProfile;
-#[cfg(feature = "AppKit_NSOpenGL")]
+#[cfg(feature = "NSOpenGL")]
 pub use self::__NSOpenGL::NSOpenGLPFAPixelBuffer;
-#[cfg(feature = "AppKit_NSOpenGL")]
+#[cfg(feature = "NSOpenGL")]
 pub use self::__NSOpenGL::NSOpenGLPFARemotePixelBuffer;
-#[cfg(feature = "AppKit_NSOpenGL")]
+#[cfg(feature = "NSOpenGL")]
 pub use self::__NSOpenGL::NSOpenGLPFARendererID;
-#[cfg(feature = "AppKit_NSOpenGL")]
+#[cfg(feature = "NSOpenGL")]
 pub use self::__NSOpenGL::NSOpenGLPFARobust;
-#[cfg(feature = "AppKit_NSOpenGL")]
+#[cfg(feature = "NSOpenGL")]
 pub use self::__NSOpenGL::NSOpenGLPFASampleAlpha;
-#[cfg(feature = "AppKit_NSOpenGL")]
+#[cfg(feature = "NSOpenGL")]
 pub use self::__NSOpenGL::NSOpenGLPFASampleBuffers;
-#[cfg(feature = "AppKit_NSOpenGL")]
+#[cfg(feature = "NSOpenGL")]
 pub use self::__NSOpenGL::NSOpenGLPFASamples;
-#[cfg(feature = "AppKit_NSOpenGL")]
+#[cfg(feature = "NSOpenGL")]
 pub use self::__NSOpenGL::NSOpenGLPFAScreenMask;
-#[cfg(feature = "AppKit_NSOpenGL")]
+#[cfg(feature = "NSOpenGL")]
 pub use self::__NSOpenGL::NSOpenGLPFASingleRenderer;
-#[cfg(feature = "AppKit_NSOpenGL")]
+#[cfg(feature = "NSOpenGL")]
 pub use self::__NSOpenGL::NSOpenGLPFAStencilSize;
-#[cfg(feature = "AppKit_NSOpenGL")]
+#[cfg(feature = "NSOpenGL")]
 pub use self::__NSOpenGL::NSOpenGLPFAStereo;
-#[cfg(feature = "AppKit_NSOpenGL")]
+#[cfg(feature = "NSOpenGL")]
 pub use self::__NSOpenGL::NSOpenGLPFASupersample;
-#[cfg(feature = "AppKit_NSOpenGL")]
+#[cfg(feature = "NSOpenGL")]
 pub use self::__NSOpenGL::NSOpenGLPFATripleBuffer;
-#[cfg(feature = "AppKit_NSOpenGL")]
+#[cfg(feature = "NSOpenGL")]
 pub use self::__NSOpenGL::NSOpenGLPFAVirtualScreenCount;
-#[cfg(feature = "AppKit_NSOpenGL")]
+#[cfg(feature = "NSOpenGL")]
 pub use self::__NSOpenGL::NSOpenGLPFAWindow;
-#[cfg(feature = "AppKit_NSOpenGL")]
+#[cfg(feature = "NSOpenGL")]
 pub use self::__NSOpenGL::NSOpenGLPixelFormatAttribute;
-#[cfg(feature = "AppKit_NSOpenGL")]
+#[cfg(feature = "NSOpenGL")]
 pub use self::__NSOpenGL::NSOpenGLProfileVersion3_2Core;
-#[cfg(feature = "AppKit_NSOpenGL")]
+#[cfg(feature = "NSOpenGL")]
 pub use self::__NSOpenGL::NSOpenGLProfileVersion4_1Core;
-#[cfg(feature = "AppKit_NSOpenGL")]
+#[cfg(feature = "NSOpenGL")]
 pub use self::__NSOpenGL::NSOpenGLProfileVersionLegacy;
 #[cfg(all(
-    feature = "AppKit_NSOpenPanel",
-    feature = "AppKit_NSPanel",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSSavePanel",
-    feature = "AppKit_NSWindow"
+    feature = "NSOpenPanel",
+    feature = "NSPanel",
+    feature = "NSResponder",
+    feature = "NSSavePanel",
+    feature = "NSWindow"
 ))]
 pub use self::__NSOpenPanel::NSOpenPanel;
 #[cfg(all(
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSOutlineView",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSTableView",
-    feature = "AppKit_NSView"
+    feature = "NSControl",
+    feature = "NSOutlineView",
+    feature = "NSResponder",
+    feature = "NSTableView",
+    feature = "NSView"
 ))]
 pub use self::__NSOutlineView::NSOutlineView;
-#[cfg(feature = "AppKit_NSOutlineView")]
+#[cfg(feature = "NSOutlineView")]
 pub use self::__NSOutlineView::NSOutlineViewColumnDidMoveNotification;
-#[cfg(feature = "AppKit_NSOutlineView")]
+#[cfg(feature = "NSOutlineView")]
 pub use self::__NSOutlineView::NSOutlineViewColumnDidResizeNotification;
-#[cfg(feature = "AppKit_NSOutlineView")]
+#[cfg(feature = "NSOutlineView")]
 pub use self::__NSOutlineView::NSOutlineViewDataSource;
-#[cfg(all(feature = "AppKit_NSControl", feature = "AppKit_NSOutlineView"))]
+#[cfg(all(feature = "NSControl", feature = "NSOutlineView"))]
 pub use self::__NSOutlineView::NSOutlineViewDelegate;
 #[cfg(all(
-    feature = "AppKit_NSOutlineView",
-    feature = "AppKit_NSUserInterfaceItemIdentification"
+    feature = "NSOutlineView",
+    feature = "NSUserInterfaceItemIdentification"
 ))]
 pub use self::__NSOutlineView::NSOutlineViewDisclosureButtonKey;
-#[cfg(feature = "AppKit_NSOutlineView")]
+#[cfg(feature = "NSOutlineView")]
 pub use self::__NSOutlineView::NSOutlineViewDropOnItemIndex;
-#[cfg(feature = "AppKit_NSOutlineView")]
+#[cfg(feature = "NSOutlineView")]
 pub use self::__NSOutlineView::NSOutlineViewItemDidCollapseNotification;
-#[cfg(feature = "AppKit_NSOutlineView")]
+#[cfg(feature = "NSOutlineView")]
 pub use self::__NSOutlineView::NSOutlineViewItemDidExpandNotification;
-#[cfg(feature = "AppKit_NSOutlineView")]
+#[cfg(feature = "NSOutlineView")]
 pub use self::__NSOutlineView::NSOutlineViewItemWillCollapseNotification;
-#[cfg(feature = "AppKit_NSOutlineView")]
+#[cfg(feature = "NSOutlineView")]
 pub use self::__NSOutlineView::NSOutlineViewItemWillExpandNotification;
-#[cfg(feature = "AppKit_NSOutlineView")]
+#[cfg(feature = "NSOutlineView")]
 pub use self::__NSOutlineView::NSOutlineViewSelectionDidChangeNotification;
-#[cfg(feature = "AppKit_NSOutlineView")]
+#[cfg(feature = "NSOutlineView")]
 pub use self::__NSOutlineView::NSOutlineViewSelectionIsChangingNotification;
 #[cfg(all(
-    feature = "AppKit_NSOutlineView",
-    feature = "AppKit_NSUserInterfaceItemIdentification"
+    feature = "NSOutlineView",
+    feature = "NSUserInterfaceItemIdentification"
 ))]
 pub use self::__NSOutlineView::NSOutlineViewShowHideButtonKey;
-#[cfg(all(feature = "AppKit_NSImageRep", feature = "AppKit_NSPDFImageRep"))]
+#[cfg(all(feature = "NSImageRep", feature = "NSPDFImageRep"))]
 pub use self::__NSPDFImageRep::NSPDFImageRep;
-#[cfg(feature = "AppKit_NSPDFInfo")]
+#[cfg(feature = "NSPDFInfo")]
 pub use self::__NSPDFInfo::NSPDFInfo;
-#[cfg(feature = "AppKit_NSPDFPanel")]
+#[cfg(feature = "NSPDFPanel")]
 pub use self::__NSPDFPanel::NSPDFPanel;
-#[cfg(feature = "AppKit_NSPDFPanel")]
+#[cfg(feature = "NSPDFPanel")]
 pub use self::__NSPDFPanel::NSPDFPanelOptions;
-#[cfg(all(feature = "AppKit_NSImageRep", feature = "AppKit_NSPICTImageRep"))]
+#[cfg(all(feature = "NSImageRep", feature = "NSPICTImageRep"))]
 pub use self::__NSPICTImageRep::NSPICTImageRep;
 #[cfg(all(
-    feature = "AppKit_NSPageController",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSViewController"
+    feature = "NSPageController",
+    feature = "NSResponder",
+    feature = "NSViewController"
 ))]
 pub use self::__NSPageController::NSPageController;
-#[cfg(feature = "AppKit_NSPageController")]
+#[cfg(feature = "NSPageController")]
 pub use self::__NSPageController::NSPageControllerDelegate;
-#[cfg(feature = "AppKit_NSPageController")]
+#[cfg(feature = "NSPageController")]
 pub use self::__NSPageController::NSPageControllerObjectIdentifier;
-#[cfg(feature = "AppKit_NSPageController")]
+#[cfg(feature = "NSPageController")]
 pub use self::__NSPageController::NSPageControllerTransitionStyle;
-#[cfg(feature = "AppKit_NSPageLayout")]
+#[cfg(feature = "NSPageLayout")]
 pub use self::__NSPageLayout::NSPageLayout;
-#[cfg(feature = "AppKit_NSPageLayout")]
+#[cfg(feature = "NSPageLayout")]
 pub use self::__NSPageLayout::NSPageLayoutResult;
-#[cfg(all(
-    feature = "AppKit_NSGestureRecognizer",
-    feature = "AppKit_NSPanGestureRecognizer"
-))]
+#[cfg(all(feature = "NSGestureRecognizer", feature = "NSPanGestureRecognizer"))]
 pub use self::__NSPanGestureRecognizer::NSPanGestureRecognizer;
-#[cfg(feature = "AppKit_NSPanel")]
+#[cfg(feature = "NSPanel")]
 pub use self::__NSPanel::NSAlertAlternateReturn;
-#[cfg(feature = "AppKit_NSPanel")]
+#[cfg(feature = "NSPanel")]
 pub use self::__NSPanel::NSAlertDefaultReturn;
-#[cfg(feature = "AppKit_NSPanel")]
+#[cfg(feature = "NSPanel")]
 pub use self::__NSPanel::NSAlertErrorReturn;
-#[cfg(feature = "AppKit_NSPanel")]
+#[cfg(feature = "NSPanel")]
 pub use self::__NSPanel::NSAlertOtherReturn;
-#[cfg(all(
-    feature = "AppKit_NSPanel",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSWindow"
-))]
+#[cfg(all(feature = "NSPanel", feature = "NSResponder", feature = "NSWindow"))]
 pub use self::__NSPanel::NSPanel;
-#[cfg(feature = "AppKit_NSPanel")]
+#[cfg(feature = "NSPanel")]
 pub use self::__NSPanel::NSReleaseAlertPanel;
-#[cfg(feature = "AppKit_NSParagraphStyle")]
+#[cfg(feature = "NSParagraphStyle")]
 pub use self::__NSParagraphStyle::NSLineBreakMode;
-#[cfg(feature = "AppKit_NSParagraphStyle")]
+#[cfg(feature = "NSParagraphStyle")]
 pub use self::__NSParagraphStyle::NSLineBreakStrategy;
-#[cfg(feature = "AppKit_NSParagraphStyle")]
+#[cfg(feature = "NSParagraphStyle")]
 pub use self::__NSParagraphStyle::NSMutableParagraphStyle;
-#[cfg(feature = "AppKit_NSParagraphStyle")]
+#[cfg(feature = "NSParagraphStyle")]
 pub use self::__NSParagraphStyle::NSParagraphStyle;
-#[cfg(feature = "AppKit_NSParagraphStyle")]
+#[cfg(feature = "NSParagraphStyle")]
 pub use self::__NSParagraphStyle::NSTabColumnTerminatorsAttributeName;
-#[cfg(feature = "AppKit_NSParagraphStyle")]
+#[cfg(feature = "NSParagraphStyle")]
 pub use self::__NSParagraphStyle::NSTextTab;
-#[cfg(feature = "AppKit_NSParagraphStyle")]
+#[cfg(feature = "NSParagraphStyle")]
 pub use self::__NSParagraphStyle::NSTextTabOptionKey;
-#[cfg(feature = "AppKit_NSParagraphStyle")]
+#[cfg(feature = "NSParagraphStyle")]
 pub use self::__NSParagraphStyle::NSTextTabType;
-#[cfg(feature = "AppKit_NSPasteboard")]
+#[cfg(feature = "NSPasteboard")]
 pub use self::__NSPasteboard::NSColorPboardType;
-#[cfg(feature = "AppKit_NSPasteboard")]
+#[cfg(feature = "NSPasteboard")]
 pub use self::__NSPasteboard::NSCreateFileContentsPboardType;
-#[cfg(feature = "AppKit_NSPasteboard")]
+#[cfg(feature = "NSPasteboard")]
 pub use self::__NSPasteboard::NSCreateFilenamePboardType;
-#[cfg(feature = "AppKit_NSPasteboard")]
+#[cfg(feature = "NSPasteboard")]
 pub use self::__NSPasteboard::NSDragPboard;
-#[cfg(feature = "AppKit_NSPasteboard")]
+#[cfg(feature = "NSPasteboard")]
 pub use self::__NSPasteboard::NSFileContentsPboardType;
-#[cfg(feature = "AppKit_NSPasteboard")]
+#[cfg(feature = "NSPasteboard")]
 pub use self::__NSPasteboard::NSFilenamesPboardType;
-#[cfg(feature = "AppKit_NSPasteboard")]
+#[cfg(feature = "NSPasteboard")]
 pub use self::__NSPasteboard::NSFilesPromisePboardType;
-#[cfg(feature = "AppKit_NSPasteboard")]
+#[cfg(feature = "NSPasteboard")]
 pub use self::__NSPasteboard::NSFindPboard;
-#[cfg(feature = "AppKit_NSPasteboard")]
+#[cfg(feature = "NSPasteboard")]
 pub use self::__NSPasteboard::NSFontPboard;
-#[cfg(feature = "AppKit_NSPasteboard")]
+#[cfg(feature = "NSPasteboard")]
 pub use self::__NSPasteboard::NSFontPboardType;
-#[cfg(feature = "AppKit_NSPasteboard")]
+#[cfg(feature = "NSPasteboard")]
 pub use self::__NSPasteboard::NSGeneralPboard;
-#[cfg(feature = "AppKit_NSPasteboard")]
+#[cfg(feature = "NSPasteboard")]
 pub use self::__NSPasteboard::NSGetFileType;
-#[cfg(feature = "AppKit_NSPasteboard")]
+#[cfg(feature = "NSPasteboard")]
 pub use self::__NSPasteboard::NSGetFileTypes;
-#[cfg(feature = "AppKit_NSPasteboard")]
+#[cfg(feature = "NSPasteboard")]
 pub use self::__NSPasteboard::NSHTMLPboardType;
-#[cfg(feature = "AppKit_NSPasteboard")]
+#[cfg(feature = "NSPasteboard")]
 pub use self::__NSPasteboard::NSInkTextPboardType;
-#[cfg(feature = "AppKit_NSPasteboard")]
+#[cfg(feature = "NSPasteboard")]
 pub use self::__NSPasteboard::NSMultipleTextSelectionPboardType;
-#[cfg(feature = "AppKit_NSPasteboard")]
+#[cfg(feature = "NSPasteboard")]
 pub use self::__NSPasteboard::NSPDFPboardType;
-#[cfg(feature = "AppKit_NSPasteboard")]
+#[cfg(feature = "NSPasteboard")]
 pub use self::__NSPasteboard::NSPICTPboardType;
-#[cfg(feature = "AppKit_NSPasteboard")]
+#[cfg(feature = "NSPasteboard")]
 pub use self::__NSPasteboard::NSPasteboard;
-#[cfg(feature = "AppKit_NSPasteboard")]
+#[cfg(feature = "NSPasteboard")]
 pub use self::__NSPasteboard::NSPasteboardContentsOptions;
-#[cfg(feature = "AppKit_NSPasteboard")]
+#[cfg(feature = "NSPasteboard")]
 pub use self::__NSPasteboard::NSPasteboardName;
-#[cfg(feature = "AppKit_NSPasteboard")]
+#[cfg(feature = "NSPasteboard")]
 pub use self::__NSPasteboard::NSPasteboardNameDrag;
-#[cfg(feature = "AppKit_NSPasteboard")]
+#[cfg(feature = "NSPasteboard")]
 pub use self::__NSPasteboard::NSPasteboardNameFind;
-#[cfg(feature = "AppKit_NSPasteboard")]
+#[cfg(feature = "NSPasteboard")]
 pub use self::__NSPasteboard::NSPasteboardNameFont;
-#[cfg(feature = "AppKit_NSPasteboard")]
+#[cfg(feature = "NSPasteboard")]
 pub use self::__NSPasteboard::NSPasteboardNameGeneral;
-#[cfg(feature = "AppKit_NSPasteboard")]
+#[cfg(feature = "NSPasteboard")]
 pub use self::__NSPasteboard::NSPasteboardNameRuler;
-#[cfg(feature = "AppKit_NSPasteboard")]
+#[cfg(feature = "NSPasteboard")]
 pub use self::__NSPasteboard::NSPasteboardReading;
-#[cfg(feature = "AppKit_NSPasteboard")]
+#[cfg(feature = "NSPasteboard")]
 pub use self::__NSPasteboard::NSPasteboardReadingOptionKey;
-#[cfg(feature = "AppKit_NSPasteboard")]
+#[cfg(feature = "NSPasteboard")]
 pub use self::__NSPasteboard::NSPasteboardReadingOptions;
-#[cfg(feature = "AppKit_NSPasteboard")]
+#[cfg(feature = "NSPasteboard")]
 pub use self::__NSPasteboard::NSPasteboardType;
-#[cfg(feature = "AppKit_NSPasteboard")]
+#[cfg(feature = "NSPasteboard")]
 pub use self::__NSPasteboard::NSPasteboardTypeColor;
-#[cfg(feature = "AppKit_NSPasteboard")]
+#[cfg(feature = "NSPasteboard")]
 pub use self::__NSPasteboard::NSPasteboardTypeFileURL;
-#[cfg(feature = "AppKit_NSPasteboard")]
+#[cfg(feature = "NSPasteboard")]
 pub use self::__NSPasteboard::NSPasteboardTypeFindPanelSearchOptions;
-#[cfg(feature = "AppKit_NSPasteboard")]
+#[cfg(feature = "NSPasteboard")]
 pub use self::__NSPasteboard::NSPasteboardTypeFont;
-#[cfg(feature = "AppKit_NSPasteboard")]
+#[cfg(feature = "NSPasteboard")]
 pub use self::__NSPasteboard::NSPasteboardTypeHTML;
-#[cfg(feature = "AppKit_NSPasteboard")]
+#[cfg(feature = "NSPasteboard")]
 pub use self::__NSPasteboard::NSPasteboardTypeMultipleTextSelection;
-#[cfg(feature = "AppKit_NSPasteboard")]
+#[cfg(feature = "NSPasteboard")]
 pub use self::__NSPasteboard::NSPasteboardTypeOwner;
-#[cfg(feature = "AppKit_NSPasteboard")]
+#[cfg(feature = "NSPasteboard")]
 pub use self::__NSPasteboard::NSPasteboardTypePDF;
-#[cfg(feature = "AppKit_NSPasteboard")]
+#[cfg(feature = "NSPasteboard")]
 pub use self::__NSPasteboard::NSPasteboardTypePNG;
-#[cfg(feature = "AppKit_NSPasteboard")]
+#[cfg(feature = "NSPasteboard")]
 pub use self::__NSPasteboard::NSPasteboardTypeRTF;
-#[cfg(feature = "AppKit_NSPasteboard")]
+#[cfg(feature = "NSPasteboard")]
 pub use self::__NSPasteboard::NSPasteboardTypeRTFD;
-#[cfg(feature = "AppKit_NSPasteboard")]
+#[cfg(feature = "NSPasteboard")]
 pub use self::__NSPasteboard::NSPasteboardTypeRuler;
-#[cfg(feature = "AppKit_NSPasteboard")]
+#[cfg(feature = "NSPasteboard")]
 pub use self::__NSPasteboard::NSPasteboardTypeSound;
-#[cfg(feature = "AppKit_NSPasteboard")]
+#[cfg(feature = "NSPasteboard")]
 pub use self::__NSPasteboard::NSPasteboardTypeString;
-#[cfg(feature = "AppKit_NSPasteboard")]
+#[cfg(feature = "NSPasteboard")]
 pub use self::__NSPasteboard::NSPasteboardTypeTIFF;
-#[cfg(feature = "AppKit_NSPasteboard")]
+#[cfg(feature = "NSPasteboard")]
 pub use self::__NSPasteboard::NSPasteboardTypeTabularText;
-#[cfg(feature = "AppKit_NSPasteboard")]
+#[cfg(feature = "NSPasteboard")]
 pub use self::__NSPasteboard::NSPasteboardTypeTextFinderOptions;
-#[cfg(feature = "AppKit_NSPasteboard")]
+#[cfg(feature = "NSPasteboard")]
 pub use self::__NSPasteboard::NSPasteboardTypeURL;
-#[cfg(feature = "AppKit_NSPasteboard")]
+#[cfg(feature = "NSPasteboard")]
 pub use self::__NSPasteboard::NSPasteboardURLReadingContentsConformToTypesKey;
-#[cfg(feature = "AppKit_NSPasteboard")]
+#[cfg(feature = "NSPasteboard")]
 pub use self::__NSPasteboard::NSPasteboardURLReadingFileURLsOnlyKey;
-#[cfg(feature = "AppKit_NSPasteboard")]
+#[cfg(feature = "NSPasteboard")]
 pub use self::__NSPasteboard::NSPasteboardWriting;
-#[cfg(feature = "AppKit_NSPasteboard")]
+#[cfg(feature = "NSPasteboard")]
 pub use self::__NSPasteboard::NSPasteboardWritingOptions;
-#[cfg(feature = "AppKit_NSPasteboard")]
+#[cfg(feature = "NSPasteboard")]
 pub use self::__NSPasteboard::NSPostScriptPboardType;
-#[cfg(feature = "AppKit_NSPasteboard")]
+#[cfg(feature = "NSPasteboard")]
 pub use self::__NSPasteboard::NSRTFDPboardType;
-#[cfg(feature = "AppKit_NSPasteboard")]
+#[cfg(feature = "NSPasteboard")]
 pub use self::__NSPasteboard::NSRTFPboardType;
-#[cfg(feature = "AppKit_NSPasteboard")]
+#[cfg(feature = "NSPasteboard")]
 pub use self::__NSPasteboard::NSRulerPboard;
-#[cfg(feature = "AppKit_NSPasteboard")]
+#[cfg(feature = "NSPasteboard")]
 pub use self::__NSPasteboard::NSRulerPboardType;
-#[cfg(feature = "AppKit_NSPasteboard")]
+#[cfg(feature = "NSPasteboard")]
 pub use self::__NSPasteboard::NSStringPboardType;
-#[cfg(feature = "AppKit_NSPasteboard")]
+#[cfg(feature = "NSPasteboard")]
 pub use self::__NSPasteboard::NSTIFFPboardType;
-#[cfg(feature = "AppKit_NSPasteboard")]
+#[cfg(feature = "NSPasteboard")]
 pub use self::__NSPasteboard::NSTabularTextPboardType;
-#[cfg(feature = "AppKit_NSPasteboard")]
+#[cfg(feature = "NSPasteboard")]
 pub use self::__NSPasteboard::NSURLNSPasteboardSupport;
-#[cfg(feature = "AppKit_NSPasteboard")]
+#[cfg(feature = "NSPasteboard")]
 pub use self::__NSPasteboard::NSURLPboardType;
-#[cfg(feature = "AppKit_NSPasteboard")]
+#[cfg(feature = "NSPasteboard")]
 pub use self::__NSPasteboard::NSVCardPboardType;
-#[cfg(feature = "AppKit_NSPasteboardItem")]
+#[cfg(feature = "NSPasteboardItem")]
 pub use self::__NSPasteboardItem::NSPasteboardItem;
-#[cfg(feature = "AppKit_NSPasteboardItem")]
+#[cfg(feature = "NSPasteboardItem")]
 pub use self::__NSPasteboardItem::NSPasteboardItemDataProvider;
-#[cfg(all(
-    feature = "AppKit_NSActionCell",
-    feature = "AppKit_NSCell",
-    feature = "AppKit_NSPathCell"
-))]
+#[cfg(all(feature = "NSActionCell", feature = "NSCell", feature = "NSPathCell"))]
 pub use self::__NSPathCell::NSPathCell;
-#[cfg(feature = "AppKit_NSPathCell")]
+#[cfg(feature = "NSPathCell")]
 pub use self::__NSPathCell::NSPathCellDelegate;
-#[cfg(feature = "AppKit_NSPathCell")]
+#[cfg(feature = "NSPathCell")]
 pub use self::__NSPathCell::NSPathStyle;
 #[cfg(all(
-    feature = "AppKit_NSActionCell",
-    feature = "AppKit_NSCell",
-    feature = "AppKit_NSPathComponentCell",
-    feature = "AppKit_NSTextFieldCell"
+    feature = "NSActionCell",
+    feature = "NSCell",
+    feature = "NSPathComponentCell",
+    feature = "NSTextFieldCell"
 ))]
 pub use self::__NSPathComponentCell::NSPathComponentCell;
 #[cfg(all(
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSPathControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSView"
+    feature = "NSControl",
+    feature = "NSPathControl",
+    feature = "NSResponder",
+    feature = "NSView"
 ))]
 pub use self::__NSPathControl::NSPathControl;
-#[cfg(feature = "AppKit_NSPathControl")]
+#[cfg(feature = "NSPathControl")]
 pub use self::__NSPathControl::NSPathControlDelegate;
-#[cfg(feature = "AppKit_NSPathControlItem")]
+#[cfg(feature = "NSPathControlItem")]
 pub use self::__NSPathControlItem::NSPathControlItem;
-#[cfg(all(feature = "AppKit_NSDocument", feature = "AppKit_NSPersistentDocument"))]
+#[cfg(all(feature = "NSDocument", feature = "NSPersistentDocument"))]
 pub use self::__NSPersistentDocument::NSPersistentDocument;
-#[cfg(all(
-    feature = "AppKit_NSPickerTouchBarItem",
-    feature = "AppKit_NSTouchBarItem"
-))]
+#[cfg(all(feature = "NSPickerTouchBarItem", feature = "NSTouchBarItem"))]
 pub use self::__NSPickerTouchBarItem::NSPickerTouchBarItem;
-#[cfg(feature = "AppKit_NSPickerTouchBarItem")]
+#[cfg(feature = "NSPickerTouchBarItem")]
 pub use self::__NSPickerTouchBarItem::NSPickerTouchBarItemControlRepresentation;
-#[cfg(feature = "AppKit_NSPickerTouchBarItem")]
+#[cfg(feature = "NSPickerTouchBarItem")]
 pub use self::__NSPickerTouchBarItem::NSPickerTouchBarItemSelectionMode;
 #[cfg(all(
-    feature = "AppKit_NSButton",
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSPopUpButton",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSView"
+    feature = "NSButton",
+    feature = "NSControl",
+    feature = "NSPopUpButton",
+    feature = "NSResponder",
+    feature = "NSView"
 ))]
 pub use self::__NSPopUpButton::NSPopUpButton;
-#[cfg(feature = "AppKit_NSPopUpButton")]
+#[cfg(feature = "NSPopUpButton")]
 pub use self::__NSPopUpButton::NSPopUpButtonWillPopUpNotification;
-#[cfg(feature = "AppKit_NSPopUpButtonCell")]
+#[cfg(feature = "NSPopUpButtonCell")]
 pub use self::__NSPopUpButtonCell::NSPopUpArrowPosition;
 #[cfg(all(
-    feature = "AppKit_NSActionCell",
-    feature = "AppKit_NSButtonCell",
-    feature = "AppKit_NSCell",
-    feature = "AppKit_NSMenuItemCell",
-    feature = "AppKit_NSPopUpButtonCell"
+    feature = "NSActionCell",
+    feature = "NSButtonCell",
+    feature = "NSCell",
+    feature = "NSMenuItemCell",
+    feature = "NSPopUpButtonCell"
 ))]
 pub use self::__NSPopUpButtonCell::NSPopUpButtonCell;
-#[cfg(feature = "AppKit_NSPopUpButtonCell")]
+#[cfg(feature = "NSPopUpButtonCell")]
 pub use self::__NSPopUpButtonCell::NSPopUpButtonCellWillPopUpNotification;
-#[cfg(all(feature = "AppKit_NSPopover", feature = "AppKit_NSResponder"))]
+#[cfg(all(feature = "NSPopover", feature = "NSResponder"))]
 pub use self::__NSPopover::NSPopover;
-#[cfg(feature = "AppKit_NSPopover")]
+#[cfg(feature = "NSPopover")]
 pub use self::__NSPopover::NSPopoverAppearance;
-#[cfg(feature = "AppKit_NSPopover")]
+#[cfg(feature = "NSPopover")]
 pub use self::__NSPopover::NSPopoverBehavior;
-#[cfg(feature = "AppKit_NSPopover")]
+#[cfg(feature = "NSPopover")]
 pub use self::__NSPopover::NSPopoverCloseReasonDetachToWindow;
-#[cfg(feature = "AppKit_NSPopover")]
+#[cfg(feature = "NSPopover")]
 pub use self::__NSPopover::NSPopoverCloseReasonKey;
-#[cfg(feature = "AppKit_NSPopover")]
+#[cfg(feature = "NSPopover")]
 pub use self::__NSPopover::NSPopoverCloseReasonStandard;
-#[cfg(feature = "AppKit_NSPopover")]
+#[cfg(feature = "NSPopover")]
 pub use self::__NSPopover::NSPopoverCloseReasonValue;
-#[cfg(feature = "AppKit_NSPopover")]
+#[cfg(feature = "NSPopover")]
 pub use self::__NSPopover::NSPopoverDelegate;
-#[cfg(feature = "AppKit_NSPopover")]
+#[cfg(feature = "NSPopover")]
 pub use self::__NSPopover::NSPopoverDidCloseNotification;
-#[cfg(feature = "AppKit_NSPopover")]
+#[cfg(feature = "NSPopover")]
 pub use self::__NSPopover::NSPopoverDidShowNotification;
-#[cfg(feature = "AppKit_NSPopover")]
+#[cfg(feature = "NSPopover")]
 pub use self::__NSPopover::NSPopoverWillCloseNotification;
-#[cfg(feature = "AppKit_NSPopover")]
+#[cfg(feature = "NSPopover")]
 pub use self::__NSPopover::NSPopoverWillShowNotification;
-#[cfg(all(
-    feature = "AppKit_NSPopoverTouchBarItem",
-    feature = "AppKit_NSTouchBarItem"
-))]
+#[cfg(all(feature = "NSPopoverTouchBarItem", feature = "NSTouchBarItem"))]
 pub use self::__NSPopoverTouchBarItem::NSPopoverTouchBarItem;
 #[cfg(all(
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSPredicateEditor",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSRuleEditor",
-    feature = "AppKit_NSView"
+    feature = "NSControl",
+    feature = "NSPredicateEditor",
+    feature = "NSResponder",
+    feature = "NSRuleEditor",
+    feature = "NSView"
 ))]
 pub use self::__NSPredicateEditor::NSPredicateEditor;
-#[cfg(feature = "AppKit_NSPredicateEditorRowTemplate")]
+#[cfg(feature = "NSPredicateEditorRowTemplate")]
 pub use self::__NSPredicateEditorRowTemplate::NSPredicateEditorRowTemplate;
-#[cfg(all(
-    feature = "AppKit_NSGestureRecognizer",
-    feature = "AppKit_NSPressGestureRecognizer"
-))]
+#[cfg(all(feature = "NSGestureRecognizer", feature = "NSPressGestureRecognizer"))]
 pub use self::__NSPressGestureRecognizer::NSPressGestureRecognizer;
-#[cfg(feature = "AppKit_NSPressureConfiguration")]
+#[cfg(feature = "NSPressureConfiguration")]
 pub use self::__NSPressureConfiguration::NSPressureConfiguration;
-#[cfg(feature = "AppKit_NSPreviewRepresentingActivityItem")]
+#[cfg(feature = "NSPreviewRepresentingActivityItem")]
 pub use self::__NSPreviewRepresentingActivityItem::NSPreviewRepresentableActivityItem;
-#[cfg(feature = "AppKit_NSPreviewRepresentingActivityItem")]
+#[cfg(feature = "NSPreviewRepresentingActivityItem")]
 pub use self::__NSPreviewRepresentingActivityItem::NSPreviewRepresentingActivityItem;
-#[cfg(feature = "AppKit_NSPrintInfo")]
+#[cfg(feature = "NSPrintInfo")]
 pub use self::__NSPrintInfo::NSAutoPagination;
-#[cfg(feature = "AppKit_NSPrintInfo")]
+#[cfg(feature = "NSPrintInfo")]
 pub use self::__NSPrintInfo::NSClipPagination;
-#[cfg(feature = "AppKit_NSPrintInfo")]
+#[cfg(feature = "NSPrintInfo")]
 pub use self::__NSPrintInfo::NSFitPagination;
-#[cfg(feature = "AppKit_NSPrintInfo")]
+#[cfg(feature = "NSPrintInfo")]
 pub use self::__NSPrintInfo::NSPaperOrientation;
-#[cfg(feature = "AppKit_NSPrintInfo")]
+#[cfg(feature = "NSPrintInfo")]
 pub use self::__NSPrintInfo::NSPrintAllPages;
-#[cfg(feature = "AppKit_NSPrintInfo")]
+#[cfg(feature = "NSPrintInfo")]
 pub use self::__NSPrintInfo::NSPrintBottomMargin;
-#[cfg(feature = "AppKit_NSPrintInfo")]
+#[cfg(feature = "NSPrintInfo")]
 pub use self::__NSPrintInfo::NSPrintCancelJob;
-#[cfg(feature = "AppKit_NSPrintInfo")]
+#[cfg(feature = "NSPrintInfo")]
 pub use self::__NSPrintInfo::NSPrintCopies;
-#[cfg(feature = "AppKit_NSPrintInfo")]
+#[cfg(feature = "NSPrintInfo")]
 pub use self::__NSPrintInfo::NSPrintDetailedErrorReporting;
-#[cfg(feature = "AppKit_NSPrintInfo")]
+#[cfg(feature = "NSPrintInfo")]
 pub use self::__NSPrintInfo::NSPrintFaxNumber;
-#[cfg(feature = "AppKit_NSPrintInfo")]
+#[cfg(feature = "NSPrintInfo")]
 pub use self::__NSPrintInfo::NSPrintFirstPage;
-#[cfg(feature = "AppKit_NSPrintInfo")]
+#[cfg(feature = "NSPrintInfo")]
 pub use self::__NSPrintInfo::NSPrintFormName;
-#[cfg(feature = "AppKit_NSPrintInfo")]
+#[cfg(feature = "NSPrintInfo")]
 pub use self::__NSPrintInfo::NSPrintHeaderAndFooter;
-#[cfg(feature = "AppKit_NSPrintInfo")]
+#[cfg(feature = "NSPrintInfo")]
 pub use self::__NSPrintInfo::NSPrintHorizontalPagination;
-#[cfg(feature = "AppKit_NSPrintInfo")]
+#[cfg(feature = "NSPrintInfo")]
 pub use self::__NSPrintInfo::NSPrintHorizontallyCentered;
-#[cfg(feature = "AppKit_NSPrintInfo")]
+#[cfg(feature = "NSPrintInfo")]
 pub use self::__NSPrintInfo::NSPrintInfo;
-#[cfg(feature = "AppKit_NSPrintInfo")]
+#[cfg(feature = "NSPrintInfo")]
 pub use self::__NSPrintInfo::NSPrintInfoAttributeKey;
-#[cfg(feature = "AppKit_NSPrintInfo")]
+#[cfg(feature = "NSPrintInfo")]
 pub use self::__NSPrintInfo::NSPrintInfoSettingKey;
-#[cfg(feature = "AppKit_NSPrintInfo")]
+#[cfg(feature = "NSPrintInfo")]
 pub use self::__NSPrintInfo::NSPrintJobDisposition;
-#[cfg(feature = "AppKit_NSPrintInfo")]
+#[cfg(feature = "NSPrintInfo")]
 pub use self::__NSPrintInfo::NSPrintJobDispositionValue;
-#[cfg(feature = "AppKit_NSPrintInfo")]
+#[cfg(feature = "NSPrintInfo")]
 pub use self::__NSPrintInfo::NSPrintJobFeatures;
-#[cfg(feature = "AppKit_NSPrintInfo")]
+#[cfg(feature = "NSPrintInfo")]
 pub use self::__NSPrintInfo::NSPrintJobSavingFileNameExtensionHidden;
-#[cfg(feature = "AppKit_NSPrintInfo")]
+#[cfg(feature = "NSPrintInfo")]
 pub use self::__NSPrintInfo::NSPrintJobSavingURL;
-#[cfg(feature = "AppKit_NSPrintInfo")]
+#[cfg(feature = "NSPrintInfo")]
 pub use self::__NSPrintInfo::NSPrintLastPage;
-#[cfg(feature = "AppKit_NSPrintInfo")]
+#[cfg(feature = "NSPrintInfo")]
 pub use self::__NSPrintInfo::NSPrintLeftMargin;
-#[cfg(feature = "AppKit_NSPrintInfo")]
+#[cfg(feature = "NSPrintInfo")]
 pub use self::__NSPrintInfo::NSPrintManualFeed;
-#[cfg(feature = "AppKit_NSPrintInfo")]
+#[cfg(feature = "NSPrintInfo")]
 pub use self::__NSPrintInfo::NSPrintMustCollate;
-#[cfg(feature = "AppKit_NSPrintInfo")]
+#[cfg(feature = "NSPrintInfo")]
 pub use self::__NSPrintInfo::NSPrintOrientation;
-#[cfg(feature = "AppKit_NSPrintInfo")]
+#[cfg(feature = "NSPrintInfo")]
 pub use self::__NSPrintInfo::NSPrintPagesAcross;
-#[cfg(feature = "AppKit_NSPrintInfo")]
+#[cfg(feature = "NSPrintInfo")]
 pub use self::__NSPrintInfo::NSPrintPagesDown;
-#[cfg(feature = "AppKit_NSPrintInfo")]
+#[cfg(feature = "NSPrintInfo")]
 pub use self::__NSPrintInfo::NSPrintPagesPerSheet;
-#[cfg(feature = "AppKit_NSPrintInfo")]
+#[cfg(feature = "NSPrintInfo")]
 pub use self::__NSPrintInfo::NSPrintPaperFeed;
-#[cfg(feature = "AppKit_NSPrintInfo")]
+#[cfg(feature = "NSPrintInfo")]
 pub use self::__NSPrintInfo::NSPrintPaperName;
-#[cfg(feature = "AppKit_NSPrintInfo")]
+#[cfg(feature = "NSPrintInfo")]
 pub use self::__NSPrintInfo::NSPrintPaperSize;
-#[cfg(feature = "AppKit_NSPrintInfo")]
+#[cfg(feature = "NSPrintInfo")]
 pub use self::__NSPrintInfo::NSPrintPreviewJob;
-#[cfg(feature = "AppKit_NSPrintInfo")]
+#[cfg(feature = "NSPrintInfo")]
 pub use self::__NSPrintInfo::NSPrintPrinter;
-#[cfg(feature = "AppKit_NSPrintInfo")]
+#[cfg(feature = "NSPrintInfo")]
 pub use self::__NSPrintInfo::NSPrintPrinterName;
-#[cfg(feature = "AppKit_NSPrintInfo")]
+#[cfg(feature = "NSPrintInfo")]
 pub use self::__NSPrintInfo::NSPrintReversePageOrder;
-#[cfg(feature = "AppKit_NSPrintInfo")]
+#[cfg(feature = "NSPrintInfo")]
 pub use self::__NSPrintInfo::NSPrintRightMargin;
-#[cfg(feature = "AppKit_NSPrintInfo")]
+#[cfg(feature = "NSPrintInfo")]
 pub use self::__NSPrintInfo::NSPrintSaveJob;
-#[cfg(feature = "AppKit_NSPrintInfo")]
+#[cfg(feature = "NSPrintInfo")]
 pub use self::__NSPrintInfo::NSPrintSavePath;
-#[cfg(feature = "AppKit_NSPrintInfo")]
+#[cfg(feature = "NSPrintInfo")]
 pub use self::__NSPrintInfo::NSPrintScalingFactor;
-#[cfg(feature = "AppKit_NSPrintInfo")]
+#[cfg(feature = "NSPrintInfo")]
 pub use self::__NSPrintInfo::NSPrintSelectionOnly;
-#[cfg(feature = "AppKit_NSPrintInfo")]
+#[cfg(feature = "NSPrintInfo")]
 pub use self::__NSPrintInfo::NSPrintSpoolJob;
-#[cfg(feature = "AppKit_NSPrintInfo")]
+#[cfg(feature = "NSPrintInfo")]
 pub use self::__NSPrintInfo::NSPrintTime;
-#[cfg(feature = "AppKit_NSPrintInfo")]
+#[cfg(feature = "NSPrintInfo")]
 pub use self::__NSPrintInfo::NSPrintTopMargin;
-#[cfg(feature = "AppKit_NSPrintInfo")]
+#[cfg(feature = "NSPrintInfo")]
 pub use self::__NSPrintInfo::NSPrintVerticalPagination;
-#[cfg(feature = "AppKit_NSPrintInfo")]
+#[cfg(feature = "NSPrintInfo")]
 pub use self::__NSPrintInfo::NSPrintVerticallyCentered;
-#[cfg(feature = "AppKit_NSPrintInfo")]
+#[cfg(feature = "NSPrintInfo")]
 pub use self::__NSPrintInfo::NSPrintingOrientation;
-#[cfg(feature = "AppKit_NSPrintInfo")]
+#[cfg(feature = "NSPrintInfo")]
 pub use self::__NSPrintInfo::NSPrintingPaginationMode;
-#[cfg(feature = "AppKit_NSPrintOperation")]
+#[cfg(feature = "NSPrintOperation")]
 pub use self::__NSPrintOperation::NSPrintOperation;
-#[cfg(feature = "AppKit_NSPrintOperation")]
+#[cfg(feature = "NSPrintOperation")]
 pub use self::__NSPrintOperation::NSPrintOperationExistsException;
-#[cfg(feature = "AppKit_NSPrintOperation")]
+#[cfg(feature = "NSPrintOperation")]
 pub use self::__NSPrintOperation::NSPrintRenderingQuality;
-#[cfg(feature = "AppKit_NSPrintOperation")]
+#[cfg(feature = "NSPrintOperation")]
 pub use self::__NSPrintOperation::NSPrintingPageOrder;
-#[cfg(feature = "AppKit_NSPrintPanel")]
+#[cfg(feature = "NSPrintPanel")]
 pub use self::__NSPrintPanel::NSPrintAllPresetsJobStyleHint;
-#[cfg(feature = "AppKit_NSPrintPanel")]
+#[cfg(feature = "NSPrintPanel")]
 pub use self::__NSPrintPanel::NSPrintNoPresetsJobStyleHint;
-#[cfg(feature = "AppKit_NSPrintPanel")]
+#[cfg(feature = "NSPrintPanel")]
 pub use self::__NSPrintPanel::NSPrintPanel;
-#[cfg(feature = "AppKit_NSPrintPanel")]
+#[cfg(feature = "NSPrintPanel")]
 pub use self::__NSPrintPanel::NSPrintPanelAccessorizing;
-#[cfg(feature = "AppKit_NSPrintPanel")]
+#[cfg(feature = "NSPrintPanel")]
 pub use self::__NSPrintPanel::NSPrintPanelAccessorySummaryItemDescriptionKey;
-#[cfg(feature = "AppKit_NSPrintPanel")]
+#[cfg(feature = "NSPrintPanel")]
 pub use self::__NSPrintPanel::NSPrintPanelAccessorySummaryItemNameKey;
-#[cfg(feature = "AppKit_NSPrintPanel")]
+#[cfg(feature = "NSPrintPanel")]
 pub use self::__NSPrintPanel::NSPrintPanelAccessorySummaryKey;
-#[cfg(feature = "AppKit_NSPrintPanel")]
+#[cfg(feature = "NSPrintPanel")]
 pub use self::__NSPrintPanel::NSPrintPanelJobStyleHint;
-#[cfg(feature = "AppKit_NSPrintPanel")]
+#[cfg(feature = "NSPrintPanel")]
 pub use self::__NSPrintPanel::NSPrintPanelOptions;
-#[cfg(feature = "AppKit_NSPrintPanel")]
+#[cfg(feature = "NSPrintPanel")]
 pub use self::__NSPrintPanel::NSPrintPanelResult;
-#[cfg(feature = "AppKit_NSPrintPanel")]
+#[cfg(feature = "NSPrintPanel")]
 pub use self::__NSPrintPanel::NSPrintPhotoJobStyleHint;
-#[cfg(feature = "AppKit_NSPrinter")]
+#[cfg(feature = "NSPrinter")]
 pub use self::__NSPrinter::NSPrinter;
-#[cfg(feature = "AppKit_NSPrinter")]
+#[cfg(feature = "NSPrinter")]
 pub use self::__NSPrinter::NSPrinterPaperName;
-#[cfg(feature = "AppKit_NSPrinter")]
+#[cfg(feature = "NSPrinter")]
 pub use self::__NSPrinter::NSPrinterTableStatus;
-#[cfg(feature = "AppKit_NSPrinter")]
+#[cfg(feature = "NSPrinter")]
 pub use self::__NSPrinter::NSPrinterTypeName;
 #[cfg(all(
-    feature = "AppKit_NSProgressIndicator",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSView"
+    feature = "NSProgressIndicator",
+    feature = "NSResponder",
+    feature = "NSView"
 ))]
 pub use self::__NSProgressIndicator::NSProgressIndicator;
-#[cfg(feature = "AppKit_NSProgressIndicator")]
+#[cfg(feature = "NSProgressIndicator")]
 pub use self::__NSProgressIndicator::NSProgressIndicatorBarStyle;
-#[cfg(feature = "AppKit_NSProgressIndicator")]
+#[cfg(feature = "NSProgressIndicator")]
 pub use self::__NSProgressIndicator::NSProgressIndicatorSpinningStyle;
-#[cfg(feature = "AppKit_NSProgressIndicator")]
+#[cfg(feature = "NSProgressIndicator")]
 pub use self::__NSProgressIndicator::NSProgressIndicatorStyle;
-#[cfg(feature = "AppKit_NSProgressIndicator")]
+#[cfg(feature = "NSProgressIndicator")]
 pub use self::__NSProgressIndicator::NSProgressIndicatorThickness;
-#[cfg(feature = "AppKit_NSResponder")]
+#[cfg(feature = "NSResponder")]
 pub use self::__NSResponder::NSResponder;
-#[cfg(feature = "AppKit_NSResponder")]
+#[cfg(feature = "NSResponder")]
 pub use self::__NSResponder::NSStandardKeyBindingResponding;
 #[cfg(all(
-    feature = "AppKit_NSGestureRecognizer",
-    feature = "AppKit_NSRotationGestureRecognizer"
+    feature = "NSGestureRecognizer",
+    feature = "NSRotationGestureRecognizer"
 ))]
 pub use self::__NSRotationGestureRecognizer::NSRotationGestureRecognizer;
 #[cfg(all(
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSRuleEditor",
-    feature = "AppKit_NSView"
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSRuleEditor",
+    feature = "NSView"
 ))]
 pub use self::__NSRuleEditor::NSRuleEditor;
-#[cfg(feature = "AppKit_NSRuleEditor")]
+#[cfg(feature = "NSRuleEditor")]
 pub use self::__NSRuleEditor::NSRuleEditorDelegate;
-#[cfg(feature = "AppKit_NSRuleEditor")]
+#[cfg(feature = "NSRuleEditor")]
 pub use self::__NSRuleEditor::NSRuleEditorNestingMode;
-#[cfg(feature = "AppKit_NSRuleEditor")]
+#[cfg(feature = "NSRuleEditor")]
 pub use self::__NSRuleEditor::NSRuleEditorPredicateComparisonModifier;
-#[cfg(feature = "AppKit_NSRuleEditor")]
+#[cfg(feature = "NSRuleEditor")]
 pub use self::__NSRuleEditor::NSRuleEditorPredicateCompoundType;
-#[cfg(feature = "AppKit_NSRuleEditor")]
+#[cfg(feature = "NSRuleEditor")]
 pub use self::__NSRuleEditor::NSRuleEditorPredicateCustomSelector;
-#[cfg(feature = "AppKit_NSRuleEditor")]
+#[cfg(feature = "NSRuleEditor")]
 pub use self::__NSRuleEditor::NSRuleEditorPredicateLeftExpression;
-#[cfg(feature = "AppKit_NSRuleEditor")]
+#[cfg(feature = "NSRuleEditor")]
 pub use self::__NSRuleEditor::NSRuleEditorPredicateOperatorType;
-#[cfg(feature = "AppKit_NSRuleEditor")]
+#[cfg(feature = "NSRuleEditor")]
 pub use self::__NSRuleEditor::NSRuleEditorPredicateOptions;
-#[cfg(feature = "AppKit_NSRuleEditor")]
+#[cfg(feature = "NSRuleEditor")]
 pub use self::__NSRuleEditor::NSRuleEditorPredicatePartKey;
-#[cfg(feature = "AppKit_NSRuleEditor")]
+#[cfg(feature = "NSRuleEditor")]
 pub use self::__NSRuleEditor::NSRuleEditorPredicateRightExpression;
-#[cfg(feature = "AppKit_NSRuleEditor")]
+#[cfg(feature = "NSRuleEditor")]
 pub use self::__NSRuleEditor::NSRuleEditorRowType;
-#[cfg(feature = "AppKit_NSRuleEditor")]
+#[cfg(feature = "NSRuleEditor")]
 pub use self::__NSRuleEditor::NSRuleEditorRowsDidChangeNotification;
-#[cfg(feature = "AppKit_NSRulerMarker")]
+#[cfg(feature = "NSRulerMarker")]
 pub use self::__NSRulerMarker::NSRulerMarker;
-#[cfg(feature = "AppKit_NSRulerView")]
+#[cfg(feature = "NSRulerView")]
 pub use self::__NSRulerView::NSRulerOrientation;
-#[cfg(all(
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSRulerView",
-    feature = "AppKit_NSView"
-))]
+#[cfg(all(feature = "NSResponder", feature = "NSRulerView", feature = "NSView"))]
 pub use self::__NSRulerView::NSRulerView;
-#[cfg(feature = "AppKit_NSRulerView")]
+#[cfg(feature = "NSRulerView")]
 pub use self::__NSRulerView::NSRulerViewUnitCentimeters;
-#[cfg(feature = "AppKit_NSRulerView")]
+#[cfg(feature = "NSRulerView")]
 pub use self::__NSRulerView::NSRulerViewUnitInches;
-#[cfg(feature = "AppKit_NSRulerView")]
+#[cfg(feature = "NSRulerView")]
 pub use self::__NSRulerView::NSRulerViewUnitName;
-#[cfg(feature = "AppKit_NSRulerView")]
+#[cfg(feature = "NSRulerView")]
 pub use self::__NSRulerView::NSRulerViewUnitPicas;
-#[cfg(feature = "AppKit_NSRulerView")]
+#[cfg(feature = "NSRulerView")]
 pub use self::__NSRulerView::NSRulerViewUnitPoints;
-#[cfg(feature = "AppKit_NSRunningApplication")]
+#[cfg(feature = "NSRunningApplication")]
 pub use self::__NSRunningApplication::NSApplicationActivationOptions;
-#[cfg(feature = "AppKit_NSRunningApplication")]
+#[cfg(feature = "NSRunningApplication")]
 pub use self::__NSRunningApplication::NSApplicationActivationPolicy;
-#[cfg(feature = "AppKit_NSRunningApplication")]
+#[cfg(feature = "NSRunningApplication")]
 pub use self::__NSRunningApplication::NSRunningApplication;
-#[cfg(feature = "AppKit_NSSavePanel")]
+#[cfg(feature = "NSSavePanel")]
 pub use self::__NSSavePanel::NSOpenSavePanelDelegate;
 #[cfg(all(
-    feature = "AppKit_NSPanel",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSSavePanel",
-    feature = "AppKit_NSWindow"
+    feature = "NSPanel",
+    feature = "NSResponder",
+    feature = "NSSavePanel",
+    feature = "NSWindow"
 ))]
 pub use self::__NSSavePanel::NSSavePanel;
-#[cfg(feature = "AppKit_NSScreen")]
+#[cfg(feature = "NSScreen")]
 pub use self::__NSScreen::NSScreen;
-#[cfg(feature = "AppKit_NSScreen")]
+#[cfg(feature = "NSScreen")]
 pub use self::__NSScreen::NSScreenColorSpaceDidChangeNotification;
-#[cfg(feature = "AppKit_NSScrollView")]
+#[cfg(feature = "NSScrollView")]
 pub use self::__NSScrollView::NSScrollElasticity;
-#[cfg(all(
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSScrollView",
-    feature = "AppKit_NSView"
-))]
+#[cfg(all(feature = "NSResponder", feature = "NSScrollView", feature = "NSView"))]
 pub use self::__NSScrollView::NSScrollView;
-#[cfg(feature = "AppKit_NSScrollView")]
+#[cfg(feature = "NSScrollView")]
 pub use self::__NSScrollView::NSScrollViewDidEndLiveMagnifyNotification;
-#[cfg(feature = "AppKit_NSScrollView")]
+#[cfg(feature = "NSScrollView")]
 pub use self::__NSScrollView::NSScrollViewDidEndLiveScrollNotification;
-#[cfg(feature = "AppKit_NSScrollView")]
+#[cfg(feature = "NSScrollView")]
 pub use self::__NSScrollView::NSScrollViewDidLiveScrollNotification;
-#[cfg(feature = "AppKit_NSScrollView")]
+#[cfg(feature = "NSScrollView")]
 pub use self::__NSScrollView::NSScrollViewFindBarPosition;
-#[cfg(feature = "AppKit_NSScrollView")]
+#[cfg(feature = "NSScrollView")]
 pub use self::__NSScrollView::NSScrollViewWillStartLiveMagnifyNotification;
-#[cfg(feature = "AppKit_NSScrollView")]
+#[cfg(feature = "NSScrollView")]
 pub use self::__NSScrollView::NSScrollViewWillStartLiveScrollNotification;
-#[cfg(feature = "AppKit_NSScroller")]
+#[cfg(feature = "NSScroller")]
 pub use self::__NSScroller::NSPreferredScrollerStyleDidChangeNotification;
-#[cfg(feature = "AppKit_NSScroller")]
+#[cfg(feature = "NSScroller")]
 pub use self::__NSScroller::NSScrollArrowPosition;
 #[cfg(all(
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSScroller",
-    feature = "AppKit_NSView"
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSScroller",
+    feature = "NSView"
 ))]
 pub use self::__NSScroller::NSScroller;
-#[cfg(feature = "AppKit_NSScroller")]
+#[cfg(feature = "NSScroller")]
 pub use self::__NSScroller::NSScrollerArrow;
-#[cfg(feature = "AppKit_NSScroller")]
+#[cfg(feature = "NSScroller")]
 pub use self::__NSScroller::NSScrollerKnobStyle;
-#[cfg(feature = "AppKit_NSScroller")]
+#[cfg(feature = "NSScroller")]
 pub use self::__NSScroller::NSScrollerPart;
-#[cfg(feature = "AppKit_NSScroller")]
+#[cfg(feature = "NSScroller")]
 pub use self::__NSScroller::NSScrollerStyle;
-#[cfg(feature = "AppKit_NSScroller")]
+#[cfg(feature = "NSScroller")]
 pub use self::__NSScroller::NSUsableScrollerParts;
-#[cfg(all(
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSScrubber",
-    feature = "AppKit_NSView"
-))]
+#[cfg(all(feature = "NSResponder", feature = "NSScrubber", feature = "NSView"))]
 pub use self::__NSScrubber::NSScrubber;
-#[cfg(feature = "AppKit_NSScrubber")]
+#[cfg(feature = "NSScrubber")]
 pub use self::__NSScrubber::NSScrubberAlignment;
-#[cfg(feature = "AppKit_NSScrubber")]
+#[cfg(feature = "NSScrubber")]
 pub use self::__NSScrubber::NSScrubberDataSource;
-#[cfg(feature = "AppKit_NSScrubber")]
+#[cfg(feature = "NSScrubber")]
 pub use self::__NSScrubber::NSScrubberDelegate;
-#[cfg(feature = "AppKit_NSScrubber")]
+#[cfg(feature = "NSScrubber")]
 pub use self::__NSScrubber::NSScrubberMode;
-#[cfg(feature = "AppKit_NSScrubber")]
+#[cfg(feature = "NSScrubber")]
 pub use self::__NSScrubber::NSScrubberSelectionStyle;
 #[cfg(all(
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSScrubberItemView",
-    feature = "AppKit_NSView"
+    feature = "NSResponder",
+    feature = "NSScrubberItemView",
+    feature = "NSView"
 ))]
 pub use self::__NSScrubberItemView::NSScrubberArrangedView;
 #[cfg(all(
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSScrubberItemView",
-    feature = "AppKit_NSView"
+    feature = "NSResponder",
+    feature = "NSScrubberItemView",
+    feature = "NSView"
 ))]
 pub use self::__NSScrubberItemView::NSScrubberImageItemView;
 #[cfg(all(
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSScrubberItemView",
-    feature = "AppKit_NSView"
+    feature = "NSResponder",
+    feature = "NSScrubberItemView",
+    feature = "NSView"
 ))]
 pub use self::__NSScrubberItemView::NSScrubberItemView;
 #[cfg(all(
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSScrubberItemView",
-    feature = "AppKit_NSView"
+    feature = "NSResponder",
+    feature = "NSScrubberItemView",
+    feature = "NSView"
 ))]
 pub use self::__NSScrubberItemView::NSScrubberSelectionView;
 #[cfg(all(
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSScrubberItemView",
-    feature = "AppKit_NSView"
+    feature = "NSResponder",
+    feature = "NSScrubberItemView",
+    feature = "NSView"
 ))]
 pub use self::__NSScrubberItemView::NSScrubberTextItemView;
-#[cfg(feature = "AppKit_NSScrubberLayout")]
+#[cfg(feature = "NSScrubberLayout")]
 pub use self::__NSScrubberLayout::NSScrubberFlowLayout;
-#[cfg(all(feature = "AppKit_NSScrubber", feature = "AppKit_NSScrubberLayout"))]
+#[cfg(all(feature = "NSScrubber", feature = "NSScrubberLayout"))]
 pub use self::__NSScrubberLayout::NSScrubberFlowLayoutDelegate;
-#[cfg(feature = "AppKit_NSScrubberLayout")]
+#[cfg(feature = "NSScrubberLayout")]
 pub use self::__NSScrubberLayout::NSScrubberLayout;
-#[cfg(feature = "AppKit_NSScrubberLayout")]
+#[cfg(feature = "NSScrubberLayout")]
 pub use self::__NSScrubberLayout::NSScrubberLayoutAttributes;
-#[cfg(feature = "AppKit_NSScrubberLayout")]
+#[cfg(feature = "NSScrubberLayout")]
 pub use self::__NSScrubberLayout::NSScrubberProportionalLayout;
 #[cfg(all(
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSSearchField",
-    feature = "AppKit_NSTextField",
-    feature = "AppKit_NSView"
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSSearchField",
+    feature = "NSTextField",
+    feature = "NSView"
 ))]
 pub use self::__NSSearchField::NSSearchField;
 #[cfg(all(
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSSearchField",
-    feature = "AppKit_NSTextField"
+    feature = "NSControl",
+    feature = "NSSearchField",
+    feature = "NSTextField"
 ))]
 pub use self::__NSSearchField::NSSearchFieldDelegate;
-#[cfg(feature = "AppKit_NSSearchField")]
+#[cfg(feature = "NSSearchField")]
 pub use self::__NSSearchField::NSSearchFieldRecentsAutosaveName;
 #[cfg(all(
-    feature = "AppKit_NSActionCell",
-    feature = "AppKit_NSCell",
-    feature = "AppKit_NSSearchFieldCell",
-    feature = "AppKit_NSTextFieldCell"
+    feature = "NSActionCell",
+    feature = "NSCell",
+    feature = "NSSearchFieldCell",
+    feature = "NSTextFieldCell"
 ))]
 pub use self::__NSSearchFieldCell::NSSearchFieldCell;
-#[cfg(feature = "AppKit_NSSearchFieldCell")]
+#[cfg(feature = "NSSearchFieldCell")]
 pub use self::__NSSearchFieldCell::NSSearchFieldClearRecentsMenuItemTag;
-#[cfg(feature = "AppKit_NSSearchFieldCell")]
+#[cfg(feature = "NSSearchFieldCell")]
 pub use self::__NSSearchFieldCell::NSSearchFieldNoRecentsMenuItemTag;
-#[cfg(feature = "AppKit_NSSearchFieldCell")]
+#[cfg(feature = "NSSearchFieldCell")]
 pub use self::__NSSearchFieldCell::NSSearchFieldRecentsMenuItemTag;
-#[cfg(feature = "AppKit_NSSearchFieldCell")]
+#[cfg(feature = "NSSearchFieldCell")]
 pub use self::__NSSearchFieldCell::NSSearchFieldRecentsTitleMenuItemTag;
-#[cfg(all(
-    feature = "AppKit_NSSearchToolbarItem",
-    feature = "AppKit_NSToolbarItem"
-))]
+#[cfg(all(feature = "NSSearchToolbarItem", feature = "NSToolbarItem"))]
 pub use self::__NSSearchToolbarItem::NSSearchToolbarItem;
 #[cfg(all(
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSSecureTextField",
-    feature = "AppKit_NSTextField",
-    feature = "AppKit_NSView"
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSSecureTextField",
+    feature = "NSTextField",
+    feature = "NSView"
 ))]
 pub use self::__NSSecureTextField::NSSecureTextField;
 #[cfg(all(
-    feature = "AppKit_NSActionCell",
-    feature = "AppKit_NSCell",
-    feature = "AppKit_NSSecureTextField",
-    feature = "AppKit_NSTextFieldCell"
+    feature = "NSActionCell",
+    feature = "NSCell",
+    feature = "NSSecureTextField",
+    feature = "NSTextFieldCell"
 ))]
 pub use self::__NSSecureTextField::NSSecureTextFieldCell;
 #[cfg(all(
-    feature = "AppKit_NSActionCell",
-    feature = "AppKit_NSCell",
-    feature = "AppKit_NSSegmentedCell"
+    feature = "NSActionCell",
+    feature = "NSCell",
+    feature = "NSSegmentedCell"
 ))]
 pub use self::__NSSegmentedCell::NSSegmentedCell;
-#[cfg(feature = "AppKit_NSSegmentedControl")]
+#[cfg(feature = "NSSegmentedControl")]
 pub use self::__NSSegmentedControl::NSSegmentDistribution;
-#[cfg(feature = "AppKit_NSSegmentedControl")]
+#[cfg(feature = "NSSegmentedControl")]
 pub use self::__NSSegmentedControl::NSSegmentStyle;
-#[cfg(feature = "AppKit_NSSegmentedControl")]
+#[cfg(feature = "NSSegmentedControl")]
 pub use self::__NSSegmentedControl::NSSegmentSwitchTracking;
 #[cfg(all(
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSSegmentedControl",
-    feature = "AppKit_NSView"
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSSegmentedControl",
+    feature = "NSView"
 ))]
 pub use self::__NSSegmentedControl::NSSegmentedControl;
-#[cfg(feature = "AppKit_NSShadow")]
+#[cfg(feature = "NSShadow")]
 pub use self::__NSShadow::NSShadow;
-#[cfg(feature = "AppKit_NSSharingService")]
+#[cfg(feature = "NSSharingService")]
 pub use self::__NSSharingService::NSCloudKitSharingServiceOptions;
-#[cfg(feature = "AppKit_NSSharingService")]
+#[cfg(feature = "NSSharingService")]
 pub use self::__NSSharingService::NSCloudSharingServiceDelegate;
-#[cfg(feature = "AppKit_NSSharingService")]
+#[cfg(feature = "NSSharingService")]
 pub use self::__NSSharingService::NSSharingContentScope;
-#[cfg(feature = "AppKit_NSSharingService")]
+#[cfg(feature = "NSSharingService")]
 pub use self::__NSSharingService::NSSharingService;
-#[cfg(feature = "AppKit_NSSharingService")]
+#[cfg(feature = "NSSharingService")]
 pub use self::__NSSharingService::NSSharingServiceDelegate;
-#[cfg(feature = "AppKit_NSSharingService")]
+#[cfg(feature = "NSSharingService")]
 pub use self::__NSSharingService::NSSharingServiceName;
-#[cfg(feature = "AppKit_NSSharingService")]
+#[cfg(feature = "NSSharingService")]
 pub use self::__NSSharingService::NSSharingServiceNameAddToAperture;
-#[cfg(feature = "AppKit_NSSharingService")]
+#[cfg(feature = "NSSharingService")]
 pub use self::__NSSharingService::NSSharingServiceNameAddToIPhoto;
-#[cfg(feature = "AppKit_NSSharingService")]
+#[cfg(feature = "NSSharingService")]
 pub use self::__NSSharingService::NSSharingServiceNameAddToSafariReadingList;
-#[cfg(feature = "AppKit_NSSharingService")]
+#[cfg(feature = "NSSharingService")]
 pub use self::__NSSharingService::NSSharingServiceNameCloudSharing;
-#[cfg(feature = "AppKit_NSSharingService")]
+#[cfg(feature = "NSSharingService")]
 pub use self::__NSSharingService::NSSharingServiceNameComposeEmail;
-#[cfg(feature = "AppKit_NSSharingService")]
+#[cfg(feature = "NSSharingService")]
 pub use self::__NSSharingService::NSSharingServiceNameComposeMessage;
-#[cfg(feature = "AppKit_NSSharingService")]
+#[cfg(feature = "NSSharingService")]
 pub use self::__NSSharingService::NSSharingServiceNamePostImageOnFlickr;
-#[cfg(feature = "AppKit_NSSharingService")]
+#[cfg(feature = "NSSharingService")]
 pub use self::__NSSharingService::NSSharingServiceNamePostOnFacebook;
-#[cfg(feature = "AppKit_NSSharingService")]
+#[cfg(feature = "NSSharingService")]
 pub use self::__NSSharingService::NSSharingServiceNamePostOnLinkedIn;
-#[cfg(feature = "AppKit_NSSharingService")]
+#[cfg(feature = "NSSharingService")]
 pub use self::__NSSharingService::NSSharingServiceNamePostOnSinaWeibo;
-#[cfg(feature = "AppKit_NSSharingService")]
+#[cfg(feature = "NSSharingService")]
 pub use self::__NSSharingService::NSSharingServiceNamePostOnTencentWeibo;
-#[cfg(feature = "AppKit_NSSharingService")]
+#[cfg(feature = "NSSharingService")]
 pub use self::__NSSharingService::NSSharingServiceNamePostOnTwitter;
-#[cfg(feature = "AppKit_NSSharingService")]
+#[cfg(feature = "NSSharingService")]
 pub use self::__NSSharingService::NSSharingServiceNamePostVideoOnTudou;
-#[cfg(feature = "AppKit_NSSharingService")]
+#[cfg(feature = "NSSharingService")]
 pub use self::__NSSharingService::NSSharingServiceNamePostVideoOnVimeo;
-#[cfg(feature = "AppKit_NSSharingService")]
+#[cfg(feature = "NSSharingService")]
 pub use self::__NSSharingService::NSSharingServiceNamePostVideoOnYouku;
-#[cfg(feature = "AppKit_NSSharingService")]
+#[cfg(feature = "NSSharingService")]
 pub use self::__NSSharingService::NSSharingServiceNameSendViaAirDrop;
-#[cfg(feature = "AppKit_NSSharingService")]
+#[cfg(feature = "NSSharingService")]
 pub use self::__NSSharingService::NSSharingServiceNameUseAsDesktopPicture;
-#[cfg(feature = "AppKit_NSSharingService")]
+#[cfg(feature = "NSSharingService")]
 pub use self::__NSSharingService::NSSharingServiceNameUseAsFacebookProfileImage;
-#[cfg(feature = "AppKit_NSSharingService")]
+#[cfg(feature = "NSSharingService")]
 pub use self::__NSSharingService::NSSharingServiceNameUseAsLinkedInProfileImage;
-#[cfg(feature = "AppKit_NSSharingService")]
+#[cfg(feature = "NSSharingService")]
 pub use self::__NSSharingService::NSSharingServiceNameUseAsTwitterProfileImage;
-#[cfg(feature = "AppKit_NSSharingService")]
+#[cfg(feature = "NSSharingService")]
 pub use self::__NSSharingService::NSSharingServicePicker;
-#[cfg(feature = "AppKit_NSSharingService")]
+#[cfg(feature = "NSSharingService")]
 pub use self::__NSSharingService::NSSharingServicePickerDelegate;
 #[cfg(all(
-    feature = "AppKit_NSSharingServicePickerToolbarItem",
-    feature = "AppKit_NSToolbarItem"
+    feature = "NSSharingServicePickerToolbarItem",
+    feature = "NSToolbarItem"
 ))]
 pub use self::__NSSharingServicePickerToolbarItem::NSSharingServicePickerToolbarItem;
 #[cfg(all(
-    feature = "AppKit_NSSharingService",
-    feature = "AppKit_NSSharingServicePickerToolbarItem"
+    feature = "NSSharingService",
+    feature = "NSSharingServicePickerToolbarItem"
 ))]
 pub use self::__NSSharingServicePickerToolbarItem::NSSharingServicePickerToolbarItemDelegate;
 #[cfg(all(
-    feature = "AppKit_NSSharingServicePickerTouchBarItem",
-    feature = "AppKit_NSTouchBarItem"
+    feature = "NSSharingServicePickerTouchBarItem",
+    feature = "NSTouchBarItem"
 ))]
 pub use self::__NSSharingServicePickerTouchBarItem::NSSharingServicePickerTouchBarItem;
 #[cfg(all(
-    feature = "AppKit_NSSharingService",
-    feature = "AppKit_NSSharingServicePickerTouchBarItem"
+    feature = "NSSharingService",
+    feature = "NSSharingServicePickerTouchBarItem"
 ))]
 pub use self::__NSSharingServicePickerTouchBarItem::NSSharingServicePickerTouchBarItemDelegate;
 #[cfg(all(
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSSlider",
-    feature = "AppKit_NSView"
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSSlider",
+    feature = "NSView"
 ))]
 pub use self::__NSSlider::NSSlider;
-#[cfg(feature = "AppKit_NSSliderAccessory")]
+#[cfg(feature = "NSSliderAccessory")]
 pub use self::__NSSliderAccessory::NSSliderAccessory;
-#[cfg(feature = "AppKit_NSSliderAccessory")]
+#[cfg(feature = "NSSliderAccessory")]
 pub use self::__NSSliderAccessory::NSSliderAccessoryBehavior;
-#[cfg(feature = "AppKit_NSSliderCell")]
+#[cfg(feature = "NSSliderCell")]
 pub use self::__NSSliderCell::NSCircularSlider;
-#[cfg(feature = "AppKit_NSSliderCell")]
+#[cfg(feature = "NSSliderCell")]
 pub use self::__NSSliderCell::NSLinearSlider;
-#[cfg(all(
-    feature = "AppKit_NSActionCell",
-    feature = "AppKit_NSCell",
-    feature = "AppKit_NSSliderCell"
-))]
+#[cfg(all(feature = "NSActionCell", feature = "NSCell", feature = "NSSliderCell"))]
 pub use self::__NSSliderCell::NSSliderCell;
-#[cfg(feature = "AppKit_NSSliderCell")]
+#[cfg(feature = "NSSliderCell")]
 pub use self::__NSSliderCell::NSSliderType;
-#[cfg(feature = "AppKit_NSSliderCell")]
+#[cfg(feature = "NSSliderCell")]
 pub use self::__NSSliderCell::NSTickMarkAbove;
-#[cfg(feature = "AppKit_NSSliderCell")]
+#[cfg(feature = "NSSliderCell")]
 pub use self::__NSSliderCell::NSTickMarkBelow;
-#[cfg(feature = "AppKit_NSSliderCell")]
+#[cfg(feature = "NSSliderCell")]
 pub use self::__NSSliderCell::NSTickMarkLeft;
-#[cfg(feature = "AppKit_NSSliderCell")]
+#[cfg(feature = "NSSliderCell")]
 pub use self::__NSSliderCell::NSTickMarkPosition;
-#[cfg(feature = "AppKit_NSSliderCell")]
+#[cfg(feature = "NSSliderCell")]
 pub use self::__NSSliderCell::NSTickMarkRight;
-#[cfg(feature = "AppKit_NSSliderTouchBarItem")]
+#[cfg(feature = "NSSliderTouchBarItem")]
 pub use self::__NSSliderTouchBarItem::NSSliderAccessoryWidth;
-#[cfg(feature = "AppKit_NSSliderTouchBarItem")]
+#[cfg(feature = "NSSliderTouchBarItem")]
 pub use self::__NSSliderTouchBarItem::NSSliderAccessoryWidthDefault;
-#[cfg(feature = "AppKit_NSSliderTouchBarItem")]
+#[cfg(feature = "NSSliderTouchBarItem")]
 pub use self::__NSSliderTouchBarItem::NSSliderAccessoryWidthWide;
-#[cfg(all(
-    feature = "AppKit_NSSliderTouchBarItem",
-    feature = "AppKit_NSTouchBarItem"
-))]
+#[cfg(all(feature = "NSSliderTouchBarItem", feature = "NSTouchBarItem"))]
 pub use self::__NSSliderTouchBarItem::NSSliderTouchBarItem;
-#[cfg(feature = "AppKit_NSSound")]
+#[cfg(feature = "NSSound")]
 pub use self::__NSSound::NSBundleSoundExtensions;
-#[cfg(feature = "AppKit_NSSound")]
+#[cfg(feature = "NSSound")]
 pub use self::__NSSound::NSSound;
-#[cfg(feature = "AppKit_NSSound")]
+#[cfg(feature = "NSSound")]
 pub use self::__NSSound::NSSoundDelegate;
-#[cfg(feature = "AppKit_NSSound")]
+#[cfg(feature = "NSSound")]
 pub use self::__NSSound::NSSoundName;
-#[cfg(all(feature = "AppKit_NSPasteboard", feature = "AppKit_NSSound"))]
+#[cfg(all(feature = "NSPasteboard", feature = "NSSound"))]
 pub use self::__NSSound::NSSoundPboardType;
-#[cfg(feature = "AppKit_NSSound")]
+#[cfg(feature = "NSSound")]
 pub use self::__NSSound::NSSoundPlaybackDeviceIdentifier;
-#[cfg(feature = "AppKit_NSSpeechRecognizer")]
+#[cfg(feature = "NSSpeechRecognizer")]
 pub use self::__NSSpeechRecognizer::NSSpeechRecognizer;
-#[cfg(feature = "AppKit_NSSpeechRecognizer")]
+#[cfg(feature = "NSSpeechRecognizer")]
 pub use self::__NSSpeechRecognizer::NSSpeechRecognizerDelegate;
-#[cfg(feature = "AppKit_NSSpeechSynthesizer")]
+#[cfg(feature = "NSSpeechSynthesizer")]
 pub use self::__NSSpeechSynthesizer::NSSpeechBoundary;
-#[cfg(feature = "AppKit_NSSpeechSynthesizer")]
+#[cfg(feature = "NSSpeechSynthesizer")]
 pub use self::__NSSpeechSynthesizer::NSSpeechCharacterModeProperty;
-#[cfg(feature = "AppKit_NSSpeechSynthesizer")]
+#[cfg(feature = "NSSpeechSynthesizer")]
 pub use self::__NSSpeechSynthesizer::NSSpeechCommandDelimiterKey;
-#[cfg(feature = "AppKit_NSSpeechSynthesizer")]
+#[cfg(feature = "NSSpeechSynthesizer")]
 pub use self::__NSSpeechSynthesizer::NSSpeechCommandDelimiterProperty;
-#[cfg(feature = "AppKit_NSSpeechSynthesizer")]
+#[cfg(feature = "NSSpeechSynthesizer")]
 pub use self::__NSSpeechSynthesizer::NSSpeechCommandPrefix;
-#[cfg(feature = "AppKit_NSSpeechSynthesizer")]
+#[cfg(feature = "NSSpeechSynthesizer")]
 pub use self::__NSSpeechSynthesizer::NSSpeechCommandSuffix;
-#[cfg(feature = "AppKit_NSSpeechSynthesizer")]
+#[cfg(feature = "NSSpeechSynthesizer")]
 pub use self::__NSSpeechSynthesizer::NSSpeechCurrentVoiceProperty;
-#[cfg(feature = "AppKit_NSSpeechSynthesizer")]
+#[cfg(feature = "NSSpeechSynthesizer")]
 pub use self::__NSSpeechSynthesizer::NSSpeechDictionaryAbbreviations;
-#[cfg(feature = "AppKit_NSSpeechSynthesizer")]
+#[cfg(feature = "NSSpeechSynthesizer")]
 pub use self::__NSSpeechSynthesizer::NSSpeechDictionaryEntryPhonemes;
-#[cfg(feature = "AppKit_NSSpeechSynthesizer")]
+#[cfg(feature = "NSSpeechSynthesizer")]
 pub use self::__NSSpeechSynthesizer::NSSpeechDictionaryEntrySpelling;
-#[cfg(feature = "AppKit_NSSpeechSynthesizer")]
+#[cfg(feature = "NSSpeechSynthesizer")]
 pub use self::__NSSpeechSynthesizer::NSSpeechDictionaryKey;
-#[cfg(feature = "AppKit_NSSpeechSynthesizer")]
+#[cfg(feature = "NSSpeechSynthesizer")]
 pub use self::__NSSpeechSynthesizer::NSSpeechDictionaryLocaleIdentifier;
-#[cfg(feature = "AppKit_NSSpeechSynthesizer")]
+#[cfg(feature = "NSSpeechSynthesizer")]
 pub use self::__NSSpeechSynthesizer::NSSpeechDictionaryModificationDate;
-#[cfg(feature = "AppKit_NSSpeechSynthesizer")]
+#[cfg(feature = "NSSpeechSynthesizer")]
 pub use self::__NSSpeechSynthesizer::NSSpeechDictionaryPronunciations;
-#[cfg(feature = "AppKit_NSSpeechSynthesizer")]
+#[cfg(feature = "NSSpeechSynthesizer")]
 pub use self::__NSSpeechSynthesizer::NSSpeechErrorCount;
-#[cfg(feature = "AppKit_NSSpeechSynthesizer")]
+#[cfg(feature = "NSSpeechSynthesizer")]
 pub use self::__NSSpeechSynthesizer::NSSpeechErrorKey;
-#[cfg(feature = "AppKit_NSSpeechSynthesizer")]
+#[cfg(feature = "NSSpeechSynthesizer")]
 pub use self::__NSSpeechSynthesizer::NSSpeechErrorNewestCharacterOffset;
-#[cfg(feature = "AppKit_NSSpeechSynthesizer")]
+#[cfg(feature = "NSSpeechSynthesizer")]
 pub use self::__NSSpeechSynthesizer::NSSpeechErrorNewestCode;
-#[cfg(feature = "AppKit_NSSpeechSynthesizer")]
+#[cfg(feature = "NSSpeechSynthesizer")]
 pub use self::__NSSpeechSynthesizer::NSSpeechErrorOldestCharacterOffset;
-#[cfg(feature = "AppKit_NSSpeechSynthesizer")]
+#[cfg(feature = "NSSpeechSynthesizer")]
 pub use self::__NSSpeechSynthesizer::NSSpeechErrorOldestCode;
-#[cfg(feature = "AppKit_NSSpeechSynthesizer")]
+#[cfg(feature = "NSSpeechSynthesizer")]
 pub use self::__NSSpeechSynthesizer::NSSpeechErrorsProperty;
-#[cfg(feature = "AppKit_NSSpeechSynthesizer")]
+#[cfg(feature = "NSSpeechSynthesizer")]
 pub use self::__NSSpeechSynthesizer::NSSpeechInputModeProperty;
-#[cfg(feature = "AppKit_NSSpeechSynthesizer")]
+#[cfg(feature = "NSSpeechSynthesizer")]
 pub use self::__NSSpeechSynthesizer::NSSpeechMode;
-#[cfg(feature = "AppKit_NSSpeechSynthesizer")]
+#[cfg(feature = "NSSpeechSynthesizer")]
 pub use self::__NSSpeechSynthesizer::NSSpeechModeLiteral;
-#[cfg(feature = "AppKit_NSSpeechSynthesizer")]
+#[cfg(feature = "NSSpeechSynthesizer")]
 pub use self::__NSSpeechSynthesizer::NSSpeechModeNormal;
-#[cfg(feature = "AppKit_NSSpeechSynthesizer")]
+#[cfg(feature = "NSSpeechSynthesizer")]
 pub use self::__NSSpeechSynthesizer::NSSpeechModePhoneme;
-#[cfg(feature = "AppKit_NSSpeechSynthesizer")]
+#[cfg(feature = "NSSpeechSynthesizer")]
 pub use self::__NSSpeechSynthesizer::NSSpeechModeText;
-#[cfg(feature = "AppKit_NSSpeechSynthesizer")]
+#[cfg(feature = "NSSpeechSynthesizer")]
 pub use self::__NSSpeechSynthesizer::NSSpeechNumberModeProperty;
-#[cfg(feature = "AppKit_NSSpeechSynthesizer")]
+#[cfg(feature = "NSSpeechSynthesizer")]
 pub use self::__NSSpeechSynthesizer::NSSpeechOutputToFileURLProperty;
-#[cfg(feature = "AppKit_NSSpeechSynthesizer")]
+#[cfg(feature = "NSSpeechSynthesizer")]
 pub use self::__NSSpeechSynthesizer::NSSpeechPhonemeInfoExample;
-#[cfg(feature = "AppKit_NSSpeechSynthesizer")]
+#[cfg(feature = "NSSpeechSynthesizer")]
 pub use self::__NSSpeechSynthesizer::NSSpeechPhonemeInfoHiliteEnd;
-#[cfg(feature = "AppKit_NSSpeechSynthesizer")]
+#[cfg(feature = "NSSpeechSynthesizer")]
 pub use self::__NSSpeechSynthesizer::NSSpeechPhonemeInfoHiliteStart;
-#[cfg(feature = "AppKit_NSSpeechSynthesizer")]
+#[cfg(feature = "NSSpeechSynthesizer")]
 pub use self::__NSSpeechSynthesizer::NSSpeechPhonemeInfoKey;
-#[cfg(feature = "AppKit_NSSpeechSynthesizer")]
+#[cfg(feature = "NSSpeechSynthesizer")]
 pub use self::__NSSpeechSynthesizer::NSSpeechPhonemeInfoOpcode;
-#[cfg(feature = "AppKit_NSSpeechSynthesizer")]
+#[cfg(feature = "NSSpeechSynthesizer")]
 pub use self::__NSSpeechSynthesizer::NSSpeechPhonemeInfoSymbol;
-#[cfg(feature = "AppKit_NSSpeechSynthesizer")]
+#[cfg(feature = "NSSpeechSynthesizer")]
 pub use self::__NSSpeechSynthesizer::NSSpeechPhonemeSymbolsProperty;
-#[cfg(feature = "AppKit_NSSpeechSynthesizer")]
+#[cfg(feature = "NSSpeechSynthesizer")]
 pub use self::__NSSpeechSynthesizer::NSSpeechPitchBaseProperty;
-#[cfg(feature = "AppKit_NSSpeechSynthesizer")]
+#[cfg(feature = "NSSpeechSynthesizer")]
 pub use self::__NSSpeechSynthesizer::NSSpeechPitchModProperty;
-#[cfg(feature = "AppKit_NSSpeechSynthesizer")]
+#[cfg(feature = "NSSpeechSynthesizer")]
 pub use self::__NSSpeechSynthesizer::NSSpeechPropertyKey;
-#[cfg(feature = "AppKit_NSSpeechSynthesizer")]
+#[cfg(feature = "NSSpeechSynthesizer")]
 pub use self::__NSSpeechSynthesizer::NSSpeechRateProperty;
-#[cfg(feature = "AppKit_NSSpeechSynthesizer")]
+#[cfg(feature = "NSSpeechSynthesizer")]
 pub use self::__NSSpeechSynthesizer::NSSpeechRecentSyncProperty;
-#[cfg(feature = "AppKit_NSSpeechSynthesizer")]
+#[cfg(feature = "NSSpeechSynthesizer")]
 pub use self::__NSSpeechSynthesizer::NSSpeechResetProperty;
-#[cfg(feature = "AppKit_NSSpeechSynthesizer")]
+#[cfg(feature = "NSSpeechSynthesizer")]
 pub use self::__NSSpeechSynthesizer::NSSpeechStatusKey;
-#[cfg(feature = "AppKit_NSSpeechSynthesizer")]
+#[cfg(feature = "NSSpeechSynthesizer")]
 pub use self::__NSSpeechSynthesizer::NSSpeechStatusNumberOfCharactersLeft;
-#[cfg(feature = "AppKit_NSSpeechSynthesizer")]
+#[cfg(feature = "NSSpeechSynthesizer")]
 pub use self::__NSSpeechSynthesizer::NSSpeechStatusOutputBusy;
-#[cfg(feature = "AppKit_NSSpeechSynthesizer")]
+#[cfg(feature = "NSSpeechSynthesizer")]
 pub use self::__NSSpeechSynthesizer::NSSpeechStatusOutputPaused;
-#[cfg(feature = "AppKit_NSSpeechSynthesizer")]
+#[cfg(feature = "NSSpeechSynthesizer")]
 pub use self::__NSSpeechSynthesizer::NSSpeechStatusPhonemeCode;
-#[cfg(feature = "AppKit_NSSpeechSynthesizer")]
+#[cfg(feature = "NSSpeechSynthesizer")]
 pub use self::__NSSpeechSynthesizer::NSSpeechStatusProperty;
-#[cfg(feature = "AppKit_NSSpeechSynthesizer")]
+#[cfg(feature = "NSSpeechSynthesizer")]
 pub use self::__NSSpeechSynthesizer::NSSpeechSynthesizer;
-#[cfg(feature = "AppKit_NSSpeechSynthesizer")]
+#[cfg(feature = "NSSpeechSynthesizer")]
 pub use self::__NSSpeechSynthesizer::NSSpeechSynthesizerDelegate;
-#[cfg(feature = "AppKit_NSSpeechSynthesizer")]
+#[cfg(feature = "NSSpeechSynthesizer")]
 pub use self::__NSSpeechSynthesizer::NSSpeechSynthesizerInfoIdentifier;
-#[cfg(feature = "AppKit_NSSpeechSynthesizer")]
+#[cfg(feature = "NSSpeechSynthesizer")]
 pub use self::__NSSpeechSynthesizer::NSSpeechSynthesizerInfoKey;
-#[cfg(feature = "AppKit_NSSpeechSynthesizer")]
+#[cfg(feature = "NSSpeechSynthesizer")]
 pub use self::__NSSpeechSynthesizer::NSSpeechSynthesizerInfoProperty;
-#[cfg(feature = "AppKit_NSSpeechSynthesizer")]
+#[cfg(feature = "NSSpeechSynthesizer")]
 pub use self::__NSSpeechSynthesizer::NSSpeechSynthesizerInfoVersion;
-#[cfg(feature = "AppKit_NSSpeechSynthesizer")]
+#[cfg(feature = "NSSpeechSynthesizer")]
 pub use self::__NSSpeechSynthesizer::NSSpeechSynthesizerVoiceName;
-#[cfg(feature = "AppKit_NSSpeechSynthesizer")]
+#[cfg(feature = "NSSpeechSynthesizer")]
 pub use self::__NSSpeechSynthesizer::NSSpeechVolumeProperty;
-#[cfg(feature = "AppKit_NSSpeechSynthesizer")]
+#[cfg(feature = "NSSpeechSynthesizer")]
 pub use self::__NSSpeechSynthesizer::NSVoiceAge;
-#[cfg(feature = "AppKit_NSSpeechSynthesizer")]
+#[cfg(feature = "NSSpeechSynthesizer")]
 pub use self::__NSSpeechSynthesizer::NSVoiceAttributeKey;
-#[cfg(feature = "AppKit_NSSpeechSynthesizer")]
+#[cfg(feature = "NSSpeechSynthesizer")]
 pub use self::__NSSpeechSynthesizer::NSVoiceDemoText;
-#[cfg(feature = "AppKit_NSSpeechSynthesizer")]
+#[cfg(feature = "NSSpeechSynthesizer")]
 pub use self::__NSSpeechSynthesizer::NSVoiceGender;
-#[cfg(feature = "AppKit_NSSpeechSynthesizer")]
+#[cfg(feature = "NSSpeechSynthesizer")]
 pub use self::__NSSpeechSynthesizer::NSVoiceGenderFemale;
-#[cfg(feature = "AppKit_NSSpeechSynthesizer")]
+#[cfg(feature = "NSSpeechSynthesizer")]
 pub use self::__NSSpeechSynthesizer::NSVoiceGenderMale;
-#[cfg(feature = "AppKit_NSSpeechSynthesizer")]
+#[cfg(feature = "NSSpeechSynthesizer")]
 pub use self::__NSSpeechSynthesizer::NSVoiceGenderName;
-#[cfg(feature = "AppKit_NSSpeechSynthesizer")]
+#[cfg(feature = "NSSpeechSynthesizer")]
 pub use self::__NSSpeechSynthesizer::NSVoiceGenderNeuter;
-#[cfg(feature = "AppKit_NSSpeechSynthesizer")]
+#[cfg(feature = "NSSpeechSynthesizer")]
 pub use self::__NSSpeechSynthesizer::NSVoiceGenderNeutral;
-#[cfg(feature = "AppKit_NSSpeechSynthesizer")]
+#[cfg(feature = "NSSpeechSynthesizer")]
 pub use self::__NSSpeechSynthesizer::NSVoiceIdentifier;
-#[cfg(feature = "AppKit_NSSpeechSynthesizer")]
+#[cfg(feature = "NSSpeechSynthesizer")]
 pub use self::__NSSpeechSynthesizer::NSVoiceIndividuallySpokenCharacters;
-#[cfg(feature = "AppKit_NSSpeechSynthesizer")]
+#[cfg(feature = "NSSpeechSynthesizer")]
 pub use self::__NSSpeechSynthesizer::NSVoiceLanguage;
-#[cfg(feature = "AppKit_NSSpeechSynthesizer")]
+#[cfg(feature = "NSSpeechSynthesizer")]
 pub use self::__NSSpeechSynthesizer::NSVoiceLocaleIdentifier;
-#[cfg(feature = "AppKit_NSSpeechSynthesizer")]
+#[cfg(feature = "NSSpeechSynthesizer")]
 pub use self::__NSSpeechSynthesizer::NSVoiceName;
-#[cfg(feature = "AppKit_NSSpeechSynthesizer")]
+#[cfg(feature = "NSSpeechSynthesizer")]
 pub use self::__NSSpeechSynthesizer::NSVoiceSupportedCharacters;
-#[cfg(feature = "AppKit_NSSpellChecker")]
+#[cfg(feature = "NSSpellChecker")]
 pub use self::__NSSpellChecker::NSCorrectionIndicatorType;
-#[cfg(feature = "AppKit_NSSpellChecker")]
+#[cfg(feature = "NSSpellChecker")]
 pub use self::__NSSpellChecker::NSCorrectionResponse;
-#[cfg(feature = "AppKit_NSSpellChecker")]
+#[cfg(feature = "NSSpellChecker")]
 pub use self::__NSSpellChecker::NSSpellChecker;
-#[cfg(feature = "AppKit_NSSpellChecker")]
+#[cfg(feature = "NSSpellChecker")]
 pub use self::__NSSpellChecker::NSSpellCheckerDidChangeAutomaticCapitalizationNotification;
-#[cfg(feature = "AppKit_NSSpellChecker")]
+#[cfg(feature = "NSSpellChecker")]
 pub use self::__NSSpellChecker::NSSpellCheckerDidChangeAutomaticDashSubstitutionNotification;
-#[cfg(feature = "AppKit_NSSpellChecker")]
+#[cfg(feature = "NSSpellChecker")]
 pub use self::__NSSpellChecker::NSSpellCheckerDidChangeAutomaticInlinePredictionNotification;
-#[cfg(feature = "AppKit_NSSpellChecker")]
+#[cfg(feature = "NSSpellChecker")]
 pub use self::__NSSpellChecker::NSSpellCheckerDidChangeAutomaticPeriodSubstitutionNotification;
-#[cfg(feature = "AppKit_NSSpellChecker")]
+#[cfg(feature = "NSSpellChecker")]
 pub use self::__NSSpellChecker::NSSpellCheckerDidChangeAutomaticQuoteSubstitutionNotification;
-#[cfg(feature = "AppKit_NSSpellChecker")]
+#[cfg(feature = "NSSpellChecker")]
 pub use self::__NSSpellChecker::NSSpellCheckerDidChangeAutomaticSpellingCorrectionNotification;
-#[cfg(feature = "AppKit_NSSpellChecker")]
+#[cfg(feature = "NSSpellChecker")]
 pub use self::__NSSpellChecker::NSSpellCheckerDidChangeAutomaticTextCompletionNotification;
-#[cfg(feature = "AppKit_NSSpellChecker")]
+#[cfg(feature = "NSSpellChecker")]
 pub use self::__NSSpellChecker::NSSpellCheckerDidChangeAutomaticTextReplacementNotification;
-#[cfg(feature = "AppKit_NSSpellChecker")]
+#[cfg(feature = "NSSpellChecker")]
 pub use self::__NSSpellChecker::NSTextCheckingDocumentAuthorKey;
-#[cfg(feature = "AppKit_NSSpellChecker")]
+#[cfg(feature = "NSSpellChecker")]
 pub use self::__NSSpellChecker::NSTextCheckingDocumentTitleKey;
-#[cfg(feature = "AppKit_NSSpellChecker")]
+#[cfg(feature = "NSSpellChecker")]
 pub use self::__NSSpellChecker::NSTextCheckingDocumentURLKey;
-#[cfg(feature = "AppKit_NSSpellChecker")]
+#[cfg(feature = "NSSpellChecker")]
 pub use self::__NSSpellChecker::NSTextCheckingGenerateInlinePredictionsKey;
-#[cfg(feature = "AppKit_NSSpellChecker")]
+#[cfg(feature = "NSSpellChecker")]
 pub use self::__NSSpellChecker::NSTextCheckingOptionKey;
-#[cfg(feature = "AppKit_NSSpellChecker")]
+#[cfg(feature = "NSSpellChecker")]
 pub use self::__NSSpellChecker::NSTextCheckingOrthographyKey;
-#[cfg(feature = "AppKit_NSSpellChecker")]
+#[cfg(feature = "NSSpellChecker")]
 pub use self::__NSSpellChecker::NSTextCheckingQuotesKey;
-#[cfg(feature = "AppKit_NSSpellChecker")]
+#[cfg(feature = "NSSpellChecker")]
 pub use self::__NSSpellChecker::NSTextCheckingReferenceDateKey;
-#[cfg(feature = "AppKit_NSSpellChecker")]
+#[cfg(feature = "NSSpellChecker")]
 pub use self::__NSSpellChecker::NSTextCheckingReferenceTimeZoneKey;
-#[cfg(feature = "AppKit_NSSpellChecker")]
+#[cfg(feature = "NSSpellChecker")]
 pub use self::__NSSpellChecker::NSTextCheckingRegularExpressionsKey;
-#[cfg(feature = "AppKit_NSSpellChecker")]
+#[cfg(feature = "NSSpellChecker")]
 pub use self::__NSSpellChecker::NSTextCheckingReplacementsKey;
-#[cfg(feature = "AppKit_NSSpellChecker")]
+#[cfg(feature = "NSSpellChecker")]
 pub use self::__NSSpellChecker::NSTextCheckingSelectedRangeKey;
-#[cfg(feature = "AppKit_NSSpellProtocol")]
+#[cfg(feature = "NSSpellProtocol")]
 pub use self::__NSSpellProtocol::NSChangeSpelling;
-#[cfg(feature = "AppKit_NSSpellProtocol")]
+#[cfg(feature = "NSSpellProtocol")]
 pub use self::__NSSpellProtocol::NSIgnoreMisspelledWords;
-#[cfg(all(
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSSplitView",
-    feature = "AppKit_NSView"
-))]
+#[cfg(all(feature = "NSResponder", feature = "NSSplitView", feature = "NSView"))]
 pub use self::__NSSplitView::NSSplitView;
-#[cfg(feature = "AppKit_NSSplitView")]
+#[cfg(feature = "NSSplitView")]
 pub use self::__NSSplitView::NSSplitViewAutosaveName;
-#[cfg(feature = "AppKit_NSSplitView")]
+#[cfg(feature = "NSSplitView")]
 pub use self::__NSSplitView::NSSplitViewDelegate;
-#[cfg(feature = "AppKit_NSSplitView")]
+#[cfg(feature = "NSSplitView")]
 pub use self::__NSSplitView::NSSplitViewDidResizeSubviewsNotification;
-#[cfg(feature = "AppKit_NSSplitView")]
+#[cfg(feature = "NSSplitView")]
 pub use self::__NSSplitView::NSSplitViewDividerStyle;
-#[cfg(feature = "AppKit_NSSplitView")]
+#[cfg(feature = "NSSplitView")]
 pub use self::__NSSplitView::NSSplitViewWillResizeSubviewsNotification;
 #[cfg(all(
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSSplitViewController",
-    feature = "AppKit_NSViewController"
+    feature = "NSResponder",
+    feature = "NSSplitViewController",
+    feature = "NSViewController"
 ))]
 pub use self::__NSSplitViewController::NSSplitViewController;
-#[cfg(feature = "AppKit_NSSplitViewController")]
+#[cfg(feature = "NSSplitViewController")]
 pub use self::__NSSplitViewController::NSSplitViewControllerAutomaticDimension;
-#[cfg(feature = "AppKit_NSSplitViewItem")]
+#[cfg(feature = "NSSplitViewItem")]
 pub use self::__NSSplitViewItem::NSSplitViewItem;
-#[cfg(feature = "AppKit_NSSplitViewItem")]
+#[cfg(feature = "NSSplitViewItem")]
 pub use self::__NSSplitViewItem::NSSplitViewItemBehavior;
-#[cfg(feature = "AppKit_NSSplitViewItem")]
+#[cfg(feature = "NSSplitViewItem")]
 pub use self::__NSSplitViewItem::NSSplitViewItemCollapseBehavior;
-#[cfg(feature = "AppKit_NSSplitViewItem")]
+#[cfg(feature = "NSSplitViewItem")]
 pub use self::__NSSplitViewItem::NSSplitViewItemUnspecifiedDimension;
-#[cfg(all(
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSStackView",
-    feature = "AppKit_NSView"
-))]
+#[cfg(all(feature = "NSResponder", feature = "NSStackView", feature = "NSView"))]
 pub use self::__NSStackView::NSStackView;
-#[cfg(feature = "AppKit_NSStackView")]
+#[cfg(feature = "NSStackView")]
 pub use self::__NSStackView::NSStackViewDelegate;
-#[cfg(feature = "AppKit_NSStackView")]
+#[cfg(feature = "NSStackView")]
 pub use self::__NSStackView::NSStackViewDistribution;
-#[cfg(feature = "AppKit_NSStackView")]
+#[cfg(feature = "NSStackView")]
 pub use self::__NSStackView::NSStackViewGravity;
-#[cfg(feature = "AppKit_NSStackView")]
+#[cfg(feature = "NSStackView")]
 pub use self::__NSStackView::NSStackViewSpacingUseDefault;
-#[cfg(feature = "AppKit_NSStackView")]
+#[cfg(feature = "NSStackView")]
 pub use self::__NSStackView::NSStackViewVisibilityPriority;
-#[cfg(feature = "AppKit_NSStackView")]
+#[cfg(feature = "NSStackView")]
 pub use self::__NSStackView::NSStackViewVisibilityPriorityDetachOnlyIfNecessary;
-#[cfg(feature = "AppKit_NSStackView")]
+#[cfg(feature = "NSStackView")]
 pub use self::__NSStackView::NSStackViewVisibilityPriorityMustHold;
-#[cfg(feature = "AppKit_NSStackView")]
+#[cfg(feature = "NSStackView")]
 pub use self::__NSStackView::NSStackViewVisibilityPriorityNotVisible;
-#[cfg(feature = "AppKit_NSStatusBar")]
+#[cfg(feature = "NSStatusBar")]
 pub use self::__NSStatusBar::NSSquareStatusItemLength;
-#[cfg(feature = "AppKit_NSStatusBar")]
+#[cfg(feature = "NSStatusBar")]
 pub use self::__NSStatusBar::NSStatusBar;
-#[cfg(feature = "AppKit_NSStatusBar")]
+#[cfg(feature = "NSStatusBar")]
 pub use self::__NSStatusBar::NSVariableStatusItemLength;
 #[cfg(all(
-    feature = "AppKit_NSButton",
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSStatusBarButton",
-    feature = "AppKit_NSView"
+    feature = "NSButton",
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSStatusBarButton",
+    feature = "NSView"
 ))]
 pub use self::__NSStatusBarButton::NSStatusBarButton;
-#[cfg(feature = "AppKit_NSStatusItem")]
+#[cfg(feature = "NSStatusItem")]
 pub use self::__NSStatusItem::NSStatusItem;
-#[cfg(feature = "AppKit_NSStatusItem")]
+#[cfg(feature = "NSStatusItem")]
 pub use self::__NSStatusItem::NSStatusItemAutosaveName;
-#[cfg(feature = "AppKit_NSStatusItem")]
+#[cfg(feature = "NSStatusItem")]
 pub use self::__NSStatusItem::NSStatusItemBehavior;
 #[cfg(all(
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSStepper",
-    feature = "AppKit_NSView"
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSStepper",
+    feature = "NSView"
 ))]
 pub use self::__NSStepper::NSStepper;
 #[cfg(all(
-    feature = "AppKit_NSActionCell",
-    feature = "AppKit_NSCell",
-    feature = "AppKit_NSStepperCell"
+    feature = "NSActionCell",
+    feature = "NSCell",
+    feature = "NSStepperCell"
 ))]
 pub use self::__NSStepperCell::NSStepperCell;
-#[cfg(all(
-    feature = "AppKit_NSStepperTouchBarItem",
-    feature = "AppKit_NSTouchBarItem"
-))]
+#[cfg(all(feature = "NSStepperTouchBarItem", feature = "NSTouchBarItem"))]
 pub use self::__NSStepperTouchBarItem::NSStepperTouchBarItem;
-#[cfg(feature = "AppKit_NSStoryboard")]
+#[cfg(feature = "NSStoryboard")]
 pub use self::__NSStoryboard::NSStoryboard;
-#[cfg(all(feature = "AppKit_NSStoryboard", feature = "block2"))]
+#[cfg(all(feature = "NSStoryboard", feature = "block2"))]
 pub use self::__NSStoryboard::NSStoryboardControllerCreator;
-#[cfg(feature = "AppKit_NSStoryboard")]
+#[cfg(feature = "NSStoryboard")]
 pub use self::__NSStoryboard::NSStoryboardName;
-#[cfg(feature = "AppKit_NSStoryboard")]
+#[cfg(feature = "NSStoryboard")]
 pub use self::__NSStoryboard::NSStoryboardSceneIdentifier;
-#[cfg(feature = "AppKit_NSStoryboardSegue")]
+#[cfg(feature = "NSStoryboardSegue")]
 pub use self::__NSStoryboardSegue::NSSeguePerforming;
-#[cfg(feature = "AppKit_NSStoryboardSegue")]
+#[cfg(feature = "NSStoryboardSegue")]
 pub use self::__NSStoryboardSegue::NSStoryboardSegue;
-#[cfg(feature = "AppKit_NSStoryboardSegue")]
+#[cfg(feature = "NSStoryboardSegue")]
 pub use self::__NSStoryboardSegue::NSStoryboardSegueIdentifier;
-#[cfg(feature = "AppKit_NSStringDrawing")]
+#[cfg(feature = "NSStringDrawing")]
 pub use self::__NSStringDrawing::NSAttributedStringNSExtendedStringDrawing;
-#[cfg(feature = "AppKit_NSStringDrawing")]
+#[cfg(feature = "NSStringDrawing")]
 pub use self::__NSStringDrawing::NSAttributedStringNSStringDrawing;
-#[cfg(feature = "AppKit_NSStringDrawing")]
+#[cfg(feature = "NSStringDrawing")]
 pub use self::__NSStringDrawing::NSAttributedStringNSStringDrawingDeprecated;
-#[cfg(feature = "AppKit_NSStringDrawing")]
+#[cfg(feature = "NSStringDrawing")]
 pub use self::__NSStringDrawing::NSStringDrawing;
-#[cfg(feature = "AppKit_NSStringDrawing")]
+#[cfg(feature = "NSStringDrawing")]
 pub use self::__NSStringDrawing::NSStringDrawingContext;
-#[cfg(feature = "AppKit_NSStringDrawing")]
+#[cfg(feature = "NSStringDrawing")]
 pub use self::__NSStringDrawing::NSStringDrawingDeprecated;
-#[cfg(feature = "AppKit_NSStringDrawing")]
+#[cfg(feature = "NSStringDrawing")]
 pub use self::__NSStringDrawing::NSStringDrawingOptions;
-#[cfg(feature = "AppKit_NSStringDrawing")]
+#[cfg(feature = "NSStringDrawing")]
 pub use self::__NSStringDrawing::NSStringNSExtendedStringDrawing;
 #[cfg(all(
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSSwitch",
-    feature = "AppKit_NSView"
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSSwitch",
+    feature = "NSView"
 ))]
 pub use self::__NSSwitch::NSSwitch;
-#[cfg(all(feature = "AppKit_NSApplication", feature = "AppKit_NSTabView"))]
+#[cfg(all(feature = "NSApplication", feature = "NSTabView"))]
 pub use self::__NSTabView::NSAppKitVersionNumberWithDirectionalTabs;
-#[cfg(feature = "AppKit_NSTabView")]
+#[cfg(feature = "NSTabView")]
 pub use self::__NSTabView::NSTabPosition;
-#[cfg(all(
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSTabView",
-    feature = "AppKit_NSView"
-))]
+#[cfg(all(feature = "NSResponder", feature = "NSTabView", feature = "NSView"))]
 pub use self::__NSTabView::NSTabView;
-#[cfg(feature = "AppKit_NSTabView")]
+#[cfg(feature = "NSTabView")]
 pub use self::__NSTabView::NSTabViewBorderType;
-#[cfg(feature = "AppKit_NSTabView")]
+#[cfg(feature = "NSTabView")]
 pub use self::__NSTabView::NSTabViewDelegate;
-#[cfg(feature = "AppKit_NSTabView")]
+#[cfg(feature = "NSTabView")]
 pub use self::__NSTabView::NSTabViewType;
 #[cfg(all(
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSTabViewController",
-    feature = "AppKit_NSViewController"
+    feature = "NSResponder",
+    feature = "NSTabViewController",
+    feature = "NSViewController"
 ))]
 pub use self::__NSTabViewController::NSTabViewController;
-#[cfg(feature = "AppKit_NSTabViewController")]
+#[cfg(feature = "NSTabViewController")]
 pub use self::__NSTabViewController::NSTabViewControllerTabStyle;
-#[cfg(feature = "AppKit_NSTabViewItem")]
+#[cfg(feature = "NSTabViewItem")]
 pub use self::__NSTabViewItem::NSTabState;
-#[cfg(feature = "AppKit_NSTabViewItem")]
+#[cfg(feature = "NSTabViewItem")]
 pub use self::__NSTabViewItem::NSTabViewItem;
 #[cfg(all(
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSTableCellView",
-    feature = "AppKit_NSView"
+    feature = "NSResponder",
+    feature = "NSTableCellView",
+    feature = "NSView"
 ))]
 pub use self::__NSTableCellView::NSTableCellView;
-#[cfg(feature = "AppKit_NSTableColumn")]
+#[cfg(feature = "NSTableColumn")]
 pub use self::__NSTableColumn::NSTableColumn;
-#[cfg(feature = "AppKit_NSTableColumn")]
+#[cfg(feature = "NSTableColumn")]
 pub use self::__NSTableColumn::NSTableColumnResizingOptions;
 #[cfg(all(
-    feature = "AppKit_NSActionCell",
-    feature = "AppKit_NSCell",
-    feature = "AppKit_NSTableHeaderCell",
-    feature = "AppKit_NSTextFieldCell"
+    feature = "NSActionCell",
+    feature = "NSCell",
+    feature = "NSTableHeaderCell",
+    feature = "NSTextFieldCell"
 ))]
 pub use self::__NSTableHeaderCell::NSTableHeaderCell;
 #[cfg(all(
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSTableHeaderView",
-    feature = "AppKit_NSView"
+    feature = "NSResponder",
+    feature = "NSTableHeaderView",
+    feature = "NSView"
 ))]
 pub use self::__NSTableHeaderView::NSTableHeaderView;
 #[cfg(all(
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSTableRowView",
-    feature = "AppKit_NSView"
+    feature = "NSResponder",
+    feature = "NSTableRowView",
+    feature = "NSView"
 ))]
 pub use self::__NSTableRowView::NSTableRowView;
-#[cfg(feature = "AppKit_NSTableView")]
+#[cfg(feature = "NSTableView")]
 pub use self::__NSTableView::NSTableRowActionEdge;
 #[cfg(all(
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSTableView",
-    feature = "AppKit_NSView"
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSTableView",
+    feature = "NSView"
 ))]
 pub use self::__NSTableView::NSTableView;
-#[cfg(feature = "AppKit_NSTableView")]
+#[cfg(feature = "NSTableView")]
 pub use self::__NSTableView::NSTableViewAnimationOptions;
-#[cfg(feature = "AppKit_NSTableView")]
+#[cfg(feature = "NSTableView")]
 pub use self::__NSTableView::NSTableViewAutosaveName;
-#[cfg(feature = "AppKit_NSTableView")]
+#[cfg(feature = "NSTableView")]
 pub use self::__NSTableView::NSTableViewColumnAutoresizingStyle;
-#[cfg(feature = "AppKit_NSTableView")]
+#[cfg(feature = "NSTableView")]
 pub use self::__NSTableView::NSTableViewColumnDidMoveNotification;
-#[cfg(feature = "AppKit_NSTableView")]
+#[cfg(feature = "NSTableView")]
 pub use self::__NSTableView::NSTableViewColumnDidResizeNotification;
-#[cfg(feature = "AppKit_NSTableView")]
+#[cfg(feature = "NSTableView")]
 pub use self::__NSTableView::NSTableViewDataSource;
-#[cfg(all(feature = "AppKit_NSControl", feature = "AppKit_NSTableView"))]
+#[cfg(all(feature = "NSControl", feature = "NSTableView"))]
 pub use self::__NSTableView::NSTableViewDelegate;
-#[cfg(feature = "AppKit_NSTableView")]
+#[cfg(feature = "NSTableView")]
 pub use self::__NSTableView::NSTableViewDraggingDestinationFeedbackStyle;
-#[cfg(feature = "AppKit_NSTableView")]
+#[cfg(feature = "NSTableView")]
 pub use self::__NSTableView::NSTableViewDropOperation;
-#[cfg(feature = "AppKit_NSTableView")]
+#[cfg(feature = "NSTableView")]
 pub use self::__NSTableView::NSTableViewGridLineStyle;
-#[cfg(feature = "AppKit_NSTableView")]
+#[cfg(feature = "NSTableView")]
 pub use self::__NSTableView::NSTableViewRowSizeStyle;
-#[cfg(all(
-    feature = "AppKit_NSTableView",
-    feature = "AppKit_NSUserInterfaceItemIdentification"
-))]
+#[cfg(all(feature = "NSTableView", feature = "NSUserInterfaceItemIdentification"))]
 pub use self::__NSTableView::NSTableViewRowViewKey;
-#[cfg(feature = "AppKit_NSTableView")]
+#[cfg(feature = "NSTableView")]
 pub use self::__NSTableView::NSTableViewSelectionDidChangeNotification;
-#[cfg(feature = "AppKit_NSTableView")]
+#[cfg(feature = "NSTableView")]
 pub use self::__NSTableView::NSTableViewSelectionHighlightStyle;
-#[cfg(feature = "AppKit_NSTableView")]
+#[cfg(feature = "NSTableView")]
 pub use self::__NSTableView::NSTableViewSelectionIsChangingNotification;
-#[cfg(feature = "AppKit_NSTableView")]
+#[cfg(feature = "NSTableView")]
 pub use self::__NSTableView::NSTableViewStyle;
-#[cfg(feature = "AppKit_NSTableViewDiffableDataSource")]
+#[cfg(feature = "NSTableViewDiffableDataSource")]
 pub use self::__NSTableViewDiffableDataSource::NSTableViewDiffableDataSource;
 #[cfg(all(
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSTableColumn",
-    feature = "AppKit_NSTableView",
-    feature = "AppKit_NSTableViewDiffableDataSource",
-    feature = "AppKit_NSView",
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSTableColumn",
+    feature = "NSTableView",
+    feature = "NSTableViewDiffableDataSource",
+    feature = "NSView",
     feature = "block2"
 ))]
 pub use self::__NSTableViewDiffableDataSource::NSTableViewDiffableDataSourceCellProvider;
 #[cfg(all(
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSTableRowView",
-    feature = "AppKit_NSTableView",
-    feature = "AppKit_NSTableViewDiffableDataSource",
-    feature = "AppKit_NSView",
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSTableRowView",
+    feature = "NSTableView",
+    feature = "NSTableViewDiffableDataSource",
+    feature = "NSView",
     feature = "block2"
 ))]
 pub use self::__NSTableViewDiffableDataSource::NSTableViewDiffableDataSourceRowProvider;
 #[cfg(all(
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSTableView",
-    feature = "AppKit_NSTableViewDiffableDataSource",
-    feature = "AppKit_NSView",
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSTableView",
+    feature = "NSTableViewDiffableDataSource",
+    feature = "NSView",
     feature = "block2"
 ))]
 pub use self::__NSTableViewDiffableDataSource::NSTableViewDiffableDataSourceSectionHeaderViewProvider;
-#[cfg(feature = "AppKit_NSTableViewRowAction")]
+#[cfg(feature = "NSTableViewRowAction")]
 pub use self::__NSTableViewRowAction::NSTableViewRowAction;
-#[cfg(feature = "AppKit_NSTableViewRowAction")]
+#[cfg(feature = "NSTableViewRowAction")]
 pub use self::__NSTableViewRowAction::NSTableViewRowActionStyle;
-#[cfg(feature = "AppKit_NSText")]
+#[cfg(feature = "NSText")]
 pub use self::__NSText::NSBackTabCharacter;
-#[cfg(feature = "AppKit_NSText")]
+#[cfg(feature = "NSText")]
 pub use self::__NSText::NSBackspaceCharacter;
-#[cfg(feature = "AppKit_NSText")]
+#[cfg(feature = "NSText")]
 pub use self::__NSText::NSBacktabTextMovement;
-#[cfg(feature = "AppKit_NSText")]
+#[cfg(feature = "NSText")]
 pub use self::__NSText::NSCancelTextMovement;
-#[cfg(feature = "AppKit_NSText")]
+#[cfg(feature = "NSText")]
 pub use self::__NSText::NSCarriageReturnCharacter;
-#[cfg(feature = "AppKit_NSText")]
+#[cfg(feature = "NSText")]
 pub use self::__NSText::NSCenterTextAlignment;
-#[cfg(feature = "AppKit_NSText")]
+#[cfg(feature = "NSText")]
 pub use self::__NSText::NSDeleteCharacter;
-#[cfg(feature = "AppKit_NSText")]
+#[cfg(feature = "NSText")]
 pub use self::__NSText::NSDownTextMovement;
-#[cfg(feature = "AppKit_NSText")]
+#[cfg(feature = "NSText")]
 pub use self::__NSText::NSEnterCharacter;
-#[cfg(feature = "AppKit_NSText")]
+#[cfg(feature = "NSText")]
 pub use self::__NSText::NSFormFeedCharacter;
-#[cfg(feature = "AppKit_NSText")]
+#[cfg(feature = "NSText")]
 pub use self::__NSText::NSIllegalTextMovement;
-#[cfg(feature = "AppKit_NSText")]
+#[cfg(feature = "NSText")]
 pub use self::__NSText::NSJustifiedTextAlignment;
-#[cfg(feature = "AppKit_NSText")]
+#[cfg(feature = "NSText")]
 pub use self::__NSText::NSLeftTextAlignment;
-#[cfg(feature = "AppKit_NSText")]
+#[cfg(feature = "NSText")]
 pub use self::__NSText::NSLeftTextMovement;
-#[cfg(feature = "AppKit_NSText")]
+#[cfg(feature = "NSText")]
 pub use self::__NSText::NSLineSeparatorCharacter;
-#[cfg(feature = "AppKit_NSText")]
+#[cfg(feature = "NSText")]
 pub use self::__NSText::NSNaturalTextAlignment;
-#[cfg(feature = "AppKit_NSText")]
+#[cfg(feature = "NSText")]
 pub use self::__NSText::NSNewlineCharacter;
-#[cfg(feature = "AppKit_NSText")]
+#[cfg(feature = "NSText")]
 pub use self::__NSText::NSOtherTextMovement;
-#[cfg(feature = "AppKit_NSText")]
+#[cfg(feature = "NSText")]
 pub use self::__NSText::NSParagraphSeparatorCharacter;
-#[cfg(feature = "AppKit_NSText")]
+#[cfg(feature = "NSText")]
 pub use self::__NSText::NSReturnTextMovement;
-#[cfg(feature = "AppKit_NSText")]
+#[cfg(feature = "NSText")]
 pub use self::__NSText::NSRightTextAlignment;
-#[cfg(feature = "AppKit_NSText")]
+#[cfg(feature = "NSText")]
 pub use self::__NSText::NSRightTextMovement;
-#[cfg(feature = "AppKit_NSText")]
+#[cfg(feature = "NSText")]
 pub use self::__NSText::NSTabCharacter;
-#[cfg(feature = "AppKit_NSText")]
+#[cfg(feature = "NSText")]
 pub use self::__NSText::NSTabTextMovement;
-#[cfg(all(
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSText",
-    feature = "AppKit_NSView"
-))]
+#[cfg(all(feature = "NSResponder", feature = "NSText", feature = "NSView"))]
 pub use self::__NSText::NSText;
-#[cfg(feature = "AppKit_NSText")]
+#[cfg(feature = "NSText")]
 pub use self::__NSText::NSTextDelegate;
-#[cfg(feature = "AppKit_NSText")]
+#[cfg(feature = "NSText")]
 pub use self::__NSText::NSTextDidBeginEditingNotification;
-#[cfg(feature = "AppKit_NSText")]
+#[cfg(feature = "NSText")]
 pub use self::__NSText::NSTextDidChangeNotification;
-#[cfg(feature = "AppKit_NSText")]
+#[cfg(feature = "NSText")]
 pub use self::__NSText::NSTextDidEndEditingNotification;
-#[cfg(feature = "AppKit_NSText")]
+#[cfg(feature = "NSText")]
 pub use self::__NSText::NSTextMovement;
-#[cfg(feature = "AppKit_NSText")]
+#[cfg(feature = "NSText")]
 pub use self::__NSText::NSTextMovementUserInfoKey;
-#[cfg(feature = "AppKit_NSText")]
+#[cfg(feature = "NSText")]
 pub use self::__NSText::NSTextWritingDirectionEmbedding;
-#[cfg(feature = "AppKit_NSText")]
+#[cfg(feature = "NSText")]
 pub use self::__NSText::NSTextWritingDirectionOverride;
-#[cfg(feature = "AppKit_NSText")]
+#[cfg(feature = "NSText")]
 pub use self::__NSText::NSUpTextMovement;
-#[cfg(feature = "AppKit_NSText")]
+#[cfg(feature = "NSText")]
 pub use self::__NSText::NSWritingDirection;
-#[cfg(feature = "AppKit_NSTextAlternatives")]
+#[cfg(feature = "NSTextAlternatives")]
 pub use self::__NSTextAlternatives::NSTextAlternatives;
-#[cfg(feature = "AppKit_NSTextAlternatives")]
+#[cfg(feature = "NSTextAlternatives")]
 pub use self::__NSTextAlternatives::NSTextAlternativesSelectedAlternativeStringNotification;
-#[cfg(feature = "AppKit_NSTextAttachment")]
+#[cfg(feature = "NSTextAttachment")]
 pub use self::__NSTextAttachment::NSAttachmentCharacter;
-#[cfg(feature = "AppKit_NSTextAttachment")]
+#[cfg(feature = "NSTextAttachment")]
 pub use self::__NSTextAttachment::NSAttributedStringAttachmentConveniences;
-#[cfg(feature = "AppKit_NSTextAttachment")]
+#[cfg(feature = "NSTextAttachment")]
 pub use self::__NSTextAttachment::NSMutableAttributedStringAttachmentConveniences;
-#[cfg(feature = "AppKit_NSTextAttachment")]
+#[cfg(feature = "NSTextAttachment")]
 pub use self::__NSTextAttachment::NSTextAttachment;
-#[cfg(feature = "AppKit_NSTextAttachment")]
+#[cfg(feature = "NSTextAttachment")]
 pub use self::__NSTextAttachment::NSTextAttachmentContainer;
-#[cfg(feature = "AppKit_NSTextAttachment")]
+#[cfg(feature = "NSTextAttachment")]
 pub use self::__NSTextAttachment::NSTextAttachmentLayout;
-#[cfg(feature = "AppKit_NSTextAttachment")]
+#[cfg(feature = "NSTextAttachment")]
 pub use self::__NSTextAttachment::NSTextAttachmentViewProvider;
-#[cfg(all(feature = "AppKit_NSCell", feature = "AppKit_NSTextAttachmentCell"))]
+#[cfg(all(feature = "NSCell", feature = "NSTextAttachmentCell"))]
 pub use self::__NSTextAttachmentCell::NSTextAttachmentCell;
-#[cfg(feature = "AppKit_NSTextAttachmentCell")]
+#[cfg(feature = "NSTextAttachmentCell")]
 pub use self::__NSTextAttachmentCell::NSTextAttachmentCellProtocol;
-#[cfg(all(
-    feature = "AppKit_NSTextCheckingClient",
-    feature = "AppKit_NSTextInputClient"
-))]
+#[cfg(all(feature = "NSTextCheckingClient", feature = "NSTextInputClient"))]
 pub use self::__NSTextCheckingClient::NSTextCheckingClient;
-#[cfg(feature = "AppKit_NSTextCheckingClient")]
+#[cfg(feature = "NSTextCheckingClient")]
 pub use self::__NSTextCheckingClient::NSTextInputTraitType;
-#[cfg(feature = "AppKit_NSTextCheckingClient")]
+#[cfg(feature = "NSTextCheckingClient")]
 pub use self::__NSTextCheckingClient::NSTextInputTraits;
-#[cfg(feature = "AppKit_NSTextCheckingController")]
+#[cfg(feature = "NSTextCheckingController")]
 pub use self::__NSTextCheckingController::NSTextCheckingController;
-#[cfg(feature = "AppKit_NSTextContainer")]
+#[cfg(feature = "NSTextContainer")]
 pub use self::__NSTextContainer::NSLineMovementDirection;
-#[cfg(feature = "AppKit_NSTextContainer")]
+#[cfg(feature = "NSTextContainer")]
 pub use self::__NSTextContainer::NSLineSweepDirection;
-#[cfg(feature = "AppKit_NSTextContainer")]
+#[cfg(feature = "NSTextContainer")]
 pub use self::__NSTextContainer::NSTextContainer;
-#[cfg(feature = "AppKit_NSTextContent")]
+#[cfg(feature = "NSTextContent")]
 pub use self::__NSTextContent::NSTextContent;
-#[cfg(feature = "AppKit_NSTextContent")]
+#[cfg(feature = "NSTextContent")]
 pub use self::__NSTextContent::NSTextContentType;
-#[cfg(feature = "AppKit_NSTextContent")]
+#[cfg(feature = "NSTextContent")]
 pub use self::__NSTextContent::NSTextContentTypeAddressCity;
-#[cfg(feature = "AppKit_NSTextContent")]
+#[cfg(feature = "NSTextContent")]
 pub use self::__NSTextContent::NSTextContentTypeAddressCityAndState;
-#[cfg(feature = "AppKit_NSTextContent")]
+#[cfg(feature = "NSTextContent")]
 pub use self::__NSTextContent::NSTextContentTypeAddressState;
-#[cfg(feature = "AppKit_NSTextContent")]
+#[cfg(feature = "NSTextContent")]
 pub use self::__NSTextContent::NSTextContentTypeBirthdate;
-#[cfg(feature = "AppKit_NSTextContent")]
+#[cfg(feature = "NSTextContent")]
 pub use self::__NSTextContent::NSTextContentTypeBirthdateDay;
-#[cfg(feature = "AppKit_NSTextContent")]
+#[cfg(feature = "NSTextContent")]
 pub use self::__NSTextContent::NSTextContentTypeBirthdateMonth;
-#[cfg(feature = "AppKit_NSTextContent")]
+#[cfg(feature = "NSTextContent")]
 pub use self::__NSTextContent::NSTextContentTypeBirthdateYear;
-#[cfg(feature = "AppKit_NSTextContent")]
+#[cfg(feature = "NSTextContent")]
 pub use self::__NSTextContent::NSTextContentTypeCountryName;
-#[cfg(feature = "AppKit_NSTextContent")]
+#[cfg(feature = "NSTextContent")]
 pub use self::__NSTextContent::NSTextContentTypeCreditCardExpiration;
-#[cfg(feature = "AppKit_NSTextContent")]
+#[cfg(feature = "NSTextContent")]
 pub use self::__NSTextContent::NSTextContentTypeCreditCardExpirationMonth;
-#[cfg(feature = "AppKit_NSTextContent")]
+#[cfg(feature = "NSTextContent")]
 pub use self::__NSTextContent::NSTextContentTypeCreditCardExpirationYear;
-#[cfg(feature = "AppKit_NSTextContent")]
+#[cfg(feature = "NSTextContent")]
 pub use self::__NSTextContent::NSTextContentTypeCreditCardFamilyName;
-#[cfg(feature = "AppKit_NSTextContent")]
+#[cfg(feature = "NSTextContent")]
 pub use self::__NSTextContent::NSTextContentTypeCreditCardGivenName;
-#[cfg(feature = "AppKit_NSTextContent")]
+#[cfg(feature = "NSTextContent")]
 pub use self::__NSTextContent::NSTextContentTypeCreditCardMiddleName;
-#[cfg(feature = "AppKit_NSTextContent")]
+#[cfg(feature = "NSTextContent")]
 pub use self::__NSTextContent::NSTextContentTypeCreditCardName;
-#[cfg(feature = "AppKit_NSTextContent")]
+#[cfg(feature = "NSTextContent")]
 pub use self::__NSTextContent::NSTextContentTypeCreditCardNumber;
-#[cfg(feature = "AppKit_NSTextContent")]
+#[cfg(feature = "NSTextContent")]
 pub use self::__NSTextContent::NSTextContentTypeCreditCardSecurityCode;
-#[cfg(feature = "AppKit_NSTextContent")]
+#[cfg(feature = "NSTextContent")]
 pub use self::__NSTextContent::NSTextContentTypeCreditCardType;
-#[cfg(feature = "AppKit_NSTextContent")]
+#[cfg(feature = "NSTextContent")]
 pub use self::__NSTextContent::NSTextContentTypeDateTime;
-#[cfg(feature = "AppKit_NSTextContent")]
+#[cfg(feature = "NSTextContent")]
 pub use self::__NSTextContent::NSTextContentTypeEmailAddress;
-#[cfg(feature = "AppKit_NSTextContent")]
+#[cfg(feature = "NSTextContent")]
 pub use self::__NSTextContent::NSTextContentTypeFamilyName;
-#[cfg(feature = "AppKit_NSTextContent")]
+#[cfg(feature = "NSTextContent")]
 pub use self::__NSTextContent::NSTextContentTypeFlightNumber;
-#[cfg(feature = "AppKit_NSTextContent")]
+#[cfg(feature = "NSTextContent")]
 pub use self::__NSTextContent::NSTextContentTypeFullStreetAddress;
-#[cfg(feature = "AppKit_NSTextContent")]
+#[cfg(feature = "NSTextContent")]
 pub use self::__NSTextContent::NSTextContentTypeGivenName;
-#[cfg(feature = "AppKit_NSTextContent")]
+#[cfg(feature = "NSTextContent")]
 pub use self::__NSTextContent::NSTextContentTypeJobTitle;
-#[cfg(feature = "AppKit_NSTextContent")]
+#[cfg(feature = "NSTextContent")]
 pub use self::__NSTextContent::NSTextContentTypeLocation;
-#[cfg(feature = "AppKit_NSTextContent")]
+#[cfg(feature = "NSTextContent")]
 pub use self::__NSTextContent::NSTextContentTypeMiddleName;
-#[cfg(feature = "AppKit_NSTextContent")]
+#[cfg(feature = "NSTextContent")]
 pub use self::__NSTextContent::NSTextContentTypeName;
-#[cfg(feature = "AppKit_NSTextContent")]
+#[cfg(feature = "NSTextContent")]
 pub use self::__NSTextContent::NSTextContentTypeNamePrefix;
-#[cfg(feature = "AppKit_NSTextContent")]
+#[cfg(feature = "NSTextContent")]
 pub use self::__NSTextContent::NSTextContentTypeNameSuffix;
-#[cfg(feature = "AppKit_NSTextContent")]
+#[cfg(feature = "NSTextContent")]
 pub use self::__NSTextContent::NSTextContentTypeNewPassword;
-#[cfg(feature = "AppKit_NSTextContent")]
+#[cfg(feature = "NSTextContent")]
 pub use self::__NSTextContent::NSTextContentTypeNickname;
-#[cfg(feature = "AppKit_NSTextContent")]
+#[cfg(feature = "NSTextContent")]
 pub use self::__NSTextContent::NSTextContentTypeOneTimeCode;
-#[cfg(feature = "AppKit_NSTextContent")]
+#[cfg(feature = "NSTextContent")]
 pub use self::__NSTextContent::NSTextContentTypeOrganizationName;
-#[cfg(feature = "AppKit_NSTextContent")]
+#[cfg(feature = "NSTextContent")]
 pub use self::__NSTextContent::NSTextContentTypePassword;
-#[cfg(feature = "AppKit_NSTextContent")]
+#[cfg(feature = "NSTextContent")]
 pub use self::__NSTextContent::NSTextContentTypePostalCode;
-#[cfg(feature = "AppKit_NSTextContent")]
+#[cfg(feature = "NSTextContent")]
 pub use self::__NSTextContent::NSTextContentTypeShipmentTrackingNumber;
-#[cfg(feature = "AppKit_NSTextContent")]
+#[cfg(feature = "NSTextContent")]
 pub use self::__NSTextContent::NSTextContentTypeStreetAddressLine1;
-#[cfg(feature = "AppKit_NSTextContent")]
+#[cfg(feature = "NSTextContent")]
 pub use self::__NSTextContent::NSTextContentTypeStreetAddressLine2;
-#[cfg(feature = "AppKit_NSTextContent")]
+#[cfg(feature = "NSTextContent")]
 pub use self::__NSTextContent::NSTextContentTypeSublocality;
-#[cfg(feature = "AppKit_NSTextContent")]
+#[cfg(feature = "NSTextContent")]
 pub use self::__NSTextContent::NSTextContentTypeTelephoneNumber;
-#[cfg(feature = "AppKit_NSTextContent")]
+#[cfg(feature = "NSTextContent")]
 pub use self::__NSTextContent::NSTextContentTypeURL;
-#[cfg(feature = "AppKit_NSTextContent")]
+#[cfg(feature = "NSTextContent")]
 pub use self::__NSTextContent::NSTextContentTypeUsername;
-#[cfg(feature = "AppKit_NSTextContentManager")]
+#[cfg(feature = "NSTextContentManager")]
 pub use self::__NSTextContentManager::NSTextContentManager;
-#[cfg(feature = "AppKit_NSTextContentManager")]
+#[cfg(feature = "NSTextContentManager")]
 pub use self::__NSTextContentManager::NSTextContentManagerDelegate;
-#[cfg(feature = "AppKit_NSTextContentManager")]
+#[cfg(feature = "NSTextContentManager")]
 pub use self::__NSTextContentManager::NSTextContentManagerEnumerationOptions;
-#[cfg(feature = "AppKit_NSTextContentManager")]
+#[cfg(feature = "NSTextContentManager")]
 pub use self::__NSTextContentManager::NSTextContentStorage;
-#[cfg(feature = "AppKit_NSTextContentManager")]
+#[cfg(feature = "NSTextContentManager")]
 pub use self::__NSTextContentManager::NSTextContentStorageDelegate;
-#[cfg(feature = "AppKit_NSTextContentManager")]
+#[cfg(feature = "NSTextContentManager")]
 pub use self::__NSTextContentManager::NSTextContentStorageUnsupportedAttributeAddedNotification;
-#[cfg(feature = "AppKit_NSTextContentManager")]
+#[cfg(feature = "NSTextContentManager")]
 pub use self::__NSTextContentManager::NSTextElementProvider;
-#[cfg(feature = "AppKit_NSTextElement")]
+#[cfg(feature = "NSTextElement")]
 pub use self::__NSTextElement::NSTextElement;
-#[cfg(feature = "AppKit_NSTextElement")]
+#[cfg(feature = "NSTextElement")]
 pub use self::__NSTextElement::NSTextParagraph;
 #[cfg(all(
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSTextField",
-    feature = "AppKit_NSView"
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSTextField",
+    feature = "NSView"
 ))]
 pub use self::__NSTextField::NSTextField;
-#[cfg(all(feature = "AppKit_NSControl", feature = "AppKit_NSTextField"))]
+#[cfg(all(feature = "NSControl", feature = "NSTextField"))]
 pub use self::__NSTextField::NSTextFieldDelegate;
-#[cfg(feature = "AppKit_NSTextFieldCell")]
+#[cfg(feature = "NSTextFieldCell")]
 pub use self::__NSTextFieldCell::NSTextFieldBezelStyle;
 #[cfg(all(
-    feature = "AppKit_NSActionCell",
-    feature = "AppKit_NSCell",
-    feature = "AppKit_NSTextFieldCell"
+    feature = "NSActionCell",
+    feature = "NSCell",
+    feature = "NSTextFieldCell"
 ))]
 pub use self::__NSTextFieldCell::NSTextFieldCell;
-#[cfg(feature = "AppKit_NSTextFinder")]
+#[cfg(feature = "NSTextFinder")]
 pub use self::__NSTextFinder::NSPasteboardTypeTextFinderOptionKey;
-#[cfg(feature = "AppKit_NSTextFinder")]
+#[cfg(feature = "NSTextFinder")]
 pub use self::__NSTextFinder::NSTextFinder;
-#[cfg(feature = "AppKit_NSTextFinder")]
+#[cfg(feature = "NSTextFinder")]
 pub use self::__NSTextFinder::NSTextFinderAction;
-#[cfg(feature = "AppKit_NSTextFinder")]
+#[cfg(feature = "NSTextFinder")]
 pub use self::__NSTextFinder::NSTextFinderBarContainer;
-#[cfg(feature = "AppKit_NSTextFinder")]
+#[cfg(feature = "NSTextFinder")]
 pub use self::__NSTextFinder::NSTextFinderCaseInsensitiveKey;
-#[cfg(feature = "AppKit_NSTextFinder")]
+#[cfg(feature = "NSTextFinder")]
 pub use self::__NSTextFinder::NSTextFinderClient;
-#[cfg(feature = "AppKit_NSTextFinder")]
+#[cfg(feature = "NSTextFinder")]
 pub use self::__NSTextFinder::NSTextFinderMatchingType;
-#[cfg(feature = "AppKit_NSTextFinder")]
+#[cfg(feature = "NSTextFinder")]
 pub use self::__NSTextFinder::NSTextFinderMatchingTypeKey;
-#[cfg(feature = "AppKit_NSTextInputClient")]
+#[cfg(feature = "NSTextInputClient")]
 pub use self::__NSTextInputClient::NSTextCursorAccessoryPlacement;
-#[cfg(feature = "AppKit_NSTextInputClient")]
+#[cfg(feature = "NSTextInputClient")]
 pub use self::__NSTextInputClient::NSTextInputClient;
-#[cfg(feature = "AppKit_NSTextInputContext")]
+#[cfg(feature = "NSTextInputContext")]
 pub use self::__NSTextInputContext::NSTextInputContext;
-#[cfg(feature = "AppKit_NSTextInputContext")]
+#[cfg(feature = "NSTextInputContext")]
 pub use self::__NSTextInputContext::NSTextInputContextKeyboardSelectionDidChangeNotification;
-#[cfg(feature = "AppKit_NSTextInputContext")]
+#[cfg(feature = "NSTextInputContext")]
 pub use self::__NSTextInputContext::NSTextInputSourceIdentifier;
 #[cfg(all(
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSTextInsertionIndicator",
-    feature = "AppKit_NSView"
+    feature = "NSResponder",
+    feature = "NSTextInsertionIndicator",
+    feature = "NSView"
 ))]
 pub use self::__NSTextInsertionIndicator::NSTextInsertionIndicator;
-#[cfg(feature = "AppKit_NSTextInsertionIndicator")]
+#[cfg(feature = "NSTextInsertionIndicator")]
 pub use self::__NSTextInsertionIndicator::NSTextInsertionIndicatorAutomaticModeOptions;
-#[cfg(feature = "AppKit_NSTextInsertionIndicator")]
+#[cfg(feature = "NSTextInsertionIndicator")]
 pub use self::__NSTextInsertionIndicator::NSTextInsertionIndicatorDisplayMode;
-#[cfg(feature = "AppKit_NSTextLayoutFragment")]
+#[cfg(feature = "NSTextLayoutFragment")]
 pub use self::__NSTextLayoutFragment::NSTextLayoutFragment;
-#[cfg(feature = "AppKit_NSTextLayoutFragment")]
+#[cfg(feature = "NSTextLayoutFragment")]
 pub use self::__NSTextLayoutFragment::NSTextLayoutFragmentEnumerationOptions;
-#[cfg(feature = "AppKit_NSTextLayoutFragment")]
+#[cfg(feature = "NSTextLayoutFragment")]
 pub use self::__NSTextLayoutFragment::NSTextLayoutFragmentState;
-#[cfg(feature = "AppKit_NSTextLayoutManager")]
+#[cfg(feature = "NSTextLayoutManager")]
 pub use self::__NSTextLayoutManager::NSTextLayoutManager;
-#[cfg(feature = "AppKit_NSTextLayoutManager")]
+#[cfg(feature = "NSTextLayoutManager")]
 pub use self::__NSTextLayoutManager::NSTextLayoutManagerDelegate;
-#[cfg(feature = "AppKit_NSTextLayoutManager")]
+#[cfg(feature = "NSTextLayoutManager")]
 pub use self::__NSTextLayoutManager::NSTextLayoutManagerSegmentOptions;
-#[cfg(feature = "AppKit_NSTextLayoutManager")]
+#[cfg(feature = "NSTextLayoutManager")]
 pub use self::__NSTextLayoutManager::NSTextLayoutManagerSegmentType;
-#[cfg(feature = "AppKit_NSTextLineFragment")]
+#[cfg(feature = "NSTextLineFragment")]
 pub use self::__NSTextLineFragment::NSTextLineFragment;
-#[cfg(feature = "AppKit_NSTextList")]
+#[cfg(feature = "NSTextList")]
 pub use self::__NSTextList::NSTextList;
-#[cfg(feature = "AppKit_NSTextList")]
+#[cfg(feature = "NSTextList")]
 pub use self::__NSTextList::NSTextListMarkerBox;
-#[cfg(feature = "AppKit_NSTextList")]
+#[cfg(feature = "NSTextList")]
 pub use self::__NSTextList::NSTextListMarkerCheck;
-#[cfg(feature = "AppKit_NSTextList")]
+#[cfg(feature = "NSTextList")]
 pub use self::__NSTextList::NSTextListMarkerCircle;
-#[cfg(feature = "AppKit_NSTextList")]
+#[cfg(feature = "NSTextList")]
 pub use self::__NSTextList::NSTextListMarkerDecimal;
-#[cfg(feature = "AppKit_NSTextList")]
+#[cfg(feature = "NSTextList")]
 pub use self::__NSTextList::NSTextListMarkerDiamond;
-#[cfg(feature = "AppKit_NSTextList")]
+#[cfg(feature = "NSTextList")]
 pub use self::__NSTextList::NSTextListMarkerDisc;
-#[cfg(feature = "AppKit_NSTextList")]
+#[cfg(feature = "NSTextList")]
 pub use self::__NSTextList::NSTextListMarkerFormat;
-#[cfg(feature = "AppKit_NSTextList")]
+#[cfg(feature = "NSTextList")]
 pub use self::__NSTextList::NSTextListMarkerHyphen;
-#[cfg(feature = "AppKit_NSTextList")]
+#[cfg(feature = "NSTextList")]
 pub use self::__NSTextList::NSTextListMarkerLowercaseAlpha;
-#[cfg(feature = "AppKit_NSTextList")]
+#[cfg(feature = "NSTextList")]
 pub use self::__NSTextList::NSTextListMarkerLowercaseHexadecimal;
-#[cfg(feature = "AppKit_NSTextList")]
+#[cfg(feature = "NSTextList")]
 pub use self::__NSTextList::NSTextListMarkerLowercaseLatin;
-#[cfg(feature = "AppKit_NSTextList")]
+#[cfg(feature = "NSTextList")]
 pub use self::__NSTextList::NSTextListMarkerLowercaseRoman;
-#[cfg(feature = "AppKit_NSTextList")]
+#[cfg(feature = "NSTextList")]
 pub use self::__NSTextList::NSTextListMarkerOctal;
-#[cfg(feature = "AppKit_NSTextList")]
+#[cfg(feature = "NSTextList")]
 pub use self::__NSTextList::NSTextListMarkerSquare;
-#[cfg(feature = "AppKit_NSTextList")]
+#[cfg(feature = "NSTextList")]
 pub use self::__NSTextList::NSTextListMarkerUppercaseAlpha;
-#[cfg(feature = "AppKit_NSTextList")]
+#[cfg(feature = "NSTextList")]
 pub use self::__NSTextList::NSTextListMarkerUppercaseHexadecimal;
-#[cfg(feature = "AppKit_NSTextList")]
+#[cfg(feature = "NSTextList")]
 pub use self::__NSTextList::NSTextListMarkerUppercaseLatin;
-#[cfg(feature = "AppKit_NSTextList")]
+#[cfg(feature = "NSTextList")]
 pub use self::__NSTextList::NSTextListMarkerUppercaseRoman;
-#[cfg(feature = "AppKit_NSTextList")]
+#[cfg(feature = "NSTextList")]
 pub use self::__NSTextList::NSTextListOptions;
-#[cfg(all(feature = "AppKit_NSTextElement", feature = "AppKit_NSTextListElement"))]
+#[cfg(all(feature = "NSTextElement", feature = "NSTextListElement"))]
 pub use self::__NSTextListElement::NSTextListElement;
-#[cfg(feature = "AppKit_NSTextRange")]
+#[cfg(feature = "NSTextRange")]
 pub use self::__NSTextRange::NSTextLocation;
-#[cfg(feature = "AppKit_NSTextRange")]
+#[cfg(feature = "NSTextRange")]
 pub use self::__NSTextRange::NSTextRange;
-#[cfg(feature = "AppKit_NSTextSelection")]
+#[cfg(feature = "NSTextSelection")]
 pub use self::__NSTextSelection::NSTextSelection;
-#[cfg(feature = "AppKit_NSTextSelection")]
+#[cfg(feature = "NSTextSelection")]
 pub use self::__NSTextSelection::NSTextSelectionAffinity;
-#[cfg(feature = "AppKit_NSTextSelection")]
+#[cfg(feature = "NSTextSelection")]
 pub use self::__NSTextSelection::NSTextSelectionGranularity;
-#[cfg(feature = "AppKit_NSTextSelectionNavigation")]
+#[cfg(feature = "NSTextSelectionNavigation")]
 pub use self::__NSTextSelectionNavigation::NSTextSelectionDataSource;
-#[cfg(feature = "AppKit_NSTextSelectionNavigation")]
+#[cfg(feature = "NSTextSelectionNavigation")]
 pub use self::__NSTextSelectionNavigation::NSTextSelectionNavigation;
-#[cfg(feature = "AppKit_NSTextSelectionNavigation")]
+#[cfg(feature = "NSTextSelectionNavigation")]
 pub use self::__NSTextSelectionNavigation::NSTextSelectionNavigationDestination;
-#[cfg(feature = "AppKit_NSTextSelectionNavigation")]
+#[cfg(feature = "NSTextSelectionNavigation")]
 pub use self::__NSTextSelectionNavigation::NSTextSelectionNavigationDirection;
-#[cfg(feature = "AppKit_NSTextSelectionNavigation")]
+#[cfg(feature = "NSTextSelectionNavigation")]
 pub use self::__NSTextSelectionNavigation::NSTextSelectionNavigationLayoutOrientation;
-#[cfg(feature = "AppKit_NSTextSelectionNavigation")]
+#[cfg(feature = "NSTextSelectionNavigation")]
 pub use self::__NSTextSelectionNavigation::NSTextSelectionNavigationModifier;
-#[cfg(feature = "AppKit_NSTextSelectionNavigation")]
+#[cfg(feature = "NSTextSelectionNavigation")]
 pub use self::__NSTextSelectionNavigation::NSTextSelectionNavigationWritingDirection;
-#[cfg(feature = "AppKit_NSTextStorage")]
+#[cfg(feature = "NSTextStorage")]
 pub use self::__NSTextStorage::NSTextStorage;
-#[cfg(feature = "AppKit_NSTextStorage")]
+#[cfg(feature = "NSTextStorage")]
 pub use self::__NSTextStorage::NSTextStorageDelegate;
-#[cfg(feature = "AppKit_NSTextStorage")]
+#[cfg(feature = "NSTextStorage")]
 pub use self::__NSTextStorage::NSTextStorageDidProcessEditingNotification;
-#[cfg(feature = "AppKit_NSTextStorage")]
+#[cfg(feature = "NSTextStorage")]
 pub use self::__NSTextStorage::NSTextStorageEditActions;
-#[cfg(feature = "AppKit_NSTextStorage")]
+#[cfg(feature = "NSTextStorage")]
 pub use self::__NSTextStorage::NSTextStorageEditedOptions;
-#[cfg(feature = "AppKit_NSTextStorage")]
+#[cfg(feature = "NSTextStorage")]
 pub use self::__NSTextStorage::NSTextStorageObserving;
-#[cfg(feature = "AppKit_NSTextStorage")]
+#[cfg(feature = "NSTextStorage")]
 pub use self::__NSTextStorage::NSTextStorageWillProcessEditingNotification;
-#[cfg(feature = "AppKit_NSTextTable")]
+#[cfg(feature = "NSTextTable")]
 pub use self::__NSTextTable::NSTextBlock;
-#[cfg(feature = "AppKit_NSTextTable")]
+#[cfg(feature = "NSTextTable")]
 pub use self::__NSTextTable::NSTextBlockDimension;
-#[cfg(feature = "AppKit_NSTextTable")]
+#[cfg(feature = "NSTextTable")]
 pub use self::__NSTextTable::NSTextBlockLayer;
-#[cfg(feature = "AppKit_NSTextTable")]
+#[cfg(feature = "NSTextTable")]
 pub use self::__NSTextTable::NSTextBlockValueType;
-#[cfg(feature = "AppKit_NSTextTable")]
+#[cfg(feature = "NSTextTable")]
 pub use self::__NSTextTable::NSTextBlockVerticalAlignment;
-#[cfg(feature = "AppKit_NSTextTable")]
+#[cfg(feature = "NSTextTable")]
 pub use self::__NSTextTable::NSTextTable;
-#[cfg(feature = "AppKit_NSTextTable")]
+#[cfg(feature = "NSTextTable")]
 pub use self::__NSTextTable::NSTextTableBlock;
-#[cfg(feature = "AppKit_NSTextTable")]
+#[cfg(feature = "NSTextTable")]
 pub use self::__NSTextTable::NSTextTableLayoutAlgorithm;
-#[cfg(feature = "AppKit_NSTextView")]
+#[cfg(feature = "NSTextView")]
 pub use self::__NSTextView::NSAllRomanInputSourcesLocaleIdentifier;
-#[cfg(feature = "AppKit_NSTextView")]
+#[cfg(feature = "NSTextView")]
 pub use self::__NSTextView::NSFindPanelAction;
-#[cfg(feature = "AppKit_NSTextView")]
+#[cfg(feature = "NSTextView")]
 pub use self::__NSTextView::NSFindPanelCaseInsensitiveSearch;
-#[cfg(all(feature = "AppKit_NSPasteboard", feature = "AppKit_NSTextView"))]
+#[cfg(all(feature = "NSPasteboard", feature = "NSTextView"))]
 pub use self::__NSTextView::NSFindPanelSearchOptionsPboardType;
-#[cfg(feature = "AppKit_NSTextView")]
+#[cfg(feature = "NSTextView")]
 pub use self::__NSTextView::NSFindPanelSubstringMatch;
-#[cfg(feature = "AppKit_NSTextView")]
+#[cfg(feature = "NSTextView")]
 pub use self::__NSTextView::NSFindPanelSubstringMatchType;
-#[cfg(feature = "AppKit_NSTextView")]
+#[cfg(feature = "NSTextView")]
 pub use self::__NSTextView::NSPasteboardTypeFindPanelSearchOptionKey;
-#[cfg(feature = "AppKit_NSTextView")]
+#[cfg(feature = "NSTextView")]
 pub use self::__NSTextView::NSSelectionAffinity;
-#[cfg(feature = "AppKit_NSTextView")]
+#[cfg(feature = "NSTextView")]
 pub use self::__NSTextView::NSSelectionGranularity;
 #[cfg(all(
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSText",
-    feature = "AppKit_NSTextView",
-    feature = "AppKit_NSView"
+    feature = "NSResponder",
+    feature = "NSText",
+    feature = "NSTextView",
+    feature = "NSView"
 ))]
 pub use self::__NSTextView::NSTextView;
-#[cfg(all(feature = "AppKit_NSText", feature = "AppKit_NSTextView"))]
+#[cfg(all(feature = "NSText", feature = "NSTextView"))]
 pub use self::__NSTextView::NSTextViewDelegate;
-#[cfg(feature = "AppKit_NSTextView")]
+#[cfg(feature = "NSTextView")]
 pub use self::__NSTextView::NSTextViewDidChangeSelectionNotification;
-#[cfg(feature = "AppKit_NSTextView")]
+#[cfg(feature = "NSTextView")]
 pub use self::__NSTextView::NSTextViewDidChangeTypingAttributesNotification;
-#[cfg(feature = "AppKit_NSTextView")]
+#[cfg(feature = "NSTextView")]
 pub use self::__NSTextView::NSTextViewDidSwitchToNSLayoutManagerNotification;
-#[cfg(feature = "AppKit_NSTextView")]
+#[cfg(feature = "NSTextView")]
 pub use self::__NSTextView::NSTextViewWillChangeNotifyingTextViewNotification;
-#[cfg(feature = "AppKit_NSTextView")]
+#[cfg(feature = "NSTextView")]
 pub use self::__NSTextView::NSTextViewWillSwitchToNSLayoutManagerNotification;
-#[cfg(all(feature = "AppKit_NSTextView", feature = "AppKit_NSTouchBarItem"))]
+#[cfg(all(feature = "NSTextView", feature = "NSTouchBarItem"))]
 pub use self::__NSTextView::NSTouchBarItemIdentifierCharacterPicker;
-#[cfg(all(feature = "AppKit_NSTextView", feature = "AppKit_NSTouchBarItem"))]
+#[cfg(all(feature = "NSTextView", feature = "NSTouchBarItem"))]
 pub use self::__NSTextView::NSTouchBarItemIdentifierTextAlignment;
-#[cfg(all(feature = "AppKit_NSTextView", feature = "AppKit_NSTouchBarItem"))]
+#[cfg(all(feature = "NSTextView", feature = "NSTouchBarItem"))]
 pub use self::__NSTextView::NSTouchBarItemIdentifierTextColorPicker;
-#[cfg(all(feature = "AppKit_NSTextView", feature = "AppKit_NSTouchBarItem"))]
+#[cfg(all(feature = "NSTextView", feature = "NSTouchBarItem"))]
 pub use self::__NSTextView::NSTouchBarItemIdentifierTextFormat;
-#[cfg(all(feature = "AppKit_NSTextView", feature = "AppKit_NSTouchBarItem"))]
+#[cfg(all(feature = "NSTextView", feature = "NSTouchBarItem"))]
 pub use self::__NSTextView::NSTouchBarItemIdentifierTextList;
-#[cfg(all(feature = "AppKit_NSTextView", feature = "AppKit_NSTouchBarItem"))]
+#[cfg(all(feature = "NSTextView", feature = "NSTouchBarItem"))]
 pub use self::__NSTextView::NSTouchBarItemIdentifierTextStyle;
-#[cfg(feature = "AppKit_NSTextViewportLayoutController")]
+#[cfg(feature = "NSTextViewportLayoutController")]
 pub use self::__NSTextViewportLayoutController::NSTextViewportLayoutController;
-#[cfg(feature = "AppKit_NSTextViewportLayoutController")]
+#[cfg(feature = "NSTextViewportLayoutController")]
 pub use self::__NSTextViewportLayoutController::NSTextViewportLayoutControllerDelegate;
-#[cfg(feature = "AppKit_NSTintConfiguration")]
+#[cfg(feature = "NSTintConfiguration")]
 pub use self::__NSTintConfiguration::NSTintConfiguration;
 #[cfg(all(
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSTitlebarAccessoryViewController",
-    feature = "AppKit_NSViewController"
+    feature = "NSResponder",
+    feature = "NSTitlebarAccessoryViewController",
+    feature = "NSViewController"
 ))]
 pub use self::__NSTitlebarAccessoryViewController::NSTitlebarAccessoryViewController;
 #[cfg(all(
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSTextField",
-    feature = "AppKit_NSTokenField",
-    feature = "AppKit_NSView"
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSTextField",
+    feature = "NSTokenField",
+    feature = "NSView"
 ))]
 pub use self::__NSTokenField::NSTokenField;
 #[cfg(all(
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSTextField",
-    feature = "AppKit_NSTokenField"
+    feature = "NSControl",
+    feature = "NSTextField",
+    feature = "NSTokenField"
 ))]
 pub use self::__NSTokenField::NSTokenFieldDelegate;
-#[cfg(feature = "AppKit_NSTokenFieldCell")]
+#[cfg(feature = "NSTokenFieldCell")]
 pub use self::__NSTokenFieldCell::NSDefaultTokenStyle;
-#[cfg(feature = "AppKit_NSTokenFieldCell")]
+#[cfg(feature = "NSTokenFieldCell")]
 pub use self::__NSTokenFieldCell::NSPlainTextTokenStyle;
-#[cfg(feature = "AppKit_NSTokenFieldCell")]
+#[cfg(feature = "NSTokenFieldCell")]
 pub use self::__NSTokenFieldCell::NSRoundedTokenStyle;
 #[cfg(all(
-    feature = "AppKit_NSActionCell",
-    feature = "AppKit_NSCell",
-    feature = "AppKit_NSTextFieldCell",
-    feature = "AppKit_NSTokenFieldCell"
+    feature = "NSActionCell",
+    feature = "NSCell",
+    feature = "NSTextFieldCell",
+    feature = "NSTokenFieldCell"
 ))]
 pub use self::__NSTokenFieldCell::NSTokenFieldCell;
-#[cfg(feature = "AppKit_NSTokenFieldCell")]
+#[cfg(feature = "NSTokenFieldCell")]
 pub use self::__NSTokenFieldCell::NSTokenFieldCellDelegate;
-#[cfg(feature = "AppKit_NSTokenFieldCell")]
+#[cfg(feature = "NSTokenFieldCell")]
 pub use self::__NSTokenFieldCell::NSTokenStyle;
-#[cfg(feature = "AppKit_NSToolbar")]
+#[cfg(feature = "NSToolbar")]
 pub use self::__NSToolbar::NSToolbar;
-#[cfg(feature = "AppKit_NSToolbar")]
+#[cfg(feature = "NSToolbar")]
 pub use self::__NSToolbar::NSToolbarDelegate;
-#[cfg(feature = "AppKit_NSToolbar")]
+#[cfg(feature = "NSToolbar")]
 pub use self::__NSToolbar::NSToolbarDidRemoveItemNotification;
-#[cfg(feature = "AppKit_NSToolbar")]
+#[cfg(feature = "NSToolbar")]
 pub use self::__NSToolbar::NSToolbarDisplayMode;
-#[cfg(feature = "AppKit_NSToolbar")]
+#[cfg(feature = "NSToolbar")]
 pub use self::__NSToolbar::NSToolbarIdentifier;
-#[cfg(feature = "AppKit_NSToolbar")]
+#[cfg(feature = "NSToolbar")]
 pub use self::__NSToolbar::NSToolbarItemIdentifier;
-#[cfg(feature = "AppKit_NSToolbar")]
+#[cfg(feature = "NSToolbar")]
 pub use self::__NSToolbar::NSToolbarItemKey;
-#[cfg(feature = "AppKit_NSToolbar")]
+#[cfg(feature = "NSToolbar")]
 pub use self::__NSToolbar::NSToolbarSizeMode;
-#[cfg(feature = "AppKit_NSToolbar")]
+#[cfg(feature = "NSToolbar")]
 pub use self::__NSToolbar::NSToolbarUserInfoKey;
-#[cfg(feature = "AppKit_NSToolbar")]
+#[cfg(feature = "NSToolbar")]
 pub use self::__NSToolbar::NSToolbarWillAddItemNotification;
-#[cfg(all(feature = "AppKit_NSToolbar", feature = "AppKit_NSToolbarItem"))]
+#[cfg(all(feature = "NSToolbar", feature = "NSToolbarItem"))]
 pub use self::__NSToolbarItem::NSToolbarCloudSharingItemIdentifier;
-#[cfg(all(feature = "AppKit_NSToolbar", feature = "AppKit_NSToolbarItem"))]
+#[cfg(all(feature = "NSToolbar", feature = "NSToolbarItem"))]
 pub use self::__NSToolbarItem::NSToolbarCustomizeToolbarItemIdentifier;
-#[cfg(all(feature = "AppKit_NSToolbar", feature = "AppKit_NSToolbarItem"))]
+#[cfg(all(feature = "NSToolbar", feature = "NSToolbarItem"))]
 pub use self::__NSToolbarItem::NSToolbarFlexibleSpaceItemIdentifier;
-#[cfg(all(feature = "AppKit_NSToolbar", feature = "AppKit_NSToolbarItem"))]
+#[cfg(all(feature = "NSToolbar", feature = "NSToolbarItem"))]
 pub use self::__NSToolbarItem::NSToolbarInspectorTrackingSeparatorItemIdentifier;
-#[cfg(feature = "AppKit_NSToolbarItem")]
+#[cfg(feature = "NSToolbarItem")]
 pub use self::__NSToolbarItem::NSToolbarItem;
-#[cfg(feature = "AppKit_NSToolbarItem")]
+#[cfg(feature = "NSToolbarItem")]
 pub use self::__NSToolbarItem::NSToolbarItemValidation;
-#[cfg(feature = "AppKit_NSToolbarItem")]
+#[cfg(feature = "NSToolbarItem")]
 pub use self::__NSToolbarItem::NSToolbarItemVisibilityPriority;
-#[cfg(feature = "AppKit_NSToolbarItem")]
+#[cfg(feature = "NSToolbarItem")]
 pub use self::__NSToolbarItem::NSToolbarItemVisibilityPriorityHigh;
-#[cfg(feature = "AppKit_NSToolbarItem")]
+#[cfg(feature = "NSToolbarItem")]
 pub use self::__NSToolbarItem::NSToolbarItemVisibilityPriorityLow;
-#[cfg(feature = "AppKit_NSToolbarItem")]
+#[cfg(feature = "NSToolbarItem")]
 pub use self::__NSToolbarItem::NSToolbarItemVisibilityPriorityStandard;
-#[cfg(feature = "AppKit_NSToolbarItem")]
+#[cfg(feature = "NSToolbarItem")]
 pub use self::__NSToolbarItem::NSToolbarItemVisibilityPriorityUser;
-#[cfg(all(feature = "AppKit_NSToolbar", feature = "AppKit_NSToolbarItem"))]
+#[cfg(all(feature = "NSToolbar", feature = "NSToolbarItem"))]
 pub use self::__NSToolbarItem::NSToolbarPrintItemIdentifier;
-#[cfg(all(feature = "AppKit_NSToolbar", feature = "AppKit_NSToolbarItem"))]
+#[cfg(all(feature = "NSToolbar", feature = "NSToolbarItem"))]
 pub use self::__NSToolbarItem::NSToolbarSeparatorItemIdentifier;
-#[cfg(all(feature = "AppKit_NSToolbar", feature = "AppKit_NSToolbarItem"))]
+#[cfg(all(feature = "NSToolbar", feature = "NSToolbarItem"))]
 pub use self::__NSToolbarItem::NSToolbarShowColorsItemIdentifier;
-#[cfg(all(feature = "AppKit_NSToolbar", feature = "AppKit_NSToolbarItem"))]
+#[cfg(all(feature = "NSToolbar", feature = "NSToolbarItem"))]
 pub use self::__NSToolbarItem::NSToolbarShowFontsItemIdentifier;
-#[cfg(all(feature = "AppKit_NSToolbar", feature = "AppKit_NSToolbarItem"))]
+#[cfg(all(feature = "NSToolbar", feature = "NSToolbarItem"))]
 pub use self::__NSToolbarItem::NSToolbarSidebarTrackingSeparatorItemIdentifier;
-#[cfg(all(feature = "AppKit_NSToolbar", feature = "AppKit_NSToolbarItem"))]
+#[cfg(all(feature = "NSToolbar", feature = "NSToolbarItem"))]
 pub use self::__NSToolbarItem::NSToolbarSpaceItemIdentifier;
-#[cfg(all(feature = "AppKit_NSToolbar", feature = "AppKit_NSToolbarItem"))]
+#[cfg(all(feature = "NSToolbar", feature = "NSToolbarItem"))]
 pub use self::__NSToolbarItem::NSToolbarToggleInspectorItemIdentifier;
-#[cfg(all(feature = "AppKit_NSToolbar", feature = "AppKit_NSToolbarItem"))]
+#[cfg(all(feature = "NSToolbar", feature = "NSToolbarItem"))]
 pub use self::__NSToolbarItem::NSToolbarToggleSidebarItemIdentifier;
-#[cfg(all(
-    feature = "AppKit_NSToolbarItem",
-    feature = "AppKit_NSToolbarItemGroup"
-))]
+#[cfg(all(feature = "NSToolbarItem", feature = "NSToolbarItemGroup"))]
 pub use self::__NSToolbarItemGroup::NSToolbarItemGroup;
-#[cfg(feature = "AppKit_NSToolbarItemGroup")]
+#[cfg(feature = "NSToolbarItemGroup")]
 pub use self::__NSToolbarItemGroup::NSToolbarItemGroupControlRepresentation;
-#[cfg(feature = "AppKit_NSToolbarItemGroup")]
+#[cfg(feature = "NSToolbarItemGroup")]
 pub use self::__NSToolbarItemGroup::NSToolbarItemGroupSelectionMode;
-#[cfg(feature = "AppKit_NSTouch")]
+#[cfg(feature = "NSTouch")]
 pub use self::__NSTouch::NSTouch;
-#[cfg(feature = "AppKit_NSTouch")]
+#[cfg(feature = "NSTouch")]
 pub use self::__NSTouch::NSTouchPhase;
-#[cfg(feature = "AppKit_NSTouch")]
+#[cfg(feature = "NSTouch")]
 pub use self::__NSTouch::NSTouchType;
-#[cfg(feature = "AppKit_NSTouch")]
+#[cfg(feature = "NSTouch")]
 pub use self::__NSTouch::NSTouchTypeMask;
-#[cfg(feature = "AppKit_NSTouchBar")]
+#[cfg(feature = "NSTouchBar")]
 pub use self::__NSTouchBar::NSTouchBar;
-#[cfg(feature = "AppKit_NSTouchBar")]
+#[cfg(feature = "NSTouchBar")]
 pub use self::__NSTouchBar::NSTouchBarCustomizationIdentifier;
-#[cfg(feature = "AppKit_NSTouchBar")]
+#[cfg(feature = "NSTouchBar")]
 pub use self::__NSTouchBar::NSTouchBarDelegate;
-#[cfg(feature = "AppKit_NSTouchBar")]
+#[cfg(feature = "NSTouchBar")]
 pub use self::__NSTouchBar::NSTouchBarProvider;
-#[cfg(feature = "AppKit_NSTouchBarItem")]
+#[cfg(feature = "NSTouchBarItem")]
 pub use self::__NSTouchBarItem::NSTouchBarItem;
-#[cfg(feature = "AppKit_NSTouchBarItem")]
+#[cfg(feature = "NSTouchBarItem")]
 pub use self::__NSTouchBarItem::NSTouchBarItemIdentifier;
-#[cfg(feature = "AppKit_NSTouchBarItem")]
+#[cfg(feature = "NSTouchBarItem")]
 pub use self::__NSTouchBarItem::NSTouchBarItemIdentifierFixedSpaceLarge;
-#[cfg(feature = "AppKit_NSTouchBarItem")]
+#[cfg(feature = "NSTouchBarItem")]
 pub use self::__NSTouchBarItem::NSTouchBarItemIdentifierFixedSpaceSmall;
-#[cfg(feature = "AppKit_NSTouchBarItem")]
+#[cfg(feature = "NSTouchBarItem")]
 pub use self::__NSTouchBarItem::NSTouchBarItemIdentifierFlexibleSpace;
-#[cfg(feature = "AppKit_NSTouchBarItem")]
+#[cfg(feature = "NSTouchBarItem")]
 pub use self::__NSTouchBarItem::NSTouchBarItemIdentifierOtherItemsProxy;
-#[cfg(feature = "AppKit_NSTouchBarItem")]
+#[cfg(feature = "NSTouchBarItem")]
 pub use self::__NSTouchBarItem::NSTouchBarItemPriority;
-#[cfg(feature = "AppKit_NSTouchBarItem")]
+#[cfg(feature = "NSTouchBarItem")]
 pub use self::__NSTouchBarItem::NSTouchBarItemPriorityHigh;
-#[cfg(feature = "AppKit_NSTouchBarItem")]
+#[cfg(feature = "NSTouchBarItem")]
 pub use self::__NSTouchBarItem::NSTouchBarItemPriorityLow;
-#[cfg(feature = "AppKit_NSTouchBarItem")]
+#[cfg(feature = "NSTouchBarItem")]
 pub use self::__NSTouchBarItem::NSTouchBarItemPriorityNormal;
-#[cfg(feature = "AppKit_NSTrackingArea")]
+#[cfg(feature = "NSTrackingArea")]
 pub use self::__NSTrackingArea::NSTrackingArea;
-#[cfg(feature = "AppKit_NSTrackingArea")]
+#[cfg(feature = "NSTrackingArea")]
 pub use self::__NSTrackingArea::NSTrackingAreaOptions;
-#[cfg(all(
-    feature = "AppKit_NSToolbarItem",
-    feature = "AppKit_NSTrackingSeparatorToolbarItem"
-))]
+#[cfg(all(feature = "NSToolbarItem", feature = "NSTrackingSeparatorToolbarItem"))]
 pub use self::__NSTrackingSeparatorToolbarItem::NSTrackingSeparatorToolbarItem;
 #[cfg(all(
-    feature = "AppKit_NSController",
-    feature = "AppKit_NSObjectController",
-    feature = "AppKit_NSTreeController"
+    feature = "NSController",
+    feature = "NSObjectController",
+    feature = "NSTreeController"
 ))]
 pub use self::__NSTreeController::NSTreeController;
-#[cfg(feature = "AppKit_NSTreeNode")]
+#[cfg(feature = "NSTreeNode")]
 pub use self::__NSTreeNode::NSTreeNode;
-#[cfg(feature = "AppKit_NSTypesetter")]
+#[cfg(feature = "NSTypesetter")]
 pub use self::__NSTypesetter::NSTypesetter;
-#[cfg(feature = "AppKit_NSTypesetter")]
+#[cfg(feature = "NSTypesetter")]
 pub use self::__NSTypesetter::NSTypesetterControlCharacterAction;
-#[cfg(feature = "AppKit_NSUserActivity")]
+#[cfg(feature = "NSUserActivity")]
 pub use self::__NSUserActivity::NSUserActivityDocumentURLKey;
-#[cfg(feature = "AppKit_NSUserActivity")]
+#[cfg(feature = "NSUserActivity")]
 pub use self::__NSUserActivity::NSUserActivityRestoring;
-#[cfg(all(
-    feature = "AppKit_NSController",
-    feature = "AppKit_NSUserDefaultsController"
-))]
+#[cfg(all(feature = "NSController", feature = "NSUserDefaultsController"))]
 pub use self::__NSUserDefaultsController::NSUserDefaultsController;
-#[cfg(feature = "AppKit_NSUserInterfaceCompression")]
+#[cfg(feature = "NSUserInterfaceCompression")]
 pub use self::__NSUserInterfaceCompression::NSUserInterfaceCompression;
-#[cfg(feature = "AppKit_NSUserInterfaceCompression")]
+#[cfg(feature = "NSUserInterfaceCompression")]
 pub use self::__NSUserInterfaceCompression::NSUserInterfaceCompressionOptions;
-#[cfg(feature = "AppKit_NSUserInterfaceItemIdentification")]
+#[cfg(feature = "NSUserInterfaceItemIdentification")]
 pub use self::__NSUserInterfaceItemIdentification::NSUserInterfaceItemIdentification;
-#[cfg(feature = "AppKit_NSUserInterfaceItemIdentification")]
+#[cfg(feature = "NSUserInterfaceItemIdentification")]
 pub use self::__NSUserInterfaceItemIdentification::NSUserInterfaceItemIdentifier;
-#[cfg(feature = "AppKit_NSUserInterfaceItemSearching")]
+#[cfg(feature = "NSUserInterfaceItemSearching")]
 pub use self::__NSUserInterfaceItemSearching::NSUserInterfaceItemSearching;
-#[cfg(feature = "AppKit_NSUserInterfaceLayout")]
+#[cfg(feature = "NSUserInterfaceLayout")]
 pub use self::__NSUserInterfaceLayout::NSUserInterfaceLayoutDirection;
-#[cfg(feature = "AppKit_NSUserInterfaceLayout")]
+#[cfg(feature = "NSUserInterfaceLayout")]
 pub use self::__NSUserInterfaceLayout::NSUserInterfaceLayoutOrientation;
-#[cfg(feature = "AppKit_NSUserInterfaceValidation")]
+#[cfg(feature = "NSUserInterfaceValidation")]
 pub use self::__NSUserInterfaceValidation::NSUserInterfaceValidations;
-#[cfg(feature = "AppKit_NSUserInterfaceValidation")]
+#[cfg(feature = "NSUserInterfaceValidation")]
 pub use self::__NSUserInterfaceValidation::NSValidatedUserInterfaceItem;
-#[cfg(feature = "AppKit_NSView")]
+#[cfg(feature = "NSView")]
 pub use self::__NSView::NSAutoresizingMaskOptions;
-#[cfg(feature = "AppKit_NSView")]
+#[cfg(feature = "NSView")]
 pub use self::__NSView::NSBorderType;
-#[cfg(feature = "AppKit_NSView")]
+#[cfg(feature = "NSView")]
 pub use self::__NSView::NSDefinitionOptionKey;
-#[cfg(feature = "AppKit_NSView")]
+#[cfg(feature = "NSView")]
 pub use self::__NSView::NSDefinitionPresentationType;
-#[cfg(feature = "AppKit_NSView")]
+#[cfg(feature = "NSView")]
 pub use self::__NSView::NSDefinitionPresentationTypeDictionaryApplication;
-#[cfg(feature = "AppKit_NSView")]
+#[cfg(feature = "NSView")]
 pub use self::__NSView::NSDefinitionPresentationTypeKey;
-#[cfg(feature = "AppKit_NSView")]
+#[cfg(feature = "NSView")]
 pub use self::__NSView::NSDefinitionPresentationTypeOverlay;
-#[cfg(feature = "AppKit_NSView")]
+#[cfg(feature = "NSView")]
 pub use self::__NSView::NSFullScreenModeAllScreens;
-#[cfg(feature = "AppKit_NSView")]
+#[cfg(feature = "NSView")]
 pub use self::__NSView::NSFullScreenModeApplicationPresentationOptions;
-#[cfg(feature = "AppKit_NSView")]
+#[cfg(feature = "NSView")]
 pub use self::__NSView::NSFullScreenModeSetting;
-#[cfg(feature = "AppKit_NSView")]
+#[cfg(feature = "NSView")]
 pub use self::__NSView::NSFullScreenModeWindowLevel;
-#[cfg(feature = "AppKit_NSView")]
+#[cfg(feature = "NSView")]
 pub use self::__NSView::NSToolTipTag;
-#[cfg(feature = "AppKit_NSView")]
+#[cfg(feature = "NSView")]
 pub use self::__NSView::NSTrackingRectTag;
-#[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+#[cfg(all(feature = "NSResponder", feature = "NSView"))]
 pub use self::__NSView::NSView;
-#[cfg(feature = "AppKit_NSView")]
+#[cfg(feature = "NSView")]
 pub use self::__NSView::NSViewBoundsDidChangeNotification;
-#[cfg(feature = "AppKit_NSView")]
+#[cfg(feature = "NSView")]
 pub use self::__NSView::NSViewDidUpdateTrackingAreasNotification;
-#[cfg(feature = "AppKit_NSView")]
+#[cfg(feature = "NSView")]
 pub use self::__NSView::NSViewFocusDidChangeNotification;
-#[cfg(feature = "AppKit_NSView")]
+#[cfg(feature = "NSView")]
 pub use self::__NSView::NSViewFrameDidChangeNotification;
-#[cfg(feature = "AppKit_NSView")]
+#[cfg(feature = "NSView")]
 pub use self::__NSView::NSViewFullScreenModeOptionKey;
-#[cfg(feature = "AppKit_NSView")]
+#[cfg(feature = "NSView")]
 pub use self::__NSView::NSViewGlobalFrameDidChangeNotification;
-#[cfg(feature = "AppKit_NSView")]
+#[cfg(feature = "NSView")]
 pub use self::__NSView::NSViewLayerContentsPlacement;
-#[cfg(feature = "AppKit_NSView")]
+#[cfg(feature = "NSView")]
 pub use self::__NSView::NSViewLayerContentsRedrawPolicy;
-#[cfg(feature = "AppKit_NSView")]
+#[cfg(feature = "NSView")]
 pub use self::__NSView::NSViewToolTipOwner;
-#[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
+#[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
 pub use self::__NSViewController::NSViewController;
-#[cfg(feature = "AppKit_NSViewController")]
+#[cfg(feature = "NSViewController")]
 pub use self::__NSViewController::NSViewControllerPresentationAnimator;
-#[cfg(feature = "AppKit_NSViewController")]
+#[cfg(feature = "NSViewController")]
 pub use self::__NSViewController::NSViewControllerTransitionOptions;
-#[cfg(feature = "AppKit_NSVisualEffectView")]
+#[cfg(feature = "NSVisualEffectView")]
 pub use self::__NSVisualEffectView::NSVisualEffectBlendingMode;
-#[cfg(feature = "AppKit_NSVisualEffectView")]
+#[cfg(feature = "NSVisualEffectView")]
 pub use self::__NSVisualEffectView::NSVisualEffectMaterial;
-#[cfg(feature = "AppKit_NSVisualEffectView")]
+#[cfg(feature = "NSVisualEffectView")]
 pub use self::__NSVisualEffectView::NSVisualEffectState;
 #[cfg(all(
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSView",
-    feature = "AppKit_NSVisualEffectView"
+    feature = "NSResponder",
+    feature = "NSView",
+    feature = "NSVisualEffectView"
 ))]
 pub use self::__NSVisualEffectView::NSVisualEffectView;
-#[cfg(all(feature = "AppKit_NSApplication", feature = "AppKit_NSWindow"))]
+#[cfg(all(feature = "NSApplication", feature = "NSWindow"))]
 pub use self::__NSWindow::NSAppKitVersionNumberWithCustomSheetPosition;
-#[cfg(all(feature = "AppKit_NSApplication", feature = "AppKit_NSWindow"))]
+#[cfg(all(feature = "NSApplication", feature = "NSWindow"))]
 pub use self::__NSWindow::NSAppKitVersionNumberWithDeferredWindowDisplaySupport;
-#[cfg(feature = "AppKit_NSWindow")]
+#[cfg(feature = "NSWindow")]
 pub use self::__NSWindow::NSBackingPropertyOldColorSpaceKey;
-#[cfg(feature = "AppKit_NSWindow")]
+#[cfg(feature = "NSWindow")]
 pub use self::__NSWindow::NSBackingPropertyOldScaleFactorKey;
-#[cfg(feature = "AppKit_NSWindow")]
+#[cfg(feature = "NSWindow")]
 pub use self::__NSWindow::NSBorderlessWindowMask;
-#[cfg(feature = "AppKit_NSWindow")]
+#[cfg(feature = "NSWindow")]
 pub use self::__NSWindow::NSClosableWindowMask;
-#[cfg(feature = "AppKit_NSWindow")]
+#[cfg(feature = "NSWindow")]
 pub use self::__NSWindow::NSDisplayWindowRunLoopOrdering;
-#[cfg(feature = "AppKit_NSWindow")]
+#[cfg(feature = "NSWindow")]
 pub use self::__NSWindow::NSDocModalWindowMask;
-#[cfg(feature = "AppKit_NSWindow")]
+#[cfg(feature = "NSWindow")]
 pub use self::__NSWindow::NSDockWindowLevel;
-#[cfg(feature = "AppKit_NSWindow")]
+#[cfg(feature = "NSWindow")]
 pub use self::__NSWindow::NSEventDurationForever;
-#[cfg(feature = "AppKit_NSWindow")]
+#[cfg(feature = "NSWindow")]
 pub use self::__NSWindow::NSFloatingWindowLevel;
-#[cfg(feature = "AppKit_NSWindow")]
+#[cfg(feature = "NSWindow")]
 pub use self::__NSWindow::NSFullScreenWindowMask;
-#[cfg(feature = "AppKit_NSWindow")]
+#[cfg(feature = "NSWindow")]
 pub use self::__NSWindow::NSFullSizeContentViewWindowMask;
-#[cfg(feature = "AppKit_NSWindow")]
+#[cfg(feature = "NSWindow")]
 pub use self::__NSWindow::NSHUDWindowMask;
-#[cfg(feature = "AppKit_NSWindow")]
+#[cfg(feature = "NSWindow")]
 pub use self::__NSWindow::NSMainMenuWindowLevel;
-#[cfg(feature = "AppKit_NSWindow")]
+#[cfg(feature = "NSWindow")]
 pub use self::__NSWindow::NSMiniaturizableWindowMask;
-#[cfg(feature = "AppKit_NSWindow")]
+#[cfg(feature = "NSWindow")]
 pub use self::__NSWindow::NSModalPanelWindowLevel;
-#[cfg(all(feature = "AppKit_NSApplication", feature = "AppKit_NSWindow"))]
+#[cfg(all(feature = "NSApplication", feature = "NSWindow"))]
 pub use self::__NSWindow::NSModalResponseCancel;
-#[cfg(all(feature = "AppKit_NSApplication", feature = "AppKit_NSWindow"))]
+#[cfg(all(feature = "NSApplication", feature = "NSWindow"))]
 pub use self::__NSWindow::NSModalResponseOK;
-#[cfg(feature = "AppKit_NSWindow")]
+#[cfg(feature = "NSWindow")]
 pub use self::__NSWindow::NSNonactivatingPanelMask;
-#[cfg(feature = "AppKit_NSWindow")]
+#[cfg(feature = "NSWindow")]
 pub use self::__NSWindow::NSNormalWindowLevel;
-#[cfg(feature = "AppKit_NSWindow")]
+#[cfg(feature = "NSWindow")]
 pub use self::__NSWindow::NSPopUpMenuWindowLevel;
-#[cfg(feature = "AppKit_NSWindow")]
+#[cfg(feature = "NSWindow")]
 pub use self::__NSWindow::NSResetCursorRectsRunLoopOrdering;
-#[cfg(feature = "AppKit_NSWindow")]
+#[cfg(feature = "NSWindow")]
 pub use self::__NSWindow::NSResizableWindowMask;
-#[cfg(feature = "AppKit_NSWindow")]
+#[cfg(feature = "NSWindow")]
 pub use self::__NSWindow::NSScreenSaverWindowLevel;
-#[cfg(feature = "AppKit_NSWindow")]
+#[cfg(feature = "NSWindow")]
 pub use self::__NSWindow::NSSelectionDirection;
-#[cfg(feature = "AppKit_NSWindow")]
+#[cfg(feature = "NSWindow")]
 pub use self::__NSWindow::NSStatusWindowLevel;
-#[cfg(feature = "AppKit_NSWindow")]
+#[cfg(feature = "NSWindow")]
 pub use self::__NSWindow::NSSubmenuWindowLevel;
-#[cfg(feature = "AppKit_NSWindow")]
+#[cfg(feature = "NSWindow")]
 pub use self::__NSWindow::NSTexturedBackgroundWindowMask;
-#[cfg(feature = "AppKit_NSWindow")]
+#[cfg(feature = "NSWindow")]
 pub use self::__NSWindow::NSTitlebarSeparatorStyle;
-#[cfg(feature = "AppKit_NSWindow")]
+#[cfg(feature = "NSWindow")]
 pub use self::__NSWindow::NSTitledWindowMask;
-#[cfg(feature = "AppKit_NSWindow")]
+#[cfg(feature = "NSWindow")]
 pub use self::__NSWindow::NSTornOffMenuWindowLevel;
-#[cfg(feature = "AppKit_NSWindow")]
+#[cfg(feature = "NSWindow")]
 pub use self::__NSWindow::NSUnifiedTitleAndToolbarWindowMask;
-#[cfg(feature = "AppKit_NSWindow")]
+#[cfg(feature = "NSWindow")]
 pub use self::__NSWindow::NSUnscaledWindowMask;
-#[cfg(feature = "AppKit_NSWindow")]
+#[cfg(feature = "NSWindow")]
 pub use self::__NSWindow::NSUtilityWindowMask;
-#[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSWindow"))]
+#[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
 pub use self::__NSWindow::NSWindow;
-#[cfg(feature = "AppKit_NSWindow")]
+#[cfg(feature = "NSWindow")]
 pub use self::__NSWindow::NSWindowAnimationBehavior;
-#[cfg(feature = "AppKit_NSWindow")]
+#[cfg(feature = "NSWindow")]
 pub use self::__NSWindow::NSWindowBackingLocation;
-#[cfg(feature = "AppKit_NSWindow")]
+#[cfg(feature = "NSWindow")]
 pub use self::__NSWindow::NSWindowButton;
-#[cfg(feature = "AppKit_NSWindow")]
+#[cfg(feature = "NSWindow")]
 pub use self::__NSWindow::NSWindowCollectionBehavior;
-#[cfg(feature = "AppKit_NSWindow")]
+#[cfg(feature = "NSWindow")]
 pub use self::__NSWindow::NSWindowDelegate;
-#[cfg(feature = "AppKit_NSWindow")]
+#[cfg(feature = "NSWindow")]
 pub use self::__NSWindow::NSWindowDidBecomeKeyNotification;
-#[cfg(feature = "AppKit_NSWindow")]
+#[cfg(feature = "NSWindow")]
 pub use self::__NSWindow::NSWindowDidBecomeMainNotification;
-#[cfg(feature = "AppKit_NSWindow")]
+#[cfg(feature = "NSWindow")]
 pub use self::__NSWindow::NSWindowDidChangeBackingPropertiesNotification;
-#[cfg(feature = "AppKit_NSWindow")]
+#[cfg(feature = "NSWindow")]
 pub use self::__NSWindow::NSWindowDidChangeOcclusionStateNotification;
-#[cfg(feature = "AppKit_NSWindow")]
+#[cfg(feature = "NSWindow")]
 pub use self::__NSWindow::NSWindowDidChangeScreenNotification;
-#[cfg(feature = "AppKit_NSWindow")]
+#[cfg(feature = "NSWindow")]
 pub use self::__NSWindow::NSWindowDidChangeScreenProfileNotification;
-#[cfg(feature = "AppKit_NSWindow")]
+#[cfg(feature = "NSWindow")]
 pub use self::__NSWindow::NSWindowDidDeminiaturizeNotification;
-#[cfg(feature = "AppKit_NSWindow")]
+#[cfg(feature = "NSWindow")]
 pub use self::__NSWindow::NSWindowDidEndLiveResizeNotification;
-#[cfg(feature = "AppKit_NSWindow")]
+#[cfg(feature = "NSWindow")]
 pub use self::__NSWindow::NSWindowDidEndSheetNotification;
-#[cfg(feature = "AppKit_NSWindow")]
+#[cfg(feature = "NSWindow")]
 pub use self::__NSWindow::NSWindowDidEnterFullScreenNotification;
-#[cfg(feature = "AppKit_NSWindow")]
+#[cfg(feature = "NSWindow")]
 pub use self::__NSWindow::NSWindowDidEnterVersionBrowserNotification;
-#[cfg(feature = "AppKit_NSWindow")]
+#[cfg(feature = "NSWindow")]
 pub use self::__NSWindow::NSWindowDidExitFullScreenNotification;
-#[cfg(feature = "AppKit_NSWindow")]
+#[cfg(feature = "NSWindow")]
 pub use self::__NSWindow::NSWindowDidExitVersionBrowserNotification;
-#[cfg(feature = "AppKit_NSWindow")]
+#[cfg(feature = "NSWindow")]
 pub use self::__NSWindow::NSWindowDidExposeNotification;
-#[cfg(feature = "AppKit_NSWindow")]
+#[cfg(feature = "NSWindow")]
 pub use self::__NSWindow::NSWindowDidMiniaturizeNotification;
-#[cfg(feature = "AppKit_NSWindow")]
+#[cfg(feature = "NSWindow")]
 pub use self::__NSWindow::NSWindowDidMoveNotification;
-#[cfg(feature = "AppKit_NSWindow")]
+#[cfg(feature = "NSWindow")]
 pub use self::__NSWindow::NSWindowDidResignKeyNotification;
-#[cfg(feature = "AppKit_NSWindow")]
+#[cfg(feature = "NSWindow")]
 pub use self::__NSWindow::NSWindowDidResignMainNotification;
-#[cfg(feature = "AppKit_NSWindow")]
+#[cfg(feature = "NSWindow")]
 pub use self::__NSWindow::NSWindowDidResizeNotification;
-#[cfg(feature = "AppKit_NSWindow")]
+#[cfg(feature = "NSWindow")]
 pub use self::__NSWindow::NSWindowDidUpdateNotification;
-#[cfg(feature = "AppKit_NSWindow")]
+#[cfg(feature = "NSWindow")]
 pub use self::__NSWindow::NSWindowFrameAutosaveName;
-#[cfg(feature = "AppKit_NSWindow")]
+#[cfg(feature = "NSWindow")]
 pub use self::__NSWindow::NSWindowFullScreenButton;
-#[cfg(feature = "AppKit_NSWindow")]
+#[cfg(feature = "NSWindow")]
 pub use self::__NSWindow::NSWindowLevel;
-#[cfg(feature = "AppKit_NSWindow")]
+#[cfg(feature = "NSWindow")]
 pub use self::__NSWindow::NSWindowNumberListOptions;
-#[cfg(feature = "AppKit_NSWindow")]
+#[cfg(feature = "NSWindow")]
 pub use self::__NSWindow::NSWindowOcclusionState;
-#[cfg(feature = "AppKit_NSWindow")]
+#[cfg(feature = "NSWindow")]
 pub use self::__NSWindow::NSWindowPersistableFrameDescriptor;
-#[cfg(feature = "AppKit_NSWindow")]
+#[cfg(feature = "NSWindow")]
 pub use self::__NSWindow::NSWindowSharingType;
-#[cfg(feature = "AppKit_NSWindow")]
+#[cfg(feature = "NSWindow")]
 pub use self::__NSWindow::NSWindowStyleMask;
-#[cfg(feature = "AppKit_NSWindow")]
+#[cfg(feature = "NSWindow")]
 pub use self::__NSWindow::NSWindowTabbingIdentifier;
-#[cfg(feature = "AppKit_NSWindow")]
+#[cfg(feature = "NSWindow")]
 pub use self::__NSWindow::NSWindowTabbingMode;
-#[cfg(feature = "AppKit_NSWindow")]
+#[cfg(feature = "NSWindow")]
 pub use self::__NSWindow::NSWindowTitleVisibility;
-#[cfg(feature = "AppKit_NSWindow")]
+#[cfg(feature = "NSWindow")]
 pub use self::__NSWindow::NSWindowToolbarStyle;
-#[cfg(feature = "AppKit_NSWindow")]
+#[cfg(feature = "NSWindow")]
 pub use self::__NSWindow::NSWindowUserTabbingPreference;
-#[cfg(feature = "AppKit_NSWindow")]
+#[cfg(feature = "NSWindow")]
 pub use self::__NSWindow::NSWindowWillBeginSheetNotification;
-#[cfg(feature = "AppKit_NSWindow")]
+#[cfg(feature = "NSWindow")]
 pub use self::__NSWindow::NSWindowWillCloseNotification;
-#[cfg(feature = "AppKit_NSWindow")]
+#[cfg(feature = "NSWindow")]
 pub use self::__NSWindow::NSWindowWillEnterFullScreenNotification;
-#[cfg(feature = "AppKit_NSWindow")]
+#[cfg(feature = "NSWindow")]
 pub use self::__NSWindow::NSWindowWillEnterVersionBrowserNotification;
-#[cfg(feature = "AppKit_NSWindow")]
+#[cfg(feature = "NSWindow")]
 pub use self::__NSWindow::NSWindowWillExitFullScreenNotification;
-#[cfg(feature = "AppKit_NSWindow")]
+#[cfg(feature = "NSWindow")]
 pub use self::__NSWindow::NSWindowWillExitVersionBrowserNotification;
-#[cfg(feature = "AppKit_NSWindow")]
+#[cfg(feature = "NSWindow")]
 pub use self::__NSWindow::NSWindowWillMiniaturizeNotification;
-#[cfg(feature = "AppKit_NSWindow")]
+#[cfg(feature = "NSWindow")]
 pub use self::__NSWindow::NSWindowWillMoveNotification;
-#[cfg(feature = "AppKit_NSWindow")]
+#[cfg(feature = "NSWindow")]
 pub use self::__NSWindow::NSWindowWillStartLiveResizeNotification;
-#[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSWindowController"))]
+#[cfg(all(feature = "NSResponder", feature = "NSWindowController"))]
 pub use self::__NSWindowController::NSWindowController;
-#[cfg(feature = "AppKit_NSWindowRestoration")]
+#[cfg(feature = "NSWindowRestoration")]
 pub use self::__NSWindowRestoration::NSApplicationDidFinishRestoringWindowsNotification;
-#[cfg(feature = "AppKit_NSWindowRestoration")]
+#[cfg(feature = "NSWindowRestoration")]
 pub use self::__NSWindowRestoration::NSWindowRestoration;
-#[cfg(feature = "AppKit_NSWindowTab")]
+#[cfg(feature = "NSWindowTab")]
 pub use self::__NSWindowTab::NSWindowTab;
-#[cfg(feature = "AppKit_NSWindowTabGroup")]
+#[cfg(feature = "NSWindowTabGroup")]
 pub use self::__NSWindowTabGroup::NSWindowTabGroup;
-#[cfg(feature = "AppKit_NSWorkspace")]
+#[cfg(feature = "NSWorkspace")]
 pub use self::__NSWorkspace::NSApplicationFileType;
-#[cfg(feature = "AppKit_NSWorkspace")]
+#[cfg(feature = "NSWorkspace")]
 pub use self::__NSWorkspace::NSDirectoryFileType;
-#[cfg(feature = "AppKit_NSWorkspace")]
+#[cfg(feature = "NSWorkspace")]
 pub use self::__NSWorkspace::NSFileManagerNSWorkspaceAuthorization;
-#[cfg(feature = "AppKit_NSWorkspace")]
+#[cfg(feature = "NSWorkspace")]
 pub use self::__NSWorkspace::NSFilesystemFileType;
-#[cfg(feature = "AppKit_NSWorkspace")]
+#[cfg(feature = "NSWorkspace")]
 pub use self::__NSWorkspace::NSPlainFileType;
-#[cfg(feature = "AppKit_NSWorkspace")]
+#[cfg(feature = "NSWorkspace")]
 pub use self::__NSWorkspace::NSShellCommandFileType;
-#[cfg(feature = "AppKit_NSWorkspace")]
+#[cfg(feature = "NSWorkspace")]
 pub use self::__NSWorkspace::NSWorkspace;
-#[cfg(feature = "AppKit_NSWorkspace")]
+#[cfg(feature = "NSWorkspace")]
 pub use self::__NSWorkspace::NSWorkspaceActiveSpaceDidChangeNotification;
-#[cfg(feature = "AppKit_NSWorkspace")]
+#[cfg(feature = "NSWorkspace")]
 pub use self::__NSWorkspace::NSWorkspaceApplicationKey;
-#[cfg(feature = "AppKit_NSWorkspace")]
+#[cfg(feature = "NSWorkspace")]
 pub use self::__NSWorkspace::NSWorkspaceAuthorization;
-#[cfg(feature = "AppKit_NSWorkspace")]
+#[cfg(feature = "NSWorkspace")]
 pub use self::__NSWorkspace::NSWorkspaceAuthorizationType;
-#[cfg(feature = "AppKit_NSWorkspace")]
+#[cfg(feature = "NSWorkspace")]
 pub use self::__NSWorkspace::NSWorkspaceCompressOperation;
-#[cfg(feature = "AppKit_NSWorkspace")]
+#[cfg(feature = "NSWorkspace")]
 pub use self::__NSWorkspace::NSWorkspaceCopyOperation;
-#[cfg(feature = "AppKit_NSWorkspace")]
+#[cfg(feature = "NSWorkspace")]
 pub use self::__NSWorkspace::NSWorkspaceDecompressOperation;
-#[cfg(feature = "AppKit_NSWorkspace")]
+#[cfg(feature = "NSWorkspace")]
 pub use self::__NSWorkspace::NSWorkspaceDecryptOperation;
-#[cfg(feature = "AppKit_NSWorkspace")]
+#[cfg(feature = "NSWorkspace")]
 pub use self::__NSWorkspace::NSWorkspaceDesktopImageAllowClippingKey;
-#[cfg(feature = "AppKit_NSWorkspace")]
+#[cfg(feature = "NSWorkspace")]
 pub use self::__NSWorkspace::NSWorkspaceDesktopImageFillColorKey;
-#[cfg(feature = "AppKit_NSWorkspace")]
+#[cfg(feature = "NSWorkspace")]
 pub use self::__NSWorkspace::NSWorkspaceDesktopImageOptionKey;
-#[cfg(feature = "AppKit_NSWorkspace")]
+#[cfg(feature = "NSWorkspace")]
 pub use self::__NSWorkspace::NSWorkspaceDesktopImageScalingKey;
-#[cfg(feature = "AppKit_NSWorkspace")]
+#[cfg(feature = "NSWorkspace")]
 pub use self::__NSWorkspace::NSWorkspaceDestroyOperation;
-#[cfg(feature = "AppKit_NSWorkspace")]
+#[cfg(feature = "NSWorkspace")]
 pub use self::__NSWorkspace::NSWorkspaceDidActivateApplicationNotification;
-#[cfg(feature = "AppKit_NSWorkspace")]
+#[cfg(feature = "NSWorkspace")]
 pub use self::__NSWorkspace::NSWorkspaceDidChangeFileLabelsNotification;
-#[cfg(feature = "AppKit_NSWorkspace")]
+#[cfg(feature = "NSWorkspace")]
 pub use self::__NSWorkspace::NSWorkspaceDidDeactivateApplicationNotification;
-#[cfg(feature = "AppKit_NSWorkspace")]
+#[cfg(feature = "NSWorkspace")]
 pub use self::__NSWorkspace::NSWorkspaceDidHideApplicationNotification;
-#[cfg(feature = "AppKit_NSWorkspace")]
+#[cfg(feature = "NSWorkspace")]
 pub use self::__NSWorkspace::NSWorkspaceDidLaunchApplicationNotification;
-#[cfg(feature = "AppKit_NSWorkspace")]
+#[cfg(feature = "NSWorkspace")]
 pub use self::__NSWorkspace::NSWorkspaceDidMountNotification;
-#[cfg(feature = "AppKit_NSWorkspace")]
+#[cfg(feature = "NSWorkspace")]
 pub use self::__NSWorkspace::NSWorkspaceDidPerformFileOperationNotification;
-#[cfg(feature = "AppKit_NSWorkspace")]
+#[cfg(feature = "NSWorkspace")]
 pub use self::__NSWorkspace::NSWorkspaceDidRenameVolumeNotification;
-#[cfg(feature = "AppKit_NSWorkspace")]
+#[cfg(feature = "NSWorkspace")]
 pub use self::__NSWorkspace::NSWorkspaceDidTerminateApplicationNotification;
-#[cfg(feature = "AppKit_NSWorkspace")]
+#[cfg(feature = "NSWorkspace")]
 pub use self::__NSWorkspace::NSWorkspaceDidUnhideApplicationNotification;
-#[cfg(feature = "AppKit_NSWorkspace")]
+#[cfg(feature = "NSWorkspace")]
 pub use self::__NSWorkspace::NSWorkspaceDidUnmountNotification;
-#[cfg(feature = "AppKit_NSWorkspace")]
+#[cfg(feature = "NSWorkspace")]
 pub use self::__NSWorkspace::NSWorkspaceDidWakeNotification;
-#[cfg(feature = "AppKit_NSWorkspace")]
+#[cfg(feature = "NSWorkspace")]
 pub use self::__NSWorkspace::NSWorkspaceDuplicateOperation;
-#[cfg(feature = "AppKit_NSWorkspace")]
+#[cfg(feature = "NSWorkspace")]
 pub use self::__NSWorkspace::NSWorkspaceEncryptOperation;
-#[cfg(feature = "AppKit_NSWorkspace")]
+#[cfg(feature = "NSWorkspace")]
 pub use self::__NSWorkspace::NSWorkspaceFileOperationName;
-#[cfg(feature = "AppKit_NSWorkspace")]
+#[cfg(feature = "NSWorkspace")]
 pub use self::__NSWorkspace::NSWorkspaceIconCreationOptions;
-#[cfg(feature = "AppKit_NSWorkspace")]
+#[cfg(feature = "NSWorkspace")]
 pub use self::__NSWorkspace::NSWorkspaceLaunchConfigurationAppleEvent;
-#[cfg(feature = "AppKit_NSWorkspace")]
+#[cfg(feature = "NSWorkspace")]
 pub use self::__NSWorkspace::NSWorkspaceLaunchConfigurationArchitecture;
-#[cfg(feature = "AppKit_NSWorkspace")]
+#[cfg(feature = "NSWorkspace")]
 pub use self::__NSWorkspace::NSWorkspaceLaunchConfigurationArguments;
-#[cfg(feature = "AppKit_NSWorkspace")]
+#[cfg(feature = "NSWorkspace")]
 pub use self::__NSWorkspace::NSWorkspaceLaunchConfigurationEnvironment;
-#[cfg(feature = "AppKit_NSWorkspace")]
+#[cfg(feature = "NSWorkspace")]
 pub use self::__NSWorkspace::NSWorkspaceLaunchConfigurationKey;
-#[cfg(feature = "AppKit_NSWorkspace")]
+#[cfg(feature = "NSWorkspace")]
 pub use self::__NSWorkspace::NSWorkspaceLaunchOptions;
-#[cfg(feature = "AppKit_NSWorkspace")]
+#[cfg(feature = "NSWorkspace")]
 pub use self::__NSWorkspace::NSWorkspaceLinkOperation;
-#[cfg(feature = "AppKit_NSWorkspace")]
+#[cfg(feature = "NSWorkspace")]
 pub use self::__NSWorkspace::NSWorkspaceMoveOperation;
-#[cfg(feature = "AppKit_NSWorkspace")]
+#[cfg(feature = "NSWorkspace")]
 pub use self::__NSWorkspace::NSWorkspaceOpenConfiguration;
-#[cfg(feature = "AppKit_NSWorkspace")]
+#[cfg(feature = "NSWorkspace")]
 pub use self::__NSWorkspace::NSWorkspaceRecycleOperation;
-#[cfg(feature = "AppKit_NSWorkspace")]
+#[cfg(feature = "NSWorkspace")]
 pub use self::__NSWorkspace::NSWorkspaceScreensDidSleepNotification;
-#[cfg(feature = "AppKit_NSWorkspace")]
+#[cfg(feature = "NSWorkspace")]
 pub use self::__NSWorkspace::NSWorkspaceScreensDidWakeNotification;
-#[cfg(feature = "AppKit_NSWorkspace")]
+#[cfg(feature = "NSWorkspace")]
 pub use self::__NSWorkspace::NSWorkspaceSessionDidBecomeActiveNotification;
-#[cfg(feature = "AppKit_NSWorkspace")]
+#[cfg(feature = "NSWorkspace")]
 pub use self::__NSWorkspace::NSWorkspaceSessionDidResignActiveNotification;
-#[cfg(feature = "AppKit_NSWorkspace")]
+#[cfg(feature = "NSWorkspace")]
 pub use self::__NSWorkspace::NSWorkspaceVolumeLocalizedNameKey;
-#[cfg(feature = "AppKit_NSWorkspace")]
+#[cfg(feature = "NSWorkspace")]
 pub use self::__NSWorkspace::NSWorkspaceVolumeOldLocalizedNameKey;
-#[cfg(feature = "AppKit_NSWorkspace")]
+#[cfg(feature = "NSWorkspace")]
 pub use self::__NSWorkspace::NSWorkspaceVolumeOldURLKey;
-#[cfg(feature = "AppKit_NSWorkspace")]
+#[cfg(feature = "NSWorkspace")]
 pub use self::__NSWorkspace::NSWorkspaceVolumeURLKey;
-#[cfg(feature = "AppKit_NSWorkspace")]
+#[cfg(feature = "NSWorkspace")]
 pub use self::__NSWorkspace::NSWorkspaceWillLaunchApplicationNotification;
-#[cfg(feature = "AppKit_NSWorkspace")]
+#[cfg(feature = "NSWorkspace")]
 pub use self::__NSWorkspace::NSWorkspaceWillPowerOffNotification;
-#[cfg(feature = "AppKit_NSWorkspace")]
+#[cfg(feature = "NSWorkspace")]
 pub use self::__NSWorkspace::NSWorkspaceWillSleepNotification;
-#[cfg(feature = "AppKit_NSWorkspace")]
+#[cfg(feature = "NSWorkspace")]
 pub use self::__NSWorkspace::NSWorkspaceWillUnmountNotification;

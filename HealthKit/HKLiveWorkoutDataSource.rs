@@ -22,14 +22,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
-        #[cfg(feature = "HealthKit_HKObjectType")]
+        #[cfg(feature = "HKObjectType")]
         #[method_id(@__retain_semantics Other typesToCollect)]
         pub unsafe fn typesToCollect(&self) -> Id<NSSet<HKQuantityType>>;
 
-        #[cfg(all(
-            feature = "HealthKit_HKHealthStore",
-            feature = "HealthKit_HKWorkoutConfiguration"
-        ))]
+        #[cfg(all(feature = "HKHealthStore", feature = "HKWorkoutConfiguration"))]
         #[method_id(@__retain_semantics Init initWithHealthStore:workoutConfiguration:)]
         pub unsafe fn initWithHealthStore_workoutConfiguration(
             this: Allocated<Self>,
@@ -37,7 +34,7 @@ extern_methods!(
             configuration: Option<&HKWorkoutConfiguration>,
         ) -> Id<Self>;
 
-        #[cfg(feature = "HealthKit_HKObjectType")]
+        #[cfg(feature = "HKObjectType")]
         #[method(enableCollectionForType:predicate:)]
         pub unsafe fn enableCollectionForType_predicate(
             &self,
@@ -45,7 +42,7 @@ extern_methods!(
             predicate: Option<&NSPredicate>,
         );
 
-        #[cfg(feature = "HealthKit_HKObjectType")]
+        #[cfg(feature = "HKObjectType")]
         #[method(disableCollectionForType:)]
         pub unsafe fn disableCollectionForType(&self, quantity_type: &HKQuantityType);
     }

@@ -19,7 +19,7 @@ unsafe impl NSObjectProtocol for EASession {}
 
 extern_methods!(
     unsafe impl EASession {
-        #[cfg(feature = "ExternalAccessory_EAAccessory")]
+        #[cfg(feature = "EAAccessory")]
         #[method_id(@__retain_semantics Init initWithAccessory:forProtocol:)]
         pub unsafe fn initWithAccessory_forProtocol(
             this: Allocated<Self>,
@@ -27,7 +27,7 @@ extern_methods!(
             protocol_string: &NSString,
         ) -> Option<Id<Self>>;
 
-        #[cfg(feature = "ExternalAccessory_EAAccessory")]
+        #[cfg(feature = "EAAccessory")]
         #[method_id(@__retain_semantics Other accessory)]
         pub unsafe fn accessory(&self) -> Option<Id<EAAccessory>>;
 

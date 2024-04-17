@@ -21,30 +21,24 @@ unsafe impl NSObjectProtocol for NSPersistentHistoryTransaction {}
 
 extern_methods!(
     unsafe impl NSPersistentHistoryTransaction {
-        #[cfg(all(
-            feature = "CoreData_NSEntityDescription",
-            feature = "CoreData_NSManagedObjectContext"
-        ))]
+        #[cfg(all(feature = "NSEntityDescription", feature = "NSManagedObjectContext"))]
         #[method_id(@__retain_semantics Other entityDescriptionWithContext:)]
         pub unsafe fn entityDescriptionWithContext(
             context: &NSManagedObjectContext,
         ) -> Option<Id<NSEntityDescription>>;
 
-        #[cfg(feature = "CoreData_NSEntityDescription")]
+        #[cfg(feature = "NSEntityDescription")]
         #[method_id(@__retain_semantics Other entityDescription)]
         pub unsafe fn entityDescription() -> Option<Id<NSEntityDescription>>;
 
-        #[cfg(all(
-            feature = "CoreData_NSFetchRequest",
-            feature = "CoreData_NSPersistentStoreRequest"
-        ))]
+        #[cfg(all(feature = "NSFetchRequest", feature = "NSPersistentStoreRequest"))]
         #[method_id(@__retain_semantics Other fetchRequest)]
         pub unsafe fn fetchRequest() -> Option<Id<NSFetchRequest>>;
 
         #[method_id(@__retain_semantics Other timestamp)]
         pub unsafe fn timestamp(&self) -> Id<NSDate>;
 
-        #[cfg(feature = "CoreData_NSPersistentHistoryChange")]
+        #[cfg(feature = "NSPersistentHistoryChange")]
         #[method_id(@__retain_semantics Other changes)]
         pub unsafe fn changes(&self) -> Option<Id<NSArray<NSPersistentHistoryChange>>>;
 
@@ -66,7 +60,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other author)]
         pub unsafe fn author(&self) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "CoreData_NSPersistentHistoryToken")]
+        #[cfg(feature = "NSPersistentHistoryToken")]
         #[method_id(@__retain_semantics Other token)]
         pub unsafe fn token(&self) -> Id<NSPersistentHistoryToken>;
 

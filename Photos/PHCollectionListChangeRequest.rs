@@ -7,10 +7,10 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Photos_PHChangeRequest")]
+    #[cfg(feature = "PHChangeRequest")]
     pub struct PHCollectionListChangeRequest;
 
-    #[cfg(feature = "Photos_PHChangeRequest")]
+    #[cfg(feature = "PHChangeRequest")]
     unsafe impl ClassType for PHCollectionListChangeRequest {
         #[inherits(NSObject)]
         type Super = PHChangeRequest;
@@ -18,16 +18,16 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Photos_PHChangeRequest")]
+#[cfg(feature = "PHChangeRequest")]
 unsafe impl NSObjectProtocol for PHCollectionListChangeRequest {}
 
 extern_methods!(
-    #[cfg(feature = "Photos_PHChangeRequest")]
+    #[cfg(feature = "PHChangeRequest")]
     unsafe impl PHCollectionListChangeRequest {
         #[method_id(@__retain_semantics Other creationRequestForCollectionListWithTitle:)]
         pub unsafe fn creationRequestForCollectionListWithTitle(title: &NSString) -> Id<Self>;
 
-        #[cfg(feature = "Photos_PHObject")]
+        #[cfg(feature = "PHObject")]
         #[method_id(@__retain_semantics Other placeholderForCreatedCollectionList)]
         pub unsafe fn placeholderForCreatedCollectionList(&self) -> Id<PHObjectPlaceholder>;
 
@@ -36,16 +36,16 @@ extern_methods!(
             collection_lists: &ProtocolObject<dyn NSFastEnumeration>,
         );
 
-        #[cfg(all(feature = "Photos_PHCollection", feature = "Photos_PHObject"))]
+        #[cfg(all(feature = "PHCollection", feature = "PHObject"))]
         #[method_id(@__retain_semantics Other changeRequestForCollectionList:)]
         pub unsafe fn changeRequestForCollectionList(
             collection_list: &PHCollectionList,
         ) -> Option<Id<Self>>;
 
         #[cfg(all(
-            feature = "Photos_PHCollection",
-            feature = "Photos_PHFetchResult",
-            feature = "Photos_PHObject"
+            feature = "PHCollection",
+            feature = "PHFetchResult",
+            feature = "PHObject"
         ))]
         #[method_id(@__retain_semantics Other changeRequestForCollectionList:childCollections:)]
         pub unsafe fn changeRequestForCollectionList_childCollections(
@@ -54,9 +54,9 @@ extern_methods!(
         ) -> Option<Id<Self>>;
 
         #[cfg(all(
-            feature = "Photos_PHCollection",
-            feature = "Photos_PHFetchResult",
-            feature = "Photos_PHObject"
+            feature = "PHCollection",
+            feature = "PHFetchResult",
+            feature = "PHObject"
         ))]
         #[method_id(@__retain_semantics Other changeRequestForTopLevelCollectionListUserCollections:)]
         pub unsafe fn changeRequestForTopLevelCollectionListUserCollections(
@@ -109,7 +109,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Photos_PHChangeRequest")]
+    #[cfg(feature = "PHChangeRequest")]
     unsafe impl PHCollectionListChangeRequest {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

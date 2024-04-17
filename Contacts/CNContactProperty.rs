@@ -25,7 +25,7 @@ unsafe impl NSSecureCoding for CNContactProperty {}
 
 extern_methods!(
     unsafe impl CNContactProperty {
-        #[cfg(feature = "Contacts_CNContact")]
+        #[cfg(feature = "CNContact")]
         #[method_id(@__retain_semantics Other contact)]
         pub unsafe fn contact(&self) -> Id<CNContact>;
 

@@ -67,7 +67,7 @@ extern_methods!(
         #[method(removeTarget:)]
         pub unsafe fn removeTarget(&self, target: Option<&AnyObject>);
 
-        #[cfg(all(feature = "MediaPlayer_MPRemoteCommandEvent", feature = "block2"))]
+        #[cfg(all(feature = "MPRemoteCommandEvent", feature = "block2"))]
         #[method_id(@__retain_semantics Other addTargetWithHandler:)]
         pub unsafe fn addTargetWithHandler(
             &self,
@@ -276,11 +276,11 @@ unsafe impl NSObjectProtocol for MPChangeShuffleModeCommand {}
 
 extern_methods!(
     unsafe impl MPChangeShuffleModeCommand {
-        #[cfg(feature = "MediaPlayer_MPRemoteControlTypes")]
+        #[cfg(feature = "MPRemoteControlTypes")]
         #[method(currentShuffleType)]
         pub unsafe fn currentShuffleType(&self) -> MPShuffleType;
 
-        #[cfg(feature = "MediaPlayer_MPRemoteControlTypes")]
+        #[cfg(feature = "MPRemoteControlTypes")]
         #[method(setCurrentShuffleType:)]
         pub unsafe fn setCurrentShuffleType(&self, current_shuffle_type: MPShuffleType);
     }
@@ -312,11 +312,11 @@ unsafe impl NSObjectProtocol for MPChangeRepeatModeCommand {}
 
 extern_methods!(
     unsafe impl MPChangeRepeatModeCommand {
-        #[cfg(feature = "MediaPlayer_MPRemoteControlTypes")]
+        #[cfg(feature = "MPRemoteControlTypes")]
         #[method(currentRepeatType)]
         pub unsafe fn currentRepeatType(&self) -> MPRepeatType;
 
-        #[cfg(feature = "MediaPlayer_MPRemoteControlTypes")]
+        #[cfg(feature = "MPRemoteControlTypes")]
         #[method(setCurrentRepeatType:)]
         pub unsafe fn setCurrentRepeatType(&self, current_repeat_type: MPRepeatType);
     }

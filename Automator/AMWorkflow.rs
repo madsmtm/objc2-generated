@@ -52,15 +52,15 @@ extern_methods!(
             variable_name: &NSString,
         ) -> Option<Id<AnyObject>>;
 
-        #[cfg(feature = "Automator_AMAction")]
+        #[cfg(feature = "AMAction")]
         #[method(addAction:)]
         pub unsafe fn addAction(&self, action: &AMAction);
 
-        #[cfg(feature = "Automator_AMAction")]
+        #[cfg(feature = "AMAction")]
         #[method(removeAction:)]
         pub unsafe fn removeAction(&self, action: &AMAction);
 
-        #[cfg(feature = "Automator_AMAction")]
+        #[cfg(feature = "AMAction")]
         #[method(insertAction:atIndex:)]
         pub unsafe fn insertAction_atIndex(&self, action: &AMAction, index: NSUInteger);
 
@@ -74,7 +74,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other fileURL)]
         pub unsafe fn fileURL(&self) -> Option<Id<NSURL>>;
 
-        #[cfg(feature = "Automator_AMAction")]
+        #[cfg(feature = "AMAction")]
         #[method_id(@__retain_semantics Other actions)]
         pub unsafe fn actions(&self) -> Id<NSArray<AMAction>>;
 

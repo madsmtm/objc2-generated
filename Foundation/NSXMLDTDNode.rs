@@ -41,10 +41,10 @@ unsafe impl RefEncode for NSXMLDTDNodeKind {
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSXMLNode")]
+    #[cfg(feature = "NSXMLNode")]
     pub struct NSXMLDTDNode;
 
-    #[cfg(feature = "Foundation_NSXMLNode")]
+    #[cfg(feature = "NSXMLNode")]
     unsafe impl ClassType for NSXMLDTDNode {
         #[inherits(NSObject)]
         type Super = NSXMLNode;
@@ -52,23 +52,23 @@ extern_class!(
     }
 );
 
-#[cfg(all(feature = "Foundation_NSObject", feature = "Foundation_NSXMLNode"))]
+#[cfg(all(feature = "NSObject", feature = "NSXMLNode"))]
 unsafe impl NSCopying for NSXMLDTDNode {}
 
-#[cfg(feature = "Foundation_NSXMLNode")]
+#[cfg(feature = "NSXMLNode")]
 unsafe impl NSObjectProtocol for NSXMLDTDNode {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSXMLNode")]
+    #[cfg(feature = "NSXMLNode")]
     unsafe impl NSXMLDTDNode {
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Init initWithXMLString:)]
         pub unsafe fn initWithXMLString(
             this: Allocated<Self>,
             string: &NSString,
         ) -> Option<Id<Self>>;
 
-        #[cfg(feature = "Foundation_NSXMLNodeOptions")]
+        #[cfg(feature = "NSXMLNodeOptions")]
         #[method_id(@__retain_semantics Init initWithKind:options:)]
         pub unsafe fn initWithKind_options(
             this: Allocated<Self>,
@@ -88,27 +88,27 @@ extern_methods!(
         #[method(isExternal)]
         pub unsafe fn isExternal(&self) -> bool;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other publicID)]
         pub unsafe fn publicID(&self) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method(setPublicID:)]
         pub unsafe fn setPublicID(&self, public_id: Option<&NSString>);
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other systemID)]
         pub unsafe fn systemID(&self) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method(setSystemID:)]
         pub unsafe fn setSystemID(&self, system_id: Option<&NSString>);
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other notationName)]
         pub unsafe fn notationName(&self) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method(setNotationName:)]
         pub unsafe fn setNotationName(&self, notation_name: Option<&NSString>);
     }
@@ -116,7 +116,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSXMLNode`
-    #[cfg(feature = "Foundation_NSXMLNode")]
+    #[cfg(feature = "NSXMLNode")]
     unsafe impl NSXMLDTDNode {
         #[method_id(@__retain_semantics Init initWithKind:)]
         pub unsafe fn initWithKind(this: Allocated<Self>, kind: NSXMLNodeKind) -> Id<Self>;
@@ -125,7 +125,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSXMLNode")]
+    #[cfg(feature = "NSXMLNode")]
     unsafe impl NSXMLDTDNode {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

@@ -80,7 +80,7 @@ extern_methods!(
         #[method(unregisterForLocalNotifications)]
         pub unsafe fn unregisterForLocalNotifications(&self);
 
-        #[cfg(feature = "ExternalAccessory_EAAccessory")]
+        #[cfg(feature = "EAAccessory")]
         #[method_id(@__retain_semantics Other connectedAccessories)]
         pub unsafe fn connectedAccessories(&self) -> Id<NSArray<EAAccessory>>;
     }

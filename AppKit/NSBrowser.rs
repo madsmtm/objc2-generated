@@ -5,10 +5,10 @@ use objc2_foundation::*;
 
 use crate::*;
 
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub static NSAppKitVersionNumberWithContinuousScrollingBrowser: NSAppKitVersion = 680.0 as _;
 
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub static NSAppKitVersionNumberWithColumnResizingBrowser: NSAppKitVersion = 685.0 as _;
 
 pub type NSBrowserColumnsAutosaveName = NSString;
@@ -50,18 +50,10 @@ unsafe impl RefEncode for NSBrowserDropOperation {
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(
-        feature = "AppKit_NSControl",
-        feature = "AppKit_NSResponder",
-        feature = "AppKit_NSView"
-    ))]
+    #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     pub struct NSBrowser;
 
-    #[cfg(all(
-        feature = "AppKit_NSControl",
-        feature = "AppKit_NSResponder",
-        feature = "AppKit_NSView"
-    ))]
+    #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     unsafe impl ClassType for NSBrowser {
         #[inherits(NSView, NSResponder, NSObject)]
         type Super = NSControl;
@@ -70,73 +62,61 @@ extern_class!(
 );
 
 #[cfg(all(
-    feature = "AppKit_NSAccessibilityProtocols",
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSView"
+    feature = "NSAccessibilityProtocols",
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSView"
 ))]
 unsafe impl NSAccessibility for NSBrowser {}
 
 #[cfg(all(
-    feature = "AppKit_NSAccessibilityProtocols",
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSView"
+    feature = "NSAccessibilityProtocols",
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSView"
 ))]
 unsafe impl NSAccessibilityElementProtocol for NSBrowser {}
 
 #[cfg(all(
-    feature = "AppKit_NSAnimation",
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSView"
+    feature = "NSAnimation",
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSView"
 ))]
 unsafe impl NSAnimatablePropertyContainer for NSBrowser {}
 
 #[cfg(all(
-    feature = "AppKit_NSAppearance",
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSView"
+    feature = "NSAppearance",
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSView"
 ))]
 unsafe impl NSAppearanceCustomization for NSBrowser {}
 
-#[cfg(all(
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSView"
-))]
+#[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
 unsafe impl NSCoding for NSBrowser {}
 
 #[cfg(all(
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSDragging",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSView"
+    feature = "NSControl",
+    feature = "NSDragging",
+    feature = "NSResponder",
+    feature = "NSView"
 ))]
 unsafe impl NSDraggingDestination for NSBrowser {}
 
-#[cfg(all(
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSView"
-))]
+#[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
 unsafe impl NSObjectProtocol for NSBrowser {}
 
 #[cfg(all(
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSUserInterfaceItemIdentification",
-    feature = "AppKit_NSView"
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSUserInterfaceItemIdentification",
+    feature = "NSView"
 ))]
 unsafe impl NSUserInterfaceItemIdentification for NSBrowser {}
 
 extern_methods!(
-    #[cfg(all(
-        feature = "AppKit_NSControl",
-        feature = "AppKit_NSResponder",
-        feature = "AppKit_NSView"
-    ))]
+    #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSBrowser {
         #[method(cellClass)]
         pub unsafe fn cellClass(mtm: MainThreadMarker) -> &'static AnyClass;
@@ -308,7 +288,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other selectedCellInColumn:)]
         pub unsafe fn selectedCellInColumn(&self, column: NSInteger) -> Option<Id<AnyObject>>;
 
-        #[cfg(feature = "AppKit_NSCell")]
+        #[cfg(feature = "NSCell")]
         #[method_id(@__retain_semantics Other selectedCells)]
         pub unsafe fn selectedCells(&self) -> Option<Id<NSArray<NSCell>>>;
 
@@ -487,7 +467,7 @@ extern_methods!(
             mtm: MainThreadMarker,
         );
 
-        #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(feature = "NSEvent")]
         #[method(canDragRowsWithIndexes:inColumn:withEvent:)]
         pub unsafe fn canDragRowsWithIndexes_inColumn_withEvent(
             &self,
@@ -496,7 +476,7 @@ extern_methods!(
             event: &NSEvent,
         ) -> bool;
 
-        #[cfg(all(feature = "AppKit_NSEvent", feature = "AppKit_NSImage"))]
+        #[cfg(all(feature = "NSEvent", feature = "NSImage"))]
         #[method_id(@__retain_semantics Other draggingImageForRowsWithIndexes:inColumn:withEvent:offset:)]
         pub unsafe fn draggingImageForRowsWithIndexes_inColumn_withEvent_offset(
             &self,
@@ -506,7 +486,7 @@ extern_methods!(
             drag_image_offset: NSPointPointer,
         ) -> Option<Id<NSImage>>;
 
-        #[cfg(feature = "AppKit_NSDragging")]
+        #[cfg(feature = "NSDragging")]
         #[method(setDraggingSourceOperationMask:forLocal:)]
         pub unsafe fn setDraggingSourceOperationMask_forLocal(
             &self,
@@ -520,15 +500,15 @@ extern_methods!(
         #[method(setAllowsTypeSelect:)]
         pub unsafe fn setAllowsTypeSelect(&self, allows_type_select: bool);
 
-        #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(feature = "NSColor")]
         #[method_id(@__retain_semantics Other backgroundColor)]
         pub unsafe fn backgroundColor(&self) -> Id<NSColor>;
 
-        #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(feature = "NSColor")]
         #[method(setBackgroundColor:)]
         pub unsafe fn setBackgroundColor(&self, background_color: &NSColor);
 
-        #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(feature = "NSEvent")]
         #[method(editItemAtIndexPath:withEvent:select:)]
         pub unsafe fn editItemAtIndexPath_withEvent_select(
             &self,
@@ -541,11 +521,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSControl`
-    #[cfg(all(
-        feature = "AppKit_NSControl",
-        feature = "AppKit_NSResponder",
-        feature = "AppKit_NSView"
-    ))]
+    #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSBrowser {
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Id<Self>;
@@ -557,11 +533,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSResponder`
-    #[cfg(all(
-        feature = "AppKit_NSControl",
-        feature = "AppKit_NSResponder",
-        feature = "AppKit_NSView"
-    ))]
+    #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSBrowser {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -570,11 +542,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(all(
-        feature = "AppKit_NSControl",
-        feature = "AppKit_NSResponder",
-        feature = "AppKit_NSView"
-    ))]
+    #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSBrowser {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
@@ -587,11 +555,7 @@ extern "C" {
 
 extern_protocol!(
     pub unsafe trait NSBrowserDelegate: NSObjectProtocol + IsMainThreadOnly {
-        #[cfg(all(
-            feature = "AppKit_NSControl",
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSView"
-        ))]
+        #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
         #[optional]
         #[method(browser:numberOfRowsInColumn:)]
         unsafe fn browser_numberOfRowsInColumn(
@@ -601,10 +565,10 @@ extern_protocol!(
         ) -> NSInteger;
 
         #[cfg(all(
-            feature = "AppKit_NSControl",
-            feature = "AppKit_NSMatrix",
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSView"
+            feature = "NSControl",
+            feature = "NSMatrix",
+            feature = "NSResponder",
+            feature = "NSView"
         ))]
         #[optional]
         #[method(browser:createRowsForColumn:inMatrix:)]
@@ -615,11 +579,7 @@ extern_protocol!(
             matrix: &NSMatrix,
         );
 
-        #[cfg(all(
-            feature = "AppKit_NSControl",
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSView"
-        ))]
+        #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
         #[optional]
         #[method(browser:numberOfChildrenOfItem:)]
         unsafe fn browser_numberOfChildrenOfItem(
@@ -628,11 +588,7 @@ extern_protocol!(
             item: Option<&AnyObject>,
         ) -> NSInteger;
 
-        #[cfg(all(
-            feature = "AppKit_NSControl",
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSView"
-        ))]
+        #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
         #[optional]
         #[method_id(@__retain_semantics Other browser:child:ofItem:)]
         unsafe fn browser_child_ofItem(
@@ -642,20 +598,12 @@ extern_protocol!(
             item: Option<&AnyObject>,
         ) -> Id<AnyObject>;
 
-        #[cfg(all(
-            feature = "AppKit_NSControl",
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSView"
-        ))]
+        #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
         #[optional]
         #[method(browser:isLeafItem:)]
         unsafe fn browser_isLeafItem(&self, browser: &NSBrowser, item: Option<&AnyObject>) -> bool;
 
-        #[cfg(all(
-            feature = "AppKit_NSControl",
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSView"
-        ))]
+        #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
         #[optional]
         #[method_id(@__retain_semantics Other browser:objectValueForItem:)]
         unsafe fn browser_objectValueForItem(
@@ -664,11 +612,7 @@ extern_protocol!(
             item: Option<&AnyObject>,
         ) -> Option<Id<AnyObject>>;
 
-        #[cfg(all(
-            feature = "AppKit_NSControl",
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSView"
-        ))]
+        #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
         #[optional]
         #[method(browser:heightOfRow:inColumn:)]
         unsafe fn browser_heightOfRow_inColumn(
@@ -678,20 +622,12 @@ extern_protocol!(
             column_index: NSInteger,
         ) -> CGFloat;
 
-        #[cfg(all(
-            feature = "AppKit_NSControl",
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSView"
-        ))]
+        #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
         #[optional]
         #[method_id(@__retain_semantics Other rootItemForBrowser:)]
         unsafe fn rootItemForBrowser(&self, browser: &NSBrowser) -> Option<Id<AnyObject>>;
 
-        #[cfg(all(
-            feature = "AppKit_NSControl",
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSView"
-        ))]
+        #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
         #[optional]
         #[method(browser:setObjectValue:forItem:)]
         unsafe fn browser_setObjectValue_forItem(
@@ -701,11 +637,7 @@ extern_protocol!(
             item: Option<&AnyObject>,
         );
 
-        #[cfg(all(
-            feature = "AppKit_NSControl",
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSView"
-        ))]
+        #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
         #[optional]
         #[method(browser:shouldEditItem:)]
         unsafe fn browser_shouldEditItem(
@@ -714,11 +646,7 @@ extern_protocol!(
             item: Option<&AnyObject>,
         ) -> bool;
 
-        #[cfg(all(
-            feature = "AppKit_NSControl",
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSView"
-        ))]
+        #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
         #[optional]
         #[method(browser:willDisplayCell:atRow:column:)]
         unsafe fn browser_willDisplayCell_atRow_column(
@@ -729,11 +657,7 @@ extern_protocol!(
             column: NSInteger,
         );
 
-        #[cfg(all(
-            feature = "AppKit_NSControl",
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSView"
-        ))]
+        #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
         #[optional]
         #[method_id(@__retain_semantics Other browser:titleOfColumn:)]
         unsafe fn browser_titleOfColumn(
@@ -742,11 +666,7 @@ extern_protocol!(
             column: NSInteger,
         ) -> Option<Id<NSString>>;
 
-        #[cfg(all(
-            feature = "AppKit_NSControl",
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSView"
-        ))]
+        #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
         #[optional]
         #[method(browser:selectCellWithString:inColumn:)]
         unsafe fn browser_selectCellWithString_inColumn(
@@ -756,11 +676,7 @@ extern_protocol!(
             column: NSInteger,
         ) -> bool;
 
-        #[cfg(all(
-            feature = "AppKit_NSControl",
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSView"
-        ))]
+        #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
         #[optional]
         #[method(browser:selectRow:inColumn:)]
         unsafe fn browser_selectRow_inColumn(
@@ -770,38 +686,22 @@ extern_protocol!(
             column: NSInteger,
         ) -> bool;
 
-        #[cfg(all(
-            feature = "AppKit_NSControl",
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSView"
-        ))]
+        #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
         #[optional]
         #[method(browser:isColumnValid:)]
         unsafe fn browser_isColumnValid(&self, sender: &NSBrowser, column: NSInteger) -> bool;
 
-        #[cfg(all(
-            feature = "AppKit_NSControl",
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSView"
-        ))]
+        #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
         #[optional]
         #[method(browserWillScroll:)]
         unsafe fn browserWillScroll(&self, sender: &NSBrowser);
 
-        #[cfg(all(
-            feature = "AppKit_NSControl",
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSView"
-        ))]
+        #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
         #[optional]
         #[method(browserDidScroll:)]
         unsafe fn browserDidScroll(&self, sender: &NSBrowser);
 
-        #[cfg(all(
-            feature = "AppKit_NSControl",
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSView"
-        ))]
+        #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
         #[optional]
         #[method(browser:shouldSizeColumn:forUserResize:toWidth:)]
         unsafe fn browser_shouldSizeColumn_forUserResize_toWidth(
@@ -812,11 +712,7 @@ extern_protocol!(
             suggested_width: CGFloat,
         ) -> CGFloat;
 
-        #[cfg(all(
-            feature = "AppKit_NSControl",
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSView"
-        ))]
+        #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
         #[optional]
         #[method(browser:sizeToFitWidthOfColumn:)]
         unsafe fn browser_sizeToFitWidthOfColumn(
@@ -829,11 +725,7 @@ extern_protocol!(
         #[method(browserColumnConfigurationDidChange:)]
         unsafe fn browserColumnConfigurationDidChange(&self, notification: &NSNotification);
 
-        #[cfg(all(
-            feature = "AppKit_NSControl",
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSView"
-        ))]
+        #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
         #[optional]
         #[method(browser:shouldShowCellExpansionForRow:column:)]
         unsafe fn browser_shouldShowCellExpansionForRow_column(
@@ -844,10 +736,10 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(all(
-            feature = "AppKit_NSControl",
-            feature = "AppKit_NSPasteboard",
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSView"
+            feature = "NSControl",
+            feature = "NSPasteboard",
+            feature = "NSResponder",
+            feature = "NSView"
         ))]
         #[optional]
         #[method(browser:writeRowsWithIndexes:inColumn:toPasteboard:)]
@@ -859,11 +751,7 @@ extern_protocol!(
             pasteboard: &NSPasteboard,
         ) -> bool;
 
-        #[cfg(all(
-            feature = "AppKit_NSControl",
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSView"
-        ))]
+        #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
         #[deprecated = "Use NSFilePromiseReceiver objects instead"]
         #[optional]
         #[method_id(@__retain_semantics Other browser:namesOfPromisedFilesDroppedAtDestination:forDraggedRowsWithIndexes:inColumn:)]
@@ -876,10 +764,10 @@ extern_protocol!(
         ) -> Id<NSArray<NSString>>;
 
         #[cfg(all(
-            feature = "AppKit_NSControl",
-            feature = "AppKit_NSEvent",
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSView"
+            feature = "NSControl",
+            feature = "NSEvent",
+            feature = "NSResponder",
+            feature = "NSView"
         ))]
         #[optional]
         #[method(browser:canDragRowsWithIndexes:inColumn:withEvent:)]
@@ -892,11 +780,11 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(all(
-            feature = "AppKit_NSControl",
-            feature = "AppKit_NSEvent",
-            feature = "AppKit_NSImage",
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSView"
+            feature = "NSControl",
+            feature = "NSEvent",
+            feature = "NSImage",
+            feature = "NSResponder",
+            feature = "NSView"
         ))]
         #[optional]
         #[method_id(@__retain_semantics Other browser:draggingImageForRowsWithIndexes:inColumn:withEvent:offset:)]
@@ -910,10 +798,10 @@ extern_protocol!(
         ) -> Option<Id<NSImage>>;
 
         #[cfg(all(
-            feature = "AppKit_NSControl",
-            feature = "AppKit_NSDragging",
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSView"
+            feature = "NSControl",
+            feature = "NSDragging",
+            feature = "NSResponder",
+            feature = "NSView"
         ))]
         #[optional]
         #[method(browser:validateDrop:proposedRow:column:dropOperation:)]
@@ -927,10 +815,10 @@ extern_protocol!(
         ) -> NSDragOperation;
 
         #[cfg(all(
-            feature = "AppKit_NSControl",
-            feature = "AppKit_NSDragging",
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSView"
+            feature = "NSControl",
+            feature = "NSDragging",
+            feature = "NSResponder",
+            feature = "NSView"
         ))]
         #[optional]
         #[method(browser:acceptDrop:atRow:column:dropOperation:)]
@@ -943,11 +831,7 @@ extern_protocol!(
             drop_operation: NSBrowserDropOperation,
         ) -> bool;
 
-        #[cfg(all(
-            feature = "AppKit_NSControl",
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSView"
-        ))]
+        #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
         #[optional]
         #[method_id(@__retain_semantics Other browser:typeSelectStringForRow:inColumn:)]
         unsafe fn browser_typeSelectStringForRow_inColumn(
@@ -958,10 +842,10 @@ extern_protocol!(
         ) -> Option<Id<NSString>>;
 
         #[cfg(all(
-            feature = "AppKit_NSControl",
-            feature = "AppKit_NSEvent",
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSView"
+            feature = "NSControl",
+            feature = "NSEvent",
+            feature = "NSResponder",
+            feature = "NSView"
         ))]
         #[optional]
         #[method(browser:shouldTypeSelectForEvent:withCurrentSearchString:)]
@@ -972,11 +856,7 @@ extern_protocol!(
             search_string: Option<&NSString>,
         ) -> bool;
 
-        #[cfg(all(
-            feature = "AppKit_NSControl",
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSView"
-        ))]
+        #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
         #[optional]
         #[method(browser:nextTypeSelectMatchFromRow:toRow:inColumn:forString:)]
         unsafe fn browser_nextTypeSelectMatchFromRow_toRow_inColumn_forString(
@@ -989,10 +869,10 @@ extern_protocol!(
         ) -> NSInteger;
 
         #[cfg(all(
-            feature = "AppKit_NSControl",
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSView",
-            feature = "AppKit_NSViewController"
+            feature = "NSControl",
+            feature = "NSResponder",
+            feature = "NSView",
+            feature = "NSViewController"
         ))]
         #[optional]
         #[method_id(@__retain_semantics Other browser:previewViewControllerForLeafItem:)]
@@ -1003,10 +883,10 @@ extern_protocol!(
         ) -> Option<Id<NSViewController>>;
 
         #[cfg(all(
-            feature = "AppKit_NSControl",
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSView",
-            feature = "AppKit_NSViewController"
+            feature = "NSControl",
+            feature = "NSResponder",
+            feature = "NSView",
+            feature = "NSViewController"
         ))]
         #[optional]
         #[method_id(@__retain_semantics Other browser:headerViewControllerForItem:)]
@@ -1016,11 +896,7 @@ extern_protocol!(
             item: Option<&AnyObject>,
         ) -> Option<Id<NSViewController>>;
 
-        #[cfg(all(
-            feature = "AppKit_NSControl",
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSView"
-        ))]
+        #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
         #[optional]
         #[method(browser:didChangeLastColumn:toColumn:)]
         unsafe fn browser_didChangeLastColumn_toColumn(
@@ -1030,11 +906,7 @@ extern_protocol!(
             column: NSInteger,
         );
 
-        #[cfg(all(
-            feature = "AppKit_NSControl",
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSView"
-        ))]
+        #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
         #[optional]
         #[method_id(@__retain_semantics Other browser:selectionIndexesForProposedSelection:inColumn:)]
         unsafe fn browser_selectionIndexesForProposedSelection_inColumn(
@@ -1050,11 +922,7 @@ extern_protocol!(
 
 extern_methods!(
     /// NSDeprecated
-    #[cfg(all(
-        feature = "AppKit_NSControl",
-        feature = "AppKit_NSResponder",
-        feature = "AppKit_NSView"
-    ))]
+    #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSBrowser {
         #[deprecated]
         #[method(setAcceptsArrowKeys:)]
@@ -1072,7 +940,7 @@ extern_methods!(
         #[method(displayAllColumns)]
         pub unsafe fn displayAllColumns(&self);
 
-        #[cfg(feature = "AppKit_NSScroller")]
+        #[cfg(feature = "NSScroller")]
         #[deprecated]
         #[method(scrollViaScroller:)]
         pub unsafe fn scrollViaScroller(&self, sender: Option<&NSScroller>);
@@ -1089,12 +957,12 @@ extern_methods!(
         #[method(matrixClass)]
         pub unsafe fn matrixClass(&self) -> &'static AnyClass;
 
-        #[cfg(feature = "AppKit_NSMatrix")]
+        #[cfg(feature = "NSMatrix")]
         #[deprecated = "Use the item based NSBrowser instead"]
         #[method(columnOfMatrix:)]
         pub unsafe fn columnOfMatrix(&self, matrix: &NSMatrix) -> NSInteger;
 
-        #[cfg(feature = "AppKit_NSMatrix")]
+        #[cfg(feature = "NSMatrix")]
         #[deprecated = "Use the item based NSBrowser instead"]
         #[method_id(@__retain_semantics Other matrixInColumn:)]
         pub unsafe fn matrixInColumn(&self, column: NSInteger) -> Option<Id<NSMatrix>>;

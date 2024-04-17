@@ -95,10 +95,10 @@ extern "C" {
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "ClassKit_CLSObject")]
+    #[cfg(feature = "CLSObject")]
     pub struct CLSContext;
 
-    #[cfg(feature = "ClassKit_CLSObject")]
+    #[cfg(feature = "CLSObject")]
     unsafe impl ClassType for CLSContext {
         #[inherits(NSObject)]
         type Super = CLSObject;
@@ -106,17 +106,17 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "ClassKit_CLSObject")]
+#[cfg(feature = "CLSObject")]
 unsafe impl NSCoding for CLSContext {}
 
-#[cfg(feature = "ClassKit_CLSObject")]
+#[cfg(feature = "CLSObject")]
 unsafe impl NSObjectProtocol for CLSContext {}
 
-#[cfg(feature = "ClassKit_CLSObject")]
+#[cfg(feature = "CLSObject")]
 unsafe impl NSSecureCoding for CLSContext {}
 
 extern_methods!(
-    #[cfg(feature = "ClassKit_CLSObject")]
+    #[cfg(feature = "CLSObject")]
     unsafe impl CLSContext {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -181,7 +181,7 @@ extern_methods!(
         #[method(setSuggestedCompletionTime:)]
         pub unsafe fn setSuggestedCompletionTime(&self, suggested_completion_time: NSRange);
 
-        #[cfg(feature = "ClassKit_CLSProgressReportingCapability")]
+        #[cfg(feature = "CLSProgressReportingCapability")]
         #[method_id(@__retain_semantics Other progressReportingCapabilities)]
         pub unsafe fn progressReportingCapabilities(
             &self,
@@ -213,7 +213,7 @@ extern_methods!(
         #[method(setType:)]
         pub unsafe fn setType(&self, r#type: CLSContextType);
 
-        #[cfg(feature = "ClassKit_CLSProgressReportingCapability")]
+        #[cfg(feature = "CLSProgressReportingCapability")]
         #[method(addProgressReportingCapabilities:)]
         pub unsafe fn addProgressReportingCapabilities(
             &self,
@@ -227,7 +227,7 @@ extern_methods!(
 
 extern_methods!(
     /// Hierarchy
-    #[cfg(feature = "ClassKit_CLSObject")]
+    #[cfg(feature = "CLSObject")]
     unsafe impl CLSContext {
         #[method_id(@__retain_semantics Other parent)]
         pub unsafe fn parent(&self) -> Option<Id<CLSContext>>;

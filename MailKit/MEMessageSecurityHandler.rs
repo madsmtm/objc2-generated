@@ -31,14 +31,11 @@ unsafe impl RefEncode for MEMessageSecurityErrorCode {
 }
 
 extern_protocol!(
-    #[cfg(all(
-        feature = "MailKit_MEMessageDecoder",
-        feature = "MailKit_MEMessageEncoder"
-    ))]
+    #[cfg(all(feature = "MEMessageDecoder", feature = "MEMessageEncoder"))]
     pub unsafe trait MEMessageSecurityHandler: MEMessageDecoder + MEMessageEncoder {
         #[cfg(all(
-            feature = "MailKit_MEExtensionViewController",
-            feature = "MailKit_MEMessageSigner",
+            feature = "MEExtensionViewController",
+            feature = "MEMessageSigner",
             feature = "objc2-app-kit"
         ))]
         #[method_id(@__retain_semantics Other extensionViewControllerForMessageSigners:)]
@@ -48,10 +45,7 @@ extern_protocol!(
             mtm: MainThreadMarker,
         ) -> Option<Id<MEExtensionViewController>>;
 
-        #[cfg(all(
-            feature = "MailKit_MEExtensionViewController",
-            feature = "objc2-app-kit"
-        ))]
+        #[cfg(all(feature = "MEExtensionViewController", feature = "objc2-app-kit"))]
         #[method_id(@__retain_semantics Other extensionViewControllerForMessageContext:)]
         unsafe fn extensionViewControllerForMessageContext(
             &self,
@@ -60,7 +54,7 @@ extern_protocol!(
         ) -> Option<Id<MEExtensionViewController>>;
 
         #[cfg(all(
-            feature = "MailKit_MEExtensionViewController",
+            feature = "MEExtensionViewController",
             feature = "block2",
             feature = "objc2-app-kit"
         ))]
@@ -72,9 +66,6 @@ extern_protocol!(
         );
     }
 
-    #[cfg(all(
-        feature = "MailKit_MEMessageDecoder",
-        feature = "MailKit_MEMessageEncoder"
-    ))]
+    #[cfg(all(feature = "MEMessageDecoder", feature = "MEMessageEncoder"))]
     unsafe impl ProtocolType for dyn MEMessageSecurityHandler {}
 );

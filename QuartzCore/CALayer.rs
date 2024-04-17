@@ -87,7 +87,7 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "QuartzCore_CAMediaTiming")]
+#[cfg(feature = "CAMediaTiming")]
 unsafe impl CAMediaTiming for CALayer {}
 
 unsafe impl NSCoding for CALayer {}
@@ -152,11 +152,11 @@ extern_methods!(
         #[method(setAnchorPointZ:)]
         pub fn setAnchorPointZ(&self, anchor_point_z: CGFloat);
 
-        #[cfg(feature = "QuartzCore_CATransform3D")]
+        #[cfg(feature = "CATransform3D")]
         #[method(transform)]
         pub fn transform(&self) -> CATransform3D;
 
-        #[cfg(feature = "QuartzCore_CATransform3D")]
+        #[cfg(feature = "CATransform3D")]
         #[method(setTransform:)]
         pub fn setTransform(&self, transform: CATransform3D);
 
@@ -214,11 +214,11 @@ extern_methods!(
         #[method(replaceSublayer:with:)]
         pub unsafe fn replaceSublayer_with(&self, old_layer: &CALayer, new_layer: &CALayer);
 
-        #[cfg(feature = "QuartzCore_CATransform3D")]
+        #[cfg(feature = "CATransform3D")]
         #[method(sublayerTransform)]
         pub fn sublayerTransform(&self) -> CATransform3D;
 
-        #[cfg(feature = "QuartzCore_CATransform3D")]
+        #[cfg(feature = "CATransform3D")]
         #[method(setSublayerTransform:)]
         pub fn setSublayerTransform(&self, sublayer_transform: CATransform3D);
 
@@ -509,7 +509,7 @@ extern_methods!(
             actions: Option<&NSDictionary<NSString, ProtocolObject<dyn CAAction>>>,
         );
 
-        #[cfg(feature = "QuartzCore_CAAnimation")]
+        #[cfg(feature = "CAAnimation")]
         #[method(addAnimation:forKey:)]
         pub fn addAnimation_forKey(&self, anim: &CAAnimation, key: Option<&NSString>);
 
@@ -522,7 +522,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other animationKeys)]
         pub fn animationKeys(&self) -> Option<Id<NSArray<NSString>>>;
 
-        #[cfg(feature = "QuartzCore_CAAnimation")]
+        #[cfg(feature = "CAAnimation")]
         #[method_id(@__retain_semantics Other animationForKey:)]
         pub unsafe fn animationForKey(&self, key: &NSString) -> Option<Id<CAAnimation>>;
 

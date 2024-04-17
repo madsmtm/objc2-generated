@@ -14,51 +14,51 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSCoding for NSExtensionItem {}
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSExtensionItem {}
 
 unsafe impl NSObjectProtocol for NSExtensionItem {}
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSSecureCoding for NSExtensionItem {}
 
 extern_methods!(
     unsafe impl NSExtensionItem {
-        #[cfg(feature = "Foundation_NSAttributedString")]
+        #[cfg(feature = "NSAttributedString")]
         #[method_id(@__retain_semantics Other attributedTitle)]
         pub unsafe fn attributedTitle(&self) -> Option<Id<NSAttributedString>>;
 
-        #[cfg(feature = "Foundation_NSAttributedString")]
+        #[cfg(feature = "NSAttributedString")]
         #[method(setAttributedTitle:)]
         pub unsafe fn setAttributedTitle(&self, attributed_title: Option<&NSAttributedString>);
 
-        #[cfg(feature = "Foundation_NSAttributedString")]
+        #[cfg(feature = "NSAttributedString")]
         #[method_id(@__retain_semantics Other attributedContentText)]
         pub unsafe fn attributedContentText(&self) -> Option<Id<NSAttributedString>>;
 
-        #[cfg(feature = "Foundation_NSAttributedString")]
+        #[cfg(feature = "NSAttributedString")]
         #[method(setAttributedContentText:)]
         pub unsafe fn setAttributedContentText(
             &self,
             attributed_content_text: Option<&NSAttributedString>,
         );
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSItemProvider"))]
+        #[cfg(all(feature = "NSArray", feature = "NSItemProvider"))]
         #[method_id(@__retain_semantics Other attachments)]
         pub unsafe fn attachments(&self) -> Option<Id<NSArray<NSItemProvider>>>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSItemProvider"))]
+        #[cfg(all(feature = "NSArray", feature = "NSItemProvider"))]
         #[method(setAttachments:)]
         pub unsafe fn setAttachments(&self, attachments: Option<&NSArray<NSItemProvider>>);
 
-        #[cfg(feature = "Foundation_NSDictionary")]
+        #[cfg(feature = "NSDictionary")]
         #[method_id(@__retain_semantics Other userInfo)]
         pub unsafe fn userInfo(&self) -> Option<Id<NSDictionary>>;
 
-        #[cfg(feature = "Foundation_NSDictionary")]
+        #[cfg(feature = "NSDictionary")]
         #[method(setUserInfo:)]
         pub unsafe fn setUserInfo(&self, user_info: Option<&NSDictionary>);
     }
@@ -76,16 +76,16 @@ extern_methods!(
 );
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSExtensionItemAttributedTitleKey: Option<&'static NSString>;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSExtensionItemAttributedContentTextKey: Option<&'static NSString>;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSExtensionItemAttachmentsKey: Option<&'static NSString>;
 }

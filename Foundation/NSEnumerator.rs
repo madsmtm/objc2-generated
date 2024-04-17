@@ -43,7 +43,7 @@ extern_methods!(
 extern_methods!(
     /// NSExtendedEnumerator
     unsafe impl<ObjectType: Message> NSEnumerator<ObjectType> {
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(feature = "NSArray")]
         #[method_id(@__retain_semantics Other allObjects)]
         pub fn allObjects(&self) -> Id<NSArray<ObjectType>>;
     }

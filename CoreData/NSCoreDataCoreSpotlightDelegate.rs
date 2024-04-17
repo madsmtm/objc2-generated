@@ -39,8 +39,8 @@ extern_methods!(
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[cfg(all(
-            feature = "CoreData_NSPersistentStoreCoordinator",
-            feature = "CoreData_NSPersistentStoreDescription"
+            feature = "NSPersistentStoreCoordinator",
+            feature = "NSPersistentStoreDescription"
         ))]
         #[method_id(@__retain_semantics Init initForStoreWithDescription:coordinator:)]
         pub unsafe fn initForStoreWithDescription_coordinator(
@@ -50,8 +50,8 @@ extern_methods!(
         ) -> Id<Self>;
 
         #[cfg(all(
-            feature = "CoreData_NSManagedObjectModel",
-            feature = "CoreData_NSPersistentStoreDescription"
+            feature = "NSManagedObjectModel",
+            feature = "NSPersistentStoreDescription"
         ))]
         #[deprecated]
         #[method_id(@__retain_semantics Init initForStoreWithDescription:model:)]

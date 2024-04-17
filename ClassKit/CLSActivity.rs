@@ -7,10 +7,10 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "ClassKit_CLSObject")]
+    #[cfg(feature = "CLSObject")]
     pub struct CLSActivity;
 
-    #[cfg(feature = "ClassKit_CLSObject")]
+    #[cfg(feature = "CLSObject")]
     unsafe impl ClassType for CLSActivity {
         #[inherits(NSObject)]
         type Super = CLSObject;
@@ -18,17 +18,17 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "ClassKit_CLSObject")]
+#[cfg(feature = "CLSObject")]
 unsafe impl NSCoding for CLSActivity {}
 
-#[cfg(feature = "ClassKit_CLSObject")]
+#[cfg(feature = "CLSObject")]
 unsafe impl NSObjectProtocol for CLSActivity {}
 
-#[cfg(feature = "ClassKit_CLSObject")]
+#[cfg(feature = "CLSObject")]
 unsafe impl NSSecureCoding for CLSActivity {}
 
 extern_methods!(
-    #[cfg(feature = "ClassKit_CLSObject")]
+    #[cfg(feature = "CLSObject")]
     unsafe impl CLSActivity {
         #[method(progress)]
         pub unsafe fn progress(&self) -> c_double;
@@ -39,11 +39,11 @@ extern_methods!(
         #[method(duration)]
         pub unsafe fn duration(&self) -> NSTimeInterval;
 
-        #[cfg(feature = "ClassKit_CLSActivityItem")]
+        #[cfg(feature = "CLSActivityItem")]
         #[method_id(@__retain_semantics Other primaryActivityItem)]
         pub unsafe fn primaryActivityItem(&self) -> Option<Id<CLSActivityItem>>;
 
-        #[cfg(feature = "ClassKit_CLSActivityItem")]
+        #[cfg(feature = "CLSActivityItem")]
         #[method(setPrimaryActivityItem:)]
         pub unsafe fn setPrimaryActivityItem(
             &self,
@@ -53,11 +53,11 @@ extern_methods!(
         #[method(addProgressRangeFromStart:toEnd:)]
         pub unsafe fn addProgressRangeFromStart_toEnd(&self, start: c_double, end: c_double);
 
-        #[cfg(feature = "ClassKit_CLSActivityItem")]
+        #[cfg(feature = "CLSActivityItem")]
         #[method(addAdditionalActivityItem:)]
         pub unsafe fn addAdditionalActivityItem(&self, activity_item: &CLSActivityItem);
 
-        #[cfg(feature = "ClassKit_CLSActivityItem")]
+        #[cfg(feature = "CLSActivityItem")]
         #[method_id(@__retain_semantics Other additionalActivityItems)]
         pub unsafe fn additionalActivityItems(&self) -> Id<NSArray<CLSActivityItem>>;
     }
@@ -65,7 +65,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `CLSObject`
-    #[cfg(feature = "ClassKit_CLSObject")]
+    #[cfg(feature = "CLSObject")]
     unsafe impl CLSActivity {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -77,7 +77,7 @@ extern_methods!(
 
 extern_methods!(
     /// Activation
-    #[cfg(feature = "ClassKit_CLSObject")]
+    #[cfg(feature = "CLSObject")]
     unsafe impl CLSActivity {
         #[method(isStarted)]
         pub unsafe fn isStarted(&self) -> bool;
@@ -95,7 +95,7 @@ extern_methods!(
 
 extern_methods!(
     /// Activity
-    #[cfg(all(feature = "ClassKit_CLSContext", feature = "ClassKit_CLSObject"))]
+    #[cfg(all(feature = "CLSContext", feature = "CLSObject"))]
     unsafe impl CLSContext {
         #[method_id(@__retain_semantics Other currentActivity)]
         pub unsafe fn currentActivity(&self) -> Option<Id<CLSActivity>>;

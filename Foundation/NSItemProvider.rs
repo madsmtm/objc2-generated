@@ -47,23 +47,23 @@ unsafe impl RefEncode for NSItemProviderFileOptions {
 
 extern_protocol!(
     pub unsafe trait NSItemProviderWriting: NSObjectProtocol {
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[method_id(@__retain_semantics Other writableTypeIdentifiersForItemProvider)]
         unsafe fn writableTypeIdentifiersForItemProvider_class() -> Id<NSArray<NSString>>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[optional]
         #[method_id(@__retain_semantics Other writableTypeIdentifiersForItemProvider)]
         unsafe fn writableTypeIdentifiersForItemProvider(&self) -> Id<NSArray<NSString>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[optional]
         #[method(itemProviderVisibilityForRepresentationWithTypeIdentifier:)]
         unsafe fn itemProviderVisibilityForRepresentationWithTypeIdentifier_class(
             type_identifier: &NSString,
         ) -> NSItemProviderRepresentationVisibility;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[optional]
         #[method(itemProviderVisibilityForRepresentationWithTypeIdentifier:)]
         unsafe fn itemProviderVisibilityForRepresentationWithTypeIdentifier(
@@ -72,10 +72,10 @@ extern_protocol!(
         ) -> NSItemProviderRepresentationVisibility;
 
         #[cfg(all(
-            feature = "Foundation_NSData",
-            feature = "Foundation_NSError",
-            feature = "Foundation_NSProgress",
-            feature = "Foundation_NSString",
+            feature = "NSData",
+            feature = "NSError",
+            feature = "NSProgress",
+            feature = "NSString",
             feature = "block2"
         ))]
         #[method_id(@__retain_semantics Other loadDataWithTypeIdentifier:forItemProviderCompletionHandler:)]
@@ -91,15 +91,11 @@ extern_protocol!(
 
 extern_protocol!(
     pub unsafe trait NSItemProviderReading: NSObjectProtocol {
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[method_id(@__retain_semantics Other readableTypeIdentifiersForItemProvider)]
         unsafe fn readableTypeIdentifiersForItemProvider() -> Id<NSArray<NSString>>;
 
-        #[cfg(all(
-            feature = "Foundation_NSData",
-            feature = "Foundation_NSError",
-            feature = "Foundation_NSString"
-        ))]
+        #[cfg(all(feature = "NSData", feature = "NSError", feature = "NSString"))]
         #[method_id(@__retain_semantics Other objectWithItemProviderData:typeIdentifier:error:_)]
         unsafe fn objectWithItemProviderData_typeIdentifier_error(
             data: &NSData,
@@ -110,18 +106,14 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn NSItemProviderReading {}
 );
 
-#[cfg(all(
-    feature = "Foundation_NSError",
-    feature = "Foundation_NSObject",
-    feature = "block2"
-))]
+#[cfg(all(feature = "NSError", feature = "NSObject", feature = "block2"))]
 pub type NSItemProviderCompletionHandler =
     *mut Block<dyn Fn(*mut ProtocolObject<dyn NSSecureCoding>, *mut NSError)>;
 
 #[cfg(all(
-    feature = "Foundation_NSDictionary",
-    feature = "Foundation_NSError",
-    feature = "Foundation_NSObject",
+    feature = "NSDictionary",
+    feature = "NSError",
+    feature = "NSObject",
     feature = "block2"
 ))]
 pub type NSItemProviderLoadHandler =
@@ -137,7 +129,7 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSItemProvider {}
 
 unsafe impl NSObjectProtocol for NSItemProvider {}
@@ -148,10 +140,10 @@ extern_methods!(
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[cfg(all(
-            feature = "Foundation_NSData",
-            feature = "Foundation_NSError",
-            feature = "Foundation_NSProgress",
-            feature = "Foundation_NSString",
+            feature = "NSData",
+            feature = "NSError",
+            feature = "NSProgress",
+            feature = "NSString",
             feature = "block2"
         ))]
         #[method(registerDataRepresentationForTypeIdentifier:visibility:loadHandler:)]
@@ -165,10 +157,10 @@ extern_methods!(
         );
 
         #[cfg(all(
-            feature = "Foundation_NSError",
-            feature = "Foundation_NSProgress",
-            feature = "Foundation_NSString",
-            feature = "Foundation_NSURL",
+            feature = "NSError",
+            feature = "NSProgress",
+            feature = "NSString",
+            feature = "NSURL",
             feature = "block2"
         ))]
         #[method(registerFileRepresentationForTypeIdentifier:fileOptions:visibility:loadHandler:)]
@@ -182,22 +174,22 @@ extern_methods!(
             >,
         );
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[method_id(@__retain_semantics Other registeredTypeIdentifiers)]
         pub unsafe fn registeredTypeIdentifiers(&self) -> Id<NSArray<NSString>>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[method_id(@__retain_semantics Other registeredTypeIdentifiersWithFileOptions:)]
         pub unsafe fn registeredTypeIdentifiersWithFileOptions(
             &self,
             file_options: NSItemProviderFileOptions,
         ) -> Id<NSArray<NSString>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method(hasItemConformingToTypeIdentifier:)]
         pub unsafe fn hasItemConformingToTypeIdentifier(&self, type_identifier: &NSString) -> bool;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method(hasRepresentationConformingToTypeIdentifier:fileOptions:)]
         pub unsafe fn hasRepresentationConformingToTypeIdentifier_fileOptions(
             &self,
@@ -206,10 +198,10 @@ extern_methods!(
         ) -> bool;
 
         #[cfg(all(
-            feature = "Foundation_NSData",
-            feature = "Foundation_NSError",
-            feature = "Foundation_NSProgress",
-            feature = "Foundation_NSString",
+            feature = "NSData",
+            feature = "NSError",
+            feature = "NSProgress",
+            feature = "NSString",
             feature = "block2"
         ))]
         #[method_id(@__retain_semantics Other loadDataRepresentationForTypeIdentifier:completionHandler:)]
@@ -220,10 +212,10 @@ extern_methods!(
         ) -> Id<NSProgress>;
 
         #[cfg(all(
-            feature = "Foundation_NSError",
-            feature = "Foundation_NSProgress",
-            feature = "Foundation_NSString",
-            feature = "Foundation_NSURL",
+            feature = "NSError",
+            feature = "NSProgress",
+            feature = "NSString",
+            feature = "NSURL",
             feature = "block2"
         ))]
         #[method_id(@__retain_semantics Other loadFileRepresentationForTypeIdentifier:completionHandler:)]
@@ -234,10 +226,10 @@ extern_methods!(
         ) -> Id<NSProgress>;
 
         #[cfg(all(
-            feature = "Foundation_NSError",
-            feature = "Foundation_NSProgress",
-            feature = "Foundation_NSString",
-            feature = "Foundation_NSURL",
+            feature = "NSError",
+            feature = "NSProgress",
+            feature = "NSString",
+            feature = "NSURL",
             feature = "block2"
         ))]
         #[method_id(@__retain_semantics Other loadInPlaceFileRepresentationForTypeIdentifier:completionHandler:)]
@@ -247,11 +239,11 @@ extern_methods!(
             completion_handler: &Block<dyn Fn(*mut NSURL, Bool, *mut NSError)>,
         ) -> Id<NSProgress>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other suggestedName)]
         pub unsafe fn suggestedName(&self) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method(setSuggestedName:)]
         pub unsafe fn setSuggestedName(&self, suggested_name: Option<&NSString>);
 
@@ -268,7 +260,7 @@ extern_methods!(
             visibility: NSItemProviderRepresentationVisibility,
         );
 
-        #[cfg(all(feature = "Foundation_NSObject", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSObject", feature = "NSString"))]
         #[method_id(@__retain_semantics Init initWithItem:typeIdentifier:)]
         pub unsafe fn initWithItem_typeIdentifier(
             this: Allocated<Self>,
@@ -276,7 +268,7 @@ extern_methods!(
             type_identifier: Option<&NSString>,
         ) -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSURL")]
+        #[cfg(feature = "NSURL")]
         #[method_id(@__retain_semantics Init initWithContentsOfURL:)]
         pub unsafe fn initWithContentsOfURL(
             this: Allocated<Self>,
@@ -284,10 +276,10 @@ extern_methods!(
         ) -> Option<Id<Self>>;
 
         #[cfg(all(
-            feature = "Foundation_NSDictionary",
-            feature = "Foundation_NSError",
-            feature = "Foundation_NSObject",
-            feature = "Foundation_NSString",
+            feature = "NSDictionary",
+            feature = "NSError",
+            feature = "NSObject",
+            feature = "NSString",
             feature = "block2"
         ))]
         #[method(registerItemForTypeIdentifier:loadHandler:)]
@@ -298,10 +290,10 @@ extern_methods!(
         );
 
         #[cfg(all(
-            feature = "Foundation_NSDictionary",
-            feature = "Foundation_NSError",
-            feature = "Foundation_NSObject",
-            feature = "Foundation_NSString",
+            feature = "NSDictionary",
+            feature = "NSError",
+            feature = "NSObject",
+            feature = "NSString",
             feature = "block2"
         ))]
         #[method(loadItemForTypeIdentifier:options:completionHandler:)]
@@ -323,7 +315,7 @@ extern_methods!(
 );
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSItemProviderPreferredImageSizeKey: &'static NSString;
 }
 
@@ -331,18 +323,18 @@ extern_methods!(
     /// NSPreviewSupport
     unsafe impl NSItemProvider {
         #[cfg(all(
-            feature = "Foundation_NSDictionary",
-            feature = "Foundation_NSError",
-            feature = "Foundation_NSObject",
+            feature = "NSDictionary",
+            feature = "NSError",
+            feature = "NSObject",
             feature = "block2"
         ))]
         #[method(previewImageHandler)]
         pub unsafe fn previewImageHandler(&self) -> NSItemProviderLoadHandler;
 
         #[cfg(all(
-            feature = "Foundation_NSDictionary",
-            feature = "Foundation_NSError",
-            feature = "Foundation_NSObject",
+            feature = "NSDictionary",
+            feature = "NSError",
+            feature = "NSObject",
             feature = "block2"
         ))]
         #[method(setPreviewImageHandler:)]
@@ -352,9 +344,9 @@ extern_methods!(
         );
 
         #[cfg(all(
-            feature = "Foundation_NSDictionary",
-            feature = "Foundation_NSError",
-            feature = "Foundation_NSObject",
+            feature = "NSDictionary",
+            feature = "NSError",
+            feature = "NSObject",
             feature = "block2"
         ))]
         #[method(loadPreviewImageWithOptions:completionHandler:)]
@@ -367,17 +359,17 @@ extern_methods!(
 );
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSExtensionJavaScriptPreprocessingResultsKey: Option<&'static NSString>;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSExtensionJavaScriptFinalizeArgumentKey: Option<&'static NSString>;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSItemProviderErrorDomain: &'static NSString;
 }
 

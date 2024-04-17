@@ -99,14 +99,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Other containerIdentifier)]
         pub unsafe fn containerIdentifier(&self) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "CloudKit_CKRecordID")]
+        #[cfg(feature = "CKRecordID")]
         #[method_id(@__retain_semantics Other subscriptionOwnerUserRecordID)]
         pub unsafe fn subscriptionOwnerUserRecordID(&self) -> Option<Id<CKRecordID>>;
 
         #[method(isPruned)]
         pub unsafe fn isPruned(&self) -> bool;
 
-        #[cfg(feature = "CloudKit_CKSubscription")]
+        #[cfg(feature = "CKSubscription")]
         #[method_id(@__retain_semantics Other subscriptionID)]
         pub unsafe fn subscriptionID(&self) -> Option<Id<CKSubscriptionID>>;
     }
@@ -212,11 +212,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Other recordFields)]
         pub unsafe fn recordFields(&self) -> Option<Id<NSDictionary<NSString, AnyObject>>>;
 
-        #[cfg(feature = "CloudKit_CKRecordID")]
+        #[cfg(feature = "CKRecordID")]
         #[method_id(@__retain_semantics Other recordID)]
         pub unsafe fn recordID(&self) -> Option<Id<CKRecordID>>;
 
-        #[cfg(feature = "CloudKit_CKDatabase")]
+        #[cfg(feature = "CKDatabase")]
         #[method(databaseScope)]
         pub unsafe fn databaseScope(&self) -> CKDatabaseScope;
     }
@@ -257,11 +257,11 @@ unsafe impl NSObjectProtocol for CKRecordZoneNotification {}
 
 extern_methods!(
     unsafe impl CKRecordZoneNotification {
-        #[cfg(feature = "CloudKit_CKRecordZoneID")]
+        #[cfg(feature = "CKRecordZoneID")]
         #[method_id(@__retain_semantics Other recordZoneID)]
         pub unsafe fn recordZoneID(&self) -> Option<Id<CKRecordZoneID>>;
 
-        #[cfg(feature = "CloudKit_CKDatabase")]
+        #[cfg(feature = "CKDatabase")]
         #[method(databaseScope)]
         pub unsafe fn databaseScope(&self) -> CKDatabaseScope;
     }
@@ -302,7 +302,7 @@ unsafe impl NSObjectProtocol for CKDatabaseNotification {}
 
 extern_methods!(
     unsafe impl CKDatabaseNotification {
-        #[cfg(feature = "CloudKit_CKDatabase")]
+        #[cfg(feature = "CKDatabase")]
         #[method(databaseScope)]
         pub unsafe fn databaseScope(&self) -> CKDatabaseScope;
     }

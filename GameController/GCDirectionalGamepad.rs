@@ -23,16 +23,10 @@ extern "C" {
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(
-        feature = "GameController_GCMicroGamepad",
-        feature = "GameController_GCPhysicalInputProfile"
-    ))]
+    #[cfg(all(feature = "GCMicroGamepad", feature = "GCPhysicalInputProfile"))]
     pub struct GCDirectionalGamepad;
 
-    #[cfg(all(
-        feature = "GameController_GCMicroGamepad",
-        feature = "GameController_GCPhysicalInputProfile"
-    ))]
+    #[cfg(all(feature = "GCMicroGamepad", feature = "GCPhysicalInputProfile"))]
     unsafe impl ClassType for GCDirectionalGamepad {
         #[inherits(GCPhysicalInputProfile, NSObject)]
         type Super = GCMicroGamepad;
@@ -40,26 +34,17 @@ extern_class!(
     }
 );
 
-#[cfg(all(
-    feature = "GameController_GCMicroGamepad",
-    feature = "GameController_GCPhysicalInputProfile"
-))]
+#[cfg(all(feature = "GCMicroGamepad", feature = "GCPhysicalInputProfile"))]
 unsafe impl NSObjectProtocol for GCDirectionalGamepad {}
 
 extern_methods!(
-    #[cfg(all(
-        feature = "GameController_GCMicroGamepad",
-        feature = "GameController_GCPhysicalInputProfile"
-    ))]
+    #[cfg(all(feature = "GCMicroGamepad", feature = "GCPhysicalInputProfile"))]
     unsafe impl GCDirectionalGamepad {}
 );
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(all(
-        feature = "GameController_GCMicroGamepad",
-        feature = "GameController_GCPhysicalInputProfile"
-    ))]
+    #[cfg(all(feature = "GCMicroGamepad", feature = "GCPhysicalInputProfile"))]
     unsafe impl GCDirectionalGamepad {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

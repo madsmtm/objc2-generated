@@ -43,22 +43,22 @@ extern_methods!(
         #[method_id(@__retain_semantics Other pageLayout)]
         pub unsafe fn pageLayout(mtm: MainThreadMarker) -> Id<NSPageLayout>;
 
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
         #[method(addAccessoryController:)]
         pub unsafe fn addAccessoryController(&self, accessory_controller: &NSViewController);
 
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
         #[method(removeAccessoryController:)]
         pub unsafe fn removeAccessoryController(&self, accessory_controller: &NSViewController);
 
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
         #[method_id(@__retain_semantics Other accessoryControllers)]
         pub unsafe fn accessoryControllers(&self) -> Id<NSArray<NSViewController>>;
 
         #[cfg(all(
-            feature = "AppKit_NSPrintInfo",
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSWindow",
+            feature = "NSPrintInfo",
+            feature = "NSResponder",
+            feature = "NSWindow",
             feature = "block2"
         ))]
         #[method(beginSheetUsingPrintInfo:onWindow:completionHandler:)]
@@ -69,11 +69,7 @@ extern_methods!(
             handler: Option<&Block<dyn Fn(NSPageLayoutResult)>>,
         );
 
-        #[cfg(all(
-            feature = "AppKit_NSPrintInfo",
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSWindow"
-        ))]
+        #[cfg(all(feature = "NSPrintInfo", feature = "NSResponder", feature = "NSWindow"))]
         #[deprecated]
         #[method(beginSheetWithPrintInfo:modalForWindow:delegate:didEndSelector:contextInfo:)]
         pub unsafe fn beginSheetWithPrintInfo_modalForWindow_delegate_didEndSelector_contextInfo(
@@ -85,14 +81,14 @@ extern_methods!(
             context_info: *mut c_void,
         );
 
-        #[cfg(feature = "AppKit_NSPrintInfo")]
+        #[cfg(feature = "NSPrintInfo")]
         #[method(runModalWithPrintInfo:)]
         pub unsafe fn runModalWithPrintInfo(&self, print_info: &NSPrintInfo) -> NSInteger;
 
         #[method(runModal)]
         pub unsafe fn runModal(&self) -> NSInteger;
 
-        #[cfg(feature = "AppKit_NSPrintInfo")]
+        #[cfg(feature = "NSPrintInfo")]
         #[method_id(@__retain_semantics Other printInfo)]
         pub unsafe fn printInfo(&self) -> Option<Id<NSPrintInfo>>;
     }
@@ -112,12 +108,12 @@ extern_methods!(
 extern_methods!(
     /// NSDeprecated
     unsafe impl NSPageLayout {
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[deprecated]
         #[method(setAccessoryView:)]
         pub unsafe fn setAccessoryView(&self, accessory_view: Option<&NSView>);
 
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[deprecated]
         #[method_id(@__retain_semantics Other accessoryView)]
         pub unsafe fn accessoryView(&self) -> Option<Id<NSView>>;
@@ -134,7 +130,7 @@ extern_methods!(
 
 extern_methods!(
     /// NSPageLayoutPanel
-    #[cfg(all(feature = "AppKit_NSApplication", feature = "AppKit_NSResponder"))]
+    #[cfg(all(feature = "NSApplication", feature = "NSResponder"))]
     unsafe impl NSApplication {
         #[method(runPageLayout:)]
         pub unsafe fn runPageLayout(&self, sender: Option<&AnyObject>);

@@ -9,7 +9,7 @@ extern_category!(
     /// Category "UTAdditions" on [`NSString`].
     #[doc(alias = "UTAdditions")]
     pub unsafe trait NSStringUTAdditions {
-        #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+        #[cfg(feature = "UTType")]
         #[method_id(@__retain_semantics Other stringByAppendingPathComponent:conformingToType:)]
         unsafe fn stringByAppendingPathComponent_conformingToType(
             &self,
@@ -17,7 +17,7 @@ extern_category!(
             content_type: &UTType,
         ) -> Id<NSString>;
 
-        #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+        #[cfg(feature = "UTType")]
         #[method_id(@__retain_semantics Other stringByAppendingPathExtensionForType:)]
         unsafe fn stringByAppendingPathExtensionForType(
             &self,
@@ -32,7 +32,7 @@ extern_category!(
     /// Category "UTAdditions" on [`NSURL`].
     #[doc(alias = "UTAdditions")]
     pub unsafe trait NSURLUTAdditions {
-        #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+        #[cfg(feature = "UTType")]
         #[method_id(@__retain_semantics Other URLByAppendingPathComponent:conformingToType:)]
         unsafe fn URLByAppendingPathComponent_conformingToType(
             &self,
@@ -40,7 +40,7 @@ extern_category!(
             content_type: &UTType,
         ) -> Id<NSURL>;
 
-        #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+        #[cfg(feature = "UTType")]
         #[method_id(@__retain_semantics Other URLByAppendingPathExtensionForType:)]
         unsafe fn URLByAppendingPathExtensionForType(&self, content_type: &UTType) -> Id<NSURL>;
     }

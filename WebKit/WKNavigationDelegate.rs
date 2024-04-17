@@ -54,8 +54,8 @@ unsafe impl RefEncode for WKNavigationResponsePolicy {
 extern_protocol!(
     pub unsafe trait WKNavigationDelegate: NSObjectProtocol {
         #[cfg(all(
-            feature = "WebKit_WKNavigationAction",
-            feature = "WebKit_WKWebView",
+            feature = "WKNavigationAction",
+            feature = "WKWebView",
             feature = "block2",
             feature = "objc2-app-kit"
         ))]
@@ -69,9 +69,9 @@ extern_protocol!(
         );
 
         #[cfg(all(
-            feature = "WebKit_WKNavigationAction",
-            feature = "WebKit_WKWebView",
-            feature = "WebKit_WKWebpagePreferences",
+            feature = "WKNavigationAction",
+            feature = "WKWebView",
+            feature = "WKWebpagePreferences",
             feature = "block2",
             feature = "objc2-app-kit"
         ))]
@@ -88,8 +88,8 @@ extern_protocol!(
         );
 
         #[cfg(all(
-            feature = "WebKit_WKNavigationResponse",
-            feature = "WebKit_WKWebView",
+            feature = "WKNavigationResponse",
+            feature = "WKWebView",
             feature = "block2",
             feature = "objc2-app-kit"
         ))]
@@ -103,8 +103,8 @@ extern_protocol!(
         );
 
         #[cfg(all(
-            feature = "WebKit_WKNavigation",
-            feature = "WebKit_WKWebView",
+            feature = "WKNavigation",
+            feature = "WKWebView",
             feature = "objc2-app-kit"
         ))]
         #[optional]
@@ -116,8 +116,8 @@ extern_protocol!(
         );
 
         #[cfg(all(
-            feature = "WebKit_WKNavigation",
-            feature = "WebKit_WKWebView",
+            feature = "WKNavigation",
+            feature = "WKWebView",
             feature = "objc2-app-kit"
         ))]
         #[optional]
@@ -129,8 +129,8 @@ extern_protocol!(
         );
 
         #[cfg(all(
-            feature = "WebKit_WKNavigation",
-            feature = "WebKit_WKWebView",
+            feature = "WKNavigation",
+            feature = "WKWebView",
             feature = "objc2-app-kit"
         ))]
         #[optional]
@@ -143,8 +143,8 @@ extern_protocol!(
         );
 
         #[cfg(all(
-            feature = "WebKit_WKNavigation",
-            feature = "WebKit_WKWebView",
+            feature = "WKNavigation",
+            feature = "WKWebView",
             feature = "objc2-app-kit"
         ))]
         #[optional]
@@ -156,8 +156,8 @@ extern_protocol!(
         );
 
         #[cfg(all(
-            feature = "WebKit_WKNavigation",
-            feature = "WebKit_WKWebView",
+            feature = "WKNavigation",
+            feature = "WKWebView",
             feature = "objc2-app-kit"
         ))]
         #[optional]
@@ -169,8 +169,8 @@ extern_protocol!(
         );
 
         #[cfg(all(
-            feature = "WebKit_WKNavigation",
-            feature = "WebKit_WKWebView",
+            feature = "WKNavigation",
+            feature = "WKWebView",
             feature = "objc2-app-kit"
         ))]
         #[optional]
@@ -182,11 +182,7 @@ extern_protocol!(
             error: &NSError,
         );
 
-        #[cfg(all(
-            feature = "WebKit_WKWebView",
-            feature = "block2",
-            feature = "objc2-app-kit"
-        ))]
+        #[cfg(all(feature = "WKWebView", feature = "block2", feature = "objc2-app-kit"))]
         #[optional]
         #[method(webView:didReceiveAuthenticationChallenge:completionHandler:)]
         unsafe fn webView_didReceiveAuthenticationChallenge_completionHandler(
@@ -198,16 +194,12 @@ extern_protocol!(
             >,
         );
 
-        #[cfg(all(feature = "WebKit_WKWebView", feature = "objc2-app-kit"))]
+        #[cfg(all(feature = "WKWebView", feature = "objc2-app-kit"))]
         #[optional]
         #[method(webViewWebContentProcessDidTerminate:)]
         unsafe fn webViewWebContentProcessDidTerminate(&self, web_view: &WKWebView);
 
-        #[cfg(all(
-            feature = "WebKit_WKWebView",
-            feature = "block2",
-            feature = "objc2-app-kit"
-        ))]
+        #[cfg(all(feature = "WKWebView", feature = "block2", feature = "objc2-app-kit"))]
         #[optional]
         #[method(webView:authenticationChallenge:shouldAllowDeprecatedTLS:)]
         unsafe fn webView_authenticationChallenge_shouldAllowDeprecatedTLS(
@@ -218,9 +210,9 @@ extern_protocol!(
         );
 
         #[cfg(all(
-            feature = "WebKit_WKDownload",
-            feature = "WebKit_WKNavigationAction",
-            feature = "WebKit_WKWebView",
+            feature = "WKDownload",
+            feature = "WKNavigationAction",
+            feature = "WKWebView",
             feature = "objc2-app-kit"
         ))]
         #[optional]
@@ -233,9 +225,9 @@ extern_protocol!(
         );
 
         #[cfg(all(
-            feature = "WebKit_WKDownload",
-            feature = "WebKit_WKNavigationResponse",
-            feature = "WebKit_WKWebView",
+            feature = "WKDownload",
+            feature = "WKNavigationResponse",
+            feature = "WKWebView",
             feature = "objc2-app-kit"
         ))]
         #[optional]

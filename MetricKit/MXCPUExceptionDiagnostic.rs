@@ -7,10 +7,10 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MetricKit_MXDiagnostic")]
+    #[cfg(feature = "MXDiagnostic")]
     pub struct MXCPUExceptionDiagnostic;
 
-    #[cfg(feature = "MetricKit_MXDiagnostic")]
+    #[cfg(feature = "MXDiagnostic")]
     unsafe impl ClassType for MXCPUExceptionDiagnostic {
         #[inherits(NSObject)]
         type Super = MXDiagnostic;
@@ -18,19 +18,19 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "MetricKit_MXDiagnostic")]
+#[cfg(feature = "MXDiagnostic")]
 unsafe impl NSCoding for MXCPUExceptionDiagnostic {}
 
-#[cfg(feature = "MetricKit_MXDiagnostic")]
+#[cfg(feature = "MXDiagnostic")]
 unsafe impl NSObjectProtocol for MXCPUExceptionDiagnostic {}
 
-#[cfg(feature = "MetricKit_MXDiagnostic")]
+#[cfg(feature = "MXDiagnostic")]
 unsafe impl NSSecureCoding for MXCPUExceptionDiagnostic {}
 
 extern_methods!(
-    #[cfg(feature = "MetricKit_MXDiagnostic")]
+    #[cfg(feature = "MXDiagnostic")]
     unsafe impl MXCPUExceptionDiagnostic {
-        #[cfg(feature = "MetricKit_MXCallStackTree")]
+        #[cfg(feature = "MXCallStackTree")]
         #[method_id(@__retain_semantics Other callStackTree)]
         pub unsafe fn callStackTree(&self) -> Id<MXCallStackTree>;
 
@@ -44,7 +44,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MetricKit_MXDiagnostic")]
+    #[cfg(feature = "MXDiagnostic")]
     unsafe impl MXCPUExceptionDiagnostic {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

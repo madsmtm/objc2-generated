@@ -7,10 +7,10 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "HealthKit_HKLensSpecification")]
+    #[cfg(feature = "HKLensSpecification")]
     pub struct HKGlassesLensSpecification;
 
-    #[cfg(feature = "HealthKit_HKLensSpecification")]
+    #[cfg(feature = "HKLensSpecification")]
     unsafe impl ClassType for HKGlassesLensSpecification {
         #[inherits(NSObject)]
         type Super = HKLensSpecification;
@@ -18,38 +18,38 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "HealthKit_HKLensSpecification")]
+#[cfg(feature = "HKLensSpecification")]
 unsafe impl NSCoding for HKGlassesLensSpecification {}
 
-#[cfg(feature = "HealthKit_HKLensSpecification")]
+#[cfg(feature = "HKLensSpecification")]
 unsafe impl NSCopying for HKGlassesLensSpecification {}
 
-#[cfg(feature = "HealthKit_HKLensSpecification")]
+#[cfg(feature = "HKLensSpecification")]
 unsafe impl NSObjectProtocol for HKGlassesLensSpecification {}
 
-#[cfg(feature = "HealthKit_HKLensSpecification")]
+#[cfg(feature = "HKLensSpecification")]
 unsafe impl NSSecureCoding for HKGlassesLensSpecification {}
 
 extern_methods!(
-    #[cfg(feature = "HealthKit_HKLensSpecification")]
+    #[cfg(feature = "HKLensSpecification")]
     unsafe impl HKGlassesLensSpecification {
-        #[cfg(feature = "HealthKit_HKQuantity")]
+        #[cfg(feature = "HKQuantity")]
         #[method_id(@__retain_semantics Other vertexDistance)]
         pub unsafe fn vertexDistance(&self) -> Option<Id<HKQuantity>>;
 
-        #[cfg(feature = "HealthKit_HKVisionPrism")]
+        #[cfg(feature = "HKVisionPrism")]
         #[method_id(@__retain_semantics Other prism)]
         pub unsafe fn prism(&self) -> Option<Id<HKVisionPrism>>;
 
-        #[cfg(feature = "HealthKit_HKQuantity")]
+        #[cfg(feature = "HKQuantity")]
         #[method_id(@__retain_semantics Other farPupillaryDistance)]
         pub unsafe fn farPupillaryDistance(&self) -> Option<Id<HKQuantity>>;
 
-        #[cfg(feature = "HealthKit_HKQuantity")]
+        #[cfg(feature = "HKQuantity")]
         #[method_id(@__retain_semantics Other nearPupillaryDistance)]
         pub unsafe fn nearPupillaryDistance(&self) -> Option<Id<HKQuantity>>;
 
-        #[cfg(all(feature = "HealthKit_HKQuantity", feature = "HealthKit_HKVisionPrism"))]
+        #[cfg(all(feature = "HKQuantity", feature = "HKVisionPrism"))]
         #[method_id(@__retain_semantics Init initWithSphere:cylinder:axis:addPower:vertexDistance:prism:farPupillaryDistance:nearPupillaryDistance:)]
         pub unsafe fn initWithSphere_cylinder_axis_addPower_vertexDistance_prism_farPupillaryDistance_nearPupillaryDistance(
             this: Allocated<Self>,

@@ -62,7 +62,7 @@ unsafe impl NSUserInterfaceItemIdentification for MKLookAroundViewController {}
 extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     unsafe impl MKLookAroundViewController {
-        #[cfg(feature = "MapKit_MKLookAroundScene")]
+        #[cfg(feature = "MKLookAroundScene")]
         #[method_id(@__retain_semantics Init initWithScene:)]
         pub unsafe fn initWithScene(this: Allocated<Self>, scene: &MKLookAroundScene) -> Id<Self>;
 
@@ -87,11 +87,11 @@ extern_methods!(
             delegate: Option<&ProtocolObject<dyn MKLookAroundViewControllerDelegate>>,
         );
 
-        #[cfg(feature = "MapKit_MKLookAroundScene")]
+        #[cfg(feature = "MKLookAroundScene")]
         #[method_id(@__retain_semantics Other scene)]
         pub unsafe fn scene(&self) -> Option<Id<MKLookAroundScene>>;
 
-        #[cfg(feature = "MapKit_MKLookAroundScene")]
+        #[cfg(feature = "MKLookAroundScene")]
         #[method(setScene:)]
         pub unsafe fn setScene(&self, scene: Option<&MKLookAroundScene>);
 
@@ -107,11 +107,11 @@ extern_methods!(
         #[method(setShowsRoadLabels:)]
         pub unsafe fn setShowsRoadLabels(&self, shows_road_labels: bool);
 
-        #[cfg(feature = "MapKit_MKPointOfInterestFilter")]
+        #[cfg(feature = "MKPointOfInterestFilter")]
         #[method_id(@__retain_semantics Other pointOfInterestFilter)]
         pub unsafe fn pointOfInterestFilter(&self) -> Option<Id<MKPointOfInterestFilter>>;
 
-        #[cfg(feature = "MapKit_MKPointOfInterestFilter")]
+        #[cfg(feature = "MKPointOfInterestFilter")]
         #[method(setPointOfInterestFilter:)]
         pub unsafe fn setPointOfInterestFilter(
             &self,

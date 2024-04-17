@@ -138,7 +138,7 @@ unsafe impl NSObjectProtocol for CKSyncEngineStateUpdateEvent {}
 
 extern_methods!(
     unsafe impl CKSyncEngineStateUpdateEvent {
-        #[cfg(feature = "CloudKit_CKSyncEngineState")]
+        #[cfg(feature = "CKSyncEngineState")]
         #[method_id(@__retain_semantics Other stateSerialization)]
         pub unsafe fn stateSerialization(&self) -> Id<CKSyncEngineStateSerialization>;
     }
@@ -198,11 +198,11 @@ extern_methods!(
         #[method(changeType)]
         pub unsafe fn changeType(&self) -> CKSyncEngineAccountChangeType;
 
-        #[cfg(feature = "CloudKit_CKRecordID")]
+        #[cfg(feature = "CKRecordID")]
         #[method_id(@__retain_semantics Other previousUser)]
         pub unsafe fn previousUser(&self) -> Option<Id<CKRecordID>>;
 
-        #[cfg(feature = "CloudKit_CKRecordID")]
+        #[cfg(feature = "CKRecordID")]
         #[method_id(@__retain_semantics Other currentUser)]
         pub unsafe fn currentUser(&self) -> Option<Id<CKRecordID>>;
     }
@@ -238,7 +238,7 @@ unsafe impl NSObjectProtocol for CKSyncEngineFetchedDatabaseChangesEvent {}
 
 extern_methods!(
     unsafe impl CKSyncEngineFetchedDatabaseChangesEvent {
-        #[cfg(feature = "CloudKit_CKRecordZone")]
+        #[cfg(feature = "CKRecordZone")]
         #[method_id(@__retain_semantics Other modifications)]
         pub unsafe fn modifications(&self) -> Id<NSArray<CKRecordZone>>;
 
@@ -277,7 +277,7 @@ unsafe impl NSObjectProtocol for CKSyncEngineFetchedRecordZoneChangesEvent {}
 
 extern_methods!(
     unsafe impl CKSyncEngineFetchedRecordZoneChangesEvent {
-        #[cfg(feature = "CloudKit_CKRecord")]
+        #[cfg(feature = "CKRecord")]
         #[method_id(@__retain_semantics Other modifications)]
         pub unsafe fn modifications(&self) -> Id<NSArray<CKRecord>>;
 
@@ -316,18 +316,18 @@ unsafe impl NSObjectProtocol for CKSyncEngineSentDatabaseChangesEvent {}
 
 extern_methods!(
     unsafe impl CKSyncEngineSentDatabaseChangesEvent {
-        #[cfg(feature = "CloudKit_CKRecordZone")]
+        #[cfg(feature = "CKRecordZone")]
         #[method_id(@__retain_semantics Other savedZones)]
         pub unsafe fn savedZones(&self) -> Id<NSArray<CKRecordZone>>;
 
         #[method_id(@__retain_semantics Other failedZoneSaves)]
         pub unsafe fn failedZoneSaves(&self) -> Id<NSArray<CKSyncEngineFailedZoneSave>>;
 
-        #[cfg(feature = "CloudKit_CKRecordZoneID")]
+        #[cfg(feature = "CKRecordZoneID")]
         #[method_id(@__retain_semantics Other deletedZoneIDs)]
         pub unsafe fn deletedZoneIDs(&self) -> Id<NSArray<CKRecordZoneID>>;
 
-        #[cfg(feature = "CloudKit_CKRecordZoneID")]
+        #[cfg(feature = "CKRecordZoneID")]
         #[method_id(@__retain_semantics Other failedZoneDeletes)]
         pub unsafe fn failedZoneDeletes(&self) -> Id<NSDictionary<CKRecordZoneID, NSError>>;
     }
@@ -363,18 +363,18 @@ unsafe impl NSObjectProtocol for CKSyncEngineSentRecordZoneChangesEvent {}
 
 extern_methods!(
     unsafe impl CKSyncEngineSentRecordZoneChangesEvent {
-        #[cfg(feature = "CloudKit_CKRecord")]
+        #[cfg(feature = "CKRecord")]
         #[method_id(@__retain_semantics Other savedRecords)]
         pub unsafe fn savedRecords(&self) -> Id<NSArray<CKRecord>>;
 
         #[method_id(@__retain_semantics Other failedRecordSaves)]
         pub unsafe fn failedRecordSaves(&self) -> Id<NSArray<CKSyncEngineFailedRecordSave>>;
 
-        #[cfg(feature = "CloudKit_CKRecordID")]
+        #[cfg(feature = "CKRecordID")]
         #[method_id(@__retain_semantics Other deletedRecordIDs)]
         pub unsafe fn deletedRecordIDs(&self) -> Id<NSArray<CKRecordID>>;
 
-        #[cfg(feature = "CloudKit_CKRecordID")]
+        #[cfg(feature = "CKRecordID")]
         #[method_id(@__retain_semantics Other failedRecordDeletes)]
         pub unsafe fn failedRecordDeletes(&self) -> Id<NSDictionary<CKRecordID, NSError>>;
     }
@@ -410,7 +410,7 @@ unsafe impl NSObjectProtocol for CKSyncEngineWillFetchChangesEvent {}
 
 extern_methods!(
     unsafe impl CKSyncEngineWillFetchChangesEvent {
-        #[cfg(feature = "CloudKit_CKSyncEngine")]
+        #[cfg(feature = "CKSyncEngine")]
         #[method_id(@__retain_semantics Other context)]
         pub unsafe fn context(&self) -> Id<CKSyncEngineFetchChangesContext>;
     }
@@ -446,7 +446,7 @@ unsafe impl NSObjectProtocol for CKSyncEngineWillFetchRecordZoneChangesEvent {}
 
 extern_methods!(
     unsafe impl CKSyncEngineWillFetchRecordZoneChangesEvent {
-        #[cfg(feature = "CloudKit_CKRecordZoneID")]
+        #[cfg(feature = "CKRecordZoneID")]
         #[method_id(@__retain_semantics Other zoneID)]
         pub unsafe fn zoneID(&self) -> Id<CKRecordZoneID>;
     }
@@ -482,7 +482,7 @@ unsafe impl NSObjectProtocol for CKSyncEngineDidFetchRecordZoneChangesEvent {}
 
 extern_methods!(
     unsafe impl CKSyncEngineDidFetchRecordZoneChangesEvent {
-        #[cfg(feature = "CloudKit_CKRecordZoneID")]
+        #[cfg(feature = "CKRecordZoneID")]
         #[method_id(@__retain_semantics Other zoneID)]
         pub unsafe fn zoneID(&self) -> Id<CKRecordZoneID>;
 
@@ -521,7 +521,7 @@ unsafe impl NSObjectProtocol for CKSyncEngineDidFetchChangesEvent {}
 
 extern_methods!(
     unsafe impl CKSyncEngineDidFetchChangesEvent {
-        #[cfg(feature = "CloudKit_CKSyncEngine")]
+        #[cfg(feature = "CKSyncEngine")]
         #[method_id(@__retain_semantics Other context)]
         pub unsafe fn context(&self) -> Id<CKSyncEngineFetchChangesContext>;
     }
@@ -557,7 +557,7 @@ unsafe impl NSObjectProtocol for CKSyncEngineWillSendChangesEvent {}
 
 extern_methods!(
     unsafe impl CKSyncEngineWillSendChangesEvent {
-        #[cfg(feature = "CloudKit_CKSyncEngine")]
+        #[cfg(feature = "CKSyncEngine")]
         #[method_id(@__retain_semantics Other context)]
         pub unsafe fn context(&self) -> Id<CKSyncEngineSendChangesContext>;
     }
@@ -593,7 +593,7 @@ unsafe impl NSObjectProtocol for CKSyncEngineDidSendChangesEvent {}
 
 extern_methods!(
     unsafe impl CKSyncEngineDidSendChangesEvent {
-        #[cfg(feature = "CloudKit_CKSyncEngine")]
+        #[cfg(feature = "CKSyncEngine")]
         #[method_id(@__retain_semantics Other context)]
         pub unsafe fn context(&self) -> Id<CKSyncEngineSendChangesContext>;
     }
@@ -634,11 +634,11 @@ extern_methods!(
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
 
-        #[cfg(feature = "CloudKit_CKRecordID")]
+        #[cfg(feature = "CKRecordID")]
         #[method_id(@__retain_semantics Other recordID)]
         pub unsafe fn recordID(&self) -> Id<CKRecordID>;
 
-        #[cfg(feature = "CloudKit_CKRecord")]
+        #[cfg(feature = "CKRecord")]
         #[method_id(@__retain_semantics Other recordType)]
         pub unsafe fn recordType(&self) -> Id<CKRecordType>;
     }
@@ -689,7 +689,7 @@ extern_methods!(
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
 
-        #[cfg(feature = "CloudKit_CKRecordZoneID")]
+        #[cfg(feature = "CKRecordZoneID")]
         #[method_id(@__retain_semantics Other zoneID)]
         pub unsafe fn zoneID(&self) -> Id<CKRecordZoneID>;
 
@@ -722,7 +722,7 @@ extern_methods!(
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
 
-        #[cfg(feature = "CloudKit_CKRecord")]
+        #[cfg(feature = "CKRecord")]
         #[method_id(@__retain_semantics Other record)]
         pub unsafe fn record(&self) -> Id<CKRecord>;
 
@@ -755,7 +755,7 @@ extern_methods!(
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
 
-        #[cfg(feature = "CloudKit_CKRecordZone")]
+        #[cfg(feature = "CKRecordZone")]
         #[method_id(@__retain_semantics Other recordZone)]
         pub unsafe fn recordZone(&self) -> Id<CKRecordZone>;
 

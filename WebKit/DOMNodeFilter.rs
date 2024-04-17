@@ -42,9 +42,9 @@ extern_protocol!(
     #[deprecated]
     pub unsafe trait DOMNodeFilter: NSObjectProtocol {
         #[cfg(all(
-            feature = "WebKit_DOMNode",
-            feature = "WebKit_DOMObject",
-            feature = "WebKit_WebScriptObject"
+            feature = "DOMNode",
+            feature = "DOMObject",
+            feature = "WebScriptObject"
         ))]
         #[deprecated]
         #[method(acceptNode:)]

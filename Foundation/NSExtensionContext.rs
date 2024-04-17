@@ -20,11 +20,11 @@ unsafe impl NSObjectProtocol for NSExtensionContext {}
 
 extern_methods!(
     unsafe impl NSExtensionContext {
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(feature = "NSArray")]
         #[method_id(@__retain_semantics Other inputItems)]
         pub unsafe fn inputItems(&self) -> Id<NSArray>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "block2"))]
+        #[cfg(all(feature = "NSArray", feature = "block2"))]
         #[method(completeRequestReturningItems:completionHandler:)]
         pub unsafe fn completeRequestReturningItems_completionHandler(
             &self,
@@ -32,11 +32,11 @@ extern_methods!(
             completion_handler: Option<&Block<dyn Fn(Bool)>>,
         );
 
-        #[cfg(feature = "Foundation_NSError")]
+        #[cfg(feature = "NSError")]
         #[method(cancelRequestWithError:)]
         pub unsafe fn cancelRequestWithError(&self, error: &NSError);
 
-        #[cfg(all(feature = "Foundation_NSURL", feature = "block2"))]
+        #[cfg(all(feature = "NSURL", feature = "block2"))]
         #[method(openURL:completionHandler:)]
         pub unsafe fn openURL_completionHandler(
             &self,
@@ -58,26 +58,26 @@ extern_methods!(
 );
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSExtensionItemsAndErrorsKey: Option<&'static NSString>;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSExtensionHostWillEnterForegroundNotification: Option<&'static NSString>;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSExtensionHostDidEnterBackgroundNotification: Option<&'static NSString>;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSExtensionHostWillResignActiveNotification: Option<&'static NSString>;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSExtensionHostDidBecomeActiveNotification: Option<&'static NSString>;
 }

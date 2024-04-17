@@ -25,7 +25,7 @@ unsafe impl NSSecureCoding for HKQueryDescriptor {}
 
 extern_methods!(
     unsafe impl HKQueryDescriptor {
-        #[cfg(feature = "HealthKit_HKObjectType")]
+        #[cfg(feature = "HKObjectType")]
         #[method_id(@__retain_semantics Other sampleType)]
         pub unsafe fn sampleType(&self) -> Id<HKSampleType>;
 
@@ -38,7 +38,7 @@ extern_methods!(
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
 
-        #[cfg(feature = "HealthKit_HKObjectType")]
+        #[cfg(feature = "HKObjectType")]
         #[method_id(@__retain_semantics Init initWithSampleType:predicate:)]
         pub unsafe fn initWithSampleType_predicate(
             this: Allocated<Self>,

@@ -21,7 +21,7 @@ unsafe impl NSObjectProtocol for CXCallDirectoryProvider {}
 
 extern_methods!(
     unsafe impl CXCallDirectoryProvider {
-        #[cfg(feature = "CallKit_CXCallDirectoryExtensionContext")]
+        #[cfg(feature = "CXCallDirectoryExtensionContext")]
         #[method(beginRequestWithExtensionContext:)]
         pub unsafe fn beginRequestWithExtensionContext(
             &self,

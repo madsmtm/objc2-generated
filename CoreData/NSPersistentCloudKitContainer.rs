@@ -28,10 +28,10 @@ unsafe impl RefEncode for NSPersistentCloudKitContainerSchemaInitializationOptio
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CoreData_NSPersistentContainer")]
+    #[cfg(feature = "NSPersistentContainer")]
     pub struct NSPersistentCloudKitContainer;
 
-    #[cfg(feature = "CoreData_NSPersistentContainer")]
+    #[cfg(feature = "NSPersistentContainer")]
     unsafe impl ClassType for NSPersistentCloudKitContainer {
         #[inherits(NSObject)]
         type Super = NSPersistentContainer;
@@ -39,17 +39,17 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "CoreData_NSPersistentContainer")]
+#[cfg(feature = "NSPersistentContainer")]
 unsafe impl Send for NSPersistentCloudKitContainer {}
 
-#[cfg(feature = "CoreData_NSPersistentContainer")]
+#[cfg(feature = "NSPersistentContainer")]
 unsafe impl Sync for NSPersistentCloudKitContainer {}
 
-#[cfg(feature = "CoreData_NSPersistentContainer")]
+#[cfg(feature = "NSPersistentContainer")]
 unsafe impl NSObjectProtocol for NSPersistentCloudKitContainer {}
 
 extern_methods!(
-    #[cfg(feature = "CoreData_NSPersistentContainer")]
+    #[cfg(feature = "NSPersistentContainer")]
     unsafe impl NSPersistentCloudKitContainer {
         #[method(initializeCloudKitSchemaWithOptions:error:_)]
         pub unsafe fn initializeCloudKitSchemaWithOptions_error(
@@ -57,21 +57,21 @@ extern_methods!(
             options: NSPersistentCloudKitContainerSchemaInitializationOptions,
         ) -> Result<(), Id<NSError>>;
 
-        #[cfg(feature = "CoreData_NSManagedObjectID")]
+        #[cfg(feature = "NSManagedObjectID")]
         #[method(canUpdateRecordForManagedObjectWithID:)]
         pub unsafe fn canUpdateRecordForManagedObjectWithID(
             &self,
             object_id: &NSManagedObjectID,
         ) -> bool;
 
-        #[cfg(feature = "CoreData_NSManagedObjectID")]
+        #[cfg(feature = "NSManagedObjectID")]
         #[method(canDeleteRecordForManagedObjectWithID:)]
         pub unsafe fn canDeleteRecordForManagedObjectWithID(
             &self,
             object_id: &NSManagedObjectID,
         ) -> bool;
 
-        #[cfg(feature = "CoreData_NSPersistentStore")]
+        #[cfg(feature = "NSPersistentStore")]
         #[method(canModifyManagedObjectsInStore:)]
         pub unsafe fn canModifyManagedObjectsInStore(&self, store: &NSPersistentStore) -> bool;
     }
@@ -79,12 +79,12 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSPersistentContainer`
-    #[cfg(feature = "CoreData_NSPersistentContainer")]
+    #[cfg(feature = "NSPersistentContainer")]
     unsafe impl NSPersistentCloudKitContainer {
         #[method_id(@__retain_semantics Other persistentContainerWithName:)]
         pub unsafe fn persistentContainerWithName(name: &NSString) -> Id<Self>;
 
-        #[cfg(feature = "CoreData_NSManagedObjectModel")]
+        #[cfg(feature = "NSManagedObjectModel")]
         #[method_id(@__retain_semantics Other persistentContainerWithName:managedObjectModel:)]
         pub unsafe fn persistentContainerWithName_managedObjectModel(
             name: &NSString,
@@ -94,7 +94,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithName:)]
         pub unsafe fn initWithName(this: Allocated<Self>, name: &NSString) -> Id<Self>;
 
-        #[cfg(feature = "CoreData_NSManagedObjectModel")]
+        #[cfg(feature = "NSManagedObjectModel")]
         #[method_id(@__retain_semantics Init initWithName:managedObjectModel:)]
         pub unsafe fn initWithName_managedObjectModel(
             this: Allocated<Self>,
@@ -106,7 +106,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CoreData_NSPersistentContainer")]
+    #[cfg(feature = "NSPersistentContainer")]
     unsafe impl NSPersistentCloudKitContainer {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

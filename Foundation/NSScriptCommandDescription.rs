@@ -14,7 +14,7 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSCoding for NSScriptCommandDescription {}
 
 unsafe impl NSObjectProtocol for NSScriptCommandDescription {}
@@ -24,7 +24,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
-        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         #[method_id(@__retain_semantics Init initWithSuiteName:commandName:dictionary:)]
         pub unsafe fn initWithSuiteName_commandName_dictionary(
             this: Allocated<Self>,
@@ -33,15 +33,15 @@ extern_methods!(
             command_declaration: Option<&NSDictionary>,
         ) -> Option<Id<Self>>;
 
-        #[cfg(feature = "Foundation_NSCoder")]
+        #[cfg(feature = "NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, in_coder: &NSCoder) -> Option<Id<Self>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other suiteName)]
         pub unsafe fn suiteName(&self) -> Id<NSString>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other commandName)]
         pub unsafe fn commandName(&self) -> Id<NSString>;
 
@@ -51,44 +51,44 @@ extern_methods!(
         #[method(appleEventCode)]
         pub unsafe fn appleEventCode(&self) -> FourCharCode;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other commandClassName)]
         pub unsafe fn commandClassName(&self) -> Id<NSString>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other returnType)]
         pub unsafe fn returnType(&self) -> Option<Id<NSString>>;
 
         #[method(appleEventCodeForReturnType)]
         pub unsafe fn appleEventCodeForReturnType(&self) -> FourCharCode;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[method_id(@__retain_semantics Other argumentNames)]
         pub unsafe fn argumentNames(&self) -> Id<NSArray<NSString>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other typeForArgumentWithName:)]
         pub unsafe fn typeForArgumentWithName(
             &self,
             argument_name: &NSString,
         ) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method(appleEventCodeForArgumentWithName:)]
         pub unsafe fn appleEventCodeForArgumentWithName(
             &self,
             argument_name: &NSString,
         ) -> FourCharCode;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method(isOptionalArgumentWithName:)]
         pub unsafe fn isOptionalArgumentWithName(&self, argument_name: &NSString) -> bool;
 
-        #[cfg(feature = "Foundation_NSScriptCommand")]
+        #[cfg(feature = "NSScriptCommand")]
         #[method_id(@__retain_semantics Other createCommandInstance)]
         pub unsafe fn createCommandInstance(&self) -> Id<NSScriptCommand>;
 
-        #[cfg(all(feature = "Foundation_NSScriptCommand", feature = "Foundation_NSZone"))]
+        #[cfg(all(feature = "NSScriptCommand", feature = "NSZone"))]
         #[method_id(@__retain_semantics Other createCommandInstanceWithZone:)]
         pub unsafe fn createCommandInstanceWithZone(
             &self,

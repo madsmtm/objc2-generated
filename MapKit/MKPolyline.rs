@@ -9,10 +9,10 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(feature = "MapKit_MKMultiPoint", feature = "MapKit_MKShape"))]
+    #[cfg(all(feature = "MKMultiPoint", feature = "MKShape"))]
     pub struct MKPolyline;
 
-    #[cfg(all(feature = "MapKit_MKMultiPoint", feature = "MapKit_MKShape"))]
+    #[cfg(all(feature = "MKMultiPoint", feature = "MKShape"))]
     unsafe impl ClassType for MKPolyline {
         #[inherits(MKShape, NSObject)]
         type Super = MKMultiPoint;
@@ -21,27 +21,27 @@ extern_class!(
 );
 
 #[cfg(all(
-    feature = "MapKit_MKAnnotation",
-    feature = "MapKit_MKMultiPoint",
-    feature = "MapKit_MKShape"
+    feature = "MKAnnotation",
+    feature = "MKMultiPoint",
+    feature = "MKShape"
 ))]
 unsafe impl MKAnnotation for MKPolyline {}
 
 #[cfg(all(
-    feature = "MapKit_MKAnnotation",
-    feature = "MapKit_MKMultiPoint",
-    feature = "MapKit_MKOverlay",
-    feature = "MapKit_MKShape"
+    feature = "MKAnnotation",
+    feature = "MKMultiPoint",
+    feature = "MKOverlay",
+    feature = "MKShape"
 ))]
 unsafe impl MKOverlay for MKPolyline {}
 
-#[cfg(all(feature = "MapKit_MKMultiPoint", feature = "MapKit_MKShape"))]
+#[cfg(all(feature = "MKMultiPoint", feature = "MKShape"))]
 unsafe impl NSObjectProtocol for MKPolyline {}
 
 extern_methods!(
-    #[cfg(all(feature = "MapKit_MKMultiPoint", feature = "MapKit_MKShape"))]
+    #[cfg(all(feature = "MKMultiPoint", feature = "MKShape"))]
     unsafe impl MKPolyline {
-        #[cfg(feature = "MapKit_MKGeometry")]
+        #[cfg(feature = "MKGeometry")]
         #[method_id(@__retain_semantics Other polylineWithPoints:count:)]
         pub unsafe fn polylineWithPoints_count(
             points: NonNull<MKMapPoint>,
@@ -59,7 +59,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MapKit_MKMultiPoint", feature = "MapKit_MKShape"))]
+    #[cfg(all(feature = "MKMultiPoint", feature = "MKShape"))]
     unsafe impl MKPolyline {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

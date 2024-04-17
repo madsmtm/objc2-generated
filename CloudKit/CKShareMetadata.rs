@@ -34,40 +34,40 @@ extern_methods!(
         #[method_id(@__retain_semantics Other containerIdentifier)]
         pub unsafe fn containerIdentifier(&self) -> Id<NSString>;
 
-        #[cfg(all(feature = "CloudKit_CKRecord", feature = "CloudKit_CKShare"))]
+        #[cfg(all(feature = "CKRecord", feature = "CKShare"))]
         #[method_id(@__retain_semantics Other share)]
         pub unsafe fn share(&self) -> Id<CKShare>;
 
-        #[cfg(feature = "CloudKit_CKRecordID")]
+        #[cfg(feature = "CKRecordID")]
         #[method_id(@__retain_semantics Other hierarchicalRootRecordID)]
         pub unsafe fn hierarchicalRootRecordID(&self) -> Option<Id<CKRecordID>>;
 
-        #[cfg(feature = "CloudKit_CKShareParticipant")]
+        #[cfg(feature = "CKShareParticipant")]
         #[method(participantRole)]
         pub unsafe fn participantRole(&self) -> CKShareParticipantRole;
 
-        #[cfg(feature = "CloudKit_CKShareParticipant")]
+        #[cfg(feature = "CKShareParticipant")]
         #[method(participantStatus)]
         pub unsafe fn participantStatus(&self) -> CKShareParticipantAcceptanceStatus;
 
-        #[cfg(feature = "CloudKit_CKShareParticipant")]
+        #[cfg(feature = "CKShareParticipant")]
         #[method(participantPermission)]
         pub unsafe fn participantPermission(&self) -> CKShareParticipantPermission;
 
-        #[cfg(feature = "CloudKit_CKUserIdentity")]
+        #[cfg(feature = "CKUserIdentity")]
         #[method_id(@__retain_semantics Other ownerIdentity)]
         pub unsafe fn ownerIdentity(&self) -> Id<CKUserIdentity>;
 
-        #[cfg(feature = "CloudKit_CKRecord")]
+        #[cfg(feature = "CKRecord")]
         #[method_id(@__retain_semantics Other rootRecord)]
         pub unsafe fn rootRecord(&self) -> Option<Id<CKRecord>>;
 
-        #[cfg(feature = "CloudKit_CKShareParticipant")]
+        #[cfg(feature = "CKShareParticipant")]
         #[deprecated]
         #[method(participantType)]
         pub unsafe fn participantType(&self) -> CKShareParticipantType;
 
-        #[cfg(feature = "CloudKit_CKRecordID")]
+        #[cfg(feature = "CKRecordID")]
         #[deprecated]
         #[method_id(@__retain_semantics Other rootRecordID)]
         pub unsafe fn rootRecordID(&self) -> Id<CKRecordID>;

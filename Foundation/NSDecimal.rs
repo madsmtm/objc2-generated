@@ -54,7 +54,7 @@ extern "C" {
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSObjCRuntime")]
+    #[cfg(feature = "NSObjCRuntime")]
     pub fn NSDecimalCompare(
         left_operand: NonNull<NSDecimal>,
         right_operand: NonNull<NSDecimal>,
@@ -133,7 +133,7 @@ extern "C" {
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub fn NSDecimalString(
         dcm: NonNull<NSDecimal>,
         locale: Option<&AnyObject>,

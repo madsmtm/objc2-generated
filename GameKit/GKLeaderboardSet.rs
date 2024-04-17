@@ -47,7 +47,7 @@ extern_methods!(
             >,
         );
 
-        #[cfg(all(feature = "GameKit_GKLeaderboard", feature = "block2"))]
+        #[cfg(all(feature = "GKLeaderboard", feature = "block2"))]
         #[method(loadLeaderboardsWithHandler:)]
         pub unsafe fn loadLeaderboardsWithHandler(
             &self,
@@ -70,7 +70,7 @@ extern_methods!(
 extern_methods!(
     /// Deprecated
     unsafe impl GKLeaderboardSet {
-        #[cfg(all(feature = "GameKit_GKLeaderboard", feature = "block2"))]
+        #[cfg(all(feature = "GKLeaderboard", feature = "block2"))]
         #[deprecated]
         #[method(loadLeaderboardsWithCompletionHandler:)]
         pub unsafe fn loadLeaderboardsWithCompletionHandler(

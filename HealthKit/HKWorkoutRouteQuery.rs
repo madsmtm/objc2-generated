@@ -11,10 +11,10 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "HealthKit_HKQuery")]
+    #[cfg(feature = "HKQuery")]
     pub struct HKWorkoutRouteQuery;
 
-    #[cfg(feature = "HealthKit_HKQuery")]
+    #[cfg(feature = "HKQuery")]
     unsafe impl ClassType for HKWorkoutRouteQuery {
         #[inherits(NSObject)]
         type Super = HKQuery;
@@ -22,17 +22,17 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "HealthKit_HKQuery")]
+#[cfg(feature = "HKQuery")]
 unsafe impl NSObjectProtocol for HKWorkoutRouteQuery {}
 
 extern_methods!(
-    #[cfg(feature = "HealthKit_HKQuery")]
+    #[cfg(feature = "HKQuery")]
     unsafe impl HKWorkoutRouteQuery {
         #[cfg(all(
-            feature = "HealthKit_HKObject",
-            feature = "HealthKit_HKSample",
-            feature = "HealthKit_HKSeriesSample",
-            feature = "HealthKit_HKWorkoutRoute",
+            feature = "HKObject",
+            feature = "HKSample",
+            feature = "HKSeriesSample",
+            feature = "HKWorkoutRoute",
             feature = "block2",
             feature = "objc2-core-location"
         ))]
@@ -46,10 +46,10 @@ extern_methods!(
         ) -> Id<Self>;
 
         #[cfg(all(
-            feature = "HealthKit_HKObject",
-            feature = "HealthKit_HKSample",
-            feature = "HealthKit_HKSeriesSample",
-            feature = "HealthKit_HKWorkoutRoute",
+            feature = "HKObject",
+            feature = "HKSample",
+            feature = "HKSeriesSample",
+            feature = "HKWorkoutRoute",
             feature = "block2",
             feature = "objc2-core-location"
         ))]
@@ -67,7 +67,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `HKQuery`
-    #[cfg(feature = "HealthKit_HKQuery")]
+    #[cfg(feature = "HKQuery")]
     unsafe impl HKWorkoutRouteQuery {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -76,7 +76,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "HealthKit_HKQuery")]
+    #[cfg(feature = "HKQuery")]
     unsafe impl HKWorkoutRouteQuery {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

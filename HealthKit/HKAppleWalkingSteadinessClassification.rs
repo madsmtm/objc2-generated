@@ -27,7 +27,7 @@ unsafe impl RefEncode for HKAppleWalkingSteadinessClassification {
 }
 
 extern "C" {
-    #[cfg(feature = "HealthKit_HKQuantity")]
+    #[cfg(feature = "HKQuantity")]
     pub fn HKAppleWalkingSteadinessClassificationForQuantity(
         value: &HKQuantity,
         classification_out: NonNull<HKAppleWalkingSteadinessClassification>,
@@ -36,14 +36,14 @@ extern "C" {
 }
 
 extern "C" {
-    #[cfg(feature = "HealthKit_HKQuantity")]
+    #[cfg(feature = "HKQuantity")]
     pub fn HKAppleWalkingSteadinessMinimumQuantityForClassification(
         classification: HKAppleWalkingSteadinessClassification,
     ) -> NonNull<HKQuantity>;
 }
 
 extern "C" {
-    #[cfg(feature = "HealthKit_HKQuantity")]
+    #[cfg(feature = "HKQuantity")]
     pub fn HKAppleWalkingSteadinessMaximumQuantityForClassification(
         classification: HKAppleWalkingSteadinessClassification,
     ) -> NonNull<HKQuantity>;

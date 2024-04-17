@@ -7,10 +7,10 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Photos_PHChangeRequest")]
+    #[cfg(feature = "PHChangeRequest")]
     pub struct PHAssetCollectionChangeRequest;
 
-    #[cfg(feature = "Photos_PHChangeRequest")]
+    #[cfg(feature = "PHChangeRequest")]
     unsafe impl ClassType for PHAssetCollectionChangeRequest {
         #[inherits(NSObject)]
         type Super = PHChangeRequest;
@@ -18,16 +18,16 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Photos_PHChangeRequest")]
+#[cfg(feature = "PHChangeRequest")]
 unsafe impl NSObjectProtocol for PHAssetCollectionChangeRequest {}
 
 extern_methods!(
-    #[cfg(feature = "Photos_PHChangeRequest")]
+    #[cfg(feature = "PHChangeRequest")]
     unsafe impl PHAssetCollectionChangeRequest {
         #[method_id(@__retain_semantics Other creationRequestForAssetCollectionWithTitle:)]
         pub unsafe fn creationRequestForAssetCollectionWithTitle(title: &NSString) -> Id<Self>;
 
-        #[cfg(feature = "Photos_PHObject")]
+        #[cfg(feature = "PHObject")]
         #[method_id(@__retain_semantics Other placeholderForCreatedAssetCollection)]
         pub unsafe fn placeholderForCreatedAssetCollection(&self) -> Id<PHObjectPlaceholder>;
 
@@ -36,17 +36,17 @@ extern_methods!(
             asset_collections: &ProtocolObject<dyn NSFastEnumeration>,
         );
 
-        #[cfg(all(feature = "Photos_PHCollection", feature = "Photos_PHObject"))]
+        #[cfg(all(feature = "PHCollection", feature = "PHObject"))]
         #[method_id(@__retain_semantics Other changeRequestForAssetCollection:)]
         pub unsafe fn changeRequestForAssetCollection(
             asset_collection: &PHAssetCollection,
         ) -> Option<Id<Self>>;
 
         #[cfg(all(
-            feature = "Photos_PHAsset",
-            feature = "Photos_PHCollection",
-            feature = "Photos_PHFetchResult",
-            feature = "Photos_PHObject"
+            feature = "PHAsset",
+            feature = "PHCollection",
+            feature = "PHFetchResult",
+            feature = "PHObject"
         ))]
         #[method_id(@__retain_semantics Other changeRequestForAssetCollection:assets:)]
         pub unsafe fn changeRequestForAssetCollection_assets(
@@ -94,7 +94,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Photos_PHChangeRequest")]
+    #[cfg(feature = "PHChangeRequest")]
     unsafe impl PHAssetCollectionChangeRequest {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

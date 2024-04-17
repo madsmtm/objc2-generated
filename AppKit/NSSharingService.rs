@@ -119,11 +119,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Other title)]
         pub unsafe fn title(&self) -> Id<NSString>;
 
-        #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(feature = "NSImage")]
         #[method_id(@__retain_semantics Other image)]
         pub unsafe fn image(&self) -> Id<NSImage>;
 
-        #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(feature = "NSImage")]
         #[method_id(@__retain_semantics Other alternateImage)]
         pub unsafe fn alternateImage(&self) -> Option<Id<NSImage>>;
 
@@ -166,7 +166,7 @@ extern_methods!(
             service_name: &NSSharingServiceName,
         ) -> Option<Id<NSSharingService>>;
 
-        #[cfg(all(feature = "AppKit_NSImage", feature = "block2"))]
+        #[cfg(all(feature = "NSImage", feature = "block2"))]
         #[method_id(@__retain_semantics Init initWithTitle:image:alternateImage:handler:)]
         pub unsafe fn initWithTitle_image_alternateImage_handler(
             this: Allocated<Self>,
@@ -251,7 +251,7 @@ extern_protocol!(
             item: &AnyObject,
         ) -> NSRect;
 
-        #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(feature = "NSImage")]
         #[optional]
         #[method_id(@__retain_semantics Other sharingService:transitionImageForShareItem:contentRect:)]
         unsafe fn sharingService_transitionImageForShareItem_contentRect(
@@ -261,7 +261,7 @@ extern_protocol!(
             content_rect: NonNull<NSRect>,
         ) -> Option<Id<NSImage>>;
 
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSWindow"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
         #[optional]
         #[method_id(@__retain_semantics Other sharingService:sourceWindowForShareItems:sharingContentScope:)]
         unsafe fn sharingService_sourceWindowForShareItems_sharingContentScope(
@@ -271,7 +271,7 @@ extern_protocol!(
             sharing_content_scope: NonNull<NSSharingContentScope>,
         ) -> Option<Id<NSWindow>>;
 
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[optional]
         #[method_id(@__retain_semantics Other anchoringViewForSharingService:showRelativeToRect:preferredEdge:)]
         unsafe fn anchoringViewForSharingService_showRelativeToRect_preferredEdge(
@@ -359,7 +359,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[method(showRelativeToRect:ofView:preferredEdge:)]
         pub unsafe fn showRelativeToRect_ofView_preferredEdge(
             &self,
@@ -371,7 +371,7 @@ extern_methods!(
         #[method(close)]
         pub unsafe fn close(&self);
 
-        #[cfg(feature = "AppKit_NSMenuItem")]
+        #[cfg(feature = "NSMenuItem")]
         #[method_id(@__retain_semantics Other standardShareMenuItem)]
         pub unsafe fn standardShareMenuItem(&self, mtm: MainThreadMarker) -> Id<NSMenuItem>;
     }

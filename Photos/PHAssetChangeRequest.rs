@@ -13,10 +13,10 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Photos_PHChangeRequest")]
+    #[cfg(feature = "PHChangeRequest")]
     pub struct PHAssetChangeRequest;
 
-    #[cfg(feature = "Photos_PHChangeRequest")]
+    #[cfg(feature = "PHChangeRequest")]
     unsafe impl ClassType for PHAssetChangeRequest {
         #[inherits(NSObject)]
         type Super = PHChangeRequest;
@@ -24,11 +24,11 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Photos_PHChangeRequest")]
+#[cfg(feature = "PHChangeRequest")]
 unsafe impl NSObjectProtocol for PHAssetChangeRequest {}
 
 extern_methods!(
-    #[cfg(feature = "Photos_PHChangeRequest")]
+    #[cfg(feature = "PHChangeRequest")]
     unsafe impl PHAssetChangeRequest {
         #[cfg(feature = "objc2-app-kit")]
         #[method_id(@__retain_semantics Other creationRequestForAssetFromImage:)]
@@ -44,14 +44,14 @@ extern_methods!(
             file_url: &NSURL,
         ) -> Option<Id<Self>>;
 
-        #[cfg(feature = "Photos_PHObject")]
+        #[cfg(feature = "PHObject")]
         #[method_id(@__retain_semantics Other placeholderForCreatedAsset)]
         pub unsafe fn placeholderForCreatedAsset(&self) -> Option<Id<PHObjectPlaceholder>>;
 
         #[method(deleteAssets:)]
         pub unsafe fn deleteAssets(assets: &ProtocolObject<dyn NSFastEnumeration>);
 
-        #[cfg(all(feature = "Photos_PHAsset", feature = "Photos_PHObject"))]
+        #[cfg(all(feature = "PHAsset", feature = "PHObject"))]
         #[method_id(@__retain_semantics Other changeRequestForAsset:)]
         pub unsafe fn changeRequestForAsset(asset: &PHAsset) -> Id<Self>;
 
@@ -81,11 +81,11 @@ extern_methods!(
         #[method(setHidden:)]
         pub unsafe fn setHidden(&self, hidden: bool);
 
-        #[cfg(feature = "Photos_PHContentEditingOutput")]
+        #[cfg(feature = "PHContentEditingOutput")]
         #[method_id(@__retain_semantics Other contentEditingOutput)]
         pub unsafe fn contentEditingOutput(&self) -> Option<Id<PHContentEditingOutput>>;
 
-        #[cfg(feature = "Photos_PHContentEditingOutput")]
+        #[cfg(feature = "PHContentEditingOutput")]
         #[method(setContentEditingOutput:)]
         pub unsafe fn setContentEditingOutput(
             &self,
@@ -99,7 +99,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Photos_PHChangeRequest")]
+    #[cfg(feature = "PHChangeRequest")]
     unsafe impl PHAssetChangeRequest {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -125,13 +125,13 @@ unsafe impl NSObjectProtocol for PHContentEditingInputRequestOptions {}
 
 extern_methods!(
     unsafe impl PHContentEditingInputRequestOptions {
-        #[cfg(all(feature = "Photos_PHAdjustmentData", feature = "block2"))]
+        #[cfg(all(feature = "PHAdjustmentData", feature = "block2"))]
         #[method(canHandleAdjustmentData)]
         pub unsafe fn canHandleAdjustmentData(
             &self,
         ) -> NonNull<Block<dyn Fn(NonNull<PHAdjustmentData>) -> Bool>>;
 
-        #[cfg(all(feature = "Photos_PHAdjustmentData", feature = "block2"))]
+        #[cfg(all(feature = "PHAdjustmentData", feature = "block2"))]
         #[method(setCanHandleAdjustmentData:)]
         pub unsafe fn setCanHandleAdjustmentData(
             &self,
@@ -170,9 +170,9 @@ extern_methods!(
 
 extern_methods!(
     /// PHContentEditingInput
-    #[cfg(all(feature = "Photos_PHAsset", feature = "Photos_PHObject"))]
+    #[cfg(all(feature = "PHAsset", feature = "PHObject"))]
     unsafe impl PHAsset {
-        #[cfg(all(feature = "Photos_PHContentEditingInput", feature = "block2"))]
+        #[cfg(all(feature = "PHContentEditingInput", feature = "block2"))]
         #[method(requestContentEditingInputWithOptions:completionHandler:)]
         pub unsafe fn requestContentEditingInputWithOptions_completionHandler(
             &self,
@@ -202,9 +202,9 @@ extern "C" {
 
 extern_methods!(
     /// PHAssetChangeRequest
-    #[cfg(feature = "Photos_PHContentEditingOutput")]
+    #[cfg(feature = "PHContentEditingOutput")]
     unsafe impl PHContentEditingOutput {
-        #[cfg(feature = "Photos_PHObject")]
+        #[cfg(feature = "PHObject")]
         #[method_id(@__retain_semantics Init initWithPlaceholderForCreatedAsset:)]
         pub unsafe fn initWithPlaceholderForCreatedAsset(
             this: Allocated<Self>,

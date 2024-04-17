@@ -7,16 +7,10 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(
-        feature = "GameController_GCExtendedGamepad",
-        feature = "GameController_GCPhysicalInputProfile"
-    ))]
+    #[cfg(all(feature = "GCExtendedGamepad", feature = "GCPhysicalInputProfile"))]
     pub struct GCDualShockGamepad;
 
-    #[cfg(all(
-        feature = "GameController_GCExtendedGamepad",
-        feature = "GameController_GCPhysicalInputProfile"
-    ))]
+    #[cfg(all(feature = "GCExtendedGamepad", feature = "GCPhysicalInputProfile"))]
     unsafe impl ClassType for GCDualShockGamepad {
         #[inherits(GCPhysicalInputProfile, NSObject)]
         type Super = GCExtendedGamepad;
@@ -24,36 +18,21 @@ extern_class!(
     }
 );
 
-#[cfg(all(
-    feature = "GameController_GCExtendedGamepad",
-    feature = "GameController_GCPhysicalInputProfile"
-))]
+#[cfg(all(feature = "GCExtendedGamepad", feature = "GCPhysicalInputProfile"))]
 unsafe impl NSObjectProtocol for GCDualShockGamepad {}
 
 extern_methods!(
-    #[cfg(all(
-        feature = "GameController_GCExtendedGamepad",
-        feature = "GameController_GCPhysicalInputProfile"
-    ))]
+    #[cfg(all(feature = "GCExtendedGamepad", feature = "GCPhysicalInputProfile"))]
     unsafe impl GCDualShockGamepad {
-        #[cfg(all(
-            feature = "GameController_GCControllerButtonInput",
-            feature = "GameController_GCControllerElement"
-        ))]
+        #[cfg(all(feature = "GCControllerButtonInput", feature = "GCControllerElement"))]
         #[method_id(@__retain_semantics Other touchpadButton)]
         pub unsafe fn touchpadButton(&self) -> Option<Id<GCControllerButtonInput>>;
 
-        #[cfg(all(
-            feature = "GameController_GCControllerDirectionPad",
-            feature = "GameController_GCControllerElement"
-        ))]
+        #[cfg(all(feature = "GCControllerDirectionPad", feature = "GCControllerElement"))]
         #[method_id(@__retain_semantics Other touchpadPrimary)]
         pub unsafe fn touchpadPrimary(&self) -> Option<Id<GCControllerDirectionPad>>;
 
-        #[cfg(all(
-            feature = "GameController_GCControllerDirectionPad",
-            feature = "GameController_GCControllerElement"
-        ))]
+        #[cfg(all(feature = "GCControllerDirectionPad", feature = "GCControllerElement"))]
         #[method_id(@__retain_semantics Other touchpadSecondary)]
         pub unsafe fn touchpadSecondary(&self) -> Option<Id<GCControllerDirectionPad>>;
     }
@@ -61,10 +40,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(all(
-        feature = "GameController_GCExtendedGamepad",
-        feature = "GameController_GCPhysicalInputProfile"
-    ))]
+    #[cfg(all(feature = "GCExtendedGamepad", feature = "GCPhysicalInputProfile"))]
     unsafe impl GCDualShockGamepad {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

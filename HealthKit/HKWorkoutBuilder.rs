@@ -24,7 +24,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
-        #[cfg(feature = "HealthKit_HKDevice")]
+        #[cfg(feature = "HKDevice")]
         #[method_id(@__retain_semantics Other device)]
         pub unsafe fn device(&self) -> Option<Id<HKDevice>>;
 
@@ -34,29 +34,29 @@ extern_methods!(
         #[method_id(@__retain_semantics Other endDate)]
         pub unsafe fn endDate(&self) -> Option<Id<NSDate>>;
 
-        #[cfg(feature = "HealthKit_HKWorkoutConfiguration")]
+        #[cfg(feature = "HKWorkoutConfiguration")]
         #[method_id(@__retain_semantics Other workoutConfiguration)]
         pub unsafe fn workoutConfiguration(&self) -> Id<HKWorkoutConfiguration>;
 
         #[method_id(@__retain_semantics Other metadata)]
         pub unsafe fn metadata(&self) -> Id<NSDictionary<NSString, AnyObject>>;
 
-        #[cfg(feature = "HealthKit_HKWorkout")]
+        #[cfg(feature = "HKWorkout")]
         #[method_id(@__retain_semantics Other workoutEvents)]
         pub unsafe fn workoutEvents(&self) -> Id<NSArray<HKWorkoutEvent>>;
 
-        #[cfg(feature = "HealthKit_HKWorkoutActivity")]
+        #[cfg(feature = "HKWorkoutActivity")]
         #[method_id(@__retain_semantics Other workoutActivities)]
         pub unsafe fn workoutActivities(&self) -> Id<NSArray<HKWorkoutActivity>>;
 
-        #[cfg(all(feature = "HealthKit_HKObjectType", feature = "HealthKit_HKStatistics"))]
+        #[cfg(all(feature = "HKObjectType", feature = "HKStatistics"))]
         #[method_id(@__retain_semantics Other allStatistics)]
         pub unsafe fn allStatistics(&self) -> Id<NSDictionary<HKQuantityType, HKStatistics>>;
 
         #[cfg(all(
-            feature = "HealthKit_HKDevice",
-            feature = "HealthKit_HKHealthStore",
-            feature = "HealthKit_HKWorkoutConfiguration"
+            feature = "HKDevice",
+            feature = "HKHealthStore",
+            feature = "HKWorkoutConfiguration"
         ))]
         #[method_id(@__retain_semantics Init initWithHealthStore:configuration:device:)]
         pub unsafe fn initWithHealthStore_configuration_device(
@@ -74,11 +74,7 @@ extern_methods!(
             completion: &Block<dyn Fn(Bool, *mut NSError)>,
         );
 
-        #[cfg(all(
-            feature = "HealthKit_HKObject",
-            feature = "HealthKit_HKSample",
-            feature = "block2"
-        ))]
+        #[cfg(all(feature = "HKObject", feature = "HKSample", feature = "block2"))]
         #[method(addSamples:completion:)]
         pub unsafe fn addSamples_completion(
             &self,
@@ -86,7 +82,7 @@ extern_methods!(
             completion: &Block<dyn Fn(Bool, *mut NSError)>,
         );
 
-        #[cfg(all(feature = "HealthKit_HKWorkout", feature = "block2"))]
+        #[cfg(all(feature = "HKWorkout", feature = "block2"))]
         #[method(addWorkoutEvents:completion:)]
         pub unsafe fn addWorkoutEvents_completion(
             &self,
@@ -102,7 +98,7 @@ extern_methods!(
             completion: &Block<dyn Fn(Bool, *mut NSError)>,
         );
 
-        #[cfg(all(feature = "HealthKit_HKWorkoutActivity", feature = "block2"))]
+        #[cfg(all(feature = "HKWorkoutActivity", feature = "block2"))]
         #[method(addWorkoutActivity:completion:)]
         pub unsafe fn addWorkoutActivity_completion(
             &self,
@@ -137,9 +133,9 @@ extern_methods!(
         );
 
         #[cfg(all(
-            feature = "HealthKit_HKObject",
-            feature = "HealthKit_HKSample",
-            feature = "HealthKit_HKWorkout",
+            feature = "HKObject",
+            feature = "HKSample",
+            feature = "HKWorkout",
             feature = "block2"
         ))]
         #[method(finishWorkoutWithCompletion:)]
@@ -154,17 +150,14 @@ extern_methods!(
         #[method(elapsedTimeAtDate:)]
         pub unsafe fn elapsedTimeAtDate(&self, date: &NSDate) -> NSTimeInterval;
 
-        #[cfg(all(feature = "HealthKit_HKObjectType", feature = "HealthKit_HKStatistics"))]
+        #[cfg(all(feature = "HKObjectType", feature = "HKStatistics"))]
         #[method_id(@__retain_semantics Other statisticsForType:)]
         pub unsafe fn statisticsForType(
             &self,
             quantity_type: &HKQuantityType,
         ) -> Option<Id<HKStatistics>>;
 
-        #[cfg(all(
-            feature = "HealthKit_HKObjectType",
-            feature = "HealthKit_HKSeriesBuilder"
-        ))]
+        #[cfg(all(feature = "HKObjectType", feature = "HKSeriesBuilder"))]
         #[method_id(@__retain_semantics Other seriesBuilderForType:)]
         pub unsafe fn seriesBuilderForType(
             &self,

@@ -34,7 +34,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other bssid)]
         pub unsafe fn bssid(&self) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "CoreWLAN_CWChannel")]
+        #[cfg(feature = "CWChannel")]
         #[method_id(@__retain_semantics Other wlanChannel)]
         pub unsafe fn wlanChannel(&self) -> Option<Id<CWChannel>>;
 
@@ -59,11 +59,11 @@ extern_methods!(
         #[method(isEqualToNetwork:)]
         pub unsafe fn isEqualToNetwork(&self, network: &CWNetwork) -> bool;
 
-        #[cfg(feature = "CoreWLAN_CoreWLANTypes")]
+        #[cfg(feature = "CoreWLANTypes")]
         #[method(supportsSecurity:)]
         pub unsafe fn supportsSecurity(&self, security: CWSecurity) -> bool;
 
-        #[cfg(feature = "CoreWLAN_CoreWLANTypes")]
+        #[cfg(feature = "CoreWLANTypes")]
         #[method(supportsPHYMode:)]
         pub unsafe fn supportsPHYMode(&self, phy_mode: CWPHYMode) -> bool;
     }

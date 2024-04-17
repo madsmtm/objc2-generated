@@ -16,51 +16,51 @@
 #[link(name = "InputMethodKit", kind = "framework")]
 extern "C" {}
 
-#[cfg(feature = "InputMethodKit_IMKCandidates")]
+#[cfg(feature = "IMKCandidates")]
 #[path = "IMKCandidates.rs"]
 mod __IMKCandidates;
-#[cfg(feature = "InputMethodKit_IMKInputController")]
+#[cfg(feature = "IMKInputController")]
 #[path = "IMKInputController.rs"]
 mod __IMKInputController;
-#[cfg(feature = "InputMethodKit_IMKServer")]
+#[cfg(feature = "IMKServer")]
 #[path = "IMKServer.rs"]
 mod __IMKServer;
 
-#[cfg(feature = "InputMethodKit_IMKCandidates")]
+#[cfg(feature = "IMKCandidates")]
 pub use self::__IMKCandidates::kIMKAnnotation;
-#[cfg(feature = "InputMethodKit_IMKCandidates")]
+#[cfg(feature = "IMKCandidates")]
 pub use self::__IMKCandidates::kIMKLocateCandidatesAboveHint;
-#[cfg(feature = "InputMethodKit_IMKCandidates")]
+#[cfg(feature = "IMKCandidates")]
 pub use self::__IMKCandidates::kIMKLocateCandidatesBelowHint;
-#[cfg(feature = "InputMethodKit_IMKCandidates")]
+#[cfg(feature = "IMKCandidates")]
 pub use self::__IMKCandidates::kIMKLocateCandidatesLeftHint;
-#[cfg(feature = "InputMethodKit_IMKCandidates")]
+#[cfg(feature = "IMKCandidates")]
 pub use self::__IMKCandidates::kIMKLocateCandidatesRightHint;
-#[cfg(feature = "InputMethodKit_IMKCandidates")]
+#[cfg(feature = "IMKCandidates")]
 pub use self::__IMKCandidates::kIMKMain;
-#[cfg(feature = "InputMethodKit_IMKCandidates")]
+#[cfg(feature = "IMKCandidates")]
 pub use self::__IMKCandidates::kIMKScrollingGridCandidatePanel;
-#[cfg(feature = "InputMethodKit_IMKCandidates")]
+#[cfg(feature = "IMKCandidates")]
 pub use self::__IMKCandidates::kIMKSingleColumnScrollingCandidatePanel;
-#[cfg(feature = "InputMethodKit_IMKCandidates")]
+#[cfg(feature = "IMKCandidates")]
 pub use self::__IMKCandidates::kIMKSingleRowSteppingCandidatePanel;
-#[cfg(feature = "InputMethodKit_IMKCandidates")]
+#[cfg(feature = "IMKCandidates")]
 pub use self::__IMKCandidates::kIMKSubList;
-#[cfg(feature = "InputMethodKit_IMKCandidates")]
+#[cfg(feature = "IMKCandidates")]
 pub use self::__IMKCandidates::IMKCandidatePanelType;
-#[cfg(all(feature = "InputMethodKit_IMKCandidates", feature = "objc2-app-kit"))]
+#[cfg(all(feature = "IMKCandidates", feature = "objc2-app-kit"))]
 pub use self::__IMKCandidates::IMKCandidates;
-#[cfg(feature = "InputMethodKit_IMKCandidates")]
+#[cfg(feature = "IMKCandidates")]
 pub use self::__IMKCandidates::IMKCandidatesLocationHint;
-#[cfg(feature = "InputMethodKit_IMKCandidates")]
+#[cfg(feature = "IMKCandidates")]
 pub use self::__IMKCandidates::IMKStyleType;
-#[cfg(feature = "InputMethodKit_IMKInputController")]
+#[cfg(feature = "IMKInputController")]
 pub use self::__IMKInputController::IMKInputController;
-#[cfg(feature = "InputMethodKit_IMKInputController")]
+#[cfg(feature = "IMKInputController")]
 pub use self::__IMKInputController::IMKMouseHandling;
-#[cfg(feature = "InputMethodKit_IMKInputController")]
+#[cfg(feature = "IMKInputController")]
 pub use self::__IMKInputController::IMKStateSetting;
-#[cfg(feature = "InputMethodKit_IMKInputController")]
+#[cfg(feature = "IMKInputController")]
 pub use self::__IMKInputController::NSObjectIMKServerInput;
-#[cfg(feature = "InputMethodKit_IMKServer")]
+#[cfg(feature = "IMKServer")]
 pub use self::__IMKServer::IMKServer;

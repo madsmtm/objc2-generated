@@ -29,76 +29,70 @@ extern_methods!(
             delegate: Option<&ProtocolObject<dyn NSMetadataQueryDelegate>>,
         );
 
-        #[cfg(feature = "Foundation_NSPredicate")]
+        #[cfg(feature = "NSPredicate")]
         #[method_id(@__retain_semantics Other predicate)]
         pub unsafe fn predicate(&self) -> Option<Id<NSPredicate>>;
 
-        #[cfg(feature = "Foundation_NSPredicate")]
+        #[cfg(feature = "NSPredicate")]
         #[method(setPredicate:)]
         pub unsafe fn setPredicate(&self, predicate: Option<&NSPredicate>);
 
-        #[cfg(all(
-            feature = "Foundation_NSArray",
-            feature = "Foundation_NSSortDescriptor"
-        ))]
+        #[cfg(all(feature = "NSArray", feature = "NSSortDescriptor"))]
         #[method_id(@__retain_semantics Other sortDescriptors)]
         pub unsafe fn sortDescriptors(&self) -> Id<NSArray<NSSortDescriptor>>;
 
-        #[cfg(all(
-            feature = "Foundation_NSArray",
-            feature = "Foundation_NSSortDescriptor"
-        ))]
+        #[cfg(all(feature = "NSArray", feature = "NSSortDescriptor"))]
         #[method(setSortDescriptors:)]
         pub unsafe fn setSortDescriptors(&self, sort_descriptors: &NSArray<NSSortDescriptor>);
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[method_id(@__retain_semantics Other valueListAttributes)]
         pub unsafe fn valueListAttributes(&self) -> Id<NSArray<NSString>>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[method(setValueListAttributes:)]
         pub unsafe fn setValueListAttributes(&self, value_list_attributes: &NSArray<NSString>);
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[method_id(@__retain_semantics Other groupingAttributes)]
         pub unsafe fn groupingAttributes(&self) -> Option<Id<NSArray<NSString>>>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[method(setGroupingAttributes:)]
         pub unsafe fn setGroupingAttributes(&self, grouping_attributes: Option<&NSArray<NSString>>);
 
-        #[cfg(feature = "Foundation_NSDate")]
+        #[cfg(feature = "NSDate")]
         #[method(notificationBatchingInterval)]
         pub unsafe fn notificationBatchingInterval(&self) -> NSTimeInterval;
 
-        #[cfg(feature = "Foundation_NSDate")]
+        #[cfg(feature = "NSDate")]
         #[method(setNotificationBatchingInterval:)]
         pub unsafe fn setNotificationBatchingInterval(
             &self,
             notification_batching_interval: NSTimeInterval,
         );
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(feature = "NSArray")]
         #[method_id(@__retain_semantics Other searchScopes)]
         pub unsafe fn searchScopes(&self) -> Id<NSArray>;
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(feature = "NSArray")]
         #[method(setSearchScopes:)]
         pub unsafe fn setSearchScopes(&self, search_scopes: &NSArray);
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(feature = "NSArray")]
         #[method_id(@__retain_semantics Other searchItems)]
         pub unsafe fn searchItems(&self) -> Option<Id<NSArray>>;
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(feature = "NSArray")]
         #[method(setSearchItems:)]
         pub unsafe fn setSearchItems(&self, search_items: Option<&NSArray>);
 
-        #[cfg(feature = "Foundation_NSOperation")]
+        #[cfg(feature = "NSOperation")]
         #[method_id(@__retain_semantics Other operationQueue)]
         pub unsafe fn operationQueue(&self) -> Option<Id<NSOperationQueue>>;
 
-        #[cfg(feature = "Foundation_NSOperation")]
+        #[cfg(feature = "NSOperation")]
         #[method(setOperationQueue:)]
         pub unsafe fn setOperationQueue(&self, operation_queue: Option<&NSOperationQueue>);
 
@@ -136,7 +130,7 @@ extern_methods!(
             block: &Block<dyn Fn(NonNull<AnyObject>, NSUInteger, NonNull<Bool>) + '_>,
         );
 
-        #[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "block2"))]
+        #[cfg(all(feature = "NSObjCRuntime", feature = "block2"))]
         #[method(enumerateResultsWithOptions:usingBlock:)]
         pub unsafe fn enumerateResultsWithOptions_usingBlock(
             &self,
@@ -144,28 +138,24 @@ extern_methods!(
             block: &Block<dyn Fn(NonNull<AnyObject>, NSUInteger, NonNull<Bool>) + '_>,
         );
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(feature = "NSArray")]
         #[method_id(@__retain_semantics Other results)]
         pub unsafe fn results(&self) -> Id<NSArray>;
 
         #[method(indexOfResult:)]
         pub unsafe fn indexOfResult(&self, result: &AnyObject) -> NSUInteger;
 
-        #[cfg(all(
-            feature = "Foundation_NSArray",
-            feature = "Foundation_NSDictionary",
-            feature = "Foundation_NSString"
-        ))]
+        #[cfg(all(feature = "NSArray", feature = "NSDictionary", feature = "NSString"))]
         #[method_id(@__retain_semantics Other valueLists)]
         pub unsafe fn valueLists(
             &self,
         ) -> Id<NSDictionary<NSString, NSArray<NSMetadataQueryAttributeValueTuple>>>;
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(feature = "NSArray")]
         #[method_id(@__retain_semantics Other groupedResults)]
         pub unsafe fn groupedResults(&self) -> Id<NSArray<NSMetadataQueryResultGroup>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other valueOfAttribute:forResultAtIndex:)]
         pub unsafe fn valueOfAttribute_forResultAtIndex(
             &self,
@@ -196,7 +186,7 @@ extern_protocol!(
             result: &NSMetadataItem,
         ) -> Id<AnyObject>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[optional]
         #[method_id(@__retain_semantics Other metadataQuery:replacementValueForAttribute:value:)]
         unsafe fn metadataQuery_replacementValueForAttribute_value(
@@ -211,82 +201,82 @@ extern_protocol!(
 );
 
 extern "C" {
-    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSMetadataQueryDidStartGatheringNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSMetadataQueryGatheringProgressNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSMetadataQueryDidFinishGatheringNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSMetadataQueryDidUpdateNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSMetadataQueryUpdateAddedItemsKey: &'static NSString;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSMetadataQueryUpdateChangedItemsKey: &'static NSString;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSMetadataQueryUpdateRemovedItemsKey: &'static NSString;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSMetadataQueryResultContentRelevanceAttribute: &'static NSString;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSMetadataQueryUserHomeScope: &'static NSString;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSMetadataQueryLocalComputerScope: &'static NSString;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSMetadataQueryNetworkScope: &'static NSString;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSMetadataQueryIndexedLocalComputerScope: &'static NSString;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSMetadataQueryIndexedNetworkScope: &'static NSString;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSMetadataQueryUbiquitousDocumentsScope: &'static NSString;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSMetadataQueryUbiquitousDataScope: &'static NSString;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSMetadataQueryAccessibleUbiquitousExternalDocumentsScope: &'static NSString;
 }
 
@@ -304,26 +294,22 @@ unsafe impl NSObjectProtocol for NSMetadataItem {}
 
 extern_methods!(
     unsafe impl NSMetadataItem {
-        #[cfg(feature = "Foundation_NSURL")]
+        #[cfg(feature = "NSURL")]
         #[method_id(@__retain_semantics Init initWithURL:)]
         pub unsafe fn initWithURL(this: Allocated<Self>, url: &NSURL) -> Option<Id<Self>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other valueForAttribute:)]
         pub unsafe fn valueForAttribute(&self, key: &NSString) -> Option<Id<AnyObject>>;
 
-        #[cfg(all(
-            feature = "Foundation_NSArray",
-            feature = "Foundation_NSDictionary",
-            feature = "Foundation_NSString"
-        ))]
+        #[cfg(all(feature = "NSArray", feature = "NSDictionary", feature = "NSString"))]
         #[method_id(@__retain_semantics Other valuesForAttributes:)]
         pub unsafe fn valuesForAttributes(
             &self,
             keys: &NSArray<NSString>,
         ) -> Option<Id<NSDictionary<NSString, AnyObject>>>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[method_id(@__retain_semantics Other attributes)]
         pub unsafe fn attributes(&self) -> Id<NSArray<NSString>>;
     }
@@ -354,7 +340,7 @@ unsafe impl NSObjectProtocol for NSMetadataQueryAttributeValueTuple {}
 
 extern_methods!(
     unsafe impl NSMetadataQueryAttributeValueTuple {
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other attribute)]
         pub unsafe fn attribute(&self) -> Id<NSString>;
 
@@ -391,14 +377,14 @@ unsafe impl NSObjectProtocol for NSMetadataQueryResultGroup {}
 
 extern_methods!(
     unsafe impl NSMetadataQueryResultGroup {
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other attribute)]
         pub unsafe fn attribute(&self) -> Id<NSString>;
 
         #[method_id(@__retain_semantics Other value)]
         pub unsafe fn value(&self) -> Id<AnyObject>;
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(feature = "NSArray")]
         #[method_id(@__retain_semantics Other subgroups)]
         pub unsafe fn subgroups(&self) -> Option<Id<NSArray<NSMetadataQueryResultGroup>>>;
 
@@ -408,7 +394,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other resultAtIndex:)]
         pub unsafe fn resultAtIndex(&self, idx: NSUInteger) -> Id<AnyObject>;
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(feature = "NSArray")]
         #[method_id(@__retain_semantics Other results)]
         pub unsafe fn results(&self) -> Id<NSArray>;
     }

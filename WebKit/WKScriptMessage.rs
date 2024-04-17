@@ -24,18 +24,18 @@ extern_methods!(
         #[method_id(@__retain_semantics Other body)]
         pub unsafe fn body(&self) -> Id<AnyObject>;
 
-        #[cfg(all(feature = "WebKit_WKWebView", feature = "objc2-app-kit"))]
+        #[cfg(all(feature = "WKWebView", feature = "objc2-app-kit"))]
         #[method_id(@__retain_semantics Other webView)]
         pub unsafe fn webView(&self, mtm: MainThreadMarker) -> Option<Id<WKWebView>>;
 
-        #[cfg(feature = "WebKit_WKFrameInfo")]
+        #[cfg(feature = "WKFrameInfo")]
         #[method_id(@__retain_semantics Other frameInfo)]
         pub unsafe fn frameInfo(&self) -> Id<WKFrameInfo>;
 
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Id<NSString>;
 
-        #[cfg(feature = "WebKit_WKContentWorld")]
+        #[cfg(feature = "WKContentWorld")]
         #[method_id(@__retain_semantics Other world)]
         pub unsafe fn world(&self) -> Id<WKContentWorld>;
     }

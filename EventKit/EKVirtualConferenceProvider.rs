@@ -23,7 +23,7 @@ unsafe impl NSObjectProtocol for EKVirtualConferenceProvider {}
 
 extern_methods!(
     unsafe impl EKVirtualConferenceProvider {
-        #[cfg(all(feature = "EventKit_EKVirtualConferenceDescriptor", feature = "block2"))]
+        #[cfg(all(feature = "EKVirtualConferenceDescriptor", feature = "block2"))]
         #[method(fetchAvailableRoomTypesWithCompletionHandler:)]
         pub unsafe fn fetchAvailableRoomTypesWithCompletionHandler(
             &self,
@@ -32,7 +32,7 @@ extern_methods!(
             >,
         );
 
-        #[cfg(all(feature = "EventKit_EKVirtualConferenceDescriptor", feature = "block2"))]
+        #[cfg(all(feature = "EKVirtualConferenceDescriptor", feature = "block2"))]
         #[method(fetchVirtualConferenceForIdentifier:completionHandler:)]
         pub unsafe fn fetchVirtualConferenceForIdentifier_completionHandler(
             &self,

@@ -24,7 +24,7 @@ unsafe impl NSObjectProtocol for PHLivePhotoEditingContext {}
 
 extern_methods!(
     unsafe impl PHLivePhotoEditingContext {
-        #[cfg(feature = "Photos_PHContentEditingInput")]
+        #[cfg(feature = "PHContentEditingInput")]
         #[method_id(@__retain_semantics Init initWithLivePhotoEditingInput:)]
         pub unsafe fn initWithLivePhotoEditingInput(
             this: Allocated<Self>,
@@ -40,7 +40,7 @@ extern_methods!(
         #[method(setAudioVolume:)]
         pub unsafe fn setAudioVolume(&self, audio_volume: c_float);
 
-        #[cfg(all(feature = "Photos_PHLivePhoto", feature = "block2"))]
+        #[cfg(all(feature = "PHLivePhoto", feature = "block2"))]
         #[method(prepareLivePhotoForPlaybackWithTargetSize:options:completionHandler:)]
         pub unsafe fn prepareLivePhotoForPlaybackWithTargetSize_options_completionHandler(
             &self,
@@ -49,7 +49,7 @@ extern_methods!(
             handler: &Block<dyn Fn(*mut PHLivePhoto, *mut NSError)>,
         );
 
-        #[cfg(all(feature = "Photos_PHContentEditingOutput", feature = "block2"))]
+        #[cfg(all(feature = "PHContentEditingOutput", feature = "block2"))]
         #[method(saveLivePhotoToOutput:options:completionHandler:)]
         pub unsafe fn saveLivePhotoToOutput_options_completionHandler(
             &self,

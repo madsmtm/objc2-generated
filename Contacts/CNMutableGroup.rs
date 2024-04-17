@@ -7,10 +7,10 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Contacts_CNGroup")]
+    #[cfg(feature = "CNGroup")]
     pub struct CNMutableGroup;
 
-    #[cfg(feature = "Contacts_CNGroup")]
+    #[cfg(feature = "CNGroup")]
     unsafe impl ClassType for CNMutableGroup {
         #[inherits(NSObject)]
         type Super = CNGroup;
@@ -18,23 +18,23 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Contacts_CNGroup")]
+#[cfg(feature = "CNGroup")]
 unsafe impl NSCoding for CNMutableGroup {}
 
-#[cfg(feature = "Contacts_CNGroup")]
+#[cfg(feature = "CNGroup")]
 unsafe impl NSCopying for CNMutableGroup {}
 
-#[cfg(feature = "Contacts_CNGroup")]
+#[cfg(feature = "CNGroup")]
 unsafe impl NSMutableCopying for CNMutableGroup {}
 
-#[cfg(feature = "Contacts_CNGroup")]
+#[cfg(feature = "CNGroup")]
 unsafe impl NSObjectProtocol for CNMutableGroup {}
 
-#[cfg(feature = "Contacts_CNGroup")]
+#[cfg(feature = "CNGroup")]
 unsafe impl NSSecureCoding for CNMutableGroup {}
 
 extern_methods!(
-    #[cfg(feature = "Contacts_CNGroup")]
+    #[cfg(feature = "CNGroup")]
     unsafe impl CNMutableGroup {
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Id<NSString>;
@@ -46,7 +46,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Contacts_CNGroup")]
+    #[cfg(feature = "CNGroup")]
     unsafe impl CNMutableGroup {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

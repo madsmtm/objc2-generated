@@ -7,13 +7,13 @@ use crate::*;
 
 extern_methods!(
     /// NSScripting
-    #[cfg(all(feature = "AppKit_NSApplication", feature = "AppKit_NSResponder"))]
+    #[cfg(all(feature = "NSApplication", feature = "NSResponder"))]
     unsafe impl NSApplication {
-        #[cfg(feature = "AppKit_NSDocument")]
+        #[cfg(feature = "NSDocument")]
         #[method_id(@__retain_semantics Other orderedDocuments)]
         pub unsafe fn orderedDocuments(&self) -> Id<NSArray<NSDocument>>;
 
-        #[cfg(feature = "AppKit_NSWindow")]
+        #[cfg(feature = "NSWindow")]
         #[method_id(@__retain_semantics Other orderedWindows)]
         pub unsafe fn orderedWindows(&self) -> Id<NSArray<NSWindow>>;
     }

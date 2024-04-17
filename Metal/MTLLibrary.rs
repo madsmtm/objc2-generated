@@ -48,7 +48,7 @@ extern_methods!(
         #[method(attributeIndex)]
         pub fn attributeIndex(&self) -> NSUInteger;
 
-        #[cfg(feature = "Metal_MTLArgument")]
+        #[cfg(feature = "MTLArgument")]
         #[method(attributeType)]
         pub fn attributeType(&self) -> MTLDataType;
 
@@ -94,7 +94,7 @@ extern_methods!(
         #[method(attributeIndex)]
         pub fn attributeIndex(&self) -> NSUInteger;
 
-        #[cfg(feature = "Metal_MTLArgument")]
+        #[cfg(feature = "MTLArgument")]
         #[method(attributeType)]
         pub fn attributeType(&self) -> MTLDataType;
 
@@ -166,7 +166,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other name)]
         pub fn name(&self) -> Id<NSString>;
 
-        #[cfg(feature = "Metal_MTLArgument")]
+        #[cfg(feature = "MTLArgument")]
         #[method(type)]
         pub unsafe fn r#type(&self) -> MTLDataType;
 
@@ -197,7 +197,7 @@ extern_protocol!(
         #[method(setLabel:)]
         fn setLabel(&self, label: Option<&NSString>);
 
-        #[cfg(feature = "Metal_MTLDevice")]
+        #[cfg(feature = "MTLDevice")]
         #[method_id(@__retain_semantics Other device)]
         fn device(&self) -> Id<ProtocolObject<dyn MTLDevice>>;
 
@@ -222,14 +222,14 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other functionConstantsDictionary)]
         fn functionConstantsDictionary(&self) -> Id<NSDictionary<NSString, MTLFunctionConstant>>;
 
-        #[cfg(feature = "Metal_MTLArgumentEncoder")]
+        #[cfg(feature = "MTLArgumentEncoder")]
         #[method_id(@__retain_semantics New newArgumentEncoderWithBufferIndex:)]
         unsafe fn newArgumentEncoderWithBufferIndex(
             &self,
             buffer_index: NSUInteger,
         ) -> Id<ProtocolObject<dyn MTLArgumentEncoder>>;
 
-        #[cfg(feature = "Metal_MTLFunctionDescriptor")]
+        #[cfg(feature = "MTLFunctionDescriptor")]
         #[method(options)]
         fn options(&self) -> MTLFunctionOptions;
     }
@@ -369,11 +369,11 @@ extern_methods!(
         #[method(setInstallName:)]
         pub unsafe fn setInstallName(&self, install_name: Option<&NSString>);
 
-        #[cfg(feature = "Metal_MTLDynamicLibrary")]
+        #[cfg(feature = "MTLDynamicLibrary")]
         #[method_id(@__retain_semantics Other libraries)]
         pub fn libraries(&self) -> Option<Id<NSArray<ProtocolObject<dyn MTLDynamicLibrary>>>>;
 
-        #[cfg(feature = "Metal_MTLDynamicLibrary")]
+        #[cfg(feature = "MTLDynamicLibrary")]
         #[method(setLibraries:)]
         pub fn setLibraries(
             &self,
@@ -478,7 +478,7 @@ extern_protocol!(
         #[method(setLabel:)]
         fn setLabel(&self, label: Option<&NSString>);
 
-        #[cfg(feature = "Metal_MTLDevice")]
+        #[cfg(feature = "MTLDevice")]
         #[method_id(@__retain_semantics Other device)]
         fn device(&self) -> Id<ProtocolObject<dyn MTLDevice>>;
 
@@ -488,7 +488,7 @@ extern_protocol!(
             function_name: &NSString,
         ) -> Option<Id<ProtocolObject<dyn MTLFunction>>>;
 
-        #[cfg(feature = "Metal_MTLFunctionConstantValues")]
+        #[cfg(feature = "MTLFunctionConstantValues")]
         #[method_id(@__retain_semantics New newFunctionWithName:constantValues:error:_)]
         fn newFunctionWithName_constantValues_error(
             &self,
@@ -496,7 +496,7 @@ extern_protocol!(
             constant_values: &MTLFunctionConstantValues,
         ) -> Result<Id<ProtocolObject<dyn MTLFunction>>, Id<NSError>>;
 
-        #[cfg(all(feature = "Metal_MTLFunctionConstantValues", feature = "block2"))]
+        #[cfg(all(feature = "MTLFunctionConstantValues", feature = "block2"))]
         #[method(newFunctionWithName:constantValues:completionHandler:)]
         unsafe fn newFunctionWithName_constantValues_completionHandler(
             &self,
@@ -505,7 +505,7 @@ extern_protocol!(
             completion_handler: &Block<dyn Fn(*mut ProtocolObject<dyn MTLFunction>, *mut NSError)>,
         );
 
-        #[cfg(all(feature = "Metal_MTLFunctionDescriptor", feature = "block2"))]
+        #[cfg(all(feature = "MTLFunctionDescriptor", feature = "block2"))]
         #[method(newFunctionWithDescriptor:completionHandler:)]
         unsafe fn newFunctionWithDescriptor_completionHandler(
             &self,
@@ -513,14 +513,14 @@ extern_protocol!(
             completion_handler: &Block<dyn Fn(*mut ProtocolObject<dyn MTLFunction>, *mut NSError)>,
         );
 
-        #[cfg(feature = "Metal_MTLFunctionDescriptor")]
+        #[cfg(feature = "MTLFunctionDescriptor")]
         #[method_id(@__retain_semantics New newFunctionWithDescriptor:error:_)]
         fn newFunctionWithDescriptor_error(
             &self,
             descriptor: &MTLFunctionDescriptor,
         ) -> Result<Id<ProtocolObject<dyn MTLFunction>>, Id<NSError>>;
 
-        #[cfg(all(feature = "Metal_MTLFunctionDescriptor", feature = "block2"))]
+        #[cfg(all(feature = "MTLFunctionDescriptor", feature = "block2"))]
         #[method(newIntersectionFunctionWithDescriptor:completionHandler:)]
         unsafe fn newIntersectionFunctionWithDescriptor_completionHandler(
             &self,
@@ -528,7 +528,7 @@ extern_protocol!(
             completion_handler: &Block<dyn Fn(*mut ProtocolObject<dyn MTLFunction>, *mut NSError)>,
         );
 
-        #[cfg(feature = "Metal_MTLFunctionDescriptor")]
+        #[cfg(feature = "MTLFunctionDescriptor")]
         #[method_id(@__retain_semantics New newIntersectionFunctionWithDescriptor:error:_)]
         fn newIntersectionFunctionWithDescriptor_error(
             &self,

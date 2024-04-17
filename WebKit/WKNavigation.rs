@@ -19,7 +19,7 @@ unsafe impl NSObjectProtocol for WKNavigation {}
 
 extern_methods!(
     unsafe impl WKNavigation {
-        #[cfg(feature = "WebKit_WKWebpagePreferences")]
+        #[cfg(feature = "WKWebpagePreferences")]
         #[method(effectiveContentMode)]
         pub unsafe fn effectiveContentMode(&self) -> WKContentMode;
     }

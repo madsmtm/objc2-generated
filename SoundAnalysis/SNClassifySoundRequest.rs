@@ -17,7 +17,7 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for SNClassifySoundRequest {}
 
-#[cfg(feature = "SoundAnalysis_SNRequest")]
+#[cfg(feature = "SNRequest")]
 unsafe impl SNRequest for SNClassifySoundRequest {}
 
 extern_methods!(
@@ -28,14 +28,14 @@ extern_methods!(
         #[method(setOverlapFactor:)]
         pub unsafe fn setOverlapFactor(&self, overlap_factor: c_double);
 
-        #[cfg(feature = "SoundAnalysis_SNTimeDurationConstraint")]
+        #[cfg(feature = "SNTimeDurationConstraint")]
         #[method_id(@__retain_semantics Other windowDurationConstraint)]
         pub unsafe fn windowDurationConstraint(&self) -> Id<SNTimeDurationConstraint>;
 
         #[method_id(@__retain_semantics Other knownClassifications)]
         pub unsafe fn knownClassifications(&self) -> Id<NSArray<NSString>>;
 
-        #[cfg(feature = "SoundAnalysis_SNTypes")]
+        #[cfg(feature = "SNTypes")]
         #[method_id(@__retain_semantics Init initWithClassifierIdentifier:error:_)]
         pub unsafe fn initWithClassifierIdentifier_error(
             this: Allocated<Self>,

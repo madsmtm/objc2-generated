@@ -7,10 +7,10 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(feature = "AppKit_NSActionCell", feature = "AppKit_NSCell"))]
+    #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
     pub struct NSStepperCell;
 
-    #[cfg(all(feature = "AppKit_NSActionCell", feature = "AppKit_NSCell"))]
+    #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
     unsafe impl ClassType for NSStepperCell {
         #[inherits(NSCell, NSObject)]
         type Super = NSActionCell;
@@ -19,37 +19,37 @@ extern_class!(
 );
 
 #[cfg(all(
-    feature = "AppKit_NSAccessibilityProtocols",
-    feature = "AppKit_NSActionCell",
-    feature = "AppKit_NSCell"
+    feature = "NSAccessibilityProtocols",
+    feature = "NSActionCell",
+    feature = "NSCell"
 ))]
 unsafe impl NSAccessibility for NSStepperCell {}
 
 #[cfg(all(
-    feature = "AppKit_NSAccessibilityProtocols",
-    feature = "AppKit_NSActionCell",
-    feature = "AppKit_NSCell"
+    feature = "NSAccessibilityProtocols",
+    feature = "NSActionCell",
+    feature = "NSCell"
 ))]
 unsafe impl NSAccessibilityElementProtocol for NSStepperCell {}
 
-#[cfg(all(feature = "AppKit_NSActionCell", feature = "AppKit_NSCell"))]
+#[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
 unsafe impl NSCoding for NSStepperCell {}
 
-#[cfg(all(feature = "AppKit_NSActionCell", feature = "AppKit_NSCell"))]
+#[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
 unsafe impl NSCopying for NSStepperCell {}
 
-#[cfg(all(feature = "AppKit_NSActionCell", feature = "AppKit_NSCell"))]
+#[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
 unsafe impl NSObjectProtocol for NSStepperCell {}
 
 #[cfg(all(
-    feature = "AppKit_NSActionCell",
-    feature = "AppKit_NSCell",
-    feature = "AppKit_NSUserInterfaceItemIdentification"
+    feature = "NSActionCell",
+    feature = "NSCell",
+    feature = "NSUserInterfaceItemIdentification"
 ))]
 unsafe impl NSUserInterfaceItemIdentification for NSStepperCell {}
 
 extern_methods!(
-    #[cfg(all(feature = "AppKit_NSActionCell", feature = "AppKit_NSCell"))]
+    #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
     unsafe impl NSStepperCell {
         #[method(minValue)]
         pub unsafe fn minValue(&self) -> c_double;
@@ -85,7 +85,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSCell`
-    #[cfg(all(feature = "AppKit_NSActionCell", feature = "AppKit_NSCell"))]
+    #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
     unsafe impl NSStepperCell {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -93,7 +93,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initTextCell:)]
         pub unsafe fn initTextCell(this: Allocated<Self>, string: &NSString) -> Id<Self>;
 
-        #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(feature = "NSImage")]
         #[method_id(@__retain_semantics Init initImageCell:)]
         pub unsafe fn initImageCell(this: Allocated<Self>, image: Option<&NSImage>) -> Id<Self>;
 
@@ -104,7 +104,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "AppKit_NSActionCell", feature = "AppKit_NSCell"))]
+    #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
     unsafe impl NSStepperCell {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;

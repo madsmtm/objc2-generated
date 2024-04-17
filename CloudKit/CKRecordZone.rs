@@ -60,18 +60,18 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithZoneName:)]
         pub unsafe fn initWithZoneName(this: Allocated<Self>, zone_name: &NSString) -> Id<Self>;
 
-        #[cfg(feature = "CloudKit_CKRecordZoneID")]
+        #[cfg(feature = "CKRecordZoneID")]
         #[method_id(@__retain_semantics Init initWithZoneID:)]
         pub unsafe fn initWithZoneID(this: Allocated<Self>, zone_id: &CKRecordZoneID) -> Id<Self>;
 
-        #[cfg(feature = "CloudKit_CKRecordZoneID")]
+        #[cfg(feature = "CKRecordZoneID")]
         #[method_id(@__retain_semantics Other zoneID)]
         pub unsafe fn zoneID(&self) -> Id<CKRecordZoneID>;
 
         #[method(capabilities)]
         pub unsafe fn capabilities(&self) -> CKRecordZoneCapabilities;
 
-        #[cfg(feature = "CloudKit_CKReference")]
+        #[cfg(feature = "CKReference")]
         #[method_id(@__retain_semantics Other share)]
         pub unsafe fn share(&self) -> Option<Id<CKReference>>;
     }

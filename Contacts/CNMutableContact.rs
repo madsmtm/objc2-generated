@@ -7,10 +7,10 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Contacts_CNContact")]
+    #[cfg(feature = "CNContact")]
     pub struct CNMutableContact;
 
-    #[cfg(feature = "Contacts_CNContact")]
+    #[cfg(feature = "CNContact")]
     unsafe impl ClassType for CNMutableContact {
         #[inherits(NSObject)]
         type Super = CNContact;
@@ -18,23 +18,23 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Contacts_CNContact")]
+#[cfg(feature = "CNContact")]
 unsafe impl NSCoding for CNMutableContact {}
 
-#[cfg(feature = "Contacts_CNContact")]
+#[cfg(feature = "CNContact")]
 unsafe impl NSCopying for CNMutableContact {}
 
-#[cfg(feature = "Contacts_CNContact")]
+#[cfg(feature = "CNContact")]
 unsafe impl NSMutableCopying for CNMutableContact {}
 
-#[cfg(feature = "Contacts_CNContact")]
+#[cfg(feature = "CNContact")]
 unsafe impl NSObjectProtocol for CNMutableContact {}
 
-#[cfg(feature = "Contacts_CNContact")]
+#[cfg(feature = "CNContact")]
 unsafe impl NSSecureCoding for CNMutableContact {}
 
 extern_methods!(
-    #[cfg(feature = "Contacts_CNContact")]
+    #[cfg(feature = "CNContact")]
     unsafe impl CNMutableContact {
         #[method(contactType)]
         pub unsafe fn contactType(&self) -> CNContactType;
@@ -138,103 +138,73 @@ extern_methods!(
         #[method(setImageData:)]
         pub unsafe fn setImageData(&self, image_data: Option<&NSData>);
 
-        #[cfg(all(
-            feature = "Contacts_CNLabeledValue",
-            feature = "Contacts_CNPhoneNumber"
-        ))]
+        #[cfg(all(feature = "CNLabeledValue", feature = "CNPhoneNumber"))]
         #[method_id(@__retain_semantics Other phoneNumbers)]
         pub unsafe fn phoneNumbers(&self) -> Id<NSArray<CNLabeledValue<CNPhoneNumber>>>;
 
-        #[cfg(all(
-            feature = "Contacts_CNLabeledValue",
-            feature = "Contacts_CNPhoneNumber"
-        ))]
+        #[cfg(all(feature = "CNLabeledValue", feature = "CNPhoneNumber"))]
         #[method(setPhoneNumbers:)]
         pub unsafe fn setPhoneNumbers(
             &self,
             phone_numbers: &NSArray<CNLabeledValue<CNPhoneNumber>>,
         );
 
-        #[cfg(feature = "Contacts_CNLabeledValue")]
+        #[cfg(feature = "CNLabeledValue")]
         #[method_id(@__retain_semantics Other emailAddresses)]
         pub unsafe fn emailAddresses(&self) -> Id<NSArray<CNLabeledValue<NSString>>>;
 
-        #[cfg(feature = "Contacts_CNLabeledValue")]
+        #[cfg(feature = "CNLabeledValue")]
         #[method(setEmailAddresses:)]
         pub unsafe fn setEmailAddresses(&self, email_addresses: &NSArray<CNLabeledValue<NSString>>);
 
-        #[cfg(all(
-            feature = "Contacts_CNLabeledValue",
-            feature = "Contacts_CNPostalAddress"
-        ))]
+        #[cfg(all(feature = "CNLabeledValue", feature = "CNPostalAddress"))]
         #[method_id(@__retain_semantics Other postalAddresses)]
         pub unsafe fn postalAddresses(&self) -> Id<NSArray<CNLabeledValue<CNPostalAddress>>>;
 
-        #[cfg(all(
-            feature = "Contacts_CNLabeledValue",
-            feature = "Contacts_CNPostalAddress"
-        ))]
+        #[cfg(all(feature = "CNLabeledValue", feature = "CNPostalAddress"))]
         #[method(setPostalAddresses:)]
         pub unsafe fn setPostalAddresses(
             &self,
             postal_addresses: &NSArray<CNLabeledValue<CNPostalAddress>>,
         );
 
-        #[cfg(feature = "Contacts_CNLabeledValue")]
+        #[cfg(feature = "CNLabeledValue")]
         #[method_id(@__retain_semantics Other urlAddresses)]
         pub unsafe fn urlAddresses(&self) -> Id<NSArray<CNLabeledValue<NSString>>>;
 
-        #[cfg(feature = "Contacts_CNLabeledValue")]
+        #[cfg(feature = "CNLabeledValue")]
         #[method(setUrlAddresses:)]
         pub unsafe fn setUrlAddresses(&self, url_addresses: &NSArray<CNLabeledValue<NSString>>);
 
-        #[cfg(all(
-            feature = "Contacts_CNContactRelation",
-            feature = "Contacts_CNLabeledValue"
-        ))]
+        #[cfg(all(feature = "CNContactRelation", feature = "CNLabeledValue"))]
         #[method_id(@__retain_semantics Other contactRelations)]
         pub unsafe fn contactRelations(&self) -> Id<NSArray<CNLabeledValue<CNContactRelation>>>;
 
-        #[cfg(all(
-            feature = "Contacts_CNContactRelation",
-            feature = "Contacts_CNLabeledValue"
-        ))]
+        #[cfg(all(feature = "CNContactRelation", feature = "CNLabeledValue"))]
         #[method(setContactRelations:)]
         pub unsafe fn setContactRelations(
             &self,
             contact_relations: &NSArray<CNLabeledValue<CNContactRelation>>,
         );
 
-        #[cfg(all(
-            feature = "Contacts_CNLabeledValue",
-            feature = "Contacts_CNSocialProfile"
-        ))]
+        #[cfg(all(feature = "CNLabeledValue", feature = "CNSocialProfile"))]
         #[method_id(@__retain_semantics Other socialProfiles)]
         pub unsafe fn socialProfiles(&self) -> Id<NSArray<CNLabeledValue<CNSocialProfile>>>;
 
-        #[cfg(all(
-            feature = "Contacts_CNLabeledValue",
-            feature = "Contacts_CNSocialProfile"
-        ))]
+        #[cfg(all(feature = "CNLabeledValue", feature = "CNSocialProfile"))]
         #[method(setSocialProfiles:)]
         pub unsafe fn setSocialProfiles(
             &self,
             social_profiles: &NSArray<CNLabeledValue<CNSocialProfile>>,
         );
 
-        #[cfg(all(
-            feature = "Contacts_CNInstantMessageAddress",
-            feature = "Contacts_CNLabeledValue"
-        ))]
+        #[cfg(all(feature = "CNInstantMessageAddress", feature = "CNLabeledValue"))]
         #[method_id(@__retain_semantics Other instantMessageAddresses)]
         pub unsafe fn instantMessageAddresses(
             &self,
         ) -> Id<NSArray<CNLabeledValue<CNInstantMessageAddress>>>;
 
-        #[cfg(all(
-            feature = "Contacts_CNInstantMessageAddress",
-            feature = "Contacts_CNLabeledValue"
-        ))]
+        #[cfg(all(feature = "CNInstantMessageAddress", feature = "CNLabeledValue"))]
         #[method(setInstantMessageAddresses:)]
         pub unsafe fn setInstantMessageAddresses(
             &self,
@@ -256,11 +226,11 @@ extern_methods!(
             non_gregorian_birthday: Option<&NSDateComponents>,
         );
 
-        #[cfg(feature = "Contacts_CNLabeledValue")]
+        #[cfg(feature = "CNLabeledValue")]
         #[method_id(@__retain_semantics Other dates)]
         pub unsafe fn dates(&self) -> Id<NSArray<CNLabeledValue<NSDateComponents>>>;
 
-        #[cfg(feature = "Contacts_CNLabeledValue")]
+        #[cfg(feature = "CNLabeledValue")]
         #[method(setDates:)]
         pub unsafe fn setDates(&self, dates: &NSArray<CNLabeledValue<NSDateComponents>>);
     }
@@ -268,7 +238,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Contacts_CNContact")]
+    #[cfg(feature = "CNContact")]
     unsafe impl CNMutableContact {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

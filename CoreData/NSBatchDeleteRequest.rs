@@ -7,10 +7,10 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CoreData_NSPersistentStoreRequest")]
+    #[cfg(feature = "NSPersistentStoreRequest")]
     pub struct NSBatchDeleteRequest;
 
-    #[cfg(feature = "CoreData_NSPersistentStoreRequest")]
+    #[cfg(feature = "NSPersistentStoreRequest")]
     unsafe impl ClassType for NSBatchDeleteRequest {
         #[inherits(NSObject)]
         type Super = NSPersistentStoreRequest;
@@ -18,41 +18,41 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "CoreData_NSPersistentStoreRequest")]
+#[cfg(feature = "NSPersistentStoreRequest")]
 unsafe impl NSCopying for NSBatchDeleteRequest {}
 
-#[cfg(feature = "CoreData_NSPersistentStoreRequest")]
+#[cfg(feature = "NSPersistentStoreRequest")]
 unsafe impl NSObjectProtocol for NSBatchDeleteRequest {}
 
 extern_methods!(
-    #[cfg(feature = "CoreData_NSPersistentStoreRequest")]
+    #[cfg(feature = "NSPersistentStoreRequest")]
     unsafe impl NSBatchDeleteRequest {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
-        #[cfg(feature = "CoreData_NSFetchRequest")]
+        #[cfg(feature = "NSFetchRequest")]
         #[method_id(@__retain_semantics Init initWithFetchRequest:)]
         pub unsafe fn initWithFetchRequest(
             this: Allocated<Self>,
             fetch: &NSFetchRequest,
         ) -> Id<Self>;
 
-        #[cfg(feature = "CoreData_NSManagedObjectID")]
+        #[cfg(feature = "NSManagedObjectID")]
         #[method_id(@__retain_semantics Init initWithObjectIDs:)]
         pub unsafe fn initWithObjectIDs(
             this: Allocated<Self>,
             objects: &NSArray<NSManagedObjectID>,
         ) -> Id<Self>;
 
-        #[cfg(feature = "CoreData_NSPersistentStoreResult")]
+        #[cfg(feature = "NSPersistentStoreResult")]
         #[method(resultType)]
         pub unsafe fn resultType(&self) -> NSBatchDeleteRequestResultType;
 
-        #[cfg(feature = "CoreData_NSPersistentStoreResult")]
+        #[cfg(feature = "NSPersistentStoreResult")]
         #[method(setResultType:)]
         pub unsafe fn setResultType(&self, result_type: NSBatchDeleteRequestResultType);
 
-        #[cfg(feature = "CoreData_NSFetchRequest")]
+        #[cfg(feature = "NSFetchRequest")]
         #[method_id(@__retain_semantics Other fetchRequest)]
         pub unsafe fn fetchRequest(&self) -> Id<NSFetchRequest>;
     }
@@ -60,7 +60,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CoreData_NSPersistentStoreRequest")]
+    #[cfg(feature = "NSPersistentStoreRequest")]
     unsafe impl NSBatchDeleteRequest {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

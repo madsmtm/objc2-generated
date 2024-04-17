@@ -14,15 +14,15 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSCoding for NSTermOfAddress {}
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSTermOfAddress {}
 
 unsafe impl NSObjectProtocol for NSTermOfAddress {}
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSSecureCoding for NSTermOfAddress {}
 
 extern_methods!(
@@ -36,11 +36,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other masculine)]
         pub unsafe fn masculine() -> Id<Self>;
 
-        #[cfg(all(
-            feature = "Foundation_NSArray",
-            feature = "Foundation_NSMorphology",
-            feature = "Foundation_NSString"
-        ))]
+        #[cfg(all(feature = "NSArray", feature = "NSMorphology", feature = "NSString"))]
         #[method_id(@__retain_semantics Other localizedForLanguageIdentifier:withPronouns:)]
         pub unsafe fn localizedForLanguageIdentifier_withPronouns(
             language: &NSString,
@@ -53,11 +49,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other languageIdentifier)]
         pub unsafe fn languageIdentifier(&self) -> Option<Id<NSString>>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSMorphology"))]
+        #[cfg(all(feature = "NSArray", feature = "NSMorphology"))]
         #[method_id(@__retain_semantics Other pronouns)]
         pub unsafe fn pronouns(&self) -> Option<Id<NSArray<NSMorphologyPronoun>>>;
     }

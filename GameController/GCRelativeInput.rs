@@ -9,7 +9,7 @@ use crate::*;
 
 extern_protocol!(
     pub unsafe trait GCRelativeInput: NSObjectProtocol {
-        #[cfg(all(feature = "GameController_GCPhysicalInputElement", feature = "block2"))]
+        #[cfg(all(feature = "GCPhysicalInputElement", feature = "block2"))]
         #[method(deltaDidChangeHandler)]
         unsafe fn deltaDidChangeHandler(
             &self,
@@ -21,7 +21,7 @@ extern_protocol!(
             ),
         >;
 
-        #[cfg(all(feature = "GameController_GCPhysicalInputElement", feature = "block2"))]
+        #[cfg(all(feature = "GCPhysicalInputElement", feature = "block2"))]
         #[method(setDeltaDidChangeHandler:)]
         unsafe fn setDeltaDidChangeHandler(
             &self,
@@ -48,7 +48,7 @@ extern_protocol!(
         #[method(lastDeltaLatency)]
         unsafe fn lastDeltaLatency(&self) -> NSTimeInterval;
 
-        #[cfg(feature = "GameController_GCPhysicalInputSource")]
+        #[cfg(feature = "GCPhysicalInputSource")]
         #[method_id(@__retain_semantics Other sources)]
         unsafe fn sources(&self) -> Id<NSSet<ProtocolObject<dyn GCPhysicalInputSource>>>;
     }

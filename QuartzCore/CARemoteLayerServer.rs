@@ -37,7 +37,7 @@ extern_methods!(
 
 extern_methods!(
     /// CARemoteLayerServer
-    #[cfg(feature = "QuartzCore_CALayer")]
+    #[cfg(feature = "CALayer")]
     unsafe impl CALayer {
         #[method_id(@__retain_semantics Other layerWithRemoteClientId:)]
         pub unsafe fn layerWithRemoteClientId(client_id: u32) -> Id<CALayer>;

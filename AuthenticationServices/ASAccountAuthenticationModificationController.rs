@@ -10,7 +10,7 @@ extern_protocol!(
     pub unsafe trait ASAccountAuthenticationModificationControllerDelegate:
         NSObjectProtocol
     {
-        #[cfg(feature = "AuthenticationServices_ASAccountAuthenticationModificationRequest")]
+        #[cfg(feature = "ASAccountAuthenticationModificationRequest")]
         #[optional]
         #[method(accountAuthenticationModificationController:didSuccessfullyCompleteRequest:withUserInfo:)]
         unsafe fn accountAuthenticationModificationController_didSuccessfullyCompleteRequest_withUserInfo(
@@ -20,7 +20,7 @@ extern_protocol!(
             user_info: Option<&NSDictionary>,
         );
 
-        #[cfg(feature = "AuthenticationServices_ASAccountAuthenticationModificationRequest")]
+        #[cfg(feature = "ASAccountAuthenticationModificationRequest")]
         #[optional]
         #[method(accountAuthenticationModificationController:didFailRequest:withError:)]
         unsafe fn accountAuthenticationModificationController_didFailRequest_withError(
@@ -38,7 +38,7 @@ extern_protocol!(
     pub unsafe trait ASAccountAuthenticationModificationControllerPresentationContextProviding:
         NSObjectProtocol
     {
-        #[cfg(feature = "AuthenticationServices_ASFoundation")]
+        #[cfg(feature = "ASFoundation")]
         #[method_id(@__retain_semantics Other presentationAnchorForAccountAuthenticationModificationController:)]
         unsafe fn presentationAnchorForAccountAuthenticationModificationController(
             &self,
@@ -101,7 +101,7 @@ extern_methods!(
             >,
         );
 
-        #[cfg(feature = "AuthenticationServices_ASAccountAuthenticationModificationRequest")]
+        #[cfg(feature = "ASAccountAuthenticationModificationRequest")]
         #[method(performRequest:)]
         pub unsafe fn performRequest(&self, request: &ASAccountAuthenticationModificationRequest);
     }

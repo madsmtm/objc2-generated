@@ -25,15 +25,15 @@ extern_methods!(
         #[method(powerOn)]
         pub unsafe fn powerOn(&self) -> bool;
 
-        #[cfg(feature = "CoreWLAN_CWChannel")]
+        #[cfg(feature = "CWChannel")]
         #[method_id(@__retain_semantics Other supportedWLANChannels)]
         pub unsafe fn supportedWLANChannels(&self) -> Option<Id<NSSet<CWChannel>>>;
 
-        #[cfg(feature = "CoreWLAN_CWChannel")]
+        #[cfg(feature = "CWChannel")]
         #[method_id(@__retain_semantics Other wlanChannel)]
         pub unsafe fn wlanChannel(&self) -> Option<Id<CWChannel>>;
 
-        #[cfg(feature = "CoreWLAN_CoreWLANTypes")]
+        #[cfg(feature = "CoreWLANTypes")]
         #[method(activePHYMode)]
         pub unsafe fn activePHYMode(&self) -> CWPHYMode;
 
@@ -52,7 +52,7 @@ extern_methods!(
         #[method(noiseMeasurement)]
         pub unsafe fn noiseMeasurement(&self) -> NSInteger;
 
-        #[cfg(feature = "CoreWLAN_CoreWLANTypes")]
+        #[cfg(feature = "CoreWLANTypes")]
         #[method(security)]
         pub unsafe fn security(&self) -> CWSecurity;
 
@@ -62,7 +62,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other countryCode)]
         pub unsafe fn countryCode(&self) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "CoreWLAN_CoreWLANTypes")]
+        #[cfg(feature = "CoreWLANTypes")]
         #[method(interfaceMode)]
         pub unsafe fn interfaceMode(&self) -> CWInterfaceMode;
 
@@ -75,11 +75,11 @@ extern_methods!(
         #[method(serviceActive)]
         pub unsafe fn serviceActive(&self) -> bool;
 
-        #[cfg(feature = "CoreWLAN_CWNetwork")]
+        #[cfg(feature = "CWNetwork")]
         #[method_id(@__retain_semantics Other cachedScanResults)]
         pub unsafe fn cachedScanResults(&self) -> Option<Id<NSSet<CWNetwork>>>;
 
-        #[cfg(feature = "CoreWLAN_CWConfiguration")]
+        #[cfg(feature = "CWConfiguration")]
         #[method_id(@__retain_semantics Other configuration)]
         pub unsafe fn configuration(&self) -> Option<Id<CWConfiguration>>;
 
@@ -105,7 +105,7 @@ extern_methods!(
         #[method(setPower:error:_)]
         pub unsafe fn setPower_error(&self, power: bool) -> Result<(), Id<NSError>>;
 
-        #[cfg(feature = "CoreWLAN_CWChannel")]
+        #[cfg(feature = "CWChannel")]
         #[method(setWLANChannel:error:_)]
         pub unsafe fn setWLANChannel_error(&self, channel: &CWChannel) -> Result<(), Id<NSError>>;
 
@@ -115,7 +115,7 @@ extern_methods!(
             key: Option<&NSData>,
         ) -> Result<(), Id<NSError>>;
 
-        #[cfg(feature = "CoreWLAN_CoreWLANTypes")]
+        #[cfg(feature = "CoreWLANTypes")]
         #[method(setWEPKey:flags:index:error:_)]
         pub unsafe fn setWEPKey_flags_index_error(
             &self,
@@ -124,14 +124,14 @@ extern_methods!(
             index: NSInteger,
         ) -> Result<(), Id<NSError>>;
 
-        #[cfg(feature = "CoreWLAN_CWNetwork")]
+        #[cfg(feature = "CWNetwork")]
         #[method_id(@__retain_semantics Other scanForNetworksWithSSID:error:_)]
         pub unsafe fn scanForNetworksWithSSID_error(
             &self,
             ssid: Option<&NSData>,
         ) -> Result<Id<NSSet<CWNetwork>>, Id<NSError>>;
 
-        #[cfg(feature = "CoreWLAN_CWNetwork")]
+        #[cfg(feature = "CWNetwork")]
         #[method_id(@__retain_semantics Other scanForNetworksWithSSID:includeHidden:error:_)]
         pub unsafe fn scanForNetworksWithSSID_includeHidden_error(
             &self,
@@ -139,14 +139,14 @@ extern_methods!(
             include_hidden: bool,
         ) -> Result<Id<NSSet<CWNetwork>>, Id<NSError>>;
 
-        #[cfg(feature = "CoreWLAN_CWNetwork")]
+        #[cfg(feature = "CWNetwork")]
         #[method_id(@__retain_semantics Other scanForNetworksWithName:error:_)]
         pub unsafe fn scanForNetworksWithName_error(
             &self,
             network_name: Option<&NSString>,
         ) -> Result<Id<NSSet<CWNetwork>>, Id<NSError>>;
 
-        #[cfg(feature = "CoreWLAN_CWNetwork")]
+        #[cfg(feature = "CWNetwork")]
         #[method_id(@__retain_semantics Other scanForNetworksWithName:includeHidden:error:_)]
         pub unsafe fn scanForNetworksWithName_includeHidden_error(
             &self,
@@ -154,7 +154,7 @@ extern_methods!(
             include_hidden: bool,
         ) -> Result<Id<NSSet<CWNetwork>>, Id<NSError>>;
 
-        #[cfg(feature = "CoreWLAN_CWNetwork")]
+        #[cfg(feature = "CWNetwork")]
         #[method(associateToNetwork:password:error:_)]
         pub unsafe fn associateToNetwork_password_error(
             &self,
@@ -165,7 +165,7 @@ extern_methods!(
         #[method(disassociate)]
         pub unsafe fn disassociate(&self);
 
-        #[cfg(feature = "CoreWLAN_CoreWLANTypes")]
+        #[cfg(feature = "CoreWLANTypes")]
         #[deprecated]
         #[method(startIBSSModeWithSSID:security:channel:password:error:_)]
         pub unsafe fn startIBSSModeWithSSID_security_channel_password_error(

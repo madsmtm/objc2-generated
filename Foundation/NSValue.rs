@@ -13,15 +13,15 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSCoding for NSValue {}
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSValue {}
 
 unsafe impl NSObjectProtocol for NSValue {}
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSSecureCoding for NSValue {}
 
 extern_methods!(
@@ -39,7 +39,7 @@ extern_methods!(
             r#type: NonNull<c_char>,
         ) -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSCoder")]
+        #[cfg(feature = "NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
     }
@@ -96,20 +96,20 @@ unsafe impl Send for NSNumber {}
 
 unsafe impl Sync for NSNumber {}
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSCoding for NSNumber {}
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSNumber {}
 
 unsafe impl NSObjectProtocol for NSNumber {}
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSSecureCoding for NSNumber {}
 
 extern_methods!(
     unsafe impl NSNumber {
-        #[cfg(feature = "Foundation_NSCoder")]
+        #[cfg(feature = "NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
 
@@ -203,18 +203,18 @@ extern_methods!(
         #[method(unsignedIntegerValue)]
         pub fn unsignedIntegerValue(&self) -> NSUInteger;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other stringValue)]
         pub fn stringValue(&self) -> Id<NSString>;
 
-        #[cfg(feature = "Foundation_NSObjCRuntime")]
+        #[cfg(feature = "NSObjCRuntime")]
         #[method(compare:)]
         pub fn compare(&self, other_number: &NSNumber) -> NSComparisonResult;
 
         #[method(isEqualToNumber:)]
         pub fn isEqualToNumber(&self, number: &NSNumber) -> bool;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other descriptionWithLocale:)]
         pub unsafe fn descriptionWithLocale(&self, locale: Option<&AnyObject>) -> Id<NSString>;
     }

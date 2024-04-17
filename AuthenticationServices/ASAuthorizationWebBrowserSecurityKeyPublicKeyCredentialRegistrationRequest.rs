@@ -8,7 +8,7 @@ use crate::*;
 
 extern_protocol!(
     pub unsafe trait ASAuthorizationWebBrowserSecurityKeyPublicKeyCredentialRegistrationRequest {
-        #[cfg(feature = "AuthenticationServices_ASPublicKeyCredentialClientData")]
+        #[cfg(feature = "ASPublicKeyCredentialClientData")]
         #[method_id(@__retain_semantics Other clientData)]
         unsafe fn clientData(&self) -> Option<Id<ASPublicKeyCredentialClientData>>;
     }

@@ -7,10 +7,10 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CoreData_NSPersistentStoreRequest")]
+    #[cfg(feature = "NSPersistentStoreRequest")]
     pub struct NSBatchUpdateRequest;
 
-    #[cfg(feature = "CoreData_NSPersistentStoreRequest")]
+    #[cfg(feature = "NSPersistentStoreRequest")]
     unsafe impl ClassType for NSBatchUpdateRequest {
         #[inherits(NSObject)]
         type Super = NSPersistentStoreRequest;
@@ -18,14 +18,14 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "CoreData_NSPersistentStoreRequest")]
+#[cfg(feature = "NSPersistentStoreRequest")]
 unsafe impl NSCopying for NSBatchUpdateRequest {}
 
-#[cfg(feature = "CoreData_NSPersistentStoreRequest")]
+#[cfg(feature = "NSPersistentStoreRequest")]
 unsafe impl NSObjectProtocol for NSBatchUpdateRequest {}
 
 extern_methods!(
-    #[cfg(feature = "CoreData_NSPersistentStoreRequest")]
+    #[cfg(feature = "NSPersistentStoreRequest")]
     unsafe impl NSBatchUpdateRequest {
         #[method_id(@__retain_semantics Other batchUpdateRequestWithEntityName:)]
         pub unsafe fn batchUpdateRequestWithEntityName(entity_name: &NSString) -> Id<Self>;
@@ -34,7 +34,7 @@ extern_methods!(
         pub unsafe fn initWithEntityName(this: Allocated<Self>, entity_name: &NSString)
             -> Id<Self>;
 
-        #[cfg(feature = "CoreData_NSEntityDescription")]
+        #[cfg(feature = "NSEntityDescription")]
         #[method_id(@__retain_semantics Init initWithEntity:)]
         pub unsafe fn initWithEntity(
             this: Allocated<Self>,
@@ -44,7 +44,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other entityName)]
         pub unsafe fn entityName(&self) -> Id<NSString>;
 
-        #[cfg(feature = "CoreData_NSEntityDescription")]
+        #[cfg(feature = "NSEntityDescription")]
         #[method_id(@__retain_semantics Other entity)]
         pub unsafe fn entity(&self) -> Id<NSEntityDescription>;
 
@@ -60,11 +60,11 @@ extern_methods!(
         #[method(setIncludesSubentities:)]
         pub unsafe fn setIncludesSubentities(&self, includes_subentities: bool);
 
-        #[cfg(feature = "CoreData_NSPersistentStoreResult")]
+        #[cfg(feature = "NSPersistentStoreResult")]
         #[method(resultType)]
         pub unsafe fn resultType(&self) -> NSBatchUpdateRequestResultType;
 
-        #[cfg(feature = "CoreData_NSPersistentStoreResult")]
+        #[cfg(feature = "NSPersistentStoreResult")]
         #[method(setResultType:)]
         pub unsafe fn setResultType(&self, result_type: NSBatchUpdateRequestResultType);
 
@@ -78,7 +78,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CoreData_NSPersistentStoreRequest")]
+    #[cfg(feature = "NSPersistentStoreRequest")]
     unsafe impl NSBatchUpdateRequest {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

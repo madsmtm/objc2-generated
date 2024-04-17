@@ -36,11 +36,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Other sessionID)]
         pub unsafe fn sessionID(&self) -> Id<NSUUID>;
 
-        #[cfg(feature = "MailKit_MEMessage")]
+        #[cfg(feature = "MEMessage")]
         #[method_id(@__retain_semantics Other mailMessage)]
         pub unsafe fn mailMessage(&self) -> Id<MEMessage>;
 
-        #[cfg(feature = "MailKit_MEComposeContext")]
+        #[cfg(feature = "MEComposeContext")]
         #[method_id(@__retain_semantics Other composeContext)]
         pub unsafe fn composeContext(&self) -> Id<MEComposeContext>;
 
@@ -82,10 +82,7 @@ extern_protocol!(
         #[method(mailComposeSessionDidEnd:)]
         unsafe fn mailComposeSessionDidEnd(&self, session: &MEComposeSession);
 
-        #[cfg(all(
-            feature = "MailKit_MEExtensionViewController",
-            feature = "objc2-app-kit"
-        ))]
+        #[cfg(all(feature = "MEExtensionViewController", feature = "objc2-app-kit"))]
         #[method_id(@__retain_semantics Other viewControllerForSession:)]
         unsafe fn viewControllerForSession(
             &self,
@@ -94,8 +91,8 @@ extern_protocol!(
         ) -> Id<MEExtensionViewController>;
 
         #[cfg(all(
-            feature = "MailKit_MEAddressAnnotation",
-            feature = "MailKit_MEEmailAddress",
+            feature = "MEAddressAnnotation",
+            feature = "MEEmailAddress",
             feature = "block2"
         ))]
         #[optional]

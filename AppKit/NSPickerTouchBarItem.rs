@@ -49,10 +49,10 @@ unsafe impl RefEncode for NSPickerTouchBarItemControlRepresentation {
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSTouchBarItem")]
+    #[cfg(feature = "NSTouchBarItem")]
     pub struct NSPickerTouchBarItem;
 
-    #[cfg(feature = "AppKit_NSTouchBarItem")]
+    #[cfg(feature = "NSTouchBarItem")]
     unsafe impl ClassType for NSPickerTouchBarItem {
         #[inherits(NSObject)]
         type Super = NSTouchBarItem;
@@ -60,14 +60,14 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSTouchBarItem")]
+#[cfg(feature = "NSTouchBarItem")]
 unsafe impl NSCoding for NSPickerTouchBarItem {}
 
-#[cfg(feature = "AppKit_NSTouchBarItem")]
+#[cfg(feature = "NSTouchBarItem")]
 unsafe impl NSObjectProtocol for NSPickerTouchBarItem {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSTouchBarItem")]
+    #[cfg(feature = "NSTouchBarItem")]
     unsafe impl NSPickerTouchBarItem {
         #[method_id(@__retain_semantics Other pickerTouchBarItemWithIdentifier:labels:selectionMode:target:action:)]
         pub unsafe fn pickerTouchBarItemWithIdentifier_labels_selectionMode_target_action(
@@ -79,7 +79,7 @@ extern_methods!(
             mtm: MainThreadMarker,
         ) -> Id<Self>;
 
-        #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(feature = "NSImage")]
         #[method_id(@__retain_semantics Other pickerTouchBarItemWithIdentifier:images:selectionMode:target:action:)]
         pub unsafe fn pickerTouchBarItemWithIdentifier_images_selectionMode_target_action(
             identifier: &NSTouchBarItemIdentifier,
@@ -108,11 +108,11 @@ extern_methods!(
             collapsed_representation_label: &NSString,
         );
 
-        #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(feature = "NSImage")]
         #[method_id(@__retain_semantics Other collapsedRepresentationImage)]
         pub unsafe fn collapsedRepresentationImage(&self) -> Option<Id<NSImage>>;
 
-        #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(feature = "NSImage")]
         #[method(setCollapsedRepresentationImage:)]
         pub unsafe fn setCollapsedRepresentationImage(
             &self,
@@ -125,11 +125,11 @@ extern_methods!(
         #[method(setSelectedIndex:)]
         pub unsafe fn setSelectedIndex(&self, selected_index: NSInteger);
 
-        #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(feature = "NSColor")]
         #[method_id(@__retain_semantics Other selectionColor)]
         pub unsafe fn selectionColor(&self) -> Option<Id<NSColor>>;
 
-        #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(feature = "NSColor")]
         #[method(setSelectionColor:)]
         pub unsafe fn setSelectionColor(&self, selection_color: Option<&NSColor>);
 
@@ -145,11 +145,11 @@ extern_methods!(
         #[method(setNumberOfOptions:)]
         pub unsafe fn setNumberOfOptions(&self, number_of_options: NSInteger);
 
-        #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(feature = "NSImage")]
         #[method(setImage:atIndex:)]
         pub unsafe fn setImage_atIndex(&self, image: Option<&NSImage>, index: NSInteger);
 
-        #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(feature = "NSImage")]
         #[method_id(@__retain_semantics Other imageAtIndex:)]
         pub unsafe fn imageAtIndex(&self, index: NSInteger) -> Option<Id<NSImage>>;
 
@@ -193,7 +193,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSTouchBarItem`
-    #[cfg(feature = "AppKit_NSTouchBarItem")]
+    #[cfg(feature = "NSTouchBarItem")]
     unsafe impl NSPickerTouchBarItem {
         #[method_id(@__retain_semantics Init initWithIdentifier:)]
         pub unsafe fn initWithIdentifier(
@@ -211,7 +211,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSTouchBarItem")]
+    #[cfg(feature = "NSTouchBarItem")]
     unsafe impl NSPickerTouchBarItem {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;

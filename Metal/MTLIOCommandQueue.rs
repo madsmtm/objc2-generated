@@ -73,11 +73,11 @@ extern_protocol!(
         #[method(enqueueBarrier)]
         unsafe fn enqueueBarrier(&self);
 
-        #[cfg(feature = "Metal_MTLIOCommandBuffer")]
+        #[cfg(feature = "MTLIOCommandBuffer")]
         #[method_id(@__retain_semantics Other commandBuffer)]
         unsafe fn commandBuffer(&self) -> Id<ProtocolObject<dyn MTLIOCommandBuffer>>;
 
-        #[cfg(feature = "Metal_MTLIOCommandBuffer")]
+        #[cfg(feature = "MTLIOCommandBuffer")]
         #[method_id(@__retain_semantics Other commandBufferWithUnretainedReferences)]
         unsafe fn commandBufferWithUnretainedReferences(
             &self,
@@ -95,7 +95,7 @@ extern_protocol!(
 
 extern_protocol!(
     pub unsafe trait MTLIOScratchBuffer: NSObjectProtocol {
-        #[cfg(all(feature = "Metal_MTLBuffer", feature = "Metal_MTLResource"))]
+        #[cfg(all(feature = "MTLBuffer", feature = "MTLResource"))]
         #[method_id(@__retain_semantics Other buffer)]
         unsafe fn buffer(&self) -> Id<ProtocolObject<dyn MTLBuffer>>;
     }

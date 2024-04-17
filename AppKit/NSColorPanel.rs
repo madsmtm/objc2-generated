@@ -64,18 +64,10 @@ unsafe impl RefEncode for NSColorPanelOptions {
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(
-        feature = "AppKit_NSPanel",
-        feature = "AppKit_NSResponder",
-        feature = "AppKit_NSWindow"
-    ))]
+    #[cfg(all(feature = "NSPanel", feature = "NSResponder", feature = "NSWindow"))]
     pub struct NSColorPanel;
 
-    #[cfg(all(
-        feature = "AppKit_NSPanel",
-        feature = "AppKit_NSResponder",
-        feature = "AppKit_NSWindow"
-    ))]
+    #[cfg(all(feature = "NSPanel", feature = "NSResponder", feature = "NSWindow"))]
     unsafe impl ClassType for NSColorPanel {
         #[inherits(NSWindow, NSResponder, NSObject)]
         type Super = NSPanel;
@@ -84,81 +76,69 @@ extern_class!(
 );
 
 #[cfg(all(
-    feature = "AppKit_NSAccessibilityProtocols",
-    feature = "AppKit_NSPanel",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSWindow"
+    feature = "NSAccessibilityProtocols",
+    feature = "NSPanel",
+    feature = "NSResponder",
+    feature = "NSWindow"
 ))]
 unsafe impl NSAccessibility for NSColorPanel {}
 
 #[cfg(all(
-    feature = "AppKit_NSAccessibilityProtocols",
-    feature = "AppKit_NSPanel",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSWindow"
+    feature = "NSAccessibilityProtocols",
+    feature = "NSPanel",
+    feature = "NSResponder",
+    feature = "NSWindow"
 ))]
 unsafe impl NSAccessibilityElementProtocol for NSColorPanel {}
 
 #[cfg(all(
-    feature = "AppKit_NSAnimation",
-    feature = "AppKit_NSPanel",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSWindow"
+    feature = "NSAnimation",
+    feature = "NSPanel",
+    feature = "NSResponder",
+    feature = "NSWindow"
 ))]
 unsafe impl NSAnimatablePropertyContainer for NSColorPanel {}
 
 #[cfg(all(
-    feature = "AppKit_NSAppearance",
-    feature = "AppKit_NSPanel",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSWindow"
+    feature = "NSAppearance",
+    feature = "NSPanel",
+    feature = "NSResponder",
+    feature = "NSWindow"
 ))]
 unsafe impl NSAppearanceCustomization for NSColorPanel {}
 
-#[cfg(all(
-    feature = "AppKit_NSPanel",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSWindow"
-))]
+#[cfg(all(feature = "NSPanel", feature = "NSResponder", feature = "NSWindow"))]
 unsafe impl NSCoding for NSColorPanel {}
 
 #[cfg(all(
-    feature = "AppKit_NSMenu",
-    feature = "AppKit_NSPanel",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSWindow"
+    feature = "NSMenu",
+    feature = "NSPanel",
+    feature = "NSResponder",
+    feature = "NSWindow"
 ))]
 unsafe impl NSMenuItemValidation for NSColorPanel {}
 
-#[cfg(all(
-    feature = "AppKit_NSPanel",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSWindow"
-))]
+#[cfg(all(feature = "NSPanel", feature = "NSResponder", feature = "NSWindow"))]
 unsafe impl NSObjectProtocol for NSColorPanel {}
 
 #[cfg(all(
-    feature = "AppKit_NSPanel",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSUserInterfaceItemIdentification",
-    feature = "AppKit_NSWindow"
+    feature = "NSPanel",
+    feature = "NSResponder",
+    feature = "NSUserInterfaceItemIdentification",
+    feature = "NSWindow"
 ))]
 unsafe impl NSUserInterfaceItemIdentification for NSColorPanel {}
 
 #[cfg(all(
-    feature = "AppKit_NSPanel",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSUserInterfaceValidation",
-    feature = "AppKit_NSWindow"
+    feature = "NSPanel",
+    feature = "NSResponder",
+    feature = "NSUserInterfaceValidation",
+    feature = "NSWindow"
 ))]
 unsafe impl NSUserInterfaceValidations for NSColorPanel {}
 
 extern_methods!(
-    #[cfg(all(
-        feature = "AppKit_NSPanel",
-        feature = "AppKit_NSResponder",
-        feature = "AppKit_NSWindow"
-    ))]
+    #[cfg(all(feature = "NSPanel", feature = "NSResponder", feature = "NSWindow"))]
     unsafe impl NSColorPanel {
         #[method_id(@__retain_semantics Other sharedColorPanel)]
         pub unsafe fn sharedColorPanel(mtm: MainThreadMarker) -> Id<NSColorPanel>;
@@ -166,11 +146,7 @@ extern_methods!(
         #[method(sharedColorPanelExists)]
         pub unsafe fn sharedColorPanelExists(mtm: MainThreadMarker) -> bool;
 
-        #[cfg(all(
-            feature = "AppKit_NSColor",
-            feature = "AppKit_NSEvent",
-            feature = "AppKit_NSView"
-        ))]
+        #[cfg(all(feature = "NSColor", feature = "NSEvent", feature = "NSView"))]
         #[method(dragColor:withEvent:fromView:)]
         pub unsafe fn dragColor_withEvent_fromView(
             color: &NSColor,
@@ -184,11 +160,11 @@ extern_methods!(
         #[method(setPickerMode:)]
         pub unsafe fn setPickerMode(mode: NSColorPanelMode, mtm: MainThreadMarker);
 
-        #[cfg(feature = "AppKit_NSView")]
+        #[cfg(feature = "NSView")]
         #[method_id(@__retain_semantics Other accessoryView)]
         pub unsafe fn accessoryView(&self) -> Option<Id<NSView>>;
 
-        #[cfg(feature = "AppKit_NSView")]
+        #[cfg(feature = "NSView")]
         #[method(setAccessoryView:)]
         pub unsafe fn setAccessoryView(&self, accessory_view: Option<&NSView>);
 
@@ -210,11 +186,11 @@ extern_methods!(
         #[method(setMode:)]
         pub unsafe fn setMode(&self, mode: NSColorPanelMode);
 
-        #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(feature = "NSColor")]
         #[method_id(@__retain_semantics Other color)]
         pub unsafe fn color(&self) -> Id<NSColor>;
 
-        #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(feature = "NSColor")]
         #[method(setColor:)]
         pub unsafe fn setColor(&self, color: &NSColor);
 
@@ -227,11 +203,11 @@ extern_methods!(
         #[method(setTarget:)]
         pub unsafe fn setTarget(&self, target: Option<&AnyObject>);
 
-        #[cfg(feature = "AppKit_NSColorList")]
+        #[cfg(feature = "NSColorList")]
         #[method(attachColorList:)]
         pub unsafe fn attachColorList(&self, color_list: &NSColorList);
 
-        #[cfg(feature = "AppKit_NSColorList")]
+        #[cfg(feature = "NSColorList")]
         #[method(detachColorList:)]
         pub unsafe fn detachColorList(&self, color_list: &NSColorList);
     }
@@ -239,13 +215,9 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSWindow`
-    #[cfg(all(
-        feature = "AppKit_NSPanel",
-        feature = "AppKit_NSResponder",
-        feature = "AppKit_NSWindow"
-    ))]
+    #[cfg(all(feature = "NSPanel", feature = "NSResponder", feature = "NSWindow"))]
     unsafe impl NSColorPanel {
-        #[cfg(feature = "AppKit_NSGraphics")]
+        #[cfg(feature = "NSGraphics")]
         #[method_id(@__retain_semantics Init initWithContentRect:styleMask:backing:defer:)]
         pub unsafe fn initWithContentRect_styleMask_backing_defer(
             this: Allocated<Self>,
@@ -255,7 +227,7 @@ extern_methods!(
             flag: bool,
         ) -> Id<Self>;
 
-        #[cfg(all(feature = "AppKit_NSGraphics", feature = "AppKit_NSScreen"))]
+        #[cfg(all(feature = "NSGraphics", feature = "NSScreen"))]
         #[method_id(@__retain_semantics Init initWithContentRect:styleMask:backing:defer:screen:)]
         pub unsafe fn initWithContentRect_styleMask_backing_defer_screen(
             this: Allocated<Self>,
@@ -269,7 +241,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Id<Self>;
 
-        #[cfg(feature = "AppKit_NSViewController")]
+        #[cfg(feature = "NSViewController")]
         #[method_id(@__retain_semantics Other windowWithContentViewController:)]
         pub unsafe fn windowWithContentViewController(
             content_view_controller: &NSViewController,
@@ -279,11 +251,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSResponder`
-    #[cfg(all(
-        feature = "AppKit_NSPanel",
-        feature = "AppKit_NSResponder",
-        feature = "AppKit_NSWindow"
-    ))]
+    #[cfg(all(feature = "NSPanel", feature = "NSResponder", feature = "NSWindow"))]
     unsafe impl NSColorPanel {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -292,11 +260,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(all(
-        feature = "AppKit_NSPanel",
-        feature = "AppKit_NSResponder",
-        feature = "AppKit_NSWindow"
-    ))]
+    #[cfg(all(feature = "NSPanel", feature = "NSResponder", feature = "NSWindow"))]
     unsafe impl NSColorPanel {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
@@ -305,7 +269,7 @@ extern_methods!(
 
 extern_methods!(
     /// NSColorPanel
-    #[cfg(all(feature = "AppKit_NSApplication", feature = "AppKit_NSResponder"))]
+    #[cfg(all(feature = "NSApplication", feature = "NSResponder"))]
     unsafe impl NSApplication {
         #[method(orderFrontColorPanel:)]
         pub unsafe fn orderFrontColorPanel(&self, sender: Option<&AnyObject>);
@@ -314,11 +278,7 @@ extern_methods!(
 
 extern_protocol!(
     pub unsafe trait NSColorChanging: NSObjectProtocol {
-        #[cfg(all(
-            feature = "AppKit_NSPanel",
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSWindow"
-        ))]
+        #[cfg(all(feature = "NSPanel", feature = "NSResponder", feature = "NSWindow"))]
         #[method(changeColor:)]
         unsafe fn changeColor(&self, sender: Option<&NSColorPanel>);
     }

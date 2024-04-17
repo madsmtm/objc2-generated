@@ -13,7 +13,7 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other productCategory)]
         unsafe fn productCategory(&self) -> Id<NSString>;
 
-        #[cfg(feature = "GameController_GCPhysicalInputProfile")]
+        #[cfg(feature = "GCPhysicalInputProfile")]
         #[deprecated = "Use the physicalInputProfile property on GCController instead.  For GCKeyboard, use the keyboardInput property.  For GCMouse, use the mouseInput property."]
         #[method_id(@__retain_semantics Other physicalInputProfile)]
         unsafe fn physicalInputProfile(&self) -> Id<GCPhysicalInputProfile>;

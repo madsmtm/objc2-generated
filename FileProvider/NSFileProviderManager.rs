@@ -48,11 +48,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Other defaultManager)]
         pub unsafe fn defaultManager() -> Id<NSFileProviderManager>;
 
-        #[cfg(feature = "FileProvider_NSFileProviderDomain")]
+        #[cfg(feature = "NSFileProviderDomain")]
         #[method_id(@__retain_semantics Other managerForDomain:)]
         pub unsafe fn managerForDomain(domain: &NSFileProviderDomain) -> Option<Id<Self>>;
 
-        #[cfg(all(feature = "FileProvider_NSFileProviderItem", feature = "block2"))]
+        #[cfg(all(feature = "NSFileProviderItem", feature = "block2"))]
         #[method(signalEnumeratorForContainerItemIdentifier:completionHandler:)]
         pub unsafe fn signalEnumeratorForContainerItemIdentifier_completionHandler(
             &self,
@@ -60,7 +60,7 @@ extern_methods!(
             completion: &Block<dyn Fn(*mut NSError)>,
         );
 
-        #[cfg(all(feature = "FileProvider_NSFileProviderItem", feature = "block2"))]
+        #[cfg(all(feature = "NSFileProviderItem", feature = "block2"))]
         #[method(getUserVisibleURLForItemIdentifier:completionHandler:)]
         pub unsafe fn getUserVisibleURLForItemIdentifier_completionHandler(
             &self,
@@ -69,8 +69,8 @@ extern_methods!(
         );
 
         #[cfg(all(
-            feature = "FileProvider_NSFileProviderDomain",
-            feature = "FileProvider_NSFileProviderItem",
+            feature = "NSFileProviderDomain",
+            feature = "NSFileProviderItem",
             feature = "block2"
         ))]
         #[method(getIdentifierForUserVisibleFileAtURL:completionHandler:)]
@@ -85,7 +85,7 @@ extern_methods!(
             >,
         );
 
-        #[cfg(all(feature = "FileProvider_NSFileProviderItem", feature = "block2"))]
+        #[cfg(all(feature = "NSFileProviderItem", feature = "block2"))]
         #[method(registerURLSessionTask:forItemWithIdentifier:completionHandler:)]
         pub unsafe fn registerURLSessionTask_forItemWithIdentifier_completionHandler(
             &self,
@@ -103,7 +103,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other temporaryDirectoryURLWithError:_)]
         pub unsafe fn temporaryDirectoryURLWithError(&self) -> Result<Id<NSURL>, Id<NSError>>;
 
-        #[cfg(feature = "FileProvider_NSFileProviderItem")]
+        #[cfg(feature = "NSFileProviderItem")]
         #[method(writePlaceholderAtURL:withMetadata:error:_)]
         pub unsafe fn writePlaceholderAtURL_withMetadata_error(
             placeholder_url: &NSURL,
@@ -113,21 +113,21 @@ extern_methods!(
         #[method_id(@__retain_semantics Other placeholderURLForURL:)]
         pub unsafe fn placeholderURLForURL(url: &NSURL) -> Id<NSURL>;
 
-        #[cfg(all(feature = "FileProvider_NSFileProviderDomain", feature = "block2"))]
+        #[cfg(all(feature = "NSFileProviderDomain", feature = "block2"))]
         #[method(addDomain:completionHandler:)]
         pub unsafe fn addDomain_completionHandler(
             domain: &NSFileProviderDomain,
             completion_handler: &Block<dyn Fn(*mut NSError)>,
         );
 
-        #[cfg(all(feature = "FileProvider_NSFileProviderDomain", feature = "block2"))]
+        #[cfg(all(feature = "NSFileProviderDomain", feature = "block2"))]
         #[method(removeDomain:completionHandler:)]
         pub unsafe fn removeDomain_completionHandler(
             domain: &NSFileProviderDomain,
             completion_handler: &Block<dyn Fn(*mut NSError)>,
         );
 
-        #[cfg(all(feature = "FileProvider_NSFileProviderDomain", feature = "block2"))]
+        #[cfg(all(feature = "NSFileProviderDomain", feature = "block2"))]
         #[method(removeDomain:mode:completionHandler:)]
         pub unsafe fn removeDomain_mode_completionHandler(
             domain: &NSFileProviderDomain,
@@ -135,7 +135,7 @@ extern_methods!(
             completion_handler: &Block<dyn Fn(*mut NSURL, *mut NSError)>,
         );
 
-        #[cfg(all(feature = "FileProvider_NSFileProviderDomain", feature = "block2"))]
+        #[cfg(all(feature = "NSFileProviderDomain", feature = "block2"))]
         #[method(getDomainsWithCompletionHandler:)]
         pub unsafe fn getDomainsWithCompletionHandler(
             completion_handler: &Block<
@@ -180,7 +180,7 @@ extern "C" {
 extern_methods!(
     /// MaterializedSet
     unsafe impl NSFileProviderManager {
-        #[cfg(feature = "FileProvider_NSFileProviderEnumerating")]
+        #[cfg(feature = "NSFileProviderEnumerating")]
         #[method_id(@__retain_semantics Other enumeratorForMaterializedItems)]
         pub unsafe fn enumeratorForMaterializedItems(
             &self,
@@ -193,9 +193,9 @@ extern "C" {
 }
 
 extern_protocol!(
-    #[cfg(feature = "FileProvider_NSFileProviderEnumerating")]
+    #[cfg(feature = "NSFileProviderEnumerating")]
     pub unsafe trait NSFileProviderPendingSetEnumerator: NSFileProviderEnumerator {
-        #[cfg(feature = "FileProvider_NSFileProviderDomain")]
+        #[cfg(feature = "NSFileProviderDomain")]
         #[method_id(@__retain_semantics Other domainVersion)]
         unsafe fn domainVersion(&self) -> Option<Id<NSFileProviderDomainVersion>>;
 
@@ -206,14 +206,14 @@ extern_protocol!(
         unsafe fn isMaximumSizeReached(&self) -> bool;
     }
 
-    #[cfg(feature = "FileProvider_NSFileProviderEnumerating")]
+    #[cfg(feature = "NSFileProviderEnumerating")]
     unsafe impl ProtocolType for dyn NSFileProviderPendingSetEnumerator {}
 );
 
 extern_methods!(
     /// PendingSet
     unsafe impl NSFileProviderManager {
-        #[cfg(feature = "FileProvider_NSFileProviderEnumerating")]
+        #[cfg(feature = "NSFileProviderEnumerating")]
         #[method_id(@__retain_semantics Other enumeratorForPendingItems)]
         pub unsafe fn enumeratorForPendingItems(
             &self,
@@ -224,7 +224,7 @@ extern_methods!(
 extern_methods!(
     /// Import
     unsafe impl NSFileProviderManager {
-        #[cfg(all(feature = "FileProvider_NSFileProviderDomain", feature = "block2"))]
+        #[cfg(all(feature = "NSFileProviderDomain", feature = "block2"))]
         #[method(importDomain:fromDirectoryAtURL:completionHandler:)]
         pub unsafe fn importDomain_fromDirectoryAtURL_completionHandler(
             domain: &NSFileProviderDomain,
@@ -232,7 +232,7 @@ extern_methods!(
             completion_handler: &Block<dyn Fn(*mut NSError)>,
         );
 
-        #[cfg(all(feature = "FileProvider_NSFileProviderItem", feature = "block2"))]
+        #[cfg(all(feature = "NSFileProviderItem", feature = "block2"))]
         #[method(reimportItemsBelowItemWithIdentifier:completionHandler:)]
         pub unsafe fn reimportItemsBelowItemWithIdentifier_completionHandler(
             &self,
@@ -241,8 +241,8 @@ extern_methods!(
         );
 
         #[cfg(all(
-            feature = "FileProvider_NSFileProviderItem",
-            feature = "FileProvider_NSFileProviderModifyItemOptions",
+            feature = "NSFileProviderItem",
+            feature = "NSFileProviderModifyItemOptions",
             feature = "block2"
         ))]
         #[method(requestModificationOfFields:forItemWithIdentifier:options:completionHandler:)]
@@ -259,7 +259,7 @@ extern_methods!(
 extern_methods!(
     /// Eviction
     unsafe impl NSFileProviderManager {
-        #[cfg(all(feature = "FileProvider_NSFileProviderItem", feature = "block2"))]
+        #[cfg(all(feature = "NSFileProviderItem", feature = "block2"))]
         #[method(evictItemWithIdentifier:completionHandler:)]
         pub unsafe fn evictItemWithIdentifier_completionHandler(
             &self,
@@ -272,7 +272,7 @@ extern_methods!(
 extern_methods!(
     /// Barrier
     unsafe impl NSFileProviderManager {
-        #[cfg(all(feature = "FileProvider_NSFileProviderItem", feature = "block2"))]
+        #[cfg(all(feature = "NSFileProviderItem", feature = "block2"))]
         #[method(waitForChangesOnItemsBelowItemWithIdentifier:completionHandler:)]
         pub unsafe fn waitForChangesOnItemsBelowItemWithIdentifier_completionHandler(
             &self,
@@ -335,7 +335,7 @@ extern_methods!(
 extern_methods!(
     /// Materialize
     unsafe impl NSFileProviderManager {
-        #[cfg(all(feature = "FileProvider_NSFileProviderItem", feature = "block2"))]
+        #[cfg(all(feature = "NSFileProviderItem", feature = "block2"))]
         #[method(requestDownloadForItemWithIdentifier:requestedRange:completionHandler:)]
         pub unsafe fn requestDownloadForItemWithIdentifier_requestedRange_completionHandler(
             &self,

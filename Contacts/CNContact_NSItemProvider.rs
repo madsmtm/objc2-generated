@@ -7,12 +7,12 @@ use crate::*;
 
 extern_methods!(
     /// NSItemProvider
-    #[cfg(feature = "Contacts_CNContact")]
+    #[cfg(feature = "CNContact")]
     unsafe impl CNContact {}
 );
 
-#[cfg(feature = "Contacts_CNContact")]
+#[cfg(feature = "CNContact")]
 unsafe impl NSItemProviderReading for CNContact {}
 
-#[cfg(feature = "Contacts_CNContact")]
+#[cfg(feature = "CNContact")]
 unsafe impl NSItemProviderWriting for CNContact {}

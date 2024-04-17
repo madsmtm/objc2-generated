@@ -7,7 +7,7 @@ use crate::*;
 
 extern_methods!(
     /// NSScripting
-    #[cfg(feature = "AppKit_NSDocument")]
+    #[cfg(feature = "NSDocument")]
     unsafe impl NSDocument {
         #[method_id(@__retain_semantics Other lastComponentOfFileName)]
         pub unsafe fn lastComponentOfFileName(&self) -> Id<NSString>;

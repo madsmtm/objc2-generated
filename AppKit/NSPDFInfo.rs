@@ -41,11 +41,11 @@ extern_methods!(
         #[method(setTagNames:)]
         pub unsafe fn setTagNames(&self, tag_names: &NSArray<NSString>);
 
-        #[cfg(feature = "AppKit_NSPrintInfo")]
+        #[cfg(feature = "NSPrintInfo")]
         #[method(orientation)]
         pub unsafe fn orientation(&self) -> NSPaperOrientation;
 
-        #[cfg(feature = "AppKit_NSPrintInfo")]
+        #[cfg(feature = "NSPrintInfo")]
         #[method(setOrientation:)]
         pub unsafe fn setOrientation(&self, orientation: NSPaperOrientation);
 
@@ -55,7 +55,7 @@ extern_methods!(
         #[method(setPaperSize:)]
         pub unsafe fn setPaperSize(&self, paper_size: NSSize);
 
-        #[cfg(feature = "AppKit_NSPrintInfo")]
+        #[cfg(feature = "NSPrintInfo")]
         #[method_id(@__retain_semantics Other attributes)]
         pub unsafe fn attributes(
             &self,

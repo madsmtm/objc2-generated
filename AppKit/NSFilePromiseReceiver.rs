@@ -19,7 +19,7 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSFilePromiseReceiver {}
 
-#[cfg(feature = "AppKit_NSPasteboard")]
+#[cfg(feature = "NSPasteboard")]
 unsafe impl NSPasteboardReading for NSFilePromiseReceiver {}
 
 extern_methods!(

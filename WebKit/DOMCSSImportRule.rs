@@ -8,17 +8,17 @@ use crate::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(
-        feature = "WebKit_DOMCSSRule",
-        feature = "WebKit_DOMObject",
-        feature = "WebKit_WebScriptObject"
+        feature = "DOMCSSRule",
+        feature = "DOMObject",
+        feature = "WebScriptObject"
     ))]
     #[deprecated]
     pub struct DOMCSSImportRule;
 
     #[cfg(all(
-        feature = "WebKit_DOMCSSRule",
-        feature = "WebKit_DOMObject",
-        feature = "WebKit_WebScriptObject"
+        feature = "DOMCSSRule",
+        feature = "DOMObject",
+        feature = "WebScriptObject"
     ))]
     unsafe impl ClassType for DOMCSSImportRule {
         #[inherits(DOMObject, WebScriptObject, NSObject)]
@@ -28,36 +28,36 @@ extern_class!(
 );
 
 #[cfg(all(
-    feature = "WebKit_DOMCSSRule",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMCSSRule",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 unsafe impl NSCopying for DOMCSSImportRule {}
 
 #[cfg(all(
-    feature = "WebKit_DOMCSSRule",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMCSSRule",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 unsafe impl NSObjectProtocol for DOMCSSImportRule {}
 
 extern_methods!(
     #[cfg(all(
-        feature = "WebKit_DOMCSSRule",
-        feature = "WebKit_DOMObject",
-        feature = "WebKit_WebScriptObject"
+        feature = "DOMCSSRule",
+        feature = "DOMObject",
+        feature = "WebScriptObject"
     ))]
     unsafe impl DOMCSSImportRule {
         #[deprecated]
         #[method_id(@__retain_semantics Other href)]
         pub unsafe fn href(&self) -> Id<NSString>;
 
-        #[cfg(feature = "WebKit_DOMMediaList")]
+        #[cfg(feature = "DOMMediaList")]
         #[deprecated]
         #[method_id(@__retain_semantics Other media)]
         pub unsafe fn media(&self) -> Option<Id<DOMMediaList>>;
 
-        #[cfg(all(feature = "WebKit_DOMCSSStyleSheet", feature = "WebKit_DOMStyleSheet"))]
+        #[cfg(all(feature = "DOMCSSStyleSheet", feature = "DOMStyleSheet"))]
         #[deprecated]
         #[method_id(@__retain_semantics Other styleSheet)]
         pub unsafe fn styleSheet(&self) -> Option<Id<DOMCSSStyleSheet>>;
@@ -67,9 +67,9 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `DOMObject`
     #[cfg(all(
-        feature = "WebKit_DOMCSSRule",
-        feature = "WebKit_DOMObject",
-        feature = "WebKit_WebScriptObject"
+        feature = "DOMCSSRule",
+        feature = "DOMObject",
+        feature = "WebScriptObject"
     ))]
     unsafe impl DOMCSSImportRule {
         #[deprecated]
@@ -81,9 +81,9 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(
-        feature = "WebKit_DOMCSSRule",
-        feature = "WebKit_DOMObject",
-        feature = "WebKit_WebScriptObject"
+        feature = "DOMCSSRule",
+        feature = "DOMObject",
+        feature = "WebScriptObject"
     ))]
     unsafe impl DOMCSSImportRule {
         #[method_id(@__retain_semantics New new)]

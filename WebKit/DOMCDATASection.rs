@@ -8,21 +8,21 @@ use crate::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(
-        feature = "WebKit_DOMCharacterData",
-        feature = "WebKit_DOMNode",
-        feature = "WebKit_DOMObject",
-        feature = "WebKit_DOMText",
-        feature = "WebKit_WebScriptObject"
+        feature = "DOMCharacterData",
+        feature = "DOMNode",
+        feature = "DOMObject",
+        feature = "DOMText",
+        feature = "WebScriptObject"
     ))]
     #[deprecated]
     pub struct DOMCDATASection;
 
     #[cfg(all(
-        feature = "WebKit_DOMCharacterData",
-        feature = "WebKit_DOMNode",
-        feature = "WebKit_DOMObject",
-        feature = "WebKit_DOMText",
-        feature = "WebKit_WebScriptObject"
+        feature = "DOMCharacterData",
+        feature = "DOMNode",
+        feature = "DOMObject",
+        feature = "DOMText",
+        feature = "WebScriptObject"
     ))]
     unsafe impl ClassType for DOMCDATASection {
         #[inherits(DOMCharacterData, DOMNode, DOMObject, WebScriptObject, NSObject)]
@@ -32,40 +32,40 @@ extern_class!(
 );
 
 #[cfg(all(
-    feature = "WebKit_DOMCharacterData",
-    feature = "WebKit_DOMEventTarget",
-    feature = "WebKit_DOMNode",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_DOMText",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMCharacterData",
+    feature = "DOMEventTarget",
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "DOMText",
+    feature = "WebScriptObject"
 ))]
 unsafe impl DOMEventTarget for DOMCDATASection {}
 
 #[cfg(all(
-    feature = "WebKit_DOMCharacterData",
-    feature = "WebKit_DOMNode",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_DOMText",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMCharacterData",
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "DOMText",
+    feature = "WebScriptObject"
 ))]
 unsafe impl NSCopying for DOMCDATASection {}
 
 #[cfg(all(
-    feature = "WebKit_DOMCharacterData",
-    feature = "WebKit_DOMNode",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_DOMText",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMCharacterData",
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "DOMText",
+    feature = "WebScriptObject"
 ))]
 unsafe impl NSObjectProtocol for DOMCDATASection {}
 
 extern_methods!(
     #[cfg(all(
-        feature = "WebKit_DOMCharacterData",
-        feature = "WebKit_DOMNode",
-        feature = "WebKit_DOMObject",
-        feature = "WebKit_DOMText",
-        feature = "WebKit_WebScriptObject"
+        feature = "DOMCharacterData",
+        feature = "DOMNode",
+        feature = "DOMObject",
+        feature = "DOMText",
+        feature = "WebScriptObject"
     ))]
     unsafe impl DOMCDATASection {}
 );
@@ -73,11 +73,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `DOMObject`
     #[cfg(all(
-        feature = "WebKit_DOMCharacterData",
-        feature = "WebKit_DOMNode",
-        feature = "WebKit_DOMObject",
-        feature = "WebKit_DOMText",
-        feature = "WebKit_WebScriptObject"
+        feature = "DOMCharacterData",
+        feature = "DOMNode",
+        feature = "DOMObject",
+        feature = "DOMText",
+        feature = "WebScriptObject"
     ))]
     unsafe impl DOMCDATASection {
         #[deprecated]
@@ -89,11 +89,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(
-        feature = "WebKit_DOMCharacterData",
-        feature = "WebKit_DOMNode",
-        feature = "WebKit_DOMObject",
-        feature = "WebKit_DOMText",
-        feature = "WebKit_WebScriptObject"
+        feature = "DOMCharacterData",
+        feature = "DOMNode",
+        feature = "DOMObject",
+        feature = "DOMText",
+        feature = "WebScriptObject"
     ))]
     unsafe impl DOMCDATASection {
         #[method_id(@__retain_semantics New new)]

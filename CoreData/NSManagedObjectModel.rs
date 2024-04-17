@@ -42,29 +42,29 @@ extern_methods!(
         pub unsafe fn initWithContentsOfURL(this: Allocated<Self>, url: &NSURL)
             -> Option<Id<Self>>;
 
-        #[cfg(feature = "CoreData_NSEntityDescription")]
+        #[cfg(feature = "NSEntityDescription")]
         #[method_id(@__retain_semantics Other entitiesByName)]
         pub unsafe fn entitiesByName(&self) -> Id<NSDictionary<NSString, NSEntityDescription>>;
 
-        #[cfg(feature = "CoreData_NSEntityDescription")]
+        #[cfg(feature = "NSEntityDescription")]
         #[method_id(@__retain_semantics Other entities)]
         pub unsafe fn entities(&self) -> Id<NSArray<NSEntityDescription>>;
 
-        #[cfg(feature = "CoreData_NSEntityDescription")]
+        #[cfg(feature = "NSEntityDescription")]
         #[method(setEntities:)]
         pub unsafe fn setEntities(&self, entities: &NSArray<NSEntityDescription>);
 
         #[method_id(@__retain_semantics Other configurations)]
         pub unsafe fn configurations(&self) -> Id<NSArray<NSString>>;
 
-        #[cfg(feature = "CoreData_NSEntityDescription")]
+        #[cfg(feature = "NSEntityDescription")]
         #[method_id(@__retain_semantics Other entitiesForConfiguration:)]
         pub unsafe fn entitiesForConfiguration(
             &self,
             configuration: Option<&NSString>,
         ) -> Option<Id<NSArray<NSEntityDescription>>>;
 
-        #[cfg(feature = "CoreData_NSEntityDescription")]
+        #[cfg(feature = "NSEntityDescription")]
         #[method(setEntities:forConfiguration:)]
         pub unsafe fn setEntities_forConfiguration(
             &self,
@@ -72,10 +72,7 @@ extern_methods!(
             configuration: &NSString,
         );
 
-        #[cfg(all(
-            feature = "CoreData_NSFetchRequest",
-            feature = "CoreData_NSPersistentStoreRequest"
-        ))]
+        #[cfg(all(feature = "NSFetchRequest", feature = "NSPersistentStoreRequest"))]
         #[method(setFetchRequestTemplate:forName:)]
         pub unsafe fn setFetchRequestTemplate_forName(
             &self,
@@ -83,20 +80,14 @@ extern_methods!(
             name: &NSString,
         );
 
-        #[cfg(all(
-            feature = "CoreData_NSFetchRequest",
-            feature = "CoreData_NSPersistentStoreRequest"
-        ))]
+        #[cfg(all(feature = "NSFetchRequest", feature = "NSPersistentStoreRequest"))]
         #[method_id(@__retain_semantics Other fetchRequestTemplateForName:)]
         pub unsafe fn fetchRequestTemplateForName(
             &self,
             name: &NSString,
         ) -> Option<Id<NSFetchRequest>>;
 
-        #[cfg(all(
-            feature = "CoreData_NSFetchRequest",
-            feature = "CoreData_NSPersistentStoreRequest"
-        ))]
+        #[cfg(all(feature = "NSFetchRequest", feature = "NSPersistentStoreRequest"))]
         #[method_id(@__retain_semantics Other fetchRequestFromTemplateWithName:substitutionVariables:)]
         pub unsafe fn fetchRequestFromTemplateWithName_substitutionVariables(
             &self,
@@ -126,10 +117,7 @@ extern_methods!(
             metadata: &NSDictionary<NSString, AnyObject>,
         ) -> Option<Id<NSManagedObjectModel>>;
 
-        #[cfg(all(
-            feature = "CoreData_NSFetchRequest",
-            feature = "CoreData_NSPersistentStoreRequest"
-        ))]
+        #[cfg(all(feature = "NSFetchRequest", feature = "NSPersistentStoreRequest"))]
         #[method_id(@__retain_semantics Other fetchRequestTemplatesByName)]
         pub unsafe fn fetchRequestTemplatesByName(
             &self,

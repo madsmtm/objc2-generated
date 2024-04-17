@@ -8,7 +8,7 @@ use crate::*;
 
 extern_protocol!(
     pub unsafe trait ASCredentialIdentity: NSObjectProtocol {
-        #[cfg(feature = "AuthenticationServices_ASCredentialServiceIdentifier")]
+        #[cfg(feature = "ASCredentialServiceIdentifier")]
         #[method_id(@__retain_semantics Other serviceIdentifier)]
         unsafe fn serviceIdentifier(&self) -> Id<ASCredentialServiceIdentifier>;
 

@@ -39,7 +39,7 @@ unsafe impl NSObjectProtocol for NSTabViewItem {}
 
 extern_methods!(
     unsafe impl NSTabViewItem {
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
         #[method_id(@__retain_semantics Other tabViewItemWithViewController:)]
         pub unsafe fn tabViewItemWithViewController(view_controller: &NSViewController)
             -> Id<Self>;
@@ -56,11 +56,11 @@ extern_methods!(
         #[method(setIdentifier:)]
         pub unsafe fn setIdentifier(&self, identifier: Option<&AnyObject>);
 
-        #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(feature = "NSColor")]
         #[method_id(@__retain_semantics Other color)]
         pub unsafe fn color(&self) -> Id<NSColor>;
 
-        #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(feature = "NSColor")]
         #[method(setColor:)]
         pub unsafe fn setColor(&self, color: &NSColor);
 
@@ -70,46 +70,42 @@ extern_methods!(
         #[method(setLabel:)]
         pub unsafe fn setLabel(&self, label: &NSString);
 
-        #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(feature = "NSImage")]
         #[method_id(@__retain_semantics Other image)]
         pub unsafe fn image(&self) -> Option<Id<NSImage>>;
 
-        #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(feature = "NSImage")]
         #[method(setImage:)]
         pub unsafe fn setImage(&self, image: Option<&NSImage>);
 
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[method_id(@__retain_semantics Other view)]
         pub unsafe fn view(&self, mtm: MainThreadMarker) -> Option<Id<NSView>>;
 
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[method(setView:)]
         pub unsafe fn setView(&self, view: Option<&NSView>);
 
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
         #[method_id(@__retain_semantics Other viewController)]
         pub unsafe fn viewController(&self, mtm: MainThreadMarker) -> Option<Id<NSViewController>>;
 
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
         #[method(setViewController:)]
         pub unsafe fn setViewController(&self, view_controller: Option<&NSViewController>);
 
         #[method(tabState)]
         pub unsafe fn tabState(&self) -> NSTabState;
 
-        #[cfg(all(
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSTabView",
-            feature = "AppKit_NSView"
-        ))]
+        #[cfg(all(feature = "NSResponder", feature = "NSTabView", feature = "NSView"))]
         #[method_id(@__retain_semantics Other tabView)]
         pub unsafe fn tabView(&self, mtm: MainThreadMarker) -> Option<Id<NSTabView>>;
 
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[method_id(@__retain_semantics Other initialFirstResponder)]
         pub unsafe fn initialFirstResponder(&self, mtm: MainThreadMarker) -> Option<Id<NSView>>;
 
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[method(setInitialFirstResponder:)]
         pub unsafe fn setInitialFirstResponder(&self, initial_first_responder: Option<&NSView>);
 

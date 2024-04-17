@@ -65,11 +65,11 @@ extern_methods!(
         #[method(setPreferredFramesPerSecond:)]
         pub unsafe fn setPreferredFramesPerSecond(&self, preferred_frames_per_second: NSInteger);
 
-        #[cfg(feature = "QuartzCore_CAFrameRateRange")]
+        #[cfg(feature = "CAFrameRateRange")]
         #[method(preferredFrameRateRange)]
         pub unsafe fn preferredFrameRateRange(&self) -> CAFrameRateRange;
 
-        #[cfg(feature = "QuartzCore_CAFrameRateRange")]
+        #[cfg(feature = "CAFrameRateRange")]
         #[method(setPreferredFrameRateRange:)]
         pub unsafe fn setPreferredFrameRateRange(
             &self,

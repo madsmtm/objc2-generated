@@ -43,7 +43,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other alternativeSubstrings)]
         pub unsafe fn alternativeSubstrings(&self) -> Id<NSArray<NSString>>;
 
-        #[cfg(feature = "Speech_SFVoiceAnalytics")]
+        #[cfg(feature = "SFVoiceAnalytics")]
         #[deprecated = "voiceAnalytics is moved to SFSpeechRecognitionMetadata"]
         #[method_id(@__retain_semantics Other voiceAnalytics)]
         pub unsafe fn voiceAnalytics(&self) -> Option<Id<SFVoiceAnalytics>>;

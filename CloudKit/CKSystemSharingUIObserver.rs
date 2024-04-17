@@ -27,15 +27,15 @@ extern_methods!(
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
 
-        #[cfg(feature = "CloudKit_CKContainer")]
+        #[cfg(feature = "CKContainer")]
         #[method_id(@__retain_semantics Init initWithContainer:)]
         pub unsafe fn initWithContainer(this: Allocated<Self>, container: &CKContainer)
             -> Id<Self>;
 
         #[cfg(all(
-            feature = "CloudKit_CKRecord",
-            feature = "CloudKit_CKRecordID",
-            feature = "CloudKit_CKShare",
+            feature = "CKRecord",
+            feature = "CKRecordID",
+            feature = "CKShare",
             feature = "block2"
         ))]
         #[method(systemSharingUIDidSaveShareBlock)]
@@ -44,9 +44,9 @@ extern_methods!(
         ) -> *mut Block<dyn Fn(NonNull<CKRecordID>, *mut CKShare, *mut NSError)>;
 
         #[cfg(all(
-            feature = "CloudKit_CKRecord",
-            feature = "CloudKit_CKRecordID",
-            feature = "CloudKit_CKShare",
+            feature = "CKRecord",
+            feature = "CKRecordID",
+            feature = "CKShare",
             feature = "block2"
         ))]
         #[method(setSystemSharingUIDidSaveShareBlock:)]
@@ -57,13 +57,13 @@ extern_methods!(
             >,
         );
 
-        #[cfg(all(feature = "CloudKit_CKRecordID", feature = "block2"))]
+        #[cfg(all(feature = "CKRecordID", feature = "block2"))]
         #[method(systemSharingUIDidStopSharingBlock)]
         pub unsafe fn systemSharingUIDidStopSharingBlock(
             &self,
         ) -> *mut Block<dyn Fn(NonNull<CKRecordID>, *mut NSError)>;
 
-        #[cfg(all(feature = "CloudKit_CKRecordID", feature = "block2"))]
+        #[cfg(all(feature = "CKRecordID", feature = "block2"))]
         #[method(setSystemSharingUIDidStopSharingBlock:)]
         pub unsafe fn setSystemSharingUIDidStopSharingBlock(
             &self,

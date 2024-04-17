@@ -7,10 +7,10 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSTypesetter")]
+    #[cfg(feature = "NSTypesetter")]
     pub struct NSATSTypesetter;
 
-    #[cfg(feature = "AppKit_NSTypesetter")]
+    #[cfg(feature = "NSTypesetter")]
     unsafe impl ClassType for NSATSTypesetter {
         #[inherits(NSObject)]
         type Super = NSTypesetter;
@@ -18,11 +18,11 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSTypesetter")]
+#[cfg(feature = "NSTypesetter")]
 unsafe impl NSObjectProtocol for NSATSTypesetter {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSTypesetter")]
+    #[cfg(feature = "NSTypesetter")]
     unsafe impl NSATSTypesetter {
         #[method_id(@__retain_semantics Other sharedTypesetter)]
         pub unsafe fn sharedTypesetter() -> Id<NSATSTypesetter>;
@@ -31,7 +31,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSTypesetter")]
+    #[cfg(feature = "NSTypesetter")]
     unsafe impl NSATSTypesetter {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -43,7 +43,7 @@ extern_methods!(
 
 extern_methods!(
     /// NSPantherCompatibility
-    #[cfg(feature = "AppKit_NSTypesetter")]
+    #[cfg(feature = "NSTypesetter")]
     unsafe impl NSATSTypesetter {
         #[deprecated]
         #[method(lineFragmentRectForProposedRect:remainingRect:)]
@@ -57,7 +57,7 @@ extern_methods!(
 
 extern_methods!(
     /// NSPrimitiveInterface
-    #[cfg(feature = "AppKit_NSTypesetter")]
+    #[cfg(feature = "NSTypesetter")]
     unsafe impl NSATSTypesetter {
         #[method(usesFontLeading)]
         pub unsafe fn usesFontLeading(&self) -> bool;
@@ -65,11 +65,11 @@ extern_methods!(
         #[method(setUsesFontLeading:)]
         pub unsafe fn setUsesFontLeading(&self, uses_font_leading: bool);
 
-        #[cfg(feature = "AppKit_NSLayoutManager")]
+        #[cfg(feature = "NSLayoutManager")]
         #[method(typesetterBehavior)]
         pub unsafe fn typesetterBehavior(&self) -> NSTypesetterBehavior;
 
-        #[cfg(feature = "AppKit_NSLayoutManager")]
+        #[cfg(feature = "NSLayoutManager")]
         #[method(setTypesetterBehavior:)]
         pub unsafe fn setTypesetterBehavior(&self, typesetter_behavior: NSTypesetterBehavior);
 
@@ -85,11 +85,11 @@ extern_methods!(
         #[method(setLineFragmentPadding:)]
         pub unsafe fn setLineFragmentPadding(&self, line_fragment_padding: CGFloat);
 
-        #[cfg(feature = "AppKit_NSFont")]
+        #[cfg(feature = "NSFont")]
         #[method_id(@__retain_semantics Other substituteFontForFont:)]
         pub unsafe fn substituteFontForFont(&self, original_font: &NSFont) -> Id<NSFont>;
 
-        #[cfg(all(feature = "AppKit_NSParagraphStyle", feature = "AppKit_NSText"))]
+        #[cfg(all(feature = "NSParagraphStyle", feature = "NSText"))]
         #[method_id(@__retain_semantics Other textTabForGlyphLocation:writingDirection:maxLocation:)]
         pub unsafe fn textTabForGlyphLocation_writingDirection_maxLocation(
             &self,
@@ -150,11 +150,11 @@ extern_methods!(
             rect: NSRect,
         ) -> CGFloat;
 
-        #[cfg(feature = "AppKit_NSLayoutManager")]
+        #[cfg(feature = "NSLayoutManager")]
         #[method_id(@__retain_semantics Other layoutManager)]
         pub unsafe fn layoutManager(&self) -> Option<Id<NSLayoutManager>>;
 
-        #[cfg(feature = "AppKit_NSTextContainer")]
+        #[cfg(feature = "NSTextContainer")]
         #[method_id(@__retain_semantics Other currentTextContainer)]
         pub unsafe fn currentTextContainer(&self) -> Option<Id<NSTextContainer>>;
 
@@ -174,7 +174,7 @@ extern_methods!(
 
 extern_methods!(
     /// NSLayoutPhaseInterface
-    #[cfg(feature = "AppKit_NSTypesetter")]
+    #[cfg(feature = "NSTypesetter")]
     unsafe impl NSATSTypesetter {
         #[method(willSetLineFragmentRect:forGlyphRange:usedRect:baselineOffset:)]
         pub unsafe fn willSetLineFragmentRect_forGlyphRange_usedRect_baselineOffset(
@@ -203,7 +203,7 @@ extern_methods!(
         #[method(hyphenCharacterForGlyphAtIndex:)]
         pub unsafe fn hyphenCharacterForGlyphAtIndex(&self, glyph_index: NSUInteger) -> UTF32Char;
 
-        #[cfg(feature = "AppKit_NSTextContainer")]
+        #[cfg(feature = "NSTextContainer")]
         #[method(boundingBoxForControlGlyphAtIndex:forTextContainer:proposedLineFragment:glyphPosition:characterIndex:)]
         pub unsafe fn boundingBoxForControlGlyphAtIndex_forTextContainer_proposedLineFragment_glyphPosition_characterIndex(
             &self,
@@ -218,9 +218,9 @@ extern_methods!(
 
 extern_methods!(
     /// NSGlyphStorageInterface
-    #[cfg(feature = "AppKit_NSTypesetter")]
+    #[cfg(feature = "NSTypesetter")]
     unsafe impl NSATSTypesetter {
-        #[cfg(all(feature = "AppKit_NSFont", feature = "AppKit_NSLayoutManager"))]
+        #[cfg(all(feature = "NSFont", feature = "NSLayoutManager"))]
         #[deprecated]
         #[method(getGlyphsInRange:glyphs:characterIndexes:glyphInscriptions:elasticBits:)]
         pub unsafe fn getGlyphsInRange_glyphs_characterIndexes_glyphInscriptions_elasticBits(

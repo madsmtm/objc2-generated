@@ -9,16 +9,10 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(
-        feature = "CloudKit_CKDatabaseOperation",
-        feature = "CloudKit_CKOperation"
-    ))]
+    #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
     pub struct CKModifyRecordZonesOperation;
 
-    #[cfg(all(
-        feature = "CloudKit_CKDatabaseOperation",
-        feature = "CloudKit_CKOperation"
-    ))]
+    #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
     unsafe impl ClassType for CKModifyRecordZonesOperation {
         #[inherits(CKOperation, NSOperation, NSObject)]
         type Super = CKDatabaseOperation;
@@ -26,22 +20,16 @@ extern_class!(
     }
 );
 
-#[cfg(all(
-    feature = "CloudKit_CKDatabaseOperation",
-    feature = "CloudKit_CKOperation"
-))]
+#[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
 unsafe impl NSObjectProtocol for CKModifyRecordZonesOperation {}
 
 extern_methods!(
-    #[cfg(all(
-        feature = "CloudKit_CKDatabaseOperation",
-        feature = "CloudKit_CKOperation"
-    ))]
+    #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
     unsafe impl CKModifyRecordZonesOperation {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
-        #[cfg(all(feature = "CloudKit_CKRecordZone", feature = "CloudKit_CKRecordZoneID"))]
+        #[cfg(all(feature = "CKRecordZone", feature = "CKRecordZoneID"))]
         #[method_id(@__retain_semantics Init initWithRecordZonesToSave:recordZoneIDsToDelete:)]
         pub unsafe fn initWithRecordZonesToSave_recordZoneIDsToDelete(
             this: Allocated<Self>,
@@ -49,22 +37,22 @@ extern_methods!(
             record_zone_i_ds_to_delete: Option<&NSArray<CKRecordZoneID>>,
         ) -> Id<Self>;
 
-        #[cfg(feature = "CloudKit_CKRecordZone")]
+        #[cfg(feature = "CKRecordZone")]
         #[method_id(@__retain_semantics Other recordZonesToSave)]
         pub unsafe fn recordZonesToSave(&self) -> Option<Id<NSArray<CKRecordZone>>>;
 
-        #[cfg(feature = "CloudKit_CKRecordZone")]
+        #[cfg(feature = "CKRecordZone")]
         #[method(setRecordZonesToSave:)]
         pub unsafe fn setRecordZonesToSave(
             &self,
             record_zones_to_save: Option<&NSArray<CKRecordZone>>,
         );
 
-        #[cfg(feature = "CloudKit_CKRecordZoneID")]
+        #[cfg(feature = "CKRecordZoneID")]
         #[method_id(@__retain_semantics Other recordZoneIDsToDelete)]
         pub unsafe fn recordZoneIDsToDelete(&self) -> Option<Id<NSArray<CKRecordZoneID>>>;
 
-        #[cfg(feature = "CloudKit_CKRecordZoneID")]
+        #[cfg(feature = "CKRecordZoneID")]
         #[method(setRecordZoneIDsToDelete:)]
         pub unsafe fn setRecordZoneIDsToDelete(
             &self,
@@ -72,8 +60,8 @@ extern_methods!(
         );
 
         #[cfg(all(
-            feature = "CloudKit_CKRecordZone",
-            feature = "CloudKit_CKRecordZoneID",
+            feature = "CKRecordZone",
+            feature = "CKRecordZoneID",
             feature = "block2"
         ))]
         #[method(perRecordZoneSaveBlock)]
@@ -82,8 +70,8 @@ extern_methods!(
         ) -> *mut Block<dyn Fn(NonNull<CKRecordZoneID>, *mut CKRecordZone, *mut NSError)>;
 
         #[cfg(all(
-            feature = "CloudKit_CKRecordZone",
-            feature = "CloudKit_CKRecordZoneID",
+            feature = "CKRecordZone",
+            feature = "CKRecordZoneID",
             feature = "block2"
         ))]
         #[method(setPerRecordZoneSaveBlock:)]
@@ -94,13 +82,13 @@ extern_methods!(
             >,
         );
 
-        #[cfg(all(feature = "CloudKit_CKRecordZoneID", feature = "block2"))]
+        #[cfg(all(feature = "CKRecordZoneID", feature = "block2"))]
         #[method(perRecordZoneDeleteBlock)]
         pub unsafe fn perRecordZoneDeleteBlock(
             &self,
         ) -> *mut Block<dyn Fn(NonNull<CKRecordZoneID>, *mut NSError)>;
 
-        #[cfg(all(feature = "CloudKit_CKRecordZoneID", feature = "block2"))]
+        #[cfg(all(feature = "CKRecordZoneID", feature = "block2"))]
         #[method(setPerRecordZoneDeleteBlock:)]
         pub unsafe fn setPerRecordZoneDeleteBlock(
             &self,
@@ -110,8 +98,8 @@ extern_methods!(
         );
 
         #[cfg(all(
-            feature = "CloudKit_CKRecordZone",
-            feature = "CloudKit_CKRecordZoneID",
+            feature = "CKRecordZone",
+            feature = "CKRecordZoneID",
             feature = "block2"
         ))]
         #[method(modifyRecordZonesCompletionBlock)]
@@ -122,8 +110,8 @@ extern_methods!(
         >;
 
         #[cfg(all(
-            feature = "CloudKit_CKRecordZone",
-            feature = "CloudKit_CKRecordZoneID",
+            feature = "CKRecordZone",
+            feature = "CKRecordZoneID",
             feature = "block2"
         ))]
         #[method(setModifyRecordZonesCompletionBlock:)]
@@ -140,10 +128,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(all(
-        feature = "CloudKit_CKDatabaseOperation",
-        feature = "CloudKit_CKOperation"
-    ))]
+    #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
     unsafe impl CKModifyRecordZonesOperation {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

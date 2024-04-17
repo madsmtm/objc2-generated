@@ -9,11 +9,11 @@ extern_category!(
     /// Category "MKMapItem" on [`NSUserActivity`].
     #[doc(alias = "MKMapItem")]
     pub unsafe trait NSUserActivityMKMapItem {
-        #[cfg(feature = "MapKit_MKMapItem")]
+        #[cfg(feature = "MKMapItem")]
         #[method_id(@__retain_semantics Other mapItem)]
         unsafe fn mapItem(&self) -> Option<Id<MKMapItem>>;
 
-        #[cfg(feature = "MapKit_MKMapItem")]
+        #[cfg(feature = "MKMapItem")]
         #[method(setMapItem:)]
         unsafe fn setMapItem(&self, map_item: Option<&MKMapItem>);
     }

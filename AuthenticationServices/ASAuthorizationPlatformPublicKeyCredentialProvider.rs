@@ -16,7 +16,7 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AuthenticationServices_ASAuthorizationProvider")]
+#[cfg(feature = "ASAuthorizationProvider")]
 unsafe impl ASAuthorizationProvider for ASAuthorizationPlatformPublicKeyCredentialProvider {}
 
 unsafe impl NSObjectProtocol for ASAuthorizationPlatformPublicKeyCredentialProvider {}
@@ -30,8 +30,8 @@ extern_methods!(
         ) -> Id<Self>;
 
         #[cfg(all(
-            feature = "AuthenticationServices_ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest",
-            feature = "AuthenticationServices_ASAuthorizationRequest"
+            feature = "ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest",
+            feature = "ASAuthorizationRequest"
         ))]
         #[method_id(@__retain_semantics Other createCredentialRegistrationRequestWithChallenge:name:userID:)]
         pub unsafe fn createCredentialRegistrationRequestWithChallenge_name_userID(
@@ -42,8 +42,8 @@ extern_methods!(
         ) -> Id<ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest>;
 
         #[cfg(all(
-            feature = "AuthenticationServices_ASAuthorizationPlatformPublicKeyCredentialAssertionRequest",
-            feature = "AuthenticationServices_ASAuthorizationRequest"
+            feature = "ASAuthorizationPlatformPublicKeyCredentialAssertionRequest",
+            feature = "ASAuthorizationRequest"
         ))]
         #[method_id(@__retain_semantics Other createCredentialAssertionRequestWithChallenge:)]
         pub unsafe fn createCredentialAssertionRequestWithChallenge(
@@ -66,9 +66,7 @@ extern_methods!(
     unsafe impl ASAuthorizationPlatformPublicKeyCredentialProvider {}
 );
 
-#[cfg(
-    feature = "AuthenticationServices_ASAuthorizationWebBrowserPlatformPublicKeyCredentialProvider"
-)]
+#[cfg(feature = "ASAuthorizationWebBrowserPlatformPublicKeyCredentialProvider")]
 unsafe impl ASAuthorizationWebBrowserPlatformPublicKeyCredentialProvider
     for ASAuthorizationPlatformPublicKeyCredentialProvider
 {

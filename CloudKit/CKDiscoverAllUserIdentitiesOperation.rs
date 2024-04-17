@@ -9,11 +9,11 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CloudKit_CKOperation")]
+    #[cfg(feature = "CKOperation")]
     #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
     pub struct CKDiscoverAllUserIdentitiesOperation;
 
-    #[cfg(feature = "CloudKit_CKOperation")]
+    #[cfg(feature = "CKOperation")]
     unsafe impl ClassType for CKDiscoverAllUserIdentitiesOperation {
         #[inherits(NSOperation, NSObject)]
         type Super = CKOperation;
@@ -21,24 +21,24 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "CloudKit_CKOperation")]
+#[cfg(feature = "CKOperation")]
 unsafe impl NSObjectProtocol for CKDiscoverAllUserIdentitiesOperation {}
 
 extern_methods!(
-    #[cfg(feature = "CloudKit_CKOperation")]
+    #[cfg(feature = "CKOperation")]
     unsafe impl CKDiscoverAllUserIdentitiesOperation {
         #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
-        #[cfg(all(feature = "CloudKit_CKUserIdentity", feature = "block2"))]
+        #[cfg(all(feature = "CKUserIdentity", feature = "block2"))]
         #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
         #[method(userIdentityDiscoveredBlock)]
         pub unsafe fn userIdentityDiscoveredBlock(
             &self,
         ) -> *mut Block<dyn Fn(NonNull<CKUserIdentity>)>;
 
-        #[cfg(all(feature = "CloudKit_CKUserIdentity", feature = "block2"))]
+        #[cfg(all(feature = "CKUserIdentity", feature = "block2"))]
         #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
         #[method(setUserIdentityDiscoveredBlock:)]
         pub unsafe fn setUserIdentityDiscoveredBlock(
@@ -65,7 +65,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CloudKit_CKOperation")]
+    #[cfg(feature = "CKOperation")]
     unsafe impl CKDiscoverAllUserIdentitiesOperation {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

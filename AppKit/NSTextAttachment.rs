@@ -9,7 +9,7 @@ pub const NSAttachmentCharacter: c_uint = 0xFFFC;
 
 extern_protocol!(
     pub unsafe trait NSTextAttachmentContainer: NSObjectProtocol {
-        #[cfg(all(feature = "AppKit_NSImage", feature = "AppKit_NSTextContainer"))]
+        #[cfg(all(feature = "NSImage", feature = "NSTextContainer"))]
         #[method_id(@__retain_semantics Other imageForBounds:textContainer:characterIndex:)]
         unsafe fn imageForBounds_textContainer_characterIndex(
             &self,
@@ -18,7 +18,7 @@ extern_protocol!(
             char_index: NSUInteger,
         ) -> Option<Id<NSImage>>;
 
-        #[cfg(feature = "AppKit_NSTextContainer")]
+        #[cfg(feature = "NSTextContainer")]
         #[method(attachmentBoundsForTextContainer:proposedLineFragment:glyphPosition:characterIndex:)]
         unsafe fn attachmentBoundsForTextContainer_proposedLineFragment_glyphPosition_characterIndex(
             &self,
@@ -35,9 +35,9 @@ extern_protocol!(
 extern_protocol!(
     pub unsafe trait NSTextAttachmentLayout: NSObjectProtocol {
         #[cfg(all(
-            feature = "AppKit_NSImage",
-            feature = "AppKit_NSTextContainer",
-            feature = "AppKit_NSTextRange"
+            feature = "NSImage",
+            feature = "NSTextContainer",
+            feature = "NSTextRange"
         ))]
         #[method_id(@__retain_semantics Other imageForBounds:attributes:location:textContainer:)]
         unsafe fn imageForBounds_attributes_location_textContainer(
@@ -48,7 +48,7 @@ extern_protocol!(
             text_container: Option<&NSTextContainer>,
         ) -> Option<Id<NSImage>>;
 
-        #[cfg(all(feature = "AppKit_NSTextContainer", feature = "AppKit_NSTextRange"))]
+        #[cfg(all(feature = "NSTextContainer", feature = "NSTextRange"))]
         #[method(attachmentBoundsForAttributes:location:textContainer:proposedLineFragment:position:)]
         unsafe fn attachmentBoundsForAttributes_location_textContainer_proposedLineFragment_position(
             &self,
@@ -60,10 +60,10 @@ extern_protocol!(
         ) -> CGRect;
 
         #[cfg(all(
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSTextContainer",
-            feature = "AppKit_NSTextRange",
-            feature = "AppKit_NSView"
+            feature = "NSResponder",
+            feature = "NSTextContainer",
+            feature = "NSTextRange",
+            feature = "NSView"
         ))]
         #[method_id(@__retain_semantics Other viewProviderForParentView:location:textContainer:)]
         unsafe fn viewProviderForParentView_location_textContainer(
@@ -124,11 +124,11 @@ extern_methods!(
         #[method(setFileType:)]
         pub unsafe fn setFileType(&self, file_type: Option<&NSString>);
 
-        #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(feature = "NSImage")]
         #[method_id(@__retain_semantics Other image)]
         pub unsafe fn image(&self) -> Option<Id<NSImage>>;
 
-        #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(feature = "NSImage")]
         #[method(setImage:)]
         pub unsafe fn setImage(&self, image: Option<&NSImage>);
 
@@ -144,13 +144,13 @@ extern_methods!(
         #[method(setFileWrapper:)]
         pub unsafe fn setFileWrapper(&self, file_wrapper: Option<&NSFileWrapper>);
 
-        #[cfg(feature = "AppKit_NSTextAttachmentCell")]
+        #[cfg(feature = "NSTextAttachmentCell")]
         #[method_id(@__retain_semantics Other attachmentCell)]
         pub unsafe fn attachmentCell(
             &self,
         ) -> Option<Id<ProtocolObject<dyn NSTextAttachmentCellProtocol>>>;
 
-        #[cfg(feature = "AppKit_NSTextAttachmentCell")]
+        #[cfg(feature = "NSTextAttachmentCell")]
         #[method(setAttachmentCell:)]
         pub unsafe fn setAttachmentCell(
             &self,
@@ -223,10 +223,10 @@ unsafe impl NSObjectProtocol for NSTextAttachmentViewProvider {}
 extern_methods!(
     unsafe impl NSTextAttachmentViewProvider {
         #[cfg(all(
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSTextLayoutManager",
-            feature = "AppKit_NSTextRange",
-            feature = "AppKit_NSView"
+            feature = "NSResponder",
+            feature = "NSTextLayoutManager",
+            feature = "NSTextRange",
+            feature = "NSView"
         ))]
         #[method_id(@__retain_semantics Init initWithTextAttachment:parentView:textLayoutManager:location:)]
         pub unsafe fn initWithTextAttachment_parentView_textLayoutManager_location(
@@ -246,19 +246,19 @@ extern_methods!(
         #[method_id(@__retain_semantics Other textAttachment)]
         pub unsafe fn textAttachment(&self) -> Option<Id<NSTextAttachment>>;
 
-        #[cfg(feature = "AppKit_NSTextLayoutManager")]
+        #[cfg(feature = "NSTextLayoutManager")]
         #[method_id(@__retain_semantics Other textLayoutManager)]
         pub unsafe fn textLayoutManager(&self) -> Option<Id<NSTextLayoutManager>>;
 
-        #[cfg(feature = "AppKit_NSTextRange")]
+        #[cfg(feature = "NSTextRange")]
         #[method_id(@__retain_semantics Other location)]
         pub unsafe fn location(&self) -> Id<ProtocolObject<dyn NSTextLocation>>;
 
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[method_id(@__retain_semantics Other view)]
         pub unsafe fn view(&self, mtm: MainThreadMarker) -> Option<Id<NSView>>;
 
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[method(setView:)]
         pub unsafe fn setView(&self, view: Option<&NSView>);
 
@@ -274,7 +274,7 @@ extern_methods!(
             tracks_text_attachment_view_bounds: bool,
         );
 
-        #[cfg(all(feature = "AppKit_NSTextContainer", feature = "AppKit_NSTextRange"))]
+        #[cfg(all(feature = "NSTextContainer", feature = "NSTextRange"))]
         #[method(attachmentBoundsForAttributes:location:textContainer:proposedLineFragment:position:)]
         pub unsafe fn attachmentBoundsForAttributes_location_textContainer_proposedLineFragment_position(
             &self,

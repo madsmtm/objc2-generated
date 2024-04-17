@@ -21,12 +21,12 @@ extern "C" {
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub fn NSSetZoneName(zone: *mut NSZone, name: &NSString);
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub fn NSZoneName(zone: *mut NSZone) -> NonNull<NSString>;
 }
 

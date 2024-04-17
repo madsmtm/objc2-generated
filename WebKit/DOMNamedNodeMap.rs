@@ -7,11 +7,11 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
+    #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     #[deprecated]
     pub struct DOMNamedNodeMap;
 
-    #[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
+    #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl ClassType for DOMNamedNodeMap {
         #[inherits(WebScriptObject, NSObject)]
         type Super = DOMObject;
@@ -19,40 +19,40 @@ extern_class!(
     }
 );
 
-#[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
+#[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
 unsafe impl NSCopying for DOMNamedNodeMap {}
 
-#[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
+#[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
 unsafe impl NSObjectProtocol for DOMNamedNodeMap {}
 
 extern_methods!(
-    #[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
+    #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMNamedNodeMap {
         #[deprecated]
         #[method(length)]
         pub unsafe fn length(&self) -> c_uint;
 
-        #[cfg(feature = "WebKit_DOMNode")]
+        #[cfg(feature = "DOMNode")]
         #[deprecated]
         #[method_id(@__retain_semantics Other getNamedItem:)]
         pub unsafe fn getNamedItem(&self, name: Option<&NSString>) -> Option<Id<DOMNode>>;
 
-        #[cfg(feature = "WebKit_DOMNode")]
+        #[cfg(feature = "DOMNode")]
         #[deprecated]
         #[method_id(@__retain_semantics Other setNamedItem:)]
         pub unsafe fn setNamedItem(&self, node: Option<&DOMNode>) -> Option<Id<DOMNode>>;
 
-        #[cfg(feature = "WebKit_DOMNode")]
+        #[cfg(feature = "DOMNode")]
         #[deprecated]
         #[method_id(@__retain_semantics Other removeNamedItem:)]
         pub unsafe fn removeNamedItem(&self, name: Option<&NSString>) -> Option<Id<DOMNode>>;
 
-        #[cfg(feature = "WebKit_DOMNode")]
+        #[cfg(feature = "DOMNode")]
         #[deprecated]
         #[method_id(@__retain_semantics Other item:)]
         pub unsafe fn item(&self, index: c_uint) -> Option<Id<DOMNode>>;
 
-        #[cfg(feature = "WebKit_DOMNode")]
+        #[cfg(feature = "DOMNode")]
         #[method_id(@__retain_semantics Other getNamedItemNS:localName:)]
         pub unsafe fn getNamedItemNS_localName(
             &self,
@@ -60,12 +60,12 @@ extern_methods!(
             local_name: Option<&NSString>,
         ) -> Option<Id<DOMNode>>;
 
-        #[cfg(feature = "WebKit_DOMNode")]
+        #[cfg(feature = "DOMNode")]
         #[deprecated]
         #[method_id(@__retain_semantics Other setNamedItemNS:)]
         pub unsafe fn setNamedItemNS(&self, node: Option<&DOMNode>) -> Option<Id<DOMNode>>;
 
-        #[cfg(feature = "WebKit_DOMNode")]
+        #[cfg(feature = "DOMNode")]
         #[method_id(@__retain_semantics Other removeNamedItemNS:localName:)]
         pub unsafe fn removeNamedItemNS_localName(
             &self,
@@ -77,7 +77,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `DOMObject`
-    #[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
+    #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMNamedNodeMap {
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
@@ -87,7 +87,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
+    #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMNamedNodeMap {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -96,9 +96,9 @@ extern_methods!(
 
 extern_methods!(
     /// DOMNamedNodeMapDeprecated
-    #[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
+    #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMNamedNodeMap {
-        #[cfg(feature = "WebKit_DOMNode")]
+        #[cfg(feature = "DOMNode")]
         #[deprecated]
         #[method_id(@__retain_semantics Other getNamedItemNS::)]
         pub unsafe fn getNamedItemNS(
@@ -107,7 +107,7 @@ extern_methods!(
             local_name: Option<&NSString>,
         ) -> Option<Id<DOMNode>>;
 
-        #[cfg(feature = "WebKit_DOMNode")]
+        #[cfg(feature = "DOMNode")]
         #[deprecated]
         #[method_id(@__retain_semantics Other removeNamedItemNS::)]
         pub unsafe fn removeNamedItemNS(

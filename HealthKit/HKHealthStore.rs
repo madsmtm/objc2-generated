@@ -31,14 +31,14 @@ extern_methods!(
         #[method(supportsHealthRecords)]
         pub unsafe fn supportsHealthRecords(&self) -> bool;
 
-        #[cfg(all(feature = "HealthKit_HKDefines", feature = "HealthKit_HKObjectType"))]
+        #[cfg(all(feature = "HKDefines", feature = "HKObjectType"))]
         #[method(authorizationStatusForType:)]
         pub unsafe fn authorizationStatusForType(
             &self,
             r#type: &HKObjectType,
         ) -> HKAuthorizationStatus;
 
-        #[cfg(all(feature = "HealthKit_HKObjectType", feature = "block2"))]
+        #[cfg(all(feature = "HKObjectType", feature = "block2"))]
         #[method(requestAuthorizationToShareTypes:readTypes:completion:)]
         pub unsafe fn requestAuthorizationToShareTypes_readTypes_completion(
             &self,
@@ -47,7 +47,7 @@ extern_methods!(
             completion: &Block<dyn Fn(Bool, *mut NSError)>,
         );
 
-        #[cfg(all(feature = "HealthKit_HKObjectType", feature = "block2"))]
+        #[cfg(all(feature = "HKObjectType", feature = "block2"))]
         #[method(requestPerObjectReadAuthorizationForType:predicate:completion:)]
         pub unsafe fn requestPerObjectReadAuthorizationForType_predicate_completion(
             &self,
@@ -56,11 +56,7 @@ extern_methods!(
             completion: &Block<dyn Fn(Bool, *mut NSError)>,
         );
 
-        #[cfg(all(
-            feature = "HealthKit_HKDefines",
-            feature = "HealthKit_HKObjectType",
-            feature = "block2"
-        ))]
+        #[cfg(all(feature = "HKDefines", feature = "HKObjectType", feature = "block2"))]
         #[method(getRequestStatusForAuthorizationToShareTypes:readTypes:completion:)]
         pub unsafe fn getRequestStatusForAuthorizationToShareTypes_readTypes_completion(
             &self,
@@ -79,7 +75,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other earliestPermittedSampleDate)]
         pub unsafe fn earliestPermittedSampleDate(&self) -> Id<NSDate>;
 
-        #[cfg(all(feature = "HealthKit_HKObject", feature = "block2"))]
+        #[cfg(all(feature = "HKObject", feature = "block2"))]
         #[method(saveObject:withCompletion:)]
         pub unsafe fn saveObject_withCompletion(
             &self,
@@ -87,7 +83,7 @@ extern_methods!(
             completion: &Block<dyn Fn(Bool, *mut NSError)>,
         );
 
-        #[cfg(all(feature = "HealthKit_HKObject", feature = "block2"))]
+        #[cfg(all(feature = "HKObject", feature = "block2"))]
         #[method(saveObjects:withCompletion:)]
         pub unsafe fn saveObjects_withCompletion(
             &self,
@@ -95,7 +91,7 @@ extern_methods!(
             completion: &Block<dyn Fn(Bool, *mut NSError)>,
         );
 
-        #[cfg(all(feature = "HealthKit_HKObject", feature = "block2"))]
+        #[cfg(all(feature = "HKObject", feature = "block2"))]
         #[method(deleteObject:withCompletion:)]
         pub unsafe fn deleteObject_withCompletion(
             &self,
@@ -103,7 +99,7 @@ extern_methods!(
             completion: &Block<dyn Fn(Bool, *mut NSError)>,
         );
 
-        #[cfg(all(feature = "HealthKit_HKObject", feature = "block2"))]
+        #[cfg(all(feature = "HKObject", feature = "block2"))]
         #[method(deleteObjects:withCompletion:)]
         pub unsafe fn deleteObjects_withCompletion(
             &self,
@@ -111,7 +107,7 @@ extern_methods!(
             completion: &Block<dyn Fn(Bool, *mut NSError)>,
         );
 
-        #[cfg(all(feature = "HealthKit_HKObjectType", feature = "block2"))]
+        #[cfg(all(feature = "HKObjectType", feature = "block2"))]
         #[method(deleteObjectsOfType:predicate:withCompletion:)]
         pub unsafe fn deleteObjectsOfType_predicate_withCompletion(
             &self,
@@ -120,15 +116,15 @@ extern_methods!(
             completion: &Block<dyn Fn(Bool, NSUInteger, *mut NSError)>,
         );
 
-        #[cfg(feature = "HealthKit_HKQuery")]
+        #[cfg(feature = "HKQuery")]
         #[method(executeQuery:)]
         pub unsafe fn executeQuery(&self, query: &HKQuery);
 
-        #[cfg(feature = "HealthKit_HKQuery")]
+        #[cfg(feature = "HKQuery")]
         #[method(stopQuery:)]
         pub unsafe fn stopQuery(&self, query: &HKQuery);
 
-        #[cfg(all(feature = "HealthKit_HKQuantity", feature = "block2"))]
+        #[cfg(all(feature = "HKQuantity", feature = "block2"))]
         #[deprecated = "No longer supported"]
         #[method(splitTotalEnergy:startDate:endDate:resultsHandler:)]
         pub unsafe fn splitTotalEnergy_startDate_endDate_resultsHandler(
@@ -148,29 +144,29 @@ extern_methods!(
             &self,
         ) -> Result<Id<NSDateComponents>, Id<NSError>>;
 
-        #[cfg(feature = "HealthKit_HKCharacteristicObjects")]
+        #[cfg(feature = "HKCharacteristicObjects")]
         #[method_id(@__retain_semantics Other biologicalSexWithError:_)]
         pub unsafe fn biologicalSexWithError(
             &self,
         ) -> Result<Id<HKBiologicalSexObject>, Id<NSError>>;
 
-        #[cfg(feature = "HealthKit_HKCharacteristicObjects")]
+        #[cfg(feature = "HKCharacteristicObjects")]
         #[method_id(@__retain_semantics Other bloodTypeWithError:_)]
         pub unsafe fn bloodTypeWithError(&self) -> Result<Id<HKBloodTypeObject>, Id<NSError>>;
 
-        #[cfg(feature = "HealthKit_HKCharacteristicObjects")]
+        #[cfg(feature = "HKCharacteristicObjects")]
         #[method_id(@__retain_semantics Other fitzpatrickSkinTypeWithError:_)]
         pub unsafe fn fitzpatrickSkinTypeWithError(
             &self,
         ) -> Result<Id<HKFitzpatrickSkinTypeObject>, Id<NSError>>;
 
-        #[cfg(feature = "HealthKit_HKCharacteristicObjects")]
+        #[cfg(feature = "HKCharacteristicObjects")]
         #[method_id(@__retain_semantics Other wheelchairUseWithError:_)]
         pub unsafe fn wheelchairUseWithError(
             &self,
         ) -> Result<Id<HKWheelchairUseObject>, Id<NSError>>;
 
-        #[cfg(feature = "HealthKit_HKCharacteristicObjects")]
+        #[cfg(feature = "HKCharacteristicObjects")]
         #[method_id(@__retain_semantics Other activityMoveModeWithError:_)]
         pub unsafe fn activityMoveModeWithError(
             &self,
@@ -192,13 +188,13 @@ extern_methods!(
 extern_methods!(
     /// HKWorkout
     unsafe impl HKHealthStore {
-        #[cfg(all(feature = "HealthKit_HKWorkoutSession", feature = "block2"))]
+        #[cfg(all(feature = "HKWorkoutSession", feature = "block2"))]
         #[method(workoutSessionMirroringStartHandler)]
         pub unsafe fn workoutSessionMirroringStartHandler(
             &self,
         ) -> *mut Block<dyn Fn(NonNull<HKWorkoutSession>)>;
 
-        #[cfg(all(feature = "HealthKit_HKWorkoutSession", feature = "block2"))]
+        #[cfg(all(feature = "HKWorkoutSession", feature = "block2"))]
         #[method(setWorkoutSessionMirroringStartHandler:)]
         pub unsafe fn setWorkoutSessionMirroringStartHandler(
             &self,
@@ -208,9 +204,9 @@ extern_methods!(
         );
 
         #[cfg(all(
-            feature = "HealthKit_HKObject",
-            feature = "HealthKit_HKSample",
-            feature = "HealthKit_HKWorkout",
+            feature = "HKObject",
+            feature = "HKSample",
+            feature = "HKWorkout",
             feature = "block2"
         ))]
         #[deprecated = "Use HKWorkoutBuilder"]
@@ -222,27 +218,27 @@ extern_methods!(
             completion: &Block<dyn Fn(Bool, *mut NSError)>,
         );
 
-        #[cfg(feature = "HealthKit_HKWorkoutSession")]
+        #[cfg(feature = "HKWorkoutSession")]
         #[deprecated = "Use HKWorkoutSession's start method"]
         #[method(startWorkoutSession:)]
         pub unsafe fn startWorkoutSession(&self, workout_session: &HKWorkoutSession);
 
-        #[cfg(feature = "HealthKit_HKWorkoutSession")]
+        #[cfg(feature = "HKWorkoutSession")]
         #[deprecated = "Use HKWorkoutSession's end method"]
         #[method(endWorkoutSession:)]
         pub unsafe fn endWorkoutSession(&self, workout_session: &HKWorkoutSession);
 
-        #[cfg(feature = "HealthKit_HKWorkoutSession")]
+        #[cfg(feature = "HKWorkoutSession")]
         #[deprecated = "Use HKWorkoutSession's pause method"]
         #[method(pauseWorkoutSession:)]
         pub unsafe fn pauseWorkoutSession(&self, workout_session: &HKWorkoutSession);
 
-        #[cfg(feature = "HealthKit_HKWorkoutSession")]
+        #[cfg(feature = "HKWorkoutSession")]
         #[deprecated = "Use HKWorkoutSession's resume method"]
         #[method(resumeWorkoutSession:)]
         pub unsafe fn resumeWorkoutSession(&self, workout_session: &HKWorkoutSession);
 
-        #[cfg(all(feature = "HealthKit_HKWorkoutConfiguration", feature = "block2"))]
+        #[cfg(all(feature = "HKWorkoutConfiguration", feature = "block2"))]
         #[method(startWatchAppWithWorkoutConfiguration:completion:)]
         pub unsafe fn startWatchAppWithWorkoutConfiguration_completion(
             &self,
@@ -250,7 +246,7 @@ extern_methods!(
             completion: &Block<dyn Fn(Bool, *mut NSError)>,
         );
 
-        #[cfg(all(feature = "HealthKit_HKWorkoutSession", feature = "block2"))]
+        #[cfg(all(feature = "HKWorkoutSession", feature = "block2"))]
         #[method(recoverActiveWorkoutSessionWithCompletion:)]
         pub unsafe fn recoverActiveWorkoutSessionWithCompletion(
             &self,
@@ -262,11 +258,7 @@ extern_methods!(
 extern_methods!(
     /// HKBackgroundDelivery
     unsafe impl HKHealthStore {
-        #[cfg(all(
-            feature = "HealthKit_HKDefines",
-            feature = "HealthKit_HKObjectType",
-            feature = "block2"
-        ))]
+        #[cfg(all(feature = "HKDefines", feature = "HKObjectType", feature = "block2"))]
         #[method(enableBackgroundDeliveryForType:frequency:withCompletion:)]
         pub unsafe fn enableBackgroundDeliveryForType_frequency_withCompletion(
             &self,
@@ -275,7 +267,7 @@ extern_methods!(
             completion: &Block<dyn Fn(Bool, *mut NSError)>,
         );
 
-        #[cfg(all(feature = "HealthKit_HKObjectType", feature = "block2"))]
+        #[cfg(all(feature = "HKObjectType", feature = "block2"))]
         #[method(disableBackgroundDeliveryForType:withCompletion:)]
         pub unsafe fn disableBackgroundDeliveryForType_withCompletion(
             &self,
@@ -299,11 +291,7 @@ extern "C" {
 extern_methods!(
     /// HKUserPreferences
     unsafe impl HKHealthStore {
-        #[cfg(all(
-            feature = "HealthKit_HKObjectType",
-            feature = "HealthKit_HKUnit",
-            feature = "block2"
-        ))]
+        #[cfg(all(feature = "HKObjectType", feature = "HKUnit", feature = "block2"))]
         #[method(preferredUnitsForQuantityTypes:completion:)]
         pub unsafe fn preferredUnitsForQuantityTypes_completion(
             &self,
@@ -316,7 +304,7 @@ extern_methods!(
 extern_methods!(
     /// HKRecalibrateEstimates
     unsafe impl HKHealthStore {
-        #[cfg(all(feature = "HealthKit_HKObjectType", feature = "block2"))]
+        #[cfg(all(feature = "HKObjectType", feature = "block2"))]
         #[method(recalibrateEstimatesForSampleType:atDate:completion:)]
         pub unsafe fn recalibrateEstimatesForSampleType_atDate_completion(
             &self,

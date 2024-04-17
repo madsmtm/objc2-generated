@@ -7,10 +7,10 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "EventKit_EKObject")]
+    #[cfg(feature = "EKObject")]
     pub struct EKRecurrenceRule;
 
-    #[cfg(feature = "EventKit_EKObject")]
+    #[cfg(feature = "EKObject")]
     unsafe impl ClassType for EKRecurrenceRule {
         #[inherits(NSObject)]
         type Super = EKObject;
@@ -18,16 +18,16 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "EventKit_EKObject")]
+#[cfg(feature = "EKObject")]
 unsafe impl NSCopying for EKRecurrenceRule {}
 
-#[cfg(feature = "EventKit_EKObject")]
+#[cfg(feature = "EKObject")]
 unsafe impl NSObjectProtocol for EKRecurrenceRule {}
 
 extern_methods!(
-    #[cfg(feature = "EventKit_EKObject")]
+    #[cfg(feature = "EKObject")]
     unsafe impl EKRecurrenceRule {
-        #[cfg(all(feature = "EventKit_EKRecurrenceEnd", feature = "EventKit_EKTypes"))]
+        #[cfg(all(feature = "EKRecurrenceEnd", feature = "EKTypes"))]
         #[method_id(@__retain_semantics Init initRecurrenceWithFrequency:interval:end:)]
         pub unsafe fn initRecurrenceWithFrequency_interval_end(
             this: Allocated<Self>,
@@ -37,9 +37,9 @@ extern_methods!(
         ) -> Id<Self>;
 
         #[cfg(all(
-            feature = "EventKit_EKRecurrenceDayOfWeek",
-            feature = "EventKit_EKRecurrenceEnd",
-            feature = "EventKit_EKTypes"
+            feature = "EKRecurrenceDayOfWeek",
+            feature = "EKRecurrenceEnd",
+            feature = "EKTypes"
         ))]
         #[method_id(@__retain_semantics Init initRecurrenceWithFrequency:interval:daysOfTheWeek:daysOfTheMonth:monthsOfTheYear:weeksOfTheYear:daysOfTheYear:setPositions:end:)]
         pub unsafe fn initRecurrenceWithFrequency_interval_daysOfTheWeek_daysOfTheMonth_monthsOfTheYear_weeksOfTheYear_daysOfTheYear_setPositions_end(
@@ -58,15 +58,15 @@ extern_methods!(
         #[method_id(@__retain_semantics Other calendarIdentifier)]
         pub unsafe fn calendarIdentifier(&self) -> Id<NSString>;
 
-        #[cfg(feature = "EventKit_EKRecurrenceEnd")]
+        #[cfg(feature = "EKRecurrenceEnd")]
         #[method_id(@__retain_semantics Other recurrenceEnd)]
         pub unsafe fn recurrenceEnd(&self) -> Option<Id<EKRecurrenceEnd>>;
 
-        #[cfg(feature = "EventKit_EKRecurrenceEnd")]
+        #[cfg(feature = "EKRecurrenceEnd")]
         #[method(setRecurrenceEnd:)]
         pub unsafe fn setRecurrenceEnd(&self, recurrence_end: Option<&EKRecurrenceEnd>);
 
-        #[cfg(feature = "EventKit_EKTypes")]
+        #[cfg(feature = "EKTypes")]
         #[method(frequency)]
         pub unsafe fn frequency(&self) -> EKRecurrenceFrequency;
 
@@ -76,7 +76,7 @@ extern_methods!(
         #[method(firstDayOfTheWeek)]
         pub unsafe fn firstDayOfTheWeek(&self) -> NSInteger;
 
-        #[cfg(feature = "EventKit_EKRecurrenceDayOfWeek")]
+        #[cfg(feature = "EKRecurrenceDayOfWeek")]
         #[method_id(@__retain_semantics Other daysOfTheWeek)]
         pub unsafe fn daysOfTheWeek(&self) -> Option<Id<NSArray<EKRecurrenceDayOfWeek>>>;
 
@@ -99,7 +99,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "EventKit_EKObject")]
+    #[cfg(feature = "EKObject")]
     unsafe impl EKRecurrenceRule {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

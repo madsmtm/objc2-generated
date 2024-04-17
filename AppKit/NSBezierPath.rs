@@ -404,12 +404,12 @@ extern_methods!(
         #[method(setCachesBezierPath:)]
         pub unsafe fn setCachesBezierPath(&self, flag: bool);
 
-        #[cfg(feature = "AppKit_NSFont")]
+        #[cfg(feature = "NSFont")]
         #[deprecated = "Use -appendBezierPathWithCGGlyph:inFont: instead"]
         #[method(appendBezierPathWithGlyph:inFont:)]
         pub unsafe fn appendBezierPathWithGlyph_inFont(&self, glyph: NSGlyph, font: &NSFont);
 
-        #[cfg(feature = "AppKit_NSFont")]
+        #[cfg(feature = "NSFont")]
         #[deprecated = "Use -appendBezierPathWithCGGlyphs:count:inFont: instead"]
         #[method(appendBezierPathWithGlyphs:count:inFont:)]
         pub unsafe fn appendBezierPathWithGlyphs_count_inFont(

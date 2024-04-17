@@ -16,7 +16,7 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AuthenticationServices_ASAuthorizationProvider")]
+#[cfg(feature = "ASAuthorizationProvider")]
 unsafe impl ASAuthorizationProvider for ASAuthorizationSecurityKeyPublicKeyCredentialProvider {}
 
 unsafe impl NSObjectProtocol for ASAuthorizationSecurityKeyPublicKeyCredentialProvider {}
@@ -30,8 +30,8 @@ extern_methods!(
         ) -> Id<Self>;
 
         #[cfg(all(
-            feature = "AuthenticationServices_ASAuthorizationRequest",
-            feature = "AuthenticationServices_ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest"
+            feature = "ASAuthorizationRequest",
+            feature = "ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest"
         ))]
         #[method_id(@__retain_semantics Other createCredentialRegistrationRequestWithChallenge:displayName:name:userID:)]
         pub unsafe fn createCredentialRegistrationRequestWithChallenge_displayName_name_userID(
@@ -43,8 +43,8 @@ extern_methods!(
         ) -> Id<ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest>;
 
         #[cfg(all(
-            feature = "AuthenticationServices_ASAuthorizationRequest",
-            feature = "AuthenticationServices_ASAuthorizationSecurityKeyPublicKeyCredentialAssertionRequest"
+            feature = "ASAuthorizationRequest",
+            feature = "ASAuthorizationSecurityKeyPublicKeyCredentialAssertionRequest"
         ))]
         #[method_id(@__retain_semantics Other createCredentialAssertionRequestWithChallenge:)]
         pub unsafe fn createCredentialAssertionRequestWithChallenge(
@@ -67,9 +67,7 @@ extern_methods!(
     unsafe impl ASAuthorizationSecurityKeyPublicKeyCredentialProvider {}
 );
 
-#[cfg(
-    feature = "AuthenticationServices_ASAuthorizationWebBrowserSecurityKeyPublicKeyCredentialProvider"
-)]
+#[cfg(feature = "ASAuthorizationWebBrowserSecurityKeyPublicKeyCredentialProvider")]
 unsafe impl ASAuthorizationWebBrowserSecurityKeyPublicKeyCredentialProvider
     for ASAuthorizationSecurityKeyPublicKeyCredentialProvider
 {

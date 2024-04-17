@@ -11,7 +11,7 @@ extern_protocol!(
         #[method(storeOverlay:didFailToLoadWithError:)]
         unsafe fn storeOverlay_didFailToLoadWithError(&self, overlay: &SKOverlay, error: &NSError);
 
-        #[cfg(feature = "StoreKit_SKOverlayTransitionContext")]
+        #[cfg(feature = "SKOverlayTransitionContext")]
         #[optional]
         #[method(storeOverlay:willStartPresentation:)]
         unsafe fn storeOverlay_willStartPresentation(
@@ -20,7 +20,7 @@ extern_protocol!(
             transition_context: &SKOverlayTransitionContext,
         );
 
-        #[cfg(feature = "StoreKit_SKOverlayTransitionContext")]
+        #[cfg(feature = "SKOverlayTransitionContext")]
         #[optional]
         #[method(storeOverlay:didFinishPresentation:)]
         unsafe fn storeOverlay_didFinishPresentation(
@@ -29,7 +29,7 @@ extern_protocol!(
             transition_context: &SKOverlayTransitionContext,
         );
 
-        #[cfg(feature = "StoreKit_SKOverlayTransitionContext")]
+        #[cfg(feature = "SKOverlayTransitionContext")]
         #[optional]
         #[method(storeOverlay:willStartDismissal:)]
         unsafe fn storeOverlay_willStartDismissal(
@@ -38,7 +38,7 @@ extern_protocol!(
             transition_context: &SKOverlayTransitionContext,
         );
 
-        #[cfg(feature = "StoreKit_SKOverlayTransitionContext")]
+        #[cfg(feature = "SKOverlayTransitionContext")]
         #[optional]
         #[method(storeOverlay:didFinishDismissal:)]
         unsafe fn storeOverlay_didFinishDismissal(
@@ -71,7 +71,7 @@ extern_methods!(
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
 
-        #[cfg(feature = "StoreKit_SKOverlayConfiguration")]
+        #[cfg(feature = "SKOverlayConfiguration")]
         #[method_id(@__retain_semantics Init initWithConfiguration:)]
         pub unsafe fn initWithConfiguration(
             this: Allocated<Self>,
@@ -84,7 +84,7 @@ extern_methods!(
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn SKOverlayDelegate>>);
 
-        #[cfg(feature = "StoreKit_SKOverlayConfiguration")]
+        #[cfg(feature = "SKOverlayConfiguration")]
         #[method_id(@__retain_semantics Other configuration)]
         pub unsafe fn configuration(&self) -> Id<SKOverlayConfiguration>;
     }

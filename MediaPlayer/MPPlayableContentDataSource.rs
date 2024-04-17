@@ -28,7 +28,7 @@ extern_protocol!(
             index_path: &NSIndexPath,
         ) -> bool;
 
-        #[cfg(all(feature = "MediaPlayer_MPContentItem", feature = "block2"))]
+        #[cfg(all(feature = "MPContentItem", feature = "block2"))]
         #[deprecated = "Use CarPlay framework"]
         #[optional]
         #[method(contentItemForIdentifier:completionHandler:)]
@@ -42,7 +42,7 @@ extern_protocol!(
         #[method(numberOfChildItemsAtIndexPath:)]
         unsafe fn numberOfChildItemsAtIndexPath(&self, index_path: &NSIndexPath) -> NSInteger;
 
-        #[cfg(feature = "MediaPlayer_MPContentItem")]
+        #[cfg(feature = "MPContentItem")]
         #[deprecated = "Use CarPlay framework"]
         #[method_id(@__retain_semantics Other contentItemAtIndexPath:)]
         unsafe fn contentItemAtIndexPath(

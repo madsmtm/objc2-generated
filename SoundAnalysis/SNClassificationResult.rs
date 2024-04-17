@@ -45,7 +45,7 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for SNClassificationResult {}
 
-#[cfg(feature = "SoundAnalysis_SNResult")]
+#[cfg(feature = "SNResult")]
 unsafe impl SNResult for SNClassificationResult {}
 
 extern_methods!(

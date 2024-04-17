@@ -18,39 +18,39 @@ unsafe impl Send for NSDateInterval {}
 
 unsafe impl Sync for NSDateInterval {}
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSCoding for NSDateInterval {}
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSDateInterval {}
 
 unsafe impl NSObjectProtocol for NSDateInterval {}
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSSecureCoding for NSDateInterval {}
 
 extern_methods!(
     unsafe impl NSDateInterval {
-        #[cfg(feature = "Foundation_NSDate")]
+        #[cfg(feature = "NSDate")]
         #[method_id(@__retain_semantics Other startDate)]
         pub unsafe fn startDate(&self) -> Id<NSDate>;
 
-        #[cfg(feature = "Foundation_NSDate")]
+        #[cfg(feature = "NSDate")]
         #[method_id(@__retain_semantics Other endDate)]
         pub unsafe fn endDate(&self) -> Id<NSDate>;
 
-        #[cfg(feature = "Foundation_NSDate")]
+        #[cfg(feature = "NSDate")]
         #[method(duration)]
         pub unsafe fn duration(&self) -> NSTimeInterval;
 
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSCoder")]
+        #[cfg(feature = "NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSDate")]
+        #[cfg(feature = "NSDate")]
         #[method_id(@__retain_semantics Init initWithStartDate:duration:)]
         pub unsafe fn initWithStartDate_duration(
             this: Allocated<Self>,
@@ -58,7 +58,7 @@ extern_methods!(
             duration: NSTimeInterval,
         ) -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSDate")]
+        #[cfg(feature = "NSDate")]
         #[method_id(@__retain_semantics Init initWithStartDate:endDate:)]
         pub unsafe fn initWithStartDate_endDate(
             this: Allocated<Self>,
@@ -66,7 +66,7 @@ extern_methods!(
             end_date: &NSDate,
         ) -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSObjCRuntime")]
+        #[cfg(feature = "NSObjCRuntime")]
         #[method(compare:)]
         pub unsafe fn compare(&self, date_interval: &NSDateInterval) -> NSComparisonResult;
 
@@ -82,7 +82,7 @@ extern_methods!(
             date_interval: &NSDateInterval,
         ) -> Option<Id<NSDateInterval>>;
 
-        #[cfg(feature = "Foundation_NSDate")]
+        #[cfg(feature = "NSDate")]
         #[method(containsDate:)]
         pub unsafe fn containsDate(&self, date: &NSDate) -> bool;
     }

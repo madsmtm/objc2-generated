@@ -27,16 +27,10 @@ unsafe impl RefEncode for CKRecordSavePolicy {
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(
-        feature = "CloudKit_CKDatabaseOperation",
-        feature = "CloudKit_CKOperation"
-    ))]
+    #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
     pub struct CKModifyRecordsOperation;
 
-    #[cfg(all(
-        feature = "CloudKit_CKDatabaseOperation",
-        feature = "CloudKit_CKOperation"
-    ))]
+    #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
     unsafe impl ClassType for CKModifyRecordsOperation {
         #[inherits(CKOperation, NSOperation, NSObject)]
         type Super = CKDatabaseOperation;
@@ -44,22 +38,16 @@ extern_class!(
     }
 );
 
-#[cfg(all(
-    feature = "CloudKit_CKDatabaseOperation",
-    feature = "CloudKit_CKOperation"
-))]
+#[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
 unsafe impl NSObjectProtocol for CKModifyRecordsOperation {}
 
 extern_methods!(
-    #[cfg(all(
-        feature = "CloudKit_CKDatabaseOperation",
-        feature = "CloudKit_CKOperation"
-    ))]
+    #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
     unsafe impl CKModifyRecordsOperation {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
-        #[cfg(all(feature = "CloudKit_CKRecord", feature = "CloudKit_CKRecordID"))]
+        #[cfg(all(feature = "CKRecord", feature = "CKRecordID"))]
         #[method_id(@__retain_semantics Init initWithRecordsToSave:recordIDsToDelete:)]
         pub unsafe fn initWithRecordsToSave_recordIDsToDelete(
             this: Allocated<Self>,
@@ -67,19 +55,19 @@ extern_methods!(
             record_i_ds: Option<&NSArray<CKRecordID>>,
         ) -> Id<Self>;
 
-        #[cfg(feature = "CloudKit_CKRecord")]
+        #[cfg(feature = "CKRecord")]
         #[method_id(@__retain_semantics Other recordsToSave)]
         pub unsafe fn recordsToSave(&self) -> Option<Id<NSArray<CKRecord>>>;
 
-        #[cfg(feature = "CloudKit_CKRecord")]
+        #[cfg(feature = "CKRecord")]
         #[method(setRecordsToSave:)]
         pub unsafe fn setRecordsToSave(&self, records_to_save: Option<&NSArray<CKRecord>>);
 
-        #[cfg(feature = "CloudKit_CKRecordID")]
+        #[cfg(feature = "CKRecordID")]
         #[method_id(@__retain_semantics Other recordIDsToDelete)]
         pub unsafe fn recordIDsToDelete(&self) -> Option<Id<NSArray<CKRecordID>>>;
 
-        #[cfg(feature = "CloudKit_CKRecordID")]
+        #[cfg(feature = "CKRecordID")]
         #[method(setRecordIDsToDelete:)]
         pub unsafe fn setRecordIDsToDelete(
             &self,
@@ -104,27 +92,27 @@ extern_methods!(
         #[method(setAtomic:)]
         pub unsafe fn setAtomic(&self, atomic: bool);
 
-        #[cfg(all(feature = "CloudKit_CKRecord", feature = "block2"))]
+        #[cfg(all(feature = "CKRecord", feature = "block2"))]
         #[method(perRecordProgressBlock)]
         pub unsafe fn perRecordProgressBlock(
             &self,
         ) -> *mut Block<dyn Fn(NonNull<CKRecord>, c_double)>;
 
-        #[cfg(all(feature = "CloudKit_CKRecord", feature = "block2"))]
+        #[cfg(all(feature = "CKRecord", feature = "block2"))]
         #[method(setPerRecordProgressBlock:)]
         pub unsafe fn setPerRecordProgressBlock(
             &self,
             per_record_progress_block: Option<&Block<dyn Fn(NonNull<CKRecord>, c_double)>>,
         );
 
-        #[cfg(all(feature = "CloudKit_CKRecord", feature = "block2"))]
+        #[cfg(all(feature = "CKRecord", feature = "block2"))]
         #[deprecated]
         #[method(perRecordCompletionBlock)]
         pub unsafe fn perRecordCompletionBlock(
             &self,
         ) -> *mut Block<dyn Fn(NonNull<CKRecord>, *mut NSError)>;
 
-        #[cfg(all(feature = "CloudKit_CKRecord", feature = "block2"))]
+        #[cfg(all(feature = "CKRecord", feature = "block2"))]
         #[deprecated]
         #[method(setPerRecordCompletionBlock:)]
         pub unsafe fn setPerRecordCompletionBlock(
@@ -132,21 +120,13 @@ extern_methods!(
             per_record_completion_block: Option<&Block<dyn Fn(NonNull<CKRecord>, *mut NSError)>>,
         );
 
-        #[cfg(all(
-            feature = "CloudKit_CKRecord",
-            feature = "CloudKit_CKRecordID",
-            feature = "block2"
-        ))]
+        #[cfg(all(feature = "CKRecord", feature = "CKRecordID", feature = "block2"))]
         #[method(perRecordSaveBlock)]
         pub unsafe fn perRecordSaveBlock(
             &self,
         ) -> *mut Block<dyn Fn(NonNull<CKRecordID>, *mut CKRecord, *mut NSError)>;
 
-        #[cfg(all(
-            feature = "CloudKit_CKRecord",
-            feature = "CloudKit_CKRecordID",
-            feature = "block2"
-        ))]
+        #[cfg(all(feature = "CKRecord", feature = "CKRecordID", feature = "block2"))]
         #[method(setPerRecordSaveBlock:)]
         pub unsafe fn setPerRecordSaveBlock(
             &self,
@@ -155,34 +135,26 @@ extern_methods!(
             >,
         );
 
-        #[cfg(all(feature = "CloudKit_CKRecordID", feature = "block2"))]
+        #[cfg(all(feature = "CKRecordID", feature = "block2"))]
         #[method(perRecordDeleteBlock)]
         pub unsafe fn perRecordDeleteBlock(
             &self,
         ) -> *mut Block<dyn Fn(NonNull<CKRecordID>, *mut NSError)>;
 
-        #[cfg(all(feature = "CloudKit_CKRecordID", feature = "block2"))]
+        #[cfg(all(feature = "CKRecordID", feature = "block2"))]
         #[method(setPerRecordDeleteBlock:)]
         pub unsafe fn setPerRecordDeleteBlock(
             &self,
             per_record_delete_block: Option<&Block<dyn Fn(NonNull<CKRecordID>, *mut NSError)>>,
         );
 
-        #[cfg(all(
-            feature = "CloudKit_CKRecord",
-            feature = "CloudKit_CKRecordID",
-            feature = "block2"
-        ))]
+        #[cfg(all(feature = "CKRecord", feature = "CKRecordID", feature = "block2"))]
         #[method(modifyRecordsCompletionBlock)]
         pub unsafe fn modifyRecordsCompletionBlock(
             &self,
         ) -> *mut Block<dyn Fn(*mut NSArray<CKRecord>, *mut NSArray<CKRecordID>, *mut NSError)>;
 
-        #[cfg(all(
-            feature = "CloudKit_CKRecord",
-            feature = "CloudKit_CKRecordID",
-            feature = "block2"
-        ))]
+        #[cfg(all(feature = "CKRecord", feature = "CKRecordID", feature = "block2"))]
         #[method(setModifyRecordsCompletionBlock:)]
         pub unsafe fn setModifyRecordsCompletionBlock(
             &self,
@@ -195,10 +167,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(all(
-        feature = "CloudKit_CKDatabaseOperation",
-        feature = "CloudKit_CKOperation"
-    ))]
+    #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
     unsafe impl CKModifyRecordsOperation {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

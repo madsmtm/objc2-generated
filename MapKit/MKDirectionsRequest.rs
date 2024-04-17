@@ -38,19 +38,19 @@ unsafe impl NSObjectProtocol for MKDirectionsRequest {}
 
 extern_methods!(
     unsafe impl MKDirectionsRequest {
-        #[cfg(feature = "MapKit_MKMapItem")]
+        #[cfg(feature = "MKMapItem")]
         #[method_id(@__retain_semantics Other source)]
         pub unsafe fn source(&self) -> Option<Id<MKMapItem>>;
 
-        #[cfg(feature = "MapKit_MKMapItem")]
+        #[cfg(feature = "MKMapItem")]
         #[method(setSource:)]
         pub unsafe fn setSource(&self, source: Option<&MKMapItem>);
 
-        #[cfg(feature = "MapKit_MKMapItem")]
+        #[cfg(feature = "MKMapItem")]
         #[method_id(@__retain_semantics Other destination)]
         pub unsafe fn destination(&self) -> Option<Id<MKMapItem>>;
 
-        #[cfg(feature = "MapKit_MKMapItem")]
+        #[cfg(feature = "MKMapItem")]
         #[method(setDestination:)]
         pub unsafe fn setDestination(&self, destination: Option<&MKMapItem>);
     }
@@ -70,11 +70,11 @@ extern_methods!(
 extern_methods!(
     /// MKRequestOptions
     unsafe impl MKDirectionsRequest {
-        #[cfg(feature = "MapKit_MKDirectionsTypes")]
+        #[cfg(feature = "MKDirectionsTypes")]
         #[method(transportType)]
         pub unsafe fn transportType(&self) -> MKDirectionsTransportType;
 
-        #[cfg(feature = "MapKit_MKDirectionsTypes")]
+        #[cfg(feature = "MKDirectionsTypes")]
         #[method(setTransportType:)]
         pub unsafe fn setTransportType(&self, transport_type: MKDirectionsTransportType);
 

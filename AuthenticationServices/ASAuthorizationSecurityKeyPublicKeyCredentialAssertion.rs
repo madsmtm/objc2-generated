@@ -16,13 +16,13 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AuthenticationServices_ASAuthorizationCredential")]
+#[cfg(feature = "ASAuthorizationCredential")]
 unsafe impl ASAuthorizationCredential for ASAuthorizationSecurityKeyPublicKeyCredentialAssertion {}
 
 #[cfg(all(
-    feature = "AuthenticationServices_ASAuthorizationCredential",
-    feature = "AuthenticationServices_ASAuthorizationPublicKeyCredentialAssertion",
-    feature = "AuthenticationServices_ASPublicKeyCredential"
+    feature = "ASAuthorizationCredential",
+    feature = "ASAuthorizationPublicKeyCredentialAssertion",
+    feature = "ASPublicKeyCredential"
 ))]
 unsafe impl ASAuthorizationPublicKeyCredentialAssertion
     for ASAuthorizationSecurityKeyPublicKeyCredentialAssertion
@@ -30,8 +30,8 @@ unsafe impl ASAuthorizationPublicKeyCredentialAssertion
 }
 
 #[cfg(all(
-    feature = "AuthenticationServices_ASAuthorizationCredential",
-    feature = "AuthenticationServices_ASPublicKeyCredential"
+    feature = "ASAuthorizationCredential",
+    feature = "ASPublicKeyCredential"
 ))]
 unsafe impl ASPublicKeyCredential for ASAuthorizationSecurityKeyPublicKeyCredentialAssertion {}
 

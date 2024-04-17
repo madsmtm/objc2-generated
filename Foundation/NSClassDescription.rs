@@ -32,19 +32,19 @@ extern_methods!(
             a_class: &AnyClass,
         ) -> Option<Id<NSClassDescription>>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[method_id(@__retain_semantics Other attributeKeys)]
         pub unsafe fn attributeKeys(&self) -> Id<NSArray<NSString>>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[method_id(@__retain_semantics Other toOneRelationshipKeys)]
         pub unsafe fn toOneRelationshipKeys(&self) -> Id<NSArray<NSString>>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[method_id(@__retain_semantics Other toManyRelationshipKeys)]
         pub unsafe fn toManyRelationshipKeys(&self) -> Id<NSArray<NSString>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other inverseForRelationshipKey:)]
         pub unsafe fn inverseForRelationshipKey(
             &self,
@@ -71,19 +71,19 @@ extern_category!(
         #[method_id(@__retain_semantics Other classDescription)]
         unsafe fn classDescription(&self) -> Id<NSClassDescription>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[method_id(@__retain_semantics Other attributeKeys)]
         unsafe fn attributeKeys(&self) -> Id<NSArray<NSString>>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[method_id(@__retain_semantics Other toOneRelationshipKeys)]
         unsafe fn toOneRelationshipKeys(&self) -> Id<NSArray<NSString>>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[method_id(@__retain_semantics Other toManyRelationshipKeys)]
         unsafe fn toManyRelationshipKeys(&self) -> Id<NSArray<NSString>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other inverseForRelationshipKey:)]
         unsafe fn inverseForRelationshipKey(
             &self,
@@ -95,6 +95,6 @@ extern_category!(
 );
 
 extern "C" {
-    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSClassDescriptionNeededForClassNotification: &'static NSNotificationName;
 }

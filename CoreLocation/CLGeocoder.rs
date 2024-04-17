@@ -9,7 +9,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
-#[cfg(all(feature = "CoreLocation_CLPlacemark", feature = "block2"))]
+#[cfg(all(feature = "CLPlacemark", feature = "block2"))]
 pub type CLGeocodeCompletionHandler = *mut Block<dyn Fn(*mut NSArray<CLPlacemark>, *mut NSError)>;
 
 extern_class!(
@@ -29,11 +29,7 @@ extern_methods!(
         #[method(isGeocoding)]
         pub unsafe fn isGeocoding(&self) -> bool;
 
-        #[cfg(all(
-            feature = "CoreLocation_CLLocation",
-            feature = "CoreLocation_CLPlacemark",
-            feature = "block2"
-        ))]
+        #[cfg(all(feature = "CLLocation", feature = "CLPlacemark", feature = "block2"))]
         #[method(reverseGeocodeLocation:completionHandler:)]
         pub unsafe fn reverseGeocodeLocation_completionHandler(
             &self,
@@ -41,11 +37,7 @@ extern_methods!(
             completion_handler: CLGeocodeCompletionHandler,
         );
 
-        #[cfg(all(
-            feature = "CoreLocation_CLLocation",
-            feature = "CoreLocation_CLPlacemark",
-            feature = "block2"
-        ))]
+        #[cfg(all(feature = "CLLocation", feature = "CLPlacemark", feature = "block2"))]
         #[method(reverseGeocodeLocation:preferredLocale:completionHandler:)]
         pub unsafe fn reverseGeocodeLocation_preferredLocale_completionHandler(
             &self,
@@ -54,7 +46,7 @@ extern_methods!(
             completion_handler: CLGeocodeCompletionHandler,
         );
 
-        #[cfg(all(feature = "CoreLocation_CLPlacemark", feature = "block2"))]
+        #[cfg(all(feature = "CLPlacemark", feature = "block2"))]
         #[deprecated = "Use -geocodePostalAddress:completionHandler:"]
         #[method(geocodeAddressDictionary:completionHandler:)]
         pub unsafe fn geocodeAddressDictionary_completionHandler(
@@ -63,11 +55,7 @@ extern_methods!(
             completion_handler: CLGeocodeCompletionHandler,
         );
 
-        #[cfg(all(
-            feature = "CoreLocation_CLPlacemark",
-            feature = "CoreLocation_CLRegion",
-            feature = "block2"
-        ))]
+        #[cfg(all(feature = "CLPlacemark", feature = "CLRegion", feature = "block2"))]
         #[method(geocodeAddressString:inRegion:completionHandler:)]
         pub unsafe fn geocodeAddressString_inRegion_completionHandler(
             &self,
@@ -76,11 +64,7 @@ extern_methods!(
             completion_handler: CLGeocodeCompletionHandler,
         );
 
-        #[cfg(all(
-            feature = "CoreLocation_CLPlacemark",
-            feature = "CoreLocation_CLRegion",
-            feature = "block2"
-        ))]
+        #[cfg(all(feature = "CLPlacemark", feature = "CLRegion", feature = "block2"))]
         #[method(geocodeAddressString:inRegion:preferredLocale:completionHandler:)]
         pub unsafe fn geocodeAddressString_inRegion_preferredLocale_completionHandler(
             &self,
@@ -90,7 +74,7 @@ extern_methods!(
             completion_handler: CLGeocodeCompletionHandler,
         );
 
-        #[cfg(all(feature = "CoreLocation_CLPlacemark", feature = "block2"))]
+        #[cfg(all(feature = "CLPlacemark", feature = "block2"))]
         #[method(geocodeAddressString:completionHandler:)]
         pub unsafe fn geocodeAddressString_completionHandler(
             &self,
@@ -118,7 +102,7 @@ extern_methods!(
     /// ContactsAdditions
     unsafe impl CLGeocoder {
         #[cfg(all(
-            feature = "CoreLocation_CLPlacemark",
+            feature = "CLPlacemark",
             feature = "block2",
             feature = "objc2-contacts"
         ))]
@@ -130,7 +114,7 @@ extern_methods!(
         );
 
         #[cfg(all(
-            feature = "CoreLocation_CLPlacemark",
+            feature = "CLPlacemark",
             feature = "block2",
             feature = "objc2-contacts"
         ))]

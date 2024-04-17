@@ -23,17 +23,14 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "GameController_GCDevice")]
+#[cfg(feature = "GCDevice")]
 unsafe impl GCDevice for GCKeyboard {}
 
 unsafe impl NSObjectProtocol for GCKeyboard {}
 
 extern_methods!(
     unsafe impl GCKeyboard {
-        #[cfg(all(
-            feature = "GameController_GCKeyboardInput",
-            feature = "GameController_GCPhysicalInputProfile"
-        ))]
+        #[cfg(all(feature = "GCKeyboardInput", feature = "GCPhysicalInputProfile"))]
         #[method_id(@__retain_semantics Other keyboardInput)]
         pub unsafe fn keyboardInput(&self) -> Option<Id<GCKeyboardInput>>;
 

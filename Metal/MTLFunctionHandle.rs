@@ -7,14 +7,14 @@ use crate::*;
 
 extern_protocol!(
     pub unsafe trait MTLFunctionHandle: NSObjectProtocol {
-        #[cfg(feature = "Metal_MTLLibrary")]
+        #[cfg(feature = "MTLLibrary")]
         #[method(functionType)]
         fn functionType(&self) -> MTLFunctionType;
 
         #[method_id(@__retain_semantics Other name)]
         fn name(&self) -> Id<NSString>;
 
-        #[cfg(feature = "Metal_MTLDevice")]
+        #[cfg(feature = "MTLDevice")]
         #[method_id(@__retain_semantics Other device)]
         fn device(&self) -> Id<ProtocolObject<dyn MTLDevice>>;
     }

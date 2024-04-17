@@ -16,7 +16,7 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AuthenticationServices_ASCredentialRequest")]
+#[cfg(feature = "ASCredentialRequest")]
 unsafe impl ASCredentialRequest for ASPasswordCredentialRequest {}
 
 unsafe impl NSCoding for ASPasswordCredentialRequest {}
@@ -32,14 +32,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
-        #[cfg(feature = "AuthenticationServices_ASPasswordCredentialIdentity")]
+        #[cfg(feature = "ASPasswordCredentialIdentity")]
         #[method_id(@__retain_semantics Init initWithCredentialIdentity:)]
         pub unsafe fn initWithCredentialIdentity(
             this: Allocated<Self>,
             credential_identity: &ASPasswordCredentialIdentity,
         ) -> Id<Self>;
 
-        #[cfg(feature = "AuthenticationServices_ASPasswordCredentialIdentity")]
+        #[cfg(feature = "ASPasswordCredentialIdentity")]
         #[method_id(@__retain_semantics Other requestWithCredentialIdentity:)]
         pub unsafe fn requestWithCredentialIdentity(
             credential_identity: &ASPasswordCredentialIdentity,

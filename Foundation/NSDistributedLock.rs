@@ -22,14 +22,14 @@ unsafe impl NSObjectProtocol for NSDistributedLock {}
 
 extern_methods!(
     unsafe impl NSDistributedLock {
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other lockWithPath:)]
         pub unsafe fn lockWithPath(path: &NSString) -> Option<Id<NSDistributedLock>>;
 
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Init initWithPath:)]
         pub unsafe fn initWithPath(this: Allocated<Self>, path: &NSString) -> Option<Id<Self>>;
 
@@ -42,7 +42,7 @@ extern_methods!(
         #[method(breakLock)]
         pub unsafe fn breakLock(&self);
 
-        #[cfg(feature = "Foundation_NSDate")]
+        #[cfg(feature = "NSDate")]
         #[method_id(@__retain_semantics Other lockDate)]
         pub unsafe fn lockDate(&self) -> Id<NSDate>;
     }

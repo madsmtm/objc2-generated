@@ -9,10 +9,10 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MapKit_MKOverlayRenderer")]
+    #[cfg(feature = "MKOverlayRenderer")]
     pub struct MKOverlayPathRenderer;
 
-    #[cfg(feature = "MapKit_MKOverlayRenderer")]
+    #[cfg(feature = "MKOverlayRenderer")]
     unsafe impl ClassType for MKOverlayPathRenderer {
         #[inherits(NSObject)]
         type Super = MKOverlayRenderer;
@@ -20,11 +20,11 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "MapKit_MKOverlayRenderer")]
+#[cfg(feature = "MKOverlayRenderer")]
 unsafe impl NSObjectProtocol for MKOverlayPathRenderer {}
 
 extern_methods!(
-    #[cfg(feature = "MapKit_MKOverlayRenderer")]
+    #[cfg(feature = "MKOverlayRenderer")]
     unsafe impl MKOverlayPathRenderer {
         #[cfg(feature = "objc2-app-kit")]
         #[method_id(@__retain_semantics Other fillColor)]
@@ -82,9 +82,9 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MKOverlayRenderer`
-    #[cfg(feature = "MapKit_MKOverlayRenderer")]
+    #[cfg(feature = "MKOverlayRenderer")]
     unsafe impl MKOverlayPathRenderer {
-        #[cfg(all(feature = "MapKit_MKAnnotation", feature = "MapKit_MKOverlay"))]
+        #[cfg(all(feature = "MKAnnotation", feature = "MKOverlay"))]
         #[method_id(@__retain_semantics Init initWithOverlay:)]
         pub unsafe fn initWithOverlay(
             this: Allocated<Self>,
@@ -95,7 +95,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MapKit_MKOverlayRenderer")]
+    #[cfg(feature = "MKOverlayRenderer")]
     unsafe impl MKOverlayPathRenderer {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

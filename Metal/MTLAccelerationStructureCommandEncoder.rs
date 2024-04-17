@@ -23,12 +23,12 @@ unsafe impl RefEncode for MTLAccelerationStructureRefitOptions {
 }
 
 extern_protocol!(
-    #[cfg(feature = "Metal_MTLCommandEncoder")]
+    #[cfg(feature = "MTLCommandEncoder")]
     pub unsafe trait MTLAccelerationStructureCommandEncoder: MTLCommandEncoder {
         #[cfg(all(
-            feature = "Metal_MTLAccelerationStructure",
-            feature = "Metal_MTLBuffer",
-            feature = "Metal_MTLResource"
+            feature = "MTLAccelerationStructure",
+            feature = "MTLBuffer",
+            feature = "MTLResource"
         ))]
         #[method(buildAccelerationStructure:descriptor:scratchBuffer:scratchBufferOffset:)]
         fn buildAccelerationStructure_descriptor_scratchBuffer_scratchBufferOffset(
@@ -40,9 +40,9 @@ extern_protocol!(
         );
 
         #[cfg(all(
-            feature = "Metal_MTLAccelerationStructure",
-            feature = "Metal_MTLBuffer",
-            feature = "Metal_MTLResource"
+            feature = "MTLAccelerationStructure",
+            feature = "MTLBuffer",
+            feature = "MTLResource"
         ))]
         #[method(refitAccelerationStructure:descriptor:destination:scratchBuffer:scratchBufferOffset:)]
         unsafe fn refitAccelerationStructure_descriptor_destination_scratchBuffer_scratchBufferOffset(
@@ -57,9 +57,9 @@ extern_protocol!(
         );
 
         #[cfg(all(
-            feature = "Metal_MTLAccelerationStructure",
-            feature = "Metal_MTLBuffer",
-            feature = "Metal_MTLResource"
+            feature = "MTLAccelerationStructure",
+            feature = "MTLBuffer",
+            feature = "MTLResource"
         ))]
         #[method(refitAccelerationStructure:descriptor:destination:scratchBuffer:scratchBufferOffset:options:)]
         unsafe fn refitAccelerationStructure_descriptor_destination_scratchBuffer_scratchBufferOffset_options(
@@ -74,10 +74,7 @@ extern_protocol!(
             options: MTLAccelerationStructureRefitOptions,
         );
 
-        #[cfg(all(
-            feature = "Metal_MTLAccelerationStructure",
-            feature = "Metal_MTLResource"
-        ))]
+        #[cfg(all(feature = "MTLAccelerationStructure", feature = "MTLResource"))]
         #[method(copyAccelerationStructure:toAccelerationStructure:)]
         unsafe fn copyAccelerationStructure_toAccelerationStructure(
             &self,
@@ -86,9 +83,9 @@ extern_protocol!(
         );
 
         #[cfg(all(
-            feature = "Metal_MTLAccelerationStructure",
-            feature = "Metal_MTLBuffer",
-            feature = "Metal_MTLResource"
+            feature = "MTLAccelerationStructure",
+            feature = "MTLBuffer",
+            feature = "MTLResource"
         ))]
         #[method(writeCompactedAccelerationStructureSize:toBuffer:offset:)]
         fn writeCompactedAccelerationStructureSize_toBuffer_offset(
@@ -99,10 +96,10 @@ extern_protocol!(
         );
 
         #[cfg(all(
-            feature = "Metal_MTLAccelerationStructure",
-            feature = "Metal_MTLArgument",
-            feature = "Metal_MTLBuffer",
-            feature = "Metal_MTLResource"
+            feature = "MTLAccelerationStructure",
+            feature = "MTLArgument",
+            feature = "MTLBuffer",
+            feature = "MTLResource"
         ))]
         #[method(writeCompactedAccelerationStructureSize:toBuffer:offset:sizeDataType:)]
         unsafe fn writeCompactedAccelerationStructureSize_toBuffer_offset_sizeDataType(
@@ -113,10 +110,7 @@ extern_protocol!(
             size_data_type: MTLDataType,
         );
 
-        #[cfg(all(
-            feature = "Metal_MTLAccelerationStructure",
-            feature = "Metal_MTLResource"
-        ))]
+        #[cfg(all(feature = "MTLAccelerationStructure", feature = "MTLResource"))]
         #[method(copyAndCompactAccelerationStructure:toAccelerationStructure:)]
         fn copyAndCompactAccelerationStructure_toAccelerationStructure(
             &self,
@@ -124,15 +118,15 @@ extern_protocol!(
             destination_acceleration_structure: &ProtocolObject<dyn MTLAccelerationStructure>,
         );
 
-        #[cfg(feature = "Metal_MTLFence")]
+        #[cfg(feature = "MTLFence")]
         #[method(updateFence:)]
         unsafe fn updateFence(&self, fence: &ProtocolObject<dyn MTLFence>);
 
-        #[cfg(feature = "Metal_MTLFence")]
+        #[cfg(feature = "MTLFence")]
         #[method(waitForFence:)]
         unsafe fn waitForFence(&self, fence: &ProtocolObject<dyn MTLFence>);
 
-        #[cfg(feature = "Metal_MTLResource")]
+        #[cfg(feature = "MTLResource")]
         #[method(useResource:usage:)]
         unsafe fn useResource_usage(
             &self,
@@ -140,7 +134,7 @@ extern_protocol!(
             usage: MTLResourceUsage,
         );
 
-        #[cfg(feature = "Metal_MTLResource")]
+        #[cfg(feature = "MTLResource")]
         #[method(useResources:count:usage:)]
         unsafe fn useResources_count_usage(
             &self,
@@ -149,11 +143,11 @@ extern_protocol!(
             usage: MTLResourceUsage,
         );
 
-        #[cfg(feature = "Metal_MTLHeap")]
+        #[cfg(feature = "MTLHeap")]
         #[method(useHeap:)]
         unsafe fn useHeap(&self, heap: &ProtocolObject<dyn MTLHeap>);
 
-        #[cfg(feature = "Metal_MTLHeap")]
+        #[cfg(feature = "MTLHeap")]
         #[method(useHeaps:count:)]
         unsafe fn useHeaps_count(
             &self,
@@ -161,7 +155,7 @@ extern_protocol!(
             count: NSUInteger,
         );
 
-        #[cfg(feature = "Metal_MTLCounters")]
+        #[cfg(feature = "MTLCounters")]
         #[method(sampleCountersInBuffer:atSampleIndex:withBarrier:)]
         unsafe fn sampleCountersInBuffer_atSampleIndex_withBarrier(
             &self,
@@ -171,7 +165,7 @@ extern_protocol!(
         );
     }
 
-    #[cfg(feature = "Metal_MTLCommandEncoder")]
+    #[cfg(feature = "MTLCommandEncoder")]
     unsafe impl ProtocolType for dyn MTLAccelerationStructureCommandEncoder {}
 );
 
@@ -191,12 +185,12 @@ unsafe impl NSObjectProtocol for MTLAccelerationStructurePassSampleBufferAttachm
 
 extern_methods!(
     unsafe impl MTLAccelerationStructurePassSampleBufferAttachmentDescriptor {
-        #[cfg(feature = "Metal_MTLCounters")]
+        #[cfg(feature = "MTLCounters")]
         #[method_id(@__retain_semantics Other sampleBuffer)]
         pub unsafe fn sampleBuffer(&self)
             -> Option<Id<ProtocolObject<dyn MTLCounterSampleBuffer>>>;
 
-        #[cfg(feature = "Metal_MTLCounters")]
+        #[cfg(feature = "MTLCounters")]
         #[method(setSampleBuffer:)]
         pub unsafe fn setSampleBuffer(
             &self,

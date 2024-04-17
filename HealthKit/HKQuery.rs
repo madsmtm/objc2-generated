@@ -19,11 +19,11 @@ unsafe impl NSObjectProtocol for HKQuery {}
 
 extern_methods!(
     unsafe impl HKQuery {
-        #[cfg(feature = "HealthKit_HKObjectType")]
+        #[cfg(feature = "HKObjectType")]
         #[method_id(@__retain_semantics Other objectType)]
         pub unsafe fn objectType(&self) -> Option<Id<HKObjectType>>;
 
-        #[cfg(feature = "HealthKit_HKObjectType")]
+        #[cfg(feature = "HKObjectType")]
         #[deprecated]
         #[method_id(@__retain_semantics Other sampleType)]
         pub unsafe fn sampleType(&self) -> Option<Id<HKSampleType>>;
@@ -81,21 +81,21 @@ extern_methods!(
             value: &AnyObject,
         ) -> Id<NSPredicate>;
 
-        #[cfg(feature = "HealthKit_HKSource")]
+        #[cfg(feature = "HKSource")]
         #[method_id(@__retain_semantics Other predicateForObjectsFromSource:)]
         pub unsafe fn predicateForObjectsFromSource(source: &HKSource) -> Id<NSPredicate>;
 
-        #[cfg(feature = "HealthKit_HKSource")]
+        #[cfg(feature = "HKSource")]
         #[method_id(@__retain_semantics Other predicateForObjectsFromSources:)]
         pub unsafe fn predicateForObjectsFromSources(sources: &NSSet<HKSource>) -> Id<NSPredicate>;
 
-        #[cfg(feature = "HealthKit_HKSourceRevision")]
+        #[cfg(feature = "HKSourceRevision")]
         #[method_id(@__retain_semantics Other predicateForObjectsFromSourceRevisions:)]
         pub unsafe fn predicateForObjectsFromSourceRevisions(
             source_revisions: &NSSet<HKSourceRevision>,
         ) -> Id<NSPredicate>;
 
-        #[cfg(feature = "HealthKit_HKDevice")]
+        #[cfg(feature = "HKDevice")]
         #[method_id(@__retain_semantics Other predicateForObjectsFromDevices:)]
         pub unsafe fn predicateForObjectsFromDevices(devices: &NSSet<HKDevice>) -> Id<NSPredicate>;
 
@@ -114,18 +114,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Other predicateForObjectsWithNoCorrelation)]
         pub unsafe fn predicateForObjectsWithNoCorrelation() -> Id<NSPredicate>;
 
-        #[cfg(all(
-            feature = "HealthKit_HKObject",
-            feature = "HealthKit_HKSample",
-            feature = "HealthKit_HKWorkout"
-        ))]
+        #[cfg(all(feature = "HKObject", feature = "HKSample", feature = "HKWorkout"))]
         #[method_id(@__retain_semantics Other predicateForObjectsFromWorkout:)]
         pub unsafe fn predicateForObjectsFromWorkout(workout: &HKWorkout) -> Id<NSPredicate>;
 
         #[cfg(all(
-            feature = "HealthKit_HKElectrocardiogram",
-            feature = "HealthKit_HKObject",
-            feature = "HealthKit_HKSample"
+            feature = "HKElectrocardiogram",
+            feature = "HKObject",
+            feature = "HKSample"
         ))]
         #[method_id(@__retain_semantics Other predicateForObjectsAssociatedWithElectrocardiogram:)]
         pub unsafe fn predicateForObjectsAssociatedWithElectrocardiogram(
@@ -149,7 +145,7 @@ extern_methods!(
 extern_methods!(
     /// HKQuantitySamplePredicates
     unsafe impl HKQuery {
-        #[cfg(feature = "HealthKit_HKQuantity")]
+        #[cfg(feature = "HKQuantity")]
         #[method_id(@__retain_semantics Other predicateForQuantitySamplesWithOperatorType:quantity:)]
         pub unsafe fn predicateForQuantitySamplesWithOperatorType_quantity(
             operator_type: NSPredicateOperatorType,
@@ -177,7 +173,7 @@ extern_methods!(
 extern_methods!(
     /// HKWorkoutPredicates
     unsafe impl HKQuery {
-        #[cfg(feature = "HealthKit_HKWorkout")]
+        #[cfg(feature = "HKWorkout")]
         #[method_id(@__retain_semantics Other predicateForWorkoutsWithWorkoutActivityType:)]
         pub unsafe fn predicateForWorkoutsWithWorkoutActivityType(
             workout_activity_type: HKWorkoutActivityType,
@@ -189,7 +185,7 @@ extern_methods!(
             duration: NSTimeInterval,
         ) -> Id<NSPredicate>;
 
-        #[cfg(feature = "HealthKit_HKQuantity")]
+        #[cfg(feature = "HKQuantity")]
         #[deprecated = "Use predicateForWorkoutActivitiesWithOperatorType:quantityType:sumQuantity: passing the HKQuantityType for HKQuantityTypeIdentifierActiveEnergyBurned"]
         #[method_id(@__retain_semantics Other predicateForWorkoutsWithOperatorType:totalEnergyBurned:)]
         pub unsafe fn predicateForWorkoutsWithOperatorType_totalEnergyBurned(
@@ -197,7 +193,7 @@ extern_methods!(
             total_energy_burned: &HKQuantity,
         ) -> Id<NSPredicate>;
 
-        #[cfg(feature = "HealthKit_HKQuantity")]
+        #[cfg(feature = "HKQuantity")]
         #[deprecated = "Use predicateForWorkoutActivitiesWithOperatorType:quantityType:sumQuantity: passing the HKQuantityType for the desired distance type"]
         #[method_id(@__retain_semantics Other predicateForWorkoutsWithOperatorType:totalDistance:)]
         pub unsafe fn predicateForWorkoutsWithOperatorType_totalDistance(
@@ -205,7 +201,7 @@ extern_methods!(
             total_distance: &HKQuantity,
         ) -> Id<NSPredicate>;
 
-        #[cfg(feature = "HealthKit_HKQuantity")]
+        #[cfg(feature = "HKQuantity")]
         #[deprecated = "Use predicateForWorkoutActivitiesWithOperatorType:quantityType:sumQuantity:"]
         #[method_id(@__retain_semantics Other predicateForWorkoutsWithOperatorType:totalSwimmingStrokeCount:)]
         pub unsafe fn predicateForWorkoutsWithOperatorType_totalSwimmingStrokeCount(
@@ -213,7 +209,7 @@ extern_methods!(
             total_swimming_stroke_count: &HKQuantity,
         ) -> Id<NSPredicate>;
 
-        #[cfg(feature = "HealthKit_HKQuantity")]
+        #[cfg(feature = "HKQuantity")]
         #[deprecated = "Use predicateForWorkoutActivitiesWithOperatorType:quantityType:sumQuantity: passing the HKQuantityType for HKQuantityTypeIdentifierSwimmingStrokeCount"]
         #[method_id(@__retain_semantics Other predicateForWorkoutsWithOperatorType:totalFlightsClimbed:)]
         pub unsafe fn predicateForWorkoutsWithOperatorType_totalFlightsClimbed(
@@ -221,7 +217,7 @@ extern_methods!(
             total_flights_climbed: &HKQuantity,
         ) -> Id<NSPredicate>;
 
-        #[cfg(all(feature = "HealthKit_HKObjectType", feature = "HealthKit_HKQuantity"))]
+        #[cfg(all(feature = "HKObjectType", feature = "HKQuantity"))]
         #[method_id(@__retain_semantics Other predicateForWorkoutsWithOperatorType:quantityType:sumQuantity:)]
         pub unsafe fn predicateForWorkoutsWithOperatorType_quantityType_sumQuantity(
             operator_type: NSPredicateOperatorType,
@@ -229,7 +225,7 @@ extern_methods!(
             sum_quantity: &HKQuantity,
         ) -> Id<NSPredicate>;
 
-        #[cfg(all(feature = "HealthKit_HKObjectType", feature = "HealthKit_HKQuantity"))]
+        #[cfg(all(feature = "HKObjectType", feature = "HKQuantity"))]
         #[method_id(@__retain_semantics Other predicateForWorkoutsWithOperatorType:quantityType:minimumQuantity:)]
         pub unsafe fn predicateForWorkoutsWithOperatorType_quantityType_minimumQuantity(
             operator_type: NSPredicateOperatorType,
@@ -237,7 +233,7 @@ extern_methods!(
             minimum_quantity: &HKQuantity,
         ) -> Id<NSPredicate>;
 
-        #[cfg(all(feature = "HealthKit_HKObjectType", feature = "HealthKit_HKQuantity"))]
+        #[cfg(all(feature = "HKObjectType", feature = "HKQuantity"))]
         #[method_id(@__retain_semantics Other predicateForWorkoutsWithOperatorType:quantityType:maximumQuantity:)]
         pub unsafe fn predicateForWorkoutsWithOperatorType_quantityType_maximumQuantity(
             operator_type: NSPredicateOperatorType,
@@ -245,7 +241,7 @@ extern_methods!(
             maximum_quantity: &HKQuantity,
         ) -> Id<NSPredicate>;
 
-        #[cfg(all(feature = "HealthKit_HKObjectType", feature = "HealthKit_HKQuantity"))]
+        #[cfg(all(feature = "HKObjectType", feature = "HKQuantity"))]
         #[method_id(@__retain_semantics Other predicateForWorkoutsWithOperatorType:quantityType:averageQuantity:)]
         pub unsafe fn predicateForWorkoutsWithOperatorType_quantityType_averageQuantity(
             operator_type: NSPredicateOperatorType,
@@ -258,7 +254,7 @@ extern_methods!(
 extern_methods!(
     /// HKWorkoutActivityPredicates
     unsafe impl HKQuery {
-        #[cfg(feature = "HealthKit_HKWorkout")]
+        #[cfg(feature = "HKWorkout")]
         #[method_id(@__retain_semantics Other predicateForWorkoutActivitiesWithWorkoutActivityType:)]
         pub unsafe fn predicateForWorkoutActivitiesWithWorkoutActivityType(
             workout_activity_type: HKWorkoutActivityType,
@@ -277,7 +273,7 @@ extern_methods!(
             options: HKQueryOptions,
         ) -> Id<NSPredicate>;
 
-        #[cfg(all(feature = "HealthKit_HKObjectType", feature = "HealthKit_HKQuantity"))]
+        #[cfg(all(feature = "HKObjectType", feature = "HKQuantity"))]
         #[method_id(@__retain_semantics Other predicateForWorkoutActivitiesWithOperatorType:quantityType:sumQuantity:)]
         pub unsafe fn predicateForWorkoutActivitiesWithOperatorType_quantityType_sumQuantity(
             operator_type: NSPredicateOperatorType,
@@ -285,7 +281,7 @@ extern_methods!(
             sum_quantity: &HKQuantity,
         ) -> Id<NSPredicate>;
 
-        #[cfg(all(feature = "HealthKit_HKObjectType", feature = "HealthKit_HKQuantity"))]
+        #[cfg(all(feature = "HKObjectType", feature = "HKQuantity"))]
         #[method_id(@__retain_semantics Other predicateForWorkoutActivitiesWithOperatorType:quantityType:minimumQuantity:)]
         pub unsafe fn predicateForWorkoutActivitiesWithOperatorType_quantityType_minimumQuantity(
             operator_type: NSPredicateOperatorType,
@@ -293,7 +289,7 @@ extern_methods!(
             minimum_quantity: &HKQuantity,
         ) -> Id<NSPredicate>;
 
-        #[cfg(all(feature = "HealthKit_HKObjectType", feature = "HealthKit_HKQuantity"))]
+        #[cfg(all(feature = "HKObjectType", feature = "HKQuantity"))]
         #[method_id(@__retain_semantics Other predicateForWorkoutActivitiesWithOperatorType:quantityType:maximumQuantity:)]
         pub unsafe fn predicateForWorkoutActivitiesWithOperatorType_quantityType_maximumQuantity(
             operator_type: NSPredicateOperatorType,
@@ -301,7 +297,7 @@ extern_methods!(
             maximum_quantity: &HKQuantity,
         ) -> Id<NSPredicate>;
 
-        #[cfg(all(feature = "HealthKit_HKObjectType", feature = "HealthKit_HKQuantity"))]
+        #[cfg(all(feature = "HKObjectType", feature = "HKQuantity"))]
         #[method_id(@__retain_semantics Other predicateForWorkoutActivitiesWithOperatorType:quantityType:averageQuantity:)]
         pub unsafe fn predicateForWorkoutActivitiesWithOperatorType_quantityType_averageQuantity(
             operator_type: NSPredicateOperatorType,
@@ -335,13 +331,13 @@ extern_methods!(
 extern_methods!(
     /// HKClinicalRecordPredicates
     unsafe impl HKQuery {
-        #[cfg(feature = "HealthKit_HKFHIRResource")]
+        #[cfg(feature = "HKFHIRResource")]
         #[method_id(@__retain_semantics Other predicateForClinicalRecordsWithFHIRResourceType:)]
         pub unsafe fn predicateForClinicalRecordsWithFHIRResourceType(
             resource_type: &HKFHIRResourceType,
         ) -> Id<NSPredicate>;
 
-        #[cfg(all(feature = "HealthKit_HKFHIRResource", feature = "HealthKit_HKSource"))]
+        #[cfg(all(feature = "HKFHIRResource", feature = "HKSource"))]
         #[method_id(@__retain_semantics Other predicateForClinicalRecordsFromSource:FHIRResourceType:identifier:)]
         pub unsafe fn predicateForClinicalRecordsFromSource_FHIRResourceType_identifier(
             source: &HKSource,
@@ -354,13 +350,13 @@ extern_methods!(
 extern_methods!(
     /// HKElectrocardiogramPredicates
     unsafe impl HKQuery {
-        #[cfg(feature = "HealthKit_HKElectrocardiogram")]
+        #[cfg(feature = "HKElectrocardiogram")]
         #[method_id(@__retain_semantics Other predicateForElectrocardiogramsWithClassification:)]
         pub unsafe fn predicateForElectrocardiogramsWithClassification(
             classification: HKElectrocardiogramClassification,
         ) -> Id<NSPredicate>;
 
-        #[cfg(feature = "HealthKit_HKElectrocardiogram")]
+        #[cfg(feature = "HKElectrocardiogram")]
         #[method_id(@__retain_semantics Other predicateForElectrocardiogramsWithSymptomsStatus:)]
         pub unsafe fn predicateForElectrocardiogramsWithSymptomsStatus(
             symptoms_status: HKElectrocardiogramSymptomsStatus,

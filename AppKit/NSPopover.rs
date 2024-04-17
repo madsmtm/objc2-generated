@@ -50,10 +50,10 @@ unsafe impl RefEncode for NSPopoverBehavior {
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSResponder")]
+    #[cfg(feature = "NSResponder")]
     pub struct NSPopover;
 
-    #[cfg(feature = "AppKit_NSResponder")]
+    #[cfg(feature = "NSResponder")]
     unsafe impl ClassType for NSPopover {
         #[inherits(NSObject)]
         type Super = NSResponder;
@@ -61,29 +61,23 @@ extern_class!(
     }
 );
 
-#[cfg(all(
-    feature = "AppKit_NSAccessibilityProtocols",
-    feature = "AppKit_NSResponder"
-))]
+#[cfg(all(feature = "NSAccessibilityProtocols", feature = "NSResponder"))]
 unsafe impl NSAccessibility for NSPopover {}
 
-#[cfg(all(
-    feature = "AppKit_NSAccessibilityProtocols",
-    feature = "AppKit_NSResponder"
-))]
+#[cfg(all(feature = "NSAccessibilityProtocols", feature = "NSResponder"))]
 unsafe impl NSAccessibilityElementProtocol for NSPopover {}
 
-#[cfg(all(feature = "AppKit_NSAppearance", feature = "AppKit_NSResponder"))]
+#[cfg(all(feature = "NSAppearance", feature = "NSResponder"))]
 unsafe impl NSAppearanceCustomization for NSPopover {}
 
-#[cfg(feature = "AppKit_NSResponder")]
+#[cfg(feature = "NSResponder")]
 unsafe impl NSCoding for NSPopover {}
 
-#[cfg(feature = "AppKit_NSResponder")]
+#[cfg(feature = "NSResponder")]
 unsafe impl NSObjectProtocol for NSPopover {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSResponder")]
+    #[cfg(feature = "NSResponder")]
     unsafe impl NSPopover {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -97,15 +91,15 @@ extern_methods!(
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSPopoverDelegate>>);
 
-        #[cfg(feature = "AppKit_NSAppearance")]
+        #[cfg(feature = "NSAppearance")]
         #[method_id(@__retain_semantics Other appearance)]
         pub unsafe fn appearance(&self) -> Option<Id<NSAppearance>>;
 
-        #[cfg(feature = "AppKit_NSAppearance")]
+        #[cfg(feature = "NSAppearance")]
         #[method(setAppearance:)]
         pub unsafe fn setAppearance(&self, appearance: Option<&NSAppearance>);
 
-        #[cfg(feature = "AppKit_NSAppearance")]
+        #[cfg(feature = "NSAppearance")]
         #[method_id(@__retain_semantics Other effectiveAppearance)]
         pub unsafe fn effectiveAppearance(&self) -> Id<NSAppearance>;
 
@@ -121,11 +115,11 @@ extern_methods!(
         #[method(setAnimates:)]
         pub unsafe fn setAnimates(&self, animates: bool);
 
-        #[cfg(feature = "AppKit_NSViewController")]
+        #[cfg(feature = "NSViewController")]
         #[method_id(@__retain_semantics Other contentViewController)]
         pub unsafe fn contentViewController(&self) -> Option<Id<NSViewController>>;
 
-        #[cfg(feature = "AppKit_NSViewController")]
+        #[cfg(feature = "NSViewController")]
         #[method(setContentViewController:)]
         pub unsafe fn setContentViewController(
             &self,
@@ -156,7 +150,7 @@ extern_methods!(
         #[method(setHasFullSizeContent:)]
         pub unsafe fn setHasFullSizeContent(&self, has_full_size_content: bool);
 
-        #[cfg(feature = "AppKit_NSView")]
+        #[cfg(feature = "NSView")]
         #[method(showRelativeToRect:ofView:preferredEdge:)]
         pub unsafe fn showRelativeToRect_ofView_preferredEdge(
             &self,
@@ -165,7 +159,7 @@ extern_methods!(
             preferred_edge: NSRectEdge,
         );
 
-        #[cfg(feature = "AppKit_NSToolbarItem")]
+        #[cfg(feature = "NSToolbarItem")]
         #[method(showRelativeToToolbarItem:)]
         pub unsafe fn showRelativeToToolbarItem(&self, toolbar_item: &NSToolbarItem);
 
@@ -179,7 +173,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSResponder")]
+    #[cfg(feature = "NSResponder")]
     unsafe impl NSPopover {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
@@ -219,22 +213,22 @@ extern "C" {
 
 extern_protocol!(
     pub unsafe trait NSPopoverDelegate: NSObjectProtocol + IsMainThreadOnly {
-        #[cfg(feature = "AppKit_NSResponder")]
+        #[cfg(feature = "NSResponder")]
         #[optional]
         #[method(popoverShouldClose:)]
         unsafe fn popoverShouldClose(&self, popover: &NSPopover) -> bool;
 
-        #[cfg(feature = "AppKit_NSResponder")]
+        #[cfg(feature = "NSResponder")]
         #[optional]
         #[method(popoverShouldDetach:)]
         unsafe fn popoverShouldDetach(&self, popover: &NSPopover) -> bool;
 
-        #[cfg(feature = "AppKit_NSResponder")]
+        #[cfg(feature = "NSResponder")]
         #[optional]
         #[method(popoverDidDetach:)]
         unsafe fn popoverDidDetach(&self, popover: &NSPopover);
 
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSWindow"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
         #[optional]
         #[method_id(@__retain_semantics Other detachableWindowForPopover:)]
         unsafe fn detachableWindowForPopover(&self, popover: &NSPopover) -> Option<Id<NSWindow>>;

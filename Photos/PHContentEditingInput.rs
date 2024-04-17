@@ -23,11 +23,11 @@ unsafe impl NSObjectProtocol for PHContentEditingInput {}
 
 extern_methods!(
     unsafe impl PHContentEditingInput {
-        #[cfg(feature = "Photos_PhotosTypes")]
+        #[cfg(feature = "PhotosTypes")]
         #[method(mediaType)]
         pub unsafe fn mediaType(&self) -> PHAssetMediaType;
 
-        #[cfg(feature = "Photos_PhotosTypes")]
+        #[cfg(feature = "PhotosTypes")]
         #[method(mediaSubtypes)]
         pub unsafe fn mediaSubtypes(&self) -> PHAssetMediaSubtype;
 
@@ -41,11 +41,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Other uniformTypeIdentifier)]
         pub unsafe fn uniformTypeIdentifier(&self) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "Photos_PhotosTypes")]
+        #[cfg(feature = "PhotosTypes")]
         #[method(playbackStyle)]
         pub unsafe fn playbackStyle(&self) -> PHAssetPlaybackStyle;
 
-        #[cfg(feature = "Photos_PHAdjustmentData")]
+        #[cfg(feature = "PHAdjustmentData")]
         #[method_id(@__retain_semantics Other adjustmentData)]
         pub unsafe fn adjustmentData(&self) -> Option<Id<PHAdjustmentData>>;
 
@@ -59,7 +59,7 @@ extern_methods!(
         #[method(fullSizeImageOrientation)]
         pub unsafe fn fullSizeImageOrientation(&self) -> c_int;
 
-        #[cfg(feature = "Photos_PHLivePhoto")]
+        #[cfg(feature = "PHLivePhoto")]
         #[method_id(@__retain_semantics Other livePhoto)]
         pub unsafe fn livePhoto(&self) -> Option<Id<PHLivePhoto>>;
     }

@@ -8,10 +8,10 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AuthenticationServices_ASAccountAuthenticationModificationRequest")]
+    #[cfg(feature = "ASAccountAuthenticationModificationRequest")]
     pub struct ASAccountAuthenticationModificationReplacePasswordWithSignInWithAppleRequest;
 
-    #[cfg(feature = "AuthenticationServices_ASAccountAuthenticationModificationRequest")]
+    #[cfg(feature = "ASAccountAuthenticationModificationRequest")]
     unsafe impl ClassType
         for ASAccountAuthenticationModificationReplacePasswordWithSignInWithAppleRequest
     {
@@ -21,16 +21,16 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AuthenticationServices_ASAccountAuthenticationModificationRequest")]
+#[cfg(feature = "ASAccountAuthenticationModificationRequest")]
 unsafe impl NSObjectProtocol
     for ASAccountAuthenticationModificationReplacePasswordWithSignInWithAppleRequest
 {
 }
 
 extern_methods!(
-    #[cfg(feature = "AuthenticationServices_ASAccountAuthenticationModificationRequest")]
+    #[cfg(feature = "ASAccountAuthenticationModificationRequest")]
     unsafe impl ASAccountAuthenticationModificationReplacePasswordWithSignInWithAppleRequest {
-        #[cfg(feature = "AuthenticationServices_ASCredentialServiceIdentifier")]
+        #[cfg(feature = "ASCredentialServiceIdentifier")]
         #[method_id(@__retain_semantics Init initWithUser:serviceIdentifier:userInfo:)]
         pub unsafe fn initWithUser_serviceIdentifier_userInfo(
             this: Allocated<Self>,
@@ -42,7 +42,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other user)]
         pub unsafe fn user(&self) -> Id<NSString>;
 
-        #[cfg(feature = "AuthenticationServices_ASCredentialServiceIdentifier")]
+        #[cfg(feature = "ASCredentialServiceIdentifier")]
         #[method_id(@__retain_semantics Other serviceIdentifier)]
         pub unsafe fn serviceIdentifier(&self) -> Id<ASCredentialServiceIdentifier>;
 
@@ -53,7 +53,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AuthenticationServices_ASAccountAuthenticationModificationRequest")]
+    #[cfg(feature = "ASAccountAuthenticationModificationRequest")]
     unsafe impl ASAccountAuthenticationModificationReplacePasswordWithSignInWithAppleRequest {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

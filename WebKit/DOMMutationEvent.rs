@@ -15,17 +15,17 @@ pub const DOM_REMOVAL: c_uint = 3;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(
-        feature = "WebKit_DOMEvent",
-        feature = "WebKit_DOMObject",
-        feature = "WebKit_WebScriptObject"
+        feature = "DOMEvent",
+        feature = "DOMObject",
+        feature = "WebScriptObject"
     ))]
     #[deprecated]
     pub struct DOMMutationEvent;
 
     #[cfg(all(
-        feature = "WebKit_DOMEvent",
-        feature = "WebKit_DOMObject",
-        feature = "WebKit_WebScriptObject"
+        feature = "DOMEvent",
+        feature = "DOMObject",
+        feature = "WebScriptObject"
     ))]
     unsafe impl ClassType for DOMMutationEvent {
         #[inherits(DOMObject, WebScriptObject, NSObject)]
@@ -35,27 +35,27 @@ extern_class!(
 );
 
 #[cfg(all(
-    feature = "WebKit_DOMEvent",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMEvent",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 unsafe impl NSCopying for DOMMutationEvent {}
 
 #[cfg(all(
-    feature = "WebKit_DOMEvent",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMEvent",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 unsafe impl NSObjectProtocol for DOMMutationEvent {}
 
 extern_methods!(
     #[cfg(all(
-        feature = "WebKit_DOMEvent",
-        feature = "WebKit_DOMObject",
-        feature = "WebKit_WebScriptObject"
+        feature = "DOMEvent",
+        feature = "DOMObject",
+        feature = "WebScriptObject"
     ))]
     unsafe impl DOMMutationEvent {
-        #[cfg(feature = "WebKit_DOMNode")]
+        #[cfg(feature = "DOMNode")]
         #[deprecated]
         #[method_id(@__retain_semantics Other relatedNode)]
         pub unsafe fn relatedNode(&self) -> Option<Id<DOMNode>>;
@@ -72,7 +72,7 @@ extern_methods!(
         #[method(attrChange)]
         pub unsafe fn attrChange(&self) -> c_ushort;
 
-        #[cfg(feature = "WebKit_DOMNode")]
+        #[cfg(feature = "DOMNode")]
         #[method(initMutationEvent:canBubble:cancelable:relatedNode:prevValue:newValue:attrName:attrChange:)]
         pub unsafe fn initMutationEvent_canBubble_cancelable_relatedNode_prevValue_newValue_attrName_attrChange(
             &self,
@@ -91,9 +91,9 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `DOMObject`
     #[cfg(all(
-        feature = "WebKit_DOMEvent",
-        feature = "WebKit_DOMObject",
-        feature = "WebKit_WebScriptObject"
+        feature = "DOMEvent",
+        feature = "DOMObject",
+        feature = "WebScriptObject"
     ))]
     unsafe impl DOMMutationEvent {
         #[deprecated]
@@ -105,9 +105,9 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(
-        feature = "WebKit_DOMEvent",
-        feature = "WebKit_DOMObject",
-        feature = "WebKit_WebScriptObject"
+        feature = "DOMEvent",
+        feature = "DOMObject",
+        feature = "WebScriptObject"
     ))]
     unsafe impl DOMMutationEvent {
         #[method_id(@__retain_semantics New new)]
@@ -118,12 +118,12 @@ extern_methods!(
 extern_methods!(
     /// DOMMutationEventDeprecated
     #[cfg(all(
-        feature = "WebKit_DOMEvent",
-        feature = "WebKit_DOMObject",
-        feature = "WebKit_WebScriptObject"
+        feature = "DOMEvent",
+        feature = "DOMObject",
+        feature = "WebScriptObject"
     ))]
     unsafe impl DOMMutationEvent {
-        #[cfg(feature = "WebKit_DOMNode")]
+        #[cfg(feature = "DOMNode")]
         #[deprecated]
         #[method(initMutationEvent::::::::)]
         pub unsafe fn initMutationEvent(

@@ -48,10 +48,10 @@ unsafe impl RefEncode for NSRelativeDateTimeFormatterUnitsStyle {
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSFormatter")]
+    #[cfg(feature = "NSFormatter")]
     pub struct NSRelativeDateTimeFormatter;
 
-    #[cfg(feature = "Foundation_NSFormatter")]
+    #[cfg(feature = "NSFormatter")]
     unsafe impl ClassType for NSRelativeDateTimeFormatter {
         #[inherits(NSObject)]
         type Super = NSFormatter;
@@ -59,17 +59,17 @@ extern_class!(
     }
 );
 
-#[cfg(all(feature = "Foundation_NSFormatter", feature = "Foundation_NSObject"))]
+#[cfg(all(feature = "NSFormatter", feature = "NSObject"))]
 unsafe impl NSCoding for NSRelativeDateTimeFormatter {}
 
-#[cfg(all(feature = "Foundation_NSFormatter", feature = "Foundation_NSObject"))]
+#[cfg(all(feature = "NSFormatter", feature = "NSObject"))]
 unsafe impl NSCopying for NSRelativeDateTimeFormatter {}
 
-#[cfg(feature = "Foundation_NSFormatter")]
+#[cfg(feature = "NSFormatter")]
 unsafe impl NSObjectProtocol for NSRelativeDateTimeFormatter {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSFormatter")]
+    #[cfg(feature = "NSFormatter")]
     unsafe impl NSRelativeDateTimeFormatter {
         #[method(dateTimeStyle)]
         pub unsafe fn dateTimeStyle(&self) -> NSRelativeDateTimeFormatterStyle;
@@ -89,37 +89,37 @@ extern_methods!(
         #[method(setFormattingContext:)]
         pub unsafe fn setFormattingContext(&self, formatting_context: NSFormattingContext);
 
-        #[cfg(feature = "Foundation_NSCalendar")]
+        #[cfg(feature = "NSCalendar")]
         #[method_id(@__retain_semantics Other calendar)]
         pub unsafe fn calendar(&self) -> Id<NSCalendar>;
 
-        #[cfg(feature = "Foundation_NSCalendar")]
+        #[cfg(feature = "NSCalendar")]
         #[method(setCalendar:)]
         pub unsafe fn setCalendar(&self, calendar: Option<&NSCalendar>);
 
-        #[cfg(feature = "Foundation_NSLocale")]
+        #[cfg(feature = "NSLocale")]
         #[method_id(@__retain_semantics Other locale)]
         pub unsafe fn locale(&self) -> Id<NSLocale>;
 
-        #[cfg(feature = "Foundation_NSLocale")]
+        #[cfg(feature = "NSLocale")]
         #[method(setLocale:)]
         pub unsafe fn setLocale(&self, locale: Option<&NSLocale>);
 
-        #[cfg(all(feature = "Foundation_NSCalendar", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSCalendar", feature = "NSString"))]
         #[method_id(@__retain_semantics Other localizedStringFromDateComponents:)]
         pub unsafe fn localizedStringFromDateComponents(
             &self,
             date_components: &NSDateComponents,
         ) -> Id<NSString>;
 
-        #[cfg(all(feature = "Foundation_NSDate", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSDate", feature = "NSString"))]
         #[method_id(@__retain_semantics Other localizedStringFromTimeInterval:)]
         pub unsafe fn localizedStringFromTimeInterval(
             &self,
             time_interval: NSTimeInterval,
         ) -> Id<NSString>;
 
-        #[cfg(all(feature = "Foundation_NSDate", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSDate", feature = "NSString"))]
         #[method_id(@__retain_semantics Other localizedStringForDate:relativeToDate:)]
         pub unsafe fn localizedStringForDate_relativeToDate(
             &self,
@@ -127,7 +127,7 @@ extern_methods!(
             reference_date: &NSDate,
         ) -> Id<NSString>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other stringForObjectValue:)]
         pub unsafe fn stringForObjectValue(&self, obj: Option<&AnyObject>) -> Option<Id<NSString>>;
     }
@@ -135,7 +135,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSFormatter")]
+    #[cfg(feature = "NSFormatter")]
     unsafe impl NSRelativeDateTimeFormatter {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

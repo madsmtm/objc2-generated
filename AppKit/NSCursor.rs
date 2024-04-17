@@ -83,7 +83,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other IBeamCursorForVerticalLayout)]
         pub fn IBeamCursorForVerticalLayout() -> Id<NSCursor>;
 
-        #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(feature = "NSImage")]
         #[method_id(@__retain_semantics Init initWithImage:hotSpot:)]
         pub fn initWithImage_hotSpot(
             this: Allocated<Self>,
@@ -106,7 +106,7 @@ extern_methods!(
         #[method(pop)]
         pub unsafe fn pop_class();
 
-        #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(feature = "NSImage")]
         #[method_id(@__retain_semantics Other image)]
         pub unsafe fn image(&self) -> Id<NSImage>;
 
@@ -135,13 +135,13 @@ extern_methods!(
     }
 );
 
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub static NSAppKitVersionNumberWithCursorSizeSupport: NSAppKitVersion = 682.0 as _;
 
 extern_methods!(
     /// NSDeprecated
     unsafe impl NSCursor {
-        #[cfg(all(feature = "AppKit_NSColor", feature = "AppKit_NSImage"))]
+        #[cfg(all(feature = "NSColor", feature = "NSImage"))]
         #[deprecated = "Color hints are ignored. Use -initWithImage:hotSpot: instead"]
         #[method_id(@__retain_semantics Init initWithImage:foregroundColorHint:backgroundColorHint:hotSpot:)]
         pub unsafe fn initWithImage_foregroundColorHint_backgroundColorHint_hotSpot(
@@ -168,12 +168,12 @@ extern_methods!(
         #[method(isSetOnMouseEntered)]
         pub unsafe fn isSetOnMouseEntered(&self) -> bool;
 
-        #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(feature = "NSEvent")]
         #[deprecated = "mouseEntered: is unused and should not be called"]
         #[method(mouseEntered:)]
         pub unsafe fn mouseEntered(&self, event: &NSEvent);
 
-        #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(feature = "NSEvent")]
         #[deprecated = "mouseExited: is unused and should not be called"]
         #[method(mouseExited:)]
         pub unsafe fn mouseExited(&self, event: &NSEvent);

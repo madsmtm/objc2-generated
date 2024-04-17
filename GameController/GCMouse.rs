@@ -31,17 +31,14 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "GameController_GCDevice")]
+#[cfg(feature = "GCDevice")]
 unsafe impl GCDevice for GCMouse {}
 
 unsafe impl NSObjectProtocol for GCMouse {}
 
 extern_methods!(
     unsafe impl GCMouse {
-        #[cfg(all(
-            feature = "GameController_GCMouseInput",
-            feature = "GameController_GCPhysicalInputProfile"
-        ))]
+        #[cfg(all(feature = "GCMouseInput", feature = "GCPhysicalInputProfile"))]
         #[method_id(@__retain_semantics Other mouseInput)]
         pub unsafe fn mouseInput(&self) -> Option<Id<GCMouseInput>>;
 

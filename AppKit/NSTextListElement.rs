@@ -7,10 +7,10 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSTextElement")]
+    #[cfg(feature = "NSTextElement")]
     pub struct NSTextListElement;
 
-    #[cfg(feature = "AppKit_NSTextElement")]
+    #[cfg(feature = "NSTextElement")]
     unsafe impl ClassType for NSTextListElement {
         #[inherits(NSTextElement, NSObject)]
         type Super = NSTextParagraph;
@@ -18,13 +18,13 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSTextElement")]
+#[cfg(feature = "NSTextElement")]
 unsafe impl NSObjectProtocol for NSTextListElement {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSTextElement")]
+    #[cfg(feature = "NSTextElement")]
     unsafe impl NSTextListElement {
-        #[cfg(feature = "AppKit_NSTextList")]
+        #[cfg(feature = "NSTextList")]
         #[method_id(@__retain_semantics Init initWithParentElement:textList:contents:markerAttributes:childElements:)]
         pub unsafe fn initWithParentElement_textList_contents_markerAttributes_childElements(
             this: Allocated<Self>,
@@ -41,7 +41,7 @@ extern_methods!(
             attributed_string: Option<&NSAttributedString>,
         ) -> Id<Self>;
 
-        #[cfg(feature = "AppKit_NSTextList")]
+        #[cfg(feature = "NSTextList")]
         #[method_id(@__retain_semantics Other textListElementWithContents:markerAttributes:textList:childElements:)]
         pub unsafe fn textListElementWithContents_markerAttributes_textList_childElements(
             contents: &NSAttributedString,
@@ -50,7 +50,7 @@ extern_methods!(
             children: Option<&NSArray<NSTextListElement>>,
         ) -> Id<Self>;
 
-        #[cfg(feature = "AppKit_NSTextList")]
+        #[cfg(feature = "NSTextList")]
         #[method_id(@__retain_semantics Other textListElementWithChildElements:textList:nestingLevel:)]
         pub unsafe fn textListElementWithChildElements_textList_nestingLevel(
             children: &NSArray<NSTextListElement>,
@@ -58,7 +58,7 @@ extern_methods!(
             nesting_level: NSInteger,
         ) -> Option<Id<Self>>;
 
-        #[cfg(feature = "AppKit_NSTextList")]
+        #[cfg(feature = "NSTextList")]
         #[method_id(@__retain_semantics Other textList)]
         pub unsafe fn textList(&self) -> Id<NSTextList>;
 
@@ -83,9 +83,9 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSTextElement`
-    #[cfg(feature = "AppKit_NSTextElement")]
+    #[cfg(feature = "NSTextElement")]
     unsafe impl NSTextListElement {
-        #[cfg(feature = "AppKit_NSTextContentManager")]
+        #[cfg(feature = "NSTextContentManager")]
         #[method_id(@__retain_semantics Init initWithTextContentManager:)]
         pub unsafe fn initWithTextContentManager(
             this: Allocated<Self>,
@@ -96,7 +96,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSTextElement")]
+    #[cfg(feature = "NSTextElement")]
     unsafe impl NSTextListElement {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

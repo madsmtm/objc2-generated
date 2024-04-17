@@ -7,10 +7,10 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(feature = "HealthKit_HKObject", feature = "HealthKit_HKSample"))]
+    #[cfg(all(feature = "HKObject", feature = "HKSample"))]
     pub struct HKQuantitySample;
 
-    #[cfg(all(feature = "HealthKit_HKObject", feature = "HealthKit_HKSample"))]
+    #[cfg(all(feature = "HKObject", feature = "HKSample"))]
     unsafe impl ClassType for HKQuantitySample {
         #[inherits(HKObject, NSObject)]
         type Super = HKSample;
@@ -18,30 +18,30 @@ extern_class!(
     }
 );
 
-#[cfg(all(feature = "HealthKit_HKObject", feature = "HealthKit_HKSample"))]
+#[cfg(all(feature = "HKObject", feature = "HKSample"))]
 unsafe impl NSCoding for HKQuantitySample {}
 
-#[cfg(all(feature = "HealthKit_HKObject", feature = "HealthKit_HKSample"))]
+#[cfg(all(feature = "HKObject", feature = "HKSample"))]
 unsafe impl NSObjectProtocol for HKQuantitySample {}
 
-#[cfg(all(feature = "HealthKit_HKObject", feature = "HealthKit_HKSample"))]
+#[cfg(all(feature = "HKObject", feature = "HKSample"))]
 unsafe impl NSSecureCoding for HKQuantitySample {}
 
 extern_methods!(
-    #[cfg(all(feature = "HealthKit_HKObject", feature = "HealthKit_HKSample"))]
+    #[cfg(all(feature = "HKObject", feature = "HKSample"))]
     unsafe impl HKQuantitySample {
-        #[cfg(feature = "HealthKit_HKObjectType")]
+        #[cfg(feature = "HKObjectType")]
         #[method_id(@__retain_semantics Other quantityType)]
         pub unsafe fn quantityType(&self) -> Id<HKQuantityType>;
 
-        #[cfg(feature = "HealthKit_HKQuantity")]
+        #[cfg(feature = "HKQuantity")]
         #[method_id(@__retain_semantics Other quantity)]
         pub unsafe fn quantity(&self) -> Id<HKQuantity>;
 
         #[method(count)]
         pub unsafe fn count(&self) -> NSInteger;
 
-        #[cfg(all(feature = "HealthKit_HKObjectType", feature = "HealthKit_HKQuantity"))]
+        #[cfg(all(feature = "HKObjectType", feature = "HKQuantity"))]
         #[method_id(@__retain_semantics Other quantitySampleWithType:quantity:startDate:endDate:)]
         pub unsafe fn quantitySampleWithType_quantity_startDate_endDate(
             quantity_type: &HKQuantityType,
@@ -50,7 +50,7 @@ extern_methods!(
             end_date: &NSDate,
         ) -> Id<Self>;
 
-        #[cfg(all(feature = "HealthKit_HKObjectType", feature = "HealthKit_HKQuantity"))]
+        #[cfg(all(feature = "HKObjectType", feature = "HKQuantity"))]
         #[method_id(@__retain_semantics Other quantitySampleWithType:quantity:startDate:endDate:metadata:)]
         pub unsafe fn quantitySampleWithType_quantity_startDate_endDate_metadata(
             quantity_type: &HKQuantityType,
@@ -60,11 +60,7 @@ extern_methods!(
             metadata: Option<&NSDictionary<NSString, AnyObject>>,
         ) -> Id<Self>;
 
-        #[cfg(all(
-            feature = "HealthKit_HKDevice",
-            feature = "HealthKit_HKObjectType",
-            feature = "HealthKit_HKQuantity"
-        ))]
+        #[cfg(all(feature = "HKDevice", feature = "HKObjectType", feature = "HKQuantity"))]
         #[method_id(@__retain_semantics Other quantitySampleWithType:quantity:startDate:endDate:device:metadata:)]
         pub unsafe fn quantitySampleWithType_quantity_startDate_endDate_device_metadata(
             quantity_type: &HKQuantityType,
@@ -79,7 +75,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `HKObject`
-    #[cfg(all(feature = "HealthKit_HKObject", feature = "HealthKit_HKSample"))]
+    #[cfg(all(feature = "HKObject", feature = "HKSample"))]
     unsafe impl HKQuantitySample {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -88,7 +84,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "HealthKit_HKObject", feature = "HealthKit_HKSample"))]
+    #[cfg(all(feature = "HKObject", feature = "HKSample"))]
     unsafe impl HKQuantitySample {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

@@ -25,7 +25,7 @@ unsafe impl NSSecureCoding for HKSourceRevision {}
 
 extern_methods!(
     unsafe impl HKSourceRevision {
-        #[cfg(feature = "HealthKit_HKSource")]
+        #[cfg(feature = "HKSource")]
         #[method_id(@__retain_semantics Other source)]
         pub unsafe fn source(&self) -> Id<HKSource>;
 
@@ -38,7 +38,7 @@ extern_methods!(
         #[method(operatingSystemVersion)]
         pub unsafe fn operatingSystemVersion(&self) -> NSOperatingSystemVersion;
 
-        #[cfg(feature = "HealthKit_HKSource")]
+        #[cfg(feature = "HKSource")]
         #[method_id(@__retain_semantics Init initWithSource:version:productType:operatingSystemVersion:)]
         pub unsafe fn initWithSource_version_productType_operatingSystemVersion(
             this: Allocated<Self>,
@@ -48,7 +48,7 @@ extern_methods!(
             operating_system_version: NSOperatingSystemVersion,
         ) -> Id<Self>;
 
-        #[cfg(feature = "HealthKit_HKSource")]
+        #[cfg(feature = "HKSource")]
         #[method_id(@__retain_semantics Init initWithSource:version:)]
         pub unsafe fn initWithSource_version(
             this: Allocated<Self>,

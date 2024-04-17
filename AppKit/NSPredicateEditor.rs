@@ -8,18 +8,18 @@ use crate::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(
-        feature = "AppKit_NSControl",
-        feature = "AppKit_NSResponder",
-        feature = "AppKit_NSRuleEditor",
-        feature = "AppKit_NSView"
+        feature = "NSControl",
+        feature = "NSResponder",
+        feature = "NSRuleEditor",
+        feature = "NSView"
     ))]
     pub struct NSPredicateEditor;
 
     #[cfg(all(
-        feature = "AppKit_NSControl",
-        feature = "AppKit_NSResponder",
-        feature = "AppKit_NSRuleEditor",
-        feature = "AppKit_NSView"
+        feature = "NSControl",
+        feature = "NSResponder",
+        feature = "NSRuleEditor",
+        feature = "NSView"
     ))]
     unsafe impl ClassType for NSPredicateEditor {
         #[inherits(NSControl, NSView, NSResponder, NSObject)]
@@ -29,88 +29,88 @@ extern_class!(
 );
 
 #[cfg(all(
-    feature = "AppKit_NSAccessibilityProtocols",
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSRuleEditor",
-    feature = "AppKit_NSView"
+    feature = "NSAccessibilityProtocols",
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSRuleEditor",
+    feature = "NSView"
 ))]
 unsafe impl NSAccessibility for NSPredicateEditor {}
 
 #[cfg(all(
-    feature = "AppKit_NSAccessibilityProtocols",
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSRuleEditor",
-    feature = "AppKit_NSView"
+    feature = "NSAccessibilityProtocols",
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSRuleEditor",
+    feature = "NSView"
 ))]
 unsafe impl NSAccessibilityElementProtocol for NSPredicateEditor {}
 
 #[cfg(all(
-    feature = "AppKit_NSAnimation",
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSRuleEditor",
-    feature = "AppKit_NSView"
+    feature = "NSAnimation",
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSRuleEditor",
+    feature = "NSView"
 ))]
 unsafe impl NSAnimatablePropertyContainer for NSPredicateEditor {}
 
 #[cfg(all(
-    feature = "AppKit_NSAppearance",
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSRuleEditor",
-    feature = "AppKit_NSView"
+    feature = "NSAppearance",
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSRuleEditor",
+    feature = "NSView"
 ))]
 unsafe impl NSAppearanceCustomization for NSPredicateEditor {}
 
 #[cfg(all(
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSRuleEditor",
-    feature = "AppKit_NSView"
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSRuleEditor",
+    feature = "NSView"
 ))]
 unsafe impl NSCoding for NSPredicateEditor {}
 
 #[cfg(all(
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSDragging",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSRuleEditor",
-    feature = "AppKit_NSView"
+    feature = "NSControl",
+    feature = "NSDragging",
+    feature = "NSResponder",
+    feature = "NSRuleEditor",
+    feature = "NSView"
 ))]
 unsafe impl NSDraggingDestination for NSPredicateEditor {}
 
 #[cfg(all(
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSRuleEditor",
-    feature = "AppKit_NSView"
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSRuleEditor",
+    feature = "NSView"
 ))]
 unsafe impl NSObjectProtocol for NSPredicateEditor {}
 
 #[cfg(all(
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSRuleEditor",
-    feature = "AppKit_NSUserInterfaceItemIdentification",
-    feature = "AppKit_NSView"
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSRuleEditor",
+    feature = "NSUserInterfaceItemIdentification",
+    feature = "NSView"
 ))]
 unsafe impl NSUserInterfaceItemIdentification for NSPredicateEditor {}
 
 extern_methods!(
     #[cfg(all(
-        feature = "AppKit_NSControl",
-        feature = "AppKit_NSResponder",
-        feature = "AppKit_NSRuleEditor",
-        feature = "AppKit_NSView"
+        feature = "NSControl",
+        feature = "NSResponder",
+        feature = "NSRuleEditor",
+        feature = "NSView"
     ))]
     unsafe impl NSPredicateEditor {
-        #[cfg(feature = "AppKit_NSPredicateEditorRowTemplate")]
+        #[cfg(feature = "NSPredicateEditorRowTemplate")]
         #[method_id(@__retain_semantics Other rowTemplates)]
         pub unsafe fn rowTemplates(&self) -> Id<NSArray<NSPredicateEditorRowTemplate>>;
 
-        #[cfg(feature = "AppKit_NSPredicateEditorRowTemplate")]
+        #[cfg(feature = "NSPredicateEditorRowTemplate")]
         #[method(setRowTemplates:)]
         pub unsafe fn setRowTemplates(&self, row_templates: &NSArray<NSPredicateEditorRowTemplate>);
     }
@@ -119,10 +119,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSControl`
     #[cfg(all(
-        feature = "AppKit_NSControl",
-        feature = "AppKit_NSResponder",
-        feature = "AppKit_NSRuleEditor",
-        feature = "AppKit_NSView"
+        feature = "NSControl",
+        feature = "NSResponder",
+        feature = "NSRuleEditor",
+        feature = "NSView"
     ))]
     unsafe impl NSPredicateEditor {
         #[method_id(@__retain_semantics Init initWithFrame:)]
@@ -136,10 +136,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSResponder`
     #[cfg(all(
-        feature = "AppKit_NSControl",
-        feature = "AppKit_NSResponder",
-        feature = "AppKit_NSRuleEditor",
-        feature = "AppKit_NSView"
+        feature = "NSControl",
+        feature = "NSResponder",
+        feature = "NSRuleEditor",
+        feature = "NSView"
     ))]
     unsafe impl NSPredicateEditor {
         #[method_id(@__retain_semantics Init init)]
@@ -150,10 +150,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(
-        feature = "AppKit_NSControl",
-        feature = "AppKit_NSResponder",
-        feature = "AppKit_NSRuleEditor",
-        feature = "AppKit_NSView"
+        feature = "NSControl",
+        feature = "NSResponder",
+        feature = "NSRuleEditor",
+        feature = "NSView"
     ))]
     unsafe impl NSPredicateEditor {
         #[method_id(@__retain_semantics New new)]

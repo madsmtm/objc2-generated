@@ -46,11 +46,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Option<Id<NSColorListName>>;
 
-        #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(feature = "NSColor")]
         #[method(setColor:forKey:)]
         pub unsafe fn setColor_forKey(&self, color: &NSColor, key: &NSColorName);
 
-        #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(feature = "NSColor")]
         #[method(insertColor:key:atIndex:)]
         pub unsafe fn insertColor_key_atIndex(
             &self,
@@ -62,7 +62,7 @@ extern_methods!(
         #[method(removeColorWithKey:)]
         pub unsafe fn removeColorWithKey(&self, key: &NSColorName);
 
-        #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(feature = "NSColor")]
         #[method_id(@__retain_semantics Other colorWithKey:)]
         pub unsafe fn colorWithKey(&self, key: &NSColorName) -> Option<Id<NSColor>>;
 

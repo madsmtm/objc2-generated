@@ -132,11 +132,11 @@ extern_methods!(
         #[method(type)]
         pub unsafe fn r#type(&self) -> NSTouchType;
 
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[method(locationInView:)]
         pub unsafe fn locationInView(&self, view: Option<&NSView>) -> NSPoint;
 
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[method(previousLocationInView:)]
         pub unsafe fn previousLocationInView(&self, view: Option<&NSView>) -> NSPoint;
     }

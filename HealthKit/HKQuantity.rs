@@ -32,15 +32,15 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
-        #[cfg(feature = "HealthKit_HKUnit")]
+        #[cfg(feature = "HKUnit")]
         #[method_id(@__retain_semantics Other quantityWithUnit:doubleValue:)]
         pub unsafe fn quantityWithUnit_doubleValue(unit: &HKUnit, value: c_double) -> Id<Self>;
 
-        #[cfg(feature = "HealthKit_HKUnit")]
+        #[cfg(feature = "HKUnit")]
         #[method(isCompatibleWithUnit:)]
         pub unsafe fn isCompatibleWithUnit(&self, unit: &HKUnit) -> bool;
 
-        #[cfg(feature = "HealthKit_HKUnit")]
+        #[cfg(feature = "HKUnit")]
         #[method(doubleValueForUnit:)]
         pub unsafe fn doubleValueForUnit(&self, unit: &HKUnit) -> c_double;
 

@@ -83,11 +83,7 @@ extern_protocol!(
 extern_protocol!(
     #[deprecated]
     pub unsafe trait WebPolicyDelegate: NSObjectProtocol {
-        #[cfg(all(
-            feature = "WebKit_WebFrame",
-            feature = "WebKit_WebView",
-            feature = "objc2-app-kit"
-        ))]
+        #[cfg(all(feature = "WebFrame", feature = "WebView", feature = "objc2-app-kit"))]
         #[deprecated]
         #[optional]
         #[method(webView:decidePolicyForNavigationAction:request:frame:decisionListener:)]
@@ -100,7 +96,7 @@ extern_protocol!(
             listener: Option<&ProtocolObject<dyn WebPolicyDecisionListener>>,
         );
 
-        #[cfg(all(feature = "WebKit_WebView", feature = "objc2-app-kit"))]
+        #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
         #[deprecated]
         #[optional]
         #[method(webView:decidePolicyForNewWindowAction:request:newFrameName:decisionListener:)]
@@ -113,11 +109,7 @@ extern_protocol!(
             listener: Option<&ProtocolObject<dyn WebPolicyDecisionListener>>,
         );
 
-        #[cfg(all(
-            feature = "WebKit_WebFrame",
-            feature = "WebKit_WebView",
-            feature = "objc2-app-kit"
-        ))]
+        #[cfg(all(feature = "WebFrame", feature = "WebView", feature = "objc2-app-kit"))]
         #[deprecated]
         #[optional]
         #[method(webView:decidePolicyForMIMEType:request:frame:decisionListener:)]
@@ -130,11 +122,7 @@ extern_protocol!(
             listener: Option<&ProtocolObject<dyn WebPolicyDecisionListener>>,
         );
 
-        #[cfg(all(
-            feature = "WebKit_WebFrame",
-            feature = "WebKit_WebView",
-            feature = "objc2-app-kit"
-        ))]
+        #[cfg(all(feature = "WebFrame", feature = "WebView", feature = "objc2-app-kit"))]
         #[deprecated]
         #[optional]
         #[method(webView:unableToImplementPolicyWithError:frame:)]

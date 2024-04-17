@@ -200,9 +200,9 @@ extern_methods!(
 );
 
 #[cfg(all(
-    feature = "AppKit_NSCollectionView",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSView",
+    feature = "NSCollectionView",
+    feature = "NSResponder",
+    feature = "NSView",
     feature = "block2"
 ))]
 pub type NSCollectionViewDiffableDataSourceSupplementaryViewProvider = *mut Block<
@@ -278,9 +278,9 @@ extern_methods!(
         ) -> Option<Id<NSIndexPath>>;
 
         #[cfg(all(
-            feature = "AppKit_NSCollectionView",
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSView",
+            feature = "NSCollectionView",
+            feature = "NSResponder",
+            feature = "NSView",
             feature = "block2"
         ))]
         #[method(supplementaryViewProvider)]
@@ -290,9 +290,9 @@ extern_methods!(
         ) -> NSCollectionViewDiffableDataSourceSupplementaryViewProvider;
 
         #[cfg(all(
-            feature = "AppKit_NSCollectionView",
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSView",
+            feature = "NSCollectionView",
+            feature = "NSResponder",
+            feature = "NSView",
             feature = "block2"
         ))]
         #[method(setSupplementaryViewProvider:)]

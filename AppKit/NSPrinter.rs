@@ -71,7 +71,7 @@ extern_methods!(
         #[method(pageSizeForPaper:)]
         pub unsafe fn pageSizeForPaper(&self, paper_name: &NSPrinterPaperName) -> NSSize;
 
-        #[cfg(feature = "AppKit_NSGraphics")]
+        #[cfg(feature = "NSGraphics")]
         #[method_id(@__retain_semantics Other deviceDescription)]
         pub unsafe fn deviceDescription(
             &self,

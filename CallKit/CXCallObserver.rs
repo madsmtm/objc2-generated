@@ -7,7 +7,7 @@ use crate::*;
 
 extern_protocol!(
     pub unsafe trait CXCallObserverDelegate: NSObjectProtocol {
-        #[cfg(feature = "CallKit_CXCall")]
+        #[cfg(feature = "CXCall")]
         #[method(callObserver:callChanged:)]
         unsafe fn callObserver_callChanged(&self, call_observer: &CXCallObserver, call: &CXCall);
     }
@@ -29,7 +29,7 @@ unsafe impl NSObjectProtocol for CXCallObserver {}
 
 extern_methods!(
     unsafe impl CXCallObserver {
-        #[cfg(feature = "CallKit_CXCall")]
+        #[cfg(feature = "CXCall")]
         #[method_id(@__retain_semantics Other calls)]
         pub unsafe fn calls(&self) -> Id<NSArray<CXCall>>;
     }

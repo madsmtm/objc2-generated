@@ -24,7 +24,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other currentInputContext)]
         pub unsafe fn currentInputContext(mtm: MainThreadMarker) -> Option<Id<NSTextInputContext>>;
 
-        #[cfg(feature = "AppKit_NSTextInputClient")]
+        #[cfg(feature = "NSTextInputClient")]
         #[method_id(@__retain_semantics Init initWithClient:)]
         pub unsafe fn initWithClient(
             this: Allocated<Self>,
@@ -34,7 +34,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
-        #[cfg(feature = "AppKit_NSTextInputClient")]
+        #[cfg(feature = "NSTextInputClient")]
         #[method_id(@__retain_semantics Other client)]
         pub unsafe fn client(&self) -> Id<ProtocolObject<dyn NSTextInputClient>>;
 
@@ -59,7 +59,7 @@ extern_methods!(
         #[method(deactivate)]
         pub unsafe fn deactivate(&self);
 
-        #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(feature = "NSEvent")]
         #[method(handleEvent:)]
         pub unsafe fn handleEvent(&self, event: &NSEvent) -> bool;
 

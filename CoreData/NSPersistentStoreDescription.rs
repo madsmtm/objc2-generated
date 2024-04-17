@@ -109,13 +109,13 @@ extern_methods!(
 extern_methods!(
     /// NSPersistentCloudKitContainerAdditions
     unsafe impl NSPersistentStoreDescription {
-        #[cfg(feature = "CoreData_NSPersistentCloudKitContainerOptions")]
+        #[cfg(feature = "NSPersistentCloudKitContainerOptions")]
         #[method_id(@__retain_semantics Other cloudKitContainerOptions)]
         pub unsafe fn cloudKitContainerOptions(
             &self,
         ) -> Option<Id<NSPersistentCloudKitContainerOptions>>;
 
-        #[cfg(feature = "CoreData_NSPersistentCloudKitContainerOptions")]
+        #[cfg(feature = "NSPersistentCloudKitContainerOptions")]
         #[method(setCloudKitContainerOptions:)]
         pub unsafe fn setCloudKitContainerOptions(
             &self,

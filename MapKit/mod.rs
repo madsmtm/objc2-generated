@@ -16,666 +16,637 @@
 #[link(name = "MapKit", kind = "framework")]
 extern "C" {}
 
-#[cfg(feature = "MapKit_MKAnnotation")]
+#[cfg(feature = "MKAnnotation")]
 #[path = "MKAnnotation.rs"]
 mod __MKAnnotation;
-#[cfg(feature = "MapKit_MKAnnotationView")]
+#[cfg(feature = "MKAnnotationView")]
 #[path = "MKAnnotationView.rs"]
 mod __MKAnnotationView;
-#[cfg(feature = "MapKit_MKCircle")]
+#[cfg(feature = "MKCircle")]
 #[path = "MKCircle.rs"]
 mod __MKCircle;
-#[cfg(feature = "MapKit_MKCircleRenderer")]
+#[cfg(feature = "MKCircleRenderer")]
 #[path = "MKCircleRenderer.rs"]
 mod __MKCircleRenderer;
-#[cfg(feature = "MapKit_MKClusterAnnotation")]
+#[cfg(feature = "MKClusterAnnotation")]
 #[path = "MKClusterAnnotation.rs"]
 mod __MKClusterAnnotation;
-#[cfg(feature = "MapKit_MKCompassButton")]
+#[cfg(feature = "MKCompassButton")]
 #[path = "MKCompassButton.rs"]
 mod __MKCompassButton;
-#[cfg(feature = "MapKit_MKDirections")]
+#[cfg(feature = "MKDirections")]
 #[path = "MKDirections.rs"]
 mod __MKDirections;
-#[cfg(feature = "MapKit_MKDirectionsRequest")]
+#[cfg(feature = "MKDirectionsRequest")]
 #[path = "MKDirectionsRequest.rs"]
 mod __MKDirectionsRequest;
-#[cfg(feature = "MapKit_MKDirectionsResponse")]
+#[cfg(feature = "MKDirectionsResponse")]
 #[path = "MKDirectionsResponse.rs"]
 mod __MKDirectionsResponse;
-#[cfg(feature = "MapKit_MKDirectionsTypes")]
+#[cfg(feature = "MKDirectionsTypes")]
 #[path = "MKDirectionsTypes.rs"]
 mod __MKDirectionsTypes;
-#[cfg(feature = "MapKit_MKDistanceFormatter")]
+#[cfg(feature = "MKDistanceFormatter")]
 #[path = "MKDistanceFormatter.rs"]
 mod __MKDistanceFormatter;
-#[cfg(feature = "MapKit_MKFoundation")]
+#[cfg(feature = "MKFoundation")]
 #[path = "MKFoundation.rs"]
 mod __MKFoundation;
-#[cfg(feature = "MapKit_MKGeoJSONSerialization")]
+#[cfg(feature = "MKGeoJSONSerialization")]
 #[path = "MKGeoJSONSerialization.rs"]
 mod __MKGeoJSONSerialization;
-#[cfg(feature = "MapKit_MKGeodesicPolyline")]
+#[cfg(feature = "MKGeodesicPolyline")]
 #[path = "MKGeodesicPolyline.rs"]
 mod __MKGeodesicPolyline;
-#[cfg(feature = "MapKit_MKGeometry")]
+#[cfg(feature = "MKGeometry")]
 #[path = "MKGeometry.rs"]
 mod __MKGeometry;
-#[cfg(feature = "MapKit_MKGradientPolylineRenderer")]
+#[cfg(feature = "MKGradientPolylineRenderer")]
 #[path = "MKGradientPolylineRenderer.rs"]
 mod __MKGradientPolylineRenderer;
-#[cfg(feature = "MapKit_MKHybridMapConfiguration")]
+#[cfg(feature = "MKHybridMapConfiguration")]
 #[path = "MKHybridMapConfiguration.rs"]
 mod __MKHybridMapConfiguration;
-#[cfg(feature = "MapKit_MKImageryMapConfiguration")]
+#[cfg(feature = "MKImageryMapConfiguration")]
 #[path = "MKImageryMapConfiguration.rs"]
 mod __MKImageryMapConfiguration;
-#[cfg(feature = "MapKit_MKLocalPointsOfInterestRequest")]
+#[cfg(feature = "MKLocalPointsOfInterestRequest")]
 #[path = "MKLocalPointsOfInterestRequest.rs"]
 mod __MKLocalPointsOfInterestRequest;
-#[cfg(feature = "MapKit_MKLocalSearch")]
+#[cfg(feature = "MKLocalSearch")]
 #[path = "MKLocalSearch.rs"]
 mod __MKLocalSearch;
-#[cfg(feature = "MapKit_MKLocalSearchCompleter")]
+#[cfg(feature = "MKLocalSearchCompleter")]
 #[path = "MKLocalSearchCompleter.rs"]
 mod __MKLocalSearchCompleter;
-#[cfg(feature = "MapKit_MKLocalSearchRequest")]
+#[cfg(feature = "MKLocalSearchRequest")]
 #[path = "MKLocalSearchRequest.rs"]
 mod __MKLocalSearchRequest;
-#[cfg(feature = "MapKit_MKLocalSearchResponse")]
+#[cfg(feature = "MKLocalSearchResponse")]
 #[path = "MKLocalSearchResponse.rs"]
 mod __MKLocalSearchResponse;
-#[cfg(feature = "MapKit_MKLookAroundScene")]
+#[cfg(feature = "MKLookAroundScene")]
 #[path = "MKLookAroundScene.rs"]
 mod __MKLookAroundScene;
-#[cfg(feature = "MapKit_MKLookAroundSceneRequest")]
+#[cfg(feature = "MKLookAroundSceneRequest")]
 #[path = "MKLookAroundSceneRequest.rs"]
 mod __MKLookAroundSceneRequest;
-#[cfg(feature = "MapKit_MKLookAroundSnapshot")]
+#[cfg(feature = "MKLookAroundSnapshot")]
 #[path = "MKLookAroundSnapshot.rs"]
 mod __MKLookAroundSnapshot;
-#[cfg(feature = "MapKit_MKLookAroundSnapshotOptions")]
+#[cfg(feature = "MKLookAroundSnapshotOptions")]
 #[path = "MKLookAroundSnapshotOptions.rs"]
 mod __MKLookAroundSnapshotOptions;
-#[cfg(feature = "MapKit_MKLookAroundSnapshotter")]
+#[cfg(feature = "MKLookAroundSnapshotter")]
 #[path = "MKLookAroundSnapshotter.rs"]
 mod __MKLookAroundSnapshotter;
-#[cfg(feature = "MapKit_MKLookAroundViewController")]
+#[cfg(feature = "MKLookAroundViewController")]
 #[path = "MKLookAroundViewController.rs"]
 mod __MKLookAroundViewController;
-#[cfg(feature = "MapKit_MKMapCamera")]
+#[cfg(feature = "MKMapCamera")]
 #[path = "MKMapCamera.rs"]
 mod __MKMapCamera;
-#[cfg(feature = "MapKit_MKMapCameraBoundary")]
+#[cfg(feature = "MKMapCameraBoundary")]
 #[path = "MKMapCameraBoundary.rs"]
 mod __MKMapCameraBoundary;
-#[cfg(feature = "MapKit_MKMapCameraZoomRange")]
+#[cfg(feature = "MKMapCameraZoomRange")]
 #[path = "MKMapCameraZoomRange.rs"]
 mod __MKMapCameraZoomRange;
-#[cfg(feature = "MapKit_MKMapConfiguration")]
+#[cfg(feature = "MKMapConfiguration")]
 #[path = "MKMapConfiguration.rs"]
 mod __MKMapConfiguration;
-#[cfg(feature = "MapKit_MKMapItem")]
+#[cfg(feature = "MKMapItem")]
 #[path = "MKMapItem.rs"]
 mod __MKMapItem;
-#[cfg(feature = "MapKit_MKMapSnapshot")]
+#[cfg(feature = "MKMapSnapshot")]
 #[path = "MKMapSnapshot.rs"]
 mod __MKMapSnapshot;
-#[cfg(feature = "MapKit_MKMapSnapshotOptions")]
+#[cfg(feature = "MKMapSnapshotOptions")]
 #[path = "MKMapSnapshotOptions.rs"]
 mod __MKMapSnapshotOptions;
-#[cfg(feature = "MapKit_MKMapSnapshotter")]
+#[cfg(feature = "MKMapSnapshotter")]
 #[path = "MKMapSnapshotter.rs"]
 mod __MKMapSnapshotter;
-#[cfg(feature = "MapKit_MKMapView")]
+#[cfg(feature = "MKMapView")]
 #[path = "MKMapView.rs"]
 mod __MKMapView;
-#[cfg(feature = "MapKit_MKMarkerAnnotationView")]
+#[cfg(feature = "MKMarkerAnnotationView")]
 #[path = "MKMarkerAnnotationView.rs"]
 mod __MKMarkerAnnotationView;
-#[cfg(feature = "MapKit_MKMultiPoint")]
+#[cfg(feature = "MKMultiPoint")]
 #[path = "MKMultiPoint.rs"]
 mod __MKMultiPoint;
-#[cfg(feature = "MapKit_MKMultiPolygon")]
+#[cfg(feature = "MKMultiPolygon")]
 #[path = "MKMultiPolygon.rs"]
 mod __MKMultiPolygon;
-#[cfg(feature = "MapKit_MKMultiPolygonRenderer")]
+#[cfg(feature = "MKMultiPolygonRenderer")]
 #[path = "MKMultiPolygonRenderer.rs"]
 mod __MKMultiPolygonRenderer;
-#[cfg(feature = "MapKit_MKMultiPolyline")]
+#[cfg(feature = "MKMultiPolyline")]
 #[path = "MKMultiPolyline.rs"]
 mod __MKMultiPolyline;
-#[cfg(feature = "MapKit_MKMultiPolylineRenderer")]
+#[cfg(feature = "MKMultiPolylineRenderer")]
 #[path = "MKMultiPolylineRenderer.rs"]
 mod __MKMultiPolylineRenderer;
-#[cfg(feature = "MapKit_MKOverlay")]
+#[cfg(feature = "MKOverlay")]
 #[path = "MKOverlay.rs"]
 mod __MKOverlay;
-#[cfg(feature = "MapKit_MKOverlayPathRenderer")]
+#[cfg(feature = "MKOverlayPathRenderer")]
 #[path = "MKOverlayPathRenderer.rs"]
 mod __MKOverlayPathRenderer;
-#[cfg(feature = "MapKit_MKOverlayRenderer")]
+#[cfg(feature = "MKOverlayRenderer")]
 #[path = "MKOverlayRenderer.rs"]
 mod __MKOverlayRenderer;
-#[cfg(feature = "MapKit_MKPinAnnotationView")]
+#[cfg(feature = "MKPinAnnotationView")]
 #[path = "MKPinAnnotationView.rs"]
 mod __MKPinAnnotationView;
-#[cfg(feature = "MapKit_MKPitchControl")]
+#[cfg(feature = "MKPitchControl")]
 #[path = "MKPitchControl.rs"]
 mod __MKPitchControl;
-#[cfg(feature = "MapKit_MKPlacemark")]
+#[cfg(feature = "MKPlacemark")]
 #[path = "MKPlacemark.rs"]
 mod __MKPlacemark;
-#[cfg(feature = "MapKit_MKPointAnnotation")]
+#[cfg(feature = "MKPointAnnotation")]
 #[path = "MKPointAnnotation.rs"]
 mod __MKPointAnnotation;
-#[cfg(feature = "MapKit_MKPointOfInterestCategory")]
+#[cfg(feature = "MKPointOfInterestCategory")]
 #[path = "MKPointOfInterestCategory.rs"]
 mod __MKPointOfInterestCategory;
-#[cfg(feature = "MapKit_MKPointOfInterestFilter")]
+#[cfg(feature = "MKPointOfInterestFilter")]
 #[path = "MKPointOfInterestFilter.rs"]
 mod __MKPointOfInterestFilter;
-#[cfg(feature = "MapKit_MKPolygon")]
+#[cfg(feature = "MKPolygon")]
 #[path = "MKPolygon.rs"]
 mod __MKPolygon;
-#[cfg(feature = "MapKit_MKPolygonRenderer")]
+#[cfg(feature = "MKPolygonRenderer")]
 #[path = "MKPolygonRenderer.rs"]
 mod __MKPolygonRenderer;
-#[cfg(feature = "MapKit_MKPolyline")]
+#[cfg(feature = "MKPolyline")]
 #[path = "MKPolyline.rs"]
 mod __MKPolyline;
-#[cfg(feature = "MapKit_MKPolylineRenderer")]
+#[cfg(feature = "MKPolylineRenderer")]
 #[path = "MKPolylineRenderer.rs"]
 mod __MKPolylineRenderer;
-#[cfg(feature = "MapKit_MKShape")]
+#[cfg(feature = "MKShape")]
 #[path = "MKShape.rs"]
 mod __MKShape;
-#[cfg(feature = "MapKit_MKStandardMapConfiguration")]
+#[cfg(feature = "MKStandardMapConfiguration")]
 #[path = "MKStandardMapConfiguration.rs"]
 mod __MKStandardMapConfiguration;
-#[cfg(feature = "MapKit_MKTileOverlay")]
+#[cfg(feature = "MKTileOverlay")]
 #[path = "MKTileOverlay.rs"]
 mod __MKTileOverlay;
-#[cfg(feature = "MapKit_MKTileOverlayRenderer")]
+#[cfg(feature = "MKTileOverlayRenderer")]
 #[path = "MKTileOverlayRenderer.rs"]
 mod __MKTileOverlayRenderer;
-#[cfg(feature = "MapKit_MKTypes")]
+#[cfg(feature = "MKTypes")]
 #[path = "MKTypes.rs"]
 mod __MKTypes;
-#[cfg(feature = "MapKit_MKUserLocation")]
+#[cfg(feature = "MKUserLocation")]
 #[path = "MKUserLocation.rs"]
 mod __MKUserLocation;
-#[cfg(feature = "MapKit_MKUserLocationView")]
+#[cfg(feature = "MKUserLocationView")]
 #[path = "MKUserLocationView.rs"]
 mod __MKUserLocationView;
-#[cfg(feature = "MapKit_MKZoomControl")]
+#[cfg(feature = "MKZoomControl")]
 #[path = "MKZoomControl.rs"]
 mod __MKZoomControl;
-#[cfg(feature = "MapKit_NSUserActivity_MKMapItem")]
+#[cfg(feature = "NSUserActivity_MKMapItem")]
 #[path = "NSUserActivity_MKMapItem.rs"]
 mod __NSUserActivity_MKMapItem;
 
-#[cfg(feature = "MapKit_MKAnnotation")]
+#[cfg(feature = "MKAnnotation")]
 pub use self::__MKAnnotation::MKAnnotation;
-#[cfg(feature = "MapKit_MKAnnotationView")]
+#[cfg(feature = "MKAnnotationView")]
 pub use self::__MKAnnotationView::MKAnnotationCalloutInfoDidChangeNotification;
-#[cfg(all(feature = "MapKit_MKAnnotationView", feature = "objc2-app-kit"))]
+#[cfg(all(feature = "MKAnnotationView", feature = "objc2-app-kit"))]
 pub use self::__MKAnnotationView::MKAnnotationView;
-#[cfg(feature = "MapKit_MKAnnotationView")]
+#[cfg(feature = "MKAnnotationView")]
 pub use self::__MKAnnotationView::MKAnnotationViewCollisionMode;
-#[cfg(feature = "MapKit_MKAnnotationView")]
+#[cfg(feature = "MKAnnotationView")]
 pub use self::__MKAnnotationView::MKAnnotationViewDragState;
-#[cfg(feature = "MapKit_MKAnnotationView")]
+#[cfg(feature = "MKAnnotationView")]
 pub use self::__MKAnnotationView::MKAnnotationViewZPriority;
-#[cfg(feature = "MapKit_MKAnnotationView")]
+#[cfg(feature = "MKAnnotationView")]
 pub use self::__MKAnnotationView::MKAnnotationViewZPriorityDefaultSelected;
-#[cfg(feature = "MapKit_MKAnnotationView")]
+#[cfg(feature = "MKAnnotationView")]
 pub use self::__MKAnnotationView::MKAnnotationViewZPriorityDefaultUnselected;
-#[cfg(feature = "MapKit_MKAnnotationView")]
+#[cfg(feature = "MKAnnotationView")]
 pub use self::__MKAnnotationView::MKAnnotationViewZPriorityMax;
-#[cfg(feature = "MapKit_MKAnnotationView")]
+#[cfg(feature = "MKAnnotationView")]
 pub use self::__MKAnnotationView::MKAnnotationViewZPriorityMin;
-#[cfg(feature = "MapKit_MKAnnotationView")]
+#[cfg(feature = "MKAnnotationView")]
 pub use self::__MKAnnotationView::MKFeatureDisplayPriority;
-#[cfg(feature = "MapKit_MKAnnotationView")]
+#[cfg(feature = "MKAnnotationView")]
 pub use self::__MKAnnotationView::MKFeatureDisplayPriorityDefaultHigh;
-#[cfg(feature = "MapKit_MKAnnotationView")]
+#[cfg(feature = "MKAnnotationView")]
 pub use self::__MKAnnotationView::MKFeatureDisplayPriorityDefaultLow;
-#[cfg(feature = "MapKit_MKAnnotationView")]
+#[cfg(feature = "MKAnnotationView")]
 pub use self::__MKAnnotationView::MKFeatureDisplayPriorityRequired;
-#[cfg(all(feature = "MapKit_MKCircle", feature = "MapKit_MKShape"))]
+#[cfg(all(feature = "MKCircle", feature = "MKShape"))]
 pub use self::__MKCircle::MKCircle;
 #[cfg(all(
-    feature = "MapKit_MKCircleRenderer",
-    feature = "MapKit_MKOverlayPathRenderer",
-    feature = "MapKit_MKOverlayRenderer"
+    feature = "MKCircleRenderer",
+    feature = "MKOverlayPathRenderer",
+    feature = "MKOverlayRenderer"
 ))]
 pub use self::__MKCircleRenderer::MKCircleRenderer;
-#[cfg(feature = "MapKit_MKClusterAnnotation")]
+#[cfg(feature = "MKClusterAnnotation")]
 pub use self::__MKClusterAnnotation::MKClusterAnnotation;
-#[cfg(all(feature = "MapKit_MKCompassButton", feature = "objc2-app-kit"))]
+#[cfg(all(feature = "MKCompassButton", feature = "objc2-app-kit"))]
 pub use self::__MKCompassButton::MKCompassButton;
-#[cfg(feature = "MapKit_MKDirections")]
+#[cfg(feature = "MKDirections")]
 pub use self::__MKDirections::MKDirections;
 #[cfg(all(
-    feature = "MapKit_MKDirections",
-    feature = "MapKit_MKDirectionsResponse",
+    feature = "MKDirections",
+    feature = "MKDirectionsResponse",
     feature = "block2"
 ))]
 pub use self::__MKDirections::MKDirectionsHandler;
 #[cfg(all(
-    feature = "MapKit_MKDirections",
-    feature = "MapKit_MKDirectionsResponse",
+    feature = "MKDirections",
+    feature = "MKDirectionsResponse",
     feature = "block2"
 ))]
 pub use self::__MKDirections::MKETAHandler;
-#[cfg(feature = "MapKit_MKDirectionsRequest")]
+#[cfg(feature = "MKDirectionsRequest")]
 pub use self::__MKDirectionsRequest::MKDirectionsRequest;
-#[cfg(feature = "MapKit_MKDirectionsRequest")]
+#[cfg(feature = "MKDirectionsRequest")]
 pub use self::__MKDirectionsRequest::MKDirectionsRoutePreference;
-#[cfg(feature = "MapKit_MKDirectionsResponse")]
+#[cfg(feature = "MKDirectionsResponse")]
 pub use self::__MKDirectionsResponse::MKDirectionsResponse;
-#[cfg(feature = "MapKit_MKDirectionsResponse")]
+#[cfg(feature = "MKDirectionsResponse")]
 pub use self::__MKDirectionsResponse::MKETAResponse;
-#[cfg(feature = "MapKit_MKDirectionsResponse")]
+#[cfg(feature = "MKDirectionsResponse")]
 pub use self::__MKDirectionsResponse::MKRoute;
-#[cfg(feature = "MapKit_MKDirectionsResponse")]
+#[cfg(feature = "MKDirectionsResponse")]
 pub use self::__MKDirectionsResponse::MKRouteStep;
-#[cfg(feature = "MapKit_MKDirectionsTypes")]
+#[cfg(feature = "MKDirectionsTypes")]
 pub use self::__MKDirectionsTypes::MKDirectionsTransportType;
-#[cfg(feature = "MapKit_MKDistanceFormatter")]
+#[cfg(feature = "MKDistanceFormatter")]
 pub use self::__MKDistanceFormatter::MKDistanceFormatter;
-#[cfg(feature = "MapKit_MKDistanceFormatter")]
+#[cfg(feature = "MKDistanceFormatter")]
 pub use self::__MKDistanceFormatter::MKDistanceFormatterUnitStyle;
-#[cfg(feature = "MapKit_MKDistanceFormatter")]
+#[cfg(feature = "MKDistanceFormatter")]
 pub use self::__MKDistanceFormatter::MKDistanceFormatterUnits;
-#[cfg(feature = "MapKit_MKGeoJSONSerialization")]
+#[cfg(feature = "MKGeoJSONSerialization")]
 pub use self::__MKGeoJSONSerialization::MKGeoJSONDecoder;
-#[cfg(feature = "MapKit_MKGeoJSONSerialization")]
+#[cfg(feature = "MKGeoJSONSerialization")]
 pub use self::__MKGeoJSONSerialization::MKGeoJSONFeature;
-#[cfg(feature = "MapKit_MKGeoJSONSerialization")]
+#[cfg(feature = "MKGeoJSONSerialization")]
 pub use self::__MKGeoJSONSerialization::MKGeoJSONObject;
 #[cfg(all(
-    feature = "MapKit_MKGeodesicPolyline",
-    feature = "MapKit_MKMultiPoint",
-    feature = "MapKit_MKPolyline",
-    feature = "MapKit_MKShape"
+    feature = "MKGeodesicPolyline",
+    feature = "MKMultiPoint",
+    feature = "MKPolyline",
+    feature = "MKShape"
 ))]
 pub use self::__MKGeodesicPolyline::MKGeodesicPolyline;
-#[cfg(all(feature = "MapKit_MKGeometry", feature = "objc2-core-location"))]
+#[cfg(all(feature = "MKGeometry", feature = "objc2-core-location"))]
 pub use self::__MKGeometry::MKCoordinateForMapPoint;
-#[cfg(all(feature = "MapKit_MKGeometry", feature = "objc2-core-location"))]
+#[cfg(all(feature = "MKGeometry", feature = "objc2-core-location"))]
 pub use self::__MKGeometry::MKCoordinateRegion;
-#[cfg(all(feature = "MapKit_MKGeometry", feature = "objc2-core-location"))]
+#[cfg(all(feature = "MKGeometry", feature = "objc2-core-location"))]
 pub use self::__MKGeometry::MKCoordinateRegionForMapRect;
-#[cfg(all(feature = "MapKit_MKGeometry", feature = "objc2-core-location"))]
+#[cfg(all(feature = "MKGeometry", feature = "objc2-core-location"))]
 pub use self::__MKGeometry::MKCoordinateRegionMakeWithDistance;
-#[cfg(all(feature = "MapKit_MKGeometry", feature = "objc2-core-location"))]
+#[cfg(all(feature = "MKGeometry", feature = "objc2-core-location"))]
 pub use self::__MKGeometry::MKCoordinateSpan;
-#[cfg(feature = "MapKit_MKGeometry")]
+#[cfg(feature = "MKGeometry")]
 pub use self::__MKGeometry::MKMapPoint;
-#[cfg(all(feature = "MapKit_MKGeometry", feature = "objc2-core-location"))]
+#[cfg(all(feature = "MKGeometry", feature = "objc2-core-location"))]
 pub use self::__MKGeometry::MKMapPointForCoordinate;
-#[cfg(all(feature = "MapKit_MKGeometry", feature = "objc2-core-location"))]
+#[cfg(all(feature = "MKGeometry", feature = "objc2-core-location"))]
 pub use self::__MKGeometry::MKMapPointsPerMeterAtLatitude;
-#[cfg(feature = "MapKit_MKGeometry")]
+#[cfg(feature = "MKGeometry")]
 pub use self::__MKGeometry::MKMapRect;
-#[cfg(feature = "MapKit_MKGeometry")]
+#[cfg(feature = "MKGeometry")]
 pub use self::__MKGeometry::MKMapRectContainsPoint;
-#[cfg(feature = "MapKit_MKGeometry")]
+#[cfg(feature = "MKGeometry")]
 pub use self::__MKGeometry::MKMapRectContainsRect;
-#[cfg(feature = "MapKit_MKGeometry")]
+#[cfg(feature = "MKGeometry")]
 pub use self::__MKGeometry::MKMapRectInset;
-#[cfg(feature = "MapKit_MKGeometry")]
+#[cfg(feature = "MKGeometry")]
 pub use self::__MKGeometry::MKMapRectIntersection;
-#[cfg(feature = "MapKit_MKGeometry")]
+#[cfg(feature = "MKGeometry")]
 pub use self::__MKGeometry::MKMapRectIntersectsRect;
-#[cfg(feature = "MapKit_MKGeometry")]
+#[cfg(feature = "MKGeometry")]
 pub use self::__MKGeometry::MKMapRectNull;
-#[cfg(feature = "MapKit_MKGeometry")]
+#[cfg(feature = "MKGeometry")]
 pub use self::__MKGeometry::MKMapRectOffset;
-#[cfg(feature = "MapKit_MKGeometry")]
+#[cfg(feature = "MKGeometry")]
 pub use self::__MKGeometry::MKMapRectRemainder;
-#[cfg(feature = "MapKit_MKGeometry")]
+#[cfg(feature = "MKGeometry")]
 pub use self::__MKGeometry::MKMapRectSpans180thMeridian;
-#[cfg(feature = "MapKit_MKGeometry")]
+#[cfg(feature = "MKGeometry")]
 pub use self::__MKGeometry::MKMapRectUnion;
-#[cfg(feature = "MapKit_MKGeometry")]
+#[cfg(feature = "MKGeometry")]
 pub use self::__MKGeometry::MKMapRectWorld;
-#[cfg(feature = "MapKit_MKGeometry")]
+#[cfg(feature = "MKGeometry")]
 pub use self::__MKGeometry::MKMapSize;
-#[cfg(feature = "MapKit_MKGeometry")]
+#[cfg(feature = "MKGeometry")]
 pub use self::__MKGeometry::MKMapSizeWorld;
-#[cfg(all(feature = "MapKit_MKGeometry", feature = "objc2-core-location"))]
+#[cfg(all(feature = "MKGeometry", feature = "objc2-core-location"))]
 pub use self::__MKGeometry::MKMetersBetweenMapPoints;
-#[cfg(all(feature = "MapKit_MKGeometry", feature = "objc2-core-location"))]
+#[cfg(all(feature = "MKGeometry", feature = "objc2-core-location"))]
 pub use self::__MKGeometry::MKMetersPerMapPointAtLatitude;
-#[cfg(feature = "MapKit_MKGeometry")]
+#[cfg(feature = "MKGeometry")]
 pub use self::__MKGeometry::MKZoomScale;
-#[cfg(feature = "MapKit_MKGeometry")]
+#[cfg(feature = "MKGeometry")]
 pub use self::__MKGeometry::NSValueMapKitGeometryExtensions;
 #[cfg(all(
-    feature = "MapKit_MKGradientPolylineRenderer",
-    feature = "MapKit_MKOverlayPathRenderer",
-    feature = "MapKit_MKOverlayRenderer",
-    feature = "MapKit_MKPolylineRenderer"
+    feature = "MKGradientPolylineRenderer",
+    feature = "MKOverlayPathRenderer",
+    feature = "MKOverlayRenderer",
+    feature = "MKPolylineRenderer"
 ))]
 pub use self::__MKGradientPolylineRenderer::MKGradientPolylineRenderer;
-#[cfg(all(
-    feature = "MapKit_MKHybridMapConfiguration",
-    feature = "MapKit_MKMapConfiguration"
-))]
+#[cfg(all(feature = "MKHybridMapConfiguration", feature = "MKMapConfiguration"))]
 pub use self::__MKHybridMapConfiguration::MKHybridMapConfiguration;
-#[cfg(all(
-    feature = "MapKit_MKImageryMapConfiguration",
-    feature = "MapKit_MKMapConfiguration"
-))]
+#[cfg(all(feature = "MKImageryMapConfiguration", feature = "MKMapConfiguration"))]
 pub use self::__MKImageryMapConfiguration::MKImageryMapConfiguration;
-#[cfg(feature = "MapKit_MKLocalPointsOfInterestRequest")]
+#[cfg(feature = "MKLocalPointsOfInterestRequest")]
 pub use self::__MKLocalPointsOfInterestRequest::MKLocalPointsOfInterestRequest;
 #[cfg(all(
-    feature = "MapKit_MKLocalPointsOfInterestRequest",
+    feature = "MKLocalPointsOfInterestRequest",
     feature = "objc2-core-location"
 ))]
 pub use self::__MKLocalPointsOfInterestRequest::MKPointsOfInterestRequestMaxRadius;
-#[cfg(feature = "MapKit_MKLocalSearch")]
+#[cfg(feature = "MKLocalSearch")]
 pub use self::__MKLocalSearch::MKLocalSearch;
 #[cfg(all(
-    feature = "MapKit_MKLocalSearch",
-    feature = "MapKit_MKLocalSearchResponse",
+    feature = "MKLocalSearch",
+    feature = "MKLocalSearchResponse",
     feature = "block2"
 ))]
 pub use self::__MKLocalSearch::MKLocalSearchCompletionHandler;
-#[cfg(feature = "MapKit_MKLocalSearchCompleter")]
+#[cfg(feature = "MKLocalSearchCompleter")]
 pub use self::__MKLocalSearchCompleter::MKLocalSearchCompleter;
-#[cfg(feature = "MapKit_MKLocalSearchCompleter")]
+#[cfg(feature = "MKLocalSearchCompleter")]
 pub use self::__MKLocalSearchCompleter::MKLocalSearchCompleterDelegate;
-#[cfg(feature = "MapKit_MKLocalSearchCompleter")]
+#[cfg(feature = "MKLocalSearchCompleter")]
 pub use self::__MKLocalSearchCompleter::MKLocalSearchCompleterResultType;
-#[cfg(feature = "MapKit_MKLocalSearchCompleter")]
+#[cfg(feature = "MKLocalSearchCompleter")]
 pub use self::__MKLocalSearchCompleter::MKLocalSearchCompletion;
-#[cfg(feature = "MapKit_MKLocalSearchCompleter")]
+#[cfg(feature = "MKLocalSearchCompleter")]
 pub use self::__MKLocalSearchCompleter::MKSearchCompletionFilterType;
-#[cfg(feature = "MapKit_MKLocalSearchRequest")]
+#[cfg(feature = "MKLocalSearchRequest")]
 pub use self::__MKLocalSearchRequest::MKLocalSearchRequest;
-#[cfg(feature = "MapKit_MKLocalSearchRequest")]
+#[cfg(feature = "MKLocalSearchRequest")]
 pub use self::__MKLocalSearchRequest::MKLocalSearchResultType;
-#[cfg(feature = "MapKit_MKLocalSearchResponse")]
+#[cfg(feature = "MKLocalSearchResponse")]
 pub use self::__MKLocalSearchResponse::MKLocalSearchResponse;
-#[cfg(feature = "MapKit_MKLookAroundScene")]
+#[cfg(feature = "MKLookAroundScene")]
 pub use self::__MKLookAroundScene::MKLookAroundScene;
-#[cfg(feature = "MapKit_MKLookAroundSceneRequest")]
+#[cfg(feature = "MKLookAroundSceneRequest")]
 pub use self::__MKLookAroundSceneRequest::MKLookAroundSceneRequest;
-#[cfg(feature = "MapKit_MKLookAroundSnapshot")]
+#[cfg(feature = "MKLookAroundSnapshot")]
 pub use self::__MKLookAroundSnapshot::MKLookAroundSnapshot;
-#[cfg(feature = "MapKit_MKLookAroundSnapshotOptions")]
+#[cfg(feature = "MKLookAroundSnapshotOptions")]
 pub use self::__MKLookAroundSnapshotOptions::MKLookAroundSnapshotOptions;
-#[cfg(feature = "MapKit_MKLookAroundSnapshotter")]
+#[cfg(feature = "MKLookAroundSnapshotter")]
 pub use self::__MKLookAroundSnapshotter::MKLookAroundSnapshotter;
-#[cfg(feature = "MapKit_MKLookAroundViewController")]
+#[cfg(feature = "MKLookAroundViewController")]
 pub use self::__MKLookAroundViewController::MKLookAroundBadgePosition;
-#[cfg(all(
-    feature = "MapKit_MKLookAroundViewController",
-    feature = "objc2-app-kit"
-))]
+#[cfg(all(feature = "MKLookAroundViewController", feature = "objc2-app-kit"))]
 pub use self::__MKLookAroundViewController::MKLookAroundViewController;
-#[cfg(feature = "MapKit_MKLookAroundViewController")]
+#[cfg(feature = "MKLookAroundViewController")]
 pub use self::__MKLookAroundViewController::MKLookAroundViewControllerDelegate;
-#[cfg(feature = "MapKit_MKMapCamera")]
+#[cfg(feature = "MKMapCamera")]
 pub use self::__MKMapCamera::MKMapCamera;
-#[cfg(feature = "MapKit_MKMapCameraBoundary")]
+#[cfg(feature = "MKMapCameraBoundary")]
 pub use self::__MKMapCameraBoundary::MKMapCameraBoundary;
-#[cfg(all(
-    feature = "MapKit_MKMapCameraZoomRange",
-    feature = "objc2-core-location"
-))]
+#[cfg(all(feature = "MKMapCameraZoomRange", feature = "objc2-core-location"))]
 pub use self::__MKMapCameraZoomRange::MKMapCameraZoomDefault;
-#[cfg(feature = "MapKit_MKMapCameraZoomRange")]
+#[cfg(feature = "MKMapCameraZoomRange")]
 pub use self::__MKMapCameraZoomRange::MKMapCameraZoomRange;
-#[cfg(feature = "MapKit_MKMapConfiguration")]
+#[cfg(feature = "MKMapConfiguration")]
 pub use self::__MKMapConfiguration::MKMapConfiguration;
-#[cfg(feature = "MapKit_MKMapConfiguration")]
+#[cfg(feature = "MKMapConfiguration")]
 pub use self::__MKMapConfiguration::MKMapElevationStyle;
-#[cfg(feature = "MapKit_MKMapItem")]
+#[cfg(feature = "MKMapItem")]
 pub use self::__MKMapItem::MKLaunchOptionsCameraKey;
-#[cfg(feature = "MapKit_MKMapItem")]
+#[cfg(feature = "MKMapItem")]
 pub use self::__MKMapItem::MKLaunchOptionsDirectionsModeDefault;
-#[cfg(feature = "MapKit_MKMapItem")]
+#[cfg(feature = "MKMapItem")]
 pub use self::__MKMapItem::MKLaunchOptionsDirectionsModeDriving;
-#[cfg(feature = "MapKit_MKMapItem")]
+#[cfg(feature = "MKMapItem")]
 pub use self::__MKMapItem::MKLaunchOptionsDirectionsModeKey;
-#[cfg(feature = "MapKit_MKMapItem")]
+#[cfg(feature = "MKMapItem")]
 pub use self::__MKMapItem::MKLaunchOptionsDirectionsModeTransit;
-#[cfg(feature = "MapKit_MKMapItem")]
+#[cfg(feature = "MKMapItem")]
 pub use self::__MKMapItem::MKLaunchOptionsDirectionsModeWalking;
-#[cfg(feature = "MapKit_MKMapItem")]
+#[cfg(feature = "MKMapItem")]
 pub use self::__MKMapItem::MKLaunchOptionsMapCenterKey;
-#[cfg(feature = "MapKit_MKMapItem")]
+#[cfg(feature = "MKMapItem")]
 pub use self::__MKMapItem::MKLaunchOptionsMapSpanKey;
-#[cfg(feature = "MapKit_MKMapItem")]
+#[cfg(feature = "MKMapItem")]
 pub use self::__MKMapItem::MKLaunchOptionsMapTypeKey;
-#[cfg(feature = "MapKit_MKMapItem")]
+#[cfg(feature = "MKMapItem")]
 pub use self::__MKMapItem::MKLaunchOptionsShowsTrafficKey;
-#[cfg(feature = "MapKit_MKMapItem")]
+#[cfg(feature = "MKMapItem")]
 pub use self::__MKMapItem::MKMapItem;
-#[cfg(feature = "MapKit_MKMapItem")]
+#[cfg(feature = "MKMapItem")]
 pub use self::__MKMapItem::MKMapItemTypeIdentifier;
-#[cfg(feature = "MapKit_MKMapSnapshot")]
+#[cfg(feature = "MKMapSnapshot")]
 pub use self::__MKMapSnapshot::MKMapSnapshot;
-#[cfg(feature = "MapKit_MKMapSnapshotOptions")]
+#[cfg(feature = "MKMapSnapshotOptions")]
 pub use self::__MKMapSnapshotOptions::MKMapSnapshotOptions;
 #[cfg(all(
-    feature = "MapKit_MKMapSnapshot",
-    feature = "MapKit_MKMapSnapshotter",
+    feature = "MKMapSnapshot",
+    feature = "MKMapSnapshotter",
     feature = "block2"
 ))]
 pub use self::__MKMapSnapshotter::MKMapSnapshotCompletionHandler;
-#[cfg(feature = "MapKit_MKMapSnapshotter")]
+#[cfg(feature = "MKMapSnapshotter")]
 pub use self::__MKMapSnapshotter::MKMapSnapshotter;
-#[cfg(all(feature = "MapKit_MKMapView", feature = "objc2-app-kit"))]
+#[cfg(all(feature = "MKMapView", feature = "objc2-app-kit"))]
 pub use self::__MKMapView::MKMapView;
-#[cfg(feature = "MapKit_MKMapView")]
+#[cfg(feature = "MKMapView")]
 pub use self::__MKMapView::MKMapViewDefaultAnnotationViewReuseIdentifier;
-#[cfg(feature = "MapKit_MKMapView")]
+#[cfg(feature = "MKMapView")]
 pub use self::__MKMapView::MKMapViewDefaultClusterAnnotationViewReuseIdentifier;
-#[cfg(feature = "MapKit_MKMapView")]
+#[cfg(feature = "MKMapView")]
 pub use self::__MKMapView::MKMapViewDelegate;
-#[cfg(feature = "MapKit_MKMapView")]
+#[cfg(feature = "MKMapView")]
 pub use self::__MKMapView::MKOverlayLevel;
-#[cfg(feature = "MapKit_MKMapView")]
+#[cfg(feature = "MKMapView")]
 pub use self::__MKMapView::MKUserTrackingMode;
 #[cfg(all(
-    feature = "MapKit_MKAnnotationView",
-    feature = "MapKit_MKMarkerAnnotationView",
+    feature = "MKAnnotationView",
+    feature = "MKMarkerAnnotationView",
     feature = "objc2-app-kit"
 ))]
 pub use self::__MKMarkerAnnotationView::MKMarkerAnnotationView;
-#[cfg(all(feature = "MapKit_MKMultiPoint", feature = "MapKit_MKShape"))]
+#[cfg(all(feature = "MKMultiPoint", feature = "MKShape"))]
 pub use self::__MKMultiPoint::MKMultiPoint;
-#[cfg(all(feature = "MapKit_MKMultiPolygon", feature = "MapKit_MKShape"))]
+#[cfg(all(feature = "MKMultiPolygon", feature = "MKShape"))]
 pub use self::__MKMultiPolygon::MKMultiPolygon;
 #[cfg(all(
-    feature = "MapKit_MKMultiPolygonRenderer",
-    feature = "MapKit_MKOverlayPathRenderer",
-    feature = "MapKit_MKOverlayRenderer"
+    feature = "MKMultiPolygonRenderer",
+    feature = "MKOverlayPathRenderer",
+    feature = "MKOverlayRenderer"
 ))]
 pub use self::__MKMultiPolygonRenderer::MKMultiPolygonRenderer;
-#[cfg(all(feature = "MapKit_MKMultiPolyline", feature = "MapKit_MKShape"))]
+#[cfg(all(feature = "MKMultiPolyline", feature = "MKShape"))]
 pub use self::__MKMultiPolyline::MKMultiPolyline;
 #[cfg(all(
-    feature = "MapKit_MKMultiPolylineRenderer",
-    feature = "MapKit_MKOverlayPathRenderer",
-    feature = "MapKit_MKOverlayRenderer"
+    feature = "MKMultiPolylineRenderer",
+    feature = "MKOverlayPathRenderer",
+    feature = "MKOverlayRenderer"
 ))]
 pub use self::__MKMultiPolylineRenderer::MKMultiPolylineRenderer;
-#[cfg(all(feature = "MapKit_MKAnnotation", feature = "MapKit_MKOverlay"))]
+#[cfg(all(feature = "MKAnnotation", feature = "MKOverlay"))]
 pub use self::__MKOverlay::MKOverlay;
-#[cfg(all(
-    feature = "MapKit_MKOverlayPathRenderer",
-    feature = "MapKit_MKOverlayRenderer"
-))]
+#[cfg(all(feature = "MKOverlayPathRenderer", feature = "MKOverlayRenderer"))]
 pub use self::__MKOverlayPathRenderer::MKOverlayPathRenderer;
-#[cfg(feature = "MapKit_MKOverlayRenderer")]
+#[cfg(feature = "MKOverlayRenderer")]
 pub use self::__MKOverlayRenderer::MKOverlayRenderer;
-#[cfg(all(feature = "MapKit_MKGeometry", feature = "MapKit_MKOverlayRenderer"))]
+#[cfg(all(feature = "MKGeometry", feature = "MKOverlayRenderer"))]
 pub use self::__MKOverlayRenderer::MKRoadWidthAtZoomScale;
-#[cfg(feature = "MapKit_MKPinAnnotationView")]
+#[cfg(feature = "MKPinAnnotationView")]
 pub use self::__MKPinAnnotationView::MKPinAnnotationColor;
 #[cfg(all(
-    feature = "MapKit_MKAnnotationView",
-    feature = "MapKit_MKPinAnnotationView",
+    feature = "MKAnnotationView",
+    feature = "MKPinAnnotationView",
     feature = "objc2-app-kit"
 ))]
 pub use self::__MKPinAnnotationView::MKPinAnnotationView;
-#[cfg(all(feature = "MapKit_MKPitchControl", feature = "objc2-app-kit"))]
+#[cfg(all(feature = "MKPitchControl", feature = "objc2-app-kit"))]
 pub use self::__MKPitchControl::MKPitchControl;
-#[cfg(all(feature = "MapKit_MKPlacemark", feature = "objc2-core-location"))]
+#[cfg(all(feature = "MKPlacemark", feature = "objc2-core-location"))]
 pub use self::__MKPlacemark::MKPlacemark;
-#[cfg(all(feature = "MapKit_MKPointAnnotation", feature = "MapKit_MKShape"))]
+#[cfg(all(feature = "MKPointAnnotation", feature = "MKShape"))]
 pub use self::__MKPointAnnotation::MKPointAnnotation;
-#[cfg(feature = "MapKit_MKPointOfInterestCategory")]
+#[cfg(feature = "MKPointOfInterestCategory")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategory;
-#[cfg(feature = "MapKit_MKPointOfInterestCategory")]
+#[cfg(feature = "MKPointOfInterestCategory")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryATM;
-#[cfg(feature = "MapKit_MKPointOfInterestCategory")]
+#[cfg(feature = "MKPointOfInterestCategory")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryAirport;
-#[cfg(feature = "MapKit_MKPointOfInterestCategory")]
+#[cfg(feature = "MKPointOfInterestCategory")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryAmusementPark;
-#[cfg(feature = "MapKit_MKPointOfInterestCategory")]
+#[cfg(feature = "MKPointOfInterestCategory")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryAquarium;
-#[cfg(feature = "MapKit_MKPointOfInterestCategory")]
+#[cfg(feature = "MKPointOfInterestCategory")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryBakery;
-#[cfg(feature = "MapKit_MKPointOfInterestCategory")]
+#[cfg(feature = "MKPointOfInterestCategory")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryBank;
-#[cfg(feature = "MapKit_MKPointOfInterestCategory")]
+#[cfg(feature = "MKPointOfInterestCategory")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryBeach;
-#[cfg(feature = "MapKit_MKPointOfInterestCategory")]
+#[cfg(feature = "MKPointOfInterestCategory")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryBrewery;
-#[cfg(feature = "MapKit_MKPointOfInterestCategory")]
+#[cfg(feature = "MKPointOfInterestCategory")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryCafe;
-#[cfg(feature = "MapKit_MKPointOfInterestCategory")]
+#[cfg(feature = "MKPointOfInterestCategory")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryCampground;
-#[cfg(feature = "MapKit_MKPointOfInterestCategory")]
+#[cfg(feature = "MKPointOfInterestCategory")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryCarRental;
-#[cfg(feature = "MapKit_MKPointOfInterestCategory")]
+#[cfg(feature = "MKPointOfInterestCategory")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryEVCharger;
-#[cfg(feature = "MapKit_MKPointOfInterestCategory")]
+#[cfg(feature = "MKPointOfInterestCategory")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryFireStation;
-#[cfg(feature = "MapKit_MKPointOfInterestCategory")]
+#[cfg(feature = "MKPointOfInterestCategory")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryFitnessCenter;
-#[cfg(feature = "MapKit_MKPointOfInterestCategory")]
+#[cfg(feature = "MKPointOfInterestCategory")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryFoodMarket;
-#[cfg(feature = "MapKit_MKPointOfInterestCategory")]
+#[cfg(feature = "MKPointOfInterestCategory")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryGasStation;
-#[cfg(feature = "MapKit_MKPointOfInterestCategory")]
+#[cfg(feature = "MKPointOfInterestCategory")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryHospital;
-#[cfg(feature = "MapKit_MKPointOfInterestCategory")]
+#[cfg(feature = "MKPointOfInterestCategory")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryHotel;
-#[cfg(feature = "MapKit_MKPointOfInterestCategory")]
+#[cfg(feature = "MKPointOfInterestCategory")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryLaundry;
-#[cfg(feature = "MapKit_MKPointOfInterestCategory")]
+#[cfg(feature = "MKPointOfInterestCategory")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryLibrary;
-#[cfg(feature = "MapKit_MKPointOfInterestCategory")]
+#[cfg(feature = "MKPointOfInterestCategory")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryMarina;
-#[cfg(feature = "MapKit_MKPointOfInterestCategory")]
+#[cfg(feature = "MKPointOfInterestCategory")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryMovieTheater;
-#[cfg(feature = "MapKit_MKPointOfInterestCategory")]
+#[cfg(feature = "MKPointOfInterestCategory")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryMuseum;
-#[cfg(feature = "MapKit_MKPointOfInterestCategory")]
+#[cfg(feature = "MKPointOfInterestCategory")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryNationalPark;
-#[cfg(feature = "MapKit_MKPointOfInterestCategory")]
+#[cfg(feature = "MKPointOfInterestCategory")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryNightlife;
-#[cfg(feature = "MapKit_MKPointOfInterestCategory")]
+#[cfg(feature = "MKPointOfInterestCategory")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryPark;
-#[cfg(feature = "MapKit_MKPointOfInterestCategory")]
+#[cfg(feature = "MKPointOfInterestCategory")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryParking;
-#[cfg(feature = "MapKit_MKPointOfInterestCategory")]
+#[cfg(feature = "MKPointOfInterestCategory")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryPharmacy;
-#[cfg(feature = "MapKit_MKPointOfInterestCategory")]
+#[cfg(feature = "MKPointOfInterestCategory")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryPolice;
-#[cfg(feature = "MapKit_MKPointOfInterestCategory")]
+#[cfg(feature = "MKPointOfInterestCategory")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryPostOffice;
-#[cfg(feature = "MapKit_MKPointOfInterestCategory")]
+#[cfg(feature = "MKPointOfInterestCategory")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryPublicTransport;
-#[cfg(feature = "MapKit_MKPointOfInterestCategory")]
+#[cfg(feature = "MKPointOfInterestCategory")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryRestaurant;
-#[cfg(feature = "MapKit_MKPointOfInterestCategory")]
+#[cfg(feature = "MKPointOfInterestCategory")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryRestroom;
-#[cfg(feature = "MapKit_MKPointOfInterestCategory")]
+#[cfg(feature = "MKPointOfInterestCategory")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategorySchool;
-#[cfg(feature = "MapKit_MKPointOfInterestCategory")]
+#[cfg(feature = "MKPointOfInterestCategory")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryStadium;
-#[cfg(feature = "MapKit_MKPointOfInterestCategory")]
+#[cfg(feature = "MKPointOfInterestCategory")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryStore;
-#[cfg(feature = "MapKit_MKPointOfInterestCategory")]
+#[cfg(feature = "MKPointOfInterestCategory")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryTheater;
-#[cfg(feature = "MapKit_MKPointOfInterestCategory")]
+#[cfg(feature = "MKPointOfInterestCategory")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryUniversity;
-#[cfg(feature = "MapKit_MKPointOfInterestCategory")]
+#[cfg(feature = "MKPointOfInterestCategory")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryWinery;
-#[cfg(feature = "MapKit_MKPointOfInterestCategory")]
+#[cfg(feature = "MKPointOfInterestCategory")]
 pub use self::__MKPointOfInterestCategory::MKPointOfInterestCategoryZoo;
-#[cfg(feature = "MapKit_MKPointOfInterestFilter")]
+#[cfg(feature = "MKPointOfInterestFilter")]
 pub use self::__MKPointOfInterestFilter::MKPointOfInterestFilter;
-#[cfg(all(
-    feature = "MapKit_MKMultiPoint",
-    feature = "MapKit_MKPolygon",
-    feature = "MapKit_MKShape"
-))]
+#[cfg(all(feature = "MKMultiPoint", feature = "MKPolygon", feature = "MKShape"))]
 pub use self::__MKPolygon::MKPolygon;
 #[cfg(all(
-    feature = "MapKit_MKOverlayPathRenderer",
-    feature = "MapKit_MKOverlayRenderer",
-    feature = "MapKit_MKPolygonRenderer"
+    feature = "MKOverlayPathRenderer",
+    feature = "MKOverlayRenderer",
+    feature = "MKPolygonRenderer"
 ))]
 pub use self::__MKPolygonRenderer::MKPolygonRenderer;
-#[cfg(all(
-    feature = "MapKit_MKMultiPoint",
-    feature = "MapKit_MKPolyline",
-    feature = "MapKit_MKShape"
-))]
+#[cfg(all(feature = "MKMultiPoint", feature = "MKPolyline", feature = "MKShape"))]
 pub use self::__MKPolyline::MKPolyline;
 #[cfg(all(
-    feature = "MapKit_MKOverlayPathRenderer",
-    feature = "MapKit_MKOverlayRenderer",
-    feature = "MapKit_MKPolylineRenderer"
+    feature = "MKOverlayPathRenderer",
+    feature = "MKOverlayRenderer",
+    feature = "MKPolylineRenderer"
 ))]
 pub use self::__MKPolylineRenderer::MKPolylineRenderer;
-#[cfg(feature = "MapKit_MKShape")]
+#[cfg(feature = "MKShape")]
 pub use self::__MKShape::MKShape;
-#[cfg(all(
-    feature = "MapKit_MKMapConfiguration",
-    feature = "MapKit_MKStandardMapConfiguration"
-))]
+#[cfg(all(feature = "MKMapConfiguration", feature = "MKStandardMapConfiguration"))]
 pub use self::__MKStandardMapConfiguration::MKStandardMapConfiguration;
-#[cfg(feature = "MapKit_MKStandardMapConfiguration")]
+#[cfg(feature = "MKStandardMapConfiguration")]
 pub use self::__MKStandardMapConfiguration::MKStandardMapEmphasisStyle;
-#[cfg(feature = "MapKit_MKTileOverlay")]
+#[cfg(feature = "MKTileOverlay")]
 pub use self::__MKTileOverlay::MKTileOverlay;
-#[cfg(feature = "MapKit_MKTileOverlay")]
+#[cfg(feature = "MKTileOverlay")]
 pub use self::__MKTileOverlay::MKTileOverlayPath;
-#[cfg(all(
-    feature = "MapKit_MKOverlayRenderer",
-    feature = "MapKit_MKTileOverlayRenderer"
-))]
+#[cfg(all(feature = "MKOverlayRenderer", feature = "MKTileOverlayRenderer"))]
 pub use self::__MKTileOverlayRenderer::MKTileOverlayRenderer;
-#[cfg(feature = "MapKit_MKTypes")]
+#[cfg(feature = "MKTypes")]
 pub use self::__MKTypes::MKErrorCode;
-#[cfg(feature = "MapKit_MKTypes")]
+#[cfg(feature = "MKTypes")]
 pub use self::__MKTypes::MKErrorDomain;
-#[cfg(feature = "MapKit_MKTypes")]
+#[cfg(feature = "MKTypes")]
 pub use self::__MKTypes::MKFeatureVisibility;
-#[cfg(feature = "MapKit_MKTypes")]
+#[cfg(feature = "MKTypes")]
 pub use self::__MKTypes::MKMapType;
-#[cfg(feature = "MapKit_MKUserLocation")]
+#[cfg(feature = "MKUserLocation")]
 pub use self::__MKUserLocation::MKUserLocation;
 #[cfg(all(
-    feature = "MapKit_MKAnnotationView",
-    feature = "MapKit_MKUserLocationView",
+    feature = "MKAnnotationView",
+    feature = "MKUserLocationView",
     feature = "objc2-app-kit"
 ))]
 pub use self::__MKUserLocationView::MKUserLocationView;
-#[cfg(all(feature = "MapKit_MKZoomControl", feature = "objc2-app-kit"))]
+#[cfg(all(feature = "MKZoomControl", feature = "objc2-app-kit"))]
 pub use self::__MKZoomControl::MKZoomControl;
-#[cfg(feature = "MapKit_NSUserActivity_MKMapItem")]
+#[cfg(feature = "NSUserActivity_MKMapItem")]
 pub use self::__NSUserActivity_MKMapItem::NSUserActivityMKMapItem;

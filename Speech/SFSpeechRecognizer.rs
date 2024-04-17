@@ -84,18 +84,18 @@ extern_methods!(
             delegate: Option<&ProtocolObject<dyn SFSpeechRecognizerDelegate>>,
         );
 
-        #[cfg(feature = "Speech_SFSpeechRecognitionTaskHint")]
+        #[cfg(feature = "SFSpeechRecognitionTaskHint")]
         #[method(defaultTaskHint)]
         pub unsafe fn defaultTaskHint(&self) -> SFSpeechRecognitionTaskHint;
 
-        #[cfg(feature = "Speech_SFSpeechRecognitionTaskHint")]
+        #[cfg(feature = "SFSpeechRecognitionTaskHint")]
         #[method(setDefaultTaskHint:)]
         pub unsafe fn setDefaultTaskHint(&self, default_task_hint: SFSpeechRecognitionTaskHint);
 
         #[cfg(all(
-            feature = "Speech_SFSpeechRecognitionRequest",
-            feature = "Speech_SFSpeechRecognitionResult",
-            feature = "Speech_SFSpeechRecognitionTask",
+            feature = "SFSpeechRecognitionRequest",
+            feature = "SFSpeechRecognitionResult",
+            feature = "SFSpeechRecognitionTask",
             feature = "block2"
         ))]
         #[method_id(@__retain_semantics Other recognitionTaskWithRequest:resultHandler:)]
@@ -106,8 +106,8 @@ extern_methods!(
         ) -> Id<SFSpeechRecognitionTask>;
 
         #[cfg(all(
-            feature = "Speech_SFSpeechRecognitionRequest",
-            feature = "Speech_SFSpeechRecognitionTask"
+            feature = "SFSpeechRecognitionRequest",
+            feature = "SFSpeechRecognitionTask"
         ))]
         #[method_id(@__retain_semantics Other recognitionTaskWithRequest:delegate:)]
         pub unsafe fn recognitionTaskWithRequest_delegate(

@@ -7,16 +7,10 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(
-        feature = "CoreData_NSAttributeDescription",
-        feature = "CoreData_NSPropertyDescription"
-    ))]
+    #[cfg(all(feature = "NSAttributeDescription", feature = "NSPropertyDescription"))]
     pub struct NSDerivedAttributeDescription;
 
-    #[cfg(all(
-        feature = "CoreData_NSAttributeDescription",
-        feature = "CoreData_NSPropertyDescription"
-    ))]
+    #[cfg(all(feature = "NSAttributeDescription", feature = "NSPropertyDescription"))]
     unsafe impl ClassType for NSDerivedAttributeDescription {
         #[inherits(NSPropertyDescription, NSObject)]
         type Super = NSAttributeDescription;
@@ -24,29 +18,17 @@ extern_class!(
     }
 );
 
-#[cfg(all(
-    feature = "CoreData_NSAttributeDescription",
-    feature = "CoreData_NSPropertyDescription"
-))]
+#[cfg(all(feature = "NSAttributeDescription", feature = "NSPropertyDescription"))]
 unsafe impl NSCoding for NSDerivedAttributeDescription {}
 
-#[cfg(all(
-    feature = "CoreData_NSAttributeDescription",
-    feature = "CoreData_NSPropertyDescription"
-))]
+#[cfg(all(feature = "NSAttributeDescription", feature = "NSPropertyDescription"))]
 unsafe impl NSCopying for NSDerivedAttributeDescription {}
 
-#[cfg(all(
-    feature = "CoreData_NSAttributeDescription",
-    feature = "CoreData_NSPropertyDescription"
-))]
+#[cfg(all(feature = "NSAttributeDescription", feature = "NSPropertyDescription"))]
 unsafe impl NSObjectProtocol for NSDerivedAttributeDescription {}
 
 extern_methods!(
-    #[cfg(all(
-        feature = "CoreData_NSAttributeDescription",
-        feature = "CoreData_NSPropertyDescription"
-    ))]
+    #[cfg(all(feature = "NSAttributeDescription", feature = "NSPropertyDescription"))]
     unsafe impl NSDerivedAttributeDescription {
         #[method_id(@__retain_semantics Other derivationExpression)]
         pub unsafe fn derivationExpression(&self) -> Option<Id<NSExpression>>;
@@ -58,10 +40,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(all(
-        feature = "CoreData_NSAttributeDescription",
-        feature = "CoreData_NSPropertyDescription"
-    ))]
+    #[cfg(all(feature = "NSAttributeDescription", feature = "NSPropertyDescription"))]
     unsafe impl NSDerivedAttributeDescription {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

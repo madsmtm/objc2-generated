@@ -92,7 +92,7 @@ extern_methods!(
             block: &Block<dyn Fn(NonNull<ObjectType>, NSUInteger, NonNull<Bool>)>,
         );
 
-        #[cfg(feature = "Photos_PhotosTypes")]
+        #[cfg(feature = "PhotosTypes")]
         #[method(countOfAssetsWithMediaType:)]
         pub unsafe fn countOfAssetsWithMediaType(&self, media_type: PHAssetMediaType)
             -> NSUInteger;

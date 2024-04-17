@@ -174,11 +174,11 @@ extern_methods!(
             options: Option<&NSDictionary<NSPasteboardReadingOptionKey, AnyObject>>,
         ) -> Option<Id<NSArray>>;
 
-        #[cfg(feature = "AppKit_NSPasteboardItem")]
+        #[cfg(feature = "NSPasteboardItem")]
         #[method_id(@__retain_semantics Other pasteboardItems)]
         pub unsafe fn pasteboardItems(&self) -> Option<Id<NSArray<NSPasteboardItem>>>;
 
-        #[cfg(feature = "AppKit_NSPasteboardItem")]
+        #[cfg(feature = "NSPasteboardItem")]
         #[method(indexOfPasteboardItem:)]
         pub unsafe fn indexOfPasteboardItem(
             &self,

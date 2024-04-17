@@ -29,14 +29,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
-        #[cfg(feature = "Photos_PHPersistentChangeToken")]
+        #[cfg(feature = "PHPersistentChangeToken")]
         #[method_id(@__retain_semantics Other changeToken)]
         pub unsafe fn changeToken(&self) -> Id<PHPersistentChangeToken>;
 
-        #[cfg(all(
-            feature = "Photos_PHPersistentObjectChangeDetails",
-            feature = "Photos_PhotosTypes"
-        ))]
+        #[cfg(all(feature = "PHPersistentObjectChangeDetails", feature = "PhotosTypes"))]
         #[method_id(@__retain_semantics Other changeDetailsForObjectType:error:_)]
         pub unsafe fn changeDetailsForObjectType_error(
             &self,

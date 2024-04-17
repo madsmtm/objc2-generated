@@ -7,7 +7,7 @@ use crate::*;
 pub type NSSocketNativeHandle = c_int;
 
 extern "C" {
-    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSPortDidBecomeInvalidNotification: &'static NSNotificationName;
 }
 
@@ -21,10 +21,10 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSCoding for NSPort {}
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSPort {}
 
 unsafe impl NSObjectProtocol for NSPort {}
@@ -46,26 +46,18 @@ extern_methods!(
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSPortDelegate>>>;
 
-        #[cfg(all(
-            feature = "Foundation_NSObjCRuntime",
-            feature = "Foundation_NSRunLoop",
-            feature = "Foundation_NSString"
-        ))]
+        #[cfg(all(feature = "NSObjCRuntime", feature = "NSRunLoop", feature = "NSString"))]
         #[method(scheduleInRunLoop:forMode:)]
         pub unsafe fn scheduleInRunLoop_forMode(&self, run_loop: &NSRunLoop, mode: &NSRunLoopMode);
 
-        #[cfg(all(
-            feature = "Foundation_NSObjCRuntime",
-            feature = "Foundation_NSRunLoop",
-            feature = "Foundation_NSString"
-        ))]
+        #[cfg(all(feature = "NSObjCRuntime", feature = "NSRunLoop", feature = "NSString"))]
         #[method(removeFromRunLoop:forMode:)]
         pub unsafe fn removeFromRunLoop_forMode(&self, run_loop: &NSRunLoop, mode: &NSRunLoopMode);
 
         #[method(reservedSpaceLength)]
         pub unsafe fn reservedSpaceLength(&self) -> NSUInteger;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSDate"))]
+        #[cfg(all(feature = "NSArray", feature = "NSDate"))]
         #[method(sendBeforeDate:components:from:reserved:)]
         pub unsafe fn sendBeforeDate_components_from_reserved(
             &self,
@@ -75,7 +67,7 @@ extern_methods!(
             header_space_reserved: NSUInteger,
         ) -> bool;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSDate"))]
+        #[cfg(all(feature = "NSArray", feature = "NSDate"))]
         #[method(sendBeforeDate:msgid:components:from:reserved:)]
         pub unsafe fn sendBeforeDate_msgid_components_from_reserved(
             &self,
@@ -87,10 +79,10 @@ extern_methods!(
         ) -> bool;
 
         #[cfg(all(
-            feature = "Foundation_NSConnection",
-            feature = "Foundation_NSObjCRuntime",
-            feature = "Foundation_NSRunLoop",
-            feature = "Foundation_NSString"
+            feature = "NSConnection",
+            feature = "NSObjCRuntime",
+            feature = "NSRunLoop",
+            feature = "NSString"
         ))]
         #[deprecated = "Use NSXPCConnection instead"]
         #[method(addConnection:toRunLoop:forMode:)]
@@ -102,10 +94,10 @@ extern_methods!(
         );
 
         #[cfg(all(
-            feature = "Foundation_NSConnection",
-            feature = "Foundation_NSObjCRuntime",
-            feature = "Foundation_NSRunLoop",
-            feature = "Foundation_NSString"
+            feature = "NSConnection",
+            feature = "NSObjCRuntime",
+            feature = "NSRunLoop",
+            feature = "NSString"
         ))]
         #[deprecated = "Use NSXPCConnection instead"]
         #[method(removeConnection:fromRunLoop:forMode:)]
@@ -131,7 +123,7 @@ extern_methods!(
 
 extern_protocol!(
     pub unsafe trait NSPortDelegate: NSObjectProtocol {
-        #[cfg(feature = "Foundation_NSPortMessage")]
+        #[cfg(feature = "NSPortMessage")]
         #[optional]
         #[method(handlePortMessage:)]
         unsafe fn handlePortMessage(&self, message: &NSPortMessage);
@@ -169,10 +161,10 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSCoding for NSMachPort {}
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSMachPort {}
 
 unsafe impl NSObjectProtocol for NSMachPort {}
@@ -207,19 +199,11 @@ extern_methods!(
         #[method(machPort)]
         pub unsafe fn machPort(&self) -> u32;
 
-        #[cfg(all(
-            feature = "Foundation_NSObjCRuntime",
-            feature = "Foundation_NSRunLoop",
-            feature = "Foundation_NSString"
-        ))]
+        #[cfg(all(feature = "NSObjCRuntime", feature = "NSRunLoop", feature = "NSString"))]
         #[method(scheduleInRunLoop:forMode:)]
         pub unsafe fn scheduleInRunLoop_forMode(&self, run_loop: &NSRunLoop, mode: &NSRunLoopMode);
 
-        #[cfg(all(
-            feature = "Foundation_NSObjCRuntime",
-            feature = "Foundation_NSRunLoop",
-            feature = "Foundation_NSString"
-        ))]
+        #[cfg(all(feature = "NSObjCRuntime", feature = "NSRunLoop", feature = "NSString"))]
         #[method(removeFromRunLoop:forMode:)]
         pub unsafe fn removeFromRunLoop_forMode(&self, run_loop: &NSRunLoop, mode: &NSRunLoopMode);
     }
@@ -257,10 +241,10 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSCoding for NSMessagePort {}
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSMessagePort {}
 
 unsafe impl NSObjectProtocol for NSMessagePort {}
@@ -291,10 +275,10 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSCoding for NSSocketPort {}
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSSocketPort {}
 
 unsafe impl NSObjectProtocol for NSSocketPort {}
@@ -307,7 +291,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithTCPPort:)]
         pub unsafe fn initWithTCPPort(this: Allocated<Self>, port: c_ushort) -> Option<Id<Self>>;
 
-        #[cfg(feature = "Foundation_NSData")]
+        #[cfg(feature = "NSData")]
         #[method_id(@__retain_semantics Init initWithProtocolFamily:socketType:protocol:address:)]
         pub unsafe fn initWithProtocolFamily_socketType_protocol_address(
             this: Allocated<Self>,
@@ -326,7 +310,7 @@ extern_methods!(
             sock: NSSocketNativeHandle,
         ) -> Option<Id<Self>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Init initRemoteWithTCPPort:host:)]
         pub unsafe fn initRemoteWithTCPPort_host(
             this: Allocated<Self>,
@@ -334,7 +318,7 @@ extern_methods!(
             host_name: Option<&NSString>,
         ) -> Option<Id<Self>>;
 
-        #[cfg(feature = "Foundation_NSData")]
+        #[cfg(feature = "NSData")]
         #[method_id(@__retain_semantics Init initRemoteWithProtocolFamily:socketType:protocol:address:)]
         pub unsafe fn initRemoteWithProtocolFamily_socketType_protocol_address(
             this: Allocated<Self>,
@@ -353,7 +337,7 @@ extern_methods!(
         #[method(protocol)]
         pub unsafe fn protocol(&self) -> c_int;
 
-        #[cfg(feature = "Foundation_NSData")]
+        #[cfg(feature = "NSData")]
         #[method_id(@__retain_semantics Other address)]
         pub unsafe fn address(&self) -> Id<NSData>;
 

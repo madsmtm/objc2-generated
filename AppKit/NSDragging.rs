@@ -129,7 +129,7 @@ unsafe impl RefEncode for NSSpringLoadingHighlight {
 
 extern_protocol!(
     pub unsafe trait NSDraggingInfo: NSObjectProtocol + IsMainThreadOnly {
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSWindow"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
         #[method_id(@__retain_semantics Other draggingDestinationWindow)]
         unsafe fn draggingDestinationWindow(&self) -> Option<Id<NSWindow>>;
 
@@ -142,12 +142,12 @@ extern_protocol!(
         #[method(draggedImageLocation)]
         unsafe fn draggedImageLocation(&self) -> NSPoint;
 
-        #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(feature = "NSImage")]
         #[deprecated = "Use NSDraggingItem objects instead"]
         #[method_id(@__retain_semantics Other draggedImage)]
         unsafe fn draggedImage(&self) -> Option<Id<NSImage>>;
 
-        #[cfg(feature = "AppKit_NSPasteboard")]
+        #[cfg(feature = "NSPasteboard")]
         #[method_id(@__retain_semantics Other draggingPasteboard)]
         unsafe fn draggingPasteboard(&self) -> Id<NSPasteboard>;
 
@@ -186,10 +186,10 @@ extern_protocol!(
         unsafe fn setNumberOfValidItemsForDrop(&self, number_of_valid_items_for_drop: NSInteger);
 
         #[cfg(all(
-            feature = "AppKit_NSDraggingItem",
-            feature = "AppKit_NSPasteboard",
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSView",
+            feature = "NSDraggingItem",
+            feature = "NSPasteboard",
+            feature = "NSResponder",
+            feature = "NSView",
             feature = "block2"
         ))]
         #[method(enumerateDraggingItemsWithOptions:forView:classes:searchOptions:usingBlock:)]
@@ -268,7 +268,7 @@ extern_protocol!(
 
 extern_protocol!(
     pub unsafe trait NSDraggingSource: NSObjectProtocol + IsMainThreadOnly {
-        #[cfg(feature = "AppKit_NSDraggingSession")]
+        #[cfg(feature = "NSDraggingSession")]
         #[method(draggingSession:sourceOperationMaskForDraggingContext:)]
         unsafe fn draggingSession_sourceOperationMaskForDraggingContext(
             &self,
@@ -276,7 +276,7 @@ extern_protocol!(
             context: NSDraggingContext,
         ) -> NSDragOperation;
 
-        #[cfg(feature = "AppKit_NSDraggingSession")]
+        #[cfg(feature = "NSDraggingSession")]
         #[optional]
         #[method(draggingSession:willBeginAtPoint:)]
         unsafe fn draggingSession_willBeginAtPoint(
@@ -285,7 +285,7 @@ extern_protocol!(
             screen_point: NSPoint,
         );
 
-        #[cfg(feature = "AppKit_NSDraggingSession")]
+        #[cfg(feature = "NSDraggingSession")]
         #[optional]
         #[method(draggingSession:movedToPoint:)]
         unsafe fn draggingSession_movedToPoint(
@@ -294,7 +294,7 @@ extern_protocol!(
             screen_point: NSPoint,
         );
 
-        #[cfg(feature = "AppKit_NSDraggingSession")]
+        #[cfg(feature = "NSDraggingSession")]
         #[optional]
         #[method(draggingSession:endedAtPoint:operation:)]
         unsafe fn draggingSession_endedAtPoint_operation(
@@ -304,7 +304,7 @@ extern_protocol!(
             operation: NSDragOperation,
         );
 
-        #[cfg(feature = "AppKit_NSDraggingSession")]
+        #[cfg(feature = "NSDraggingSession")]
         #[optional]
         #[method(ignoreModifierKeysForDraggingSession:)]
         unsafe fn ignoreModifierKeysForDraggingSession(&self, session: &NSDraggingSession) -> bool;

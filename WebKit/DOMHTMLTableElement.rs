@@ -8,21 +8,21 @@ use crate::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(
-        feature = "WebKit_DOMElement",
-        feature = "WebKit_DOMHTMLElement",
-        feature = "WebKit_DOMNode",
-        feature = "WebKit_DOMObject",
-        feature = "WebKit_WebScriptObject"
+        feature = "DOMElement",
+        feature = "DOMHTMLElement",
+        feature = "DOMNode",
+        feature = "DOMObject",
+        feature = "WebScriptObject"
     ))]
     #[deprecated]
     pub struct DOMHTMLTableElement;
 
     #[cfg(all(
-        feature = "WebKit_DOMElement",
-        feature = "WebKit_DOMHTMLElement",
-        feature = "WebKit_DOMNode",
-        feature = "WebKit_DOMObject",
-        feature = "WebKit_WebScriptObject"
+        feature = "DOMElement",
+        feature = "DOMHTMLElement",
+        feature = "DOMNode",
+        feature = "DOMObject",
+        feature = "WebScriptObject"
     ))]
     unsafe impl ClassType for DOMHTMLTableElement {
         #[inherits(DOMElement, DOMNode, DOMObject, WebScriptObject, NSObject)]
@@ -32,78 +32,78 @@ extern_class!(
 );
 
 #[cfg(all(
-    feature = "WebKit_DOMElement",
-    feature = "WebKit_DOMEventTarget",
-    feature = "WebKit_DOMHTMLElement",
-    feature = "WebKit_DOMNode",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMElement",
+    feature = "DOMEventTarget",
+    feature = "DOMHTMLElement",
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 unsafe impl DOMEventTarget for DOMHTMLTableElement {}
 
 #[cfg(all(
-    feature = "WebKit_DOMElement",
-    feature = "WebKit_DOMHTMLElement",
-    feature = "WebKit_DOMNode",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMElement",
+    feature = "DOMHTMLElement",
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 unsafe impl NSCopying for DOMHTMLTableElement {}
 
 #[cfg(all(
-    feature = "WebKit_DOMElement",
-    feature = "WebKit_DOMHTMLElement",
-    feature = "WebKit_DOMNode",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMElement",
+    feature = "DOMHTMLElement",
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 unsafe impl NSObjectProtocol for DOMHTMLTableElement {}
 
 extern_methods!(
     #[cfg(all(
-        feature = "WebKit_DOMElement",
-        feature = "WebKit_DOMHTMLElement",
-        feature = "WebKit_DOMNode",
-        feature = "WebKit_DOMObject",
-        feature = "WebKit_WebScriptObject"
+        feature = "DOMElement",
+        feature = "DOMHTMLElement",
+        feature = "DOMNode",
+        feature = "DOMObject",
+        feature = "WebScriptObject"
     ))]
     unsafe impl DOMHTMLTableElement {
-        #[cfg(feature = "WebKit_DOMHTMLTableCaptionElement")]
+        #[cfg(feature = "DOMHTMLTableCaptionElement")]
         #[deprecated]
         #[method_id(@__retain_semantics Other caption)]
         pub unsafe fn caption(&self) -> Option<Id<DOMHTMLTableCaptionElement>>;
 
-        #[cfg(feature = "WebKit_DOMHTMLTableCaptionElement")]
+        #[cfg(feature = "DOMHTMLTableCaptionElement")]
         #[deprecated]
         #[method(setCaption:)]
         pub unsafe fn setCaption(&self, caption: Option<&DOMHTMLTableCaptionElement>);
 
-        #[cfg(feature = "WebKit_DOMHTMLTableSectionElement")]
+        #[cfg(feature = "DOMHTMLTableSectionElement")]
         #[deprecated]
         #[method_id(@__retain_semantics Other tHead)]
         pub unsafe fn tHead(&self) -> Option<Id<DOMHTMLTableSectionElement>>;
 
-        #[cfg(feature = "WebKit_DOMHTMLTableSectionElement")]
+        #[cfg(feature = "DOMHTMLTableSectionElement")]
         #[deprecated]
         #[method(setTHead:)]
         pub unsafe fn setTHead(&self, t_head: Option<&DOMHTMLTableSectionElement>);
 
-        #[cfg(feature = "WebKit_DOMHTMLTableSectionElement")]
+        #[cfg(feature = "DOMHTMLTableSectionElement")]
         #[deprecated]
         #[method_id(@__retain_semantics Other tFoot)]
         pub unsafe fn tFoot(&self) -> Option<Id<DOMHTMLTableSectionElement>>;
 
-        #[cfg(feature = "WebKit_DOMHTMLTableSectionElement")]
+        #[cfg(feature = "DOMHTMLTableSectionElement")]
         #[deprecated]
         #[method(setTFoot:)]
         pub unsafe fn setTFoot(&self, t_foot: Option<&DOMHTMLTableSectionElement>);
 
-        #[cfg(feature = "WebKit_DOMHTMLCollection")]
+        #[cfg(feature = "DOMHTMLCollection")]
         #[deprecated]
         #[method_id(@__retain_semantics Other rows)]
         pub unsafe fn rows(&self) -> Option<Id<DOMHTMLCollection>>;
 
-        #[cfg(feature = "WebKit_DOMHTMLCollection")]
+        #[cfg(feature = "DOMHTMLCollection")]
         #[deprecated]
         #[method_id(@__retain_semantics Other tBodies)]
         pub unsafe fn tBodies(&self) -> Option<Id<DOMHTMLCollection>>;
@@ -217,11 +217,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `DOMObject`
     #[cfg(all(
-        feature = "WebKit_DOMElement",
-        feature = "WebKit_DOMHTMLElement",
-        feature = "WebKit_DOMNode",
-        feature = "WebKit_DOMObject",
-        feature = "WebKit_WebScriptObject"
+        feature = "DOMElement",
+        feature = "DOMHTMLElement",
+        feature = "DOMNode",
+        feature = "DOMObject",
+        feature = "WebScriptObject"
     ))]
     unsafe impl DOMHTMLTableElement {
         #[deprecated]
@@ -233,11 +233,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(
-        feature = "WebKit_DOMElement",
-        feature = "WebKit_DOMHTMLElement",
-        feature = "WebKit_DOMNode",
-        feature = "WebKit_DOMObject",
-        feature = "WebKit_WebScriptObject"
+        feature = "DOMElement",
+        feature = "DOMHTMLElement",
+        feature = "DOMNode",
+        feature = "DOMObject",
+        feature = "WebScriptObject"
     ))]
     unsafe impl DOMHTMLTableElement {
         #[method_id(@__retain_semantics New new)]

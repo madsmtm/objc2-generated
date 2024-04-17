@@ -10,18 +10,18 @@ pub const NSOutlineViewDropOnItemIndex: c_int = -1;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(
-        feature = "AppKit_NSControl",
-        feature = "AppKit_NSResponder",
-        feature = "AppKit_NSTableView",
-        feature = "AppKit_NSView"
+        feature = "NSControl",
+        feature = "NSResponder",
+        feature = "NSTableView",
+        feature = "NSView"
     ))]
     pub struct NSOutlineView;
 
     #[cfg(all(
-        feature = "AppKit_NSControl",
-        feature = "AppKit_NSResponder",
-        feature = "AppKit_NSTableView",
-        feature = "AppKit_NSView"
+        feature = "NSControl",
+        feature = "NSResponder",
+        feature = "NSTableView",
+        feature = "NSView"
     ))]
     unsafe impl ClassType for NSOutlineView {
         #[inherits(NSControl, NSView, NSResponder, NSObject)]
@@ -31,145 +31,145 @@ extern_class!(
 );
 
 #[cfg(all(
-    feature = "AppKit_NSAccessibilityProtocols",
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSTableView",
-    feature = "AppKit_NSView"
+    feature = "NSAccessibilityProtocols",
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSTableView",
+    feature = "NSView"
 ))]
 unsafe impl NSAccessibility for NSOutlineView {}
 
 #[cfg(all(
-    feature = "AppKit_NSAccessibilityProtocols",
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSTableView",
-    feature = "AppKit_NSView"
+    feature = "NSAccessibilityProtocols",
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSTableView",
+    feature = "NSView"
 ))]
 unsafe impl NSAccessibilityElementProtocol for NSOutlineView {}
 
 #[cfg(all(
-    feature = "AppKit_NSAccessibilityProtocols",
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSTableView",
-    feature = "AppKit_NSView"
+    feature = "NSAccessibilityProtocols",
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSTableView",
+    feature = "NSView"
 ))]
 unsafe impl NSAccessibilityGroup for NSOutlineView {}
 
 #[cfg(all(
-    feature = "AppKit_NSAccessibilityProtocols",
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSTableView",
-    feature = "AppKit_NSView"
+    feature = "NSAccessibilityProtocols",
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSTableView",
+    feature = "NSView"
 ))]
 unsafe impl NSAccessibilityOutline for NSOutlineView {}
 
 #[cfg(all(
-    feature = "AppKit_NSAccessibilityProtocols",
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSTableView",
-    feature = "AppKit_NSView"
+    feature = "NSAccessibilityProtocols",
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSTableView",
+    feature = "NSView"
 ))]
 unsafe impl NSAccessibilityTable for NSOutlineView {}
 
 #[cfg(all(
-    feature = "AppKit_NSAnimation",
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSTableView",
-    feature = "AppKit_NSView"
+    feature = "NSAnimation",
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSTableView",
+    feature = "NSView"
 ))]
 unsafe impl NSAnimatablePropertyContainer for NSOutlineView {}
 
 #[cfg(all(
-    feature = "AppKit_NSAppearance",
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSTableView",
-    feature = "AppKit_NSView"
+    feature = "NSAppearance",
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSTableView",
+    feature = "NSView"
 ))]
 unsafe impl NSAppearanceCustomization for NSOutlineView {}
 
 #[cfg(all(
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSTableView",
-    feature = "AppKit_NSView"
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSTableView",
+    feature = "NSView"
 ))]
 unsafe impl NSCoding for NSOutlineView {}
 
 #[cfg(all(
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSDragging",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSTableView",
-    feature = "AppKit_NSView"
+    feature = "NSControl",
+    feature = "NSDragging",
+    feature = "NSResponder",
+    feature = "NSTableView",
+    feature = "NSView"
 ))]
 unsafe impl NSDraggingDestination for NSOutlineView {}
 
 #[cfg(all(
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSDragging",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSTableView",
-    feature = "AppKit_NSView"
+    feature = "NSControl",
+    feature = "NSDragging",
+    feature = "NSResponder",
+    feature = "NSTableView",
+    feature = "NSView"
 ))]
 unsafe impl NSDraggingSource for NSOutlineView {}
 
 #[cfg(all(
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSTableView",
-    feature = "AppKit_NSView"
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSTableView",
+    feature = "NSView"
 ))]
 unsafe impl NSObjectProtocol for NSOutlineView {}
 
 #[cfg(all(
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSTableView",
-    feature = "AppKit_NSText",
-    feature = "AppKit_NSView"
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSTableView",
+    feature = "NSText",
+    feature = "NSView"
 ))]
 unsafe impl NSTextDelegate for NSOutlineView {}
 
 #[cfg(all(
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSTableView",
-    feature = "AppKit_NSText",
-    feature = "AppKit_NSTextView",
-    feature = "AppKit_NSView"
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSTableView",
+    feature = "NSText",
+    feature = "NSTextView",
+    feature = "NSView"
 ))]
 unsafe impl NSTextViewDelegate for NSOutlineView {}
 
 #[cfg(all(
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSTableView",
-    feature = "AppKit_NSUserInterfaceItemIdentification",
-    feature = "AppKit_NSView"
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSTableView",
+    feature = "NSUserInterfaceItemIdentification",
+    feature = "NSView"
 ))]
 unsafe impl NSUserInterfaceItemIdentification for NSOutlineView {}
 
 #[cfg(all(
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSTableView",
-    feature = "AppKit_NSUserInterfaceValidation",
-    feature = "AppKit_NSView"
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSTableView",
+    feature = "NSUserInterfaceValidation",
+    feature = "NSView"
 ))]
 unsafe impl NSUserInterfaceValidations for NSOutlineView {}
 
 extern_methods!(
     #[cfg(all(
-        feature = "AppKit_NSControl",
-        feature = "AppKit_NSResponder",
-        feature = "AppKit_NSTableView",
-        feature = "AppKit_NSView"
+        feature = "NSControl",
+        feature = "NSResponder",
+        feature = "NSTableView",
+        feature = "NSView"
     ))]
     unsafe impl NSOutlineView {
         #[method_id(@__retain_semantics Other delegate)]
@@ -190,11 +190,11 @@ extern_methods!(
             data_source: Option<&ProtocolObject<dyn NSOutlineViewDataSource>>,
         );
 
-        #[cfg(feature = "AppKit_NSTableColumn")]
+        #[cfg(feature = "NSTableColumn")]
         #[method_id(@__retain_semantics Other outlineTableColumn)]
         pub unsafe fn outlineTableColumn(&self) -> Option<Id<NSTableColumn>>;
 
-        #[cfg(feature = "AppKit_NSTableColumn")]
+        #[cfg(feature = "NSTableColumn")]
         #[method(setOutlineTableColumn:)]
         pub unsafe fn setOutlineTableColumn(&self, outline_table_column: Option<&NSTableColumn>);
 
@@ -337,11 +337,11 @@ extern_methods!(
         #[method(moveRowAtIndex:toIndex:)]
         pub unsafe fn moveRowAtIndex_toIndex(&self, old_index: NSInteger, new_index: NSInteger);
 
-        #[cfg(feature = "AppKit_NSUserInterfaceLayout")]
+        #[cfg(feature = "NSUserInterfaceLayout")]
         #[method(userInterfaceLayoutDirection)]
         pub unsafe fn userInterfaceLayoutDirection(&self) -> NSUserInterfaceLayoutDirection;
 
-        #[cfg(feature = "AppKit_NSUserInterfaceLayout")]
+        #[cfg(feature = "NSUserInterfaceLayout")]
         #[method(setUserInterfaceLayoutDirection:)]
         pub unsafe fn setUserInterfaceLayoutDirection(
             &self,
@@ -359,10 +359,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSTableView`
     #[cfg(all(
-        feature = "AppKit_NSControl",
-        feature = "AppKit_NSResponder",
-        feature = "AppKit_NSTableView",
-        feature = "AppKit_NSView"
+        feature = "NSControl",
+        feature = "NSResponder",
+        feature = "NSTableView",
+        feature = "NSView"
     ))]
     unsafe impl NSOutlineView {
         #[method_id(@__retain_semantics Init initWithFrame:)]
@@ -376,10 +376,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSResponder`
     #[cfg(all(
-        feature = "AppKit_NSControl",
-        feature = "AppKit_NSResponder",
-        feature = "AppKit_NSTableView",
-        feature = "AppKit_NSView"
+        feature = "NSControl",
+        feature = "NSResponder",
+        feature = "NSTableView",
+        feature = "NSView"
     ))]
     unsafe impl NSOutlineView {
         #[method_id(@__retain_semantics Init init)]
@@ -390,10 +390,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(
-        feature = "AppKit_NSControl",
-        feature = "AppKit_NSResponder",
-        feature = "AppKit_NSTableView",
-        feature = "AppKit_NSView"
+        feature = "NSControl",
+        feature = "NSResponder",
+        feature = "NSTableView",
+        feature = "NSView"
     ))]
     unsafe impl NSOutlineView {
         #[method_id(@__retain_semantics New new)]
@@ -404,10 +404,10 @@ extern_methods!(
 extern_protocol!(
     pub unsafe trait NSOutlineViewDataSource: NSObjectProtocol {
         #[cfg(all(
-            feature = "AppKit_NSControl",
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSTableView",
-            feature = "AppKit_NSView"
+            feature = "NSControl",
+            feature = "NSResponder",
+            feature = "NSTableView",
+            feature = "NSView"
         ))]
         #[optional]
         #[method(outlineView:numberOfChildrenOfItem:)]
@@ -418,10 +418,10 @@ extern_protocol!(
         ) -> NSInteger;
 
         #[cfg(all(
-            feature = "AppKit_NSControl",
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSTableView",
-            feature = "AppKit_NSView"
+            feature = "NSControl",
+            feature = "NSResponder",
+            feature = "NSTableView",
+            feature = "NSView"
         ))]
         #[optional]
         #[method_id(@__retain_semantics Other outlineView:child:ofItem:)]
@@ -433,10 +433,10 @@ extern_protocol!(
         ) -> Id<AnyObject>;
 
         #[cfg(all(
-            feature = "AppKit_NSControl",
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSTableView",
-            feature = "AppKit_NSView"
+            feature = "NSControl",
+            feature = "NSResponder",
+            feature = "NSTableView",
+            feature = "NSView"
         ))]
         #[optional]
         #[method(outlineView:isItemExpandable:)]
@@ -447,11 +447,11 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(all(
-            feature = "AppKit_NSControl",
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSTableColumn",
-            feature = "AppKit_NSTableView",
-            feature = "AppKit_NSView"
+            feature = "NSControl",
+            feature = "NSResponder",
+            feature = "NSTableColumn",
+            feature = "NSTableView",
+            feature = "NSView"
         ))]
         #[optional]
         #[method_id(@__retain_semantics Other outlineView:objectValueForTableColumn:byItem:)]
@@ -463,11 +463,11 @@ extern_protocol!(
         ) -> Option<Id<AnyObject>>;
 
         #[cfg(all(
-            feature = "AppKit_NSControl",
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSTableColumn",
-            feature = "AppKit_NSTableView",
-            feature = "AppKit_NSView"
+            feature = "NSControl",
+            feature = "NSResponder",
+            feature = "NSTableColumn",
+            feature = "NSTableView",
+            feature = "NSView"
         ))]
         #[optional]
         #[method(outlineView:setObjectValue:forTableColumn:byItem:)]
@@ -480,10 +480,10 @@ extern_protocol!(
         );
 
         #[cfg(all(
-            feature = "AppKit_NSControl",
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSTableView",
-            feature = "AppKit_NSView"
+            feature = "NSControl",
+            feature = "NSResponder",
+            feature = "NSTableView",
+            feature = "NSView"
         ))]
         #[optional]
         #[method_id(@__retain_semantics Other outlineView:itemForPersistentObject:)]
@@ -494,10 +494,10 @@ extern_protocol!(
         ) -> Option<Id<AnyObject>>;
 
         #[cfg(all(
-            feature = "AppKit_NSControl",
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSTableView",
-            feature = "AppKit_NSView"
+            feature = "NSControl",
+            feature = "NSResponder",
+            feature = "NSTableView",
+            feature = "NSView"
         ))]
         #[optional]
         #[method_id(@__retain_semantics Other outlineView:persistentObjectForItem:)]
@@ -508,10 +508,10 @@ extern_protocol!(
         ) -> Option<Id<AnyObject>>;
 
         #[cfg(all(
-            feature = "AppKit_NSControl",
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSTableView",
-            feature = "AppKit_NSView"
+            feature = "NSControl",
+            feature = "NSResponder",
+            feature = "NSTableView",
+            feature = "NSView"
         ))]
         #[optional]
         #[method(outlineView:sortDescriptorsDidChange:)]
@@ -522,11 +522,11 @@ extern_protocol!(
         );
 
         #[cfg(all(
-            feature = "AppKit_NSControl",
-            feature = "AppKit_NSPasteboard",
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSTableView",
-            feature = "AppKit_NSView"
+            feature = "NSControl",
+            feature = "NSPasteboard",
+            feature = "NSResponder",
+            feature = "NSTableView",
+            feature = "NSView"
         ))]
         #[optional]
         #[method_id(@__retain_semantics Other outlineView:pasteboardWriterForItem:)]
@@ -537,11 +537,11 @@ extern_protocol!(
         ) -> Option<Id<ProtocolObject<dyn NSPasteboardWriting>>>;
 
         #[cfg(all(
-            feature = "AppKit_NSControl",
-            feature = "AppKit_NSDraggingSession",
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSTableView",
-            feature = "AppKit_NSView"
+            feature = "NSControl",
+            feature = "NSDraggingSession",
+            feature = "NSResponder",
+            feature = "NSTableView",
+            feature = "NSView"
         ))]
         #[optional]
         #[method(outlineView:draggingSession:willBeginAtPoint:forItems:)]
@@ -554,12 +554,12 @@ extern_protocol!(
         );
 
         #[cfg(all(
-            feature = "AppKit_NSControl",
-            feature = "AppKit_NSDragging",
-            feature = "AppKit_NSDraggingSession",
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSTableView",
-            feature = "AppKit_NSView"
+            feature = "NSControl",
+            feature = "NSDragging",
+            feature = "NSDraggingSession",
+            feature = "NSResponder",
+            feature = "NSTableView",
+            feature = "NSView"
         ))]
         #[optional]
         #[method(outlineView:draggingSession:endedAtPoint:operation:)]
@@ -572,11 +572,11 @@ extern_protocol!(
         );
 
         #[cfg(all(
-            feature = "AppKit_NSControl",
-            feature = "AppKit_NSPasteboard",
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSTableView",
-            feature = "AppKit_NSView"
+            feature = "NSControl",
+            feature = "NSPasteboard",
+            feature = "NSResponder",
+            feature = "NSTableView",
+            feature = "NSView"
         ))]
         #[deprecated = "Use -outlineView:pasteboardWriterForItem: instead"]
         #[optional]
@@ -589,11 +589,11 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(all(
-            feature = "AppKit_NSControl",
-            feature = "AppKit_NSDragging",
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSTableView",
-            feature = "AppKit_NSView"
+            feature = "NSControl",
+            feature = "NSDragging",
+            feature = "NSResponder",
+            feature = "NSTableView",
+            feature = "NSView"
         ))]
         #[optional]
         #[method(outlineView:updateDraggingItemsForDrag:)]
@@ -604,11 +604,11 @@ extern_protocol!(
         );
 
         #[cfg(all(
-            feature = "AppKit_NSControl",
-            feature = "AppKit_NSDragging",
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSTableView",
-            feature = "AppKit_NSView"
+            feature = "NSControl",
+            feature = "NSDragging",
+            feature = "NSResponder",
+            feature = "NSTableView",
+            feature = "NSView"
         ))]
         #[optional]
         #[method(outlineView:validateDrop:proposedItem:proposedChildIndex:)]
@@ -621,11 +621,11 @@ extern_protocol!(
         ) -> NSDragOperation;
 
         #[cfg(all(
-            feature = "AppKit_NSControl",
-            feature = "AppKit_NSDragging",
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSTableView",
-            feature = "AppKit_NSView"
+            feature = "NSControl",
+            feature = "NSDragging",
+            feature = "NSResponder",
+            feature = "NSTableView",
+            feature = "NSView"
         ))]
         #[optional]
         #[method(outlineView:acceptDrop:item:childIndex:)]
@@ -638,10 +638,10 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(all(
-            feature = "AppKit_NSControl",
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSTableView",
-            feature = "AppKit_NSView"
+            feature = "NSControl",
+            feature = "NSResponder",
+            feature = "NSTableView",
+            feature = "NSView"
         ))]
         #[deprecated = "Use NSFilePromiseReceiver objects instead"]
         #[optional]
@@ -658,13 +658,13 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    #[cfg(feature = "AppKit_NSControl")]
+    #[cfg(feature = "NSControl")]
     pub unsafe trait NSOutlineViewDelegate: NSControlTextEditingDelegate {
         #[cfg(all(
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSTableColumn",
-            feature = "AppKit_NSTableView",
-            feature = "AppKit_NSView"
+            feature = "NSResponder",
+            feature = "NSTableColumn",
+            feature = "NSTableView",
+            feature = "NSView"
         ))]
         #[optional]
         #[method_id(@__retain_semantics Other outlineView:viewForTableColumn:item:)]
@@ -676,10 +676,10 @@ extern_protocol!(
         ) -> Option<Id<NSView>>;
 
         #[cfg(all(
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSTableRowView",
-            feature = "AppKit_NSTableView",
-            feature = "AppKit_NSView"
+            feature = "NSResponder",
+            feature = "NSTableRowView",
+            feature = "NSTableView",
+            feature = "NSView"
         ))]
         #[optional]
         #[method_id(@__retain_semantics Other outlineView:rowViewForItem:)]
@@ -690,10 +690,10 @@ extern_protocol!(
         ) -> Option<Id<NSTableRowView>>;
 
         #[cfg(all(
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSTableRowView",
-            feature = "AppKit_NSTableView",
-            feature = "AppKit_NSView"
+            feature = "NSResponder",
+            feature = "NSTableRowView",
+            feature = "NSTableView",
+            feature = "NSView"
         ))]
         #[optional]
         #[method(outlineView:didAddRowView:forRow:)]
@@ -705,10 +705,10 @@ extern_protocol!(
         );
 
         #[cfg(all(
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSTableRowView",
-            feature = "AppKit_NSTableView",
-            feature = "AppKit_NSView"
+            feature = "NSResponder",
+            feature = "NSTableRowView",
+            feature = "NSTableView",
+            feature = "NSView"
         ))]
         #[optional]
         #[method(outlineView:didRemoveRowView:forRow:)]
@@ -720,10 +720,10 @@ extern_protocol!(
         );
 
         #[cfg(all(
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSTableColumn",
-            feature = "AppKit_NSTableView",
-            feature = "AppKit_NSView"
+            feature = "NSResponder",
+            feature = "NSTableColumn",
+            feature = "NSTableView",
+            feature = "NSView"
         ))]
         #[optional]
         #[method(outlineView:willDisplayCell:forTableColumn:item:)]
@@ -736,10 +736,10 @@ extern_protocol!(
         );
 
         #[cfg(all(
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSTableColumn",
-            feature = "AppKit_NSTableView",
-            feature = "AppKit_NSView"
+            feature = "NSResponder",
+            feature = "NSTableColumn",
+            feature = "NSTableView",
+            feature = "NSView"
         ))]
         #[optional]
         #[method(outlineView:shouldEditTableColumn:item:)]
@@ -750,20 +750,12 @@ extern_protocol!(
             item: &AnyObject,
         ) -> bool;
 
-        #[cfg(all(
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSTableView",
-            feature = "AppKit_NSView"
-        ))]
+        #[cfg(all(feature = "NSResponder", feature = "NSTableView", feature = "NSView"))]
         #[optional]
         #[method(selectionShouldChangeInOutlineView:)]
         unsafe fn selectionShouldChangeInOutlineView(&self, outline_view: &NSOutlineView) -> bool;
 
-        #[cfg(all(
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSTableView",
-            feature = "AppKit_NSView"
-        ))]
+        #[cfg(all(feature = "NSResponder", feature = "NSTableView", feature = "NSView"))]
         #[optional]
         #[method(outlineView:shouldSelectItem:)]
         unsafe fn outlineView_shouldSelectItem(
@@ -772,11 +764,7 @@ extern_protocol!(
             item: &AnyObject,
         ) -> bool;
 
-        #[cfg(all(
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSTableView",
-            feature = "AppKit_NSView"
-        ))]
+        #[cfg(all(feature = "NSResponder", feature = "NSTableView", feature = "NSView"))]
         #[optional]
         #[method_id(@__retain_semantics Other outlineView:selectionIndexesForProposedSelection:)]
         unsafe fn outlineView_selectionIndexesForProposedSelection(
@@ -786,10 +774,10 @@ extern_protocol!(
         ) -> Id<NSIndexSet>;
 
         #[cfg(all(
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSTableColumn",
-            feature = "AppKit_NSTableView",
-            feature = "AppKit_NSView"
+            feature = "NSResponder",
+            feature = "NSTableColumn",
+            feature = "NSTableView",
+            feature = "NSView"
         ))]
         #[optional]
         #[method(outlineView:shouldSelectTableColumn:)]
@@ -800,10 +788,10 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(all(
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSTableColumn",
-            feature = "AppKit_NSTableView",
-            feature = "AppKit_NSView"
+            feature = "NSResponder",
+            feature = "NSTableColumn",
+            feature = "NSTableView",
+            feature = "NSView"
         ))]
         #[optional]
         #[method(outlineView:mouseDownInHeaderOfTableColumn:)]
@@ -814,10 +802,10 @@ extern_protocol!(
         );
 
         #[cfg(all(
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSTableColumn",
-            feature = "AppKit_NSTableView",
-            feature = "AppKit_NSView"
+            feature = "NSResponder",
+            feature = "NSTableColumn",
+            feature = "NSTableView",
+            feature = "NSView"
         ))]
         #[optional]
         #[method(outlineView:didClickTableColumn:)]
@@ -828,10 +816,10 @@ extern_protocol!(
         );
 
         #[cfg(all(
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSTableColumn",
-            feature = "AppKit_NSTableView",
-            feature = "AppKit_NSView"
+            feature = "NSResponder",
+            feature = "NSTableColumn",
+            feature = "NSTableView",
+            feature = "NSView"
         ))]
         #[optional]
         #[method(outlineView:didDragTableColumn:)]
@@ -842,11 +830,11 @@ extern_protocol!(
         );
 
         #[cfg(all(
-            feature = "AppKit_NSCell",
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSTableColumn",
-            feature = "AppKit_NSTableView",
-            feature = "AppKit_NSView"
+            feature = "NSCell",
+            feature = "NSResponder",
+            feature = "NSTableColumn",
+            feature = "NSTableView",
+            feature = "NSView"
         ))]
         #[optional]
         #[method_id(@__retain_semantics Other outlineView:toolTipForCell:rect:tableColumn:item:mouseLocation:)]
@@ -860,11 +848,7 @@ extern_protocol!(
             mouse_location: NSPoint,
         ) -> Id<NSString>;
 
-        #[cfg(all(
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSTableView",
-            feature = "AppKit_NSView"
-        ))]
+        #[cfg(all(feature = "NSResponder", feature = "NSTableView", feature = "NSView"))]
         #[optional]
         #[method(outlineView:heightOfRowByItem:)]
         unsafe fn outlineView_heightOfRowByItem(
@@ -874,10 +858,10 @@ extern_protocol!(
         ) -> CGFloat;
 
         #[cfg(all(
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSTableView",
-            feature = "AppKit_NSTintConfiguration",
-            feature = "AppKit_NSView"
+            feature = "NSResponder",
+            feature = "NSTableView",
+            feature = "NSTintConfiguration",
+            feature = "NSView"
         ))]
         #[optional]
         #[method_id(@__retain_semantics Other outlineView:tintConfigurationForItem:)]
@@ -888,10 +872,10 @@ extern_protocol!(
         ) -> Option<Id<NSTintConfiguration>>;
 
         #[cfg(all(
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSTableColumn",
-            feature = "AppKit_NSTableView",
-            feature = "AppKit_NSView"
+            feature = "NSResponder",
+            feature = "NSTableColumn",
+            feature = "NSTableView",
+            feature = "NSView"
         ))]
         #[optional]
         #[method_id(@__retain_semantics Other outlineView:typeSelectStringForTableColumn:item:)]
@@ -902,11 +886,7 @@ extern_protocol!(
             item: &AnyObject,
         ) -> Option<Id<NSString>>;
 
-        #[cfg(all(
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSTableView",
-            feature = "AppKit_NSView"
-        ))]
+        #[cfg(all(feature = "NSResponder", feature = "NSTableView", feature = "NSView"))]
         #[optional]
         #[method_id(@__retain_semantics Other outlineView:nextTypeSelectMatchFromItem:toItem:forString:)]
         unsafe fn outlineView_nextTypeSelectMatchFromItem_toItem_forString(
@@ -918,10 +898,10 @@ extern_protocol!(
         ) -> Option<Id<AnyObject>>;
 
         #[cfg(all(
-            feature = "AppKit_NSEvent",
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSTableView",
-            feature = "AppKit_NSView"
+            feature = "NSEvent",
+            feature = "NSResponder",
+            feature = "NSTableView",
+            feature = "NSView"
         ))]
         #[optional]
         #[method(outlineView:shouldTypeSelectForEvent:withCurrentSearchString:)]
@@ -933,10 +913,10 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(all(
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSTableColumn",
-            feature = "AppKit_NSTableView",
-            feature = "AppKit_NSView"
+            feature = "NSResponder",
+            feature = "NSTableColumn",
+            feature = "NSTableView",
+            feature = "NSView"
         ))]
         #[optional]
         #[method(outlineView:shouldShowCellExpansionForTableColumn:item:)]
@@ -948,11 +928,11 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(all(
-            feature = "AppKit_NSCell",
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSTableColumn",
-            feature = "AppKit_NSTableView",
-            feature = "AppKit_NSView"
+            feature = "NSCell",
+            feature = "NSResponder",
+            feature = "NSTableColumn",
+            feature = "NSTableView",
+            feature = "NSView"
         ))]
         #[optional]
         #[method(outlineView:shouldTrackCell:forTableColumn:item:)]
@@ -965,11 +945,11 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(all(
-            feature = "AppKit_NSCell",
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSTableColumn",
-            feature = "AppKit_NSTableView",
-            feature = "AppKit_NSView"
+            feature = "NSCell",
+            feature = "NSResponder",
+            feature = "NSTableColumn",
+            feature = "NSTableView",
+            feature = "NSView"
         ))]
         #[optional]
         #[method_id(@__retain_semantics Other outlineView:dataCellForTableColumn:item:)]
@@ -980,11 +960,7 @@ extern_protocol!(
             item: &AnyObject,
         ) -> Option<Id<NSCell>>;
 
-        #[cfg(all(
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSTableView",
-            feature = "AppKit_NSView"
-        ))]
+        #[cfg(all(feature = "NSResponder", feature = "NSTableView", feature = "NSView"))]
         #[optional]
         #[method(outlineView:isGroupItem:)]
         unsafe fn outlineView_isGroupItem(
@@ -993,11 +969,7 @@ extern_protocol!(
             item: &AnyObject,
         ) -> bool;
 
-        #[cfg(all(
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSTableView",
-            feature = "AppKit_NSView"
-        ))]
+        #[cfg(all(feature = "NSResponder", feature = "NSTableView", feature = "NSView"))]
         #[optional]
         #[method(outlineView:shouldExpandItem:)]
         unsafe fn outlineView_shouldExpandItem(
@@ -1006,11 +978,7 @@ extern_protocol!(
             item: &AnyObject,
         ) -> bool;
 
-        #[cfg(all(
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSTableView",
-            feature = "AppKit_NSView"
-        ))]
+        #[cfg(all(feature = "NSResponder", feature = "NSTableView", feature = "NSView"))]
         #[optional]
         #[method(outlineView:shouldCollapseItem:)]
         unsafe fn outlineView_shouldCollapseItem(
@@ -1020,10 +988,10 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(all(
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSTableColumn",
-            feature = "AppKit_NSTableView",
-            feature = "AppKit_NSView"
+            feature = "NSResponder",
+            feature = "NSTableColumn",
+            feature = "NSTableView",
+            feature = "NSView"
         ))]
         #[optional]
         #[method(outlineView:willDisplayOutlineCell:forTableColumn:item:)]
@@ -1035,11 +1003,7 @@ extern_protocol!(
             item: &AnyObject,
         );
 
-        #[cfg(all(
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSTableView",
-            feature = "AppKit_NSView"
-        ))]
+        #[cfg(all(feature = "NSResponder", feature = "NSTableView", feature = "NSView"))]
         #[optional]
         #[method(outlineView:sizeToFitWidthOfColumn:)]
         unsafe fn outlineView_sizeToFitWidthOfColumn(
@@ -1048,11 +1012,7 @@ extern_protocol!(
             column: NSInteger,
         ) -> CGFloat;
 
-        #[cfg(all(
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSTableView",
-            feature = "AppKit_NSView"
-        ))]
+        #[cfg(all(feature = "NSResponder", feature = "NSTableView", feature = "NSView"))]
         #[optional]
         #[method(outlineView:shouldReorderColumn:toColumn:)]
         unsafe fn outlineView_shouldReorderColumn_toColumn(
@@ -1062,11 +1022,7 @@ extern_protocol!(
             new_column_index: NSInteger,
         ) -> bool;
 
-        #[cfg(all(
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSTableView",
-            feature = "AppKit_NSView"
-        ))]
+        #[cfg(all(feature = "NSResponder", feature = "NSTableView", feature = "NSView"))]
         #[optional]
         #[method(outlineView:shouldShowOutlineCellForItem:)]
         unsafe fn outlineView_shouldShowOutlineCellForItem(
@@ -1076,10 +1032,10 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(all(
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSTableColumn",
-            feature = "AppKit_NSTableView",
-            feature = "AppKit_NSView"
+            feature = "NSResponder",
+            feature = "NSTableColumn",
+            feature = "NSTableView",
+            feature = "NSView"
         ))]
         #[optional]
         #[method(outlineView:userCanChangeVisibilityOfTableColumn:)]
@@ -1090,10 +1046,10 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(all(
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSTableColumn",
-            feature = "AppKit_NSTableView",
-            feature = "AppKit_NSView"
+            feature = "NSResponder",
+            feature = "NSTableColumn",
+            feature = "NSTableView",
+            feature = "NSView"
         ))]
         #[optional]
         #[method(outlineView:userDidChangeVisibilityOfTableColumns:)]
@@ -1136,17 +1092,17 @@ extern_protocol!(
         unsafe fn outlineViewItemDidCollapse(&self, notification: &NSNotification);
     }
 
-    #[cfg(feature = "AppKit_NSControl")]
+    #[cfg(feature = "NSControl")]
     unsafe impl ProtocolType for dyn NSOutlineViewDelegate {}
 );
 
 extern "C" {
-    #[cfg(feature = "AppKit_NSUserInterfaceItemIdentification")]
+    #[cfg(feature = "NSUserInterfaceItemIdentification")]
     pub static NSOutlineViewDisclosureButtonKey: &'static NSUserInterfaceItemIdentifier;
 }
 
 extern "C" {
-    #[cfg(feature = "AppKit_NSUserInterfaceItemIdentification")]
+    #[cfg(feature = "NSUserInterfaceItemIdentification")]
     pub static NSOutlineViewShowHideButtonKey: &'static NSUserInterfaceItemIdentifier;
 }
 

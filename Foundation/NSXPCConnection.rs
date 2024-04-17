@@ -11,14 +11,14 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other remoteObjectProxy)]
         unsafe fn remoteObjectProxy(&self) -> Id<AnyObject>;
 
-        #[cfg(all(feature = "Foundation_NSError", feature = "block2"))]
+        #[cfg(all(feature = "NSError", feature = "block2"))]
         #[method_id(@__retain_semantics Other remoteObjectProxyWithErrorHandler:)]
         unsafe fn remoteObjectProxyWithErrorHandler(
             &self,
             handler: &Block<dyn Fn(NonNull<NSError>)>,
         ) -> Id<AnyObject>;
 
-        #[cfg(all(feature = "Foundation_NSError", feature = "block2"))]
+        #[cfg(all(feature = "NSError", feature = "block2"))]
         #[optional]
         #[method_id(@__retain_semantics Other synchronousRemoteObjectProxyWithErrorHandler:)]
         unsafe fn synchronousRemoteObjectProxyWithErrorHandler(
@@ -62,18 +62,18 @@ unsafe impl NSXPCProxyCreating for NSXPCConnection {}
 
 extern_methods!(
     unsafe impl NSXPCConnection {
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Init initWithServiceName:)]
         pub unsafe fn initWithServiceName(
             this: Allocated<Self>,
             service_name: &NSString,
         ) -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other serviceName)]
         pub unsafe fn serviceName(&self) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Init initWithMachServiceName:options:)]
         pub unsafe fn initWithMachServiceName_options(
             this: Allocated<Self>,
@@ -114,14 +114,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Other remoteObjectProxy)]
         pub unsafe fn remoteObjectProxy(&self) -> Id<AnyObject>;
 
-        #[cfg(all(feature = "Foundation_NSError", feature = "block2"))]
+        #[cfg(all(feature = "NSError", feature = "block2"))]
         #[method_id(@__retain_semantics Other remoteObjectProxyWithErrorHandler:)]
         pub unsafe fn remoteObjectProxyWithErrorHandler(
             &self,
             handler: &Block<dyn Fn(NonNull<NSError>)>,
         ) -> Id<AnyObject>;
 
-        #[cfg(all(feature = "Foundation_NSError", feature = "block2"))]
+        #[cfg(all(feature = "NSError", feature = "block2"))]
         #[method_id(@__retain_semantics Other synchronousRemoteObjectProxyWithErrorHandler:)]
         pub unsafe fn synchronousRemoteObjectProxyWithErrorHandler(
             &self,
@@ -163,7 +163,7 @@ extern_methods!(
         #[method(scheduleSendBarrierBlock:)]
         pub unsafe fn scheduleSendBarrierBlock(&self, block: &Block<dyn Fn()>);
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method(setCodeSigningRequirement:)]
         pub unsafe fn setCodeSigningRequirement(&self, requirement: &NSString);
     }
@@ -200,7 +200,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other anonymousListener)]
         pub unsafe fn anonymousListener() -> Id<NSXPCListener>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Init initWithMachServiceName:)]
         pub unsafe fn initWithMachServiceName(this: Allocated<Self>, name: &NSString) -> Id<Self>;
 
@@ -228,7 +228,7 @@ extern_methods!(
         #[method(invalidate)]
         pub unsafe fn invalidate(&self);
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method(setConnectionCodeSigningRequirement:)]
         pub unsafe fn setConnectionCodeSigningRequirement(&self, requirement: &NSString);
     }
@@ -282,7 +282,7 @@ extern_methods!(
         #[method(setProtocol:)]
         pub unsafe fn setProtocol(&self, protocol: &AnyProtocol);
 
-        #[cfg(feature = "Foundation_NSSet")]
+        #[cfg(feature = "NSSet")]
         #[method(setClasses:forSelector:argumentIndex:ofReply:)]
         pub unsafe fn setClasses_forSelector_argumentIndex_ofReply(
             &self,
@@ -292,7 +292,7 @@ extern_methods!(
             of_reply: bool,
         );
 
-        #[cfg(feature = "Foundation_NSSet")]
+        #[cfg(feature = "NSSet")]
         #[method_id(@__retain_semantics Other classesForSelector:argumentIndex:ofReply:)]
         pub unsafe fn classesForSelector_argumentIndex_ofReply(
             &self,
@@ -345,12 +345,12 @@ unsafe impl Send for NSXPCListenerEndpoint {}
 
 unsafe impl Sync for NSXPCListenerEndpoint {}
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSCoding for NSXPCListenerEndpoint {}
 
 unsafe impl NSObjectProtocol for NSXPCListenerEndpoint {}
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSSecureCoding for NSXPCListenerEndpoint {}
 
 extern_methods!(
@@ -370,10 +370,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSCoder")]
+    #[cfg(feature = "NSCoder")]
     pub struct NSXPCCoder;
 
-    #[cfg(feature = "Foundation_NSCoder")]
+    #[cfg(feature = "NSCoder")]
     unsafe impl ClassType for NSXPCCoder {
         #[inherits(NSObject)]
         type Super = NSCoder;
@@ -381,11 +381,11 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSCoder")]
+#[cfg(feature = "NSCoder")]
 unsafe impl NSObjectProtocol for NSXPCCoder {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSCoder")]
+    #[cfg(feature = "NSCoder")]
     unsafe impl NSXPCCoder {
         #[method_id(@__retain_semantics Other userInfo)]
         pub unsafe fn userInfo(&self) -> Option<Id<NSObject>>;
@@ -400,7 +400,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSCoder")]
+    #[cfg(feature = "NSCoder")]
     unsafe impl NSXPCCoder {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

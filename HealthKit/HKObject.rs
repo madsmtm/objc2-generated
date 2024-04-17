@@ -26,16 +26,16 @@ extern_methods!(
         #[method_id(@__retain_semantics Other UUID)]
         pub unsafe fn UUID(&self) -> Id<NSUUID>;
 
-        #[cfg(feature = "HealthKit_HKSource")]
+        #[cfg(feature = "HKSource")]
         #[deprecated]
         #[method_id(@__retain_semantics Other source)]
         pub unsafe fn source(&self) -> Id<HKSource>;
 
-        #[cfg(feature = "HealthKit_HKSourceRevision")]
+        #[cfg(feature = "HKSourceRevision")]
         #[method_id(@__retain_semantics Other sourceRevision)]
         pub unsafe fn sourceRevision(&self) -> Id<HKSourceRevision>;
 
-        #[cfg(feature = "HealthKit_HKDevice")]
+        #[cfg(feature = "HKDevice")]
         #[method_id(@__retain_semantics Other device)]
         pub unsafe fn device(&self) -> Option<Id<HKDevice>>;
 

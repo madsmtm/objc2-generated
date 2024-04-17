@@ -117,7 +117,7 @@ unsafe impl NSUserInterfaceItemIdentification for MKAnnotationView {}
 extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     unsafe impl MKAnnotationView {
-        #[cfg(feature = "MapKit_MKAnnotation")]
+        #[cfg(feature = "MKAnnotation")]
         #[method_id(@__retain_semantics Init initWithAnnotation:reuseIdentifier:)]
         pub unsafe fn initWithAnnotation_reuseIdentifier(
             this: Allocated<Self>,
@@ -138,11 +138,11 @@ extern_methods!(
         #[method(prepareForDisplay)]
         pub unsafe fn prepareForDisplay(&self);
 
-        #[cfg(feature = "MapKit_MKAnnotation")]
+        #[cfg(feature = "MKAnnotation")]
         #[method_id(@__retain_semantics Other annotation)]
         pub unsafe fn annotation(&self) -> Option<Id<ProtocolObject<dyn MKAnnotation>>>;
 
-        #[cfg(feature = "MapKit_MKAnnotation")]
+        #[cfg(feature = "MKAnnotation")]
         #[method(setAnnotation:)]
         pub unsafe fn setAnnotation(&self, annotation: Option<&ProtocolObject<dyn MKAnnotation>>);
 

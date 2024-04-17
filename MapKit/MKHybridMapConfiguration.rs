@@ -7,10 +7,10 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MapKit_MKMapConfiguration")]
+    #[cfg(feature = "MKMapConfiguration")]
     pub struct MKHybridMapConfiguration;
 
-    #[cfg(feature = "MapKit_MKMapConfiguration")]
+    #[cfg(feature = "MKMapConfiguration")]
     unsafe impl ClassType for MKHybridMapConfiguration {
         #[inherits(NSObject)]
         type Super = MKMapConfiguration;
@@ -18,20 +18,20 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "MapKit_MKMapConfiguration")]
+#[cfg(feature = "MKMapConfiguration")]
 unsafe impl NSCoding for MKHybridMapConfiguration {}
 
-#[cfg(feature = "MapKit_MKMapConfiguration")]
+#[cfg(feature = "MKMapConfiguration")]
 unsafe impl NSCopying for MKHybridMapConfiguration {}
 
-#[cfg(feature = "MapKit_MKMapConfiguration")]
+#[cfg(feature = "MKMapConfiguration")]
 unsafe impl NSObjectProtocol for MKHybridMapConfiguration {}
 
-#[cfg(feature = "MapKit_MKMapConfiguration")]
+#[cfg(feature = "MKMapConfiguration")]
 unsafe impl NSSecureCoding for MKHybridMapConfiguration {}
 
 extern_methods!(
-    #[cfg(feature = "MapKit_MKMapConfiguration")]
+    #[cfg(feature = "MKMapConfiguration")]
     unsafe impl MKHybridMapConfiguration {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -42,11 +42,11 @@ extern_methods!(
             elevation_style: MKMapElevationStyle,
         ) -> Id<Self>;
 
-        #[cfg(feature = "MapKit_MKPointOfInterestFilter")]
+        #[cfg(feature = "MKPointOfInterestFilter")]
         #[method_id(@__retain_semantics Other pointOfInterestFilter)]
         pub unsafe fn pointOfInterestFilter(&self) -> Option<Id<MKPointOfInterestFilter>>;
 
-        #[cfg(feature = "MapKit_MKPointOfInterestFilter")]
+        #[cfg(feature = "MKPointOfInterestFilter")]
         #[method(setPointOfInterestFilter:)]
         pub unsafe fn setPointOfInterestFilter(
             &self,
@@ -63,7 +63,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MKMapConfiguration`
-    #[cfg(feature = "MapKit_MKMapConfiguration")]
+    #[cfg(feature = "MKMapConfiguration")]
     unsafe impl MKHybridMapConfiguration {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

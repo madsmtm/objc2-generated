@@ -6,17 +6,17 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    #[cfg(feature = "GameController_GCPhysicalInputElement")]
+    #[cfg(feature = "GCPhysicalInputElement")]
     pub unsafe trait GCAxisElement: GCPhysicalInputElement {
-        #[cfg(feature = "GameController_GCAxisInput")]
+        #[cfg(feature = "GCAxisInput")]
         #[method_id(@__retain_semantics Other absoluteInput)]
         unsafe fn absoluteInput(&self) -> Option<Id<ProtocolObject<dyn GCAxisInput>>>;
 
-        #[cfg(feature = "GameController_GCRelativeInput")]
+        #[cfg(feature = "GCRelativeInput")]
         #[method_id(@__retain_semantics Other relativeInput)]
         unsafe fn relativeInput(&self) -> Id<ProtocolObject<dyn GCRelativeInput>>;
     }
 
-    #[cfg(feature = "GameController_GCPhysicalInputElement")]
+    #[cfg(feature = "GCPhysicalInputElement")]
     unsafe impl ProtocolType for dyn GCAxisElement {}
 );

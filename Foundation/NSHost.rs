@@ -23,12 +23,12 @@ extern_methods!(
         #[method_id(@__retain_semantics Other currentHost)]
         pub unsafe fn currentHost() -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[deprecated = "Use Network framework instead, see deprecation notice in <Foundation/NSHost.h>"]
         #[method_id(@__retain_semantics Other hostWithName:)]
         pub unsafe fn hostWithName(name: Option<&NSString>) -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[deprecated = "Use Network framework instead, see deprecation notice in <Foundation/NSHost.h>"]
         #[method_id(@__retain_semantics Other hostWithAddress:)]
         pub unsafe fn hostWithAddress(address: &NSString) -> Id<Self>;
@@ -37,27 +37,27 @@ extern_methods!(
         #[method(isEqualToHost:)]
         pub unsafe fn isEqualToHost(&self, a_host: &NSHost) -> bool;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[deprecated = "Use Network framework instead, see deprecation notice in <Foundation/NSHost.h>"]
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Option<Id<NSString>>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[deprecated = "Use Network framework instead, see deprecation notice in <Foundation/NSHost.h>"]
         #[method_id(@__retain_semantics Other names)]
         pub unsafe fn names(&self) -> Id<NSArray<NSString>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[deprecated = "Use Network framework instead, see deprecation notice in <Foundation/NSHost.h>"]
         #[method_id(@__retain_semantics Other address)]
         pub unsafe fn address(&self) -> Option<Id<NSString>>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[deprecated = "Use Network framework instead, see deprecation notice in <Foundation/NSHost.h>"]
         #[method_id(@__retain_semantics Other addresses)]
         pub unsafe fn addresses(&self) -> Id<NSArray<NSString>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other localizedName)]
         pub unsafe fn localizedName(&self) -> Option<Id<NSString>>;
 

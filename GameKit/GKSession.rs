@@ -20,7 +20,7 @@ unsafe impl NSObjectProtocol for GKSession {}
 
 extern_methods!(
     unsafe impl GKSession {
-        #[cfg(feature = "GameKit_GKPublicConstants")]
+        #[cfg(feature = "GKPublicConstants")]
         #[deprecated]
         #[method_id(@__retain_semantics Init initWithSessionID:displayName:sessionMode:)]
         pub unsafe fn initWithSessionID_displayName_sessionMode(
@@ -30,12 +30,12 @@ extern_methods!(
             mode: GKSessionMode,
         ) -> Option<Id<Self>>;
 
-        #[cfg(feature = "GameKit_GKPublicProtocols")]
+        #[cfg(feature = "GKPublicProtocols")]
         #[deprecated]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn GKSessionDelegate>>>;
 
-        #[cfg(feature = "GameKit_GKPublicProtocols")]
+        #[cfg(feature = "GKPublicProtocols")]
         #[deprecated]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn GKSessionDelegate>>);
@@ -48,7 +48,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other displayName)]
         pub unsafe fn displayName(&self) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "GameKit_GKPublicConstants")]
+        #[cfg(feature = "GKPublicConstants")]
         #[deprecated]
         #[method(sessionMode)]
         pub unsafe fn sessionMode(&self) -> GKSessionMode;
@@ -110,7 +110,7 @@ extern_methods!(
         #[method(disconnectFromAllPeers)]
         pub unsafe fn disconnectFromAllPeers(&self);
 
-        #[cfg(feature = "GameKit_GKPublicConstants")]
+        #[cfg(feature = "GKPublicConstants")]
         #[deprecated]
         #[method_id(@__retain_semantics Other peersWithConnectionState:)]
         pub unsafe fn peersWithConnectionState(

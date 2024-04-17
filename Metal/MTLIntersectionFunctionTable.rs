@@ -85,9 +85,9 @@ impl DefaultId for MTLIntersectionFunctionTableDescriptor {
 }
 
 extern_protocol!(
-    #[cfg(feature = "Metal_MTLResource")]
+    #[cfg(feature = "MTLResource")]
     pub unsafe trait MTLIntersectionFunctionTable: MTLResource {
-        #[cfg(feature = "Metal_MTLBuffer")]
+        #[cfg(feature = "MTLBuffer")]
         #[method(setBuffer:offset:atIndex:)]
         unsafe fn setBuffer_offset_atIndex(
             &self,
@@ -96,7 +96,7 @@ extern_protocol!(
             index: NSUInteger,
         );
 
-        #[cfg(feature = "Metal_MTLBuffer")]
+        #[cfg(feature = "MTLBuffer")]
         #[method(setBuffers:offsets:withRange:)]
         unsafe fn setBuffers_offsets_withRange(
             &self,
@@ -105,11 +105,11 @@ extern_protocol!(
             range: NSRange,
         );
 
-        #[cfg(feature = "Metal_MTLTypes")]
+        #[cfg(feature = "MTLTypes")]
         #[method(gpuResourceID)]
         unsafe fn gpuResourceID(&self) -> MTLResourceID;
 
-        #[cfg(feature = "Metal_MTLFunctionHandle")]
+        #[cfg(feature = "MTLFunctionHandle")]
         #[method(setFunction:atIndex:)]
         fn setFunction_atIndex(
             &self,
@@ -117,7 +117,7 @@ extern_protocol!(
             index: NSUInteger,
         );
 
-        #[cfg(feature = "Metal_MTLFunctionHandle")]
+        #[cfg(feature = "MTLFunctionHandle")]
         #[method(setFunctions:withRange:)]
         unsafe fn setFunctions_withRange(
             &self,
@@ -153,7 +153,7 @@ extern_protocol!(
             range: NSRange,
         );
 
-        #[cfg(feature = "Metal_MTLVisibleFunctionTable")]
+        #[cfg(feature = "MTLVisibleFunctionTable")]
         #[method(setVisibleFunctionTable:atBufferIndex:)]
         unsafe fn setVisibleFunctionTable_atBufferIndex(
             &self,
@@ -161,7 +161,7 @@ extern_protocol!(
             buffer_index: NSUInteger,
         );
 
-        #[cfg(feature = "Metal_MTLVisibleFunctionTable")]
+        #[cfg(feature = "MTLVisibleFunctionTable")]
         #[method(setVisibleFunctionTables:withBufferRange:)]
         unsafe fn setVisibleFunctionTables_withBufferRange(
             &self,
@@ -170,6 +170,6 @@ extern_protocol!(
         );
     }
 
-    #[cfg(feature = "Metal_MTLResource")]
+    #[cfg(feature = "MTLResource")]
     unsafe impl ProtocolType for dyn MTLIntersectionFunctionTable {}
 );

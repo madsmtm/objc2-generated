@@ -7,11 +7,11 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSImageRep")]
+    #[cfg(feature = "NSImageRep")]
     #[deprecated = "`NSEPSImageRep` instances cannot be created on macOS 14.0 and later"]
     pub struct NSEPSImageRep;
 
-    #[cfg(feature = "AppKit_NSImageRep")]
+    #[cfg(feature = "NSImageRep")]
     unsafe impl ClassType for NSEPSImageRep {
         #[inherits(NSObject)]
         type Super = NSImageRep;
@@ -19,17 +19,17 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSImageRep")]
+#[cfg(feature = "NSImageRep")]
 unsafe impl NSCoding for NSEPSImageRep {}
 
-#[cfg(feature = "AppKit_NSImageRep")]
+#[cfg(feature = "NSImageRep")]
 unsafe impl NSCopying for NSEPSImageRep {}
 
-#[cfg(feature = "AppKit_NSImageRep")]
+#[cfg(feature = "NSImageRep")]
 unsafe impl NSObjectProtocol for NSEPSImageRep {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSImageRep")]
+    #[cfg(feature = "NSImageRep")]
     unsafe impl NSEPSImageRep {
         #[method_id(@__retain_semantics Other imageRepWithData:)]
         pub unsafe fn imageRepWithData(eps_data: &NSData) -> Option<Id<Self>>;
@@ -51,7 +51,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSImageRep`
-    #[cfg(feature = "AppKit_NSImageRep")]
+    #[cfg(feature = "NSImageRep")]
     unsafe impl NSEPSImageRep {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -63,7 +63,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSImageRep")]
+    #[cfg(feature = "NSImageRep")]
     unsafe impl NSEPSImageRep {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

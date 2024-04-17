@@ -18,10 +18,10 @@ extern "C" {
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSTouchBarItem")]
+    #[cfg(feature = "NSTouchBarItem")]
     pub struct NSSliderTouchBarItem;
 
-    #[cfg(feature = "AppKit_NSTouchBarItem")]
+    #[cfg(feature = "NSTouchBarItem")]
     unsafe impl ClassType for NSSliderTouchBarItem {
         #[inherits(NSObject)]
         type Super = NSTouchBarItem;
@@ -29,37 +29,37 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSTouchBarItem")]
+#[cfg(feature = "NSTouchBarItem")]
 unsafe impl NSCoding for NSSliderTouchBarItem {}
 
-#[cfg(feature = "AppKit_NSTouchBarItem")]
+#[cfg(feature = "NSTouchBarItem")]
 unsafe impl NSObjectProtocol for NSSliderTouchBarItem {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSTouchBarItem")]
+    #[cfg(feature = "NSTouchBarItem")]
     unsafe impl NSSliderTouchBarItem {
         #[cfg(all(
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSUserInterfaceCompression",
-            feature = "AppKit_NSView"
+            feature = "NSResponder",
+            feature = "NSUserInterfaceCompression",
+            feature = "NSView"
         ))]
         #[method_id(@__retain_semantics Other view)]
         pub unsafe fn view(&self) -> Id<NSView>;
 
         #[cfg(all(
-            feature = "AppKit_NSControl",
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSSlider",
-            feature = "AppKit_NSView"
+            feature = "NSControl",
+            feature = "NSResponder",
+            feature = "NSSlider",
+            feature = "NSView"
         ))]
         #[method_id(@__retain_semantics Other slider)]
         pub unsafe fn slider(&self) -> Id<NSSlider>;
 
         #[cfg(all(
-            feature = "AppKit_NSControl",
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSSlider",
-            feature = "AppKit_NSView"
+            feature = "NSControl",
+            feature = "NSResponder",
+            feature = "NSSlider",
+            feature = "NSView"
         ))]
         #[method(setSlider:)]
         pub unsafe fn setSlider(&self, slider: &NSSlider);
@@ -88,22 +88,22 @@ extern_methods!(
         #[method(setLabel:)]
         pub unsafe fn setLabel(&self, label: Option<&NSString>);
 
-        #[cfg(feature = "AppKit_NSSliderAccessory")]
+        #[cfg(feature = "NSSliderAccessory")]
         #[method_id(@__retain_semantics Other minimumValueAccessory)]
         pub unsafe fn minimumValueAccessory(&self) -> Option<Id<NSSliderAccessory>>;
 
-        #[cfg(feature = "AppKit_NSSliderAccessory")]
+        #[cfg(feature = "NSSliderAccessory")]
         #[method(setMinimumValueAccessory:)]
         pub unsafe fn setMinimumValueAccessory(
             &self,
             minimum_value_accessory: Option<&NSSliderAccessory>,
         );
 
-        #[cfg(feature = "AppKit_NSSliderAccessory")]
+        #[cfg(feature = "NSSliderAccessory")]
         #[method_id(@__retain_semantics Other maximumValueAccessory)]
         pub unsafe fn maximumValueAccessory(&self) -> Option<Id<NSSliderAccessory>>;
 
-        #[cfg(feature = "AppKit_NSSliderAccessory")]
+        #[cfg(feature = "NSSliderAccessory")]
         #[method(setMaximumValueAccessory:)]
         pub unsafe fn setMaximumValueAccessory(
             &self,
@@ -138,7 +138,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSTouchBarItem`
-    #[cfg(feature = "AppKit_NSTouchBarItem")]
+    #[cfg(feature = "NSTouchBarItem")]
     unsafe impl NSSliderTouchBarItem {
         #[method_id(@__retain_semantics Init initWithIdentifier:)]
         pub unsafe fn initWithIdentifier(
@@ -156,7 +156,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSTouchBarItem")]
+    #[cfg(feature = "NSTouchBarItem")]
     unsafe impl NSSliderTouchBarItem {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;

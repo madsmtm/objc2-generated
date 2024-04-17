@@ -42,7 +42,7 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSXMLNode {}
 
 unsafe impl NSObjectProtocol for NSXMLNode {}
@@ -55,7 +55,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithKind:)]
         pub unsafe fn initWithKind(this: Allocated<Self>, kind: NSXMLNodeKind) -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSXMLNodeOptions")]
+        #[cfg(feature = "NSXMLNodeOptions")]
         #[method_id(@__retain_semantics Init initWithKind:options:)]
         pub unsafe fn initWithKind_options(
             this: Allocated<Self>,
@@ -66,26 +66,26 @@ extern_methods!(
         #[method_id(@__retain_semantics Other document)]
         pub unsafe fn document() -> Id<AnyObject>;
 
-        #[cfg(feature = "Foundation_NSXMLElement")]
+        #[cfg(feature = "NSXMLElement")]
         #[method_id(@__retain_semantics Other documentWithRootElement:)]
         pub unsafe fn documentWithRootElement(element: &NSXMLElement) -> Id<AnyObject>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other elementWithName:)]
         pub unsafe fn elementWithName(name: &NSString) -> Id<AnyObject>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other elementWithName:URI:)]
         pub unsafe fn elementWithName_URI(name: &NSString, uri: &NSString) -> Id<AnyObject>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other elementWithName:stringValue:)]
         pub unsafe fn elementWithName_stringValue(
             name: &NSString,
             string: &NSString,
         ) -> Id<AnyObject>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[method_id(@__retain_semantics Other elementWithName:children:attributes:)]
         pub unsafe fn elementWithName_children_attributes(
             name: &NSString,
@@ -93,14 +93,14 @@ extern_methods!(
             attributes: Option<&NSArray<NSXMLNode>>,
         ) -> Id<AnyObject>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other attributeWithName:stringValue:)]
         pub unsafe fn attributeWithName_stringValue(
             name: &NSString,
             string_value: &NSString,
         ) -> Id<AnyObject>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other attributeWithName:URI:stringValue:)]
         pub unsafe fn attributeWithName_URI_stringValue(
             name: &NSString,
@@ -108,40 +108,40 @@ extern_methods!(
             string_value: &NSString,
         ) -> Id<AnyObject>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other namespaceWithName:stringValue:)]
         pub unsafe fn namespaceWithName_stringValue(
             name: &NSString,
             string_value: &NSString,
         ) -> Id<AnyObject>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other processingInstructionWithName:stringValue:)]
         pub unsafe fn processingInstructionWithName_stringValue(
             name: &NSString,
             string_value: &NSString,
         ) -> Id<AnyObject>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other commentWithStringValue:)]
         pub unsafe fn commentWithStringValue(string_value: &NSString) -> Id<AnyObject>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other textWithStringValue:)]
         pub unsafe fn textWithStringValue(string_value: &NSString) -> Id<AnyObject>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other DTDNodeWithXMLString:)]
         pub unsafe fn DTDNodeWithXMLString(string: &NSString) -> Option<Id<AnyObject>>;
 
         #[method(kind)]
         pub unsafe fn kind(&self) -> NSXMLNodeKind;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method(setName:)]
         pub unsafe fn setName(&self, name: Option<&NSString>);
 
@@ -151,15 +151,15 @@ extern_methods!(
         #[method(setObjectValue:)]
         pub unsafe fn setObjectValue(&self, object_value: Option<&AnyObject>);
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other stringValue)]
         pub unsafe fn stringValue(&self) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method(setStringValue:)]
         pub unsafe fn setStringValue(&self, string_value: Option<&NSString>);
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method(setStringValue:resolvingEntities:)]
         pub unsafe fn setStringValue_resolvingEntities(&self, string: &NSString, resolve: bool);
 
@@ -169,7 +169,7 @@ extern_methods!(
         #[method(level)]
         pub unsafe fn level(&self) -> NSUInteger;
 
-        #[cfg(feature = "Foundation_NSXMLDocument")]
+        #[cfg(feature = "NSXMLDocument")]
         #[method_id(@__retain_semantics Other rootDocument)]
         pub unsafe fn rootDocument(&self) -> Option<Id<NSXMLDocument>>;
 
@@ -179,7 +179,7 @@ extern_methods!(
         #[method(childCount)]
         pub unsafe fn childCount(&self) -> NSUInteger;
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(feature = "NSArray")]
         #[method_id(@__retain_semantics Other children)]
         pub unsafe fn children(&self) -> Option<Id<NSArray<NSXMLNode>>>;
 
@@ -201,62 +201,55 @@ extern_methods!(
         #[method(detach)]
         pub unsafe fn detach(&self);
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other XPath)]
         pub unsafe fn XPath(&self) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other localName)]
         pub unsafe fn localName(&self) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other prefix)]
         pub unsafe fn prefix(&self) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other URI)]
         pub unsafe fn URI(&self) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method(setURI:)]
         pub unsafe fn setURI(&self, uri: Option<&NSString>);
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other localNameForName:)]
         pub unsafe fn localNameForName(name: &NSString) -> Id<NSString>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other prefixForName:)]
         pub unsafe fn prefixForName(name: &NSString) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other predefinedNamespaceForPrefix:)]
         pub unsafe fn predefinedNamespaceForPrefix(name: &NSString) -> Option<Id<NSXMLNode>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other description)]
         pub unsafe fn description(&self) -> Id<NSString>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other XMLString)]
         pub unsafe fn XMLString(&self) -> Id<NSString>;
 
-        #[cfg(all(
-            feature = "Foundation_NSString",
-            feature = "Foundation_NSXMLNodeOptions"
-        ))]
+        #[cfg(all(feature = "NSString", feature = "NSXMLNodeOptions"))]
         #[method_id(@__retain_semantics Other XMLStringWithOptions:)]
         pub unsafe fn XMLStringWithOptions(&self, options: NSXMLNodeOptions) -> Id<NSString>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other canonicalXMLStringPreservingComments:)]
         pub unsafe fn canonicalXMLStringPreservingComments(&self, comments: bool) -> Id<NSString>;
 
-        #[cfg(all(
-            feature = "Foundation_NSArray",
-            feature = "Foundation_NSError",
-            feature = "Foundation_NSString"
-        ))]
+        #[cfg(all(feature = "NSArray", feature = "NSError", feature = "NSString"))]
         #[method_id(@__retain_semantics Other nodesForXPath:error:_)]
         pub unsafe fn nodesForXPath_error(
             &self,
@@ -264,10 +257,10 @@ extern_methods!(
         ) -> Result<Id<NSArray<NSXMLNode>>, Id<NSError>>;
 
         #[cfg(all(
-            feature = "Foundation_NSArray",
-            feature = "Foundation_NSDictionary",
-            feature = "Foundation_NSError",
-            feature = "Foundation_NSString"
+            feature = "NSArray",
+            feature = "NSDictionary",
+            feature = "NSError",
+            feature = "NSString"
         ))]
         #[method_id(@__retain_semantics Other objectsForXQuery:constants:error:_)]
         pub unsafe fn objectsForXQuery_constants_error(
@@ -276,11 +269,7 @@ extern_methods!(
             constants: Option<&NSDictionary<NSString, AnyObject>>,
         ) -> Result<Id<NSArray>, Id<NSError>>;
 
-        #[cfg(all(
-            feature = "Foundation_NSArray",
-            feature = "Foundation_NSError",
-            feature = "Foundation_NSString"
-        ))]
+        #[cfg(all(feature = "NSArray", feature = "NSError", feature = "NSString"))]
         #[method_id(@__retain_semantics Other objectsForXQuery:error:_)]
         pub unsafe fn objectsForXQuery_error(
             &self,

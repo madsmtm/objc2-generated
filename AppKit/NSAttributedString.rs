@@ -699,7 +699,7 @@ extern_category!(
             is_forward: bool,
         ) -> NSUInteger;
 
-        #[cfg(feature = "AppKit_NSTextTable")]
+        #[cfg(feature = "NSTextTable")]
         #[method(rangeOfTextBlock:atIndex:)]
         unsafe fn rangeOfTextBlock_atIndex(
             &self,
@@ -707,7 +707,7 @@ extern_category!(
             location: NSUInteger,
         ) -> NSRange;
 
-        #[cfg(feature = "AppKit_NSTextTable")]
+        #[cfg(feature = "NSTextTable")]
         #[method(rangeOfTextTable:atIndex:)]
         unsafe fn rangeOfTextTable_atIndex(
             &self,
@@ -715,7 +715,7 @@ extern_category!(
             location: NSUInteger,
         ) -> NSRange;
 
-        #[cfg(feature = "AppKit_NSTextList")]
+        #[cfg(feature = "NSTextList")]
         #[method(rangeOfTextList:atIndex:)]
         unsafe fn rangeOfTextList_atIndex(
             &self,
@@ -723,7 +723,7 @@ extern_category!(
             location: NSUInteger,
         ) -> NSRange;
 
-        #[cfg(feature = "AppKit_NSTextList")]
+        #[cfg(feature = "NSTextList")]
         #[method(itemNumberInTextList:atIndex:)]
         unsafe fn itemNumberInTextList_atIndex(
             &self,
@@ -748,10 +748,10 @@ extern_category!(
     unsafe impl NSAttributedStringPasteboardAdditions for NSAttributedString {}
 );
 
-#[cfg(feature = "AppKit_NSPasteboard")]
+#[cfg(feature = "NSPasteboard")]
 unsafe impl NSPasteboardReading for NSAttributedString {}
 
-#[cfg(feature = "AppKit_NSPasteboard")]
+#[cfg(feature = "NSPasteboard")]
 unsafe impl NSPasteboardWriting for NSAttributedString {}
 
 extern_category!(
@@ -766,15 +766,15 @@ extern_category!(
         #[method(unscriptRange:)]
         unsafe fn unscriptRange(&self, range: NSRange);
 
-        #[cfg(feature = "AppKit_NSFontManager")]
+        #[cfg(feature = "NSFontManager")]
         #[method(applyFontTraits:range:)]
         unsafe fn applyFontTraits_range(&self, trait_mask: NSFontTraitMask, range: NSRange);
 
-        #[cfg(feature = "AppKit_NSText")]
+        #[cfg(feature = "NSText")]
         #[method(setAlignment:range:)]
         unsafe fn setAlignment_range(&self, alignment: NSTextAlignment, range: NSRange);
 
-        #[cfg(feature = "AppKit_NSText")]
+        #[cfg(feature = "NSText")]
         #[method(setBaseWritingDirection:range:)]
         unsafe fn setBaseWritingDirection_range(
             &self,

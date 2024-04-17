@@ -56,16 +56,16 @@ extern_methods!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(
-        feature = "AppKit_NSArrayController",
-        feature = "AppKit_NSController",
-        feature = "AppKit_NSObjectController"
+        feature = "NSArrayController",
+        feature = "NSController",
+        feature = "NSObjectController"
     ))]
     pub struct NSDictionaryController;
 
     #[cfg(all(
-        feature = "AppKit_NSArrayController",
-        feature = "AppKit_NSController",
-        feature = "AppKit_NSObjectController"
+        feature = "NSArrayController",
+        feature = "NSController",
+        feature = "NSObjectController"
     ))]
     unsafe impl ClassType for NSDictionaryController {
         #[inherits(NSObjectController, NSController, NSObject)]
@@ -75,40 +75,40 @@ extern_class!(
 );
 
 #[cfg(all(
-    feature = "AppKit_NSArrayController",
-    feature = "AppKit_NSController",
-    feature = "AppKit_NSObjectController"
+    feature = "NSArrayController",
+    feature = "NSController",
+    feature = "NSObjectController"
 ))]
 unsafe impl NSCoding for NSDictionaryController {}
 
 #[cfg(all(
-    feature = "AppKit_NSArrayController",
-    feature = "AppKit_NSController",
-    feature = "AppKit_NSKeyValueBinding",
-    feature = "AppKit_NSObjectController"
+    feature = "NSArrayController",
+    feature = "NSController",
+    feature = "NSKeyValueBinding",
+    feature = "NSObjectController"
 ))]
 unsafe impl NSEditor for NSDictionaryController {}
 
 #[cfg(all(
-    feature = "AppKit_NSArrayController",
-    feature = "AppKit_NSController",
-    feature = "AppKit_NSKeyValueBinding",
-    feature = "AppKit_NSObjectController"
+    feature = "NSArrayController",
+    feature = "NSController",
+    feature = "NSKeyValueBinding",
+    feature = "NSObjectController"
 ))]
 unsafe impl NSEditorRegistration for NSDictionaryController {}
 
 #[cfg(all(
-    feature = "AppKit_NSArrayController",
-    feature = "AppKit_NSController",
-    feature = "AppKit_NSObjectController"
+    feature = "NSArrayController",
+    feature = "NSController",
+    feature = "NSObjectController"
 ))]
 unsafe impl NSObjectProtocol for NSDictionaryController {}
 
 extern_methods!(
     #[cfg(all(
-        feature = "AppKit_NSArrayController",
-        feature = "AppKit_NSController",
-        feature = "AppKit_NSObjectController"
+        feature = "NSArrayController",
+        feature = "NSController",
+        feature = "NSObjectController"
     ))]
     unsafe impl NSDictionaryController {
         #[method_id(@__retain_semantics New newObject)]
@@ -158,9 +158,9 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObjectController`
     #[cfg(all(
-        feature = "AppKit_NSArrayController",
-        feature = "AppKit_NSController",
-        feature = "AppKit_NSObjectController"
+        feature = "NSArrayController",
+        feature = "NSController",
+        feature = "NSObjectController"
     ))]
     unsafe impl NSDictionaryController {
         #[method_id(@__retain_semantics Init initWithContent:)]
@@ -177,9 +177,9 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSController`
     #[cfg(all(
-        feature = "AppKit_NSArrayController",
-        feature = "AppKit_NSController",
-        feature = "AppKit_NSObjectController"
+        feature = "NSArrayController",
+        feature = "NSController",
+        feature = "NSObjectController"
     ))]
     unsafe impl NSDictionaryController {
         #[method_id(@__retain_semantics Init init)]
@@ -190,9 +190,9 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(
-        feature = "AppKit_NSArrayController",
-        feature = "AppKit_NSController",
-        feature = "AppKit_NSObjectController"
+        feature = "NSArrayController",
+        feature = "NSController",
+        feature = "NSObjectController"
     ))]
     unsafe impl NSDictionaryController {
         #[method_id(@__retain_semantics New new)]

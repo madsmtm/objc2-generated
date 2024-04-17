@@ -60,10 +60,7 @@ extern_methods!(
             completion_handler: ASWebAuthenticationSessionCompletionHandler,
         ) -> Id<Self>;
 
-        #[cfg(all(
-            feature = "AuthenticationServices_ASWebAuthenticationSessionCallback",
-            feature = "block2"
-        ))]
+        #[cfg(all(feature = "ASWebAuthenticationSessionCallback", feature = "block2"))]
         #[method_id(@__retain_semantics Init initWithURL:callback:completionHandler:)]
         pub unsafe fn initWithURL_callback_completionHandler(
             this: Allocated<Self>,
@@ -125,7 +122,7 @@ extern_protocol!(
     pub unsafe trait ASWebAuthenticationPresentationContextProviding:
         NSObjectProtocol
     {
-        #[cfg(feature = "AuthenticationServices_ASFoundation")]
+        #[cfg(feature = "ASFoundation")]
         #[method_id(@__retain_semantics Other presentationAnchorForWebAuthenticationSession:)]
         unsafe fn presentationAnchorForWebAuthenticationSession(
             &self,

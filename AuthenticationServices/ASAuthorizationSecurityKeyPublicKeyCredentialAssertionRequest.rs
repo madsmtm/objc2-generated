@@ -8,10 +8,10 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AuthenticationServices_ASAuthorizationRequest")]
+    #[cfg(feature = "ASAuthorizationRequest")]
     pub struct ASAuthorizationSecurityKeyPublicKeyCredentialAssertionRequest;
 
-    #[cfg(feature = "AuthenticationServices_ASAuthorizationRequest")]
+    #[cfg(feature = "ASAuthorizationRequest")]
     unsafe impl ClassType for ASAuthorizationSecurityKeyPublicKeyCredentialAssertionRequest {
         #[inherits(NSObject)]
         type Super = ASAuthorizationRequest;
@@ -20,40 +20,36 @@ extern_class!(
 );
 
 #[cfg(all(
-    feature = "AuthenticationServices_ASAuthorizationPublicKeyCredentialAssertionRequest",
-    feature = "AuthenticationServices_ASAuthorizationRequest"
+    feature = "ASAuthorizationPublicKeyCredentialAssertionRequest",
+    feature = "ASAuthorizationRequest"
 ))]
 unsafe impl ASAuthorizationPublicKeyCredentialAssertionRequest
     for ASAuthorizationSecurityKeyPublicKeyCredentialAssertionRequest
 {
 }
 
-#[cfg(feature = "AuthenticationServices_ASAuthorizationRequest")]
+#[cfg(feature = "ASAuthorizationRequest")]
 unsafe impl NSCoding for ASAuthorizationSecurityKeyPublicKeyCredentialAssertionRequest {}
 
-#[cfg(feature = "AuthenticationServices_ASAuthorizationRequest")]
+#[cfg(feature = "ASAuthorizationRequest")]
 unsafe impl NSCopying for ASAuthorizationSecurityKeyPublicKeyCredentialAssertionRequest {}
 
-#[cfg(feature = "AuthenticationServices_ASAuthorizationRequest")]
+#[cfg(feature = "ASAuthorizationRequest")]
 unsafe impl NSObjectProtocol for ASAuthorizationSecurityKeyPublicKeyCredentialAssertionRequest {}
 
-#[cfg(feature = "AuthenticationServices_ASAuthorizationRequest")]
+#[cfg(feature = "ASAuthorizationRequest")]
 unsafe impl NSSecureCoding for ASAuthorizationSecurityKeyPublicKeyCredentialAssertionRequest {}
 
 extern_methods!(
-    #[cfg(feature = "AuthenticationServices_ASAuthorizationRequest")]
+    #[cfg(feature = "ASAuthorizationRequest")]
     unsafe impl ASAuthorizationSecurityKeyPublicKeyCredentialAssertionRequest {
-        #[cfg(
-            feature = "AuthenticationServices_ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor"
-        )]
+        #[cfg(feature = "ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor")]
         #[method_id(@__retain_semantics Other allowedCredentials)]
         pub unsafe fn allowedCredentials(
             &self,
         ) -> Id<NSArray<ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor>>;
 
-        #[cfg(
-            feature = "AuthenticationServices_ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor"
-        )]
+        #[cfg(feature = "ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor")]
         #[method(setAllowedCredentials:)]
         pub unsafe fn setAllowedCredentials(
             &self,
@@ -64,7 +60,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `ASAuthorizationRequest`
-    #[cfg(feature = "AuthenticationServices_ASAuthorizationRequest")]
+    #[cfg(feature = "ASAuthorizationRequest")]
     unsafe impl ASAuthorizationSecurityKeyPublicKeyCredentialAssertionRequest {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -75,13 +71,13 @@ extern_methods!(
 );
 
 extern_methods!(
-    #[cfg(feature = "AuthenticationServices_ASAuthorizationRequest")]
+    #[cfg(feature = "ASAuthorizationRequest")]
     unsafe impl ASAuthorizationSecurityKeyPublicKeyCredentialAssertionRequest {}
 );
 
 #[cfg(all(
-    feature = "AuthenticationServices_ASAuthorizationRequest",
-    feature = "AuthenticationServices_ASAuthorizationWebBrowserSecurityKeyPublicKeyCredentialAssertionRequest"
+    feature = "ASAuthorizationRequest",
+    feature = "ASAuthorizationWebBrowserSecurityKeyPublicKeyCredentialAssertionRequest"
 ))]
 unsafe impl ASAuthorizationWebBrowserSecurityKeyPublicKeyCredentialAssertionRequest
     for ASAuthorizationSecurityKeyPublicKeyCredentialAssertionRequest

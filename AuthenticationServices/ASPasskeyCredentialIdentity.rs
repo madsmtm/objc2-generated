@@ -16,7 +16,7 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AuthenticationServices_ASCredentialIdentity")]
+#[cfg(feature = "ASCredentialIdentity")]
 unsafe impl ASCredentialIdentity for ASPasskeyCredentialIdentity {}
 
 unsafe impl NSCoding for ASPasskeyCredentialIdentity {}

@@ -48,7 +48,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other containerIdentifier)]
         pub unsafe fn containerIdentifier(&self) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "CloudKit_CKOperation")]
+        #[cfg(feature = "CKOperation")]
         #[method(addOperation:)]
         pub unsafe fn addOperation(&self, operation: &CKOperation);
     }
@@ -57,19 +57,19 @@ extern_methods!(
 extern_methods!(
     /// Database
     unsafe impl CKContainer {
-        #[cfg(feature = "CloudKit_CKDatabase")]
+        #[cfg(feature = "CKDatabase")]
         #[method_id(@__retain_semantics Other privateCloudDatabase)]
         pub unsafe fn privateCloudDatabase(&self) -> Id<CKDatabase>;
 
-        #[cfg(feature = "CloudKit_CKDatabase")]
+        #[cfg(feature = "CKDatabase")]
         #[method_id(@__retain_semantics Other publicCloudDatabase)]
         pub unsafe fn publicCloudDatabase(&self) -> Id<CKDatabase>;
 
-        #[cfg(feature = "CloudKit_CKDatabase")]
+        #[cfg(feature = "CKDatabase")]
         #[method_id(@__retain_semantics Other sharedCloudDatabase)]
         pub unsafe fn sharedCloudDatabase(&self) -> Id<CKDatabase>;
 
-        #[cfg(feature = "CloudKit_CKDatabase")]
+        #[cfg(feature = "CKDatabase")]
         #[method_id(@__retain_semantics Other databaseWithDatabaseScope:)]
         pub unsafe fn databaseWithDatabaseScope(
             &self,
@@ -194,14 +194,14 @@ extern_methods!(
 extern_methods!(
     /// UserRecords
     unsafe impl CKContainer {
-        #[cfg(all(feature = "CloudKit_CKRecordID", feature = "block2"))]
+        #[cfg(all(feature = "CKRecordID", feature = "block2"))]
         #[method(fetchUserRecordIDWithCompletionHandler:)]
         pub unsafe fn fetchUserRecordIDWithCompletionHandler(
             &self,
             completion_handler: &Block<dyn Fn(*mut CKRecordID, *mut NSError)>,
         );
 
-        #[cfg(all(feature = "CloudKit_CKUserIdentity", feature = "block2"))]
+        #[cfg(all(feature = "CKUserIdentity", feature = "block2"))]
         #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
         #[method(discoverAllIdentitiesWithCompletionHandler:)]
         pub unsafe fn discoverAllIdentitiesWithCompletionHandler(
@@ -209,7 +209,7 @@ extern_methods!(
             completion_handler: &Block<dyn Fn(*mut NSArray<CKUserIdentity>, *mut NSError)>,
         );
 
-        #[cfg(all(feature = "CloudKit_CKUserIdentity", feature = "block2"))]
+        #[cfg(all(feature = "CKUserIdentity", feature = "block2"))]
         #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
         #[method(discoverUserIdentityWithEmailAddress:completionHandler:)]
         pub unsafe fn discoverUserIdentityWithEmailAddress_completionHandler(
@@ -218,7 +218,7 @@ extern_methods!(
             completion_handler: &Block<dyn Fn(*mut CKUserIdentity, *mut NSError)>,
         );
 
-        #[cfg(all(feature = "CloudKit_CKUserIdentity", feature = "block2"))]
+        #[cfg(all(feature = "CKUserIdentity", feature = "block2"))]
         #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
         #[method(discoverUserIdentityWithPhoneNumber:completionHandler:)]
         pub unsafe fn discoverUserIdentityWithPhoneNumber_completionHandler(
@@ -227,11 +227,7 @@ extern_methods!(
             completion_handler: &Block<dyn Fn(*mut CKUserIdentity, *mut NSError)>,
         );
 
-        #[cfg(all(
-            feature = "CloudKit_CKRecordID",
-            feature = "CloudKit_CKUserIdentity",
-            feature = "block2"
-        ))]
+        #[cfg(all(feature = "CKRecordID", feature = "CKUserIdentity", feature = "block2"))]
         #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
         #[method(discoverUserIdentityWithUserRecordID:completionHandler:)]
         pub unsafe fn discoverUserIdentityWithUserRecordID_completionHandler(
@@ -245,7 +241,7 @@ extern_methods!(
 extern_methods!(
     /// Sharing
     unsafe impl CKContainer {
-        #[cfg(all(feature = "CloudKit_CKShareParticipant", feature = "block2"))]
+        #[cfg(all(feature = "CKShareParticipant", feature = "block2"))]
         #[method(fetchShareParticipantWithEmailAddress:completionHandler:)]
         pub unsafe fn fetchShareParticipantWithEmailAddress_completionHandler(
             &self,
@@ -253,7 +249,7 @@ extern_methods!(
             completion_handler: &Block<dyn Fn(*mut CKShareParticipant, *mut NSError)>,
         );
 
-        #[cfg(all(feature = "CloudKit_CKShareParticipant", feature = "block2"))]
+        #[cfg(all(feature = "CKShareParticipant", feature = "block2"))]
         #[method(fetchShareParticipantWithPhoneNumber:completionHandler:)]
         pub unsafe fn fetchShareParticipantWithPhoneNumber_completionHandler(
             &self,
@@ -262,8 +258,8 @@ extern_methods!(
         );
 
         #[cfg(all(
-            feature = "CloudKit_CKRecordID",
-            feature = "CloudKit_CKShareParticipant",
+            feature = "CKRecordID",
+            feature = "CKShareParticipant",
             feature = "block2"
         ))]
         #[method(fetchShareParticipantWithUserRecordID:completionHandler:)]
@@ -273,7 +269,7 @@ extern_methods!(
             completion_handler: &Block<dyn Fn(*mut CKShareParticipant, *mut NSError)>,
         );
 
-        #[cfg(all(feature = "CloudKit_CKShareMetadata", feature = "block2"))]
+        #[cfg(all(feature = "CKShareMetadata", feature = "block2"))]
         #[method(fetchShareMetadataWithURL:completionHandler:)]
         pub unsafe fn fetchShareMetadataWithURL_completionHandler(
             &self,
@@ -282,9 +278,9 @@ extern_methods!(
         );
 
         #[cfg(all(
-            feature = "CloudKit_CKRecord",
-            feature = "CloudKit_CKShare",
-            feature = "CloudKit_CKShareMetadata",
+            feature = "CKRecord",
+            feature = "CKShare",
+            feature = "CKShareMetadata",
             feature = "block2"
         ))]
         #[method(acceptShareMetadata:completionHandler:)]
@@ -299,14 +295,14 @@ extern_methods!(
 extern_methods!(
     /// CKLongLivedOperations
     unsafe impl CKContainer {
-        #[cfg(all(feature = "CloudKit_CKOperation", feature = "block2"))]
+        #[cfg(all(feature = "CKOperation", feature = "block2"))]
         #[method(fetchAllLongLivedOperationIDsWithCompletionHandler:)]
         pub unsafe fn fetchAllLongLivedOperationIDsWithCompletionHandler(
             &self,
             completion_handler: &Block<dyn Fn(*mut NSArray<CKOperationID>, *mut NSError)>,
         );
 
-        #[cfg(all(feature = "CloudKit_CKOperation", feature = "block2"))]
+        #[cfg(all(feature = "CKOperation", feature = "block2"))]
         #[method(fetchLongLivedOperationWithID:completionHandler:)]
         pub unsafe fn fetchLongLivedOperationWithID_completionHandler(
             &self,

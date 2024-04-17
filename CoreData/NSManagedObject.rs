@@ -43,21 +43,15 @@ extern_methods!(
         #[method(contextShouldIgnoreUnmodeledPropertyChanges)]
         pub unsafe fn contextShouldIgnoreUnmodeledPropertyChanges() -> bool;
 
-        #[cfg(feature = "CoreData_NSEntityDescription")]
+        #[cfg(feature = "NSEntityDescription")]
         #[method_id(@__retain_semantics Other entity)]
         pub unsafe fn entity_class() -> Id<NSEntityDescription>;
 
-        #[cfg(all(
-            feature = "CoreData_NSFetchRequest",
-            feature = "CoreData_NSPersistentStoreRequest"
-        ))]
+        #[cfg(all(feature = "NSFetchRequest", feature = "NSPersistentStoreRequest"))]
         #[method_id(@__retain_semantics Other fetchRequest)]
         pub unsafe fn fetchRequest() -> Id<NSFetchRequest>;
 
-        #[cfg(all(
-            feature = "CoreData_NSEntityDescription",
-            feature = "CoreData_NSManagedObjectContext"
-        ))]
+        #[cfg(all(feature = "NSEntityDescription", feature = "NSManagedObjectContext"))]
         #[method_id(@__retain_semantics Init initWithEntity:insertIntoManagedObjectContext:)]
         pub unsafe fn initWithEntity_insertIntoManagedObjectContext(
             this: Allocated<Self>,
@@ -65,22 +59,22 @@ extern_methods!(
             context: Option<&NSManagedObjectContext>,
         ) -> Id<NSManagedObject>;
 
-        #[cfg(feature = "CoreData_NSManagedObjectContext")]
+        #[cfg(feature = "NSManagedObjectContext")]
         #[method_id(@__retain_semantics Init initWithContext:)]
         pub unsafe fn initWithContext(
             this: Allocated<Self>,
             moc: &NSManagedObjectContext,
         ) -> Id<Self>;
 
-        #[cfg(feature = "CoreData_NSManagedObjectContext")]
+        #[cfg(feature = "NSManagedObjectContext")]
         #[method_id(@__retain_semantics Other managedObjectContext)]
         pub unsafe fn managedObjectContext(&self) -> Option<Id<NSManagedObjectContext>>;
 
-        #[cfg(feature = "CoreData_NSEntityDescription")]
+        #[cfg(feature = "NSEntityDescription")]
         #[method_id(@__retain_semantics Other entity)]
         pub unsafe fn entity(&self) -> Id<NSEntityDescription>;
 
-        #[cfg(feature = "CoreData_NSManagedObjectID")]
+        #[cfg(feature = "NSManagedObjectID")]
         #[method_id(@__retain_semantics Other objectID)]
         pub unsafe fn objectID(&self) -> Id<NSManagedObjectID>;
 
@@ -105,7 +99,7 @@ extern_methods!(
         #[method(hasFaultForRelationshipNamed:)]
         pub unsafe fn hasFaultForRelationshipNamed(&self, key: &NSString) -> bool;
 
-        #[cfg(feature = "CoreData_NSManagedObjectID")]
+        #[cfg(feature = "NSManagedObjectID")]
         #[method_id(@__retain_semantics Other objectIDsForRelationshipNamed:)]
         pub unsafe fn objectIDsForRelationshipNamed(
             &self,

@@ -12,10 +12,10 @@ pub type HKObserverQueryCompletionHandler = *mut Block<dyn Fn()>;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "HealthKit_HKQuery")]
+    #[cfg(feature = "HKQuery")]
     pub struct HKObserverQuery;
 
-    #[cfg(feature = "HealthKit_HKQuery")]
+    #[cfg(feature = "HKQuery")]
     unsafe impl ClassType for HKObserverQuery {
         #[inherits(NSObject)]
         type Super = HKQuery;
@@ -23,13 +23,13 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "HealthKit_HKQuery")]
+#[cfg(feature = "HKQuery")]
 unsafe impl NSObjectProtocol for HKObserverQuery {}
 
 extern_methods!(
-    #[cfg(feature = "HealthKit_HKQuery")]
+    #[cfg(feature = "HKQuery")]
     unsafe impl HKObserverQuery {
-        #[cfg(all(feature = "HealthKit_HKObjectType", feature = "block2"))]
+        #[cfg(all(feature = "HKObjectType", feature = "block2"))]
         #[method_id(@__retain_semantics Init initWithSampleType:predicate:updateHandler:)]
         pub unsafe fn initWithSampleType_predicate_updateHandler(
             this: Allocated<Self>,
@@ -41,8 +41,8 @@ extern_methods!(
         ) -> Id<Self>;
 
         #[cfg(all(
-            feature = "HealthKit_HKObjectType",
-            feature = "HealthKit_HKQueryDescriptor",
+            feature = "HKObjectType",
+            feature = "HKQueryDescriptor",
             feature = "block2"
         ))]
         #[method_id(@__retain_semantics Init initWithQueryDescriptors:updateHandler:)]
@@ -63,7 +63,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `HKQuery`
-    #[cfg(feature = "HealthKit_HKQuery")]
+    #[cfg(feature = "HKQuery")]
     unsafe impl HKObserverQuery {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -72,7 +72,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "HealthKit_HKQuery")]
+    #[cfg(feature = "HKQuery")]
     unsafe impl HKObserverQuery {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

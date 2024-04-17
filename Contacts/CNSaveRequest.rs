@@ -19,7 +19,7 @@ unsafe impl NSObjectProtocol for CNSaveRequest {}
 
 extern_methods!(
     unsafe impl CNSaveRequest {
-        #[cfg(all(feature = "Contacts_CNContact", feature = "Contacts_CNMutableContact"))]
+        #[cfg(all(feature = "CNContact", feature = "CNMutableContact"))]
         #[method(addContact:toContainerWithIdentifier:)]
         pub unsafe fn addContact_toContainerWithIdentifier(
             &self,
@@ -27,15 +27,15 @@ extern_methods!(
             identifier: Option<&NSString>,
         );
 
-        #[cfg(all(feature = "Contacts_CNContact", feature = "Contacts_CNMutableContact"))]
+        #[cfg(all(feature = "CNContact", feature = "CNMutableContact"))]
         #[method(updateContact:)]
         pub unsafe fn updateContact(&self, contact: &CNMutableContact);
 
-        #[cfg(all(feature = "Contacts_CNContact", feature = "Contacts_CNMutableContact"))]
+        #[cfg(all(feature = "CNContact", feature = "CNMutableContact"))]
         #[method(deleteContact:)]
         pub unsafe fn deleteContact(&self, contact: &CNMutableContact);
 
-        #[cfg(all(feature = "Contacts_CNGroup", feature = "Contacts_CNMutableGroup"))]
+        #[cfg(all(feature = "CNGroup", feature = "CNMutableGroup"))]
         #[method(addGroup:toContainerWithIdentifier:)]
         pub unsafe fn addGroup_toContainerWithIdentifier(
             &self,
@@ -43,27 +43,27 @@ extern_methods!(
             identifier: Option<&NSString>,
         );
 
-        #[cfg(all(feature = "Contacts_CNGroup", feature = "Contacts_CNMutableGroup"))]
+        #[cfg(all(feature = "CNGroup", feature = "CNMutableGroup"))]
         #[method(updateGroup:)]
         pub unsafe fn updateGroup(&self, group: &CNMutableGroup);
 
-        #[cfg(all(feature = "Contacts_CNGroup", feature = "Contacts_CNMutableGroup"))]
+        #[cfg(all(feature = "CNGroup", feature = "CNMutableGroup"))]
         #[method(deleteGroup:)]
         pub unsafe fn deleteGroup(&self, group: &CNMutableGroup);
 
-        #[cfg(feature = "Contacts_CNGroup")]
+        #[cfg(feature = "CNGroup")]
         #[method(addSubgroup:toGroup:)]
         pub unsafe fn addSubgroup_toGroup(&self, subgroup: &CNGroup, group: &CNGroup);
 
-        #[cfg(feature = "Contacts_CNGroup")]
+        #[cfg(feature = "CNGroup")]
         #[method(removeSubgroup:fromGroup:)]
         pub unsafe fn removeSubgroup_fromGroup(&self, subgroup: &CNGroup, group: &CNGroup);
 
-        #[cfg(all(feature = "Contacts_CNContact", feature = "Contacts_CNGroup"))]
+        #[cfg(all(feature = "CNContact", feature = "CNGroup"))]
         #[method(addMember:toGroup:)]
         pub unsafe fn addMember_toGroup(&self, contact: &CNContact, group: &CNGroup);
 
-        #[cfg(all(feature = "Contacts_CNContact", feature = "Contacts_CNGroup"))]
+        #[cfg(all(feature = "CNContact", feature = "CNGroup"))]
         #[method(removeMember:fromGroup:)]
         pub unsafe fn removeMember_fromGroup(&self, contact: &CNContact, group: &CNGroup);
 

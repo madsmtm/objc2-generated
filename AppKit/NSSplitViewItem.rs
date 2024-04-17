@@ -65,7 +65,7 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSAnimation")]
+#[cfg(feature = "NSAnimation")]
 unsafe impl NSAnimatablePropertyContainer for NSSplitViewItem {}
 
 unsafe impl NSCoding for NSSplitViewItem {}
@@ -74,33 +74,33 @@ unsafe impl NSObjectProtocol for NSSplitViewItem {}
 
 extern_methods!(
     unsafe impl NSSplitViewItem {
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
         #[method_id(@__retain_semantics Other splitViewItemWithViewController:)]
         pub unsafe fn splitViewItemWithViewController(
             view_controller: &NSViewController,
         ) -> Id<Self>;
 
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
         #[method_id(@__retain_semantics Other sidebarWithViewController:)]
         pub unsafe fn sidebarWithViewController(view_controller: &NSViewController) -> Id<Self>;
 
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
         #[method_id(@__retain_semantics Other contentListWithViewController:)]
         pub unsafe fn contentListWithViewController(view_controller: &NSViewController)
             -> Id<Self>;
 
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
         #[method_id(@__retain_semantics Other inspectorWithViewController:)]
         pub unsafe fn inspectorWithViewController(view_controller: &NSViewController) -> Id<Self>;
 
         #[method(behavior)]
         pub unsafe fn behavior(&self) -> NSSplitViewItemBehavior;
 
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
         #[method_id(@__retain_semantics Other viewController)]
         pub unsafe fn viewController(&self, mtm: MainThreadMarker) -> Id<NSViewController>;
 
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
         #[method(setViewController:)]
         pub unsafe fn setViewController(&self, view_controller: &NSViewController);
 
@@ -143,11 +143,11 @@ extern_methods!(
         #[method(setPreferredThicknessFraction:)]
         pub unsafe fn setPreferredThicknessFraction(&self, preferred_thickness_fraction: CGFloat);
 
-        #[cfg(feature = "AppKit_NSLayoutConstraint")]
+        #[cfg(feature = "NSLayoutConstraint")]
         #[method(holdingPriority)]
         pub unsafe fn holdingPriority(&self) -> NSLayoutPriority;
 
-        #[cfg(feature = "AppKit_NSLayoutConstraint")]
+        #[cfg(feature = "NSLayoutConstraint")]
         #[method(setHoldingPriority:)]
         pub unsafe fn setHoldingPriority(&self, holding_priority: NSLayoutPriority);
 
@@ -175,11 +175,11 @@ extern_methods!(
         #[method(setAllowsFullHeightLayout:)]
         pub unsafe fn setAllowsFullHeightLayout(&self, allows_full_height_layout: bool);
 
-        #[cfg(feature = "AppKit_NSWindow")]
+        #[cfg(feature = "NSWindow")]
         #[method(titlebarSeparatorStyle)]
         pub unsafe fn titlebarSeparatorStyle(&self) -> NSTitlebarSeparatorStyle;
 
-        #[cfg(feature = "AppKit_NSWindow")]
+        #[cfg(feature = "NSWindow")]
         #[method(setTitlebarSeparatorStyle:)]
         pub unsafe fn setTitlebarSeparatorStyle(
             &self,

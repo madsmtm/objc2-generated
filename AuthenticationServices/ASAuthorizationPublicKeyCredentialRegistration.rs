@@ -8,8 +8,8 @@ use crate::*;
 
 extern_protocol!(
     #[cfg(all(
-        feature = "AuthenticationServices_ASAuthorizationCredential",
-        feature = "AuthenticationServices_ASPublicKeyCredential"
+        feature = "ASAuthorizationCredential",
+        feature = "ASPublicKeyCredential"
     ))]
     pub unsafe trait ASAuthorizationPublicKeyCredentialRegistration:
         ASPublicKeyCredential
@@ -19,8 +19,8 @@ extern_protocol!(
     }
 
     #[cfg(all(
-        feature = "AuthenticationServices_ASAuthorizationCredential",
-        feature = "AuthenticationServices_ASPublicKeyCredential"
+        feature = "ASAuthorizationCredential",
+        feature = "ASPublicKeyCredential"
     ))]
     unsafe impl ProtocolType for dyn ASAuthorizationPublicKeyCredentialRegistration {}
 );

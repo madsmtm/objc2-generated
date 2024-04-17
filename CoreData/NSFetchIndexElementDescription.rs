@@ -42,7 +42,7 @@ unsafe impl NSObjectProtocol for NSFetchIndexElementDescription {}
 
 extern_methods!(
     unsafe impl NSFetchIndexElementDescription {
-        #[cfg(feature = "CoreData_NSPropertyDescription")]
+        #[cfg(feature = "NSPropertyDescription")]
         #[method_id(@__retain_semantics Init initWithProperty:collationType:)]
         pub unsafe fn initWithProperty_collationType(
             this: Allocated<Self>,
@@ -50,7 +50,7 @@ extern_methods!(
             collation_type: NSFetchIndexElementType,
         ) -> Id<Self>;
 
-        #[cfg(feature = "CoreData_NSPropertyDescription")]
+        #[cfg(feature = "NSPropertyDescription")]
         #[method_id(@__retain_semantics Other property)]
         pub unsafe fn property(&self) -> Option<Id<NSPropertyDescription>>;
 
@@ -69,7 +69,7 @@ extern_methods!(
         #[method(setAscending:)]
         pub unsafe fn setAscending(&self, ascending: bool);
 
-        #[cfg(feature = "CoreData_NSFetchIndexDescription")]
+        #[cfg(feature = "NSFetchIndexDescription")]
         #[method_id(@__retain_semantics Other indexDescription)]
         pub unsafe fn indexDescription(&self) -> Option<Id<NSFetchIndexDescription>>;
     }

@@ -15,18 +15,18 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "GameController_GCPhysicalInputElement")]
+#[cfg(feature = "GCPhysicalInputElement")]
 unsafe impl GCPhysicalInputElement for GCGearShifterElement {}
 
 unsafe impl NSObjectProtocol for GCGearShifterElement {}
 
 extern_methods!(
     unsafe impl GCGearShifterElement {
-        #[cfg(feature = "GameController_GCSwitchPositionInput")]
+        #[cfg(feature = "GCSwitchPositionInput")]
         #[method_id(@__retain_semantics Other patternInput)]
         pub unsafe fn patternInput(&self) -> Option<Id<ProtocolObject<dyn GCSwitchPositionInput>>>;
 
-        #[cfg(feature = "GameController_GCRelativeInput")]
+        #[cfg(feature = "GCRelativeInput")]
         #[method_id(@__retain_semantics Other sequentialInput)]
         pub unsafe fn sequentialInput(&self) -> Option<Id<ProtocolObject<dyn GCRelativeInput>>>;
     }

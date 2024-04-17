@@ -35,86 +35,65 @@ extern_methods!(
         #[method_id(@__retain_semantics Other timeStampEnd)]
         pub unsafe fn timeStampEnd(&self) -> Id<NSDate>;
 
-        #[cfg(all(feature = "MetricKit_MXCPUMetric", feature = "MetricKit_MXMetric"))]
+        #[cfg(all(feature = "MXCPUMetric", feature = "MXMetric"))]
         #[method_id(@__retain_semantics Other cpuMetrics)]
         pub unsafe fn cpuMetrics(&self) -> Option<Id<MXCPUMetric>>;
 
-        #[cfg(all(feature = "MetricKit_MXGPUMetric", feature = "MetricKit_MXMetric"))]
+        #[cfg(all(feature = "MXGPUMetric", feature = "MXMetric"))]
         #[method_id(@__retain_semantics Other gpuMetrics)]
         pub unsafe fn gpuMetrics(&self) -> Option<Id<MXGPUMetric>>;
 
-        #[cfg(all(
-            feature = "MetricKit_MXCellularConditionMetric",
-            feature = "MetricKit_MXMetric"
-        ))]
+        #[cfg(all(feature = "MXCellularConditionMetric", feature = "MXMetric"))]
         #[method_id(@__retain_semantics Other cellularConditionMetrics)]
         pub unsafe fn cellularConditionMetrics(&self) -> Option<Id<MXCellularConditionMetric>>;
 
-        #[cfg(all(
-            feature = "MetricKit_MXAppRunTimeMetric",
-            feature = "MetricKit_MXMetric"
-        ))]
+        #[cfg(all(feature = "MXAppRunTimeMetric", feature = "MXMetric"))]
         #[method_id(@__retain_semantics Other applicationTimeMetrics)]
         pub unsafe fn applicationTimeMetrics(&self) -> Option<Id<MXAppRunTimeMetric>>;
 
-        #[cfg(all(
-            feature = "MetricKit_MXLocationActivityMetric",
-            feature = "MetricKit_MXMetric"
-        ))]
+        #[cfg(all(feature = "MXLocationActivityMetric", feature = "MXMetric"))]
         #[method_id(@__retain_semantics Other locationActivityMetrics)]
         pub unsafe fn locationActivityMetrics(&self) -> Option<Id<MXLocationActivityMetric>>;
 
-        #[cfg(all(
-            feature = "MetricKit_MXMetric",
-            feature = "MetricKit_MXNetworkTransferMetric"
-        ))]
+        #[cfg(all(feature = "MXMetric", feature = "MXNetworkTransferMetric"))]
         #[method_id(@__retain_semantics Other networkTransferMetrics)]
         pub unsafe fn networkTransferMetrics(&self) -> Option<Id<MXNetworkTransferMetric>>;
 
-        #[cfg(all(
-            feature = "MetricKit_MXAppLaunchMetric",
-            feature = "MetricKit_MXMetric"
-        ))]
+        #[cfg(all(feature = "MXAppLaunchMetric", feature = "MXMetric"))]
         #[method_id(@__retain_semantics Other applicationLaunchMetrics)]
         pub unsafe fn applicationLaunchMetrics(&self) -> Option<Id<MXAppLaunchMetric>>;
 
-        #[cfg(all(
-            feature = "MetricKit_MXAppResponsivenessMetric",
-            feature = "MetricKit_MXMetric"
-        ))]
+        #[cfg(all(feature = "MXAppResponsivenessMetric", feature = "MXMetric"))]
         #[method_id(@__retain_semantics Other applicationResponsivenessMetrics)]
         pub unsafe fn applicationResponsivenessMetrics(
             &self,
         ) -> Option<Id<MXAppResponsivenessMetric>>;
 
-        #[cfg(all(feature = "MetricKit_MXDiskIOMetric", feature = "MetricKit_MXMetric"))]
+        #[cfg(all(feature = "MXDiskIOMetric", feature = "MXMetric"))]
         #[method_id(@__retain_semantics Other diskIOMetrics)]
         pub unsafe fn diskIOMetrics(&self) -> Option<Id<MXDiskIOMetric>>;
 
-        #[cfg(all(feature = "MetricKit_MXMemoryMetric", feature = "MetricKit_MXMetric"))]
+        #[cfg(all(feature = "MXMemoryMetric", feature = "MXMetric"))]
         #[method_id(@__retain_semantics Other memoryMetrics)]
         pub unsafe fn memoryMetrics(&self) -> Option<Id<MXMemoryMetric>>;
 
-        #[cfg(all(feature = "MetricKit_MXDisplayMetric", feature = "MetricKit_MXMetric"))]
+        #[cfg(all(feature = "MXDisplayMetric", feature = "MXMetric"))]
         #[method_id(@__retain_semantics Other displayMetrics)]
         pub unsafe fn displayMetrics(&self) -> Option<Id<MXDisplayMetric>>;
 
-        #[cfg(all(
-            feature = "MetricKit_MXAnimationMetric",
-            feature = "MetricKit_MXMetric"
-        ))]
+        #[cfg(all(feature = "MXAnimationMetric", feature = "MXMetric"))]
         #[method_id(@__retain_semantics Other animationMetrics)]
         pub unsafe fn animationMetrics(&self) -> Option<Id<MXAnimationMetric>>;
 
-        #[cfg(all(feature = "MetricKit_MXAppExitMetric", feature = "MetricKit_MXMetric"))]
+        #[cfg(all(feature = "MXAppExitMetric", feature = "MXMetric"))]
         #[method_id(@__retain_semantics Other applicationExitMetrics)]
         pub unsafe fn applicationExitMetrics(&self) -> Option<Id<MXAppExitMetric>>;
 
-        #[cfg(all(feature = "MetricKit_MXMetric", feature = "MetricKit_MXSignpostMetric"))]
+        #[cfg(all(feature = "MXMetric", feature = "MXSignpostMetric"))]
         #[method_id(@__retain_semantics Other signpostMetrics)]
         pub unsafe fn signpostMetrics(&self) -> Option<Id<NSArray<MXSignpostMetric>>>;
 
-        #[cfg(feature = "MetricKit_MXMetaData")]
+        #[cfg(feature = "MXMetaData")]
         #[method_id(@__retain_semantics Other metaData)]
         pub unsafe fn metaData(&self) -> Option<Id<MXMetaData>>;
 

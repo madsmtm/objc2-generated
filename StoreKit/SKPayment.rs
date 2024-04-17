@@ -23,7 +23,7 @@ unsafe impl NSObjectProtocol for SKPayment {}
 
 extern_methods!(
     unsafe impl SKPayment {
-        #[cfg(feature = "StoreKit_SKProduct")]
+        #[cfg(feature = "SKProduct")]
         #[method_id(@__retain_semantics Other paymentWithProduct:)]
         pub unsafe fn paymentWithProduct(product: &SKProduct) -> Id<Self>;
 
@@ -46,7 +46,7 @@ extern_methods!(
         #[method(simulatesAskToBuyInSandbox)]
         pub unsafe fn simulatesAskToBuyInSandbox(&self) -> bool;
 
-        #[cfg(feature = "StoreKit_SKPaymentDiscount")]
+        #[cfg(feature = "SKPaymentDiscount")]
         #[method_id(@__retain_semantics Other paymentDiscount)]
         pub unsafe fn paymentDiscount(&self) -> Option<Id<SKPaymentDiscount>>;
     }
@@ -88,11 +88,11 @@ extern_methods!(
         #[method(setApplicationUsername:)]
         pub unsafe fn setApplicationUsername(&self, application_username: Option<&NSString>);
 
-        #[cfg(feature = "StoreKit_SKPaymentDiscount")]
+        #[cfg(feature = "SKPaymentDiscount")]
         #[method_id(@__retain_semantics Other paymentDiscount)]
         pub unsafe fn paymentDiscount(&self) -> Option<Id<SKPaymentDiscount>>;
 
-        #[cfg(feature = "StoreKit_SKPaymentDiscount")]
+        #[cfg(feature = "SKPaymentDiscount")]
         #[method(setPaymentDiscount:)]
         pub unsafe fn setPaymentDiscount(&self, payment_discount: Option<&SKPaymentDiscount>);
 
@@ -125,7 +125,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `SKPayment`
     unsafe impl SKMutablePayment {
-        #[cfg(feature = "StoreKit_SKProduct")]
+        #[cfg(feature = "SKProduct")]
         #[method_id(@__retain_semantics Other paymentWithProduct:)]
         pub unsafe fn paymentWithProduct(product: &SKProduct) -> Id<Self>;
     }

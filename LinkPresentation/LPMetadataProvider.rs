@@ -21,7 +21,7 @@ unsafe impl NSObjectProtocol for LPMetadataProvider {}
 
 extern_methods!(
     unsafe impl LPMetadataProvider {
-        #[cfg(all(feature = "LinkPresentation_LPLinkMetadata", feature = "block2"))]
+        #[cfg(all(feature = "LPLinkMetadata", feature = "block2"))]
         #[method(startFetchingMetadataForURL:completionHandler:)]
         pub unsafe fn startFetchingMetadataForURL_completionHandler(
             &self,
@@ -29,7 +29,7 @@ extern_methods!(
             completion_handler: &Block<dyn Fn(*mut LPLinkMetadata, *mut NSError)>,
         );
 
-        #[cfg(all(feature = "LinkPresentation_LPLinkMetadata", feature = "block2"))]
+        #[cfg(all(feature = "LPLinkMetadata", feature = "block2"))]
         #[method(startFetchingMetadataForRequest:completionHandler:)]
         pub unsafe fn startFetchingMetadataForRequest_completionHandler(
             &self,

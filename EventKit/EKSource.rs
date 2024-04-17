@@ -7,10 +7,10 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "EventKit_EKObject")]
+    #[cfg(feature = "EKObject")]
     pub struct EKSource;
 
-    #[cfg(feature = "EventKit_EKObject")]
+    #[cfg(feature = "EKObject")]
     unsafe impl ClassType for EKSource {
         #[inherits(NSObject)]
         type Super = EKObject;
@@ -18,27 +18,27 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "EventKit_EKObject")]
+#[cfg(feature = "EKObject")]
 unsafe impl NSObjectProtocol for EKSource {}
 
 extern_methods!(
-    #[cfg(feature = "EventKit_EKObject")]
+    #[cfg(feature = "EKObject")]
     unsafe impl EKSource {
         #[method_id(@__retain_semantics Other sourceIdentifier)]
         pub unsafe fn sourceIdentifier(&self) -> Id<NSString>;
 
-        #[cfg(feature = "EventKit_EKTypes")]
+        #[cfg(feature = "EKTypes")]
         #[method(sourceType)]
         pub unsafe fn sourceType(&self) -> EKSourceType;
 
         #[method_id(@__retain_semantics Other title)]
         pub unsafe fn title(&self) -> Id<NSString>;
 
-        #[cfg(feature = "EventKit_EKCalendar")]
+        #[cfg(feature = "EKCalendar")]
         #[method_id(@__retain_semantics Other calendars)]
         pub unsafe fn calendars(&self) -> Id<NSSet<EKCalendar>>;
 
-        #[cfg(all(feature = "EventKit_EKCalendar", feature = "EventKit_EKTypes"))]
+        #[cfg(all(feature = "EKCalendar", feature = "EKTypes"))]
         #[method_id(@__retain_semantics Other calendarsForEntityType:)]
         pub unsafe fn calendarsForEntityType(
             &self,
@@ -52,7 +52,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "EventKit_EKObject")]
+    #[cfg(feature = "EKObject")]
     unsafe impl EKSource {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

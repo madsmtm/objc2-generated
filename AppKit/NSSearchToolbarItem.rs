@@ -7,10 +7,10 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSToolbarItem")]
+    #[cfg(feature = "NSToolbarItem")]
     pub struct NSSearchToolbarItem;
 
-    #[cfg(feature = "AppKit_NSToolbarItem")]
+    #[cfg(feature = "NSToolbarItem")]
     unsafe impl ClassType for NSSearchToolbarItem {
         #[inherits(NSObject)]
         type Super = NSToolbarItem;
@@ -18,40 +18,40 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSToolbarItem")]
+#[cfg(feature = "NSToolbarItem")]
 unsafe impl NSCopying for NSSearchToolbarItem {}
 
-#[cfg(feature = "AppKit_NSToolbarItem")]
+#[cfg(feature = "NSToolbarItem")]
 unsafe impl NSObjectProtocol for NSSearchToolbarItem {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSToolbarItem")]
+    #[cfg(feature = "NSToolbarItem")]
     unsafe impl NSSearchToolbarItem {
         #[cfg(all(
-            feature = "AppKit_NSControl",
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSSearchField",
-            feature = "AppKit_NSTextField",
-            feature = "AppKit_NSView"
+            feature = "NSControl",
+            feature = "NSResponder",
+            feature = "NSSearchField",
+            feature = "NSTextField",
+            feature = "NSView"
         ))]
         #[method_id(@__retain_semantics Other searchField)]
         pub unsafe fn searchField(&self) -> Id<NSSearchField>;
 
         #[cfg(all(
-            feature = "AppKit_NSControl",
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSSearchField",
-            feature = "AppKit_NSTextField",
-            feature = "AppKit_NSView"
+            feature = "NSControl",
+            feature = "NSResponder",
+            feature = "NSSearchField",
+            feature = "NSTextField",
+            feature = "NSView"
         ))]
         #[method(setSearchField:)]
         pub unsafe fn setSearchField(&self, search_field: &NSSearchField);
 
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[method_id(@__retain_semantics Other view)]
         pub unsafe fn view(&self) -> Option<Id<NSView>>;
 
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[method(setView:)]
         pub unsafe fn setView(&self, view: Option<&NSView>);
 
@@ -83,9 +83,9 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSToolbarItem`
-    #[cfg(feature = "AppKit_NSToolbarItem")]
+    #[cfg(feature = "NSToolbarItem")]
     unsafe impl NSSearchToolbarItem {
-        #[cfg(feature = "AppKit_NSToolbar")]
+        #[cfg(feature = "NSToolbar")]
         #[method_id(@__retain_semantics Init initWithItemIdentifier:)]
         pub unsafe fn initWithItemIdentifier(
             this: Allocated<Self>,
@@ -96,7 +96,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSToolbarItem")]
+    #[cfg(feature = "NSToolbarItem")]
     unsafe impl NSSearchToolbarItem {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

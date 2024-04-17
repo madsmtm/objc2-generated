@@ -7,12 +7,12 @@ use crate::*;
 
 extern_protocol!(
     pub unsafe trait AEAssessmentSessionDelegate: NSObjectProtocol {
-        #[cfg(feature = "AutomaticAssessmentConfiguration_AEAssessmentSession")]
+        #[cfg(feature = "AEAssessmentSession")]
         #[optional]
         #[method(assessmentSessionDidBegin:)]
         unsafe fn assessmentSessionDidBegin(&self, session: &AEAssessmentSession);
 
-        #[cfg(feature = "AutomaticAssessmentConfiguration_AEAssessmentSession")]
+        #[cfg(feature = "AEAssessmentSession")]
         #[optional]
         #[method(assessmentSession:failedToBeginWithError:)]
         unsafe fn assessmentSession_failedToBeginWithError(
@@ -21,7 +21,7 @@ extern_protocol!(
             error: &NSError,
         );
 
-        #[cfg(feature = "AutomaticAssessmentConfiguration_AEAssessmentSession")]
+        #[cfg(feature = "AEAssessmentSession")]
         #[optional]
         #[method(assessmentSession:wasInterruptedWithError:)]
         unsafe fn assessmentSession_wasInterruptedWithError(
@@ -30,20 +30,17 @@ extern_protocol!(
             error: &NSError,
         );
 
-        #[cfg(feature = "AutomaticAssessmentConfiguration_AEAssessmentSession")]
+        #[cfg(feature = "AEAssessmentSession")]
         #[optional]
         #[method(assessmentSessionDidEnd:)]
         unsafe fn assessmentSessionDidEnd(&self, session: &AEAssessmentSession);
 
-        #[cfg(feature = "AutomaticAssessmentConfiguration_AEAssessmentSession")]
+        #[cfg(feature = "AEAssessmentSession")]
         #[optional]
         #[method(assessmentSessionDidUpdate:)]
         unsafe fn assessmentSessionDidUpdate(&self, session: &AEAssessmentSession);
 
-        #[cfg(all(
-            feature = "AutomaticAssessmentConfiguration_AEAssessmentConfiguration",
-            feature = "AutomaticAssessmentConfiguration_AEAssessmentSession"
-        ))]
+        #[cfg(all(feature = "AEAssessmentConfiguration", feature = "AEAssessmentSession"))]
         #[optional]
         #[method(assessmentSession:failedToUpdateToConfiguration:error:)]
         unsafe fn assessmentSession_failedToUpdateToConfiguration_error(

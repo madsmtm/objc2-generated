@@ -9,10 +9,10 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSImageRep")]
+    #[cfg(feature = "NSImageRep")]
     pub struct NSCustomImageRep;
 
-    #[cfg(feature = "AppKit_NSImageRep")]
+    #[cfg(feature = "NSImageRep")]
     unsafe impl ClassType for NSCustomImageRep {
         #[inherits(NSObject)]
         type Super = NSImageRep;
@@ -20,17 +20,17 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSImageRep")]
+#[cfg(feature = "NSImageRep")]
 unsafe impl NSCoding for NSCustomImageRep {}
 
-#[cfg(feature = "AppKit_NSImageRep")]
+#[cfg(feature = "NSImageRep")]
 unsafe impl NSCopying for NSCustomImageRep {}
 
-#[cfg(feature = "AppKit_NSImageRep")]
+#[cfg(feature = "NSImageRep")]
 unsafe impl NSObjectProtocol for NSCustomImageRep {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSImageRep")]
+    #[cfg(feature = "NSImageRep")]
     unsafe impl NSCustomImageRep {
         #[cfg(feature = "block2")]
         #[method_id(@__retain_semantics Init initWithSize:flipped:drawingHandler:)]
@@ -62,7 +62,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSImageRep`
-    #[cfg(feature = "AppKit_NSImageRep")]
+    #[cfg(feature = "NSImageRep")]
     unsafe impl NSCustomImageRep {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -74,7 +74,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSImageRep")]
+    #[cfg(feature = "NSImageRep")]
     unsafe impl NSCustomImageRep {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

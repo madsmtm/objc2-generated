@@ -6,9 +6,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    #[cfg(all(feature = "AppKit_NSControl", feature = "AppKit_NSTextField"))]
+    #[cfg(all(feature = "NSControl", feature = "NSTextField"))]
     pub unsafe trait NSTokenFieldDelegate: NSTextFieldDelegate + IsMainThreadOnly {
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[optional]
         #[method_id(@__retain_semantics Other tokenField:completionsForSubstring:indexOfToken:indexOfSelectedItem:)]
         unsafe fn tokenField_completionsForSubstring_indexOfToken_indexOfSelectedItem(
@@ -19,7 +19,7 @@ extern_protocol!(
             selected_index: *mut NSInteger,
         ) -> Option<Id<NSArray>>;
 
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[optional]
         #[method_id(@__retain_semantics Other tokenField:shouldAddObjects:atIndex:)]
         unsafe fn tokenField_shouldAddObjects_atIndex(
@@ -29,7 +29,7 @@ extern_protocol!(
             index: NSUInteger,
         ) -> Id<NSArray>;
 
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[optional]
         #[method_id(@__retain_semantics Other tokenField:displayStringForRepresentedObject:)]
         unsafe fn tokenField_displayStringForRepresentedObject(
@@ -38,7 +38,7 @@ extern_protocol!(
             represented_object: &AnyObject,
         ) -> Option<Id<NSString>>;
 
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[optional]
         #[method_id(@__retain_semantics Other tokenField:editingStringForRepresentedObject:)]
         unsafe fn tokenField_editingStringForRepresentedObject(
@@ -47,7 +47,7 @@ extern_protocol!(
             represented_object: &AnyObject,
         ) -> Option<Id<NSString>>;
 
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[optional]
         #[method_id(@__retain_semantics Other tokenField:representedObjectForEditingString:)]
         unsafe fn tokenField_representedObjectForEditingString(
@@ -56,11 +56,7 @@ extern_protocol!(
             editing_string: &NSString,
         ) -> Option<Id<AnyObject>>;
 
-        #[cfg(all(
-            feature = "AppKit_NSPasteboard",
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSView"
-        ))]
+        #[cfg(all(feature = "NSPasteboard", feature = "NSResponder", feature = "NSView"))]
         #[optional]
         #[method(tokenField:writeRepresentedObjects:toPasteboard:)]
         unsafe fn tokenField_writeRepresentedObjects_toPasteboard(
@@ -70,11 +66,7 @@ extern_protocol!(
             pboard: &NSPasteboard,
         ) -> bool;
 
-        #[cfg(all(
-            feature = "AppKit_NSPasteboard",
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSView"
-        ))]
+        #[cfg(all(feature = "NSPasteboard", feature = "NSResponder", feature = "NSView"))]
         #[optional]
         #[method_id(@__retain_semantics Other tokenField:readFromPasteboard:)]
         unsafe fn tokenField_readFromPasteboard(
@@ -83,11 +75,7 @@ extern_protocol!(
             pboard: &NSPasteboard,
         ) -> Option<Id<NSArray>>;
 
-        #[cfg(all(
-            feature = "AppKit_NSMenu",
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSView"
-        ))]
+        #[cfg(all(feature = "NSMenu", feature = "NSResponder", feature = "NSView"))]
         #[optional]
         #[method_id(@__retain_semantics Other tokenField:menuForRepresentedObject:)]
         unsafe fn tokenField_menuForRepresentedObject(
@@ -96,7 +84,7 @@ extern_protocol!(
             represented_object: &AnyObject,
         ) -> Option<Id<NSMenu>>;
 
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[optional]
         #[method(tokenField:hasMenuForRepresentedObject:)]
         unsafe fn tokenField_hasMenuForRepresentedObject(
@@ -106,9 +94,9 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(all(
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSTokenFieldCell",
-            feature = "AppKit_NSView"
+            feature = "NSResponder",
+            feature = "NSTokenFieldCell",
+            feature = "NSView"
         ))]
         #[optional]
         #[method(tokenField:styleForRepresentedObject:)]
@@ -119,25 +107,25 @@ extern_protocol!(
         ) -> NSTokenStyle;
     }
 
-    #[cfg(all(feature = "AppKit_NSControl", feature = "AppKit_NSTextField"))]
+    #[cfg(all(feature = "NSControl", feature = "NSTextField"))]
     unsafe impl ProtocolType for dyn NSTokenFieldDelegate {}
 );
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(
-        feature = "AppKit_NSControl",
-        feature = "AppKit_NSResponder",
-        feature = "AppKit_NSTextField",
-        feature = "AppKit_NSView"
+        feature = "NSControl",
+        feature = "NSResponder",
+        feature = "NSTextField",
+        feature = "NSView"
     ))]
     pub struct NSTokenField;
 
     #[cfg(all(
-        feature = "AppKit_NSControl",
-        feature = "AppKit_NSResponder",
-        feature = "AppKit_NSTextField",
-        feature = "AppKit_NSView"
+        feature = "NSControl",
+        feature = "NSResponder",
+        feature = "NSTextField",
+        feature = "NSView"
     ))]
     unsafe impl ClassType for NSTokenField {
         #[inherits(NSControl, NSView, NSResponder, NSObject)]
@@ -147,117 +135,117 @@ extern_class!(
 );
 
 #[cfg(all(
-    feature = "AppKit_NSAccessibilityProtocols",
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSTextField",
-    feature = "AppKit_NSView"
+    feature = "NSAccessibilityProtocols",
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSTextField",
+    feature = "NSView"
 ))]
 unsafe impl NSAccessibility for NSTokenField {}
 
 #[cfg(all(
-    feature = "AppKit_NSAccessibilityProtocols",
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSTextField",
-    feature = "AppKit_NSView"
+    feature = "NSAccessibilityProtocols",
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSTextField",
+    feature = "NSView"
 ))]
 unsafe impl NSAccessibilityElementProtocol for NSTokenField {}
 
 #[cfg(all(
-    feature = "AppKit_NSAccessibilityProtocols",
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSTextField",
-    feature = "AppKit_NSView"
+    feature = "NSAccessibilityProtocols",
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSTextField",
+    feature = "NSView"
 ))]
 unsafe impl NSAccessibilityNavigableStaticText for NSTokenField {}
 
 #[cfg(all(
-    feature = "AppKit_NSAccessibilityProtocols",
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSTextField",
-    feature = "AppKit_NSView"
+    feature = "NSAccessibilityProtocols",
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSTextField",
+    feature = "NSView"
 ))]
 unsafe impl NSAccessibilityStaticText for NSTokenField {}
 
 #[cfg(all(
-    feature = "AppKit_NSAnimation",
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSTextField",
-    feature = "AppKit_NSView"
+    feature = "NSAnimation",
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSTextField",
+    feature = "NSView"
 ))]
 unsafe impl NSAnimatablePropertyContainer for NSTokenField {}
 
 #[cfg(all(
-    feature = "AppKit_NSAppearance",
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSTextField",
-    feature = "AppKit_NSView"
+    feature = "NSAppearance",
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSTextField",
+    feature = "NSView"
 ))]
 unsafe impl NSAppearanceCustomization for NSTokenField {}
 
 #[cfg(all(
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSTextField",
-    feature = "AppKit_NSView"
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSTextField",
+    feature = "NSView"
 ))]
 unsafe impl NSCoding for NSTokenField {}
 
 #[cfg(all(
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSDragging",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSTextField",
-    feature = "AppKit_NSView"
+    feature = "NSControl",
+    feature = "NSDragging",
+    feature = "NSResponder",
+    feature = "NSTextField",
+    feature = "NSView"
 ))]
 unsafe impl NSDraggingDestination for NSTokenField {}
 
 #[cfg(all(
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSTextField",
-    feature = "AppKit_NSView"
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSTextField",
+    feature = "NSView"
 ))]
 unsafe impl NSObjectProtocol for NSTokenField {}
 
 #[cfg(all(
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSTextContent",
-    feature = "AppKit_NSTextField",
-    feature = "AppKit_NSView"
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSTextContent",
+    feature = "NSTextField",
+    feature = "NSView"
 ))]
 unsafe impl NSTextContent for NSTokenField {}
 
 #[cfg(all(
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSTextField",
-    feature = "AppKit_NSUserInterfaceItemIdentification",
-    feature = "AppKit_NSView"
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSTextField",
+    feature = "NSUserInterfaceItemIdentification",
+    feature = "NSView"
 ))]
 unsafe impl NSUserInterfaceItemIdentification for NSTokenField {}
 
 #[cfg(all(
-    feature = "AppKit_NSControl",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSTextField",
-    feature = "AppKit_NSUserInterfaceValidation",
-    feature = "AppKit_NSView"
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSTextField",
+    feature = "NSUserInterfaceValidation",
+    feature = "NSView"
 ))]
 unsafe impl NSUserInterfaceValidations for NSTokenField {}
 
 extern_methods!(
     #[cfg(all(
-        feature = "AppKit_NSControl",
-        feature = "AppKit_NSResponder",
-        feature = "AppKit_NSTextField",
-        feature = "AppKit_NSView"
+        feature = "NSControl",
+        feature = "NSResponder",
+        feature = "NSTextField",
+        feature = "NSView"
     ))]
     unsafe impl NSTokenField {
         #[method_id(@__retain_semantics Other delegate)]
@@ -269,11 +257,11 @@ extern_methods!(
             delegate: Option<&ProtocolObject<dyn NSTokenFieldDelegate>>,
         );
 
-        #[cfg(feature = "AppKit_NSTokenFieldCell")]
+        #[cfg(feature = "NSTokenFieldCell")]
         #[method(tokenStyle)]
         pub unsafe fn tokenStyle(&self) -> NSTokenStyle;
 
-        #[cfg(feature = "AppKit_NSTokenFieldCell")]
+        #[cfg(feature = "NSTokenFieldCell")]
         #[method(setTokenStyle:)]
         pub unsafe fn setTokenStyle(&self, token_style: NSTokenStyle);
 
@@ -303,10 +291,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSControl`
     #[cfg(all(
-        feature = "AppKit_NSControl",
-        feature = "AppKit_NSResponder",
-        feature = "AppKit_NSTextField",
-        feature = "AppKit_NSView"
+        feature = "NSControl",
+        feature = "NSResponder",
+        feature = "NSTextField",
+        feature = "NSView"
     ))]
     unsafe impl NSTokenField {
         #[method_id(@__retain_semantics Init initWithFrame:)]
@@ -320,10 +308,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSResponder`
     #[cfg(all(
-        feature = "AppKit_NSControl",
-        feature = "AppKit_NSResponder",
-        feature = "AppKit_NSTextField",
-        feature = "AppKit_NSView"
+        feature = "NSControl",
+        feature = "NSResponder",
+        feature = "NSTextField",
+        feature = "NSView"
     ))]
     unsafe impl NSTokenField {
         #[method_id(@__retain_semantics Init init)]
@@ -334,10 +322,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(
-        feature = "AppKit_NSControl",
-        feature = "AppKit_NSResponder",
-        feature = "AppKit_NSTextField",
-        feature = "AppKit_NSView"
+        feature = "NSControl",
+        feature = "NSResponder",
+        feature = "NSTextField",
+        feature = "NSView"
     ))]
     unsafe impl NSTokenField {
         #[method_id(@__retain_semantics New new)]

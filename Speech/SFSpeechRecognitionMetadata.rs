@@ -37,7 +37,7 @@ extern_methods!(
         #[method(speechDuration)]
         pub unsafe fn speechDuration(&self) -> NSTimeInterval;
 
-        #[cfg(feature = "Speech_SFVoiceAnalytics")]
+        #[cfg(feature = "SFVoiceAnalytics")]
         #[method_id(@__retain_semantics Other voiceAnalytics)]
         pub unsafe fn voiceAnalytics(&self) -> Option<Id<SFVoiceAnalytics>>;
     }

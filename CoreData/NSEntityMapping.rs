@@ -82,22 +82,22 @@ extern_methods!(
             destination_entity_version_hash: Option<&NSData>,
         );
 
-        #[cfg(feature = "CoreData_NSPropertyMapping")]
+        #[cfg(feature = "NSPropertyMapping")]
         #[method_id(@__retain_semantics Other attributeMappings)]
         pub unsafe fn attributeMappings(&self) -> Option<Id<NSArray<NSPropertyMapping>>>;
 
-        #[cfg(feature = "CoreData_NSPropertyMapping")]
+        #[cfg(feature = "NSPropertyMapping")]
         #[method(setAttributeMappings:)]
         pub unsafe fn setAttributeMappings(
             &self,
             attribute_mappings: Option<&NSArray<NSPropertyMapping>>,
         );
 
-        #[cfg(feature = "CoreData_NSPropertyMapping")]
+        #[cfg(feature = "NSPropertyMapping")]
         #[method_id(@__retain_semantics Other relationshipMappings)]
         pub unsafe fn relationshipMappings(&self) -> Option<Id<NSArray<NSPropertyMapping>>>;
 
-        #[cfg(feature = "CoreData_NSPropertyMapping")]
+        #[cfg(feature = "NSPropertyMapping")]
         #[method(setRelationshipMappings:)]
         pub unsafe fn setRelationshipMappings(
             &self,

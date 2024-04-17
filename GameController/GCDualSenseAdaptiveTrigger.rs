@@ -99,16 +99,10 @@ unsafe impl RefEncode for GCDualSenseAdaptiveTriggerPositionalResistiveStrengths
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(
-        feature = "GameController_GCControllerButtonInput",
-        feature = "GameController_GCControllerElement"
-    ))]
+    #[cfg(all(feature = "GCControllerButtonInput", feature = "GCControllerElement"))]
     pub struct GCDualSenseAdaptiveTrigger;
 
-    #[cfg(all(
-        feature = "GameController_GCControllerButtonInput",
-        feature = "GameController_GCControllerElement"
-    ))]
+    #[cfg(all(feature = "GCControllerButtonInput", feature = "GCControllerElement"))]
     unsafe impl ClassType for GCDualSenseAdaptiveTrigger {
         #[inherits(GCControllerElement, NSObject)]
         type Super = GCControllerButtonInput;
@@ -116,17 +110,11 @@ extern_class!(
     }
 );
 
-#[cfg(all(
-    feature = "GameController_GCControllerButtonInput",
-    feature = "GameController_GCControllerElement"
-))]
+#[cfg(all(feature = "GCControllerButtonInput", feature = "GCControllerElement"))]
 unsafe impl NSObjectProtocol for GCDualSenseAdaptiveTrigger {}
 
 extern_methods!(
-    #[cfg(all(
-        feature = "GameController_GCControllerButtonInput",
-        feature = "GameController_GCControllerElement"
-    ))]
+    #[cfg(all(feature = "GCControllerButtonInput", feature = "GCControllerElement"))]
     unsafe impl GCDualSenseAdaptiveTrigger {
         #[method(mode)]
         pub unsafe fn mode(&self) -> GCDualSenseAdaptiveTriggerMode;
@@ -189,10 +177,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(all(
-        feature = "GameController_GCControllerButtonInput",
-        feature = "GameController_GCControllerElement"
-    ))]
+    #[cfg(all(feature = "GCControllerButtonInput", feature = "GCControllerElement"))]
     unsafe impl GCDualSenseAdaptiveTrigger {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

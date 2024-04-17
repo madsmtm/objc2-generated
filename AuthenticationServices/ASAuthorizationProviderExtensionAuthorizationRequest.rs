@@ -78,9 +78,7 @@ extern_methods!(
             http_body: Option<&NSData>,
         );
 
-        #[cfg(
-            feature = "AuthenticationServices_ASAuthorizationProviderExtensionAuthorizationResult"
-        )]
+        #[cfg(feature = "ASAuthorizationProviderExtensionAuthorizationResult")]
         #[method(completeWithAuthorizationResult:)]
         pub unsafe fn completeWithAuthorizationResult(
             &self,
@@ -138,7 +136,7 @@ extern_methods!(
         #[method(isUserInterfaceEnabled)]
         pub unsafe fn isUserInterfaceEnabled(&self) -> bool;
 
-        #[cfg(feature = "AuthenticationServices_ASAuthorizationProviderExtensionLoginManager")]
+        #[cfg(feature = "ASAuthorizationProviderExtensionLoginManager")]
         #[method_id(@__retain_semantics Other loginManager)]
         pub unsafe fn loginManager(
             &self,

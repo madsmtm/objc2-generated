@@ -81,7 +81,7 @@ extern_methods!(
             record_type: &CKRecordType,
         ) -> Id<Self>;
 
-        #[cfg(feature = "CloudKit_CKRecordID")]
+        #[cfg(feature = "CKRecordID")]
         #[method_id(@__retain_semantics Init initWithRecordType:recordID:)]
         pub unsafe fn initWithRecordType_recordID(
             this: Allocated<Self>,
@@ -89,7 +89,7 @@ extern_methods!(
             record_id: &CKRecordID,
         ) -> Id<Self>;
 
-        #[cfg(feature = "CloudKit_CKRecordZoneID")]
+        #[cfg(feature = "CKRecordZoneID")]
         #[method_id(@__retain_semantics Init initWithRecordType:zoneID:)]
         pub unsafe fn initWithRecordType_zoneID(
             this: Allocated<Self>,
@@ -100,21 +100,21 @@ extern_methods!(
         #[method_id(@__retain_semantics Other recordType)]
         pub unsafe fn recordType(&self) -> Id<CKRecordType>;
 
-        #[cfg(feature = "CloudKit_CKRecordID")]
+        #[cfg(feature = "CKRecordID")]
         #[method_id(@__retain_semantics Other recordID)]
         pub unsafe fn recordID(&self) -> Id<CKRecordID>;
 
         #[method_id(@__retain_semantics Other recordChangeTag)]
         pub unsafe fn recordChangeTag(&self) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "CloudKit_CKRecordID")]
+        #[cfg(feature = "CKRecordID")]
         #[method_id(@__retain_semantics Other creatorUserRecordID)]
         pub unsafe fn creatorUserRecordID(&self) -> Option<Id<CKRecordID>>;
 
         #[method_id(@__retain_semantics Other creationDate)]
         pub unsafe fn creationDate(&self) -> Option<Id<NSDate>>;
 
-        #[cfg(feature = "CloudKit_CKRecordID")]
+        #[cfg(feature = "CKRecordID")]
         #[method_id(@__retain_semantics Other lastModifiedUserRecordID)]
         pub unsafe fn lastModifiedUserRecordID(&self) -> Option<Id<CKRecordID>>;
 
@@ -159,22 +159,22 @@ extern_methods!(
         #[method(encodeSystemFieldsWithCoder:)]
         pub unsafe fn encodeSystemFieldsWithCoder(&self, coder: &NSCoder);
 
-        #[cfg(feature = "CloudKit_CKReference")]
+        #[cfg(feature = "CKReference")]
         #[method_id(@__retain_semantics Other share)]
         pub unsafe fn share(&self) -> Option<Id<CKReference>>;
 
-        #[cfg(feature = "CloudKit_CKReference")]
+        #[cfg(feature = "CKReference")]
         #[method_id(@__retain_semantics Other parent)]
         pub unsafe fn parent(&self) -> Option<Id<CKReference>>;
 
-        #[cfg(feature = "CloudKit_CKReference")]
+        #[cfg(feature = "CKReference")]
         #[method(setParent:)]
         pub unsafe fn setParent(&self, parent: Option<&CKReference>);
 
         #[method(setParentReferenceFromRecord:)]
         pub unsafe fn setParentReferenceFromRecord(&self, parent_record: Option<&CKRecord>);
 
-        #[cfg(feature = "CloudKit_CKRecordID")]
+        #[cfg(feature = "CKRecordID")]
         #[method(setParentReferenceFromRecordID:)]
         pub unsafe fn setParentReferenceFromRecordID(&self, parent_record_id: Option<&CKRecordID>);
     }
@@ -192,20 +192,20 @@ unsafe impl CKRecordValue for NSData {}
 
 extern_methods!(
     /// CKRecordValue
-    #[cfg(feature = "CloudKit_CKReference")]
+    #[cfg(feature = "CKReference")]
     unsafe impl CKReference {}
 );
 
-#[cfg(feature = "CloudKit_CKReference")]
+#[cfg(feature = "CKReference")]
 unsafe impl CKRecordValue for CKReference {}
 
 extern_methods!(
     /// CKRecordValue
-    #[cfg(feature = "CloudKit_CKAsset")]
+    #[cfg(feature = "CKAsset")]
     unsafe impl CKAsset {}
 );
 
-#[cfg(feature = "CloudKit_CKAsset")]
+#[cfg(feature = "CKAsset")]
 unsafe impl CKRecordValue for CKAsset {}
 
 #[cfg(feature = "objc2-core-location")]

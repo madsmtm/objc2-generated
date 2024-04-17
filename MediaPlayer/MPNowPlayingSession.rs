@@ -71,11 +71,11 @@ extern_methods!(
             automatically_publishes_now_playing_info: bool,
         );
 
-        #[cfg(feature = "MediaPlayer_MPNowPlayingInfoCenter")]
+        #[cfg(feature = "MPNowPlayingInfoCenter")]
         #[method_id(@__retain_semantics Other nowPlayingInfoCenter)]
         pub unsafe fn nowPlayingInfoCenter(&self) -> Id<MPNowPlayingInfoCenter>;
 
-        #[cfg(feature = "MediaPlayer_MPRemoteCommandCenter")]
+        #[cfg(feature = "MPRemoteCommandCenter")]
         #[method_id(@__retain_semantics Other remoteCommandCenter)]
         pub unsafe fn remoteCommandCenter(&self) -> Id<MPRemoteCommandCenter>;
 

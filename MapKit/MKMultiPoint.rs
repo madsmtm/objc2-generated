@@ -9,10 +9,10 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MapKit_MKShape")]
+    #[cfg(feature = "MKShape")]
     pub struct MKMultiPoint;
 
-    #[cfg(feature = "MapKit_MKShape")]
+    #[cfg(feature = "MKShape")]
     unsafe impl ClassType for MKMultiPoint {
         #[inherits(NSObject)]
         type Super = MKShape;
@@ -20,16 +20,16 @@ extern_class!(
     }
 );
 
-#[cfg(all(feature = "MapKit_MKAnnotation", feature = "MapKit_MKShape"))]
+#[cfg(all(feature = "MKAnnotation", feature = "MKShape"))]
 unsafe impl MKAnnotation for MKMultiPoint {}
 
-#[cfg(feature = "MapKit_MKShape")]
+#[cfg(feature = "MKShape")]
 unsafe impl NSObjectProtocol for MKMultiPoint {}
 
 extern_methods!(
-    #[cfg(feature = "MapKit_MKShape")]
+    #[cfg(feature = "MKShape")]
     unsafe impl MKMultiPoint {
-        #[cfg(feature = "MapKit_MKGeometry")]
+        #[cfg(feature = "MKGeometry")]
         #[method(points)]
         pub unsafe fn points(&self) -> NonNull<MKMapPoint>;
 
@@ -55,7 +55,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MapKit_MKShape")]
+    #[cfg(feature = "MKShape")]
     unsafe impl MKMultiPoint {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

@@ -90,11 +90,11 @@ extern_methods!(
         #[method(setPreferredFrameLatency:)]
         pub unsafe fn setPreferredFrameLatency(&self, preferred_frame_latency: c_float);
 
-        #[cfg(feature = "QuartzCore_CAFrameRateRange")]
+        #[cfg(feature = "CAFrameRateRange")]
         #[method(preferredFrameRateRange)]
         pub unsafe fn preferredFrameRateRange(&self) -> CAFrameRateRange;
 
-        #[cfg(feature = "QuartzCore_CAFrameRateRange")]
+        #[cfg(feature = "CAFrameRateRange")]
         #[method(setPreferredFrameRateRange:)]
         pub unsafe fn setPreferredFrameRateRange(
             &self,

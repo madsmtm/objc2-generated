@@ -25,57 +25,57 @@ unsafe impl NSObjectProtocol for MKMapSnapshotOptions {}
 
 extern_methods!(
     unsafe impl MKMapSnapshotOptions {
-        #[cfg(feature = "MapKit_MKMapConfiguration")]
+        #[cfg(feature = "MKMapConfiguration")]
         #[method_id(@__retain_semantics Other preferredConfiguration)]
         pub unsafe fn preferredConfiguration(&self) -> Id<MKMapConfiguration>;
 
-        #[cfg(feature = "MapKit_MKMapConfiguration")]
+        #[cfg(feature = "MKMapConfiguration")]
         #[method(setPreferredConfiguration:)]
         pub unsafe fn setPreferredConfiguration(
             &self,
             preferred_configuration: &MKMapConfiguration,
         );
 
-        #[cfg(feature = "MapKit_MKMapCamera")]
+        #[cfg(feature = "MKMapCamera")]
         #[method_id(@__retain_semantics Other camera)]
         pub unsafe fn camera(&self) -> Id<MKMapCamera>;
 
-        #[cfg(feature = "MapKit_MKMapCamera")]
+        #[cfg(feature = "MKMapCamera")]
         #[method(setCamera:)]
         pub unsafe fn setCamera(&self, camera: &MKMapCamera);
 
-        #[cfg(feature = "MapKit_MKGeometry")]
+        #[cfg(feature = "MKGeometry")]
         #[method(mapRect)]
         pub unsafe fn mapRect(&self) -> MKMapRect;
 
-        #[cfg(feature = "MapKit_MKGeometry")]
+        #[cfg(feature = "MKGeometry")]
         #[method(setMapRect:)]
         pub unsafe fn setMapRect(&self, map_rect: MKMapRect);
 
-        #[cfg(all(feature = "MapKit_MKGeometry", feature = "objc2-core-location"))]
+        #[cfg(all(feature = "MKGeometry", feature = "objc2-core-location"))]
         #[method(region)]
         pub unsafe fn region(&self) -> MKCoordinateRegion;
 
-        #[cfg(all(feature = "MapKit_MKGeometry", feature = "objc2-core-location"))]
+        #[cfg(all(feature = "MKGeometry", feature = "objc2-core-location"))]
         #[method(setRegion:)]
         pub unsafe fn setRegion(&self, region: MKCoordinateRegion);
 
-        #[cfg(feature = "MapKit_MKTypes")]
+        #[cfg(feature = "MKTypes")]
         #[deprecated = "Use preferredConfiguration"]
         #[method(mapType)]
         pub unsafe fn mapType(&self) -> MKMapType;
 
-        #[cfg(feature = "MapKit_MKTypes")]
+        #[cfg(feature = "MKTypes")]
         #[deprecated = "Use preferredConfiguration"]
         #[method(setMapType:)]
         pub unsafe fn setMapType(&self, map_type: MKMapType);
 
-        #[cfg(feature = "MapKit_MKPointOfInterestFilter")]
+        #[cfg(feature = "MKPointOfInterestFilter")]
         #[deprecated = "Use preferredConfiguration"]
         #[method_id(@__retain_semantics Other pointOfInterestFilter)]
         pub unsafe fn pointOfInterestFilter(&self) -> Option<Id<MKPointOfInterestFilter>>;
 
-        #[cfg(feature = "MapKit_MKPointOfInterestFilter")]
+        #[cfg(feature = "MKPointOfInterestFilter")]
         #[deprecated = "Use preferredConfiguration"]
         #[method(setPointOfInterestFilter:)]
         pub unsafe fn setPointOfInterestFilter(

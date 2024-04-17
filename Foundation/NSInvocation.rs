@@ -18,11 +18,11 @@ unsafe impl NSObjectProtocol for NSInvocation {}
 
 extern_methods!(
     unsafe impl NSInvocation {
-        #[cfg(feature = "Foundation_NSMethodSignature")]
+        #[cfg(feature = "NSMethodSignature")]
         #[method_id(@__retain_semantics Other invocationWithMethodSignature:)]
         pub unsafe fn invocationWithMethodSignature(sig: &NSMethodSignature) -> Id<NSInvocation>;
 
-        #[cfg(feature = "Foundation_NSMethodSignature")]
+        #[cfg(feature = "NSMethodSignature")]
         #[method_id(@__retain_semantics Other methodSignature)]
         pub unsafe fn methodSignature(&self) -> Id<NSMethodSignature>;
 

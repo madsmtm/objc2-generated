@@ -25,24 +25,21 @@ unsafe impl NSObjectProtocol for NSEntityDescription {}
 
 extern_methods!(
     unsafe impl NSEntityDescription {
-        #[cfg(feature = "CoreData_NSManagedObjectContext")]
+        #[cfg(feature = "NSManagedObjectContext")]
         #[method_id(@__retain_semantics Other entityForName:inManagedObjectContext:)]
         pub unsafe fn entityForName_inManagedObjectContext(
             entity_name: &NSString,
             context: &NSManagedObjectContext,
         ) -> Option<Id<NSEntityDescription>>;
 
-        #[cfg(all(
-            feature = "CoreData_NSManagedObject",
-            feature = "CoreData_NSManagedObjectContext"
-        ))]
+        #[cfg(all(feature = "NSManagedObject", feature = "NSManagedObjectContext"))]
         #[method_id(@__retain_semantics Other insertNewObjectForEntityForName:inManagedObjectContext:)]
         pub unsafe fn insertNewObjectForEntityForName_inManagedObjectContext(
             entity_name: &NSString,
             context: &NSManagedObjectContext,
         ) -> Id<NSManagedObject>;
 
-        #[cfg(feature = "CoreData_NSManagedObjectModel")]
+        #[cfg(feature = "NSManagedObjectModel")]
         #[method_id(@__retain_semantics Other managedObjectModel)]
         pub unsafe fn managedObjectModel(&self) -> Id<NSManagedObjectModel>;
 
@@ -79,15 +76,15 @@ extern_methods!(
         #[method_id(@__retain_semantics Other superentity)]
         pub unsafe fn superentity(&self) -> Option<Id<NSEntityDescription>>;
 
-        #[cfg(feature = "CoreData_NSPropertyDescription")]
+        #[cfg(feature = "NSPropertyDescription")]
         #[method_id(@__retain_semantics Other propertiesByName)]
         pub unsafe fn propertiesByName(&self) -> Id<NSDictionary<NSString, NSPropertyDescription>>;
 
-        #[cfg(feature = "CoreData_NSPropertyDescription")]
+        #[cfg(feature = "NSPropertyDescription")]
         #[method_id(@__retain_semantics Other properties)]
         pub unsafe fn properties(&self) -> Id<NSArray<NSPropertyDescription>>;
 
-        #[cfg(feature = "CoreData_NSPropertyDescription")]
+        #[cfg(feature = "NSPropertyDescription")]
         #[method(setProperties:)]
         pub unsafe fn setProperties(&self, properties: &NSArray<NSPropertyDescription>);
 
@@ -97,17 +94,14 @@ extern_methods!(
         #[method(setUserInfo:)]
         pub unsafe fn setUserInfo(&self, user_info: Option<&NSDictionary>);
 
-        #[cfg(all(
-            feature = "CoreData_NSAttributeDescription",
-            feature = "CoreData_NSPropertyDescription"
-        ))]
+        #[cfg(all(feature = "NSAttributeDescription", feature = "NSPropertyDescription"))]
         #[method_id(@__retain_semantics Other attributesByName)]
         pub unsafe fn attributesByName(&self)
             -> Id<NSDictionary<NSString, NSAttributeDescription>>;
 
         #[cfg(all(
-            feature = "CoreData_NSPropertyDescription",
-            feature = "CoreData_NSRelationshipDescription"
+            feature = "NSPropertyDescription",
+            feature = "NSRelationshipDescription"
         ))]
         #[method_id(@__retain_semantics Other relationshipsByName)]
         pub unsafe fn relationshipsByName(
@@ -115,8 +109,8 @@ extern_methods!(
         ) -> Id<NSDictionary<NSString, NSRelationshipDescription>>;
 
         #[cfg(all(
-            feature = "CoreData_NSPropertyDescription",
-            feature = "CoreData_NSRelationshipDescription"
+            feature = "NSPropertyDescription",
+            feature = "NSRelationshipDescription"
         ))]
         #[method_id(@__retain_semantics Other relationshipsWithDestinationEntity:)]
         pub unsafe fn relationshipsWithDestinationEntity(
@@ -142,11 +136,11 @@ extern_methods!(
         #[method(setRenamingIdentifier:)]
         pub unsafe fn setRenamingIdentifier(&self, renaming_identifier: Option<&NSString>);
 
-        #[cfg(feature = "CoreData_NSFetchIndexDescription")]
+        #[cfg(feature = "NSFetchIndexDescription")]
         #[method_id(@__retain_semantics Other indexes)]
         pub unsafe fn indexes(&self) -> Id<NSArray<NSFetchIndexDescription>>;
 
-        #[cfg(feature = "CoreData_NSFetchIndexDescription")]
+        #[cfg(feature = "NSFetchIndexDescription")]
         #[method(setIndexes:)]
         pub unsafe fn setIndexes(&self, indexes: &NSArray<NSFetchIndexDescription>);
 

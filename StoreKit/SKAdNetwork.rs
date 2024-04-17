@@ -36,14 +36,14 @@ unsafe impl NSObjectProtocol for SKAdNetwork {}
 
 extern_methods!(
     unsafe impl SKAdNetwork {
-        #[cfg(all(feature = "StoreKit_SKAdImpression", feature = "block2"))]
+        #[cfg(all(feature = "SKAdImpression", feature = "block2"))]
         #[method(startImpression:completionHandler:)]
         pub unsafe fn startImpression_completionHandler(
             impression: &SKAdImpression,
             completion: Option<&Block<dyn Fn(*mut NSError)>>,
         );
 
-        #[cfg(all(feature = "StoreKit_SKAdImpression", feature = "block2"))]
+        #[cfg(all(feature = "SKAdImpression", feature = "block2"))]
         #[method(endImpression:completionHandler:)]
         pub unsafe fn endImpression_completionHandler(
             impression: &SKAdImpression,

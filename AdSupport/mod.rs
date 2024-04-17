@@ -16,9 +16,9 @@
 #[link(name = "AdSupport", kind = "framework")]
 extern "C" {}
 
-#[cfg(feature = "AdSupport_ASIdentifierManager")]
+#[cfg(feature = "ASIdentifierManager")]
 #[path = "ASIdentifierManager.rs"]
 mod __ASIdentifierManager;
 
-#[cfg(feature = "AdSupport_ASIdentifierManager")]
+#[cfg(feature = "ASIdentifierManager")]
 pub use self::__ASIdentifierManager::ASIdentifierManager;

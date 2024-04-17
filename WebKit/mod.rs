@@ -16,2100 +16,2100 @@
 #[link(name = "WebKit", kind = "framework")]
 extern "C" {}
 
-#[cfg(feature = "WebKit_DOM")]
+#[cfg(feature = "DOM")]
 #[path = "DOM.rs"]
 mod __DOM;
-#[cfg(feature = "WebKit_DOMAbstractView")]
+#[cfg(feature = "DOMAbstractView")]
 #[path = "DOMAbstractView.rs"]
 mod __DOMAbstractView;
-#[cfg(feature = "WebKit_DOMAttr")]
+#[cfg(feature = "DOMAttr")]
 #[path = "DOMAttr.rs"]
 mod __DOMAttr;
-#[cfg(feature = "WebKit_DOMBlob")]
+#[cfg(feature = "DOMBlob")]
 #[path = "DOMBlob.rs"]
 mod __DOMBlob;
-#[cfg(feature = "WebKit_DOMCDATASection")]
+#[cfg(feature = "DOMCDATASection")]
 #[path = "DOMCDATASection.rs"]
 mod __DOMCDATASection;
-#[cfg(feature = "WebKit_DOMCSS")]
+#[cfg(feature = "DOMCSS")]
 #[path = "DOMCSS.rs"]
 mod __DOMCSS;
-#[cfg(feature = "WebKit_DOMCSSCharsetRule")]
+#[cfg(feature = "DOMCSSCharsetRule")]
 #[path = "DOMCSSCharsetRule.rs"]
 mod __DOMCSSCharsetRule;
-#[cfg(feature = "WebKit_DOMCSSFontFaceRule")]
+#[cfg(feature = "DOMCSSFontFaceRule")]
 #[path = "DOMCSSFontFaceRule.rs"]
 mod __DOMCSSFontFaceRule;
-#[cfg(feature = "WebKit_DOMCSSImportRule")]
+#[cfg(feature = "DOMCSSImportRule")]
 #[path = "DOMCSSImportRule.rs"]
 mod __DOMCSSImportRule;
-#[cfg(feature = "WebKit_DOMCSSMediaRule")]
+#[cfg(feature = "DOMCSSMediaRule")]
 #[path = "DOMCSSMediaRule.rs"]
 mod __DOMCSSMediaRule;
-#[cfg(feature = "WebKit_DOMCSSPageRule")]
+#[cfg(feature = "DOMCSSPageRule")]
 #[path = "DOMCSSPageRule.rs"]
 mod __DOMCSSPageRule;
-#[cfg(feature = "WebKit_DOMCSSPrimitiveValue")]
+#[cfg(feature = "DOMCSSPrimitiveValue")]
 #[path = "DOMCSSPrimitiveValue.rs"]
 mod __DOMCSSPrimitiveValue;
-#[cfg(feature = "WebKit_DOMCSSRule")]
+#[cfg(feature = "DOMCSSRule")]
 #[path = "DOMCSSRule.rs"]
 mod __DOMCSSRule;
-#[cfg(feature = "WebKit_DOMCSSRuleList")]
+#[cfg(feature = "DOMCSSRuleList")]
 #[path = "DOMCSSRuleList.rs"]
 mod __DOMCSSRuleList;
-#[cfg(feature = "WebKit_DOMCSSStyleDeclaration")]
+#[cfg(feature = "DOMCSSStyleDeclaration")]
 #[path = "DOMCSSStyleDeclaration.rs"]
 mod __DOMCSSStyleDeclaration;
-#[cfg(feature = "WebKit_DOMCSSStyleRule")]
+#[cfg(feature = "DOMCSSStyleRule")]
 #[path = "DOMCSSStyleRule.rs"]
 mod __DOMCSSStyleRule;
-#[cfg(feature = "WebKit_DOMCSSStyleSheet")]
+#[cfg(feature = "DOMCSSStyleSheet")]
 #[path = "DOMCSSStyleSheet.rs"]
 mod __DOMCSSStyleSheet;
-#[cfg(feature = "WebKit_DOMCSSUnknownRule")]
+#[cfg(feature = "DOMCSSUnknownRule")]
 #[path = "DOMCSSUnknownRule.rs"]
 mod __DOMCSSUnknownRule;
-#[cfg(feature = "WebKit_DOMCSSValue")]
+#[cfg(feature = "DOMCSSValue")]
 #[path = "DOMCSSValue.rs"]
 mod __DOMCSSValue;
-#[cfg(feature = "WebKit_DOMCSSValueList")]
+#[cfg(feature = "DOMCSSValueList")]
 #[path = "DOMCSSValueList.rs"]
 mod __DOMCSSValueList;
-#[cfg(feature = "WebKit_DOMCharacterData")]
+#[cfg(feature = "DOMCharacterData")]
 #[path = "DOMCharacterData.rs"]
 mod __DOMCharacterData;
-#[cfg(feature = "WebKit_DOMComment")]
+#[cfg(feature = "DOMComment")]
 #[path = "DOMComment.rs"]
 mod __DOMComment;
-#[cfg(feature = "WebKit_DOMCore")]
+#[cfg(feature = "DOMCore")]
 #[path = "DOMCore.rs"]
 mod __DOMCore;
-#[cfg(feature = "WebKit_DOMCounter")]
+#[cfg(feature = "DOMCounter")]
 #[path = "DOMCounter.rs"]
 mod __DOMCounter;
-#[cfg(feature = "WebKit_DOMDocument")]
+#[cfg(feature = "DOMDocument")]
 #[path = "DOMDocument.rs"]
 mod __DOMDocument;
-#[cfg(feature = "WebKit_DOMDocumentFragment")]
+#[cfg(feature = "DOMDocumentFragment")]
 #[path = "DOMDocumentFragment.rs"]
 mod __DOMDocumentFragment;
-#[cfg(feature = "WebKit_DOMDocumentType")]
+#[cfg(feature = "DOMDocumentType")]
 #[path = "DOMDocumentType.rs"]
 mod __DOMDocumentType;
-#[cfg(feature = "WebKit_DOMElement")]
+#[cfg(feature = "DOMElement")]
 #[path = "DOMElement.rs"]
 mod __DOMElement;
-#[cfg(feature = "WebKit_DOMEntity")]
+#[cfg(feature = "DOMEntity")]
 #[path = "DOMEntity.rs"]
 mod __DOMEntity;
-#[cfg(feature = "WebKit_DOMEntityReference")]
+#[cfg(feature = "DOMEntityReference")]
 #[path = "DOMEntityReference.rs"]
 mod __DOMEntityReference;
-#[cfg(feature = "WebKit_DOMEvent")]
+#[cfg(feature = "DOMEvent")]
 #[path = "DOMEvent.rs"]
 mod __DOMEvent;
-#[cfg(feature = "WebKit_DOMEventException")]
+#[cfg(feature = "DOMEventException")]
 #[path = "DOMEventException.rs"]
 mod __DOMEventException;
-#[cfg(feature = "WebKit_DOMEventListener")]
+#[cfg(feature = "DOMEventListener")]
 #[path = "DOMEventListener.rs"]
 mod __DOMEventListener;
-#[cfg(feature = "WebKit_DOMEventTarget")]
+#[cfg(feature = "DOMEventTarget")]
 #[path = "DOMEventTarget.rs"]
 mod __DOMEventTarget;
-#[cfg(feature = "WebKit_DOMEvents")]
+#[cfg(feature = "DOMEvents")]
 #[path = "DOMEvents.rs"]
 mod __DOMEvents;
-#[cfg(feature = "WebKit_DOMException")]
+#[cfg(feature = "DOMException")]
 #[path = "DOMException.rs"]
 mod __DOMException;
-#[cfg(feature = "WebKit_DOMExtensions")]
+#[cfg(feature = "DOMExtensions")]
 #[path = "DOMExtensions.rs"]
 mod __DOMExtensions;
-#[cfg(feature = "WebKit_DOMFile")]
+#[cfg(feature = "DOMFile")]
 #[path = "DOMFile.rs"]
 mod __DOMFile;
-#[cfg(feature = "WebKit_DOMFileList")]
+#[cfg(feature = "DOMFileList")]
 #[path = "DOMFileList.rs"]
 mod __DOMFileList;
-#[cfg(feature = "WebKit_DOMHTML")]
+#[cfg(feature = "DOMHTML")]
 #[path = "DOMHTML.rs"]
 mod __DOMHTML;
-#[cfg(feature = "WebKit_DOMHTMLAnchorElement")]
+#[cfg(feature = "DOMHTMLAnchorElement")]
 #[path = "DOMHTMLAnchorElement.rs"]
 mod __DOMHTMLAnchorElement;
-#[cfg(feature = "WebKit_DOMHTMLAppletElement")]
+#[cfg(feature = "DOMHTMLAppletElement")]
 #[path = "DOMHTMLAppletElement.rs"]
 mod __DOMHTMLAppletElement;
-#[cfg(feature = "WebKit_DOMHTMLAreaElement")]
+#[cfg(feature = "DOMHTMLAreaElement")]
 #[path = "DOMHTMLAreaElement.rs"]
 mod __DOMHTMLAreaElement;
-#[cfg(feature = "WebKit_DOMHTMLBRElement")]
+#[cfg(feature = "DOMHTMLBRElement")]
 #[path = "DOMHTMLBRElement.rs"]
 mod __DOMHTMLBRElement;
-#[cfg(feature = "WebKit_DOMHTMLBaseElement")]
+#[cfg(feature = "DOMHTMLBaseElement")]
 #[path = "DOMHTMLBaseElement.rs"]
 mod __DOMHTMLBaseElement;
-#[cfg(feature = "WebKit_DOMHTMLBaseFontElement")]
+#[cfg(feature = "DOMHTMLBaseFontElement")]
 #[path = "DOMHTMLBaseFontElement.rs"]
 mod __DOMHTMLBaseFontElement;
-#[cfg(feature = "WebKit_DOMHTMLBodyElement")]
+#[cfg(feature = "DOMHTMLBodyElement")]
 #[path = "DOMHTMLBodyElement.rs"]
 mod __DOMHTMLBodyElement;
-#[cfg(feature = "WebKit_DOMHTMLButtonElement")]
+#[cfg(feature = "DOMHTMLButtonElement")]
 #[path = "DOMHTMLButtonElement.rs"]
 mod __DOMHTMLButtonElement;
-#[cfg(feature = "WebKit_DOMHTMLCollection")]
+#[cfg(feature = "DOMHTMLCollection")]
 #[path = "DOMHTMLCollection.rs"]
 mod __DOMHTMLCollection;
-#[cfg(feature = "WebKit_DOMHTMLDListElement")]
+#[cfg(feature = "DOMHTMLDListElement")]
 #[path = "DOMHTMLDListElement.rs"]
 mod __DOMHTMLDListElement;
-#[cfg(feature = "WebKit_DOMHTMLDirectoryElement")]
+#[cfg(feature = "DOMHTMLDirectoryElement")]
 #[path = "DOMHTMLDirectoryElement.rs"]
 mod __DOMHTMLDirectoryElement;
-#[cfg(feature = "WebKit_DOMHTMLDivElement")]
+#[cfg(feature = "DOMHTMLDivElement")]
 #[path = "DOMHTMLDivElement.rs"]
 mod __DOMHTMLDivElement;
-#[cfg(feature = "WebKit_DOMHTMLDocument")]
+#[cfg(feature = "DOMHTMLDocument")]
 #[path = "DOMHTMLDocument.rs"]
 mod __DOMHTMLDocument;
-#[cfg(feature = "WebKit_DOMHTMLElement")]
+#[cfg(feature = "DOMHTMLElement")]
 #[path = "DOMHTMLElement.rs"]
 mod __DOMHTMLElement;
-#[cfg(feature = "WebKit_DOMHTMLEmbedElement")]
+#[cfg(feature = "DOMHTMLEmbedElement")]
 #[path = "DOMHTMLEmbedElement.rs"]
 mod __DOMHTMLEmbedElement;
-#[cfg(feature = "WebKit_DOMHTMLFieldSetElement")]
+#[cfg(feature = "DOMHTMLFieldSetElement")]
 #[path = "DOMHTMLFieldSetElement.rs"]
 mod __DOMHTMLFieldSetElement;
-#[cfg(feature = "WebKit_DOMHTMLFontElement")]
+#[cfg(feature = "DOMHTMLFontElement")]
 #[path = "DOMHTMLFontElement.rs"]
 mod __DOMHTMLFontElement;
-#[cfg(feature = "WebKit_DOMHTMLFormElement")]
+#[cfg(feature = "DOMHTMLFormElement")]
 #[path = "DOMHTMLFormElement.rs"]
 mod __DOMHTMLFormElement;
-#[cfg(feature = "WebKit_DOMHTMLFrameElement")]
+#[cfg(feature = "DOMHTMLFrameElement")]
 #[path = "DOMHTMLFrameElement.rs"]
 mod __DOMHTMLFrameElement;
-#[cfg(feature = "WebKit_DOMHTMLFrameSetElement")]
+#[cfg(feature = "DOMHTMLFrameSetElement")]
 #[path = "DOMHTMLFrameSetElement.rs"]
 mod __DOMHTMLFrameSetElement;
-#[cfg(feature = "WebKit_DOMHTMLHRElement")]
+#[cfg(feature = "DOMHTMLHRElement")]
 #[path = "DOMHTMLHRElement.rs"]
 mod __DOMHTMLHRElement;
-#[cfg(feature = "WebKit_DOMHTMLHeadElement")]
+#[cfg(feature = "DOMHTMLHeadElement")]
 #[path = "DOMHTMLHeadElement.rs"]
 mod __DOMHTMLHeadElement;
-#[cfg(feature = "WebKit_DOMHTMLHeadingElement")]
+#[cfg(feature = "DOMHTMLHeadingElement")]
 #[path = "DOMHTMLHeadingElement.rs"]
 mod __DOMHTMLHeadingElement;
-#[cfg(feature = "WebKit_DOMHTMLHtmlElement")]
+#[cfg(feature = "DOMHTMLHtmlElement")]
 #[path = "DOMHTMLHtmlElement.rs"]
 mod __DOMHTMLHtmlElement;
-#[cfg(feature = "WebKit_DOMHTMLIFrameElement")]
+#[cfg(feature = "DOMHTMLIFrameElement")]
 #[path = "DOMHTMLIFrameElement.rs"]
 mod __DOMHTMLIFrameElement;
-#[cfg(feature = "WebKit_DOMHTMLImageElement")]
+#[cfg(feature = "DOMHTMLImageElement")]
 #[path = "DOMHTMLImageElement.rs"]
 mod __DOMHTMLImageElement;
-#[cfg(feature = "WebKit_DOMHTMLInputElement")]
+#[cfg(feature = "DOMHTMLInputElement")]
 #[path = "DOMHTMLInputElement.rs"]
 mod __DOMHTMLInputElement;
-#[cfg(feature = "WebKit_DOMHTMLLIElement")]
+#[cfg(feature = "DOMHTMLLIElement")]
 #[path = "DOMHTMLLIElement.rs"]
 mod __DOMHTMLLIElement;
-#[cfg(feature = "WebKit_DOMHTMLLabelElement")]
+#[cfg(feature = "DOMHTMLLabelElement")]
 #[path = "DOMHTMLLabelElement.rs"]
 mod __DOMHTMLLabelElement;
-#[cfg(feature = "WebKit_DOMHTMLLegendElement")]
+#[cfg(feature = "DOMHTMLLegendElement")]
 #[path = "DOMHTMLLegendElement.rs"]
 mod __DOMHTMLLegendElement;
-#[cfg(feature = "WebKit_DOMHTMLLinkElement")]
+#[cfg(feature = "DOMHTMLLinkElement")]
 #[path = "DOMHTMLLinkElement.rs"]
 mod __DOMHTMLLinkElement;
-#[cfg(feature = "WebKit_DOMHTMLMapElement")]
+#[cfg(feature = "DOMHTMLMapElement")]
 #[path = "DOMHTMLMapElement.rs"]
 mod __DOMHTMLMapElement;
-#[cfg(feature = "WebKit_DOMHTMLMarqueeElement")]
+#[cfg(feature = "DOMHTMLMarqueeElement")]
 #[path = "DOMHTMLMarqueeElement.rs"]
 mod __DOMHTMLMarqueeElement;
-#[cfg(feature = "WebKit_DOMHTMLMenuElement")]
+#[cfg(feature = "DOMHTMLMenuElement")]
 #[path = "DOMHTMLMenuElement.rs"]
 mod __DOMHTMLMenuElement;
-#[cfg(feature = "WebKit_DOMHTMLMetaElement")]
+#[cfg(feature = "DOMHTMLMetaElement")]
 #[path = "DOMHTMLMetaElement.rs"]
 mod __DOMHTMLMetaElement;
-#[cfg(feature = "WebKit_DOMHTMLModElement")]
+#[cfg(feature = "DOMHTMLModElement")]
 #[path = "DOMHTMLModElement.rs"]
 mod __DOMHTMLModElement;
-#[cfg(feature = "WebKit_DOMHTMLOListElement")]
+#[cfg(feature = "DOMHTMLOListElement")]
 #[path = "DOMHTMLOListElement.rs"]
 mod __DOMHTMLOListElement;
-#[cfg(feature = "WebKit_DOMHTMLObjectElement")]
+#[cfg(feature = "DOMHTMLObjectElement")]
 #[path = "DOMHTMLObjectElement.rs"]
 mod __DOMHTMLObjectElement;
-#[cfg(feature = "WebKit_DOMHTMLOptGroupElement")]
+#[cfg(feature = "DOMHTMLOptGroupElement")]
 #[path = "DOMHTMLOptGroupElement.rs"]
 mod __DOMHTMLOptGroupElement;
-#[cfg(feature = "WebKit_DOMHTMLOptionElement")]
+#[cfg(feature = "DOMHTMLOptionElement")]
 #[path = "DOMHTMLOptionElement.rs"]
 mod __DOMHTMLOptionElement;
-#[cfg(feature = "WebKit_DOMHTMLOptionsCollection")]
+#[cfg(feature = "DOMHTMLOptionsCollection")]
 #[path = "DOMHTMLOptionsCollection.rs"]
 mod __DOMHTMLOptionsCollection;
-#[cfg(feature = "WebKit_DOMHTMLParagraphElement")]
+#[cfg(feature = "DOMHTMLParagraphElement")]
 #[path = "DOMHTMLParagraphElement.rs"]
 mod __DOMHTMLParagraphElement;
-#[cfg(feature = "WebKit_DOMHTMLParamElement")]
+#[cfg(feature = "DOMHTMLParamElement")]
 #[path = "DOMHTMLParamElement.rs"]
 mod __DOMHTMLParamElement;
-#[cfg(feature = "WebKit_DOMHTMLPreElement")]
+#[cfg(feature = "DOMHTMLPreElement")]
 #[path = "DOMHTMLPreElement.rs"]
 mod __DOMHTMLPreElement;
-#[cfg(feature = "WebKit_DOMHTMLQuoteElement")]
+#[cfg(feature = "DOMHTMLQuoteElement")]
 #[path = "DOMHTMLQuoteElement.rs"]
 mod __DOMHTMLQuoteElement;
-#[cfg(feature = "WebKit_DOMHTMLScriptElement")]
+#[cfg(feature = "DOMHTMLScriptElement")]
 #[path = "DOMHTMLScriptElement.rs"]
 mod __DOMHTMLScriptElement;
-#[cfg(feature = "WebKit_DOMHTMLSelectElement")]
+#[cfg(feature = "DOMHTMLSelectElement")]
 #[path = "DOMHTMLSelectElement.rs"]
 mod __DOMHTMLSelectElement;
-#[cfg(feature = "WebKit_DOMHTMLStyleElement")]
+#[cfg(feature = "DOMHTMLStyleElement")]
 #[path = "DOMHTMLStyleElement.rs"]
 mod __DOMHTMLStyleElement;
-#[cfg(feature = "WebKit_DOMHTMLTableCaptionElement")]
+#[cfg(feature = "DOMHTMLTableCaptionElement")]
 #[path = "DOMHTMLTableCaptionElement.rs"]
 mod __DOMHTMLTableCaptionElement;
-#[cfg(feature = "WebKit_DOMHTMLTableCellElement")]
+#[cfg(feature = "DOMHTMLTableCellElement")]
 #[path = "DOMHTMLTableCellElement.rs"]
 mod __DOMHTMLTableCellElement;
-#[cfg(feature = "WebKit_DOMHTMLTableColElement")]
+#[cfg(feature = "DOMHTMLTableColElement")]
 #[path = "DOMHTMLTableColElement.rs"]
 mod __DOMHTMLTableColElement;
-#[cfg(feature = "WebKit_DOMHTMLTableElement")]
+#[cfg(feature = "DOMHTMLTableElement")]
 #[path = "DOMHTMLTableElement.rs"]
 mod __DOMHTMLTableElement;
-#[cfg(feature = "WebKit_DOMHTMLTableRowElement")]
+#[cfg(feature = "DOMHTMLTableRowElement")]
 #[path = "DOMHTMLTableRowElement.rs"]
 mod __DOMHTMLTableRowElement;
-#[cfg(feature = "WebKit_DOMHTMLTableSectionElement")]
+#[cfg(feature = "DOMHTMLTableSectionElement")]
 #[path = "DOMHTMLTableSectionElement.rs"]
 mod __DOMHTMLTableSectionElement;
-#[cfg(feature = "WebKit_DOMHTMLTextAreaElement")]
+#[cfg(feature = "DOMHTMLTextAreaElement")]
 #[path = "DOMHTMLTextAreaElement.rs"]
 mod __DOMHTMLTextAreaElement;
-#[cfg(feature = "WebKit_DOMHTMLTitleElement")]
+#[cfg(feature = "DOMHTMLTitleElement")]
 #[path = "DOMHTMLTitleElement.rs"]
 mod __DOMHTMLTitleElement;
-#[cfg(feature = "WebKit_DOMHTMLUListElement")]
+#[cfg(feature = "DOMHTMLUListElement")]
 #[path = "DOMHTMLUListElement.rs"]
 mod __DOMHTMLUListElement;
-#[cfg(feature = "WebKit_DOMImplementation")]
+#[cfg(feature = "DOMImplementation")]
 #[path = "DOMImplementation.rs"]
 mod __DOMImplementation;
-#[cfg(feature = "WebKit_DOMKeyboardEvent")]
+#[cfg(feature = "DOMKeyboardEvent")]
 #[path = "DOMKeyboardEvent.rs"]
 mod __DOMKeyboardEvent;
-#[cfg(feature = "WebKit_DOMMediaList")]
+#[cfg(feature = "DOMMediaList")]
 #[path = "DOMMediaList.rs"]
 mod __DOMMediaList;
-#[cfg(feature = "WebKit_DOMMouseEvent")]
+#[cfg(feature = "DOMMouseEvent")]
 #[path = "DOMMouseEvent.rs"]
 mod __DOMMouseEvent;
-#[cfg(feature = "WebKit_DOMMutationEvent")]
+#[cfg(feature = "DOMMutationEvent")]
 #[path = "DOMMutationEvent.rs"]
 mod __DOMMutationEvent;
-#[cfg(feature = "WebKit_DOMNamedNodeMap")]
+#[cfg(feature = "DOMNamedNodeMap")]
 #[path = "DOMNamedNodeMap.rs"]
 mod __DOMNamedNodeMap;
-#[cfg(feature = "WebKit_DOMNode")]
+#[cfg(feature = "DOMNode")]
 #[path = "DOMNode.rs"]
 mod __DOMNode;
-#[cfg(feature = "WebKit_DOMNodeFilter")]
+#[cfg(feature = "DOMNodeFilter")]
 #[path = "DOMNodeFilter.rs"]
 mod __DOMNodeFilter;
-#[cfg(feature = "WebKit_DOMNodeIterator")]
+#[cfg(feature = "DOMNodeIterator")]
 #[path = "DOMNodeIterator.rs"]
 mod __DOMNodeIterator;
-#[cfg(feature = "WebKit_DOMNodeList")]
+#[cfg(feature = "DOMNodeList")]
 #[path = "DOMNodeList.rs"]
 mod __DOMNodeList;
-#[cfg(feature = "WebKit_DOMObject")]
+#[cfg(feature = "DOMObject")]
 #[path = "DOMObject.rs"]
 mod __DOMObject;
-#[cfg(feature = "WebKit_DOMOverflowEvent")]
+#[cfg(feature = "DOMOverflowEvent")]
 #[path = "DOMOverflowEvent.rs"]
 mod __DOMOverflowEvent;
-#[cfg(feature = "WebKit_DOMProcessingInstruction")]
+#[cfg(feature = "DOMProcessingInstruction")]
 #[path = "DOMProcessingInstruction.rs"]
 mod __DOMProcessingInstruction;
-#[cfg(feature = "WebKit_DOMProgressEvent")]
+#[cfg(feature = "DOMProgressEvent")]
 #[path = "DOMProgressEvent.rs"]
 mod __DOMProgressEvent;
-#[cfg(feature = "WebKit_DOMRGBColor")]
+#[cfg(feature = "DOMRGBColor")]
 #[path = "DOMRGBColor.rs"]
 mod __DOMRGBColor;
-#[cfg(feature = "WebKit_DOMRange")]
+#[cfg(feature = "DOMRange")]
 #[path = "DOMRange.rs"]
 mod __DOMRange;
-#[cfg(feature = "WebKit_DOMRangeException")]
+#[cfg(feature = "DOMRangeException")]
 #[path = "DOMRangeException.rs"]
 mod __DOMRangeException;
-#[cfg(feature = "WebKit_DOMRanges")]
+#[cfg(feature = "DOMRanges")]
 #[path = "DOMRanges.rs"]
 mod __DOMRanges;
-#[cfg(feature = "WebKit_DOMRect")]
+#[cfg(feature = "DOMRect")]
 #[path = "DOMRect.rs"]
 mod __DOMRect;
-#[cfg(feature = "WebKit_DOMStyleSheet")]
+#[cfg(feature = "DOMStyleSheet")]
 #[path = "DOMStyleSheet.rs"]
 mod __DOMStyleSheet;
-#[cfg(feature = "WebKit_DOMStyleSheetList")]
+#[cfg(feature = "DOMStyleSheetList")]
 #[path = "DOMStyleSheetList.rs"]
 mod __DOMStyleSheetList;
-#[cfg(feature = "WebKit_DOMStylesheets")]
+#[cfg(feature = "DOMStylesheets")]
 #[path = "DOMStylesheets.rs"]
 mod __DOMStylesheets;
-#[cfg(feature = "WebKit_DOMText")]
+#[cfg(feature = "DOMText")]
 #[path = "DOMText.rs"]
 mod __DOMText;
-#[cfg(feature = "WebKit_DOMTraversal")]
+#[cfg(feature = "DOMTraversal")]
 #[path = "DOMTraversal.rs"]
 mod __DOMTraversal;
-#[cfg(feature = "WebKit_DOMTreeWalker")]
+#[cfg(feature = "DOMTreeWalker")]
 #[path = "DOMTreeWalker.rs"]
 mod __DOMTreeWalker;
-#[cfg(feature = "WebKit_DOMUIEvent")]
+#[cfg(feature = "DOMUIEvent")]
 #[path = "DOMUIEvent.rs"]
 mod __DOMUIEvent;
-#[cfg(feature = "WebKit_DOMViews")]
+#[cfg(feature = "DOMViews")]
 #[path = "DOMViews.rs"]
 mod __DOMViews;
-#[cfg(feature = "WebKit_DOMWheelEvent")]
+#[cfg(feature = "DOMWheelEvent")]
 #[path = "DOMWheelEvent.rs"]
 mod __DOMWheelEvent;
-#[cfg(feature = "WebKit_DOMXPath")]
+#[cfg(feature = "DOMXPath")]
 #[path = "DOMXPath.rs"]
 mod __DOMXPath;
-#[cfg(feature = "WebKit_DOMXPathException")]
+#[cfg(feature = "DOMXPathException")]
 #[path = "DOMXPathException.rs"]
 mod __DOMXPathException;
-#[cfg(feature = "WebKit_DOMXPathExpression")]
+#[cfg(feature = "DOMXPathExpression")]
 #[path = "DOMXPathExpression.rs"]
 mod __DOMXPathExpression;
-#[cfg(feature = "WebKit_DOMXPathNSResolver")]
+#[cfg(feature = "DOMXPathNSResolver")]
 #[path = "DOMXPathNSResolver.rs"]
 mod __DOMXPathNSResolver;
-#[cfg(feature = "WebKit_DOMXPathResult")]
+#[cfg(feature = "DOMXPathResult")]
 #[path = "DOMXPathResult.rs"]
 mod __DOMXPathResult;
-#[cfg(feature = "WebKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 #[path = "NSAttributedString.rs"]
 mod __NSAttributedString;
-#[cfg(feature = "WebKit_WKBackForwardList")]
+#[cfg(feature = "WKBackForwardList")]
 #[path = "WKBackForwardList.rs"]
 mod __WKBackForwardList;
-#[cfg(feature = "WebKit_WKBackForwardListItem")]
+#[cfg(feature = "WKBackForwardListItem")]
 #[path = "WKBackForwardListItem.rs"]
 mod __WKBackForwardListItem;
-#[cfg(feature = "WebKit_WKContentRuleList")]
+#[cfg(feature = "WKContentRuleList")]
 #[path = "WKContentRuleList.rs"]
 mod __WKContentRuleList;
-#[cfg(feature = "WebKit_WKContentRuleListStore")]
+#[cfg(feature = "WKContentRuleListStore")]
 #[path = "WKContentRuleListStore.rs"]
 mod __WKContentRuleListStore;
-#[cfg(feature = "WebKit_WKContentWorld")]
+#[cfg(feature = "WKContentWorld")]
 #[path = "WKContentWorld.rs"]
 mod __WKContentWorld;
-#[cfg(feature = "WebKit_WKContextMenuElementInfo")]
+#[cfg(feature = "WKContextMenuElementInfo")]
 #[path = "WKContextMenuElementInfo.rs"]
 mod __WKContextMenuElementInfo;
-#[cfg(feature = "WebKit_WKDataDetectorTypes")]
+#[cfg(feature = "WKDataDetectorTypes")]
 #[path = "WKDataDetectorTypes.rs"]
 mod __WKDataDetectorTypes;
-#[cfg(feature = "WebKit_WKDownload")]
+#[cfg(feature = "WKDownload")]
 #[path = "WKDownload.rs"]
 mod __WKDownload;
-#[cfg(feature = "WebKit_WKDownloadDelegate")]
+#[cfg(feature = "WKDownloadDelegate")]
 #[path = "WKDownloadDelegate.rs"]
 mod __WKDownloadDelegate;
-#[cfg(feature = "WebKit_WKError")]
+#[cfg(feature = "WKError")]
 #[path = "WKError.rs"]
 mod __WKError;
-#[cfg(feature = "WebKit_WKFindConfiguration")]
+#[cfg(feature = "WKFindConfiguration")]
 #[path = "WKFindConfiguration.rs"]
 mod __WKFindConfiguration;
-#[cfg(feature = "WebKit_WKFindResult")]
+#[cfg(feature = "WKFindResult")]
 #[path = "WKFindResult.rs"]
 mod __WKFindResult;
-#[cfg(feature = "WebKit_WKFoundation")]
+#[cfg(feature = "WKFoundation")]
 #[path = "WKFoundation.rs"]
 mod __WKFoundation;
-#[cfg(feature = "WebKit_WKFrameInfo")]
+#[cfg(feature = "WKFrameInfo")]
 #[path = "WKFrameInfo.rs"]
 mod __WKFrameInfo;
-#[cfg(feature = "WebKit_WKHTTPCookieStore")]
+#[cfg(feature = "WKHTTPCookieStore")]
 #[path = "WKHTTPCookieStore.rs"]
 mod __WKHTTPCookieStore;
-#[cfg(feature = "WebKit_WKNavigation")]
+#[cfg(feature = "WKNavigation")]
 #[path = "WKNavigation.rs"]
 mod __WKNavigation;
-#[cfg(feature = "WebKit_WKNavigationAction")]
+#[cfg(feature = "WKNavigationAction")]
 #[path = "WKNavigationAction.rs"]
 mod __WKNavigationAction;
-#[cfg(feature = "WebKit_WKNavigationDelegate")]
+#[cfg(feature = "WKNavigationDelegate")]
 #[path = "WKNavigationDelegate.rs"]
 mod __WKNavigationDelegate;
-#[cfg(feature = "WebKit_WKNavigationResponse")]
+#[cfg(feature = "WKNavigationResponse")]
 #[path = "WKNavigationResponse.rs"]
 mod __WKNavigationResponse;
-#[cfg(feature = "WebKit_WKOpenPanelParameters")]
+#[cfg(feature = "WKOpenPanelParameters")]
 #[path = "WKOpenPanelParameters.rs"]
 mod __WKOpenPanelParameters;
-#[cfg(feature = "WebKit_WKPDFConfiguration")]
+#[cfg(feature = "WKPDFConfiguration")]
 #[path = "WKPDFConfiguration.rs"]
 mod __WKPDFConfiguration;
-#[cfg(feature = "WebKit_WKPreferences")]
+#[cfg(feature = "WKPreferences")]
 #[path = "WKPreferences.rs"]
 mod __WKPreferences;
-#[cfg(feature = "WebKit_WKPreviewActionItem")]
+#[cfg(feature = "WKPreviewActionItem")]
 #[path = "WKPreviewActionItem.rs"]
 mod __WKPreviewActionItem;
-#[cfg(feature = "WebKit_WKPreviewActionItemIdentifiers")]
+#[cfg(feature = "WKPreviewActionItemIdentifiers")]
 #[path = "WKPreviewActionItemIdentifiers.rs"]
 mod __WKPreviewActionItemIdentifiers;
-#[cfg(feature = "WebKit_WKPreviewElementInfo")]
+#[cfg(feature = "WKPreviewElementInfo")]
 #[path = "WKPreviewElementInfo.rs"]
 mod __WKPreviewElementInfo;
-#[cfg(feature = "WebKit_WKProcessPool")]
+#[cfg(feature = "WKProcessPool")]
 #[path = "WKProcessPool.rs"]
 mod __WKProcessPool;
-#[cfg(feature = "WebKit_WKScriptMessage")]
+#[cfg(feature = "WKScriptMessage")]
 #[path = "WKScriptMessage.rs"]
 mod __WKScriptMessage;
-#[cfg(feature = "WebKit_WKScriptMessageHandler")]
+#[cfg(feature = "WKScriptMessageHandler")]
 #[path = "WKScriptMessageHandler.rs"]
 mod __WKScriptMessageHandler;
-#[cfg(feature = "WebKit_WKScriptMessageHandlerWithReply")]
+#[cfg(feature = "WKScriptMessageHandlerWithReply")]
 #[path = "WKScriptMessageHandlerWithReply.rs"]
 mod __WKScriptMessageHandlerWithReply;
-#[cfg(feature = "WebKit_WKSecurityOrigin")]
+#[cfg(feature = "WKSecurityOrigin")]
 #[path = "WKSecurityOrigin.rs"]
 mod __WKSecurityOrigin;
-#[cfg(feature = "WebKit_WKSnapshotConfiguration")]
+#[cfg(feature = "WKSnapshotConfiguration")]
 #[path = "WKSnapshotConfiguration.rs"]
 mod __WKSnapshotConfiguration;
-#[cfg(feature = "WebKit_WKUIDelegate")]
+#[cfg(feature = "WKUIDelegate")]
 #[path = "WKUIDelegate.rs"]
 mod __WKUIDelegate;
-#[cfg(feature = "WebKit_WKURLSchemeHandler")]
+#[cfg(feature = "WKURLSchemeHandler")]
 #[path = "WKURLSchemeHandler.rs"]
 mod __WKURLSchemeHandler;
-#[cfg(feature = "WebKit_WKURLSchemeTask")]
+#[cfg(feature = "WKURLSchemeTask")]
 #[path = "WKURLSchemeTask.rs"]
 mod __WKURLSchemeTask;
-#[cfg(feature = "WebKit_WKUserContentController")]
+#[cfg(feature = "WKUserContentController")]
 #[path = "WKUserContentController.rs"]
 mod __WKUserContentController;
-#[cfg(feature = "WebKit_WKUserScript")]
+#[cfg(feature = "WKUserScript")]
 #[path = "WKUserScript.rs"]
 mod __WKUserScript;
-#[cfg(feature = "WebKit_WKWebView")]
+#[cfg(feature = "WKWebView")]
 #[path = "WKWebView.rs"]
 mod __WKWebView;
-#[cfg(feature = "WebKit_WKWebViewConfiguration")]
+#[cfg(feature = "WKWebViewConfiguration")]
 #[path = "WKWebViewConfiguration.rs"]
 mod __WKWebViewConfiguration;
-#[cfg(feature = "WebKit_WKWebpagePreferences")]
+#[cfg(feature = "WKWebpagePreferences")]
 #[path = "WKWebpagePreferences.rs"]
 mod __WKWebpagePreferences;
-#[cfg(feature = "WebKit_WKWebsiteDataRecord")]
+#[cfg(feature = "WKWebsiteDataRecord")]
 #[path = "WKWebsiteDataRecord.rs"]
 mod __WKWebsiteDataRecord;
-#[cfg(feature = "WebKit_WKWebsiteDataStore")]
+#[cfg(feature = "WKWebsiteDataStore")]
 #[path = "WKWebsiteDataStore.rs"]
 mod __WKWebsiteDataStore;
-#[cfg(feature = "WebKit_WKWindowFeatures")]
+#[cfg(feature = "WKWindowFeatures")]
 #[path = "WKWindowFeatures.rs"]
 mod __WKWindowFeatures;
-#[cfg(feature = "WebKit_WebArchive")]
+#[cfg(feature = "WebArchive")]
 #[path = "WebArchive.rs"]
 mod __WebArchive;
-#[cfg(feature = "WebKit_WebBackForwardList")]
+#[cfg(feature = "WebBackForwardList")]
 #[path = "WebBackForwardList.rs"]
 mod __WebBackForwardList;
-#[cfg(feature = "WebKit_WebDOMOperations")]
+#[cfg(feature = "WebDOMOperations")]
 #[path = "WebDOMOperations.rs"]
 mod __WebDOMOperations;
-#[cfg(feature = "WebKit_WebDataSource")]
+#[cfg(feature = "WebDataSource")]
 #[path = "WebDataSource.rs"]
 mod __WebDataSource;
-#[cfg(feature = "WebKit_WebDocument")]
+#[cfg(feature = "WebDocument")]
 #[path = "WebDocument.rs"]
 mod __WebDocument;
-#[cfg(feature = "WebKit_WebDownload")]
+#[cfg(feature = "WebDownload")]
 #[path = "WebDownload.rs"]
 mod __WebDownload;
-#[cfg(feature = "WebKit_WebEditingDelegate")]
+#[cfg(feature = "WebEditingDelegate")]
 #[path = "WebEditingDelegate.rs"]
 mod __WebEditingDelegate;
-#[cfg(feature = "WebKit_WebFrame")]
+#[cfg(feature = "WebFrame")]
 #[path = "WebFrame.rs"]
 mod __WebFrame;
-#[cfg(feature = "WebKit_WebFrameLoadDelegate")]
+#[cfg(feature = "WebFrameLoadDelegate")]
 #[path = "WebFrameLoadDelegate.rs"]
 mod __WebFrameLoadDelegate;
-#[cfg(feature = "WebKit_WebFrameView")]
+#[cfg(feature = "WebFrameView")]
 #[path = "WebFrameView.rs"]
 mod __WebFrameView;
-#[cfg(feature = "WebKit_WebHistory")]
+#[cfg(feature = "WebHistory")]
 #[path = "WebHistory.rs"]
 mod __WebHistory;
-#[cfg(feature = "WebKit_WebHistoryItem")]
+#[cfg(feature = "WebHistoryItem")]
 #[path = "WebHistoryItem.rs"]
 mod __WebHistoryItem;
-#[cfg(feature = "WebKit_WebKitAvailability")]
+#[cfg(feature = "WebKitAvailability")]
 #[path = "WebKitAvailability.rs"]
 mod __WebKitAvailability;
-#[cfg(feature = "WebKit_WebKitErrors")]
+#[cfg(feature = "WebKitErrors")]
 #[path = "WebKitErrors.rs"]
 mod __WebKitErrors;
-#[cfg(feature = "WebKit_WebKitLegacy")]
+#[cfg(feature = "WebKitLegacy")]
 #[path = "WebKitLegacy.rs"]
 mod __WebKitLegacy;
-#[cfg(feature = "WebKit_WebPlugin")]
+#[cfg(feature = "WebPlugin")]
 #[path = "WebPlugin.rs"]
 mod __WebPlugin;
-#[cfg(feature = "WebKit_WebPluginContainer")]
+#[cfg(feature = "WebPluginContainer")]
 #[path = "WebPluginContainer.rs"]
 mod __WebPluginContainer;
-#[cfg(feature = "WebKit_WebPluginViewFactory")]
+#[cfg(feature = "WebPluginViewFactory")]
 #[path = "WebPluginViewFactory.rs"]
 mod __WebPluginViewFactory;
-#[cfg(feature = "WebKit_WebPolicyDelegate")]
+#[cfg(feature = "WebPolicyDelegate")]
 #[path = "WebPolicyDelegate.rs"]
 mod __WebPolicyDelegate;
-#[cfg(feature = "WebKit_WebPreferences")]
+#[cfg(feature = "WebPreferences")]
 #[path = "WebPreferences.rs"]
 mod __WebPreferences;
-#[cfg(feature = "WebKit_WebResource")]
+#[cfg(feature = "WebResource")]
 #[path = "WebResource.rs"]
 mod __WebResource;
-#[cfg(feature = "WebKit_WebResourceLoadDelegate")]
+#[cfg(feature = "WebResourceLoadDelegate")]
 #[path = "WebResourceLoadDelegate.rs"]
 mod __WebResourceLoadDelegate;
-#[cfg(feature = "WebKit_WebScriptObject")]
+#[cfg(feature = "WebScriptObject")]
 #[path = "WebScriptObject.rs"]
 mod __WebScriptObject;
-#[cfg(feature = "WebKit_WebUIDelegate")]
+#[cfg(feature = "WebUIDelegate")]
 #[path = "WebUIDelegate.rs"]
 mod __WebUIDelegate;
-#[cfg(feature = "WebKit_WebView")]
+#[cfg(feature = "WebView")]
 #[path = "WebView.rs"]
 mod __WebView;
 
 #[cfg(all(
-    feature = "WebKit_DOMAbstractView",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMAbstractView",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 pub use self::__DOMAbstractView::DOMAbstractView;
 #[cfg(all(
-    feature = "WebKit_DOMAttr",
-    feature = "WebKit_DOMNode",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMAttr",
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 pub use self::__DOMAttr::DOMAttr;
 #[cfg(all(
-    feature = "WebKit_DOMBlob",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMBlob",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 pub use self::__DOMBlob::DOMBlob;
 #[cfg(all(
-    feature = "WebKit_DOMCDATASection",
-    feature = "WebKit_DOMCharacterData",
-    feature = "WebKit_DOMNode",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_DOMText",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMCDATASection",
+    feature = "DOMCharacterData",
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "DOMText",
+    feature = "WebScriptObject"
 ))]
 pub use self::__DOMCDATASection::DOMCDATASection;
 #[cfg(all(
-    feature = "WebKit_DOMCSSCharsetRule",
-    feature = "WebKit_DOMCSSRule",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMCSSCharsetRule",
+    feature = "DOMCSSRule",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 pub use self::__DOMCSSCharsetRule::DOMCSSCharsetRule;
 #[cfg(all(
-    feature = "WebKit_DOMCSSFontFaceRule",
-    feature = "WebKit_DOMCSSRule",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMCSSFontFaceRule",
+    feature = "DOMCSSRule",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 pub use self::__DOMCSSFontFaceRule::DOMCSSFontFaceRule;
 #[cfg(all(
-    feature = "WebKit_DOMCSSImportRule",
-    feature = "WebKit_DOMCSSRule",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMCSSImportRule",
+    feature = "DOMCSSRule",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 pub use self::__DOMCSSImportRule::DOMCSSImportRule;
 #[cfg(all(
-    feature = "WebKit_DOMCSSMediaRule",
-    feature = "WebKit_DOMCSSRule",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMCSSMediaRule",
+    feature = "DOMCSSRule",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 pub use self::__DOMCSSMediaRule::DOMCSSMediaRule;
 #[cfg(all(
-    feature = "WebKit_DOMCSSPageRule",
-    feature = "WebKit_DOMCSSRule",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMCSSPageRule",
+    feature = "DOMCSSRule",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 pub use self::__DOMCSSPageRule::DOMCSSPageRule;
 #[cfg(all(
-    feature = "WebKit_DOMCSSPrimitiveValue",
-    feature = "WebKit_DOMCSSValue",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMCSSPrimitiveValue",
+    feature = "DOMCSSValue",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 pub use self::__DOMCSSPrimitiveValue::DOMCSSPrimitiveValue;
-#[cfg(feature = "WebKit_DOMCSSPrimitiveValue")]
+#[cfg(feature = "DOMCSSPrimitiveValue")]
 pub use self::__DOMCSSPrimitiveValue::DOM_CSS_ATTR;
-#[cfg(feature = "WebKit_DOMCSSPrimitiveValue")]
+#[cfg(feature = "DOMCSSPrimitiveValue")]
 pub use self::__DOMCSSPrimitiveValue::DOM_CSS_CM;
-#[cfg(feature = "WebKit_DOMCSSPrimitiveValue")]
+#[cfg(feature = "DOMCSSPrimitiveValue")]
 pub use self::__DOMCSSPrimitiveValue::DOM_CSS_COUNTER;
-#[cfg(feature = "WebKit_DOMCSSPrimitiveValue")]
+#[cfg(feature = "DOMCSSPrimitiveValue")]
 pub use self::__DOMCSSPrimitiveValue::DOM_CSS_DEG;
-#[cfg(feature = "WebKit_DOMCSSPrimitiveValue")]
+#[cfg(feature = "DOMCSSPrimitiveValue")]
 pub use self::__DOMCSSPrimitiveValue::DOM_CSS_DIMENSION;
-#[cfg(feature = "WebKit_DOMCSSPrimitiveValue")]
+#[cfg(feature = "DOMCSSPrimitiveValue")]
 pub use self::__DOMCSSPrimitiveValue::DOM_CSS_EMS;
-#[cfg(feature = "WebKit_DOMCSSPrimitiveValue")]
+#[cfg(feature = "DOMCSSPrimitiveValue")]
 pub use self::__DOMCSSPrimitiveValue::DOM_CSS_EXS;
-#[cfg(feature = "WebKit_DOMCSSPrimitiveValue")]
+#[cfg(feature = "DOMCSSPrimitiveValue")]
 pub use self::__DOMCSSPrimitiveValue::DOM_CSS_GRAD;
-#[cfg(feature = "WebKit_DOMCSSPrimitiveValue")]
+#[cfg(feature = "DOMCSSPrimitiveValue")]
 pub use self::__DOMCSSPrimitiveValue::DOM_CSS_HZ;
-#[cfg(feature = "WebKit_DOMCSSPrimitiveValue")]
+#[cfg(feature = "DOMCSSPrimitiveValue")]
 pub use self::__DOMCSSPrimitiveValue::DOM_CSS_IDENT;
-#[cfg(feature = "WebKit_DOMCSSPrimitiveValue")]
+#[cfg(feature = "DOMCSSPrimitiveValue")]
 pub use self::__DOMCSSPrimitiveValue::DOM_CSS_IN;
-#[cfg(feature = "WebKit_DOMCSSPrimitiveValue")]
+#[cfg(feature = "DOMCSSPrimitiveValue")]
 pub use self::__DOMCSSPrimitiveValue::DOM_CSS_KHZ;
-#[cfg(feature = "WebKit_DOMCSSPrimitiveValue")]
+#[cfg(feature = "DOMCSSPrimitiveValue")]
 pub use self::__DOMCSSPrimitiveValue::DOM_CSS_MM;
-#[cfg(feature = "WebKit_DOMCSSPrimitiveValue")]
+#[cfg(feature = "DOMCSSPrimitiveValue")]
 pub use self::__DOMCSSPrimitiveValue::DOM_CSS_MS;
-#[cfg(feature = "WebKit_DOMCSSPrimitiveValue")]
+#[cfg(feature = "DOMCSSPrimitiveValue")]
 pub use self::__DOMCSSPrimitiveValue::DOM_CSS_NUMBER;
-#[cfg(feature = "WebKit_DOMCSSPrimitiveValue")]
+#[cfg(feature = "DOMCSSPrimitiveValue")]
 pub use self::__DOMCSSPrimitiveValue::DOM_CSS_PC;
-#[cfg(feature = "WebKit_DOMCSSPrimitiveValue")]
+#[cfg(feature = "DOMCSSPrimitiveValue")]
 pub use self::__DOMCSSPrimitiveValue::DOM_CSS_PERCENTAGE;
-#[cfg(feature = "WebKit_DOMCSSPrimitiveValue")]
+#[cfg(feature = "DOMCSSPrimitiveValue")]
 pub use self::__DOMCSSPrimitiveValue::DOM_CSS_PT;
-#[cfg(feature = "WebKit_DOMCSSPrimitiveValue")]
+#[cfg(feature = "DOMCSSPrimitiveValue")]
 pub use self::__DOMCSSPrimitiveValue::DOM_CSS_PX;
-#[cfg(feature = "WebKit_DOMCSSPrimitiveValue")]
+#[cfg(feature = "DOMCSSPrimitiveValue")]
 pub use self::__DOMCSSPrimitiveValue::DOM_CSS_RAD;
-#[cfg(feature = "WebKit_DOMCSSPrimitiveValue")]
+#[cfg(feature = "DOMCSSPrimitiveValue")]
 pub use self::__DOMCSSPrimitiveValue::DOM_CSS_RECT;
-#[cfg(feature = "WebKit_DOMCSSPrimitiveValue")]
+#[cfg(feature = "DOMCSSPrimitiveValue")]
 pub use self::__DOMCSSPrimitiveValue::DOM_CSS_RGBCOLOR;
-#[cfg(feature = "WebKit_DOMCSSPrimitiveValue")]
+#[cfg(feature = "DOMCSSPrimitiveValue")]
 pub use self::__DOMCSSPrimitiveValue::DOM_CSS_S;
-#[cfg(feature = "WebKit_DOMCSSPrimitiveValue")]
+#[cfg(feature = "DOMCSSPrimitiveValue")]
 pub use self::__DOMCSSPrimitiveValue::DOM_CSS_STRING;
-#[cfg(feature = "WebKit_DOMCSSPrimitiveValue")]
+#[cfg(feature = "DOMCSSPrimitiveValue")]
 pub use self::__DOMCSSPrimitiveValue::DOM_CSS_UNKNOWN;
-#[cfg(feature = "WebKit_DOMCSSPrimitiveValue")]
+#[cfg(feature = "DOMCSSPrimitiveValue")]
 pub use self::__DOMCSSPrimitiveValue::DOM_CSS_URI;
-#[cfg(feature = "WebKit_DOMCSSPrimitiveValue")]
+#[cfg(feature = "DOMCSSPrimitiveValue")]
 pub use self::__DOMCSSPrimitiveValue::DOM_CSS_VH;
-#[cfg(feature = "WebKit_DOMCSSPrimitiveValue")]
+#[cfg(feature = "DOMCSSPrimitiveValue")]
 pub use self::__DOMCSSPrimitiveValue::DOM_CSS_VMAX;
-#[cfg(feature = "WebKit_DOMCSSPrimitiveValue")]
+#[cfg(feature = "DOMCSSPrimitiveValue")]
 pub use self::__DOMCSSPrimitiveValue::DOM_CSS_VMIN;
-#[cfg(feature = "WebKit_DOMCSSPrimitiveValue")]
+#[cfg(feature = "DOMCSSPrimitiveValue")]
 pub use self::__DOMCSSPrimitiveValue::DOM_CSS_VW;
 #[cfg(all(
-    feature = "WebKit_DOMCSSRule",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMCSSRule",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 pub use self::__DOMCSSRule::DOMCSSRule;
-#[cfg(feature = "WebKit_DOMCSSRule")]
+#[cfg(feature = "DOMCSSRule")]
 pub use self::__DOMCSSRule::DOM_CHARSET_RULE;
-#[cfg(feature = "WebKit_DOMCSSRule")]
+#[cfg(feature = "DOMCSSRule")]
 pub use self::__DOMCSSRule::DOM_FONT_FACE_RULE;
-#[cfg(feature = "WebKit_DOMCSSRule")]
+#[cfg(feature = "DOMCSSRule")]
 pub use self::__DOMCSSRule::DOM_IMPORT_RULE;
-#[cfg(feature = "WebKit_DOMCSSRule")]
+#[cfg(feature = "DOMCSSRule")]
 pub use self::__DOMCSSRule::DOM_KEYFRAMES_RULE;
-#[cfg(feature = "WebKit_DOMCSSRule")]
+#[cfg(feature = "DOMCSSRule")]
 pub use self::__DOMCSSRule::DOM_KEYFRAME_RULE;
-#[cfg(feature = "WebKit_DOMCSSRule")]
+#[cfg(feature = "DOMCSSRule")]
 pub use self::__DOMCSSRule::DOM_MEDIA_RULE;
-#[cfg(feature = "WebKit_DOMCSSRule")]
+#[cfg(feature = "DOMCSSRule")]
 pub use self::__DOMCSSRule::DOM_NAMESPACE_RULE;
-#[cfg(feature = "WebKit_DOMCSSRule")]
+#[cfg(feature = "DOMCSSRule")]
 pub use self::__DOMCSSRule::DOM_PAGE_RULE;
-#[cfg(feature = "WebKit_DOMCSSRule")]
+#[cfg(feature = "DOMCSSRule")]
 pub use self::__DOMCSSRule::DOM_STYLE_RULE;
-#[cfg(feature = "WebKit_DOMCSSRule")]
+#[cfg(feature = "DOMCSSRule")]
 pub use self::__DOMCSSRule::DOM_SUPPORTS_RULE;
-#[cfg(feature = "WebKit_DOMCSSRule")]
+#[cfg(feature = "DOMCSSRule")]
 pub use self::__DOMCSSRule::DOM_UNKNOWN_RULE;
-#[cfg(feature = "WebKit_DOMCSSRule")]
+#[cfg(feature = "DOMCSSRule")]
 pub use self::__DOMCSSRule::DOM_WEBKIT_KEYFRAMES_RULE;
-#[cfg(feature = "WebKit_DOMCSSRule")]
+#[cfg(feature = "DOMCSSRule")]
 pub use self::__DOMCSSRule::DOM_WEBKIT_KEYFRAME_RULE;
-#[cfg(feature = "WebKit_DOMCSSRule")]
+#[cfg(feature = "DOMCSSRule")]
 pub use self::__DOMCSSRule::DOM_WEBKIT_REGION_RULE;
 #[cfg(all(
-    feature = "WebKit_DOMCSSRuleList",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMCSSRuleList",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 pub use self::__DOMCSSRuleList::DOMCSSRuleList;
 #[cfg(all(
-    feature = "WebKit_DOMCSSStyleDeclaration",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMCSSStyleDeclaration",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 pub use self::__DOMCSSStyleDeclaration::DOMCSSStyleDeclaration;
 #[cfg(all(
-    feature = "WebKit_DOMCSSRule",
-    feature = "WebKit_DOMCSSStyleRule",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMCSSRule",
+    feature = "DOMCSSStyleRule",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 pub use self::__DOMCSSStyleRule::DOMCSSStyleRule;
 #[cfg(all(
-    feature = "WebKit_DOMCSSStyleSheet",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_DOMStyleSheet",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMCSSStyleSheet",
+    feature = "DOMObject",
+    feature = "DOMStyleSheet",
+    feature = "WebScriptObject"
 ))]
 pub use self::__DOMCSSStyleSheet::DOMCSSStyleSheet;
 #[cfg(all(
-    feature = "WebKit_DOMCSSRule",
-    feature = "WebKit_DOMCSSUnknownRule",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMCSSRule",
+    feature = "DOMCSSUnknownRule",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 pub use self::__DOMCSSUnknownRule::DOMCSSUnknownRule;
 #[cfg(all(
-    feature = "WebKit_DOMCSSValue",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMCSSValue",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 pub use self::__DOMCSSValue::DOMCSSValue;
-#[cfg(feature = "WebKit_DOMCSSValue")]
+#[cfg(feature = "DOMCSSValue")]
 pub use self::__DOMCSSValue::DOM_CSS_CUSTOM;
-#[cfg(feature = "WebKit_DOMCSSValue")]
+#[cfg(feature = "DOMCSSValue")]
 pub use self::__DOMCSSValue::DOM_CSS_INHERIT;
-#[cfg(feature = "WebKit_DOMCSSValue")]
+#[cfg(feature = "DOMCSSValue")]
 pub use self::__DOMCSSValue::DOM_CSS_PRIMITIVE_VALUE;
-#[cfg(feature = "WebKit_DOMCSSValue")]
+#[cfg(feature = "DOMCSSValue")]
 pub use self::__DOMCSSValue::DOM_CSS_VALUE_LIST;
 #[cfg(all(
-    feature = "WebKit_DOMCSSValue",
-    feature = "WebKit_DOMCSSValueList",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMCSSValue",
+    feature = "DOMCSSValueList",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 pub use self::__DOMCSSValueList::DOMCSSValueList;
 #[cfg(all(
-    feature = "WebKit_DOMCharacterData",
-    feature = "WebKit_DOMNode",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMCharacterData",
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 pub use self::__DOMCharacterData::DOMCharacterData;
 #[cfg(all(
-    feature = "WebKit_DOMCharacterData",
-    feature = "WebKit_DOMComment",
-    feature = "WebKit_DOMNode",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMCharacterData",
+    feature = "DOMComment",
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 pub use self::__DOMComment::DOMComment;
 #[cfg(all(
-    feature = "WebKit_DOMCounter",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMCounter",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 pub use self::__DOMCounter::DOMCounter;
 #[cfg(all(
-    feature = "WebKit_DOMDocument",
-    feature = "WebKit_DOMNode",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMDocument",
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 pub use self::__DOMDocument::DOMDocument;
 #[cfg(all(
-    feature = "WebKit_DOMDocumentFragment",
-    feature = "WebKit_DOMNode",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMDocumentFragment",
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 pub use self::__DOMDocumentFragment::DOMDocumentFragment;
 #[cfg(all(
-    feature = "WebKit_DOMDocumentType",
-    feature = "WebKit_DOMNode",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMDocumentType",
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 pub use self::__DOMDocumentType::DOMDocumentType;
 #[cfg(all(
-    feature = "WebKit_DOMElement",
-    feature = "WebKit_DOMNode",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMElement",
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 pub use self::__DOMElement::DOMElement;
-#[cfg(feature = "WebKit_DOMElement")]
+#[cfg(feature = "DOMElement")]
 pub use self::__DOMElement::DOM_ALLOW_KEYBOARD_INPUT;
 #[cfg(all(
-    feature = "WebKit_DOMEntity",
-    feature = "WebKit_DOMNode",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMEntity",
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 pub use self::__DOMEntity::DOMEntity;
 #[cfg(all(
-    feature = "WebKit_DOMEntityReference",
-    feature = "WebKit_DOMNode",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMEntityReference",
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 pub use self::__DOMEntityReference::DOMEntityReference;
 #[cfg(all(
-    feature = "WebKit_DOMEvent",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMEvent",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 pub use self::__DOMEvent::DOMEvent;
-#[cfg(feature = "WebKit_DOMEvent")]
+#[cfg(feature = "DOMEvent")]
 pub use self::__DOMEvent::DOM_AT_TARGET;
-#[cfg(feature = "WebKit_DOMEvent")]
+#[cfg(feature = "DOMEvent")]
 pub use self::__DOMEvent::DOM_BUBBLING_PHASE;
-#[cfg(feature = "WebKit_DOMEvent")]
+#[cfg(feature = "DOMEvent")]
 pub use self::__DOMEvent::DOM_CAPTURING_PHASE;
-#[cfg(feature = "WebKit_DOMEvent")]
+#[cfg(feature = "DOMEvent")]
 pub use self::__DOMEvent::DOM_NONE;
-#[cfg(feature = "WebKit_DOMEventException")]
+#[cfg(feature = "DOMEventException")]
 pub use self::__DOMEventException::DOMEventException;
-#[cfg(feature = "WebKit_DOMEventException")]
+#[cfg(feature = "DOMEventException")]
 pub use self::__DOMEventException::DOMEventExceptionCode;
-#[cfg(feature = "WebKit_DOMEventListener")]
+#[cfg(feature = "DOMEventListener")]
 pub use self::__DOMEventListener::DOMEventListener;
-#[cfg(feature = "WebKit_DOMEventTarget")]
+#[cfg(feature = "DOMEventTarget")]
 pub use self::__DOMEventTarget::DOMEventTarget;
-#[cfg(feature = "WebKit_DOMException")]
+#[cfg(feature = "DOMException")]
 pub use self::__DOMException::DOMException;
-#[cfg(feature = "WebKit_DOMException")]
+#[cfg(feature = "DOMException")]
 pub use self::__DOMException::DOMExceptionCode;
 #[cfg(all(
-    feature = "WebKit_DOMBlob",
-    feature = "WebKit_DOMFile",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMBlob",
+    feature = "DOMFile",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 pub use self::__DOMFile::DOMFile;
 #[cfg(all(
-    feature = "WebKit_DOMFileList",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMFileList",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 pub use self::__DOMFileList::DOMFileList;
 #[cfg(all(
-    feature = "WebKit_DOMElement",
-    feature = "WebKit_DOMHTMLAnchorElement",
-    feature = "WebKit_DOMHTMLElement",
-    feature = "WebKit_DOMNode",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMElement",
+    feature = "DOMHTMLAnchorElement",
+    feature = "DOMHTMLElement",
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 pub use self::__DOMHTMLAnchorElement::DOMHTMLAnchorElement;
 #[cfg(all(
-    feature = "WebKit_DOMElement",
-    feature = "WebKit_DOMHTMLAppletElement",
-    feature = "WebKit_DOMHTMLElement",
-    feature = "WebKit_DOMNode",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMElement",
+    feature = "DOMHTMLAppletElement",
+    feature = "DOMHTMLElement",
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 pub use self::__DOMHTMLAppletElement::DOMHTMLAppletElement;
 #[cfg(all(
-    feature = "WebKit_DOMElement",
-    feature = "WebKit_DOMHTMLAreaElement",
-    feature = "WebKit_DOMHTMLElement",
-    feature = "WebKit_DOMNode",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMElement",
+    feature = "DOMHTMLAreaElement",
+    feature = "DOMHTMLElement",
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 pub use self::__DOMHTMLAreaElement::DOMHTMLAreaElement;
 #[cfg(all(
-    feature = "WebKit_DOMElement",
-    feature = "WebKit_DOMHTMLBRElement",
-    feature = "WebKit_DOMHTMLElement",
-    feature = "WebKit_DOMNode",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMElement",
+    feature = "DOMHTMLBRElement",
+    feature = "DOMHTMLElement",
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 pub use self::__DOMHTMLBRElement::DOMHTMLBRElement;
 #[cfg(all(
-    feature = "WebKit_DOMElement",
-    feature = "WebKit_DOMHTMLBaseElement",
-    feature = "WebKit_DOMHTMLElement",
-    feature = "WebKit_DOMNode",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMElement",
+    feature = "DOMHTMLBaseElement",
+    feature = "DOMHTMLElement",
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 pub use self::__DOMHTMLBaseElement::DOMHTMLBaseElement;
 #[cfg(all(
-    feature = "WebKit_DOMElement",
-    feature = "WebKit_DOMHTMLBaseFontElement",
-    feature = "WebKit_DOMHTMLElement",
-    feature = "WebKit_DOMNode",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMElement",
+    feature = "DOMHTMLBaseFontElement",
+    feature = "DOMHTMLElement",
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 pub use self::__DOMHTMLBaseFontElement::DOMHTMLBaseFontElement;
 #[cfg(all(
-    feature = "WebKit_DOMElement",
-    feature = "WebKit_DOMHTMLBodyElement",
-    feature = "WebKit_DOMHTMLElement",
-    feature = "WebKit_DOMNode",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMElement",
+    feature = "DOMHTMLBodyElement",
+    feature = "DOMHTMLElement",
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 pub use self::__DOMHTMLBodyElement::DOMHTMLBodyElement;
 #[cfg(all(
-    feature = "WebKit_DOMElement",
-    feature = "WebKit_DOMHTMLButtonElement",
-    feature = "WebKit_DOMHTMLElement",
-    feature = "WebKit_DOMNode",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMElement",
+    feature = "DOMHTMLButtonElement",
+    feature = "DOMHTMLElement",
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 pub use self::__DOMHTMLButtonElement::DOMHTMLButtonElement;
 #[cfg(all(
-    feature = "WebKit_DOMHTMLCollection",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMHTMLCollection",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 pub use self::__DOMHTMLCollection::DOMHTMLCollection;
 #[cfg(all(
-    feature = "WebKit_DOMElement",
-    feature = "WebKit_DOMHTMLDListElement",
-    feature = "WebKit_DOMHTMLElement",
-    feature = "WebKit_DOMNode",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMElement",
+    feature = "DOMHTMLDListElement",
+    feature = "DOMHTMLElement",
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 pub use self::__DOMHTMLDListElement::DOMHTMLDListElement;
 #[cfg(all(
-    feature = "WebKit_DOMElement",
-    feature = "WebKit_DOMHTMLDirectoryElement",
-    feature = "WebKit_DOMHTMLElement",
-    feature = "WebKit_DOMNode",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMElement",
+    feature = "DOMHTMLDirectoryElement",
+    feature = "DOMHTMLElement",
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 pub use self::__DOMHTMLDirectoryElement::DOMHTMLDirectoryElement;
 #[cfg(all(
-    feature = "WebKit_DOMElement",
-    feature = "WebKit_DOMHTMLDivElement",
-    feature = "WebKit_DOMHTMLElement",
-    feature = "WebKit_DOMNode",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMElement",
+    feature = "DOMHTMLDivElement",
+    feature = "DOMHTMLElement",
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 pub use self::__DOMHTMLDivElement::DOMHTMLDivElement;
 #[cfg(all(
-    feature = "WebKit_DOMDocument",
-    feature = "WebKit_DOMHTMLDocument",
-    feature = "WebKit_DOMNode",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMDocument",
+    feature = "DOMHTMLDocument",
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 pub use self::__DOMHTMLDocument::DOMHTMLDocument;
 #[cfg(all(
-    feature = "WebKit_DOMElement",
-    feature = "WebKit_DOMHTMLElement",
-    feature = "WebKit_DOMNode",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMElement",
+    feature = "DOMHTMLElement",
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 pub use self::__DOMHTMLElement::DOMHTMLElement;
 #[cfg(all(
-    feature = "WebKit_DOMElement",
-    feature = "WebKit_DOMHTMLElement",
-    feature = "WebKit_DOMHTMLEmbedElement",
-    feature = "WebKit_DOMNode",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMElement",
+    feature = "DOMHTMLElement",
+    feature = "DOMHTMLEmbedElement",
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 pub use self::__DOMHTMLEmbedElement::DOMHTMLEmbedElement;
 #[cfg(all(
-    feature = "WebKit_DOMElement",
-    feature = "WebKit_DOMHTMLElement",
-    feature = "WebKit_DOMHTMLFieldSetElement",
-    feature = "WebKit_DOMNode",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMElement",
+    feature = "DOMHTMLElement",
+    feature = "DOMHTMLFieldSetElement",
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 pub use self::__DOMHTMLFieldSetElement::DOMHTMLFieldSetElement;
 #[cfg(all(
-    feature = "WebKit_DOMElement",
-    feature = "WebKit_DOMHTMLElement",
-    feature = "WebKit_DOMHTMLFontElement",
-    feature = "WebKit_DOMNode",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMElement",
+    feature = "DOMHTMLElement",
+    feature = "DOMHTMLFontElement",
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 pub use self::__DOMHTMLFontElement::DOMHTMLFontElement;
 #[cfg(all(
-    feature = "WebKit_DOMElement",
-    feature = "WebKit_DOMHTMLElement",
-    feature = "WebKit_DOMHTMLFormElement",
-    feature = "WebKit_DOMNode",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMElement",
+    feature = "DOMHTMLElement",
+    feature = "DOMHTMLFormElement",
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 pub use self::__DOMHTMLFormElement::DOMHTMLFormElement;
 #[cfg(all(
-    feature = "WebKit_DOMElement",
-    feature = "WebKit_DOMHTMLElement",
-    feature = "WebKit_DOMHTMLFrameElement",
-    feature = "WebKit_DOMNode",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMElement",
+    feature = "DOMHTMLElement",
+    feature = "DOMHTMLFrameElement",
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 pub use self::__DOMHTMLFrameElement::DOMHTMLFrameElement;
 #[cfg(all(
-    feature = "WebKit_DOMElement",
-    feature = "WebKit_DOMHTMLElement",
-    feature = "WebKit_DOMHTMLFrameSetElement",
-    feature = "WebKit_DOMNode",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMElement",
+    feature = "DOMHTMLElement",
+    feature = "DOMHTMLFrameSetElement",
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 pub use self::__DOMHTMLFrameSetElement::DOMHTMLFrameSetElement;
 #[cfg(all(
-    feature = "WebKit_DOMElement",
-    feature = "WebKit_DOMHTMLElement",
-    feature = "WebKit_DOMHTMLHRElement",
-    feature = "WebKit_DOMNode",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMElement",
+    feature = "DOMHTMLElement",
+    feature = "DOMHTMLHRElement",
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 pub use self::__DOMHTMLHRElement::DOMHTMLHRElement;
 #[cfg(all(
-    feature = "WebKit_DOMElement",
-    feature = "WebKit_DOMHTMLElement",
-    feature = "WebKit_DOMHTMLHeadElement",
-    feature = "WebKit_DOMNode",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMElement",
+    feature = "DOMHTMLElement",
+    feature = "DOMHTMLHeadElement",
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 pub use self::__DOMHTMLHeadElement::DOMHTMLHeadElement;
 #[cfg(all(
-    feature = "WebKit_DOMElement",
-    feature = "WebKit_DOMHTMLElement",
-    feature = "WebKit_DOMHTMLHeadingElement",
-    feature = "WebKit_DOMNode",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMElement",
+    feature = "DOMHTMLElement",
+    feature = "DOMHTMLHeadingElement",
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 pub use self::__DOMHTMLHeadingElement::DOMHTMLHeadingElement;
 #[cfg(all(
-    feature = "WebKit_DOMElement",
-    feature = "WebKit_DOMHTMLElement",
-    feature = "WebKit_DOMHTMLHtmlElement",
-    feature = "WebKit_DOMNode",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMElement",
+    feature = "DOMHTMLElement",
+    feature = "DOMHTMLHtmlElement",
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 pub use self::__DOMHTMLHtmlElement::DOMHTMLHtmlElement;
 #[cfg(all(
-    feature = "WebKit_DOMElement",
-    feature = "WebKit_DOMHTMLElement",
-    feature = "WebKit_DOMHTMLIFrameElement",
-    feature = "WebKit_DOMNode",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMElement",
+    feature = "DOMHTMLElement",
+    feature = "DOMHTMLIFrameElement",
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 pub use self::__DOMHTMLIFrameElement::DOMHTMLIFrameElement;
 #[cfg(all(
-    feature = "WebKit_DOMElement",
-    feature = "WebKit_DOMHTMLElement",
-    feature = "WebKit_DOMHTMLImageElement",
-    feature = "WebKit_DOMNode",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMElement",
+    feature = "DOMHTMLElement",
+    feature = "DOMHTMLImageElement",
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 pub use self::__DOMHTMLImageElement::DOMHTMLImageElement;
 #[cfg(all(
-    feature = "WebKit_DOMElement",
-    feature = "WebKit_DOMHTMLElement",
-    feature = "WebKit_DOMHTMLInputElement",
-    feature = "WebKit_DOMNode",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMElement",
+    feature = "DOMHTMLElement",
+    feature = "DOMHTMLInputElement",
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 pub use self::__DOMHTMLInputElement::DOMHTMLInputElement;
 #[cfg(all(
-    feature = "WebKit_DOMElement",
-    feature = "WebKit_DOMHTMLElement",
-    feature = "WebKit_DOMHTMLLIElement",
-    feature = "WebKit_DOMNode",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMElement",
+    feature = "DOMHTMLElement",
+    feature = "DOMHTMLLIElement",
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 pub use self::__DOMHTMLLIElement::DOMHTMLLIElement;
 #[cfg(all(
-    feature = "WebKit_DOMElement",
-    feature = "WebKit_DOMHTMLElement",
-    feature = "WebKit_DOMHTMLLabelElement",
-    feature = "WebKit_DOMNode",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMElement",
+    feature = "DOMHTMLElement",
+    feature = "DOMHTMLLabelElement",
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 pub use self::__DOMHTMLLabelElement::DOMHTMLLabelElement;
 #[cfg(all(
-    feature = "WebKit_DOMElement",
-    feature = "WebKit_DOMHTMLElement",
-    feature = "WebKit_DOMHTMLLegendElement",
-    feature = "WebKit_DOMNode",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMElement",
+    feature = "DOMHTMLElement",
+    feature = "DOMHTMLLegendElement",
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 pub use self::__DOMHTMLLegendElement::DOMHTMLLegendElement;
 #[cfg(all(
-    feature = "WebKit_DOMElement",
-    feature = "WebKit_DOMHTMLElement",
-    feature = "WebKit_DOMHTMLLinkElement",
-    feature = "WebKit_DOMNode",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMElement",
+    feature = "DOMHTMLElement",
+    feature = "DOMHTMLLinkElement",
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 pub use self::__DOMHTMLLinkElement::DOMHTMLLinkElement;
 #[cfg(all(
-    feature = "WebKit_DOMElement",
-    feature = "WebKit_DOMHTMLElement",
-    feature = "WebKit_DOMHTMLMapElement",
-    feature = "WebKit_DOMNode",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMElement",
+    feature = "DOMHTMLElement",
+    feature = "DOMHTMLMapElement",
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 pub use self::__DOMHTMLMapElement::DOMHTMLMapElement;
 #[cfg(all(
-    feature = "WebKit_DOMElement",
-    feature = "WebKit_DOMHTMLElement",
-    feature = "WebKit_DOMHTMLMarqueeElement",
-    feature = "WebKit_DOMNode",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMElement",
+    feature = "DOMHTMLElement",
+    feature = "DOMHTMLMarqueeElement",
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 pub use self::__DOMHTMLMarqueeElement::DOMHTMLMarqueeElement;
 #[cfg(all(
-    feature = "WebKit_DOMElement",
-    feature = "WebKit_DOMHTMLElement",
-    feature = "WebKit_DOMHTMLMenuElement",
-    feature = "WebKit_DOMNode",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMElement",
+    feature = "DOMHTMLElement",
+    feature = "DOMHTMLMenuElement",
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 pub use self::__DOMHTMLMenuElement::DOMHTMLMenuElement;
 #[cfg(all(
-    feature = "WebKit_DOMElement",
-    feature = "WebKit_DOMHTMLElement",
-    feature = "WebKit_DOMHTMLMetaElement",
-    feature = "WebKit_DOMNode",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMElement",
+    feature = "DOMHTMLElement",
+    feature = "DOMHTMLMetaElement",
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 pub use self::__DOMHTMLMetaElement::DOMHTMLMetaElement;
 #[cfg(all(
-    feature = "WebKit_DOMElement",
-    feature = "WebKit_DOMHTMLElement",
-    feature = "WebKit_DOMHTMLModElement",
-    feature = "WebKit_DOMNode",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMElement",
+    feature = "DOMHTMLElement",
+    feature = "DOMHTMLModElement",
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 pub use self::__DOMHTMLModElement::DOMHTMLModElement;
 #[cfg(all(
-    feature = "WebKit_DOMElement",
-    feature = "WebKit_DOMHTMLElement",
-    feature = "WebKit_DOMHTMLOListElement",
-    feature = "WebKit_DOMNode",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMElement",
+    feature = "DOMHTMLElement",
+    feature = "DOMHTMLOListElement",
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 pub use self::__DOMHTMLOListElement::DOMHTMLOListElement;
 #[cfg(all(
-    feature = "WebKit_DOMElement",
-    feature = "WebKit_DOMHTMLElement",
-    feature = "WebKit_DOMHTMLObjectElement",
-    feature = "WebKit_DOMNode",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMElement",
+    feature = "DOMHTMLElement",
+    feature = "DOMHTMLObjectElement",
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 pub use self::__DOMHTMLObjectElement::DOMHTMLObjectElement;
 #[cfg(all(
-    feature = "WebKit_DOMElement",
-    feature = "WebKit_DOMHTMLElement",
-    feature = "WebKit_DOMHTMLOptGroupElement",
-    feature = "WebKit_DOMNode",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMElement",
+    feature = "DOMHTMLElement",
+    feature = "DOMHTMLOptGroupElement",
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 pub use self::__DOMHTMLOptGroupElement::DOMHTMLOptGroupElement;
 #[cfg(all(
-    feature = "WebKit_DOMElement",
-    feature = "WebKit_DOMHTMLElement",
-    feature = "WebKit_DOMHTMLOptionElement",
-    feature = "WebKit_DOMNode",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMElement",
+    feature = "DOMHTMLElement",
+    feature = "DOMHTMLOptionElement",
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 pub use self::__DOMHTMLOptionElement::DOMHTMLOptionElement;
 #[cfg(all(
-    feature = "WebKit_DOMHTMLOptionsCollection",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMHTMLOptionsCollection",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 pub use self::__DOMHTMLOptionsCollection::DOMHTMLOptionsCollection;
 #[cfg(all(
-    feature = "WebKit_DOMElement",
-    feature = "WebKit_DOMHTMLElement",
-    feature = "WebKit_DOMHTMLParagraphElement",
-    feature = "WebKit_DOMNode",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMElement",
+    feature = "DOMHTMLElement",
+    feature = "DOMHTMLParagraphElement",
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 pub use self::__DOMHTMLParagraphElement::DOMHTMLParagraphElement;
 #[cfg(all(
-    feature = "WebKit_DOMElement",
-    feature = "WebKit_DOMHTMLElement",
-    feature = "WebKit_DOMHTMLParamElement",
-    feature = "WebKit_DOMNode",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMElement",
+    feature = "DOMHTMLElement",
+    feature = "DOMHTMLParamElement",
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 pub use self::__DOMHTMLParamElement::DOMHTMLParamElement;
 #[cfg(all(
-    feature = "WebKit_DOMElement",
-    feature = "WebKit_DOMHTMLElement",
-    feature = "WebKit_DOMHTMLPreElement",
-    feature = "WebKit_DOMNode",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMElement",
+    feature = "DOMHTMLElement",
+    feature = "DOMHTMLPreElement",
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 pub use self::__DOMHTMLPreElement::DOMHTMLPreElement;
 #[cfg(all(
-    feature = "WebKit_DOMElement",
-    feature = "WebKit_DOMHTMLElement",
-    feature = "WebKit_DOMHTMLQuoteElement",
-    feature = "WebKit_DOMNode",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMElement",
+    feature = "DOMHTMLElement",
+    feature = "DOMHTMLQuoteElement",
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 pub use self::__DOMHTMLQuoteElement::DOMHTMLQuoteElement;
 #[cfg(all(
-    feature = "WebKit_DOMElement",
-    feature = "WebKit_DOMHTMLElement",
-    feature = "WebKit_DOMHTMLScriptElement",
-    feature = "WebKit_DOMNode",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMElement",
+    feature = "DOMHTMLElement",
+    feature = "DOMHTMLScriptElement",
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 pub use self::__DOMHTMLScriptElement::DOMHTMLScriptElement;
 #[cfg(all(
-    feature = "WebKit_DOMElement",
-    feature = "WebKit_DOMHTMLElement",
-    feature = "WebKit_DOMHTMLSelectElement",
-    feature = "WebKit_DOMNode",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMElement",
+    feature = "DOMHTMLElement",
+    feature = "DOMHTMLSelectElement",
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 pub use self::__DOMHTMLSelectElement::DOMHTMLSelectElement;
 #[cfg(all(
-    feature = "WebKit_DOMElement",
-    feature = "WebKit_DOMHTMLElement",
-    feature = "WebKit_DOMHTMLStyleElement",
-    feature = "WebKit_DOMNode",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMElement",
+    feature = "DOMHTMLElement",
+    feature = "DOMHTMLStyleElement",
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 pub use self::__DOMHTMLStyleElement::DOMHTMLStyleElement;
 #[cfg(all(
-    feature = "WebKit_DOMElement",
-    feature = "WebKit_DOMHTMLElement",
-    feature = "WebKit_DOMHTMLTableCaptionElement",
-    feature = "WebKit_DOMNode",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMElement",
+    feature = "DOMHTMLElement",
+    feature = "DOMHTMLTableCaptionElement",
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 pub use self::__DOMHTMLTableCaptionElement::DOMHTMLTableCaptionElement;
 #[cfg(all(
-    feature = "WebKit_DOMElement",
-    feature = "WebKit_DOMHTMLElement",
-    feature = "WebKit_DOMHTMLTableCellElement",
-    feature = "WebKit_DOMNode",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMElement",
+    feature = "DOMHTMLElement",
+    feature = "DOMHTMLTableCellElement",
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 pub use self::__DOMHTMLTableCellElement::DOMHTMLTableCellElement;
 #[cfg(all(
-    feature = "WebKit_DOMElement",
-    feature = "WebKit_DOMHTMLElement",
-    feature = "WebKit_DOMHTMLTableColElement",
-    feature = "WebKit_DOMNode",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMElement",
+    feature = "DOMHTMLElement",
+    feature = "DOMHTMLTableColElement",
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 pub use self::__DOMHTMLTableColElement::DOMHTMLTableColElement;
 #[cfg(all(
-    feature = "WebKit_DOMElement",
-    feature = "WebKit_DOMHTMLElement",
-    feature = "WebKit_DOMHTMLTableElement",
-    feature = "WebKit_DOMNode",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMElement",
+    feature = "DOMHTMLElement",
+    feature = "DOMHTMLTableElement",
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 pub use self::__DOMHTMLTableElement::DOMHTMLTableElement;
 #[cfg(all(
-    feature = "WebKit_DOMElement",
-    feature = "WebKit_DOMHTMLElement",
-    feature = "WebKit_DOMHTMLTableRowElement",
-    feature = "WebKit_DOMNode",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMElement",
+    feature = "DOMHTMLElement",
+    feature = "DOMHTMLTableRowElement",
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 pub use self::__DOMHTMLTableRowElement::DOMHTMLTableRowElement;
 #[cfg(all(
-    feature = "WebKit_DOMElement",
-    feature = "WebKit_DOMHTMLElement",
-    feature = "WebKit_DOMHTMLTableSectionElement",
-    feature = "WebKit_DOMNode",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMElement",
+    feature = "DOMHTMLElement",
+    feature = "DOMHTMLTableSectionElement",
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 pub use self::__DOMHTMLTableSectionElement::DOMHTMLTableSectionElement;
 #[cfg(all(
-    feature = "WebKit_DOMElement",
-    feature = "WebKit_DOMHTMLElement",
-    feature = "WebKit_DOMHTMLTextAreaElement",
-    feature = "WebKit_DOMNode",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMElement",
+    feature = "DOMHTMLElement",
+    feature = "DOMHTMLTextAreaElement",
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 pub use self::__DOMHTMLTextAreaElement::DOMHTMLTextAreaElement;
 #[cfg(all(
-    feature = "WebKit_DOMElement",
-    feature = "WebKit_DOMHTMLElement",
-    feature = "WebKit_DOMHTMLTitleElement",
-    feature = "WebKit_DOMNode",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMElement",
+    feature = "DOMHTMLElement",
+    feature = "DOMHTMLTitleElement",
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 pub use self::__DOMHTMLTitleElement::DOMHTMLTitleElement;
 #[cfg(all(
-    feature = "WebKit_DOMElement",
-    feature = "WebKit_DOMHTMLElement",
-    feature = "WebKit_DOMHTMLUListElement",
-    feature = "WebKit_DOMNode",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMElement",
+    feature = "DOMHTMLElement",
+    feature = "DOMHTMLUListElement",
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 pub use self::__DOMHTMLUListElement::DOMHTMLUListElement;
 #[cfg(all(
-    feature = "WebKit_DOMImplementation",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMImplementation",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 pub use self::__DOMImplementation::DOMImplementation;
 #[cfg(all(
-    feature = "WebKit_DOMEvent",
-    feature = "WebKit_DOMKeyboardEvent",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_DOMUIEvent",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMEvent",
+    feature = "DOMKeyboardEvent",
+    feature = "DOMObject",
+    feature = "DOMUIEvent",
+    feature = "WebScriptObject"
 ))]
 pub use self::__DOMKeyboardEvent::DOMKeyboardEvent;
-#[cfg(feature = "WebKit_DOMKeyboardEvent")]
+#[cfg(feature = "DOMKeyboardEvent")]
 pub use self::__DOMKeyboardEvent::DOM_KEY_LOCATION_LEFT;
-#[cfg(feature = "WebKit_DOMKeyboardEvent")]
+#[cfg(feature = "DOMKeyboardEvent")]
 pub use self::__DOMKeyboardEvent::DOM_KEY_LOCATION_NUMPAD;
-#[cfg(feature = "WebKit_DOMKeyboardEvent")]
+#[cfg(feature = "DOMKeyboardEvent")]
 pub use self::__DOMKeyboardEvent::DOM_KEY_LOCATION_RIGHT;
-#[cfg(feature = "WebKit_DOMKeyboardEvent")]
+#[cfg(feature = "DOMKeyboardEvent")]
 pub use self::__DOMKeyboardEvent::DOM_KEY_LOCATION_STANDARD;
 #[cfg(all(
-    feature = "WebKit_DOMMediaList",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMMediaList",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 pub use self::__DOMMediaList::DOMMediaList;
 #[cfg(all(
-    feature = "WebKit_DOMEvent",
-    feature = "WebKit_DOMMouseEvent",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_DOMUIEvent",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMEvent",
+    feature = "DOMMouseEvent",
+    feature = "DOMObject",
+    feature = "DOMUIEvent",
+    feature = "WebScriptObject"
 ))]
 pub use self::__DOMMouseEvent::DOMMouseEvent;
 #[cfg(all(
-    feature = "WebKit_DOMEvent",
-    feature = "WebKit_DOMMutationEvent",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMEvent",
+    feature = "DOMMutationEvent",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 pub use self::__DOMMutationEvent::DOMMutationEvent;
-#[cfg(feature = "WebKit_DOMMutationEvent")]
+#[cfg(feature = "DOMMutationEvent")]
 pub use self::__DOMMutationEvent::DOM_ADDITION;
-#[cfg(feature = "WebKit_DOMMutationEvent")]
+#[cfg(feature = "DOMMutationEvent")]
 pub use self::__DOMMutationEvent::DOM_MODIFICATION;
-#[cfg(feature = "WebKit_DOMMutationEvent")]
+#[cfg(feature = "DOMMutationEvent")]
 pub use self::__DOMMutationEvent::DOM_REMOVAL;
 #[cfg(all(
-    feature = "WebKit_DOMNamedNodeMap",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMNamedNodeMap",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 pub use self::__DOMNamedNodeMap::DOMNamedNodeMap;
 #[cfg(all(
-    feature = "WebKit_DOMNode",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 pub use self::__DOMNode::DOMNode;
-#[cfg(feature = "WebKit_DOMNode")]
+#[cfg(feature = "DOMNode")]
 pub use self::__DOMNode::DOM_ATTRIBUTE_NODE;
-#[cfg(feature = "WebKit_DOMNode")]
+#[cfg(feature = "DOMNode")]
 pub use self::__DOMNode::DOM_CDATA_SECTION_NODE;
-#[cfg(feature = "WebKit_DOMNode")]
+#[cfg(feature = "DOMNode")]
 pub use self::__DOMNode::DOM_COMMENT_NODE;
-#[cfg(feature = "WebKit_DOMNode")]
+#[cfg(feature = "DOMNode")]
 pub use self::__DOMNode::DOM_DOCUMENT_FRAGMENT_NODE;
-#[cfg(feature = "WebKit_DOMNode")]
+#[cfg(feature = "DOMNode")]
 pub use self::__DOMNode::DOM_DOCUMENT_NODE;
-#[cfg(feature = "WebKit_DOMNode")]
+#[cfg(feature = "DOMNode")]
 pub use self::__DOMNode::DOM_DOCUMENT_POSITION_CONTAINED_BY;
-#[cfg(feature = "WebKit_DOMNode")]
+#[cfg(feature = "DOMNode")]
 pub use self::__DOMNode::DOM_DOCUMENT_POSITION_CONTAINS;
-#[cfg(feature = "WebKit_DOMNode")]
+#[cfg(feature = "DOMNode")]
 pub use self::__DOMNode::DOM_DOCUMENT_POSITION_DISCONNECTED;
-#[cfg(feature = "WebKit_DOMNode")]
+#[cfg(feature = "DOMNode")]
 pub use self::__DOMNode::DOM_DOCUMENT_POSITION_FOLLOWING;
-#[cfg(feature = "WebKit_DOMNode")]
+#[cfg(feature = "DOMNode")]
 pub use self::__DOMNode::DOM_DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC;
-#[cfg(feature = "WebKit_DOMNode")]
+#[cfg(feature = "DOMNode")]
 pub use self::__DOMNode::DOM_DOCUMENT_POSITION_PRECEDING;
-#[cfg(feature = "WebKit_DOMNode")]
+#[cfg(feature = "DOMNode")]
 pub use self::__DOMNode::DOM_DOCUMENT_TYPE_NODE;
-#[cfg(feature = "WebKit_DOMNode")]
+#[cfg(feature = "DOMNode")]
 pub use self::__DOMNode::DOM_ELEMENT_NODE;
-#[cfg(feature = "WebKit_DOMNode")]
+#[cfg(feature = "DOMNode")]
 pub use self::__DOMNode::DOM_ENTITY_NODE;
-#[cfg(feature = "WebKit_DOMNode")]
+#[cfg(feature = "DOMNode")]
 pub use self::__DOMNode::DOM_ENTITY_REFERENCE_NODE;
-#[cfg(feature = "WebKit_DOMNode")]
+#[cfg(feature = "DOMNode")]
 pub use self::__DOMNode::DOM_NOTATION_NODE;
-#[cfg(feature = "WebKit_DOMNode")]
+#[cfg(feature = "DOMNode")]
 pub use self::__DOMNode::DOM_PROCESSING_INSTRUCTION_NODE;
-#[cfg(feature = "WebKit_DOMNode")]
+#[cfg(feature = "DOMNode")]
 pub use self::__DOMNode::DOM_TEXT_NODE;
-#[cfg(feature = "WebKit_DOMNodeFilter")]
+#[cfg(feature = "DOMNodeFilter")]
 pub use self::__DOMNodeFilter::DOMNodeFilter;
-#[cfg(feature = "WebKit_DOMNodeFilter")]
+#[cfg(feature = "DOMNodeFilter")]
 pub use self::__DOMNodeFilter::DOM_FILTER_ACCEPT;
-#[cfg(feature = "WebKit_DOMNodeFilter")]
+#[cfg(feature = "DOMNodeFilter")]
 pub use self::__DOMNodeFilter::DOM_FILTER_REJECT;
-#[cfg(feature = "WebKit_DOMNodeFilter")]
+#[cfg(feature = "DOMNodeFilter")]
 pub use self::__DOMNodeFilter::DOM_FILTER_SKIP;
-#[cfg(feature = "WebKit_DOMNodeFilter")]
+#[cfg(feature = "DOMNodeFilter")]
 pub use self::__DOMNodeFilter::DOM_SHOW_ALL;
-#[cfg(feature = "WebKit_DOMNodeFilter")]
+#[cfg(feature = "DOMNodeFilter")]
 pub use self::__DOMNodeFilter::DOM_SHOW_ATTRIBUTE;
-#[cfg(feature = "WebKit_DOMNodeFilter")]
+#[cfg(feature = "DOMNodeFilter")]
 pub use self::__DOMNodeFilter::DOM_SHOW_CDATA_SECTION;
-#[cfg(feature = "WebKit_DOMNodeFilter")]
+#[cfg(feature = "DOMNodeFilter")]
 pub use self::__DOMNodeFilter::DOM_SHOW_COMMENT;
-#[cfg(feature = "WebKit_DOMNodeFilter")]
+#[cfg(feature = "DOMNodeFilter")]
 pub use self::__DOMNodeFilter::DOM_SHOW_DOCUMENT;
-#[cfg(feature = "WebKit_DOMNodeFilter")]
+#[cfg(feature = "DOMNodeFilter")]
 pub use self::__DOMNodeFilter::DOM_SHOW_DOCUMENT_FRAGMENT;
-#[cfg(feature = "WebKit_DOMNodeFilter")]
+#[cfg(feature = "DOMNodeFilter")]
 pub use self::__DOMNodeFilter::DOM_SHOW_DOCUMENT_TYPE;
-#[cfg(feature = "WebKit_DOMNodeFilter")]
+#[cfg(feature = "DOMNodeFilter")]
 pub use self::__DOMNodeFilter::DOM_SHOW_ELEMENT;
-#[cfg(feature = "WebKit_DOMNodeFilter")]
+#[cfg(feature = "DOMNodeFilter")]
 pub use self::__DOMNodeFilter::DOM_SHOW_ENTITY;
-#[cfg(feature = "WebKit_DOMNodeFilter")]
+#[cfg(feature = "DOMNodeFilter")]
 pub use self::__DOMNodeFilter::DOM_SHOW_ENTITY_REFERENCE;
-#[cfg(feature = "WebKit_DOMNodeFilter")]
+#[cfg(feature = "DOMNodeFilter")]
 pub use self::__DOMNodeFilter::DOM_SHOW_NOTATION;
-#[cfg(feature = "WebKit_DOMNodeFilter")]
+#[cfg(feature = "DOMNodeFilter")]
 pub use self::__DOMNodeFilter::DOM_SHOW_PROCESSING_INSTRUCTION;
-#[cfg(feature = "WebKit_DOMNodeFilter")]
+#[cfg(feature = "DOMNodeFilter")]
 pub use self::__DOMNodeFilter::DOM_SHOW_TEXT;
 #[cfg(all(
-    feature = "WebKit_DOMNodeIterator",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMNodeIterator",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 pub use self::__DOMNodeIterator::DOMNodeIterator;
 #[cfg(all(
-    feature = "WebKit_DOMNodeList",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMNodeList",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 pub use self::__DOMNodeList::DOMNodeList;
-#[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
+#[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
 pub use self::__DOMObject::DOMObject;
-#[cfg(feature = "WebKit_DOMObject")]
+#[cfg(feature = "DOMObject")]
 pub use self::__DOMObject::DOMTimeStamp;
 #[cfg(all(
-    feature = "WebKit_DOMEvent",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_DOMOverflowEvent",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMEvent",
+    feature = "DOMObject",
+    feature = "DOMOverflowEvent",
+    feature = "WebScriptObject"
 ))]
 pub use self::__DOMOverflowEvent::DOMOverflowEvent;
-#[cfg(feature = "WebKit_DOMOverflowEvent")]
+#[cfg(feature = "DOMOverflowEvent")]
 pub use self::__DOMOverflowEvent::DOM_BOTH;
-#[cfg(feature = "WebKit_DOMOverflowEvent")]
+#[cfg(feature = "DOMOverflowEvent")]
 pub use self::__DOMOverflowEvent::DOM_HORIZONTAL;
-#[cfg(feature = "WebKit_DOMOverflowEvent")]
+#[cfg(feature = "DOMOverflowEvent")]
 pub use self::__DOMOverflowEvent::DOM_VERTICAL;
 #[cfg(all(
-    feature = "WebKit_DOMCharacterData",
-    feature = "WebKit_DOMNode",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_DOMProcessingInstruction",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMCharacterData",
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "DOMProcessingInstruction",
+    feature = "WebScriptObject"
 ))]
 pub use self::__DOMProcessingInstruction::DOMProcessingInstruction;
 #[cfg(all(
-    feature = "WebKit_DOMEvent",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_DOMProgressEvent",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMEvent",
+    feature = "DOMObject",
+    feature = "DOMProgressEvent",
+    feature = "WebScriptObject"
 ))]
 pub use self::__DOMProgressEvent::DOMProgressEvent;
 #[cfg(all(
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_DOMRGBColor",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMObject",
+    feature = "DOMRGBColor",
+    feature = "WebScriptObject"
 ))]
 pub use self::__DOMRGBColor::DOMRGBColor;
 #[cfg(all(
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_DOMRange",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMObject",
+    feature = "DOMRange",
+    feature = "WebScriptObject"
 ))]
 pub use self::__DOMRange::DOMRange;
-#[cfg(feature = "WebKit_DOMRange")]
+#[cfg(feature = "DOMRange")]
 pub use self::__DOMRange::DOM_END_TO_END;
-#[cfg(feature = "WebKit_DOMRange")]
+#[cfg(feature = "DOMRange")]
 pub use self::__DOMRange::DOM_END_TO_START;
-#[cfg(feature = "WebKit_DOMRange")]
+#[cfg(feature = "DOMRange")]
 pub use self::__DOMRange::DOM_NODE_AFTER;
-#[cfg(feature = "WebKit_DOMRange")]
+#[cfg(feature = "DOMRange")]
 pub use self::__DOMRange::DOM_NODE_BEFORE;
-#[cfg(feature = "WebKit_DOMRange")]
+#[cfg(feature = "DOMRange")]
 pub use self::__DOMRange::DOM_NODE_BEFORE_AND_AFTER;
-#[cfg(feature = "WebKit_DOMRange")]
+#[cfg(feature = "DOMRange")]
 pub use self::__DOMRange::DOM_NODE_INSIDE;
-#[cfg(feature = "WebKit_DOMRange")]
+#[cfg(feature = "DOMRange")]
 pub use self::__DOMRange::DOM_START_TO_END;
-#[cfg(feature = "WebKit_DOMRange")]
+#[cfg(feature = "DOMRange")]
 pub use self::__DOMRange::DOM_START_TO_START;
-#[cfg(feature = "WebKit_DOMRangeException")]
+#[cfg(feature = "DOMRangeException")]
 pub use self::__DOMRangeException::DOMRangeException;
-#[cfg(feature = "WebKit_DOMRangeException")]
+#[cfg(feature = "DOMRangeException")]
 pub use self::__DOMRangeException::DOMRangeExceptionCode;
 #[cfg(all(
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_DOMRect",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMObject",
+    feature = "DOMRect",
+    feature = "WebScriptObject"
 ))]
 pub use self::__DOMRect::DOMRect;
 #[cfg(all(
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_DOMStyleSheet",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMObject",
+    feature = "DOMStyleSheet",
+    feature = "WebScriptObject"
 ))]
 pub use self::__DOMStyleSheet::DOMStyleSheet;
 #[cfg(all(
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_DOMStyleSheetList",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMObject",
+    feature = "DOMStyleSheetList",
+    feature = "WebScriptObject"
 ))]
 pub use self::__DOMStyleSheetList::DOMStyleSheetList;
 #[cfg(all(
-    feature = "WebKit_DOMCharacterData",
-    feature = "WebKit_DOMNode",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_DOMText",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMCharacterData",
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "DOMText",
+    feature = "WebScriptObject"
 ))]
 pub use self::__DOMText::DOMText;
 #[cfg(all(
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_DOMTreeWalker",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMObject",
+    feature = "DOMTreeWalker",
+    feature = "WebScriptObject"
 ))]
 pub use self::__DOMTreeWalker::DOMTreeWalker;
 #[cfg(all(
-    feature = "WebKit_DOMEvent",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_DOMUIEvent",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMEvent",
+    feature = "DOMObject",
+    feature = "DOMUIEvent",
+    feature = "WebScriptObject"
 ))]
 pub use self::__DOMUIEvent::DOMUIEvent;
 #[cfg(all(
-    feature = "WebKit_DOMEvent",
-    feature = "WebKit_DOMMouseEvent",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_DOMUIEvent",
-    feature = "WebKit_DOMWheelEvent",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMEvent",
+    feature = "DOMMouseEvent",
+    feature = "DOMObject",
+    feature = "DOMUIEvent",
+    feature = "DOMWheelEvent",
+    feature = "WebScriptObject"
 ))]
 pub use self::__DOMWheelEvent::DOMWheelEvent;
-#[cfg(feature = "WebKit_DOMWheelEvent")]
+#[cfg(feature = "DOMWheelEvent")]
 pub use self::__DOMWheelEvent::DOM_DOM_DELTA_LINE;
-#[cfg(feature = "WebKit_DOMWheelEvent")]
+#[cfg(feature = "DOMWheelEvent")]
 pub use self::__DOMWheelEvent::DOM_DOM_DELTA_PAGE;
-#[cfg(feature = "WebKit_DOMWheelEvent")]
+#[cfg(feature = "DOMWheelEvent")]
 pub use self::__DOMWheelEvent::DOM_DOM_DELTA_PIXEL;
-#[cfg(feature = "WebKit_DOMXPathException")]
+#[cfg(feature = "DOMXPathException")]
 pub use self::__DOMXPathException::DOMXPathException;
-#[cfg(feature = "WebKit_DOMXPathException")]
+#[cfg(feature = "DOMXPathException")]
 pub use self::__DOMXPathException::DOMXPathExceptionCode;
 #[cfg(all(
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_DOMXPathExpression",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMObject",
+    feature = "DOMXPathExpression",
+    feature = "WebScriptObject"
 ))]
 pub use self::__DOMXPathExpression::DOMXPathExpression;
-#[cfg(feature = "WebKit_DOMXPathNSResolver")]
+#[cfg(feature = "DOMXPathNSResolver")]
 pub use self::__DOMXPathNSResolver::DOMXPathNSResolver;
 #[cfg(all(
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_DOMXPathResult",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMObject",
+    feature = "DOMXPathResult",
+    feature = "WebScriptObject"
 ))]
 pub use self::__DOMXPathResult::DOMXPathResult;
-#[cfg(feature = "WebKit_DOMXPathResult")]
+#[cfg(feature = "DOMXPathResult")]
 pub use self::__DOMXPathResult::DOM_ANY_TYPE;
-#[cfg(feature = "WebKit_DOMXPathResult")]
+#[cfg(feature = "DOMXPathResult")]
 pub use self::__DOMXPathResult::DOM_ANY_UNORDERED_NODE_TYPE;
-#[cfg(feature = "WebKit_DOMXPathResult")]
+#[cfg(feature = "DOMXPathResult")]
 pub use self::__DOMXPathResult::DOM_BOOLEAN_TYPE;
-#[cfg(feature = "WebKit_DOMXPathResult")]
+#[cfg(feature = "DOMXPathResult")]
 pub use self::__DOMXPathResult::DOM_FIRST_ORDERED_NODE_TYPE;
-#[cfg(feature = "WebKit_DOMXPathResult")]
+#[cfg(feature = "DOMXPathResult")]
 pub use self::__DOMXPathResult::DOM_NUMBER_TYPE;
-#[cfg(feature = "WebKit_DOMXPathResult")]
+#[cfg(feature = "DOMXPathResult")]
 pub use self::__DOMXPathResult::DOM_ORDERED_NODE_ITERATOR_TYPE;
-#[cfg(feature = "WebKit_DOMXPathResult")]
+#[cfg(feature = "DOMXPathResult")]
 pub use self::__DOMXPathResult::DOM_ORDERED_NODE_SNAPSHOT_TYPE;
-#[cfg(feature = "WebKit_DOMXPathResult")]
+#[cfg(feature = "DOMXPathResult")]
 pub use self::__DOMXPathResult::DOM_STRING_TYPE;
-#[cfg(feature = "WebKit_DOMXPathResult")]
+#[cfg(feature = "DOMXPathResult")]
 pub use self::__DOMXPathResult::DOM_UNORDERED_NODE_ITERATOR_TYPE;
-#[cfg(feature = "WebKit_DOMXPathResult")]
+#[cfg(feature = "DOMXPathResult")]
 pub use self::__DOMXPathResult::DOM_UNORDERED_NODE_SNAPSHOT_TYPE;
 #[cfg(all(
-    feature = "WebKit_NSAttributedString",
+    feature = "NSAttributedString",
     feature = "block2",
     feature = "objc2-app-kit"
 ))]
 pub use self::__NSAttributedString::NSAttributedStringCompletionHandler;
-#[cfg(feature = "WebKit_NSAttributedString")]
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSAttributedStringWebKitAdditions;
-#[cfg(all(feature = "WebKit_NSAttributedString", feature = "objc2-app-kit"))]
+#[cfg(all(feature = "NSAttributedString", feature = "objc2-app-kit"))]
 pub use self::__NSAttributedString::NSReadAccessURLDocumentOption;
-#[cfg(feature = "WebKit_WKBackForwardList")]
+#[cfg(feature = "WKBackForwardList")]
 pub use self::__WKBackForwardList::WKBackForwardList;
-#[cfg(feature = "WebKit_WKBackForwardListItem")]
+#[cfg(feature = "WKBackForwardListItem")]
 pub use self::__WKBackForwardListItem::WKBackForwardListItem;
-#[cfg(feature = "WebKit_WKContentRuleList")]
+#[cfg(feature = "WKContentRuleList")]
 pub use self::__WKContentRuleList::WKContentRuleList;
-#[cfg(feature = "WebKit_WKContentRuleListStore")]
+#[cfg(feature = "WKContentRuleListStore")]
 pub use self::__WKContentRuleListStore::WKContentRuleListStore;
-#[cfg(feature = "WebKit_WKContentWorld")]
+#[cfg(feature = "WKContentWorld")]
 pub use self::__WKContentWorld::WKContentWorld;
-#[cfg(feature = "WebKit_WKDownload")]
+#[cfg(feature = "WKDownload")]
 pub use self::__WKDownload::WKDownload;
-#[cfg(feature = "WebKit_WKDownloadDelegate")]
+#[cfg(feature = "WKDownloadDelegate")]
 pub use self::__WKDownloadDelegate::WKDownloadDelegate;
-#[cfg(feature = "WebKit_WKDownloadDelegate")]
+#[cfg(feature = "WKDownloadDelegate")]
 pub use self::__WKDownloadDelegate::WKDownloadRedirectPolicy;
-#[cfg(feature = "WebKit_WKError")]
+#[cfg(feature = "WKError")]
 pub use self::__WKError::WKErrorCode;
-#[cfg(feature = "WebKit_WKError")]
+#[cfg(feature = "WKError")]
 pub use self::__WKError::WKErrorDomain;
-#[cfg(feature = "WebKit_WKFindConfiguration")]
+#[cfg(feature = "WKFindConfiguration")]
 pub use self::__WKFindConfiguration::WKFindConfiguration;
-#[cfg(feature = "WebKit_WKFindResult")]
+#[cfg(feature = "WKFindResult")]
 pub use self::__WKFindResult::WKFindResult;
-#[cfg(feature = "WebKit_WKFrameInfo")]
+#[cfg(feature = "WKFrameInfo")]
 pub use self::__WKFrameInfo::WKFrameInfo;
-#[cfg(feature = "WebKit_WKHTTPCookieStore")]
+#[cfg(feature = "WKHTTPCookieStore")]
 pub use self::__WKHTTPCookieStore::WKCookiePolicy;
-#[cfg(feature = "WebKit_WKHTTPCookieStore")]
+#[cfg(feature = "WKHTTPCookieStore")]
 pub use self::__WKHTTPCookieStore::WKHTTPCookieStore;
-#[cfg(feature = "WebKit_WKHTTPCookieStore")]
+#[cfg(feature = "WKHTTPCookieStore")]
 pub use self::__WKHTTPCookieStore::WKHTTPCookieStoreObserver;
-#[cfg(feature = "WebKit_WKNavigation")]
+#[cfg(feature = "WKNavigation")]
 pub use self::__WKNavigation::WKNavigation;
-#[cfg(feature = "WebKit_WKNavigationAction")]
+#[cfg(feature = "WKNavigationAction")]
 pub use self::__WKNavigationAction::WKNavigationAction;
-#[cfg(feature = "WebKit_WKNavigationAction")]
+#[cfg(feature = "WKNavigationAction")]
 pub use self::__WKNavigationAction::WKNavigationType;
-#[cfg(feature = "WebKit_WKNavigationDelegate")]
+#[cfg(feature = "WKNavigationDelegate")]
 pub use self::__WKNavigationDelegate::WKNavigationActionPolicy;
-#[cfg(feature = "WebKit_WKNavigationDelegate")]
+#[cfg(feature = "WKNavigationDelegate")]
 pub use self::__WKNavigationDelegate::WKNavigationDelegate;
-#[cfg(feature = "WebKit_WKNavigationDelegate")]
+#[cfg(feature = "WKNavigationDelegate")]
 pub use self::__WKNavigationDelegate::WKNavigationResponsePolicy;
-#[cfg(feature = "WebKit_WKNavigationResponse")]
+#[cfg(feature = "WKNavigationResponse")]
 pub use self::__WKNavigationResponse::WKNavigationResponse;
-#[cfg(feature = "WebKit_WKOpenPanelParameters")]
+#[cfg(feature = "WKOpenPanelParameters")]
 pub use self::__WKOpenPanelParameters::WKOpenPanelParameters;
-#[cfg(feature = "WebKit_WKPDFConfiguration")]
+#[cfg(feature = "WKPDFConfiguration")]
 pub use self::__WKPDFConfiguration::WKPDFConfiguration;
-#[cfg(feature = "WebKit_WKPreferences")]
+#[cfg(feature = "WKPreferences")]
 pub use self::__WKPreferences::WKInactiveSchedulingPolicy;
-#[cfg(feature = "WebKit_WKPreferences")]
+#[cfg(feature = "WKPreferences")]
 pub use self::__WKPreferences::WKPreferences;
-#[cfg(feature = "WebKit_WKProcessPool")]
+#[cfg(feature = "WKProcessPool")]
 pub use self::__WKProcessPool::WKProcessPool;
-#[cfg(feature = "WebKit_WKScriptMessage")]
+#[cfg(feature = "WKScriptMessage")]
 pub use self::__WKScriptMessage::WKScriptMessage;
-#[cfg(feature = "WebKit_WKScriptMessageHandler")]
+#[cfg(feature = "WKScriptMessageHandler")]
 pub use self::__WKScriptMessageHandler::WKScriptMessageHandler;
-#[cfg(feature = "WebKit_WKScriptMessageHandlerWithReply")]
+#[cfg(feature = "WKScriptMessageHandlerWithReply")]
 pub use self::__WKScriptMessageHandlerWithReply::WKScriptMessageHandlerWithReply;
-#[cfg(feature = "WebKit_WKSecurityOrigin")]
+#[cfg(feature = "WKSecurityOrigin")]
 pub use self::__WKSecurityOrigin::WKSecurityOrigin;
-#[cfg(feature = "WebKit_WKSnapshotConfiguration")]
+#[cfg(feature = "WKSnapshotConfiguration")]
 pub use self::__WKSnapshotConfiguration::WKSnapshotConfiguration;
-#[cfg(feature = "WebKit_WKUIDelegate")]
+#[cfg(feature = "WKUIDelegate")]
 pub use self::__WKUIDelegate::WKDialogResult;
-#[cfg(feature = "WebKit_WKUIDelegate")]
+#[cfg(feature = "WKUIDelegate")]
 pub use self::__WKUIDelegate::WKMediaCaptureType;
-#[cfg(feature = "WebKit_WKUIDelegate")]
+#[cfg(feature = "WKUIDelegate")]
 pub use self::__WKUIDelegate::WKPermissionDecision;
-#[cfg(feature = "WebKit_WKUIDelegate")]
+#[cfg(feature = "WKUIDelegate")]
 pub use self::__WKUIDelegate::WKUIDelegate;
-#[cfg(feature = "WebKit_WKURLSchemeHandler")]
+#[cfg(feature = "WKURLSchemeHandler")]
 pub use self::__WKURLSchemeHandler::WKURLSchemeHandler;
-#[cfg(feature = "WebKit_WKURLSchemeTask")]
+#[cfg(feature = "WKURLSchemeTask")]
 pub use self::__WKURLSchemeTask::WKURLSchemeTask;
-#[cfg(feature = "WebKit_WKUserContentController")]
+#[cfg(feature = "WKUserContentController")]
 pub use self::__WKUserContentController::WKUserContentController;
-#[cfg(feature = "WebKit_WKUserScript")]
+#[cfg(feature = "WKUserScript")]
 pub use self::__WKUserScript::WKUserScript;
-#[cfg(feature = "WebKit_WKUserScript")]
+#[cfg(feature = "WKUserScript")]
 pub use self::__WKUserScript::WKUserScriptInjectionTime;
-#[cfg(feature = "WebKit_WKWebView")]
+#[cfg(feature = "WKWebView")]
 pub use self::__WKWebView::WKFullscreenState;
-#[cfg(feature = "WebKit_WKWebView")]
+#[cfg(feature = "WKWebView")]
 pub use self::__WKWebView::WKMediaCaptureState;
-#[cfg(feature = "WebKit_WKWebView")]
+#[cfg(feature = "WKWebView")]
 pub use self::__WKWebView::WKMediaPlaybackState;
-#[cfg(all(feature = "WebKit_WKWebView", feature = "objc2-app-kit"))]
+#[cfg(all(feature = "WKWebView", feature = "objc2-app-kit"))]
 pub use self::__WKWebView::WKWebView;
-#[cfg(feature = "WebKit_WKWebViewConfiguration")]
+#[cfg(feature = "WKWebViewConfiguration")]
 pub use self::__WKWebViewConfiguration::WKAudiovisualMediaTypes;
-#[cfg(feature = "WebKit_WKWebViewConfiguration")]
+#[cfg(feature = "WKWebViewConfiguration")]
 pub use self::__WKWebViewConfiguration::WKUserInterfaceDirectionPolicy;
-#[cfg(feature = "WebKit_WKWebViewConfiguration")]
+#[cfg(feature = "WKWebViewConfiguration")]
 pub use self::__WKWebViewConfiguration::WKWebViewConfiguration;
-#[cfg(feature = "WebKit_WKWebpagePreferences")]
+#[cfg(feature = "WKWebpagePreferences")]
 pub use self::__WKWebpagePreferences::WKContentMode;
-#[cfg(feature = "WebKit_WKWebpagePreferences")]
+#[cfg(feature = "WKWebpagePreferences")]
 pub use self::__WKWebpagePreferences::WKWebpagePreferences;
-#[cfg(feature = "WebKit_WKWebsiteDataRecord")]
+#[cfg(feature = "WKWebsiteDataRecord")]
 pub use self::__WKWebsiteDataRecord::WKWebsiteDataRecord;
-#[cfg(feature = "WebKit_WKWebsiteDataRecord")]
+#[cfg(feature = "WKWebsiteDataRecord")]
 pub use self::__WKWebsiteDataRecord::WKWebsiteDataTypeCookies;
-#[cfg(feature = "WebKit_WKWebsiteDataRecord")]
+#[cfg(feature = "WKWebsiteDataRecord")]
 pub use self::__WKWebsiteDataRecord::WKWebsiteDataTypeDiskCache;
-#[cfg(feature = "WebKit_WKWebsiteDataRecord")]
+#[cfg(feature = "WKWebsiteDataRecord")]
 pub use self::__WKWebsiteDataRecord::WKWebsiteDataTypeFetchCache;
-#[cfg(feature = "WebKit_WKWebsiteDataRecord")]
+#[cfg(feature = "WKWebsiteDataRecord")]
 pub use self::__WKWebsiteDataRecord::WKWebsiteDataTypeFileSystem;
-#[cfg(feature = "WebKit_WKWebsiteDataRecord")]
+#[cfg(feature = "WKWebsiteDataRecord")]
 pub use self::__WKWebsiteDataRecord::WKWebsiteDataTypeHashSalt;
-#[cfg(feature = "WebKit_WKWebsiteDataRecord")]
+#[cfg(feature = "WKWebsiteDataRecord")]
 pub use self::__WKWebsiteDataRecord::WKWebsiteDataTypeIndexedDBDatabases;
-#[cfg(feature = "WebKit_WKWebsiteDataRecord")]
+#[cfg(feature = "WKWebsiteDataRecord")]
 pub use self::__WKWebsiteDataRecord::WKWebsiteDataTypeLocalStorage;
-#[cfg(feature = "WebKit_WKWebsiteDataRecord")]
+#[cfg(feature = "WKWebsiteDataRecord")]
 pub use self::__WKWebsiteDataRecord::WKWebsiteDataTypeMediaKeys;
-#[cfg(feature = "WebKit_WKWebsiteDataRecord")]
+#[cfg(feature = "WKWebsiteDataRecord")]
 pub use self::__WKWebsiteDataRecord::WKWebsiteDataTypeMemoryCache;
-#[cfg(feature = "WebKit_WKWebsiteDataRecord")]
+#[cfg(feature = "WKWebsiteDataRecord")]
 pub use self::__WKWebsiteDataRecord::WKWebsiteDataTypeOfflineWebApplicationCache;
-#[cfg(feature = "WebKit_WKWebsiteDataRecord")]
+#[cfg(feature = "WKWebsiteDataRecord")]
 pub use self::__WKWebsiteDataRecord::WKWebsiteDataTypeSearchFieldRecentSearches;
-#[cfg(feature = "WebKit_WKWebsiteDataRecord")]
+#[cfg(feature = "WKWebsiteDataRecord")]
 pub use self::__WKWebsiteDataRecord::WKWebsiteDataTypeServiceWorkerRegistrations;
-#[cfg(feature = "WebKit_WKWebsiteDataRecord")]
+#[cfg(feature = "WKWebsiteDataRecord")]
 pub use self::__WKWebsiteDataRecord::WKWebsiteDataTypeSessionStorage;
-#[cfg(feature = "WebKit_WKWebsiteDataRecord")]
+#[cfg(feature = "WKWebsiteDataRecord")]
 pub use self::__WKWebsiteDataRecord::WKWebsiteDataTypeWebSQLDatabases;
-#[cfg(feature = "WebKit_WKWebsiteDataStore")]
+#[cfg(feature = "WKWebsiteDataStore")]
 pub use self::__WKWebsiteDataStore::WKWebsiteDataStore;
-#[cfg(feature = "WebKit_WKWindowFeatures")]
+#[cfg(feature = "WKWindowFeatures")]
 pub use self::__WKWindowFeatures::WKWindowFeatures;
-#[cfg(feature = "WebKit_WebArchive")]
+#[cfg(feature = "WebArchive")]
 pub use self::__WebArchive::WebArchive;
-#[cfg(feature = "WebKit_WebArchive")]
+#[cfg(feature = "WebArchive")]
 pub use self::__WebArchive::WebArchivePboardType;
-#[cfg(feature = "WebKit_WebBackForwardList")]
+#[cfg(feature = "WebBackForwardList")]
 pub use self::__WebBackForwardList::WebBackForwardList;
-#[cfg(feature = "WebKit_WebDataSource")]
+#[cfg(feature = "WebDataSource")]
 pub use self::__WebDataSource::WebDataSource;
-#[cfg(feature = "WebKit_WebDocument")]
+#[cfg(feature = "WebDocument")]
 pub use self::__WebDocument::WebDocumentRepresentation;
-#[cfg(feature = "WebKit_WebDocument")]
+#[cfg(feature = "WebDocument")]
 pub use self::__WebDocument::WebDocumentSearching;
-#[cfg(feature = "WebKit_WebDocument")]
+#[cfg(feature = "WebDocument")]
 pub use self::__WebDocument::WebDocumentText;
-#[cfg(feature = "WebKit_WebDocument")]
+#[cfg(feature = "WebDocument")]
 pub use self::__WebDocument::WebDocumentView;
-#[cfg(feature = "WebKit_WebDownload")]
+#[cfg(feature = "WebDownload")]
 pub use self::__WebDownload::WebDownload;
-#[cfg(feature = "WebKit_WebDownload")]
+#[cfg(feature = "WebDownload")]
 pub use self::__WebDownload::WebDownloadDelegate;
-#[cfg(feature = "WebKit_WebEditingDelegate")]
+#[cfg(feature = "WebEditingDelegate")]
 pub use self::__WebEditingDelegate::WebEditingDelegate;
-#[cfg(feature = "WebKit_WebEditingDelegate")]
+#[cfg(feature = "WebEditingDelegate")]
 pub use self::__WebEditingDelegate::WebViewInsertAction;
-#[cfg(feature = "WebKit_WebFrame")]
+#[cfg(feature = "WebFrame")]
 pub use self::__WebFrame::WebFrame;
-#[cfg(feature = "WebKit_WebFrameLoadDelegate")]
+#[cfg(feature = "WebFrameLoadDelegate")]
 pub use self::__WebFrameLoadDelegate::WebFrameLoadDelegate;
-#[cfg(all(feature = "WebKit_WebFrameView", feature = "objc2-app-kit"))]
+#[cfg(all(feature = "WebFrameView", feature = "objc2-app-kit"))]
 pub use self::__WebFrameView::WebFrameView;
-#[cfg(feature = "WebKit_WebHistory")]
+#[cfg(feature = "WebHistory")]
 pub use self::__WebHistory::WebHistory;
-#[cfg(feature = "WebKit_WebHistory")]
+#[cfg(feature = "WebHistory")]
 pub use self::__WebHistory::WebHistoryAllItemsRemovedNotification;
-#[cfg(feature = "WebKit_WebHistory")]
+#[cfg(feature = "WebHistory")]
 pub use self::__WebHistory::WebHistoryItemsAddedNotification;
-#[cfg(feature = "WebKit_WebHistory")]
+#[cfg(feature = "WebHistory")]
 pub use self::__WebHistory::WebHistoryItemsKey;
-#[cfg(feature = "WebKit_WebHistory")]
+#[cfg(feature = "WebHistory")]
 pub use self::__WebHistory::WebHistoryItemsRemovedNotification;
-#[cfg(feature = "WebKit_WebHistory")]
+#[cfg(feature = "WebHistory")]
 pub use self::__WebHistory::WebHistoryLoadedNotification;
-#[cfg(feature = "WebKit_WebHistory")]
+#[cfg(feature = "WebHistory")]
 pub use self::__WebHistory::WebHistorySavedNotification;
-#[cfg(feature = "WebKit_WebHistoryItem")]
+#[cfg(feature = "WebHistoryItem")]
 pub use self::__WebHistoryItem::WebHistoryItem;
-#[cfg(feature = "WebKit_WebHistoryItem")]
+#[cfg(feature = "WebHistoryItem")]
 pub use self::__WebHistoryItem::WebHistoryItemChangedNotification;
-#[cfg(feature = "WebKit_WebKitErrors")]
+#[cfg(feature = "WebKitErrors")]
 pub use self::__WebKitErrors::WebKitErrorBlockedPlugInVersion;
-#[cfg(feature = "WebKit_WebKitErrors")]
+#[cfg(feature = "WebKitErrors")]
 pub use self::__WebKitErrors::WebKitErrorCannotFindPlugIn;
-#[cfg(feature = "WebKit_WebKitErrors")]
+#[cfg(feature = "WebKitErrors")]
 pub use self::__WebKitErrors::WebKitErrorCannotLoadPlugIn;
-#[cfg(feature = "WebKit_WebKitErrors")]
+#[cfg(feature = "WebKitErrors")]
 pub use self::__WebKitErrors::WebKitErrorCannotShowMIMEType;
-#[cfg(feature = "WebKit_WebKitErrors")]
+#[cfg(feature = "WebKitErrors")]
 pub use self::__WebKitErrors::WebKitErrorCannotShowURL;
-#[cfg(feature = "WebKit_WebKitErrors")]
+#[cfg(feature = "WebKitErrors")]
 pub use self::__WebKitErrors::WebKitErrorDomain;
-#[cfg(feature = "WebKit_WebKitErrors")]
+#[cfg(feature = "WebKitErrors")]
 pub use self::__WebKitErrors::WebKitErrorFrameLoadInterruptedByPolicyChange;
-#[cfg(feature = "WebKit_WebKitErrors")]
+#[cfg(feature = "WebKitErrors")]
 pub use self::__WebKitErrors::WebKitErrorJavaUnavailable;
-#[cfg(feature = "WebKit_WebKitErrors")]
+#[cfg(feature = "WebKitErrors")]
 pub use self::__WebKitErrors::WebKitErrorMIMETypeKey;
-#[cfg(feature = "WebKit_WebKitErrors")]
+#[cfg(feature = "WebKitErrors")]
 pub use self::__WebKitErrors::WebKitErrorPlugInNameKey;
-#[cfg(feature = "WebKit_WebKitErrors")]
+#[cfg(feature = "WebKitErrors")]
 pub use self::__WebKitErrors::WebKitErrorPlugInPageURLStringKey;
-#[cfg(feature = "WebKit_WebPlugin")]
+#[cfg(feature = "WebPlugin")]
 pub use self::__WebPlugin::NSObjectWebPlugIn;
-#[cfg(feature = "WebKit_WebPluginContainer")]
+#[cfg(feature = "WebPluginContainer")]
 pub use self::__WebPluginContainer::NSObjectWebPlugInContainer;
-#[cfg(feature = "WebKit_WebPluginViewFactory")]
+#[cfg(feature = "WebPluginViewFactory")]
 pub use self::__WebPluginViewFactory::WebPlugInAttributesKey;
-#[cfg(feature = "WebKit_WebPluginViewFactory")]
+#[cfg(feature = "WebPluginViewFactory")]
 pub use self::__WebPluginViewFactory::WebPlugInBaseURLKey;
-#[cfg(feature = "WebKit_WebPluginViewFactory")]
+#[cfg(feature = "WebPluginViewFactory")]
 pub use self::__WebPluginViewFactory::WebPlugInContainerKey;
-#[cfg(feature = "WebKit_WebPluginViewFactory")]
+#[cfg(feature = "WebPluginViewFactory")]
 pub use self::__WebPluginViewFactory::WebPlugInContainingElementKey;
-#[cfg(feature = "WebKit_WebPluginViewFactory")]
+#[cfg(feature = "WebPluginViewFactory")]
 pub use self::__WebPluginViewFactory::WebPlugInShouldLoadMainResourceKey;
-#[cfg(feature = "WebKit_WebPluginViewFactory")]
+#[cfg(feature = "WebPluginViewFactory")]
 pub use self::__WebPluginViewFactory::WebPlugInViewFactory;
-#[cfg(feature = "WebKit_WebPolicyDelegate")]
+#[cfg(feature = "WebPolicyDelegate")]
 pub use self::__WebPolicyDelegate::WebActionButtonKey;
-#[cfg(feature = "WebKit_WebPolicyDelegate")]
+#[cfg(feature = "WebPolicyDelegate")]
 pub use self::__WebPolicyDelegate::WebActionElementKey;
-#[cfg(feature = "WebKit_WebPolicyDelegate")]
+#[cfg(feature = "WebPolicyDelegate")]
 pub use self::__WebPolicyDelegate::WebActionModifierFlagsKey;
-#[cfg(feature = "WebKit_WebPolicyDelegate")]
+#[cfg(feature = "WebPolicyDelegate")]
 pub use self::__WebPolicyDelegate::WebActionNavigationTypeKey;
-#[cfg(feature = "WebKit_WebPolicyDelegate")]
+#[cfg(feature = "WebPolicyDelegate")]
 pub use self::__WebPolicyDelegate::WebActionOriginalURLKey;
-#[cfg(feature = "WebKit_WebPolicyDelegate")]
+#[cfg(feature = "WebPolicyDelegate")]
 pub use self::__WebPolicyDelegate::WebNavigationType;
-#[cfg(feature = "WebKit_WebPolicyDelegate")]
+#[cfg(feature = "WebPolicyDelegate")]
 pub use self::__WebPolicyDelegate::WebPolicyDecisionListener;
-#[cfg(feature = "WebKit_WebPolicyDelegate")]
+#[cfg(feature = "WebPolicyDelegate")]
 pub use self::__WebPolicyDelegate::WebPolicyDelegate;
-#[cfg(feature = "WebKit_WebPreferences")]
+#[cfg(feature = "WebPreferences")]
 pub use self::__WebPreferences::WebCacheModel;
-#[cfg(feature = "WebKit_WebPreferences")]
+#[cfg(feature = "WebPreferences")]
 pub use self::__WebPreferences::WebPreferences;
-#[cfg(feature = "WebKit_WebPreferences")]
+#[cfg(feature = "WebPreferences")]
 pub use self::__WebPreferences::WebPreferencesChangedNotification;
-#[cfg(feature = "WebKit_WebResource")]
+#[cfg(feature = "WebResource")]
 pub use self::__WebResource::WebResource;
-#[cfg(feature = "WebKit_WebResourceLoadDelegate")]
+#[cfg(feature = "WebResourceLoadDelegate")]
 pub use self::__WebResourceLoadDelegate::WebResourceLoadDelegate;
-#[cfg(feature = "WebKit_WebScriptObject")]
+#[cfg(feature = "WebScriptObject")]
 pub use self::__WebScriptObject::NSObjectWebScripting;
-#[cfg(feature = "WebKit_WebScriptObject")]
+#[cfg(feature = "WebScriptObject")]
 pub use self::__WebScriptObject::WebScriptObject;
-#[cfg(feature = "WebKit_WebScriptObject")]
+#[cfg(feature = "WebScriptObject")]
 pub use self::__WebScriptObject::WebUndefined;
-#[cfg(feature = "WebKit_WebUIDelegate")]
+#[cfg(feature = "WebUIDelegate")]
 pub use self::__WebUIDelegate::WebDragDestinationAction;
-#[cfg(feature = "WebKit_WebUIDelegate")]
+#[cfg(feature = "WebUIDelegate")]
 pub use self::__WebUIDelegate::WebDragSourceAction;
-#[cfg(feature = "WebKit_WebUIDelegate")]
+#[cfg(feature = "WebUIDelegate")]
 pub use self::__WebUIDelegate::WebMenuItemPDFActualSize;
-#[cfg(feature = "WebKit_WebUIDelegate")]
+#[cfg(feature = "WebUIDelegate")]
 pub use self::__WebUIDelegate::WebMenuItemPDFAutoSize;
-#[cfg(feature = "WebKit_WebUIDelegate")]
+#[cfg(feature = "WebUIDelegate")]
 pub use self::__WebUIDelegate::WebMenuItemPDFContinuous;
-#[cfg(feature = "WebKit_WebUIDelegate")]
+#[cfg(feature = "WebUIDelegate")]
 pub use self::__WebUIDelegate::WebMenuItemPDFFacingPages;
-#[cfg(feature = "WebKit_WebUIDelegate")]
+#[cfg(feature = "WebUIDelegate")]
 pub use self::__WebUIDelegate::WebMenuItemPDFNextPage;
-#[cfg(feature = "WebKit_WebUIDelegate")]
+#[cfg(feature = "WebUIDelegate")]
 pub use self::__WebUIDelegate::WebMenuItemPDFPreviousPage;
-#[cfg(feature = "WebKit_WebUIDelegate")]
+#[cfg(feature = "WebUIDelegate")]
 pub use self::__WebUIDelegate::WebMenuItemPDFSinglePage;
-#[cfg(feature = "WebKit_WebUIDelegate")]
+#[cfg(feature = "WebUIDelegate")]
 pub use self::__WebUIDelegate::WebMenuItemPDFZoomIn;
-#[cfg(feature = "WebKit_WebUIDelegate")]
+#[cfg(feature = "WebUIDelegate")]
 pub use self::__WebUIDelegate::WebMenuItemPDFZoomOut;
-#[cfg(feature = "WebKit_WebUIDelegate")]
+#[cfg(feature = "WebUIDelegate")]
 pub use self::__WebUIDelegate::WebMenuItemTagCopy;
-#[cfg(feature = "WebKit_WebUIDelegate")]
+#[cfg(feature = "WebUIDelegate")]
 pub use self::__WebUIDelegate::WebMenuItemTagCopyImageToClipboard;
-#[cfg(feature = "WebKit_WebUIDelegate")]
+#[cfg(feature = "WebUIDelegate")]
 pub use self::__WebUIDelegate::WebMenuItemTagCopyLinkToClipboard;
-#[cfg(feature = "WebKit_WebUIDelegate")]
+#[cfg(feature = "WebUIDelegate")]
 pub use self::__WebUIDelegate::WebMenuItemTagCut;
-#[cfg(feature = "WebKit_WebUIDelegate")]
+#[cfg(feature = "WebUIDelegate")]
 pub use self::__WebUIDelegate::WebMenuItemTagDownloadImageToDisk;
-#[cfg(feature = "WebKit_WebUIDelegate")]
+#[cfg(feature = "WebUIDelegate")]
 pub use self::__WebUIDelegate::WebMenuItemTagDownloadLinkToDisk;
-#[cfg(feature = "WebKit_WebUIDelegate")]
+#[cfg(feature = "WebUIDelegate")]
 pub use self::__WebUIDelegate::WebMenuItemTagGoBack;
-#[cfg(feature = "WebKit_WebUIDelegate")]
+#[cfg(feature = "WebUIDelegate")]
 pub use self::__WebUIDelegate::WebMenuItemTagGoForward;
-#[cfg(feature = "WebKit_WebUIDelegate")]
+#[cfg(feature = "WebUIDelegate")]
 pub use self::__WebUIDelegate::WebMenuItemTagIgnoreSpelling;
-#[cfg(feature = "WebKit_WebUIDelegate")]
+#[cfg(feature = "WebUIDelegate")]
 pub use self::__WebUIDelegate::WebMenuItemTagLearnSpelling;
-#[cfg(feature = "WebKit_WebUIDelegate")]
+#[cfg(feature = "WebUIDelegate")]
 pub use self::__WebUIDelegate::WebMenuItemTagLookUpInDictionary;
-#[cfg(feature = "WebKit_WebUIDelegate")]
+#[cfg(feature = "WebUIDelegate")]
 pub use self::__WebUIDelegate::WebMenuItemTagNoGuessesFound;
-#[cfg(feature = "WebKit_WebUIDelegate")]
+#[cfg(feature = "WebUIDelegate")]
 pub use self::__WebUIDelegate::WebMenuItemTagOpenFrameInNewWindow;
-#[cfg(feature = "WebKit_WebUIDelegate")]
+#[cfg(feature = "WebUIDelegate")]
 pub use self::__WebUIDelegate::WebMenuItemTagOpenImageInNewWindow;
-#[cfg(feature = "WebKit_WebUIDelegate")]
+#[cfg(feature = "WebUIDelegate")]
 pub use self::__WebUIDelegate::WebMenuItemTagOpenLinkInNewWindow;
-#[cfg(feature = "WebKit_WebUIDelegate")]
+#[cfg(feature = "WebUIDelegate")]
 pub use self::__WebUIDelegate::WebMenuItemTagOpenWithDefaultApplication;
-#[cfg(feature = "WebKit_WebUIDelegate")]
+#[cfg(feature = "WebUIDelegate")]
 pub use self::__WebUIDelegate::WebMenuItemTagOther;
-#[cfg(feature = "WebKit_WebUIDelegate")]
+#[cfg(feature = "WebUIDelegate")]
 pub use self::__WebUIDelegate::WebMenuItemTagPaste;
-#[cfg(feature = "WebKit_WebUIDelegate")]
+#[cfg(feature = "WebUIDelegate")]
 pub use self::__WebUIDelegate::WebMenuItemTagReload;
-#[cfg(feature = "WebKit_WebUIDelegate")]
+#[cfg(feature = "WebUIDelegate")]
 pub use self::__WebUIDelegate::WebMenuItemTagSearchInSpotlight;
-#[cfg(feature = "WebKit_WebUIDelegate")]
+#[cfg(feature = "WebUIDelegate")]
 pub use self::__WebUIDelegate::WebMenuItemTagSearchWeb;
-#[cfg(feature = "WebKit_WebUIDelegate")]
+#[cfg(feature = "WebUIDelegate")]
 pub use self::__WebUIDelegate::WebMenuItemTagSpellingGuess;
-#[cfg(feature = "WebKit_WebUIDelegate")]
+#[cfg(feature = "WebUIDelegate")]
 pub use self::__WebUIDelegate::WebMenuItemTagStop;
-#[cfg(feature = "WebKit_WebUIDelegate")]
+#[cfg(feature = "WebUIDelegate")]
 pub use self::__WebUIDelegate::WebOpenPanelResultListener;
-#[cfg(feature = "WebKit_WebUIDelegate")]
+#[cfg(feature = "WebUIDelegate")]
 pub use self::__WebUIDelegate::WebUIDelegate;
-#[cfg(feature = "WebKit_WebView")]
+#[cfg(feature = "WebView")]
 pub use self::__WebView::WebElementDOMNodeKey;
-#[cfg(feature = "WebKit_WebView")]
+#[cfg(feature = "WebView")]
 pub use self::__WebView::WebElementFrameKey;
-#[cfg(feature = "WebKit_WebView")]
+#[cfg(feature = "WebView")]
 pub use self::__WebView::WebElementImageAltStringKey;
-#[cfg(feature = "WebKit_WebView")]
+#[cfg(feature = "WebView")]
 pub use self::__WebView::WebElementImageKey;
-#[cfg(feature = "WebKit_WebView")]
+#[cfg(feature = "WebView")]
 pub use self::__WebView::WebElementImageRectKey;
-#[cfg(feature = "WebKit_WebView")]
+#[cfg(feature = "WebView")]
 pub use self::__WebView::WebElementImageURLKey;
-#[cfg(feature = "WebKit_WebView")]
+#[cfg(feature = "WebView")]
 pub use self::__WebView::WebElementIsSelectedKey;
-#[cfg(feature = "WebKit_WebView")]
+#[cfg(feature = "WebView")]
 pub use self::__WebView::WebElementLinkLabelKey;
-#[cfg(feature = "WebKit_WebView")]
+#[cfg(feature = "WebView")]
 pub use self::__WebView::WebElementLinkTargetFrameKey;
-#[cfg(feature = "WebKit_WebView")]
+#[cfg(feature = "WebView")]
 pub use self::__WebView::WebElementLinkTitleKey;
-#[cfg(feature = "WebKit_WebView")]
+#[cfg(feature = "WebView")]
 pub use self::__WebView::WebElementLinkURLKey;
-#[cfg(all(feature = "WebKit_WebView", feature = "objc2-app-kit"))]
+#[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
 pub use self::__WebView::WebView;
-#[cfg(feature = "WebKit_WebView")]
+#[cfg(feature = "WebView")]
 pub use self::__WebView::WebViewDidBeginEditingNotification;
-#[cfg(feature = "WebKit_WebView")]
+#[cfg(feature = "WebView")]
 pub use self::__WebView::WebViewDidChangeNotification;
-#[cfg(feature = "WebKit_WebView")]
+#[cfg(feature = "WebView")]
 pub use self::__WebView::WebViewDidChangeSelectionNotification;
-#[cfg(feature = "WebKit_WebView")]
+#[cfg(feature = "WebView")]
 pub use self::__WebView::WebViewDidChangeTypingStyleNotification;
-#[cfg(feature = "WebKit_WebView")]
+#[cfg(feature = "WebView")]
 pub use self::__WebView::WebViewDidEndEditingNotification;
-#[cfg(feature = "WebKit_WebView")]
+#[cfg(feature = "WebView")]
 pub use self::__WebView::WebViewProgressEstimateChangedNotification;
-#[cfg(feature = "WebKit_WebView")]
+#[cfg(feature = "WebView")]
 pub use self::__WebView::WebViewProgressFinishedNotification;
-#[cfg(feature = "WebKit_WebView")]
+#[cfg(feature = "WebView")]
 pub use self::__WebView::WebViewProgressStartedNotification;

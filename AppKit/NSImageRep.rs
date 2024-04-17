@@ -64,7 +64,7 @@ extern_methods!(
         #[method(drawInRect:)]
         pub unsafe fn drawInRect(&self, rect: NSRect) -> bool;
 
-        #[cfg(feature = "AppKit_NSGraphics")]
+        #[cfg(feature = "NSGraphics")]
         #[method(drawInRect:fromRect:operation:fraction:respectFlipped:hints:)]
         pub unsafe fn drawInRect_fromRect_operation_fraction_respectFlipped_hints(
             &self,
@@ -94,11 +94,11 @@ extern_methods!(
         #[method(setOpaque:)]
         pub unsafe fn setOpaque(&self, opaque: bool);
 
-        #[cfg(feature = "AppKit_NSGraphics")]
+        #[cfg(feature = "NSGraphics")]
         #[method_id(@__retain_semantics Other colorSpaceName)]
         pub unsafe fn colorSpaceName(&self) -> Id<NSColorSpaceName>;
 
-        #[cfg(feature = "AppKit_NSGraphics")]
+        #[cfg(feature = "NSGraphics")]
         #[method(setColorSpaceName:)]
         pub unsafe fn setColorSpaceName(&self, color_space_name: &NSColorSpaceName);
 
@@ -139,7 +139,7 @@ extern_methods!(
         #[method(imageRepClassForFileType:)]
         pub unsafe fn imageRepClassForFileType(r#type: &NSString) -> Option<&'static AnyClass>;
 
-        #[cfg(feature = "AppKit_NSPasteboard")]
+        #[cfg(feature = "NSPasteboard")]
         #[deprecated = "Use +imageRepClassForType: instead"]
         #[method(imageRepClassForPasteboardType:)]
         pub unsafe fn imageRepClassForPasteboardType(
@@ -159,7 +159,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other imageUnfilteredFileTypes)]
         pub unsafe fn imageUnfilteredFileTypes() -> Id<NSArray<NSString>>;
 
-        #[cfg(feature = "AppKit_NSPasteboard")]
+        #[cfg(feature = "NSPasteboard")]
         #[deprecated = "Use +imageUnfilteredTypes instead"]
         #[method_id(@__retain_semantics Other imageUnfilteredPasteboardTypes)]
         pub unsafe fn imageUnfilteredPasteboardTypes() -> Id<NSArray<NSPasteboardType>>;
@@ -168,7 +168,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other imageFileTypes)]
         pub unsafe fn imageFileTypes() -> Id<NSArray<NSString>>;
 
-        #[cfg(feature = "AppKit_NSPasteboard")]
+        #[cfg(feature = "NSPasteboard")]
         #[deprecated = "Use +imageTypes instead"]
         #[method_id(@__retain_semantics Other imagePasteboardTypes)]
         pub unsafe fn imagePasteboardTypes() -> Id<NSArray<NSPasteboardType>>;
@@ -179,7 +179,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other imageTypes)]
         pub unsafe fn imageTypes() -> Id<NSArray<NSString>>;
 
-        #[cfg(feature = "AppKit_NSPasteboard")]
+        #[cfg(feature = "NSPasteboard")]
         #[method(canInitWithPasteboard:)]
         pub unsafe fn canInitWithPasteboard(pasteboard: &NSPasteboard) -> bool;
 
@@ -197,13 +197,13 @@ extern_methods!(
         #[method_id(@__retain_semantics Other imageRepWithContentsOfURL:)]
         pub unsafe fn imageRepWithContentsOfURL(url: &NSURL) -> Option<Id<NSImageRep>>;
 
-        #[cfg(feature = "AppKit_NSPasteboard")]
+        #[cfg(feature = "NSPasteboard")]
         #[method_id(@__retain_semantics Other imageRepsWithPasteboard:)]
         pub unsafe fn imageRepsWithPasteboard(
             pasteboard: &NSPasteboard,
         ) -> Option<Id<NSArray<NSImageRep>>>;
 
-        #[cfg(feature = "AppKit_NSPasteboard")]
+        #[cfg(feature = "NSPasteboard")]
         #[method_id(@__retain_semantics Other imageRepWithPasteboard:)]
         pub unsafe fn imageRepWithPasteboard(pasteboard: &NSPasteboard) -> Option<Id<NSImageRep>>;
     }

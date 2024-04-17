@@ -26,14 +26,14 @@ unsafe impl RefEncode for GCDevicePhysicalInputElementChange {
 
 extern_protocol!(
     pub unsafe trait GCDevicePhysicalInputStateDiff: NSObjectProtocol {
-        #[cfg(feature = "GameController_GCPhysicalInputElement")]
+        #[cfg(feature = "GCPhysicalInputElement")]
         #[method(changeForElement:)]
         unsafe fn changeForElement(
             &self,
             element: &ProtocolObject<dyn GCPhysicalInputElement>,
         ) -> GCDevicePhysicalInputElementChange;
 
-        #[cfg(feature = "GameController_GCPhysicalInputElement")]
+        #[cfg(feature = "GCPhysicalInputElement")]
         #[method_id(@__retain_semantics Other changedElements)]
         unsafe fn changedElements(
             &self,

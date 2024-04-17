@@ -44,11 +44,11 @@ pub const DOM_DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC: c_uint = 0x20;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
+    #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     #[deprecated]
     pub struct DOMNode;
 
-    #[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
+    #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl ClassType for DOMNode {
         #[inherits(WebScriptObject, NSObject)]
         type Super = DOMObject;
@@ -57,20 +57,20 @@ extern_class!(
 );
 
 #[cfg(all(
-    feature = "WebKit_DOMEventTarget",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMEventTarget",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 unsafe impl DOMEventTarget for DOMNode {}
 
-#[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
+#[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
 unsafe impl NSCopying for DOMNode {}
 
-#[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
+#[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
 unsafe impl NSObjectProtocol for DOMNode {}
 
 extern_methods!(
-    #[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
+    #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMNode {
         #[deprecated]
         #[method_id(@__retain_semantics Other nodeName)]
@@ -92,7 +92,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other parentNode)]
         pub unsafe fn parentNode(&self) -> Option<Id<DOMNode>>;
 
-        #[cfg(feature = "WebKit_DOMNodeList")]
+        #[cfg(feature = "DOMNodeList")]
         #[deprecated]
         #[method_id(@__retain_semantics Other childNodes)]
         pub unsafe fn childNodes(&self) -> Option<Id<DOMNodeList>>;
@@ -113,7 +113,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other nextSibling)]
         pub unsafe fn nextSibling(&self) -> Option<Id<DOMNode>>;
 
-        #[cfg(feature = "WebKit_DOMDocument")]
+        #[cfg(feature = "DOMDocument")]
         #[deprecated]
         #[method_id(@__retain_semantics Other ownerDocument)]
         pub unsafe fn ownerDocument(&self) -> Option<Id<DOMDocument>>;
@@ -134,7 +134,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other localName)]
         pub unsafe fn localName(&self) -> Id<NSString>;
 
-        #[cfg(feature = "WebKit_DOMNamedNodeMap")]
+        #[cfg(feature = "DOMNamedNodeMap")]
         #[deprecated]
         #[method_id(@__retain_semantics Other attributes)]
         pub unsafe fn attributes(&self) -> Option<Id<DOMNamedNodeMap>>;
@@ -148,7 +148,7 @@ extern_methods!(
         #[method(setTextContent:)]
         pub unsafe fn setTextContent(&self, text_content: Option<&NSString>);
 
-        #[cfg(feature = "WebKit_DOMElement")]
+        #[cfg(feature = "DOMElement")]
         #[method_id(@__retain_semantics Other parentElement)]
         pub unsafe fn parentElement(&self) -> Option<Id<DOMElement>>;
 
@@ -226,7 +226,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `DOMObject`
-    #[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
+    #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMNode {
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
@@ -236,7 +236,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
+    #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMNode {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -245,7 +245,7 @@ extern_methods!(
 
 extern_methods!(
     /// DOMNodeDeprecated
-    #[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
+    #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMNode {
         #[deprecated]
         #[method_id(@__retain_semantics Other insertBefore::)]

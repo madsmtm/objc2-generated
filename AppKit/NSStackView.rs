@@ -71,10 +71,10 @@ pub static NSStackViewSpacingUseDefault: CGFloat = c_float::MAX as _;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     pub struct NSStackView;
 
-    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl ClassType for NSStackView {
         #[inherits(NSResponder, NSObject)]
         type Super = NSView;
@@ -83,55 +83,43 @@ extern_class!(
 );
 
 #[cfg(all(
-    feature = "AppKit_NSAccessibilityProtocols",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSView"
+    feature = "NSAccessibilityProtocols",
+    feature = "NSResponder",
+    feature = "NSView"
 ))]
 unsafe impl NSAccessibility for NSStackView {}
 
 #[cfg(all(
-    feature = "AppKit_NSAccessibilityProtocols",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSView"
+    feature = "NSAccessibilityProtocols",
+    feature = "NSResponder",
+    feature = "NSView"
 ))]
 unsafe impl NSAccessibilityElementProtocol for NSStackView {}
 
-#[cfg(all(
-    feature = "AppKit_NSAnimation",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSView"
-))]
+#[cfg(all(feature = "NSAnimation", feature = "NSResponder", feature = "NSView"))]
 unsafe impl NSAnimatablePropertyContainer for NSStackView {}
 
-#[cfg(all(
-    feature = "AppKit_NSAppearance",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSView"
-))]
+#[cfg(all(feature = "NSAppearance", feature = "NSResponder", feature = "NSView"))]
 unsafe impl NSAppearanceCustomization for NSStackView {}
 
-#[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+#[cfg(all(feature = "NSResponder", feature = "NSView"))]
 unsafe impl NSCoding for NSStackView {}
 
-#[cfg(all(
-    feature = "AppKit_NSDragging",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSView"
-))]
+#[cfg(all(feature = "NSDragging", feature = "NSResponder", feature = "NSView"))]
 unsafe impl NSDraggingDestination for NSStackView {}
 
-#[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+#[cfg(all(feature = "NSResponder", feature = "NSView"))]
 unsafe impl NSObjectProtocol for NSStackView {}
 
 #[cfg(all(
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSUserInterfaceItemIdentification",
-    feature = "AppKit_NSView"
+    feature = "NSResponder",
+    feature = "NSUserInterfaceItemIdentification",
+    feature = "NSView"
 ))]
 unsafe impl NSUserInterfaceItemIdentification for NSStackView {}
 
 extern_methods!(
-    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSStackView {
         #[method_id(@__retain_semantics Other stackViewWithViews:)]
         pub unsafe fn stackViewWithViews(
@@ -148,19 +136,19 @@ extern_methods!(
             delegate: Option<&ProtocolObject<dyn NSStackViewDelegate>>,
         );
 
-        #[cfg(feature = "AppKit_NSUserInterfaceLayout")]
+        #[cfg(feature = "NSUserInterfaceLayout")]
         #[method(orientation)]
         pub unsafe fn orientation(&self) -> NSUserInterfaceLayoutOrientation;
 
-        #[cfg(feature = "AppKit_NSUserInterfaceLayout")]
+        #[cfg(feature = "NSUserInterfaceLayout")]
         #[method(setOrientation:)]
         pub unsafe fn setOrientation(&self, orientation: NSUserInterfaceLayoutOrientation);
 
-        #[cfg(feature = "AppKit_NSLayoutConstraint")]
+        #[cfg(feature = "NSLayoutConstraint")]
         #[method(alignment)]
         pub unsafe fn alignment(&self) -> NSLayoutAttribute;
 
-        #[cfg(feature = "AppKit_NSLayoutConstraint")]
+        #[cfg(feature = "NSLayoutConstraint")]
         #[method(setAlignment:)]
         pub unsafe fn setAlignment(&self, alignment: NSLayoutAttribute);
 
@@ -222,14 +210,14 @@ extern_methods!(
             view: &NSView,
         ) -> NSStackViewVisibilityPriority;
 
-        #[cfg(feature = "AppKit_NSLayoutConstraint")]
+        #[cfg(feature = "NSLayoutConstraint")]
         #[method(clippingResistancePriorityForOrientation:)]
         pub unsafe fn clippingResistancePriorityForOrientation(
             &self,
             orientation: NSLayoutConstraintOrientation,
         ) -> NSLayoutPriority;
 
-        #[cfg(feature = "AppKit_NSLayoutConstraint")]
+        #[cfg(feature = "NSLayoutConstraint")]
         #[method(setClippingResistancePriority:forOrientation:)]
         pub unsafe fn setClippingResistancePriority_forOrientation(
             &self,
@@ -237,14 +225,14 @@ extern_methods!(
             orientation: NSLayoutConstraintOrientation,
         );
 
-        #[cfg(feature = "AppKit_NSLayoutConstraint")]
+        #[cfg(feature = "NSLayoutConstraint")]
         #[method(huggingPriorityForOrientation:)]
         pub unsafe fn huggingPriorityForOrientation(
             &self,
             orientation: NSLayoutConstraintOrientation,
         ) -> NSLayoutPriority;
 
-        #[cfg(feature = "AppKit_NSLayoutConstraint")]
+        #[cfg(feature = "NSLayoutConstraint")]
         #[method(setHuggingPriority:forOrientation:)]
         pub unsafe fn setHuggingPriority_forOrientation(
             &self,
@@ -256,7 +244,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSView`
-    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSStackView {
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Id<Self>;
@@ -268,7 +256,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSResponder`
-    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSStackView {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -277,7 +265,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSStackView {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
@@ -286,7 +274,7 @@ extern_methods!(
 
 extern_protocol!(
     pub unsafe trait NSStackViewDelegate: NSObjectProtocol + IsMainThreadOnly {
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[optional]
         #[method(stackView:willDetachViews:)]
         unsafe fn stackView_willDetachViews(
@@ -295,7 +283,7 @@ extern_protocol!(
             views: &NSArray<NSView>,
         );
 
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[optional]
         #[method(stackView:didReattachViews:)]
         unsafe fn stackView_didReattachViews(
@@ -310,7 +298,7 @@ extern_protocol!(
 
 extern_methods!(
     /// NSStackViewGravityAreas
-    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSStackView {
         #[method(addView:inGravity:)]
         pub unsafe fn addView_inGravity(&self, view: &NSView, gravity: NSStackViewGravity);
@@ -343,7 +331,7 @@ extern_methods!(
 
 extern_methods!(
     /// NSStackViewDeprecated
-    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSStackView {
         #[deprecated = "Set -distribution to NSStackViewDistributionEqualSpacing instead."]
         #[method(hasEqualSpacing)]

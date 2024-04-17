@@ -70,11 +70,11 @@ extern_methods!(
         #[method(setQueryFragment:)]
         pub unsafe fn setQueryFragment(&self, query_fragment: &NSString);
 
-        #[cfg(all(feature = "MapKit_MKGeometry", feature = "objc2-core-location"))]
+        #[cfg(all(feature = "MKGeometry", feature = "objc2-core-location"))]
         #[method(region)]
         pub unsafe fn region(&self) -> MKCoordinateRegion;
 
-        #[cfg(all(feature = "MapKit_MKGeometry", feature = "objc2-core-location"))]
+        #[cfg(all(feature = "MKGeometry", feature = "objc2-core-location"))]
         #[method(setRegion:)]
         pub unsafe fn setRegion(&self, region: MKCoordinateRegion);
 
@@ -92,11 +92,11 @@ extern_methods!(
         #[method(setResultTypes:)]
         pub unsafe fn setResultTypes(&self, result_types: MKLocalSearchCompleterResultType);
 
-        #[cfg(feature = "MapKit_MKPointOfInterestFilter")]
+        #[cfg(feature = "MKPointOfInterestFilter")]
         #[method_id(@__retain_semantics Other pointOfInterestFilter)]
         pub unsafe fn pointOfInterestFilter(&self) -> Option<Id<MKPointOfInterestFilter>>;
 
-        #[cfg(feature = "MapKit_MKPointOfInterestFilter")]
+        #[cfg(feature = "MKPointOfInterestFilter")]
         #[method(setPointOfInterestFilter:)]
         pub unsafe fn setPointOfInterestFilter(
             &self,
@@ -194,7 +194,7 @@ extern_methods!(
 );
 
 extern_methods!(
-    #[cfg(feature = "MapKit_MKLocalSearchRequest")]
+    #[cfg(feature = "MKLocalSearchRequest")]
     unsafe impl MKLocalSearchRequest {
         #[method_id(@__retain_semantics Init initWithCompletion:)]
         pub unsafe fn initWithCompletion(

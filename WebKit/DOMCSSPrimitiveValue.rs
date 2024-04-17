@@ -69,17 +69,17 @@ pub const DOM_CSS_VMAX: c_uint = 29;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(
-        feature = "WebKit_DOMCSSValue",
-        feature = "WebKit_DOMObject",
-        feature = "WebKit_WebScriptObject"
+        feature = "DOMCSSValue",
+        feature = "DOMObject",
+        feature = "WebScriptObject"
     ))]
     #[deprecated]
     pub struct DOMCSSPrimitiveValue;
 
     #[cfg(all(
-        feature = "WebKit_DOMCSSValue",
-        feature = "WebKit_DOMObject",
-        feature = "WebKit_WebScriptObject"
+        feature = "DOMCSSValue",
+        feature = "DOMObject",
+        feature = "WebScriptObject"
     ))]
     unsafe impl ClassType for DOMCSSPrimitiveValue {
         #[inherits(DOMObject, WebScriptObject, NSObject)]
@@ -89,24 +89,24 @@ extern_class!(
 );
 
 #[cfg(all(
-    feature = "WebKit_DOMCSSValue",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMCSSValue",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 unsafe impl NSCopying for DOMCSSPrimitiveValue {}
 
 #[cfg(all(
-    feature = "WebKit_DOMCSSValue",
-    feature = "WebKit_DOMObject",
-    feature = "WebKit_WebScriptObject"
+    feature = "DOMCSSValue",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
 ))]
 unsafe impl NSObjectProtocol for DOMCSSPrimitiveValue {}
 
 extern_methods!(
     #[cfg(all(
-        feature = "WebKit_DOMCSSValue",
-        feature = "WebKit_DOMObject",
-        feature = "WebKit_WebScriptObject"
+        feature = "DOMCSSValue",
+        feature = "DOMObject",
+        feature = "WebScriptObject"
     ))]
     unsafe impl DOMCSSPrimitiveValue {
         #[deprecated]
@@ -131,17 +131,17 @@ extern_methods!(
         #[method_id(@__retain_semantics Other getStringValue)]
         pub unsafe fn getStringValue(&self) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "WebKit_DOMCounter")]
+        #[cfg(feature = "DOMCounter")]
         #[deprecated]
         #[method_id(@__retain_semantics Other getCounterValue)]
         pub unsafe fn getCounterValue(&self) -> Option<Id<DOMCounter>>;
 
-        #[cfg(feature = "WebKit_DOMRect")]
+        #[cfg(feature = "DOMRect")]
         #[deprecated]
         #[method_id(@__retain_semantics Other getRectValue)]
         pub unsafe fn getRectValue(&self) -> Option<Id<DOMRect>>;
 
-        #[cfg(feature = "WebKit_DOMRGBColor")]
+        #[cfg(feature = "DOMRGBColor")]
         #[deprecated]
         #[method_id(@__retain_semantics Other getRGBColorValue)]
         pub unsafe fn getRGBColorValue(&self) -> Option<Id<DOMRGBColor>>;
@@ -151,9 +151,9 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `DOMObject`
     #[cfg(all(
-        feature = "WebKit_DOMCSSValue",
-        feature = "WebKit_DOMObject",
-        feature = "WebKit_WebScriptObject"
+        feature = "DOMCSSValue",
+        feature = "DOMObject",
+        feature = "WebScriptObject"
     ))]
     unsafe impl DOMCSSPrimitiveValue {
         #[deprecated]
@@ -165,9 +165,9 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(
-        feature = "WebKit_DOMCSSValue",
-        feature = "WebKit_DOMObject",
-        feature = "WebKit_WebScriptObject"
+        feature = "DOMCSSValue",
+        feature = "DOMObject",
+        feature = "WebScriptObject"
     ))]
     unsafe impl DOMCSSPrimitiveValue {
         #[method_id(@__retain_semantics New new)]
@@ -178,9 +178,9 @@ extern_methods!(
 extern_methods!(
     /// DOMCSSPrimitiveValueDeprecated
     #[cfg(all(
-        feature = "WebKit_DOMCSSValue",
-        feature = "WebKit_DOMObject",
-        feature = "WebKit_WebScriptObject"
+        feature = "DOMCSSValue",
+        feature = "DOMObject",
+        feature = "WebScriptObject"
     ))]
     unsafe impl DOMCSSPrimitiveValue {
         #[deprecated]

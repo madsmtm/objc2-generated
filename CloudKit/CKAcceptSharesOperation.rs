@@ -9,10 +9,10 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CloudKit_CKOperation")]
+    #[cfg(feature = "CKOperation")]
     pub struct CKAcceptSharesOperation;
 
-    #[cfg(feature = "CloudKit_CKOperation")]
+    #[cfg(feature = "CKOperation")]
     unsafe impl ClassType for CKAcceptSharesOperation {
         #[inherits(NSOperation, NSObject)]
         type Super = CKOperation;
@@ -20,34 +20,34 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "CloudKit_CKOperation")]
+#[cfg(feature = "CKOperation")]
 unsafe impl NSObjectProtocol for CKAcceptSharesOperation {}
 
 extern_methods!(
-    #[cfg(feature = "CloudKit_CKOperation")]
+    #[cfg(feature = "CKOperation")]
     unsafe impl CKAcceptSharesOperation {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
-        #[cfg(feature = "CloudKit_CKShareMetadata")]
+        #[cfg(feature = "CKShareMetadata")]
         #[method_id(@__retain_semantics Init initWithShareMetadatas:)]
         pub unsafe fn initWithShareMetadatas(
             this: Allocated<Self>,
             share_metadatas: &NSArray<CKShareMetadata>,
         ) -> Id<Self>;
 
-        #[cfg(feature = "CloudKit_CKShareMetadata")]
+        #[cfg(feature = "CKShareMetadata")]
         #[method_id(@__retain_semantics Other shareMetadatas)]
         pub unsafe fn shareMetadatas(&self) -> Option<Id<NSArray<CKShareMetadata>>>;
 
-        #[cfg(feature = "CloudKit_CKShareMetadata")]
+        #[cfg(feature = "CKShareMetadata")]
         #[method(setShareMetadatas:)]
         pub unsafe fn setShareMetadatas(&self, share_metadatas: Option<&NSArray<CKShareMetadata>>);
 
         #[cfg(all(
-            feature = "CloudKit_CKRecord",
-            feature = "CloudKit_CKShare",
-            feature = "CloudKit_CKShareMetadata",
+            feature = "CKRecord",
+            feature = "CKShare",
+            feature = "CKShareMetadata",
             feature = "block2"
         ))]
         #[method(perShareCompletionBlock)]
@@ -56,9 +56,9 @@ extern_methods!(
         ) -> *mut Block<dyn Fn(NonNull<CKShareMetadata>, *mut CKShare, *mut NSError)>;
 
         #[cfg(all(
-            feature = "CloudKit_CKRecord",
-            feature = "CloudKit_CKShare",
-            feature = "CloudKit_CKShareMetadata",
+            feature = "CKRecord",
+            feature = "CKShare",
+            feature = "CKShareMetadata",
             feature = "block2"
         ))]
         #[method(setPerShareCompletionBlock:)]
@@ -84,7 +84,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CloudKit_CKOperation")]
+    #[cfg(feature = "CKOperation")]
     unsafe impl CKAcceptSharesOperation {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

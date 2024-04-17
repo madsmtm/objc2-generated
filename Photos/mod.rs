@@ -16,303 +16,290 @@
 #[link(name = "Photos", kind = "framework")]
 extern "C" {}
 
-#[cfg(feature = "Photos_PHAdjustmentData")]
+#[cfg(feature = "PHAdjustmentData")]
 #[path = "PHAdjustmentData.rs"]
 mod __PHAdjustmentData;
-#[cfg(feature = "Photos_PHAsset")]
+#[cfg(feature = "PHAsset")]
 #[path = "PHAsset.rs"]
 mod __PHAsset;
-#[cfg(feature = "Photos_PHAssetChangeRequest")]
+#[cfg(feature = "PHAssetChangeRequest")]
 #[path = "PHAssetChangeRequest.rs"]
 mod __PHAssetChangeRequest;
-#[cfg(feature = "Photos_PHAssetCollectionChangeRequest")]
+#[cfg(feature = "PHAssetCollectionChangeRequest")]
 #[path = "PHAssetCollectionChangeRequest.rs"]
 mod __PHAssetCollectionChangeRequest;
-#[cfg(feature = "Photos_PHAssetCreationRequest")]
+#[cfg(feature = "PHAssetCreationRequest")]
 #[path = "PHAssetCreationRequest.rs"]
 mod __PHAssetCreationRequest;
-#[cfg(feature = "Photos_PHAssetResource")]
+#[cfg(feature = "PHAssetResource")]
 #[path = "PHAssetResource.rs"]
 mod __PHAssetResource;
-#[cfg(feature = "Photos_PHAssetResourceManager")]
+#[cfg(feature = "PHAssetResourceManager")]
 #[path = "PHAssetResourceManager.rs"]
 mod __PHAssetResourceManager;
-#[cfg(feature = "Photos_PHChange")]
+#[cfg(feature = "PHChange")]
 #[path = "PHChange.rs"]
 mod __PHChange;
-#[cfg(feature = "Photos_PHChangeRequest")]
+#[cfg(feature = "PHChangeRequest")]
 #[path = "PHChangeRequest.rs"]
 mod __PHChangeRequest;
-#[cfg(feature = "Photos_PHCloudIdentifier")]
+#[cfg(feature = "PHCloudIdentifier")]
 #[path = "PHCloudIdentifier.rs"]
 mod __PHCloudIdentifier;
-#[cfg(feature = "Photos_PHCollection")]
+#[cfg(feature = "PHCollection")]
 #[path = "PHCollection.rs"]
 mod __PHCollection;
-#[cfg(feature = "Photos_PHCollectionListChangeRequest")]
+#[cfg(feature = "PHCollectionListChangeRequest")]
 #[path = "PHCollectionListChangeRequest.rs"]
 mod __PHCollectionListChangeRequest;
-#[cfg(feature = "Photos_PHContentEditingInput")]
+#[cfg(feature = "PHContentEditingInput")]
 #[path = "PHContentEditingInput.rs"]
 mod __PHContentEditingInput;
-#[cfg(feature = "Photos_PHContentEditingOutput")]
+#[cfg(feature = "PHContentEditingOutput")]
 #[path = "PHContentEditingOutput.rs"]
 mod __PHContentEditingOutput;
-#[cfg(feature = "Photos_PHError")]
+#[cfg(feature = "PHError")]
 #[path = "PHError.rs"]
 mod __PHError;
-#[cfg(feature = "Photos_PHFetchOptions")]
+#[cfg(feature = "PHFetchOptions")]
 #[path = "PHFetchOptions.rs"]
 mod __PHFetchOptions;
-#[cfg(feature = "Photos_PHFetchResult")]
+#[cfg(feature = "PHFetchResult")]
 #[path = "PHFetchResult.rs"]
 mod __PHFetchResult;
-#[cfg(feature = "Photos_PHImageManager")]
+#[cfg(feature = "PHImageManager")]
 #[path = "PHImageManager.rs"]
 mod __PHImageManager;
-#[cfg(feature = "Photos_PHLivePhoto")]
+#[cfg(feature = "PHLivePhoto")]
 #[path = "PHLivePhoto.rs"]
 mod __PHLivePhoto;
-#[cfg(feature = "Photos_PHLivePhotoEditingContext")]
+#[cfg(feature = "PHLivePhotoEditingContext")]
 #[path = "PHLivePhotoEditingContext.rs"]
 mod __PHLivePhotoEditingContext;
-#[cfg(feature = "Photos_PHObject")]
+#[cfg(feature = "PHObject")]
 #[path = "PHObject.rs"]
 mod __PHObject;
-#[cfg(feature = "Photos_PHPersistentChange")]
+#[cfg(feature = "PHPersistentChange")]
 #[path = "PHPersistentChange.rs"]
 mod __PHPersistentChange;
-#[cfg(feature = "Photos_PHPersistentChangeFetchResult")]
+#[cfg(feature = "PHPersistentChangeFetchResult")]
 #[path = "PHPersistentChangeFetchResult.rs"]
 mod __PHPersistentChangeFetchResult;
-#[cfg(feature = "Photos_PHPersistentChangeToken")]
+#[cfg(feature = "PHPersistentChangeToken")]
 #[path = "PHPersistentChangeToken.rs"]
 mod __PHPersistentChangeToken;
-#[cfg(feature = "Photos_PHPersistentObjectChangeDetails")]
+#[cfg(feature = "PHPersistentObjectChangeDetails")]
 #[path = "PHPersistentObjectChangeDetails.rs"]
 mod __PHPersistentObjectChangeDetails;
-#[cfg(feature = "Photos_PHPhotoLibrary")]
+#[cfg(feature = "PHPhotoLibrary")]
 #[path = "PHPhotoLibrary.rs"]
 mod __PHPhotoLibrary;
-#[cfg(feature = "Photos_PHProject")]
+#[cfg(feature = "PHProject")]
 #[path = "PHProject.rs"]
 mod __PHProject;
-#[cfg(feature = "Photos_PHProjectChangeRequest")]
+#[cfg(feature = "PHProjectChangeRequest")]
 #[path = "PHProjectChangeRequest.rs"]
 mod __PHProjectChangeRequest;
-#[cfg(feature = "Photos_PhotosTypes")]
+#[cfg(feature = "PhotosTypes")]
 #[path = "PhotosTypes.rs"]
 mod __PhotosTypes;
 
-#[cfg(feature = "Photos_PHAdjustmentData")]
+#[cfg(feature = "PHAdjustmentData")]
 pub use self::__PHAdjustmentData::PHAdjustmentData;
-#[cfg(all(feature = "Photos_PHAsset", feature = "Photos_PHObject"))]
+#[cfg(all(feature = "PHAsset", feature = "PHObject"))]
 pub use self::__PHAsset::PHAsset;
-#[cfg(all(
-    feature = "Photos_PHAssetChangeRequest",
-    feature = "Photos_PHChangeRequest"
-))]
+#[cfg(all(feature = "PHAssetChangeRequest", feature = "PHChangeRequest"))]
 pub use self::__PHAssetChangeRequest::PHAssetChangeRequest;
-#[cfg(feature = "Photos_PHAssetChangeRequest")]
+#[cfg(feature = "PHAssetChangeRequest")]
 pub use self::__PHAssetChangeRequest::PHContentEditingInputCancelledKey;
-#[cfg(feature = "Photos_PHAssetChangeRequest")]
+#[cfg(feature = "PHAssetChangeRequest")]
 pub use self::__PHAssetChangeRequest::PHContentEditingInputErrorKey;
-#[cfg(feature = "Photos_PHAssetChangeRequest")]
+#[cfg(feature = "PHAssetChangeRequest")]
 pub use self::__PHAssetChangeRequest::PHContentEditingInputRequestID;
-#[cfg(feature = "Photos_PHAssetChangeRequest")]
+#[cfg(feature = "PHAssetChangeRequest")]
 pub use self::__PHAssetChangeRequest::PHContentEditingInputRequestOptions;
-#[cfg(feature = "Photos_PHAssetChangeRequest")]
+#[cfg(feature = "PHAssetChangeRequest")]
 pub use self::__PHAssetChangeRequest::PHContentEditingInputResultIsInCloudKey;
 #[cfg(all(
-    feature = "Photos_PHAssetCollectionChangeRequest",
-    feature = "Photos_PHChangeRequest"
+    feature = "PHAssetCollectionChangeRequest",
+    feature = "PHChangeRequest"
 ))]
 pub use self::__PHAssetCollectionChangeRequest::PHAssetCollectionChangeRequest;
 #[cfg(all(
-    feature = "Photos_PHAssetChangeRequest",
-    feature = "Photos_PHAssetCreationRequest",
-    feature = "Photos_PHChangeRequest"
+    feature = "PHAssetChangeRequest",
+    feature = "PHAssetCreationRequest",
+    feature = "PHChangeRequest"
 ))]
 pub use self::__PHAssetCreationRequest::PHAssetCreationRequest;
-#[cfg(feature = "Photos_PHAssetCreationRequest")]
+#[cfg(feature = "PHAssetCreationRequest")]
 pub use self::__PHAssetCreationRequest::PHAssetResourceCreationOptions;
-#[cfg(feature = "Photos_PHAssetResource")]
+#[cfg(feature = "PHAssetResource")]
 pub use self::__PHAssetResource::PHAssetResource;
-#[cfg(feature = "Photos_PHAssetResourceManager")]
+#[cfg(feature = "PHAssetResourceManager")]
 pub use self::__PHAssetResourceManager::PHAssetResourceDataRequestID;
-#[cfg(feature = "Photos_PHAssetResourceManager")]
+#[cfg(feature = "PHAssetResourceManager")]
 pub use self::__PHAssetResourceManager::PHAssetResourceManager;
-#[cfg(all(feature = "Photos_PHAssetResourceManager", feature = "block2"))]
+#[cfg(all(feature = "PHAssetResourceManager", feature = "block2"))]
 pub use self::__PHAssetResourceManager::PHAssetResourceProgressHandler;
-#[cfg(feature = "Photos_PHAssetResourceManager")]
+#[cfg(feature = "PHAssetResourceManager")]
 pub use self::__PHAssetResourceManager::PHAssetResourceRequestOptions;
-#[cfg(feature = "Photos_PHAssetResourceManager")]
+#[cfg(feature = "PHAssetResourceManager")]
 pub use self::__PHAssetResourceManager::PHInvalidAssetResourceDataRequestID;
-#[cfg(feature = "Photos_PHChange")]
+#[cfg(feature = "PHChange")]
 pub use self::__PHChange::PHChange;
-#[cfg(feature = "Photos_PHChange")]
+#[cfg(feature = "PHChange")]
 pub use self::__PHChange::PHFetchResultChangeDetails;
-#[cfg(feature = "Photos_PHChange")]
+#[cfg(feature = "PHChange")]
 pub use self::__PHChange::PHObjectChangeDetails;
-#[cfg(feature = "Photos_PHChangeRequest")]
+#[cfg(feature = "PHChangeRequest")]
 pub use self::__PHChangeRequest::PHChangeRequest;
-#[cfg(feature = "Photos_PHCloudIdentifier")]
+#[cfg(feature = "PHCloudIdentifier")]
 pub use self::__PHCloudIdentifier::PHCloudIdentifier;
-#[cfg(feature = "Photos_PHCloudIdentifier")]
+#[cfg(feature = "PHCloudIdentifier")]
 pub use self::__PHCloudIdentifier::PHCloudIdentifierMapping;
-#[cfg(feature = "Photos_PHCloudIdentifier")]
+#[cfg(feature = "PHCloudIdentifier")]
 pub use self::__PHCloudIdentifier::PHLocalIdentifierMapping;
-#[cfg(feature = "Photos_PHCloudIdentifier")]
+#[cfg(feature = "PHCloudIdentifier")]
 pub use self::__PHCloudIdentifier::PHLocalIdentifierNotFound;
-#[cfg(all(feature = "Photos_PHCollection", feature = "Photos_PHObject"))]
+#[cfg(all(feature = "PHCollection", feature = "PHObject"))]
 pub use self::__PHCollection::PHAssetCollection;
-#[cfg(all(feature = "Photos_PHCollection", feature = "Photos_PHObject"))]
+#[cfg(all(feature = "PHCollection", feature = "PHObject"))]
 pub use self::__PHCollection::PHCollection;
-#[cfg(all(feature = "Photos_PHCollection", feature = "Photos_PHObject"))]
+#[cfg(all(feature = "PHCollection", feature = "PHObject"))]
 pub use self::__PHCollection::PHCollectionList;
-#[cfg(all(
-    feature = "Photos_PHChangeRequest",
-    feature = "Photos_PHCollectionListChangeRequest"
-))]
+#[cfg(all(feature = "PHChangeRequest", feature = "PHCollectionListChangeRequest"))]
 pub use self::__PHCollectionListChangeRequest::PHCollectionListChangeRequest;
-#[cfg(feature = "Photos_PHContentEditingInput")]
+#[cfg(feature = "PHContentEditingInput")]
 pub use self::__PHContentEditingInput::PHContentEditingInput;
-#[cfg(feature = "Photos_PHContentEditingOutput")]
+#[cfg(feature = "PHContentEditingOutput")]
 pub use self::__PHContentEditingOutput::PHContentEditingOutput;
-#[cfg(feature = "Photos_PHError")]
+#[cfg(feature = "PHError")]
 pub use self::__PHError::PHLocalIdentifiersErrorKey;
-#[cfg(feature = "Photos_PHError")]
+#[cfg(feature = "PHError")]
 pub use self::__PHError::PHPhotosError;
-#[cfg(feature = "Photos_PHError")]
+#[cfg(feature = "PHError")]
 pub use self::__PHError::PHPhotosErrorDomain;
-#[cfg(feature = "Photos_PHFetchOptions")]
+#[cfg(feature = "PHFetchOptions")]
 pub use self::__PHFetchOptions::PHFetchOptions;
-#[cfg(feature = "Photos_PHFetchResult")]
+#[cfg(feature = "PHFetchResult")]
 pub use self::__PHFetchResult::PHFetchResult;
-#[cfg(all(feature = "Photos_PHImageManager", feature = "block2"))]
+#[cfg(all(feature = "PHImageManager", feature = "block2"))]
 pub use self::__PHImageManager::PHAssetImageProgressHandler;
-#[cfg(all(feature = "Photos_PHImageManager", feature = "block2"))]
+#[cfg(all(feature = "PHImageManager", feature = "block2"))]
 pub use self::__PHImageManager::PHAssetVideoProgressHandler;
-#[cfg(feature = "Photos_PHImageManager")]
+#[cfg(feature = "PHImageManager")]
 pub use self::__PHImageManager::PHCachingImageManager;
-#[cfg(feature = "Photos_PHImageManager")]
+#[cfg(feature = "PHImageManager")]
 pub use self::__PHImageManager::PHImageCancelledKey;
-#[cfg(feature = "Photos_PHImageManager")]
+#[cfg(feature = "PHImageManager")]
 pub use self::__PHImageManager::PHImageErrorKey;
-#[cfg(feature = "Photos_PHImageManager")]
+#[cfg(feature = "PHImageManager")]
 pub use self::__PHImageManager::PHImageManager;
-#[cfg(feature = "Photos_PHImageManager")]
+#[cfg(feature = "PHImageManager")]
 pub use self::__PHImageManager::PHImageManagerMaximumSize;
-#[cfg(feature = "Photos_PHImageManager")]
+#[cfg(feature = "PHImageManager")]
 pub use self::__PHImageManager::PHImageRequestID;
-#[cfg(feature = "Photos_PHImageManager")]
+#[cfg(feature = "PHImageManager")]
 pub use self::__PHImageManager::PHImageRequestOptions;
-#[cfg(feature = "Photos_PHImageManager")]
+#[cfg(feature = "PHImageManager")]
 pub use self::__PHImageManager::PHImageRequestOptionsDeliveryMode;
-#[cfg(feature = "Photos_PHImageManager")]
+#[cfg(feature = "PHImageManager")]
 pub use self::__PHImageManager::PHImageRequestOptionsResizeMode;
-#[cfg(feature = "Photos_PHImageManager")]
+#[cfg(feature = "PHImageManager")]
 pub use self::__PHImageManager::PHImageRequestOptionsVersion;
-#[cfg(feature = "Photos_PHImageManager")]
+#[cfg(feature = "PHImageManager")]
 pub use self::__PHImageManager::PHImageResultIsDegradedKey;
-#[cfg(feature = "Photos_PHImageManager")]
+#[cfg(feature = "PHImageManager")]
 pub use self::__PHImageManager::PHImageResultIsInCloudKey;
-#[cfg(feature = "Photos_PHImageManager")]
+#[cfg(feature = "PHImageManager")]
 pub use self::__PHImageManager::PHImageResultRequestIDKey;
-#[cfg(feature = "Photos_PHImageManager")]
+#[cfg(feature = "PHImageManager")]
 pub use self::__PHImageManager::PHInvalidImageRequestID;
-#[cfg(feature = "Photos_PHImageManager")]
+#[cfg(feature = "PHImageManager")]
 pub use self::__PHImageManager::PHLivePhotoRequestOptions;
-#[cfg(feature = "Photos_PHImageManager")]
+#[cfg(feature = "PHImageManager")]
 pub use self::__PHImageManager::PHVideoRequestOptions;
-#[cfg(feature = "Photos_PHImageManager")]
+#[cfg(feature = "PHImageManager")]
 pub use self::__PHImageManager::PHVideoRequestOptionsDeliveryMode;
-#[cfg(feature = "Photos_PHImageManager")]
+#[cfg(feature = "PHImageManager")]
 pub use self::__PHImageManager::PHVideoRequestOptionsVersion;
-#[cfg(feature = "Photos_PHLivePhoto")]
+#[cfg(feature = "PHLivePhoto")]
 pub use self::__PHLivePhoto::PHLivePhoto;
-#[cfg(feature = "Photos_PHLivePhoto")]
+#[cfg(feature = "PHLivePhoto")]
 pub use self::__PHLivePhoto::PHLivePhotoInfoCancelledKey;
-#[cfg(feature = "Photos_PHLivePhoto")]
+#[cfg(feature = "PHLivePhoto")]
 pub use self::__PHLivePhoto::PHLivePhotoInfoErrorKey;
-#[cfg(feature = "Photos_PHLivePhoto")]
+#[cfg(feature = "PHLivePhoto")]
 pub use self::__PHLivePhoto::PHLivePhotoInfoIsDegradedKey;
-#[cfg(feature = "Photos_PHLivePhoto")]
+#[cfg(feature = "PHLivePhoto")]
 pub use self::__PHLivePhoto::PHLivePhotoRequestID;
-#[cfg(feature = "Photos_PHLivePhoto")]
+#[cfg(feature = "PHLivePhoto")]
 pub use self::__PHLivePhoto::PHLivePhotoRequestIDInvalid;
-#[cfg(feature = "Photos_PHLivePhotoEditingContext")]
+#[cfg(feature = "PHLivePhotoEditingContext")]
 pub use self::__PHLivePhotoEditingContext::PHLivePhotoEditingContext;
-#[cfg(feature = "Photos_PHLivePhotoEditingContext")]
+#[cfg(feature = "PHLivePhotoEditingContext")]
 pub use self::__PHLivePhotoEditingContext::PHLivePhotoEditingErrorCode;
-#[cfg(feature = "Photos_PHLivePhotoEditingContext")]
+#[cfg(feature = "PHLivePhotoEditingContext")]
 pub use self::__PHLivePhotoEditingContext::PHLivePhotoEditingErrorDomain;
-#[cfg(feature = "Photos_PHLivePhotoEditingContext")]
+#[cfg(feature = "PHLivePhotoEditingContext")]
 pub use self::__PHLivePhotoEditingContext::PHLivePhotoEditingOption;
-#[cfg(feature = "Photos_PHLivePhotoEditingContext")]
+#[cfg(feature = "PHLivePhotoEditingContext")]
 pub use self::__PHLivePhotoEditingContext::PHLivePhotoFrame;
-#[cfg(feature = "Photos_PHLivePhotoEditingContext")]
+#[cfg(feature = "PHLivePhotoEditingContext")]
 pub use self::__PHLivePhotoEditingContext::PHLivePhotoFrameType;
-#[cfg(feature = "Photos_PHLivePhotoEditingContext")]
+#[cfg(feature = "PHLivePhotoEditingContext")]
 pub use self::__PHLivePhotoEditingContext::PHLivePhotoShouldRenderAtPlaybackTime;
-#[cfg(feature = "Photos_PHObject")]
+#[cfg(feature = "PHObject")]
 pub use self::__PHObject::PHObject;
-#[cfg(feature = "Photos_PHObject")]
+#[cfg(feature = "PHObject")]
 pub use self::__PHObject::PHObjectPlaceholder;
-#[cfg(feature = "Photos_PHPersistentChange")]
+#[cfg(feature = "PHPersistentChange")]
 pub use self::__PHPersistentChange::PHPersistentChange;
-#[cfg(feature = "Photos_PHPersistentChangeFetchResult")]
+#[cfg(feature = "PHPersistentChangeFetchResult")]
 pub use self::__PHPersistentChangeFetchResult::PHPersistentChangeFetchResult;
-#[cfg(feature = "Photos_PHPersistentChangeToken")]
+#[cfg(feature = "PHPersistentChangeToken")]
 pub use self::__PHPersistentChangeToken::PHPersistentChangeToken;
-#[cfg(feature = "Photos_PHPersistentObjectChangeDetails")]
+#[cfg(feature = "PHPersistentObjectChangeDetails")]
 pub use self::__PHPersistentObjectChangeDetails::PHPersistentObjectChangeDetails;
-#[cfg(feature = "Photos_PHPhotoLibrary")]
+#[cfg(feature = "PHPhotoLibrary")]
 pub use self::__PHPhotoLibrary::PHAccessLevel;
-#[cfg(feature = "Photos_PHPhotoLibrary")]
+#[cfg(feature = "PHPhotoLibrary")]
 pub use self::__PHPhotoLibrary::PHAuthorizationStatus;
-#[cfg(feature = "Photos_PHPhotoLibrary")]
+#[cfg(feature = "PHPhotoLibrary")]
 pub use self::__PHPhotoLibrary::PHPhotoLibrary;
-#[cfg(feature = "Photos_PHPhotoLibrary")]
+#[cfg(feature = "PHPhotoLibrary")]
 pub use self::__PHPhotoLibrary::PHPhotoLibraryAvailabilityObserver;
-#[cfg(feature = "Photos_PHPhotoLibrary")]
+#[cfg(feature = "PHPhotoLibrary")]
 pub use self::__PHPhotoLibrary::PHPhotoLibraryChangeObserver;
-#[cfg(all(
-    feature = "Photos_PHCollection",
-    feature = "Photos_PHObject",
-    feature = "Photos_PHProject"
-))]
+#[cfg(all(feature = "PHCollection", feature = "PHObject", feature = "PHProject"))]
 pub use self::__PHProject::PHProject;
-#[cfg(all(
-    feature = "Photos_PHChangeRequest",
-    feature = "Photos_PHProjectChangeRequest"
-))]
+#[cfg(all(feature = "PHChangeRequest", feature = "PHProjectChangeRequest"))]
 pub use self::__PHProjectChangeRequest::PHProjectChangeRequest;
-#[cfg(feature = "Photos_PhotosTypes")]
+#[cfg(feature = "PhotosTypes")]
 pub use self::__PhotosTypes::PHAssetBurstSelectionType;
-#[cfg(feature = "Photos_PhotosTypes")]
+#[cfg(feature = "PhotosTypes")]
 pub use self::__PhotosTypes::PHAssetCollectionSubtype;
-#[cfg(feature = "Photos_PhotosTypes")]
+#[cfg(feature = "PhotosTypes")]
 pub use self::__PhotosTypes::PHAssetCollectionType;
-#[cfg(feature = "Photos_PhotosTypes")]
+#[cfg(feature = "PhotosTypes")]
 pub use self::__PhotosTypes::PHAssetEditOperation;
-#[cfg(feature = "Photos_PhotosTypes")]
+#[cfg(feature = "PhotosTypes")]
 pub use self::__PhotosTypes::PHAssetMediaSubtype;
-#[cfg(feature = "Photos_PhotosTypes")]
+#[cfg(feature = "PhotosTypes")]
 pub use self::__PhotosTypes::PHAssetMediaType;
-#[cfg(feature = "Photos_PhotosTypes")]
+#[cfg(feature = "PhotosTypes")]
 pub use self::__PhotosTypes::PHAssetPlaybackStyle;
-#[cfg(feature = "Photos_PhotosTypes")]
+#[cfg(feature = "PhotosTypes")]
 pub use self::__PhotosTypes::PHAssetResourceType;
-#[cfg(feature = "Photos_PhotosTypes")]
+#[cfg(feature = "PhotosTypes")]
 pub use self::__PhotosTypes::PHAssetSourceType;
-#[cfg(feature = "Photos_PhotosTypes")]
+#[cfg(feature = "PhotosTypes")]
 pub use self::__PhotosTypes::PHCollectionEditOperation;
-#[cfg(feature = "Photos_PhotosTypes")]
+#[cfg(feature = "PhotosTypes")]
 pub use self::__PhotosTypes::PHCollectionListSubtype;
-#[cfg(feature = "Photos_PhotosTypes")]
+#[cfg(feature = "PhotosTypes")]
 pub use self::__PhotosTypes::PHCollectionListType;
-#[cfg(feature = "Photos_PhotosTypes")]
+#[cfg(feature = "PhotosTypes")]
 pub use self::__PhotosTypes::PHImageContentMode;
-#[cfg(feature = "Photos_PhotosTypes")]
+#[cfg(feature = "PhotosTypes")]
 pub use self::__PhotosTypes::PHObjectType;

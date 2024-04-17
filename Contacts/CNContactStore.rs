@@ -74,7 +74,7 @@ extern_methods!(
             completion_handler: &Block<dyn Fn(Bool, *mut NSError)>,
         );
 
-        #[cfg(feature = "Contacts_CNContact")]
+        #[cfg(feature = "CNContact")]
         #[method_id(@__retain_semantics Other unifiedContactsMatchingPredicate:keysToFetch:error:_)]
         pub unsafe fn unifiedContactsMatchingPredicate_keysToFetch_error(
             &self,
@@ -82,7 +82,7 @@ extern_methods!(
             keys: &NSArray<ProtocolObject<dyn CNKeyDescriptor>>,
         ) -> Result<Id<NSArray<CNContact>>, Id<NSError>>;
 
-        #[cfg(feature = "Contacts_CNContact")]
+        #[cfg(feature = "CNContact")]
         #[method_id(@__retain_semantics Other unifiedContactWithIdentifier:keysToFetch:error:_)]
         pub unsafe fn unifiedContactWithIdentifier_keysToFetch_error(
             &self,
@@ -90,7 +90,7 @@ extern_methods!(
             keys: &NSArray<ProtocolObject<dyn CNKeyDescriptor>>,
         ) -> Result<Id<CNContact>, Id<NSError>>;
 
-        #[cfg(feature = "Contacts_CNContact")]
+        #[cfg(feature = "CNContact")]
         #[method_id(@__retain_semantics Other unifiedMeContactWithKeysToFetch:error:_)]
         pub unsafe fn unifiedMeContactWithKeysToFetch_error(
             &self,
@@ -98,10 +98,10 @@ extern_methods!(
         ) -> Result<Id<CNContact>, Id<NSError>>;
 
         #[cfg(all(
-            feature = "Contacts_CNContact",
-            feature = "Contacts_CNContactFetchRequest",
-            feature = "Contacts_CNFetchRequest",
-            feature = "Contacts_CNFetchResult"
+            feature = "CNContact",
+            feature = "CNContactFetchRequest",
+            feature = "CNFetchRequest",
+            feature = "CNFetchResult"
         ))]
         #[method_id(@__retain_semantics Other enumeratorForContactFetchRequest:error:_)]
         pub unsafe fn enumeratorForContactFetchRequest_error(
@@ -110,10 +110,10 @@ extern_methods!(
         ) -> Result<Id<CNFetchResult<NSEnumerator<CNContact>>>, Id<NSError>>;
 
         #[cfg(all(
-            feature = "Contacts_CNChangeHistoryEvent",
-            feature = "Contacts_CNChangeHistoryFetchRequest",
-            feature = "Contacts_CNFetchRequest",
-            feature = "Contacts_CNFetchResult"
+            feature = "CNChangeHistoryEvent",
+            feature = "CNChangeHistoryFetchRequest",
+            feature = "CNFetchRequest",
+            feature = "CNFetchResult"
         ))]
         #[method_id(@__retain_semantics Other enumeratorForChangeHistoryFetchRequest:error:_)]
         pub unsafe fn enumeratorForChangeHistoryFetchRequest_error(
@@ -122,9 +122,9 @@ extern_methods!(
         ) -> Result<Id<CNFetchResult<NSEnumerator<CNChangeHistoryEvent>>>, Id<NSError>>;
 
         #[cfg(all(
-            feature = "Contacts_CNContact",
-            feature = "Contacts_CNContactFetchRequest",
-            feature = "Contacts_CNFetchRequest",
+            feature = "CNContact",
+            feature = "CNContactFetchRequest",
+            feature = "CNFetchRequest",
             feature = "block2"
         ))]
         #[method(enumerateContactsWithFetchRequest:error:usingBlock:)]
@@ -135,21 +135,21 @@ extern_methods!(
             block: &Block<dyn Fn(NonNull<CNContact>, NonNull<Bool>) + '_>,
         ) -> bool;
 
-        #[cfg(feature = "Contacts_CNGroup")]
+        #[cfg(feature = "CNGroup")]
         #[method_id(@__retain_semantics Other groupsMatchingPredicate:error:_)]
         pub unsafe fn groupsMatchingPredicate_error(
             &self,
             predicate: Option<&NSPredicate>,
         ) -> Result<Id<NSArray<CNGroup>>, Id<NSError>>;
 
-        #[cfg(feature = "Contacts_CNContainer")]
+        #[cfg(feature = "CNContainer")]
         #[method_id(@__retain_semantics Other containersMatchingPredicate:error:_)]
         pub unsafe fn containersMatchingPredicate_error(
             &self,
             predicate: Option<&NSPredicate>,
         ) -> Result<Id<NSArray<CNContainer>>, Id<NSError>>;
 
-        #[cfg(feature = "Contacts_CNSaveRequest")]
+        #[cfg(feature = "CNSaveRequest")]
         #[method(executeSaveRequest:error:_)]
         pub unsafe fn executeSaveRequest_error(
             &self,

@@ -8,9 +8,9 @@ use crate::*;
 extern_methods!(
     /// DOMCSS2Properties
     #[cfg(all(
-        feature = "WebKit_DOMCSSStyleDeclaration",
-        feature = "WebKit_DOMObject",
-        feature = "WebKit_WebScriptObject"
+        feature = "DOMCSSStyleDeclaration",
+        feature = "DOMObject",
+        feature = "WebScriptObject"
     ))]
     unsafe impl DOMCSSStyleDeclaration {
         #[method_id(@__retain_semantics Other azimuth)]

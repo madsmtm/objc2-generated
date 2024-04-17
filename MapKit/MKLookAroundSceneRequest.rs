@@ -36,7 +36,7 @@ extern_methods!(
             coordinate: CLLocationCoordinate2D,
         ) -> Id<Self>;
 
-        #[cfg(feature = "MapKit_MKMapItem")]
+        #[cfg(feature = "MKMapItem")]
         #[method_id(@__retain_semantics Init initWithMapItem:)]
         pub unsafe fn initWithMapItem(this: Allocated<Self>, map_item: &MKMapItem) -> Id<Self>;
 
@@ -44,7 +44,7 @@ extern_methods!(
         #[method(coordinate)]
         pub unsafe fn coordinate(&self) -> CLLocationCoordinate2D;
 
-        #[cfg(feature = "MapKit_MKMapItem")]
+        #[cfg(feature = "MKMapItem")]
         #[method_id(@__retain_semantics Other mapItem)]
         pub unsafe fn mapItem(&self) -> Option<Id<MKMapItem>>;
 
@@ -54,7 +54,7 @@ extern_methods!(
         #[method(isLoading)]
         pub unsafe fn isLoading(&self) -> bool;
 
-        #[cfg(all(feature = "MapKit_MKLookAroundScene", feature = "block2"))]
+        #[cfg(all(feature = "MKLookAroundScene", feature = "block2"))]
         #[method(getSceneWithCompletionHandler:)]
         pub unsafe fn getSceneWithCompletionHandler(
             &self,

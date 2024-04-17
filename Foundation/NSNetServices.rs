@@ -5,12 +5,12 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSNetServicesErrorCode: &'static NSString;
 }
 
 extern "C" {
-    #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
+    #[cfg(all(feature = "NSError", feature = "NSString"))]
     pub static NSNetServicesErrorDomain: &'static NSErrorDomain;
 }
 
@@ -70,7 +70,7 @@ unsafe impl NSObjectProtocol for NSNetService {}
 
 extern_methods!(
     unsafe impl NSNetService {
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[deprecated = "Use nw_connection_t or nw_listener_t in Network framework instead"]
         #[method_id(@__retain_semantics Init initWithDomain:type:name:port:)]
         pub unsafe fn initWithDomain_type_name_port(
@@ -81,7 +81,7 @@ extern_methods!(
             port: c_int,
         ) -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[deprecated = "Use nw_connection_t or nw_listener_t in Network framework instead"]
         #[method_id(@__retain_semantics Init initWithDomain:type:name:)]
         pub unsafe fn initWithDomain_type_name(
@@ -91,11 +91,7 @@ extern_methods!(
             name: &NSString,
         ) -> Id<Self>;
 
-        #[cfg(all(
-            feature = "Foundation_NSObjCRuntime",
-            feature = "Foundation_NSRunLoop",
-            feature = "Foundation_NSString"
-        ))]
+        #[cfg(all(feature = "NSObjCRuntime", feature = "NSRunLoop", feature = "NSString"))]
         #[deprecated = "Use nw_connection_t or nw_listener_t in Network framework instead"]
         #[method(scheduleInRunLoop:forMode:)]
         pub unsafe fn scheduleInRunLoop_forMode(
@@ -104,11 +100,7 @@ extern_methods!(
             mode: &NSRunLoopMode,
         );
 
-        #[cfg(all(
-            feature = "Foundation_NSObjCRuntime",
-            feature = "Foundation_NSRunLoop",
-            feature = "Foundation_NSString"
-        ))]
+        #[cfg(all(feature = "NSObjCRuntime", feature = "NSRunLoop", feature = "NSString"))]
         #[deprecated = "Use nw_connection_t or nw_listener_t in Network framework instead"]
         #[method(removeFromRunLoop:forMode:)]
         pub unsafe fn removeFromRunLoop_forMode(
@@ -134,27 +126,27 @@ extern_methods!(
         #[method(setIncludesPeerToPeer:)]
         pub unsafe fn setIncludesPeerToPeer(&self, includes_peer_to_peer: bool);
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[deprecated = "Use nw_connection_t or nw_listener_t in Network framework instead"]
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Id<NSString>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[deprecated = "Use nw_connection_t or nw_listener_t in Network framework instead"]
         #[method_id(@__retain_semantics Other type)]
         pub unsafe fn r#type(&self) -> Id<NSString>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[deprecated = "Use nw_connection_t or nw_listener_t in Network framework instead"]
         #[method_id(@__retain_semantics Other domain)]
         pub unsafe fn domain(&self) -> Id<NSString>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[deprecated = "Use nw_connection_t or nw_listener_t in Network framework instead"]
         #[method_id(@__retain_semantics Other hostName)]
         pub unsafe fn hostName(&self) -> Option<Id<NSString>>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSData"))]
+        #[cfg(all(feature = "NSArray", feature = "NSData"))]
         #[deprecated = "Use nw_connection_t or nw_listener_t in Network framework instead"]
         #[method_id(@__retain_semantics Other addresses)]
         pub unsafe fn addresses(&self) -> Option<Id<NSArray<NSData>>>;
@@ -177,39 +169,31 @@ extern_methods!(
         #[method(stop)]
         pub unsafe fn stop(&self);
 
-        #[cfg(all(
-            feature = "Foundation_NSData",
-            feature = "Foundation_NSDictionary",
-            feature = "Foundation_NSString"
-        ))]
+        #[cfg(all(feature = "NSData", feature = "NSDictionary", feature = "NSString"))]
         #[deprecated = "Use nw_connection_t or nw_listener_t in Network framework instead"]
         #[method_id(@__retain_semantics Other dictionaryFromTXTRecordData:)]
         pub unsafe fn dictionaryFromTXTRecordData(
             txt_data: &NSData,
         ) -> Id<NSDictionary<NSString, NSData>>;
 
-        #[cfg(all(
-            feature = "Foundation_NSData",
-            feature = "Foundation_NSDictionary",
-            feature = "Foundation_NSString"
-        ))]
+        #[cfg(all(feature = "NSData", feature = "NSDictionary", feature = "NSString"))]
         #[deprecated = "Use nw_connection_t or nw_listener_t in Network framework instead"]
         #[method_id(@__retain_semantics Other dataFromTXTRecordDictionary:)]
         pub unsafe fn dataFromTXTRecordDictionary(
             txt_dictionary: &NSDictionary<NSString, NSData>,
         ) -> Id<NSData>;
 
-        #[cfg(feature = "Foundation_NSDate")]
+        #[cfg(feature = "NSDate")]
         #[deprecated = "Use nw_connection_t or nw_listener_t in Network framework instead"]
         #[method(resolveWithTimeout:)]
         pub unsafe fn resolveWithTimeout(&self, timeout: NSTimeInterval);
 
-        #[cfg(feature = "Foundation_NSData")]
+        #[cfg(feature = "NSData")]
         #[deprecated = "Use nw_connection_t or nw_listener_t in Network framework instead"]
         #[method(setTXTRecordData:)]
         pub unsafe fn setTXTRecordData(&self, record_data: Option<&NSData>) -> bool;
 
-        #[cfg(feature = "Foundation_NSData")]
+        #[cfg(feature = "NSData")]
         #[deprecated = "Use nw_connection_t or nw_listener_t in Network framework instead"]
         #[method_id(@__retain_semantics Other TXTRecordData)]
         pub unsafe fn TXTRecordData(&self) -> Option<Id<NSData>>;
@@ -273,11 +257,7 @@ extern_methods!(
         #[method(setIncludesPeerToPeer:)]
         pub unsafe fn setIncludesPeerToPeer(&self, includes_peer_to_peer: bool);
 
-        #[cfg(all(
-            feature = "Foundation_NSObjCRuntime",
-            feature = "Foundation_NSRunLoop",
-            feature = "Foundation_NSString"
-        ))]
+        #[cfg(all(feature = "NSObjCRuntime", feature = "NSRunLoop", feature = "NSString"))]
         #[deprecated = "Use nw_browser_t in Network framework instead"]
         #[method(scheduleInRunLoop:forMode:)]
         pub unsafe fn scheduleInRunLoop_forMode(
@@ -286,11 +266,7 @@ extern_methods!(
             mode: &NSRunLoopMode,
         );
 
-        #[cfg(all(
-            feature = "Foundation_NSObjCRuntime",
-            feature = "Foundation_NSRunLoop",
-            feature = "Foundation_NSString"
-        ))]
+        #[cfg(all(feature = "NSObjCRuntime", feature = "NSRunLoop", feature = "NSString"))]
         #[deprecated = "Use nw_browser_t in Network framework instead"]
         #[method(removeFromRunLoop:forMode:)]
         pub unsafe fn removeFromRunLoop_forMode(
@@ -307,7 +283,7 @@ extern_methods!(
         #[method(searchForRegistrationDomains)]
         pub unsafe fn searchForRegistrationDomains(&self);
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[deprecated = "Use nw_browser_t in Network framework instead"]
         #[method(searchForServicesOfType:inDomain:)]
         pub unsafe fn searchForServicesOfType_inDomain(
@@ -340,11 +316,7 @@ extern_protocol!(
         #[method(netServiceDidPublish:)]
         unsafe fn netServiceDidPublish(&self, sender: &NSNetService);
 
-        #[cfg(all(
-            feature = "Foundation_NSDictionary",
-            feature = "Foundation_NSString",
-            feature = "Foundation_NSValue"
-        ))]
+        #[cfg(all(feature = "NSDictionary", feature = "NSString", feature = "NSValue"))]
         #[optional]
         #[method(netService:didNotPublish:)]
         unsafe fn netService_didNotPublish(
@@ -361,11 +333,7 @@ extern_protocol!(
         #[method(netServiceDidResolveAddress:)]
         unsafe fn netServiceDidResolveAddress(&self, sender: &NSNetService);
 
-        #[cfg(all(
-            feature = "Foundation_NSDictionary",
-            feature = "Foundation_NSString",
-            feature = "Foundation_NSValue"
-        ))]
+        #[cfg(all(feature = "NSDictionary", feature = "NSString", feature = "NSValue"))]
         #[optional]
         #[method(netService:didNotResolve:)]
         unsafe fn netService_didNotResolve(
@@ -378,12 +346,12 @@ extern_protocol!(
         #[method(netServiceDidStop:)]
         unsafe fn netServiceDidStop(&self, sender: &NSNetService);
 
-        #[cfg(feature = "Foundation_NSData")]
+        #[cfg(feature = "NSData")]
         #[optional]
         #[method(netService:didUpdateTXTRecordData:)]
         unsafe fn netService_didUpdateTXTRecordData(&self, sender: &NSNetService, data: &NSData);
 
-        #[cfg(feature = "Foundation_NSStream")]
+        #[cfg(feature = "NSStream")]
         #[optional]
         #[method(netService:didAcceptConnectionWithInputStream:outputStream:)]
         unsafe fn netService_didAcceptConnectionWithInputStream_outputStream(
@@ -407,11 +375,7 @@ extern_protocol!(
         #[method(netServiceBrowserDidStopSearch:)]
         unsafe fn netServiceBrowserDidStopSearch(&self, browser: &NSNetServiceBrowser);
 
-        #[cfg(all(
-            feature = "Foundation_NSDictionary",
-            feature = "Foundation_NSString",
-            feature = "Foundation_NSValue"
-        ))]
+        #[cfg(all(feature = "NSDictionary", feature = "NSString", feature = "NSValue"))]
         #[optional]
         #[method(netServiceBrowser:didNotSearch:)]
         unsafe fn netServiceBrowser_didNotSearch(
@@ -420,7 +384,7 @@ extern_protocol!(
             error_dict: &NSDictionary<NSString, NSNumber>,
         );
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[optional]
         #[method(netServiceBrowser:didFindDomain:moreComing:)]
         unsafe fn netServiceBrowser_didFindDomain_moreComing(
@@ -439,7 +403,7 @@ extern_protocol!(
             more_coming: bool,
         );
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[optional]
         #[method(netServiceBrowser:didRemoveDomain:moreComing:)]
         unsafe fn netServiceBrowser_didRemoveDomain_moreComing(

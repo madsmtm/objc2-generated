@@ -44,7 +44,7 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSUserNotification {}
 
 unsafe impl NSObjectProtocol for NSUserNotification {}
@@ -55,82 +55,82 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
         #[method_id(@__retain_semantics Other title)]
         pub unsafe fn title(&self) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, title: Option<&NSString>);
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
         #[method_id(@__retain_semantics Other subtitle)]
         pub unsafe fn subtitle(&self) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
         #[method(setSubtitle:)]
         pub unsafe fn setSubtitle(&self, subtitle: Option<&NSString>);
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
         #[method_id(@__retain_semantics Other informativeText)]
         pub unsafe fn informativeText(&self) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
         #[method(setInformativeText:)]
         pub unsafe fn setInformativeText(&self, informative_text: Option<&NSString>);
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
         #[method_id(@__retain_semantics Other actionButtonTitle)]
         pub unsafe fn actionButtonTitle(&self) -> Id<NSString>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
         #[method(setActionButtonTitle:)]
         pub unsafe fn setActionButtonTitle(&self, action_button_title: &NSString);
 
-        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
         #[method_id(@__retain_semantics Other userInfo)]
         pub unsafe fn userInfo(&self) -> Option<Id<NSDictionary<NSString, AnyObject>>>;
 
-        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
         #[method(setUserInfo:)]
         pub unsafe fn setUserInfo(&self, user_info: Option<&NSDictionary<NSString, AnyObject>>);
 
-        #[cfg(feature = "Foundation_NSDate")]
+        #[cfg(feature = "NSDate")]
         #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
         #[method_id(@__retain_semantics Other deliveryDate)]
         pub unsafe fn deliveryDate(&self) -> Option<Id<NSDate>>;
 
-        #[cfg(feature = "Foundation_NSDate")]
+        #[cfg(feature = "NSDate")]
         #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
         #[method(setDeliveryDate:)]
         pub unsafe fn setDeliveryDate(&self, delivery_date: Option<&NSDate>);
 
-        #[cfg(feature = "Foundation_NSTimeZone")]
+        #[cfg(feature = "NSTimeZone")]
         #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
         #[method_id(@__retain_semantics Other deliveryTimeZone)]
         pub unsafe fn deliveryTimeZone(&self) -> Option<Id<NSTimeZone>>;
 
-        #[cfg(feature = "Foundation_NSTimeZone")]
+        #[cfg(feature = "NSTimeZone")]
         #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
         #[method(setDeliveryTimeZone:)]
         pub unsafe fn setDeliveryTimeZone(&self, delivery_time_zone: Option<&NSTimeZone>);
 
-        #[cfg(feature = "Foundation_NSCalendar")]
+        #[cfg(feature = "NSCalendar")]
         #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
         #[method_id(@__retain_semantics Other deliveryRepeatInterval)]
         pub unsafe fn deliveryRepeatInterval(&self) -> Option<Id<NSDateComponents>>;
 
-        #[cfg(feature = "Foundation_NSCalendar")]
+        #[cfg(feature = "NSCalendar")]
         #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
         #[method(setDeliveryRepeatInterval:)]
         pub unsafe fn setDeliveryRepeatInterval(
@@ -138,7 +138,7 @@ extern_methods!(
             delivery_repeat_interval: Option<&NSDateComponents>,
         );
 
-        #[cfg(feature = "Foundation_NSDate")]
+        #[cfg(feature = "NSDate")]
         #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
         #[method_id(@__retain_semantics Other actualDeliveryDate)]
         pub unsafe fn actualDeliveryDate(&self) -> Option<Id<NSDate>>;
@@ -151,12 +151,12 @@ extern_methods!(
         #[method(isRemote)]
         pub unsafe fn isRemote(&self) -> bool;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
         #[method_id(@__retain_semantics Other soundName)]
         pub unsafe fn soundName(&self) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
         #[method(setSoundName:)]
         pub unsafe fn setSoundName(&self, sound_name: Option<&NSString>);
@@ -173,21 +173,21 @@ extern_methods!(
         #[method(activationType)]
         pub unsafe fn activationType(&self) -> NSUserNotificationActivationType;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
         #[method_id(@__retain_semantics Other otherButtonTitle)]
         pub unsafe fn otherButtonTitle(&self) -> Id<NSString>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
         #[method(setOtherButtonTitle:)]
         pub unsafe fn setOtherButtonTitle(&self, other_button_title: &NSString);
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other identifier)]
         pub unsafe fn identifier(&self) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method(setIdentifier:)]
         pub unsafe fn setIdentifier(&self, identifier: Option<&NSString>);
 
@@ -197,23 +197,23 @@ extern_methods!(
         #[method(setHasReplyButton:)]
         pub unsafe fn setHasReplyButton(&self, has_reply_button: bool);
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other responsePlaceholder)]
         pub unsafe fn responsePlaceholder(&self) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method(setResponsePlaceholder:)]
         pub unsafe fn setResponsePlaceholder(&self, response_placeholder: Option<&NSString>);
 
-        #[cfg(feature = "Foundation_NSAttributedString")]
+        #[cfg(feature = "NSAttributedString")]
         #[method_id(@__retain_semantics Other response)]
         pub unsafe fn response(&self) -> Option<Id<NSAttributedString>>;
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(feature = "NSArray")]
         #[method_id(@__retain_semantics Other additionalActions)]
         pub unsafe fn additionalActions(&self) -> Option<Id<NSArray<NSUserNotificationAction>>>;
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(feature = "NSArray")]
         #[method(setAdditionalActions:)]
         pub unsafe fn setAdditionalActions(
             &self,
@@ -244,14 +244,14 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSUserNotificationAction {}
 
 unsafe impl NSObjectProtocol for NSUserNotificationAction {}
 
 extern_methods!(
     unsafe impl NSUserNotificationAction {
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
         #[method_id(@__retain_semantics Other actionWithIdentifier:title:)]
         pub unsafe fn actionWithIdentifier_title(
@@ -259,12 +259,12 @@ extern_methods!(
             title: Option<&NSString>,
         ) -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
         #[method_id(@__retain_semantics Other identifier)]
         pub unsafe fn identifier(&self) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
         #[method_id(@__retain_semantics Other title)]
         pub unsafe fn title(&self) -> Option<Id<NSString>>;
@@ -283,7 +283,7 @@ extern_methods!(
 );
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSUserNotificationDefaultSoundName: &'static NSString;
 }
 
@@ -319,12 +319,12 @@ extern_methods!(
             delegate: Option<&ProtocolObject<dyn NSUserNotificationCenterDelegate>>,
         );
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(feature = "NSArray")]
         #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
         #[method_id(@__retain_semantics Other scheduledNotifications)]
         pub unsafe fn scheduledNotifications(&self) -> Id<NSArray<NSUserNotification>>;
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(feature = "NSArray")]
         #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
         #[method(setScheduledNotifications:)]
         pub unsafe fn setScheduledNotifications(
@@ -340,7 +340,7 @@ extern_methods!(
         #[method(removeScheduledNotification:)]
         pub unsafe fn removeScheduledNotification(&self, notification: &NSUserNotification);
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(feature = "NSArray")]
         #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
         #[method_id(@__retain_semantics Other deliveredNotifications)]
         pub unsafe fn deliveredNotifications(&self) -> Id<NSArray<NSUserNotification>>;

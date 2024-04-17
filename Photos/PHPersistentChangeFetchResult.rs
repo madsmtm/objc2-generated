@@ -27,7 +27,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
-        #[cfg(all(feature = "Photos_PHPersistentChange", feature = "block2"))]
+        #[cfg(all(feature = "PHPersistentChange", feature = "block2"))]
         #[method(enumerateChangesWithBlock:)]
         pub unsafe fn enumerateChangesWithBlock(
             &self,

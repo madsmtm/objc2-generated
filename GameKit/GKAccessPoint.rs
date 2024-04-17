@@ -94,7 +94,7 @@ extern_methods!(
         #[method(triggerAccessPointWithHandler:)]
         pub unsafe fn triggerAccessPointWithHandler(&self, handler: &Block<dyn Fn()>);
 
-        #[cfg(all(feature = "GameKit_GKGameCenterViewController", feature = "block2"))]
+        #[cfg(all(feature = "GKGameCenterViewController", feature = "block2"))]
         #[method(triggerAccessPointWithState:handler:)]
         pub unsafe fn triggerAccessPointWithState_handler(
             &self,

@@ -16,11 +16,11 @@ pub const DOM_BUBBLING_PHASE: c_uint = 3;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
+    #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     #[deprecated]
     pub struct DOMEvent;
 
-    #[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
+    #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl ClassType for DOMEvent {
         #[inherits(WebScriptObject, NSObject)]
         type Super = DOMObject;
@@ -28,25 +28,25 @@ extern_class!(
     }
 );
 
-#[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
+#[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
 unsafe impl NSCopying for DOMEvent {}
 
-#[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
+#[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
 unsafe impl NSObjectProtocol for DOMEvent {}
 
 extern_methods!(
-    #[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
+    #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMEvent {
         #[deprecated]
         #[method_id(@__retain_semantics Other type)]
         pub unsafe fn r#type(&self) -> Id<NSString>;
 
-        #[cfg(feature = "WebKit_DOMEventTarget")]
+        #[cfg(feature = "DOMEventTarget")]
         #[deprecated]
         #[method_id(@__retain_semantics Other target)]
         pub unsafe fn target(&self) -> Option<Id<ProtocolObject<dyn DOMEventTarget>>>;
 
-        #[cfg(feature = "WebKit_DOMEventTarget")]
+        #[cfg(feature = "DOMEventTarget")]
         #[deprecated]
         #[method_id(@__retain_semantics Other currentTarget)]
         pub unsafe fn currentTarget(&self) -> Option<Id<ProtocolObject<dyn DOMEventTarget>>>;
@@ -67,7 +67,7 @@ extern_methods!(
         #[method(timeStamp)]
         pub unsafe fn timeStamp(&self) -> DOMTimeStamp;
 
-        #[cfg(feature = "WebKit_DOMEventTarget")]
+        #[cfg(feature = "DOMEventTarget")]
         #[method_id(@__retain_semantics Other srcElement)]
         pub unsafe fn srcElement(&self) -> Option<Id<ProtocolObject<dyn DOMEventTarget>>>;
 
@@ -103,7 +103,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `DOMObject`
-    #[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
+    #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMEvent {
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
@@ -113,7 +113,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
+    #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMEvent {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -122,7 +122,7 @@ extern_methods!(
 
 extern_methods!(
     /// DOMEventDeprecated
-    #[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
+    #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMEvent {
         #[deprecated]
         #[method(initEvent:::)]

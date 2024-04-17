@@ -53,11 +53,11 @@ extern_methods!(
         #[method(setEditable:)]
         pub unsafe fn setEditable(&self, editable: bool);
 
-        #[cfg(feature = "Automator_AMWorkflowController")]
+        #[cfg(feature = "AMWorkflowController")]
         #[method_id(@__retain_semantics Other workflowController)]
         pub unsafe fn workflowController(&self) -> Option<Id<AMWorkflowController>>;
 
-        #[cfg(feature = "Automator_AMWorkflowController")]
+        #[cfg(feature = "AMWorkflowController")]
         #[method(setWorkflowController:)]
         pub unsafe fn setWorkflowController(
             &self,

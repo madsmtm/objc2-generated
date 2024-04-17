@@ -23,14 +23,14 @@ unsafe impl NSSecureCoding for MXSignpostIntervalData {}
 
 extern_methods!(
     unsafe impl MXSignpostIntervalData {
-        #[cfg(feature = "MetricKit_MXHistogram")]
+        #[cfg(feature = "MXHistogram")]
         #[method_id(@__retain_semantics Other histogrammedSignpostDuration)]
         pub unsafe fn histogrammedSignpostDuration(&self) -> Id<MXHistogram<NSUnitDuration>>;
 
         #[method_id(@__retain_semantics Other cumulativeCPUTime)]
         pub unsafe fn cumulativeCPUTime(&self) -> Option<Id<NSMeasurement<NSUnitDuration>>>;
 
-        #[cfg(feature = "MetricKit_MXAverage")]
+        #[cfg(feature = "MXAverage")]
         #[method_id(@__retain_semantics Other averageMemory)]
         pub unsafe fn averageMemory(&self) -> Option<Id<MXAverage<NSUnitInformationStorage>>>;
 
@@ -57,10 +57,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MetricKit_MXMetric")]
+    #[cfg(feature = "MXMetric")]
     pub struct MXSignpostMetric;
 
-    #[cfg(feature = "MetricKit_MXMetric")]
+    #[cfg(feature = "MXMetric")]
     unsafe impl ClassType for MXSignpostMetric {
         #[inherits(NSObject)]
         type Super = MXMetric;
@@ -68,17 +68,17 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "MetricKit_MXMetric")]
+#[cfg(feature = "MXMetric")]
 unsafe impl NSCoding for MXSignpostMetric {}
 
-#[cfg(feature = "MetricKit_MXMetric")]
+#[cfg(feature = "MXMetric")]
 unsafe impl NSObjectProtocol for MXSignpostMetric {}
 
-#[cfg(feature = "MetricKit_MXMetric")]
+#[cfg(feature = "MXMetric")]
 unsafe impl NSSecureCoding for MXSignpostMetric {}
 
 extern_methods!(
-    #[cfg(feature = "MetricKit_MXMetric")]
+    #[cfg(feature = "MXMetric")]
     unsafe impl MXSignpostMetric {
         #[method_id(@__retain_semantics Other signpostName)]
         pub unsafe fn signpostName(&self) -> Id<NSString>;
@@ -96,7 +96,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MetricKit_MXMetric")]
+    #[cfg(feature = "MXMetric")]
     unsafe impl MXSignpostMetric {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

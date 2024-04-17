@@ -5,36 +5,36 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 // NS_TYPED_EXTENSIBLE_ENUM
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(feature = "NSString")]
 pub type NSValueTransformerName = NSString;
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSNegateBooleanTransformerName: &'static NSValueTransformerName;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSIsNilTransformerName: &'static NSValueTransformerName;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSIsNotNilTransformerName: &'static NSValueTransformerName;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSUnarchiveFromDataTransformerName: &'static NSValueTransformerName;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSKeyedUnarchiveFromDataTransformerName: &'static NSValueTransformerName;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSSecureUnarchiveFromDataTransformerName: &'static NSValueTransformerName;
 }
 
@@ -52,20 +52,20 @@ unsafe impl NSObjectProtocol for NSValueTransformer {}
 
 extern_methods!(
     unsafe impl NSValueTransformer {
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method(setValueTransformer:forName:)]
         pub unsafe fn setValueTransformer_forName(
             transformer: Option<&NSValueTransformer>,
             name: &NSValueTransformerName,
         );
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other valueTransformerForName:)]
         pub unsafe fn valueTransformerForName(
             name: &NSValueTransformerName,
         ) -> Option<Id<NSValueTransformer>>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[method_id(@__retain_semantics Other valueTransformerNames)]
         pub unsafe fn valueTransformerNames() -> Id<NSArray<NSValueTransformerName>>;
 
@@ -112,7 +112,7 @@ unsafe impl NSObjectProtocol for NSSecureUnarchiveFromDataTransformer {}
 
 extern_methods!(
     unsafe impl NSSecureUnarchiveFromDataTransformer {
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(feature = "NSArray")]
         #[method_id(@__retain_semantics Other allowedTopLevelClasses)]
         pub unsafe fn allowedTopLevelClasses() -> Id<NSArray<TodoClass>>;
     }

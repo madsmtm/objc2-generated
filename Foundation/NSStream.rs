@@ -5,7 +5,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 // NS_TYPED_EXTENSIBLE_ENUM
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(feature = "NSString")]
 pub type NSStreamPropertyKey = NSString;
 
 // NS_ENUM
@@ -92,11 +92,11 @@ extern_methods!(
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSStreamDelegate>>);
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other propertyForKey:)]
         pub unsafe fn propertyForKey(&self, key: &NSStreamPropertyKey) -> Option<Id<AnyObject>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method(setProperty:forKey:)]
         pub unsafe fn setProperty_forKey(
             &self,
@@ -104,11 +104,7 @@ extern_methods!(
             key: &NSStreamPropertyKey,
         ) -> bool;
 
-        #[cfg(all(
-            feature = "Foundation_NSObjCRuntime",
-            feature = "Foundation_NSRunLoop",
-            feature = "Foundation_NSString"
-        ))]
+        #[cfg(all(feature = "NSObjCRuntime", feature = "NSRunLoop", feature = "NSString"))]
         #[method(scheduleInRunLoop:forMode:)]
         pub unsafe fn scheduleInRunLoop_forMode(
             &self,
@@ -116,11 +112,7 @@ extern_methods!(
             mode: &NSRunLoopMode,
         );
 
-        #[cfg(all(
-            feature = "Foundation_NSObjCRuntime",
-            feature = "Foundation_NSRunLoop",
-            feature = "Foundation_NSString"
-        ))]
+        #[cfg(all(feature = "NSObjCRuntime", feature = "NSRunLoop", feature = "NSString"))]
         #[method(removeFromRunLoop:forMode:)]
         pub unsafe fn removeFromRunLoop_forMode(
             &self,
@@ -131,7 +123,7 @@ extern_methods!(
         #[method(streamStatus)]
         pub unsafe fn streamStatus(&self) -> NSStreamStatus;
 
-        #[cfg(feature = "Foundation_NSError")]
+        #[cfg(feature = "NSError")]
         #[method_id(@__retain_semantics Other streamError)]
         pub unsafe fn streamError(&self) -> Option<Id<NSError>>;
     }
@@ -176,11 +168,11 @@ extern_methods!(
         #[method(hasBytesAvailable)]
         pub unsafe fn hasBytesAvailable(&self) -> bool;
 
-        #[cfg(feature = "Foundation_NSData")]
+        #[cfg(feature = "NSData")]
         #[method_id(@__retain_semantics Init initWithData:)]
         pub unsafe fn initWithData(this: Allocated<Self>, data: &NSData) -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSURL")]
+        #[cfg(feature = "NSURL")]
         #[method_id(@__retain_semantics Init initWithURL:)]
         pub unsafe fn initWithURL(this: Allocated<Self>, url: &NSURL) -> Option<Id<Self>>;
     }
@@ -228,7 +220,7 @@ extern_methods!(
             capacity: NSUInteger,
         ) -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSURL")]
+        #[cfg(feature = "NSURL")]
         #[method_id(@__retain_semantics Init initWithURL:append:)]
         pub unsafe fn initWithURL_append(
             this: Allocated<Self>,
@@ -252,7 +244,7 @@ extern_methods!(
 extern_methods!(
     /// NSSocketStreamCreationExtensions
     unsafe impl NSStream {
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[deprecated = "Use nw_connection_t in Network framework instead"]
         #[method(getStreamsToHostWithName:port:inputStream:outputStream:)]
         pub unsafe fn getStreamsToHostWithName_port_inputStream_outputStream(
@@ -262,7 +254,7 @@ extern_methods!(
             output_stream: Option<&mut Option<Id<NSOutputStream>>>,
         );
 
-        #[cfg(feature = "Foundation_NSHost")]
+        #[cfg(feature = "NSHost")]
         #[deprecated = "Use nw_connection_t in Network framework instead"]
         #[method(getStreamsToHost:port:inputStream:outputStream:)]
         pub unsafe fn getStreamsToHost_port_inputStream_outputStream(
@@ -289,22 +281,22 @@ extern_methods!(
 extern_methods!(
     /// NSInputStreamExtensions
     unsafe impl NSInputStream {
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Init initWithFileAtPath:)]
         pub unsafe fn initWithFileAtPath(
             this: Allocated<Self>,
             path: &NSString,
         ) -> Option<Id<Self>>;
 
-        #[cfg(feature = "Foundation_NSData")]
+        #[cfg(feature = "NSData")]
         #[method_id(@__retain_semantics Other inputStreamWithData:)]
         pub unsafe fn inputStreamWithData(data: &NSData) -> Option<Id<Self>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other inputStreamWithFileAtPath:)]
         pub unsafe fn inputStreamWithFileAtPath(path: &NSString) -> Option<Id<Self>>;
 
-        #[cfg(feature = "Foundation_NSURL")]
+        #[cfg(feature = "NSURL")]
         #[method_id(@__retain_semantics Other inputStreamWithURL:)]
         pub unsafe fn inputStreamWithURL(url: &NSURL) -> Option<Id<Self>>;
     }
@@ -313,7 +305,7 @@ extern_methods!(
 extern_methods!(
     /// NSOutputStreamExtensions
     unsafe impl NSOutputStream {
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Init initToFileAtPath:append:)]
         pub unsafe fn initToFileAtPath_append(
             this: Allocated<Self>,
@@ -330,14 +322,14 @@ extern_methods!(
             capacity: NSUInteger,
         ) -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other outputStreamToFileAtPath:append:)]
         pub unsafe fn outputStreamToFileAtPath_append(
             path: &NSString,
             should_append: bool,
         ) -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSURL")]
+        #[cfg(feature = "NSURL")]
         #[method_id(@__retain_semantics Other outputStreamWithURL:append:)]
         pub unsafe fn outputStreamWithURL_append(
             url: &NSURL,
@@ -357,137 +349,137 @@ extern_protocol!(
 );
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSStreamSocketSecurityLevelKey: &'static NSStreamPropertyKey;
 }
 
 // NS_TYPED_ENUM
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(feature = "NSString")]
 pub type NSStreamSocketSecurityLevel = NSString;
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSStreamSocketSecurityLevelNone: &'static NSStreamSocketSecurityLevel;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSStreamSocketSecurityLevelSSLv2: &'static NSStreamSocketSecurityLevel;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSStreamSocketSecurityLevelSSLv3: &'static NSStreamSocketSecurityLevel;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSStreamSocketSecurityLevelTLSv1: &'static NSStreamSocketSecurityLevel;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSStreamSocketSecurityLevelNegotiatedSSL: &'static NSStreamSocketSecurityLevel;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSStreamSOCKSProxyConfigurationKey: &'static NSStreamPropertyKey;
 }
 
 // NS_TYPED_ENUM
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(feature = "NSString")]
 pub type NSStreamSOCKSProxyConfiguration = NSString;
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSStreamSOCKSProxyHostKey: &'static NSStreamSOCKSProxyConfiguration;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSStreamSOCKSProxyPortKey: &'static NSStreamSOCKSProxyConfiguration;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSStreamSOCKSProxyVersionKey: &'static NSStreamSOCKSProxyConfiguration;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSStreamSOCKSProxyUserKey: &'static NSStreamSOCKSProxyConfiguration;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSStreamSOCKSProxyPasswordKey: &'static NSStreamSOCKSProxyConfiguration;
 }
 
 // NS_TYPED_ENUM
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(feature = "NSString")]
 pub type NSStreamSOCKSProxyVersion = NSString;
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSStreamSOCKSProxyVersion4: &'static NSStreamSOCKSProxyVersion;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSStreamSOCKSProxyVersion5: &'static NSStreamSOCKSProxyVersion;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSStreamDataWrittenToMemoryStreamKey: &'static NSStreamPropertyKey;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSStreamFileCurrentOffsetKey: &'static NSStreamPropertyKey;
 }
 
 extern "C" {
-    #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
+    #[cfg(all(feature = "NSError", feature = "NSString"))]
     pub static NSStreamSocketSSLErrorDomain: &'static NSErrorDomain;
 }
 
 extern "C" {
-    #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
+    #[cfg(all(feature = "NSError", feature = "NSString"))]
     pub static NSStreamSOCKSErrorDomain: &'static NSErrorDomain;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSStreamNetworkServiceType: &'static NSStreamPropertyKey;
 }
 
 // NS_TYPED_ENUM
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(feature = "NSString")]
 pub type NSStreamNetworkServiceTypeValue = NSString;
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSStreamNetworkServiceTypeVoIP: &'static NSStreamNetworkServiceTypeValue;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSStreamNetworkServiceTypeVideo: &'static NSStreamNetworkServiceTypeValue;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSStreamNetworkServiceTypeBackground: &'static NSStreamNetworkServiceTypeValue;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSStreamNetworkServiceTypeVoice: &'static NSStreamNetworkServiceTypeValue;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSStreamNetworkServiceTypeCallSignaling: &'static NSStreamNetworkServiceTypeValue;
 }

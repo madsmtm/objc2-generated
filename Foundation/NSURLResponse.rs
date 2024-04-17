@@ -18,20 +18,20 @@ unsafe impl Send for NSURLResponse {}
 
 unsafe impl Sync for NSURLResponse {}
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSCoding for NSURLResponse {}
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSURLResponse {}
 
 unsafe impl NSObjectProtocol for NSURLResponse {}
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSSecureCoding for NSURLResponse {}
 
 extern_methods!(
     unsafe impl NSURLResponse {
-        #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+        #[cfg(all(feature = "NSString", feature = "NSURL"))]
         #[method_id(@__retain_semantics Init initWithURL:MIMEType:expectedContentLength:textEncodingName:)]
         pub unsafe fn initWithURL_MIMEType_expectedContentLength_textEncodingName(
             this: Allocated<Self>,
@@ -41,22 +41,22 @@ extern_methods!(
             name: Option<&NSString>,
         ) -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSURL")]
+        #[cfg(feature = "NSURL")]
         #[method_id(@__retain_semantics Other URL)]
         pub unsafe fn URL(&self) -> Option<Id<NSURL>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other MIMEType)]
         pub unsafe fn MIMEType(&self) -> Option<Id<NSString>>;
 
         #[method(expectedContentLength)]
         pub unsafe fn expectedContentLength(&self) -> c_longlong;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other textEncodingName)]
         pub unsafe fn textEncodingName(&self) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other suggestedFilename)]
         pub unsafe fn suggestedFilename(&self) -> Option<Id<NSString>>;
     }
@@ -88,24 +88,20 @@ unsafe impl Send for NSHTTPURLResponse {}
 
 unsafe impl Sync for NSHTTPURLResponse {}
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSCoding for NSHTTPURLResponse {}
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSHTTPURLResponse {}
 
 unsafe impl NSObjectProtocol for NSHTTPURLResponse {}
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSSecureCoding for NSHTTPURLResponse {}
 
 extern_methods!(
     unsafe impl NSHTTPURLResponse {
-        #[cfg(all(
-            feature = "Foundation_NSDictionary",
-            feature = "Foundation_NSString",
-            feature = "Foundation_NSURL"
-        ))]
+        #[cfg(all(feature = "NSDictionary", feature = "NSString", feature = "NSURL"))]
         #[method_id(@__retain_semantics Init initWithURL:statusCode:HTTPVersion:headerFields:)]
         pub unsafe fn initWithURL_statusCode_HTTPVersion_headerFields(
             this: Allocated<Self>,
@@ -118,15 +114,15 @@ extern_methods!(
         #[method(statusCode)]
         pub unsafe fn statusCode(&self) -> NSInteger;
 
-        #[cfg(feature = "Foundation_NSDictionary")]
+        #[cfg(feature = "NSDictionary")]
         #[method_id(@__retain_semantics Other allHeaderFields)]
         pub unsafe fn allHeaderFields(&self) -> Id<NSDictionary>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other valueForHTTPHeaderField:)]
         pub unsafe fn valueForHTTPHeaderField(&self, field: &NSString) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other localizedStringForStatusCode:)]
         pub unsafe fn localizedStringForStatusCode(status_code: NSInteger) -> Id<NSString>;
     }
@@ -135,7 +131,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSURLResponse`
     unsafe impl NSHTTPURLResponse {
-        #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+        #[cfg(all(feature = "NSString", feature = "NSURL"))]
         #[method_id(@__retain_semantics Init initWithURL:MIMEType:expectedContentLength:textEncodingName:)]
         pub unsafe fn initWithURL_MIMEType_expectedContentLength_textEncodingName(
             this: Allocated<Self>,

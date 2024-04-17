@@ -45,7 +45,7 @@ extern_methods!(
         #[method(setHasPendingUntrackedChanges:)]
         pub unsafe fn setHasPendingUntrackedChanges(&self, has_pending_untracked_changes: bool);
 
-        #[cfg(feature = "CloudKit_CKRecordZoneID")]
+        #[cfg(feature = "CKRecordZoneID")]
         #[method_id(@__retain_semantics Other zoneIDsWithUnfetchedServerChanges)]
         pub unsafe fn zoneIDsWithUnfetchedServerChanges(&self) -> Id<NSArray<CKRecordZoneID>>;
 
@@ -142,7 +142,7 @@ unsafe impl NSObjectProtocol for CKSyncEnginePendingRecordZoneChange {}
 
 extern_methods!(
     unsafe impl CKSyncEnginePendingRecordZoneChange {
-        #[cfg(feature = "CloudKit_CKRecordID")]
+        #[cfg(feature = "CKRecordID")]
         #[method_id(@__retain_semantics Init initWithRecordID:type:)]
         pub unsafe fn initWithRecordID_type(
             this: Allocated<Self>,
@@ -156,7 +156,7 @@ extern_methods!(
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
 
-        #[cfg(feature = "CloudKit_CKRecordID")]
+        #[cfg(feature = "CKRecordID")]
         #[method_id(@__retain_semantics Other recordID)]
         pub unsafe fn recordID(&self) -> Id<CKRecordID>;
 
@@ -208,7 +208,7 @@ extern_methods!(
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
 
-        #[cfg(feature = "CloudKit_CKRecordZoneID")]
+        #[cfg(feature = "CKRecordZoneID")]
         #[method_id(@__retain_semantics Other zoneID)]
         pub unsafe fn zoneID(&self) -> Id<CKRecordZoneID>;
 
@@ -236,11 +236,11 @@ unsafe impl NSObjectProtocol for CKSyncEnginePendingZoneSave {}
 
 extern_methods!(
     unsafe impl CKSyncEnginePendingZoneSave {
-        #[cfg(feature = "CloudKit_CKRecordZone")]
+        #[cfg(feature = "CKRecordZone")]
         #[method_id(@__retain_semantics Init initWithZone:)]
         pub unsafe fn initWithZone(this: Allocated<Self>, zone: &CKRecordZone) -> Id<Self>;
 
-        #[cfg(feature = "CloudKit_CKRecordZone")]
+        #[cfg(feature = "CKRecordZone")]
         #[method_id(@__retain_semantics Other zone)]
         pub unsafe fn zone(&self) -> Id<CKRecordZone>;
     }
@@ -276,7 +276,7 @@ unsafe impl NSObjectProtocol for CKSyncEnginePendingZoneDelete {}
 
 extern_methods!(
     unsafe impl CKSyncEnginePendingZoneDelete {
-        #[cfg(feature = "CloudKit_CKRecordZoneID")]
+        #[cfg(feature = "CKRecordZoneID")]
         #[method_id(@__retain_semantics Init initWithZoneID:)]
         pub unsafe fn initWithZoneID(this: Allocated<Self>, zone_id: &CKRecordZoneID) -> Id<Self>;
     }

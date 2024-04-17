@@ -7,10 +7,10 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "HealthKit_HKObject")]
+    #[cfg(feature = "HKObject")]
     pub struct HKSample;
 
-    #[cfg(feature = "HealthKit_HKObject")]
+    #[cfg(feature = "HKObject")]
     unsafe impl ClassType for HKSample {
         #[inherits(NSObject)]
         type Super = HKObject;
@@ -18,19 +18,19 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "HealthKit_HKObject")]
+#[cfg(feature = "HKObject")]
 unsafe impl NSCoding for HKSample {}
 
-#[cfg(feature = "HealthKit_HKObject")]
+#[cfg(feature = "HKObject")]
 unsafe impl NSObjectProtocol for HKSample {}
 
-#[cfg(feature = "HealthKit_HKObject")]
+#[cfg(feature = "HKObject")]
 unsafe impl NSSecureCoding for HKSample {}
 
 extern_methods!(
-    #[cfg(feature = "HealthKit_HKObject")]
+    #[cfg(feature = "HKObject")]
     unsafe impl HKSample {
-        #[cfg(feature = "HealthKit_HKObjectType")]
+        #[cfg(feature = "HKObjectType")]
         #[method_id(@__retain_semantics Other sampleType)]
         pub unsafe fn sampleType(&self) -> Id<HKSampleType>;
 
@@ -47,7 +47,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `HKObject`
-    #[cfg(feature = "HealthKit_HKObject")]
+    #[cfg(feature = "HKObject")]
     unsafe impl HKSample {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -56,7 +56,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "HealthKit_HKObject")]
+    #[cfg(feature = "HKObject")]
     unsafe impl HKSample {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

@@ -26,15 +26,15 @@ __inner_extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl<UnitType: ?Sized + NSCoding> NSCoding for NSMeasurement<UnitType> {}
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl<UnitType: ?Sized + IsIdCloneable> NSCopying for NSMeasurement<UnitType> {}
 
 unsafe impl<UnitType: ?Sized> NSObjectProtocol for NSMeasurement<UnitType> {}
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl<UnitType: ?Sized + NSSecureCoding> NSSecureCoding for NSMeasurement<UnitType> {}
 
 extern_methods!(
@@ -55,11 +55,11 @@ extern_methods!(
             unit: &UnitType,
         ) -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSUnit")]
+        #[cfg(feature = "NSUnit")]
         #[method(canBeConvertedToUnit:)]
         pub unsafe fn canBeConvertedToUnit(&self, unit: &NSUnit) -> bool;
 
-        #[cfg(feature = "Foundation_NSUnit")]
+        #[cfg(feature = "NSUnit")]
         #[method_id(@__retain_semantics Other measurementByConvertingToUnit:)]
         pub unsafe fn measurementByConvertingToUnit(&self, unit: &NSUnit) -> Id<NSMeasurement>;
 

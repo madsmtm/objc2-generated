@@ -7,7 +7,7 @@ use crate::*;
 
 extern_protocol!(
     pub unsafe trait GCDevicePhysicalInputState: NSObjectProtocol {
-        #[cfg(feature = "GameController_GCDevice")]
+        #[cfg(feature = "GCDevice")]
         #[method_id(@__retain_semantics Other device)]
         unsafe fn device(&self) -> Option<Id<ProtocolObject<dyn GCDevice>>>;
 
@@ -17,10 +17,7 @@ extern_protocol!(
         #[method(lastEventLatency)]
         unsafe fn lastEventLatency(&self) -> NSTimeInterval;
 
-        #[cfg(all(
-            feature = "GameController_GCInputNames",
-            feature = "GameController_GCPhysicalInputElement"
-        ))]
+        #[cfg(all(feature = "GCInputNames", feature = "GCPhysicalInputElement"))]
         #[method_id(@__retain_semantics Other elements)]
         unsafe fn elements(
             &self,
@@ -29,9 +26,9 @@ extern_protocol!(
         >;
 
         #[cfg(all(
-            feature = "GameController_GCButtonElement",
-            feature = "GameController_GCInputNames",
-            feature = "GameController_GCPhysicalInputElement"
+            feature = "GCButtonElement",
+            feature = "GCInputNames",
+            feature = "GCPhysicalInputElement"
         ))]
         #[method_id(@__retain_semantics Other buttons)]
         unsafe fn buttons(
@@ -39,9 +36,9 @@ extern_protocol!(
         ) -> Id<GCPhysicalInputElementCollection<NSString, ProtocolObject<dyn GCButtonElement>>>;
 
         #[cfg(all(
-            feature = "GameController_GCAxisElement",
-            feature = "GameController_GCInputNames",
-            feature = "GameController_GCPhysicalInputElement"
+            feature = "GCAxisElement",
+            feature = "GCInputNames",
+            feature = "GCPhysicalInputElement"
         ))]
         #[method_id(@__retain_semantics Other axes)]
         unsafe fn axes(
@@ -49,9 +46,9 @@ extern_protocol!(
         ) -> Id<GCPhysicalInputElementCollection<NSString, ProtocolObject<dyn GCAxisElement>>>;
 
         #[cfg(all(
-            feature = "GameController_GCInputNames",
-            feature = "GameController_GCPhysicalInputElement",
-            feature = "GameController_GCSwitchElement"
+            feature = "GCInputNames",
+            feature = "GCPhysicalInputElement",
+            feature = "GCSwitchElement"
         ))]
         #[method_id(@__retain_semantics Other switches)]
         unsafe fn switches(
@@ -59,16 +56,16 @@ extern_protocol!(
         ) -> Id<GCPhysicalInputElementCollection<NSString, ProtocolObject<dyn GCSwitchElement>>>;
 
         #[cfg(all(
-            feature = "GameController_GCDirectionPadElement",
-            feature = "GameController_GCInputNames",
-            feature = "GameController_GCPhysicalInputElement"
+            feature = "GCDirectionPadElement",
+            feature = "GCInputNames",
+            feature = "GCPhysicalInputElement"
         ))]
         #[method_id(@__retain_semantics Other dpads)]
         unsafe fn dpads(
             &self,
         ) -> Id<GCPhysicalInputElementCollection<NSString, ProtocolObject<dyn GCDirectionPadElement>>>;
 
-        #[cfg(feature = "GameController_GCPhysicalInputElement")]
+        #[cfg(feature = "GCPhysicalInputElement")]
         #[method_id(@__retain_semantics Other objectForKeyedSubscript:)]
         unsafe fn objectForKeyedSubscript(
             &self,

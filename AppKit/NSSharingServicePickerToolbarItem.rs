@@ -7,10 +7,10 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSToolbarItem")]
+    #[cfg(feature = "NSToolbarItem")]
     pub struct NSSharingServicePickerToolbarItem;
 
-    #[cfg(feature = "AppKit_NSToolbarItem")]
+    #[cfg(feature = "NSToolbarItem")]
     unsafe impl ClassType for NSSharingServicePickerToolbarItem {
         #[inherits(NSObject)]
         type Super = NSToolbarItem;
@@ -18,22 +18,22 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSToolbarItem")]
+#[cfg(feature = "NSToolbarItem")]
 unsafe impl NSCopying for NSSharingServicePickerToolbarItem {}
 
-#[cfg(feature = "AppKit_NSToolbarItem")]
+#[cfg(feature = "NSToolbarItem")]
 unsafe impl NSObjectProtocol for NSSharingServicePickerToolbarItem {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSToolbarItem")]
+    #[cfg(feature = "NSToolbarItem")]
     unsafe impl NSSharingServicePickerToolbarItem {
-        #[cfg(feature = "AppKit_NSSharingService")]
+        #[cfg(feature = "NSSharingService")]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Id<ProtocolObject<dyn NSSharingServicePickerToolbarItemDelegate>>>;
 
-        #[cfg(feature = "AppKit_NSSharingService")]
+        #[cfg(feature = "NSSharingService")]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
@@ -44,9 +44,9 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSToolbarItem`
-    #[cfg(feature = "AppKit_NSToolbarItem")]
+    #[cfg(feature = "NSToolbarItem")]
     unsafe impl NSSharingServicePickerToolbarItem {
-        #[cfg(feature = "AppKit_NSToolbar")]
+        #[cfg(feature = "NSToolbar")]
         #[method_id(@__retain_semantics Init initWithItemIdentifier:)]
         pub unsafe fn initWithItemIdentifier(
             this: Allocated<Self>,
@@ -57,7 +57,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSToolbarItem")]
+    #[cfg(feature = "NSToolbarItem")]
     unsafe impl NSSharingServicePickerToolbarItem {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -68,11 +68,11 @@ extern_methods!(
 );
 
 extern_protocol!(
-    #[cfg(feature = "AppKit_NSSharingService")]
+    #[cfg(feature = "NSSharingService")]
     pub unsafe trait NSSharingServicePickerToolbarItemDelegate:
         NSSharingServicePickerDelegate + IsMainThreadOnly
     {
-        #[cfg(feature = "AppKit_NSToolbarItem")]
+        #[cfg(feature = "NSToolbarItem")]
         #[method_id(@__retain_semantics Other itemsForSharingServicePickerToolbarItem:)]
         unsafe fn itemsForSharingServicePickerToolbarItem(
             &self,
@@ -80,6 +80,6 @@ extern_protocol!(
         ) -> Id<NSArray>;
     }
 
-    #[cfg(feature = "AppKit_NSSharingService")]
+    #[cfg(feature = "NSSharingService")]
     unsafe impl ProtocolType for dyn NSSharingServicePickerToolbarItemDelegate {}
 );

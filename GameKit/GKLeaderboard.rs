@@ -117,11 +117,7 @@ extern_methods!(
             completion_handler: &Block<dyn Fn(*mut GKLeaderboard, *mut NSError)>,
         );
 
-        #[cfg(all(
-            feature = "GameKit_GKBasePlayer",
-            feature = "GameKit_GKPlayer",
-            feature = "block2"
-        ))]
+        #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer", feature = "block2"))]
         #[method(submitScore:context:player:leaderboardIDs:completionHandler:)]
         pub unsafe fn submitScore_context_player_leaderboardIDs_completionHandler(
             score: NSInteger,
@@ -131,11 +127,7 @@ extern_methods!(
             completion_handler: &Block<dyn Fn(*mut NSError)>,
         );
 
-        #[cfg(all(
-            feature = "GameKit_GKBasePlayer",
-            feature = "GameKit_GKPlayer",
-            feature = "block2"
-        ))]
+        #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer", feature = "block2"))]
         #[method(submitScore:context:player:completionHandler:)]
         pub unsafe fn submitScore_context_player_completionHandler(
             &self,
@@ -145,7 +137,7 @@ extern_methods!(
             completion_handler: &Block<dyn Fn(*mut NSError)>,
         );
 
-        #[cfg(all(feature = "GameKit_GKLeaderboardEntry", feature = "block2"))]
+        #[cfg(all(feature = "GKLeaderboardEntry", feature = "block2"))]
         #[method(loadEntriesForPlayerScope:timeScope:range:completionHandler:)]
         pub unsafe fn loadEntriesForPlayerScope_timeScope_range_completionHandler(
             &self,
@@ -163,9 +155,9 @@ extern_methods!(
         );
 
         #[cfg(all(
-            feature = "GameKit_GKBasePlayer",
-            feature = "GameKit_GKLeaderboardEntry",
-            feature = "GameKit_GKPlayer",
+            feature = "GKBasePlayer",
+            feature = "GKLeaderboardEntry",
+            feature = "GKPlayer",
             feature = "block2"
         ))]
         #[method(loadEntriesForPlayers:timeScope:completionHandler:)]
@@ -247,7 +239,7 @@ extern_methods!(
         #[method(setRange:)]
         pub unsafe fn setRange(&self, range: NSRange);
 
-        #[cfg(feature = "GameKit_GKScore")]
+        #[cfg(feature = "GKScore")]
         #[deprecated]
         #[method_id(@__retain_semantics Other scores)]
         pub unsafe fn scores(&self) -> Option<Id<NSArray<GKScore>>>;
@@ -256,7 +248,7 @@ extern_methods!(
         #[method(maxRange)]
         pub unsafe fn maxRange(&self) -> NSUInteger;
 
-        #[cfg(feature = "GameKit_GKScore")]
+        #[cfg(feature = "GKScore")]
         #[deprecated]
         #[method_id(@__retain_semantics Other localPlayerScore)]
         pub unsafe fn localPlayerScore(&self) -> Option<Id<GKScore>>;
@@ -265,7 +257,7 @@ extern_methods!(
         #[method(isLoading)]
         pub unsafe fn isLoading(&self) -> bool;
 
-        #[cfg(all(feature = "GameKit_GKBasePlayer", feature = "GameKit_GKPlayer"))]
+        #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
         #[deprecated]
         #[method_id(@__retain_semantics Init initWithPlayers:)]
         pub unsafe fn initWithPlayers(
@@ -273,7 +265,7 @@ extern_methods!(
             players: &NSArray<GKPlayer>,
         ) -> Id<Self>;
 
-        #[cfg(all(feature = "GameKit_GKScore", feature = "block2"))]
+        #[cfg(all(feature = "GKScore", feature = "block2"))]
         #[deprecated]
         #[method(loadScoresWithCompletionHandler:)]
         pub unsafe fn loadScoresWithCompletionHandler(

@@ -56,7 +56,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
-        #[cfg(feature = "LocalAuthentication_LARequirement")]
+        #[cfg(feature = "LARequirement")]
         #[method_id(@__retain_semantics Init initWithRequirement:)]
         pub unsafe fn initWithRequirement(
             this: Allocated<Self>,

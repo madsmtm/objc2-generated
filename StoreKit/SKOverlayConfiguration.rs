@@ -125,7 +125,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other additionalValueForKey:)]
         pub unsafe fn additionalValueForKey(&self, key: &NSString) -> Option<Id<AnyObject>>;
 
-        #[cfg(feature = "StoreKit_SKAdImpression")]
+        #[cfg(feature = "SKAdImpression")]
         #[method(setAdImpression:)]
         pub unsafe fn setAdImpression(&self, impression: &SKAdImpression);
     }

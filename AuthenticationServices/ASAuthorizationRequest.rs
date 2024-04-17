@@ -26,7 +26,7 @@ unsafe impl NSSecureCoding for ASAuthorizationRequest {}
 
 extern_methods!(
     unsafe impl ASAuthorizationRequest {
-        #[cfg(feature = "AuthenticationServices_ASAuthorizationProvider")]
+        #[cfg(feature = "ASAuthorizationProvider")]
         #[method_id(@__retain_semantics Other provider)]
         pub unsafe fn provider(&self) -> Id<ProtocolObject<dyn ASAuthorizationProvider>>;
 

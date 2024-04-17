@@ -9,10 +9,10 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Photos_PHChangeRequest")]
+    #[cfg(feature = "PHChangeRequest")]
     pub struct PHProjectChangeRequest;
 
-    #[cfg(feature = "Photos_PHChangeRequest")]
+    #[cfg(feature = "PHChangeRequest")]
     unsafe impl ClassType for PHProjectChangeRequest {
         #[inherits(NSObject)]
         type Super = PHChangeRequest;
@@ -20,17 +20,13 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Photos_PHChangeRequest")]
+#[cfg(feature = "PHChangeRequest")]
 unsafe impl NSObjectProtocol for PHProjectChangeRequest {}
 
 extern_methods!(
-    #[cfg(feature = "Photos_PHChangeRequest")]
+    #[cfg(feature = "PHChangeRequest")]
     unsafe impl PHProjectChangeRequest {
-        #[cfg(all(
-            feature = "Photos_PHCollection",
-            feature = "Photos_PHObject",
-            feature = "Photos_PHProject"
-        ))]
+        #[cfg(all(feature = "PHCollection", feature = "PHObject", feature = "PHProject"))]
         #[method_id(@__retain_semantics Init initWithProject:)]
         pub unsafe fn initWithProject(this: Allocated<Self>, project: &PHProject) -> Id<Self>;
 
@@ -46,7 +42,7 @@ extern_methods!(
         #[method(setProjectExtensionData:)]
         pub unsafe fn setProjectExtensionData(&self, project_extension_data: &NSData);
 
-        #[cfg(all(feature = "Photos_PHAsset", feature = "Photos_PHObject"))]
+        #[cfg(all(feature = "PHAsset", feature = "PHObject"))]
         #[deprecated]
         #[method(setKeyAsset:)]
         pub unsafe fn setKeyAsset(&self, key_asset: Option<&PHAsset>);
@@ -62,7 +58,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Photos_PHChangeRequest")]
+    #[cfg(feature = "PHChangeRequest")]
     unsafe impl PHProjectChangeRequest {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

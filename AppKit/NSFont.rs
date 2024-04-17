@@ -41,14 +41,14 @@ extern_methods!(
             font_matrix: NonNull<CGFloat>,
         ) -> Option<Id<NSFont>>;
 
-        #[cfg(feature = "AppKit_NSFontDescriptor")]
+        #[cfg(feature = "NSFontDescriptor")]
         #[method_id(@__retain_semantics Other fontWithDescriptor:size:)]
         pub unsafe fn fontWithDescriptor_size(
             font_descriptor: &NSFontDescriptor,
             font_size: CGFloat,
         ) -> Option<Id<NSFont>>;
 
-        #[cfg(feature = "AppKit_NSFontDescriptor")]
+        #[cfg(feature = "NSFontDescriptor")]
         #[method_id(@__retain_semantics Other fontWithDescriptor:textTransform:)]
         pub unsafe fn fontWithDescriptor_textTransform(
             font_descriptor: &NSFontDescriptor,
@@ -97,21 +97,21 @@ extern_methods!(
         #[method_id(@__retain_semantics Other controlContentFontOfSize:)]
         pub unsafe fn controlContentFontOfSize(font_size: CGFloat) -> Id<NSFont>;
 
-        #[cfg(feature = "AppKit_NSFontDescriptor")]
+        #[cfg(feature = "NSFontDescriptor")]
         #[method_id(@__retain_semantics Other systemFontOfSize:weight:)]
         pub unsafe fn systemFontOfSize_weight(
             font_size: CGFloat,
             weight: NSFontWeight,
         ) -> Id<NSFont>;
 
-        #[cfg(feature = "AppKit_NSFontDescriptor")]
+        #[cfg(feature = "NSFontDescriptor")]
         #[method_id(@__retain_semantics Other monospacedDigitSystemFontOfSize:weight:)]
         pub unsafe fn monospacedDigitSystemFontOfSize_weight(
             font_size: CGFloat,
             weight: NSFontWeight,
         ) -> Id<NSFont>;
 
-        #[cfg(feature = "AppKit_NSFontDescriptor")]
+        #[cfg(feature = "NSFontDescriptor")]
         #[method_id(@__retain_semantics Other systemFontOfSize:weight:width:)]
         pub unsafe fn systemFontOfSize_weight_width(
             font_size: CGFloat,
@@ -119,7 +119,7 @@ extern_methods!(
             width: NSFontWidth,
         ) -> Id<NSFont>;
 
-        #[cfg(feature = "AppKit_NSFontDescriptor")]
+        #[cfg(feature = "NSFontDescriptor")]
         #[method_id(@__retain_semantics Other monospacedSystemFontOfSize:weight:)]
         pub unsafe fn monospacedSystemFontOfSize_weight(
             font_size: CGFloat,
@@ -138,7 +138,7 @@ extern_methods!(
         #[method(labelFontSize)]
         pub unsafe fn labelFontSize() -> CGFloat;
 
-        #[cfg(feature = "AppKit_NSCell")]
+        #[cfg(feature = "NSCell")]
         #[method(systemFontSizeForControlSize:)]
         pub unsafe fn systemFontSizeForControlSize(control_size: NSControlSize) -> CGFloat;
 
@@ -157,7 +157,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other displayName)]
         pub unsafe fn displayName(&self) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "AppKit_NSFontDescriptor")]
+        #[cfg(feature = "NSFontDescriptor")]
         #[method_id(@__retain_semantics Other fontDescriptor)]
         pub unsafe fn fontDescriptor(&self) -> Id<NSFontDescriptor>;
 
@@ -209,7 +209,7 @@ extern_methods!(
         #[method(set)]
         pub unsafe fn set(&self);
 
-        #[cfg(feature = "AppKit_NSGraphicsContext")]
+        #[cfg(feature = "NSGraphicsContext")]
         #[method(setInContext:)]
         pub unsafe fn setInContext(&self, graphics_context: &NSGraphicsContext);
 
@@ -348,7 +348,7 @@ extern_methods!(
 extern_methods!(
     /// NSFont_TextStyles
     unsafe impl NSFont {
-        #[cfg(feature = "AppKit_NSFontDescriptor")]
+        #[cfg(feature = "NSFontDescriptor")]
         #[method_id(@__retain_semantics Other preferredFontForTextStyle:options:)]
         pub unsafe fn preferredFontForTextStyle_options(
             style: &NSFontTextStyle,

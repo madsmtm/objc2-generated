@@ -9,16 +9,10 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(
-        feature = "CloudKit_CKDatabaseOperation",
-        feature = "CloudKit_CKOperation"
-    ))]
+    #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
     pub struct CKFetchRecordZonesOperation;
 
-    #[cfg(all(
-        feature = "CloudKit_CKDatabaseOperation",
-        feature = "CloudKit_CKOperation"
-    ))]
+    #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
     unsafe impl ClassType for CKFetchRecordZonesOperation {
         #[inherits(CKOperation, NSOperation, NSObject)]
         type Super = CKDatabaseOperation;
@@ -26,17 +20,11 @@ extern_class!(
     }
 );
 
-#[cfg(all(
-    feature = "CloudKit_CKDatabaseOperation",
-    feature = "CloudKit_CKOperation"
-))]
+#[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
 unsafe impl NSObjectProtocol for CKFetchRecordZonesOperation {}
 
 extern_methods!(
-    #[cfg(all(
-        feature = "CloudKit_CKDatabaseOperation",
-        feature = "CloudKit_CKOperation"
-    ))]
+    #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
     unsafe impl CKFetchRecordZonesOperation {
         #[method_id(@__retain_semantics Other fetchAllRecordZonesOperation)]
         pub unsafe fn fetchAllRecordZonesOperation() -> Id<Self>;
@@ -44,24 +32,24 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
-        #[cfg(feature = "CloudKit_CKRecordZoneID")]
+        #[cfg(feature = "CKRecordZoneID")]
         #[method_id(@__retain_semantics Init initWithRecordZoneIDs:)]
         pub unsafe fn initWithRecordZoneIDs(
             this: Allocated<Self>,
             zone_i_ds: &NSArray<CKRecordZoneID>,
         ) -> Id<Self>;
 
-        #[cfg(feature = "CloudKit_CKRecordZoneID")]
+        #[cfg(feature = "CKRecordZoneID")]
         #[method_id(@__retain_semantics Other recordZoneIDs)]
         pub unsafe fn recordZoneIDs(&self) -> Option<Id<NSArray<CKRecordZoneID>>>;
 
-        #[cfg(feature = "CloudKit_CKRecordZoneID")]
+        #[cfg(feature = "CKRecordZoneID")]
         #[method(setRecordZoneIDs:)]
         pub unsafe fn setRecordZoneIDs(&self, record_zone_i_ds: Option<&NSArray<CKRecordZoneID>>);
 
         #[cfg(all(
-            feature = "CloudKit_CKRecordZone",
-            feature = "CloudKit_CKRecordZoneID",
+            feature = "CKRecordZone",
+            feature = "CKRecordZoneID",
             feature = "block2"
         ))]
         #[method(perRecordZoneCompletionBlock)]
@@ -70,8 +58,8 @@ extern_methods!(
         ) -> *mut Block<dyn Fn(NonNull<CKRecordZoneID>, *mut CKRecordZone, *mut NSError)>;
 
         #[cfg(all(
-            feature = "CloudKit_CKRecordZone",
-            feature = "CloudKit_CKRecordZoneID",
+            feature = "CKRecordZone",
+            feature = "CKRecordZoneID",
             feature = "block2"
         ))]
         #[method(setPerRecordZoneCompletionBlock:)]
@@ -83,8 +71,8 @@ extern_methods!(
         );
 
         #[cfg(all(
-            feature = "CloudKit_CKRecordZone",
-            feature = "CloudKit_CKRecordZoneID",
+            feature = "CKRecordZone",
+            feature = "CKRecordZoneID",
             feature = "block2"
         ))]
         #[method(fetchRecordZonesCompletionBlock)]
@@ -93,8 +81,8 @@ extern_methods!(
         ) -> *mut Block<dyn Fn(*mut NSDictionary<CKRecordZoneID, CKRecordZone>, *mut NSError)>;
 
         #[cfg(all(
-            feature = "CloudKit_CKRecordZone",
-            feature = "CloudKit_CKRecordZoneID",
+            feature = "CKRecordZone",
+            feature = "CKRecordZoneID",
             feature = "block2"
         ))]
         #[method(setFetchRecordZonesCompletionBlock:)]
@@ -109,10 +97,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(all(
-        feature = "CloudKit_CKDatabaseOperation",
-        feature = "CloudKit_CKOperation"
-    ))]
+    #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
     unsafe impl CKFetchRecordZonesOperation {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

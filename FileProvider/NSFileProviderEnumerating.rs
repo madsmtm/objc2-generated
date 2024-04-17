@@ -23,7 +23,7 @@ extern "C" {
 
 extern_protocol!(
     pub unsafe trait NSFileProviderEnumerationObserver: NSObjectProtocol {
-        #[cfg(feature = "FileProvider_NSFileProviderItem")]
+        #[cfg(feature = "NSFileProviderItem")]
         #[method(didEnumerateItems:)]
         unsafe fn didEnumerateItems(
             &self,
@@ -46,14 +46,14 @@ extern_protocol!(
 
 extern_protocol!(
     pub unsafe trait NSFileProviderChangeObserver: NSObjectProtocol {
-        #[cfg(feature = "FileProvider_NSFileProviderItem")]
+        #[cfg(feature = "NSFileProviderItem")]
         #[method(didUpdateItems:)]
         unsafe fn didUpdateItems(
             &self,
             updated_items: &NSArray<ProtocolObject<dyn NSFileProviderItemProtocol>>,
         );
 
-        #[cfg(feature = "FileProvider_NSFileProviderItem")]
+        #[cfg(feature = "NSFileProviderItem")]
         #[method(didDeleteItemsWithIdentifiers:)]
         unsafe fn didDeleteItemsWithIdentifiers(
             &self,
@@ -112,9 +112,9 @@ extern_protocol!(
 
 extern_methods!(
     /// NSFileProviderEnumeration
-    #[cfg(feature = "FileProvider_NSFileProviderExtension")]
+    #[cfg(feature = "NSFileProviderExtension")]
     unsafe impl NSFileProviderExtension {
-        #[cfg(feature = "FileProvider_NSFileProviderItem")]
+        #[cfg(feature = "NSFileProviderItem")]
         #[method_id(@__retain_semantics Other enumeratorForContainerItemIdentifier:error:_)]
         pub unsafe fn enumeratorForContainerItemIdentifier_error(
             &self,

@@ -91,7 +91,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other launchDate)]
         pub unsafe fn launchDate(&self) -> Option<Id<NSDate>>;
 
-        #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(feature = "NSImage")]
         #[method_id(@__retain_semantics Other icon)]
         pub unsafe fn icon(&self) -> Option<Id<NSImage>>;
 
@@ -146,7 +146,7 @@ extern_methods!(
 
 extern_methods!(
     /// NSWorkspaceRunningApplications
-    #[cfg(feature = "AppKit_NSWorkspace")]
+    #[cfg(feature = "NSWorkspace")]
     unsafe impl NSWorkspace {
         #[method_id(@__retain_semantics Other runningApplications)]
         pub unsafe fn runningApplications(&self) -> Id<NSArray<NSRunningApplication>>;

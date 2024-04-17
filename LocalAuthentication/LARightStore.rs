@@ -24,11 +24,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other sharedStore)]
         pub unsafe fn sharedStore() -> Id<LARightStore>;
 
-        #[cfg(all(
-            feature = "LocalAuthentication_LAPersistedRight",
-            feature = "LocalAuthentication_LARight",
-            feature = "block2"
-        ))]
+        #[cfg(all(feature = "LAPersistedRight", feature = "LARight", feature = "block2"))]
         #[method(rightForIdentifier:completion:)]
         pub unsafe fn rightForIdentifier_completion(
             &self,
@@ -36,11 +32,7 @@ extern_methods!(
             handler: &Block<dyn Fn(*mut LAPersistedRight, *mut NSError)>,
         );
 
-        #[cfg(all(
-            feature = "LocalAuthentication_LAPersistedRight",
-            feature = "LocalAuthentication_LARight",
-            feature = "block2"
-        ))]
+        #[cfg(all(feature = "LAPersistedRight", feature = "LARight", feature = "block2"))]
         #[method(saveRight:identifier:completion:)]
         pub unsafe fn saveRight_identifier_completion(
             &self,
@@ -49,11 +41,7 @@ extern_methods!(
             handler: &Block<dyn Fn(*mut LAPersistedRight, *mut NSError)>,
         );
 
-        #[cfg(all(
-            feature = "LocalAuthentication_LAPersistedRight",
-            feature = "LocalAuthentication_LARight",
-            feature = "block2"
-        ))]
+        #[cfg(all(feature = "LAPersistedRight", feature = "LARight", feature = "block2"))]
         #[method(saveRight:identifier:secret:completion:)]
         pub unsafe fn saveRight_identifier_secret_completion(
             &self,
@@ -63,11 +51,7 @@ extern_methods!(
             handler: &Block<dyn Fn(*mut LAPersistedRight, *mut NSError)>,
         );
 
-        #[cfg(all(
-            feature = "LocalAuthentication_LAPersistedRight",
-            feature = "LocalAuthentication_LARight",
-            feature = "block2"
-        ))]
+        #[cfg(all(feature = "LAPersistedRight", feature = "LARight", feature = "block2"))]
         #[method(removeRight:completion:)]
         pub unsafe fn removeRight_completion(
             &self,

@@ -29,10 +29,10 @@ unsafe impl RefEncode for NSEnergyFormatterUnit {
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSFormatter")]
+    #[cfg(feature = "NSFormatter")]
     pub struct NSEnergyFormatter;
 
-    #[cfg(feature = "Foundation_NSFormatter")]
+    #[cfg(feature = "NSFormatter")]
     unsafe impl ClassType for NSEnergyFormatter {
         #[inherits(NSObject)]
         type Super = NSFormatter;
@@ -40,23 +40,23 @@ extern_class!(
     }
 );
 
-#[cfg(all(feature = "Foundation_NSFormatter", feature = "Foundation_NSObject"))]
+#[cfg(all(feature = "NSFormatter", feature = "NSObject"))]
 unsafe impl NSCoding for NSEnergyFormatter {}
 
-#[cfg(all(feature = "Foundation_NSFormatter", feature = "Foundation_NSObject"))]
+#[cfg(all(feature = "NSFormatter", feature = "NSObject"))]
 unsafe impl NSCopying for NSEnergyFormatter {}
 
-#[cfg(feature = "Foundation_NSFormatter")]
+#[cfg(feature = "NSFormatter")]
 unsafe impl NSObjectProtocol for NSEnergyFormatter {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSFormatter")]
+    #[cfg(feature = "NSFormatter")]
     unsafe impl NSEnergyFormatter {
-        #[cfg(feature = "Foundation_NSNumberFormatter")]
+        #[cfg(feature = "NSNumberFormatter")]
         #[method_id(@__retain_semantics Other numberFormatter)]
         pub unsafe fn numberFormatter(&self) -> Id<NSNumberFormatter>;
 
-        #[cfg(feature = "Foundation_NSNumberFormatter")]
+        #[cfg(feature = "NSNumberFormatter")]
         #[method(setNumberFormatter:)]
         pub unsafe fn setNumberFormatter(&self, number_formatter: Option<&NSNumberFormatter>);
 
@@ -72,7 +72,7 @@ extern_methods!(
         #[method(setForFoodEnergyUse:)]
         pub unsafe fn setForFoodEnergyUse(&self, for_food_energy_use: bool);
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other stringFromValue:unit:)]
         pub unsafe fn stringFromValue_unit(
             &self,
@@ -80,11 +80,11 @@ extern_methods!(
             unit: NSEnergyFormatterUnit,
         ) -> Id<NSString>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other stringFromJoules:)]
         pub unsafe fn stringFromJoules(&self, number_in_joules: c_double) -> Id<NSString>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other unitStringFromValue:unit:)]
         pub unsafe fn unitStringFromValue_unit(
             &self,
@@ -92,7 +92,7 @@ extern_methods!(
             unit: NSEnergyFormatterUnit,
         ) -> Id<NSString>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other unitStringFromJoules:usedUnit:)]
         pub unsafe fn unitStringFromJoules_usedUnit(
             &self,
@@ -100,7 +100,7 @@ extern_methods!(
             unitp: *mut NSEnergyFormatterUnit,
         ) -> Id<NSString>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method(getObjectValue:forString:errorDescription:)]
         pub unsafe fn getObjectValue_forString_errorDescription(
             &self,
@@ -113,7 +113,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSFormatter")]
+    #[cfg(feature = "NSFormatter")]
     unsafe impl NSEnergyFormatter {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

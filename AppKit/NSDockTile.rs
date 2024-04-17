@@ -5,7 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "NSApplication")]
 pub static NSAppKitVersionNumberWithDockTilePlugInSupport: NSAppKitVersion = 1001.0 as _;
 
 extern_class!(
@@ -25,11 +25,11 @@ extern_methods!(
         #[method(size)]
         pub unsafe fn size(&self) -> NSSize;
 
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[method_id(@__retain_semantics Other contentView)]
         pub unsafe fn contentView(&self, mtm: MainThreadMarker) -> Option<Id<NSView>>;
 
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[method(setContentView:)]
         pub unsafe fn setContentView(&self, content_view: Option<&NSView>);
 
@@ -69,7 +69,7 @@ extern_protocol!(
         #[method(setDockTile:)]
         unsafe fn setDockTile(&self, dock_tile: Option<&NSDockTile>);
 
-        #[cfg(feature = "AppKit_NSMenu")]
+        #[cfg(feature = "NSMenu")]
         #[optional]
         #[method_id(@__retain_semantics Other dockMenu)]
         unsafe fn dockMenu(&self, mtm: MainThreadMarker) -> Option<Id<NSMenu>>;

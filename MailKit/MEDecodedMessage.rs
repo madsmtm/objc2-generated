@@ -26,14 +26,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Other rawData)]
         pub unsafe fn rawData(&self) -> Option<Id<NSData>>;
 
-        #[cfg(feature = "MailKit_MEMessageSecurityInformation")]
+        #[cfg(feature = "MEMessageSecurityInformation")]
         #[method_id(@__retain_semantics Other securityInformation)]
         pub unsafe fn securityInformation(&self) -> Id<MEMessageSecurityInformation>;
 
         #[method_id(@__retain_semantics Other context)]
         pub unsafe fn context(&self) -> Option<Id<NSData>>;
 
-        #[cfg(feature = "MailKit_MEDecodedMessageBanner")]
+        #[cfg(feature = "MEDecodedMessageBanner")]
         #[method_id(@__retain_semantics Other banner)]
         pub unsafe fn banner(&self) -> Option<Id<MEDecodedMessageBanner>>;
 
@@ -43,7 +43,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
-        #[cfg(feature = "MailKit_MEMessageSecurityInformation")]
+        #[cfg(feature = "MEMessageSecurityInformation")]
         #[method_id(@__retain_semantics Init initWithData:securityInformation:context:)]
         pub unsafe fn initWithData_securityInformation_context(
             this: Allocated<Self>,
@@ -53,8 +53,8 @@ extern_methods!(
         ) -> Id<Self>;
 
         #[cfg(all(
-            feature = "MailKit_MEDecodedMessageBanner",
-            feature = "MailKit_MEMessageSecurityInformation"
+            feature = "MEDecodedMessageBanner",
+            feature = "MEMessageSecurityInformation"
         ))]
         #[method_id(@__retain_semantics Init initWithData:securityInformation:context:banner:)]
         pub unsafe fn initWithData_securityInformation_context_banner(

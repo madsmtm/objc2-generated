@@ -7,10 +7,10 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CallKit_CXAction")]
+    #[cfg(feature = "CXAction")]
     pub struct CXCallAction;
 
-    #[cfg(feature = "CallKit_CXAction")]
+    #[cfg(feature = "CXAction")]
     unsafe impl ClassType for CXCallAction {
         #[inherits(NSObject)]
         type Super = CXAction;
@@ -18,20 +18,20 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "CallKit_CXAction")]
+#[cfg(feature = "CXAction")]
 unsafe impl NSCoding for CXCallAction {}
 
-#[cfg(feature = "CallKit_CXAction")]
+#[cfg(feature = "CXAction")]
 unsafe impl NSCopying for CXCallAction {}
 
-#[cfg(feature = "CallKit_CXAction")]
+#[cfg(feature = "CXAction")]
 unsafe impl NSObjectProtocol for CXCallAction {}
 
-#[cfg(feature = "CallKit_CXAction")]
+#[cfg(feature = "CXAction")]
 unsafe impl NSSecureCoding for CXCallAction {}
 
 extern_methods!(
-    #[cfg(feature = "CallKit_CXAction")]
+    #[cfg(feature = "CXAction")]
     unsafe impl CXCallAction {
         #[method_id(@__retain_semantics Other callUUID)]
         pub unsafe fn callUUID(&self) -> Id<NSUUID>;
@@ -50,7 +50,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CallKit_CXAction")]
+    #[cfg(feature = "CXAction")]
     unsafe impl CXCallAction {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

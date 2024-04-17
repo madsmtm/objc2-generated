@@ -109,7 +109,7 @@ extern_category!(
 
 extern_methods!(
     /// NSApplicationHelpExtension
-    #[cfg(all(feature = "AppKit_NSApplication", feature = "AppKit_NSResponder"))]
+    #[cfg(all(feature = "NSApplication", feature = "NSResponder"))]
     unsafe impl NSApplication {
         #[method(activateContextHelpMode:)]
         pub unsafe fn activateContextHelpMode(&self, sender: Option<&AnyObject>);

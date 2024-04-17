@@ -7,10 +7,10 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "QuartzCore_CALayer")]
+    #[cfg(feature = "CALayer")]
     pub struct CAReplicatorLayer;
 
-    #[cfg(feature = "QuartzCore_CALayer")]
+    #[cfg(feature = "CALayer")]
     unsafe impl ClassType for CAReplicatorLayer {
         #[inherits(NSObject)]
         type Super = CALayer;
@@ -18,20 +18,20 @@ extern_class!(
     }
 );
 
-#[cfg(all(feature = "QuartzCore_CALayer", feature = "QuartzCore_CAMediaTiming"))]
+#[cfg(all(feature = "CALayer", feature = "CAMediaTiming"))]
 unsafe impl CAMediaTiming for CAReplicatorLayer {}
 
-#[cfg(feature = "QuartzCore_CALayer")]
+#[cfg(feature = "CALayer")]
 unsafe impl NSCoding for CAReplicatorLayer {}
 
-#[cfg(feature = "QuartzCore_CALayer")]
+#[cfg(feature = "CALayer")]
 unsafe impl NSObjectProtocol for CAReplicatorLayer {}
 
-#[cfg(feature = "QuartzCore_CALayer")]
+#[cfg(feature = "CALayer")]
 unsafe impl NSSecureCoding for CAReplicatorLayer {}
 
 extern_methods!(
-    #[cfg(feature = "QuartzCore_CALayer")]
+    #[cfg(feature = "CALayer")]
     unsafe impl CAReplicatorLayer {
         #[method(instanceCount)]
         pub unsafe fn instanceCount(&self) -> NSInteger;
@@ -51,11 +51,11 @@ extern_methods!(
         #[method(setInstanceDelay:)]
         pub unsafe fn setInstanceDelay(&self, instance_delay: CFTimeInterval);
 
-        #[cfg(feature = "QuartzCore_CATransform3D")]
+        #[cfg(feature = "CATransform3D")]
         #[method(instanceTransform)]
         pub unsafe fn instanceTransform(&self) -> CATransform3D;
 
-        #[cfg(feature = "QuartzCore_CATransform3D")]
+        #[cfg(feature = "CATransform3D")]
         #[method(setInstanceTransform:)]
         pub unsafe fn setInstanceTransform(&self, instance_transform: CATransform3D);
 
@@ -87,7 +87,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `CALayer`
-    #[cfg(feature = "QuartzCore_CALayer")]
+    #[cfg(feature = "CALayer")]
     unsafe impl CAReplicatorLayer {
         #[method_id(@__retain_semantics Other layer)]
         pub unsafe fn layer() -> Id<Self>;
@@ -102,7 +102,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "QuartzCore_CALayer")]
+    #[cfg(feature = "CALayer")]
     unsafe impl CAReplicatorLayer {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

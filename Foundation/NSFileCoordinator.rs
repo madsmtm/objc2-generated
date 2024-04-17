@@ -63,21 +63,21 @@ unsafe impl NSObjectProtocol for NSFileAccessIntent {}
 
 extern_methods!(
     unsafe impl NSFileAccessIntent {
-        #[cfg(feature = "Foundation_NSURL")]
+        #[cfg(feature = "NSURL")]
         #[method_id(@__retain_semantics Other readingIntentWithURL:options:)]
         pub unsafe fn readingIntentWithURL_options(
             url: &NSURL,
             options: NSFileCoordinatorReadingOptions,
         ) -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSURL")]
+        #[cfg(feature = "NSURL")]
         #[method_id(@__retain_semantics Other writingIntentWithURL:options:)]
         pub unsafe fn writingIntentWithURL_options(
             url: &NSURL,
             options: NSFileCoordinatorWritingOptions,
         ) -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSURL")]
+        #[cfg(feature = "NSURL")]
         #[method_id(@__retain_semantics Other URL)]
         pub unsafe fn URL(&self) -> Id<NSURL>;
     }
@@ -108,37 +108,37 @@ unsafe impl NSObjectProtocol for NSFileCoordinator {}
 
 extern_methods!(
     unsafe impl NSFileCoordinator {
-        #[cfg(feature = "Foundation_NSFilePresenter")]
+        #[cfg(feature = "NSFilePresenter")]
         #[method(addFilePresenter:)]
         pub unsafe fn addFilePresenter(file_presenter: &ProtocolObject<dyn NSFilePresenter>);
 
-        #[cfg(feature = "Foundation_NSFilePresenter")]
+        #[cfg(feature = "NSFilePresenter")]
         #[method(removeFilePresenter:)]
         pub unsafe fn removeFilePresenter(file_presenter: &ProtocolObject<dyn NSFilePresenter>);
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSFilePresenter"))]
+        #[cfg(all(feature = "NSArray", feature = "NSFilePresenter"))]
         #[method_id(@__retain_semantics Other filePresenters)]
         pub unsafe fn filePresenters() -> Id<NSArray<ProtocolObject<dyn NSFilePresenter>>>;
 
-        #[cfg(feature = "Foundation_NSFilePresenter")]
+        #[cfg(feature = "NSFilePresenter")]
         #[method_id(@__retain_semantics Init initWithFilePresenter:)]
         pub unsafe fn initWithFilePresenter(
             this: Allocated<Self>,
             file_presenter_or_nil: Option<&ProtocolObject<dyn NSFilePresenter>>,
         ) -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other purposeIdentifier)]
         pub unsafe fn purposeIdentifier(&self) -> Id<NSString>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method(setPurposeIdentifier:)]
         pub unsafe fn setPurposeIdentifier(&self, purpose_identifier: &NSString);
 
         #[cfg(all(
-            feature = "Foundation_NSArray",
-            feature = "Foundation_NSError",
-            feature = "Foundation_NSOperation",
+            feature = "NSArray",
+            feature = "NSError",
+            feature = "NSOperation",
             feature = "block2"
         ))]
         #[method(coordinateAccessWithIntents:queue:byAccessor:)]
@@ -149,11 +149,7 @@ extern_methods!(
             accessor: &Block<dyn Fn(*mut NSError)>,
         );
 
-        #[cfg(all(
-            feature = "Foundation_NSError",
-            feature = "Foundation_NSURL",
-            feature = "block2"
-        ))]
+        #[cfg(all(feature = "NSError", feature = "NSURL", feature = "block2"))]
         #[method(coordinateReadingItemAtURL:options:error:byAccessor:)]
         pub unsafe fn coordinateReadingItemAtURL_options_error_byAccessor(
             &self,
@@ -163,11 +159,7 @@ extern_methods!(
             reader: &Block<dyn Fn(NonNull<NSURL>) + '_>,
         );
 
-        #[cfg(all(
-            feature = "Foundation_NSError",
-            feature = "Foundation_NSURL",
-            feature = "block2"
-        ))]
+        #[cfg(all(feature = "NSError", feature = "NSURL", feature = "block2"))]
         #[method(coordinateWritingItemAtURL:options:error:byAccessor:)]
         pub unsafe fn coordinateWritingItemAtURL_options_error_byAccessor(
             &self,
@@ -177,11 +169,7 @@ extern_methods!(
             writer: &Block<dyn Fn(NonNull<NSURL>) + '_>,
         );
 
-        #[cfg(all(
-            feature = "Foundation_NSError",
-            feature = "Foundation_NSURL",
-            feature = "block2"
-        ))]
+        #[cfg(all(feature = "NSError", feature = "NSURL", feature = "block2"))]
         #[method(coordinateReadingItemAtURL:options:writingItemAtURL:options:error:byAccessor:)]
         pub unsafe fn coordinateReadingItemAtURL_options_writingItemAtURL_options_error_byAccessor(
             &self,
@@ -193,11 +181,7 @@ extern_methods!(
             reader_writer: &Block<dyn Fn(NonNull<NSURL>, NonNull<NSURL>) + '_>,
         );
 
-        #[cfg(all(
-            feature = "Foundation_NSError",
-            feature = "Foundation_NSURL",
-            feature = "block2"
-        ))]
+        #[cfg(all(feature = "NSError", feature = "NSURL", feature = "block2"))]
         #[method(coordinateWritingItemAtURL:options:writingItemAtURL:options:error:byAccessor:)]
         pub unsafe fn coordinateWritingItemAtURL_options_writingItemAtURL_options_error_byAccessor(
             &self,
@@ -210,9 +194,9 @@ extern_methods!(
         );
 
         #[cfg(all(
-            feature = "Foundation_NSArray",
-            feature = "Foundation_NSError",
-            feature = "Foundation_NSURL",
+            feature = "NSArray",
+            feature = "NSError",
+            feature = "NSURL",
             feature = "block2"
         ))]
         #[method(prepareForReadingItemsAtURLs:options:writingItemsAtURLs:options:error:byAccessor:)]
@@ -226,19 +210,15 @@ extern_methods!(
             batch_accessor: &Block<dyn Fn(NonNull<Block<dyn Fn()>>) + '_>,
         );
 
-        #[cfg(feature = "Foundation_NSURL")]
+        #[cfg(feature = "NSURL")]
         #[method(itemAtURL:willMoveToURL:)]
         pub unsafe fn itemAtURL_willMoveToURL(&self, old_url: &NSURL, new_url: &NSURL);
 
-        #[cfg(feature = "Foundation_NSURL")]
+        #[cfg(feature = "NSURL")]
         #[method(itemAtURL:didMoveToURL:)]
         pub unsafe fn itemAtURL_didMoveToURL(&self, old_url: &NSURL, new_url: &NSURL);
 
-        #[cfg(all(
-            feature = "Foundation_NSSet",
-            feature = "Foundation_NSString",
-            feature = "Foundation_NSURL"
-        ))]
+        #[cfg(all(feature = "NSSet", feature = "NSString", feature = "NSURL"))]
         #[method(itemAtURL:didChangeUbiquityAttributes:)]
         pub unsafe fn itemAtURL_didChangeUbiquityAttributes(
             &self,

@@ -16,1151 +16,1109 @@
 #[link(name = "GameController", kind = "framework")]
 extern "C" {}
 
-#[cfg(feature = "GameController_GCAxis2DInput")]
+#[cfg(feature = "GCAxis2DInput")]
 #[path = "GCAxis2DInput.rs"]
 mod __GCAxis2DInput;
-#[cfg(feature = "GameController_GCAxisElement")]
+#[cfg(feature = "GCAxisElement")]
 #[path = "GCAxisElement.rs"]
 mod __GCAxisElement;
-#[cfg(feature = "GameController_GCAxisInput")]
+#[cfg(feature = "GCAxisInput")]
 #[path = "GCAxisInput.rs"]
 mod __GCAxisInput;
-#[cfg(feature = "GameController_GCButtonElement")]
+#[cfg(feature = "GCButtonElement")]
 #[path = "GCButtonElement.rs"]
 mod __GCButtonElement;
-#[cfg(feature = "GameController_GCColor")]
+#[cfg(feature = "GCColor")]
 #[path = "GCColor.rs"]
 mod __GCColor;
-#[cfg(feature = "GameController_GCController")]
+#[cfg(feature = "GCController")]
 #[path = "GCController.rs"]
 mod __GCController;
-#[cfg(feature = "GameController_GCControllerAxisInput")]
+#[cfg(feature = "GCControllerAxisInput")]
 #[path = "GCControllerAxisInput.rs"]
 mod __GCControllerAxisInput;
-#[cfg(feature = "GameController_GCControllerButtonInput")]
+#[cfg(feature = "GCControllerButtonInput")]
 #[path = "GCControllerButtonInput.rs"]
 mod __GCControllerButtonInput;
-#[cfg(feature = "GameController_GCControllerDirectionPad")]
+#[cfg(feature = "GCControllerDirectionPad")]
 #[path = "GCControllerDirectionPad.rs"]
 mod __GCControllerDirectionPad;
-#[cfg(feature = "GameController_GCControllerElement")]
+#[cfg(feature = "GCControllerElement")]
 #[path = "GCControllerElement.rs"]
 mod __GCControllerElement;
-#[cfg(feature = "GameController_GCControllerInput")]
+#[cfg(feature = "GCControllerInput")]
 #[path = "GCControllerInput.rs"]
 mod __GCControllerInput;
-#[cfg(feature = "GameController_GCControllerTouchpad")]
+#[cfg(feature = "GCControllerTouchpad")]
 #[path = "GCControllerTouchpad.rs"]
 mod __GCControllerTouchpad;
-#[cfg(feature = "GameController_GCDevice")]
+#[cfg(feature = "GCDevice")]
 #[path = "GCDevice.rs"]
 mod __GCDevice;
-#[cfg(feature = "GameController_GCDeviceBattery")]
+#[cfg(feature = "GCDeviceBattery")]
 #[path = "GCDeviceBattery.rs"]
 mod __GCDeviceBattery;
-#[cfg(feature = "GameController_GCDeviceCursor")]
+#[cfg(feature = "GCDeviceCursor")]
 #[path = "GCDeviceCursor.rs"]
 mod __GCDeviceCursor;
-#[cfg(feature = "GameController_GCDeviceHaptics")]
+#[cfg(feature = "GCDeviceHaptics")]
 #[path = "GCDeviceHaptics.rs"]
 mod __GCDeviceHaptics;
-#[cfg(feature = "GameController_GCDeviceLight")]
+#[cfg(feature = "GCDeviceLight")]
 #[path = "GCDeviceLight.rs"]
 mod __GCDeviceLight;
-#[cfg(feature = "GameController_GCDevicePhysicalInput")]
+#[cfg(feature = "GCDevicePhysicalInput")]
 #[path = "GCDevicePhysicalInput.rs"]
 mod __GCDevicePhysicalInput;
-#[cfg(feature = "GameController_GCDevicePhysicalInputState")]
+#[cfg(feature = "GCDevicePhysicalInputState")]
 #[path = "GCDevicePhysicalInputState.rs"]
 mod __GCDevicePhysicalInputState;
-#[cfg(feature = "GameController_GCDevicePhysicalInputStateDiff")]
+#[cfg(feature = "GCDevicePhysicalInputStateDiff")]
 #[path = "GCDevicePhysicalInputStateDiff.rs"]
 mod __GCDevicePhysicalInputStateDiff;
-#[cfg(feature = "GameController_GCDirectionPadElement")]
+#[cfg(feature = "GCDirectionPadElement")]
 #[path = "GCDirectionPadElement.rs"]
 mod __GCDirectionPadElement;
-#[cfg(feature = "GameController_GCDirectionalGamepad")]
+#[cfg(feature = "GCDirectionalGamepad")]
 #[path = "GCDirectionalGamepad.rs"]
 mod __GCDirectionalGamepad;
-#[cfg(feature = "GameController_GCDualSenseAdaptiveTrigger")]
+#[cfg(feature = "GCDualSenseAdaptiveTrigger")]
 #[path = "GCDualSenseAdaptiveTrigger.rs"]
 mod __GCDualSenseAdaptiveTrigger;
-#[cfg(feature = "GameController_GCDualSenseGamepad")]
+#[cfg(feature = "GCDualSenseGamepad")]
 #[path = "GCDualSenseGamepad.rs"]
 mod __GCDualSenseGamepad;
-#[cfg(feature = "GameController_GCDualShockGamepad")]
+#[cfg(feature = "GCDualShockGamepad")]
 #[path = "GCDualShockGamepad.rs"]
 mod __GCDualShockGamepad;
-#[cfg(feature = "GameController_GCEventViewController")]
+#[cfg(feature = "GCEventViewController")]
 #[path = "GCEventViewController.rs"]
 mod __GCEventViewController;
-#[cfg(feature = "GameController_GCExtendedGamepad")]
+#[cfg(feature = "GCExtendedGamepad")]
 #[path = "GCExtendedGamepad.rs"]
 mod __GCExtendedGamepad;
-#[cfg(feature = "GameController_GCExtendedGamepadSnapshot")]
+#[cfg(feature = "GCExtendedGamepadSnapshot")]
 #[path = "GCExtendedGamepadSnapshot.rs"]
 mod __GCExtendedGamepadSnapshot;
-#[cfg(feature = "GameController_GCExtern")]
+#[cfg(feature = "GCExtern")]
 #[path = "GCExtern.rs"]
 mod __GCExtern;
-#[cfg(feature = "GameController_GCGamepad")]
+#[cfg(feature = "GCGamepad")]
 #[path = "GCGamepad.rs"]
 mod __GCGamepad;
-#[cfg(feature = "GameController_GCGamepadSnapshot")]
+#[cfg(feature = "GCGamepadSnapshot")]
 #[path = "GCGamepadSnapshot.rs"]
 mod __GCGamepadSnapshot;
-#[cfg(feature = "GameController_GCGearShifterElement")]
+#[cfg(feature = "GCGearShifterElement")]
 #[path = "GCGearShifterElement.rs"]
 mod __GCGearShifterElement;
-#[cfg(feature = "GameController_GCInputNames")]
+#[cfg(feature = "GCInputNames")]
 #[path = "GCInputNames.rs"]
 mod __GCInputNames;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 #[path = "GCKeyCodes.rs"]
 mod __GCKeyCodes;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 #[path = "GCKeyNames.rs"]
 mod __GCKeyNames;
-#[cfg(feature = "GameController_GCKeyboard")]
+#[cfg(feature = "GCKeyboard")]
 #[path = "GCKeyboard.rs"]
 mod __GCKeyboard;
-#[cfg(feature = "GameController_GCKeyboardInput")]
+#[cfg(feature = "GCKeyboardInput")]
 #[path = "GCKeyboardInput.rs"]
 mod __GCKeyboardInput;
-#[cfg(feature = "GameController_GCLinearInput")]
+#[cfg(feature = "GCLinearInput")]
 #[path = "GCLinearInput.rs"]
 mod __GCLinearInput;
-#[cfg(feature = "GameController_GCMicroGamepad")]
+#[cfg(feature = "GCMicroGamepad")]
 #[path = "GCMicroGamepad.rs"]
 mod __GCMicroGamepad;
-#[cfg(feature = "GameController_GCMicroGamepadSnapshot")]
+#[cfg(feature = "GCMicroGamepadSnapshot")]
 #[path = "GCMicroGamepadSnapshot.rs"]
 mod __GCMicroGamepadSnapshot;
-#[cfg(feature = "GameController_GCMotion")]
+#[cfg(feature = "GCMotion")]
 #[path = "GCMotion.rs"]
 mod __GCMotion;
-#[cfg(feature = "GameController_GCMouse")]
+#[cfg(feature = "GCMouse")]
 #[path = "GCMouse.rs"]
 mod __GCMouse;
-#[cfg(feature = "GameController_GCMouseInput")]
+#[cfg(feature = "GCMouseInput")]
 #[path = "GCMouseInput.rs"]
 mod __GCMouseInput;
-#[cfg(feature = "GameController_GCPhysicalInputElement")]
+#[cfg(feature = "GCPhysicalInputElement")]
 #[path = "GCPhysicalInputElement.rs"]
 mod __GCPhysicalInputElement;
-#[cfg(feature = "GameController_GCPhysicalInputProfile")]
+#[cfg(feature = "GCPhysicalInputProfile")]
 #[path = "GCPhysicalInputProfile.rs"]
 mod __GCPhysicalInputProfile;
-#[cfg(feature = "GameController_GCPhysicalInputSource")]
+#[cfg(feature = "GCPhysicalInputSource")]
 #[path = "GCPhysicalInputSource.rs"]
 mod __GCPhysicalInputSource;
-#[cfg(feature = "GameController_GCPressedStateInput")]
+#[cfg(feature = "GCPressedStateInput")]
 #[path = "GCPressedStateInput.rs"]
 mod __GCPressedStateInput;
-#[cfg(feature = "GameController_GCProductCategories")]
+#[cfg(feature = "GCProductCategories")]
 #[path = "GCProductCategories.rs"]
 mod __GCProductCategories;
-#[cfg(feature = "GameController_GCRacingWheel")]
+#[cfg(feature = "GCRacingWheel")]
 #[path = "GCRacingWheel.rs"]
 mod __GCRacingWheel;
-#[cfg(feature = "GameController_GCRacingWheelInput")]
+#[cfg(feature = "GCRacingWheelInput")]
 #[path = "GCRacingWheelInput.rs"]
 mod __GCRacingWheelInput;
-#[cfg(feature = "GameController_GCRelativeInput")]
+#[cfg(feature = "GCRelativeInput")]
 #[path = "GCRelativeInput.rs"]
 mod __GCRelativeInput;
-#[cfg(feature = "GameController_GCSteeringWheelElement")]
+#[cfg(feature = "GCSteeringWheelElement")]
 #[path = "GCSteeringWheelElement.rs"]
 mod __GCSteeringWheelElement;
-#[cfg(feature = "GameController_GCSwitchElement")]
+#[cfg(feature = "GCSwitchElement")]
 #[path = "GCSwitchElement.rs"]
 mod __GCSwitchElement;
-#[cfg(feature = "GameController_GCSwitchPositionInput")]
+#[cfg(feature = "GCSwitchPositionInput")]
 #[path = "GCSwitchPositionInput.rs"]
 mod __GCSwitchPositionInput;
-#[cfg(feature = "GameController_GCSyntheticDeviceKeys")]
+#[cfg(feature = "GCSyntheticDeviceKeys")]
 #[path = "GCSyntheticDeviceKeys.rs"]
 mod __GCSyntheticDeviceKeys;
-#[cfg(feature = "GameController_GCTouchedStateInput")]
+#[cfg(feature = "GCTouchedStateInput")]
 #[path = "GCTouchedStateInput.rs"]
 mod __GCTouchedStateInput;
-#[cfg(feature = "GameController_GCTypes")]
+#[cfg(feature = "GCTypes")]
 #[path = "GCTypes.rs"]
 mod __GCTypes;
-#[cfg(feature = "GameController_GCXboxGamepad")]
+#[cfg(feature = "GCXboxGamepad")]
 #[path = "GCXboxGamepad.rs"]
 mod __GCXboxGamepad;
 
-#[cfg(feature = "GameController_GCAxis2DInput")]
+#[cfg(feature = "GCAxis2DInput")]
 pub use self::__GCAxis2DInput::GCAxis2DInput;
-#[cfg(all(
-    feature = "GameController_GCAxisElement",
-    feature = "GameController_GCPhysicalInputElement"
-))]
+#[cfg(all(feature = "GCAxisElement", feature = "GCPhysicalInputElement"))]
 pub use self::__GCAxisElement::GCAxisElement;
-#[cfg(feature = "GameController_GCAxisInput")]
+#[cfg(feature = "GCAxisInput")]
 pub use self::__GCAxisInput::GCAxisInput;
-#[cfg(all(
-    feature = "GameController_GCButtonElement",
-    feature = "GameController_GCPhysicalInputElement"
-))]
+#[cfg(all(feature = "GCButtonElement", feature = "GCPhysicalInputElement"))]
 pub use self::__GCButtonElement::GCButtonElement;
-#[cfg(feature = "GameController_GCColor")]
+#[cfg(feature = "GCColor")]
 pub use self::__GCColor::GCColor;
-#[cfg(feature = "GameController_GCController")]
+#[cfg(feature = "GCController")]
 pub use self::__GCController::GCController;
-#[cfg(feature = "GameController_GCController")]
+#[cfg(feature = "GCController")]
 pub use self::__GCController::GCControllerDidBecomeCurrentNotification;
-#[cfg(feature = "GameController_GCController")]
+#[cfg(feature = "GCController")]
 pub use self::__GCController::GCControllerDidConnectNotification;
-#[cfg(feature = "GameController_GCController")]
+#[cfg(feature = "GCController")]
 pub use self::__GCController::GCControllerDidDisconnectNotification;
-#[cfg(feature = "GameController_GCController")]
+#[cfg(feature = "GCController")]
 pub use self::__GCController::GCControllerDidStopBeingCurrentNotification;
-#[cfg(feature = "GameController_GCController")]
+#[cfg(feature = "GCController")]
 pub use self::__GCController::GCControllerPlayerIndex;
-#[cfg(feature = "GameController_GCController")]
+#[cfg(feature = "GCController")]
 pub use self::__GCController::GCControllerUserCustomizationsDidChangeNotification;
-#[cfg(all(
-    feature = "GameController_GCControllerAxisInput",
-    feature = "GameController_GCControllerElement"
-))]
+#[cfg(all(feature = "GCControllerAxisInput", feature = "GCControllerElement"))]
 pub use self::__GCControllerAxisInput::GCControllerAxisInput;
 #[cfg(all(
-    feature = "GameController_GCControllerAxisInput",
-    feature = "GameController_GCControllerElement",
+    feature = "GCControllerAxisInput",
+    feature = "GCControllerElement",
     feature = "block2"
 ))]
 pub use self::__GCControllerAxisInput::GCControllerAxisValueChangedHandler;
-#[cfg(all(
-    feature = "GameController_GCControllerButtonInput",
-    feature = "GameController_GCControllerElement"
-))]
+#[cfg(all(feature = "GCControllerButtonInput", feature = "GCControllerElement"))]
 pub use self::__GCControllerButtonInput::GCControllerButtonInput;
 #[cfg(all(
-    feature = "GameController_GCControllerButtonInput",
-    feature = "GameController_GCControllerElement",
+    feature = "GCControllerButtonInput",
+    feature = "GCControllerElement",
     feature = "block2"
 ))]
 pub use self::__GCControllerButtonInput::GCControllerButtonTouchedChangedHandler;
 #[cfg(all(
-    feature = "GameController_GCControllerButtonInput",
-    feature = "GameController_GCControllerElement",
+    feature = "GCControllerButtonInput",
+    feature = "GCControllerElement",
     feature = "block2"
 ))]
 pub use self::__GCControllerButtonInput::GCControllerButtonValueChangedHandler;
-#[cfg(all(
-    feature = "GameController_GCControllerDirectionPad",
-    feature = "GameController_GCControllerElement"
-))]
+#[cfg(all(feature = "GCControllerDirectionPad", feature = "GCControllerElement"))]
 pub use self::__GCControllerDirectionPad::GCControllerDirectionPad;
 #[cfg(all(
-    feature = "GameController_GCControllerDirectionPad",
-    feature = "GameController_GCControllerElement",
+    feature = "GCControllerDirectionPad",
+    feature = "GCControllerElement",
     feature = "block2"
 ))]
 pub use self::__GCControllerDirectionPad::GCControllerDirectionPadValueChangedHandler;
-#[cfg(feature = "GameController_GCControllerElement")]
+#[cfg(feature = "GCControllerElement")]
 pub use self::__GCControllerElement::GCControllerElement;
-#[cfg(feature = "GameController_GCControllerElement")]
+#[cfg(feature = "GCControllerElement")]
 pub use self::__GCControllerElement::GCSystemGestureState;
-#[cfg(feature = "GameController_GCControllerInput")]
+#[cfg(feature = "GCControllerInput")]
 pub use self::__GCControllerInput::GCControllerInputState;
-#[cfg(feature = "GameController_GCControllerInput")]
+#[cfg(feature = "GCControllerInput")]
 pub use self::__GCControllerInput::GCControllerLiveInput;
-#[cfg(all(
-    feature = "GameController_GCControllerElement",
-    feature = "GameController_GCControllerTouchpad"
-))]
+#[cfg(all(feature = "GCControllerElement", feature = "GCControllerTouchpad"))]
 pub use self::__GCControllerTouchpad::GCControllerTouchpad;
 #[cfg(all(
-    feature = "GameController_GCControllerElement",
-    feature = "GameController_GCControllerTouchpad",
+    feature = "GCControllerElement",
+    feature = "GCControllerTouchpad",
     feature = "block2"
 ))]
 pub use self::__GCControllerTouchpad::GCControllerTouchpadHandler;
-#[cfg(feature = "GameController_GCControllerTouchpad")]
+#[cfg(feature = "GCControllerTouchpad")]
 pub use self::__GCControllerTouchpad::GCTouchState;
-#[cfg(feature = "GameController_GCDevice")]
+#[cfg(feature = "GCDevice")]
 pub use self::__GCDevice::GCDevice;
-#[cfg(feature = "GameController_GCDeviceBattery")]
+#[cfg(feature = "GCDeviceBattery")]
 pub use self::__GCDeviceBattery::GCDeviceBattery;
-#[cfg(feature = "GameController_GCDeviceBattery")]
+#[cfg(feature = "GCDeviceBattery")]
 pub use self::__GCDeviceBattery::GCDeviceBatteryState;
 #[cfg(all(
-    feature = "GameController_GCControllerDirectionPad",
-    feature = "GameController_GCControllerElement",
-    feature = "GameController_GCDeviceCursor"
+    feature = "GCControllerDirectionPad",
+    feature = "GCControllerElement",
+    feature = "GCDeviceCursor"
 ))]
 pub use self::__GCDeviceCursor::GCDeviceCursor;
-#[cfg(feature = "GameController_GCDeviceHaptics")]
+#[cfg(feature = "GCDeviceHaptics")]
 pub use self::__GCDeviceHaptics::GCDeviceHaptics;
-#[cfg(feature = "GameController_GCDeviceHaptics")]
+#[cfg(feature = "GCDeviceHaptics")]
 pub use self::__GCDeviceHaptics::GCHapticDurationInfinite;
-#[cfg(feature = "GameController_GCDeviceHaptics")]
+#[cfg(feature = "GCDeviceHaptics")]
 pub use self::__GCDeviceHaptics::GCHapticsLocality;
-#[cfg(feature = "GameController_GCDeviceHaptics")]
+#[cfg(feature = "GCDeviceHaptics")]
 pub use self::__GCDeviceHaptics::GCHapticsLocalityAll;
-#[cfg(feature = "GameController_GCDeviceHaptics")]
+#[cfg(feature = "GCDeviceHaptics")]
 pub use self::__GCDeviceHaptics::GCHapticsLocalityDefault;
-#[cfg(feature = "GameController_GCDeviceHaptics")]
+#[cfg(feature = "GCDeviceHaptics")]
 pub use self::__GCDeviceHaptics::GCHapticsLocalityHandles;
-#[cfg(feature = "GameController_GCDeviceHaptics")]
+#[cfg(feature = "GCDeviceHaptics")]
 pub use self::__GCDeviceHaptics::GCHapticsLocalityLeftHandle;
-#[cfg(feature = "GameController_GCDeviceHaptics")]
+#[cfg(feature = "GCDeviceHaptics")]
 pub use self::__GCDeviceHaptics::GCHapticsLocalityLeftTrigger;
-#[cfg(feature = "GameController_GCDeviceHaptics")]
+#[cfg(feature = "GCDeviceHaptics")]
 pub use self::__GCDeviceHaptics::GCHapticsLocalityRightHandle;
-#[cfg(feature = "GameController_GCDeviceHaptics")]
+#[cfg(feature = "GCDeviceHaptics")]
 pub use self::__GCDeviceHaptics::GCHapticsLocalityRightTrigger;
-#[cfg(feature = "GameController_GCDeviceHaptics")]
+#[cfg(feature = "GCDeviceHaptics")]
 pub use self::__GCDeviceHaptics::GCHapticsLocalityTriggers;
-#[cfg(feature = "GameController_GCDeviceLight")]
+#[cfg(feature = "GCDeviceLight")]
 pub use self::__GCDeviceLight::GCDeviceLight;
 #[cfg(all(
-    feature = "GameController_GCDevicePhysicalInput",
-    feature = "GameController_GCDevicePhysicalInputState"
+    feature = "GCDevicePhysicalInput",
+    feature = "GCDevicePhysicalInputState"
 ))]
 pub use self::__GCDevicePhysicalInput::GCDevicePhysicalInput;
-#[cfg(feature = "GameController_GCDevicePhysicalInputState")]
+#[cfg(feature = "GCDevicePhysicalInputState")]
 pub use self::__GCDevicePhysicalInputState::GCDevicePhysicalInputState;
-#[cfg(feature = "GameController_GCDevicePhysicalInputStateDiff")]
+#[cfg(feature = "GCDevicePhysicalInputStateDiff")]
 pub use self::__GCDevicePhysicalInputStateDiff::GCDevicePhysicalInputElementChange;
-#[cfg(feature = "GameController_GCDevicePhysicalInputStateDiff")]
+#[cfg(feature = "GCDevicePhysicalInputStateDiff")]
 pub use self::__GCDevicePhysicalInputStateDiff::GCDevicePhysicalInputStateDiff;
-#[cfg(all(
-    feature = "GameController_GCDirectionPadElement",
-    feature = "GameController_GCPhysicalInputElement"
-))]
+#[cfg(all(feature = "GCDirectionPadElement", feature = "GCPhysicalInputElement"))]
 pub use self::__GCDirectionPadElement::GCDirectionPadElement;
 #[cfg(all(
-    feature = "GameController_GCDirectionalGamepad",
-    feature = "GameController_GCMicroGamepad",
-    feature = "GameController_GCPhysicalInputProfile"
+    feature = "GCDirectionalGamepad",
+    feature = "GCMicroGamepad",
+    feature = "GCPhysicalInputProfile"
 ))]
 pub use self::__GCDirectionalGamepad::GCDirectionalGamepad;
-#[cfg(feature = "GameController_GCDirectionalGamepad")]
+#[cfg(feature = "GCDirectionalGamepad")]
 pub use self::__GCDirectionalGamepad::GCInputDirectionalCardinalDpad;
-#[cfg(feature = "GameController_GCDirectionalGamepad")]
+#[cfg(feature = "GCDirectionalGamepad")]
 pub use self::__GCDirectionalGamepad::GCInputDirectionalCenterButton;
-#[cfg(feature = "GameController_GCDirectionalGamepad")]
+#[cfg(feature = "GCDirectionalGamepad")]
 pub use self::__GCDirectionalGamepad::GCInputDirectionalDpad;
-#[cfg(feature = "GameController_GCDirectionalGamepad")]
+#[cfg(feature = "GCDirectionalGamepad")]
 pub use self::__GCDirectionalGamepad::GCInputDirectionalTouchSurfaceButton;
 #[cfg(all(
-    feature = "GameController_GCControllerButtonInput",
-    feature = "GameController_GCControllerElement",
-    feature = "GameController_GCDualSenseAdaptiveTrigger"
+    feature = "GCControllerButtonInput",
+    feature = "GCControllerElement",
+    feature = "GCDualSenseAdaptiveTrigger"
 ))]
 pub use self::__GCDualSenseAdaptiveTrigger::GCDualSenseAdaptiveTrigger;
-#[cfg(feature = "GameController_GCDualSenseAdaptiveTrigger")]
+#[cfg(feature = "GCDualSenseAdaptiveTrigger")]
 pub use self::__GCDualSenseAdaptiveTrigger::GCDualSenseAdaptiveTriggerDiscretePositionCount;
-#[cfg(feature = "GameController_GCDualSenseAdaptiveTrigger")]
+#[cfg(feature = "GCDualSenseAdaptiveTrigger")]
 pub use self::__GCDualSenseAdaptiveTrigger::GCDualSenseAdaptiveTriggerMode;
-#[cfg(feature = "GameController_GCDualSenseAdaptiveTrigger")]
+#[cfg(feature = "GCDualSenseAdaptiveTrigger")]
 pub use self::__GCDualSenseAdaptiveTrigger::GCDualSenseAdaptiveTriggerPositionalAmplitudes;
-#[cfg(feature = "GameController_GCDualSenseAdaptiveTrigger")]
+#[cfg(feature = "GCDualSenseAdaptiveTrigger")]
 pub use self::__GCDualSenseAdaptiveTrigger::GCDualSenseAdaptiveTriggerPositionalResistiveStrengths;
-#[cfg(feature = "GameController_GCDualSenseAdaptiveTrigger")]
+#[cfg(feature = "GCDualSenseAdaptiveTrigger")]
 pub use self::__GCDualSenseAdaptiveTrigger::GCDualSenseAdaptiveTriggerStatus;
 #[cfg(all(
-    feature = "GameController_GCDualSenseGamepad",
-    feature = "GameController_GCExtendedGamepad",
-    feature = "GameController_GCPhysicalInputProfile"
+    feature = "GCDualSenseGamepad",
+    feature = "GCExtendedGamepad",
+    feature = "GCPhysicalInputProfile"
 ))]
 pub use self::__GCDualSenseGamepad::GCDualSenseGamepad;
 #[cfg(all(
-    feature = "GameController_GCDualShockGamepad",
-    feature = "GameController_GCExtendedGamepad",
-    feature = "GameController_GCPhysicalInputProfile"
+    feature = "GCDualShockGamepad",
+    feature = "GCExtendedGamepad",
+    feature = "GCPhysicalInputProfile"
 ))]
 pub use self::__GCDualShockGamepad::GCDualShockGamepad;
-#[cfg(all(
-    feature = "GameController_GCEventViewController",
-    feature = "objc2-app-kit"
-))]
+#[cfg(all(feature = "GCEventViewController", feature = "objc2-app-kit"))]
 pub use self::__GCEventViewController::GCEventViewController;
-#[cfg(all(
-    feature = "GameController_GCExtendedGamepad",
-    feature = "GameController_GCPhysicalInputProfile"
-))]
+#[cfg(all(feature = "GCExtendedGamepad", feature = "GCPhysicalInputProfile"))]
 pub use self::__GCExtendedGamepad::GCExtendedGamepad;
 #[cfg(all(
-    feature = "GameController_GCControllerElement",
-    feature = "GameController_GCExtendedGamepad",
-    feature = "GameController_GCPhysicalInputProfile",
+    feature = "GCControllerElement",
+    feature = "GCExtendedGamepad",
+    feature = "GCPhysicalInputProfile",
     feature = "block2"
 ))]
 pub use self::__GCExtendedGamepad::GCExtendedGamepadValueChangedHandler;
-#[cfg(feature = "GameController_GCExtendedGamepadSnapshot")]
+#[cfg(feature = "GCExtendedGamepadSnapshot")]
 pub use self::__GCExtendedGamepadSnapshot::GCCurrentExtendedGamepadSnapshotDataVersion;
-#[cfg(feature = "GameController_GCExtendedGamepadSnapshot")]
+#[cfg(feature = "GCExtendedGamepadSnapshot")]
 pub use self::__GCExtendedGamepadSnapshot::GCExtendedGamepadSnapShotDataV100;
-#[cfg(feature = "GameController_GCExtendedGamepadSnapshot")]
+#[cfg(feature = "GCExtendedGamepadSnapshot")]
 pub use self::__GCExtendedGamepadSnapshot::GCExtendedGamepadSnapShotDataV100FromNSData;
 #[cfg(all(
-    feature = "GameController_GCExtendedGamepad",
-    feature = "GameController_GCExtendedGamepadSnapshot",
-    feature = "GameController_GCPhysicalInputProfile"
+    feature = "GCExtendedGamepad",
+    feature = "GCExtendedGamepadSnapshot",
+    feature = "GCPhysicalInputProfile"
 ))]
 pub use self::__GCExtendedGamepadSnapshot::GCExtendedGamepadSnapshot;
-#[cfg(feature = "GameController_GCExtendedGamepadSnapshot")]
+#[cfg(feature = "GCExtendedGamepadSnapshot")]
 pub use self::__GCExtendedGamepadSnapshot::GCExtendedGamepadSnapshotDataFromNSData;
-#[cfg(feature = "GameController_GCExtendedGamepadSnapshot")]
+#[cfg(feature = "GCExtendedGamepadSnapshot")]
 pub use self::__GCExtendedGamepadSnapshot::GCExtendedGamepadSnapshotDataVersion;
-#[cfg(feature = "GameController_GCExtendedGamepadSnapshot")]
+#[cfg(feature = "GCExtendedGamepadSnapshot")]
 pub use self::__GCExtendedGamepadSnapshot::NSDataFromGCExtendedGamepadSnapShotDataV100;
-#[cfg(feature = "GameController_GCExtendedGamepadSnapshot")]
+#[cfg(feature = "GCExtendedGamepadSnapshot")]
 pub use self::__GCExtendedGamepadSnapshot::NSDataFromGCExtendedGamepadSnapshotData;
-#[cfg(all(
-    feature = "GameController_GCGamepad",
-    feature = "GameController_GCPhysicalInputProfile"
-))]
+#[cfg(all(feature = "GCGamepad", feature = "GCPhysicalInputProfile"))]
 pub use self::__GCGamepad::GCGamepad;
 #[cfg(all(
-    feature = "GameController_GCControllerElement",
-    feature = "GameController_GCGamepad",
-    feature = "GameController_GCPhysicalInputProfile",
+    feature = "GCControllerElement",
+    feature = "GCGamepad",
+    feature = "GCPhysicalInputProfile",
     feature = "block2"
 ))]
 pub use self::__GCGamepad::GCGamepadValueChangedHandler;
-#[cfg(feature = "GameController_GCGamepadSnapshot")]
+#[cfg(feature = "GCGamepadSnapshot")]
 pub use self::__GCGamepadSnapshot::GCGamepadSnapShotDataV100;
-#[cfg(feature = "GameController_GCGamepadSnapshot")]
+#[cfg(feature = "GCGamepadSnapshot")]
 pub use self::__GCGamepadSnapshot::GCGamepadSnapShotDataV100FromNSData;
 #[cfg(all(
-    feature = "GameController_GCGamepad",
-    feature = "GameController_GCGamepadSnapshot",
-    feature = "GameController_GCPhysicalInputProfile"
+    feature = "GCGamepad",
+    feature = "GCGamepadSnapshot",
+    feature = "GCPhysicalInputProfile"
 ))]
 pub use self::__GCGamepadSnapshot::GCGamepadSnapshot;
-#[cfg(feature = "GameController_GCGamepadSnapshot")]
+#[cfg(feature = "GCGamepadSnapshot")]
 pub use self::__GCGamepadSnapshot::NSDataFromGCGamepadSnapShotDataV100;
-#[cfg(feature = "GameController_GCGearShifterElement")]
+#[cfg(feature = "GCGearShifterElement")]
 pub use self::__GCGearShifterElement::GCGearShifterElement;
-#[cfg(feature = "GameController_GCInputNames")]
+#[cfg(feature = "GCInputNames")]
 pub use self::__GCInputNames::GCAxisElementName;
-#[cfg(feature = "GameController_GCInputNames")]
+#[cfg(feature = "GCInputNames")]
 pub use self::__GCInputNames::GCButtonElementName;
-#[cfg(feature = "GameController_GCInputNames")]
+#[cfg(feature = "GCInputNames")]
 pub use self::__GCInputNames::GCDirectionPadElementName;
-#[cfg(feature = "GameController_GCInputNames")]
+#[cfg(feature = "GCInputNames")]
 pub use self::__GCInputNames::GCInputBackLeftButton;
-#[cfg(feature = "GameController_GCInputNames")]
+#[cfg(feature = "GCInputNames")]
 pub use self::__GCInputNames::GCInputBackRightButton;
-#[cfg(feature = "GameController_GCInputNames")]
+#[cfg(feature = "GCInputNames")]
 pub use self::__GCInputNames::GCInputLeftBumper;
-#[cfg(feature = "GameController_GCInputNames")]
+#[cfg(feature = "GCInputNames")]
 pub use self::__GCInputNames::GCInputRightBumper;
-#[cfg(feature = "GameController_GCInputNames")]
+#[cfg(feature = "GCInputNames")]
 pub use self::__GCInputNames::GCPhysicalInputElementName;
-#[cfg(feature = "GameController_GCInputNames")]
+#[cfg(feature = "GCInputNames")]
 pub use self::__GCInputNames::GCSwitchElementName;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeApplication;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeBackslash;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeCapsLock;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeCloseBracket;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeComma;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeDeleteForward;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeDeleteOrBackspace;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeDownArrow;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeEight;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeEnd;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeEqualSign;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeEscape;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeF1;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeF10;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeF11;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeF12;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeF13;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeF14;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeF15;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeF16;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeF17;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeF18;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeF19;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeF2;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeF20;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeF3;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeF4;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeF5;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeF6;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeF7;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeF8;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeF9;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeFive;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeFour;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeGraveAccentAndTilde;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeHome;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeHyphen;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeInsert;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeInternational1;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeInternational2;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeInternational3;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeInternational4;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeInternational5;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeInternational6;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeInternational7;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeInternational8;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeInternational9;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeKeyA;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeKeyB;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeKeyC;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeKeyD;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeKeyE;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeKeyF;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeKeyG;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeKeyH;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeKeyI;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeKeyJ;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeKeyK;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeKeyL;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeKeyM;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeKeyN;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeKeyO;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeKeyP;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeKeyQ;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeKeyR;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeKeyS;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeKeyT;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeKeyU;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeKeyV;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeKeyW;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeKeyX;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeKeyY;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeKeyZ;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeKeypad0;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeKeypad1;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeKeypad2;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeKeypad3;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeKeypad4;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeKeypad5;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeKeypad6;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeKeypad7;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeKeypad8;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeKeypad9;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeKeypadAsterisk;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeKeypadEnter;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeKeypadEqualSign;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeKeypadHyphen;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeKeypadNumLock;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeKeypadPeriod;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeKeypadPlus;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeKeypadSlash;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeLANG1;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeLANG2;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeLANG3;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeLANG4;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeLANG5;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeLANG6;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeLANG7;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeLANG8;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeLANG9;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeLeftAlt;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeLeftArrow;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeLeftControl;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeLeftGUI;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeLeftShift;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeNine;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeNonUSBackslash;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeNonUSPound;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeOne;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeOpenBracket;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodePageDown;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodePageUp;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodePause;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodePeriod;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodePower;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodePrintScreen;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeQuote;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeReturnOrEnter;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeRightAlt;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeRightArrow;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeRightControl;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeRightGUI;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeRightShift;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeScrollLock;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeSemicolon;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeSeven;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeSix;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeSlash;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeSpacebar;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeTab;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeThree;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeTwo;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeUpArrow;
-#[cfg(feature = "GameController_GCKeyCodes")]
+#[cfg(feature = "GCKeyCodes")]
 pub use self::__GCKeyCodes::GCKeyCodeZero;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyA;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyApplication;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyB;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyBackslash;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyC;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyCapsLock;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyCloseBracket;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyComma;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyD;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyDeleteForward;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyDeleteOrBackspace;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyDownArrow;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyE;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyEight;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyEnd;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyEqualSign;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyEscape;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyF;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyF1;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyF10;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyF11;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyF12;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyF13;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyF14;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyF15;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyF16;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyF17;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyF18;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyF19;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyF2;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyF20;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyF3;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyF4;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyF5;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyF6;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyF7;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyF8;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyF9;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyFive;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyFour;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyG;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyGraveAccentAndTilde;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyH;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyHome;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyHyphen;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyI;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyInsert;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyInternational1;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyInternational2;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyInternational3;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyInternational4;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyInternational5;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyInternational6;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyInternational7;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyInternational8;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyInternational9;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyJ;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyK;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyKeypad0;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyKeypad1;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyKeypad2;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyKeypad3;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyKeypad4;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyKeypad5;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyKeypad6;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyKeypad7;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyKeypad8;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyKeypad9;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyKeypadAsterisk;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyKeypadEnter;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyKeypadEqualSign;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyKeypadHyphen;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyKeypadNumLock;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyKeypadPeriod;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyKeypadPlus;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyKeypadSlash;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyL;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyLANG1;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyLANG2;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyLANG3;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyLANG4;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyLANG5;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyLANG6;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyLANG7;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyLANG8;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyLANG9;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyLeftAlt;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyLeftArrow;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyLeftControl;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyLeftGUI;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyLeftShift;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyM;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyN;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyNine;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyNonUSBackslash;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyNonUSPound;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyO;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyOne;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyOpenBracket;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyP;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyPageDown;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyPageUp;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyPause;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyPeriod;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyPower;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyPrintScreen;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyQ;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyQuote;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyR;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyReturnOrEnter;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyRightAlt;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyRightArrow;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyRightControl;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyRightGUI;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyRightShift;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyS;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyScrollLock;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeySemicolon;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeySeven;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeySix;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeySlash;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeySpacebar;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyT;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyTab;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyThree;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyTwo;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyU;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyUpArrow;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyV;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyW;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyX;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyY;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyZ;
-#[cfg(feature = "GameController_GCKeyNames")]
+#[cfg(feature = "GCKeyNames")]
 pub use self::__GCKeyNames::GCKeyZero;
-#[cfg(feature = "GameController_GCKeyboard")]
+#[cfg(feature = "GCKeyboard")]
 pub use self::__GCKeyboard::GCKeyboard;
-#[cfg(feature = "GameController_GCKeyboard")]
+#[cfg(feature = "GCKeyboard")]
 pub use self::__GCKeyboard::GCKeyboardDidConnectNotification;
-#[cfg(feature = "GameController_GCKeyboard")]
+#[cfg(feature = "GCKeyboard")]
 pub use self::__GCKeyboard::GCKeyboardDidDisconnectNotification;
-#[cfg(all(
-    feature = "GameController_GCKeyboardInput",
-    feature = "GameController_GCPhysicalInputProfile"
-))]
+#[cfg(all(feature = "GCKeyboardInput", feature = "GCPhysicalInputProfile"))]
 pub use self::__GCKeyboardInput::GCKeyboardInput;
 #[cfg(all(
-    feature = "GameController_GCControllerButtonInput",
-    feature = "GameController_GCControllerElement",
-    feature = "GameController_GCKeyCodes",
-    feature = "GameController_GCKeyboardInput",
-    feature = "GameController_GCPhysicalInputProfile",
+    feature = "GCControllerButtonInput",
+    feature = "GCControllerElement",
+    feature = "GCKeyCodes",
+    feature = "GCKeyboardInput",
+    feature = "GCPhysicalInputProfile",
     feature = "block2"
 ))]
 pub use self::__GCKeyboardInput::GCKeyboardValueChangedHandler;
-#[cfg(feature = "GameController_GCLinearInput")]
+#[cfg(feature = "GCLinearInput")]
 pub use self::__GCLinearInput::GCLinearInput;
-#[cfg(feature = "GameController_GCMicroGamepad")]
+#[cfg(feature = "GCMicroGamepad")]
 pub use self::__GCMicroGamepad::GCInputMicroGamepadButtonA;
-#[cfg(feature = "GameController_GCMicroGamepad")]
+#[cfg(feature = "GCMicroGamepad")]
 pub use self::__GCMicroGamepad::GCInputMicroGamepadButtonMenu;
-#[cfg(feature = "GameController_GCMicroGamepad")]
+#[cfg(feature = "GCMicroGamepad")]
 pub use self::__GCMicroGamepad::GCInputMicroGamepadButtonX;
-#[cfg(feature = "GameController_GCMicroGamepad")]
+#[cfg(feature = "GCMicroGamepad")]
 pub use self::__GCMicroGamepad::GCInputMicroGamepadDpad;
-#[cfg(all(
-    feature = "GameController_GCMicroGamepad",
-    feature = "GameController_GCPhysicalInputProfile"
-))]
+#[cfg(all(feature = "GCMicroGamepad", feature = "GCPhysicalInputProfile"))]
 pub use self::__GCMicroGamepad::GCMicroGamepad;
 #[cfg(all(
-    feature = "GameController_GCControllerElement",
-    feature = "GameController_GCMicroGamepad",
-    feature = "GameController_GCPhysicalInputProfile",
+    feature = "GCControllerElement",
+    feature = "GCMicroGamepad",
+    feature = "GCPhysicalInputProfile",
     feature = "block2"
 ))]
 pub use self::__GCMicroGamepad::GCMicroGamepadValueChangedHandler;
-#[cfg(feature = "GameController_GCMicroGamepadSnapshot")]
+#[cfg(feature = "GCMicroGamepadSnapshot")]
 pub use self::__GCMicroGamepadSnapshot::GCCurrentMicroGamepadSnapshotDataVersion;
-#[cfg(feature = "GameController_GCMicroGamepadSnapshot")]
+#[cfg(feature = "GCMicroGamepadSnapshot")]
 pub use self::__GCMicroGamepadSnapshot::GCMicroGamepadSnapShotDataV100;
-#[cfg(feature = "GameController_GCMicroGamepadSnapshot")]
+#[cfg(feature = "GCMicroGamepadSnapshot")]
 pub use self::__GCMicroGamepadSnapshot::GCMicroGamepadSnapShotDataV100FromNSData;
 #[cfg(all(
-    feature = "GameController_GCMicroGamepad",
-    feature = "GameController_GCMicroGamepadSnapshot",
-    feature = "GameController_GCPhysicalInputProfile"
+    feature = "GCMicroGamepad",
+    feature = "GCMicroGamepadSnapshot",
+    feature = "GCPhysicalInputProfile"
 ))]
 pub use self::__GCMicroGamepadSnapshot::GCMicroGamepadSnapshot;
-#[cfg(feature = "GameController_GCMicroGamepadSnapshot")]
+#[cfg(feature = "GCMicroGamepadSnapshot")]
 pub use self::__GCMicroGamepadSnapshot::GCMicroGamepadSnapshotData;
-#[cfg(feature = "GameController_GCMicroGamepadSnapshot")]
+#[cfg(feature = "GCMicroGamepadSnapshot")]
 pub use self::__GCMicroGamepadSnapshot::GCMicroGamepadSnapshotDataFromNSData;
-#[cfg(feature = "GameController_GCMicroGamepadSnapshot")]
+#[cfg(feature = "GCMicroGamepadSnapshot")]
 pub use self::__GCMicroGamepadSnapshot::GCMicroGamepadSnapshotDataVersion;
-#[cfg(feature = "GameController_GCMicroGamepadSnapshot")]
+#[cfg(feature = "GCMicroGamepadSnapshot")]
 pub use self::__GCMicroGamepadSnapshot::NSDataFromGCMicroGamepadSnapShotDataV100;
-#[cfg(feature = "GameController_GCMicroGamepadSnapshot")]
+#[cfg(feature = "GCMicroGamepadSnapshot")]
 pub use self::__GCMicroGamepadSnapshot::NSDataFromGCMicroGamepadSnapshotData;
-#[cfg(feature = "GameController_GCMotion")]
+#[cfg(feature = "GCMotion")]
 pub use self::__GCMotion::GCAcceleration;
-#[cfg(feature = "GameController_GCMotion")]
+#[cfg(feature = "GCMotion")]
 pub use self::__GCMotion::GCEulerAngles;
-#[cfg(feature = "GameController_GCMotion")]
+#[cfg(feature = "GCMotion")]
 pub use self::__GCMotion::GCMotion;
-#[cfg(all(feature = "GameController_GCMotion", feature = "block2"))]
+#[cfg(all(feature = "GCMotion", feature = "block2"))]
 pub use self::__GCMotion::GCMotionValueChangedHandler;
-#[cfg(feature = "GameController_GCMotion")]
+#[cfg(feature = "GCMotion")]
 pub use self::__GCMotion::GCQuaternion;
-#[cfg(feature = "GameController_GCMotion")]
+#[cfg(feature = "GCMotion")]
 pub use self::__GCMotion::GCRotationRate;
-#[cfg(feature = "GameController_GCMouse")]
+#[cfg(feature = "GCMouse")]
 pub use self::__GCMouse::GCMouse;
-#[cfg(feature = "GameController_GCMouse")]
+#[cfg(feature = "GCMouse")]
 pub use self::__GCMouse::GCMouseDidBecomeCurrentNotification;
-#[cfg(feature = "GameController_GCMouse")]
+#[cfg(feature = "GCMouse")]
 pub use self::__GCMouse::GCMouseDidConnectNotification;
-#[cfg(feature = "GameController_GCMouse")]
+#[cfg(feature = "GCMouse")]
 pub use self::__GCMouse::GCMouseDidDisconnectNotification;
-#[cfg(feature = "GameController_GCMouse")]
+#[cfg(feature = "GCMouse")]
 pub use self::__GCMouse::GCMouseDidStopBeingCurrentNotification;
-#[cfg(all(
-    feature = "GameController_GCMouseInput",
-    feature = "GameController_GCPhysicalInputProfile"
-))]
+#[cfg(all(feature = "GCMouseInput", feature = "GCPhysicalInputProfile"))]
 pub use self::__GCMouseInput::GCMouseInput;
 #[cfg(all(
-    feature = "GameController_GCMouseInput",
-    feature = "GameController_GCPhysicalInputProfile",
+    feature = "GCMouseInput",
+    feature = "GCPhysicalInputProfile",
     feature = "block2"
 ))]
 pub use self::__GCMouseInput::GCMouseMoved;
-#[cfg(feature = "GameController_GCPhysicalInputElement")]
+#[cfg(feature = "GCPhysicalInputElement")]
 pub use self::__GCPhysicalInputElement::GCPhysicalInputElement;
-#[cfg(feature = "GameController_GCPhysicalInputElement")]
+#[cfg(feature = "GCPhysicalInputElement")]
 pub use self::__GCPhysicalInputElement::GCPhysicalInputElementCollection;
-#[cfg(feature = "GameController_GCPhysicalInputProfile")]
+#[cfg(feature = "GCPhysicalInputProfile")]
 pub use self::__GCPhysicalInputProfile::GCPhysicalInputProfile;
-#[cfg(feature = "GameController_GCPhysicalInputSource")]
+#[cfg(feature = "GCPhysicalInputSource")]
 pub use self::__GCPhysicalInputSource::GCPhysicalInputSource;
-#[cfg(feature = "GameController_GCPhysicalInputSource")]
+#[cfg(feature = "GCPhysicalInputSource")]
 pub use self::__GCPhysicalInputSource::GCPhysicalInputSourceDirection;
-#[cfg(feature = "GameController_GCPressedStateInput")]
+#[cfg(feature = "GCPressedStateInput")]
 pub use self::__GCPressedStateInput::GCPressedStateInput;
-#[cfg(feature = "GameController_GCProductCategories")]
+#[cfg(feature = "GCProductCategories")]
 pub use self::__GCProductCategories::GCProductCategoryArcadeStick;
-#[cfg(feature = "GameController_GCProductCategories")]
+#[cfg(feature = "GCProductCategories")]
 pub use self::__GCProductCategories::GCProductCategoryCoalescedRemote;
-#[cfg(feature = "GameController_GCProductCategories")]
+#[cfg(feature = "GCProductCategories")]
 pub use self::__GCProductCategories::GCProductCategoryControlCenterRemote;
-#[cfg(feature = "GameController_GCProductCategories")]
+#[cfg(feature = "GCProductCategories")]
 pub use self::__GCProductCategories::GCProductCategoryDualSense;
-#[cfg(feature = "GameController_GCProductCategories")]
+#[cfg(feature = "GCProductCategories")]
 pub use self::__GCProductCategories::GCProductCategoryDualShock4;
-#[cfg(feature = "GameController_GCProductCategories")]
+#[cfg(feature = "GCProductCategories")]
 pub use self::__GCProductCategories::GCProductCategoryHID;
-#[cfg(feature = "GameController_GCProductCategories")]
+#[cfg(feature = "GCProductCategories")]
 pub use self::__GCProductCategories::GCProductCategoryKeyboard;
-#[cfg(feature = "GameController_GCProductCategories")]
+#[cfg(feature = "GCProductCategories")]
 pub use self::__GCProductCategories::GCProductCategoryMFi;
-#[cfg(feature = "GameController_GCProductCategories")]
+#[cfg(feature = "GCProductCategories")]
 pub use self::__GCProductCategories::GCProductCategoryMouse;
-#[cfg(feature = "GameController_GCProductCategories")]
+#[cfg(feature = "GCProductCategories")]
 pub use self::__GCProductCategories::GCProductCategorySiriRemote1stGen;
-#[cfg(feature = "GameController_GCProductCategories")]
+#[cfg(feature = "GCProductCategories")]
 pub use self::__GCProductCategories::GCProductCategorySiriRemote2ndGen;
-#[cfg(feature = "GameController_GCProductCategories")]
+#[cfg(feature = "GCProductCategories")]
 pub use self::__GCProductCategories::GCProductCategoryUniversalElectronicsRemote;
-#[cfg(feature = "GameController_GCProductCategories")]
+#[cfg(feature = "GCProductCategories")]
 pub use self::__GCProductCategories::GCProductCategoryXboxOne;
-#[cfg(feature = "GameController_GCRacingWheel")]
+#[cfg(feature = "GCRacingWheel")]
 pub use self::__GCRacingWheel::GCRacingWheel;
-#[cfg(feature = "GameController_GCRacingWheel")]
+#[cfg(feature = "GCRacingWheel")]
 pub use self::__GCRacingWheel::GCRacingWheelDidConnectNotification;
-#[cfg(feature = "GameController_GCRacingWheel")]
+#[cfg(feature = "GCRacingWheel")]
 pub use self::__GCRacingWheel::GCRacingWheelDidDisconnectNotification;
-#[cfg(feature = "GameController_GCRacingWheelInput")]
+#[cfg(feature = "GCRacingWheelInput")]
 pub use self::__GCRacingWheelInput::GCRacingWheelInput;
-#[cfg(feature = "GameController_GCRacingWheelInput")]
+#[cfg(feature = "GCRacingWheelInput")]
 pub use self::__GCRacingWheelInput::GCRacingWheelInputState;
-#[cfg(feature = "GameController_GCRelativeInput")]
+#[cfg(feature = "GCRelativeInput")]
 pub use self::__GCRelativeInput::GCRelativeInput;
-#[cfg(feature = "GameController_GCSteeringWheelElement")]
+#[cfg(feature = "GCSteeringWheelElement")]
 pub use self::__GCSteeringWheelElement::GCSteeringWheelElement;
-#[cfg(all(
-    feature = "GameController_GCPhysicalInputElement",
-    feature = "GameController_GCSwitchElement"
-))]
+#[cfg(all(feature = "GCPhysicalInputElement", feature = "GCSwitchElement"))]
 pub use self::__GCSwitchElement::GCSwitchElement;
-#[cfg(feature = "GameController_GCSwitchPositionInput")]
+#[cfg(feature = "GCSwitchPositionInput")]
 pub use self::__GCSwitchPositionInput::GCSwitchPositionInput;
-#[cfg(feature = "GameController_GCTouchedStateInput")]
+#[cfg(feature = "GCTouchedStateInput")]
 pub use self::__GCTouchedStateInput::GCTouchedStateInput;
-#[cfg(feature = "GameController_GCTypes")]
+#[cfg(feature = "GCTypes")]
 pub use self::__GCTypes::GCPoint2;
-#[cfg(feature = "GameController_GCTypes")]
+#[cfg(feature = "GCTypes")]
 pub use self::__GCTypes::GCPoint2Zero;
-#[cfg(feature = "GameController_GCTypes")]
+#[cfg(feature = "GCTypes")]
 pub use self::__GCTypes::NSStringFromGCPoint2;
-#[cfg(feature = "GameController_GCTypes")]
+#[cfg(feature = "GCTypes")]
 pub use self::__GCTypes::NSValueGCTypes;
 #[cfg(all(
-    feature = "GameController_GCExtendedGamepad",
-    feature = "GameController_GCPhysicalInputProfile",
-    feature = "GameController_GCXboxGamepad"
+    feature = "GCExtendedGamepad",
+    feature = "GCPhysicalInputProfile",
+    feature = "GCXboxGamepad"
 ))]
 pub use self::__GCXboxGamepad::GCXboxGamepad;

@@ -16,179 +16,179 @@
 #[link(name = "CallKit", kind = "framework")]
 extern "C" {}
 
-#[cfg(feature = "CallKit_CXAction")]
+#[cfg(feature = "CXAction")]
 #[path = "CXAction.rs"]
 mod __CXAction;
-#[cfg(feature = "CallKit_CXAnswerCallAction")]
+#[cfg(feature = "CXAnswerCallAction")]
 #[path = "CXAnswerCallAction.rs"]
 mod __CXAnswerCallAction;
-#[cfg(feature = "CallKit_CXBase")]
+#[cfg(feature = "CXBase")]
 #[path = "CXBase.rs"]
 mod __CXBase;
-#[cfg(feature = "CallKit_CXCall")]
+#[cfg(feature = "CXCall")]
 #[path = "CXCall.rs"]
 mod __CXCall;
-#[cfg(feature = "CallKit_CXCallAction")]
+#[cfg(feature = "CXCallAction")]
 #[path = "CXCallAction.rs"]
 mod __CXCallAction;
-#[cfg(feature = "CallKit_CXCallController")]
+#[cfg(feature = "CXCallController")]
 #[path = "CXCallController.rs"]
 mod __CXCallController;
-#[cfg(feature = "CallKit_CXCallDirectory")]
+#[cfg(feature = "CXCallDirectory")]
 #[path = "CXCallDirectory.rs"]
 mod __CXCallDirectory;
-#[cfg(feature = "CallKit_CXCallDirectoryExtensionContext")]
+#[cfg(feature = "CXCallDirectoryExtensionContext")]
 #[path = "CXCallDirectoryExtensionContext.rs"]
 mod __CXCallDirectoryExtensionContext;
-#[cfg(feature = "CallKit_CXCallDirectoryManager")]
+#[cfg(feature = "CXCallDirectoryManager")]
 #[path = "CXCallDirectoryManager.rs"]
 mod __CXCallDirectoryManager;
-#[cfg(feature = "CallKit_CXCallDirectoryProvider")]
+#[cfg(feature = "CXCallDirectoryProvider")]
 #[path = "CXCallDirectoryProvider.rs"]
 mod __CXCallDirectoryProvider;
-#[cfg(feature = "CallKit_CXCallObserver")]
+#[cfg(feature = "CXCallObserver")]
 #[path = "CXCallObserver.rs"]
 mod __CXCallObserver;
-#[cfg(feature = "CallKit_CXCallUpdate")]
+#[cfg(feature = "CXCallUpdate")]
 #[path = "CXCallUpdate.rs"]
 mod __CXCallUpdate;
-#[cfg(feature = "CallKit_CXEndCallAction")]
+#[cfg(feature = "CXEndCallAction")]
 #[path = "CXEndCallAction.rs"]
 mod __CXEndCallAction;
-#[cfg(feature = "CallKit_CXError")]
+#[cfg(feature = "CXError")]
 #[path = "CXError.rs"]
 mod __CXError;
-#[cfg(feature = "CallKit_CXHandle")]
+#[cfg(feature = "CXHandle")]
 #[path = "CXHandle.rs"]
 mod __CXHandle;
-#[cfg(feature = "CallKit_CXPlayDTMFCallAction")]
+#[cfg(feature = "CXPlayDTMFCallAction")]
 #[path = "CXPlayDTMFCallAction.rs"]
 mod __CXPlayDTMFCallAction;
-#[cfg(feature = "CallKit_CXProvider")]
+#[cfg(feature = "CXProvider")]
 #[path = "CXProvider.rs"]
 mod __CXProvider;
-#[cfg(feature = "CallKit_CXProviderConfiguration")]
+#[cfg(feature = "CXProviderConfiguration")]
 #[path = "CXProviderConfiguration.rs"]
 mod __CXProviderConfiguration;
-#[cfg(feature = "CallKit_CXSetGroupCallAction")]
+#[cfg(feature = "CXSetGroupCallAction")]
 #[path = "CXSetGroupCallAction.rs"]
 mod __CXSetGroupCallAction;
-#[cfg(feature = "CallKit_CXSetHeldCallAction")]
+#[cfg(feature = "CXSetHeldCallAction")]
 #[path = "CXSetHeldCallAction.rs"]
 mod __CXSetHeldCallAction;
-#[cfg(feature = "CallKit_CXSetMutedCallAction")]
+#[cfg(feature = "CXSetMutedCallAction")]
 #[path = "CXSetMutedCallAction.rs"]
 mod __CXSetMutedCallAction;
-#[cfg(feature = "CallKit_CXStartCallAction")]
+#[cfg(feature = "CXStartCallAction")]
 #[path = "CXStartCallAction.rs"]
 mod __CXStartCallAction;
-#[cfg(feature = "CallKit_CXTransaction")]
+#[cfg(feature = "CXTransaction")]
 #[path = "CXTransaction.rs"]
 mod __CXTransaction;
 
-#[cfg(feature = "CallKit_CXAction")]
+#[cfg(feature = "CXAction")]
 pub use self::__CXAction::CXAction;
 #[cfg(all(
-    feature = "CallKit_CXAction",
-    feature = "CallKit_CXAnswerCallAction",
-    feature = "CallKit_CXCallAction"
+    feature = "CXAction",
+    feature = "CXAnswerCallAction",
+    feature = "CXCallAction"
 ))]
 pub use self::__CXAnswerCallAction::CXAnswerCallAction;
-#[cfg(feature = "CallKit_CXCall")]
+#[cfg(feature = "CXCall")]
 pub use self::__CXCall::CXCall;
-#[cfg(all(feature = "CallKit_CXAction", feature = "CallKit_CXCallAction"))]
+#[cfg(all(feature = "CXAction", feature = "CXCallAction"))]
 pub use self::__CXCallAction::CXCallAction;
-#[cfg(feature = "CallKit_CXCallController")]
+#[cfg(feature = "CXCallController")]
 pub use self::__CXCallController::CXCallController;
-#[cfg(feature = "CallKit_CXCallDirectory")]
+#[cfg(feature = "CXCallDirectory")]
 pub use self::__CXCallDirectory::CXCallDirectoryPhoneNumber;
-#[cfg(feature = "CallKit_CXCallDirectory")]
+#[cfg(feature = "CXCallDirectory")]
 pub use self::__CXCallDirectory::CXCallDirectoryPhoneNumberMax;
-#[cfg(feature = "CallKit_CXCallDirectoryExtensionContext")]
+#[cfg(feature = "CXCallDirectoryExtensionContext")]
 pub use self::__CXCallDirectoryExtensionContext::CXCallDirectoryExtensionContext;
-#[cfg(feature = "CallKit_CXCallDirectoryExtensionContext")]
+#[cfg(feature = "CXCallDirectoryExtensionContext")]
 pub use self::__CXCallDirectoryExtensionContext::CXCallDirectoryExtensionContextDelegate;
-#[cfg(feature = "CallKit_CXCallDirectoryManager")]
+#[cfg(feature = "CXCallDirectoryManager")]
 pub use self::__CXCallDirectoryManager::CXCallDirectoryEnabledStatus;
-#[cfg(feature = "CallKit_CXCallDirectoryManager")]
+#[cfg(feature = "CXCallDirectoryManager")]
 pub use self::__CXCallDirectoryManager::CXCallDirectoryManager;
-#[cfg(feature = "CallKit_CXCallDirectoryProvider")]
+#[cfg(feature = "CXCallDirectoryProvider")]
 pub use self::__CXCallDirectoryProvider::CXCallDirectoryProvider;
-#[cfg(feature = "CallKit_CXCallObserver")]
+#[cfg(feature = "CXCallObserver")]
 pub use self::__CXCallObserver::CXCallObserver;
-#[cfg(feature = "CallKit_CXCallObserver")]
+#[cfg(feature = "CXCallObserver")]
 pub use self::__CXCallObserver::CXCallObserverDelegate;
-#[cfg(feature = "CallKit_CXCallUpdate")]
+#[cfg(feature = "CXCallUpdate")]
 pub use self::__CXCallUpdate::CXCallUpdate;
 #[cfg(all(
-    feature = "CallKit_CXAction",
-    feature = "CallKit_CXCallAction",
-    feature = "CallKit_CXEndCallAction"
+    feature = "CXAction",
+    feature = "CXCallAction",
+    feature = "CXEndCallAction"
 ))]
 pub use self::__CXEndCallAction::CXEndCallAction;
-#[cfg(feature = "CallKit_CXError")]
+#[cfg(feature = "CXError")]
 pub use self::__CXError::CXErrorCode;
-#[cfg(feature = "CallKit_CXError")]
+#[cfg(feature = "CXError")]
 pub use self::__CXError::CXErrorCodeCallDirectoryManagerError;
-#[cfg(feature = "CallKit_CXError")]
+#[cfg(feature = "CXError")]
 pub use self::__CXError::CXErrorCodeIncomingCallError;
-#[cfg(feature = "CallKit_CXError")]
+#[cfg(feature = "CXError")]
 pub use self::__CXError::CXErrorCodeNotificationServiceExtensionError;
-#[cfg(feature = "CallKit_CXError")]
+#[cfg(feature = "CXError")]
 pub use self::__CXError::CXErrorCodeRequestTransactionError;
-#[cfg(feature = "CallKit_CXError")]
+#[cfg(feature = "CXError")]
 pub use self::__CXError::CXErrorDomain;
-#[cfg(feature = "CallKit_CXError")]
+#[cfg(feature = "CXError")]
 pub use self::__CXError::CXErrorDomainCallDirectoryManager;
-#[cfg(feature = "CallKit_CXError")]
+#[cfg(feature = "CXError")]
 pub use self::__CXError::CXErrorDomainIncomingCall;
-#[cfg(feature = "CallKit_CXError")]
+#[cfg(feature = "CXError")]
 pub use self::__CXError::CXErrorDomainNotificationServiceExtension;
-#[cfg(feature = "CallKit_CXError")]
+#[cfg(feature = "CXError")]
 pub use self::__CXError::CXErrorDomainRequestTransaction;
-#[cfg(feature = "CallKit_CXHandle")]
+#[cfg(feature = "CXHandle")]
 pub use self::__CXHandle::CXHandle;
-#[cfg(feature = "CallKit_CXHandle")]
+#[cfg(feature = "CXHandle")]
 pub use self::__CXHandle::CXHandleType;
 #[cfg(all(
-    feature = "CallKit_CXAction",
-    feature = "CallKit_CXCallAction",
-    feature = "CallKit_CXPlayDTMFCallAction"
+    feature = "CXAction",
+    feature = "CXCallAction",
+    feature = "CXPlayDTMFCallAction"
 ))]
 pub use self::__CXPlayDTMFCallAction::CXPlayDTMFCallAction;
-#[cfg(feature = "CallKit_CXPlayDTMFCallAction")]
+#[cfg(feature = "CXPlayDTMFCallAction")]
 pub use self::__CXPlayDTMFCallAction::CXPlayDTMFCallActionType;
-#[cfg(feature = "CallKit_CXProvider")]
+#[cfg(feature = "CXProvider")]
 pub use self::__CXProvider::CXCallEndedReason;
-#[cfg(feature = "CallKit_CXProvider")]
+#[cfg(feature = "CXProvider")]
 pub use self::__CXProvider::CXProvider;
-#[cfg(feature = "CallKit_CXProvider")]
+#[cfg(feature = "CXProvider")]
 pub use self::__CXProvider::CXProviderDelegate;
-#[cfg(feature = "CallKit_CXProviderConfiguration")]
+#[cfg(feature = "CXProviderConfiguration")]
 pub use self::__CXProviderConfiguration::CXProviderConfiguration;
 #[cfg(all(
-    feature = "CallKit_CXAction",
-    feature = "CallKit_CXCallAction",
-    feature = "CallKit_CXSetGroupCallAction"
+    feature = "CXAction",
+    feature = "CXCallAction",
+    feature = "CXSetGroupCallAction"
 ))]
 pub use self::__CXSetGroupCallAction::CXSetGroupCallAction;
 #[cfg(all(
-    feature = "CallKit_CXAction",
-    feature = "CallKit_CXCallAction",
-    feature = "CallKit_CXSetHeldCallAction"
+    feature = "CXAction",
+    feature = "CXCallAction",
+    feature = "CXSetHeldCallAction"
 ))]
 pub use self::__CXSetHeldCallAction::CXSetHeldCallAction;
 #[cfg(all(
-    feature = "CallKit_CXAction",
-    feature = "CallKit_CXCallAction",
-    feature = "CallKit_CXSetMutedCallAction"
+    feature = "CXAction",
+    feature = "CXCallAction",
+    feature = "CXSetMutedCallAction"
 ))]
 pub use self::__CXSetMutedCallAction::CXSetMutedCallAction;
 #[cfg(all(
-    feature = "CallKit_CXAction",
-    feature = "CallKit_CXCallAction",
-    feature = "CallKit_CXStartCallAction"
+    feature = "CXAction",
+    feature = "CXCallAction",
+    feature = "CXStartCallAction"
 ))]
 pub use self::__CXStartCallAction::CXStartCallAction;
-#[cfg(feature = "CallKit_CXTransaction")]
+#[cfg(feature = "CXTransaction")]
 pub use self::__CXTransaction::CXTransaction;

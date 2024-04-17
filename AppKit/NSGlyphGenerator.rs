@@ -11,7 +11,7 @@ pub const NSWantsBidiLevels: c_uint = 1 << 2;
 
 extern_protocol!(
     pub unsafe trait NSGlyphStorage {
-        #[cfg(feature = "AppKit_NSFont")]
+        #[cfg(feature = "NSFont")]
         #[method(insertGlyphs:length:forStartingGlyphAtIndex:characterIndex:)]
         unsafe fn insertGlyphs_length_forStartingGlyphAtIndex_characterIndex(
             &self,

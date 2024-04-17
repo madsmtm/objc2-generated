@@ -41,11 +41,11 @@ unsafe impl NSObjectProtocol for NSPersistentStoreRequest {}
 
 extern_methods!(
     unsafe impl NSPersistentStoreRequest {
-        #[cfg(feature = "CoreData_NSPersistentStore")]
+        #[cfg(feature = "NSPersistentStore")]
         #[method_id(@__retain_semantics Other affectedStores)]
         pub unsafe fn affectedStores(&self) -> Option<Id<NSArray<NSPersistentStore>>>;
 
-        #[cfg(feature = "CoreData_NSPersistentStore")]
+        #[cfg(feature = "NSPersistentStore")]
         #[method(setAffectedStores:)]
         pub unsafe fn setAffectedStores(
             &self,

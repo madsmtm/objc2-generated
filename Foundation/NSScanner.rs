@@ -14,14 +14,14 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSScanner {}
 
 unsafe impl NSObjectProtocol for NSScanner {}
 
 extern_methods!(
     unsafe impl NSScanner {
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other string)]
         pub unsafe fn string(&self) -> Id<NSString>;
 
@@ -31,11 +31,11 @@ extern_methods!(
         #[method(setScanLocation:)]
         pub unsafe fn setScanLocation(&self, scan_location: NSUInteger);
 
-        #[cfg(feature = "Foundation_NSCharacterSet")]
+        #[cfg(feature = "NSCharacterSet")]
         #[method_id(@__retain_semantics Other charactersToBeSkipped)]
         pub unsafe fn charactersToBeSkipped(&self) -> Option<Id<NSCharacterSet>>;
 
-        #[cfg(feature = "Foundation_NSCharacterSet")]
+        #[cfg(feature = "NSCharacterSet")]
         #[method(setCharactersToBeSkipped:)]
         pub unsafe fn setCharactersToBeSkipped(
             &self,
@@ -54,7 +54,7 @@ extern_methods!(
         #[method(setLocale:)]
         pub unsafe fn setLocale(&self, locale: Option<&AnyObject>);
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Init initWithString:)]
         pub unsafe fn initWithString(this: Allocated<Self>, string: &NSString) -> Id<Self>;
     }
@@ -104,7 +104,7 @@ extern_methods!(
         #[method(scanHexDouble:)]
         pub unsafe fn scanHexDouble(&self, result: *mut c_double) -> bool;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method(scanString:intoString:)]
         pub unsafe fn scanString_intoString(
             &self,
@@ -112,7 +112,7 @@ extern_methods!(
             result: Option<&mut Option<Id<NSString>>>,
         ) -> bool;
 
-        #[cfg(all(feature = "Foundation_NSCharacterSet", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSCharacterSet", feature = "NSString"))]
         #[method(scanCharactersFromSet:intoString:)]
         pub unsafe fn scanCharactersFromSet_intoString(
             &self,
@@ -120,7 +120,7 @@ extern_methods!(
             result: Option<&mut Option<Id<NSString>>>,
         ) -> bool;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method(scanUpToString:intoString:)]
         pub unsafe fn scanUpToString_intoString(
             &self,
@@ -128,7 +128,7 @@ extern_methods!(
             result: Option<&mut Option<Id<NSString>>>,
         ) -> bool;
 
-        #[cfg(all(feature = "Foundation_NSCharacterSet", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSCharacterSet", feature = "NSString"))]
         #[method(scanUpToCharactersFromSet:intoString:)]
         pub unsafe fn scanUpToCharactersFromSet_intoString(
             &self,
@@ -139,11 +139,11 @@ extern_methods!(
         #[method(isAtEnd)]
         pub unsafe fn isAtEnd(&self) -> bool;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other scannerWithString:)]
         pub unsafe fn scannerWithString(string: &NSString) -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other localizedScannerWithString:)]
         pub unsafe fn localizedScannerWithString(string: &NSString) -> Id<AnyObject>;
     }

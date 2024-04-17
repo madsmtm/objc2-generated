@@ -62,17 +62,17 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSKeyValueBinding")]
+#[cfg(feature = "NSKeyValueBinding")]
 unsafe impl NSEditorRegistration for NSDocument {}
 
 unsafe impl NSFilePresenter for NSDocument {}
 
-#[cfg(feature = "AppKit_NSMenu")]
+#[cfg(feature = "NSMenu")]
 unsafe impl NSMenuItemValidation for NSDocument {}
 
 unsafe impl NSObjectProtocol for NSDocument {}
 
-#[cfg(feature = "AppKit_NSUserInterfaceValidation")]
+#[cfg(feature = "NSUserInterfaceValidation")]
 unsafe impl NSUserInterfaceValidations for NSDocument {}
 
 extern_methods!(
@@ -282,10 +282,10 @@ extern_methods!(
         pub unsafe fn shouldRunSavePanelWithAccessoryView(&self) -> bool;
 
         #[cfg(all(
-            feature = "AppKit_NSPanel",
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSSavePanel",
-            feature = "AppKit_NSWindow"
+            feature = "NSPanel",
+            feature = "NSResponder",
+            feature = "NSSavePanel",
+            feature = "NSWindow"
         ))]
         #[method(prepareSavePanel:)]
         pub unsafe fn prepareSavePanel(&self, save_panel: &NSSavePanel) -> bool;
@@ -473,7 +473,7 @@ extern_methods!(
         #[method(runPageLayout:)]
         pub unsafe fn runPageLayout(&self, sender: Option<&AnyObject>);
 
-        #[cfg(feature = "AppKit_NSPrintInfo")]
+        #[cfg(feature = "NSPrintInfo")]
         #[method(runModalPageLayoutWithPrintInfo:delegate:didRunSelector:contextInfo:)]
         pub unsafe fn runModalPageLayoutWithPrintInfo_delegate_didRunSelector_contextInfo(
             &self,
@@ -483,26 +483,26 @@ extern_methods!(
             context_info: *mut c_void,
         );
 
-        #[cfg(feature = "AppKit_NSPageLayout")]
+        #[cfg(feature = "NSPageLayout")]
         #[method(preparePageLayout:)]
         pub unsafe fn preparePageLayout(&self, page_layout: &NSPageLayout) -> bool;
 
-        #[cfg(feature = "AppKit_NSPrintInfo")]
+        #[cfg(feature = "NSPrintInfo")]
         #[method(shouldChangePrintInfo:)]
         pub unsafe fn shouldChangePrintInfo(&self, new_print_info: &NSPrintInfo) -> bool;
 
-        #[cfg(feature = "AppKit_NSPrintInfo")]
+        #[cfg(feature = "NSPrintInfo")]
         #[method_id(@__retain_semantics Other printInfo)]
         pub unsafe fn printInfo(&self) -> Id<NSPrintInfo>;
 
-        #[cfg(feature = "AppKit_NSPrintInfo")]
+        #[cfg(feature = "NSPrintInfo")]
         #[method(setPrintInfo:)]
         pub unsafe fn setPrintInfo(&self, print_info: &NSPrintInfo);
 
         #[method(printDocument:)]
         pub unsafe fn printDocument(&self, sender: Option<&AnyObject>);
 
-        #[cfg(feature = "AppKit_NSPrintInfo")]
+        #[cfg(feature = "NSPrintInfo")]
         #[method(printDocumentWithSettings:showPrintPanel:delegate:didPrintSelector:contextInfo:)]
         pub unsafe fn printDocumentWithSettings_showPrintPanel_delegate_didPrintSelector_contextInfo(
             &self,
@@ -513,14 +513,14 @@ extern_methods!(
             context_info: *mut c_void,
         );
 
-        #[cfg(all(feature = "AppKit_NSPrintInfo", feature = "AppKit_NSPrintOperation"))]
+        #[cfg(all(feature = "NSPrintInfo", feature = "NSPrintOperation"))]
         #[method_id(@__retain_semantics Other printOperationWithSettings:error:_)]
         pub unsafe fn printOperationWithSettings_error(
             &self,
             print_settings: &NSDictionary<NSPrintInfoAttributeKey, AnyObject>,
         ) -> Result<Id<NSPrintOperation>, Id<NSError>>;
 
-        #[cfg(feature = "AppKit_NSPrintOperation")]
+        #[cfg(feature = "NSPrintOperation")]
         #[method(runModalPrintOperation:delegate:didRunSelector:contextInfo:)]
         pub unsafe fn runModalPrintOperation_delegate_didRunSelector_contextInfo(
             &self,
@@ -533,14 +533,14 @@ extern_methods!(
         #[method(saveDocumentToPDF:)]
         pub unsafe fn saveDocumentToPDF(&self, sender: Option<&AnyObject>);
 
-        #[cfg(feature = "AppKit_NSPrintOperation")]
+        #[cfg(feature = "NSPrintOperation")]
         #[method_id(@__retain_semantics Other PDFPrintOperation)]
         pub unsafe fn PDFPrintOperation(&self) -> Id<NSPrintOperation>;
 
         #[method(allowsDocumentSharing)]
         pub unsafe fn allowsDocumentSharing(&self) -> bool;
 
-        #[cfg(all(feature = "AppKit_NSSharingService", feature = "block2"))]
+        #[cfg(all(feature = "NSSharingService", feature = "block2"))]
         #[method(shareDocumentWithSharingService:completionHandler:)]
         pub unsafe fn shareDocumentWithSharingService_completionHandler(
             &self,
@@ -548,20 +548,20 @@ extern_methods!(
             completion_handler: Option<&Block<dyn Fn(Bool)>>,
         );
 
-        #[cfg(feature = "AppKit_NSSharingService")]
+        #[cfg(feature = "NSSharingService")]
         #[method(prepareSharingServicePicker:)]
         pub unsafe fn prepareSharingServicePicker(
             &self,
             sharing_service_picker: &NSSharingServicePicker,
         );
 
-        #[cfg(feature = "AppKit_NSPreviewRepresentingActivityItem")]
+        #[cfg(feature = "NSPreviewRepresentingActivityItem")]
         #[method_id(@__retain_semantics Other previewRepresentableActivityItems)]
         pub unsafe fn previewRepresentableActivityItems(
             &self,
         ) -> Option<Id<NSArray<ProtocolObject<dyn NSPreviewRepresentableActivityItem>>>>;
 
-        #[cfg(feature = "AppKit_NSPreviewRepresentingActivityItem")]
+        #[cfg(feature = "NSPreviewRepresentingActivityItem")]
         #[method(setPreviewRepresentableActivityItems:)]
         pub unsafe fn setPreviewRepresentableActivityItems(
             &self,
@@ -604,7 +604,7 @@ extern_methods!(
         #[method(setHasUndoManager:)]
         pub unsafe fn setHasUndoManager(&self, has_undo_manager: bool);
 
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSWindow"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
         #[method(presentError:modalForWindow:delegate:didPresentSelector:contextInfo:)]
         pub unsafe fn presentError_modalForWindow_delegate_didPresentSelector_contextInfo(
             &self,
@@ -627,38 +627,38 @@ extern_methods!(
         #[method(makeWindowControllers)]
         pub unsafe fn makeWindowControllers(&self);
 
-        #[cfg(feature = "AppKit_NSNib")]
+        #[cfg(feature = "NSNib")]
         #[method_id(@__retain_semantics Other windowNibName)]
         pub unsafe fn windowNibName(&self) -> Option<Id<NSNibName>>;
 
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSWindowController"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSWindowController"))]
         #[method(windowControllerWillLoadNib:)]
         pub unsafe fn windowControllerWillLoadNib(&self, window_controller: &NSWindowController);
 
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSWindowController"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSWindowController"))]
         #[method(windowControllerDidLoadNib:)]
         pub unsafe fn windowControllerDidLoadNib(&self, window_controller: &NSWindowController);
 
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSWindow"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
         #[method(setWindow:)]
         pub unsafe fn setWindow(&self, window: Option<&NSWindow>);
 
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSWindowController"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSWindowController"))]
         #[method(addWindowController:)]
         pub unsafe fn addWindowController(&self, window_controller: &NSWindowController);
 
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSWindowController"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSWindowController"))]
         #[method(removeWindowController:)]
         pub unsafe fn removeWindowController(&self, window_controller: &NSWindowController);
 
         #[method(showWindows)]
         pub unsafe fn showWindows(&self);
 
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSWindowController"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSWindowController"))]
         #[method_id(@__retain_semantics Other windowControllers)]
         pub unsafe fn windowControllers(&self) -> Id<NSArray<NSWindowController>>;
 
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSWindowController"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSWindowController"))]
         #[method(shouldCloseWindowController:delegate:shouldCloseSelector:contextInfo:)]
         pub unsafe fn shouldCloseWindowController_delegate_shouldCloseSelector_contextInfo(
             &self,
@@ -674,7 +674,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other defaultDraftName)]
         pub unsafe fn defaultDraftName(&self) -> Id<NSString>;
 
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSWindow"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
         #[method_id(@__retain_semantics Other windowForSheet)]
         pub unsafe fn windowForSheet(&self) -> Option<Id<NSWindow>>;
 
@@ -700,7 +700,7 @@ extern_methods!(
             save_operation: NSSaveOperationType,
         ) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "AppKit_NSUserInterfaceValidation")]
+        #[cfg(feature = "NSUserInterfaceValidation")]
         #[method(validateUserInterfaceItem:)]
         pub unsafe fn validateUserInterfaceItem(
             &self,
@@ -868,7 +868,7 @@ extern_methods!(
         #[method(revertToSavedFromURL:ofType:)]
         pub unsafe fn revertToSavedFromURL_ofType(&self, url: &NSURL, r#type: &NSString) -> bool;
 
-        #[cfg(feature = "AppKit_NSPrintInfo")]
+        #[cfg(feature = "NSPrintInfo")]
         #[deprecated]
         #[method(runModalPageLayoutWithPrintInfo:)]
         pub unsafe fn runModalPageLayoutWithPrintInfo(&self, print_info: &NSPrintInfo)

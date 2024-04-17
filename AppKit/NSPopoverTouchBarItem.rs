@@ -7,10 +7,10 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSTouchBarItem")]
+    #[cfg(feature = "NSTouchBarItem")]
     pub struct NSPopoverTouchBarItem;
 
-    #[cfg(feature = "AppKit_NSTouchBarItem")]
+    #[cfg(feature = "NSTouchBarItem")]
     unsafe impl ClassType for NSPopoverTouchBarItem {
         #[inherits(NSObject)]
         type Super = NSTouchBarItem;
@@ -18,20 +18,20 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSTouchBarItem")]
+#[cfg(feature = "NSTouchBarItem")]
 unsafe impl NSCoding for NSPopoverTouchBarItem {}
 
-#[cfg(feature = "AppKit_NSTouchBarItem")]
+#[cfg(feature = "NSTouchBarItem")]
 unsafe impl NSObjectProtocol for NSPopoverTouchBarItem {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSTouchBarItem")]
+    #[cfg(feature = "NSTouchBarItem")]
     unsafe impl NSPopoverTouchBarItem {
-        #[cfg(feature = "AppKit_NSTouchBar")]
+        #[cfg(feature = "NSTouchBar")]
         #[method_id(@__retain_semantics Other popoverTouchBar)]
         pub unsafe fn popoverTouchBar(&self) -> Id<NSTouchBar>;
 
-        #[cfg(feature = "AppKit_NSTouchBar")]
+        #[cfg(feature = "NSTouchBar")]
         #[method(setPopoverTouchBar:)]
         pub unsafe fn setPopoverTouchBar(&self, popover_touch_bar: &NSTouchBar);
 
@@ -41,19 +41,19 @@ extern_methods!(
         #[method(setCustomizationLabel:)]
         pub unsafe fn setCustomizationLabel(&self, customization_label: Option<&NSString>);
 
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[method_id(@__retain_semantics Other collapsedRepresentation)]
         pub unsafe fn collapsedRepresentation(&self) -> Id<NSView>;
 
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[method(setCollapsedRepresentation:)]
         pub unsafe fn setCollapsedRepresentation(&self, collapsed_representation: &NSView);
 
-        #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(feature = "NSImage")]
         #[method_id(@__retain_semantics Other collapsedRepresentationImage)]
         pub unsafe fn collapsedRepresentationImage(&self) -> Option<Id<NSImage>>;
 
-        #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(feature = "NSImage")]
         #[method(setCollapsedRepresentationImage:)]
         pub unsafe fn setCollapsedRepresentationImage(
             &self,
@@ -69,11 +69,11 @@ extern_methods!(
             collapsed_representation_label: &NSString,
         );
 
-        #[cfg(feature = "AppKit_NSTouchBar")]
+        #[cfg(feature = "NSTouchBar")]
         #[method_id(@__retain_semantics Other pressAndHoldTouchBar)]
         pub unsafe fn pressAndHoldTouchBar(&self) -> Option<Id<NSTouchBar>>;
 
-        #[cfg(feature = "AppKit_NSTouchBar")]
+        #[cfg(feature = "NSTouchBar")]
         #[method(setPressAndHoldTouchBar:)]
         pub unsafe fn setPressAndHoldTouchBar(&self, press_and_hold_touch_bar: Option<&NSTouchBar>);
 
@@ -89,7 +89,7 @@ extern_methods!(
         #[method(dismissPopover:)]
         pub unsafe fn dismissPopover(&self, sender: Option<&AnyObject>);
 
-        #[cfg(feature = "AppKit_NSGestureRecognizer")]
+        #[cfg(feature = "NSGestureRecognizer")]
         #[method_id(@__retain_semantics Other makeStandardActivatePopoverGestureRecognizer)]
         pub unsafe fn makeStandardActivatePopoverGestureRecognizer(
             &self,
@@ -99,7 +99,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSTouchBarItem`
-    #[cfg(feature = "AppKit_NSTouchBarItem")]
+    #[cfg(feature = "NSTouchBarItem")]
     unsafe impl NSPopoverTouchBarItem {
         #[method_id(@__retain_semantics Init initWithIdentifier:)]
         pub unsafe fn initWithIdentifier(
@@ -117,7 +117,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSTouchBarItem")]
+    #[cfg(feature = "NSTouchBarItem")]
     unsafe impl NSPopoverTouchBarItem {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;

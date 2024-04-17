@@ -30,7 +30,7 @@ unsafe impl RefEncode for CAConstraintAttribute {
 
 extern_methods!(
     /// CAConstraintLayoutManager
-    #[cfg(feature = "QuartzCore_CALayer")]
+    #[cfg(feature = "CALayer")]
     unsafe impl CALayer {
         #[method_id(@__retain_semantics Other constraints)]
         pub unsafe fn constraints(&self) -> Option<Id<NSArray<CAConstraint>>>;
@@ -53,7 +53,7 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "QuartzCore_CALayer")]
+#[cfg(feature = "CALayer")]
 unsafe impl CALayoutManager for CAConstraintLayoutManager {}
 
 unsafe impl NSObjectProtocol for CAConstraintLayoutManager {}

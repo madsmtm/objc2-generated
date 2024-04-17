@@ -6,7 +6,7 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-#[cfg(all(feature = "Foundation_NSError", feature = "block2"))]
+#[cfg(all(feature = "NSError", feature = "block2"))]
 pub type NSUserScriptTaskCompletionHandler = *mut Block<dyn Fn(*mut NSError)>;
 
 extern_class!(
@@ -23,18 +23,18 @@ unsafe impl NSObjectProtocol for NSUserScriptTask {}
 
 extern_methods!(
     unsafe impl NSUserScriptTask {
-        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
+        #[cfg(all(feature = "NSError", feature = "NSURL"))]
         #[method_id(@__retain_semantics Init initWithURL:error:_)]
         pub unsafe fn initWithURL_error(
             this: Allocated<Self>,
             url: &NSURL,
         ) -> Result<Id<Self>, Id<NSError>>;
 
-        #[cfg(feature = "Foundation_NSURL")]
+        #[cfg(feature = "NSURL")]
         #[method_id(@__retain_semantics Other scriptURL)]
         pub unsafe fn scriptURL(&self) -> Id<NSURL>;
 
-        #[cfg(all(feature = "Foundation_NSError", feature = "block2"))]
+        #[cfg(all(feature = "NSError", feature = "block2"))]
         #[method(executeWithCompletionHandler:)]
         pub unsafe fn executeWithCompletionHandler(
             &self,
@@ -54,7 +54,7 @@ extern_methods!(
     }
 );
 
-#[cfg(all(feature = "Foundation_NSError", feature = "block2"))]
+#[cfg(all(feature = "NSError", feature = "block2"))]
 pub type NSUserUnixTaskCompletionHandler = *mut Block<dyn Fn(*mut NSError)>;
 
 extern_class!(
@@ -72,34 +72,34 @@ unsafe impl NSObjectProtocol for NSUserUnixTask {}
 
 extern_methods!(
     unsafe impl NSUserUnixTask {
-        #[cfg(feature = "Foundation_NSFileHandle")]
+        #[cfg(feature = "NSFileHandle")]
         #[method_id(@__retain_semantics Other standardInput)]
         pub unsafe fn standardInput(&self) -> Option<Id<NSFileHandle>>;
 
-        #[cfg(feature = "Foundation_NSFileHandle")]
+        #[cfg(feature = "NSFileHandle")]
         #[method(setStandardInput:)]
         pub unsafe fn setStandardInput(&self, standard_input: Option<&NSFileHandle>);
 
-        #[cfg(feature = "Foundation_NSFileHandle")]
+        #[cfg(feature = "NSFileHandle")]
         #[method_id(@__retain_semantics Other standardOutput)]
         pub unsafe fn standardOutput(&self) -> Option<Id<NSFileHandle>>;
 
-        #[cfg(feature = "Foundation_NSFileHandle")]
+        #[cfg(feature = "NSFileHandle")]
         #[method(setStandardOutput:)]
         pub unsafe fn setStandardOutput(&self, standard_output: Option<&NSFileHandle>);
 
-        #[cfg(feature = "Foundation_NSFileHandle")]
+        #[cfg(feature = "NSFileHandle")]
         #[method_id(@__retain_semantics Other standardError)]
         pub unsafe fn standardError(&self) -> Option<Id<NSFileHandle>>;
 
-        #[cfg(feature = "Foundation_NSFileHandle")]
+        #[cfg(feature = "NSFileHandle")]
         #[method(setStandardError:)]
         pub unsafe fn setStandardError(&self, standard_error: Option<&NSFileHandle>);
 
         #[cfg(all(
-            feature = "Foundation_NSArray",
-            feature = "Foundation_NSError",
-            feature = "Foundation_NSString",
+            feature = "NSArray",
+            feature = "NSError",
+            feature = "NSString",
             feature = "block2"
         ))]
         #[method(executeWithArguments:completionHandler:)]
@@ -114,7 +114,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSUserScriptTask`
     unsafe impl NSUserUnixTask {
-        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
+        #[cfg(all(feature = "NSError", feature = "NSURL"))]
         #[method_id(@__retain_semantics Init initWithURL:error:_)]
         pub unsafe fn initWithURL_error(
             this: Allocated<Self>,
@@ -135,8 +135,8 @@ extern_methods!(
 );
 
 #[cfg(all(
-    feature = "Foundation_NSAppleEventDescriptor",
-    feature = "Foundation_NSError",
+    feature = "NSAppleEventDescriptor",
+    feature = "NSError",
     feature = "block2"
 ))]
 pub type NSUserAppleScriptTaskCompletionHandler =
@@ -158,8 +158,8 @@ unsafe impl NSObjectProtocol for NSUserAppleScriptTask {}
 extern_methods!(
     unsafe impl NSUserAppleScriptTask {
         #[cfg(all(
-            feature = "Foundation_NSAppleEventDescriptor",
-            feature = "Foundation_NSError",
+            feature = "NSAppleEventDescriptor",
+            feature = "NSError",
             feature = "block2"
         ))]
         #[method(executeWithAppleEvent:completionHandler:)]
@@ -174,7 +174,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSUserScriptTask`
     unsafe impl NSUserAppleScriptTask {
-        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
+        #[cfg(all(feature = "NSError", feature = "NSURL"))]
         #[method_id(@__retain_semantics Init initWithURL:error:_)]
         pub unsafe fn initWithURL_error(
             this: Allocated<Self>,
@@ -194,7 +194,7 @@ extern_methods!(
     }
 );
 
-#[cfg(all(feature = "Foundation_NSError", feature = "block2"))]
+#[cfg(all(feature = "NSError", feature = "block2"))]
 pub type NSUserAutomatorTaskCompletionHandler = *mut Block<dyn Fn(*mut AnyObject, *mut NSError)>;
 
 extern_class!(
@@ -212,19 +212,15 @@ unsafe impl NSObjectProtocol for NSUserAutomatorTask {}
 
 extern_methods!(
     unsafe impl NSUserAutomatorTask {
-        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         #[method_id(@__retain_semantics Other variables)]
         pub unsafe fn variables(&self) -> Option<Id<NSDictionary<NSString, AnyObject>>>;
 
-        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         #[method(setVariables:)]
         pub unsafe fn setVariables(&self, variables: Option<&NSDictionary<NSString, AnyObject>>);
 
-        #[cfg(all(
-            feature = "Foundation_NSError",
-            feature = "Foundation_NSObject",
-            feature = "block2"
-        ))]
+        #[cfg(all(feature = "NSError", feature = "NSObject", feature = "block2"))]
         #[method(executeWithInput:completionHandler:)]
         pub unsafe fn executeWithInput_completionHandler(
             &self,
@@ -237,7 +233,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSUserScriptTask`
     unsafe impl NSUserAutomatorTask {
-        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
+        #[cfg(all(feature = "NSError", feature = "NSURL"))]
         #[method_id(@__retain_semantics Init initWithURL:error:_)]
         pub unsafe fn initWithURL_error(
             this: Allocated<Self>,

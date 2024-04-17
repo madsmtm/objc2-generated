@@ -16,191 +16,191 @@
 #[link(name = "FileProvider", kind = "framework")]
 extern "C" {}
 
-#[cfg(feature = "FileProvider_NSFileProviderActions")]
+#[cfg(feature = "NSFileProviderActions")]
 #[path = "NSFileProviderActions.rs"]
 mod __NSFileProviderActions;
-#[cfg(feature = "FileProvider_NSFileProviderDefines")]
+#[cfg(feature = "NSFileProviderDefines")]
 #[path = "NSFileProviderDefines.rs"]
 mod __NSFileProviderDefines;
-#[cfg(feature = "FileProvider_NSFileProviderDomain")]
+#[cfg(feature = "NSFileProviderDomain")]
 #[path = "NSFileProviderDomain.rs"]
 mod __NSFileProviderDomain;
-#[cfg(feature = "FileProvider_NSFileProviderEnumerating")]
+#[cfg(feature = "NSFileProviderEnumerating")]
 #[path = "NSFileProviderEnumerating.rs"]
 mod __NSFileProviderEnumerating;
-#[cfg(feature = "FileProvider_NSFileProviderError")]
+#[cfg(feature = "NSFileProviderError")]
 #[path = "NSFileProviderError.rs"]
 mod __NSFileProviderError;
-#[cfg(feature = "FileProvider_NSFileProviderExtension")]
+#[cfg(feature = "NSFileProviderExtension")]
 #[path = "NSFileProviderExtension.rs"]
 mod __NSFileProviderExtension;
-#[cfg(feature = "FileProvider_NSFileProviderItem")]
+#[cfg(feature = "NSFileProviderItem")]
 #[path = "NSFileProviderItem.rs"]
 mod __NSFileProviderItem;
-#[cfg(feature = "FileProvider_NSFileProviderItemDecoration")]
+#[cfg(feature = "NSFileProviderItemDecoration")]
 #[path = "NSFileProviderItemDecoration.rs"]
 mod __NSFileProviderItemDecoration;
-#[cfg(feature = "FileProvider_NSFileProviderManager")]
+#[cfg(feature = "NSFileProviderManager")]
 #[path = "NSFileProviderManager.rs"]
 mod __NSFileProviderManager;
-#[cfg(feature = "FileProvider_NSFileProviderModifyItemOptions")]
+#[cfg(feature = "NSFileProviderModifyItemOptions")]
 #[path = "NSFileProviderModifyItemOptions.rs"]
 mod __NSFileProviderModifyItemOptions;
-#[cfg(feature = "FileProvider_NSFileProviderReplicatedExtension")]
+#[cfg(feature = "NSFileProviderReplicatedExtension")]
 #[path = "NSFileProviderReplicatedExtension.rs"]
 mod __NSFileProviderReplicatedExtension;
-#[cfg(feature = "FileProvider_NSFileProviderRequest")]
+#[cfg(feature = "NSFileProviderRequest")]
 #[path = "NSFileProviderRequest.rs"]
 mod __NSFileProviderRequest;
-#[cfg(feature = "FileProvider_NSFileProviderService")]
+#[cfg(feature = "NSFileProviderService")]
 #[path = "NSFileProviderService.rs"]
 mod __NSFileProviderService;
-#[cfg(feature = "FileProvider_NSFileProviderTesting")]
+#[cfg(feature = "NSFileProviderTesting")]
 #[path = "NSFileProviderTesting.rs"]
 mod __NSFileProviderTesting;
-#[cfg(feature = "FileProvider_NSFileProviderThumbnailing")]
+#[cfg(feature = "NSFileProviderThumbnailing")]
 #[path = "NSFileProviderThumbnailing.rs"]
 mod __NSFileProviderThumbnailing;
 
-#[cfg(feature = "FileProvider_NSFileProviderActions")]
+#[cfg(feature = "NSFileProviderActions")]
 pub use self::__NSFileProviderActions::NSFileProviderExtensionActionIdentifier;
-#[cfg(feature = "FileProvider_NSFileProviderDomain")]
+#[cfg(feature = "NSFileProviderDomain")]
 pub use self::__NSFileProviderDomain::NSFileProviderDomain;
-#[cfg(feature = "FileProvider_NSFileProviderDomain")]
+#[cfg(feature = "NSFileProviderDomain")]
 pub use self::__NSFileProviderDomain::NSFileProviderDomainDidChange;
-#[cfg(feature = "FileProvider_NSFileProviderDomain")]
+#[cfg(feature = "NSFileProviderDomain")]
 pub use self::__NSFileProviderDomain::NSFileProviderDomainIdentifier;
-#[cfg(feature = "FileProvider_NSFileProviderDomain")]
+#[cfg(feature = "NSFileProviderDomain")]
 pub use self::__NSFileProviderDomain::NSFileProviderDomainTestingModes;
-#[cfg(feature = "FileProvider_NSFileProviderDomain")]
+#[cfg(feature = "NSFileProviderDomain")]
 pub use self::__NSFileProviderDomain::NSFileProviderDomainVersion;
-#[cfg(feature = "FileProvider_NSFileProviderEnumerating")]
+#[cfg(feature = "NSFileProviderEnumerating")]
 pub use self::__NSFileProviderEnumerating::NSFileProviderChangeObserver;
-#[cfg(feature = "FileProvider_NSFileProviderEnumerating")]
+#[cfg(feature = "NSFileProviderEnumerating")]
 pub use self::__NSFileProviderEnumerating::NSFileProviderEnumerationObserver;
-#[cfg(feature = "FileProvider_NSFileProviderEnumerating")]
+#[cfg(feature = "NSFileProviderEnumerating")]
 pub use self::__NSFileProviderEnumerating::NSFileProviderEnumerator;
-#[cfg(feature = "FileProvider_NSFileProviderEnumerating")]
+#[cfg(feature = "NSFileProviderEnumerating")]
 pub use self::__NSFileProviderEnumerating::NSFileProviderInitialPageSortedByDate;
-#[cfg(feature = "FileProvider_NSFileProviderEnumerating")]
+#[cfg(feature = "NSFileProviderEnumerating")]
 pub use self::__NSFileProviderEnumerating::NSFileProviderInitialPageSortedByName;
-#[cfg(feature = "FileProvider_NSFileProviderEnumerating")]
+#[cfg(feature = "NSFileProviderEnumerating")]
 pub use self::__NSFileProviderEnumerating::NSFileProviderPage;
-#[cfg(feature = "FileProvider_NSFileProviderEnumerating")]
+#[cfg(feature = "NSFileProviderEnumerating")]
 pub use self::__NSFileProviderEnumerating::NSFileProviderSyncAnchor;
-#[cfg(feature = "FileProvider_NSFileProviderError")]
+#[cfg(feature = "NSFileProviderError")]
 pub use self::__NSFileProviderError::NSErrorNSFileProviderError;
-#[cfg(feature = "FileProvider_NSFileProviderError")]
+#[cfg(feature = "NSFileProviderError")]
 pub use self::__NSFileProviderError::NSFileProviderErrorCode;
-#[cfg(feature = "FileProvider_NSFileProviderError")]
+#[cfg(feature = "NSFileProviderError")]
 pub use self::__NSFileProviderError::NSFileProviderErrorCollidingItemKey;
-#[cfg(feature = "FileProvider_NSFileProviderError")]
+#[cfg(feature = "NSFileProviderError")]
 pub use self::__NSFileProviderError::NSFileProviderErrorDomain;
-#[cfg(feature = "FileProvider_NSFileProviderError")]
+#[cfg(feature = "NSFileProviderError")]
 pub use self::__NSFileProviderError::NSFileProviderErrorItemKey;
-#[cfg(feature = "FileProvider_NSFileProviderError")]
+#[cfg(feature = "NSFileProviderError")]
 pub use self::__NSFileProviderError::NSFileProviderErrorNonExistentItemIdentifierKey;
-#[cfg(feature = "FileProvider_NSFileProviderExtension")]
+#[cfg(feature = "NSFileProviderExtension")]
 pub use self::__NSFileProviderExtension::NSFileProviderExtension;
-#[cfg(feature = "FileProvider_NSFileProviderItem")]
+#[cfg(feature = "NSFileProviderItem")]
 pub use self::__NSFileProviderItem::NSFileProviderContentPolicy;
-#[cfg(feature = "FileProvider_NSFileProviderItem")]
+#[cfg(feature = "NSFileProviderItem")]
 pub use self::__NSFileProviderItem::NSFileProviderFavoriteRankUnranked;
-#[cfg(feature = "FileProvider_NSFileProviderItem")]
+#[cfg(feature = "NSFileProviderItem")]
 pub use self::__NSFileProviderItem::NSFileProviderFileSystemFlags;
-#[cfg(feature = "FileProvider_NSFileProviderItem")]
+#[cfg(feature = "NSFileProviderItem")]
 pub use self::__NSFileProviderItem::NSFileProviderItem;
-#[cfg(feature = "FileProvider_NSFileProviderItem")]
+#[cfg(feature = "NSFileProviderItem")]
 pub use self::__NSFileProviderItem::NSFileProviderItemCapabilities;
-#[cfg(feature = "FileProvider_NSFileProviderItem")]
+#[cfg(feature = "NSFileProviderItem")]
 pub use self::__NSFileProviderItem::NSFileProviderItemFields;
-#[cfg(feature = "FileProvider_NSFileProviderItem")]
+#[cfg(feature = "NSFileProviderItem")]
 pub use self::__NSFileProviderItem::NSFileProviderItemIdentifier;
-#[cfg(feature = "FileProvider_NSFileProviderItem")]
+#[cfg(feature = "NSFileProviderItem")]
 pub use self::__NSFileProviderItem::NSFileProviderItemProtocol;
-#[cfg(feature = "FileProvider_NSFileProviderItem")]
+#[cfg(feature = "NSFileProviderItem")]
 pub use self::__NSFileProviderItem::NSFileProviderItemVersion;
-#[cfg(feature = "FileProvider_NSFileProviderItem")]
+#[cfg(feature = "NSFileProviderItem")]
 pub use self::__NSFileProviderItem::NSFileProviderRootContainerItemIdentifier;
-#[cfg(feature = "FileProvider_NSFileProviderItem")]
+#[cfg(feature = "NSFileProviderItem")]
 pub use self::__NSFileProviderItem::NSFileProviderTrashContainerItemIdentifier;
-#[cfg(feature = "FileProvider_NSFileProviderItem")]
+#[cfg(feature = "NSFileProviderItem")]
 pub use self::__NSFileProviderItem::NSFileProviderTypeAndCreator;
-#[cfg(feature = "FileProvider_NSFileProviderItem")]
+#[cfg(feature = "NSFileProviderItem")]
 pub use self::__NSFileProviderItem::NSFileProviderWorkingSetContainerItemIdentifier;
 #[cfg(all(
-    feature = "FileProvider_NSFileProviderItem",
-    feature = "FileProvider_NSFileProviderItemDecoration"
+    feature = "NSFileProviderItem",
+    feature = "NSFileProviderItemDecoration"
 ))]
 pub use self::__NSFileProviderItemDecoration::NSFileProviderItemDecorating;
-#[cfg(feature = "FileProvider_NSFileProviderItemDecoration")]
+#[cfg(feature = "NSFileProviderItemDecoration")]
 pub use self::__NSFileProviderItemDecoration::NSFileProviderItemDecorationIdentifier;
-#[cfg(feature = "FileProvider_NSFileProviderManager")]
+#[cfg(feature = "NSFileProviderManager")]
 pub use self::__NSFileProviderManager::NSFileProviderDomainRemovalMode;
-#[cfg(feature = "FileProvider_NSFileProviderManager")]
+#[cfg(feature = "NSFileProviderManager")]
 pub use self::__NSFileProviderManager::NSFileProviderManager;
-#[cfg(feature = "FileProvider_NSFileProviderManager")]
+#[cfg(feature = "NSFileProviderManager")]
 pub use self::__NSFileProviderManager::NSFileProviderManagerDisconnectionOptions;
-#[cfg(feature = "FileProvider_NSFileProviderManager")]
+#[cfg(feature = "NSFileProviderManager")]
 pub use self::__NSFileProviderManager::NSFileProviderMaterializedSetDidChange;
-#[cfg(feature = "FileProvider_NSFileProviderManager")]
+#[cfg(feature = "NSFileProviderManager")]
 pub use self::__NSFileProviderManager::NSFileProviderPendingSetDidChange;
 #[cfg(all(
-    feature = "FileProvider_NSFileProviderEnumerating",
-    feature = "FileProvider_NSFileProviderManager"
+    feature = "NSFileProviderEnumerating",
+    feature = "NSFileProviderManager"
 ))]
 pub use self::__NSFileProviderManager::NSFileProviderPendingSetEnumerator;
-#[cfg(feature = "FileProvider_NSFileProviderModifyItemOptions")]
+#[cfg(feature = "NSFileProviderModifyItemOptions")]
 pub use self::__NSFileProviderModifyItemOptions::NSFileProviderModifyItemOptions;
-#[cfg(feature = "FileProvider_NSFileProviderReplicatedExtension")]
+#[cfg(feature = "NSFileProviderReplicatedExtension")]
 pub use self::__NSFileProviderReplicatedExtension::NSFileProviderCreateItemOptions;
-#[cfg(feature = "FileProvider_NSFileProviderReplicatedExtension")]
+#[cfg(feature = "NSFileProviderReplicatedExtension")]
 pub use self::__NSFileProviderReplicatedExtension::NSFileProviderCustomAction;
-#[cfg(feature = "FileProvider_NSFileProviderReplicatedExtension")]
+#[cfg(feature = "NSFileProviderReplicatedExtension")]
 pub use self::__NSFileProviderReplicatedExtension::NSFileProviderDeleteItemOptions;
-#[cfg(feature = "FileProvider_NSFileProviderReplicatedExtension")]
+#[cfg(feature = "NSFileProviderReplicatedExtension")]
 pub use self::__NSFileProviderReplicatedExtension::NSFileProviderDomainState;
-#[cfg(feature = "FileProvider_NSFileProviderReplicatedExtension")]
+#[cfg(feature = "NSFileProviderReplicatedExtension")]
 pub use self::__NSFileProviderReplicatedExtension::NSFileProviderEnumerating;
-#[cfg(feature = "FileProvider_NSFileProviderReplicatedExtension")]
+#[cfg(feature = "NSFileProviderReplicatedExtension")]
 pub use self::__NSFileProviderReplicatedExtension::NSFileProviderFetchContentsOptions;
-#[cfg(feature = "FileProvider_NSFileProviderReplicatedExtension")]
+#[cfg(feature = "NSFileProviderReplicatedExtension")]
 pub use self::__NSFileProviderReplicatedExtension::NSFileProviderIncrementalContentFetching;
-#[cfg(feature = "FileProvider_NSFileProviderReplicatedExtension")]
+#[cfg(feature = "NSFileProviderReplicatedExtension")]
 pub use self::__NSFileProviderReplicatedExtension::NSFileProviderMaterializationFlags;
-#[cfg(feature = "FileProvider_NSFileProviderReplicatedExtension")]
+#[cfg(feature = "NSFileProviderReplicatedExtension")]
 pub use self::__NSFileProviderReplicatedExtension::NSFileProviderPartialContentFetching;
-#[cfg(feature = "FileProvider_NSFileProviderReplicatedExtension")]
+#[cfg(feature = "NSFileProviderReplicatedExtension")]
 pub use self::__NSFileProviderReplicatedExtension::NSFileProviderReplicatedExtension;
-#[cfg(feature = "FileProvider_NSFileProviderReplicatedExtension")]
+#[cfg(feature = "NSFileProviderReplicatedExtension")]
 pub use self::__NSFileProviderReplicatedExtension::NSFileProviderServicing;
-#[cfg(feature = "FileProvider_NSFileProviderReplicatedExtension")]
+#[cfg(feature = "NSFileProviderReplicatedExtension")]
 pub use self::__NSFileProviderReplicatedExtension::NSFileProviderThumbnailing;
-#[cfg(feature = "FileProvider_NSFileProviderReplicatedExtension")]
+#[cfg(feature = "NSFileProviderReplicatedExtension")]
 pub use self::__NSFileProviderReplicatedExtension::NSFileProviderUserInteractionSuppressing;
-#[cfg(feature = "FileProvider_NSFileProviderRequest")]
+#[cfg(feature = "NSFileProviderRequest")]
 pub use self::__NSFileProviderRequest::NSFileProviderRequest;
-#[cfg(feature = "FileProvider_NSFileProviderService")]
+#[cfg(feature = "NSFileProviderService")]
 pub use self::__NSFileProviderService::NSFileProviderServiceSource;
-#[cfg(feature = "FileProvider_NSFileProviderTesting")]
+#[cfg(feature = "NSFileProviderTesting")]
 pub use self::__NSFileProviderTesting::NSFileProviderTestingChildrenEnumeration;
-#[cfg(feature = "FileProvider_NSFileProviderTesting")]
+#[cfg(feature = "NSFileProviderTesting")]
 pub use self::__NSFileProviderTesting::NSFileProviderTestingCollisionResolution;
-#[cfg(feature = "FileProvider_NSFileProviderTesting")]
+#[cfg(feature = "NSFileProviderTesting")]
 pub use self::__NSFileProviderTesting::NSFileProviderTestingContentFetch;
-#[cfg(feature = "FileProvider_NSFileProviderTesting")]
+#[cfg(feature = "NSFileProviderTesting")]
 pub use self::__NSFileProviderTesting::NSFileProviderTestingCreation;
-#[cfg(feature = "FileProvider_NSFileProviderTesting")]
+#[cfg(feature = "NSFileProviderTesting")]
 pub use self::__NSFileProviderTesting::NSFileProviderTestingDeletion;
-#[cfg(feature = "FileProvider_NSFileProviderTesting")]
+#[cfg(feature = "NSFileProviderTesting")]
 pub use self::__NSFileProviderTesting::NSFileProviderTestingIngestion;
-#[cfg(feature = "FileProvider_NSFileProviderTesting")]
+#[cfg(feature = "NSFileProviderTesting")]
 pub use self::__NSFileProviderTesting::NSFileProviderTestingLookup;
-#[cfg(feature = "FileProvider_NSFileProviderTesting")]
+#[cfg(feature = "NSFileProviderTesting")]
 pub use self::__NSFileProviderTesting::NSFileProviderTestingModification;
-#[cfg(feature = "FileProvider_NSFileProviderTesting")]
+#[cfg(feature = "NSFileProviderTesting")]
 pub use self::__NSFileProviderTesting::NSFileProviderTestingOperation;
-#[cfg(feature = "FileProvider_NSFileProviderTesting")]
+#[cfg(feature = "NSFileProviderTesting")]
 pub use self::__NSFileProviderTesting::NSFileProviderTestingOperationSide;
-#[cfg(feature = "FileProvider_NSFileProviderTesting")]
+#[cfg(feature = "NSFileProviderTesting")]
 pub use self::__NSFileProviderTesting::NSFileProviderTestingOperationType;

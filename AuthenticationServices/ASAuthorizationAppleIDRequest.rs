@@ -9,14 +9,14 @@ use crate::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(
-        feature = "AuthenticationServices_ASAuthorizationOpenIDRequest",
-        feature = "AuthenticationServices_ASAuthorizationRequest"
+        feature = "ASAuthorizationOpenIDRequest",
+        feature = "ASAuthorizationRequest"
     ))]
     pub struct ASAuthorizationAppleIDRequest;
 
     #[cfg(all(
-        feature = "AuthenticationServices_ASAuthorizationOpenIDRequest",
-        feature = "AuthenticationServices_ASAuthorizationRequest"
+        feature = "ASAuthorizationOpenIDRequest",
+        feature = "ASAuthorizationRequest"
     ))]
     unsafe impl ClassType for ASAuthorizationAppleIDRequest {
         #[inherits(ASAuthorizationRequest, NSObject)]
@@ -26,33 +26,33 @@ extern_class!(
 );
 
 #[cfg(all(
-    feature = "AuthenticationServices_ASAuthorizationOpenIDRequest",
-    feature = "AuthenticationServices_ASAuthorizationRequest"
+    feature = "ASAuthorizationOpenIDRequest",
+    feature = "ASAuthorizationRequest"
 ))]
 unsafe impl NSCoding for ASAuthorizationAppleIDRequest {}
 
 #[cfg(all(
-    feature = "AuthenticationServices_ASAuthorizationOpenIDRequest",
-    feature = "AuthenticationServices_ASAuthorizationRequest"
+    feature = "ASAuthorizationOpenIDRequest",
+    feature = "ASAuthorizationRequest"
 ))]
 unsafe impl NSCopying for ASAuthorizationAppleIDRequest {}
 
 #[cfg(all(
-    feature = "AuthenticationServices_ASAuthorizationOpenIDRequest",
-    feature = "AuthenticationServices_ASAuthorizationRequest"
+    feature = "ASAuthorizationOpenIDRequest",
+    feature = "ASAuthorizationRequest"
 ))]
 unsafe impl NSObjectProtocol for ASAuthorizationAppleIDRequest {}
 
 #[cfg(all(
-    feature = "AuthenticationServices_ASAuthorizationOpenIDRequest",
-    feature = "AuthenticationServices_ASAuthorizationRequest"
+    feature = "ASAuthorizationOpenIDRequest",
+    feature = "ASAuthorizationRequest"
 ))]
 unsafe impl NSSecureCoding for ASAuthorizationAppleIDRequest {}
 
 extern_methods!(
     #[cfg(all(
-        feature = "AuthenticationServices_ASAuthorizationOpenIDRequest",
-        feature = "AuthenticationServices_ASAuthorizationRequest"
+        feature = "ASAuthorizationOpenIDRequest",
+        feature = "ASAuthorizationRequest"
     ))]
     unsafe impl ASAuthorizationAppleIDRequest {
         #[method_id(@__retain_semantics Other user)]
@@ -66,8 +66,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `ASAuthorizationRequest`
     #[cfg(all(
-        feature = "AuthenticationServices_ASAuthorizationOpenIDRequest",
-        feature = "AuthenticationServices_ASAuthorizationRequest"
+        feature = "ASAuthorizationOpenIDRequest",
+        feature = "ASAuthorizationRequest"
     ))]
     unsafe impl ASAuthorizationAppleIDRequest {
         #[method_id(@__retain_semantics New new)]

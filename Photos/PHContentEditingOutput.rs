@@ -21,18 +21,18 @@ unsafe impl NSObjectProtocol for PHContentEditingOutput {}
 
 extern_methods!(
     unsafe impl PHContentEditingOutput {
-        #[cfg(feature = "Photos_PHContentEditingInput")]
+        #[cfg(feature = "PHContentEditingInput")]
         #[method_id(@__retain_semantics Init initWithContentEditingInput:)]
         pub unsafe fn initWithContentEditingInput(
             this: Allocated<Self>,
             content_editing_input: &PHContentEditingInput,
         ) -> Id<Self>;
 
-        #[cfg(feature = "Photos_PHAdjustmentData")]
+        #[cfg(feature = "PHAdjustmentData")]
         #[method_id(@__retain_semantics Other adjustmentData)]
         pub unsafe fn adjustmentData(&self) -> Option<Id<PHAdjustmentData>>;
 
-        #[cfg(feature = "Photos_PHAdjustmentData")]
+        #[cfg(feature = "PHAdjustmentData")]
         #[method(setAdjustmentData:)]
         pub unsafe fn setAdjustmentData(&self, adjustment_data: Option<&PHAdjustmentData>);
 

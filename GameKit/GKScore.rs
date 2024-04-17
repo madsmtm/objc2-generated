@@ -33,7 +33,7 @@ extern_methods!(
             identifier: &NSString,
         ) -> Id<Self>;
 
-        #[cfg(all(feature = "GameKit_GKBasePlayer", feature = "GameKit_GKPlayer"))]
+        #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
         #[method_id(@__retain_semantics Init initWithLeaderboardIdentifier:player:)]
         pub unsafe fn initWithLeaderboardIdentifier_player(
             this: Allocated<Self>,
@@ -69,7 +69,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other date)]
         pub unsafe fn date(&self) -> Id<NSDate>;
 
-        #[cfg(all(feature = "GameKit_GKBasePlayer", feature = "GameKit_GKPlayer"))]
+        #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
         #[method_id(@__retain_semantics Other player)]
         pub unsafe fn player(&self) -> Option<Id<GKPlayer>>;
 

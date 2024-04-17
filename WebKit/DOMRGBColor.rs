@@ -9,11 +9,11 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
+    #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     #[deprecated]
     pub struct DOMRGBColor;
 
-    #[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
+    #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl ClassType for DOMRGBColor {
         #[inherits(WebScriptObject, NSObject)]
         type Super = DOMObject;
@@ -21,43 +21,31 @@ extern_class!(
     }
 );
 
-#[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
+#[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
 unsafe impl NSCopying for DOMRGBColor {}
 
-#[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
+#[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
 unsafe impl NSObjectProtocol for DOMRGBColor {}
 
 extern_methods!(
-    #[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
+    #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMRGBColor {
-        #[cfg(all(
-            feature = "WebKit_DOMCSSPrimitiveValue",
-            feature = "WebKit_DOMCSSValue"
-        ))]
+        #[cfg(all(feature = "DOMCSSPrimitiveValue", feature = "DOMCSSValue"))]
         #[deprecated]
         #[method_id(@__retain_semantics Other red)]
         pub unsafe fn red(&self) -> Option<Id<DOMCSSPrimitiveValue>>;
 
-        #[cfg(all(
-            feature = "WebKit_DOMCSSPrimitiveValue",
-            feature = "WebKit_DOMCSSValue"
-        ))]
+        #[cfg(all(feature = "DOMCSSPrimitiveValue", feature = "DOMCSSValue"))]
         #[deprecated]
         #[method_id(@__retain_semantics Other green)]
         pub unsafe fn green(&self) -> Option<Id<DOMCSSPrimitiveValue>>;
 
-        #[cfg(all(
-            feature = "WebKit_DOMCSSPrimitiveValue",
-            feature = "WebKit_DOMCSSValue"
-        ))]
+        #[cfg(all(feature = "DOMCSSPrimitiveValue", feature = "DOMCSSValue"))]
         #[deprecated]
         #[method_id(@__retain_semantics Other blue)]
         pub unsafe fn blue(&self) -> Option<Id<DOMCSSPrimitiveValue>>;
 
-        #[cfg(all(
-            feature = "WebKit_DOMCSSPrimitiveValue",
-            feature = "WebKit_DOMCSSValue"
-        ))]
+        #[cfg(all(feature = "DOMCSSPrimitiveValue", feature = "DOMCSSValue"))]
         #[deprecated]
         #[method_id(@__retain_semantics Other alpha)]
         pub unsafe fn alpha(&self) -> Option<Id<DOMCSSPrimitiveValue>>;
@@ -70,7 +58,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `DOMObject`
-    #[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
+    #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMRGBColor {
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
@@ -80,7 +68,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
+    #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMRGBColor {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

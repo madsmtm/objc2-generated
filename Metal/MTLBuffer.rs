@@ -6,7 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    #[cfg(feature = "Metal_MTLResource")]
+    #[cfg(feature = "MTLResource")]
     pub unsafe trait MTLBuffer: MTLResource {
         #[method(length)]
         fn length(&self) -> NSUInteger;
@@ -17,7 +17,7 @@ extern_protocol!(
         #[method(didModifyRange:)]
         fn didModifyRange(&self, range: NSRange);
 
-        #[cfg(feature = "Metal_MTLTexture")]
+        #[cfg(feature = "MTLTexture")]
         #[method_id(@__retain_semantics New newTextureWithDescriptor:offset:bytesPerRow:)]
         fn newTextureWithDescriptor_offset_bytesPerRow(
             &self,
@@ -35,7 +35,7 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other remoteStorageBuffer)]
         fn remoteStorageBuffer(&self) -> Option<Id<ProtocolObject<dyn MTLBuffer>>>;
 
-        #[cfg(feature = "Metal_MTLDevice")]
+        #[cfg(feature = "MTLDevice")]
         #[method_id(@__retain_semantics New newRemoteBufferViewForDevice:)]
         fn newRemoteBufferViewForDevice(
             &self,
@@ -46,6 +46,6 @@ extern_protocol!(
         fn gpuAddress(&self) -> u64;
     }
 
-    #[cfg(feature = "Metal_MTLResource")]
+    #[cfg(feature = "MTLResource")]
     unsafe impl ProtocolType for dyn MTLBuffer {}
 );

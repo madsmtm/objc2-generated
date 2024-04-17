@@ -14,15 +14,15 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSCoding for NSInflectionRule {}
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSInflectionRule {}
 
 unsafe impl NSObjectProtocol for NSInflectionRule {}
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSSecureCoding for NSInflectionRule {}
 
 extern_methods!(
@@ -54,27 +54,27 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSCoding for NSInflectionRuleExplicit {}
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSInflectionRuleExplicit {}
 
 unsafe impl NSObjectProtocol for NSInflectionRuleExplicit {}
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSSecureCoding for NSInflectionRuleExplicit {}
 
 extern_methods!(
     unsafe impl NSInflectionRuleExplicit {
-        #[cfg(feature = "Foundation_NSMorphology")]
+        #[cfg(feature = "NSMorphology")]
         #[method_id(@__retain_semantics Init initWithMorphology:)]
         pub unsafe fn initWithMorphology(
             this: Allocated<Self>,
             morphology: &NSMorphology,
         ) -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSMorphology")]
+        #[cfg(feature = "NSMorphology")]
         #[method_id(@__retain_semantics Other morphology)]
         pub unsafe fn morphology(&self) -> Id<NSMorphology>;
     }
@@ -99,7 +99,7 @@ extern_methods!(
 extern_methods!(
     /// NSInflectionAvailability
     unsafe impl NSInflectionRule {
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method(canInflectLanguage:)]
         pub unsafe fn canInflectLanguage(language: &NSString) -> bool;
 

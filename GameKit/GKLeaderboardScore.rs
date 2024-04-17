@@ -19,11 +19,11 @@ unsafe impl NSObjectProtocol for GKLeaderboardScore {}
 
 extern_methods!(
     unsafe impl GKLeaderboardScore {
-        #[cfg(all(feature = "GameKit_GKBasePlayer", feature = "GameKit_GKPlayer"))]
+        #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
         #[method_id(@__retain_semantics Other player)]
         pub unsafe fn player(&self) -> Id<GKPlayer>;
 
-        #[cfg(all(feature = "GameKit_GKBasePlayer", feature = "GameKit_GKPlayer"))]
+        #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
         #[method(setPlayer:)]
         pub unsafe fn setPlayer(&self, player: &GKPlayer);
 

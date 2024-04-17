@@ -31,22 +31,22 @@ extern_methods!(
         #[method(isComplete)]
         pub unsafe fn isComplete(&self) -> bool;
 
-        #[cfg(feature = "CallKit_CXAction")]
+        #[cfg(feature = "CXAction")]
         #[method_id(@__retain_semantics Other actions)]
         pub unsafe fn actions(&self) -> Id<NSArray<CXAction>>;
 
-        #[cfg(feature = "CallKit_CXAction")]
+        #[cfg(feature = "CXAction")]
         #[method_id(@__retain_semantics Init initWithActions:)]
         pub unsafe fn initWithActions(
             this: Allocated<Self>,
             actions: &NSArray<CXAction>,
         ) -> Id<Self>;
 
-        #[cfg(feature = "CallKit_CXAction")]
+        #[cfg(feature = "CXAction")]
         #[method_id(@__retain_semantics Init initWithAction:)]
         pub unsafe fn initWithAction(this: Allocated<Self>, action: &CXAction) -> Id<Self>;
 
-        #[cfg(feature = "CallKit_CXAction")]
+        #[cfg(feature = "CXAction")]
         #[method(addAction:)]
         pub unsafe fn addAction(&self, action: &CXAction);
     }

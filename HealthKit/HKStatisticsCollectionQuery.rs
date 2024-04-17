@@ -24,11 +24,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
-        #[cfg(feature = "HealthKit_HKStatistics")]
+        #[cfg(feature = "HKStatistics")]
         #[method_id(@__retain_semantics Other statisticsForDate:)]
         pub unsafe fn statisticsForDate(&self, date: &NSDate) -> Option<Id<HKStatistics>>;
 
-        #[cfg(all(feature = "HealthKit_HKStatistics", feature = "block2"))]
+        #[cfg(all(feature = "HKStatistics", feature = "block2"))]
         #[method(enumerateStatisticsFromDate:toDate:withBlock:)]
         pub unsafe fn enumerateStatisticsFromDate_toDate_withBlock(
             &self,
@@ -37,11 +37,11 @@ extern_methods!(
             block: &Block<dyn Fn(NonNull<HKStatistics>, NonNull<Bool>)>,
         );
 
-        #[cfg(feature = "HealthKit_HKStatistics")]
+        #[cfg(feature = "HKStatistics")]
         #[method_id(@__retain_semantics Other statistics)]
         pub unsafe fn statistics(&self) -> Id<NSArray<HKStatistics>>;
 
-        #[cfg(feature = "HealthKit_HKSource")]
+        #[cfg(feature = "HKSource")]
         #[method_id(@__retain_semantics Other sources)]
         pub unsafe fn sources(&self) -> Id<NSSet<HKSource>>;
     }
@@ -57,10 +57,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "HealthKit_HKQuery")]
+    #[cfg(feature = "HKQuery")]
     pub struct HKStatisticsCollectionQuery;
 
-    #[cfg(feature = "HealthKit_HKQuery")]
+    #[cfg(feature = "HKQuery")]
     unsafe impl ClassType for HKStatisticsCollectionQuery {
         #[inherits(NSObject)]
         type Super = HKQuery;
@@ -68,16 +68,16 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "HealthKit_HKQuery")]
+#[cfg(feature = "HKQuery")]
 unsafe impl NSObjectProtocol for HKStatisticsCollectionQuery {}
 
 extern_methods!(
-    #[cfg(feature = "HealthKit_HKQuery")]
+    #[cfg(feature = "HKQuery")]
     unsafe impl HKStatisticsCollectionQuery {
         #[method_id(@__retain_semantics Other anchorDate)]
         pub unsafe fn anchorDate(&self) -> Id<NSDate>;
 
-        #[cfg(feature = "HealthKit_HKStatistics")]
+        #[cfg(feature = "HKStatistics")]
         #[method(options)]
         pub unsafe fn options(&self) -> HKStatisticsOptions;
 
@@ -107,7 +107,7 @@ extern_methods!(
             >,
         );
 
-        #[cfg(all(feature = "HealthKit_HKStatistics", feature = "block2"))]
+        #[cfg(all(feature = "HKStatistics", feature = "block2"))]
         #[method(statisticsUpdateHandler)]
         pub unsafe fn statisticsUpdateHandler(
             &self,
@@ -120,7 +120,7 @@ extern_methods!(
             ),
         >;
 
-        #[cfg(all(feature = "HealthKit_HKStatistics", feature = "block2"))]
+        #[cfg(all(feature = "HKStatistics", feature = "block2"))]
         #[method(setStatisticsUpdateHandler:)]
         pub unsafe fn setStatisticsUpdateHandler(
             &self,
@@ -136,7 +136,7 @@ extern_methods!(
             >,
         );
 
-        #[cfg(all(feature = "HealthKit_HKObjectType", feature = "HealthKit_HKStatistics"))]
+        #[cfg(all(feature = "HKObjectType", feature = "HKStatistics"))]
         #[method_id(@__retain_semantics Init initWithQuantityType:quantitySamplePredicate:options:anchorDate:intervalComponents:)]
         pub unsafe fn initWithQuantityType_quantitySamplePredicate_options_anchorDate_intervalComponents(
             this: Allocated<Self>,
@@ -151,7 +151,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `HKQuery`
-    #[cfg(feature = "HealthKit_HKQuery")]
+    #[cfg(feature = "HKQuery")]
     unsafe impl HKStatisticsCollectionQuery {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -160,7 +160,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "HealthKit_HKQuery")]
+    #[cfg(feature = "HKQuery")]
     unsafe impl HKStatisticsCollectionQuery {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

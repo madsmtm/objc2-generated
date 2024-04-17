@@ -19,34 +19,34 @@ unsafe impl NSObjectProtocol for MKOverlayRenderer {}
 
 extern_methods!(
     unsafe impl MKOverlayRenderer {
-        #[cfg(all(feature = "MapKit_MKAnnotation", feature = "MapKit_MKOverlay"))]
+        #[cfg(all(feature = "MKAnnotation", feature = "MKOverlay"))]
         #[method_id(@__retain_semantics Init initWithOverlay:)]
         pub unsafe fn initWithOverlay(
             this: Allocated<Self>,
             overlay: &ProtocolObject<dyn MKOverlay>,
         ) -> Id<Self>;
 
-        #[cfg(all(feature = "MapKit_MKAnnotation", feature = "MapKit_MKOverlay"))]
+        #[cfg(all(feature = "MKAnnotation", feature = "MKOverlay"))]
         #[method_id(@__retain_semantics Other overlay)]
         pub unsafe fn overlay(&self) -> Id<ProtocolObject<dyn MKOverlay>>;
 
-        #[cfg(feature = "MapKit_MKGeometry")]
+        #[cfg(feature = "MKGeometry")]
         #[method(pointForMapPoint:)]
         pub unsafe fn pointForMapPoint(&self, map_point: MKMapPoint) -> CGPoint;
 
-        #[cfg(feature = "MapKit_MKGeometry")]
+        #[cfg(feature = "MKGeometry")]
         #[method(mapPointForPoint:)]
         pub unsafe fn mapPointForPoint(&self, point: CGPoint) -> MKMapPoint;
 
-        #[cfg(feature = "MapKit_MKGeometry")]
+        #[cfg(feature = "MKGeometry")]
         #[method(rectForMapRect:)]
         pub unsafe fn rectForMapRect(&self, map_rect: MKMapRect) -> CGRect;
 
-        #[cfg(feature = "MapKit_MKGeometry")]
+        #[cfg(feature = "MKGeometry")]
         #[method(mapRectForRect:)]
         pub unsafe fn mapRectForRect(&self, rect: CGRect) -> MKMapRect;
 
-        #[cfg(feature = "MapKit_MKGeometry")]
+        #[cfg(feature = "MKGeometry")]
         #[method(canDrawMapRect:zoomScale:)]
         pub unsafe fn canDrawMapRect_zoomScale(
             &self,
@@ -57,11 +57,11 @@ extern_methods!(
         #[method(setNeedsDisplay)]
         pub unsafe fn setNeedsDisplay(&self);
 
-        #[cfg(feature = "MapKit_MKGeometry")]
+        #[cfg(feature = "MKGeometry")]
         #[method(setNeedsDisplayInMapRect:)]
         pub unsafe fn setNeedsDisplayInMapRect(&self, map_rect: MKMapRect);
 
-        #[cfg(feature = "MapKit_MKGeometry")]
+        #[cfg(feature = "MKGeometry")]
         #[method(setNeedsDisplayInMapRect:zoomScale:)]
         pub unsafe fn setNeedsDisplayInMapRect_zoomScale(
             &self,
@@ -92,6 +92,6 @@ extern_methods!(
 );
 
 extern "C" {
-    #[cfg(feature = "MapKit_MKGeometry")]
+    #[cfg(feature = "MKGeometry")]
     pub fn MKRoadWidthAtZoomScale(zoom_scale: MKZoomScale) -> CGFloat;
 }

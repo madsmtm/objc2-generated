@@ -31,19 +31,19 @@ extern_methods!(
         #[method_id(@__retain_semantics Other monochromeTintConfiguration)]
         pub unsafe fn monochromeTintConfiguration() -> Id<NSTintConfiguration>;
 
-        #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(feature = "NSColor")]
         #[method_id(@__retain_semantics Other tintConfigurationWithPreferredColor:)]
         pub unsafe fn tintConfigurationWithPreferredColor(color: &NSColor) -> Id<Self>;
 
-        #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(feature = "NSColor")]
         #[method_id(@__retain_semantics Other tintConfigurationWithFixedColor:)]
         pub unsafe fn tintConfigurationWithFixedColor(color: &NSColor) -> Id<Self>;
 
-        #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(feature = "NSColor")]
         #[method_id(@__retain_semantics Other baseTintColor)]
         pub unsafe fn baseTintColor(&self) -> Option<Id<NSColor>>;
 
-        #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(feature = "NSColor")]
         #[method_id(@__retain_semantics Other equivalentContentTintColor)]
         pub unsafe fn equivalentContentTintColor(&self) -> Option<Id<NSColor>>;
 

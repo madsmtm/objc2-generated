@@ -7,7 +7,7 @@ use crate::*;
 
 extern_protocol!(
     pub unsafe trait MEExtension: NSObjectProtocol {
-        #[cfg(feature = "MailKit_MEComposeSession")]
+        #[cfg(feature = "MEComposeSession")]
         #[optional]
         #[method_id(@__retain_semantics Other handlerForComposeSession:)]
         unsafe fn handlerForComposeSession(
@@ -15,21 +15,21 @@ extern_protocol!(
             session: &MEComposeSession,
         ) -> Id<ProtocolObject<dyn MEComposeSessionHandler>>;
 
-        #[cfg(feature = "MailKit_MEMessageActionHandler")]
+        #[cfg(feature = "MEMessageActionHandler")]
         #[optional]
         #[method_id(@__retain_semantics Other handlerForMessageActions)]
         unsafe fn handlerForMessageActions(&self)
             -> Id<ProtocolObject<dyn MEMessageActionHandler>>;
 
-        #[cfg(feature = "MailKit_MEContentBlocker")]
+        #[cfg(feature = "MEContentBlocker")]
         #[optional]
         #[method_id(@__retain_semantics Other handlerForContentBlocker)]
         unsafe fn handlerForContentBlocker(&self) -> Id<ProtocolObject<dyn MEContentBlocker>>;
 
         #[cfg(all(
-            feature = "MailKit_MEMessageDecoder",
-            feature = "MailKit_MEMessageEncoder",
-            feature = "MailKit_MEMessageSecurityHandler"
+            feature = "MEMessageDecoder",
+            feature = "MEMessageEncoder",
+            feature = "MEMessageSecurityHandler"
         ))]
         #[optional]
         #[method_id(@__retain_semantics Other handlerForMessageSecurity)]

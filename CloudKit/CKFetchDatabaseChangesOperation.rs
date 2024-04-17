@@ -9,16 +9,10 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(
-        feature = "CloudKit_CKDatabaseOperation",
-        feature = "CloudKit_CKOperation"
-    ))]
+    #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
     pub struct CKFetchDatabaseChangesOperation;
 
-    #[cfg(all(
-        feature = "CloudKit_CKDatabaseOperation",
-        feature = "CloudKit_CKOperation"
-    ))]
+    #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
     unsafe impl ClassType for CKFetchDatabaseChangesOperation {
         #[inherits(CKOperation, NSOperation, NSObject)]
         type Super = CKDatabaseOperation;
@@ -26,33 +20,27 @@ extern_class!(
     }
 );
 
-#[cfg(all(
-    feature = "CloudKit_CKDatabaseOperation",
-    feature = "CloudKit_CKOperation"
-))]
+#[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
 unsafe impl NSObjectProtocol for CKFetchDatabaseChangesOperation {}
 
 extern_methods!(
-    #[cfg(all(
-        feature = "CloudKit_CKDatabaseOperation",
-        feature = "CloudKit_CKOperation"
-    ))]
+    #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
     unsafe impl CKFetchDatabaseChangesOperation {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
-        #[cfg(feature = "CloudKit_CKServerChangeToken")]
+        #[cfg(feature = "CKServerChangeToken")]
         #[method_id(@__retain_semantics Init initWithPreviousServerChangeToken:)]
         pub unsafe fn initWithPreviousServerChangeToken(
             this: Allocated<Self>,
             previous_server_change_token: Option<&CKServerChangeToken>,
         ) -> Id<Self>;
 
-        #[cfg(feature = "CloudKit_CKServerChangeToken")]
+        #[cfg(feature = "CKServerChangeToken")]
         #[method_id(@__retain_semantics Other previousServerChangeToken)]
         pub unsafe fn previousServerChangeToken(&self) -> Option<Id<CKServerChangeToken>>;
 
-        #[cfg(feature = "CloudKit_CKServerChangeToken")]
+        #[cfg(feature = "CKServerChangeToken")]
         #[method(setPreviousServerChangeToken:)]
         pub unsafe fn setPreviousServerChangeToken(
             &self,
@@ -71,52 +59,52 @@ extern_methods!(
         #[method(setFetchAllChanges:)]
         pub unsafe fn setFetchAllChanges(&self, fetch_all_changes: bool);
 
-        #[cfg(all(feature = "CloudKit_CKRecordZoneID", feature = "block2"))]
+        #[cfg(all(feature = "CKRecordZoneID", feature = "block2"))]
         #[method(recordZoneWithIDChangedBlock)]
         pub unsafe fn recordZoneWithIDChangedBlock(
             &self,
         ) -> *mut Block<dyn Fn(NonNull<CKRecordZoneID>)>;
 
-        #[cfg(all(feature = "CloudKit_CKRecordZoneID", feature = "block2"))]
+        #[cfg(all(feature = "CKRecordZoneID", feature = "block2"))]
         #[method(setRecordZoneWithIDChangedBlock:)]
         pub unsafe fn setRecordZoneWithIDChangedBlock(
             &self,
             record_zone_with_id_changed_block: Option<&Block<dyn Fn(NonNull<CKRecordZoneID>)>>,
         );
 
-        #[cfg(all(feature = "CloudKit_CKRecordZoneID", feature = "block2"))]
+        #[cfg(all(feature = "CKRecordZoneID", feature = "block2"))]
         #[method(recordZoneWithIDWasDeletedBlock)]
         pub unsafe fn recordZoneWithIDWasDeletedBlock(
             &self,
         ) -> *mut Block<dyn Fn(NonNull<CKRecordZoneID>)>;
 
-        #[cfg(all(feature = "CloudKit_CKRecordZoneID", feature = "block2"))]
+        #[cfg(all(feature = "CKRecordZoneID", feature = "block2"))]
         #[method(setRecordZoneWithIDWasDeletedBlock:)]
         pub unsafe fn setRecordZoneWithIDWasDeletedBlock(
             &self,
             record_zone_with_id_was_deleted_block: Option<&Block<dyn Fn(NonNull<CKRecordZoneID>)>>,
         );
 
-        #[cfg(all(feature = "CloudKit_CKRecordZoneID", feature = "block2"))]
+        #[cfg(all(feature = "CKRecordZoneID", feature = "block2"))]
         #[method(recordZoneWithIDWasPurgedBlock)]
         pub unsafe fn recordZoneWithIDWasPurgedBlock(
             &self,
         ) -> *mut Block<dyn Fn(NonNull<CKRecordZoneID>)>;
 
-        #[cfg(all(feature = "CloudKit_CKRecordZoneID", feature = "block2"))]
+        #[cfg(all(feature = "CKRecordZoneID", feature = "block2"))]
         #[method(setRecordZoneWithIDWasPurgedBlock:)]
         pub unsafe fn setRecordZoneWithIDWasPurgedBlock(
             &self,
             record_zone_with_id_was_purged_block: Option<&Block<dyn Fn(NonNull<CKRecordZoneID>)>>,
         );
 
-        #[cfg(all(feature = "CloudKit_CKRecordZoneID", feature = "block2"))]
+        #[cfg(all(feature = "CKRecordZoneID", feature = "block2"))]
         #[method(recordZoneWithIDWasDeletedDueToUserEncryptedDataResetBlock)]
         pub unsafe fn recordZoneWithIDWasDeletedDueToUserEncryptedDataResetBlock(
             &self,
         ) -> *mut Block<dyn Fn(NonNull<CKRecordZoneID>)>;
 
-        #[cfg(all(feature = "CloudKit_CKRecordZoneID", feature = "block2"))]
+        #[cfg(all(feature = "CKRecordZoneID", feature = "block2"))]
         #[method(setRecordZoneWithIDWasDeletedDueToUserEncryptedDataResetBlock:)]
         pub unsafe fn setRecordZoneWithIDWasDeletedDueToUserEncryptedDataResetBlock(
             &self,
@@ -125,26 +113,26 @@ extern_methods!(
             >,
         );
 
-        #[cfg(all(feature = "CloudKit_CKServerChangeToken", feature = "block2"))]
+        #[cfg(all(feature = "CKServerChangeToken", feature = "block2"))]
         #[method(changeTokenUpdatedBlock)]
         pub unsafe fn changeTokenUpdatedBlock(
             &self,
         ) -> *mut Block<dyn Fn(NonNull<CKServerChangeToken>)>;
 
-        #[cfg(all(feature = "CloudKit_CKServerChangeToken", feature = "block2"))]
+        #[cfg(all(feature = "CKServerChangeToken", feature = "block2"))]
         #[method(setChangeTokenUpdatedBlock:)]
         pub unsafe fn setChangeTokenUpdatedBlock(
             &self,
             change_token_updated_block: Option<&Block<dyn Fn(NonNull<CKServerChangeToken>)>>,
         );
 
-        #[cfg(all(feature = "CloudKit_CKServerChangeToken", feature = "block2"))]
+        #[cfg(all(feature = "CKServerChangeToken", feature = "block2"))]
         #[method(fetchDatabaseChangesCompletionBlock)]
         pub unsafe fn fetchDatabaseChangesCompletionBlock(
             &self,
         ) -> *mut Block<dyn Fn(*mut CKServerChangeToken, Bool, *mut NSError)>;
 
-        #[cfg(all(feature = "CloudKit_CKServerChangeToken", feature = "block2"))]
+        #[cfg(all(feature = "CKServerChangeToken", feature = "block2"))]
         #[method(setFetchDatabaseChangesCompletionBlock:)]
         pub unsafe fn setFetchDatabaseChangesCompletionBlock(
             &self,
@@ -157,10 +145,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(all(
-        feature = "CloudKit_CKDatabaseOperation",
-        feature = "CloudKit_CKOperation"
-    ))]
+    #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
     unsafe impl CKFetchDatabaseChangesOperation {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

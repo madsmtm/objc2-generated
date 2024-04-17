@@ -9,7 +9,7 @@ use crate::*;
 
 extern_protocol!(
     pub unsafe trait CLSDataStoreDelegate: NSObjectProtocol {
-        #[cfg(all(feature = "ClassKit_CLSContext", feature = "ClassKit_CLSObject"))]
+        #[cfg(all(feature = "CLSContext", feature = "CLSObject"))]
         #[method_id(@__retain_semantics Other createContextForIdentifier:parentContext:parentIdentifierPath:)]
         unsafe fn createContextForIdentifier_parentContext_parentIdentifierPath(
             &self,
@@ -39,15 +39,15 @@ extern_methods!(
         #[method_id(@__retain_semantics Other shared)]
         pub unsafe fn shared() -> Id<CLSDataStore>;
 
-        #[cfg(all(feature = "ClassKit_CLSContext", feature = "ClassKit_CLSObject"))]
+        #[cfg(all(feature = "CLSContext", feature = "CLSObject"))]
         #[method_id(@__retain_semantics Other mainAppContext)]
         pub unsafe fn mainAppContext(&self) -> Id<CLSContext>;
 
-        #[cfg(all(feature = "ClassKit_CLSContext", feature = "ClassKit_CLSObject"))]
+        #[cfg(all(feature = "CLSContext", feature = "CLSObject"))]
         #[method_id(@__retain_semantics Other activeContext)]
         pub unsafe fn activeContext(&self) -> Option<Id<CLSContext>>;
 
-        #[cfg(all(feature = "ClassKit_CLSActivity", feature = "ClassKit_CLSObject"))]
+        #[cfg(all(feature = "CLSActivity", feature = "CLSObject"))]
         #[method_id(@__retain_semantics Other runningActivity)]
         pub unsafe fn runningActivity(&self) -> Option<Id<CLSActivity>>;
 
@@ -81,11 +81,7 @@ extern_methods!(
 extern_methods!(
     /// Contexts
     unsafe impl CLSDataStore {
-        #[cfg(all(
-            feature = "ClassKit_CLSContext",
-            feature = "ClassKit_CLSObject",
-            feature = "block2"
-        ))]
+        #[cfg(all(feature = "CLSContext", feature = "CLSObject", feature = "block2"))]
         #[method(contextsMatchingPredicate:completion:)]
         pub unsafe fn contextsMatchingPredicate_completion(
             &self,
@@ -93,11 +89,7 @@ extern_methods!(
             completion: &Block<dyn Fn(NonNull<NSArray<CLSContext>>, *mut NSError)>,
         );
 
-        #[cfg(all(
-            feature = "ClassKit_CLSContext",
-            feature = "ClassKit_CLSObject",
-            feature = "block2"
-        ))]
+        #[cfg(all(feature = "CLSContext", feature = "CLSObject", feature = "block2"))]
         #[method(contextsMatchingIdentifierPath:completion:)]
         pub unsafe fn contextsMatchingIdentifierPath_completion(
             &self,
@@ -105,15 +97,11 @@ extern_methods!(
             completion: &Block<dyn Fn(NonNull<NSArray<CLSContext>>, *mut NSError)>,
         );
 
-        #[cfg(all(feature = "ClassKit_CLSContext", feature = "ClassKit_CLSObject"))]
+        #[cfg(all(feature = "CLSContext", feature = "CLSObject"))]
         #[method(removeContext:)]
         pub unsafe fn removeContext(&self, context: &CLSContext);
 
-        #[cfg(all(
-            feature = "ClassKit_CLSActivity",
-            feature = "ClassKit_CLSObject",
-            feature = "block2"
-        ))]
+        #[cfg(all(feature = "CLSActivity", feature = "CLSObject", feature = "block2"))]
         #[method(fetchActivityForURL:completion:)]
         pub unsafe fn fetchActivityForURL_completion(
             &self,

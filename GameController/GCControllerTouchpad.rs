@@ -28,16 +28,16 @@ unsafe impl RefEncode for GCTouchState {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-#[cfg(all(feature = "GameController_GCControllerElement", feature = "block2"))]
+#[cfg(all(feature = "GCControllerElement", feature = "block2"))]
 pub type GCControllerTouchpadHandler =
     *mut Block<dyn Fn(NonNull<GCControllerTouchpad>, c_float, c_float, c_float, Bool)>;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "GameController_GCControllerElement")]
+    #[cfg(feature = "GCControllerElement")]
     pub struct GCControllerTouchpad;
 
-    #[cfg(feature = "GameController_GCControllerElement")]
+    #[cfg(feature = "GCControllerElement")]
     unsafe impl ClassType for GCControllerTouchpad {
         #[inherits(NSObject)]
         type Super = GCControllerElement;
@@ -45,13 +45,13 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "GameController_GCControllerElement")]
+#[cfg(feature = "GCControllerElement")]
 unsafe impl NSObjectProtocol for GCControllerTouchpad {}
 
 extern_methods!(
-    #[cfg(feature = "GameController_GCControllerElement")]
+    #[cfg(feature = "GCControllerElement")]
     unsafe impl GCControllerTouchpad {
-        #[cfg(feature = "GameController_GCControllerButtonInput")]
+        #[cfg(feature = "GCControllerButtonInput")]
         #[method_id(@__retain_semantics Other button)]
         pub unsafe fn button(&self) -> Id<GCControllerButtonInput>;
 
@@ -79,7 +79,7 @@ extern_methods!(
         #[method(setTouchUp:)]
         pub unsafe fn setTouchUp(&self, touch_up: GCControllerTouchpadHandler);
 
-        #[cfg(feature = "GameController_GCControllerDirectionPad")]
+        #[cfg(feature = "GCControllerDirectionPad")]
         #[method_id(@__retain_semantics Other touchSurface)]
         pub unsafe fn touchSurface(&self) -> Id<GCControllerDirectionPad>;
 
@@ -108,7 +108,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "GameController_GCControllerElement")]
+    #[cfg(feature = "GCControllerElement")]
     unsafe impl GCControllerTouchpad {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

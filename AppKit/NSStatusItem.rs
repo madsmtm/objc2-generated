@@ -40,7 +40,7 @@ unsafe impl NSObjectProtocol for NSStatusItem {}
 
 extern_methods!(
     unsafe impl NSStatusItem {
-        #[cfg(feature = "AppKit_NSStatusBar")]
+        #[cfg(feature = "NSStatusBar")]
         #[method_id(@__retain_semantics Other statusBar)]
         pub unsafe fn statusBar(&self) -> Option<Id<NSStatusBar>>;
 
@@ -50,20 +50,20 @@ extern_methods!(
         #[method(setLength:)]
         pub unsafe fn setLength(&self, length: CGFloat);
 
-        #[cfg(feature = "AppKit_NSMenu")]
+        #[cfg(feature = "NSMenu")]
         #[method_id(@__retain_semantics Other menu)]
         pub unsafe fn menu(&self, mtm: MainThreadMarker) -> Option<Id<NSMenu>>;
 
-        #[cfg(feature = "AppKit_NSMenu")]
+        #[cfg(feature = "NSMenu")]
         #[method(setMenu:)]
         pub unsafe fn setMenu(&self, menu: Option<&NSMenu>);
 
         #[cfg(all(
-            feature = "AppKit_NSButton",
-            feature = "AppKit_NSControl",
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSStatusBarButton",
-            feature = "AppKit_NSView"
+            feature = "NSButton",
+            feature = "NSControl",
+            feature = "NSResponder",
+            feature = "NSStatusBarButton",
+            feature = "NSView"
         ))]
         #[method_id(@__retain_semantics Other button)]
         pub unsafe fn button(&self, mtm: MainThreadMarker) -> Option<Id<NSStatusBarButton>>;
@@ -142,22 +142,22 @@ extern_methods!(
         #[method(setAttributedTitle:)]
         pub unsafe fn setAttributedTitle(&self, attributed_title: Option<&NSAttributedString>);
 
-        #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(feature = "NSImage")]
         #[deprecated = "Use the receiver's button.image instead"]
         #[method_id(@__retain_semantics Other image)]
         pub unsafe fn image(&self) -> Option<Id<NSImage>>;
 
-        #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(feature = "NSImage")]
         #[deprecated = "Use the receiver's button.image instead"]
         #[method(setImage:)]
         pub unsafe fn setImage(&self, image: Option<&NSImage>);
 
-        #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(feature = "NSImage")]
         #[deprecated = "Use the receiver's button.alternateImage instead"]
         #[method_id(@__retain_semantics Other alternateImage)]
         pub unsafe fn alternateImage(&self) -> Option<Id<NSImage>>;
 
-        #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(feature = "NSImage")]
         #[deprecated = "Use the receiver's button.alternateImage instead"]
         #[method(setAlternateImage:)]
         pub unsafe fn setAlternateImage(&self, alternate_image: Option<&NSImage>);
@@ -186,17 +186,17 @@ extern_methods!(
         #[method(setToolTip:)]
         pub unsafe fn setToolTip(&self, tool_tip: Option<&NSString>);
 
-        #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(feature = "NSEvent")]
         #[deprecated = "Use the receiver's button's -sendActionOn: instead"]
         #[method(sendActionOn:)]
         pub unsafe fn sendActionOn(&self, mask: NSEventMask) -> NSInteger;
 
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[deprecated = "Use the standard button property instead"]
         #[method_id(@__retain_semantics Other view)]
         pub unsafe fn view(&self, mtm: MainThreadMarker) -> Option<Id<NSView>>;
 
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[deprecated = "Use the standard button property instead"]
         #[method(setView:)]
         pub unsafe fn setView(&self, view: Option<&NSView>);
@@ -209,7 +209,7 @@ extern_methods!(
             highlight: bool,
         );
 
-        #[cfg(feature = "AppKit_NSMenu")]
+        #[cfg(feature = "NSMenu")]
         #[deprecated = "Use the menu property instead"]
         #[method(popUpStatusItemMenu:)]
         pub unsafe fn popUpStatusItemMenu(&self, menu: &NSMenu);

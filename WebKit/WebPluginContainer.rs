@@ -25,7 +25,7 @@ extern_category!(
         #[method_id(@__retain_semantics Other webPlugInContainerSelectionColor)]
         unsafe fn webPlugInContainerSelectionColor(&self) -> Option<Id<NSColor>>;
 
-        #[cfg(feature = "WebKit_WebFrame")]
+        #[cfg(feature = "WebFrame")]
         #[method_id(@__retain_semantics Other webFrame)]
         unsafe fn webFrame(&self) -> Option<Id<WebFrame>>;
     }

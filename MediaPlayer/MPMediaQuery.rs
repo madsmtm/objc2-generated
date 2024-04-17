@@ -77,17 +77,11 @@ extern_methods!(
         #[method(removeFilterPredicate:)]
         pub unsafe fn removeFilterPredicate(&self, predicate: &MPMediaPredicate);
 
-        #[cfg(all(
-            feature = "MediaPlayer_MPMediaEntity",
-            feature = "MediaPlayer_MPMediaItem"
-        ))]
+        #[cfg(all(feature = "MPMediaEntity", feature = "MPMediaItem"))]
         #[method_id(@__retain_semantics Other items)]
         pub unsafe fn items(&self) -> Option<Id<NSArray<MPMediaItem>>>;
 
-        #[cfg(all(
-            feature = "MediaPlayer_MPMediaEntity",
-            feature = "MediaPlayer_MPMediaItemCollection"
-        ))]
+        #[cfg(all(feature = "MPMediaEntity", feature = "MPMediaItemCollection"))]
         #[method_id(@__retain_semantics Other collections)]
         pub unsafe fn collections(&self) -> Option<Id<NSArray<MPMediaItemCollection>>>;
 
@@ -97,11 +91,11 @@ extern_methods!(
         #[method(setGroupingType:)]
         pub unsafe fn setGroupingType(&self, grouping_type: MPMediaGrouping);
 
-        #[cfg(feature = "MediaPlayer_MPMediaQuerySection")]
+        #[cfg(feature = "MPMediaQuerySection")]
         #[method_id(@__retain_semantics Other itemSections)]
         pub unsafe fn itemSections(&self) -> Option<Id<NSArray<MPMediaQuerySection>>>;
 
-        #[cfg(feature = "MediaPlayer_MPMediaQuerySection")]
+        #[cfg(feature = "MPMediaQuerySection")]
         #[method_id(@__retain_semantics Other collectionSections)]
         pub unsafe fn collectionSections(&self) -> Option<Id<NSArray<MPMediaQuerySection>>>;
 
@@ -251,10 +245,7 @@ extern_methods!(
 
 extern_methods!(
     /// MPMediaQueryAdditions
-    #[cfg(all(
-        feature = "MediaPlayer_MPMediaEntity",
-        feature = "MediaPlayer_MPMediaItem"
-    ))]
+    #[cfg(all(feature = "MPMediaEntity", feature = "MPMediaItem"))]
     unsafe impl MPMediaItem {
         #[method_id(@__retain_semantics Other persistentIDPropertyForGroupingType:)]
         pub unsafe fn persistentIDPropertyForGroupingType(

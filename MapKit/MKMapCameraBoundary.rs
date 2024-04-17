@@ -27,14 +27,14 @@ unsafe impl NSSecureCoding for MKMapCameraBoundary {}
 
 extern_methods!(
     unsafe impl MKMapCameraBoundary {
-        #[cfg(feature = "MapKit_MKGeometry")]
+        #[cfg(feature = "MKGeometry")]
         #[method_id(@__retain_semantics Init initWithMapRect:)]
         pub unsafe fn initWithMapRect(
             this: Allocated<Self>,
             map_rect: MKMapRect,
         ) -> Option<Id<Self>>;
 
-        #[cfg(all(feature = "MapKit_MKGeometry", feature = "objc2-core-location"))]
+        #[cfg(all(feature = "MKGeometry", feature = "objc2-core-location"))]
         #[method_id(@__retain_semantics Init initWithCoordinateRegion:)]
         pub unsafe fn initWithCoordinateRegion(
             this: Allocated<Self>,
@@ -44,11 +44,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
 
-        #[cfg(feature = "MapKit_MKGeometry")]
+        #[cfg(feature = "MKGeometry")]
         #[method(mapRect)]
         pub unsafe fn mapRect(&self) -> MKMapRect;
 
-        #[cfg(all(feature = "MapKit_MKGeometry", feature = "objc2-core-location"))]
+        #[cfg(all(feature = "MKGeometry", feature = "objc2-core-location"))]
         #[method(region)]
         pub unsafe fn region(&self) -> MKCoordinateRegion;
     }

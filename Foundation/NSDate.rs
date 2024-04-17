@@ -5,7 +5,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern "C" {
-    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSSystemClockDidChangeNotification: &'static NSNotificationName;
 }
 
@@ -25,15 +25,15 @@ unsafe impl Send for NSDate {}
 
 unsafe impl Sync for NSDate {}
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSCoding for NSDate {}
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSDate {}
 
 unsafe impl NSObjectProtocol for NSDate {}
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSSecureCoding for NSDate {}
 
 extern_methods!(
@@ -50,7 +50,7 @@ extern_methods!(
             ti: NSTimeInterval,
         ) -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSCoder")]
+        #[cfg(feature = "NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
     }
@@ -89,18 +89,18 @@ extern_methods!(
         #[method_id(@__retain_semantics Other laterDate:)]
         pub unsafe fn laterDate(&self, another_date: &NSDate) -> Id<NSDate>;
 
-        #[cfg(feature = "Foundation_NSObjCRuntime")]
+        #[cfg(feature = "NSObjCRuntime")]
         #[method(compare:)]
         pub unsafe fn compare(&self, other: &NSDate) -> NSComparisonResult;
 
         #[method(isEqualToDate:)]
         pub unsafe fn isEqualToDate(&self, other_date: &NSDate) -> bool;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other description)]
         pub unsafe fn description(&self) -> Id<NSString>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other descriptionWithLocale:)]
         pub unsafe fn descriptionWithLocale(&self, locale: Option<&AnyObject>) -> Id<NSString>;
 

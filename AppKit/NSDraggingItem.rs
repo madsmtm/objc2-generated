@@ -88,7 +88,7 @@ unsafe impl NSObjectProtocol for NSDraggingItem {}
 
 extern_methods!(
     unsafe impl NSDraggingItem {
-        #[cfg(feature = "AppKit_NSPasteboard")]
+        #[cfg(feature = "NSPasteboard")]
         #[method_id(@__retain_semantics Init initWithPasteboardWriter:)]
         pub unsafe fn initWithPasteboardWriter(
             this: Allocated<Self>,

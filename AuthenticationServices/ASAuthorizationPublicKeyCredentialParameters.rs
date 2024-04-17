@@ -26,14 +26,14 @@ unsafe impl NSSecureCoding for ASAuthorizationPublicKeyCredentialParameters {}
 
 extern_methods!(
     unsafe impl ASAuthorizationPublicKeyCredentialParameters {
-        #[cfg(feature = "AuthenticationServices_ASCOSEConstants")]
+        #[cfg(feature = "ASCOSEConstants")]
         #[method_id(@__retain_semantics Init initWithAlgorithm:)]
         pub unsafe fn initWithAlgorithm(
             this: Allocated<Self>,
             algorithm: ASCOSEAlgorithmIdentifier,
         ) -> Id<Self>;
 
-        #[cfg(feature = "AuthenticationServices_ASCOSEConstants")]
+        #[cfg(feature = "ASCOSEConstants")]
         #[method(algorithm)]
         pub unsafe fn algorithm(&self) -> ASCOSEAlgorithmIdentifier;
 

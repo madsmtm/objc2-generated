@@ -42,7 +42,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
-        #[cfg(feature = "AppKit_NSFontDescriptor")]
+        #[cfg(feature = "NSFontDescriptor")]
         #[method_id(@__retain_semantics Init initWithFontDescriptors:options:)]
         pub unsafe fn initWithFontDescriptors_options(
             this: Allocated<Self>,
@@ -50,7 +50,7 @@ extern_methods!(
             options: NSFontAssetRequestOptions,
         ) -> Id<Self>;
 
-        #[cfg(feature = "AppKit_NSFontDescriptor")]
+        #[cfg(feature = "NSFontDescriptor")]
         #[method_id(@__retain_semantics Other downloadedFontDescriptors)]
         pub unsafe fn downloadedFontDescriptors(&self) -> Id<NSArray<NSFontDescriptor>>;
 

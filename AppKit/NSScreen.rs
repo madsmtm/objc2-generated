@@ -31,7 +31,7 @@ extern_methods!(
         #[method(screensHaveSeparateSpaces)]
         pub unsafe fn screensHaveSeparateSpaces(mtm: MainThreadMarker) -> bool;
 
-        #[cfg(feature = "AppKit_NSGraphics")]
+        #[cfg(feature = "NSGraphics")]
         #[method(depth)]
         pub unsafe fn depth(&self) -> NSWindowDepth;
 
@@ -41,19 +41,19 @@ extern_methods!(
         #[method(visibleFrame)]
         pub fn visibleFrame(&self) -> NSRect;
 
-        #[cfg(feature = "AppKit_NSGraphics")]
+        #[cfg(feature = "NSGraphics")]
         #[method_id(@__retain_semantics Other deviceDescription)]
         pub fn deviceDescription(&self) -> Id<NSDictionary<NSDeviceDescriptionKey, AnyObject>>;
 
-        #[cfg(feature = "AppKit_NSColorSpace")]
+        #[cfg(feature = "NSColorSpace")]
         #[method_id(@__retain_semantics Other colorSpace)]
         pub unsafe fn colorSpace(&self) -> Option<Id<NSColorSpace>>;
 
-        #[cfg(feature = "AppKit_NSGraphics")]
+        #[cfg(feature = "NSGraphics")]
         #[method(supportedWindowDepths)]
         pub unsafe fn supportedWindowDepths(&self) -> NonNull<NSWindowDepth>;
 
-        #[cfg(feature = "AppKit_NSGraphics")]
+        #[cfg(feature = "NSGraphics")]
         #[method(canRepresentDisplayGamut:)]
         pub unsafe fn canRepresentDisplayGamut(&self, display_gamut: NSDisplayGamut) -> bool;
 

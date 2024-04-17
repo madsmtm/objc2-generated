@@ -9,14 +9,14 @@ use crate::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(
-        feature = "AuthenticationServices_ASAuthorizationOpenIDRequest",
-        feature = "AuthenticationServices_ASAuthorizationRequest"
+        feature = "ASAuthorizationOpenIDRequest",
+        feature = "ASAuthorizationRequest"
     ))]
     pub struct ASAuthorizationSingleSignOnRequest;
 
     #[cfg(all(
-        feature = "AuthenticationServices_ASAuthorizationOpenIDRequest",
-        feature = "AuthenticationServices_ASAuthorizationRequest"
+        feature = "ASAuthorizationOpenIDRequest",
+        feature = "ASAuthorizationRequest"
     ))]
     unsafe impl ClassType for ASAuthorizationSingleSignOnRequest {
         #[inherits(ASAuthorizationRequest, NSObject)]
@@ -26,33 +26,33 @@ extern_class!(
 );
 
 #[cfg(all(
-    feature = "AuthenticationServices_ASAuthorizationOpenIDRequest",
-    feature = "AuthenticationServices_ASAuthorizationRequest"
+    feature = "ASAuthorizationOpenIDRequest",
+    feature = "ASAuthorizationRequest"
 ))]
 unsafe impl NSCoding for ASAuthorizationSingleSignOnRequest {}
 
 #[cfg(all(
-    feature = "AuthenticationServices_ASAuthorizationOpenIDRequest",
-    feature = "AuthenticationServices_ASAuthorizationRequest"
+    feature = "ASAuthorizationOpenIDRequest",
+    feature = "ASAuthorizationRequest"
 ))]
 unsafe impl NSCopying for ASAuthorizationSingleSignOnRequest {}
 
 #[cfg(all(
-    feature = "AuthenticationServices_ASAuthorizationOpenIDRequest",
-    feature = "AuthenticationServices_ASAuthorizationRequest"
+    feature = "ASAuthorizationOpenIDRequest",
+    feature = "ASAuthorizationRequest"
 ))]
 unsafe impl NSObjectProtocol for ASAuthorizationSingleSignOnRequest {}
 
 #[cfg(all(
-    feature = "AuthenticationServices_ASAuthorizationOpenIDRequest",
-    feature = "AuthenticationServices_ASAuthorizationRequest"
+    feature = "ASAuthorizationOpenIDRequest",
+    feature = "ASAuthorizationRequest"
 ))]
 unsafe impl NSSecureCoding for ASAuthorizationSingleSignOnRequest {}
 
 extern_methods!(
     #[cfg(all(
-        feature = "AuthenticationServices_ASAuthorizationOpenIDRequest",
-        feature = "AuthenticationServices_ASAuthorizationRequest"
+        feature = "ASAuthorizationOpenIDRequest",
+        feature = "ASAuthorizationRequest"
     ))]
     unsafe impl ASAuthorizationSingleSignOnRequest {
         #[method_id(@__retain_semantics Other authorizationOptions)]
@@ -75,8 +75,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `ASAuthorizationRequest`
     #[cfg(all(
-        feature = "AuthenticationServices_ASAuthorizationOpenIDRequest",
-        feature = "AuthenticationServices_ASAuthorizationRequest"
+        feature = "ASAuthorizationOpenIDRequest",
+        feature = "ASAuthorizationRequest"
     ))]
     unsafe impl ASAuthorizationSingleSignOnRequest {
         #[method_id(@__retain_semantics New new)]

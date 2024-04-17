@@ -58,13 +58,9 @@ unsafe impl RefEncode for MTLMapIndirectArguments {
 }
 
 extern_protocol!(
-    #[cfg(feature = "Metal_MTLCommandEncoder")]
+    #[cfg(feature = "MTLCommandEncoder")]
     pub unsafe trait MTLResourceStateCommandEncoder: MTLCommandEncoder {
-        #[cfg(all(
-            feature = "Metal_MTLResource",
-            feature = "Metal_MTLTexture",
-            feature = "Metal_MTLTypes"
-        ))]
+        #[cfg(all(feature = "MTLResource", feature = "MTLTexture", feature = "MTLTypes"))]
         #[optional]
         #[method(updateTextureMappings:mode:regions:mipLevels:slices:numRegions:)]
         unsafe fn updateTextureMappings_mode_regions_mipLevels_slices_numRegions(
@@ -77,11 +73,7 @@ extern_protocol!(
             num_regions: NSUInteger,
         );
 
-        #[cfg(all(
-            feature = "Metal_MTLResource",
-            feature = "Metal_MTLTexture",
-            feature = "Metal_MTLTypes"
-        ))]
+        #[cfg(all(feature = "MTLResource", feature = "MTLTexture", feature = "MTLTypes"))]
         #[optional]
         #[method(updateTextureMapping:mode:region:mipLevel:slice:)]
         unsafe fn updateTextureMapping_mode_region_mipLevel_slice(
@@ -93,11 +85,7 @@ extern_protocol!(
             slice: NSUInteger,
         );
 
-        #[cfg(all(
-            feature = "Metal_MTLBuffer",
-            feature = "Metal_MTLResource",
-            feature = "Metal_MTLTexture"
-        ))]
+        #[cfg(all(feature = "MTLBuffer", feature = "MTLResource", feature = "MTLTexture"))]
         #[optional]
         #[method(updateTextureMapping:mode:indirectBuffer:indirectBufferOffset:)]
         unsafe fn updateTextureMapping_mode_indirectBuffer_indirectBufferOffset(
@@ -108,21 +96,17 @@ extern_protocol!(
             indirect_buffer_offset: NSUInteger,
         );
 
-        #[cfg(feature = "Metal_MTLFence")]
+        #[cfg(feature = "MTLFence")]
         #[optional]
         #[method(updateFence:)]
         unsafe fn updateFence(&self, fence: &ProtocolObject<dyn MTLFence>);
 
-        #[cfg(feature = "Metal_MTLFence")]
+        #[cfg(feature = "MTLFence")]
         #[optional]
         #[method(waitForFence:)]
         unsafe fn waitForFence(&self, fence: &ProtocolObject<dyn MTLFence>);
 
-        #[cfg(all(
-            feature = "Metal_MTLResource",
-            feature = "Metal_MTLTexture",
-            feature = "Metal_MTLTypes"
-        ))]
+        #[cfg(all(feature = "MTLResource", feature = "MTLTexture", feature = "MTLTypes"))]
         #[optional]
         #[method(moveTextureMappingsFromTexture:sourceSlice:sourceLevel:sourceOrigin:sourceSize:toTexture:destinationSlice:destinationLevel:destinationOrigin:)]
         unsafe fn moveTextureMappingsFromTexture_sourceSlice_sourceLevel_sourceOrigin_sourceSize_toTexture_destinationSlice_destinationLevel_destinationOrigin(
@@ -139,6 +123,6 @@ extern_protocol!(
         );
     }
 
-    #[cfg(feature = "Metal_MTLCommandEncoder")]
+    #[cfg(feature = "MTLCommandEncoder")]
     unsafe impl ProtocolType for dyn MTLResourceStateCommandEncoder {}
 );

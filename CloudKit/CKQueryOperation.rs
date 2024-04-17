@@ -41,16 +41,10 @@ extern "C" {
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(
-        feature = "CloudKit_CKDatabaseOperation",
-        feature = "CloudKit_CKOperation"
-    ))]
+    #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
     pub struct CKQueryOperation;
 
-    #[cfg(all(
-        feature = "CloudKit_CKDatabaseOperation",
-        feature = "CloudKit_CKOperation"
-    ))]
+    #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
     unsafe impl ClassType for CKQueryOperation {
         #[inherits(CKOperation, NSOperation, NSObject)]
         type Super = CKDatabaseOperation;
@@ -58,33 +52,27 @@ extern_class!(
     }
 );
 
-#[cfg(all(
-    feature = "CloudKit_CKDatabaseOperation",
-    feature = "CloudKit_CKOperation"
-))]
+#[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
 unsafe impl NSObjectProtocol for CKQueryOperation {}
 
 extern_methods!(
-    #[cfg(all(
-        feature = "CloudKit_CKDatabaseOperation",
-        feature = "CloudKit_CKOperation"
-    ))]
+    #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
     unsafe impl CKQueryOperation {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
-        #[cfg(feature = "CloudKit_CKQuery")]
+        #[cfg(feature = "CKQuery")]
         #[method_id(@__retain_semantics Init initWithQuery:)]
         pub unsafe fn initWithQuery(this: Allocated<Self>, query: &CKQuery) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithCursor:)]
         pub unsafe fn initWithCursor(this: Allocated<Self>, cursor: &CKQueryCursor) -> Id<Self>;
 
-        #[cfg(feature = "CloudKit_CKQuery")]
+        #[cfg(feature = "CKQuery")]
         #[method_id(@__retain_semantics Other query)]
         pub unsafe fn query(&self) -> Option<Id<CKQuery>>;
 
-        #[cfg(feature = "CloudKit_CKQuery")]
+        #[cfg(feature = "CKQuery")]
         #[method(setQuery:)]
         pub unsafe fn setQuery(&self, query: Option<&CKQuery>);
 
@@ -94,11 +82,11 @@ extern_methods!(
         #[method(setCursor:)]
         pub unsafe fn setCursor(&self, cursor: Option<&CKQueryCursor>);
 
-        #[cfg(feature = "CloudKit_CKRecordZoneID")]
+        #[cfg(feature = "CKRecordZoneID")]
         #[method_id(@__retain_semantics Other zoneID)]
         pub unsafe fn zoneID(&self) -> Option<Id<CKRecordZoneID>>;
 
-        #[cfg(feature = "CloudKit_CKRecordZoneID")]
+        #[cfg(feature = "CKRecordZoneID")]
         #[method(setZoneID:)]
         pub unsafe fn setZoneID(&self, zone_id: Option<&CKRecordZoneID>);
 
@@ -108,20 +96,20 @@ extern_methods!(
         #[method(setResultsLimit:)]
         pub unsafe fn setResultsLimit(&self, results_limit: NSUInteger);
 
-        #[cfg(feature = "CloudKit_CKRecord")]
+        #[cfg(feature = "CKRecord")]
         #[method_id(@__retain_semantics Other desiredKeys)]
         pub unsafe fn desiredKeys(&self) -> Option<Id<NSArray<CKRecordFieldKey>>>;
 
-        #[cfg(feature = "CloudKit_CKRecord")]
+        #[cfg(feature = "CKRecord")]
         #[method(setDesiredKeys:)]
         pub unsafe fn setDesiredKeys(&self, desired_keys: Option<&NSArray<CKRecordFieldKey>>);
 
-        #[cfg(all(feature = "CloudKit_CKRecord", feature = "block2"))]
+        #[cfg(all(feature = "CKRecord", feature = "block2"))]
         #[deprecated = "Use recordMatchedBlock instead, which surfaces per-record errors"]
         #[method(recordFetchedBlock)]
         pub unsafe fn recordFetchedBlock(&self) -> *mut Block<dyn Fn(NonNull<CKRecord>)>;
 
-        #[cfg(all(feature = "CloudKit_CKRecord", feature = "block2"))]
+        #[cfg(all(feature = "CKRecord", feature = "block2"))]
         #[deprecated = "Use recordMatchedBlock instead, which surfaces per-record errors"]
         #[method(setRecordFetchedBlock:)]
         pub unsafe fn setRecordFetchedBlock(
@@ -129,21 +117,13 @@ extern_methods!(
             record_fetched_block: Option<&Block<dyn Fn(NonNull<CKRecord>)>>,
         );
 
-        #[cfg(all(
-            feature = "CloudKit_CKRecord",
-            feature = "CloudKit_CKRecordID",
-            feature = "block2"
-        ))]
+        #[cfg(all(feature = "CKRecord", feature = "CKRecordID", feature = "block2"))]
         #[method(recordMatchedBlock)]
         pub unsafe fn recordMatchedBlock(
             &self,
         ) -> *mut Block<dyn Fn(NonNull<CKRecordID>, *mut CKRecord, *mut NSError)>;
 
-        #[cfg(all(
-            feature = "CloudKit_CKRecord",
-            feature = "CloudKit_CKRecordID",
-            feature = "block2"
-        ))]
+        #[cfg(all(feature = "CKRecord", feature = "CKRecordID", feature = "block2"))]
         #[method(setRecordMatchedBlock:)]
         pub unsafe fn setRecordMatchedBlock(
             &self,
@@ -169,10 +149,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(all(
-        feature = "CloudKit_CKDatabaseOperation",
-        feature = "CloudKit_CKOperation"
-    ))]
+    #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
     unsafe impl CKQueryOperation {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

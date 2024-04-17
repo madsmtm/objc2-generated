@@ -25,22 +25,19 @@ unsafe impl NSObjectProtocol for NSAlignmentFeedbackFilter {}
 
 extern_methods!(
     unsafe impl NSAlignmentFeedbackFilter {
-        #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(feature = "NSEvent")]
         #[method(inputEventMask)]
         pub unsafe fn inputEventMask() -> NSEventMask;
 
-        #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(feature = "NSEvent")]
         #[method(updateWithEvent:)]
         pub unsafe fn updateWithEvent(&self, event: &NSEvent);
 
-        #[cfg(all(
-            feature = "AppKit_NSGestureRecognizer",
-            feature = "AppKit_NSPanGestureRecognizer"
-        ))]
+        #[cfg(all(feature = "NSGestureRecognizer", feature = "NSPanGestureRecognizer"))]
         #[method(updateWithPanRecognizer:)]
         pub unsafe fn updateWithPanRecognizer(&self, pan_recognizer: &NSPanGestureRecognizer);
 
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[method_id(@__retain_semantics Other alignmentFeedbackTokenForMovementInView:previousPoint:alignedPoint:defaultPoint:)]
         pub unsafe fn alignmentFeedbackTokenForMovementInView_previousPoint_alignedPoint_defaultPoint(
             &self,
@@ -50,7 +47,7 @@ extern_methods!(
             default_point: NSPoint,
         ) -> Option<Id<ProtocolObject<dyn NSAlignmentFeedbackToken>>>;
 
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[method_id(@__retain_semantics Other alignmentFeedbackTokenForHorizontalMovementInView:previousX:alignedX:defaultX:)]
         pub unsafe fn alignmentFeedbackTokenForHorizontalMovementInView_previousX_alignedX_defaultX(
             &self,
@@ -60,7 +57,7 @@ extern_methods!(
             default_x: CGFloat,
         ) -> Option<Id<ProtocolObject<dyn NSAlignmentFeedbackToken>>>;
 
-        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[method_id(@__retain_semantics Other alignmentFeedbackTokenForVerticalMovementInView:previousY:alignedY:defaultY:)]
         pub unsafe fn alignmentFeedbackTokenForVerticalMovementInView_previousY_alignedY_defaultY(
             &self,
@@ -70,7 +67,7 @@ extern_methods!(
             default_y: CGFloat,
         ) -> Option<Id<ProtocolObject<dyn NSAlignmentFeedbackToken>>>;
 
-        #[cfg(feature = "AppKit_NSHapticFeedback")]
+        #[cfg(feature = "NSHapticFeedback")]
         #[method(performFeedback:performanceTime:)]
         pub unsafe fn performFeedback_performanceTime(
             &self,

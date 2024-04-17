@@ -7,10 +7,10 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     pub struct NSTableCellView;
 
-    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl ClassType for NSTableCellView {
         #[inherits(NSResponder, NSObject)]
         type Super = NSView;
@@ -19,55 +19,43 @@ extern_class!(
 );
 
 #[cfg(all(
-    feature = "AppKit_NSAccessibilityProtocols",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSView"
+    feature = "NSAccessibilityProtocols",
+    feature = "NSResponder",
+    feature = "NSView"
 ))]
 unsafe impl NSAccessibility for NSTableCellView {}
 
 #[cfg(all(
-    feature = "AppKit_NSAccessibilityProtocols",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSView"
+    feature = "NSAccessibilityProtocols",
+    feature = "NSResponder",
+    feature = "NSView"
 ))]
 unsafe impl NSAccessibilityElementProtocol for NSTableCellView {}
 
-#[cfg(all(
-    feature = "AppKit_NSAnimation",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSView"
-))]
+#[cfg(all(feature = "NSAnimation", feature = "NSResponder", feature = "NSView"))]
 unsafe impl NSAnimatablePropertyContainer for NSTableCellView {}
 
-#[cfg(all(
-    feature = "AppKit_NSAppearance",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSView"
-))]
+#[cfg(all(feature = "NSAppearance", feature = "NSResponder", feature = "NSView"))]
 unsafe impl NSAppearanceCustomization for NSTableCellView {}
 
-#[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+#[cfg(all(feature = "NSResponder", feature = "NSView"))]
 unsafe impl NSCoding for NSTableCellView {}
 
-#[cfg(all(
-    feature = "AppKit_NSDragging",
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSView"
-))]
+#[cfg(all(feature = "NSDragging", feature = "NSResponder", feature = "NSView"))]
 unsafe impl NSDraggingDestination for NSTableCellView {}
 
-#[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+#[cfg(all(feature = "NSResponder", feature = "NSView"))]
 unsafe impl NSObjectProtocol for NSTableCellView {}
 
 #[cfg(all(
-    feature = "AppKit_NSResponder",
-    feature = "AppKit_NSUserInterfaceItemIdentification",
-    feature = "AppKit_NSView"
+    feature = "NSResponder",
+    feature = "NSUserInterfaceItemIdentification",
+    feature = "NSView"
 ))]
 unsafe impl NSUserInterfaceItemIdentification for NSTableCellView {}
 
 extern_methods!(
-    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSTableCellView {
         #[method_id(@__retain_semantics Other objectValue)]
         pub unsafe fn objectValue(&self) -> Option<Id<AnyObject>>;
@@ -75,39 +63,39 @@ extern_methods!(
         #[method(setObjectValue:)]
         pub unsafe fn setObjectValue(&self, object_value: Option<&AnyObject>);
 
-        #[cfg(all(feature = "AppKit_NSControl", feature = "AppKit_NSTextField"))]
+        #[cfg(all(feature = "NSControl", feature = "NSTextField"))]
         #[method_id(@__retain_semantics Other textField)]
         pub unsafe fn textField(&self) -> Option<Id<NSTextField>>;
 
-        #[cfg(all(feature = "AppKit_NSControl", feature = "AppKit_NSTextField"))]
+        #[cfg(all(feature = "NSControl", feature = "NSTextField"))]
         #[method(setTextField:)]
         pub unsafe fn setTextField(&self, text_field: Option<&NSTextField>);
 
-        #[cfg(all(feature = "AppKit_NSControl", feature = "AppKit_NSImageView"))]
+        #[cfg(all(feature = "NSControl", feature = "NSImageView"))]
         #[method_id(@__retain_semantics Other imageView)]
         pub unsafe fn imageView(&self) -> Option<Id<NSImageView>>;
 
-        #[cfg(all(feature = "AppKit_NSControl", feature = "AppKit_NSImageView"))]
+        #[cfg(all(feature = "NSControl", feature = "NSImageView"))]
         #[method(setImageView:)]
         pub unsafe fn setImageView(&self, image_view: Option<&NSImageView>);
 
-        #[cfg(feature = "AppKit_NSCell")]
+        #[cfg(feature = "NSCell")]
         #[method(backgroundStyle)]
         pub unsafe fn backgroundStyle(&self) -> NSBackgroundStyle;
 
-        #[cfg(feature = "AppKit_NSCell")]
+        #[cfg(feature = "NSCell")]
         #[method(setBackgroundStyle:)]
         pub unsafe fn setBackgroundStyle(&self, background_style: NSBackgroundStyle);
 
-        #[cfg(feature = "AppKit_NSTableView")]
+        #[cfg(feature = "NSTableView")]
         #[method(rowSizeStyle)]
         pub unsafe fn rowSizeStyle(&self) -> NSTableViewRowSizeStyle;
 
-        #[cfg(feature = "AppKit_NSTableView")]
+        #[cfg(feature = "NSTableView")]
         #[method(setRowSizeStyle:)]
         pub unsafe fn setRowSizeStyle(&self, row_size_style: NSTableViewRowSizeStyle);
 
-        #[cfg(feature = "AppKit_NSDraggingItem")]
+        #[cfg(feature = "NSDraggingItem")]
         #[method_id(@__retain_semantics Other draggingImageComponents)]
         pub unsafe fn draggingImageComponents(&self) -> Id<NSArray<NSDraggingImageComponent>>;
     }
@@ -115,7 +103,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSView`
-    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSTableCellView {
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Id<Self>;
@@ -127,7 +115,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSResponder`
-    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSTableCellView {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -136,7 +124,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
+    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSTableCellView {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;

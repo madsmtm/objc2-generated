@@ -26,10 +26,10 @@ unsafe impl RefEncode for NSDateIntervalFormatterStyle {
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSFormatter")]
+    #[cfg(feature = "NSFormatter")]
     pub struct NSDateIntervalFormatter;
 
-    #[cfg(feature = "Foundation_NSFormatter")]
+    #[cfg(feature = "NSFormatter")]
     unsafe impl ClassType for NSDateIntervalFormatter {
         #[inherits(NSObject)]
         type Super = NSFormatter;
@@ -37,53 +37,53 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSFormatter")]
+#[cfg(feature = "NSFormatter")]
 unsafe impl Send for NSDateIntervalFormatter {}
 
-#[cfg(feature = "Foundation_NSFormatter")]
+#[cfg(feature = "NSFormatter")]
 unsafe impl Sync for NSDateIntervalFormatter {}
 
-#[cfg(all(feature = "Foundation_NSFormatter", feature = "Foundation_NSObject"))]
+#[cfg(all(feature = "NSFormatter", feature = "NSObject"))]
 unsafe impl NSCoding for NSDateIntervalFormatter {}
 
-#[cfg(all(feature = "Foundation_NSFormatter", feature = "Foundation_NSObject"))]
+#[cfg(all(feature = "NSFormatter", feature = "NSObject"))]
 unsafe impl NSCopying for NSDateIntervalFormatter {}
 
-#[cfg(feature = "Foundation_NSFormatter")]
+#[cfg(feature = "NSFormatter")]
 unsafe impl NSObjectProtocol for NSDateIntervalFormatter {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSFormatter")]
+    #[cfg(feature = "NSFormatter")]
     unsafe impl NSDateIntervalFormatter {
-        #[cfg(feature = "Foundation_NSLocale")]
+        #[cfg(feature = "NSLocale")]
         #[method_id(@__retain_semantics Other locale)]
         pub unsafe fn locale(&self) -> Id<NSLocale>;
 
-        #[cfg(feature = "Foundation_NSLocale")]
+        #[cfg(feature = "NSLocale")]
         #[method(setLocale:)]
         pub unsafe fn setLocale(&self, locale: Option<&NSLocale>);
 
-        #[cfg(feature = "Foundation_NSCalendar")]
+        #[cfg(feature = "NSCalendar")]
         #[method_id(@__retain_semantics Other calendar)]
         pub unsafe fn calendar(&self) -> Id<NSCalendar>;
 
-        #[cfg(feature = "Foundation_NSCalendar")]
+        #[cfg(feature = "NSCalendar")]
         #[method(setCalendar:)]
         pub unsafe fn setCalendar(&self, calendar: Option<&NSCalendar>);
 
-        #[cfg(feature = "Foundation_NSTimeZone")]
+        #[cfg(feature = "NSTimeZone")]
         #[method_id(@__retain_semantics Other timeZone)]
         pub unsafe fn timeZone(&self) -> Id<NSTimeZone>;
 
-        #[cfg(feature = "Foundation_NSTimeZone")]
+        #[cfg(feature = "NSTimeZone")]
         #[method(setTimeZone:)]
         pub unsafe fn setTimeZone(&self, time_zone: Option<&NSTimeZone>);
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other dateTemplate)]
         pub unsafe fn dateTemplate(&self) -> Id<NSString>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method(setDateTemplate:)]
         pub unsafe fn setDateTemplate(&self, date_template: Option<&NSString>);
 
@@ -99,7 +99,7 @@ extern_methods!(
         #[method(setTimeStyle:)]
         pub unsafe fn setTimeStyle(&self, time_style: NSDateIntervalFormatterStyle);
 
-        #[cfg(all(feature = "Foundation_NSDate", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSDate", feature = "NSString"))]
         #[method_id(@__retain_semantics Other stringFromDate:toDate:)]
         pub unsafe fn stringFromDate_toDate(
             &self,
@@ -107,7 +107,7 @@ extern_methods!(
             to_date: &NSDate,
         ) -> Id<NSString>;
 
-        #[cfg(all(feature = "Foundation_NSDateInterval", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSDateInterval", feature = "NSString"))]
         #[method_id(@__retain_semantics Other stringFromDateInterval:)]
         pub unsafe fn stringFromDateInterval(
             &self,
@@ -118,7 +118,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSFormatter")]
+    #[cfg(feature = "NSFormatter")]
     unsafe impl NSDateIntervalFormatter {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

@@ -37,12 +37,12 @@ unsafe impl NSCoding for NSTableColumn {}
 
 unsafe impl NSObjectProtocol for NSTableColumn {}
 
-#[cfg(feature = "AppKit_NSUserInterfaceItemIdentification")]
+#[cfg(feature = "NSUserInterfaceItemIdentification")]
 unsafe impl NSUserInterfaceItemIdentification for NSTableColumn {}
 
 extern_methods!(
     unsafe impl NSTableColumn {
-        #[cfg(feature = "AppKit_NSUserInterfaceItemIdentification")]
+        #[cfg(feature = "NSUserInterfaceItemIdentification")]
         #[method_id(@__retain_semantics Init initWithIdentifier:)]
         pub unsafe fn initWithIdentifier(
             this: Allocated<Self>,
@@ -52,28 +52,28 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Id<Self>;
 
-        #[cfg(feature = "AppKit_NSUserInterfaceItemIdentification")]
+        #[cfg(feature = "NSUserInterfaceItemIdentification")]
         #[method_id(@__retain_semantics Other identifier)]
         pub unsafe fn identifier(&self) -> Id<NSUserInterfaceItemIdentifier>;
 
-        #[cfg(feature = "AppKit_NSUserInterfaceItemIdentification")]
+        #[cfg(feature = "NSUserInterfaceItemIdentification")]
         #[method(setIdentifier:)]
         pub unsafe fn setIdentifier(&self, identifier: &NSUserInterfaceItemIdentifier);
 
         #[cfg(all(
-            feature = "AppKit_NSControl",
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSTableView",
-            feature = "AppKit_NSView"
+            feature = "NSControl",
+            feature = "NSResponder",
+            feature = "NSTableView",
+            feature = "NSView"
         ))]
         #[method_id(@__retain_semantics Other tableView)]
         pub unsafe fn tableView(&self, mtm: MainThreadMarker) -> Option<Id<NSTableView>>;
 
         #[cfg(all(
-            feature = "AppKit_NSControl",
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSTableView",
-            feature = "AppKit_NSView"
+            feature = "NSControl",
+            feature = "NSResponder",
+            feature = "NSTableView",
+            feature = "NSView"
         ))]
         #[method(setTableView:)]
         pub unsafe fn setTableView(&self, table_view: Option<&NSTableView>);
@@ -103,19 +103,19 @@ extern_methods!(
         pub unsafe fn setTitle(&self, title: &NSString);
 
         #[cfg(all(
-            feature = "AppKit_NSActionCell",
-            feature = "AppKit_NSCell",
-            feature = "AppKit_NSTableHeaderCell",
-            feature = "AppKit_NSTextFieldCell"
+            feature = "NSActionCell",
+            feature = "NSCell",
+            feature = "NSTableHeaderCell",
+            feature = "NSTextFieldCell"
         ))]
         #[method_id(@__retain_semantics Other headerCell)]
         pub unsafe fn headerCell(&self, mtm: MainThreadMarker) -> Id<NSTableHeaderCell>;
 
         #[cfg(all(
-            feature = "AppKit_NSActionCell",
-            feature = "AppKit_NSCell",
-            feature = "AppKit_NSTableHeaderCell",
-            feature = "AppKit_NSTextFieldCell"
+            feature = "NSActionCell",
+            feature = "NSCell",
+            feature = "NSTableHeaderCell",
+            feature = "NSTextFieldCell"
         ))]
         #[method(setHeaderCell:)]
         pub unsafe fn setHeaderCell(&self, header_cell: &NSTableHeaderCell);

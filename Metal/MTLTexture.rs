@@ -105,7 +105,7 @@ unsafe impl NSSecureCoding for MTLSharedTextureHandle {}
 
 extern_methods!(
     unsafe impl MTLSharedTextureHandle {
-        #[cfg(feature = "Metal_MTLDevice")]
+        #[cfg(feature = "MTLDevice")]
         #[method_id(@__retain_semantics Other device)]
         pub fn device(&self) -> Id<ProtocolObject<dyn MTLDevice>>;
 
@@ -187,7 +187,7 @@ unsafe impl NSObjectProtocol for MTLTextureDescriptor {}
 
 extern_methods!(
     unsafe impl MTLTextureDescriptor {
-        #[cfg(feature = "Metal_MTLPixelFormat")]
+        #[cfg(feature = "MTLPixelFormat")]
         #[method_id(@__retain_semantics Other texture2DDescriptorWithPixelFormat:width:height:mipmapped:)]
         pub unsafe fn texture2DDescriptorWithPixelFormat_width_height_mipmapped(
             pixel_format: MTLPixelFormat,
@@ -196,7 +196,7 @@ extern_methods!(
             mipmapped: bool,
         ) -> Id<MTLTextureDescriptor>;
 
-        #[cfg(feature = "Metal_MTLPixelFormat")]
+        #[cfg(feature = "MTLPixelFormat")]
         #[method_id(@__retain_semantics Other textureCubeDescriptorWithPixelFormat:size:mipmapped:)]
         pub unsafe fn textureCubeDescriptorWithPixelFormat_size_mipmapped(
             pixel_format: MTLPixelFormat,
@@ -204,7 +204,7 @@ extern_methods!(
             mipmapped: bool,
         ) -> Id<MTLTextureDescriptor>;
 
-        #[cfg(all(feature = "Metal_MTLPixelFormat", feature = "Metal_MTLResource"))]
+        #[cfg(all(feature = "MTLPixelFormat", feature = "MTLResource"))]
         #[method_id(@__retain_semantics Other textureBufferDescriptorWithPixelFormat:width:resourceOptions:usage:)]
         pub unsafe fn textureBufferDescriptorWithPixelFormat_width_resourceOptions_usage(
             pixel_format: MTLPixelFormat,
@@ -219,11 +219,11 @@ extern_methods!(
         #[method(setTextureType:)]
         pub fn setTextureType(&self, texture_type: MTLTextureType);
 
-        #[cfg(feature = "Metal_MTLPixelFormat")]
+        #[cfg(feature = "MTLPixelFormat")]
         #[method(pixelFormat)]
         pub fn pixelFormat(&self) -> MTLPixelFormat;
 
-        #[cfg(feature = "Metal_MTLPixelFormat")]
+        #[cfg(feature = "MTLPixelFormat")]
         #[method(setPixelFormat:)]
         pub fn setPixelFormat(&self, pixel_format: MTLPixelFormat);
 
@@ -263,35 +263,35 @@ extern_methods!(
         #[method(setArrayLength:)]
         pub unsafe fn setArrayLength(&self, array_length: NSUInteger);
 
-        #[cfg(feature = "Metal_MTLResource")]
+        #[cfg(feature = "MTLResource")]
         #[method(resourceOptions)]
         pub fn resourceOptions(&self) -> MTLResourceOptions;
 
-        #[cfg(feature = "Metal_MTLResource")]
+        #[cfg(feature = "MTLResource")]
         #[method(setResourceOptions:)]
         pub fn setResourceOptions(&self, resource_options: MTLResourceOptions);
 
-        #[cfg(feature = "Metal_MTLResource")]
+        #[cfg(feature = "MTLResource")]
         #[method(cpuCacheMode)]
         pub fn cpuCacheMode(&self) -> MTLCPUCacheMode;
 
-        #[cfg(feature = "Metal_MTLResource")]
+        #[cfg(feature = "MTLResource")]
         #[method(setCpuCacheMode:)]
         pub fn setCpuCacheMode(&self, cpu_cache_mode: MTLCPUCacheMode);
 
-        #[cfg(feature = "Metal_MTLResource")]
+        #[cfg(feature = "MTLResource")]
         #[method(storageMode)]
         pub fn storageMode(&self) -> MTLStorageMode;
 
-        #[cfg(feature = "Metal_MTLResource")]
+        #[cfg(feature = "MTLResource")]
         #[method(setStorageMode:)]
         pub fn setStorageMode(&self, storage_mode: MTLStorageMode);
 
-        #[cfg(feature = "Metal_MTLResource")]
+        #[cfg(feature = "MTLResource")]
         #[method(hazardTrackingMode)]
         pub fn hazardTrackingMode(&self) -> MTLHazardTrackingMode;
 
-        #[cfg(feature = "Metal_MTLResource")]
+        #[cfg(feature = "MTLResource")]
         #[method(setHazardTrackingMode:)]
         pub fn setHazardTrackingMode(&self, hazard_tracking_mode: MTLHazardTrackingMode);
 
@@ -333,7 +333,7 @@ extern_methods!(
 );
 
 extern_protocol!(
-    #[cfg(feature = "Metal_MTLResource")]
+    #[cfg(feature = "MTLResource")]
     pub unsafe trait MTLTexture: MTLResource {
         #[deprecated = "Use parentTexture or buffer instead"]
         #[method_id(@__retain_semantics Other rootResource)]
@@ -348,7 +348,7 @@ extern_protocol!(
         #[method(parentRelativeSlice)]
         fn parentRelativeSlice(&self) -> NSUInteger;
 
-        #[cfg(feature = "Metal_MTLBuffer")]
+        #[cfg(feature = "MTLBuffer")]
         #[method_id(@__retain_semantics Other buffer)]
         fn buffer(&self) -> Option<Id<ProtocolObject<dyn MTLBuffer>>>;
 
@@ -364,7 +364,7 @@ extern_protocol!(
         #[method(textureType)]
         fn textureType(&self) -> MTLTextureType;
 
-        #[cfg(feature = "Metal_MTLPixelFormat")]
+        #[cfg(feature = "MTLPixelFormat")]
         #[method(pixelFormat)]
         fn pixelFormat(&self) -> MTLPixelFormat;
 
@@ -413,11 +413,11 @@ extern_protocol!(
         #[method(compressionType)]
         unsafe fn compressionType(&self) -> MTLTextureCompressionType;
 
-        #[cfg(feature = "Metal_MTLTypes")]
+        #[cfg(feature = "MTLTypes")]
         #[method(gpuResourceID)]
         unsafe fn gpuResourceID(&self) -> MTLResourceID;
 
-        #[cfg(feature = "Metal_MTLTypes")]
+        #[cfg(feature = "MTLTypes")]
         #[method(getBytes:bytesPerRow:bytesPerImage:fromRegion:mipmapLevel:slice:)]
         unsafe fn getBytes_bytesPerRow_bytesPerImage_fromRegion_mipmapLevel_slice(
             &self,
@@ -429,7 +429,7 @@ extern_protocol!(
             slice: NSUInteger,
         );
 
-        #[cfg(feature = "Metal_MTLTypes")]
+        #[cfg(feature = "MTLTypes")]
         #[method(replaceRegion:mipmapLevel:slice:withBytes:bytesPerRow:bytesPerImage:)]
         unsafe fn replaceRegion_mipmapLevel_slice_withBytes_bytesPerRow_bytesPerImage(
             &self,
@@ -441,7 +441,7 @@ extern_protocol!(
             bytes_per_image: NSUInteger,
         );
 
-        #[cfg(feature = "Metal_MTLTypes")]
+        #[cfg(feature = "MTLTypes")]
         #[method(getBytes:bytesPerRow:fromRegion:mipmapLevel:)]
         unsafe fn getBytes_bytesPerRow_fromRegion_mipmapLevel(
             &self,
@@ -451,7 +451,7 @@ extern_protocol!(
             level: NSUInteger,
         );
 
-        #[cfg(feature = "Metal_MTLTypes")]
+        #[cfg(feature = "MTLTypes")]
         #[method(replaceRegion:mipmapLevel:withBytes:bytesPerRow:)]
         unsafe fn replaceRegion_mipmapLevel_withBytes_bytesPerRow(
             &self,
@@ -461,14 +461,14 @@ extern_protocol!(
             bytes_per_row: NSUInteger,
         );
 
-        #[cfg(feature = "Metal_MTLPixelFormat")]
+        #[cfg(feature = "MTLPixelFormat")]
         #[method_id(@__retain_semantics New newTextureViewWithPixelFormat:)]
         fn newTextureViewWithPixelFormat(
             &self,
             pixel_format: MTLPixelFormat,
         ) -> Option<Id<ProtocolObject<dyn MTLTexture>>>;
 
-        #[cfg(feature = "Metal_MTLPixelFormat")]
+        #[cfg(feature = "MTLPixelFormat")]
         #[method_id(@__retain_semantics New newTextureViewWithPixelFormat:textureType:levels:slices:)]
         unsafe fn newTextureViewWithPixelFormat_textureType_levels_slices(
             &self,
@@ -484,7 +484,7 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other remoteStorageTexture)]
         fn remoteStorageTexture(&self) -> Option<Id<ProtocolObject<dyn MTLTexture>>>;
 
-        #[cfg(feature = "Metal_MTLDevice")]
+        #[cfg(feature = "MTLDevice")]
         #[method_id(@__retain_semantics New newRemoteTextureViewForDevice:)]
         unsafe fn newRemoteTextureViewForDevice(
             &self,
@@ -494,7 +494,7 @@ extern_protocol!(
         #[method(swizzle)]
         fn swizzle(&self) -> MTLTextureSwizzleChannels;
 
-        #[cfg(feature = "Metal_MTLPixelFormat")]
+        #[cfg(feature = "MTLPixelFormat")]
         #[method_id(@__retain_semantics New newTextureViewWithPixelFormat:textureType:levels:slices:swizzle:)]
         unsafe fn newTextureViewWithPixelFormat_textureType_levels_slices_swizzle(
             &self,
@@ -506,6 +506,6 @@ extern_protocol!(
         ) -> Option<Id<ProtocolObject<dyn MTLTexture>>>;
     }
 
-    #[cfg(feature = "Metal_MTLResource")]
+    #[cfg(feature = "MTLResource")]
     unsafe impl ProtocolType for dyn MTLTexture {}
 );

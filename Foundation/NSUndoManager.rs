@@ -9,7 +9,7 @@ use crate::*;
 pub static NSUndoCloseGroupingRunLoopOrdering: NSUInteger = 350000;
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSUndoManagerGroupIsDiscardableKey: &'static NSString;
 }
 
@@ -57,19 +57,11 @@ extern_methods!(
         #[method(setLevelsOfUndo:)]
         pub unsafe fn setLevelsOfUndo(&self, levels_of_undo: NSUInteger);
 
-        #[cfg(all(
-            feature = "Foundation_NSArray",
-            feature = "Foundation_NSObjCRuntime",
-            feature = "Foundation_NSString"
-        ))]
+        #[cfg(all(feature = "NSArray", feature = "NSObjCRuntime", feature = "NSString"))]
         #[method_id(@__retain_semantics Other runLoopModes)]
         pub unsafe fn runLoopModes(&self) -> Id<NSArray<NSRunLoopMode>>;
 
-        #[cfg(all(
-            feature = "Foundation_NSArray",
-            feature = "Foundation_NSObjCRuntime",
-            feature = "Foundation_NSString"
-        ))]
+        #[cfg(all(feature = "NSArray", feature = "NSObjCRuntime", feature = "NSString"))]
         #[method(setRunLoopModes:)]
         pub unsafe fn setRunLoopModes(&self, run_loop_modes: &NSArray<NSRunLoopMode>);
 
@@ -134,32 +126,32 @@ extern_methods!(
         #[method(redoActionIsDiscardable)]
         pub unsafe fn redoActionIsDiscardable(&self) -> bool;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other undoActionName)]
         pub unsafe fn undoActionName(&self) -> Id<NSString>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other redoActionName)]
         pub unsafe fn redoActionName(&self) -> Id<NSString>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method(setActionName:)]
         pub unsafe fn setActionName(&self, action_name: &NSString);
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other undoMenuItemTitle)]
         pub unsafe fn undoMenuItemTitle(&self) -> Id<NSString>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other redoMenuItemTitle)]
         pub unsafe fn redoMenuItemTitle(&self) -> Id<NSString>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other undoMenuTitleForUndoActionName:)]
         pub unsafe fn undoMenuTitleForUndoActionName(&self, action_name: &NSString)
             -> Id<NSString>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other redoMenuTitleForUndoActionName:)]
         pub unsafe fn redoMenuTitleForUndoActionName(&self, action_name: &NSString)
             -> Id<NSString>;
@@ -178,41 +170,41 @@ extern_methods!(
 );
 
 extern "C" {
-    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSUndoManagerCheckpointNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSUndoManagerWillUndoChangeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSUndoManagerWillRedoChangeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSUndoManagerDidUndoChangeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSUndoManagerDidRedoChangeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSUndoManagerDidOpenUndoGroupNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSUndoManagerWillCloseUndoGroupNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSUndoManagerDidCloseUndoGroupNotification: &'static NSNotificationName;
 }

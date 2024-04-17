@@ -153,11 +153,11 @@ extern_methods!(
         #[method(isAuthorizedForWidgetUpdates)]
         pub unsafe fn isAuthorizedForWidgetUpdates(&self) -> bool;
 
-        #[cfg(feature = "CoreLocation_CLLocationManagerDelegate")]
+        #[cfg(feature = "CLLocationManagerDelegate")]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn CLLocationManagerDelegate>>>;
 
-        #[cfg(feature = "CoreLocation_CLLocationManagerDelegate")]
+        #[cfg(feature = "CLLocationManagerDelegate")]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
@@ -182,19 +182,19 @@ extern_methods!(
         #[method(setActivityType:)]
         pub unsafe fn setActivityType(&self, activity_type: CLActivityType);
 
-        #[cfg(feature = "CoreLocation_CLLocation")]
+        #[cfg(feature = "CLLocation")]
         #[method(distanceFilter)]
         pub unsafe fn distanceFilter(&self) -> CLLocationDistance;
 
-        #[cfg(feature = "CoreLocation_CLLocation")]
+        #[cfg(feature = "CLLocation")]
         #[method(setDistanceFilter:)]
         pub unsafe fn setDistanceFilter(&self, distance_filter: CLLocationDistance);
 
-        #[cfg(feature = "CoreLocation_CLLocation")]
+        #[cfg(feature = "CLLocation")]
         #[method(desiredAccuracy)]
         pub unsafe fn desiredAccuracy(&self) -> CLLocationAccuracy;
 
-        #[cfg(feature = "CoreLocation_CLLocation")]
+        #[cfg(feature = "CLLocation")]
         #[method(setDesiredAccuracy:)]
         pub unsafe fn setDesiredAccuracy(&self, desired_accuracy: CLLocationAccuracy);
 
@@ -225,7 +225,7 @@ extern_methods!(
             shows_background_location_indicator: bool,
         );
 
-        #[cfg(feature = "CoreLocation_CLLocation")]
+        #[cfg(feature = "CLLocation")]
         #[method_id(@__retain_semantics Other location)]
         pub unsafe fn location(&self) -> Option<Id<CLLocation>>;
 
@@ -233,11 +233,11 @@ extern_methods!(
         #[method(headingAvailable)]
         pub unsafe fn headingAvailable(&self) -> bool;
 
-        #[cfg(feature = "CoreLocation_CLLocation")]
+        #[cfg(feature = "CLLocation")]
         #[method(headingFilter)]
         pub unsafe fn headingFilter(&self) -> CLLocationDegrees;
 
-        #[cfg(feature = "CoreLocation_CLLocation")]
+        #[cfg(feature = "CLLocation")]
         #[method(setHeadingFilter:)]
         pub unsafe fn setHeadingFilter(&self, heading_filter: CLLocationDegrees);
 
@@ -247,27 +247,27 @@ extern_methods!(
         #[method(setHeadingOrientation:)]
         pub unsafe fn setHeadingOrientation(&self, heading_orientation: CLDeviceOrientation);
 
-        #[cfg(feature = "CoreLocation_CLHeading")]
+        #[cfg(feature = "CLHeading")]
         #[method_id(@__retain_semantics Other heading)]
         pub unsafe fn heading(&self) -> Option<Id<CLHeading>>;
 
-        #[cfg(feature = "CoreLocation_CLLocation")]
+        #[cfg(feature = "CLLocation")]
         #[method(maximumRegionMonitoringDistance)]
         pub unsafe fn maximumRegionMonitoringDistance(&self) -> CLLocationDistance;
 
-        #[cfg(feature = "CoreLocation_CLRegion")]
+        #[cfg(feature = "CLRegion")]
         #[method_id(@__retain_semantics Other monitoredRegions)]
         pub unsafe fn monitoredRegions(&self) -> Id<NSSet<CLRegion>>;
 
-        #[cfg(feature = "CoreLocation_CLRegion")]
+        #[cfg(feature = "CLRegion")]
         #[deprecated = "Use -rangedBeaconConstraints"]
         #[method_id(@__retain_semantics Other rangedRegions)]
         pub unsafe fn rangedRegions(&self) -> Id<NSSet<CLRegion>>;
 
         #[cfg(all(
-            feature = "CoreLocation_CLBeaconIdentityCondition",
-            feature = "CoreLocation_CLBeaconIdentityConstraint",
-            feature = "CoreLocation_CLCondition"
+            feature = "CLBeaconIdentityCondition",
+            feature = "CLBeaconIdentityConstraint",
+            feature = "CLCondition"
         ))]
         #[method_id(@__retain_semantics Other rangedBeaconConstraints)]
         pub unsafe fn rangedBeaconConstraints(&self) -> Id<NSSet<CLBeaconIdentityConstraint>>;
@@ -326,7 +326,7 @@ extern_methods!(
         #[method(stopMonitoringLocationPushes)]
         pub unsafe fn stopMonitoringLocationPushes(&self);
 
-        #[cfg(all(feature = "CoreLocation_CLLocation", feature = "CoreLocation_CLRegion"))]
+        #[cfg(all(feature = "CLLocation", feature = "CLRegion"))]
         #[deprecated]
         #[method(startMonitoringForRegion:desiredAccuracy:)]
         pub unsafe fn startMonitoringForRegion_desiredAccuracy(
@@ -335,41 +335,35 @@ extern_methods!(
             accuracy: CLLocationAccuracy,
         );
 
-        #[cfg(feature = "CoreLocation_CLRegion")]
+        #[cfg(feature = "CLRegion")]
         #[deprecated]
         #[method(stopMonitoringForRegion:)]
         pub unsafe fn stopMonitoringForRegion(&self, region: &CLRegion);
 
-        #[cfg(feature = "CoreLocation_CLRegion")]
+        #[cfg(feature = "CLRegion")]
         #[deprecated]
         #[method(startMonitoringForRegion:)]
         pub unsafe fn startMonitoringForRegion(&self, region: &CLRegion);
 
-        #[cfg(feature = "CoreLocation_CLRegion")]
+        #[cfg(feature = "CLRegion")]
         #[deprecated]
         #[method(requestStateForRegion:)]
         pub unsafe fn requestStateForRegion(&self, region: &CLRegion);
 
-        #[cfg(all(
-            feature = "CoreLocation_CLBeaconRegion",
-            feature = "CoreLocation_CLRegion"
-        ))]
+        #[cfg(all(feature = "CLBeaconRegion", feature = "CLRegion"))]
         #[deprecated = "Use -startRangingBeaconsSatisfyingConstraint:"]
         #[method(startRangingBeaconsInRegion:)]
         pub unsafe fn startRangingBeaconsInRegion(&self, region: &CLBeaconRegion);
 
-        #[cfg(all(
-            feature = "CoreLocation_CLBeaconRegion",
-            feature = "CoreLocation_CLRegion"
-        ))]
+        #[cfg(all(feature = "CLBeaconRegion", feature = "CLRegion"))]
         #[deprecated = "Use -stopRangingBeaconsSatisfyingConstraint:"]
         #[method(stopRangingBeaconsInRegion:)]
         pub unsafe fn stopRangingBeaconsInRegion(&self, region: &CLBeaconRegion);
 
         #[cfg(all(
-            feature = "CoreLocation_CLBeaconIdentityCondition",
-            feature = "CoreLocation_CLBeaconIdentityConstraint",
-            feature = "CoreLocation_CLCondition"
+            feature = "CLBeaconIdentityCondition",
+            feature = "CLBeaconIdentityConstraint",
+            feature = "CLCondition"
         ))]
         #[method(startRangingBeaconsSatisfyingConstraint:)]
         pub unsafe fn startRangingBeaconsSatisfyingConstraint(
@@ -378,9 +372,9 @@ extern_methods!(
         );
 
         #[cfg(all(
-            feature = "CoreLocation_CLBeaconIdentityCondition",
-            feature = "CoreLocation_CLBeaconIdentityConstraint",
-            feature = "CoreLocation_CLCondition"
+            feature = "CLBeaconIdentityCondition",
+            feature = "CLBeaconIdentityConstraint",
+            feature = "CLCondition"
         ))]
         #[method(stopRangingBeaconsSatisfyingConstraint:)]
         pub unsafe fn stopRangingBeaconsSatisfyingConstraint(
@@ -388,7 +382,7 @@ extern_methods!(
             constraint: &CLBeaconIdentityConstraint,
         );
 
-        #[cfg(feature = "CoreLocation_CLLocation")]
+        #[cfg(feature = "CLLocation")]
         #[deprecated = "You can remove calls to this method"]
         #[method(allowDeferredLocationUpdatesUntilTraveled:timeout:)]
         pub unsafe fn allowDeferredLocationUpdatesUntilTraveled_timeout(
@@ -405,7 +399,7 @@ extern_methods!(
         #[method(deferredLocationUpdatesAvailable)]
         pub unsafe fn deferredLocationUpdatesAvailable() -> bool;
 
-        #[cfg(all(feature = "CoreLocation_CLLocation", feature = "block2"))]
+        #[cfg(all(feature = "CLLocation", feature = "block2"))]
         #[method(requestHistoricalLocationsWithPurposeKey:sampleCount:completionHandler:)]
         pub unsafe fn requestHistoricalLocationsWithPurposeKey_sampleCount_completionHandler(
             &self,

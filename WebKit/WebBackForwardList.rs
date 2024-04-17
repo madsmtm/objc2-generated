@@ -20,7 +20,7 @@ unsafe impl NSObjectProtocol for WebBackForwardList {}
 
 extern_methods!(
     unsafe impl WebBackForwardList {
-        #[cfg(feature = "WebKit_WebHistoryItem")]
+        #[cfg(feature = "WebHistoryItem")]
         #[deprecated]
         #[method(addItem:)]
         pub unsafe fn addItem(&self, item: Option<&WebHistoryItem>);
@@ -33,22 +33,22 @@ extern_methods!(
         #[method(goForward)]
         pub unsafe fn goForward(&self);
 
-        #[cfg(feature = "WebKit_WebHistoryItem")]
+        #[cfg(feature = "WebHistoryItem")]
         #[deprecated]
         #[method(goToItem:)]
         pub unsafe fn goToItem(&self, item: Option<&WebHistoryItem>);
 
-        #[cfg(feature = "WebKit_WebHistoryItem")]
+        #[cfg(feature = "WebHistoryItem")]
         #[deprecated]
         #[method_id(@__retain_semantics Other backItem)]
         pub unsafe fn backItem(&self) -> Option<Id<WebHistoryItem>>;
 
-        #[cfg(feature = "WebKit_WebHistoryItem")]
+        #[cfg(feature = "WebHistoryItem")]
         #[deprecated]
         #[method_id(@__retain_semantics Other currentItem)]
         pub unsafe fn currentItem(&self) -> Option<Id<WebHistoryItem>>;
 
-        #[cfg(feature = "WebKit_WebHistoryItem")]
+        #[cfg(feature = "WebHistoryItem")]
         #[deprecated]
         #[method_id(@__retain_semantics Other forwardItem)]
         pub unsafe fn forwardItem(&self) -> Option<Id<WebHistoryItem>>;
@@ -77,12 +77,12 @@ extern_methods!(
         #[method(forwardListCount)]
         pub unsafe fn forwardListCount(&self) -> c_int;
 
-        #[cfg(feature = "WebKit_WebHistoryItem")]
+        #[cfg(feature = "WebHistoryItem")]
         #[deprecated]
         #[method(containsItem:)]
         pub unsafe fn containsItem(&self, item: Option<&WebHistoryItem>) -> bool;
 
-        #[cfg(feature = "WebKit_WebHistoryItem")]
+        #[cfg(feature = "WebHistoryItem")]
         #[deprecated]
         #[method_id(@__retain_semantics Other itemAtIndex:)]
         pub unsafe fn itemAtIndex(&self, index: c_int) -> Option<Id<WebHistoryItem>>;

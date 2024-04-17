@@ -208,10 +208,10 @@ extern "C" {
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MediaPlayer_MPMediaEntity")]
+    #[cfg(feature = "MPMediaEntity")]
     pub struct MPMediaItem;
 
-    #[cfg(feature = "MediaPlayer_MPMediaEntity")]
+    #[cfg(feature = "MPMediaEntity")]
     unsafe impl ClassType for MPMediaItem {
         #[inherits(NSObject)]
         type Super = MPMediaEntity;
@@ -219,17 +219,17 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "MediaPlayer_MPMediaEntity")]
+#[cfg(feature = "MPMediaEntity")]
 unsafe impl NSCoding for MPMediaItem {}
 
-#[cfg(feature = "MediaPlayer_MPMediaEntity")]
+#[cfg(feature = "MPMediaEntity")]
 unsafe impl NSObjectProtocol for MPMediaItem {}
 
-#[cfg(feature = "MediaPlayer_MPMediaEntity")]
+#[cfg(feature = "MPMediaEntity")]
 unsafe impl NSSecureCoding for MPMediaItem {}
 
 extern_methods!(
-    #[cfg(feature = "MediaPlayer_MPMediaEntity")]
+    #[cfg(feature = "MPMediaEntity")]
     unsafe impl MPMediaItem {
         #[method(persistentID)]
         pub unsafe fn persistentID(&self) -> MPMediaEntityPersistentID;
@@ -352,7 +352,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MediaPlayer_MPMediaEntity")]
+    #[cfg(feature = "MPMediaEntity")]
     unsafe impl MPMediaItem {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

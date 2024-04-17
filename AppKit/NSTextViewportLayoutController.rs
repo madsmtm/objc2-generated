@@ -13,7 +13,7 @@ extern_protocol!(
             text_viewport_layout_controller: &NSTextViewportLayoutController,
         ) -> CGRect;
 
-        #[cfg(feature = "AppKit_NSTextLayoutFragment")]
+        #[cfg(feature = "NSTextLayoutFragment")]
         #[method(textViewportLayoutController:configureRenderingSurfaceForTextLayoutFragment:)]
         unsafe fn textViewportLayoutController_configureRenderingSurfaceForTextLayoutFragment(
             &self,
@@ -53,7 +53,7 @@ unsafe impl NSObjectProtocol for NSTextViewportLayoutController {}
 
 extern_methods!(
     unsafe impl NSTextViewportLayoutController {
-        #[cfg(feature = "AppKit_NSTextLayoutManager")]
+        #[cfg(feature = "NSTextLayoutManager")]
         #[method_id(@__retain_semantics Init initWithTextLayoutManager:)]
         pub unsafe fn initWithTextLayoutManager(
             this: Allocated<Self>,
@@ -77,21 +77,21 @@ extern_methods!(
             delegate: Option<&ProtocolObject<dyn NSTextViewportLayoutControllerDelegate>>,
         );
 
-        #[cfg(feature = "AppKit_NSTextLayoutManager")]
+        #[cfg(feature = "NSTextLayoutManager")]
         #[method_id(@__retain_semantics Other textLayoutManager)]
         pub unsafe fn textLayoutManager(&self) -> Option<Id<NSTextLayoutManager>>;
 
         #[method(viewportBounds)]
         pub unsafe fn viewportBounds(&self) -> CGRect;
 
-        #[cfg(feature = "AppKit_NSTextRange")]
+        #[cfg(feature = "NSTextRange")]
         #[method_id(@__retain_semantics Other viewportRange)]
         pub unsafe fn viewportRange(&self) -> Option<Id<NSTextRange>>;
 
         #[method(layoutViewport)]
         pub unsafe fn layoutViewport(&self);
 
-        #[cfg(feature = "AppKit_NSTextRange")]
+        #[cfg(feature = "NSTextRange")]
         #[method(relocateViewportToTextLocation:)]
         pub unsafe fn relocateViewportToTextLocation(
             &self,

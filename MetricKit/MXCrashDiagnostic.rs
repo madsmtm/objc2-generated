@@ -7,10 +7,10 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MetricKit_MXDiagnostic")]
+    #[cfg(feature = "MXDiagnostic")]
     pub struct MXCrashDiagnostic;
 
-    #[cfg(feature = "MetricKit_MXDiagnostic")]
+    #[cfg(feature = "MXDiagnostic")]
     unsafe impl ClassType for MXCrashDiagnostic {
         #[inherits(NSObject)]
         type Super = MXDiagnostic;
@@ -18,19 +18,19 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "MetricKit_MXDiagnostic")]
+#[cfg(feature = "MXDiagnostic")]
 unsafe impl NSCoding for MXCrashDiagnostic {}
 
-#[cfg(feature = "MetricKit_MXDiagnostic")]
+#[cfg(feature = "MXDiagnostic")]
 unsafe impl NSObjectProtocol for MXCrashDiagnostic {}
 
-#[cfg(feature = "MetricKit_MXDiagnostic")]
+#[cfg(feature = "MXDiagnostic")]
 unsafe impl NSSecureCoding for MXCrashDiagnostic {}
 
 extern_methods!(
-    #[cfg(feature = "MetricKit_MXDiagnostic")]
+    #[cfg(feature = "MXDiagnostic")]
     unsafe impl MXCrashDiagnostic {
-        #[cfg(feature = "MetricKit_MXCallStackTree")]
+        #[cfg(feature = "MXCallStackTree")]
         #[method_id(@__retain_semantics Other callStackTree)]
         pub unsafe fn callStackTree(&self) -> Id<MXCallStackTree>;
 
@@ -49,7 +49,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other signal)]
         pub unsafe fn signal(&self) -> Option<Id<NSNumber>>;
 
-        #[cfg(feature = "MetricKit_MXCrashDiagnosticObjectiveCExceptionReason")]
+        #[cfg(feature = "MXCrashDiagnosticObjectiveCExceptionReason")]
         #[method_id(@__retain_semantics Other exceptionReason)]
         pub unsafe fn exceptionReason(
             &self,
@@ -59,7 +59,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MetricKit_MXDiagnostic")]
+    #[cfg(feature = "MXDiagnostic")]
     unsafe impl MXCrashDiagnostic {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

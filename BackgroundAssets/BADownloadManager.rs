@@ -9,17 +9,17 @@ use crate::*;
 
 extern_protocol!(
     pub unsafe trait BADownloadManagerDelegate: NSObjectProtocol {
-        #[cfg(feature = "BackgroundAssets_BADownload")]
+        #[cfg(feature = "BADownload")]
         #[optional]
         #[method(downloadDidBegin:)]
         unsafe fn downloadDidBegin(&self, download: &BADownload);
 
-        #[cfg(feature = "BackgroundAssets_BADownload")]
+        #[cfg(feature = "BADownload")]
         #[optional]
         #[method(downloadDidPause:)]
         unsafe fn downloadDidPause(&self, download: &BADownload);
 
-        #[cfg(feature = "BackgroundAssets_BADownload")]
+        #[cfg(feature = "BADownload")]
         #[optional]
         #[method(download:didWriteBytes:totalBytesWritten:totalBytesExpectedToWrite:)]
         unsafe fn download_didWriteBytes_totalBytesWritten_totalBytesExpectedToWrite(
@@ -30,7 +30,7 @@ extern_protocol!(
             total_expected_bytes: i64,
         );
 
-        #[cfg(all(feature = "BackgroundAssets_BADownload", feature = "block2"))]
+        #[cfg(all(feature = "BADownload", feature = "block2"))]
         #[optional]
         #[method(download:didReceiveChallenge:completionHandler:)]
         unsafe fn download_didReceiveChallenge_completionHandler(
@@ -42,12 +42,12 @@ extern_protocol!(
             >,
         );
 
-        #[cfg(feature = "BackgroundAssets_BADownload")]
+        #[cfg(feature = "BADownload")]
         #[optional]
         #[method(download:failedWithError:)]
         unsafe fn download_failedWithError(&self, download: &BADownload, error: &NSError);
 
-        #[cfg(feature = "BackgroundAssets_BADownload")]
+        #[cfg(feature = "BADownload")]
         #[optional]
         #[method(download:finishedWithFileURL:)]
         unsafe fn download_finishedWithFileURL(&self, download: &BADownload, file_url: &NSURL);
@@ -88,18 +88,18 @@ extern_methods!(
             delegate: Option<&ProtocolObject<dyn BADownloadManagerDelegate>>,
         );
 
-        #[cfg(feature = "BackgroundAssets_BADownload")]
+        #[cfg(feature = "BADownload")]
         #[method_id(@__retain_semantics Other fetchCurrentDownloads:_)]
         pub unsafe fn fetchCurrentDownloads(&self) -> Result<Id<NSArray<BADownload>>, Id<NSError>>;
 
-        #[cfg(all(feature = "BackgroundAssets_BADownload", feature = "block2"))]
+        #[cfg(all(feature = "BADownload", feature = "block2"))]
         #[method(fetchCurrentDownloadsWithCompletionHandler:)]
         pub unsafe fn fetchCurrentDownloadsWithCompletionHandler(
             &self,
             completion_handler: &Block<dyn Fn(NonNull<NSArray<BADownload>>, *mut NSError)>,
         );
 
-        #[cfg(feature = "BackgroundAssets_BADownload")]
+        #[cfg(feature = "BADownload")]
         #[method(scheduleDownload:error:_)]
         pub unsafe fn scheduleDownload_error(
             &self,
@@ -121,14 +121,14 @@ extern_methods!(
             perform_handler: &Block<dyn Fn(Bool, *mut NSError)>,
         );
 
-        #[cfg(feature = "BackgroundAssets_BADownload")]
+        #[cfg(feature = "BADownload")]
         #[method(startForegroundDownload:error:_)]
         pub unsafe fn startForegroundDownload_error(
             &self,
             download: &BADownload,
         ) -> Result<(), Id<NSError>>;
 
-        #[cfg(feature = "BackgroundAssets_BADownload")]
+        #[cfg(feature = "BADownload")]
         #[method(cancelDownload:error:_)]
         pub unsafe fn cancelDownload_error(&self, download: &BADownload)
             -> Result<(), Id<NSError>>;

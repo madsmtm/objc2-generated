@@ -7,7 +7,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
-#[cfg(all(feature = "MapKit_MKLocalSearchResponse", feature = "block2"))]
+#[cfg(all(feature = "MKLocalSearchResponse", feature = "block2"))]
 pub type MKLocalSearchCompletionHandler =
     *mut Block<dyn Fn(*mut MKLocalSearchResponse, *mut NSError)>;
 
@@ -25,21 +25,21 @@ unsafe impl NSObjectProtocol for MKLocalSearch {}
 
 extern_methods!(
     unsafe impl MKLocalSearch {
-        #[cfg(feature = "MapKit_MKLocalSearchRequest")]
+        #[cfg(feature = "MKLocalSearchRequest")]
         #[method_id(@__retain_semantics Init initWithRequest:)]
         pub unsafe fn initWithRequest(
             this: Allocated<Self>,
             request: &MKLocalSearchRequest,
         ) -> Id<Self>;
 
-        #[cfg(feature = "MapKit_MKLocalPointsOfInterestRequest")]
+        #[cfg(feature = "MKLocalPointsOfInterestRequest")]
         #[method_id(@__retain_semantics Init initWithPointsOfInterestRequest:)]
         pub unsafe fn initWithPointsOfInterestRequest(
             this: Allocated<Self>,
             request: &MKLocalPointsOfInterestRequest,
         ) -> Id<Self>;
 
-        #[cfg(all(feature = "MapKit_MKLocalSearchResponse", feature = "block2"))]
+        #[cfg(all(feature = "MKLocalSearchResponse", feature = "block2"))]
         #[method(startWithCompletionHandler:)]
         pub unsafe fn startWithCompletionHandler(
             &self,

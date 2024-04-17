@@ -135,7 +135,7 @@ unsafe impl NSCopying for PHCloudIdentifier {}
 
 extern_methods!(
     /// CloudIdentifiers
-    #[cfg(feature = "Photos_PHPhotoLibrary")]
+    #[cfg(feature = "PHPhotoLibrary")]
     unsafe impl PHPhotoLibrary {
         #[method_id(@__retain_semantics Other localIdentifierMappingsForCloudIdentifiers:)]
         pub unsafe fn localIdentifierMappingsForCloudIdentifiers(

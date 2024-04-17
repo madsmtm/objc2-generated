@@ -11,10 +11,10 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(feature = "GameKit_GKBasePlayer", feature = "GameKit_GKPlayer"))]
+    #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
     pub struct GKLocalPlayer;
 
-    #[cfg(all(feature = "GameKit_GKBasePlayer", feature = "GameKit_GKPlayer"))]
+    #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
     unsafe impl ClassType for GKLocalPlayer {
         #[inherits(GKBasePlayer, NSObject)]
         type Super = GKPlayer;
@@ -22,11 +22,11 @@ extern_class!(
     }
 );
 
-#[cfg(all(feature = "GameKit_GKBasePlayer", feature = "GameKit_GKPlayer"))]
+#[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
 unsafe impl NSObjectProtocol for GKLocalPlayer {}
 
 extern_methods!(
-    #[cfg(all(feature = "GameKit_GKBasePlayer", feature = "GameKit_GKPlayer"))]
+    #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
     unsafe impl GKLocalPlayer {
         #[method_id(@__retain_semantics Other local)]
         pub unsafe fn local() -> Id<GKLocalPlayer>;
@@ -88,7 +88,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `GKPlayer`
-    #[cfg(all(feature = "GameKit_GKBasePlayer", feature = "GameKit_GKPlayer"))]
+    #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
     unsafe impl GKLocalPlayer {
         #[method_id(@__retain_semantics Other anonymousGuestPlayerWithIdentifier:)]
         pub unsafe fn anonymousGuestPlayerWithIdentifier(guest_identifier: &NSString) -> Id<Self>;
@@ -97,7 +97,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "GameKit_GKBasePlayer", feature = "GameKit_GKPlayer"))]
+    #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
     unsafe impl GKLocalPlayer {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -109,10 +109,10 @@ extern_methods!(
 
 extern_protocol!(
     #[cfg(all(
-        feature = "GameKit_GKEventListener",
-        feature = "GameKit_GKMatchmaker",
-        feature = "GameKit_GKSavedGameListener",
-        feature = "GameKit_GKTurnBasedMatch"
+        feature = "GKEventListener",
+        feature = "GKMatchmaker",
+        feature = "GKSavedGameListener",
+        feature = "GKTurnBasedMatch"
     ))]
     pub unsafe trait GKLocalPlayerListener:
         GKChallengeListener + GKInviteEventListener + GKSavedGameListener + GKTurnBasedEventListener
@@ -120,32 +120,32 @@ extern_protocol!(
     }
 
     #[cfg(all(
-        feature = "GameKit_GKEventListener",
-        feature = "GameKit_GKMatchmaker",
-        feature = "GameKit_GKSavedGameListener",
-        feature = "GameKit_GKTurnBasedMatch"
+        feature = "GKEventListener",
+        feature = "GKMatchmaker",
+        feature = "GKSavedGameListener",
+        feature = "GKTurnBasedMatch"
     ))]
     unsafe impl ProtocolType for dyn GKLocalPlayerListener {}
 );
 
 extern_methods!(
     /// GKLocalPlayerEvents
-    #[cfg(all(feature = "GameKit_GKBasePlayer", feature = "GameKit_GKPlayer"))]
+    #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
     unsafe impl GKLocalPlayer {
         #[cfg(all(
-            feature = "GameKit_GKEventListener",
-            feature = "GameKit_GKMatchmaker",
-            feature = "GameKit_GKSavedGameListener",
-            feature = "GameKit_GKTurnBasedMatch"
+            feature = "GKEventListener",
+            feature = "GKMatchmaker",
+            feature = "GKSavedGameListener",
+            feature = "GKTurnBasedMatch"
         ))]
         #[method(registerListener:)]
         pub unsafe fn registerListener(&self, listener: &ProtocolObject<dyn GKLocalPlayerListener>);
 
         #[cfg(all(
-            feature = "GameKit_GKEventListener",
-            feature = "GameKit_GKMatchmaker",
-            feature = "GameKit_GKSavedGameListener",
-            feature = "GameKit_GKTurnBasedMatch"
+            feature = "GKEventListener",
+            feature = "GKMatchmaker",
+            feature = "GKSavedGameListener",
+            feature = "GKTurnBasedMatch"
         ))]
         #[method(unregisterListener:)]
         pub unsafe fn unregisterListener(
@@ -164,7 +164,7 @@ extern "C" {
 
 extern_methods!(
     /// Deprecated
-    #[cfg(all(feature = "GameKit_GKBasePlayer", feature = "GameKit_GKPlayer"))]
+    #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
     unsafe impl GKLocalPlayer {
         #[cfg(feature = "block2")]
         #[deprecated]
@@ -213,7 +213,7 @@ extern_methods!(
 
 extern_methods!(
     /// Obsoleted
-    #[cfg(all(feature = "GameKit_GKBasePlayer", feature = "GameKit_GKPlayer"))]
+    #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
     unsafe impl GKLocalPlayer {
         #[cfg(feature = "block2")]
         #[deprecated]
@@ -254,7 +254,7 @@ unsafe impl RefEncode for GKFriendsAuthorizationStatus {
 
 extern_methods!(
     /// FriendsList
-    #[cfg(all(feature = "GameKit_GKBasePlayer", feature = "GameKit_GKPlayer"))]
+    #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
     unsafe impl GKLocalPlayer {
         #[cfg(feature = "block2")]
         #[method(loadFriendsAuthorizationStatus:)]
@@ -282,7 +282,7 @@ extern_methods!(
 
 extern_methods!(
     /// UI
-    #[cfg(all(feature = "GameKit_GKBasePlayer", feature = "GameKit_GKPlayer"))]
+    #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
     unsafe impl GKLocalPlayer {
         #[cfg(all(feature = "block2", feature = "objc2-app-kit"))]
         #[method(authenticateHandler)]

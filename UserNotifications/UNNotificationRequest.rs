@@ -28,18 +28,15 @@ extern_methods!(
         #[method_id(@__retain_semantics Other identifier)]
         pub unsafe fn identifier(&self) -> Id<NSString>;
 
-        #[cfg(feature = "UserNotifications_UNNotificationContent")]
+        #[cfg(feature = "UNNotificationContent")]
         #[method_id(@__retain_semantics Other content)]
         pub unsafe fn content(&self) -> Id<UNNotificationContent>;
 
-        #[cfg(feature = "UserNotifications_UNNotificationTrigger")]
+        #[cfg(feature = "UNNotificationTrigger")]
         #[method_id(@__retain_semantics Other trigger)]
         pub unsafe fn trigger(&self) -> Option<Id<UNNotificationTrigger>>;
 
-        #[cfg(all(
-            feature = "UserNotifications_UNNotificationContent",
-            feature = "UserNotifications_UNNotificationTrigger"
-        ))]
+        #[cfg(all(feature = "UNNotificationContent", feature = "UNNotificationTrigger"))]
         #[method_id(@__retain_semantics Other requestWithIdentifier:content:trigger:)]
         pub unsafe fn requestWithIdentifier_content_trigger(
             identifier: &NSString,

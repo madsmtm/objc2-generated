@@ -10,9 +10,9 @@ use crate::*;
 extern_protocol!(
     pub unsafe trait NSWindowRestoration: NSObjectProtocol + IsMainThreadOnly {
         #[cfg(all(
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSUserInterfaceItemIdentification",
-            feature = "AppKit_NSWindow",
+            feature = "NSResponder",
+            feature = "NSUserInterfaceItemIdentification",
+            feature = "NSWindow",
             feature = "block2"
         ))]
         #[method(restoreWindowWithIdentifier:state:completionHandler:)]
@@ -29,20 +29,20 @@ extern_protocol!(
 
 extern_methods!(
     /// NSWindowRestoration
-    #[cfg(feature = "AppKit_NSDocumentController")]
+    #[cfg(feature = "NSDocumentController")]
     unsafe impl NSDocumentController {}
 );
 
-#[cfg(feature = "AppKit_NSDocumentController")]
+#[cfg(feature = "NSDocumentController")]
 unsafe impl NSWindowRestoration for NSDocumentController {}
 
 extern_methods!(
     /// NSWindowRestoration
-    #[cfg(all(feature = "AppKit_NSApplication", feature = "AppKit_NSResponder"))]
+    #[cfg(all(feature = "NSApplication", feature = "NSResponder"))]
     unsafe impl NSApplication {
         #[cfg(all(
-            feature = "AppKit_NSUserInterfaceItemIdentification",
-            feature = "AppKit_NSWindow",
+            feature = "NSUserInterfaceItemIdentification",
+            feature = "NSWindow",
             feature = "block2"
         ))]
         #[method(restoreWindowWithIdentifier:state:completionHandler:)]
@@ -61,7 +61,7 @@ extern "C" {
 
 extern_methods!(
     /// NSUserInterfaceRestoration
-    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSWindow"))]
+    #[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
     unsafe impl NSWindow {
         #[method(isRestorable)]
         pub unsafe fn isRestorable(&self) -> bool;
@@ -85,7 +85,7 @@ extern_methods!(
 
 extern_methods!(
     /// NSRestorableState
-    #[cfg(feature = "AppKit_NSResponder")]
+    #[cfg(feature = "NSResponder")]
     unsafe impl NSResponder {
         #[method(encodeRestorableStateWithCoder:)]
         pub unsafe fn encodeRestorableStateWithCoder(&self, coder: &NSCoder);
@@ -116,7 +116,7 @@ extern_methods!(
 
 extern_methods!(
     /// NSRestorableStateExtension
-    #[cfg(all(feature = "AppKit_NSApplication", feature = "AppKit_NSResponder"))]
+    #[cfg(all(feature = "NSApplication", feature = "NSResponder"))]
     unsafe impl NSApplication {
         #[method(extendStateRestoration)]
         pub unsafe fn extendStateRestoration(&self);
@@ -128,12 +128,12 @@ extern_methods!(
 
 extern_methods!(
     /// NSRestorableState
-    #[cfg(feature = "AppKit_NSDocument")]
+    #[cfg(feature = "NSDocument")]
     unsafe impl NSDocument {
         #[cfg(all(
-            feature = "AppKit_NSResponder",
-            feature = "AppKit_NSUserInterfaceItemIdentification",
-            feature = "AppKit_NSWindow",
+            feature = "NSResponder",
+            feature = "NSUserInterfaceItemIdentification",
+            feature = "NSWindow",
             feature = "block2"
         ))]
         #[method(restoreDocumentWindowWithIdentifier:state:completionHandler:)]

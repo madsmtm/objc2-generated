@@ -7,10 +7,7 @@ use crate::*;
 
 extern_protocol!(
     pub unsafe trait WKScriptMessageHandler: NSObjectProtocol {
-        #[cfg(all(
-            feature = "WebKit_WKScriptMessage",
-            feature = "WebKit_WKUserContentController"
-        ))]
+        #[cfg(all(feature = "WKScriptMessage", feature = "WKUserContentController"))]
         #[method(userContentController:didReceiveScriptMessage:)]
         unsafe fn userContentController_didReceiveScriptMessage(
             &self,

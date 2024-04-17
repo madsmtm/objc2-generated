@@ -14,49 +14,49 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSCoding for NSPointerArray {}
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSPointerArray {}
 
-#[cfg(feature = "Foundation_NSEnumerator")]
+#[cfg(feature = "NSEnumerator")]
 unsafe impl NSFastEnumeration for NSPointerArray {}
 
 unsafe impl NSObjectProtocol for NSPointerArray {}
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSSecureCoding for NSPointerArray {}
 
 extern_methods!(
     unsafe impl NSPointerArray {
-        #[cfg(feature = "Foundation_NSPointerFunctions")]
+        #[cfg(feature = "NSPointerFunctions")]
         #[method_id(@__retain_semantics Init initWithOptions:)]
         pub unsafe fn initWithOptions(
             this: Allocated<Self>,
             options: NSPointerFunctionsOptions,
         ) -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSPointerFunctions")]
+        #[cfg(feature = "NSPointerFunctions")]
         #[method_id(@__retain_semantics Init initWithPointerFunctions:)]
         pub unsafe fn initWithPointerFunctions(
             this: Allocated<Self>,
             functions: &NSPointerFunctions,
         ) -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSPointerFunctions")]
+        #[cfg(feature = "NSPointerFunctions")]
         #[method_id(@__retain_semantics Other pointerArrayWithOptions:)]
         pub unsafe fn pointerArrayWithOptions(
             options: NSPointerFunctionsOptions,
         ) -> Id<NSPointerArray>;
 
-        #[cfg(feature = "Foundation_NSPointerFunctions")]
+        #[cfg(feature = "NSPointerFunctions")]
         #[method_id(@__retain_semantics Other pointerArrayWithPointerFunctions:)]
         pub unsafe fn pointerArrayWithPointerFunctions(
             functions: &NSPointerFunctions,
         ) -> Id<NSPointerArray>;
 
-        #[cfg(feature = "Foundation_NSPointerFunctions")]
+        #[cfg(feature = "NSPointerFunctions")]
         #[method_id(@__retain_semantics Other pointerFunctions)]
         pub unsafe fn pointerFunctions(&self) -> Id<NSPointerFunctions>;
 
@@ -118,7 +118,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other weakObjectsPointerArray)]
         pub unsafe fn weakObjectsPointerArray() -> Id<NSPointerArray>;
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(feature = "NSArray")]
         #[method_id(@__retain_semantics Other allObjects)]
         pub unsafe fn allObjects(&self) -> Id<NSArray>;
     }

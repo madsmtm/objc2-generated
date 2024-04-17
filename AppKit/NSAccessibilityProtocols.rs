@@ -311,14 +311,14 @@ extern_protocol!(
 
 extern_protocol!(
     pub unsafe trait NSAccessibilityElementLoading: NSObjectProtocol {
-        #[cfg(feature = "AppKit_NSAccessibilityConstants")]
+        #[cfg(feature = "NSAccessibilityConstants")]
         #[method_id(@__retain_semantics Other accessibilityElementWithToken:)]
         unsafe fn accessibilityElementWithToken(
             &self,
             token: &NSAccessibilityLoadingToken,
         ) -> Option<Id<ProtocolObject<dyn NSAccessibilityElementProtocol>>>;
 
-        #[cfg(feature = "AppKit_NSAccessibilityConstants")]
+        #[cfg(feature = "NSAccessibilityConstants")]
         #[optional]
         #[method(accessibilityRangeInTargetElementWithToken:)]
         unsafe fn accessibilityRangeInTargetElementWithToken(
@@ -395,11 +395,11 @@ extern_protocol!(
             accessibility_visible_children: Option<&NSArray>,
         );
 
-        #[cfg(feature = "AppKit_NSAccessibilityConstants")]
+        #[cfg(feature = "NSAccessibilityConstants")]
         #[method_id(@__retain_semantics Other accessibilitySubrole)]
         unsafe fn accessibilitySubrole(&self) -> Option<Id<NSAccessibilitySubrole>>;
 
-        #[cfg(feature = "AppKit_NSAccessibilityConstants")]
+        #[cfg(feature = "NSAccessibilityConstants")]
         #[method(setAccessibilitySubrole:)]
         unsafe fn setAccessibilitySubrole(
             &self,
@@ -430,11 +430,11 @@ extern_protocol!(
             accessibility_next_contents: Option<&NSArray>,
         );
 
-        #[cfg(feature = "AppKit_NSAccessibilityConstants")]
+        #[cfg(feature = "NSAccessibilityConstants")]
         #[method(accessibilityOrientation)]
         unsafe fn accessibilityOrientation(&self) -> NSAccessibilityOrientation;
 
-        #[cfg(feature = "AppKit_NSAccessibilityConstants")]
+        #[cfg(feature = "NSAccessibilityConstants")]
         #[method(setAccessibilityOrientation:)]
         unsafe fn setAccessibilityOrientation(
             &self,
@@ -474,11 +474,11 @@ extern_protocol!(
             accessibility_previous_contents: Option<&NSArray>,
         );
 
-        #[cfg(feature = "AppKit_NSAccessibilityConstants")]
+        #[cfg(feature = "NSAccessibilityConstants")]
         #[method_id(@__retain_semantics Other accessibilityRole)]
         unsafe fn accessibilityRole(&self) -> Option<Id<NSAccessibilityRole>>;
 
-        #[cfg(feature = "AppKit_NSAccessibilityConstants")]
+        #[cfg(feature = "NSAccessibilityConstants")]
         #[method(setAccessibilityRole:)]
         unsafe fn setAccessibilityRole(&self, accessibility_role: Option<&NSAccessibilityRole>);
 
@@ -678,11 +678,11 @@ extern_protocol!(
         #[method(setAccessibilityRequired:)]
         unsafe fn setAccessibilityRequired(&self, accessibility_required: bool);
 
-        #[cfg(feature = "AppKit_NSAccessibilityCustomRotor")]
+        #[cfg(feature = "NSAccessibilityCustomRotor")]
         #[method_id(@__retain_semantics Other accessibilityCustomRotors)]
         unsafe fn accessibilityCustomRotors(&self) -> Id<NSArray<NSAccessibilityCustomRotor>>;
 
-        #[cfg(feature = "AppKit_NSAccessibilityCustomRotor")]
+        #[cfg(feature = "NSAccessibilityCustomRotor")]
         #[method(setAccessibilityCustomRotors:)]
         unsafe fn setAccessibilityCustomRotors(
             &self,
@@ -781,22 +781,22 @@ extern_protocol!(
         #[method(setAccessibilityOrderedByRow:)]
         unsafe fn setAccessibilityOrderedByRow(&self, accessibility_ordered_by_row: bool);
 
-        #[cfg(feature = "AppKit_NSAccessibilityConstants")]
+        #[cfg(feature = "NSAccessibilityConstants")]
         #[method(accessibilityHorizontalUnits)]
         unsafe fn accessibilityHorizontalUnits(&self) -> NSAccessibilityUnits;
 
-        #[cfg(feature = "AppKit_NSAccessibilityConstants")]
+        #[cfg(feature = "NSAccessibilityConstants")]
         #[method(setAccessibilityHorizontalUnits:)]
         unsafe fn setAccessibilityHorizontalUnits(
             &self,
             accessibility_horizontal_units: NSAccessibilityUnits,
         );
 
-        #[cfg(feature = "AppKit_NSAccessibilityConstants")]
+        #[cfg(feature = "NSAccessibilityConstants")]
         #[method(accessibilityVerticalUnits)]
         unsafe fn accessibilityVerticalUnits(&self) -> NSAccessibilityUnits;
 
-        #[cfg(feature = "AppKit_NSAccessibilityConstants")]
+        #[cfg(feature = "NSAccessibilityConstants")]
         #[method(setAccessibilityVerticalUnits:)]
         unsafe fn setAccessibilityVerticalUnits(
             &self,
@@ -914,11 +914,11 @@ extern_protocol!(
             accessibility_marker_group_ui_element: Option<&AnyObject>,
         );
 
-        #[cfg(feature = "AppKit_NSAccessibilityConstants")]
+        #[cfg(feature = "NSAccessibilityConstants")]
         #[method(accessibilityUnits)]
         unsafe fn accessibilityUnits(&self) -> NSAccessibilityUnits;
 
-        #[cfg(feature = "AppKit_NSAccessibilityConstants")]
+        #[cfg(feature = "NSAccessibilityConstants")]
         #[method(setAccessibilityUnits:)]
         unsafe fn setAccessibilityUnits(&self, accessibility_units: NSAccessibilityUnits);
 
@@ -931,11 +931,11 @@ extern_protocol!(
             accessibility_unit_description: Option<&NSString>,
         );
 
-        #[cfg(feature = "AppKit_NSAccessibilityConstants")]
+        #[cfg(feature = "NSAccessibilityConstants")]
         #[method(accessibilityRulerMarkerType)]
         unsafe fn accessibilityRulerMarkerType(&self) -> NSAccessibilityRulerMarkerType;
 
-        #[cfg(feature = "AppKit_NSAccessibilityConstants")]
+        #[cfg(feature = "NSAccessibilityConstants")]
         #[method(setAccessibilityRulerMarkerType:)]
         unsafe fn setAccessibilityRulerMarkerType(
             &self,
@@ -1092,11 +1092,11 @@ extern_protocol!(
             accessibility_selected_columns: Option<&NSArray>,
         );
 
-        #[cfg(feature = "AppKit_NSAccessibilityConstants")]
+        #[cfg(feature = "NSAccessibilityConstants")]
         #[method(accessibilitySortDirection)]
         unsafe fn accessibilitySortDirection(&self) -> NSAccessibilitySortDirection;
 
-        #[cfg(feature = "AppKit_NSAccessibilityConstants")]
+        #[cfg(feature = "NSAccessibilityConstants")]
         #[method(setAccessibilitySortDirection:)]
         unsafe fn setAccessibilitySortDirection(
             &self,
@@ -1350,13 +1350,13 @@ extern_protocol!(
         #[method(setAccessibilityMinimized:)]
         unsafe fn setAccessibilityMinimized(&self, accessibility_minimized: bool);
 
-        #[cfg(feature = "AppKit_NSAccessibilityCustomAction")]
+        #[cfg(feature = "NSAccessibilityCustomAction")]
         #[method_id(@__retain_semantics Other accessibilityCustomActions)]
         unsafe fn accessibilityCustomActions(
             &self,
         ) -> Option<Id<NSArray<NSAccessibilityCustomAction>>>;
 
-        #[cfg(feature = "AppKit_NSAccessibilityCustomAction")]
+        #[cfg(feature = "NSAccessibilityCustomAction")]
         #[method(setAccessibilityCustomActions:)]
         unsafe fn setAccessibilityCustomActions(
             &self,

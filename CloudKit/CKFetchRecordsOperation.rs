@@ -9,16 +9,10 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(
-        feature = "CloudKit_CKDatabaseOperation",
-        feature = "CloudKit_CKOperation"
-    ))]
+    #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
     pub struct CKFetchRecordsOperation;
 
-    #[cfg(all(
-        feature = "CloudKit_CKDatabaseOperation",
-        feature = "CloudKit_CKOperation"
-    ))]
+    #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
     unsafe impl ClassType for CKFetchRecordsOperation {
         #[inherits(CKOperation, NSOperation, NSObject)]
         type Super = CKDatabaseOperation;
@@ -26,22 +20,16 @@ extern_class!(
     }
 );
 
-#[cfg(all(
-    feature = "CloudKit_CKDatabaseOperation",
-    feature = "CloudKit_CKOperation"
-))]
+#[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
 unsafe impl NSObjectProtocol for CKFetchRecordsOperation {}
 
 extern_methods!(
-    #[cfg(all(
-        feature = "CloudKit_CKDatabaseOperation",
-        feature = "CloudKit_CKOperation"
-    ))]
+    #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
     unsafe impl CKFetchRecordsOperation {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
-        #[cfg(feature = "CloudKit_CKRecordID")]
+        #[cfg(feature = "CKRecordID")]
         #[method_id(@__retain_semantics Init initWithRecordIDs:)]
         pub unsafe fn initWithRecordIDs(
             this: Allocated<Self>,
@@ -51,50 +39,42 @@ extern_methods!(
         #[method_id(@__retain_semantics Other fetchCurrentUserRecordOperation)]
         pub unsafe fn fetchCurrentUserRecordOperation() -> Id<Self>;
 
-        #[cfg(feature = "CloudKit_CKRecordID")]
+        #[cfg(feature = "CKRecordID")]
         #[method_id(@__retain_semantics Other recordIDs)]
         pub unsafe fn recordIDs(&self) -> Option<Id<NSArray<CKRecordID>>>;
 
-        #[cfg(feature = "CloudKit_CKRecordID")]
+        #[cfg(feature = "CKRecordID")]
         #[method(setRecordIDs:)]
         pub unsafe fn setRecordIDs(&self, record_i_ds: Option<&NSArray<CKRecordID>>);
 
-        #[cfg(feature = "CloudKit_CKRecord")]
+        #[cfg(feature = "CKRecord")]
         #[method_id(@__retain_semantics Other desiredKeys)]
         pub unsafe fn desiredKeys(&self) -> Option<Id<NSArray<CKRecordFieldKey>>>;
 
-        #[cfg(feature = "CloudKit_CKRecord")]
+        #[cfg(feature = "CKRecord")]
         #[method(setDesiredKeys:)]
         pub unsafe fn setDesiredKeys(&self, desired_keys: Option<&NSArray<CKRecordFieldKey>>);
 
-        #[cfg(all(feature = "CloudKit_CKRecordID", feature = "block2"))]
+        #[cfg(all(feature = "CKRecordID", feature = "block2"))]
         #[method(perRecordProgressBlock)]
         pub unsafe fn perRecordProgressBlock(
             &self,
         ) -> *mut Block<dyn Fn(NonNull<CKRecordID>, c_double)>;
 
-        #[cfg(all(feature = "CloudKit_CKRecordID", feature = "block2"))]
+        #[cfg(all(feature = "CKRecordID", feature = "block2"))]
         #[method(setPerRecordProgressBlock:)]
         pub unsafe fn setPerRecordProgressBlock(
             &self,
             per_record_progress_block: Option<&Block<dyn Fn(NonNull<CKRecordID>, c_double)>>,
         );
 
-        #[cfg(all(
-            feature = "CloudKit_CKRecord",
-            feature = "CloudKit_CKRecordID",
-            feature = "block2"
-        ))]
+        #[cfg(all(feature = "CKRecord", feature = "CKRecordID", feature = "block2"))]
         #[method(perRecordCompletionBlock)]
         pub unsafe fn perRecordCompletionBlock(
             &self,
         ) -> *mut Block<dyn Fn(*mut CKRecord, *mut CKRecordID, *mut NSError)>;
 
-        #[cfg(all(
-            feature = "CloudKit_CKRecord",
-            feature = "CloudKit_CKRecordID",
-            feature = "block2"
-        ))]
+        #[cfg(all(feature = "CKRecord", feature = "CKRecordID", feature = "block2"))]
         #[method(setPerRecordCompletionBlock:)]
         pub unsafe fn setPerRecordCompletionBlock(
             &self,
@@ -103,21 +83,13 @@ extern_methods!(
             >,
         );
 
-        #[cfg(all(
-            feature = "CloudKit_CKRecord",
-            feature = "CloudKit_CKRecordID",
-            feature = "block2"
-        ))]
+        #[cfg(all(feature = "CKRecord", feature = "CKRecordID", feature = "block2"))]
         #[method(fetchRecordsCompletionBlock)]
         pub unsafe fn fetchRecordsCompletionBlock(
             &self,
         ) -> *mut Block<dyn Fn(*mut NSDictionary<CKRecordID, CKRecord>, *mut NSError)>;
 
-        #[cfg(all(
-            feature = "CloudKit_CKRecord",
-            feature = "CloudKit_CKRecordID",
-            feature = "block2"
-        ))]
+        #[cfg(all(feature = "CKRecord", feature = "CKRecordID", feature = "block2"))]
         #[method(setFetchRecordsCompletionBlock:)]
         pub unsafe fn setFetchRecordsCompletionBlock(
             &self,
@@ -130,10 +102,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(all(
-        feature = "CloudKit_CKDatabaseOperation",
-        feature = "CloudKit_CKOperation"
-    ))]
+    #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
     unsafe impl CKFetchRecordsOperation {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

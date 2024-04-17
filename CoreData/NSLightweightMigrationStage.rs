@@ -7,10 +7,10 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CoreData_NSMigrationStage")]
+    #[cfg(feature = "NSMigrationStage")]
     pub struct NSLightweightMigrationStage;
 
-    #[cfg(feature = "CoreData_NSMigrationStage")]
+    #[cfg(feature = "NSMigrationStage")]
     unsafe impl ClassType for NSLightweightMigrationStage {
         #[inherits(NSObject)]
         type Super = NSMigrationStage;
@@ -18,11 +18,11 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "CoreData_NSMigrationStage")]
+#[cfg(feature = "NSMigrationStage")]
 unsafe impl NSObjectProtocol for NSLightweightMigrationStage {}
 
 extern_methods!(
-    #[cfg(feature = "CoreData_NSMigrationStage")]
+    #[cfg(feature = "NSMigrationStage")]
     unsafe impl NSLightweightMigrationStage {
         #[method_id(@__retain_semantics Other versionChecksums)]
         pub unsafe fn versionChecksums(&self) -> Id<NSArray<NSString>>;
@@ -40,7 +40,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CoreData_NSMigrationStage")]
+    #[cfg(feature = "NSMigrationStage")]
     unsafe impl NSLightweightMigrationStage {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

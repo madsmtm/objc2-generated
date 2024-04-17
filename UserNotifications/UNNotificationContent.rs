@@ -56,7 +56,7 @@ unsafe impl NSSecureCoding for UNNotificationContent {}
 
 extern_methods!(
     unsafe impl UNNotificationContent {
-        #[cfg(feature = "UserNotifications_UNNotificationAttachment")]
+        #[cfg(feature = "UNNotificationAttachment")]
         #[method_id(@__retain_semantics Other attachments)]
         pub unsafe fn attachments(&self) -> Id<NSArray<UNNotificationAttachment>>;
 
@@ -72,7 +72,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other launchImageName)]
         pub unsafe fn launchImageName(&self) -> Id<NSString>;
 
-        #[cfg(feature = "UserNotifications_UNNotificationSound")]
+        #[cfg(feature = "UNNotificationSound")]
         #[method_id(@__retain_semantics Other sound)]
         pub unsafe fn sound(&self) -> Option<Id<UNNotificationSound>>;
 
@@ -150,11 +150,11 @@ unsafe impl NSSecureCoding for UNMutableNotificationContent {}
 
 extern_methods!(
     unsafe impl UNMutableNotificationContent {
-        #[cfg(feature = "UserNotifications_UNNotificationAttachment")]
+        #[cfg(feature = "UNNotificationAttachment")]
         #[method_id(@__retain_semantics Other attachments)]
         pub unsafe fn attachments(&self) -> Id<NSArray<UNNotificationAttachment>>;
 
-        #[cfg(feature = "UserNotifications_UNNotificationAttachment")]
+        #[cfg(feature = "UNNotificationAttachment")]
         #[method(setAttachments:)]
         pub unsafe fn setAttachments(&self, attachments: &NSArray<UNNotificationAttachment>);
 
@@ -182,11 +182,11 @@ extern_methods!(
         #[method(setLaunchImageName:)]
         pub unsafe fn setLaunchImageName(&self, launch_image_name: &NSString);
 
-        #[cfg(feature = "UserNotifications_UNNotificationSound")]
+        #[cfg(feature = "UNNotificationSound")]
         #[method_id(@__retain_semantics Other sound)]
         pub unsafe fn sound(&self) -> Option<Id<UNNotificationSound>>;
 
-        #[cfg(feature = "UserNotifications_UNNotificationSound")]
+        #[cfg(feature = "UNNotificationSound")]
         #[method(setSound:)]
         pub unsafe fn setSound(&self, sound: Option<&UNNotificationSound>);
 

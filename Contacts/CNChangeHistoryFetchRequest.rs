@@ -7,10 +7,10 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Contacts_CNFetchRequest")]
+    #[cfg(feature = "CNFetchRequest")]
     pub struct CNChangeHistoryFetchRequest;
 
-    #[cfg(feature = "Contacts_CNFetchRequest")]
+    #[cfg(feature = "CNFetchRequest")]
     unsafe impl ClassType for CNChangeHistoryFetchRequest {
         #[inherits(NSObject)]
         type Super = CNFetchRequest;
@@ -18,17 +18,17 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Contacts_CNFetchRequest")]
+#[cfg(feature = "CNFetchRequest")]
 unsafe impl NSCoding for CNChangeHistoryFetchRequest {}
 
-#[cfg(feature = "Contacts_CNFetchRequest")]
+#[cfg(feature = "CNFetchRequest")]
 unsafe impl NSObjectProtocol for CNChangeHistoryFetchRequest {}
 
-#[cfg(feature = "Contacts_CNFetchRequest")]
+#[cfg(feature = "CNFetchRequest")]
 unsafe impl NSSecureCoding for CNChangeHistoryFetchRequest {}
 
 extern_methods!(
-    #[cfg(feature = "Contacts_CNFetchRequest")]
+    #[cfg(feature = "CNFetchRequest")]
     unsafe impl CNChangeHistoryFetchRequest {
         #[method_id(@__retain_semantics Other startingToken)]
         pub unsafe fn startingToken(&self) -> Option<Id<NSData>>;
@@ -36,13 +36,13 @@ extern_methods!(
         #[method(setStartingToken:)]
         pub unsafe fn setStartingToken(&self, starting_token: Option<&NSData>);
 
-        #[cfg(feature = "Contacts_CNContact")]
+        #[cfg(feature = "CNContact")]
         #[method_id(@__retain_semantics Other additionalContactKeyDescriptors)]
         pub unsafe fn additionalContactKeyDescriptors(
             &self,
         ) -> Option<Id<NSArray<ProtocolObject<dyn CNKeyDescriptor>>>>;
 
-        #[cfg(feature = "Contacts_CNContact")]
+        #[cfg(feature = "CNContact")]
         #[method(setAdditionalContactKeyDescriptors:)]
         pub unsafe fn setAdditionalContactKeyDescriptors(
             &self,
@@ -82,7 +82,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Contacts_CNFetchRequest")]
+    #[cfg(feature = "CNFetchRequest")]
     unsafe impl CNChangeHistoryFetchRequest {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

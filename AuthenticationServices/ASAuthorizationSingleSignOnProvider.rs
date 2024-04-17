@@ -16,7 +16,7 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AuthenticationServices_ASAuthorizationProvider")]
+#[cfg(feature = "ASAuthorizationProvider")]
 unsafe impl ASAuthorizationProvider for ASAuthorizationSingleSignOnProvider {}
 
 unsafe impl NSObjectProtocol for ASAuthorizationSingleSignOnProvider {}
@@ -27,9 +27,9 @@ extern_methods!(
         pub unsafe fn authorizationProviderWithIdentityProviderURL(url: &NSURL) -> Id<Self>;
 
         #[cfg(all(
-            feature = "AuthenticationServices_ASAuthorizationOpenIDRequest",
-            feature = "AuthenticationServices_ASAuthorizationRequest",
-            feature = "AuthenticationServices_ASAuthorizationSingleSignOnRequest"
+            feature = "ASAuthorizationOpenIDRequest",
+            feature = "ASAuthorizationRequest",
+            feature = "ASAuthorizationSingleSignOnRequest"
         ))]
         #[method_id(@__retain_semantics Other createRequest)]
         pub unsafe fn createRequest(&self) -> Id<ASAuthorizationSingleSignOnRequest>;

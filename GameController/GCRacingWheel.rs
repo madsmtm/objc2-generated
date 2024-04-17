@@ -23,7 +23,7 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "GameController_GCDevice")]
+#[cfg(feature = "GCDevice")]
 unsafe impl GCDevice for GCRacingWheel {}
 
 unsafe impl NSObjectProtocol for GCRacingWheel {}
@@ -45,7 +45,7 @@ extern_methods!(
         #[method(isAcquired)]
         pub unsafe fn isAcquired(&self) -> bool;
 
-        #[cfg(feature = "GameController_GCRacingWheelInput")]
+        #[cfg(feature = "GCRacingWheelInput")]
         #[method_id(@__retain_semantics Other wheelInput)]
         pub unsafe fn wheelInput(&self) -> Id<GCRacingWheelInput>;
 

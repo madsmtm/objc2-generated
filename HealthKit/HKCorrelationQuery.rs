@@ -9,10 +9,10 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "HealthKit_HKQuery")]
+    #[cfg(feature = "HKQuery")]
     pub struct HKCorrelationQuery;
 
-    #[cfg(feature = "HealthKit_HKQuery")]
+    #[cfg(feature = "HKQuery")]
     unsafe impl ClassType for HKCorrelationQuery {
         #[inherits(NSObject)]
         type Super = HKQuery;
@@ -20,27 +20,27 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "HealthKit_HKQuery")]
+#[cfg(feature = "HKQuery")]
 unsafe impl NSObjectProtocol for HKCorrelationQuery {}
 
 extern_methods!(
-    #[cfg(feature = "HealthKit_HKQuery")]
+    #[cfg(feature = "HKQuery")]
     unsafe impl HKCorrelationQuery {
-        #[cfg(feature = "HealthKit_HKObjectType")]
+        #[cfg(feature = "HKObjectType")]
         #[method_id(@__retain_semantics Other correlationType)]
         pub unsafe fn correlationType(&self) -> Id<HKCorrelationType>;
 
-        #[cfg(feature = "HealthKit_HKObjectType")]
+        #[cfg(feature = "HKObjectType")]
         #[method_id(@__retain_semantics Other samplePredicates)]
         pub unsafe fn samplePredicates(
             &self,
         ) -> Option<Id<NSDictionary<HKSampleType, NSPredicate>>>;
 
         #[cfg(all(
-            feature = "HealthKit_HKCorrelation",
-            feature = "HealthKit_HKObject",
-            feature = "HealthKit_HKObjectType",
-            feature = "HealthKit_HKSample",
+            feature = "HKCorrelation",
+            feature = "HKObject",
+            feature = "HKObjectType",
+            feature = "HKSample",
             feature = "block2"
         ))]
         #[method_id(@__retain_semantics Init initWithType:predicate:samplePredicates:completion:)]
@@ -58,7 +58,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `HKQuery`
-    #[cfg(feature = "HealthKit_HKQuery")]
+    #[cfg(feature = "HKQuery")]
     unsafe impl HKCorrelationQuery {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -67,7 +67,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "HealthKit_HKQuery")]
+    #[cfg(feature = "HKQuery")]
     unsafe impl HKCorrelationQuery {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

@@ -19,17 +19,17 @@ unsafe impl NSObjectProtocol for CNContactVCardSerialization {}
 
 extern_methods!(
     unsafe impl CNContactVCardSerialization {
-        #[cfg(feature = "Contacts_CNContact")]
+        #[cfg(feature = "CNContact")]
         #[method_id(@__retain_semantics Other descriptorForRequiredKeys)]
         pub unsafe fn descriptorForRequiredKeys() -> Id<ProtocolObject<dyn CNKeyDescriptor>>;
 
-        #[cfg(feature = "Contacts_CNContact")]
+        #[cfg(feature = "CNContact")]
         #[method_id(@__retain_semantics Other dataWithContacts:error:_)]
         pub unsafe fn dataWithContacts_error(
             contacts: &NSArray<CNContact>,
         ) -> Result<Id<NSData>, Id<NSError>>;
 
-        #[cfg(feature = "Contacts_CNContact")]
+        #[cfg(feature = "CNContact")]
         #[method_id(@__retain_semantics Other contactsWithData:error:_)]
         pub unsafe fn contactsWithData_error(
             data: &NSData,

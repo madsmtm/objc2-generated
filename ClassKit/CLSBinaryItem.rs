@@ -30,10 +30,10 @@ unsafe impl RefEncode for CLSBinaryValueType {
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(feature = "ClassKit_CLSActivityItem", feature = "ClassKit_CLSObject"))]
+    #[cfg(all(feature = "CLSActivityItem", feature = "CLSObject"))]
     pub struct CLSBinaryItem;
 
-    #[cfg(all(feature = "ClassKit_CLSActivityItem", feature = "ClassKit_CLSObject"))]
+    #[cfg(all(feature = "CLSActivityItem", feature = "CLSObject"))]
     unsafe impl ClassType for CLSBinaryItem {
         #[inherits(CLSObject, NSObject)]
         type Super = CLSActivityItem;
@@ -41,17 +41,17 @@ extern_class!(
     }
 );
 
-#[cfg(all(feature = "ClassKit_CLSActivityItem", feature = "ClassKit_CLSObject"))]
+#[cfg(all(feature = "CLSActivityItem", feature = "CLSObject"))]
 unsafe impl NSCoding for CLSBinaryItem {}
 
-#[cfg(all(feature = "ClassKit_CLSActivityItem", feature = "ClassKit_CLSObject"))]
+#[cfg(all(feature = "CLSActivityItem", feature = "CLSObject"))]
 unsafe impl NSObjectProtocol for CLSBinaryItem {}
 
-#[cfg(all(feature = "ClassKit_CLSActivityItem", feature = "ClassKit_CLSObject"))]
+#[cfg(all(feature = "CLSActivityItem", feature = "CLSObject"))]
 unsafe impl NSSecureCoding for CLSBinaryItem {}
 
 extern_methods!(
-    #[cfg(all(feature = "ClassKit_CLSActivityItem", feature = "ClassKit_CLSObject"))]
+    #[cfg(all(feature = "CLSActivityItem", feature = "CLSObject"))]
     unsafe impl CLSBinaryItem {
         #[method(value)]
         pub unsafe fn value(&self) -> bool;
@@ -74,7 +74,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `CLSActivityItem`
-    #[cfg(all(feature = "ClassKit_CLSActivityItem", feature = "ClassKit_CLSObject"))]
+    #[cfg(all(feature = "CLSActivityItem", feature = "CLSObject"))]
     unsafe impl CLSBinaryItem {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

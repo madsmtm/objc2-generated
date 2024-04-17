@@ -27,10 +27,10 @@ unsafe impl RefEncode for NSMeasurementFormatterUnitOptions {
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSFormatter")]
+    #[cfg(feature = "NSFormatter")]
     pub struct NSMeasurementFormatter;
 
-    #[cfg(feature = "Foundation_NSFormatter")]
+    #[cfg(feature = "NSFormatter")]
     unsafe impl ClassType for NSMeasurementFormatter {
         #[inherits(NSObject)]
         type Super = NSFormatter;
@@ -38,20 +38,20 @@ extern_class!(
     }
 );
 
-#[cfg(all(feature = "Foundation_NSFormatter", feature = "Foundation_NSObject"))]
+#[cfg(all(feature = "NSFormatter", feature = "NSObject"))]
 unsafe impl NSCoding for NSMeasurementFormatter {}
 
-#[cfg(all(feature = "Foundation_NSFormatter", feature = "Foundation_NSObject"))]
+#[cfg(all(feature = "NSFormatter", feature = "NSObject"))]
 unsafe impl NSCopying for NSMeasurementFormatter {}
 
-#[cfg(feature = "Foundation_NSFormatter")]
+#[cfg(feature = "NSFormatter")]
 unsafe impl NSObjectProtocol for NSMeasurementFormatter {}
 
-#[cfg(all(feature = "Foundation_NSFormatter", feature = "Foundation_NSObject"))]
+#[cfg(all(feature = "NSFormatter", feature = "NSObject"))]
 unsafe impl NSSecureCoding for NSMeasurementFormatter {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSFormatter")]
+    #[cfg(feature = "NSFormatter")]
     unsafe impl NSMeasurementFormatter {
         #[method(unitOptions)]
         pub unsafe fn unitOptions(&self) -> NSMeasurementFormatterUnitOptions;
@@ -65,27 +65,27 @@ extern_methods!(
         #[method(setUnitStyle:)]
         pub unsafe fn setUnitStyle(&self, unit_style: NSFormattingUnitStyle);
 
-        #[cfg(feature = "Foundation_NSLocale")]
+        #[cfg(feature = "NSLocale")]
         #[method_id(@__retain_semantics Other locale)]
         pub unsafe fn locale(&self) -> Id<NSLocale>;
 
-        #[cfg(feature = "Foundation_NSLocale")]
+        #[cfg(feature = "NSLocale")]
         #[method(setLocale:)]
         pub unsafe fn setLocale(&self, locale: Option<&NSLocale>);
 
-        #[cfg(feature = "Foundation_NSNumberFormatter")]
+        #[cfg(feature = "NSNumberFormatter")]
         #[method_id(@__retain_semantics Other numberFormatter)]
         pub unsafe fn numberFormatter(&self) -> Id<NSNumberFormatter>;
 
-        #[cfg(feature = "Foundation_NSNumberFormatter")]
+        #[cfg(feature = "NSNumberFormatter")]
         #[method(setNumberFormatter:)]
         pub unsafe fn setNumberFormatter(&self, number_formatter: Option<&NSNumberFormatter>);
 
-        #[cfg(all(feature = "Foundation_NSMeasurement", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSMeasurement", feature = "NSString"))]
         #[method_id(@__retain_semantics Other stringFromMeasurement:)]
         pub unsafe fn stringFromMeasurement(&self, measurement: &NSMeasurement) -> Id<NSString>;
 
-        #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSUnit"))]
+        #[cfg(all(feature = "NSString", feature = "NSUnit"))]
         #[method_id(@__retain_semantics Other stringFromUnit:)]
         pub unsafe fn stringFromUnit(&self, unit: &NSUnit) -> Id<NSString>;
     }
@@ -93,7 +93,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSFormatter")]
+    #[cfg(feature = "NSFormatter")]
     unsafe impl NSMeasurementFormatter {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

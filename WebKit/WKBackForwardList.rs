@@ -19,27 +19,27 @@ unsafe impl NSObjectProtocol for WKBackForwardList {}
 
 extern_methods!(
     unsafe impl WKBackForwardList {
-        #[cfg(feature = "WebKit_WKBackForwardListItem")]
+        #[cfg(feature = "WKBackForwardListItem")]
         #[method_id(@__retain_semantics Other currentItem)]
         pub unsafe fn currentItem(&self) -> Option<Id<WKBackForwardListItem>>;
 
-        #[cfg(feature = "WebKit_WKBackForwardListItem")]
+        #[cfg(feature = "WKBackForwardListItem")]
         #[method_id(@__retain_semantics Other backItem)]
         pub unsafe fn backItem(&self) -> Option<Id<WKBackForwardListItem>>;
 
-        #[cfg(feature = "WebKit_WKBackForwardListItem")]
+        #[cfg(feature = "WKBackForwardListItem")]
         #[method_id(@__retain_semantics Other forwardItem)]
         pub unsafe fn forwardItem(&self) -> Option<Id<WKBackForwardListItem>>;
 
-        #[cfg(feature = "WebKit_WKBackForwardListItem")]
+        #[cfg(feature = "WKBackForwardListItem")]
         #[method_id(@__retain_semantics Other itemAtIndex:)]
         pub unsafe fn itemAtIndex(&self, index: NSInteger) -> Option<Id<WKBackForwardListItem>>;
 
-        #[cfg(feature = "WebKit_WKBackForwardListItem")]
+        #[cfg(feature = "WKBackForwardListItem")]
         #[method_id(@__retain_semantics Other backList)]
         pub unsafe fn backList(&self) -> Id<NSArray<WKBackForwardListItem>>;
 
-        #[cfg(feature = "WebKit_WKBackForwardListItem")]
+        #[cfg(feature = "WKBackForwardListItem")]
         #[method_id(@__retain_semantics Other forwardList)]
         pub unsafe fn forwardList(&self) -> Id<NSArray<WKBackForwardListItem>>;
     }

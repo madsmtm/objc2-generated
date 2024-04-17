@@ -16,24 +16,24 @@
 #[link(name = "BusinessChat", kind = "framework")]
 extern "C" {}
 
-#[cfg(feature = "BusinessChat_BCChatAction")]
+#[cfg(feature = "BCChatAction")]
 #[path = "BCChatAction.rs"]
 mod __BCChatAction;
-#[cfg(feature = "BusinessChat_BCChatButton")]
+#[cfg(feature = "BCChatButton")]
 #[path = "BCChatButton.rs"]
 mod __BCChatButton;
 
-#[cfg(feature = "BusinessChat_BCChatAction")]
+#[cfg(feature = "BCChatAction")]
 pub use self::__BCChatAction::BCChatAction;
-#[cfg(feature = "BusinessChat_BCChatAction")]
+#[cfg(feature = "BCChatAction")]
 pub use self::__BCChatAction::BCParameterName;
-#[cfg(feature = "BusinessChat_BCChatAction")]
+#[cfg(feature = "BCChatAction")]
 pub use self::__BCChatAction::BCParameterNameBody;
-#[cfg(feature = "BusinessChat_BCChatAction")]
+#[cfg(feature = "BCChatAction")]
 pub use self::__BCChatAction::BCParameterNameGroup;
-#[cfg(feature = "BusinessChat_BCChatAction")]
+#[cfg(feature = "BCChatAction")]
 pub use self::__BCChatAction::BCParameterNameIntent;
-#[cfg(feature = "BusinessChat_BCChatButton")]
+#[cfg(feature = "BCChatButton")]
 pub use self::__BCChatButton::BCChatButton;
-#[cfg(feature = "BusinessChat_BCChatButton")]
+#[cfg(feature = "BCChatButton")]
 pub use self::__BCChatButton::BCChatButtonStyle;

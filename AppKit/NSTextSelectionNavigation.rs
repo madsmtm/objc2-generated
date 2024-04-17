@@ -171,7 +171,7 @@ extern_methods!(
         #[method(flushLayoutCache)]
         pub unsafe fn flushLayoutCache(&self);
 
-        #[cfg(feature = "AppKit_NSTextSelection")]
+        #[cfg(feature = "NSTextSelection")]
         #[method_id(@__retain_semantics Other destinationSelectionForTextSelection:direction:destination:extending:confined:)]
         pub unsafe fn destinationSelectionForTextSelection_direction_destination_extending_confined(
             &self,
@@ -182,7 +182,7 @@ extern_methods!(
             confined: bool,
         ) -> Option<Id<NSTextSelection>>;
 
-        #[cfg(all(feature = "AppKit_NSTextRange", feature = "AppKit_NSTextSelection"))]
+        #[cfg(all(feature = "NSTextRange", feature = "NSTextSelection"))]
         #[method_id(@__retain_semantics Other textSelectionsInteractingAtPoint:inContainerAtLocation:anchors:modifiers:selecting:bounds:)]
         pub unsafe fn textSelectionsInteractingAtPoint_inContainerAtLocation_anchors_modifiers_selecting_bounds(
             &self,
@@ -194,7 +194,7 @@ extern_methods!(
             bounds: CGRect,
         ) -> Id<NSArray<NSTextSelection>>;
 
-        #[cfg(feature = "AppKit_NSTextSelection")]
+        #[cfg(feature = "NSTextSelection")]
         #[method_id(@__retain_semantics Other textSelectionForSelectionGranularity:enclosingTextSelection:)]
         pub unsafe fn textSelectionForSelectionGranularity_enclosingTextSelection(
             &self,
@@ -202,7 +202,7 @@ extern_methods!(
             text_selection: &NSTextSelection,
         ) -> Id<NSTextSelection>;
 
-        #[cfg(all(feature = "AppKit_NSTextRange", feature = "AppKit_NSTextSelection"))]
+        #[cfg(all(feature = "NSTextRange", feature = "NSTextSelection"))]
         #[method_id(@__retain_semantics Other textSelectionForSelectionGranularity:enclosingPoint:inContainerAtLocation:)]
         pub unsafe fn textSelectionForSelectionGranularity_enclosingPoint_inContainerAtLocation(
             &self,
@@ -211,7 +211,7 @@ extern_methods!(
             location: &ProtocolObject<dyn NSTextLocation>,
         ) -> Option<Id<NSTextSelection>>;
 
-        #[cfg(all(feature = "AppKit_NSTextRange", feature = "AppKit_NSTextSelection"))]
+        #[cfg(all(feature = "NSTextRange", feature = "NSTextSelection"))]
         #[method_id(@__retain_semantics Other resolvedInsertionLocationForTextSelection:writingDirection:)]
         pub unsafe fn resolvedInsertionLocationForTextSelection_writingDirection(
             &self,
@@ -219,7 +219,7 @@ extern_methods!(
             writing_direction: NSTextSelectionNavigationWritingDirection,
         ) -> Option<Id<ProtocolObject<dyn NSTextLocation>>>;
 
-        #[cfg(all(feature = "AppKit_NSTextRange", feature = "AppKit_NSTextSelection"))]
+        #[cfg(all(feature = "NSTextRange", feature = "NSTextSelection"))]
         #[method_id(@__retain_semantics Other deletionRangesForTextSelection:direction:destination:allowsDecomposition:)]
         pub unsafe fn deletionRangesForTextSelection_direction_destination_allowsDecomposition(
             &self,
@@ -233,11 +233,11 @@ extern_methods!(
 
 extern_protocol!(
     pub unsafe trait NSTextSelectionDataSource: NSObjectProtocol {
-        #[cfg(feature = "AppKit_NSTextRange")]
+        #[cfg(feature = "NSTextRange")]
         #[method_id(@__retain_semantics Other documentRange)]
         unsafe fn documentRange(&self) -> Id<NSTextRange>;
 
-        #[cfg(all(feature = "AppKit_NSTextRange", feature = "block2"))]
+        #[cfg(all(feature = "NSTextRange", feature = "block2"))]
         #[method(enumerateSubstringsFromLocation:options:usingBlock:)]
         unsafe fn enumerateSubstringsFromLocation_options_usingBlock(
             &self,
@@ -248,7 +248,7 @@ extern_protocol!(
             >,
         );
 
-        #[cfg(all(feature = "AppKit_NSTextRange", feature = "AppKit_NSTextSelection"))]
+        #[cfg(all(feature = "NSTextRange", feature = "NSTextSelection"))]
         #[method_id(@__retain_semantics Other textRangeForSelectionGranularity:enclosingLocation:)]
         unsafe fn textRangeForSelectionGranularity_enclosingLocation(
             &self,
@@ -256,7 +256,7 @@ extern_protocol!(
             location: &ProtocolObject<dyn NSTextLocation>,
         ) -> Option<Id<NSTextRange>>;
 
-        #[cfg(feature = "AppKit_NSTextRange")]
+        #[cfg(feature = "NSTextRange")]
         #[method_id(@__retain_semantics Other locationFromLocation:withOffset:)]
         unsafe fn locationFromLocation_withOffset(
             &self,
@@ -264,7 +264,7 @@ extern_protocol!(
             offset: NSInteger,
         ) -> Option<Id<ProtocolObject<dyn NSTextLocation>>>;
 
-        #[cfg(feature = "AppKit_NSTextRange")]
+        #[cfg(feature = "NSTextRange")]
         #[method(offsetFromLocation:toLocation:)]
         unsafe fn offsetFromLocation_toLocation(
             &self,
@@ -272,14 +272,14 @@ extern_protocol!(
             to: &ProtocolObject<dyn NSTextLocation>,
         ) -> NSInteger;
 
-        #[cfg(feature = "AppKit_NSTextRange")]
+        #[cfg(feature = "NSTextRange")]
         #[method(baseWritingDirectionAtLocation:)]
         unsafe fn baseWritingDirectionAtLocation(
             &self,
             location: &ProtocolObject<dyn NSTextLocation>,
         ) -> NSTextSelectionNavigationWritingDirection;
 
-        #[cfg(all(feature = "AppKit_NSTextRange", feature = "block2"))]
+        #[cfg(all(feature = "NSTextRange", feature = "block2"))]
         #[method(enumerateCaretOffsetsInLineFragmentAtLocation:usingBlock:)]
         unsafe fn enumerateCaretOffsetsInLineFragmentAtLocation_usingBlock(
             &self,
@@ -290,7 +290,7 @@ extern_protocol!(
             >,
         );
 
-        #[cfg(feature = "AppKit_NSTextRange")]
+        #[cfg(feature = "NSTextRange")]
         #[method_id(@__retain_semantics Other lineFragmentRangeForPoint:inContainerAtLocation:)]
         unsafe fn lineFragmentRangeForPoint_inContainerAtLocation(
             &self,
@@ -298,7 +298,7 @@ extern_protocol!(
             location: &ProtocolObject<dyn NSTextLocation>,
         ) -> Option<Id<NSTextRange>>;
 
-        #[cfg(all(feature = "AppKit_NSTextRange", feature = "block2"))]
+        #[cfg(all(feature = "NSTextRange", feature = "block2"))]
         #[optional]
         #[method(enumerateContainerBoundariesFromLocation:reverse:usingBlock:)]
         unsafe fn enumerateContainerBoundariesFromLocation_reverse_usingBlock(
@@ -308,7 +308,7 @@ extern_protocol!(
             block: &Block<dyn Fn(NonNull<ProtocolObject<dyn NSTextLocation>>, NonNull<Bool>) + '_>,
         );
 
-        #[cfg(feature = "AppKit_NSTextRange")]
+        #[cfg(feature = "NSTextRange")]
         #[optional]
         #[method(textLayoutOrientationAtLocation:)]
         unsafe fn textLayoutOrientationAtLocation(

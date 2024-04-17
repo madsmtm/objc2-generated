@@ -23,42 +23,27 @@ unsafe impl NSSecureCoding for MXDiagnosticPayload {}
 
 extern_methods!(
     unsafe impl MXDiagnosticPayload {
-        #[cfg(all(
-            feature = "MetricKit_MXCPUExceptionDiagnostic",
-            feature = "MetricKit_MXDiagnostic"
-        ))]
+        #[cfg(all(feature = "MXCPUExceptionDiagnostic", feature = "MXDiagnostic"))]
         #[method_id(@__retain_semantics Other cpuExceptionDiagnostics)]
         pub unsafe fn cpuExceptionDiagnostics(
             &self,
         ) -> Option<Id<NSArray<MXCPUExceptionDiagnostic>>>;
 
-        #[cfg(all(
-            feature = "MetricKit_MXDiagnostic",
-            feature = "MetricKit_MXDiskWriteExceptionDiagnostic"
-        ))]
+        #[cfg(all(feature = "MXDiagnostic", feature = "MXDiskWriteExceptionDiagnostic"))]
         #[method_id(@__retain_semantics Other diskWriteExceptionDiagnostics)]
         pub unsafe fn diskWriteExceptionDiagnostics(
             &self,
         ) -> Option<Id<NSArray<MXDiskWriteExceptionDiagnostic>>>;
 
-        #[cfg(all(
-            feature = "MetricKit_MXDiagnostic",
-            feature = "MetricKit_MXHangDiagnostic"
-        ))]
+        #[cfg(all(feature = "MXDiagnostic", feature = "MXHangDiagnostic"))]
         #[method_id(@__retain_semantics Other hangDiagnostics)]
         pub unsafe fn hangDiagnostics(&self) -> Option<Id<NSArray<MXHangDiagnostic>>>;
 
-        #[cfg(all(
-            feature = "MetricKit_MXAppLaunchDiagnostic",
-            feature = "MetricKit_MXDiagnostic"
-        ))]
+        #[cfg(all(feature = "MXAppLaunchDiagnostic", feature = "MXDiagnostic"))]
         #[method_id(@__retain_semantics Other appLaunchDiagnostics)]
         pub unsafe fn appLaunchDiagnostics(&self) -> Option<Id<NSArray<MXAppLaunchDiagnostic>>>;
 
-        #[cfg(all(
-            feature = "MetricKit_MXCrashDiagnostic",
-            feature = "MetricKit_MXDiagnostic"
-        ))]
+        #[cfg(all(feature = "MXCrashDiagnostic", feature = "MXDiagnostic"))]
         #[method_id(@__retain_semantics Other crashDiagnostics)]
         pub unsafe fn crashDiagnostics(&self) -> Option<Id<NSArray<MXCrashDiagnostic>>>;
 

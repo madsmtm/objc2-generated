@@ -17,7 +17,7 @@ pub const NSMacintoshInterfaceStyle: c_uint = 3;
 pub type NSInterfaceStyle = NSUInteger;
 
 extern "C" {
-    #[cfg(feature = "AppKit_NSResponder")]
+    #[cfg(feature = "NSResponder")]
     #[deprecated]
     pub fn NSInterfaceStyleForKey(
         key: Option<&NSString>,
@@ -27,7 +27,7 @@ extern "C" {
 
 extern_methods!(
     /// NSInterfaceStyle
-    #[cfg(feature = "AppKit_NSResponder")]
+    #[cfg(feature = "NSResponder")]
     unsafe impl NSResponder {
         #[deprecated]
         #[method(interfaceStyle)]

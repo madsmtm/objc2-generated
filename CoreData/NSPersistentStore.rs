@@ -33,7 +33,7 @@ extern_methods!(
         #[method(migrationManagerClass)]
         pub unsafe fn migrationManagerClass() -> &'static AnyClass;
 
-        #[cfg(feature = "CoreData_NSPersistentStoreCoordinator")]
+        #[cfg(feature = "NSPersistentStoreCoordinator")]
         #[method_id(@__retain_semantics Init initWithPersistentStoreCoordinator:configurationName:URL:options:)]
         pub unsafe fn initWithPersistentStoreCoordinator_configurationName_URL_options(
             this: Allocated<Self>,
@@ -49,7 +49,7 @@ extern_methods!(
         #[method(loadMetadata:_)]
         pub unsafe fn loadMetadata(&self) -> Result<(), Id<NSError>>;
 
-        #[cfg(feature = "CoreData_NSPersistentStoreCoordinator")]
+        #[cfg(feature = "NSPersistentStoreCoordinator")]
         #[method_id(@__retain_semantics Other persistentStoreCoordinator)]
         pub unsafe fn persistentStoreCoordinator(&self)
             -> Option<Id<NSPersistentStoreCoordinator>>;
@@ -87,21 +87,21 @@ extern_methods!(
         #[method(setMetadata:)]
         pub unsafe fn setMetadata(&self, metadata: Option<&NSDictionary<NSString, AnyObject>>);
 
-        #[cfg(feature = "CoreData_NSPersistentStoreCoordinator")]
+        #[cfg(feature = "NSPersistentStoreCoordinator")]
         #[method(didAddToPersistentStoreCoordinator:)]
         pub unsafe fn didAddToPersistentStoreCoordinator(
             &self,
             coordinator: &NSPersistentStoreCoordinator,
         );
 
-        #[cfg(feature = "CoreData_NSPersistentStoreCoordinator")]
+        #[cfg(feature = "NSPersistentStoreCoordinator")]
         #[method(willRemoveFromPersistentStoreCoordinator:)]
         pub unsafe fn willRemoveFromPersistentStoreCoordinator(
             &self,
             coordinator: Option<&NSPersistentStoreCoordinator>,
         );
 
-        #[cfg(feature = "CoreData_NSCoreDataCoreSpotlightDelegate")]
+        #[cfg(feature = "NSCoreDataCoreSpotlightDelegate")]
         #[method_id(@__retain_semantics Other coreSpotlightExporter)]
         pub unsafe fn coreSpotlightExporter(&self) -> Id<NSCoreDataCoreSpotlightDelegate>;
     }

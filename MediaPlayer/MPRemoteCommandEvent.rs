@@ -19,7 +19,7 @@ unsafe impl NSObjectProtocol for MPRemoteCommandEvent {}
 
 extern_methods!(
     unsafe impl MPRemoteCommandEvent {
-        #[cfg(feature = "MediaPlayer_MPRemoteCommand")]
+        #[cfg(feature = "MPRemoteCommand")]
         #[method_id(@__retain_semantics Other command)]
         pub unsafe fn command(&self) -> Id<MPRemoteCommand>;
 
@@ -228,11 +228,11 @@ unsafe impl NSObjectProtocol for MPChangeLanguageOptionCommandEvent {}
 
 extern_methods!(
     unsafe impl MPChangeLanguageOptionCommandEvent {
-        #[cfg(feature = "MediaPlayer_MPNowPlayingInfoLanguageOption")]
+        #[cfg(feature = "MPNowPlayingInfoLanguageOption")]
         #[method_id(@__retain_semantics Other languageOption)]
         pub unsafe fn languageOption(&self) -> Id<MPNowPlayingInfoLanguageOption>;
 
-        #[cfg(feature = "MediaPlayer_MPRemoteControlTypes")]
+        #[cfg(feature = "MPRemoteControlTypes")]
         #[method(setting)]
         pub unsafe fn setting(&self) -> MPChangeLanguageOptionSetting;
     }
@@ -295,7 +295,7 @@ unsafe impl NSObjectProtocol for MPChangeShuffleModeCommandEvent {}
 
 extern_methods!(
     unsafe impl MPChangeShuffleModeCommandEvent {
-        #[cfg(feature = "MediaPlayer_MPRemoteControlTypes")]
+        #[cfg(feature = "MPRemoteControlTypes")]
         #[method(shuffleType)]
         pub unsafe fn shuffleType(&self) -> MPShuffleType;
 
@@ -330,7 +330,7 @@ unsafe impl NSObjectProtocol for MPChangeRepeatModeCommandEvent {}
 
 extern_methods!(
     unsafe impl MPChangeRepeatModeCommandEvent {
-        #[cfg(feature = "MediaPlayer_MPRemoteControlTypes")]
+        #[cfg(feature = "MPRemoteControlTypes")]
         #[method(repeatType)]
         pub unsafe fn repeatType(&self) -> MPRepeatType;
 

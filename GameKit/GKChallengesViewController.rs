@@ -21,7 +21,7 @@ extern_class!(
     }
 );
 
-#[cfg(all(feature = "GameKit_GKDialogController", feature = "objc2-app-kit"))]
+#[cfg(all(feature = "GKDialogController", feature = "objc2-app-kit"))]
 unsafe impl GKViewController for GKChallengesViewController {}
 
 #[cfg(feature = "objc2-app-kit")]

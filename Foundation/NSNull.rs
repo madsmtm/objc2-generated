@@ -18,15 +18,15 @@ unsafe impl Send for NSNull {}
 
 unsafe impl Sync for NSNull {}
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSCoding for NSNull {}
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSNull {}
 
 unsafe impl NSObjectProtocol for NSNull {}
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSSecureCoding for NSNull {}
 
 extern_methods!(

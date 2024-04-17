@@ -7,86 +7,86 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 // NS_TYPED_EXTENSIBLE_ENUM
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(feature = "NSString")]
 pub type NSCalendarIdentifier = NSString;
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSCalendarIdentifierGregorian: &'static NSCalendarIdentifier;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSCalendarIdentifierBuddhist: &'static NSCalendarIdentifier;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSCalendarIdentifierChinese: &'static NSCalendarIdentifier;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSCalendarIdentifierCoptic: &'static NSCalendarIdentifier;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSCalendarIdentifierEthiopicAmeteMihret: &'static NSCalendarIdentifier;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSCalendarIdentifierEthiopicAmeteAlem: &'static NSCalendarIdentifier;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSCalendarIdentifierHebrew: &'static NSCalendarIdentifier;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSCalendarIdentifierISO8601: &'static NSCalendarIdentifier;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSCalendarIdentifierIndian: &'static NSCalendarIdentifier;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSCalendarIdentifierIslamic: &'static NSCalendarIdentifier;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSCalendarIdentifierIslamicCivil: &'static NSCalendarIdentifier;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSCalendarIdentifierJapanese: &'static NSCalendarIdentifier;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSCalendarIdentifierPersian: &'static NSCalendarIdentifier;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSCalendarIdentifierRepublicOfChina: &'static NSCalendarIdentifier;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSCalendarIdentifierIslamicTabular: &'static NSCalendarIdentifier;
 }
 
 extern "C" {
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(feature = "NSString")]
     pub static NSCalendarIdentifierIslamicUmmAlQura: &'static NSCalendarIdentifier;
 }
 
@@ -202,15 +202,15 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSCoding for NSCalendar {}
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSCalendar {}
 
 unsafe impl NSObjectProtocol for NSCalendar {}
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSSecureCoding for NSCalendar {}
 
 extern_methods!(
@@ -221,7 +221,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other autoupdatingCurrentCalendar)]
         pub unsafe fn autoupdatingCurrentCalendar() -> Id<NSCalendar>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other calendarWithIdentifier:)]
         pub unsafe fn calendarWithIdentifier(
             calendar_identifier_constant: &NSCalendarIdentifier,
@@ -230,30 +230,30 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Init initWithCalendarIdentifier:)]
         pub unsafe fn initWithCalendarIdentifier(
             this: Allocated<Self>,
             ident: &NSCalendarIdentifier,
         ) -> Option<Id<Self>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other calendarIdentifier)]
         pub unsafe fn calendarIdentifier(&self) -> Id<NSCalendarIdentifier>;
 
-        #[cfg(feature = "Foundation_NSLocale")]
+        #[cfg(feature = "NSLocale")]
         #[method_id(@__retain_semantics Other locale)]
         pub unsafe fn locale(&self) -> Option<Id<NSLocale>>;
 
-        #[cfg(feature = "Foundation_NSLocale")]
+        #[cfg(feature = "NSLocale")]
         #[method(setLocale:)]
         pub unsafe fn setLocale(&self, locale: Option<&NSLocale>);
 
-        #[cfg(feature = "Foundation_NSTimeZone")]
+        #[cfg(feature = "NSTimeZone")]
         #[method_id(@__retain_semantics Other timeZone)]
         pub unsafe fn timeZone(&self) -> Id<NSTimeZone>;
 
-        #[cfg(feature = "Foundation_NSTimeZone")]
+        #[cfg(feature = "NSTimeZone")]
         #[method(setTimeZone:)]
         pub unsafe fn setTimeZone(&self, time_zone: &NSTimeZone);
 
@@ -269,95 +269,95 @@ extern_methods!(
         #[method(setMinimumDaysInFirstWeek:)]
         pub unsafe fn setMinimumDaysInFirstWeek(&self, minimum_days_in_first_week: NSUInteger);
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[method_id(@__retain_semantics Other eraSymbols)]
         pub unsafe fn eraSymbols(&self) -> Id<NSArray<NSString>>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[method_id(@__retain_semantics Other longEraSymbols)]
         pub unsafe fn longEraSymbols(&self) -> Id<NSArray<NSString>>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[method_id(@__retain_semantics Other monthSymbols)]
         pub unsafe fn monthSymbols(&self) -> Id<NSArray<NSString>>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[method_id(@__retain_semantics Other shortMonthSymbols)]
         pub unsafe fn shortMonthSymbols(&self) -> Id<NSArray<NSString>>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[method_id(@__retain_semantics Other veryShortMonthSymbols)]
         pub unsafe fn veryShortMonthSymbols(&self) -> Id<NSArray<NSString>>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[method_id(@__retain_semantics Other standaloneMonthSymbols)]
         pub unsafe fn standaloneMonthSymbols(&self) -> Id<NSArray<NSString>>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[method_id(@__retain_semantics Other shortStandaloneMonthSymbols)]
         pub unsafe fn shortStandaloneMonthSymbols(&self) -> Id<NSArray<NSString>>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[method_id(@__retain_semantics Other veryShortStandaloneMonthSymbols)]
         pub unsafe fn veryShortStandaloneMonthSymbols(&self) -> Id<NSArray<NSString>>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[method_id(@__retain_semantics Other weekdaySymbols)]
         pub unsafe fn weekdaySymbols(&self) -> Id<NSArray<NSString>>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[method_id(@__retain_semantics Other shortWeekdaySymbols)]
         pub unsafe fn shortWeekdaySymbols(&self) -> Id<NSArray<NSString>>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[method_id(@__retain_semantics Other veryShortWeekdaySymbols)]
         pub unsafe fn veryShortWeekdaySymbols(&self) -> Id<NSArray<NSString>>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[method_id(@__retain_semantics Other standaloneWeekdaySymbols)]
         pub unsafe fn standaloneWeekdaySymbols(&self) -> Id<NSArray<NSString>>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[method_id(@__retain_semantics Other shortStandaloneWeekdaySymbols)]
         pub unsafe fn shortStandaloneWeekdaySymbols(&self) -> Id<NSArray<NSString>>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[method_id(@__retain_semantics Other veryShortStandaloneWeekdaySymbols)]
         pub unsafe fn veryShortStandaloneWeekdaySymbols(&self) -> Id<NSArray<NSString>>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[method_id(@__retain_semantics Other quarterSymbols)]
         pub unsafe fn quarterSymbols(&self) -> Id<NSArray<NSString>>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[method_id(@__retain_semantics Other shortQuarterSymbols)]
         pub unsafe fn shortQuarterSymbols(&self) -> Id<NSArray<NSString>>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[method_id(@__retain_semantics Other standaloneQuarterSymbols)]
         pub unsafe fn standaloneQuarterSymbols(&self) -> Id<NSArray<NSString>>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[method_id(@__retain_semantics Other shortStandaloneQuarterSymbols)]
         pub unsafe fn shortStandaloneQuarterSymbols(&self) -> Id<NSArray<NSString>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other AMSymbol)]
         pub unsafe fn AMSymbol(&self) -> Id<NSString>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other PMSymbol)]
         pub unsafe fn PMSymbol(&self) -> Id<NSString>;
 
-        #[cfg(feature = "Foundation_NSRange")]
+        #[cfg(feature = "NSRange")]
         #[method(minimumRangeOfUnit:)]
         pub unsafe fn minimumRangeOfUnit(&self, unit: NSCalendarUnit) -> NSRange;
 
-        #[cfg(feature = "Foundation_NSRange")]
+        #[cfg(feature = "NSRange")]
         #[method(maximumRangeOfUnit:)]
         pub unsafe fn maximumRangeOfUnit(&self, unit: NSCalendarUnit) -> NSRange;
 
-        #[cfg(all(feature = "Foundation_NSDate", feature = "Foundation_NSRange"))]
+        #[cfg(all(feature = "NSDate", feature = "NSRange"))]
         #[method(rangeOfUnit:inUnit:forDate:)]
         pub unsafe fn rangeOfUnit_inUnit_forDate(
             &self,
@@ -366,7 +366,7 @@ extern_methods!(
             date: &NSDate,
         ) -> NSRange;
 
-        #[cfg(feature = "Foundation_NSDate")]
+        #[cfg(feature = "NSDate")]
         #[method(ordinalityOfUnit:inUnit:forDate:)]
         pub unsafe fn ordinalityOfUnit_inUnit_forDate(
             &self,
@@ -375,7 +375,7 @@ extern_methods!(
             date: &NSDate,
         ) -> NSUInteger;
 
-        #[cfg(feature = "Foundation_NSDate")]
+        #[cfg(feature = "NSDate")]
         #[method(rangeOfUnit:startDate:interval:forDate:)]
         pub unsafe fn rangeOfUnit_startDate_interval_forDate(
             &self,
@@ -385,11 +385,11 @@ extern_methods!(
             date: &NSDate,
         ) -> bool;
 
-        #[cfg(feature = "Foundation_NSDate")]
+        #[cfg(feature = "NSDate")]
         #[method_id(@__retain_semantics Other dateFromComponents:)]
         pub unsafe fn dateFromComponents(&self, comps: &NSDateComponents) -> Option<Id<NSDate>>;
 
-        #[cfg(feature = "Foundation_NSDate")]
+        #[cfg(feature = "NSDate")]
         #[method_id(@__retain_semantics Other components:fromDate:)]
         pub unsafe fn components_fromDate(
             &self,
@@ -397,7 +397,7 @@ extern_methods!(
             date: &NSDate,
         ) -> Id<NSDateComponents>;
 
-        #[cfg(feature = "Foundation_NSDate")]
+        #[cfg(feature = "NSDate")]
         #[method_id(@__retain_semantics Other dateByAddingComponents:toDate:options:)]
         pub unsafe fn dateByAddingComponents_toDate_options(
             &self,
@@ -406,7 +406,7 @@ extern_methods!(
             opts: NSCalendarOptions,
         ) -> Option<Id<NSDate>>;
 
-        #[cfg(feature = "Foundation_NSDate")]
+        #[cfg(feature = "NSDate")]
         #[method_id(@__retain_semantics Other components:fromDate:toDate:options:)]
         pub unsafe fn components_fromDate_toDate_options(
             &self,
@@ -416,7 +416,7 @@ extern_methods!(
             opts: NSCalendarOptions,
         ) -> Id<NSDateComponents>;
 
-        #[cfg(feature = "Foundation_NSDate")]
+        #[cfg(feature = "NSDate")]
         #[method(getEra:year:month:day:fromDate:)]
         pub unsafe fn getEra_year_month_day_fromDate(
             &self,
@@ -427,7 +427,7 @@ extern_methods!(
             date: &NSDate,
         );
 
-        #[cfg(feature = "Foundation_NSDate")]
+        #[cfg(feature = "NSDate")]
         #[method(getEra:yearForWeekOfYear:weekOfYear:weekday:fromDate:)]
         pub unsafe fn getEra_yearForWeekOfYear_weekOfYear_weekday_fromDate(
             &self,
@@ -438,7 +438,7 @@ extern_methods!(
             date: &NSDate,
         );
 
-        #[cfg(feature = "Foundation_NSDate")]
+        #[cfg(feature = "NSDate")]
         #[method(getHour:minute:second:nanosecond:fromDate:)]
         pub unsafe fn getHour_minute_second_nanosecond_fromDate(
             &self,
@@ -449,11 +449,11 @@ extern_methods!(
             date: &NSDate,
         );
 
-        #[cfg(feature = "Foundation_NSDate")]
+        #[cfg(feature = "NSDate")]
         #[method(component:fromDate:)]
         pub unsafe fn component_fromDate(&self, unit: NSCalendarUnit, date: &NSDate) -> NSInteger;
 
-        #[cfg(feature = "Foundation_NSDate")]
+        #[cfg(feature = "NSDate")]
         #[method_id(@__retain_semantics Other dateWithEra:year:month:day:hour:minute:second:nanosecond:)]
         pub unsafe fn dateWithEra_year_month_day_hour_minute_second_nanosecond(
             &self,
@@ -467,7 +467,7 @@ extern_methods!(
             nanosecond_value: NSInteger,
         ) -> Option<Id<NSDate>>;
 
-        #[cfg(feature = "Foundation_NSDate")]
+        #[cfg(feature = "NSDate")]
         #[method_id(@__retain_semantics Other dateWithEra:yearForWeekOfYear:weekOfYear:weekday:hour:minute:second:nanosecond:)]
         pub unsafe fn dateWithEra_yearForWeekOfYear_weekOfYear_weekday_hour_minute_second_nanosecond(
             &self,
@@ -481,11 +481,11 @@ extern_methods!(
             nanosecond_value: NSInteger,
         ) -> Option<Id<NSDate>>;
 
-        #[cfg(feature = "Foundation_NSDate")]
+        #[cfg(feature = "NSDate")]
         #[method_id(@__retain_semantics Other startOfDayForDate:)]
         pub unsafe fn startOfDayForDate(&self, date: &NSDate) -> Id<NSDate>;
 
-        #[cfg(all(feature = "Foundation_NSDate", feature = "Foundation_NSTimeZone"))]
+        #[cfg(all(feature = "NSDate", feature = "NSTimeZone"))]
         #[method_id(@__retain_semantics Other componentsInTimeZone:fromDate:)]
         pub unsafe fn componentsInTimeZone_fromDate(
             &self,
@@ -493,7 +493,7 @@ extern_methods!(
             date: &NSDate,
         ) -> Id<NSDateComponents>;
 
-        #[cfg(all(feature = "Foundation_NSDate", feature = "Foundation_NSObjCRuntime"))]
+        #[cfg(all(feature = "NSDate", feature = "NSObjCRuntime"))]
         #[method(compareDate:toDate:toUnitGranularity:)]
         pub unsafe fn compareDate_toDate_toUnitGranularity(
             &self,
@@ -502,7 +502,7 @@ extern_methods!(
             unit: NSCalendarUnit,
         ) -> NSComparisonResult;
 
-        #[cfg(feature = "Foundation_NSDate")]
+        #[cfg(feature = "NSDate")]
         #[method(isDate:equalToDate:toUnitGranularity:)]
         pub unsafe fn isDate_equalToDate_toUnitGranularity(
             &self,
@@ -511,27 +511,27 @@ extern_methods!(
             unit: NSCalendarUnit,
         ) -> bool;
 
-        #[cfg(feature = "Foundation_NSDate")]
+        #[cfg(feature = "NSDate")]
         #[method(isDate:inSameDayAsDate:)]
         pub unsafe fn isDate_inSameDayAsDate(&self, date1: &NSDate, date2: &NSDate) -> bool;
 
-        #[cfg(feature = "Foundation_NSDate")]
+        #[cfg(feature = "NSDate")]
         #[method(isDateInToday:)]
         pub unsafe fn isDateInToday(&self, date: &NSDate) -> bool;
 
-        #[cfg(feature = "Foundation_NSDate")]
+        #[cfg(feature = "NSDate")]
         #[method(isDateInYesterday:)]
         pub unsafe fn isDateInYesterday(&self, date: &NSDate) -> bool;
 
-        #[cfg(feature = "Foundation_NSDate")]
+        #[cfg(feature = "NSDate")]
         #[method(isDateInTomorrow:)]
         pub unsafe fn isDateInTomorrow(&self, date: &NSDate) -> bool;
 
-        #[cfg(feature = "Foundation_NSDate")]
+        #[cfg(feature = "NSDate")]
         #[method(isDateInWeekend:)]
         pub unsafe fn isDateInWeekend(&self, date: &NSDate) -> bool;
 
-        #[cfg(feature = "Foundation_NSDate")]
+        #[cfg(feature = "NSDate")]
         #[method(rangeOfWeekendStartDate:interval:containingDate:)]
         pub unsafe fn rangeOfWeekendStartDate_interval_containingDate(
             &self,
@@ -540,7 +540,7 @@ extern_methods!(
             date: &NSDate,
         ) -> bool;
 
-        #[cfg(feature = "Foundation_NSDate")]
+        #[cfg(feature = "NSDate")]
         #[method(nextWeekendStartDate:interval:options:afterDate:)]
         pub unsafe fn nextWeekendStartDate_interval_options_afterDate(
             &self,
@@ -559,7 +559,7 @@ extern_methods!(
             options: NSCalendarOptions,
         ) -> Id<NSDateComponents>;
 
-        #[cfg(feature = "Foundation_NSDate")]
+        #[cfg(feature = "NSDate")]
         #[method_id(@__retain_semantics Other dateByAddingUnit:value:toDate:options:)]
         pub unsafe fn dateByAddingUnit_value_toDate_options(
             &self,
@@ -569,7 +569,7 @@ extern_methods!(
             options: NSCalendarOptions,
         ) -> Option<Id<NSDate>>;
 
-        #[cfg(all(feature = "Foundation_NSDate", feature = "block2"))]
+        #[cfg(all(feature = "NSDate", feature = "block2"))]
         #[method(enumerateDatesStartingAfterDate:matchingComponents:options:usingBlock:)]
         pub unsafe fn enumerateDatesStartingAfterDate_matchingComponents_options_usingBlock(
             &self,
@@ -579,7 +579,7 @@ extern_methods!(
             block: &Block<dyn Fn(*mut NSDate, Bool, NonNull<Bool>) + '_>,
         );
 
-        #[cfg(feature = "Foundation_NSDate")]
+        #[cfg(feature = "NSDate")]
         #[method_id(@__retain_semantics Other nextDateAfterDate:matchingComponents:options:)]
         pub unsafe fn nextDateAfterDate_matchingComponents_options(
             &self,
@@ -588,7 +588,7 @@ extern_methods!(
             options: NSCalendarOptions,
         ) -> Option<Id<NSDate>>;
 
-        #[cfg(feature = "Foundation_NSDate")]
+        #[cfg(feature = "NSDate")]
         #[method_id(@__retain_semantics Other nextDateAfterDate:matchingUnit:value:options:)]
         pub unsafe fn nextDateAfterDate_matchingUnit_value_options(
             &self,
@@ -598,7 +598,7 @@ extern_methods!(
             options: NSCalendarOptions,
         ) -> Option<Id<NSDate>>;
 
-        #[cfg(feature = "Foundation_NSDate")]
+        #[cfg(feature = "NSDate")]
         #[method_id(@__retain_semantics Other nextDateAfterDate:matchingHour:minute:second:options:)]
         pub unsafe fn nextDateAfterDate_matchingHour_minute_second_options(
             &self,
@@ -609,7 +609,7 @@ extern_methods!(
             options: NSCalendarOptions,
         ) -> Option<Id<NSDate>>;
 
-        #[cfg(feature = "Foundation_NSDate")]
+        #[cfg(feature = "NSDate")]
         #[method_id(@__retain_semantics Other dateBySettingUnit:value:ofDate:options:)]
         pub unsafe fn dateBySettingUnit_value_ofDate_options(
             &self,
@@ -619,7 +619,7 @@ extern_methods!(
             opts: NSCalendarOptions,
         ) -> Option<Id<NSDate>>;
 
-        #[cfg(feature = "Foundation_NSDate")]
+        #[cfg(feature = "NSDate")]
         #[method_id(@__retain_semantics Other dateBySettingHour:minute:second:ofDate:options:)]
         pub unsafe fn dateBySettingHour_minute_second_ofDate_options(
             &self,
@@ -630,7 +630,7 @@ extern_methods!(
             opts: NSCalendarOptions,
         ) -> Option<Id<NSDate>>;
 
-        #[cfg(feature = "Foundation_NSDate")]
+        #[cfg(feature = "NSDate")]
         #[method(date:matchesComponents:)]
         pub unsafe fn date_matchesComponents(
             &self,
@@ -649,7 +649,7 @@ extern_methods!(
 );
 
 extern "C" {
-    #[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
+    #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSCalendarDayChangedNotification: &'static NSNotificationName;
 }
 
@@ -667,15 +667,15 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSCoding for NSDateComponents {}
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSCopying for NSDateComponents {}
 
 unsafe impl NSObjectProtocol for NSDateComponents {}
 
-#[cfg(feature = "Foundation_NSObject")]
+#[cfg(feature = "NSObject")]
 unsafe impl NSSecureCoding for NSDateComponents {}
 
 extern_methods!(
@@ -686,11 +686,11 @@ extern_methods!(
         #[method(setCalendar:)]
         pub unsafe fn setCalendar(&self, calendar: Option<&NSCalendar>);
 
-        #[cfg(feature = "Foundation_NSTimeZone")]
+        #[cfg(feature = "NSTimeZone")]
         #[method_id(@__retain_semantics Other timeZone)]
         pub unsafe fn timeZone(&self) -> Option<Id<NSTimeZone>>;
 
-        #[cfg(feature = "Foundation_NSTimeZone")]
+        #[cfg(feature = "NSTimeZone")]
         #[method(setTimeZone:)]
         pub unsafe fn setTimeZone(&self, time_zone: Option<&NSTimeZone>);
 
@@ -784,7 +784,7 @@ extern_methods!(
         #[method(setLeapMonth:)]
         pub unsafe fn setLeapMonth(&self, leap_month: bool);
 
-        #[cfg(feature = "Foundation_NSDate")]
+        #[cfg(feature = "NSDate")]
         #[method_id(@__retain_semantics Other date)]
         pub unsafe fn date(&self) -> Option<Id<NSDate>>;
 

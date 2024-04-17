@@ -42,30 +42,24 @@ unsafe impl NSObjectProtocol for NSPersistentHistoryChange {}
 
 extern_methods!(
     unsafe impl NSPersistentHistoryChange {
-        #[cfg(all(
-            feature = "CoreData_NSEntityDescription",
-            feature = "CoreData_NSManagedObjectContext"
-        ))]
+        #[cfg(all(feature = "NSEntityDescription", feature = "NSManagedObjectContext"))]
         #[method_id(@__retain_semantics Other entityDescriptionWithContext:)]
         pub unsafe fn entityDescriptionWithContext(
             context: &NSManagedObjectContext,
         ) -> Option<Id<NSEntityDescription>>;
 
-        #[cfg(feature = "CoreData_NSEntityDescription")]
+        #[cfg(feature = "NSEntityDescription")]
         #[method_id(@__retain_semantics Other entityDescription)]
         pub unsafe fn entityDescription() -> Option<Id<NSEntityDescription>>;
 
-        #[cfg(all(
-            feature = "CoreData_NSFetchRequest",
-            feature = "CoreData_NSPersistentStoreRequest"
-        ))]
+        #[cfg(all(feature = "NSFetchRequest", feature = "NSPersistentStoreRequest"))]
         #[method_id(@__retain_semantics Other fetchRequest)]
         pub unsafe fn fetchRequest() -> Option<Id<NSFetchRequest>>;
 
         #[method(changeID)]
         pub unsafe fn changeID(&self) -> i64;
 
-        #[cfg(feature = "CoreData_NSManagedObjectID")]
+        #[cfg(feature = "NSManagedObjectID")]
         #[method_id(@__retain_semantics Other changedObjectID)]
         pub unsafe fn changedObjectID(&self) -> Id<NSManagedObjectID>;
 
@@ -75,11 +69,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Other tombstone)]
         pub unsafe fn tombstone(&self) -> Option<Id<NSDictionary>>;
 
-        #[cfg(feature = "CoreData_NSPersistentHistoryTransaction")]
+        #[cfg(feature = "NSPersistentHistoryTransaction")]
         #[method_id(@__retain_semantics Other transaction)]
         pub unsafe fn transaction(&self) -> Option<Id<NSPersistentHistoryTransaction>>;
 
-        #[cfg(feature = "CoreData_NSPropertyDescription")]
+        #[cfg(feature = "NSPropertyDescription")]
         #[method_id(@__retain_semantics Other updatedProperties)]
         pub unsafe fn updatedProperties(&self) -> Option<Id<NSSet<NSPropertyDescription>>>;
     }

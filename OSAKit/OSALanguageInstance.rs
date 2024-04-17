@@ -20,15 +20,15 @@ unsafe impl NSObjectProtocol for OSALanguageInstance {}
 
 extern_methods!(
     unsafe impl OSALanguageInstance {
-        #[cfg(feature = "OSAKit_OSALanguage")]
+        #[cfg(feature = "OSALanguage")]
         #[method_id(@__retain_semantics Other languageInstanceWithLanguage:)]
         pub unsafe fn languageInstanceWithLanguage(language: &OSALanguage) -> Id<Self>;
 
-        #[cfg(feature = "OSAKit_OSALanguage")]
+        #[cfg(feature = "OSALanguage")]
         #[method_id(@__retain_semantics Init initWithLanguage:)]
         pub unsafe fn initWithLanguage(this: Allocated<Self>, language: &OSALanguage) -> Id<Self>;
 
-        #[cfg(feature = "OSAKit_OSALanguage")]
+        #[cfg(feature = "OSALanguage")]
         #[method_id(@__retain_semantics Other language)]
         pub unsafe fn language(&self) -> Id<OSALanguage>;
 

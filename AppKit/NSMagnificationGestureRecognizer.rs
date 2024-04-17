@@ -7,10 +7,10 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSGestureRecognizer")]
+    #[cfg(feature = "NSGestureRecognizer")]
     pub struct NSMagnificationGestureRecognizer;
 
-    #[cfg(feature = "AppKit_NSGestureRecognizer")]
+    #[cfg(feature = "NSGestureRecognizer")]
     unsafe impl ClassType for NSMagnificationGestureRecognizer {
         #[inherits(NSObject)]
         type Super = NSGestureRecognizer;
@@ -18,14 +18,14 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSGestureRecognizer")]
+#[cfg(feature = "NSGestureRecognizer")]
 unsafe impl NSCoding for NSMagnificationGestureRecognizer {}
 
-#[cfg(feature = "AppKit_NSGestureRecognizer")]
+#[cfg(feature = "NSGestureRecognizer")]
 unsafe impl NSObjectProtocol for NSMagnificationGestureRecognizer {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSGestureRecognizer")]
+    #[cfg(feature = "NSGestureRecognizer")]
     unsafe impl NSMagnificationGestureRecognizer {
         #[method(magnification)]
         pub unsafe fn magnification(&self) -> CGFloat;
@@ -37,7 +37,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSGestureRecognizer`
-    #[cfg(feature = "AppKit_NSGestureRecognizer")]
+    #[cfg(feature = "NSGestureRecognizer")]
     unsafe impl NSMagnificationGestureRecognizer {
         #[method_id(@__retain_semantics Init initWithTarget:action:)]
         pub unsafe fn initWithTarget_action(
@@ -53,7 +53,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSGestureRecognizer")]
+    #[cfg(feature = "NSGestureRecognizer")]
     unsafe impl NSMagnificationGestureRecognizer {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

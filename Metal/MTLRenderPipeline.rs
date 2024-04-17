@@ -233,11 +233,11 @@ unsafe impl NSObjectProtocol for MTLRenderPipelineColorAttachmentDescriptor {}
 
 extern_methods!(
     unsafe impl MTLRenderPipelineColorAttachmentDescriptor {
-        #[cfg(feature = "Metal_MTLPixelFormat")]
+        #[cfg(feature = "MTLPixelFormat")]
         #[method(pixelFormat)]
         pub fn pixelFormat(&self) -> MTLPixelFormat;
 
-        #[cfg(feature = "Metal_MTLPixelFormat")]
+        #[cfg(feature = "MTLPixelFormat")]
         #[method(setPixelFormat:)]
         pub fn setPixelFormat(&self, pixel_format: MTLPixelFormat);
 
@@ -319,37 +319,37 @@ unsafe impl NSObjectProtocol for MTLRenderPipelineReflection {}
 
 extern_methods!(
     unsafe impl MTLRenderPipelineReflection {
-        #[cfg(feature = "Metal_MTLArgument")]
+        #[cfg(feature = "MTLArgument")]
         #[method_id(@__retain_semantics Other vertexBindings)]
         pub unsafe fn vertexBindings(&self) -> Id<NSArray<ProtocolObject<dyn MTLBinding>>>;
 
-        #[cfg(feature = "Metal_MTLArgument")]
+        #[cfg(feature = "MTLArgument")]
         #[method_id(@__retain_semantics Other fragmentBindings)]
         pub unsafe fn fragmentBindings(&self) -> Id<NSArray<ProtocolObject<dyn MTLBinding>>>;
 
-        #[cfg(feature = "Metal_MTLArgument")]
+        #[cfg(feature = "MTLArgument")]
         #[method_id(@__retain_semantics Other tileBindings)]
         pub unsafe fn tileBindings(&self) -> Id<NSArray<ProtocolObject<dyn MTLBinding>>>;
 
-        #[cfg(feature = "Metal_MTLArgument")]
+        #[cfg(feature = "MTLArgument")]
         #[method_id(@__retain_semantics Other objectBindings)]
         pub unsafe fn objectBindings(&self) -> Id<NSArray<ProtocolObject<dyn MTLBinding>>>;
 
-        #[cfg(feature = "Metal_MTLArgument")]
+        #[cfg(feature = "MTLArgument")]
         #[method_id(@__retain_semantics Other meshBindings)]
         pub unsafe fn meshBindings(&self) -> Id<NSArray<ProtocolObject<dyn MTLBinding>>>;
 
-        #[cfg(feature = "Metal_MTLArgument")]
+        #[cfg(feature = "MTLArgument")]
         #[deprecated]
         #[method_id(@__retain_semantics Other vertexArguments)]
         pub fn vertexArguments(&self) -> Option<Id<NSArray<MTLArgument>>>;
 
-        #[cfg(feature = "Metal_MTLArgument")]
+        #[cfg(feature = "MTLArgument")]
         #[deprecated]
         #[method_id(@__retain_semantics Other fragmentArguments)]
         pub fn fragmentArguments(&self) -> Option<Id<NSArray<MTLArgument>>>;
 
-        #[cfg(feature = "Metal_MTLArgument")]
+        #[cfg(feature = "MTLArgument")]
         #[deprecated]
         #[method_id(@__retain_semantics Other tileArguments)]
         pub fn tileArguments(&self) -> Option<Id<NSArray<MTLArgument>>>;
@@ -389,30 +389,30 @@ extern_methods!(
         #[method(setLabel:)]
         pub fn setLabel(&self, label: Option<&NSString>);
 
-        #[cfg(feature = "Metal_MTLLibrary")]
+        #[cfg(feature = "MTLLibrary")]
         #[method_id(@__retain_semantics Other vertexFunction)]
         pub fn vertexFunction(&self) -> Option<Id<ProtocolObject<dyn MTLFunction>>>;
 
-        #[cfg(feature = "Metal_MTLLibrary")]
+        #[cfg(feature = "MTLLibrary")]
         #[method(setVertexFunction:)]
         pub fn setVertexFunction(&self, vertex_function: Option<&ProtocolObject<dyn MTLFunction>>);
 
-        #[cfg(feature = "Metal_MTLLibrary")]
+        #[cfg(feature = "MTLLibrary")]
         #[method_id(@__retain_semantics Other fragmentFunction)]
         pub fn fragmentFunction(&self) -> Option<Id<ProtocolObject<dyn MTLFunction>>>;
 
-        #[cfg(feature = "Metal_MTLLibrary")]
+        #[cfg(feature = "MTLLibrary")]
         #[method(setFragmentFunction:)]
         pub fn setFragmentFunction(
             &self,
             fragment_function: Option<&ProtocolObject<dyn MTLFunction>>,
         );
 
-        #[cfg(feature = "Metal_MTLVertexDescriptor")]
+        #[cfg(feature = "MTLVertexDescriptor")]
         #[method_id(@__retain_semantics Other vertexDescriptor)]
         pub fn vertexDescriptor(&self) -> Option<Id<MTLVertexDescriptor>>;
 
-        #[cfg(feature = "Metal_MTLVertexDescriptor")]
+        #[cfg(feature = "MTLVertexDescriptor")]
         #[method(setVertexDescriptor:)]
         pub fn setVertexDescriptor(&self, vertex_descriptor: Option<&MTLVertexDescriptor>);
 
@@ -460,19 +460,19 @@ extern_methods!(
         #[method_id(@__retain_semantics Other colorAttachments)]
         pub fn colorAttachments(&self) -> Id<MTLRenderPipelineColorAttachmentDescriptorArray>;
 
-        #[cfg(feature = "Metal_MTLPixelFormat")]
+        #[cfg(feature = "MTLPixelFormat")]
         #[method(depthAttachmentPixelFormat)]
         pub fn depthAttachmentPixelFormat(&self) -> MTLPixelFormat;
 
-        #[cfg(feature = "Metal_MTLPixelFormat")]
+        #[cfg(feature = "MTLPixelFormat")]
         #[method(setDepthAttachmentPixelFormat:)]
         pub fn setDepthAttachmentPixelFormat(&self, depth_attachment_pixel_format: MTLPixelFormat);
 
-        #[cfg(feature = "Metal_MTLPixelFormat")]
+        #[cfg(feature = "MTLPixelFormat")]
         #[method(stencilAttachmentPixelFormat)]
         pub fn stencilAttachmentPixelFormat(&self) -> MTLPixelFormat;
 
-        #[cfg(feature = "Metal_MTLPixelFormat")]
+        #[cfg(feature = "MTLPixelFormat")]
         #[method(setStencilAttachmentPixelFormat:)]
         pub fn setStencilAttachmentPixelFormat(
             &self,
@@ -536,22 +536,22 @@ extern_methods!(
             tessellation_factor_step_function: MTLTessellationFactorStepFunction,
         );
 
-        #[cfg(feature = "Metal_MTLRenderCommandEncoder")]
+        #[cfg(feature = "MTLRenderCommandEncoder")]
         #[method(tessellationOutputWindingOrder)]
         pub fn tessellationOutputWindingOrder(&self) -> MTLWinding;
 
-        #[cfg(feature = "Metal_MTLRenderCommandEncoder")]
+        #[cfg(feature = "MTLRenderCommandEncoder")]
         #[method(setTessellationOutputWindingOrder:)]
         pub fn setTessellationOutputWindingOrder(
             &self,
             tessellation_output_winding_order: MTLWinding,
         );
 
-        #[cfg(feature = "Metal_MTLPipeline")]
+        #[cfg(feature = "MTLPipeline")]
         #[method_id(@__retain_semantics Other vertexBuffers)]
         pub fn vertexBuffers(&self) -> Id<MTLPipelineBufferDescriptorArray>;
 
-        #[cfg(feature = "Metal_MTLPipeline")]
+        #[cfg(feature = "MTLPipeline")]
         #[method_id(@__retain_semantics Other fragmentBuffers)]
         pub fn fragmentBuffers(&self) -> Id<MTLPipelineBufferDescriptorArray>;
 
@@ -561,59 +561,59 @@ extern_methods!(
         #[method(setSupportIndirectCommandBuffers:)]
         pub fn setSupportIndirectCommandBuffers(&self, support_indirect_command_buffers: bool);
 
-        #[cfg(feature = "Metal_MTLBinaryArchive")]
+        #[cfg(feature = "MTLBinaryArchive")]
         #[method_id(@__retain_semantics Other binaryArchives)]
         pub fn binaryArchives(&self) -> Option<Id<NSArray<ProtocolObject<dyn MTLBinaryArchive>>>>;
 
-        #[cfg(feature = "Metal_MTLBinaryArchive")]
+        #[cfg(feature = "MTLBinaryArchive")]
         #[method(setBinaryArchives:)]
         pub fn setBinaryArchives(
             &self,
             binary_archives: Option<&NSArray<ProtocolObject<dyn MTLBinaryArchive>>>,
         );
 
-        #[cfg(feature = "Metal_MTLDynamicLibrary")]
+        #[cfg(feature = "MTLDynamicLibrary")]
         #[method_id(@__retain_semantics Other vertexPreloadedLibraries)]
         pub fn vertexPreloadedLibraries(
             &self,
         ) -> Id<NSArray<ProtocolObject<dyn MTLDynamicLibrary>>>;
 
-        #[cfg(feature = "Metal_MTLDynamicLibrary")]
+        #[cfg(feature = "MTLDynamicLibrary")]
         #[method(setVertexPreloadedLibraries:)]
         pub fn setVertexPreloadedLibraries(
             &self,
             vertex_preloaded_libraries: &NSArray<ProtocolObject<dyn MTLDynamicLibrary>>,
         );
 
-        #[cfg(feature = "Metal_MTLDynamicLibrary")]
+        #[cfg(feature = "MTLDynamicLibrary")]
         #[method_id(@__retain_semantics Other fragmentPreloadedLibraries)]
         pub fn fragmentPreloadedLibraries(
             &self,
         ) -> Id<NSArray<ProtocolObject<dyn MTLDynamicLibrary>>>;
 
-        #[cfg(feature = "Metal_MTLDynamicLibrary")]
+        #[cfg(feature = "MTLDynamicLibrary")]
         #[method(setFragmentPreloadedLibraries:)]
         pub fn setFragmentPreloadedLibraries(
             &self,
             fragment_preloaded_libraries: &NSArray<ProtocolObject<dyn MTLDynamicLibrary>>,
         );
 
-        #[cfg(feature = "Metal_MTLLinkedFunctions")]
+        #[cfg(feature = "MTLLinkedFunctions")]
         #[method_id(@__retain_semantics Other vertexLinkedFunctions)]
         pub fn vertexLinkedFunctions(&self) -> Id<MTLLinkedFunctions>;
 
-        #[cfg(feature = "Metal_MTLLinkedFunctions")]
+        #[cfg(feature = "MTLLinkedFunctions")]
         #[method(setVertexLinkedFunctions:)]
         pub fn setVertexLinkedFunctions(
             &self,
             vertex_linked_functions: Option<&MTLLinkedFunctions>,
         );
 
-        #[cfg(feature = "Metal_MTLLinkedFunctions")]
+        #[cfg(feature = "MTLLinkedFunctions")]
         #[method_id(@__retain_semantics Other fragmentLinkedFunctions)]
         pub fn fragmentLinkedFunctions(&self) -> Id<MTLLinkedFunctions>;
 
-        #[cfg(feature = "Metal_MTLLinkedFunctions")]
+        #[cfg(feature = "MTLLinkedFunctions")]
         #[method(setFragmentLinkedFunctions:)]
         pub fn setFragmentLinkedFunctions(
             &self,
@@ -689,39 +689,39 @@ unsafe impl NSObjectProtocol for MTLRenderPipelineFunctionsDescriptor {}
 
 extern_methods!(
     unsafe impl MTLRenderPipelineFunctionsDescriptor {
-        #[cfg(feature = "Metal_MTLLibrary")]
+        #[cfg(feature = "MTLLibrary")]
         #[method_id(@__retain_semantics Other vertexAdditionalBinaryFunctions)]
         pub unsafe fn vertexAdditionalBinaryFunctions(
             &self,
         ) -> Option<Id<NSArray<ProtocolObject<dyn MTLFunction>>>>;
 
-        #[cfg(feature = "Metal_MTLLibrary")]
+        #[cfg(feature = "MTLLibrary")]
         #[method(setVertexAdditionalBinaryFunctions:)]
         pub unsafe fn setVertexAdditionalBinaryFunctions(
             &self,
             vertex_additional_binary_functions: Option<&NSArray<ProtocolObject<dyn MTLFunction>>>,
         );
 
-        #[cfg(feature = "Metal_MTLLibrary")]
+        #[cfg(feature = "MTLLibrary")]
         #[method_id(@__retain_semantics Other fragmentAdditionalBinaryFunctions)]
         pub unsafe fn fragmentAdditionalBinaryFunctions(
             &self,
         ) -> Option<Id<NSArray<ProtocolObject<dyn MTLFunction>>>>;
 
-        #[cfg(feature = "Metal_MTLLibrary")]
+        #[cfg(feature = "MTLLibrary")]
         #[method(setFragmentAdditionalBinaryFunctions:)]
         pub unsafe fn setFragmentAdditionalBinaryFunctions(
             &self,
             fragment_additional_binary_functions: Option<&NSArray<ProtocolObject<dyn MTLFunction>>>,
         );
 
-        #[cfg(feature = "Metal_MTLLibrary")]
+        #[cfg(feature = "MTLLibrary")]
         #[method_id(@__retain_semantics Other tileAdditionalBinaryFunctions)]
         pub unsafe fn tileAdditionalBinaryFunctions(
             &self,
         ) -> Option<Id<NSArray<ProtocolObject<dyn MTLFunction>>>>;
 
-        #[cfg(feature = "Metal_MTLLibrary")]
+        #[cfg(feature = "MTLLibrary")]
         #[method(setTileAdditionalBinaryFunctions:)]
         pub unsafe fn setTileAdditionalBinaryFunctions(
             &self,
@@ -746,7 +746,7 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other label)]
         unsafe fn label(&self) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "Metal_MTLDevice")]
+        #[cfg(feature = "MTLDevice")]
         #[method_id(@__retain_semantics Other device)]
         unsafe fn device(&self) -> Id<ProtocolObject<dyn MTLDevice>>;
 
@@ -759,7 +759,7 @@ extern_protocol!(
         #[method(imageblockSampleLength)]
         unsafe fn imageblockSampleLength(&self) -> NSUInteger;
 
-        #[cfg(feature = "Metal_MTLTypes")]
+        #[cfg(feature = "MTLTypes")]
         #[method(imageblockMemoryLengthForDimensions:)]
         unsafe fn imageblockMemoryLengthForDimensions(
             &self,
@@ -784,14 +784,14 @@ extern_protocol!(
         #[method(maxTotalThreadgroupsPerMeshGrid)]
         unsafe fn maxTotalThreadgroupsPerMeshGrid(&self) -> NSUInteger;
 
-        #[cfg(feature = "Metal_MTLTypes")]
+        #[cfg(feature = "MTLTypes")]
         #[method(gpuResourceID)]
         unsafe fn gpuResourceID(&self) -> MTLResourceID;
 
         #[cfg(all(
-            feature = "Metal_MTLFunctionHandle",
-            feature = "Metal_MTLLibrary",
-            feature = "Metal_MTLRenderCommandEncoder"
+            feature = "MTLFunctionHandle",
+            feature = "MTLLibrary",
+            feature = "MTLRenderCommandEncoder"
         ))]
         #[method_id(@__retain_semantics Other functionHandleWithFunction:stage:)]
         unsafe fn functionHandleWithFunction_stage(
@@ -801,9 +801,9 @@ extern_protocol!(
         ) -> Option<Id<ProtocolObject<dyn MTLFunctionHandle>>>;
 
         #[cfg(all(
-            feature = "Metal_MTLRenderCommandEncoder",
-            feature = "Metal_MTLResource",
-            feature = "Metal_MTLVisibleFunctionTable"
+            feature = "MTLRenderCommandEncoder",
+            feature = "MTLResource",
+            feature = "MTLVisibleFunctionTable"
         ))]
         #[method_id(@__retain_semantics New newVisibleFunctionTableWithDescriptor:stage:)]
         unsafe fn newVisibleFunctionTableWithDescriptor_stage(
@@ -813,9 +813,9 @@ extern_protocol!(
         ) -> Option<Id<ProtocolObject<dyn MTLVisibleFunctionTable>>>;
 
         #[cfg(all(
-            feature = "Metal_MTLIntersectionFunctionTable",
-            feature = "Metal_MTLRenderCommandEncoder",
-            feature = "Metal_MTLResource"
+            feature = "MTLIntersectionFunctionTable",
+            feature = "MTLRenderCommandEncoder",
+            feature = "MTLResource"
         ))]
         #[method_id(@__retain_semantics New newIntersectionFunctionTableWithDescriptor:stage:)]
         unsafe fn newIntersectionFunctionTableWithDescriptor_stage(
@@ -890,11 +890,11 @@ unsafe impl NSObjectProtocol for MTLTileRenderPipelineColorAttachmentDescriptor 
 
 extern_methods!(
     unsafe impl MTLTileRenderPipelineColorAttachmentDescriptor {
-        #[cfg(feature = "Metal_MTLPixelFormat")]
+        #[cfg(feature = "MTLPixelFormat")]
         #[method(pixelFormat)]
         pub unsafe fn pixelFormat(&self) -> MTLPixelFormat;
 
-        #[cfg(feature = "Metal_MTLPixelFormat")]
+        #[cfg(feature = "MTLPixelFormat")]
         #[method(setPixelFormat:)]
         pub unsafe fn setPixelFormat(&self, pixel_format: MTLPixelFormat);
     }
@@ -973,11 +973,11 @@ extern_methods!(
         #[method(setLabel:)]
         pub unsafe fn setLabel(&self, label: Option<&NSString>);
 
-        #[cfg(feature = "Metal_MTLLibrary")]
+        #[cfg(feature = "MTLLibrary")]
         #[method_id(@__retain_semantics Other tileFunction)]
         pub unsafe fn tileFunction(&self) -> Id<ProtocolObject<dyn MTLFunction>>;
 
-        #[cfg(feature = "Metal_MTLLibrary")]
+        #[cfg(feature = "MTLLibrary")]
         #[method(setTileFunction:)]
         pub unsafe fn setTileFunction(&self, tile_function: &ProtocolObject<dyn MTLFunction>);
 
@@ -1001,7 +1001,7 @@ extern_methods!(
             threadgroup_size_matches_tile_size: bool,
         );
 
-        #[cfg(feature = "Metal_MTLPipeline")]
+        #[cfg(feature = "MTLPipeline")]
         #[method_id(@__retain_semantics Other tileBuffers)]
         pub unsafe fn tileBuffers(&self) -> Id<MTLPipelineBufferDescriptorArray>;
 
@@ -1014,37 +1014,37 @@ extern_methods!(
             max_total_threads_per_threadgroup: NSUInteger,
         );
 
-        #[cfg(feature = "Metal_MTLBinaryArchive")]
+        #[cfg(feature = "MTLBinaryArchive")]
         #[method_id(@__retain_semantics Other binaryArchives)]
         pub unsafe fn binaryArchives(
             &self,
         ) -> Option<Id<NSArray<ProtocolObject<dyn MTLBinaryArchive>>>>;
 
-        #[cfg(feature = "Metal_MTLBinaryArchive")]
+        #[cfg(feature = "MTLBinaryArchive")]
         #[method(setBinaryArchives:)]
         pub unsafe fn setBinaryArchives(
             &self,
             binary_archives: Option<&NSArray<ProtocolObject<dyn MTLBinaryArchive>>>,
         );
 
-        #[cfg(feature = "Metal_MTLDynamicLibrary")]
+        #[cfg(feature = "MTLDynamicLibrary")]
         #[method_id(@__retain_semantics Other preloadedLibraries)]
         pub unsafe fn preloadedLibraries(
             &self,
         ) -> Id<NSArray<ProtocolObject<dyn MTLDynamicLibrary>>>;
 
-        #[cfg(feature = "Metal_MTLDynamicLibrary")]
+        #[cfg(feature = "MTLDynamicLibrary")]
         #[method(setPreloadedLibraries:)]
         pub unsafe fn setPreloadedLibraries(
             &self,
             preloaded_libraries: &NSArray<ProtocolObject<dyn MTLDynamicLibrary>>,
         );
 
-        #[cfg(feature = "Metal_MTLLinkedFunctions")]
+        #[cfg(feature = "MTLLinkedFunctions")]
         #[method_id(@__retain_semantics Other linkedFunctions)]
         pub unsafe fn linkedFunctions(&self) -> Id<MTLLinkedFunctions>;
 
-        #[cfg(feature = "Metal_MTLLinkedFunctions")]
+        #[cfg(feature = "MTLLinkedFunctions")]
         #[method(setLinkedFunctions:)]
         pub unsafe fn setLinkedFunctions(&self, linked_functions: Option<&MTLLinkedFunctions>);
 
@@ -1098,33 +1098,33 @@ extern_methods!(
         #[method(setLabel:)]
         pub unsafe fn setLabel(&self, label: Option<&NSString>);
 
-        #[cfg(feature = "Metal_MTLLibrary")]
+        #[cfg(feature = "MTLLibrary")]
         #[method_id(@__retain_semantics Other objectFunction)]
         pub unsafe fn objectFunction(&self) -> Option<Id<ProtocolObject<dyn MTLFunction>>>;
 
-        #[cfg(feature = "Metal_MTLLibrary")]
+        #[cfg(feature = "MTLLibrary")]
         #[method(setObjectFunction:)]
         pub unsafe fn setObjectFunction(
             &self,
             object_function: Option<&ProtocolObject<dyn MTLFunction>>,
         );
 
-        #[cfg(feature = "Metal_MTLLibrary")]
+        #[cfg(feature = "MTLLibrary")]
         #[method_id(@__retain_semantics Other meshFunction)]
         pub unsafe fn meshFunction(&self) -> Option<Id<ProtocolObject<dyn MTLFunction>>>;
 
-        #[cfg(feature = "Metal_MTLLibrary")]
+        #[cfg(feature = "MTLLibrary")]
         #[method(setMeshFunction:)]
         pub unsafe fn setMeshFunction(
             &self,
             mesh_function: Option<&ProtocolObject<dyn MTLFunction>>,
         );
 
-        #[cfg(feature = "Metal_MTLLibrary")]
+        #[cfg(feature = "MTLLibrary")]
         #[method_id(@__retain_semantics Other fragmentFunction)]
         pub unsafe fn fragmentFunction(&self) -> Option<Id<ProtocolObject<dyn MTLFunction>>>;
 
-        #[cfg(feature = "Metal_MTLLibrary")]
+        #[cfg(feature = "MTLLibrary")]
         #[method(setFragmentFunction:)]
         pub unsafe fn setFragmentFunction(
             &self,
@@ -1182,15 +1182,15 @@ extern_methods!(
             max_total_threadgroups_per_mesh_grid: NSUInteger,
         );
 
-        #[cfg(feature = "Metal_MTLPipeline")]
+        #[cfg(feature = "MTLPipeline")]
         #[method_id(@__retain_semantics Other objectBuffers)]
         pub unsafe fn objectBuffers(&self) -> Id<MTLPipelineBufferDescriptorArray>;
 
-        #[cfg(feature = "Metal_MTLPipeline")]
+        #[cfg(feature = "MTLPipeline")]
         #[method_id(@__retain_semantics Other meshBuffers)]
         pub unsafe fn meshBuffers(&self) -> Id<MTLPipelineBufferDescriptorArray>;
 
-        #[cfg(feature = "Metal_MTLPipeline")]
+        #[cfg(feature = "MTLPipeline")]
         #[method_id(@__retain_semantics Other fragmentBuffers)]
         pub unsafe fn fragmentBuffers(&self) -> Id<MTLPipelineBufferDescriptorArray>;
 
@@ -1232,22 +1232,22 @@ extern_methods!(
             &self,
         ) -> Id<MTLRenderPipelineColorAttachmentDescriptorArray>;
 
-        #[cfg(feature = "Metal_MTLPixelFormat")]
+        #[cfg(feature = "MTLPixelFormat")]
         #[method(depthAttachmentPixelFormat)]
         pub unsafe fn depthAttachmentPixelFormat(&self) -> MTLPixelFormat;
 
-        #[cfg(feature = "Metal_MTLPixelFormat")]
+        #[cfg(feature = "MTLPixelFormat")]
         #[method(setDepthAttachmentPixelFormat:)]
         pub unsafe fn setDepthAttachmentPixelFormat(
             &self,
             depth_attachment_pixel_format: MTLPixelFormat,
         );
 
-        #[cfg(feature = "Metal_MTLPixelFormat")]
+        #[cfg(feature = "MTLPixelFormat")]
         #[method(stencilAttachmentPixelFormat)]
         pub unsafe fn stencilAttachmentPixelFormat(&self) -> MTLPixelFormat;
 
-        #[cfg(feature = "Metal_MTLPixelFormat")]
+        #[cfg(feature = "MTLPixelFormat")]
         #[method(setStencilAttachmentPixelFormat:)]
         pub unsafe fn setStencilAttachmentPixelFormat(
             &self,
@@ -1263,33 +1263,33 @@ extern_methods!(
             support_indirect_command_buffers: bool,
         );
 
-        #[cfg(feature = "Metal_MTLLinkedFunctions")]
+        #[cfg(feature = "MTLLinkedFunctions")]
         #[method_id(@__retain_semantics Other objectLinkedFunctions)]
         pub unsafe fn objectLinkedFunctions(&self) -> Id<MTLLinkedFunctions>;
 
-        #[cfg(feature = "Metal_MTLLinkedFunctions")]
+        #[cfg(feature = "MTLLinkedFunctions")]
         #[method(setObjectLinkedFunctions:)]
         pub unsafe fn setObjectLinkedFunctions(
             &self,
             object_linked_functions: Option<&MTLLinkedFunctions>,
         );
 
-        #[cfg(feature = "Metal_MTLLinkedFunctions")]
+        #[cfg(feature = "MTLLinkedFunctions")]
         #[method_id(@__retain_semantics Other meshLinkedFunctions)]
         pub unsafe fn meshLinkedFunctions(&self) -> Id<MTLLinkedFunctions>;
 
-        #[cfg(feature = "Metal_MTLLinkedFunctions")]
+        #[cfg(feature = "MTLLinkedFunctions")]
         #[method(setMeshLinkedFunctions:)]
         pub unsafe fn setMeshLinkedFunctions(
             &self,
             mesh_linked_functions: Option<&MTLLinkedFunctions>,
         );
 
-        #[cfg(feature = "Metal_MTLLinkedFunctions")]
+        #[cfg(feature = "MTLLinkedFunctions")]
         #[method_id(@__retain_semantics Other fragmentLinkedFunctions)]
         pub unsafe fn fragmentLinkedFunctions(&self) -> Id<MTLLinkedFunctions>;
 
-        #[cfg(feature = "Metal_MTLLinkedFunctions")]
+        #[cfg(feature = "MTLLinkedFunctions")]
         #[method(setFragmentLinkedFunctions:)]
         pub unsafe fn setFragmentLinkedFunctions(
             &self,

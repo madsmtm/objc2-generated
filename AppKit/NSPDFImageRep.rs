@@ -7,10 +7,10 @@ use crate::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSImageRep")]
+    #[cfg(feature = "NSImageRep")]
     pub struct NSPDFImageRep;
 
-    #[cfg(feature = "AppKit_NSImageRep")]
+    #[cfg(feature = "NSImageRep")]
     unsafe impl ClassType for NSPDFImageRep {
         #[inherits(NSObject)]
         type Super = NSImageRep;
@@ -18,17 +18,17 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSImageRep")]
+#[cfg(feature = "NSImageRep")]
 unsafe impl NSCoding for NSPDFImageRep {}
 
-#[cfg(feature = "AppKit_NSImageRep")]
+#[cfg(feature = "NSImageRep")]
 unsafe impl NSCopying for NSPDFImageRep {}
 
-#[cfg(feature = "AppKit_NSImageRep")]
+#[cfg(feature = "NSImageRep")]
 unsafe impl NSObjectProtocol for NSPDFImageRep {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSImageRep")]
+    #[cfg(feature = "NSImageRep")]
     unsafe impl NSPDFImageRep {
         #[method_id(@__retain_semantics Other imageRepWithData:)]
         pub unsafe fn imageRepWithData(pdf_data: &NSData) -> Option<Id<Self>>;
@@ -55,7 +55,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSImageRep`
-    #[cfg(feature = "AppKit_NSImageRep")]
+    #[cfg(feature = "NSImageRep")]
     unsafe impl NSPDFImageRep {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -67,7 +67,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSImageRep")]
+    #[cfg(feature = "NSImageRep")]
     unsafe impl NSPDFImageRep {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

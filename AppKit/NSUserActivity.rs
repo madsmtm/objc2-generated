@@ -16,7 +16,7 @@ extern_protocol!(
 
 extern_methods!(
     /// NSUserActivity
-    #[cfg(feature = "AppKit_NSResponder")]
+    #[cfg(feature = "NSResponder")]
     unsafe impl NSResponder {
         #[method_id(@__retain_semantics Other userActivity)]
         pub unsafe fn userActivity(&self) -> Option<Id<NSUserActivity>>;
@@ -29,12 +29,12 @@ extern_methods!(
     }
 );
 
-#[cfg(feature = "AppKit_NSResponder")]
+#[cfg(feature = "NSResponder")]
 unsafe impl NSUserActivityRestoring for NSResponder {}
 
 extern_methods!(
     /// NSUserActivity
-    #[cfg(feature = "AppKit_NSDocument")]
+    #[cfg(feature = "NSDocument")]
     unsafe impl NSDocument {
         #[method_id(@__retain_semantics Other userActivity)]
         pub unsafe fn userActivity(&self) -> Option<Id<NSUserActivity>>;
@@ -47,7 +47,7 @@ extern_methods!(
     }
 );
 
-#[cfg(feature = "AppKit_NSDocument")]
+#[cfg(feature = "NSDocument")]
 unsafe impl NSUserActivityRestoring for NSDocument {}
 
 extern "C" {

@@ -37,11 +37,11 @@ extern_methods!(
         pub unsafe fn initWithPlacemark(this: Allocated<Self>, placemark: &CLPlacemark)
             -> Id<Self>;
 
-        #[cfg(feature = "CoreLocation_CLLocation")]
+        #[cfg(feature = "CLLocation")]
         #[method_id(@__retain_semantics Other location)]
         pub unsafe fn location(&self) -> Option<Id<CLLocation>>;
 
-        #[cfg(feature = "CoreLocation_CLRegion")]
+        #[cfg(feature = "CLRegion")]
         #[method_id(@__retain_semantics Other region)]
         pub unsafe fn region(&self) -> Option<Id<CLRegion>>;
 

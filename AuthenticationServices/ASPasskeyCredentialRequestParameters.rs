@@ -39,7 +39,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other clientDataHash)]
         pub unsafe fn clientDataHash(&self) -> Id<NSData>;
 
-        #[cfg(feature = "AuthenticationServices_ASAuthorizationPublicKeyCredentialConstants")]
+        #[cfg(feature = "ASAuthorizationPublicKeyCredentialConstants")]
         #[method_id(@__retain_semantics Other userVerificationPreference)]
         pub unsafe fn userVerificationPreference(
             &self,

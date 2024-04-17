@@ -48,7 +48,7 @@ unsafe impl NSObjectProtocol for WKNavigationAction {}
 
 extern_methods!(
     unsafe impl WKNavigationAction {
-        #[cfg(feature = "WebKit_WKFrameInfo")]
+        #[cfg(feature = "WKFrameInfo")]
         #[method_id(@__retain_semantics Other targetFrame)]
         pub unsafe fn targetFrame(&self) -> Option<Id<WKFrameInfo>>;
 

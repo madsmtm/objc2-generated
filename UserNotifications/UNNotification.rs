@@ -28,7 +28,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other date)]
         pub unsafe fn date(&self) -> Id<NSDate>;
 
-        #[cfg(feature = "UserNotifications_UNNotificationRequest")]
+        #[cfg(feature = "UNNotificationRequest")]
         #[method_id(@__retain_semantics Other request)]
         pub unsafe fn request(&self) -> Id<UNNotificationRequest>;
 

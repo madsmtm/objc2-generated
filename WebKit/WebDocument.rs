@@ -10,12 +10,12 @@ use crate::*;
 extern_protocol!(
     #[deprecated]
     pub unsafe trait WebDocumentView: NSObjectProtocol {
-        #[cfg(feature = "WebKit_WebDataSource")]
+        #[cfg(feature = "WebDataSource")]
         #[deprecated]
         #[method(setDataSource:)]
         unsafe fn setDataSource(&self, data_source: Option<&WebDataSource>);
 
-        #[cfg(feature = "WebKit_WebDataSource")]
+        #[cfg(feature = "WebDataSource")]
         #[deprecated]
         #[method(dataSourceUpdated:)]
         unsafe fn dataSourceUpdated(&self, data_source: Option<&WebDataSource>);
@@ -96,12 +96,12 @@ extern_protocol!(
 extern_protocol!(
     #[deprecated]
     pub unsafe trait WebDocumentRepresentation: NSObjectProtocol {
-        #[cfg(feature = "WebKit_WebDataSource")]
+        #[cfg(feature = "WebDataSource")]
         #[deprecated]
         #[method(setDataSource:)]
         unsafe fn setDataSource(&self, data_source: Option<&WebDataSource>);
 
-        #[cfg(feature = "WebKit_WebDataSource")]
+        #[cfg(feature = "WebDataSource")]
         #[deprecated]
         #[method(receivedData:withDataSource:)]
         unsafe fn receivedData_withDataSource(
@@ -110,7 +110,7 @@ extern_protocol!(
             data_source: Option<&WebDataSource>,
         );
 
-        #[cfg(feature = "WebKit_WebDataSource")]
+        #[cfg(feature = "WebDataSource")]
         #[deprecated]
         #[method(receivedError:withDataSource:)]
         unsafe fn receivedError_withDataSource(
@@ -119,7 +119,7 @@ extern_protocol!(
             data_source: Option<&WebDataSource>,
         );
 
-        #[cfg(feature = "WebKit_WebDataSource")]
+        #[cfg(feature = "WebDataSource")]
         #[deprecated]
         #[method(finishedLoadingWithDataSource:)]
         unsafe fn finishedLoadingWithDataSource(&self, data_source: Option<&WebDataSource>);

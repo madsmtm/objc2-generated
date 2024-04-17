@@ -32,7 +32,7 @@ extern_methods!(
             delegate: Option<&ProtocolObject<dyn SKPaymentQueueDelegate>>,
         );
 
-        #[cfg(feature = "StoreKit_SKStorefront")]
+        #[cfg(feature = "SKStorefront")]
         #[method_id(@__retain_semantics Other storefront)]
         pub unsafe fn storefront(&self) -> Option<Id<SKStorefront>>;
 
@@ -42,7 +42,7 @@ extern_methods!(
         #[method(canMakePayments)]
         pub unsafe fn canMakePayments() -> bool;
 
-        #[cfg(feature = "StoreKit_SKPayment")]
+        #[cfg(feature = "SKPayment")]
         #[method(addPayment:)]
         pub unsafe fn addPayment(&self, payment: &SKPayment);
 
@@ -55,26 +55,26 @@ extern_methods!(
             username: Option<&NSString>,
         );
 
-        #[cfg(feature = "StoreKit_SKPaymentTransaction")]
+        #[cfg(feature = "SKPaymentTransaction")]
         #[method(finishTransaction:)]
         pub unsafe fn finishTransaction(&self, transaction: &SKPaymentTransaction);
 
-        #[cfg(feature = "StoreKit_SKDownload")]
+        #[cfg(feature = "SKDownload")]
         #[deprecated = "Hosted content is no longer supported"]
         #[method(startDownloads:)]
         pub unsafe fn startDownloads(&self, downloads: &NSArray<SKDownload>);
 
-        #[cfg(feature = "StoreKit_SKDownload")]
+        #[cfg(feature = "SKDownload")]
         #[deprecated = "Hosted content is no longer supported"]
         #[method(pauseDownloads:)]
         pub unsafe fn pauseDownloads(&self, downloads: &NSArray<SKDownload>);
 
-        #[cfg(feature = "StoreKit_SKDownload")]
+        #[cfg(feature = "SKDownload")]
         #[deprecated = "Hosted content is no longer supported"]
         #[method(resumeDownloads:)]
         pub unsafe fn resumeDownloads(&self, downloads: &NSArray<SKDownload>);
 
-        #[cfg(feature = "StoreKit_SKDownload")]
+        #[cfg(feature = "SKDownload")]
         #[deprecated = "Hosted content is no longer supported"]
         #[method(cancelDownloads:)]
         pub unsafe fn cancelDownloads(&self, downloads: &NSArray<SKDownload>);
@@ -96,7 +96,7 @@ extern_methods!(
             &self,
         ) -> Id<NSArray<ProtocolObject<dyn SKPaymentTransactionObserver>>>;
 
-        #[cfg(feature = "StoreKit_SKPaymentTransaction")]
+        #[cfg(feature = "SKPaymentTransaction")]
         #[method_id(@__retain_semantics Other transactions)]
         pub unsafe fn transactions(&self) -> Id<NSArray<SKPaymentTransaction>>;
 
@@ -121,10 +121,7 @@ extern_methods!(
 
 extern_protocol!(
     pub unsafe trait SKPaymentQueueDelegate: NSObjectProtocol {
-        #[cfg(all(
-            feature = "StoreKit_SKPaymentTransaction",
-            feature = "StoreKit_SKStorefront"
-        ))]
+        #[cfg(all(feature = "SKPaymentTransaction", feature = "SKStorefront"))]
         #[optional]
         #[method(paymentQueue:shouldContinueTransaction:inStorefront:)]
         unsafe fn paymentQueue_shouldContinueTransaction_inStorefront(
@@ -145,7 +142,7 @@ extern_protocol!(
 
 extern_protocol!(
     pub unsafe trait SKPaymentTransactionObserver: NSObjectProtocol {
-        #[cfg(feature = "StoreKit_SKPaymentTransaction")]
+        #[cfg(feature = "SKPaymentTransaction")]
         #[method(paymentQueue:updatedTransactions:)]
         unsafe fn paymentQueue_updatedTransactions(
             &self,
@@ -153,7 +150,7 @@ extern_protocol!(
             transactions: &NSArray<SKPaymentTransaction>,
         );
 
-        #[cfg(feature = "StoreKit_SKPaymentTransaction")]
+        #[cfg(feature = "SKPaymentTransaction")]
         #[optional]
         #[method(paymentQueue:removedTransactions:)]
         unsafe fn paymentQueue_removedTransactions(
@@ -174,7 +171,7 @@ extern_protocol!(
         #[method(paymentQueueRestoreCompletedTransactionsFinished:)]
         unsafe fn paymentQueueRestoreCompletedTransactionsFinished(&self, queue: &SKPaymentQueue);
 
-        #[cfg(feature = "StoreKit_SKDownload")]
+        #[cfg(feature = "SKDownload")]
         #[deprecated = "Hosted content is no longer supported"]
         #[optional]
         #[method(paymentQueue:updatedDownloads:)]
@@ -184,7 +181,7 @@ extern_protocol!(
             downloads: &NSArray<SKDownload>,
         );
 
-        #[cfg(all(feature = "StoreKit_SKPayment", feature = "StoreKit_SKProduct"))]
+        #[cfg(all(feature = "SKPayment", feature = "SKProduct"))]
         #[optional]
         #[method(paymentQueue:shouldAddStorePayment:forProduct:)]
         unsafe fn paymentQueue_shouldAddStorePayment_forProduct(

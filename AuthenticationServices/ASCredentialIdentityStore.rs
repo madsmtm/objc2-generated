@@ -74,10 +74,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
-        #[cfg(all(
-            feature = "AuthenticationServices_ASCredentialIdentityStoreState",
-            feature = "block2"
-        ))]
+        #[cfg(all(feature = "ASCredentialIdentityStoreState", feature = "block2"))]
         #[method(getCredentialIdentityStoreStateWithCompletion:)]
         pub unsafe fn getCredentialIdentityStoreStateWithCompletion(
             &self,
@@ -85,8 +82,8 @@ extern_methods!(
         );
 
         #[cfg(all(
-            feature = "AuthenticationServices_ASCredentialIdentity",
-            feature = "AuthenticationServices_ASCredentialServiceIdentifier",
+            feature = "ASCredentialIdentity",
+            feature = "ASCredentialServiceIdentifier",
             feature = "block2"
         ))]
         #[method(getCredentialIdentitiesForService:credentialIdentityTypes:completionHandler:)]
@@ -99,10 +96,7 @@ extern_methods!(
             >,
         );
 
-        #[cfg(all(
-            feature = "AuthenticationServices_ASPasswordCredentialIdentity",
-            feature = "block2"
-        ))]
+        #[cfg(all(feature = "ASPasswordCredentialIdentity", feature = "block2"))]
         #[deprecated]
         #[method(saveCredentialIdentities:completion:)]
         pub unsafe fn saveCredentialIdentities_completion(
@@ -111,10 +105,7 @@ extern_methods!(
             completion: Option<&Block<dyn Fn(Bool, *mut NSError)>>,
         );
 
-        #[cfg(all(
-            feature = "AuthenticationServices_ASCredentialIdentity",
-            feature = "block2"
-        ))]
+        #[cfg(all(feature = "ASCredentialIdentity", feature = "block2"))]
         #[method(saveCredentialIdentityEntries:completion:)]
         pub unsafe fn saveCredentialIdentityEntries_completion(
             &self,
@@ -122,10 +113,7 @@ extern_methods!(
             completion: Option<&Block<dyn Fn(Bool, *mut NSError)>>,
         );
 
-        #[cfg(all(
-            feature = "AuthenticationServices_ASPasswordCredentialIdentity",
-            feature = "block2"
-        ))]
+        #[cfg(all(feature = "ASPasswordCredentialIdentity", feature = "block2"))]
         #[deprecated]
         #[method(removeCredentialIdentities:completion:)]
         pub unsafe fn removeCredentialIdentities_completion(
@@ -134,10 +122,7 @@ extern_methods!(
             completion: Option<&Block<dyn Fn(Bool, *mut NSError)>>,
         );
 
-        #[cfg(all(
-            feature = "AuthenticationServices_ASCredentialIdentity",
-            feature = "block2"
-        ))]
+        #[cfg(all(feature = "ASCredentialIdentity", feature = "block2"))]
         #[method(removeCredentialIdentityEntries:completion:)]
         pub unsafe fn removeCredentialIdentityEntries_completion(
             &self,
@@ -152,10 +137,7 @@ extern_methods!(
             completion: Option<&Block<dyn Fn(Bool, *mut NSError)>>,
         );
 
-        #[cfg(all(
-            feature = "AuthenticationServices_ASPasswordCredentialIdentity",
-            feature = "block2"
-        ))]
+        #[cfg(all(feature = "ASPasswordCredentialIdentity", feature = "block2"))]
         #[deprecated]
         #[method(replaceCredentialIdentitiesWithIdentities:completion:)]
         pub unsafe fn replaceCredentialIdentitiesWithIdentities_completion(
@@ -164,10 +146,7 @@ extern_methods!(
             completion: Option<&Block<dyn Fn(Bool, *mut NSError)>>,
         );
 
-        #[cfg(all(
-            feature = "AuthenticationServices_ASCredentialIdentity",
-            feature = "block2"
-        ))]
+        #[cfg(all(feature = "ASCredentialIdentity", feature = "block2"))]
         #[method(replaceCredentialIdentityEntries:completion:)]
         pub unsafe fn replaceCredentialIdentityEntries_completion(
             &self,

@@ -60,7 +60,7 @@ extern_methods!(
         #[method(setDefaultLanguage:)]
         pub unsafe fn setDefaultLanguage(default_language: &OSALanguage);
 
-        #[cfg(feature = "OSAKit_OSALanguageInstance")]
+        #[cfg(feature = "OSALanguageInstance")]
         #[method_id(@__retain_semantics Other sharedLanguageInstance)]
         pub unsafe fn sharedLanguageInstance(&self) -> Id<OSALanguageInstance>;
 

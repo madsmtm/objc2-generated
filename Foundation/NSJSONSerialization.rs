@@ -63,21 +63,21 @@ extern_methods!(
         #[method(isValidJSONObject:)]
         pub unsafe fn isValidJSONObject(obj: &AnyObject) -> bool;
 
-        #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSError"))]
+        #[cfg(all(feature = "NSData", feature = "NSError"))]
         #[method_id(@__retain_semantics Other dataWithJSONObject:options:error:_)]
         pub unsafe fn dataWithJSONObject_options_error(
             obj: &AnyObject,
             opt: NSJSONWritingOptions,
         ) -> Result<Id<NSData>, Id<NSError>>;
 
-        #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSError"))]
+        #[cfg(all(feature = "NSData", feature = "NSError"))]
         #[method_id(@__retain_semantics Other JSONObjectWithData:options:error:_)]
         pub unsafe fn JSONObjectWithData_options_error(
             data: &NSData,
             opt: NSJSONReadingOptions,
         ) -> Result<Id<AnyObject>, Id<NSError>>;
 
-        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSStream"))]
+        #[cfg(all(feature = "NSError", feature = "NSStream"))]
         #[method_id(@__retain_semantics Other JSONObjectWithStream:options:error:_)]
         pub unsafe fn JSONObjectWithStream_options_error(
             stream: &NSInputStream,

@@ -8,14 +8,14 @@ use crate::*;
 
 extern_protocol!(
     pub unsafe trait ASWebAuthenticationSessionWebBrowserSessionHandling {
-        #[cfg(feature = "AuthenticationServices_ASWebAuthenticationSessionRequest")]
+        #[cfg(feature = "ASWebAuthenticationSessionRequest")]
         #[method(beginHandlingWebAuthenticationSessionRequest:)]
         unsafe fn beginHandlingWebAuthenticationSessionRequest(
             &self,
             request: Option<&ASWebAuthenticationSessionRequest>,
         );
 
-        #[cfg(feature = "AuthenticationServices_ASWebAuthenticationSessionRequest")]
+        #[cfg(feature = "ASWebAuthenticationSessionRequest")]
         #[method(cancelWebAuthenticationSessionRequest:)]
         unsafe fn cancelWebAuthenticationSessionRequest(
             &self,

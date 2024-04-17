@@ -20,7 +20,7 @@ unsafe impl NSObjectProtocol for NSTimer {}
 
 extern_methods!(
     unsafe impl NSTimer {
-        #[cfg(all(feature = "Foundation_NSDate", feature = "Foundation_NSInvocation"))]
+        #[cfg(all(feature = "NSDate", feature = "NSInvocation"))]
         #[method_id(@__retain_semantics Other timerWithTimeInterval:invocation:repeats:)]
         pub unsafe fn timerWithTimeInterval_invocation_repeats(
             ti: NSTimeInterval,
@@ -28,7 +28,7 @@ extern_methods!(
             yes_or_no: bool,
         ) -> Id<NSTimer>;
 
-        #[cfg(all(feature = "Foundation_NSDate", feature = "Foundation_NSInvocation"))]
+        #[cfg(all(feature = "NSDate", feature = "NSInvocation"))]
         #[method_id(@__retain_semantics Other scheduledTimerWithTimeInterval:invocation:repeats:)]
         pub unsafe fn scheduledTimerWithTimeInterval_invocation_repeats(
             ti: NSTimeInterval,
@@ -36,7 +36,7 @@ extern_methods!(
             yes_or_no: bool,
         ) -> Id<NSTimer>;
 
-        #[cfg(feature = "Foundation_NSDate")]
+        #[cfg(feature = "NSDate")]
         #[method_id(@__retain_semantics Other timerWithTimeInterval:target:selector:userInfo:repeats:)]
         pub unsafe fn timerWithTimeInterval_target_selector_userInfo_repeats(
             ti: NSTimeInterval,
@@ -46,7 +46,7 @@ extern_methods!(
             yes_or_no: bool,
         ) -> Id<NSTimer>;
 
-        #[cfg(feature = "Foundation_NSDate")]
+        #[cfg(feature = "NSDate")]
         #[method_id(@__retain_semantics Other scheduledTimerWithTimeInterval:target:selector:userInfo:repeats:)]
         pub unsafe fn scheduledTimerWithTimeInterval_target_selector_userInfo_repeats(
             ti: NSTimeInterval,
@@ -56,7 +56,7 @@ extern_methods!(
             yes_or_no: bool,
         ) -> Id<NSTimer>;
 
-        #[cfg(all(feature = "Foundation_NSDate", feature = "block2"))]
+        #[cfg(all(feature = "NSDate", feature = "block2"))]
         #[method_id(@__retain_semantics Other timerWithTimeInterval:repeats:block:)]
         pub unsafe fn timerWithTimeInterval_repeats_block(
             interval: NSTimeInterval,
@@ -64,7 +64,7 @@ extern_methods!(
             block: &Block<dyn Fn(NonNull<NSTimer>)>,
         ) -> Id<NSTimer>;
 
-        #[cfg(all(feature = "Foundation_NSDate", feature = "block2"))]
+        #[cfg(all(feature = "NSDate", feature = "block2"))]
         #[method_id(@__retain_semantics Other scheduledTimerWithTimeInterval:repeats:block:)]
         pub unsafe fn scheduledTimerWithTimeInterval_repeats_block(
             interval: NSTimeInterval,
@@ -72,7 +72,7 @@ extern_methods!(
             block: &Block<dyn Fn(NonNull<NSTimer>)>,
         ) -> Id<NSTimer>;
 
-        #[cfg(all(feature = "Foundation_NSDate", feature = "block2"))]
+        #[cfg(all(feature = "NSDate", feature = "block2"))]
         #[method_id(@__retain_semantics Init initWithFireDate:interval:repeats:block:)]
         pub unsafe fn initWithFireDate_interval_repeats_block(
             this: Allocated<Self>,
@@ -82,7 +82,7 @@ extern_methods!(
             block: &Block<dyn Fn(NonNull<NSTimer>)>,
         ) -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSDate")]
+        #[cfg(feature = "NSDate")]
         #[method_id(@__retain_semantics Init initWithFireDate:interval:target:selector:userInfo:repeats:)]
         pub unsafe fn initWithFireDate_interval_target_selector_userInfo_repeats(
             this: Allocated<Self>,
@@ -97,23 +97,23 @@ extern_methods!(
         #[method(fire)]
         pub unsafe fn fire(&self);
 
-        #[cfg(feature = "Foundation_NSDate")]
+        #[cfg(feature = "NSDate")]
         #[method_id(@__retain_semantics Other fireDate)]
         pub unsafe fn fireDate(&self) -> Id<NSDate>;
 
-        #[cfg(feature = "Foundation_NSDate")]
+        #[cfg(feature = "NSDate")]
         #[method(setFireDate:)]
         pub unsafe fn setFireDate(&self, fire_date: &NSDate);
 
-        #[cfg(feature = "Foundation_NSDate")]
+        #[cfg(feature = "NSDate")]
         #[method(timeInterval)]
         pub unsafe fn timeInterval(&self) -> NSTimeInterval;
 
-        #[cfg(feature = "Foundation_NSDate")]
+        #[cfg(feature = "NSDate")]
         #[method(tolerance)]
         pub unsafe fn tolerance(&self) -> NSTimeInterval;
 
-        #[cfg(feature = "Foundation_NSDate")]
+        #[cfg(feature = "NSDate")]
         #[method(setTolerance:)]
         pub unsafe fn setTolerance(&self, tolerance: NSTimeInterval);
 

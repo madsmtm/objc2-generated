@@ -77,9 +77,9 @@ unsafe impl RefEncode for NSFileProviderFetchContentsOptions {
 extern_protocol!(
     pub unsafe trait NSFileProviderEnumerating: NSObjectProtocol {
         #[cfg(all(
-            feature = "FileProvider_NSFileProviderEnumerating",
-            feature = "FileProvider_NSFileProviderItem",
-            feature = "FileProvider_NSFileProviderRequest"
+            feature = "NSFileProviderEnumerating",
+            feature = "NSFileProviderItem",
+            feature = "NSFileProviderRequest"
         ))]
         #[method_id(@__retain_semantics Other enumeratorForContainerItemIdentifier:request:error:_)]
         unsafe fn enumeratorForContainerItemIdentifier_request_error(
@@ -96,7 +96,7 @@ extern_protocol!(
     pub unsafe trait NSFileProviderReplicatedExtension:
         NSFileProviderEnumerating + NSObjectProtocol
     {
-        #[cfg(feature = "FileProvider_NSFileProviderDomain")]
+        #[cfg(feature = "NSFileProviderDomain")]
         #[method_id(@__retain_semantics Init initWithDomain:)]
         unsafe fn initWithDomain(this: Allocated<Self>, domain: &NSFileProviderDomain) -> Id<Self>;
 
@@ -104,8 +104,8 @@ extern_protocol!(
         unsafe fn invalidate(&self);
 
         #[cfg(all(
-            feature = "FileProvider_NSFileProviderItem",
-            feature = "FileProvider_NSFileProviderRequest",
+            feature = "NSFileProviderItem",
+            feature = "NSFileProviderRequest",
             feature = "block2"
         ))]
         #[method_id(@__retain_semantics Other itemForIdentifier:request:completionHandler:)]
@@ -117,8 +117,8 @@ extern_protocol!(
         ) -> Id<NSProgress>;
 
         #[cfg(all(
-            feature = "FileProvider_NSFileProviderItem",
-            feature = "FileProvider_NSFileProviderRequest",
+            feature = "NSFileProviderItem",
+            feature = "NSFileProviderRequest",
             feature = "block2"
         ))]
         #[method_id(@__retain_semantics Other fetchContentsForItemWithIdentifier:version:request:completionHandler:)]
@@ -131,8 +131,8 @@ extern_protocol!(
         ) -> Id<NSProgress>;
 
         #[cfg(all(
-            feature = "FileProvider_NSFileProviderItem",
-            feature = "FileProvider_NSFileProviderRequest",
+            feature = "NSFileProviderItem",
+            feature = "NSFileProviderRequest",
             feature = "block2"
         ))]
         #[method_id(@__retain_semantics Other createItemBasedOnTemplate:fields:contents:options:request:completionHandler:)]
@@ -149,9 +149,9 @@ extern_protocol!(
         ) -> Id<NSProgress>;
 
         #[cfg(all(
-            feature = "FileProvider_NSFileProviderItem",
-            feature = "FileProvider_NSFileProviderModifyItemOptions",
-            feature = "FileProvider_NSFileProviderRequest",
+            feature = "NSFileProviderItem",
+            feature = "NSFileProviderModifyItemOptions",
+            feature = "NSFileProviderRequest",
             feature = "block2"
         ))]
         #[method_id(@__retain_semantics Other modifyItem:baseVersion:changedFields:contents:options:request:completionHandler:)]
@@ -169,8 +169,8 @@ extern_protocol!(
         ) -> Id<NSProgress>;
 
         #[cfg(all(
-            feature = "FileProvider_NSFileProviderItem",
-            feature = "FileProvider_NSFileProviderRequest",
+            feature = "NSFileProviderItem",
+            feature = "NSFileProviderRequest",
             feature = "block2"
         ))]
         #[method_id(@__retain_semantics Other deleteItemWithIdentifier:baseVersion:options:request:completionHandler:)]
@@ -211,8 +211,8 @@ extern_protocol!(
 extern_protocol!(
     pub unsafe trait NSFileProviderIncrementalContentFetching: NSObjectProtocol {
         #[cfg(all(
-            feature = "FileProvider_NSFileProviderItem",
-            feature = "FileProvider_NSFileProviderRequest",
+            feature = "NSFileProviderItem",
+            feature = "NSFileProviderRequest",
             feature = "block2"
         ))]
         #[method_id(@__retain_semantics Other fetchContentsForItemWithIdentifier:version:usingExistingContentsAtURL:existingVersion:request:completionHandler:)]
@@ -233,8 +233,8 @@ extern_protocol!(
 extern_protocol!(
     pub unsafe trait NSFileProviderServicing: NSObjectProtocol {
         #[cfg(all(
-            feature = "FileProvider_NSFileProviderItem",
-            feature = "FileProvider_NSFileProviderService",
+            feature = "NSFileProviderItem",
+            feature = "NSFileProviderService",
             feature = "block2"
         ))]
         #[method_id(@__retain_semantics Other supportedServiceSourcesForItemIdentifier:completionHandler:)]
@@ -252,7 +252,7 @@ extern_protocol!(
 
 extern_protocol!(
     pub unsafe trait NSFileProviderThumbnailing: NSObjectProtocol {
-        #[cfg(all(feature = "FileProvider_NSFileProviderItem", feature = "block2"))]
+        #[cfg(all(feature = "NSFileProviderItem", feature = "block2"))]
         #[method_id(@__retain_semantics Other fetchThumbnailsForItemIdentifiers:requestedSize:perThumbnailCompletionHandler:completionHandler:)]
         unsafe fn fetchThumbnailsForItemIdentifiers_requestedSize_perThumbnailCompletionHandler_completionHandler(
             &self,
@@ -271,8 +271,8 @@ extern_protocol!(
 extern_protocol!(
     pub unsafe trait NSFileProviderCustomAction: NSObjectProtocol {
         #[cfg(all(
-            feature = "FileProvider_NSFileProviderActions",
-            feature = "FileProvider_NSFileProviderItem",
+            feature = "NSFileProviderActions",
+            feature = "NSFileProviderItem",
             feature = "block2"
         ))]
         #[method_id(@__retain_semantics Other performActionWithIdentifier:onItemsWithIdentifiers:completionHandler:)]
@@ -308,7 +308,7 @@ extern_protocol!(
 
 extern_protocol!(
     pub unsafe trait NSFileProviderDomainState: NSObjectProtocol {
-        #[cfg(feature = "FileProvider_NSFileProviderDomain")]
+        #[cfg(feature = "NSFileProviderDomain")]
         #[method_id(@__retain_semantics Other domainVersion)]
         unsafe fn domainVersion(&self) -> Id<NSFileProviderDomainVersion>;
 
@@ -322,8 +322,8 @@ extern_protocol!(
 extern_protocol!(
     pub unsafe trait NSFileProviderPartialContentFetching: NSObjectProtocol {
         #[cfg(all(
-            feature = "FileProvider_NSFileProviderItem",
-            feature = "FileProvider_NSFileProviderRequest",
+            feature = "NSFileProviderItem",
+            feature = "NSFileProviderRequest",
             feature = "block2"
         ))]
         #[method_id(@__retain_semantics Other fetchPartialContentsForItemWithIdentifier:version:request:minimalRange:aligningTo:options:completionHandler:)]

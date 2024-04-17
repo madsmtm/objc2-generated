@@ -28,7 +28,7 @@ unsafe impl NSObjectProtocol for WebArchive {}
 
 extern_methods!(
     unsafe impl WebArchive {
-        #[cfg(feature = "WebKit_WebResource")]
+        #[cfg(feature = "WebResource")]
         #[deprecated]
         #[method_id(@__retain_semantics Init initWithMainResource:subresources:subframeArchives:)]
         pub unsafe fn initWithMainResource_subresources_subframeArchives(
@@ -45,7 +45,7 @@ extern_methods!(
             data: Option<&NSData>,
         ) -> Option<Id<Self>>;
 
-        #[cfg(feature = "WebKit_WebResource")]
+        #[cfg(feature = "WebResource")]
         #[deprecated]
         #[method_id(@__retain_semantics Other mainResource)]
         pub unsafe fn mainResource(&self) -> Option<Id<WebResource>>;

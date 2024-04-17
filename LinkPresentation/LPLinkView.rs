@@ -56,18 +56,18 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithURL:)]
         pub unsafe fn initWithURL(this: Allocated<Self>, url: &NSURL) -> Id<Self>;
 
-        #[cfg(feature = "LinkPresentation_LPLinkMetadata")]
+        #[cfg(feature = "LPLinkMetadata")]
         #[method_id(@__retain_semantics Init initWithMetadata:)]
         pub unsafe fn initWithMetadata(
             this: Allocated<Self>,
             metadata: &LPLinkMetadata,
         ) -> Id<Self>;
 
-        #[cfg(feature = "LinkPresentation_LPLinkMetadata")]
+        #[cfg(feature = "LPLinkMetadata")]
         #[method_id(@__retain_semantics Other metadata)]
         pub unsafe fn metadata(&self) -> Id<LPLinkMetadata>;
 
-        #[cfg(feature = "LinkPresentation_LPLinkMetadata")]
+        #[cfg(feature = "LPLinkMetadata")]
         #[method(setMetadata:)]
         pub unsafe fn setMetadata(&self, metadata: &LPLinkMetadata);
     }
