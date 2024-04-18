@@ -69,7 +69,7 @@ unsafe impl RefEncode for MTLIOError {
 }
 
 extern_protocol!(
-    pub unsafe trait MTLIOCommandQueue: NSObjectProtocol {
+    pub unsafe trait MTLIOCommandQueue: NSObjectProtocol + IsRetainable {
         #[method(enqueueBarrier)]
         unsafe fn enqueueBarrier(&self);
 
@@ -94,7 +94,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    pub unsafe trait MTLIOScratchBuffer: NSObjectProtocol {
+    pub unsafe trait MTLIOScratchBuffer: NSObjectProtocol + IsRetainable {
         #[cfg(all(feature = "MTLBuffer", feature = "MTLResource"))]
         #[method_id(@__retain_semantics Other buffer)]
         unsafe fn buffer(&self) -> Id<ProtocolObject<dyn MTLBuffer>>;
@@ -104,7 +104,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    pub unsafe trait MTLIOScratchBufferAllocator: NSObjectProtocol {
+    pub unsafe trait MTLIOScratchBufferAllocator: NSObjectProtocol + IsRetainable {
         #[method_id(@__retain_semantics New newScratchBufferWithMinimumSize:)]
         unsafe fn newScratchBufferWithMinimumSize(
             &self,
@@ -180,7 +180,7 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub unsafe trait MTLIOFileHandle: NSObjectProtocol {
+    pub unsafe trait MTLIOFileHandle: NSObjectProtocol + IsRetainable {
         #[method_id(@__retain_semantics Other label)]
         unsafe fn label(&self) -> Option<Id<NSString>>;
 

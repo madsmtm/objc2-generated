@@ -6,7 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    pub unsafe trait MTLFence: NSObjectProtocol {
+    pub unsafe trait MTLFence: NSObjectProtocol + IsRetainable {
         #[cfg(feature = "MTLDevice")]
         #[method_id(@__retain_semantics Other device)]
         fn device(&self) -> Id<ProtocolObject<dyn MTLDevice>>;

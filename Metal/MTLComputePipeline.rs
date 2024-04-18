@@ -193,7 +193,7 @@ impl DefaultId for MTLComputePipelineDescriptor {
 }
 
 extern_protocol!(
-    pub unsafe trait MTLComputePipelineState: NSObjectProtocol {
+    pub unsafe trait MTLComputePipelineState: NSObjectProtocol + IsRetainable {
         #[method_id(@__retain_semantics Other label)]
         fn label(&self) -> Option<Id<NSString>>;
 

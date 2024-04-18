@@ -58,7 +58,9 @@ unsafe impl RefEncode for MTLMapIndirectArguments {
 
 extern_protocol!(
     #[cfg(feature = "MTLCommandEncoder")]
-    pub unsafe trait MTLResourceStateCommandEncoder: MTLCommandEncoder {
+    pub unsafe trait MTLResourceStateCommandEncoder:
+        MTLCommandEncoder + IsRetainable
+    {
         #[cfg(all(feature = "MTLResource", feature = "MTLTexture", feature = "MTLTypes"))]
         #[optional]
         #[method(updateTextureMappings:mode:regions:mipLevels:slices:numRegions:)]

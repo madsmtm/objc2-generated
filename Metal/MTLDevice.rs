@@ -521,7 +521,7 @@ extern_methods!(
 pub type MTLTimestamp = u64;
 
 extern_protocol!(
-    pub unsafe trait MTLDevice: NSObjectProtocol {
+    pub unsafe trait MTLDevice: NSObjectProtocol + IsRetainable {
         #[method_id(@__retain_semantics Other name)]
         fn name(&self) -> Id<NSString>;
 

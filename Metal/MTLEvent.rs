@@ -6,7 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    pub unsafe trait MTLEvent: NSObjectProtocol {
+    pub unsafe trait MTLEvent: NSObjectProtocol + IsRetainable {
         #[cfg(feature = "MTLDevice")]
         #[method_id(@__retain_semantics Other device)]
         fn device(&self) -> Option<Id<ProtocolObject<dyn MTLDevice>>>;
@@ -60,7 +60,7 @@ pub type MTLSharedEventNotificationBlock =
     *mut block2::Block<dyn Fn(NonNull<ProtocolObject<dyn MTLSharedEvent>>, u64)>;
 
 extern_protocol!(
-    pub unsafe trait MTLSharedEvent: MTLEvent {
+    pub unsafe trait MTLSharedEvent: MTLEvent + IsRetainable {
         #[cfg(feature = "block2")]
         #[method(notifyListener:atValue:block:)]
         unsafe fn notifyListener_atValue_block(

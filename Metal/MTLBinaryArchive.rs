@@ -77,7 +77,7 @@ impl DefaultId for MTLBinaryArchiveDescriptor {
 }
 
 extern_protocol!(
-    pub unsafe trait MTLBinaryArchive: NSObjectProtocol {
+    pub unsafe trait MTLBinaryArchive: NSObjectProtocol + IsRetainable {
         #[method_id(@__retain_semantics Other label)]
         fn label(&self) -> Option<Id<NSString>>;
 

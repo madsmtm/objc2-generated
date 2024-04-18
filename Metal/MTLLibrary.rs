@@ -188,7 +188,7 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub unsafe trait MTLFunction: NSObjectProtocol {
+    pub unsafe trait MTLFunction: NSObjectProtocol + IsRetainable {
         #[method_id(@__retain_semantics Other label)]
         fn label(&self) -> Option<Id<NSString>>;
 
@@ -469,7 +469,7 @@ unsafe impl RefEncode for MTLLibraryError {
 }
 
 extern_protocol!(
-    pub unsafe trait MTLLibrary: NSObjectProtocol {
+    pub unsafe trait MTLLibrary: NSObjectProtocol + IsRetainable {
         #[method_id(@__retain_semantics Other label)]
         fn label(&self) -> Option<Id<NSString>>;
 

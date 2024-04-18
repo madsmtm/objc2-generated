@@ -6,7 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    pub unsafe trait MTLFunctionStitchingAttribute: NSObjectProtocol {}
+    pub unsafe trait MTLFunctionStitchingAttribute: NSObjectProtocol + IsRetainable {}
 
     unsafe impl ProtocolType for dyn MTLFunctionStitchingAttribute {}
 );
@@ -41,7 +41,10 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub unsafe trait MTLFunctionStitchingNode: NSCopying + NSObjectProtocol {}
+    pub unsafe trait MTLFunctionStitchingNode:
+        NSCopying + NSObjectProtocol + IsRetainable
+    {
+    }
 
     unsafe impl ProtocolType for dyn MTLFunctionStitchingNode {}
 );

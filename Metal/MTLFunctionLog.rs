@@ -23,13 +23,13 @@ unsafe impl RefEncode for MTLFunctionLogType {
 }
 
 extern_protocol!(
-    pub unsafe trait MTLLogContainer: NSFastEnumeration {}
+    pub unsafe trait MTLLogContainer: NSFastEnumeration + IsRetainable {}
 
     unsafe impl ProtocolType for dyn MTLLogContainer {}
 );
 
 extern_protocol!(
-    pub unsafe trait MTLFunctionLogDebugLocation: NSObjectProtocol {
+    pub unsafe trait MTLFunctionLogDebugLocation: NSObjectProtocol + IsRetainable {
         #[method_id(@__retain_semantics Other functionName)]
         unsafe fn functionName(&self) -> Option<Id<NSString>>;
 
@@ -47,7 +47,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    pub unsafe trait MTLFunctionLog: NSObjectProtocol {
+    pub unsafe trait MTLFunctionLog: NSObjectProtocol + IsRetainable {
         #[method(type)]
         unsafe fn r#type(&self) -> MTLFunctionLogType;
 

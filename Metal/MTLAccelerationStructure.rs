@@ -1452,7 +1452,7 @@ extern_methods!(
 
 extern_protocol!(
     #[cfg(feature = "MTLResource")]
-    pub unsafe trait MTLAccelerationStructure: MTLResource {
+    pub unsafe trait MTLAccelerationStructure: MTLResource + IsRetainable {
         #[method(size)]
         unsafe fn size(&self) -> NSUInteger;
 

@@ -167,7 +167,7 @@ extern_methods!(
 
 extern_protocol!(
     #[cfg(feature = "MTLResource")]
-    pub unsafe trait MTLIndirectCommandBuffer: MTLResource {
+    pub unsafe trait MTLIndirectCommandBuffer: MTLResource + IsRetainable {
         #[method(size)]
         fn size(&self) -> NSUInteger;
 

@@ -744,7 +744,7 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub unsafe trait MTLRenderPipelineState: NSObjectProtocol {
+    pub unsafe trait MTLRenderPipelineState: NSObjectProtocol + IsRetainable {
         #[method_id(@__retain_semantics Other label)]
         unsafe fn label(&self) -> Option<Id<NSString>>;
 

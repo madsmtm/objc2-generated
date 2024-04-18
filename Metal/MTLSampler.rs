@@ -222,7 +222,7 @@ impl DefaultId for MTLSamplerDescriptor {
 }
 
 extern_protocol!(
-    pub unsafe trait MTLSamplerState: NSObjectProtocol {
+    pub unsafe trait MTLSamplerState: NSObjectProtocol + IsRetainable {
         #[method_id(@__retain_semantics Other label)]
         fn label(&self) -> Option<Id<NSString>>;
 

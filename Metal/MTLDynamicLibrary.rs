@@ -37,7 +37,7 @@ unsafe impl RefEncode for MTLDynamicLibraryError {
 }
 
 extern_protocol!(
-    pub unsafe trait MTLDynamicLibrary: NSObjectProtocol {
+    pub unsafe trait MTLDynamicLibrary: NSObjectProtocol + IsRetainable {
         #[method_id(@__retain_semantics Other label)]
         fn label(&self) -> Option<Id<NSString>>;
 

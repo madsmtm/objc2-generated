@@ -53,7 +53,7 @@ unsafe impl RefEncode for MTLBarrierScope {
 }
 
 extern_protocol!(
-    pub unsafe trait MTLCommandEncoder: NSObjectProtocol {
+    pub unsafe trait MTLCommandEncoder: NSObjectProtocol + IsRetainable {
         #[cfg(feature = "MTLDevice")]
         #[method_id(@__retain_semantics Other device)]
         unsafe fn device(&self) -> Id<ProtocolObject<dyn MTLDevice>>;

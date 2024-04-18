@@ -7,7 +7,7 @@ use crate::*;
 
 extern_protocol!(
     #[cfg(feature = "MTLResource")]
-    pub unsafe trait MTLBuffer: MTLResource {
+    pub unsafe trait MTLBuffer: MTLResource + IsRetainable {
         #[method(length)]
         fn length(&self) -> NSUInteger;
 

@@ -9,7 +9,7 @@ pub type MTLDrawablePresentedHandler =
     *mut block2::Block<dyn Fn(NonNull<ProtocolObject<dyn MTLDrawable>>)>;
 
 extern_protocol!(
-    pub unsafe trait MTLDrawable: NSObjectProtocol {
+    pub unsafe trait MTLDrawable: NSObjectProtocol + IsRetainable {
         #[method(present)]
         fn present(&self);
 

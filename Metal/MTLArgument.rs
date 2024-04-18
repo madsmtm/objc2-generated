@@ -664,7 +664,7 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub unsafe trait MTLBinding: NSObjectProtocol {
+    pub unsafe trait MTLBinding: NSObjectProtocol + IsRetainable {
         #[method_id(@__retain_semantics Other name)]
         unsafe fn name(&self) -> Id<NSString>;
 
@@ -688,7 +688,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    pub unsafe trait MTLBufferBinding: MTLBinding {
+    pub unsafe trait MTLBufferBinding: MTLBinding + IsRetainable {
         #[method(bufferAlignment)]
         unsafe fn bufferAlignment(&self) -> NSUInteger;
 
@@ -709,7 +709,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    pub unsafe trait MTLThreadgroupBinding: MTLBinding {
+    pub unsafe trait MTLThreadgroupBinding: MTLBinding + IsRetainable {
         #[method(threadgroupMemoryAlignment)]
         unsafe fn threadgroupMemoryAlignment(&self) -> NSUInteger;
 
@@ -721,7 +721,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    pub unsafe trait MTLTextureBinding: MTLBinding {
+    pub unsafe trait MTLTextureBinding: MTLBinding + IsRetainable {
         #[cfg(feature = "MTLTexture")]
         #[method(textureType)]
         unsafe fn textureType(&self) -> MTLTextureType;
@@ -740,7 +740,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    pub unsafe trait MTLObjectPayloadBinding: MTLBinding {
+    pub unsafe trait MTLObjectPayloadBinding: MTLBinding + IsRetainable {
         #[method(objectPayloadAlignment)]
         unsafe fn objectPayloadAlignment(&self) -> NSUInteger;
 

@@ -329,7 +329,7 @@ unsafe impl RefEncode for MTLRenderStages {
 
 extern_protocol!(
     #[cfg(feature = "MTLCommandEncoder")]
-    pub unsafe trait MTLRenderCommandEncoder: MTLCommandEncoder {
+    pub unsafe trait MTLRenderCommandEncoder: MTLCommandEncoder + IsRetainable {
         #[cfg(feature = "MTLRenderPipeline")]
         #[method(setRenderPipelineState:)]
         fn setRenderPipelineState(

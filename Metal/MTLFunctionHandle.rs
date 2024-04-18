@@ -6,7 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    pub unsafe trait MTLFunctionHandle: NSObjectProtocol {
+    pub unsafe trait MTLFunctionHandle: NSObjectProtocol + IsRetainable {
         #[cfg(feature = "MTLLibrary")]
         #[method(functionType)]
         fn functionType(&self) -> MTLFunctionType;

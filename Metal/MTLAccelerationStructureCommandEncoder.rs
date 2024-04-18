@@ -26,7 +26,9 @@ unsafe impl RefEncode for MTLAccelerationStructureRefitOptions {
 
 extern_protocol!(
     #[cfg(feature = "MTLCommandEncoder")]
-    pub unsafe trait MTLAccelerationStructureCommandEncoder: MTLCommandEncoder {
+    pub unsafe trait MTLAccelerationStructureCommandEncoder:
+        MTLCommandEncoder + IsRetainable
+    {
         #[cfg(all(
             feature = "MTLAccelerationStructure",
             feature = "MTLBuffer",

@@ -225,7 +225,7 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub unsafe trait MTLRasterizationRateMap: NSObjectProtocol {
+    pub unsafe trait MTLRasterizationRateMap: NSObjectProtocol + IsRetainable {
         #[cfg(feature = "MTLDevice")]
         #[method_id(@__retain_semantics Other device)]
         unsafe fn device(&self) -> Id<ProtocolObject<dyn MTLDevice>>;
