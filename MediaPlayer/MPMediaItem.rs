@@ -11,33 +11,35 @@ use crate::*;
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MPMediaType(pub NSUInteger);
-impl MPMediaType {
-    #[doc(alias = "MPMediaTypeMusic")]
-    pub const Music: Self = Self(1 << 0);
-    #[doc(alias = "MPMediaTypePodcast")]
-    pub const Podcast: Self = Self(1 << 1);
-    #[doc(alias = "MPMediaTypeAudioBook")]
-    pub const AudioBook: Self = Self(1 << 2);
-    #[doc(alias = "MPMediaTypeAudioITunesU")]
-    pub const AudioITunesU: Self = Self(1 << 3);
-    #[doc(alias = "MPMediaTypeAnyAudio")]
-    pub const AnyAudio: Self = Self(0x00ff);
-    #[doc(alias = "MPMediaTypeMovie")]
-    pub const Movie: Self = Self(1 << 8);
-    #[doc(alias = "MPMediaTypeTVShow")]
-    pub const TVShow: Self = Self(1 << 9);
-    #[doc(alias = "MPMediaTypeVideoPodcast")]
-    pub const VideoPodcast: Self = Self(1 << 10);
-    #[doc(alias = "MPMediaTypeMusicVideo")]
-    pub const MusicVideo: Self = Self(1 << 11);
-    #[doc(alias = "MPMediaTypeVideoITunesU")]
-    pub const VideoITunesU: Self = Self(1 << 12);
-    #[doc(alias = "MPMediaTypeHomeVideo")]
-    pub const HomeVideo: Self = Self(1 << 13);
-    #[doc(alias = "MPMediaTypeAnyVideo")]
-    pub const AnyVideo: Self = Self(0xff00);
-    #[doc(alias = "MPMediaTypeAny")]
-    pub const Any: Self = Self(!0);
+bitflags::bitflags! {
+    impl MPMediaType: NSUInteger {
+        #[doc(alias = "MPMediaTypeMusic")]
+        const Music = 1<<0;
+        #[doc(alias = "MPMediaTypePodcast")]
+        const Podcast = 1<<1;
+        #[doc(alias = "MPMediaTypeAudioBook")]
+        const AudioBook = 1<<2;
+        #[doc(alias = "MPMediaTypeAudioITunesU")]
+        const AudioITunesU = 1<<3;
+        #[doc(alias = "MPMediaTypeAnyAudio")]
+        const AnyAudio = 0x00ff;
+        #[doc(alias = "MPMediaTypeMovie")]
+        const Movie = 1<<8;
+        #[doc(alias = "MPMediaTypeTVShow")]
+        const TVShow = 1<<9;
+        #[doc(alias = "MPMediaTypeVideoPodcast")]
+        const VideoPodcast = 1<<10;
+        #[doc(alias = "MPMediaTypeMusicVideo")]
+        const MusicVideo = 1<<11;
+        #[doc(alias = "MPMediaTypeVideoITunesU")]
+        const VideoITunesU = 1<<12;
+        #[doc(alias = "MPMediaTypeHomeVideo")]
+        const HomeVideo = 1<<13;
+        #[doc(alias = "MPMediaTypeAnyVideo")]
+        const AnyVideo = 0xff00;
+        #[doc(alias = "MPMediaTypeAny")]
+        const Any = !0;
+    }
 }
 
 unsafe impl Encode for MPMediaType {

@@ -52,9 +52,11 @@ extern_methods!(
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSFileProviderDomainTestingModes(pub NSUInteger);
-impl NSFileProviderDomainTestingModes {
-    pub const NSFileProviderDomainTestingModeAlwaysEnabled: Self = Self(1 << 0);
-    pub const NSFileProviderDomainTestingModeInteractive: Self = Self(1 << 1);
+bitflags::bitflags! {
+    impl NSFileProviderDomainTestingModes: NSUInteger {
+        const NSFileProviderDomainTestingModeAlwaysEnabled = 1<<0;
+        const NSFileProviderDomainTestingModeInteractive = 1<<1;
+    }
 }
 
 unsafe impl Encode for NSFileProviderDomainTestingModes {

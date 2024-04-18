@@ -9,17 +9,19 @@ use crate::*;
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct GCPhysicalInputSourceDirection(pub NSUInteger);
-impl GCPhysicalInputSourceDirection {
-    #[doc(alias = "GCPhysicalInputSourceDirectionNotApplicable")]
-    pub const NotApplicable: Self = Self(0);
-    #[doc(alias = "GCPhysicalInputSourceDirectionUp")]
-    pub const Up: Self = Self(1 << 0);
-    #[doc(alias = "GCPhysicalInputSourceDirectionRight")]
-    pub const Right: Self = Self(1 << 1);
-    #[doc(alias = "GCPhysicalInputSourceDirectionDown")]
-    pub const Down: Self = Self(1 << 2);
-    #[doc(alias = "GCPhysicalInputSourceDirectionLeft")]
-    pub const Left: Self = Self(1 << 3);
+bitflags::bitflags! {
+    impl GCPhysicalInputSourceDirection: NSUInteger {
+        #[doc(alias = "GCPhysicalInputSourceDirectionNotApplicable")]
+        const NotApplicable = 0;
+        #[doc(alias = "GCPhysicalInputSourceDirectionUp")]
+        const Up = 1<<0;
+        #[doc(alias = "GCPhysicalInputSourceDirectionRight")]
+        const Right = 1<<1;
+        #[doc(alias = "GCPhysicalInputSourceDirectionDown")]
+        const Down = 1<<2;
+        #[doc(alias = "GCPhysicalInputSourceDirectionLeft")]
+        const Left = 1<<3;
+    }
 }
 
 unsafe impl Encode for GCPhysicalInputSourceDirection {

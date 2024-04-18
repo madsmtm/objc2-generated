@@ -309,12 +309,14 @@ unsafe impl RefEncode for MTLTriangleTessellationFactorsHalf {
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MTLRenderStages(pub NSUInteger);
-impl MTLRenderStages {
-    pub const MTLRenderStageVertex: Self = Self(1 << 0);
-    pub const MTLRenderStageFragment: Self = Self(1 << 1);
-    pub const MTLRenderStageTile: Self = Self(1 << 2);
-    pub const MTLRenderStageObject: Self = Self(1 << 3);
-    pub const MTLRenderStageMesh: Self = Self(1 << 4);
+bitflags::bitflags! {
+    impl MTLRenderStages: NSUInteger {
+        const MTLRenderStageVertex = 1<<0;
+        const MTLRenderStageFragment = 1<<1;
+        const MTLRenderStageTile = 1<<2;
+        const MTLRenderStageObject = 1<<3;
+        const MTLRenderStageMesh = 1<<4;
+    }
 }
 
 unsafe impl Encode for MTLRenderStages {

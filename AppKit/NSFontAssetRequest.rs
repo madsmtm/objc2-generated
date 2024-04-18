@@ -9,8 +9,10 @@ use crate::*;
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSFontAssetRequestOptions(pub NSUInteger);
-impl NSFontAssetRequestOptions {
-    pub const NSFontAssetRequestOptionUsesStandardUI: Self = Self(1 << 0);
+bitflags::bitflags! {
+    impl NSFontAssetRequestOptions: NSUInteger {
+        const NSFontAssetRequestOptionUsesStandardUI = 1<<0;
+    }
 }
 
 unsafe impl Encode for NSFontAssetRequestOptions {

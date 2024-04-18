@@ -58,9 +58,10 @@ extern_protocol!(
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct ASAuthorizationControllerRequestOptions(pub NSUInteger);
-impl ASAuthorizationControllerRequestOptions {
-    pub const ASAuthorizationControllerRequestOptionPreferImmediatelyAvailableCredentials: Self =
-        Self(1 << 0);
+bitflags::bitflags! {
+    impl ASAuthorizationControllerRequestOptions: NSUInteger {
+        const ASAuthorizationControllerRequestOptionPreferImmediatelyAvailableCredentials = 1<<0;
+    }
 }
 
 unsafe impl Encode for ASAuthorizationControllerRequestOptions {

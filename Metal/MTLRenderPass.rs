@@ -84,9 +84,11 @@ unsafe impl RefEncode for MTLStoreAction {
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MTLStoreActionOptions(pub NSUInteger);
-impl MTLStoreActionOptions {
-    pub const MTLStoreActionOptionNone: Self = Self(0);
-    pub const MTLStoreActionOptionCustomSamplePositions: Self = Self(1 << 0);
+bitflags::bitflags! {
+    impl MTLStoreActionOptions: NSUInteger {
+        const MTLStoreActionOptionNone = 0;
+        const MTLStoreActionOptionCustomSamplePositions = 1<<0;
+    }
 }
 
 unsafe impl Encode for MTLStoreActionOptions {

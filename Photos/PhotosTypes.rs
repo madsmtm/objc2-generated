@@ -272,27 +272,29 @@ unsafe impl RefEncode for PHAssetMediaType {
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct PHAssetMediaSubtype(pub NSUInteger);
-impl PHAssetMediaSubtype {
-    #[doc(alias = "PHAssetMediaSubtypeNone")]
-    pub const None: Self = Self(0);
-    #[doc(alias = "PHAssetMediaSubtypePhotoPanorama")]
-    pub const PhotoPanorama: Self = Self(1 << 0);
-    #[doc(alias = "PHAssetMediaSubtypePhotoHDR")]
-    pub const PhotoHDR: Self = Self(1 << 1);
-    #[doc(alias = "PHAssetMediaSubtypePhotoScreenshot")]
-    pub const PhotoScreenshot: Self = Self(1 << 2);
-    #[doc(alias = "PHAssetMediaSubtypePhotoLive")]
-    pub const PhotoLive: Self = Self(1 << 3);
-    #[doc(alias = "PHAssetMediaSubtypePhotoDepthEffect")]
-    pub const PhotoDepthEffect: Self = Self(1 << 4);
-    #[doc(alias = "PHAssetMediaSubtypeVideoStreamed")]
-    pub const VideoStreamed: Self = Self(1 << 16);
-    #[doc(alias = "PHAssetMediaSubtypeVideoHighFrameRate")]
-    pub const VideoHighFrameRate: Self = Self(1 << 17);
-    #[doc(alias = "PHAssetMediaSubtypeVideoTimelapse")]
-    pub const VideoTimelapse: Self = Self(1 << 18);
-    #[doc(alias = "PHAssetMediaSubtypeVideoCinematic")]
-    pub const VideoCinematic: Self = Self(1 << 21);
+bitflags::bitflags! {
+    impl PHAssetMediaSubtype: NSUInteger {
+        #[doc(alias = "PHAssetMediaSubtypeNone")]
+        const None = 0;
+        #[doc(alias = "PHAssetMediaSubtypePhotoPanorama")]
+        const PhotoPanorama = 1<<0;
+        #[doc(alias = "PHAssetMediaSubtypePhotoHDR")]
+        const PhotoHDR = 1<<1;
+        #[doc(alias = "PHAssetMediaSubtypePhotoScreenshot")]
+        const PhotoScreenshot = 1<<2;
+        #[doc(alias = "PHAssetMediaSubtypePhotoLive")]
+        const PhotoLive = 1<<3;
+        #[doc(alias = "PHAssetMediaSubtypePhotoDepthEffect")]
+        const PhotoDepthEffect = 1<<4;
+        #[doc(alias = "PHAssetMediaSubtypeVideoStreamed")]
+        const VideoStreamed = 1<<16;
+        #[doc(alias = "PHAssetMediaSubtypeVideoHighFrameRate")]
+        const VideoHighFrameRate = 1<<17;
+        #[doc(alias = "PHAssetMediaSubtypeVideoTimelapse")]
+        const VideoTimelapse = 1<<18;
+        #[doc(alias = "PHAssetMediaSubtypeVideoCinematic")]
+        const VideoCinematic = 1<<21;
+    }
 }
 
 unsafe impl Encode for PHAssetMediaSubtype {
@@ -307,13 +309,15 @@ unsafe impl RefEncode for PHAssetMediaSubtype {
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct PHAssetBurstSelectionType(pub NSUInteger);
-impl PHAssetBurstSelectionType {
-    #[doc(alias = "PHAssetBurstSelectionTypeNone")]
-    pub const None: Self = Self(0);
-    #[doc(alias = "PHAssetBurstSelectionTypeAutoPick")]
-    pub const AutoPick: Self = Self(1 << 0);
-    #[doc(alias = "PHAssetBurstSelectionTypeUserPick")]
-    pub const UserPick: Self = Self(1 << 1);
+bitflags::bitflags! {
+    impl PHAssetBurstSelectionType: NSUInteger {
+        #[doc(alias = "PHAssetBurstSelectionTypeNone")]
+        const None = 0;
+        #[doc(alias = "PHAssetBurstSelectionTypeAutoPick")]
+        const AutoPick = 1<<0;
+        #[doc(alias = "PHAssetBurstSelectionTypeUserPick")]
+        const UserPick = 1<<1;
+    }
 }
 
 unsafe impl Encode for PHAssetBurstSelectionType {
@@ -328,15 +332,17 @@ unsafe impl RefEncode for PHAssetBurstSelectionType {
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct PHAssetSourceType(pub NSUInteger);
-impl PHAssetSourceType {
-    #[doc(alias = "PHAssetSourceTypeNone")]
-    pub const None: Self = Self(0);
-    #[doc(alias = "PHAssetSourceTypeUserLibrary")]
-    pub const UserLibrary: Self = Self(1 << 0);
-    #[doc(alias = "PHAssetSourceTypeCloudShared")]
-    pub const CloudShared: Self = Self(1 << 1);
-    #[doc(alias = "PHAssetSourceTypeiTunesSynced")]
-    pub const iTunesSynced: Self = Self(1 << 2);
+bitflags::bitflags! {
+    impl PHAssetSourceType: NSUInteger {
+        #[doc(alias = "PHAssetSourceTypeNone")]
+        const None = 0;
+        #[doc(alias = "PHAssetSourceTypeUserLibrary")]
+        const UserLibrary = 1<<0;
+        #[doc(alias = "PHAssetSourceTypeCloudShared")]
+        const CloudShared = 1<<1;
+        #[doc(alias = "PHAssetSourceTypeiTunesSynced")]
+        const iTunesSynced = 1<<2;
+    }
 }
 
 unsafe impl Encode for PHAssetSourceType {

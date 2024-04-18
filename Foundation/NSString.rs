@@ -10,16 +10,18 @@ pub type unichar = c_ushort;
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSStringCompareOptions(pub NSUInteger);
-impl NSStringCompareOptions {
-    pub const NSCaseInsensitiveSearch: Self = Self(1);
-    pub const NSLiteralSearch: Self = Self(2);
-    pub const NSBackwardsSearch: Self = Self(4);
-    pub const NSAnchoredSearch: Self = Self(8);
-    pub const NSNumericSearch: Self = Self(64);
-    pub const NSDiacriticInsensitiveSearch: Self = Self(128);
-    pub const NSWidthInsensitiveSearch: Self = Self(256);
-    pub const NSForcedOrderingSearch: Self = Self(512);
-    pub const NSRegularExpressionSearch: Self = Self(1024);
+bitflags::bitflags! {
+    impl NSStringCompareOptions: NSUInteger {
+        const NSCaseInsensitiveSearch = 1;
+        const NSLiteralSearch = 2;
+        const NSBackwardsSearch = 4;
+        const NSAnchoredSearch = 8;
+        const NSNumericSearch = 64;
+        const NSDiacriticInsensitiveSearch = 128;
+        const NSWidthInsensitiveSearch = 256;
+        const NSForcedOrderingSearch = 512;
+        const NSRegularExpressionSearch = 1024;
+    }
 }
 
 unsafe impl Encode for NSStringCompareOptions {
@@ -60,9 +62,11 @@ pub const NSUTF32LittleEndianStringEncoding: NSStringEncoding = 0x9c000100;
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSStringEncodingConversionOptions(pub NSUInteger);
-impl NSStringEncodingConversionOptions {
-    pub const NSStringEncodingConversionAllowLossy: Self = Self(1);
-    pub const NSStringEncodingConversionExternalRepresentation: Self = Self(2);
+bitflags::bitflags! {
+    impl NSStringEncodingConversionOptions: NSUInteger {
+        const NSStringEncodingConversionAllowLossy = 1;
+        const NSStringEncodingConversionExternalRepresentation = 2;
+    }
 }
 
 unsafe impl Encode for NSStringEncodingConversionOptions {
@@ -133,17 +137,19 @@ impl DefaultId for NSString {
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSStringEnumerationOptions(pub NSUInteger);
-impl NSStringEnumerationOptions {
-    pub const NSStringEnumerationByLines: Self = Self(0);
-    pub const NSStringEnumerationByParagraphs: Self = Self(1);
-    pub const NSStringEnumerationByComposedCharacterSequences: Self = Self(2);
-    pub const NSStringEnumerationByWords: Self = Self(3);
-    pub const NSStringEnumerationBySentences: Self = Self(4);
-    pub const NSStringEnumerationByCaretPositions: Self = Self(5);
-    pub const NSStringEnumerationByDeletionClusters: Self = Self(6);
-    pub const NSStringEnumerationReverse: Self = Self(1 << 8);
-    pub const NSStringEnumerationSubstringNotRequired: Self = Self(1 << 9);
-    pub const NSStringEnumerationLocalized: Self = Self(1 << 10);
+bitflags::bitflags! {
+    impl NSStringEnumerationOptions: NSUInteger {
+        const NSStringEnumerationByLines = 0;
+        const NSStringEnumerationByParagraphs = 1;
+        const NSStringEnumerationByComposedCharacterSequences = 2;
+        const NSStringEnumerationByWords = 3;
+        const NSStringEnumerationBySentences = 4;
+        const NSStringEnumerationByCaretPositions = 5;
+        const NSStringEnumerationByDeletionClusters = 6;
+        const NSStringEnumerationReverse = 1<<8;
+        const NSStringEnumerationSubstringNotRequired = 1<<9;
+        const NSStringEnumerationLocalized = 1<<10;
+    }
 }
 
 unsafe impl Encode for NSStringEnumerationOptions {

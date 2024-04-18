@@ -9,16 +9,18 @@ use crate::*;
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSViewControllerTransitionOptions(pub NSUInteger);
-impl NSViewControllerTransitionOptions {
-    pub const NSViewControllerTransitionNone: Self = Self(0x0);
-    pub const NSViewControllerTransitionCrossfade: Self = Self(0x1);
-    pub const NSViewControllerTransitionSlideUp: Self = Self(0x10);
-    pub const NSViewControllerTransitionSlideDown: Self = Self(0x20);
-    pub const NSViewControllerTransitionSlideLeft: Self = Self(0x40);
-    pub const NSViewControllerTransitionSlideRight: Self = Self(0x80);
-    pub const NSViewControllerTransitionSlideForward: Self = Self(0x140);
-    pub const NSViewControllerTransitionSlideBackward: Self = Self(0x180);
-    pub const NSViewControllerTransitionAllowUserInteraction: Self = Self(0x1000);
+bitflags::bitflags! {
+    impl NSViewControllerTransitionOptions: NSUInteger {
+        const NSViewControllerTransitionNone = 0x0;
+        const NSViewControllerTransitionCrossfade = 0x1;
+        const NSViewControllerTransitionSlideUp = 0x10;
+        const NSViewControllerTransitionSlideDown = 0x20;
+        const NSViewControllerTransitionSlideLeft = 0x40;
+        const NSViewControllerTransitionSlideRight = 0x80;
+        const NSViewControllerTransitionSlideForward = 0x140;
+        const NSViewControllerTransitionSlideBackward = 0x180;
+        const NSViewControllerTransitionAllowUserInteraction = 0x1000;
+    }
 }
 
 unsafe impl Encode for NSViewControllerTransitionOptions {

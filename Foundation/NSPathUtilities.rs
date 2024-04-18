@@ -168,12 +168,14 @@ unsafe impl RefEncode for NSSearchPathDirectory {
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSSearchPathDomainMask(pub NSUInteger);
-impl NSSearchPathDomainMask {
-    pub const NSUserDomainMask: Self = Self(1);
-    pub const NSLocalDomainMask: Self = Self(2);
-    pub const NSNetworkDomainMask: Self = Self(4);
-    pub const NSSystemDomainMask: Self = Self(8);
-    pub const NSAllDomainsMask: Self = Self(0x0ffff);
+bitflags::bitflags! {
+    impl NSSearchPathDomainMask: NSUInteger {
+        const NSUserDomainMask = 1;
+        const NSLocalDomainMask = 2;
+        const NSNetworkDomainMask = 4;
+        const NSSystemDomainMask = 8;
+        const NSAllDomainsMask = 0x0ffff;
+    }
 }
 
 unsafe impl Encode for NSSearchPathDomainMask {

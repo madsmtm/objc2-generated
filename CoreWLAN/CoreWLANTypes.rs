@@ -192,12 +192,14 @@ unsafe impl RefEncode for CWChannelBand {
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CWCipherKeyFlags(pub NSUInteger);
-impl CWCipherKeyFlags {
-    pub const kCWCipherKeyFlagsNone: Self = Self(0);
-    pub const kCWCipherKeyFlagsUnicast: Self = Self(1 << 1);
-    pub const kCWCipherKeyFlagsMulticast: Self = Self(1 << 2);
-    pub const kCWCipherKeyFlagsTx: Self = Self(1 << 3);
-    pub const kCWCipherKeyFlagsRx: Self = Self(1 << 4);
+bitflags::bitflags! {
+    impl CWCipherKeyFlags: NSUInteger {
+        const kCWCipherKeyFlagsNone = 0;
+        const kCWCipherKeyFlagsUnicast = 1<<1;
+        const kCWCipherKeyFlagsMulticast = 1<<2;
+        const kCWCipherKeyFlagsTx = 1<<3;
+        const kCWCipherKeyFlagsRx = 1<<4;
+    }
 }
 
 unsafe impl Encode for CWCipherKeyFlags {

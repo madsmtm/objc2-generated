@@ -136,10 +136,12 @@ extern_protocol!(
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSMachPortOptions(pub NSUInteger);
-impl NSMachPortOptions {
-    pub const NSMachPortDeallocateNone: Self = Self(0);
-    pub const NSMachPortDeallocateSendRight: Self = Self(1 << 0);
-    pub const NSMachPortDeallocateReceiveRight: Self = Self(1 << 1);
+bitflags::bitflags! {
+    impl NSMachPortOptions: NSUInteger {
+        const NSMachPortDeallocateNone = 0;
+        const NSMachPortDeallocateSendRight = 1<<0;
+        const NSMachPortDeallocateReceiveRight = 1<<1;
+    }
 }
 
 unsafe impl Encode for NSMachPortOptions {

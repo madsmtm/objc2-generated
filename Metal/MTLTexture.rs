@@ -129,19 +129,21 @@ extern_methods!(
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MTLTextureUsage(pub NSUInteger);
-impl MTLTextureUsage {
-    #[doc(alias = "MTLTextureUsageUnknown")]
-    pub const Unknown: Self = Self(0x0000);
-    #[doc(alias = "MTLTextureUsageShaderRead")]
-    pub const ShaderRead: Self = Self(0x0001);
-    #[doc(alias = "MTLTextureUsageShaderWrite")]
-    pub const ShaderWrite: Self = Self(0x0002);
-    #[doc(alias = "MTLTextureUsageRenderTarget")]
-    pub const RenderTarget: Self = Self(0x0004);
-    #[doc(alias = "MTLTextureUsagePixelFormatView")]
-    pub const PixelFormatView: Self = Self(0x0010);
-    #[doc(alias = "MTLTextureUsageShaderAtomic")]
-    pub const ShaderAtomic: Self = Self(0x0020);
+bitflags::bitflags! {
+    impl MTLTextureUsage: NSUInteger {
+        #[doc(alias = "MTLTextureUsageUnknown")]
+        const Unknown = 0x0000;
+        #[doc(alias = "MTLTextureUsageShaderRead")]
+        const ShaderRead = 0x0001;
+        #[doc(alias = "MTLTextureUsageShaderWrite")]
+        const ShaderWrite = 0x0002;
+        #[doc(alias = "MTLTextureUsageRenderTarget")]
+        const RenderTarget = 0x0004;
+        #[doc(alias = "MTLTextureUsagePixelFormatView")]
+        const PixelFormatView = 0x0010;
+        #[doc(alias = "MTLTextureUsageShaderAtomic")]
+        const ShaderAtomic = 0x0020;
+    }
 }
 
 unsafe impl Encode for MTLTextureUsage {

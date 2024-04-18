@@ -86,13 +86,15 @@ extern "C" {
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct OSAStorageOptions(pub NSUInteger);
-impl OSAStorageOptions {
-    pub const OSANull: Self = Self(0x00000000);
-    pub const OSAPreventGetSource: Self = Self(0x00000001);
-    pub const OSACompileIntoContext: Self = Self(0x00000002);
-    pub const OSADontSetScriptLocation: Self = Self(0x01000000);
-    pub const OSAStayOpenApplet: Self = Self(0x10000000);
-    pub const OSAShowStartupScreen: Self = Self(0x20000000);
+bitflags::bitflags! {
+    impl OSAStorageOptions: NSUInteger {
+        const OSANull = 0x00000000;
+        const OSAPreventGetSource = 0x00000001;
+        const OSACompileIntoContext = 0x00000002;
+        const OSADontSetScriptLocation = 0x01000000;
+        const OSAStayOpenApplet = 0x10000000;
+        const OSAShowStartupScreen = 0x20000000;
+    }
 }
 
 unsafe impl Encode for OSAStorageOptions {

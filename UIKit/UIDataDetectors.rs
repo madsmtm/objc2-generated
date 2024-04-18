@@ -9,18 +9,20 @@ use crate::*;
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct UIDataDetectorTypes(pub NSUInteger);
-impl UIDataDetectorTypes {
-    pub const UIDataDetectorTypePhoneNumber: Self = Self(1 << 0);
-    pub const UIDataDetectorTypeLink: Self = Self(1 << 1);
-    pub const UIDataDetectorTypeAddress: Self = Self(1 << 2);
-    pub const UIDataDetectorTypeCalendarEvent: Self = Self(1 << 3);
-    pub const UIDataDetectorTypeShipmentTrackingNumber: Self = Self(1 << 4);
-    pub const UIDataDetectorTypeFlightNumber: Self = Self(1 << 5);
-    pub const UIDataDetectorTypeLookupSuggestion: Self = Self(1 << 6);
-    pub const UIDataDetectorTypeMoney: Self = Self(1 << 7);
-    pub const UIDataDetectorTypePhysicalValue: Self = Self(1 << 8);
-    pub const UIDataDetectorTypeNone: Self = Self(0);
-    pub const UIDataDetectorTypeAll: Self = Self(NSUIntegerMax as _);
+bitflags::bitflags! {
+    impl UIDataDetectorTypes: NSUInteger {
+        const UIDataDetectorTypePhoneNumber = 1<<0;
+        const UIDataDetectorTypeLink = 1<<1;
+        const UIDataDetectorTypeAddress = 1<<2;
+        const UIDataDetectorTypeCalendarEvent = 1<<3;
+        const UIDataDetectorTypeShipmentTrackingNumber = 1<<4;
+        const UIDataDetectorTypeFlightNumber = 1<<5;
+        const UIDataDetectorTypeLookupSuggestion = 1<<6;
+        const UIDataDetectorTypeMoney = 1<<7;
+        const UIDataDetectorTypePhysicalValue = 1<<8;
+        const UIDataDetectorTypeNone = 0;
+        const UIDataDetectorTypeAll = NSUIntegerMax as _;
+    }
 }
 
 unsafe impl Encode for UIDataDetectorTypes {

@@ -106,29 +106,28 @@ unsafe impl RefEncode for NSLayoutAttribute {
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSLayoutFormatOptions(pub NSUInteger);
-impl NSLayoutFormatOptions {
-    pub const NSLayoutFormatAlignAllLeft: Self = Self(1 << NSLayoutAttribute::Left.0);
-    pub const NSLayoutFormatAlignAllRight: Self = Self(1 << NSLayoutAttribute::Right.0);
-    pub const NSLayoutFormatAlignAllTop: Self = Self(1 << NSLayoutAttribute::Top.0);
-    pub const NSLayoutFormatAlignAllBottom: Self = Self(1 << NSLayoutAttribute::Bottom.0);
-    pub const NSLayoutFormatAlignAllLeading: Self = Self(1 << NSLayoutAttribute::Leading.0);
-    pub const NSLayoutFormatAlignAllTrailing: Self = Self(1 << NSLayoutAttribute::Trailing.0);
-    pub const NSLayoutFormatAlignAllCenterX: Self = Self(1 << NSLayoutAttribute::CenterX.0);
-    pub const NSLayoutFormatAlignAllCenterY: Self = Self(1 << NSLayoutAttribute::CenterY.0);
-    pub const NSLayoutFormatAlignAllLastBaseline: Self =
-        Self(1 << NSLayoutAttribute::LastBaseline.0);
-    pub const NSLayoutFormatAlignAllFirstBaseline: Self =
-        Self(1 << NSLayoutAttribute::FirstBaseline.0);
-    pub const NSLayoutFormatAlignAllBaseline: Self =
-        Self(NSLayoutFormatOptions::NSLayoutFormatAlignAllLastBaseline.0);
-    pub const NSLayoutFormatAlignmentMask: Self = Self(0xFFFF);
-    pub const NSLayoutFormatDirectionLeadingToTrailing: Self = Self(0 << 16);
-    pub const NSLayoutFormatDirectionLeftToRight: Self = Self(1 << 16);
-    pub const NSLayoutFormatDirectionRightToLeft: Self = Self(2 << 16);
-    pub const NSLayoutFormatDirectionMask: Self = Self(0x3 << 16);
-    pub const NSLayoutFormatSpacingEdgeToEdge: Self = Self(0 << 19);
-    pub const NSLayoutFormatSpacingBaselineToBaseline: Self = Self(1 << 19);
-    pub const NSLayoutFormatSpacingMask: Self = Self(0x1 << 19);
+bitflags::bitflags! {
+    impl NSLayoutFormatOptions: NSUInteger {
+        const NSLayoutFormatAlignAllLeft = 1<<NSLayoutAttribute::Left.0;
+        const NSLayoutFormatAlignAllRight = 1<<NSLayoutAttribute::Right.0;
+        const NSLayoutFormatAlignAllTop = 1<<NSLayoutAttribute::Top.0;
+        const NSLayoutFormatAlignAllBottom = 1<<NSLayoutAttribute::Bottom.0;
+        const NSLayoutFormatAlignAllLeading = 1<<NSLayoutAttribute::Leading.0;
+        const NSLayoutFormatAlignAllTrailing = 1<<NSLayoutAttribute::Trailing.0;
+        const NSLayoutFormatAlignAllCenterX = 1<<NSLayoutAttribute::CenterX.0;
+        const NSLayoutFormatAlignAllCenterY = 1<<NSLayoutAttribute::CenterY.0;
+        const NSLayoutFormatAlignAllLastBaseline = 1<<NSLayoutAttribute::LastBaseline.0;
+        const NSLayoutFormatAlignAllFirstBaseline = 1<<NSLayoutAttribute::FirstBaseline.0;
+        const NSLayoutFormatAlignAllBaseline = NSLayoutFormatOptions::NSLayoutFormatAlignAllLastBaseline.0;
+        const NSLayoutFormatAlignmentMask = 0xFFFF;
+        const NSLayoutFormatDirectionLeadingToTrailing = 0<<16;
+        const NSLayoutFormatDirectionLeftToRight = 1<<16;
+        const NSLayoutFormatDirectionRightToLeft = 2<<16;
+        const NSLayoutFormatDirectionMask = 0x3<<16;
+        const NSLayoutFormatSpacingEdgeToEdge = 0<<19;
+        const NSLayoutFormatSpacingBaselineToBaseline = 1<<19;
+        const NSLayoutFormatSpacingMask = 0x1<<19;
+    }
 }
 
 unsafe impl Encode for NSLayoutFormatOptions {

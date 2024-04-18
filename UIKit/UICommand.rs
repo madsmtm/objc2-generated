@@ -9,13 +9,15 @@ use crate::*;
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct UIKeyModifierFlags(pub NSInteger);
-impl UIKeyModifierFlags {
-    pub const UIKeyModifierAlphaShift: Self = Self(1 << 16);
-    pub const UIKeyModifierShift: Self = Self(1 << 17);
-    pub const UIKeyModifierControl: Self = Self(1 << 18);
-    pub const UIKeyModifierAlternate: Self = Self(1 << 19);
-    pub const UIKeyModifierCommand: Self = Self(1 << 20);
-    pub const UIKeyModifierNumericPad: Self = Self(1 << 21);
+bitflags::bitflags! {
+    impl UIKeyModifierFlags: NSInteger {
+        const UIKeyModifierAlphaShift = 1<<16;
+        const UIKeyModifierShift = 1<<17;
+        const UIKeyModifierControl = 1<<18;
+        const UIKeyModifierAlternate = 1<<19;
+        const UIKeyModifierCommand = 1<<20;
+        const UIKeyModifierNumericPad = 1<<21;
+    }
 }
 
 unsafe impl Encode for UIKeyModifierFlags {

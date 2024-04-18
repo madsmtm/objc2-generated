@@ -79,9 +79,11 @@ impl DefaultId for NSAttributedString {
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSAttributedStringEnumerationOptions(pub NSUInteger);
-impl NSAttributedStringEnumerationOptions {
-    pub const NSAttributedStringEnumerationReverse: Self = Self(1 << 1);
-    pub const NSAttributedStringEnumerationLongestEffectiveRangeNotRequired: Self = Self(1 << 20);
+bitflags::bitflags! {
+    impl NSAttributedStringEnumerationOptions: NSUInteger {
+        const NSAttributedStringEnumerationReverse = 1<<1;
+        const NSAttributedStringEnumerationLongestEffectiveRangeNotRequired = 1<<20;
+    }
 }
 
 unsafe impl Encode for NSAttributedStringEnumerationOptions {
@@ -341,23 +343,25 @@ extern_methods!(
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSInlinePresentationIntent(pub NSUInteger);
-impl NSInlinePresentationIntent {
-    #[doc(alias = "NSInlinePresentationIntentEmphasized")]
-    pub const Emphasized: Self = Self(1 << 0);
-    #[doc(alias = "NSInlinePresentationIntentStronglyEmphasized")]
-    pub const StronglyEmphasized: Self = Self(1 << 1);
-    #[doc(alias = "NSInlinePresentationIntentCode")]
-    pub const Code: Self = Self(1 << 2);
-    #[doc(alias = "NSInlinePresentationIntentStrikethrough")]
-    pub const Strikethrough: Self = Self(1 << 5);
-    #[doc(alias = "NSInlinePresentationIntentSoftBreak")]
-    pub const SoftBreak: Self = Self(1 << 6);
-    #[doc(alias = "NSInlinePresentationIntentLineBreak")]
-    pub const LineBreak: Self = Self(1 << 7);
-    #[doc(alias = "NSInlinePresentationIntentInlineHTML")]
-    pub const InlineHTML: Self = Self(1 << 8);
-    #[doc(alias = "NSInlinePresentationIntentBlockHTML")]
-    pub const BlockHTML: Self = Self(1 << 9);
+bitflags::bitflags! {
+    impl NSInlinePresentationIntent: NSUInteger {
+        #[doc(alias = "NSInlinePresentationIntentEmphasized")]
+        const Emphasized = 1<<0;
+        #[doc(alias = "NSInlinePresentationIntentStronglyEmphasized")]
+        const StronglyEmphasized = 1<<1;
+        #[doc(alias = "NSInlinePresentationIntentCode")]
+        const Code = 1<<2;
+        #[doc(alias = "NSInlinePresentationIntentStrikethrough")]
+        const Strikethrough = 1<<5;
+        #[doc(alias = "NSInlinePresentationIntentSoftBreak")]
+        const SoftBreak = 1<<6;
+        #[doc(alias = "NSInlinePresentationIntentLineBreak")]
+        const LineBreak = 1<<7;
+        #[doc(alias = "NSInlinePresentationIntentInlineHTML")]
+        const InlineHTML = 1<<8;
+        #[doc(alias = "NSInlinePresentationIntentBlockHTML")]
+        const BlockHTML = 1<<9;
+    }
 }
 
 unsafe impl Encode for NSInlinePresentationIntent {
@@ -634,10 +638,11 @@ extern_methods!(
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSAttributedStringFormattingOptions(pub NSUInteger);
-impl NSAttributedStringFormattingOptions {
-    pub const NSAttributedStringFormattingInsertArgumentAttributesWithoutMerging: Self =
-        Self(1 << 0);
-    pub const NSAttributedStringFormattingApplyReplacementIndexAttribute: Self = Self(1 << 1);
+bitflags::bitflags! {
+    impl NSAttributedStringFormattingOptions: NSUInteger {
+        const NSAttributedStringFormattingInsertArgumentAttributesWithoutMerging = 1<<0;
+        const NSAttributedStringFormattingApplyReplacementIndexAttribute = 1<<1;
+    }
 }
 
 unsafe impl Encode for NSAttributedStringFormattingOptions {

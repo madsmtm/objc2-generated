@@ -8,13 +8,15 @@ use crate::*;
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSMeasurementFormatterUnitOptions(pub NSUInteger);
-impl NSMeasurementFormatterUnitOptions {
-    #[doc(alias = "NSMeasurementFormatterUnitOptionsProvidedUnit")]
-    pub const ProvidedUnit: Self = Self(1 << 0);
-    #[doc(alias = "NSMeasurementFormatterUnitOptionsNaturalScale")]
-    pub const NaturalScale: Self = Self(1 << 1);
-    #[doc(alias = "NSMeasurementFormatterUnitOptionsTemperatureWithoutUnit")]
-    pub const TemperatureWithoutUnit: Self = Self(1 << 2);
+bitflags::bitflags! {
+    impl NSMeasurementFormatterUnitOptions: NSUInteger {
+        #[doc(alias = "NSMeasurementFormatterUnitOptionsProvidedUnit")]
+        const ProvidedUnit = 1<<0;
+        #[doc(alias = "NSMeasurementFormatterUnitOptionsNaturalScale")]
+        const NaturalScale = 1<<1;
+        #[doc(alias = "NSMeasurementFormatterUnitOptionsTemperatureWithoutUnit")]
+        const TemperatureWithoutUnit = 1<<2;
+    }
 }
 
 unsafe impl Encode for NSMeasurementFormatterUnitOptions {

@@ -9,28 +9,30 @@ use crate::*;
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct UIFontDescriptorSymbolicTraits(pub u32);
-impl UIFontDescriptorSymbolicTraits {
-    pub const UIFontDescriptorTraitItalic: Self = Self(1 << 0);
-    pub const UIFontDescriptorTraitBold: Self = Self(1 << 1);
-    pub const UIFontDescriptorTraitExpanded: Self = Self(1 << 5);
-    pub const UIFontDescriptorTraitCondensed: Self = Self(1 << 6);
-    pub const UIFontDescriptorTraitMonoSpace: Self = Self(1 << 10);
-    pub const UIFontDescriptorTraitVertical: Self = Self(1 << 11);
-    pub const UIFontDescriptorTraitUIOptimized: Self = Self(1 << 12);
-    pub const UIFontDescriptorTraitTightLeading: Self = Self(1 << 15);
-    pub const UIFontDescriptorTraitLooseLeading: Self = Self(1 << 16);
-    pub const UIFontDescriptorClassMask: Self = Self(0xF0000000);
-    pub const UIFontDescriptorClassUnknown: Self = Self(0 << 28);
-    pub const UIFontDescriptorClassOldStyleSerifs: Self = Self(1 << 28);
-    pub const UIFontDescriptorClassTransitionalSerifs: Self = Self(2 << 28);
-    pub const UIFontDescriptorClassModernSerifs: Self = Self(3 << 28);
-    pub const UIFontDescriptorClassClarendonSerifs: Self = Self(4 << 28);
-    pub const UIFontDescriptorClassSlabSerifs: Self = Self(5 << 28);
-    pub const UIFontDescriptorClassFreeformSerifs: Self = Self(7 << 28);
-    pub const UIFontDescriptorClassSansSerif: Self = Self(8 << 28);
-    pub const UIFontDescriptorClassOrnamentals: Self = Self(9 << 28);
-    pub const UIFontDescriptorClassScripts: Self = Self(10 << 28);
-    pub const UIFontDescriptorClassSymbolic: Self = Self(12 << 28);
+bitflags::bitflags! {
+    impl UIFontDescriptorSymbolicTraits: u32 {
+        const UIFontDescriptorTraitItalic = 1<<0;
+        const UIFontDescriptorTraitBold = 1<<1;
+        const UIFontDescriptorTraitExpanded = 1<<5;
+        const UIFontDescriptorTraitCondensed = 1<<6;
+        const UIFontDescriptorTraitMonoSpace = 1<<10;
+        const UIFontDescriptorTraitVertical = 1<<11;
+        const UIFontDescriptorTraitUIOptimized = 1<<12;
+        const UIFontDescriptorTraitTightLeading = 1<<15;
+        const UIFontDescriptorTraitLooseLeading = 1<<16;
+        const UIFontDescriptorClassMask = 0xF0000000;
+        const UIFontDescriptorClassUnknown = 0<<28;
+        const UIFontDescriptorClassOldStyleSerifs = 1<<28;
+        const UIFontDescriptorClassTransitionalSerifs = 2<<28;
+        const UIFontDescriptorClassModernSerifs = 3<<28;
+        const UIFontDescriptorClassClarendonSerifs = 4<<28;
+        const UIFontDescriptorClassSlabSerifs = 5<<28;
+        const UIFontDescriptorClassFreeformSerifs = 7<<28;
+        const UIFontDescriptorClassSansSerif = 8<<28;
+        const UIFontDescriptorClassOrnamentals = 9<<28;
+        const UIFontDescriptorClassScripts = 10<<28;
+        const UIFontDescriptorClassSymbolic = 12<<28;
+    }
 }
 
 unsafe impl Encode for UIFontDescriptorSymbolicTraits {

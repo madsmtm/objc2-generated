@@ -9,13 +9,15 @@ use crate::*;
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSSnapshotEventType(pub NSUInteger);
-impl NSSnapshotEventType {
-    pub const NSSnapshotEventUndoInsertion: Self = Self(1 << 1);
-    pub const NSSnapshotEventUndoDeletion: Self = Self(1 << 2);
-    pub const NSSnapshotEventUndoUpdate: Self = Self(1 << 3);
-    pub const NSSnapshotEventRollback: Self = Self(1 << 4);
-    pub const NSSnapshotEventRefresh: Self = Self(1 << 5);
-    pub const NSSnapshotEventMergePolicy: Self = Self(1 << 6);
+bitflags::bitflags! {
+    impl NSSnapshotEventType: NSUInteger {
+        const NSSnapshotEventUndoInsertion = 1<<1;
+        const NSSnapshotEventUndoDeletion = 1<<2;
+        const NSSnapshotEventUndoUpdate = 1<<3;
+        const NSSnapshotEventRollback = 1<<4;
+        const NSSnapshotEventRefresh = 1<<5;
+        const NSSnapshotEventMergePolicy = 1<<6;
+    }
 }
 
 unsafe impl Encode for NSSnapshotEventType {

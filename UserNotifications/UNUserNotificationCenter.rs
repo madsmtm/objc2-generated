@@ -9,18 +9,20 @@ use crate::*;
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct UNAuthorizationOptions(pub NSUInteger);
-impl UNAuthorizationOptions {
-    pub const UNAuthorizationOptionBadge: Self = Self(1 << 0);
-    pub const UNAuthorizationOptionSound: Self = Self(1 << 1);
-    pub const UNAuthorizationOptionAlert: Self = Self(1 << 2);
-    pub const UNAuthorizationOptionCarPlay: Self = Self(1 << 3);
-    pub const UNAuthorizationOptionCriticalAlert: Self = Self(1 << 4);
-    pub const UNAuthorizationOptionProvidesAppNotificationSettings: Self = Self(1 << 5);
-    pub const UNAuthorizationOptionProvisional: Self = Self(1 << 6);
-    #[deprecated = "Announcement authorization is always included"]
-    pub const UNAuthorizationOptionAnnouncement: Self = Self(1 << 7);
-    #[deprecated = "Use time-sensitive entitlement"]
-    pub const UNAuthorizationOptionTimeSensitive: Self = Self(1 << 8);
+bitflags::bitflags! {
+    impl UNAuthorizationOptions: NSUInteger {
+        const UNAuthorizationOptionBadge = 1<<0;
+        const UNAuthorizationOptionSound = 1<<1;
+        const UNAuthorizationOptionAlert = 1<<2;
+        const UNAuthorizationOptionCarPlay = 1<<3;
+        const UNAuthorizationOptionCriticalAlert = 1<<4;
+        const UNAuthorizationOptionProvidesAppNotificationSettings = 1<<5;
+        const UNAuthorizationOptionProvisional = 1<<6;
+#[deprecated = "Announcement authorization is always included"]
+        const UNAuthorizationOptionAnnouncement = 1<<7;
+#[deprecated = "Use time-sensitive entitlement"]
+        const UNAuthorizationOptionTimeSensitive = 1<<8;
+    }
 }
 
 unsafe impl Encode for UNAuthorizationOptions {
@@ -155,13 +157,15 @@ extern_methods!(
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct UNNotificationPresentationOptions(pub NSUInteger);
-impl UNNotificationPresentationOptions {
-    pub const UNNotificationPresentationOptionBadge: Self = Self(1 << 0);
-    pub const UNNotificationPresentationOptionSound: Self = Self(1 << 1);
-    #[deprecated]
-    pub const UNNotificationPresentationOptionAlert: Self = Self(1 << 2);
-    pub const UNNotificationPresentationOptionList: Self = Self(1 << 3);
-    pub const UNNotificationPresentationOptionBanner: Self = Self(1 << 4);
+bitflags::bitflags! {
+    impl UNNotificationPresentationOptions: NSUInteger {
+        const UNNotificationPresentationOptionBadge = 1<<0;
+        const UNNotificationPresentationOptionSound = 1<<1;
+#[deprecated]
+        const UNNotificationPresentationOptionAlert = 1<<2;
+        const UNNotificationPresentationOptionList = 1<<3;
+        const UNNotificationPresentationOptionBanner = 1<<4;
+    }
 }
 
 unsafe impl Encode for UNNotificationPresentationOptions {

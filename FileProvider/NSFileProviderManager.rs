@@ -296,9 +296,11 @@ extern_methods!(
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSFileProviderManagerDisconnectionOptions(pub NSUInteger);
-impl NSFileProviderManagerDisconnectionOptions {
-    #[doc(alias = "NSFileProviderManagerDisconnectionOptionsTemporary")]
-    pub const Temporary: Self = Self(1 << 0);
+bitflags::bitflags! {
+    impl NSFileProviderManagerDisconnectionOptions: NSUInteger {
+        #[doc(alias = "NSFileProviderManagerDisconnectionOptionsTemporary")]
+        const Temporary = 1<<0;
+    }
 }
 
 unsafe impl Encode for NSFileProviderManagerDisconnectionOptions {

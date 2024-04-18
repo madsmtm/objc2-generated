@@ -32,15 +32,17 @@ unsafe impl RefEncode for SKCloudServiceAuthorizationStatus {
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct SKCloudServiceCapability(pub NSUInteger);
-impl SKCloudServiceCapability {
-    #[doc(alias = "SKCloudServiceCapabilityNone")]
-    pub const None: Self = Self(0);
-    #[doc(alias = "SKCloudServiceCapabilityMusicCatalogPlayback")]
-    pub const MusicCatalogPlayback: Self = Self(1 << 0);
-    #[doc(alias = "SKCloudServiceCapabilityMusicCatalogSubscriptionEligible")]
-    pub const MusicCatalogSubscriptionEligible: Self = Self(1 << 1);
-    #[doc(alias = "SKCloudServiceCapabilityAddToCloudMusicLibrary")]
-    pub const AddToCloudMusicLibrary: Self = Self(1 << 8);
+bitflags::bitflags! {
+    impl SKCloudServiceCapability: NSUInteger {
+        #[doc(alias = "SKCloudServiceCapabilityNone")]
+        const None = 0;
+        #[doc(alias = "SKCloudServiceCapabilityMusicCatalogPlayback")]
+        const MusicCatalogPlayback = 1<<0;
+        #[doc(alias = "SKCloudServiceCapabilityMusicCatalogSubscriptionEligible")]
+        const MusicCatalogSubscriptionEligible = 1<<1;
+        #[doc(alias = "SKCloudServiceCapabilityAddToCloudMusicLibrary")]
+        const AddToCloudMusicLibrary = 1<<8;
+    }
 }
 
 unsafe impl Encode for SKCloudServiceCapability {

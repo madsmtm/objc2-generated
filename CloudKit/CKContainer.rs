@@ -121,9 +121,11 @@ extern_methods!(
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CKApplicationPermissions(pub NSUInteger);
-impl CKApplicationPermissions {
-    #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
-    pub const CKApplicationPermissionUserDiscoverability: Self = Self(1 << 0);
+bitflags::bitflags! {
+    impl CKApplicationPermissions: NSUInteger {
+#[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
+        const CKApplicationPermissionUserDiscoverability = 1<<0;
+    }
 }
 
 unsafe impl Encode for CKApplicationPermissions {

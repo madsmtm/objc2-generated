@@ -9,11 +9,13 @@ use crate::*;
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSFetchRequestResultType(pub NSUInteger);
-impl NSFetchRequestResultType {
-    pub const NSManagedObjectResultType: Self = Self(0x00);
-    pub const NSManagedObjectIDResultType: Self = Self(0x01);
-    pub const NSDictionaryResultType: Self = Self(0x02);
-    pub const NSCountResultType: Self = Self(0x04);
+bitflags::bitflags! {
+    impl NSFetchRequestResultType: NSUInteger {
+        const NSManagedObjectResultType = 0x00;
+        const NSManagedObjectIDResultType = 0x01;
+        const NSDictionaryResultType = 0x02;
+        const NSCountResultType = 0x04;
+    }
 }
 
 unsafe impl Encode for NSFetchRequestResultType {

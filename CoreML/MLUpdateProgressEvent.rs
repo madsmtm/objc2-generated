@@ -9,13 +9,15 @@ use crate::*;
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MLUpdateProgressEvent(pub NSInteger);
-impl MLUpdateProgressEvent {
-    #[doc(alias = "MLUpdateProgressEventTrainingBegin")]
-    pub const TrainingBegin: Self = Self(1 << 0);
-    #[doc(alias = "MLUpdateProgressEventEpochEnd")]
-    pub const EpochEnd: Self = Self(1 << 1);
-    #[doc(alias = "MLUpdateProgressEventMiniBatchEnd")]
-    pub const MiniBatchEnd: Self = Self(1 << 2);
+bitflags::bitflags! {
+    impl MLUpdateProgressEvent: NSInteger {
+        #[doc(alias = "MLUpdateProgressEventTrainingBegin")]
+        const TrainingBegin = 1<<0;
+        #[doc(alias = "MLUpdateProgressEventEpochEnd")]
+        const EpochEnd = 1<<1;
+        #[doc(alias = "MLUpdateProgressEventMiniBatchEnd")]
+        const MiniBatchEnd = 1<<2;
+    }
 }
 
 unsafe impl Encode for MLUpdateProgressEvent {

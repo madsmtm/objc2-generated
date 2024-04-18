@@ -9,11 +9,13 @@ use crate::*;
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSTextContentManagerEnumerationOptions(pub NSUInteger);
-impl NSTextContentManagerEnumerationOptions {
-    #[doc(alias = "NSTextContentManagerEnumerationOptionsNone")]
-    pub const None: Self = Self(0);
-    #[doc(alias = "NSTextContentManagerEnumerationOptionsReverse")]
-    pub const Reverse: Self = Self(1 << 0);
+bitflags::bitflags! {
+    impl NSTextContentManagerEnumerationOptions: NSUInteger {
+        #[doc(alias = "NSTextContentManagerEnumerationOptionsNone")]
+        const None = 0;
+        #[doc(alias = "NSTextContentManagerEnumerationOptionsReverse")]
+        const Reverse = 1<<0;
+    }
 }
 
 unsafe impl Encode for NSTextContentManagerEnumerationOptions {

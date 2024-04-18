@@ -9,23 +9,25 @@ use crate::*;
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MTLIndirectCommandType(pub NSUInteger);
-impl MTLIndirectCommandType {
-    #[doc(alias = "MTLIndirectCommandTypeDraw")]
-    pub const Draw: Self = Self(1 << 0);
-    #[doc(alias = "MTLIndirectCommandTypeDrawIndexed")]
-    pub const DrawIndexed: Self = Self(1 << 1);
-    #[doc(alias = "MTLIndirectCommandTypeDrawPatches")]
-    pub const DrawPatches: Self = Self(1 << 2);
-    #[doc(alias = "MTLIndirectCommandTypeDrawIndexedPatches")]
-    pub const DrawIndexedPatches: Self = Self(1 << 3);
-    #[doc(alias = "MTLIndirectCommandTypeConcurrentDispatch")]
-    pub const ConcurrentDispatch: Self = Self(1 << 5);
-    #[doc(alias = "MTLIndirectCommandTypeConcurrentDispatchThreads")]
-    pub const ConcurrentDispatchThreads: Self = Self(1 << 6);
-    #[doc(alias = "MTLIndirectCommandTypeDrawMeshThreadgroups")]
-    pub const DrawMeshThreadgroups: Self = Self(1 << 7);
-    #[doc(alias = "MTLIndirectCommandTypeDrawMeshThreads")]
-    pub const DrawMeshThreads: Self = Self(1 << 8);
+bitflags::bitflags! {
+    impl MTLIndirectCommandType: NSUInteger {
+        #[doc(alias = "MTLIndirectCommandTypeDraw")]
+        const Draw = 1<<0;
+        #[doc(alias = "MTLIndirectCommandTypeDrawIndexed")]
+        const DrawIndexed = 1<<1;
+        #[doc(alias = "MTLIndirectCommandTypeDrawPatches")]
+        const DrawPatches = 1<<2;
+        #[doc(alias = "MTLIndirectCommandTypeDrawIndexedPatches")]
+        const DrawIndexedPatches = 1<<3;
+        #[doc(alias = "MTLIndirectCommandTypeConcurrentDispatch")]
+        const ConcurrentDispatch = 1<<5;
+        #[doc(alias = "MTLIndirectCommandTypeConcurrentDispatchThreads")]
+        const ConcurrentDispatchThreads = 1<<6;
+        #[doc(alias = "MTLIndirectCommandTypeDrawMeshThreadgroups")]
+        const DrawMeshThreadgroups = 1<<7;
+        #[doc(alias = "MTLIndirectCommandTypeDrawMeshThreads")]
+        const DrawMeshThreads = 1<<8;
+    }
 }
 
 unsafe impl Encode for MTLIndirectCommandType {

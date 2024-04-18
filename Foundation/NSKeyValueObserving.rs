@@ -8,11 +8,13 @@ use crate::*;
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSKeyValueObservingOptions(pub NSUInteger);
-impl NSKeyValueObservingOptions {
-    pub const NSKeyValueObservingOptionNew: Self = Self(0x01);
-    pub const NSKeyValueObservingOptionOld: Self = Self(0x02);
-    pub const NSKeyValueObservingOptionInitial: Self = Self(0x04);
-    pub const NSKeyValueObservingOptionPrior: Self = Self(0x08);
+bitflags::bitflags! {
+    impl NSKeyValueObservingOptions: NSUInteger {
+        const NSKeyValueObservingOptionNew = 0x01;
+        const NSKeyValueObservingOptionOld = 0x02;
+        const NSKeyValueObservingOptionInitial = 0x04;
+        const NSKeyValueObservingOptionPrior = 0x08;
+    }
 }
 
 unsafe impl Encode for NSKeyValueObservingOptions {

@@ -9,19 +9,21 @@ use crate::*;
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct AVVideoFrameAnalysisType(pub NSUInteger);
-impl AVVideoFrameAnalysisType {
-    #[doc(alias = "AVVideoFrameAnalysisTypeNone")]
-    pub const None: Self = Self(0);
-    #[doc(alias = "AVVideoFrameAnalysisTypeDefault")]
-    pub const Default: Self = Self(1 << 0);
-    #[doc(alias = "AVVideoFrameAnalysisTypeText")]
-    pub const Text: Self = Self(1 << 1);
-    #[doc(alias = "AVVideoFrameAnalysisTypeSubject")]
-    pub const Subject: Self = Self(1 << 2);
-    #[doc(alias = "AVVideoFrameAnalysisTypeVisualSearch")]
-    pub const VisualSearch: Self = Self(1 << 3);
-    #[doc(alias = "AVVideoFrameAnalysisTypeMachineReadableCode")]
-    pub const MachineReadableCode: Self = Self(1 << 4);
+bitflags::bitflags! {
+    impl AVVideoFrameAnalysisType: NSUInteger {
+        #[doc(alias = "AVVideoFrameAnalysisTypeNone")]
+        const None = 0;
+        #[doc(alias = "AVVideoFrameAnalysisTypeDefault")]
+        const Default = 1<<0;
+        #[doc(alias = "AVVideoFrameAnalysisTypeText")]
+        const Text = 1<<1;
+        #[doc(alias = "AVVideoFrameAnalysisTypeSubject")]
+        const Subject = 1<<2;
+        #[doc(alias = "AVVideoFrameAnalysisTypeVisualSearch")]
+        const VisualSearch = 1<<3;
+        #[doc(alias = "AVVideoFrameAnalysisTypeMachineReadableCode")]
+        const MachineReadableCode = 1<<4;
+    }
 }
 
 unsafe impl Encode for AVVideoFrameAnalysisType {

@@ -9,17 +9,19 @@ use crate::*;
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSTrackingAreaOptions(pub NSUInteger);
-impl NSTrackingAreaOptions {
-    pub const NSTrackingMouseEnteredAndExited: Self = Self(0x01);
-    pub const NSTrackingMouseMoved: Self = Self(0x02);
-    pub const NSTrackingCursorUpdate: Self = Self(0x04);
-    pub const NSTrackingActiveWhenFirstResponder: Self = Self(0x10);
-    pub const NSTrackingActiveInKeyWindow: Self = Self(0x20);
-    pub const NSTrackingActiveInActiveApp: Self = Self(0x40);
-    pub const NSTrackingActiveAlways: Self = Self(0x80);
-    pub const NSTrackingAssumeInside: Self = Self(0x100);
-    pub const NSTrackingInVisibleRect: Self = Self(0x200);
-    pub const NSTrackingEnabledDuringMouseDrag: Self = Self(0x400);
+bitflags::bitflags! {
+    impl NSTrackingAreaOptions: NSUInteger {
+        const NSTrackingMouseEnteredAndExited = 0x01;
+        const NSTrackingMouseMoved = 0x02;
+        const NSTrackingCursorUpdate = 0x04;
+        const NSTrackingActiveWhenFirstResponder = 0x10;
+        const NSTrackingActiveInKeyWindow = 0x20;
+        const NSTrackingActiveInActiveApp = 0x40;
+        const NSTrackingActiveAlways = 0x80;
+        const NSTrackingAssumeInside = 0x100;
+        const NSTrackingInVisibleRect = 0x200;
+        const NSTrackingEnabledDuringMouseDrag = 0x400;
+    }
 }
 
 unsafe impl Encode for NSTrackingAreaOptions {

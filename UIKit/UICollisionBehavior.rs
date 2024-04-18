@@ -9,13 +9,15 @@ use crate::*;
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct UICollisionBehaviorMode(pub NSUInteger);
-impl UICollisionBehaviorMode {
-    #[doc(alias = "UICollisionBehaviorModeItems")]
-    pub const Items: Self = Self(1 << 0);
-    #[doc(alias = "UICollisionBehaviorModeBoundaries")]
-    pub const Boundaries: Self = Self(1 << 1);
-    #[doc(alias = "UICollisionBehaviorModeEverything")]
-    pub const Everything: Self = Self(NSUIntegerMax as _);
+bitflags::bitflags! {
+    impl UICollisionBehaviorMode: NSUInteger {
+        #[doc(alias = "UICollisionBehaviorModeItems")]
+        const Items = 1<<0;
+        #[doc(alias = "UICollisionBehaviorModeBoundaries")]
+        const Boundaries = 1<<1;
+        #[doc(alias = "UICollisionBehaviorModeEverything")]
+        const Everything = NSUIntegerMax as _;
+    }
 }
 
 unsafe impl Encode for UICollisionBehaviorMode {

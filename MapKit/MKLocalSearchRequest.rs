@@ -11,11 +11,13 @@ use crate::*;
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MKLocalSearchResultType(pub NSUInteger);
-impl MKLocalSearchResultType {
-    #[doc(alias = "MKLocalSearchResultTypeAddress")]
-    pub const Address: Self = Self(1 << 0);
-    #[doc(alias = "MKLocalSearchResultTypePointOfInterest")]
-    pub const PointOfInterest: Self = Self(1 << 1);
+bitflags::bitflags! {
+    impl MKLocalSearchResultType: NSUInteger {
+        #[doc(alias = "MKLocalSearchResultTypeAddress")]
+        const Address = 1<<0;
+        #[doc(alias = "MKLocalSearchResultTypePointOfInterest")]
+        const PointOfInterest = 1<<1;
+    }
 }
 
 unsafe impl Encode for MKLocalSearchResultType {

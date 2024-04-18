@@ -99,8 +99,10 @@ extern "C" {
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSPasteboardContentsOptions(pub NSUInteger);
-impl NSPasteboardContentsOptions {
-    pub const NSPasteboardContentsCurrentHostOnly: Self = Self(1 << 0);
+bitflags::bitflags! {
+    impl NSPasteboardContentsOptions: NSUInteger {
+        const NSPasteboardContentsCurrentHostOnly = 1<<0;
+    }
 }
 
 unsafe impl Encode for NSPasteboardContentsOptions {
@@ -308,8 +310,10 @@ extern_protocol!(
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSPasteboardWritingOptions(pub NSUInteger);
-impl NSPasteboardWritingOptions {
-    pub const NSPasteboardWritingPromised: Self = Self(1 << 9);
+bitflags::bitflags! {
+    impl NSPasteboardWritingOptions: NSUInteger {
+        const NSPasteboardWritingPromised = 1<<9;
+    }
 }
 
 unsafe impl Encode for NSPasteboardWritingOptions {
@@ -350,11 +354,13 @@ extern_protocol!(
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSPasteboardReadingOptions(pub NSUInteger);
-impl NSPasteboardReadingOptions {
-    pub const NSPasteboardReadingAsData: Self = Self(0);
-    pub const NSPasteboardReadingAsString: Self = Self(1 << 0);
-    pub const NSPasteboardReadingAsPropertyList: Self = Self(1 << 1);
-    pub const NSPasteboardReadingAsKeyedArchive: Self = Self(1 << 2);
+bitflags::bitflags! {
+    impl NSPasteboardReadingOptions: NSUInteger {
+        const NSPasteboardReadingAsData = 0;
+        const NSPasteboardReadingAsString = 1<<0;
+        const NSPasteboardReadingAsPropertyList = 1<<1;
+        const NSPasteboardReadingAsKeyedArchive = 1<<2;
+    }
 }
 
 unsafe impl Encode for NSPasteboardReadingOptions {

@@ -9,24 +9,21 @@ use crate::*;
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSDirectionalRectEdge(pub NSUInteger);
-impl NSDirectionalRectEdge {
-    #[doc(alias = "NSDirectionalRectEdgeNone")]
-    pub const None: Self = Self(0);
-    #[doc(alias = "NSDirectionalRectEdgeTop")]
-    pub const Top: Self = Self(1 << 0);
-    #[doc(alias = "NSDirectionalRectEdgeLeading")]
-    pub const Leading: Self = Self(1 << 1);
-    #[doc(alias = "NSDirectionalRectEdgeBottom")]
-    pub const Bottom: Self = Self(1 << 2);
-    #[doc(alias = "NSDirectionalRectEdgeTrailing")]
-    pub const Trailing: Self = Self(1 << 3);
-    #[doc(alias = "NSDirectionalRectEdgeAll")]
-    pub const All: Self = Self(
-        NSDirectionalRectEdge::Top.0
-            | NSDirectionalRectEdge::Leading.0
-            | NSDirectionalRectEdge::Bottom.0
-            | NSDirectionalRectEdge::Trailing.0,
-    );
+bitflags::bitflags! {
+    impl NSDirectionalRectEdge: NSUInteger {
+        #[doc(alias = "NSDirectionalRectEdgeNone")]
+        const None = 0;
+        #[doc(alias = "NSDirectionalRectEdgeTop")]
+        const Top = 1<<0;
+        #[doc(alias = "NSDirectionalRectEdgeLeading")]
+        const Leading = 1<<1;
+        #[doc(alias = "NSDirectionalRectEdgeBottom")]
+        const Bottom = 1<<2;
+        #[doc(alias = "NSDirectionalRectEdgeTrailing")]
+        const Trailing = 1<<3;
+        #[doc(alias = "NSDirectionalRectEdgeAll")]
+        const All = NSDirectionalRectEdge::Top.0|NSDirectionalRectEdge::Leading.0|NSDirectionalRectEdge::Bottom.0|NSDirectionalRectEdge::Trailing.0;
+    }
 }
 
 unsafe impl Encode for NSDirectionalRectEdge {

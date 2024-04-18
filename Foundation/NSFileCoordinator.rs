@@ -8,11 +8,13 @@ use crate::*;
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSFileCoordinatorReadingOptions(pub NSUInteger);
-impl NSFileCoordinatorReadingOptions {
-    pub const NSFileCoordinatorReadingWithoutChanges: Self = Self(1 << 0);
-    pub const NSFileCoordinatorReadingResolvesSymbolicLink: Self = Self(1 << 1);
-    pub const NSFileCoordinatorReadingImmediatelyAvailableMetadataOnly: Self = Self(1 << 2);
-    pub const NSFileCoordinatorReadingForUploading: Self = Self(1 << 3);
+bitflags::bitflags! {
+    impl NSFileCoordinatorReadingOptions: NSUInteger {
+        const NSFileCoordinatorReadingWithoutChanges = 1<<0;
+        const NSFileCoordinatorReadingResolvesSymbolicLink = 1<<1;
+        const NSFileCoordinatorReadingImmediatelyAvailableMetadataOnly = 1<<2;
+        const NSFileCoordinatorReadingForUploading = 1<<3;
+    }
 }
 
 unsafe impl Encode for NSFileCoordinatorReadingOptions {
@@ -27,12 +29,14 @@ unsafe impl RefEncode for NSFileCoordinatorReadingOptions {
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSFileCoordinatorWritingOptions(pub NSUInteger);
-impl NSFileCoordinatorWritingOptions {
-    pub const NSFileCoordinatorWritingForDeleting: Self = Self(1 << 0);
-    pub const NSFileCoordinatorWritingForMoving: Self = Self(1 << 1);
-    pub const NSFileCoordinatorWritingForMerging: Self = Self(1 << 2);
-    pub const NSFileCoordinatorWritingForReplacing: Self = Self(1 << 3);
-    pub const NSFileCoordinatorWritingContentIndependentMetadataOnly: Self = Self(1 << 4);
+bitflags::bitflags! {
+    impl NSFileCoordinatorWritingOptions: NSUInteger {
+        const NSFileCoordinatorWritingForDeleting = 1<<0;
+        const NSFileCoordinatorWritingForMoving = 1<<1;
+        const NSFileCoordinatorWritingForMerging = 1<<2;
+        const NSFileCoordinatorWritingForReplacing = 1<<3;
+        const NSFileCoordinatorWritingContentIndependentMetadataOnly = 1<<4;
+    }
 }
 
 unsafe impl Encode for NSFileCoordinatorWritingOptions {

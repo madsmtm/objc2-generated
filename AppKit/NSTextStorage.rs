@@ -9,9 +9,11 @@ use crate::*;
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSTextStorageEditActions(pub NSUInteger);
-impl NSTextStorageEditActions {
-    pub const NSTextStorageEditedAttributes: Self = Self(1 << 0);
-    pub const NSTextStorageEditedCharacters: Self = Self(1 << 1);
+bitflags::bitflags! {
+    impl NSTextStorageEditActions: NSUInteger {
+        const NSTextStorageEditedAttributes = 1<<0;
+        const NSTextStorageEditedCharacters = 1<<1;
+    }
 }
 
 unsafe impl Encode for NSTextStorageEditActions {

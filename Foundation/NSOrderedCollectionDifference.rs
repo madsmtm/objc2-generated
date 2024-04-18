@@ -8,10 +8,12 @@ use crate::*;
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSOrderedCollectionDifferenceCalculationOptions(pub NSUInteger);
-impl NSOrderedCollectionDifferenceCalculationOptions {
-    pub const NSOrderedCollectionDifferenceCalculationOmitInsertedObjects: Self = Self(1 << 0);
-    pub const NSOrderedCollectionDifferenceCalculationOmitRemovedObjects: Self = Self(1 << 1);
-    pub const NSOrderedCollectionDifferenceCalculationInferMoves: Self = Self(1 << 2);
+bitflags::bitflags! {
+    impl NSOrderedCollectionDifferenceCalculationOptions: NSUInteger {
+        const NSOrderedCollectionDifferenceCalculationOmitInsertedObjects = 1<<0;
+        const NSOrderedCollectionDifferenceCalculationOmitRemovedObjects = 1<<1;
+        const NSOrderedCollectionDifferenceCalculationInferMoves = 1<<2;
+    }
 }
 
 unsafe impl Encode for NSOrderedCollectionDifferenceCalculationOptions {

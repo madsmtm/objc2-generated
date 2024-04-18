@@ -9,17 +9,19 @@ use crate::*;
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSTextLayoutFragmentEnumerationOptions(pub NSUInteger);
-impl NSTextLayoutFragmentEnumerationOptions {
-    #[doc(alias = "NSTextLayoutFragmentEnumerationOptionsNone")]
-    pub const None: Self = Self(0);
-    #[doc(alias = "NSTextLayoutFragmentEnumerationOptionsReverse")]
-    pub const Reverse: Self = Self(1 << 0);
-    #[doc(alias = "NSTextLayoutFragmentEnumerationOptionsEstimatesSize")]
-    pub const EstimatesSize: Self = Self(1 << 1);
-    #[doc(alias = "NSTextLayoutFragmentEnumerationOptionsEnsuresLayout")]
-    pub const EnsuresLayout: Self = Self(1 << 2);
-    #[doc(alias = "NSTextLayoutFragmentEnumerationOptionsEnsuresExtraLineFragment")]
-    pub const EnsuresExtraLineFragment: Self = Self(1 << 3);
+bitflags::bitflags! {
+    impl NSTextLayoutFragmentEnumerationOptions: NSUInteger {
+        #[doc(alias = "NSTextLayoutFragmentEnumerationOptionsNone")]
+        const None = 0;
+        #[doc(alias = "NSTextLayoutFragmentEnumerationOptionsReverse")]
+        const Reverse = 1<<0;
+        #[doc(alias = "NSTextLayoutFragmentEnumerationOptionsEstimatesSize")]
+        const EstimatesSize = 1<<1;
+        #[doc(alias = "NSTextLayoutFragmentEnumerationOptionsEnsuresLayout")]
+        const EnsuresLayout = 1<<2;
+        #[doc(alias = "NSTextLayoutFragmentEnumerationOptionsEnsuresExtraLineFragment")]
+        const EnsuresExtraLineFragment = 1<<3;
+    }
 }
 
 unsafe impl Encode for NSTextLayoutFragmentEnumerationOptions {

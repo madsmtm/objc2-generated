@@ -339,13 +339,15 @@ extern_methods!(
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSTypesetterControlCharacterAction(pub NSUInteger);
-impl NSTypesetterControlCharacterAction {
-    pub const NSTypesetterZeroAdvancementAction: Self = Self(1 << 0);
-    pub const NSTypesetterWhitespaceAction: Self = Self(1 << 1);
-    pub const NSTypesetterHorizontalTabAction: Self = Self(1 << 2);
-    pub const NSTypesetterLineBreakAction: Self = Self(1 << 3);
-    pub const NSTypesetterParagraphBreakAction: Self = Self(1 << 4);
-    pub const NSTypesetterContainerBreakAction: Self = Self(1 << 5);
+bitflags::bitflags! {
+    impl NSTypesetterControlCharacterAction: NSUInteger {
+        const NSTypesetterZeroAdvancementAction = 1<<0;
+        const NSTypesetterWhitespaceAction = 1<<1;
+        const NSTypesetterHorizontalTabAction = 1<<2;
+        const NSTypesetterLineBreakAction = 1<<3;
+        const NSTypesetterParagraphBreakAction = 1<<4;
+        const NSTypesetterContainerBreakAction = 1<<5;
+    }
 }
 
 unsafe impl Encode for NSTypesetterControlCharacterAction {

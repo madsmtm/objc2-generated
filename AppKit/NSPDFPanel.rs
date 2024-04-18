@@ -9,10 +9,12 @@ use crate::*;
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSPDFPanelOptions(pub NSInteger);
-impl NSPDFPanelOptions {
-    pub const NSPDFPanelShowsPaperSize: Self = Self(1 << 2);
-    pub const NSPDFPanelShowsOrientation: Self = Self(1 << 3);
-    pub const NSPDFPanelRequestsParentDirectory: Self = Self(1 << 24);
+bitflags::bitflags! {
+    impl NSPDFPanelOptions: NSInteger {
+        const NSPDFPanelShowsPaperSize = 1<<2;
+        const NSPDFPanelShowsOrientation = 1<<3;
+        const NSPDFPanelRequestsParentDirectory = 1<<24;
+    }
 }
 
 unsafe impl Encode for NSPDFPanelOptions {

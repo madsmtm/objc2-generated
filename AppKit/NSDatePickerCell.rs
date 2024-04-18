@@ -49,13 +49,15 @@ unsafe impl RefEncode for NSDatePickerMode {
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSDatePickerElementFlags(pub NSUInteger);
-impl NSDatePickerElementFlags {
-    pub const NSDatePickerElementFlagHourMinute: Self = Self(0x000c);
-    pub const NSDatePickerElementFlagHourMinuteSecond: Self = Self(0x000e);
-    pub const NSDatePickerElementFlagTimeZone: Self = Self(0x0010);
-    pub const NSDatePickerElementFlagYearMonth: Self = Self(0x00c0);
-    pub const NSDatePickerElementFlagYearMonthDay: Self = Self(0x00e0);
-    pub const NSDatePickerElementFlagEra: Self = Self(0x0100);
+bitflags::bitflags! {
+    impl NSDatePickerElementFlags: NSUInteger {
+        const NSDatePickerElementFlagHourMinute = 0x000c;
+        const NSDatePickerElementFlagHourMinuteSecond = 0x000e;
+        const NSDatePickerElementFlagTimeZone = 0x0010;
+        const NSDatePickerElementFlagYearMonth = 0x00c0;
+        const NSDatePickerElementFlagYearMonthDay = 0x00e0;
+        const NSDatePickerElementFlagEra = 0x0100;
+    }
 }
 
 unsafe impl Encode for NSDatePickerElementFlags {

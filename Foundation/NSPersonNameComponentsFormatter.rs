@@ -33,8 +33,10 @@ unsafe impl RefEncode for NSPersonNameComponentsFormatterStyle {
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSPersonNameComponentsFormatterOptions(pub NSUInteger);
-impl NSPersonNameComponentsFormatterOptions {
-    pub const NSPersonNameComponentsFormatterPhonetic: Self = Self(1 << 1);
+bitflags::bitflags! {
+    impl NSPersonNameComponentsFormatterOptions: NSUInteger {
+        const NSPersonNameComponentsFormatterPhonetic = 1<<1;
+    }
 }
 
 unsafe impl Encode for NSPersonNameComponentsFormatterOptions {

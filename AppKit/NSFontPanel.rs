@@ -9,27 +9,29 @@ use crate::*;
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSFontPanelModeMask(pub NSUInteger);
-impl NSFontPanelModeMask {
-    #[doc(alias = "NSFontPanelModeMaskFace")]
-    pub const Face: Self = Self(1 << 0);
-    #[doc(alias = "NSFontPanelModeMaskSize")]
-    pub const Size: Self = Self(1 << 1);
-    #[doc(alias = "NSFontPanelModeMaskCollection")]
-    pub const Collection: Self = Self(1 << 2);
-    #[doc(alias = "NSFontPanelModeMaskUnderlineEffect")]
-    pub const UnderlineEffect: Self = Self(1 << 8);
-    #[doc(alias = "NSFontPanelModeMaskStrikethroughEffect")]
-    pub const StrikethroughEffect: Self = Self(1 << 9);
-    #[doc(alias = "NSFontPanelModeMaskTextColorEffect")]
-    pub const TextColorEffect: Self = Self(1 << 10);
-    #[doc(alias = "NSFontPanelModeMaskDocumentColorEffect")]
-    pub const DocumentColorEffect: Self = Self(1 << 11);
-    #[doc(alias = "NSFontPanelModeMaskShadowEffect")]
-    pub const ShadowEffect: Self = Self(1 << 12);
-    #[doc(alias = "NSFontPanelModeMaskAllEffects")]
-    pub const AllEffects: Self = Self(0xFFF00);
-    pub const NSFontPanelModesMaskStandardModes: Self = Self(0xFFFF);
-    pub const NSFontPanelModesMaskAllModes: Self = Self(0xFFFFFFFF);
+bitflags::bitflags! {
+    impl NSFontPanelModeMask: NSUInteger {
+        #[doc(alias = "NSFontPanelModeMaskFace")]
+        const Face = 1<<0;
+        #[doc(alias = "NSFontPanelModeMaskSize")]
+        const Size = 1<<1;
+        #[doc(alias = "NSFontPanelModeMaskCollection")]
+        const Collection = 1<<2;
+        #[doc(alias = "NSFontPanelModeMaskUnderlineEffect")]
+        const UnderlineEffect = 1<<8;
+        #[doc(alias = "NSFontPanelModeMaskStrikethroughEffect")]
+        const StrikethroughEffect = 1<<9;
+        #[doc(alias = "NSFontPanelModeMaskTextColorEffect")]
+        const TextColorEffect = 1<<10;
+        #[doc(alias = "NSFontPanelModeMaskDocumentColorEffect")]
+        const DocumentColorEffect = 1<<11;
+        #[doc(alias = "NSFontPanelModeMaskShadowEffect")]
+        const ShadowEffect = 1<<12;
+        #[doc(alias = "NSFontPanelModeMaskAllEffects")]
+        const AllEffects = 0xFFF00;
+        const NSFontPanelModesMaskStandardModes = 0xFFFF;
+        const NSFontPanelModesMaskAllModes = 0xFFFFFFFF;
+    }
 }
 
 unsafe impl Encode for NSFontPanelModeMask {

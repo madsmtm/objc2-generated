@@ -11,28 +11,30 @@ use crate::*;
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct UIControlEvents(pub NSUInteger);
-impl UIControlEvents {
-    pub const UIControlEventTouchDown: Self = Self(1 << 0);
-    pub const UIControlEventTouchDownRepeat: Self = Self(1 << 1);
-    pub const UIControlEventTouchDragInside: Self = Self(1 << 2);
-    pub const UIControlEventTouchDragOutside: Self = Self(1 << 3);
-    pub const UIControlEventTouchDragEnter: Self = Self(1 << 4);
-    pub const UIControlEventTouchDragExit: Self = Self(1 << 5);
-    pub const UIControlEventTouchUpInside: Self = Self(1 << 6);
-    pub const UIControlEventTouchUpOutside: Self = Self(1 << 7);
-    pub const UIControlEventTouchCancel: Self = Self(1 << 8);
-    pub const UIControlEventValueChanged: Self = Self(1 << 12);
-    pub const UIControlEventPrimaryActionTriggered: Self = Self(1 << 13);
-    pub const UIControlEventMenuActionTriggered: Self = Self(1 << 14);
-    pub const UIControlEventEditingDidBegin: Self = Self(1 << 16);
-    pub const UIControlEventEditingChanged: Self = Self(1 << 17);
-    pub const UIControlEventEditingDidEnd: Self = Self(1 << 18);
-    pub const UIControlEventEditingDidEndOnExit: Self = Self(1 << 19);
-    pub const UIControlEventAllTouchEvents: Self = Self(0x00000FFF);
-    pub const UIControlEventAllEditingEvents: Self = Self(0x000F0000);
-    pub const UIControlEventApplicationReserved: Self = Self(0x0F000000);
-    pub const UIControlEventSystemReserved: Self = Self(0xF0000000);
-    pub const UIControlEventAllEvents: Self = Self(0xFFFFFFFF);
+bitflags::bitflags! {
+    impl UIControlEvents: NSUInteger {
+        const UIControlEventTouchDown = 1<<0;
+        const UIControlEventTouchDownRepeat = 1<<1;
+        const UIControlEventTouchDragInside = 1<<2;
+        const UIControlEventTouchDragOutside = 1<<3;
+        const UIControlEventTouchDragEnter = 1<<4;
+        const UIControlEventTouchDragExit = 1<<5;
+        const UIControlEventTouchUpInside = 1<<6;
+        const UIControlEventTouchUpOutside = 1<<7;
+        const UIControlEventTouchCancel = 1<<8;
+        const UIControlEventValueChanged = 1<<12;
+        const UIControlEventPrimaryActionTriggered = 1<<13;
+        const UIControlEventMenuActionTriggered = 1<<14;
+        const UIControlEventEditingDidBegin = 1<<16;
+        const UIControlEventEditingChanged = 1<<17;
+        const UIControlEventEditingDidEnd = 1<<18;
+        const UIControlEventEditingDidEndOnExit = 1<<19;
+        const UIControlEventAllTouchEvents = 0x00000FFF;
+        const UIControlEventAllEditingEvents = 0x000F0000;
+        const UIControlEventApplicationReserved = 0x0F000000;
+        const UIControlEventSystemReserved = 0xF0000000;
+        const UIControlEventAllEvents = 0xFFFFFFFF;
+    }
 }
 
 unsafe impl Encode for UIControlEvents {
@@ -97,21 +99,23 @@ unsafe impl RefEncode for UIControlContentHorizontalAlignment {
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct UIControlState(pub NSUInteger);
-impl UIControlState {
-    #[doc(alias = "UIControlStateNormal")]
-    pub const Normal: Self = Self(0);
-    #[doc(alias = "UIControlStateHighlighted")]
-    pub const Highlighted: Self = Self(1 << 0);
-    #[doc(alias = "UIControlStateDisabled")]
-    pub const Disabled: Self = Self(1 << 1);
-    #[doc(alias = "UIControlStateSelected")]
-    pub const Selected: Self = Self(1 << 2);
-    #[doc(alias = "UIControlStateFocused")]
-    pub const Focused: Self = Self(1 << 3);
-    #[doc(alias = "UIControlStateApplication")]
-    pub const Application: Self = Self(0x00FF0000);
-    #[doc(alias = "UIControlStateReserved")]
-    pub const Reserved: Self = Self(0xFF000000);
+bitflags::bitflags! {
+    impl UIControlState: NSUInteger {
+        #[doc(alias = "UIControlStateNormal")]
+        const Normal = 0;
+        #[doc(alias = "UIControlStateHighlighted")]
+        const Highlighted = 1<<0;
+        #[doc(alias = "UIControlStateDisabled")]
+        const Disabled = 1<<1;
+        #[doc(alias = "UIControlStateSelected")]
+        const Selected = 1<<2;
+        #[doc(alias = "UIControlStateFocused")]
+        const Focused = 1<<3;
+        #[doc(alias = "UIControlStateApplication")]
+        const Application = 0x00FF0000;
+        #[doc(alias = "UIControlStateReserved")]
+        const Reserved = 0xFF000000;
+    }
 }
 
 unsafe impl Encode for UIControlState {

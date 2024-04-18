@@ -10,15 +10,17 @@ use crate::*;
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct OSALanguageFeatures(pub NSUInteger);
-impl OSALanguageFeatures {
-    pub const OSASupportsCompiling: Self = Self(0x0002);
-    pub const OSASupportsGetSource: Self = Self(0x0004);
-    pub const OSASupportsAECoercion: Self = Self(0x0008);
-    pub const OSASupportsAESending: Self = Self(0x0010);
-    pub const OSASupportsRecording: Self = Self(0x0020);
-    pub const OSASupportsConvenience: Self = Self(0x0040);
-    pub const OSASupportsDialects: Self = Self(0x0080);
-    pub const OSASupportsEventHandling: Self = Self(0x0100);
+bitflags::bitflags! {
+    impl OSALanguageFeatures: NSUInteger {
+        const OSASupportsCompiling = 0x0002;
+        const OSASupportsGetSource = 0x0004;
+        const OSASupportsAECoercion = 0x0008;
+        const OSASupportsAESending = 0x0010;
+        const OSASupportsRecording = 0x0020;
+        const OSASupportsConvenience = 0x0040;
+        const OSASupportsDialects = 0x0080;
+        const OSASupportsEventHandling = 0x0100;
+    }
 }
 
 unsafe impl Encode for OSALanguageFeatures {

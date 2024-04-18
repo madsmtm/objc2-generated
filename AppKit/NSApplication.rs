@@ -187,21 +187,23 @@ pub const NSUpdateWindowsRunLoopOrdering: c_uint = 500000;
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSApplicationPresentationOptions(pub NSUInteger);
-impl NSApplicationPresentationOptions {
-    pub const NSApplicationPresentationDefault: Self = Self(0);
-    pub const NSApplicationPresentationAutoHideDock: Self = Self(1 << 0);
-    pub const NSApplicationPresentationHideDock: Self = Self(1 << 1);
-    pub const NSApplicationPresentationAutoHideMenuBar: Self = Self(1 << 2);
-    pub const NSApplicationPresentationHideMenuBar: Self = Self(1 << 3);
-    pub const NSApplicationPresentationDisableAppleMenu: Self = Self(1 << 4);
-    pub const NSApplicationPresentationDisableProcessSwitching: Self = Self(1 << 5);
-    pub const NSApplicationPresentationDisableForceQuit: Self = Self(1 << 6);
-    pub const NSApplicationPresentationDisableSessionTermination: Self = Self(1 << 7);
-    pub const NSApplicationPresentationDisableHideApplication: Self = Self(1 << 8);
-    pub const NSApplicationPresentationDisableMenuBarTransparency: Self = Self(1 << 9);
-    pub const NSApplicationPresentationFullScreen: Self = Self(1 << 10);
-    pub const NSApplicationPresentationAutoHideToolbar: Self = Self(1 << 11);
-    pub const NSApplicationPresentationDisableCursorLocationAssistance: Self = Self(1 << 12);
+bitflags::bitflags! {
+    impl NSApplicationPresentationOptions: NSUInteger {
+        const NSApplicationPresentationDefault = 0;
+        const NSApplicationPresentationAutoHideDock = 1<<0;
+        const NSApplicationPresentationHideDock = 1<<1;
+        const NSApplicationPresentationAutoHideMenuBar = 1<<2;
+        const NSApplicationPresentationHideMenuBar = 1<<3;
+        const NSApplicationPresentationDisableAppleMenu = 1<<4;
+        const NSApplicationPresentationDisableProcessSwitching = 1<<5;
+        const NSApplicationPresentationDisableForceQuit = 1<<6;
+        const NSApplicationPresentationDisableSessionTermination = 1<<7;
+        const NSApplicationPresentationDisableHideApplication = 1<<8;
+        const NSApplicationPresentationDisableMenuBarTransparency = 1<<9;
+        const NSApplicationPresentationFullScreen = 1<<10;
+        const NSApplicationPresentationAutoHideToolbar = 1<<11;
+        const NSApplicationPresentationDisableCursorLocationAssistance = 1<<12;
+    }
 }
 
 unsafe impl Encode for NSApplicationPresentationOptions {
@@ -216,9 +218,11 @@ unsafe impl RefEncode for NSApplicationPresentationOptions {
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSApplicationOcclusionState(pub NSUInteger);
-impl NSApplicationOcclusionState {
-    #[doc(alias = "NSApplicationOcclusionStateVisible")]
-    pub const Visible: Self = Self(1 << 1);
+bitflags::bitflags! {
+    impl NSApplicationOcclusionState: NSUInteger {
+        #[doc(alias = "NSApplicationOcclusionStateVisible")]
+        const Visible = 1<<1;
+    }
 }
 
 unsafe impl Encode for NSApplicationOcclusionState {
@@ -233,8 +237,10 @@ unsafe impl RefEncode for NSApplicationOcclusionState {
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSWindowListOptions(pub NSInteger);
-impl NSWindowListOptions {
-    pub const NSWindowListOrderedFrontToBack: Self = Self(1 << 0);
+bitflags::bitflags! {
+    impl NSWindowListOptions: NSInteger {
+        const NSWindowListOrderedFrontToBack = 1<<0;
+    }
 }
 
 unsafe impl Encode for NSWindowListOptions {
@@ -1137,15 +1143,17 @@ extern_methods!(
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSRemoteNotificationType(pub NSUInteger);
-impl NSRemoteNotificationType {
-    #[doc(alias = "NSRemoteNotificationTypeNone")]
-    pub const None: Self = Self(0);
-    #[doc(alias = "NSRemoteNotificationTypeBadge")]
-    pub const Badge: Self = Self(1 << 0);
-    #[doc(alias = "NSRemoteNotificationTypeSound")]
-    pub const Sound: Self = Self(1 << 1);
-    #[doc(alias = "NSRemoteNotificationTypeAlert")]
-    pub const Alert: Self = Self(1 << 2);
+bitflags::bitflags! {
+    impl NSRemoteNotificationType: NSUInteger {
+        #[doc(alias = "NSRemoteNotificationTypeNone")]
+        const None = 0;
+        #[doc(alias = "NSRemoteNotificationTypeBadge")]
+        const Badge = 1<<0;
+        #[doc(alias = "NSRemoteNotificationTypeSound")]
+        const Sound = 1<<1;
+        #[doc(alias = "NSRemoteNotificationTypeAlert")]
+        const Alert = 1<<2;
+    }
 }
 
 unsafe impl Encode for NSRemoteNotificationType {

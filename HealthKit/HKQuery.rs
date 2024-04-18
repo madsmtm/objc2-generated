@@ -48,10 +48,12 @@ extern_methods!(
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct HKQueryOptions(pub NSUInteger);
-impl HKQueryOptions {
-    pub const HKQueryOptionNone: Self = Self(0);
-    pub const HKQueryOptionStrictStartDate: Self = Self(1 << 0);
-    pub const HKQueryOptionStrictEndDate: Self = Self(1 << 1);
+bitflags::bitflags! {
+    impl HKQueryOptions: NSUInteger {
+        const HKQueryOptionNone = 0;
+        const HKQueryOptionStrictStartDate = 1<<0;
+        const HKQueryOptionStrictEndDate = 1<<1;
+    }
 }
 
 unsafe impl Encode for HKQueryOptions {

@@ -9,10 +9,12 @@ use crate::*;
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct UNNotificationActionOptions(pub NSUInteger);
-impl UNNotificationActionOptions {
-    pub const UNNotificationActionOptionAuthenticationRequired: Self = Self(1 << 0);
-    pub const UNNotificationActionOptionDestructive: Self = Self(1 << 1);
-    pub const UNNotificationActionOptionForeground: Self = Self(1 << 2);
+bitflags::bitflags! {
+    impl UNNotificationActionOptions: NSUInteger {
+        const UNNotificationActionOptionAuthenticationRequired = 1<<0;
+        const UNNotificationActionOptionDestructive = 1<<1;
+        const UNNotificationActionOptionForeground = 1<<2;
+    }
 }
 
 unsafe impl Encode for UNNotificationActionOptions {

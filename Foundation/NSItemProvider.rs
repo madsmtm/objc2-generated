@@ -31,8 +31,10 @@ unsafe impl RefEncode for NSItemProviderRepresentationVisibility {
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSItemProviderFileOptions(pub NSInteger);
-impl NSItemProviderFileOptions {
-    pub const NSItemProviderFileOptionOpenInPlace: Self = Self(1);
+bitflags::bitflags! {
+    impl NSItemProviderFileOptions: NSInteger {
+        const NSItemProviderFileOptionOpenInPlace = 1;
+    }
 }
 
 unsafe impl Encode for NSItemProviderFileOptions {

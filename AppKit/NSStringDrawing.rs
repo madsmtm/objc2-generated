@@ -92,15 +92,17 @@ extern_category!(
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSStringDrawingOptions(pub NSInteger);
-impl NSStringDrawingOptions {
-    pub const NSStringDrawingUsesLineFragmentOrigin: Self = Self(1 << 0);
-    pub const NSStringDrawingUsesFontLeading: Self = Self(1 << 1);
-    pub const NSStringDrawingUsesDeviceMetrics: Self = Self(1 << 3);
-    pub const NSStringDrawingTruncatesLastVisibleLine: Self = Self(1 << 5);
-    #[deprecated]
-    pub const NSStringDrawingDisableScreenFontSubstitution: Self = Self(1 << 2);
-    #[deprecated]
-    pub const NSStringDrawingOneShot: Self = Self(1 << 4);
+bitflags::bitflags! {
+    impl NSStringDrawingOptions: NSInteger {
+        const NSStringDrawingUsesLineFragmentOrigin = 1<<0;
+        const NSStringDrawingUsesFontLeading = 1<<1;
+        const NSStringDrawingUsesDeviceMetrics = 1<<3;
+        const NSStringDrawingTruncatesLastVisibleLine = 1<<5;
+#[deprecated]
+        const NSStringDrawingDisableScreenFontSubstitution = 1<<2;
+#[deprecated]
+        const NSStringDrawingOneShot = 1<<4;
+    }
 }
 
 unsafe impl Encode for NSStringDrawingOptions {

@@ -92,71 +92,73 @@ extern "C" {
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSCalendarUnit(pub NSUInteger);
-impl NSCalendarUnit {
-    #[doc(alias = "NSCalendarUnitEra")]
-    pub const Era: Self = Self(2);
-    #[doc(alias = "NSCalendarUnitYear")]
-    pub const Year: Self = Self(4);
-    #[doc(alias = "NSCalendarUnitMonth")]
-    pub const Month: Self = Self(8);
-    #[doc(alias = "NSCalendarUnitDay")]
-    pub const Day: Self = Self(16);
-    #[doc(alias = "NSCalendarUnitHour")]
-    pub const Hour: Self = Self(32);
-    #[doc(alias = "NSCalendarUnitMinute")]
-    pub const Minute: Self = Self(64);
-    #[doc(alias = "NSCalendarUnitSecond")]
-    pub const Second: Self = Self(128);
-    #[doc(alias = "NSCalendarUnitWeekday")]
-    pub const Weekday: Self = Self(512);
-    #[doc(alias = "NSCalendarUnitWeekdayOrdinal")]
-    pub const WeekdayOrdinal: Self = Self(1024);
-    #[doc(alias = "NSCalendarUnitQuarter")]
-    pub const Quarter: Self = Self(2048);
-    #[doc(alias = "NSCalendarUnitWeekOfMonth")]
-    pub const WeekOfMonth: Self = Self(4096);
-    #[doc(alias = "NSCalendarUnitWeekOfYear")]
-    pub const WeekOfYear: Self = Self(8192);
-    #[doc(alias = "NSCalendarUnitYearForWeekOfYear")]
-    pub const YearForWeekOfYear: Self = Self(16384);
-    #[doc(alias = "NSCalendarUnitNanosecond")]
-    pub const Nanosecond: Self = Self(32768);
-    #[doc(alias = "NSCalendarUnitCalendar")]
-    pub const Calendar: Self = Self(1048576);
-    #[doc(alias = "NSCalendarUnitTimeZone")]
-    pub const TimeZone: Self = Self(2097152);
-    #[deprecated]
-    pub const NSEraCalendarUnit: Self = Self(2);
-    #[deprecated]
-    pub const NSYearCalendarUnit: Self = Self(4);
-    #[deprecated]
-    pub const NSMonthCalendarUnit: Self = Self(8);
-    #[deprecated]
-    pub const NSDayCalendarUnit: Self = Self(16);
-    #[deprecated]
-    pub const NSHourCalendarUnit: Self = Self(32);
-    #[deprecated]
-    pub const NSMinuteCalendarUnit: Self = Self(64);
-    #[deprecated]
-    pub const NSSecondCalendarUnit: Self = Self(128);
-    #[deprecated = "NSCalendarUnitWeekOfMonth or NSCalendarUnitWeekOfYear, depending on which you mean"]
-    pub const NSWeekCalendarUnit: Self = Self(256);
-    #[deprecated]
-    pub const NSWeekdayCalendarUnit: Self = Self(512);
-    #[deprecated]
-    pub const NSWeekdayOrdinalCalendarUnit: Self = Self(1024);
-    #[deprecated]
-    pub const NSQuarterCalendarUnit: Self = Self(2048);
-    #[deprecated]
-    pub const NSWeekOfMonthCalendarUnit: Self = Self(4096);
-    #[deprecated]
-    pub const NSWeekOfYearCalendarUnit: Self = Self(8192);
-    #[deprecated]
-    pub const NSYearForWeekOfYearCalendarUnit: Self = Self(16384);
-    #[deprecated]
-    pub const NSCalendarCalendarUnit: Self = Self(1048576);
-    #[deprecated]
-    pub const NSTimeZoneCalendarUnit: Self = Self(2097152);
+bitflags::bitflags! {
+    impl NSCalendarUnit: NSUInteger {
+        #[doc(alias = "NSCalendarUnitEra")]
+        const Era = 2;
+        #[doc(alias = "NSCalendarUnitYear")]
+        const Year = 4;
+        #[doc(alias = "NSCalendarUnitMonth")]
+        const Month = 8;
+        #[doc(alias = "NSCalendarUnitDay")]
+        const Day = 16;
+        #[doc(alias = "NSCalendarUnitHour")]
+        const Hour = 32;
+        #[doc(alias = "NSCalendarUnitMinute")]
+        const Minute = 64;
+        #[doc(alias = "NSCalendarUnitSecond")]
+        const Second = 128;
+        #[doc(alias = "NSCalendarUnitWeekday")]
+        const Weekday = 512;
+        #[doc(alias = "NSCalendarUnitWeekdayOrdinal")]
+        const WeekdayOrdinal = 1024;
+        #[doc(alias = "NSCalendarUnitQuarter")]
+        const Quarter = 2048;
+        #[doc(alias = "NSCalendarUnitWeekOfMonth")]
+        const WeekOfMonth = 4096;
+        #[doc(alias = "NSCalendarUnitWeekOfYear")]
+        const WeekOfYear = 8192;
+        #[doc(alias = "NSCalendarUnitYearForWeekOfYear")]
+        const YearForWeekOfYear = 16384;
+        #[doc(alias = "NSCalendarUnitNanosecond")]
+        const Nanosecond = 32768;
+        #[doc(alias = "NSCalendarUnitCalendar")]
+        const Calendar = 1048576;
+        #[doc(alias = "NSCalendarUnitTimeZone")]
+        const TimeZone = 2097152;
+#[deprecated]
+        const NSEraCalendarUnit = 2;
+#[deprecated]
+        const NSYearCalendarUnit = 4;
+#[deprecated]
+        const NSMonthCalendarUnit = 8;
+#[deprecated]
+        const NSDayCalendarUnit = 16;
+#[deprecated]
+        const NSHourCalendarUnit = 32;
+#[deprecated]
+        const NSMinuteCalendarUnit = 64;
+#[deprecated]
+        const NSSecondCalendarUnit = 128;
+#[deprecated = "NSCalendarUnitWeekOfMonth or NSCalendarUnitWeekOfYear, depending on which you mean"]
+        const NSWeekCalendarUnit = 256;
+#[deprecated]
+        const NSWeekdayCalendarUnit = 512;
+#[deprecated]
+        const NSWeekdayOrdinalCalendarUnit = 1024;
+#[deprecated]
+        const NSQuarterCalendarUnit = 2048;
+#[deprecated]
+        const NSWeekOfMonthCalendarUnit = 4096;
+#[deprecated]
+        const NSWeekOfYearCalendarUnit = 8192;
+#[deprecated]
+        const NSYearForWeekOfYearCalendarUnit = 16384;
+#[deprecated]
+        const NSCalendarCalendarUnit = 1048576;
+#[deprecated]
+        const NSTimeZoneCalendarUnit = 2097152;
+    }
 }
 
 unsafe impl Encode for NSCalendarUnit {
@@ -171,15 +173,17 @@ unsafe impl RefEncode for NSCalendarUnit {
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSCalendarOptions(pub NSUInteger);
-impl NSCalendarOptions {
-    pub const NSCalendarWrapComponents: Self = Self(1 << 0);
-    pub const NSCalendarMatchStrictly: Self = Self(1 << 1);
-    pub const NSCalendarSearchBackwards: Self = Self(1 << 2);
-    pub const NSCalendarMatchPreviousTimePreservingSmallerUnits: Self = Self(1 << 8);
-    pub const NSCalendarMatchNextTimePreservingSmallerUnits: Self = Self(1 << 9);
-    pub const NSCalendarMatchNextTime: Self = Self(1 << 10);
-    pub const NSCalendarMatchFirst: Self = Self(1 << 12);
-    pub const NSCalendarMatchLast: Self = Self(1 << 13);
+bitflags::bitflags! {
+    impl NSCalendarOptions: NSUInteger {
+        const NSCalendarWrapComponents = 1<<0;
+        const NSCalendarMatchStrictly = 1<<1;
+        const NSCalendarSearchBackwards = 1<<2;
+        const NSCalendarMatchPreviousTimePreservingSmallerUnits = 1<<8;
+        const NSCalendarMatchNextTimePreservingSmallerUnits = 1<<9;
+        const NSCalendarMatchNextTime = 1<<10;
+        const NSCalendarMatchFirst = 1<<12;
+        const NSCalendarMatchLast = 1<<13;
+    }
 }
 
 unsafe impl Encode for NSCalendarOptions {

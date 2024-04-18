@@ -28,15 +28,17 @@ unsafe impl RefEncode for NSTextLayoutOrientation {
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSGlyphProperty(pub NSInteger);
-impl NSGlyphProperty {
-    #[doc(alias = "NSGlyphPropertyNull")]
-    pub const Null: Self = Self(1 << 0);
-    #[doc(alias = "NSGlyphPropertyControlCharacter")]
-    pub const ControlCharacter: Self = Self(1 << 1);
-    #[doc(alias = "NSGlyphPropertyElastic")]
-    pub const Elastic: Self = Self(1 << 2);
-    #[doc(alias = "NSGlyphPropertyNonBaseCharacter")]
-    pub const NonBaseCharacter: Self = Self(1 << 3);
+bitflags::bitflags! {
+    impl NSGlyphProperty: NSInteger {
+        #[doc(alias = "NSGlyphPropertyNull")]
+        const Null = 1<<0;
+        #[doc(alias = "NSGlyphPropertyControlCharacter")]
+        const ControlCharacter = 1<<1;
+        #[doc(alias = "NSGlyphPropertyElastic")]
+        const Elastic = 1<<2;
+        #[doc(alias = "NSGlyphPropertyNonBaseCharacter")]
+        const NonBaseCharacter = 1<<3;
+    }
 }
 
 unsafe impl Encode for NSGlyphProperty {
@@ -51,19 +53,21 @@ unsafe impl RefEncode for NSGlyphProperty {
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSControlCharacterAction(pub NSInteger);
-impl NSControlCharacterAction {
-    #[doc(alias = "NSControlCharacterActionZeroAdvancement")]
-    pub const ZeroAdvancement: Self = Self(1 << 0);
-    #[doc(alias = "NSControlCharacterActionWhitespace")]
-    pub const Whitespace: Self = Self(1 << 1);
-    #[doc(alias = "NSControlCharacterActionHorizontalTab")]
-    pub const HorizontalTab: Self = Self(1 << 2);
-    #[doc(alias = "NSControlCharacterActionLineBreak")]
-    pub const LineBreak: Self = Self(1 << 3);
-    #[doc(alias = "NSControlCharacterActionParagraphBreak")]
-    pub const ParagraphBreak: Self = Self(1 << 4);
-    #[doc(alias = "NSControlCharacterActionContainerBreak")]
-    pub const ContainerBreak: Self = Self(1 << 5);
+bitflags::bitflags! {
+    impl NSControlCharacterAction: NSInteger {
+        #[doc(alias = "NSControlCharacterActionZeroAdvancement")]
+        const ZeroAdvancement = 1<<0;
+        #[doc(alias = "NSControlCharacterActionWhitespace")]
+        const Whitespace = 1<<1;
+        #[doc(alias = "NSControlCharacterActionHorizontalTab")]
+        const HorizontalTab = 1<<2;
+        #[doc(alias = "NSControlCharacterActionLineBreak")]
+        const LineBreak = 1<<3;
+        #[doc(alias = "NSControlCharacterActionParagraphBreak")]
+        const ParagraphBreak = 1<<4;
+        #[doc(alias = "NSControlCharacterActionContainerBreak")]
+        const ContainerBreak = 1<<5;
+    }
 }
 
 unsafe impl Encode for NSControlCharacterAction {

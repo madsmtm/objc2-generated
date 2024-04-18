@@ -9,13 +9,15 @@ use crate::*;
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSPersistentCloudKitContainerSchemaInitializationOptions(pub NSUInteger);
-impl NSPersistentCloudKitContainerSchemaInitializationOptions {
-    #[doc(alias = "NSPersistentCloudKitContainerSchemaInitializationOptionsNone")]
-    pub const None: Self = Self(0);
-    #[doc(alias = "NSPersistentCloudKitContainerSchemaInitializationOptionsDryRun")]
-    pub const DryRun: Self = Self(1 << 1);
-    #[doc(alias = "NSPersistentCloudKitContainerSchemaInitializationOptionsPrintSchema")]
-    pub const PrintSchema: Self = Self(1 << 2);
+bitflags::bitflags! {
+    impl NSPersistentCloudKitContainerSchemaInitializationOptions: NSUInteger {
+        #[doc(alias = "NSPersistentCloudKitContainerSchemaInitializationOptionsNone")]
+        const None = 0;
+        #[doc(alias = "NSPersistentCloudKitContainerSchemaInitializationOptionsDryRun")]
+        const DryRun = 1<<1;
+        #[doc(alias = "NSPersistentCloudKitContainerSchemaInitializationOptionsPrintSchema")]
+        const PrintSchema = 1<<2;
+    }
 }
 
 unsafe impl Encode for NSPersistentCloudKitContainerSchemaInitializationOptions {

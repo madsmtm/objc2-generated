@@ -8,15 +8,16 @@ use crate::*;
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSJSONReadingOptions(pub NSUInteger);
-impl NSJSONReadingOptions {
-    pub const NSJSONReadingMutableContainers: Self = Self(1 << 0);
-    pub const NSJSONReadingMutableLeaves: Self = Self(1 << 1);
-    pub const NSJSONReadingFragmentsAllowed: Self = Self(1 << 2);
-    pub const NSJSONReadingJSON5Allowed: Self = Self(1 << 3);
-    pub const NSJSONReadingTopLevelDictionaryAssumed: Self = Self(1 << 4);
-    #[deprecated]
-    pub const NSJSONReadingAllowFragments: Self =
-        Self(NSJSONReadingOptions::NSJSONReadingFragmentsAllowed.0);
+bitflags::bitflags! {
+    impl NSJSONReadingOptions: NSUInteger {
+        const NSJSONReadingMutableContainers = 1<<0;
+        const NSJSONReadingMutableLeaves = 1<<1;
+        const NSJSONReadingFragmentsAllowed = 1<<2;
+        const NSJSONReadingJSON5Allowed = 1<<3;
+        const NSJSONReadingTopLevelDictionaryAssumed = 1<<4;
+#[deprecated]
+        const NSJSONReadingAllowFragments = NSJSONReadingOptions::NSJSONReadingFragmentsAllowed.0;
+    }
 }
 
 unsafe impl Encode for NSJSONReadingOptions {
@@ -31,11 +32,13 @@ unsafe impl RefEncode for NSJSONReadingOptions {
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSJSONWritingOptions(pub NSUInteger);
-impl NSJSONWritingOptions {
-    pub const NSJSONWritingPrettyPrinted: Self = Self(1 << 0);
-    pub const NSJSONWritingSortedKeys: Self = Self(1 << 1);
-    pub const NSJSONWritingFragmentsAllowed: Self = Self(1 << 2);
-    pub const NSJSONWritingWithoutEscapingSlashes: Self = Self(1 << 3);
+bitflags::bitflags! {
+    impl NSJSONWritingOptions: NSUInteger {
+        const NSJSONWritingPrettyPrinted = 1<<0;
+        const NSJSONWritingSortedKeys = 1<<1;
+        const NSJSONWritingFragmentsAllowed = 1<<2;
+        const NSJSONWritingWithoutEscapingSlashes = 1<<3;
+    }
 }
 
 unsafe impl Encode for NSJSONWritingOptions {

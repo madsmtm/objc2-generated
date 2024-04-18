@@ -778,14 +778,16 @@ extern "C" {
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSURLBookmarkCreationOptions(pub NSUInteger);
-impl NSURLBookmarkCreationOptions {
-    #[deprecated = "Not supported"]
-    pub const NSURLBookmarkCreationPreferFileIDResolution: Self = Self(1 << 8);
-    pub const NSURLBookmarkCreationMinimalBookmark: Self = Self(1 << 9);
-    pub const NSURLBookmarkCreationSuitableForBookmarkFile: Self = Self(1 << 10);
-    pub const NSURLBookmarkCreationWithSecurityScope: Self = Self(1 << 11);
-    pub const NSURLBookmarkCreationSecurityScopeAllowOnlyReadAccess: Self = Self(1 << 12);
-    pub const NSURLBookmarkCreationWithoutImplicitSecurityScope: Self = Self(1 << 29);
+bitflags::bitflags! {
+    impl NSURLBookmarkCreationOptions: NSUInteger {
+#[deprecated = "Not supported"]
+        const NSURLBookmarkCreationPreferFileIDResolution = 1<<8;
+        const NSURLBookmarkCreationMinimalBookmark = 1<<9;
+        const NSURLBookmarkCreationSuitableForBookmarkFile = 1<<10;
+        const NSURLBookmarkCreationWithSecurityScope = 1<<11;
+        const NSURLBookmarkCreationSecurityScopeAllowOnlyReadAccess = 1<<12;
+        const NSURLBookmarkCreationWithoutImplicitSecurityScope = 1<<29;
+    }
 }
 
 unsafe impl Encode for NSURLBookmarkCreationOptions {
@@ -800,11 +802,13 @@ unsafe impl RefEncode for NSURLBookmarkCreationOptions {
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSURLBookmarkResolutionOptions(pub NSUInteger);
-impl NSURLBookmarkResolutionOptions {
-    pub const NSURLBookmarkResolutionWithoutUI: Self = Self(1 << 8);
-    pub const NSURLBookmarkResolutionWithoutMounting: Self = Self(1 << 9);
-    pub const NSURLBookmarkResolutionWithSecurityScope: Self = Self(1 << 10);
-    pub const NSURLBookmarkResolutionWithoutImplicitStartAccessing: Self = Self(1 << 15);
+bitflags::bitflags! {
+    impl NSURLBookmarkResolutionOptions: NSUInteger {
+        const NSURLBookmarkResolutionWithoutUI = 1<<8;
+        const NSURLBookmarkResolutionWithoutMounting = 1<<9;
+        const NSURLBookmarkResolutionWithSecurityScope = 1<<10;
+        const NSURLBookmarkResolutionWithoutImplicitStartAccessing = 1<<15;
+    }
 }
 
 unsafe impl Encode for NSURLBookmarkResolutionOptions {

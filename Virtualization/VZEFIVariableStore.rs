@@ -9,8 +9,10 @@ use crate::*;
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct VZEFIVariableStoreInitializationOptions(pub NSUInteger);
-impl VZEFIVariableStoreInitializationOptions {
-    pub const VZEFIVariableStoreInitializationOptionAllowOverwrite: Self = Self(1 << 0);
+bitflags::bitflags! {
+    impl VZEFIVariableStoreInitializationOptions: NSUInteger {
+        const VZEFIVariableStoreInitializationOptionAllowOverwrite = 1<<0;
+    }
 }
 
 unsafe impl Encode for VZEFIVariableStoreInitializationOptions {

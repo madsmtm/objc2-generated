@@ -64,22 +64,24 @@ extern "C" {
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct UIRemoteNotificationType(pub NSUInteger);
-impl UIRemoteNotificationType {
-    #[deprecated = "Use UserNotifications Framework's UNAuthorizationOptions for user notifications and registerForRemoteNotifications for receiving remote notifications instead."]
-    #[doc(alias = "UIRemoteNotificationTypeNone")]
-    pub const None: Self = Self(0);
-    #[deprecated = "Use UserNotifications Framework's UNAuthorizationOptions for user notifications and registerForRemoteNotifications for receiving remote notifications instead."]
-    #[doc(alias = "UIRemoteNotificationTypeBadge")]
-    pub const Badge: Self = Self(1 << 0);
-    #[deprecated = "Use UserNotifications Framework's UNAuthorizationOptions for user notifications and registerForRemoteNotifications for receiving remote notifications instead."]
-    #[doc(alias = "UIRemoteNotificationTypeSound")]
-    pub const Sound: Self = Self(1 << 1);
-    #[deprecated = "Use UserNotifications Framework's UNAuthorizationOptions for user notifications and registerForRemoteNotifications for receiving remote notifications instead."]
-    #[doc(alias = "UIRemoteNotificationTypeAlert")]
-    pub const Alert: Self = Self(1 << 2);
-    #[deprecated = "Use UserNotifications Framework's UNAuthorizationOptions for user notifications and registerForRemoteNotifications for receiving remote notifications instead."]
-    #[doc(alias = "UIRemoteNotificationTypeNewsstandContentAvailability")]
-    pub const NewsstandContentAvailability: Self = Self(1 << 3);
+bitflags::bitflags! {
+    impl UIRemoteNotificationType: NSUInteger {
+#[deprecated = "Use UserNotifications Framework's UNAuthorizationOptions for user notifications and registerForRemoteNotifications for receiving remote notifications instead."]
+        #[doc(alias = "UIRemoteNotificationTypeNone")]
+        const None = 0;
+#[deprecated = "Use UserNotifications Framework's UNAuthorizationOptions for user notifications and registerForRemoteNotifications for receiving remote notifications instead."]
+        #[doc(alias = "UIRemoteNotificationTypeBadge")]
+        const Badge = 1<<0;
+#[deprecated = "Use UserNotifications Framework's UNAuthorizationOptions for user notifications and registerForRemoteNotifications for receiving remote notifications instead."]
+        #[doc(alias = "UIRemoteNotificationTypeSound")]
+        const Sound = 1<<1;
+#[deprecated = "Use UserNotifications Framework's UNAuthorizationOptions for user notifications and registerForRemoteNotifications for receiving remote notifications instead."]
+        #[doc(alias = "UIRemoteNotificationTypeAlert")]
+        const Alert = 1<<2;
+#[deprecated = "Use UserNotifications Framework's UNAuthorizationOptions for user notifications and registerForRemoteNotifications for receiving remote notifications instead."]
+        #[doc(alias = "UIRemoteNotificationTypeNewsstandContentAvailability")]
+        const NewsstandContentAvailability = 1<<3;
+    }
 }
 
 unsafe impl Encode for UIRemoteNotificationType {

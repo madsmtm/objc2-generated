@@ -9,13 +9,15 @@ use crate::*;
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSMediaLibrary(pub NSUInteger);
-impl NSMediaLibrary {
-    #[doc(alias = "NSMediaLibraryAudio")]
-    pub const Audio: Self = Self(1 << 0);
-    #[doc(alias = "NSMediaLibraryImage")]
-    pub const Image: Self = Self(1 << 1);
-    #[doc(alias = "NSMediaLibraryMovie")]
-    pub const Movie: Self = Self(1 << 2);
+bitflags::bitflags! {
+    impl NSMediaLibrary: NSUInteger {
+        #[doc(alias = "NSMediaLibraryAudio")]
+        const Audio = 1<<0;
+        #[doc(alias = "NSMediaLibraryImage")]
+        const Image = 1<<1;
+        #[doc(alias = "NSMediaLibraryMovie")]
+        const Movie = 1<<2;
+    }
 }
 
 unsafe impl Encode for NSMediaLibrary {

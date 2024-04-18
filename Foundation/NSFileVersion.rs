@@ -8,8 +8,10 @@ use crate::*;
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSFileVersionAddingOptions(pub NSUInteger);
-impl NSFileVersionAddingOptions {
-    pub const NSFileVersionAddingByMoving: Self = Self(1 << 0);
+bitflags::bitflags! {
+    impl NSFileVersionAddingOptions: NSUInteger {
+        const NSFileVersionAddingByMoving = 1<<0;
+    }
 }
 
 unsafe impl Encode for NSFileVersionAddingOptions {
@@ -24,8 +26,10 @@ unsafe impl RefEncode for NSFileVersionAddingOptions {
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSFileVersionReplacingOptions(pub NSUInteger);
-impl NSFileVersionReplacingOptions {
-    pub const NSFileVersionReplacingByMoving: Self = Self(1 << 0);
+bitflags::bitflags! {
+    impl NSFileVersionReplacingOptions: NSUInteger {
+        const NSFileVersionReplacingByMoving = 1<<0;
+    }
 }
 
 unsafe impl Encode for NSFileVersionReplacingOptions {

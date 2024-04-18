@@ -40,9 +40,11 @@ unsafe impl RefEncode for NSNotificationSuspensionBehavior {
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSDistributedNotificationOptions(pub NSUInteger);
-impl NSDistributedNotificationOptions {
-    pub const NSDistributedNotificationDeliverImmediately: Self = Self(1 << 0);
-    pub const NSDistributedNotificationPostToAllSessions: Self = Self(1 << 1);
+bitflags::bitflags! {
+    impl NSDistributedNotificationOptions: NSUInteger {
+        const NSDistributedNotificationDeliverImmediately = 1<<0;
+        const NSDistributedNotificationPostToAllSessions = 1<<1;
+    }
 }
 
 unsafe impl Encode for NSDistributedNotificationOptions {

@@ -8,14 +8,16 @@ use crate::*;
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSRegularExpressionOptions(pub NSUInteger);
-impl NSRegularExpressionOptions {
-    pub const NSRegularExpressionCaseInsensitive: Self = Self(1 << 0);
-    pub const NSRegularExpressionAllowCommentsAndWhitespace: Self = Self(1 << 1);
-    pub const NSRegularExpressionIgnoreMetacharacters: Self = Self(1 << 2);
-    pub const NSRegularExpressionDotMatchesLineSeparators: Self = Self(1 << 3);
-    pub const NSRegularExpressionAnchorsMatchLines: Self = Self(1 << 4);
-    pub const NSRegularExpressionUseUnixLineSeparators: Self = Self(1 << 5);
-    pub const NSRegularExpressionUseUnicodeWordBoundaries: Self = Self(1 << 6);
+bitflags::bitflags! {
+    impl NSRegularExpressionOptions: NSUInteger {
+        const NSRegularExpressionCaseInsensitive = 1<<0;
+        const NSRegularExpressionAllowCommentsAndWhitespace = 1<<1;
+        const NSRegularExpressionIgnoreMetacharacters = 1<<2;
+        const NSRegularExpressionDotMatchesLineSeparators = 1<<3;
+        const NSRegularExpressionAnchorsMatchLines = 1<<4;
+        const NSRegularExpressionUseUnixLineSeparators = 1<<5;
+        const NSRegularExpressionUseUnicodeWordBoundaries = 1<<6;
+    }
 }
 
 unsafe impl Encode for NSRegularExpressionOptions {
@@ -99,12 +101,14 @@ extern_methods!(
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSMatchingOptions(pub NSUInteger);
-impl NSMatchingOptions {
-    pub const NSMatchingReportProgress: Self = Self(1 << 0);
-    pub const NSMatchingReportCompletion: Self = Self(1 << 1);
-    pub const NSMatchingAnchored: Self = Self(1 << 2);
-    pub const NSMatchingWithTransparentBounds: Self = Self(1 << 3);
-    pub const NSMatchingWithoutAnchoringBounds: Self = Self(1 << 4);
+bitflags::bitflags! {
+    impl NSMatchingOptions: NSUInteger {
+        const NSMatchingReportProgress = 1<<0;
+        const NSMatchingReportCompletion = 1<<1;
+        const NSMatchingAnchored = 1<<2;
+        const NSMatchingWithTransparentBounds = 1<<3;
+        const NSMatchingWithoutAnchoringBounds = 1<<4;
+    }
 }
 
 unsafe impl Encode for NSMatchingOptions {
@@ -119,12 +123,14 @@ unsafe impl RefEncode for NSMatchingOptions {
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSMatchingFlags(pub NSUInteger);
-impl NSMatchingFlags {
-    pub const NSMatchingProgress: Self = Self(1 << 0);
-    pub const NSMatchingCompleted: Self = Self(1 << 1);
-    pub const NSMatchingHitEnd: Self = Self(1 << 2);
-    pub const NSMatchingRequiredEnd: Self = Self(1 << 3);
-    pub const NSMatchingInternalError: Self = Self(1 << 4);
+bitflags::bitflags! {
+    impl NSMatchingFlags: NSUInteger {
+        const NSMatchingProgress = 1<<0;
+        const NSMatchingCompleted = 1<<1;
+        const NSMatchingHitEnd = 1<<2;
+        const NSMatchingRequiredEnd = 1<<3;
+        const NSMatchingInternalError = 1<<4;
+    }
 }
 
 unsafe impl Encode for NSMatchingFlags {

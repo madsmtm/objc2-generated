@@ -11,11 +11,13 @@ pub type NSStatusItemAutosaveName = NSString;
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSStatusItemBehavior(pub NSUInteger);
-impl NSStatusItemBehavior {
-    #[doc(alias = "NSStatusItemBehaviorRemovalAllowed")]
-    pub const RemovalAllowed: Self = Self(1 << 1);
-    #[doc(alias = "NSStatusItemBehaviorTerminationOnRemoval")]
-    pub const TerminationOnRemoval: Self = Self(1 << 2);
+bitflags::bitflags! {
+    impl NSStatusItemBehavior: NSUInteger {
+        #[doc(alias = "NSStatusItemBehaviorRemovalAllowed")]
+        const RemovalAllowed = 1<<1;
+        #[doc(alias = "NSStatusItemBehaviorTerminationOnRemoval")]
+        const TerminationOnRemoval = 1<<2;
+    }
 }
 
 unsafe impl Encode for NSStatusItemBehavior {

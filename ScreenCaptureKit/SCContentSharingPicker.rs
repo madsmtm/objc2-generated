@@ -9,17 +9,19 @@ use crate::*;
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct SCContentSharingPickerMode(pub NSUInteger);
-impl SCContentSharingPickerMode {
-    #[doc(alias = "SCContentSharingPickerModeSingleWindow")]
-    pub const SingleWindow: Self = Self(1 << 0);
-    #[doc(alias = "SCContentSharingPickerModeMultipleWindows")]
-    pub const MultipleWindows: Self = Self(1 << 1);
-    #[doc(alias = "SCContentSharingPickerModeSingleApplication")]
-    pub const SingleApplication: Self = Self(1 << 2);
-    #[doc(alias = "SCContentSharingPickerModeMultipleApplications")]
-    pub const MultipleApplications: Self = Self(1 << 3);
-    #[doc(alias = "SCContentSharingPickerModeSingleDisplay")]
-    pub const SingleDisplay: Self = Self(1 << 4);
+bitflags::bitflags! {
+    impl SCContentSharingPickerMode: NSUInteger {
+        #[doc(alias = "SCContentSharingPickerModeSingleWindow")]
+        const SingleWindow = 1<<0;
+        #[doc(alias = "SCContentSharingPickerModeMultipleWindows")]
+        const MultipleWindows = 1<<1;
+        #[doc(alias = "SCContentSharingPickerModeSingleApplication")]
+        const SingleApplication = 1<<2;
+        #[doc(alias = "SCContentSharingPickerModeMultipleApplications")]
+        const MultipleApplications = 1<<3;
+        #[doc(alias = "SCContentSharingPickerModeSingleDisplay")]
+        const SingleDisplay = 1<<4;
+    }
 }
 
 unsafe impl Encode for SCContentSharingPickerMode {

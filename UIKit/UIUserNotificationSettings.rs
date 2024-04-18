@@ -10,19 +10,21 @@ use crate::*;
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct UIUserNotificationType(pub NSUInteger);
-impl UIUserNotificationType {
-    #[deprecated = "Use UserNotifications Framework's UNAuthorizationOptions"]
-    #[doc(alias = "UIUserNotificationTypeNone")]
-    pub const None: Self = Self(0);
-    #[deprecated = "Use UserNotifications Framework's UNAuthorizationOptions"]
-    #[doc(alias = "UIUserNotificationTypeBadge")]
-    pub const Badge: Self = Self(1 << 0);
-    #[deprecated = "Use UserNotifications Framework's UNAuthorizationOptions"]
-    #[doc(alias = "UIUserNotificationTypeSound")]
-    pub const Sound: Self = Self(1 << 1);
-    #[deprecated = "Use UserNotifications Framework's UNAuthorizationOptions"]
-    #[doc(alias = "UIUserNotificationTypeAlert")]
-    pub const Alert: Self = Self(1 << 2);
+bitflags::bitflags! {
+    impl UIUserNotificationType: NSUInteger {
+#[deprecated = "Use UserNotifications Framework's UNAuthorizationOptions"]
+        #[doc(alias = "UIUserNotificationTypeNone")]
+        const None = 0;
+#[deprecated = "Use UserNotifications Framework's UNAuthorizationOptions"]
+        #[doc(alias = "UIUserNotificationTypeBadge")]
+        const Badge = 1<<0;
+#[deprecated = "Use UserNotifications Framework's UNAuthorizationOptions"]
+        #[doc(alias = "UIUserNotificationTypeSound")]
+        const Sound = 1<<1;
+#[deprecated = "Use UserNotifications Framework's UNAuthorizationOptions"]
+        #[doc(alias = "UIUserNotificationTypeAlert")]
+        const Alert = 1<<2;
+    }
 }
 
 unsafe impl Encode for UIUserNotificationType {

@@ -11,12 +11,14 @@ use crate::*;
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct UICloudSharingPermissionOptions(pub NSUInteger);
-impl UICloudSharingPermissionOptions {
-    pub const UICloudSharingPermissionStandard: Self = Self(0);
-    pub const UICloudSharingPermissionAllowPublic: Self = Self(1 << 0);
-    pub const UICloudSharingPermissionAllowPrivate: Self = Self(1 << 1);
-    pub const UICloudSharingPermissionAllowReadOnly: Self = Self(1 << 2);
-    pub const UICloudSharingPermissionAllowReadWrite: Self = Self(1 << 3);
+bitflags::bitflags! {
+    impl UICloudSharingPermissionOptions: NSUInteger {
+        const UICloudSharingPermissionStandard = 0;
+        const UICloudSharingPermissionAllowPublic = 1<<0;
+        const UICloudSharingPermissionAllowPrivate = 1<<1;
+        const UICloudSharingPermissionAllowReadOnly = 1<<2;
+        const UICloudSharingPermissionAllowReadWrite = 1<<3;
+    }
 }
 
 unsafe impl Encode for UICloudSharingPermissionOptions {

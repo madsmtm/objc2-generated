@@ -62,9 +62,11 @@ pub type NSComparator =
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSEnumerationOptions(pub NSUInteger);
-impl NSEnumerationOptions {
-    pub const NSEnumerationConcurrent: Self = Self(1 << 0);
-    pub const NSEnumerationReverse: Self = Self(1 << 1);
+bitflags::bitflags! {
+    impl NSEnumerationOptions: NSUInteger {
+        const NSEnumerationConcurrent = 1<<0;
+        const NSEnumerationReverse = 1<<1;
+    }
 }
 
 unsafe impl Encode for NSEnumerationOptions {
@@ -79,9 +81,11 @@ unsafe impl RefEncode for NSEnumerationOptions {
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSSortOptions(pub NSUInteger);
-impl NSSortOptions {
-    pub const NSSortConcurrent: Self = Self(1 << 0);
-    pub const NSSortStable: Self = Self(1 << 4);
+bitflags::bitflags! {
+    impl NSSortOptions: NSUInteger {
+        const NSSortConcurrent = 1<<0;
+        const NSSortStable = 1<<4;
+    }
 }
 
 unsafe impl Encode for NSSortOptions {

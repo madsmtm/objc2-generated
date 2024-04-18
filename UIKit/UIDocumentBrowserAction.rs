@@ -9,11 +9,13 @@ use crate::*;
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct UIDocumentBrowserActionAvailability(pub NSInteger);
-impl UIDocumentBrowserActionAvailability {
-    #[doc(alias = "UIDocumentBrowserActionAvailabilityMenu")]
-    pub const Menu: Self = Self(1);
-    #[doc(alias = "UIDocumentBrowserActionAvailabilityNavigationBar")]
-    pub const NavigationBar: Self = Self(1 << 1);
+bitflags::bitflags! {
+    impl UIDocumentBrowserActionAvailability: NSInteger {
+        #[doc(alias = "UIDocumentBrowserActionAvailabilityMenu")]
+        const Menu = 1;
+        #[doc(alias = "UIDocumentBrowserActionAvailabilityNavigationBar")]
+        const NavigationBar = 1<<1;
+    }
 }
 
 unsafe impl Encode for UIDocumentBrowserActionAvailability {

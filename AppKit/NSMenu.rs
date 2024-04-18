@@ -425,13 +425,15 @@ extern_protocol!(
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSMenuProperties(pub NSUInteger);
-impl NSMenuProperties {
-    pub const NSMenuPropertyItemTitle: Self = Self(1 << 0);
-    pub const NSMenuPropertyItemAttributedTitle: Self = Self(1 << 1);
-    pub const NSMenuPropertyItemKeyEquivalent: Self = Self(1 << 2);
-    pub const NSMenuPropertyItemImage: Self = Self(1 << 3);
-    pub const NSMenuPropertyItemEnabled: Self = Self(1 << 4);
-    pub const NSMenuPropertyItemAccessibilityDescription: Self = Self(1 << 5);
+bitflags::bitflags! {
+    impl NSMenuProperties: NSUInteger {
+        const NSMenuPropertyItemTitle = 1<<0;
+        const NSMenuPropertyItemAttributedTitle = 1<<1;
+        const NSMenuPropertyItemKeyEquivalent = 1<<2;
+        const NSMenuPropertyItemImage = 1<<3;
+        const NSMenuPropertyItemEnabled = 1<<4;
+        const NSMenuPropertyItemAccessibilityDescription = 1<<5;
+    }
 }
 
 unsafe impl Encode for NSMenuProperties {

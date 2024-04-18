@@ -77,22 +77,24 @@ pub const WebMenuItemPDFPreviousPage: c_uint = 32;
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct WebDragDestinationAction(pub NSUInteger);
-impl WebDragDestinationAction {
-    #[deprecated]
-    #[doc(alias = "WebDragDestinationActionNone")]
-    pub const None: Self = Self(0);
-    #[deprecated]
-    #[doc(alias = "WebDragDestinationActionDHTML")]
-    pub const DHTML: Self = Self(1);
-    #[deprecated]
-    #[doc(alias = "WebDragDestinationActionEdit")]
-    pub const Edit: Self = Self(2);
-    #[deprecated]
-    #[doc(alias = "WebDragDestinationActionLoad")]
-    pub const Load: Self = Self(4);
-    #[deprecated]
-    #[doc(alias = "WebDragDestinationActionAny")]
-    pub const Any: Self = Self(4294967295);
+bitflags::bitflags! {
+    impl WebDragDestinationAction: NSUInteger {
+#[deprecated]
+        #[doc(alias = "WebDragDestinationActionNone")]
+        const None = 0;
+#[deprecated]
+        #[doc(alias = "WebDragDestinationActionDHTML")]
+        const DHTML = 1;
+#[deprecated]
+        #[doc(alias = "WebDragDestinationActionEdit")]
+        const Edit = 2;
+#[deprecated]
+        #[doc(alias = "WebDragDestinationActionLoad")]
+        const Load = 4;
+#[deprecated]
+        #[doc(alias = "WebDragDestinationActionAny")]
+        const Any = 4294967295;
+    }
 }
 
 unsafe impl Encode for WebDragDestinationAction {
@@ -108,25 +110,27 @@ unsafe impl RefEncode for WebDragDestinationAction {
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct WebDragSourceAction(pub NSUInteger);
-impl WebDragSourceAction {
-    #[deprecated]
-    #[doc(alias = "WebDragSourceActionNone")]
-    pub const None: Self = Self(0);
-    #[deprecated]
-    #[doc(alias = "WebDragSourceActionDHTML")]
-    pub const DHTML: Self = Self(1);
-    #[deprecated]
-    #[doc(alias = "WebDragSourceActionImage")]
-    pub const Image: Self = Self(2);
-    #[deprecated]
-    #[doc(alias = "WebDragSourceActionLink")]
-    pub const Link: Self = Self(4);
-    #[deprecated]
-    #[doc(alias = "WebDragSourceActionSelection")]
-    pub const Selection: Self = Self(8);
-    #[deprecated]
-    #[doc(alias = "WebDragSourceActionAny")]
-    pub const Any: Self = Self(4294967295);
+bitflags::bitflags! {
+    impl WebDragSourceAction: NSUInteger {
+#[deprecated]
+        #[doc(alias = "WebDragSourceActionNone")]
+        const None = 0;
+#[deprecated]
+        #[doc(alias = "WebDragSourceActionDHTML")]
+        const DHTML = 1;
+#[deprecated]
+        #[doc(alias = "WebDragSourceActionImage")]
+        const Image = 2;
+#[deprecated]
+        #[doc(alias = "WebDragSourceActionLink")]
+        const Link = 4;
+#[deprecated]
+        #[doc(alias = "WebDragSourceActionSelection")]
+        const Selection = 8;
+#[deprecated]
+        #[doc(alias = "WebDragSourceActionAny")]
+        const Any = 4294967295;
+    }
 }
 
 unsafe impl Encode for WebDragSourceAction {

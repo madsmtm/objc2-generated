@@ -71,32 +71,23 @@ unsafe impl RefEncode for UIInterfaceOrientation {
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct UIInterfaceOrientationMask(pub NSUInteger);
-impl UIInterfaceOrientationMask {
-    #[doc(alias = "UIInterfaceOrientationMaskPortrait")]
-    pub const Portrait: Self = Self(1 << UIInterfaceOrientation::Portrait.0);
-    #[doc(alias = "UIInterfaceOrientationMaskLandscapeLeft")]
-    pub const LandscapeLeft: Self = Self(1 << UIInterfaceOrientation::LandscapeLeft.0);
-    #[doc(alias = "UIInterfaceOrientationMaskLandscapeRight")]
-    pub const LandscapeRight: Self = Self(1 << UIInterfaceOrientation::LandscapeRight.0);
-    #[doc(alias = "UIInterfaceOrientationMaskPortraitUpsideDown")]
-    pub const PortraitUpsideDown: Self = Self(1 << UIInterfaceOrientation::PortraitUpsideDown.0);
-    #[doc(alias = "UIInterfaceOrientationMaskLandscape")]
-    pub const Landscape: Self = Self(
-        UIInterfaceOrientationMask::LandscapeLeft.0 | UIInterfaceOrientationMask::LandscapeRight.0,
-    );
-    #[doc(alias = "UIInterfaceOrientationMaskAll")]
-    pub const All: Self = Self(
-        UIInterfaceOrientationMask::Portrait.0
-            | UIInterfaceOrientationMask::LandscapeLeft.0
-            | UIInterfaceOrientationMask::LandscapeRight.0
-            | UIInterfaceOrientationMask::PortraitUpsideDown.0,
-    );
-    #[doc(alias = "UIInterfaceOrientationMaskAllButUpsideDown")]
-    pub const AllButUpsideDown: Self = Self(
-        UIInterfaceOrientationMask::Portrait.0
-            | UIInterfaceOrientationMask::LandscapeLeft.0
-            | UIInterfaceOrientationMask::LandscapeRight.0,
-    );
+bitflags::bitflags! {
+    impl UIInterfaceOrientationMask: NSUInteger {
+        #[doc(alias = "UIInterfaceOrientationMaskPortrait")]
+        const Portrait = 1<<UIInterfaceOrientation::Portrait.0;
+        #[doc(alias = "UIInterfaceOrientationMaskLandscapeLeft")]
+        const LandscapeLeft = 1<<UIInterfaceOrientation::LandscapeLeft.0;
+        #[doc(alias = "UIInterfaceOrientationMaskLandscapeRight")]
+        const LandscapeRight = 1<<UIInterfaceOrientation::LandscapeRight.0;
+        #[doc(alias = "UIInterfaceOrientationMaskPortraitUpsideDown")]
+        const PortraitUpsideDown = 1<<UIInterfaceOrientation::PortraitUpsideDown.0;
+        #[doc(alias = "UIInterfaceOrientationMaskLandscape")]
+        const Landscape = UIInterfaceOrientationMask::LandscapeLeft.0|UIInterfaceOrientationMask::LandscapeRight.0;
+        #[doc(alias = "UIInterfaceOrientationMaskAll")]
+        const All = UIInterfaceOrientationMask::Portrait.0|UIInterfaceOrientationMask::LandscapeLeft.0|UIInterfaceOrientationMask::LandscapeRight.0|UIInterfaceOrientationMask::PortraitUpsideDown.0;
+        #[doc(alias = "UIInterfaceOrientationMaskAllButUpsideDown")]
+        const AllButUpsideDown = UIInterfaceOrientationMask::Portrait.0|UIInterfaceOrientationMask::LandscapeLeft.0|UIInterfaceOrientationMask::LandscapeRight.0;
+    }
 }
 
 unsafe impl Encode for UIInterfaceOrientationMask {

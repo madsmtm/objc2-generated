@@ -12,15 +12,17 @@ pub type UIMenuIdentifier = NSString;
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct UIMenuOptions(pub NSUInteger);
-impl UIMenuOptions {
-    #[doc(alias = "UIMenuOptionsDisplayInline")]
-    pub const DisplayInline: Self = Self(1 << 0);
-    #[doc(alias = "UIMenuOptionsDestructive")]
-    pub const Destructive: Self = Self(1 << 1);
-    #[doc(alias = "UIMenuOptionsSingleSelection")]
-    pub const SingleSelection: Self = Self(1 << 5);
-    #[doc(alias = "UIMenuOptionsDisplayAsPalette")]
-    pub const DisplayAsPalette: Self = Self(1 << 7);
+bitflags::bitflags! {
+    impl UIMenuOptions: NSUInteger {
+        #[doc(alias = "UIMenuOptionsDisplayInline")]
+        const DisplayInline = 1<<0;
+        #[doc(alias = "UIMenuOptionsDestructive")]
+        const Destructive = 1<<1;
+        #[doc(alias = "UIMenuOptionsSingleSelection")]
+        const SingleSelection = 1<<5;
+        #[doc(alias = "UIMenuOptionsDisplayAsPalette")]
+        const DisplayAsPalette = 1<<7;
+    }
 }
 
 unsafe impl Encode for UIMenuOptions {

@@ -8,33 +8,35 @@ use crate::*;
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSTextCheckingType(pub u64);
-impl NSTextCheckingType {
-    #[doc(alias = "NSTextCheckingTypeOrthography")]
-    pub const Orthography: Self = Self(1 << 0);
-    #[doc(alias = "NSTextCheckingTypeSpelling")]
-    pub const Spelling: Self = Self(1 << 1);
-    #[doc(alias = "NSTextCheckingTypeGrammar")]
-    pub const Grammar: Self = Self(1 << 2);
-    #[doc(alias = "NSTextCheckingTypeDate")]
-    pub const Date: Self = Self(1 << 3);
-    #[doc(alias = "NSTextCheckingTypeAddress")]
-    pub const Address: Self = Self(1 << 4);
-    #[doc(alias = "NSTextCheckingTypeLink")]
-    pub const Link: Self = Self(1 << 5);
-    #[doc(alias = "NSTextCheckingTypeQuote")]
-    pub const Quote: Self = Self(1 << 6);
-    #[doc(alias = "NSTextCheckingTypeDash")]
-    pub const Dash: Self = Self(1 << 7);
-    #[doc(alias = "NSTextCheckingTypeReplacement")]
-    pub const Replacement: Self = Self(1 << 8);
-    #[doc(alias = "NSTextCheckingTypeCorrection")]
-    pub const Correction: Self = Self(1 << 9);
-    #[doc(alias = "NSTextCheckingTypeRegularExpression")]
-    pub const RegularExpression: Self = Self(1 << 10);
-    #[doc(alias = "NSTextCheckingTypePhoneNumber")]
-    pub const PhoneNumber: Self = Self(1 << 11);
-    #[doc(alias = "NSTextCheckingTypeTransitInformation")]
-    pub const TransitInformation: Self = Self(1 << 12);
+bitflags::bitflags! {
+    impl NSTextCheckingType: u64 {
+        #[doc(alias = "NSTextCheckingTypeOrthography")]
+        const Orthography = 1<<0;
+        #[doc(alias = "NSTextCheckingTypeSpelling")]
+        const Spelling = 1<<1;
+        #[doc(alias = "NSTextCheckingTypeGrammar")]
+        const Grammar = 1<<2;
+        #[doc(alias = "NSTextCheckingTypeDate")]
+        const Date = 1<<3;
+        #[doc(alias = "NSTextCheckingTypeAddress")]
+        const Address = 1<<4;
+        #[doc(alias = "NSTextCheckingTypeLink")]
+        const Link = 1<<5;
+        #[doc(alias = "NSTextCheckingTypeQuote")]
+        const Quote = 1<<6;
+        #[doc(alias = "NSTextCheckingTypeDash")]
+        const Dash = 1<<7;
+        #[doc(alias = "NSTextCheckingTypeReplacement")]
+        const Replacement = 1<<8;
+        #[doc(alias = "NSTextCheckingTypeCorrection")]
+        const Correction = 1<<9;
+        #[doc(alias = "NSTextCheckingTypeRegularExpression")]
+        const RegularExpression = 1<<10;
+        #[doc(alias = "NSTextCheckingTypePhoneNumber")]
+        const PhoneNumber = 1<<11;
+        #[doc(alias = "NSTextCheckingTypeTransitInformation")]
+        const TransitInformation = 1<<12;
+    }
 }
 
 unsafe impl Encode for NSTextCheckingType {

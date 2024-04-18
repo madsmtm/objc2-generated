@@ -224,15 +224,17 @@ unsafe impl RefEncode for MTLDeviceLocation {
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MTLPipelineOption(pub NSUInteger);
-impl MTLPipelineOption {
-    #[doc(alias = "MTLPipelineOptionNone")]
-    pub const None: Self = Self(0);
-    #[doc(alias = "MTLPipelineOptionArgumentInfo")]
-    pub const ArgumentInfo: Self = Self(1 << 0);
-    #[doc(alias = "MTLPipelineOptionBufferTypeInfo")]
-    pub const BufferTypeInfo: Self = Self(1 << 1);
-    #[doc(alias = "MTLPipelineOptionFailOnBinaryArchiveMiss")]
-    pub const FailOnBinaryArchiveMiss: Self = Self(1 << 2);
+bitflags::bitflags! {
+    impl MTLPipelineOption: NSUInteger {
+        #[doc(alias = "MTLPipelineOptionNone")]
+        const None = 0;
+        #[doc(alias = "MTLPipelineOptionArgumentInfo")]
+        const ArgumentInfo = 1<<0;
+        #[doc(alias = "MTLPipelineOptionBufferTypeInfo")]
+        const BufferTypeInfo = 1<<1;
+        #[doc(alias = "MTLPipelineOptionFailOnBinaryArchiveMiss")]
+        const FailOnBinaryArchiveMiss = 1<<2;
+    }
 }
 
 unsafe impl Encode for MTLPipelineOption {

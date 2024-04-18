@@ -96,21 +96,23 @@ unsafe impl RefEncode for NSImageRepLoadStatus {
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSBitmapFormat(pub NSUInteger);
-impl NSBitmapFormat {
-    #[doc(alias = "NSBitmapFormatAlphaFirst")]
-    pub const AlphaFirst: Self = Self(1 << 0);
-    #[doc(alias = "NSBitmapFormatAlphaNonpremultiplied")]
-    pub const AlphaNonpremultiplied: Self = Self(1 << 1);
-    #[doc(alias = "NSBitmapFormatFloatingPointSamples")]
-    pub const FloatingPointSamples: Self = Self(1 << 2);
-    #[doc(alias = "NSBitmapFormatSixteenBitLittleEndian")]
-    pub const SixteenBitLittleEndian: Self = Self(1 << 8);
-    #[doc(alias = "NSBitmapFormatThirtyTwoBitLittleEndian")]
-    pub const ThirtyTwoBitLittleEndian: Self = Self(1 << 9);
-    #[doc(alias = "NSBitmapFormatSixteenBitBigEndian")]
-    pub const SixteenBitBigEndian: Self = Self(1 << 10);
-    #[doc(alias = "NSBitmapFormatThirtyTwoBitBigEndian")]
-    pub const ThirtyTwoBitBigEndian: Self = Self(1 << 11);
+bitflags::bitflags! {
+    impl NSBitmapFormat: NSUInteger {
+        #[doc(alias = "NSBitmapFormatAlphaFirst")]
+        const AlphaFirst = 1<<0;
+        #[doc(alias = "NSBitmapFormatAlphaNonpremultiplied")]
+        const AlphaNonpremultiplied = 1<<1;
+        #[doc(alias = "NSBitmapFormatFloatingPointSamples")]
+        const FloatingPointSamples = 1<<2;
+        #[doc(alias = "NSBitmapFormatSixteenBitLittleEndian")]
+        const SixteenBitLittleEndian = 1<<8;
+        #[doc(alias = "NSBitmapFormatThirtyTwoBitLittleEndian")]
+        const ThirtyTwoBitLittleEndian = 1<<9;
+        #[doc(alias = "NSBitmapFormatSixteenBitBigEndian")]
+        const SixteenBitBigEndian = 1<<10;
+        #[doc(alias = "NSBitmapFormatThirtyTwoBitBigEndian")]
+        const ThirtyTwoBitBigEndian = 1<<11;
+    }
 }
 
 unsafe impl Encode for NSBitmapFormat {

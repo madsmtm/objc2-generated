@@ -9,13 +9,15 @@ use crate::*;
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NLTaggerOptions(pub NSUInteger);
-impl NLTaggerOptions {
-    pub const NLTaggerOmitWords: Self = Self(1 << 0);
-    pub const NLTaggerOmitPunctuation: Self = Self(1 << 1);
-    pub const NLTaggerOmitWhitespace: Self = Self(1 << 2);
-    pub const NLTaggerOmitOther: Self = Self(1 << 3);
-    pub const NLTaggerJoinNames: Self = Self(1 << 4);
-    pub const NLTaggerJoinContractions: Self = Self(1 << 5);
+bitflags::bitflags! {
+    impl NLTaggerOptions: NSUInteger {
+        const NLTaggerOmitWords = 1<<0;
+        const NLTaggerOmitPunctuation = 1<<1;
+        const NLTaggerOmitWhitespace = 1<<2;
+        const NLTaggerOmitOther = 1<<3;
+        const NLTaggerJoinNames = 1<<4;
+        const NLTaggerJoinContractions = 1<<5;
+    }
 }
 
 unsafe impl Encode for NLTaggerOptions {

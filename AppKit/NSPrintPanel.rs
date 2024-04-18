@@ -28,15 +28,17 @@ unsafe impl RefEncode for NSPrintPanelResult {
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSPrintPanelOptions(pub NSUInteger);
-impl NSPrintPanelOptions {
-    pub const NSPrintPanelShowsCopies: Self = Self(1 << 0);
-    pub const NSPrintPanelShowsPageRange: Self = Self(1 << 1);
-    pub const NSPrintPanelShowsPaperSize: Self = Self(1 << 2);
-    pub const NSPrintPanelShowsOrientation: Self = Self(1 << 3);
-    pub const NSPrintPanelShowsScaling: Self = Self(1 << 4);
-    pub const NSPrintPanelShowsPrintSelection: Self = Self(1 << 5);
-    pub const NSPrintPanelShowsPageSetupAccessory: Self = Self(1 << 8);
-    pub const NSPrintPanelShowsPreview: Self = Self(1 << 17);
+bitflags::bitflags! {
+    impl NSPrintPanelOptions: NSUInteger {
+        const NSPrintPanelShowsCopies = 1<<0;
+        const NSPrintPanelShowsPageRange = 1<<1;
+        const NSPrintPanelShowsPaperSize = 1<<2;
+        const NSPrintPanelShowsOrientation = 1<<3;
+        const NSPrintPanelShowsScaling = 1<<4;
+        const NSPrintPanelShowsPrintSelection = 1<<5;
+        const NSPrintPanelShowsPageSetupAccessory = 1<<8;
+        const NSPrintPanelShowsPreview = 1<<17;
+    }
 }
 
 unsafe impl Encode for NSPrintPanelOptions {

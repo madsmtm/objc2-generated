@@ -11,21 +11,23 @@ use crate::*;
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct UICollectionViewScrollPosition(pub NSUInteger);
-impl UICollectionViewScrollPosition {
-    #[doc(alias = "UICollectionViewScrollPositionNone")]
-    pub const None: Self = Self(0);
-    #[doc(alias = "UICollectionViewScrollPositionTop")]
-    pub const Top: Self = Self(1 << 0);
-    #[doc(alias = "UICollectionViewScrollPositionCenteredVertically")]
-    pub const CenteredVertically: Self = Self(1 << 1);
-    #[doc(alias = "UICollectionViewScrollPositionBottom")]
-    pub const Bottom: Self = Self(1 << 2);
-    #[doc(alias = "UICollectionViewScrollPositionLeft")]
-    pub const Left: Self = Self(1 << 3);
-    #[doc(alias = "UICollectionViewScrollPositionCenteredHorizontally")]
-    pub const CenteredHorizontally: Self = Self(1 << 4);
-    #[doc(alias = "UICollectionViewScrollPositionRight")]
-    pub const Right: Self = Self(1 << 5);
+bitflags::bitflags! {
+    impl UICollectionViewScrollPosition: NSUInteger {
+        #[doc(alias = "UICollectionViewScrollPositionNone")]
+        const None = 0;
+        #[doc(alias = "UICollectionViewScrollPositionTop")]
+        const Top = 1<<0;
+        #[doc(alias = "UICollectionViewScrollPositionCenteredVertically")]
+        const CenteredVertically = 1<<1;
+        #[doc(alias = "UICollectionViewScrollPositionBottom")]
+        const Bottom = 1<<2;
+        #[doc(alias = "UICollectionViewScrollPositionLeft")]
+        const Left = 1<<3;
+        #[doc(alias = "UICollectionViewScrollPositionCenteredHorizontally")]
+        const CenteredHorizontally = 1<<4;
+        #[doc(alias = "UICollectionViewScrollPositionRight")]
+        const Right = 1<<5;
+    }
 }
 
 unsafe impl Encode for UICollectionViewScrollPosition {

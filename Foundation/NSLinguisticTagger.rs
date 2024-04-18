@@ -229,12 +229,14 @@ unsafe impl RefEncode for NSLinguisticTaggerUnit {
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSLinguisticTaggerOptions(pub NSUInteger);
-impl NSLinguisticTaggerOptions {
-    pub const NSLinguisticTaggerOmitWords: Self = Self(1 << 0);
-    pub const NSLinguisticTaggerOmitPunctuation: Self = Self(1 << 1);
-    pub const NSLinguisticTaggerOmitWhitespace: Self = Self(1 << 2);
-    pub const NSLinguisticTaggerOmitOther: Self = Self(1 << 3);
-    pub const NSLinguisticTaggerJoinNames: Self = Self(1 << 4);
+bitflags::bitflags! {
+    impl NSLinguisticTaggerOptions: NSUInteger {
+        const NSLinguisticTaggerOmitWords = 1<<0;
+        const NSLinguisticTaggerOmitPunctuation = 1<<1;
+        const NSLinguisticTaggerOmitWhitespace = 1<<2;
+        const NSLinguisticTaggerOmitOther = 1<<3;
+        const NSLinguisticTaggerJoinNames = 1<<4;
+    }
 }
 
 unsafe impl Encode for NSLinguisticTaggerOptions {

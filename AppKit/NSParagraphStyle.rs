@@ -30,15 +30,17 @@ unsafe impl RefEncode for NSLineBreakMode {
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSLineBreakStrategy(pub NSUInteger);
-impl NSLineBreakStrategy {
-    #[doc(alias = "NSLineBreakStrategyNone")]
-    pub const None: Self = Self(0);
-    #[doc(alias = "NSLineBreakStrategyPushOut")]
-    pub const PushOut: Self = Self(1 << 0);
-    #[doc(alias = "NSLineBreakStrategyHangulWordPriority")]
-    pub const HangulWordPriority: Self = Self(1 << 1);
-    #[doc(alias = "NSLineBreakStrategyStandard")]
-    pub const Standard: Self = Self(0xFFFF);
+bitflags::bitflags! {
+    impl NSLineBreakStrategy: NSUInteger {
+        #[doc(alias = "NSLineBreakStrategyNone")]
+        const None = 0;
+        #[doc(alias = "NSLineBreakStrategyPushOut")]
+        const PushOut = 1<<0;
+        #[doc(alias = "NSLineBreakStrategyHangulWordPriority")]
+        const HangulWordPriority = 1<<1;
+        #[doc(alias = "NSLineBreakStrategyStandard")]
+        const Standard = 0xFFFF;
+    }
 }
 
 unsafe impl Encode for NSLineBreakStrategy {

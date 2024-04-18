@@ -87,20 +87,21 @@ unsafe impl Sync for UIOffset {}
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct UIRectEdge(pub NSUInteger);
-impl UIRectEdge {
-    #[doc(alias = "UIRectEdgeNone")]
-    pub const None: Self = Self(0);
-    #[doc(alias = "UIRectEdgeTop")]
-    pub const Top: Self = Self(1 << 0);
-    #[doc(alias = "UIRectEdgeLeft")]
-    pub const Left: Self = Self(1 << 1);
-    #[doc(alias = "UIRectEdgeBottom")]
-    pub const Bottom: Self = Self(1 << 2);
-    #[doc(alias = "UIRectEdgeRight")]
-    pub const Right: Self = Self(1 << 3);
-    #[doc(alias = "UIRectEdgeAll")]
-    pub const All: Self =
-        Self(UIRectEdge::Top.0 | UIRectEdge::Left.0 | UIRectEdge::Bottom.0 | UIRectEdge::Right.0);
+bitflags::bitflags! {
+    impl UIRectEdge: NSUInteger {
+        #[doc(alias = "UIRectEdgeNone")]
+        const None = 0;
+        #[doc(alias = "UIRectEdgeTop")]
+        const Top = 1<<0;
+        #[doc(alias = "UIRectEdgeLeft")]
+        const Left = 1<<1;
+        #[doc(alias = "UIRectEdgeBottom")]
+        const Bottom = 1<<2;
+        #[doc(alias = "UIRectEdgeRight")]
+        const Right = 1<<3;
+        #[doc(alias = "UIRectEdgeAll")]
+        const All = UIRectEdge::Top.0|UIRectEdge::Left.0|UIRectEdge::Bottom.0|UIRectEdge::Right.0;
+    }
 }
 
 unsafe impl Encode for UIRectEdge {
@@ -115,17 +116,19 @@ unsafe impl RefEncode for UIRectEdge {
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct UIRectCorner(pub NSUInteger);
-impl UIRectCorner {
-    #[doc(alias = "UIRectCornerTopLeft")]
-    pub const TopLeft: Self = Self(1 << 0);
-    #[doc(alias = "UIRectCornerTopRight")]
-    pub const TopRight: Self = Self(1 << 1);
-    #[doc(alias = "UIRectCornerBottomLeft")]
-    pub const BottomLeft: Self = Self(1 << 2);
-    #[doc(alias = "UIRectCornerBottomRight")]
-    pub const BottomRight: Self = Self(1 << 3);
-    #[doc(alias = "UIRectCornerAllCorners")]
-    pub const AllCorners: Self = Self(!0);
+bitflags::bitflags! {
+    impl UIRectCorner: NSUInteger {
+        #[doc(alias = "UIRectCornerTopLeft")]
+        const TopLeft = 1<<0;
+        #[doc(alias = "UIRectCornerTopRight")]
+        const TopRight = 1<<1;
+        #[doc(alias = "UIRectCornerBottomLeft")]
+        const BottomLeft = 1<<2;
+        #[doc(alias = "UIRectCornerBottomRight")]
+        const BottomRight = 1<<3;
+        #[doc(alias = "UIRectCornerAllCorners")]
+        const AllCorners = !0;
+    }
 }
 
 unsafe impl Encode for UIRectCorner {
@@ -140,15 +143,17 @@ unsafe impl RefEncode for UIRectCorner {
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct UIAxis(pub NSUInteger);
-impl UIAxis {
-    #[doc(alias = "UIAxisNeither")]
-    pub const Neither: Self = Self(0);
-    #[doc(alias = "UIAxisHorizontal")]
-    pub const Horizontal: Self = Self(1 << 0);
-    #[doc(alias = "UIAxisVertical")]
-    pub const Vertical: Self = Self(1 << 1);
-    #[doc(alias = "UIAxisBoth")]
-    pub const Both: Self = Self(UIAxis::Horizontal.0 | UIAxis::Vertical.0);
+bitflags::bitflags! {
+    impl UIAxis: NSUInteger {
+        #[doc(alias = "UIAxisNeither")]
+        const Neither = 0;
+        #[doc(alias = "UIAxisHorizontal")]
+        const Horizontal = 1<<0;
+        #[doc(alias = "UIAxisVertical")]
+        const Vertical = 1<<1;
+        #[doc(alias = "UIAxisBoth")]
+        const Both = UIAxis::Horizontal.0|UIAxis::Vertical.0;
+    }
 }
 
 unsafe impl Encode for UIAxis {
@@ -163,24 +168,21 @@ unsafe impl RefEncode for UIAxis {
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSDirectionalRectEdge(pub NSUInteger);
-impl NSDirectionalRectEdge {
-    #[doc(alias = "NSDirectionalRectEdgeNone")]
-    pub const None: Self = Self(0);
-    #[doc(alias = "NSDirectionalRectEdgeTop")]
-    pub const Top: Self = Self(1 << 0);
-    #[doc(alias = "NSDirectionalRectEdgeLeading")]
-    pub const Leading: Self = Self(1 << 1);
-    #[doc(alias = "NSDirectionalRectEdgeBottom")]
-    pub const Bottom: Self = Self(1 << 2);
-    #[doc(alias = "NSDirectionalRectEdgeTrailing")]
-    pub const Trailing: Self = Self(1 << 3);
-    #[doc(alias = "NSDirectionalRectEdgeAll")]
-    pub const All: Self = Self(
-        NSDirectionalRectEdge::Top.0
-            | NSDirectionalRectEdge::Leading.0
-            | NSDirectionalRectEdge::Bottom.0
-            | NSDirectionalRectEdge::Trailing.0,
-    );
+bitflags::bitflags! {
+    impl NSDirectionalRectEdge: NSUInteger {
+        #[doc(alias = "NSDirectionalRectEdgeNone")]
+        const None = 0;
+        #[doc(alias = "NSDirectionalRectEdgeTop")]
+        const Top = 1<<0;
+        #[doc(alias = "NSDirectionalRectEdgeLeading")]
+        const Leading = 1<<1;
+        #[doc(alias = "NSDirectionalRectEdgeBottom")]
+        const Bottom = 1<<2;
+        #[doc(alias = "NSDirectionalRectEdgeTrailing")]
+        const Trailing = 1<<3;
+        #[doc(alias = "NSDirectionalRectEdgeAll")]
+        const All = NSDirectionalRectEdge::Top.0|NSDirectionalRectEdge::Leading.0|NSDirectionalRectEdge::Bottom.0|NSDirectionalRectEdge::Trailing.0;
+    }
 }
 
 unsafe impl Encode for NSDirectionalRectEdge {
@@ -196,30 +198,27 @@ unsafe impl RefEncode for NSDirectionalRectEdge {
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct UIDirectionalRectEdge(pub NSUInteger);
-impl UIDirectionalRectEdge {
-    #[deprecated]
-    #[doc(alias = "UIDirectionalRectEdgeNone")]
-    pub const None: Self = Self(0);
-    #[deprecated]
-    #[doc(alias = "UIDirectionalRectEdgeTop")]
-    pub const Top: Self = Self(1 << 0);
-    #[deprecated]
-    #[doc(alias = "UIDirectionalRectEdgeLeading")]
-    pub const Leading: Self = Self(1 << 1);
-    #[deprecated]
-    #[doc(alias = "UIDirectionalRectEdgeBottom")]
-    pub const Bottom: Self = Self(1 << 2);
-    #[deprecated]
-    #[doc(alias = "UIDirectionalRectEdgeTrailing")]
-    pub const Trailing: Self = Self(1 << 3);
-    #[deprecated]
-    #[doc(alias = "UIDirectionalRectEdgeAll")]
-    pub const All: Self = Self(
-        UIDirectionalRectEdge::Top.0
-            | UIDirectionalRectEdge::Leading.0
-            | UIDirectionalRectEdge::Bottom.0
-            | UIDirectionalRectEdge::Trailing.0,
-    );
+bitflags::bitflags! {
+    impl UIDirectionalRectEdge: NSUInteger {
+#[deprecated]
+        #[doc(alias = "UIDirectionalRectEdgeNone")]
+        const None = 0;
+#[deprecated]
+        #[doc(alias = "UIDirectionalRectEdgeTop")]
+        const Top = 1<<0;
+#[deprecated]
+        #[doc(alias = "UIDirectionalRectEdgeLeading")]
+        const Leading = 1<<1;
+#[deprecated]
+        #[doc(alias = "UIDirectionalRectEdgeBottom")]
+        const Bottom = 1<<2;
+#[deprecated]
+        #[doc(alias = "UIDirectionalRectEdgeTrailing")]
+        const Trailing = 1<<3;
+#[deprecated]
+        #[doc(alias = "UIDirectionalRectEdgeAll")]
+        const All = UIDirectionalRectEdge::Top.0|UIDirectionalRectEdge::Leading.0|UIDirectionalRectEdge::Bottom.0|UIDirectionalRectEdge::Trailing.0;
+    }
 }
 
 unsafe impl Encode for UIDirectionalRectEdge {

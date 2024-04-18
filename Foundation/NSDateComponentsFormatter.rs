@@ -35,25 +35,23 @@ unsafe impl RefEncode for NSDateComponentsFormatterUnitsStyle {
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSDateComponentsFormatterZeroFormattingBehavior(pub NSUInteger);
-impl NSDateComponentsFormatterZeroFormattingBehavior {
-    #[doc(alias = "NSDateComponentsFormatterZeroFormattingBehaviorNone")]
-    pub const None: Self = Self(0);
-    #[doc(alias = "NSDateComponentsFormatterZeroFormattingBehaviorDefault")]
-    pub const Default: Self = Self(1 << 0);
-    #[doc(alias = "NSDateComponentsFormatterZeroFormattingBehaviorDropLeading")]
-    pub const DropLeading: Self = Self(1 << 1);
-    #[doc(alias = "NSDateComponentsFormatterZeroFormattingBehaviorDropMiddle")]
-    pub const DropMiddle: Self = Self(1 << 2);
-    #[doc(alias = "NSDateComponentsFormatterZeroFormattingBehaviorDropTrailing")]
-    pub const DropTrailing: Self = Self(1 << 3);
-    #[doc(alias = "NSDateComponentsFormatterZeroFormattingBehaviorDropAll")]
-    pub const DropAll: Self = Self(
-        NSDateComponentsFormatterZeroFormattingBehavior::DropLeading.0
-            | NSDateComponentsFormatterZeroFormattingBehavior::DropMiddle.0
-            | NSDateComponentsFormatterZeroFormattingBehavior::DropTrailing.0,
-    );
-    #[doc(alias = "NSDateComponentsFormatterZeroFormattingBehaviorPad")]
-    pub const Pad: Self = Self(1 << 16);
+bitflags::bitflags! {
+    impl NSDateComponentsFormatterZeroFormattingBehavior: NSUInteger {
+        #[doc(alias = "NSDateComponentsFormatterZeroFormattingBehaviorNone")]
+        const None = 0;
+        #[doc(alias = "NSDateComponentsFormatterZeroFormattingBehaviorDefault")]
+        const Default = 1<<0;
+        #[doc(alias = "NSDateComponentsFormatterZeroFormattingBehaviorDropLeading")]
+        const DropLeading = 1<<1;
+        #[doc(alias = "NSDateComponentsFormatterZeroFormattingBehaviorDropMiddle")]
+        const DropMiddle = 1<<2;
+        #[doc(alias = "NSDateComponentsFormatterZeroFormattingBehaviorDropTrailing")]
+        const DropTrailing = 1<<3;
+        #[doc(alias = "NSDateComponentsFormatterZeroFormattingBehaviorDropAll")]
+        const DropAll = NSDateComponentsFormatterZeroFormattingBehavior::DropLeading.0|NSDateComponentsFormatterZeroFormattingBehavior::DropMiddle.0|NSDateComponentsFormatterZeroFormattingBehavior::DropTrailing.0;
+        #[doc(alias = "NSDateComponentsFormatterZeroFormattingBehaviorPad")]
+        const Pad = 1<<16;
+    }
 }
 
 unsafe impl Encode for NSDateComponentsFormatterZeroFormattingBehavior {

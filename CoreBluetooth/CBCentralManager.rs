@@ -68,9 +68,11 @@ unsafe impl RefEncode for CBConnectionEvent {
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CBCentralManagerFeature(pub NSUInteger);
-impl CBCentralManagerFeature {
-    #[doc(alias = "CBCentralManagerFeatureExtendedScanAndConnect")]
-    pub const ExtendedScanAndConnect: Self = Self(1 << 0);
+bitflags::bitflags! {
+    impl CBCentralManagerFeature: NSUInteger {
+        #[doc(alias = "CBCentralManagerFeatureExtendedScanAndConnect")]
+        const ExtendedScanAndConnect = 1<<0;
+    }
 }
 
 unsafe impl Encode for CBCentralManagerFeature {

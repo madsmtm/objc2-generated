@@ -100,21 +100,23 @@ unsafe impl RefEncode for UIViewAnimationTransition {
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct UIViewAutoresizing(pub NSUInteger);
-impl UIViewAutoresizing {
-    #[doc(alias = "UIViewAutoresizingNone")]
-    pub const None: Self = Self(0);
-    #[doc(alias = "UIViewAutoresizingFlexibleLeftMargin")]
-    pub const FlexibleLeftMargin: Self = Self(1 << 0);
-    #[doc(alias = "UIViewAutoresizingFlexibleWidth")]
-    pub const FlexibleWidth: Self = Self(1 << 1);
-    #[doc(alias = "UIViewAutoresizingFlexibleRightMargin")]
-    pub const FlexibleRightMargin: Self = Self(1 << 2);
-    #[doc(alias = "UIViewAutoresizingFlexibleTopMargin")]
-    pub const FlexibleTopMargin: Self = Self(1 << 3);
-    #[doc(alias = "UIViewAutoresizingFlexibleHeight")]
-    pub const FlexibleHeight: Self = Self(1 << 4);
-    #[doc(alias = "UIViewAutoresizingFlexibleBottomMargin")]
-    pub const FlexibleBottomMargin: Self = Self(1 << 5);
+bitflags::bitflags! {
+    impl UIViewAutoresizing: NSUInteger {
+        #[doc(alias = "UIViewAutoresizingNone")]
+        const None = 0;
+        #[doc(alias = "UIViewAutoresizingFlexibleLeftMargin")]
+        const FlexibleLeftMargin = 1<<0;
+        #[doc(alias = "UIViewAutoresizingFlexibleWidth")]
+        const FlexibleWidth = 1<<1;
+        #[doc(alias = "UIViewAutoresizingFlexibleRightMargin")]
+        const FlexibleRightMargin = 1<<2;
+        #[doc(alias = "UIViewAutoresizingFlexibleTopMargin")]
+        const FlexibleTopMargin = 1<<3;
+        #[doc(alias = "UIViewAutoresizingFlexibleHeight")]
+        const FlexibleHeight = 1<<4;
+        #[doc(alias = "UIViewAutoresizingFlexibleBottomMargin")]
+        const FlexibleBottomMargin = 1<<5;
+    }
 }
 
 unsafe impl Encode for UIViewAutoresizing {
@@ -129,32 +131,34 @@ unsafe impl RefEncode for UIViewAutoresizing {
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct UIViewAnimationOptions(pub NSUInteger);
-impl UIViewAnimationOptions {
-    pub const UIViewAnimationOptionLayoutSubviews: Self = Self(1 << 0);
-    pub const UIViewAnimationOptionAllowUserInteraction: Self = Self(1 << 1);
-    pub const UIViewAnimationOptionBeginFromCurrentState: Self = Self(1 << 2);
-    pub const UIViewAnimationOptionRepeat: Self = Self(1 << 3);
-    pub const UIViewAnimationOptionAutoreverse: Self = Self(1 << 4);
-    pub const UIViewAnimationOptionOverrideInheritedDuration: Self = Self(1 << 5);
-    pub const UIViewAnimationOptionOverrideInheritedCurve: Self = Self(1 << 6);
-    pub const UIViewAnimationOptionAllowAnimatedContent: Self = Self(1 << 7);
-    pub const UIViewAnimationOptionShowHideTransitionViews: Self = Self(1 << 8);
-    pub const UIViewAnimationOptionOverrideInheritedOptions: Self = Self(1 << 9);
-    pub const UIViewAnimationOptionCurveEaseInOut: Self = Self(0 << 16);
-    pub const UIViewAnimationOptionCurveEaseIn: Self = Self(1 << 16);
-    pub const UIViewAnimationOptionCurveEaseOut: Self = Self(2 << 16);
-    pub const UIViewAnimationOptionCurveLinear: Self = Self(3 << 16);
-    pub const UIViewAnimationOptionTransitionNone: Self = Self(0 << 20);
-    pub const UIViewAnimationOptionTransitionFlipFromLeft: Self = Self(1 << 20);
-    pub const UIViewAnimationOptionTransitionFlipFromRight: Self = Self(2 << 20);
-    pub const UIViewAnimationOptionTransitionCurlUp: Self = Self(3 << 20);
-    pub const UIViewAnimationOptionTransitionCurlDown: Self = Self(4 << 20);
-    pub const UIViewAnimationOptionTransitionCrossDissolve: Self = Self(5 << 20);
-    pub const UIViewAnimationOptionTransitionFlipFromTop: Self = Self(6 << 20);
-    pub const UIViewAnimationOptionTransitionFlipFromBottom: Self = Self(7 << 20);
-    pub const UIViewAnimationOptionPreferredFramesPerSecondDefault: Self = Self(0 << 24);
-    pub const UIViewAnimationOptionPreferredFramesPerSecond60: Self = Self(3 << 24);
-    pub const UIViewAnimationOptionPreferredFramesPerSecond30: Self = Self(7 << 24);
+bitflags::bitflags! {
+    impl UIViewAnimationOptions: NSUInteger {
+        const UIViewAnimationOptionLayoutSubviews = 1<<0;
+        const UIViewAnimationOptionAllowUserInteraction = 1<<1;
+        const UIViewAnimationOptionBeginFromCurrentState = 1<<2;
+        const UIViewAnimationOptionRepeat = 1<<3;
+        const UIViewAnimationOptionAutoreverse = 1<<4;
+        const UIViewAnimationOptionOverrideInheritedDuration = 1<<5;
+        const UIViewAnimationOptionOverrideInheritedCurve = 1<<6;
+        const UIViewAnimationOptionAllowAnimatedContent = 1<<7;
+        const UIViewAnimationOptionShowHideTransitionViews = 1<<8;
+        const UIViewAnimationOptionOverrideInheritedOptions = 1<<9;
+        const UIViewAnimationOptionCurveEaseInOut = 0<<16;
+        const UIViewAnimationOptionCurveEaseIn = 1<<16;
+        const UIViewAnimationOptionCurveEaseOut = 2<<16;
+        const UIViewAnimationOptionCurveLinear = 3<<16;
+        const UIViewAnimationOptionTransitionNone = 0<<20;
+        const UIViewAnimationOptionTransitionFlipFromLeft = 1<<20;
+        const UIViewAnimationOptionTransitionFlipFromRight = 2<<20;
+        const UIViewAnimationOptionTransitionCurlUp = 3<<20;
+        const UIViewAnimationOptionTransitionCurlDown = 4<<20;
+        const UIViewAnimationOptionTransitionCrossDissolve = 5<<20;
+        const UIViewAnimationOptionTransitionFlipFromTop = 6<<20;
+        const UIViewAnimationOptionTransitionFlipFromBottom = 7<<20;
+        const UIViewAnimationOptionPreferredFramesPerSecondDefault = 0<<24;
+        const UIViewAnimationOptionPreferredFramesPerSecond60 = 3<<24;
+        const UIViewAnimationOptionPreferredFramesPerSecond30 = 7<<24;
+    }
 }
 
 unsafe impl Encode for UIViewAnimationOptions {
@@ -169,26 +173,21 @@ unsafe impl RefEncode for UIViewAnimationOptions {
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct UIViewKeyframeAnimationOptions(pub NSUInteger);
-impl UIViewKeyframeAnimationOptions {
-    pub const UIViewKeyframeAnimationOptionLayoutSubviews: Self =
-        Self(UIViewAnimationOptions::UIViewAnimationOptionLayoutSubviews.0);
-    pub const UIViewKeyframeAnimationOptionAllowUserInteraction: Self =
-        Self(UIViewAnimationOptions::UIViewAnimationOptionAllowUserInteraction.0);
-    pub const UIViewKeyframeAnimationOptionBeginFromCurrentState: Self =
-        Self(UIViewAnimationOptions::UIViewAnimationOptionBeginFromCurrentState.0);
-    pub const UIViewKeyframeAnimationOptionRepeat: Self =
-        Self(UIViewAnimationOptions::UIViewAnimationOptionRepeat.0);
-    pub const UIViewKeyframeAnimationOptionAutoreverse: Self =
-        Self(UIViewAnimationOptions::UIViewAnimationOptionAutoreverse.0);
-    pub const UIViewKeyframeAnimationOptionOverrideInheritedDuration: Self =
-        Self(UIViewAnimationOptions::UIViewAnimationOptionOverrideInheritedDuration.0);
-    pub const UIViewKeyframeAnimationOptionOverrideInheritedOptions: Self =
-        Self(UIViewAnimationOptions::UIViewAnimationOptionOverrideInheritedOptions.0);
-    pub const UIViewKeyframeAnimationOptionCalculationModeLinear: Self = Self(0 << 10);
-    pub const UIViewKeyframeAnimationOptionCalculationModeDiscrete: Self = Self(1 << 10);
-    pub const UIViewKeyframeAnimationOptionCalculationModePaced: Self = Self(2 << 10);
-    pub const UIViewKeyframeAnimationOptionCalculationModeCubic: Self = Self(3 << 10);
-    pub const UIViewKeyframeAnimationOptionCalculationModeCubicPaced: Self = Self(4 << 10);
+bitflags::bitflags! {
+    impl UIViewKeyframeAnimationOptions: NSUInteger {
+        const UIViewKeyframeAnimationOptionLayoutSubviews = UIViewAnimationOptions::UIViewAnimationOptionLayoutSubviews.0;
+        const UIViewKeyframeAnimationOptionAllowUserInteraction = UIViewAnimationOptions::UIViewAnimationOptionAllowUserInteraction.0;
+        const UIViewKeyframeAnimationOptionBeginFromCurrentState = UIViewAnimationOptions::UIViewAnimationOptionBeginFromCurrentState.0;
+        const UIViewKeyframeAnimationOptionRepeat = UIViewAnimationOptions::UIViewAnimationOptionRepeat.0;
+        const UIViewKeyframeAnimationOptionAutoreverse = UIViewAnimationOptions::UIViewAnimationOptionAutoreverse.0;
+        const UIViewKeyframeAnimationOptionOverrideInheritedDuration = UIViewAnimationOptions::UIViewAnimationOptionOverrideInheritedDuration.0;
+        const UIViewKeyframeAnimationOptionOverrideInheritedOptions = UIViewAnimationOptions::UIViewAnimationOptionOverrideInheritedOptions.0;
+        const UIViewKeyframeAnimationOptionCalculationModeLinear = 0<<10;
+        const UIViewKeyframeAnimationOptionCalculationModeDiscrete = 1<<10;
+        const UIViewKeyframeAnimationOptionCalculationModePaced = 2<<10;
+        const UIViewKeyframeAnimationOptionCalculationModeCubic = 3<<10;
+        const UIViewKeyframeAnimationOptionCalculationModeCubicPaced = 4<<10;
+    }
 }
 
 unsafe impl Encode for UIViewKeyframeAnimationOptions {

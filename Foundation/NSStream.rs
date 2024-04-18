@@ -43,19 +43,21 @@ unsafe impl RefEncode for NSStreamStatus {
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSStreamEvent(pub NSUInteger);
-impl NSStreamEvent {
-    #[doc(alias = "NSStreamEventNone")]
-    pub const None: Self = Self(0);
-    #[doc(alias = "NSStreamEventOpenCompleted")]
-    pub const OpenCompleted: Self = Self(1 << 0);
-    #[doc(alias = "NSStreamEventHasBytesAvailable")]
-    pub const HasBytesAvailable: Self = Self(1 << 1);
-    #[doc(alias = "NSStreamEventHasSpaceAvailable")]
-    pub const HasSpaceAvailable: Self = Self(1 << 2);
-    #[doc(alias = "NSStreamEventErrorOccurred")]
-    pub const ErrorOccurred: Self = Self(1 << 3);
-    #[doc(alias = "NSStreamEventEndEncountered")]
-    pub const EndEncountered: Self = Self(1 << 4);
+bitflags::bitflags! {
+    impl NSStreamEvent: NSUInteger {
+        #[doc(alias = "NSStreamEventNone")]
+        const None = 0;
+        #[doc(alias = "NSStreamEventOpenCompleted")]
+        const OpenCompleted = 1<<0;
+        #[doc(alias = "NSStreamEventHasBytesAvailable")]
+        const HasBytesAvailable = 1<<1;
+        #[doc(alias = "NSStreamEventHasSpaceAvailable")]
+        const HasSpaceAvailable = 1<<2;
+        #[doc(alias = "NSStreamEventErrorOccurred")]
+        const ErrorOccurred = 1<<3;
+        #[doc(alias = "NSStreamEventEndEncountered")]
+        const EndEncountered = 1<<4;
+    }
 }
 
 unsafe impl Encode for NSStreamEvent {

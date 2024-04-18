@@ -49,44 +49,31 @@ unsafe impl Sync for NSEdgeInsets {}
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSAlignmentOptions(pub c_ulonglong);
-impl NSAlignmentOptions {
-    pub const NSAlignMinXInward: Self = Self(1 << 0);
-    pub const NSAlignMinYInward: Self = Self(1 << 1);
-    pub const NSAlignMaxXInward: Self = Self(1 << 2);
-    pub const NSAlignMaxYInward: Self = Self(1 << 3);
-    pub const NSAlignWidthInward: Self = Self(1 << 4);
-    pub const NSAlignHeightInward: Self = Self(1 << 5);
-    pub const NSAlignMinXOutward: Self = Self(1 << 8);
-    pub const NSAlignMinYOutward: Self = Self(1 << 9);
-    pub const NSAlignMaxXOutward: Self = Self(1 << 10);
-    pub const NSAlignMaxYOutward: Self = Self(1 << 11);
-    pub const NSAlignWidthOutward: Self = Self(1 << 12);
-    pub const NSAlignHeightOutward: Self = Self(1 << 13);
-    pub const NSAlignMinXNearest: Self = Self(1 << 16);
-    pub const NSAlignMinYNearest: Self = Self(1 << 17);
-    pub const NSAlignMaxXNearest: Self = Self(1 << 18);
-    pub const NSAlignMaxYNearest: Self = Self(1 << 19);
-    pub const NSAlignWidthNearest: Self = Self(1 << 20);
-    pub const NSAlignHeightNearest: Self = Self(1 << 21);
-    pub const NSAlignRectFlipped: Self = Self(1 << 63);
-    pub const NSAlignAllEdgesInward: Self = Self(
-        NSAlignmentOptions::NSAlignMinXInward.0
-            | NSAlignmentOptions::NSAlignMaxXInward.0
-            | NSAlignmentOptions::NSAlignMinYInward.0
-            | NSAlignmentOptions::NSAlignMaxYInward.0,
-    );
-    pub const NSAlignAllEdgesOutward: Self = Self(
-        NSAlignmentOptions::NSAlignMinXOutward.0
-            | NSAlignmentOptions::NSAlignMaxXOutward.0
-            | NSAlignmentOptions::NSAlignMinYOutward.0
-            | NSAlignmentOptions::NSAlignMaxYOutward.0,
-    );
-    pub const NSAlignAllEdgesNearest: Self = Self(
-        NSAlignmentOptions::NSAlignMinXNearest.0
-            | NSAlignmentOptions::NSAlignMaxXNearest.0
-            | NSAlignmentOptions::NSAlignMinYNearest.0
-            | NSAlignmentOptions::NSAlignMaxYNearest.0,
-    );
+bitflags::bitflags! {
+    impl NSAlignmentOptions: c_ulonglong {
+        const NSAlignMinXInward = 1<<0;
+        const NSAlignMinYInward = 1<<1;
+        const NSAlignMaxXInward = 1<<2;
+        const NSAlignMaxYInward = 1<<3;
+        const NSAlignWidthInward = 1<<4;
+        const NSAlignHeightInward = 1<<5;
+        const NSAlignMinXOutward = 1<<8;
+        const NSAlignMinYOutward = 1<<9;
+        const NSAlignMaxXOutward = 1<<10;
+        const NSAlignMaxYOutward = 1<<11;
+        const NSAlignWidthOutward = 1<<12;
+        const NSAlignHeightOutward = 1<<13;
+        const NSAlignMinXNearest = 1<<16;
+        const NSAlignMinYNearest = 1<<17;
+        const NSAlignMaxXNearest = 1<<18;
+        const NSAlignMaxYNearest = 1<<19;
+        const NSAlignWidthNearest = 1<<20;
+        const NSAlignHeightNearest = 1<<21;
+        const NSAlignRectFlipped = 1<<63;
+        const NSAlignAllEdgesInward = NSAlignmentOptions::NSAlignMinXInward.0|NSAlignmentOptions::NSAlignMaxXInward.0|NSAlignmentOptions::NSAlignMinYInward.0|NSAlignmentOptions::NSAlignMaxYInward.0;
+        const NSAlignAllEdgesOutward = NSAlignmentOptions::NSAlignMinXOutward.0|NSAlignmentOptions::NSAlignMaxXOutward.0|NSAlignmentOptions::NSAlignMinYOutward.0|NSAlignmentOptions::NSAlignMaxYOutward.0;
+        const NSAlignAllEdgesNearest = NSAlignmentOptions::NSAlignMinXNearest.0|NSAlignmentOptions::NSAlignMaxXNearest.0|NSAlignmentOptions::NSAlignMinYNearest.0|NSAlignmentOptions::NSAlignMaxYNearest.0;
+    }
 }
 
 unsafe impl Encode for NSAlignmentOptions {

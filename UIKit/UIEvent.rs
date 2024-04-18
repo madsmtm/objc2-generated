@@ -77,11 +77,13 @@ unsafe impl RefEncode for UIEventSubtype {
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct UIEventButtonMask(pub NSInteger);
-impl UIEventButtonMask {
-    #[doc(alias = "UIEventButtonMaskPrimary")]
-    pub const Primary: Self = Self(1 << 0);
-    #[doc(alias = "UIEventButtonMaskSecondary")]
-    pub const Secondary: Self = Self(1 << 1);
+bitflags::bitflags! {
+    impl UIEventButtonMask: NSInteger {
+        #[doc(alias = "UIEventButtonMaskPrimary")]
+        const Primary = 1<<0;
+        #[doc(alias = "UIEventButtonMaskSecondary")]
+        const Secondary = 1<<1;
+    }
 }
 
 unsafe impl Encode for UIEventButtonMask {

@@ -942,16 +942,17 @@ extern "C" {
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct UIAccessibilityHearingDeviceEar(pub NSUInteger);
-impl UIAccessibilityHearingDeviceEar {
-    #[doc(alias = "UIAccessibilityHearingDeviceEarNone")]
-    pub const None: Self = Self(0);
-    #[doc(alias = "UIAccessibilityHearingDeviceEarLeft")]
-    pub const Left: Self = Self(1 << 1);
-    #[doc(alias = "UIAccessibilityHearingDeviceEarRight")]
-    pub const Right: Self = Self(1 << 2);
-    #[doc(alias = "UIAccessibilityHearingDeviceEarBoth")]
-    pub const Both: Self =
-        Self(UIAccessibilityHearingDeviceEar::Left.0 | UIAccessibilityHearingDeviceEar::Right.0);
+bitflags::bitflags! {
+    impl UIAccessibilityHearingDeviceEar: NSUInteger {
+        #[doc(alias = "UIAccessibilityHearingDeviceEarNone")]
+        const None = 0;
+        #[doc(alias = "UIAccessibilityHearingDeviceEarLeft")]
+        const Left = 1<<1;
+        #[doc(alias = "UIAccessibilityHearingDeviceEarRight")]
+        const Right = 1<<2;
+        #[doc(alias = "UIAccessibilityHearingDeviceEarBoth")]
+        const Both = UIAccessibilityHearingDeviceEar::Left.0|UIAccessibilityHearingDeviceEar::Right.0;
+    }
 }
 
 unsafe impl Encode for UIAccessibilityHearingDeviceEar {

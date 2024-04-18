@@ -87,19 +87,21 @@ unsafe impl RefEncode for MTLBlendOperation {
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MTLColorWriteMask(pub NSUInteger);
-impl MTLColorWriteMask {
-    #[doc(alias = "MTLColorWriteMaskNone")]
-    pub const None: Self = Self(0);
-    #[doc(alias = "MTLColorWriteMaskRed")]
-    pub const Red: Self = Self(0x1 << 3);
-    #[doc(alias = "MTLColorWriteMaskGreen")]
-    pub const Green: Self = Self(0x1 << 2);
-    #[doc(alias = "MTLColorWriteMaskBlue")]
-    pub const Blue: Self = Self(0x1 << 1);
-    #[doc(alias = "MTLColorWriteMaskAlpha")]
-    pub const Alpha: Self = Self(0x1 << 0);
-    #[doc(alias = "MTLColorWriteMaskAll")]
-    pub const All: Self = Self(0xf);
+bitflags::bitflags! {
+    impl MTLColorWriteMask: NSUInteger {
+        #[doc(alias = "MTLColorWriteMaskNone")]
+        const None = 0;
+        #[doc(alias = "MTLColorWriteMaskRed")]
+        const Red = 0x1<<3;
+        #[doc(alias = "MTLColorWriteMaskGreen")]
+        const Green = 0x1<<2;
+        #[doc(alias = "MTLColorWriteMaskBlue")]
+        const Blue = 0x1<<1;
+        #[doc(alias = "MTLColorWriteMaskAlpha")]
+        const Alpha = 0x1<<0;
+        #[doc(alias = "MTLColorWriteMaskAll")]
+        const All = 0xf;
+    }
 }
 
 unsafe impl Encode for MTLColorWriteMask {

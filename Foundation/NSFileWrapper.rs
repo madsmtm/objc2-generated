@@ -8,9 +8,11 @@ use crate::*;
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSFileWrapperReadingOptions(pub NSUInteger);
-impl NSFileWrapperReadingOptions {
-    pub const NSFileWrapperReadingImmediate: Self = Self(1 << 0);
-    pub const NSFileWrapperReadingWithoutMapping: Self = Self(1 << 1);
+bitflags::bitflags! {
+    impl NSFileWrapperReadingOptions: NSUInteger {
+        const NSFileWrapperReadingImmediate = 1<<0;
+        const NSFileWrapperReadingWithoutMapping = 1<<1;
+    }
 }
 
 unsafe impl Encode for NSFileWrapperReadingOptions {
@@ -25,9 +27,11 @@ unsafe impl RefEncode for NSFileWrapperReadingOptions {
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSFileWrapperWritingOptions(pub NSUInteger);
-impl NSFileWrapperWritingOptions {
-    pub const NSFileWrapperWritingAtomic: Self = Self(1 << 0);
-    pub const NSFileWrapperWritingWithNameUpdating: Self = Self(1 << 1);
+bitflags::bitflags! {
+    impl NSFileWrapperWritingOptions: NSUInteger {
+        const NSFileWrapperWritingAtomic = 1<<0;
+        const NSFileWrapperWritingWithNameUpdating = 1<<1;
+    }
 }
 
 unsafe impl Encode for NSFileWrapperWritingOptions {

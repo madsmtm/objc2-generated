@@ -8,16 +8,18 @@ use crate::*;
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSDataReadingOptions(pub NSUInteger);
-impl NSDataReadingOptions {
-    pub const NSDataReadingMappedIfSafe: Self = Self(1 << 0);
-    pub const NSDataReadingUncached: Self = Self(1 << 1);
-    pub const NSDataReadingMappedAlways: Self = Self(1 << 3);
-    #[deprecated]
-    pub const NSDataReadingMapped: Self = Self(NSDataReadingOptions::NSDataReadingMappedIfSafe.0);
-    #[deprecated]
-    pub const NSMappedRead: Self = Self(NSDataReadingOptions::NSDataReadingMapped.0);
-    #[deprecated]
-    pub const NSUncachedRead: Self = Self(NSDataReadingOptions::NSDataReadingUncached.0);
+bitflags::bitflags! {
+    impl NSDataReadingOptions: NSUInteger {
+        const NSDataReadingMappedIfSafe = 1<<0;
+        const NSDataReadingUncached = 1<<1;
+        const NSDataReadingMappedAlways = 1<<3;
+#[deprecated]
+        const NSDataReadingMapped = NSDataReadingOptions::NSDataReadingMappedIfSafe.0;
+#[deprecated]
+        const NSMappedRead = NSDataReadingOptions::NSDataReadingMapped.0;
+#[deprecated]
+        const NSUncachedRead = NSDataReadingOptions::NSDataReadingUncached.0;
+    }
 }
 
 unsafe impl Encode for NSDataReadingOptions {
@@ -32,18 +34,19 @@ unsafe impl RefEncode for NSDataReadingOptions {
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSDataWritingOptions(pub NSUInteger);
-impl NSDataWritingOptions {
-    pub const NSDataWritingAtomic: Self = Self(1 << 0);
-    pub const NSDataWritingWithoutOverwriting: Self = Self(1 << 1);
-    pub const NSDataWritingFileProtectionNone: Self = Self(0x10000000);
-    pub const NSDataWritingFileProtectionComplete: Self = Self(0x20000000);
-    pub const NSDataWritingFileProtectionCompleteUnlessOpen: Self = Self(0x30000000);
-    pub const NSDataWritingFileProtectionCompleteUntilFirstUserAuthentication: Self =
-        Self(0x40000000);
-    pub const NSDataWritingFileProtectionCompleteWhenUserInactive: Self = Self(0x50000000);
-    pub const NSDataWritingFileProtectionMask: Self = Self(0xf0000000);
-    #[deprecated]
-    pub const NSAtomicWrite: Self = Self(NSDataWritingOptions::NSDataWritingAtomic.0);
+bitflags::bitflags! {
+    impl NSDataWritingOptions: NSUInteger {
+        const NSDataWritingAtomic = 1<<0;
+        const NSDataWritingWithoutOverwriting = 1<<1;
+        const NSDataWritingFileProtectionNone = 0x10000000;
+        const NSDataWritingFileProtectionComplete = 0x20000000;
+        const NSDataWritingFileProtectionCompleteUnlessOpen = 0x30000000;
+        const NSDataWritingFileProtectionCompleteUntilFirstUserAuthentication = 0x40000000;
+        const NSDataWritingFileProtectionCompleteWhenUserInactive = 0x50000000;
+        const NSDataWritingFileProtectionMask = 0xf0000000;
+#[deprecated]
+        const NSAtomicWrite = NSDataWritingOptions::NSDataWritingAtomic.0;
+    }
 }
 
 unsafe impl Encode for NSDataWritingOptions {
@@ -58,9 +61,11 @@ unsafe impl RefEncode for NSDataWritingOptions {
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSDataSearchOptions(pub NSUInteger);
-impl NSDataSearchOptions {
-    pub const NSDataSearchBackwards: Self = Self(1 << 0);
-    pub const NSDataSearchAnchored: Self = Self(1 << 1);
+bitflags::bitflags! {
+    impl NSDataSearchOptions: NSUInteger {
+        const NSDataSearchBackwards = 1<<0;
+        const NSDataSearchAnchored = 1<<1;
+    }
 }
 
 unsafe impl Encode for NSDataSearchOptions {
@@ -75,11 +80,13 @@ unsafe impl RefEncode for NSDataSearchOptions {
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSDataBase64EncodingOptions(pub NSUInteger);
-impl NSDataBase64EncodingOptions {
-    pub const NSDataBase64Encoding64CharacterLineLength: Self = Self(1 << 0);
-    pub const NSDataBase64Encoding76CharacterLineLength: Self = Self(1 << 1);
-    pub const NSDataBase64EncodingEndLineWithCarriageReturn: Self = Self(1 << 4);
-    pub const NSDataBase64EncodingEndLineWithLineFeed: Self = Self(1 << 5);
+bitflags::bitflags! {
+    impl NSDataBase64EncodingOptions: NSUInteger {
+        const NSDataBase64Encoding64CharacterLineLength = 1<<0;
+        const NSDataBase64Encoding76CharacterLineLength = 1<<1;
+        const NSDataBase64EncodingEndLineWithCarriageReturn = 1<<4;
+        const NSDataBase64EncodingEndLineWithLineFeed = 1<<5;
+    }
 }
 
 unsafe impl Encode for NSDataBase64EncodingOptions {
@@ -94,8 +101,10 @@ unsafe impl RefEncode for NSDataBase64EncodingOptions {
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSDataBase64DecodingOptions(pub NSUInteger);
-impl NSDataBase64DecodingOptions {
-    pub const NSDataBase64DecodingIgnoreUnknownCharacters: Self = Self(1 << 0);
+bitflags::bitflags! {
+    impl NSDataBase64DecodingOptions: NSUInteger {
+        const NSDataBase64DecodingIgnoreUnknownCharacters = 1<<0;
+    }
 }
 
 unsafe impl Encode for NSDataBase64DecodingOptions {

@@ -28,11 +28,13 @@ unsafe impl RefEncode for WKUserInterfaceDirectionPolicy {
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct WKAudiovisualMediaTypes(pub NSUInteger);
-impl WKAudiovisualMediaTypes {
-    pub const WKAudiovisualMediaTypeNone: Self = Self(0);
-    pub const WKAudiovisualMediaTypeAudio: Self = Self(1 << 0);
-    pub const WKAudiovisualMediaTypeVideo: Self = Self(1 << 1);
-    pub const WKAudiovisualMediaTypeAll: Self = Self(NSUIntegerMax as _);
+bitflags::bitflags! {
+    impl WKAudiovisualMediaTypes: NSUInteger {
+        const WKAudiovisualMediaTypeNone = 0;
+        const WKAudiovisualMediaTypeAudio = 1<<0;
+        const WKAudiovisualMediaTypeVideo = 1<<1;
+        const WKAudiovisualMediaTypeAll = NSUIntegerMax as _;
+    }
 }
 
 unsafe impl Encode for WKAudiovisualMediaTypes {

@@ -287,12 +287,14 @@ extern_protocol!(
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSCloudKitSharingServiceOptions(pub NSUInteger);
-impl NSCloudKitSharingServiceOptions {
-    pub const NSCloudKitSharingServiceStandard: Self = Self(0);
-    pub const NSCloudKitSharingServiceAllowPublic: Self = Self(1 << 0);
-    pub const NSCloudKitSharingServiceAllowPrivate: Self = Self(1 << 1);
-    pub const NSCloudKitSharingServiceAllowReadOnly: Self = Self(1 << 4);
-    pub const NSCloudKitSharingServiceAllowReadWrite: Self = Self(1 << 5);
+bitflags::bitflags! {
+    impl NSCloudKitSharingServiceOptions: NSUInteger {
+        const NSCloudKitSharingServiceStandard = 0;
+        const NSCloudKitSharingServiceAllowPublic = 1<<0;
+        const NSCloudKitSharingServiceAllowPrivate = 1<<1;
+        const NSCloudKitSharingServiceAllowReadOnly = 1<<4;
+        const NSCloudKitSharingServiceAllowReadWrite = 1<<5;
+    }
 }
 
 unsafe impl Encode for NSCloudKitSharingServiceOptions {

@@ -9,17 +9,19 @@ use crate::*;
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CBCharacteristicProperties(pub NSUInteger);
-impl CBCharacteristicProperties {
-    pub const CBCharacteristicPropertyBroadcast: Self = Self(0x01);
-    pub const CBCharacteristicPropertyRead: Self = Self(0x02);
-    pub const CBCharacteristicPropertyWriteWithoutResponse: Self = Self(0x04);
-    pub const CBCharacteristicPropertyWrite: Self = Self(0x08);
-    pub const CBCharacteristicPropertyNotify: Self = Self(0x10);
-    pub const CBCharacteristicPropertyIndicate: Self = Self(0x20);
-    pub const CBCharacteristicPropertyAuthenticatedSignedWrites: Self = Self(0x40);
-    pub const CBCharacteristicPropertyExtendedProperties: Self = Self(0x80);
-    pub const CBCharacteristicPropertyNotifyEncryptionRequired: Self = Self(0x100);
-    pub const CBCharacteristicPropertyIndicateEncryptionRequired: Self = Self(0x200);
+bitflags::bitflags! {
+    impl CBCharacteristicProperties: NSUInteger {
+        const CBCharacteristicPropertyBroadcast = 0x01;
+        const CBCharacteristicPropertyRead = 0x02;
+        const CBCharacteristicPropertyWriteWithoutResponse = 0x04;
+        const CBCharacteristicPropertyWrite = 0x08;
+        const CBCharacteristicPropertyNotify = 0x10;
+        const CBCharacteristicPropertyIndicate = 0x20;
+        const CBCharacteristicPropertyAuthenticatedSignedWrites = 0x40;
+        const CBCharacteristicPropertyExtendedProperties = 0x80;
+        const CBCharacteristicPropertyNotifyEncryptionRequired = 0x100;
+        const CBCharacteristicPropertyIndicateEncryptionRequired = 0x200;
+    }
 }
 
 unsafe impl Encode for CBCharacteristicProperties {
@@ -94,15 +96,17 @@ extern_methods!(
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CBAttributePermissions(pub NSUInteger);
-impl CBAttributePermissions {
-    #[doc(alias = "CBAttributePermissionsReadable")]
-    pub const Readable: Self = Self(0x01);
-    #[doc(alias = "CBAttributePermissionsWriteable")]
-    pub const Writeable: Self = Self(0x02);
-    #[doc(alias = "CBAttributePermissionsReadEncryptionRequired")]
-    pub const ReadEncryptionRequired: Self = Self(0x04);
-    #[doc(alias = "CBAttributePermissionsWriteEncryptionRequired")]
-    pub const WriteEncryptionRequired: Self = Self(0x08);
+bitflags::bitflags! {
+    impl CBAttributePermissions: NSUInteger {
+        #[doc(alias = "CBAttributePermissionsReadable")]
+        const Readable = 0x01;
+        #[doc(alias = "CBAttributePermissionsWriteable")]
+        const Writeable = 0x02;
+        #[doc(alias = "CBAttributePermissionsReadEncryptionRequired")]
+        const ReadEncryptionRequired = 0x04;
+        #[doc(alias = "CBAttributePermissionsWriteEncryptionRequired")]
+        const WriteEncryptionRequired = 0x08;
+    }
 }
 
 unsafe impl Encode for CBAttributePermissions {

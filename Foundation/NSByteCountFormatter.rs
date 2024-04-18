@@ -8,18 +8,20 @@ use crate::*;
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSByteCountFormatterUnits(pub NSUInteger);
-impl NSByteCountFormatterUnits {
-    pub const NSByteCountFormatterUseDefault: Self = Self(0);
-    pub const NSByteCountFormatterUseBytes: Self = Self(1 << 0);
-    pub const NSByteCountFormatterUseKB: Self = Self(1 << 1);
-    pub const NSByteCountFormatterUseMB: Self = Self(1 << 2);
-    pub const NSByteCountFormatterUseGB: Self = Self(1 << 3);
-    pub const NSByteCountFormatterUseTB: Self = Self(1 << 4);
-    pub const NSByteCountFormatterUsePB: Self = Self(1 << 5);
-    pub const NSByteCountFormatterUseEB: Self = Self(1 << 6);
-    pub const NSByteCountFormatterUseZB: Self = Self(1 << 7);
-    pub const NSByteCountFormatterUseYBOrHigher: Self = Self(0x0FF << 8);
-    pub const NSByteCountFormatterUseAll: Self = Self(0x0FFFF);
+bitflags::bitflags! {
+    impl NSByteCountFormatterUnits: NSUInteger {
+        const NSByteCountFormatterUseDefault = 0;
+        const NSByteCountFormatterUseBytes = 1<<0;
+        const NSByteCountFormatterUseKB = 1<<1;
+        const NSByteCountFormatterUseMB = 1<<2;
+        const NSByteCountFormatterUseGB = 1<<3;
+        const NSByteCountFormatterUseTB = 1<<4;
+        const NSByteCountFormatterUsePB = 1<<5;
+        const NSByteCountFormatterUseEB = 1<<6;
+        const NSByteCountFormatterUseZB = 1<<7;
+        const NSByteCountFormatterUseYBOrHigher = 0x0FF<<8;
+        const NSByteCountFormatterUseAll = 0x0FFFF;
+    }
 }
 
 unsafe impl Encode for NSByteCountFormatterUnits {

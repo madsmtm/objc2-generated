@@ -9,16 +9,18 @@ use crate::*;
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct UIPrinterJobTypes(pub NSInteger);
-impl UIPrinterJobTypes {
-    pub const UIPrinterJobTypeUnknown: Self = Self(0);
-    pub const UIPrinterJobTypeDocument: Self = Self(1 << 0);
-    pub const UIPrinterJobTypeEnvelope: Self = Self(1 << 1);
-    pub const UIPrinterJobTypeLabel: Self = Self(1 << 2);
-    pub const UIPrinterJobTypePhoto: Self = Self(1 << 3);
-    pub const UIPrinterJobTypeReceipt: Self = Self(1 << 4);
-    pub const UIPrinterJobTypeRoll: Self = Self(1 << 5);
-    pub const UIPrinterJobTypeLargeFormat: Self = Self(1 << 6);
-    pub const UIPrinterJobTypePostcard: Self = Self(1 << 7);
+bitflags::bitflags! {
+    impl UIPrinterJobTypes: NSInteger {
+        const UIPrinterJobTypeUnknown = 0;
+        const UIPrinterJobTypeDocument = 1<<0;
+        const UIPrinterJobTypeEnvelope = 1<<1;
+        const UIPrinterJobTypeLabel = 1<<2;
+        const UIPrinterJobTypePhoto = 1<<3;
+        const UIPrinterJobTypeReceipt = 1<<4;
+        const UIPrinterJobTypeRoll = 1<<5;
+        const UIPrinterJobTypeLargeFormat = 1<<6;
+        const UIPrinterJobTypePostcard = 1<<7;
+    }
 }
 
 unsafe impl Encode for UIPrinterJobTypes {

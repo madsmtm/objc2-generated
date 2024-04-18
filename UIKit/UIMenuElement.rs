@@ -30,15 +30,17 @@ unsafe impl RefEncode for UIMenuElementState {
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct UIMenuElementAttributes(pub NSUInteger);
-impl UIMenuElementAttributes {
-    #[doc(alias = "UIMenuElementAttributesDisabled")]
-    pub const Disabled: Self = Self(1 << 0);
-    #[doc(alias = "UIMenuElementAttributesDestructive")]
-    pub const Destructive: Self = Self(1 << 1);
-    #[doc(alias = "UIMenuElementAttributesHidden")]
-    pub const Hidden: Self = Self(1 << 2);
-    #[doc(alias = "UIMenuElementAttributesKeepsMenuPresented")]
-    pub const KeepsMenuPresented: Self = Self(1 << 3);
+bitflags::bitflags! {
+    impl UIMenuElementAttributes: NSUInteger {
+        #[doc(alias = "UIMenuElementAttributesDisabled")]
+        const Disabled = 1<<0;
+        #[doc(alias = "UIMenuElementAttributesDestructive")]
+        const Destructive = 1<<1;
+        #[doc(alias = "UIMenuElementAttributesHidden")]
+        const Hidden = 1<<2;
+        #[doc(alias = "UIMenuElementAttributesKeepsMenuPresented")]
+        const KeepsMenuPresented = 1<<3;
+    }
 }
 
 unsafe impl Encode for UIMenuElementAttributes {

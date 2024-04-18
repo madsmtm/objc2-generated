@@ -11,30 +11,31 @@ pub type NSFontSymbolicTraits = u32;
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSFontDescriptorSymbolicTraits(pub u32);
-impl NSFontDescriptorSymbolicTraits {
-    pub const NSFontDescriptorTraitItalic: Self = Self(1 << 0);
-    pub const NSFontDescriptorTraitBold: Self = Self(1 << 1);
-    pub const NSFontDescriptorTraitExpanded: Self = Self(1 << 5);
-    pub const NSFontDescriptorTraitCondensed: Self = Self(1 << 6);
-    pub const NSFontDescriptorTraitMonoSpace: Self = Self(1 << 10);
-    pub const NSFontDescriptorTraitVertical: Self = Self(1 << 11);
-    pub const NSFontDescriptorTraitUIOptimized: Self = Self(1 << 12);
-    pub const NSFontDescriptorTraitTightLeading: Self = Self(1 << 15);
-    pub const NSFontDescriptorTraitLooseLeading: Self = Self(1 << 16);
-    pub const NSFontDescriptorTraitEmphasized: Self =
-        Self(NSFontDescriptorSymbolicTraits::NSFontDescriptorTraitBold.0);
-    pub const NSFontDescriptorClassMask: Self = Self(0xF0000000);
-    pub const NSFontDescriptorClassUnknown: Self = Self(0 << 28);
-    pub const NSFontDescriptorClassOldStyleSerifs: Self = Self(1 << 28);
-    pub const NSFontDescriptorClassTransitionalSerifs: Self = Self(2 << 28);
-    pub const NSFontDescriptorClassModernSerifs: Self = Self(3 << 28);
-    pub const NSFontDescriptorClassClarendonSerifs: Self = Self(4 << 28);
-    pub const NSFontDescriptorClassSlabSerifs: Self = Self(5 << 28);
-    pub const NSFontDescriptorClassFreeformSerifs: Self = Self(7 << 28);
-    pub const NSFontDescriptorClassSansSerif: Self = Self(8 << 28);
-    pub const NSFontDescriptorClassOrnamentals: Self = Self(9 << 28);
-    pub const NSFontDescriptorClassScripts: Self = Self(10 << 28);
-    pub const NSFontDescriptorClassSymbolic: Self = Self(12 << 28);
+bitflags::bitflags! {
+    impl NSFontDescriptorSymbolicTraits: u32 {
+        const NSFontDescriptorTraitItalic = 1<<0;
+        const NSFontDescriptorTraitBold = 1<<1;
+        const NSFontDescriptorTraitExpanded = 1<<5;
+        const NSFontDescriptorTraitCondensed = 1<<6;
+        const NSFontDescriptorTraitMonoSpace = 1<<10;
+        const NSFontDescriptorTraitVertical = 1<<11;
+        const NSFontDescriptorTraitUIOptimized = 1<<12;
+        const NSFontDescriptorTraitTightLeading = 1<<15;
+        const NSFontDescriptorTraitLooseLeading = 1<<16;
+        const NSFontDescriptorTraitEmphasized = NSFontDescriptorSymbolicTraits::NSFontDescriptorTraitBold.0;
+        const NSFontDescriptorClassMask = 0xF0000000;
+        const NSFontDescriptorClassUnknown = 0<<28;
+        const NSFontDescriptorClassOldStyleSerifs = 1<<28;
+        const NSFontDescriptorClassTransitionalSerifs = 2<<28;
+        const NSFontDescriptorClassModernSerifs = 3<<28;
+        const NSFontDescriptorClassClarendonSerifs = 4<<28;
+        const NSFontDescriptorClassSlabSerifs = 5<<28;
+        const NSFontDescriptorClassFreeformSerifs = 7<<28;
+        const NSFontDescriptorClassSansSerif = 8<<28;
+        const NSFontDescriptorClassOrnamentals = 9<<28;
+        const NSFontDescriptorClassScripts = 10<<28;
+        const NSFontDescriptorClassSymbolic = 12<<28;
+    }
 }
 
 unsafe impl Encode for NSFontDescriptorSymbolicTraits {

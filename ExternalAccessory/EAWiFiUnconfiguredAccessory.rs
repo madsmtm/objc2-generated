@@ -9,10 +9,12 @@ use crate::*;
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct EAWiFiUnconfiguredAccessoryProperties(pub NSUInteger);
-impl EAWiFiUnconfiguredAccessoryProperties {
-    pub const EAWiFiUnconfiguredAccessoryPropertySupportsAirPlay: Self = Self(1 << 0);
-    pub const EAWiFiUnconfiguredAccessoryPropertySupportsAirPrint: Self = Self(1 << 1);
-    pub const EAWiFiUnconfiguredAccessoryPropertySupportsHomeKit: Self = Self(1 << 2);
+bitflags::bitflags! {
+    impl EAWiFiUnconfiguredAccessoryProperties: NSUInteger {
+        const EAWiFiUnconfiguredAccessoryPropertySupportsAirPlay = 1<<0;
+        const EAWiFiUnconfiguredAccessoryPropertySupportsAirPrint = 1<<1;
+        const EAWiFiUnconfiguredAccessoryPropertySupportsHomeKit = 1<<2;
+    }
 }
 
 unsafe impl Encode for EAWiFiUnconfiguredAccessoryProperties {

@@ -30,11 +30,13 @@ unsafe impl RefEncode for NSTextInsertionIndicatorDisplayMode {
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSTextInsertionIndicatorAutomaticModeOptions(pub NSInteger);
-impl NSTextInsertionIndicatorAutomaticModeOptions {
-    #[doc(alias = "NSTextInsertionIndicatorAutomaticModeOptionsShowEffectsView")]
-    pub const ShowEffectsView: Self = Self(1 << 0);
-    #[doc(alias = "NSTextInsertionIndicatorAutomaticModeOptionsShowWhileTracking")]
-    pub const ShowWhileTracking: Self = Self(1 << 1);
+bitflags::bitflags! {
+    impl NSTextInsertionIndicatorAutomaticModeOptions: NSInteger {
+        #[doc(alias = "NSTextInsertionIndicatorAutomaticModeOptionsShowEffectsView")]
+        const ShowEffectsView = 1<<0;
+        #[doc(alias = "NSTextInsertionIndicatorAutomaticModeOptionsShowWhileTracking")]
+        const ShowWhileTracking = 1<<1;
+    }
 }
 
 unsafe impl Encode for NSTextInsertionIndicatorAutomaticModeOptions {

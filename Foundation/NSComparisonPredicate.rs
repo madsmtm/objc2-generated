@@ -8,10 +8,12 @@ use crate::*;
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSComparisonPredicateOptions(pub NSUInteger);
-impl NSComparisonPredicateOptions {
-    pub const NSCaseInsensitivePredicateOption: Self = Self(0x01);
-    pub const NSDiacriticInsensitivePredicateOption: Self = Self(0x02);
-    pub const NSNormalizedPredicateOption: Self = Self(0x04);
+bitflags::bitflags! {
+    impl NSComparisonPredicateOptions: NSUInteger {
+        const NSCaseInsensitivePredicateOption = 0x01;
+        const NSDiacriticInsensitivePredicateOption = 0x02;
+        const NSNormalizedPredicateOption = 0x04;
+    }
 }
 
 unsafe impl Encode for NSComparisonPredicateOptions {

@@ -26,12 +26,14 @@ unsafe impl RefEncode for NSPostingStyle {
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSNotificationCoalescing(pub NSUInteger);
-impl NSNotificationCoalescing {
-    pub const NSNotificationNoCoalescing: Self = Self(0);
-    #[doc(alias = "NSNotificationCoalescingOnName")]
-    pub const OnName: Self = Self(1);
-    #[doc(alias = "NSNotificationCoalescingOnSender")]
-    pub const OnSender: Self = Self(2);
+bitflags::bitflags! {
+    impl NSNotificationCoalescing: NSUInteger {
+        const NSNotificationNoCoalescing = 0;
+        #[doc(alias = "NSNotificationCoalescingOnName")]
+        const OnName = 1;
+        #[doc(alias = "NSNotificationCoalescingOnSender")]
+        const OnSender = 2;
+    }
 }
 
 unsafe impl Encode for NSNotificationCoalescing {

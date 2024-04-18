@@ -72,15 +72,17 @@ extern_methods!(
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CKQuerySubscriptionOptions(pub NSUInteger);
-impl CKQuerySubscriptionOptions {
-    #[doc(alias = "CKQuerySubscriptionOptionsFiresOnRecordCreation")]
-    pub const FiresOnRecordCreation: Self = Self(1 << 0);
-    #[doc(alias = "CKQuerySubscriptionOptionsFiresOnRecordUpdate")]
-    pub const FiresOnRecordUpdate: Self = Self(1 << 1);
-    #[doc(alias = "CKQuerySubscriptionOptionsFiresOnRecordDeletion")]
-    pub const FiresOnRecordDeletion: Self = Self(1 << 2);
-    #[doc(alias = "CKQuerySubscriptionOptionsFiresOnce")]
-    pub const FiresOnce: Self = Self(1 << 3);
+bitflags::bitflags! {
+    impl CKQuerySubscriptionOptions: NSUInteger {
+        #[doc(alias = "CKQuerySubscriptionOptionsFiresOnRecordCreation")]
+        const FiresOnRecordCreation = 1<<0;
+        #[doc(alias = "CKQuerySubscriptionOptionsFiresOnRecordUpdate")]
+        const FiresOnRecordUpdate = 1<<1;
+        #[doc(alias = "CKQuerySubscriptionOptionsFiresOnRecordDeletion")]
+        const FiresOnRecordDeletion = 1<<2;
+        #[doc(alias = "CKQuerySubscriptionOptionsFiresOnce")]
+        const FiresOnce = 1<<3;
+    }
 }
 
 unsafe impl Encode for CKQuerySubscriptionOptions {

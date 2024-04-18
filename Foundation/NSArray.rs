@@ -64,10 +64,12 @@ impl<ObjectType: Message> DefaultId for NSArray<ObjectType> {
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSBinarySearchingOptions(pub NSUInteger);
-impl NSBinarySearchingOptions {
-    pub const NSBinarySearchingFirstEqual: Self = Self(1 << 8);
-    pub const NSBinarySearchingLastEqual: Self = Self(1 << 9);
-    pub const NSBinarySearchingInsertionIndex: Self = Self(1 << 10);
+bitflags::bitflags! {
+    impl NSBinarySearchingOptions: NSUInteger {
+        const NSBinarySearchingFirstEqual = 1<<8;
+        const NSBinarySearchingLastEqual = 1<<9;
+        const NSBinarySearchingInsertionIndex = 1<<10;
+    }
 }
 
 unsafe impl Encode for NSBinarySearchingOptions {

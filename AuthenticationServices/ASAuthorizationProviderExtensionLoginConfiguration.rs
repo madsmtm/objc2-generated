@@ -103,25 +103,19 @@ unsafe impl RefEncode for ASAuthorizationProviderExtensionFederationType {
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct ASAuthorizationProviderExtensionUserSecureEnclaveKeyBiometricPolicy(pub NSUInteger);
-impl ASAuthorizationProviderExtensionUserSecureEnclaveKeyBiometricPolicy {
-    #[doc(alias = "ASAuthorizationProviderExtensionUserSecureEnclaveKeyBiometricPolicyNone")]
-    pub const None: Self = Self(0);
-    #[doc(
-        alias = "ASAuthorizationProviderExtensionUserSecureEnclaveKeyBiometricPolicyTouchIDOrWatchCurrentSet"
-    )]
-    pub const TouchIDOrWatchCurrentSet: Self = Self(1 << 0);
-    #[doc(
-        alias = "ASAuthorizationProviderExtensionUserSecureEnclaveKeyBiometricPolicyTouchIDOrWatchAny"
-    )]
-    pub const TouchIDOrWatchAny: Self = Self(1 << 1);
-    #[doc(
-        alias = "ASAuthorizationProviderExtensionUserSecureEnclaveKeyBiometricPolicyReuseDuringUnlock"
-    )]
-    pub const ReuseDuringUnlock: Self = Self(1 << 2);
-    #[doc(
-        alias = "ASAuthorizationProviderExtensionUserSecureEnclaveKeyBiometricPolicyPasswordFallback"
-    )]
-    pub const PasswordFallback: Self = Self(1 << 3);
+bitflags::bitflags! {
+    impl ASAuthorizationProviderExtensionUserSecureEnclaveKeyBiometricPolicy: NSUInteger {
+        #[doc(alias = "ASAuthorizationProviderExtensionUserSecureEnclaveKeyBiometricPolicyNone")]
+        const None = 0;
+        #[doc(alias = "ASAuthorizationProviderExtensionUserSecureEnclaveKeyBiometricPolicyTouchIDOrWatchCurrentSet")]
+        const TouchIDOrWatchCurrentSet = 1<<0;
+        #[doc(alias = "ASAuthorizationProviderExtensionUserSecureEnclaveKeyBiometricPolicyTouchIDOrWatchAny")]
+        const TouchIDOrWatchAny = 1<<1;
+        #[doc(alias = "ASAuthorizationProviderExtensionUserSecureEnclaveKeyBiometricPolicyReuseDuringUnlock")]
+        const ReuseDuringUnlock = 1<<2;
+        #[doc(alias = "ASAuthorizationProviderExtensionUserSecureEnclaveKeyBiometricPolicyPasswordFallback")]
+        const PasswordFallback = 1<<3;
+    }
 }
 
 unsafe impl Encode for ASAuthorizationProviderExtensionUserSecureEnclaveKeyBiometricPolicy {

@@ -11,14 +11,16 @@ use crate::*;
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSAutoresizingMaskOptions(pub NSUInteger);
-impl NSAutoresizingMaskOptions {
-    pub const NSViewNotSizable: Self = Self(0);
-    pub const NSViewMinXMargin: Self = Self(1);
-    pub const NSViewWidthSizable: Self = Self(2);
-    pub const NSViewMaxXMargin: Self = Self(4);
-    pub const NSViewMinYMargin: Self = Self(8);
-    pub const NSViewHeightSizable: Self = Self(16);
-    pub const NSViewMaxYMargin: Self = Self(32);
+bitflags::bitflags! {
+    impl NSAutoresizingMaskOptions: NSUInteger {
+        const NSViewNotSizable = 0;
+        const NSViewMinXMargin = 1;
+        const NSViewWidthSizable = 2;
+        const NSViewMaxXMargin = 4;
+        const NSViewMinYMargin = 8;
+        const NSViewHeightSizable = 16;
+        const NSViewMaxYMargin = 32;
+    }
 }
 
 unsafe impl Encode for NSAutoresizingMaskOptions {

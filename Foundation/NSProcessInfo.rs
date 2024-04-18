@@ -165,25 +165,20 @@ extern_methods!(
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSActivityOptions(pub u64);
-impl NSActivityOptions {
-    pub const NSActivityIdleDisplaySleepDisabled: Self = Self(1 << 40);
-    pub const NSActivityIdleSystemSleepDisabled: Self = Self(1 << 20);
-    pub const NSActivitySuddenTerminationDisabled: Self = Self(1 << 14);
-    pub const NSActivityAutomaticTerminationDisabled: Self = Self(1 << 15);
-    pub const NSActivityAnimationTrackingEnabled: Self = Self(1 << 45);
-    pub const NSActivityTrackingEnabled: Self = Self(1 << 46);
-    pub const NSActivityUserInitiated: Self =
-        Self(0x00FFFFFF | NSActivityOptions::NSActivityIdleSystemSleepDisabled.0);
-    pub const NSActivityUserInitiatedAllowingIdleSystemSleep: Self = Self(
-        NSActivityOptions::NSActivityUserInitiated.0
-            & !NSActivityOptions::NSActivityIdleSystemSleepDisabled.0,
-    );
-    pub const NSActivityBackground: Self = Self(0x000000FF);
-    pub const NSActivityLatencyCritical: Self = Self(0xFF00000000);
-    pub const NSActivityUserInteractive: Self = Self(
-        NSActivityOptions::NSActivityUserInitiated.0
-            | NSActivityOptions::NSActivityLatencyCritical.0,
-    );
+bitflags::bitflags! {
+    impl NSActivityOptions: u64 {
+        const NSActivityIdleDisplaySleepDisabled = 1<<40;
+        const NSActivityIdleSystemSleepDisabled = 1<<20;
+        const NSActivitySuddenTerminationDisabled = 1<<14;
+        const NSActivityAutomaticTerminationDisabled = 1<<15;
+        const NSActivityAnimationTrackingEnabled = 1<<45;
+        const NSActivityTrackingEnabled = 1<<46;
+        const NSActivityUserInitiated = 0x00FFFFFF|NSActivityOptions::NSActivityIdleSystemSleepDisabled.0;
+        const NSActivityUserInitiatedAllowingIdleSystemSleep = NSActivityOptions::NSActivityUserInitiated.0&!NSActivityOptions::NSActivityIdleSystemSleepDisabled.0;
+        const NSActivityBackground = 0x000000FF;
+        const NSActivityLatencyCritical = 0xFF00000000;
+        const NSActivityUserInteractive = NSActivityOptions::NSActivityUserInitiated.0|NSActivityOptions::NSActivityLatencyCritical.0;
+    }
 }
 
 unsafe impl Encode for NSActivityOptions {

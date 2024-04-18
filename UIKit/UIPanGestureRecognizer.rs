@@ -28,13 +28,15 @@ unsafe impl RefEncode for UIScrollType {
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct UIScrollTypeMask(pub NSInteger);
-impl UIScrollTypeMask {
-    #[doc(alias = "UIScrollTypeMaskDiscrete")]
-    pub const Discrete: Self = Self(1 << UIScrollType::Discrete.0);
-    #[doc(alias = "UIScrollTypeMaskContinuous")]
-    pub const Continuous: Self = Self(1 << UIScrollType::Continuous.0);
-    #[doc(alias = "UIScrollTypeMaskAll")]
-    pub const All: Self = Self(UIScrollTypeMask::Discrete.0 | UIScrollTypeMask::Continuous.0);
+bitflags::bitflags! {
+    impl UIScrollTypeMask: NSInteger {
+        #[doc(alias = "UIScrollTypeMaskDiscrete")]
+        const Discrete = 1<<UIScrollType::Discrete.0;
+        #[doc(alias = "UIScrollTypeMaskContinuous")]
+        const Continuous = 1<<UIScrollType::Continuous.0;
+        #[doc(alias = "UIScrollTypeMaskAll")]
+        const All = UIScrollTypeMask::Discrete.0|UIScrollTypeMask::Continuous.0;
+    }
 }
 
 unsafe impl Encode for UIScrollTypeMask {

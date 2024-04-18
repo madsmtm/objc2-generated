@@ -35,13 +35,15 @@ unsafe impl RefEncode for ASCredentialIdentityStoreErrorCode {
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct ASCredentialIdentityTypes(pub NSUInteger);
-impl ASCredentialIdentityTypes {
-    #[doc(alias = "ASCredentialIdentityTypesAll")]
-    pub const All: Self = Self(0);
-    #[doc(alias = "ASCredentialIdentityTypesPassword")]
-    pub const Password: Self = Self(1);
-    #[doc(alias = "ASCredentialIdentityTypesPasskey")]
-    pub const Passkey: Self = Self(1 << 1);
+bitflags::bitflags! {
+    impl ASCredentialIdentityTypes: NSUInteger {
+        #[doc(alias = "ASCredentialIdentityTypesAll")]
+        const All = 0;
+        #[doc(alias = "ASCredentialIdentityTypesPassword")]
+        const Password = 1;
+        #[doc(alias = "ASCredentialIdentityTypesPasskey")]
+        const Passkey = 1<<1;
+    }
 }
 
 unsafe impl Encode for ASCredentialIdentityTypes {

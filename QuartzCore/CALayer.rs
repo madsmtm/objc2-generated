@@ -21,14 +21,16 @@ pub type CALayerCornerCurve = NSString;
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CAAutoresizingMask(pub c_uint);
-impl CAAutoresizingMask {
-    pub const kCALayerNotSizable: Self = Self(0);
-    pub const kCALayerMinXMargin: Self = Self(1 << 0);
-    pub const kCALayerWidthSizable: Self = Self(1 << 1);
-    pub const kCALayerMaxXMargin: Self = Self(1 << 2);
-    pub const kCALayerMinYMargin: Self = Self(1 << 3);
-    pub const kCALayerHeightSizable: Self = Self(1 << 4);
-    pub const kCALayerMaxYMargin: Self = Self(1 << 5);
+bitflags::bitflags! {
+    impl CAAutoresizingMask: c_uint {
+        const kCALayerNotSizable = 0;
+        const kCALayerMinXMargin = 1<<0;
+        const kCALayerWidthSizable = 1<<1;
+        const kCALayerMaxXMargin = 1<<2;
+        const kCALayerMinYMargin = 1<<3;
+        const kCALayerHeightSizable = 1<<4;
+        const kCALayerMaxYMargin = 1<<5;
+    }
 }
 
 unsafe impl Encode for CAAutoresizingMask {
@@ -43,11 +45,13 @@ unsafe impl RefEncode for CAAutoresizingMask {
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CAEdgeAntialiasingMask(pub c_uint);
-impl CAEdgeAntialiasingMask {
-    pub const kCALayerLeftEdge: Self = Self(1 << 0);
-    pub const kCALayerRightEdge: Self = Self(1 << 1);
-    pub const kCALayerBottomEdge: Self = Self(1 << 2);
-    pub const kCALayerTopEdge: Self = Self(1 << 3);
+bitflags::bitflags! {
+    impl CAEdgeAntialiasingMask: c_uint {
+        const kCALayerLeftEdge = 1<<0;
+        const kCALayerRightEdge = 1<<1;
+        const kCALayerBottomEdge = 1<<2;
+        const kCALayerTopEdge = 1<<3;
+    }
 }
 
 unsafe impl Encode for CAEdgeAntialiasingMask {
@@ -62,11 +66,13 @@ unsafe impl RefEncode for CAEdgeAntialiasingMask {
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CACornerMask(pub NSUInteger);
-impl CACornerMask {
-    pub const kCALayerMinXMinYCorner: Self = Self(1 << 0);
-    pub const kCALayerMaxXMinYCorner: Self = Self(1 << 1);
-    pub const kCALayerMinXMaxYCorner: Self = Self(1 << 2);
-    pub const kCALayerMaxXMaxYCorner: Self = Self(1 << 3);
+bitflags::bitflags! {
+    impl CACornerMask: NSUInteger {
+        const kCALayerMinXMinYCorner = 1<<0;
+        const kCALayerMaxXMinYCorner = 1<<1;
+        const kCALayerMinXMaxYCorner = 1<<2;
+        const kCALayerMaxXMaxYCorner = 1<<3;
+    }
 }
 
 unsafe impl Encode for CACornerMask {

@@ -33,13 +33,15 @@ unsafe impl RefEncode for MKSearchCompletionFilterType {
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MKLocalSearchCompleterResultType(pub NSUInteger);
-impl MKLocalSearchCompleterResultType {
-    #[doc(alias = "MKLocalSearchCompleterResultTypeAddress")]
-    pub const Address: Self = Self(1 << 0);
-    #[doc(alias = "MKLocalSearchCompleterResultTypePointOfInterest")]
-    pub const PointOfInterest: Self = Self(1 << 1);
-    #[doc(alias = "MKLocalSearchCompleterResultTypeQuery")]
-    pub const Query: Self = Self(1 << 2);
+bitflags::bitflags! {
+    impl MKLocalSearchCompleterResultType: NSUInteger {
+        #[doc(alias = "MKLocalSearchCompleterResultTypeAddress")]
+        const Address = 1<<0;
+        #[doc(alias = "MKLocalSearchCompleterResultTypePointOfInterest")]
+        const PointOfInterest = 1<<1;
+        #[doc(alias = "MKLocalSearchCompleterResultTypeQuery")]
+        const Query = 1<<2;
+    }
 }
 
 unsafe impl Encode for MKLocalSearchCompleterResultType {

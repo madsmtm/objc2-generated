@@ -139,10 +139,12 @@ unsafe impl RefEncode for UITableViewCellAccessoryType {
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct UITableViewCellStateMask(pub NSUInteger);
-impl UITableViewCellStateMask {
-    pub const UITableViewCellStateDefaultMask: Self = Self(0);
-    pub const UITableViewCellStateShowingEditControlMask: Self = Self(1 << 0);
-    pub const UITableViewCellStateShowingDeleteConfirmationMask: Self = Self(1 << 1);
+bitflags::bitflags! {
+    impl UITableViewCellStateMask: NSUInteger {
+        const UITableViewCellStateDefaultMask = 0;
+        const UITableViewCellStateShowingEditControlMask = 1<<0;
+        const UITableViewCellStateShowingDeleteConfirmationMask = 1<<1;
+    }
 }
 
 unsafe impl Encode for UITableViewCellStateMask {

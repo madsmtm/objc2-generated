@@ -206,10 +206,12 @@ unsafe impl RefEncode for UIAccessibilityContainerType {
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct UIAccessibilityDirectTouchOptions(pub NSUInteger);
-impl UIAccessibilityDirectTouchOptions {
-    pub const UIAccessibilityDirectTouchOptionNone: Self = Self(0);
-    pub const UIAccessibilityDirectTouchOptionSilentOnTouch: Self = Self(1 << 0);
-    pub const UIAccessibilityDirectTouchOptionRequiresActivation: Self = Self(1 << 1);
+bitflags::bitflags! {
+    impl UIAccessibilityDirectTouchOptions: NSUInteger {
+        const UIAccessibilityDirectTouchOptionNone = 0;
+        const UIAccessibilityDirectTouchOptionSilentOnTouch = 1<<0;
+        const UIAccessibilityDirectTouchOptionRequiresActivation = 1<<1;
+    }
 }
 
 unsafe impl Encode for UIAccessibilityDirectTouchOptions {

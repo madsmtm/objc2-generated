@@ -9,16 +9,15 @@ use crate::*;
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CKSharingParticipantAccessOption(pub NSUInteger);
-impl CKSharingParticipantAccessOption {
-    #[doc(alias = "CKSharingParticipantAccessOptionAnyoneWithLink")]
-    pub const AnyoneWithLink: Self = Self(1 << 0);
-    #[doc(alias = "CKSharingParticipantAccessOptionSpecifiedRecipientsOnly")]
-    pub const SpecifiedRecipientsOnly: Self = Self(1 << 1);
-    #[doc(alias = "CKSharingParticipantAccessOptionAny")]
-    pub const Any: Self = Self(
-        CKSharingParticipantAccessOption::AnyoneWithLink.0
-            | CKSharingParticipantAccessOption::SpecifiedRecipientsOnly.0,
-    );
+bitflags::bitflags! {
+    impl CKSharingParticipantAccessOption: NSUInteger {
+        #[doc(alias = "CKSharingParticipantAccessOptionAnyoneWithLink")]
+        const AnyoneWithLink = 1<<0;
+        #[doc(alias = "CKSharingParticipantAccessOptionSpecifiedRecipientsOnly")]
+        const SpecifiedRecipientsOnly = 1<<1;
+        #[doc(alias = "CKSharingParticipantAccessOptionAny")]
+        const Any = CKSharingParticipantAccessOption::AnyoneWithLink.0|CKSharingParticipantAccessOption::SpecifiedRecipientsOnly.0;
+    }
 }
 
 unsafe impl Encode for CKSharingParticipantAccessOption {
@@ -33,16 +32,15 @@ unsafe impl RefEncode for CKSharingParticipantAccessOption {
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CKSharingParticipantPermissionOption(pub NSUInteger);
-impl CKSharingParticipantPermissionOption {
-    #[doc(alias = "CKSharingParticipantPermissionOptionReadOnly")]
-    pub const ReadOnly: Self = Self(1 << 0);
-    #[doc(alias = "CKSharingParticipantPermissionOptionReadWrite")]
-    pub const ReadWrite: Self = Self(1 << 1);
-    #[doc(alias = "CKSharingParticipantPermissionOptionAny")]
-    pub const Any: Self = Self(
-        CKSharingParticipantPermissionOption::ReadOnly.0
-            | CKSharingParticipantPermissionOption::ReadWrite.0,
-    );
+bitflags::bitflags! {
+    impl CKSharingParticipantPermissionOption: NSUInteger {
+        #[doc(alias = "CKSharingParticipantPermissionOptionReadOnly")]
+        const ReadOnly = 1<<0;
+        #[doc(alias = "CKSharingParticipantPermissionOptionReadWrite")]
+        const ReadWrite = 1<<1;
+        #[doc(alias = "CKSharingParticipantPermissionOptionAny")]
+        const Any = CKSharingParticipantPermissionOption::ReadOnly.0|CKSharingParticipantPermissionOption::ReadWrite.0;
+    }
 }
 
 unsafe impl Encode for CKSharingParticipantPermissionOption {

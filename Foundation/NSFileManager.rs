@@ -24,9 +24,11 @@ pub type NSFileProviderServiceName = NSString;
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSVolumeEnumerationOptions(pub NSUInteger);
-impl NSVolumeEnumerationOptions {
-    pub const NSVolumeEnumerationSkipHiddenVolumes: Self = Self(1 << 1);
-    pub const NSVolumeEnumerationProduceFileReferenceURLs: Self = Self(1 << 2);
+bitflags::bitflags! {
+    impl NSVolumeEnumerationOptions: NSUInteger {
+        const NSVolumeEnumerationSkipHiddenVolumes = 1<<1;
+        const NSVolumeEnumerationProduceFileReferenceURLs = 1<<2;
+    }
 }
 
 unsafe impl Encode for NSVolumeEnumerationOptions {
@@ -41,12 +43,14 @@ unsafe impl RefEncode for NSVolumeEnumerationOptions {
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSDirectoryEnumerationOptions(pub NSUInteger);
-impl NSDirectoryEnumerationOptions {
-    pub const NSDirectoryEnumerationSkipsSubdirectoryDescendants: Self = Self(1 << 0);
-    pub const NSDirectoryEnumerationSkipsPackageDescendants: Self = Self(1 << 1);
-    pub const NSDirectoryEnumerationSkipsHiddenFiles: Self = Self(1 << 2);
-    pub const NSDirectoryEnumerationIncludesDirectoriesPostOrder: Self = Self(1 << 3);
-    pub const NSDirectoryEnumerationProducesRelativePathURLs: Self = Self(1 << 4);
+bitflags::bitflags! {
+    impl NSDirectoryEnumerationOptions: NSUInteger {
+        const NSDirectoryEnumerationSkipsSubdirectoryDescendants = 1<<0;
+        const NSDirectoryEnumerationSkipsPackageDescendants = 1<<1;
+        const NSDirectoryEnumerationSkipsHiddenFiles = 1<<2;
+        const NSDirectoryEnumerationIncludesDirectoriesPostOrder = 1<<3;
+        const NSDirectoryEnumerationProducesRelativePathURLs = 1<<4;
+    }
 }
 
 unsafe impl Encode for NSDirectoryEnumerationOptions {
@@ -61,9 +65,11 @@ unsafe impl RefEncode for NSDirectoryEnumerationOptions {
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSFileManagerItemReplacementOptions(pub NSUInteger);
-impl NSFileManagerItemReplacementOptions {
-    pub const NSFileManagerItemReplacementUsingNewMetadataOnly: Self = Self(1 << 0);
-    pub const NSFileManagerItemReplacementWithoutDeletingBackupItem: Self = Self(1 << 1);
+bitflags::bitflags! {
+    impl NSFileManagerItemReplacementOptions: NSUInteger {
+        const NSFileManagerItemReplacementUsingNewMetadataOnly = 1<<0;
+        const NSFileManagerItemReplacementWithoutDeletingBackupItem = 1<<1;
+    }
 }
 
 unsafe impl Encode for NSFileManagerItemReplacementOptions {
@@ -99,9 +105,11 @@ unsafe impl RefEncode for NSURLRelationship {
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSFileManagerUnmountOptions(pub NSUInteger);
-impl NSFileManagerUnmountOptions {
-    pub const NSFileManagerUnmountAllPartitionsAndEjectDisk: Self = Self(1 << 0);
-    pub const NSFileManagerUnmountWithoutUI: Self = Self(1 << 1);
+bitflags::bitflags! {
+    impl NSFileManagerUnmountOptions: NSUInteger {
+        const NSFileManagerUnmountAllPartitionsAndEjectDisk = 1<<0;
+        const NSFileManagerUnmountWithoutUI = 1<<1;
+    }
 }
 
 unsafe impl Encode for NSFileManagerUnmountOptions {

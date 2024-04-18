@@ -42,16 +42,18 @@ unsafe impl RefEncode for NSColorPanelMode {
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSColorPanelOptions(pub NSUInteger);
-impl NSColorPanelOptions {
-    pub const NSColorPanelGrayModeMask: Self = Self(0x00000001);
-    pub const NSColorPanelRGBModeMask: Self = Self(0x00000002);
-    pub const NSColorPanelCMYKModeMask: Self = Self(0x00000004);
-    pub const NSColorPanelHSBModeMask: Self = Self(0x00000008);
-    pub const NSColorPanelCustomPaletteModeMask: Self = Self(0x00000010);
-    pub const NSColorPanelColorListModeMask: Self = Self(0x00000020);
-    pub const NSColorPanelWheelModeMask: Self = Self(0x00000040);
-    pub const NSColorPanelCrayonModeMask: Self = Self(0x00000080);
-    pub const NSColorPanelAllModesMask: Self = Self(0x0000ffff);
+bitflags::bitflags! {
+    impl NSColorPanelOptions: NSUInteger {
+        const NSColorPanelGrayModeMask = 0x00000001;
+        const NSColorPanelRGBModeMask = 0x00000002;
+        const NSColorPanelCMYKModeMask = 0x00000004;
+        const NSColorPanelHSBModeMask = 0x00000008;
+        const NSColorPanelCustomPaletteModeMask = 0x00000010;
+        const NSColorPanelColorListModeMask = 0x00000020;
+        const NSColorPanelWheelModeMask = 0x00000040;
+        const NSColorPanelCrayonModeMask = 0x00000080;
+        const NSColorPanelAllModesMask = 0x0000ffff;
+    }
 }
 
 unsafe impl Encode for NSColorPanelOptions {

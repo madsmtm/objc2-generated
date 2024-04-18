@@ -8,10 +8,12 @@ use crate::*;
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSPropertyListMutabilityOptions(pub NSUInteger);
-impl NSPropertyListMutabilityOptions {
-    pub const NSPropertyListImmutable: Self = Self(0);
-    pub const NSPropertyListMutableContainers: Self = Self(1);
-    pub const NSPropertyListMutableContainersAndLeaves: Self = Self(2);
+bitflags::bitflags! {
+    impl NSPropertyListMutabilityOptions: NSUInteger {
+        const NSPropertyListImmutable = 0;
+        const NSPropertyListMutableContainers = 1;
+        const NSPropertyListMutableContainersAndLeaves = 2;
+    }
 }
 
 unsafe impl Encode for NSPropertyListMutabilityOptions {

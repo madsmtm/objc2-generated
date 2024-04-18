@@ -9,8 +9,10 @@ use crate::*;
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSTextListOptions(pub NSUInteger);
-impl NSTextListOptions {
-    pub const NSTextListPrependEnclosingMarker: Self = Self(1 << 0);
+bitflags::bitflags! {
+    impl NSTextListOptions: NSUInteger {
+        const NSTextListPrependEnclosingMarker = 1<<0;
+    }
 }
 
 unsafe impl Encode for NSTextListOptions {

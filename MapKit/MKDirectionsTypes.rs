@@ -9,15 +9,17 @@ use crate::*;
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MKDirectionsTransportType(pub NSUInteger);
-impl MKDirectionsTransportType {
-    #[doc(alias = "MKDirectionsTransportTypeAutomobile")]
-    pub const Automobile: Self = Self(1 << 0);
-    #[doc(alias = "MKDirectionsTransportTypeWalking")]
-    pub const Walking: Self = Self(1 << 1);
-    #[doc(alias = "MKDirectionsTransportTypeTransit")]
-    pub const Transit: Self = Self(1 << 2);
-    #[doc(alias = "MKDirectionsTransportTypeAny")]
-    pub const Any: Self = Self(0x0FFFFFFF);
+bitflags::bitflags! {
+    impl MKDirectionsTransportType: NSUInteger {
+        #[doc(alias = "MKDirectionsTransportTypeAutomobile")]
+        const Automobile = 1<<0;
+        #[doc(alias = "MKDirectionsTransportTypeWalking")]
+        const Walking = 1<<1;
+        #[doc(alias = "MKDirectionsTransportTypeTransit")]
+        const Transit = 1<<2;
+        #[doc(alias = "MKDirectionsTransportTypeAny")]
+        const Any = 0x0FFFFFFF;
+    }
 }
 
 unsafe impl Encode for MKDirectionsTransportType {

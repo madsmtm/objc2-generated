@@ -9,15 +9,17 @@ use crate::*;
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct AXHearingDeviceEar(pub NSUInteger);
-impl AXHearingDeviceEar {
-    #[doc(alias = "AXHearingDeviceEarNone")]
-    pub const None: Self = Self(0);
-    #[doc(alias = "AXHearingDeviceEarLeft")]
-    pub const Left: Self = Self(1 << 1);
-    #[doc(alias = "AXHearingDeviceEarRight")]
-    pub const Right: Self = Self(1 << 2);
-    #[doc(alias = "AXHearingDeviceEarBoth")]
-    pub const Both: Self = Self(AXHearingDeviceEar::Left.0 | AXHearingDeviceEar::Right.0);
+bitflags::bitflags! {
+    impl AXHearingDeviceEar: NSUInteger {
+        #[doc(alias = "AXHearingDeviceEarNone")]
+        const None = 0;
+        #[doc(alias = "AXHearingDeviceEarLeft")]
+        const Left = 1<<1;
+        #[doc(alias = "AXHearingDeviceEarRight")]
+        const Right = 1<<2;
+        #[doc(alias = "AXHearingDeviceEarBoth")]
+        const Both = AXHearingDeviceEar::Left.0|AXHearingDeviceEar::Right.0;
+    }
 }
 
 unsafe impl Encode for AXHearingDeviceEar {

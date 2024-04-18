@@ -32,10 +32,12 @@ unsafe impl RefEncode for NLTokenUnit {
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NLTokenizerAttributes(pub NSUInteger);
-impl NLTokenizerAttributes {
-    pub const NLTokenizerAttributeNumeric: Self = Self(1 << 0);
-    pub const NLTokenizerAttributeSymbolic: Self = Self(1 << 1);
-    pub const NLTokenizerAttributeEmoji: Self = Self(1 << 2);
+bitflags::bitflags! {
+    impl NLTokenizerAttributes: NSUInteger {
+        const NLTokenizerAttributeNumeric = 1<<0;
+        const NLTokenizerAttributeSymbolic = 1<<1;
+        const NLTokenizerAttributeEmoji = 1<<2;
+    }
 }
 
 unsafe impl Encode for NLTokenizerAttributes {

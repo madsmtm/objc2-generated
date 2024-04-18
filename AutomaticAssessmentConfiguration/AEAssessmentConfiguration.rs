@@ -9,13 +9,15 @@ use crate::*;
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct AEAutocorrectMode(pub NSUInteger);
-impl AEAutocorrectMode {
-    #[doc(alias = "AEAutocorrectModeNone")]
-    pub const None: Self = Self(0);
-    #[doc(alias = "AEAutocorrectModeSpelling")]
-    pub const Spelling: Self = Self(1 << 0);
-    #[doc(alias = "AEAutocorrectModePunctuation")]
-    pub const Punctuation: Self = Self(1 << 1);
+bitflags::bitflags! {
+    impl AEAutocorrectMode: NSUInteger {
+        #[doc(alias = "AEAutocorrectModeNone")]
+        const None = 0;
+        #[doc(alias = "AEAutocorrectModeSpelling")]
+        const Spelling = 1<<0;
+        #[doc(alias = "AEAutocorrectModePunctuation")]
+        const Punctuation = 1<<1;
+    }
 }
 
 unsafe impl Encode for AEAutocorrectMode {

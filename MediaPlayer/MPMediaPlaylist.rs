@@ -9,15 +9,17 @@ use crate::*;
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MPMediaPlaylistAttribute(pub NSUInteger);
-impl MPMediaPlaylistAttribute {
-    #[doc(alias = "MPMediaPlaylistAttributeNone")]
-    pub const None: Self = Self(0);
-    #[doc(alias = "MPMediaPlaylistAttributeOnTheGo")]
-    pub const OnTheGo: Self = Self(1 << 0);
-    #[doc(alias = "MPMediaPlaylistAttributeSmart")]
-    pub const Smart: Self = Self(1 << 1);
-    #[doc(alias = "MPMediaPlaylistAttributeGenius")]
-    pub const Genius: Self = Self(1 << 2);
+bitflags::bitflags! {
+    impl MPMediaPlaylistAttribute: NSUInteger {
+        #[doc(alias = "MPMediaPlaylistAttributeNone")]
+        const None = 0;
+        #[doc(alias = "MPMediaPlaylistAttributeOnTheGo")]
+        const OnTheGo = 1<<0;
+        #[doc(alias = "MPMediaPlaylistAttributeSmart")]
+        const Smart = 1<<1;
+        #[doc(alias = "MPMediaPlaylistAttributeGenius")]
+        const Genius = 1<<2;
+    }
 }
 
 unsafe impl Encode for MPMediaPlaylistAttribute {

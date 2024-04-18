@@ -9,14 +9,16 @@ use crate::*;
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MTLResourceUsage(pub NSUInteger);
-impl MTLResourceUsage {
-    #[doc(alias = "MTLResourceUsageRead")]
-    pub const Read: Self = Self(1 << 0);
-    #[doc(alias = "MTLResourceUsageWrite")]
-    pub const Write: Self = Self(1 << 1);
-    #[deprecated]
-    #[doc(alias = "MTLResourceUsageSample")]
-    pub const Sample: Self = Self(1 << 2);
+bitflags::bitflags! {
+    impl MTLResourceUsage: NSUInteger {
+        #[doc(alias = "MTLResourceUsageRead")]
+        const Read = 1<<0;
+        #[doc(alias = "MTLResourceUsageWrite")]
+        const Write = 1<<1;
+#[deprecated]
+        #[doc(alias = "MTLResourceUsageSample")]
+        const Sample = 1<<2;
+    }
 }
 
 unsafe impl Encode for MTLResourceUsage {
@@ -31,13 +33,15 @@ unsafe impl RefEncode for MTLResourceUsage {
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MTLBarrierScope(pub NSUInteger);
-impl MTLBarrierScope {
-    #[doc(alias = "MTLBarrierScopeBuffers")]
-    pub const Buffers: Self = Self(1 << 0);
-    #[doc(alias = "MTLBarrierScopeTextures")]
-    pub const Textures: Self = Self(1 << 1);
-    #[doc(alias = "MTLBarrierScopeRenderTargets")]
-    pub const RenderTargets: Self = Self(1 << 2);
+bitflags::bitflags! {
+    impl MTLBarrierScope: NSUInteger {
+        #[doc(alias = "MTLBarrierScopeBuffers")]
+        const Buffers = 1<<0;
+        #[doc(alias = "MTLBarrierScopeTextures")]
+        const Textures = 1<<1;
+        #[doc(alias = "MTLBarrierScopeRenderTargets")]
+        const RenderTargets = 1<<2;
+    }
 }
 
 unsafe impl Encode for MTLBarrierScope {

@@ -8,18 +8,20 @@ use crate::*;
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSAppleEventSendOptions(pub NSUInteger);
-impl NSAppleEventSendOptions {
-    pub const NSAppleEventSendNoReply: Self = Self(1);
-    pub const NSAppleEventSendQueueReply: Self = Self(2);
-    pub const NSAppleEventSendWaitForReply: Self = Self(3);
-    pub const NSAppleEventSendNeverInteract: Self = Self(16);
-    pub const NSAppleEventSendCanInteract: Self = Self(32);
-    pub const NSAppleEventSendAlwaysInteract: Self = Self(48);
-    pub const NSAppleEventSendCanSwitchLayer: Self = Self(64);
-    pub const NSAppleEventSendDontRecord: Self = Self(4096);
-    pub const NSAppleEventSendDontExecute: Self = Self(8192);
-    pub const NSAppleEventSendDontAnnotate: Self = Self(65536);
-    pub const NSAppleEventSendDefaultOptions: Self = Self(35);
+bitflags::bitflags! {
+    impl NSAppleEventSendOptions: NSUInteger {
+        const NSAppleEventSendNoReply = 1;
+        const NSAppleEventSendQueueReply = 2;
+        const NSAppleEventSendWaitForReply = 3;
+        const NSAppleEventSendNeverInteract = 16;
+        const NSAppleEventSendCanInteract = 32;
+        const NSAppleEventSendAlwaysInteract = 48;
+        const NSAppleEventSendCanSwitchLayer = 64;
+        const NSAppleEventSendDontRecord = 4096;
+        const NSAppleEventSendDontExecute = 8192;
+        const NSAppleEventSendDontAnnotate = 65536;
+        const NSAppleEventSendDefaultOptions = 35;
+    }
 }
 
 unsafe impl Encode for NSAppleEventSendOptions {

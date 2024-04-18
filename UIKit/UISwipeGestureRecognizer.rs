@@ -9,15 +9,17 @@ use crate::*;
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct UISwipeGestureRecognizerDirection(pub NSUInteger);
-impl UISwipeGestureRecognizerDirection {
-    #[doc(alias = "UISwipeGestureRecognizerDirectionRight")]
-    pub const Right: Self = Self(1 << 0);
-    #[doc(alias = "UISwipeGestureRecognizerDirectionLeft")]
-    pub const Left: Self = Self(1 << 1);
-    #[doc(alias = "UISwipeGestureRecognizerDirectionUp")]
-    pub const Up: Self = Self(1 << 2);
-    #[doc(alias = "UISwipeGestureRecognizerDirectionDown")]
-    pub const Down: Self = Self(1 << 3);
+bitflags::bitflags! {
+    impl UISwipeGestureRecognizerDirection: NSUInteger {
+        #[doc(alias = "UISwipeGestureRecognizerDirectionRight")]
+        const Right = 1<<0;
+        #[doc(alias = "UISwipeGestureRecognizerDirectionLeft")]
+        const Left = 1<<1;
+        #[doc(alias = "UISwipeGestureRecognizerDirectionUp")]
+        const Up = 1<<2;
+        #[doc(alias = "UISwipeGestureRecognizerDirectionDown")]
+        const Down = 1<<3;
+    }
 }
 
 unsafe impl Encode for UISwipeGestureRecognizerDirection {

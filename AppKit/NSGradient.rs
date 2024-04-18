@@ -9,9 +9,11 @@ use crate::*;
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSGradientDrawingOptions(pub NSUInteger);
-impl NSGradientDrawingOptions {
-    pub const NSGradientDrawsBeforeStartingLocation: Self = Self(1 << 0);
-    pub const NSGradientDrawsAfterEndingLocation: Self = Self(1 << 1);
+bitflags::bitflags! {
+    impl NSGradientDrawingOptions: NSUInteger {
+        const NSGradientDrawsBeforeStartingLocation = 1<<0;
+        const NSGradientDrawsAfterEndingLocation = 1<<1;
+    }
 }
 
 unsafe impl Encode for NSGradientDrawingOptions {

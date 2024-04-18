@@ -113,27 +113,29 @@ extern "C" {
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSUnderlineStyle(pub NSInteger);
-impl NSUnderlineStyle {
-    #[doc(alias = "NSUnderlineStyleNone")]
-    pub const None: Self = Self(0x00);
-    #[doc(alias = "NSUnderlineStyleSingle")]
-    pub const Single: Self = Self(0x01);
-    #[doc(alias = "NSUnderlineStyleThick")]
-    pub const Thick: Self = Self(0x02);
-    #[doc(alias = "NSUnderlineStyleDouble")]
-    pub const Double: Self = Self(0x09);
-    #[doc(alias = "NSUnderlineStylePatternSolid")]
-    pub const PatternSolid: Self = Self(0x0000);
-    #[doc(alias = "NSUnderlineStylePatternDot")]
-    pub const PatternDot: Self = Self(0x0100);
-    #[doc(alias = "NSUnderlineStylePatternDash")]
-    pub const PatternDash: Self = Self(0x0200);
-    #[doc(alias = "NSUnderlineStylePatternDashDot")]
-    pub const PatternDashDot: Self = Self(0x0300);
-    #[doc(alias = "NSUnderlineStylePatternDashDotDot")]
-    pub const PatternDashDotDot: Self = Self(0x0400);
-    #[doc(alias = "NSUnderlineStyleByWord")]
-    pub const ByWord: Self = Self(0x8000);
+bitflags::bitflags! {
+    impl NSUnderlineStyle: NSInteger {
+        #[doc(alias = "NSUnderlineStyleNone")]
+        const None = 0x00;
+        #[doc(alias = "NSUnderlineStyleSingle")]
+        const Single = 0x01;
+        #[doc(alias = "NSUnderlineStyleThick")]
+        const Thick = 0x02;
+        #[doc(alias = "NSUnderlineStyleDouble")]
+        const Double = 0x09;
+        #[doc(alias = "NSUnderlineStylePatternSolid")]
+        const PatternSolid = 0x0000;
+        #[doc(alias = "NSUnderlineStylePatternDot")]
+        const PatternDot = 0x0100;
+        #[doc(alias = "NSUnderlineStylePatternDash")]
+        const PatternDash = 0x0200;
+        #[doc(alias = "NSUnderlineStylePatternDashDot")]
+        const PatternDashDot = 0x0300;
+        #[doc(alias = "NSUnderlineStylePatternDashDotDot")]
+        const PatternDashDotDot = 0x0400;
+        #[doc(alias = "NSUnderlineStyleByWord")]
+        const ByWord = 0x8000;
+    }
 }
 
 unsafe impl Encode for NSUnderlineStyle {

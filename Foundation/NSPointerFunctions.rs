@@ -8,21 +8,23 @@ use crate::*;
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSPointerFunctionsOptions(pub NSUInteger);
-impl NSPointerFunctionsOptions {
-    pub const NSPointerFunctionsStrongMemory: Self = Self(0 << 0);
-    #[deprecated = "GC no longer supported"]
-    pub const NSPointerFunctionsZeroingWeakMemory: Self = Self(1 << 0);
-    pub const NSPointerFunctionsOpaqueMemory: Self = Self(2 << 0);
-    pub const NSPointerFunctionsMallocMemory: Self = Self(3 << 0);
-    pub const NSPointerFunctionsMachVirtualMemory: Self = Self(4 << 0);
-    pub const NSPointerFunctionsWeakMemory: Self = Self(5 << 0);
-    pub const NSPointerFunctionsObjectPersonality: Self = Self(0 << 8);
-    pub const NSPointerFunctionsOpaquePersonality: Self = Self(1 << 8);
-    pub const NSPointerFunctionsObjectPointerPersonality: Self = Self(2 << 8);
-    pub const NSPointerFunctionsCStringPersonality: Self = Self(3 << 8);
-    pub const NSPointerFunctionsStructPersonality: Self = Self(4 << 8);
-    pub const NSPointerFunctionsIntegerPersonality: Self = Self(5 << 8);
-    pub const NSPointerFunctionsCopyIn: Self = Self(1 << 16);
+bitflags::bitflags! {
+    impl NSPointerFunctionsOptions: NSUInteger {
+        const NSPointerFunctionsStrongMemory = 0<<0;
+#[deprecated = "GC no longer supported"]
+        const NSPointerFunctionsZeroingWeakMemory = 1<<0;
+        const NSPointerFunctionsOpaqueMemory = 2<<0;
+        const NSPointerFunctionsMallocMemory = 3<<0;
+        const NSPointerFunctionsMachVirtualMemory = 4<<0;
+        const NSPointerFunctionsWeakMemory = 5<<0;
+        const NSPointerFunctionsObjectPersonality = 0<<8;
+        const NSPointerFunctionsOpaquePersonality = 1<<8;
+        const NSPointerFunctionsObjectPointerPersonality = 2<<8;
+        const NSPointerFunctionsCStringPersonality = 3<<8;
+        const NSPointerFunctionsStructPersonality = 4<<8;
+        const NSPointerFunctionsIntegerPersonality = 5<<8;
+        const NSPointerFunctionsCopyIn = 1<<16;
+    }
 }
 
 unsafe impl Encode for NSPointerFunctionsOptions {

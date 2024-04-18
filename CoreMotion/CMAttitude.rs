@@ -69,15 +69,17 @@ unsafe impl RefEncode for CMQuaternion {
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CMAttitudeReferenceFrame(pub NSUInteger);
-impl CMAttitudeReferenceFrame {
-    #[doc(alias = "CMAttitudeReferenceFrameXArbitraryZVertical")]
-    pub const XArbitraryZVertical: Self = Self(1 << 0);
-    #[doc(alias = "CMAttitudeReferenceFrameXArbitraryCorrectedZVertical")]
-    pub const XArbitraryCorrectedZVertical: Self = Self(1 << 1);
-    #[doc(alias = "CMAttitudeReferenceFrameXMagneticNorthZVertical")]
-    pub const XMagneticNorthZVertical: Self = Self(1 << 2);
-    #[doc(alias = "CMAttitudeReferenceFrameXTrueNorthZVertical")]
-    pub const XTrueNorthZVertical: Self = Self(1 << 3);
+bitflags::bitflags! {
+    impl CMAttitudeReferenceFrame: NSUInteger {
+        #[doc(alias = "CMAttitudeReferenceFrameXArbitraryZVertical")]
+        const XArbitraryZVertical = 1<<0;
+        #[doc(alias = "CMAttitudeReferenceFrameXArbitraryCorrectedZVertical")]
+        const XArbitraryCorrectedZVertical = 1<<1;
+        #[doc(alias = "CMAttitudeReferenceFrameXMagneticNorthZVertical")]
+        const XMagneticNorthZVertical = 1<<2;
+        #[doc(alias = "CMAttitudeReferenceFrameXTrueNorthZVertical")]
+        const XTrueNorthZVertical = 1<<3;
+    }
 }
 
 unsafe impl Encode for CMAttitudeReferenceFrame {

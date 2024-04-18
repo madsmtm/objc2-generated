@@ -47,11 +47,13 @@ unsafe impl RefEncode for NSTableViewColumnAutoresizingStyle {
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSTableViewGridLineStyle(pub NSUInteger);
-impl NSTableViewGridLineStyle {
-    pub const NSTableViewGridNone: Self = Self(0);
-    pub const NSTableViewSolidVerticalGridLineMask: Self = Self(1 << 0);
-    pub const NSTableViewSolidHorizontalGridLineMask: Self = Self(1 << 1);
-    pub const NSTableViewDashedHorizontalGridLineMask: Self = Self(1 << 3);
+bitflags::bitflags! {
+    impl NSTableViewGridLineStyle: NSUInteger {
+        const NSTableViewGridNone = 0;
+        const NSTableViewSolidVerticalGridLineMask = 1<<0;
+        const NSTableViewSolidHorizontalGridLineMask = 1<<1;
+        const NSTableViewDashedHorizontalGridLineMask = 1<<3;
+    }
 }
 
 unsafe impl Encode for NSTableViewGridLineStyle {
@@ -182,14 +184,16 @@ pub type NSTableViewAutosaveName = NSString;
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSTableViewAnimationOptions(pub NSUInteger);
-impl NSTableViewAnimationOptions {
-    pub const NSTableViewAnimationEffectNone: Self = Self(0x0);
-    pub const NSTableViewAnimationEffectFade: Self = Self(0x1);
-    pub const NSTableViewAnimationEffectGap: Self = Self(0x2);
-    pub const NSTableViewAnimationSlideUp: Self = Self(0x10);
-    pub const NSTableViewAnimationSlideDown: Self = Self(0x20);
-    pub const NSTableViewAnimationSlideLeft: Self = Self(0x30);
-    pub const NSTableViewAnimationSlideRight: Self = Self(0x40);
+bitflags::bitflags! {
+    impl NSTableViewAnimationOptions: NSUInteger {
+        const NSTableViewAnimationEffectNone = 0x0;
+        const NSTableViewAnimationEffectFade = 0x1;
+        const NSTableViewAnimationEffectGap = 0x2;
+        const NSTableViewAnimationSlideUp = 0x10;
+        const NSTableViewAnimationSlideDown = 0x20;
+        const NSTableViewAnimationSlideLeft = 0x30;
+        const NSTableViewAnimationSlideRight = 0x40;
+    }
 }
 
 unsafe impl Encode for NSTableViewAnimationOptions {

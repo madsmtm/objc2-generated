@@ -86,12 +86,14 @@ unsafe impl RefEncode for UITouchType {
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct UITouchProperties(pub NSInteger);
-impl UITouchProperties {
-    pub const UITouchPropertyForce: Self = Self(1 << 0);
-    pub const UITouchPropertyAzimuth: Self = Self(1 << 1);
-    pub const UITouchPropertyAltitude: Self = Self(1 << 2);
-    pub const UITouchPropertyLocation: Self = Self(1 << 3);
-    pub const UITouchPropertyRoll: Self = Self(1 << 4);
+bitflags::bitflags! {
+    impl UITouchProperties: NSInteger {
+        const UITouchPropertyForce = 1<<0;
+        const UITouchPropertyAzimuth = 1<<1;
+        const UITouchPropertyAltitude = 1<<2;
+        const UITouchPropertyLocation = 1<<3;
+        const UITouchPropertyRoll = 1<<4;
+    }
 }
 
 unsafe impl Encode for UITouchProperties {

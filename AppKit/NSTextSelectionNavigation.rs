@@ -65,13 +65,15 @@ unsafe impl RefEncode for NSTextSelectionNavigationDestination {
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSTextSelectionNavigationModifier(pub NSUInteger);
-impl NSTextSelectionNavigationModifier {
-    #[doc(alias = "NSTextSelectionNavigationModifierExtend")]
-    pub const Extend: Self = Self(1 << 0);
-    #[doc(alias = "NSTextSelectionNavigationModifierVisual")]
-    pub const Visual: Self = Self(1 << 1);
-    #[doc(alias = "NSTextSelectionNavigationModifierMultiple")]
-    pub const Multiple: Self = Self(1 << 2);
+bitflags::bitflags! {
+    impl NSTextSelectionNavigationModifier: NSUInteger {
+        #[doc(alias = "NSTextSelectionNavigationModifierExtend")]
+        const Extend = 1<<0;
+        #[doc(alias = "NSTextSelectionNavigationModifierVisual")]
+        const Visual = 1<<1;
+        #[doc(alias = "NSTextSelectionNavigationModifierMultiple")]
+        const Multiple = 1<<2;
+    }
 }
 
 unsafe impl Encode for NSTextSelectionNavigationModifier {

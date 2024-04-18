@@ -95,31 +95,22 @@ unsafe impl RefEncode for MTLHazardTrackingMode {
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MTLResourceOptions(pub NSUInteger);
-impl MTLResourceOptions {
-    pub const MTLResourceCPUCacheModeDefaultCache: Self =
-        Self(MTLCPUCacheMode::DefaultCache.0 << MTLResourceCPUCacheModeShift);
-    pub const MTLResourceCPUCacheModeWriteCombined: Self =
-        Self(MTLCPUCacheMode::WriteCombined.0 << MTLResourceCPUCacheModeShift);
-    pub const MTLResourceStorageModeShared: Self =
-        Self(MTLStorageMode::Shared.0 << MTLResourceStorageModeShift);
-    pub const MTLResourceStorageModeManaged: Self =
-        Self(MTLStorageMode::Managed.0 << MTLResourceStorageModeShift);
-    pub const MTLResourceStorageModePrivate: Self =
-        Self(MTLStorageMode::Private.0 << MTLResourceStorageModeShift);
-    pub const MTLResourceStorageModeMemoryless: Self =
-        Self(MTLStorageMode::Memoryless.0 << MTLResourceStorageModeShift);
-    pub const MTLResourceHazardTrackingModeDefault: Self =
-        Self(MTLHazardTrackingMode::Default.0 << MTLResourceHazardTrackingModeShift);
-    pub const MTLResourceHazardTrackingModeUntracked: Self =
-        Self(MTLHazardTrackingMode::Untracked.0 << MTLResourceHazardTrackingModeShift);
-    pub const MTLResourceHazardTrackingModeTracked: Self =
-        Self(MTLHazardTrackingMode::Tracked.0 << MTLResourceHazardTrackingModeShift);
-    #[deprecated]
-    pub const MTLResourceOptionCPUCacheModeDefault: Self =
-        Self(MTLResourceOptions::MTLResourceCPUCacheModeDefaultCache.0);
-    #[deprecated]
-    pub const MTLResourceOptionCPUCacheModeWriteCombined: Self =
-        Self(MTLResourceOptions::MTLResourceCPUCacheModeWriteCombined.0);
+bitflags::bitflags! {
+    impl MTLResourceOptions: NSUInteger {
+        const MTLResourceCPUCacheModeDefaultCache = MTLCPUCacheMode::DefaultCache.0<<MTLResourceCPUCacheModeShift;
+        const MTLResourceCPUCacheModeWriteCombined = MTLCPUCacheMode::WriteCombined.0<<MTLResourceCPUCacheModeShift;
+        const MTLResourceStorageModeShared = MTLStorageMode::Shared.0<<MTLResourceStorageModeShift;
+        const MTLResourceStorageModeManaged = MTLStorageMode::Managed.0<<MTLResourceStorageModeShift;
+        const MTLResourceStorageModePrivate = MTLStorageMode::Private.0<<MTLResourceStorageModeShift;
+        const MTLResourceStorageModeMemoryless = MTLStorageMode::Memoryless.0<<MTLResourceStorageModeShift;
+        const MTLResourceHazardTrackingModeDefault = MTLHazardTrackingMode::Default.0<<MTLResourceHazardTrackingModeShift;
+        const MTLResourceHazardTrackingModeUntracked = MTLHazardTrackingMode::Untracked.0<<MTLResourceHazardTrackingModeShift;
+        const MTLResourceHazardTrackingModeTracked = MTLHazardTrackingMode::Tracked.0<<MTLResourceHazardTrackingModeShift;
+#[deprecated]
+        const MTLResourceOptionCPUCacheModeDefault = MTLResourceOptions::MTLResourceCPUCacheModeDefaultCache.0;
+#[deprecated]
+        const MTLResourceOptionCPUCacheModeWriteCombined = MTLResourceOptions::MTLResourceCPUCacheModeWriteCombined.0;
+    }
 }
 
 unsafe impl Encode for MTLResourceOptions {

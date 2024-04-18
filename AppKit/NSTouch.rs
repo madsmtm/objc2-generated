@@ -9,22 +9,23 @@ use crate::*;
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSTouchPhase(pub NSUInteger);
-impl NSTouchPhase {
-    #[doc(alias = "NSTouchPhaseBegan")]
-    pub const Began: Self = Self(1 << 0);
-    #[doc(alias = "NSTouchPhaseMoved")]
-    pub const Moved: Self = Self(1 << 1);
-    #[doc(alias = "NSTouchPhaseStationary")]
-    pub const Stationary: Self = Self(1 << 2);
-    #[doc(alias = "NSTouchPhaseEnded")]
-    pub const Ended: Self = Self(1 << 3);
-    #[doc(alias = "NSTouchPhaseCancelled")]
-    pub const Cancelled: Self = Self(1 << 4);
-    #[doc(alias = "NSTouchPhaseTouching")]
-    pub const Touching: Self =
-        Self(NSTouchPhase::Began.0 | NSTouchPhase::Moved.0 | NSTouchPhase::Stationary.0);
-    #[doc(alias = "NSTouchPhaseAny")]
-    pub const Any: Self = Self(NSUIntegerMax as _);
+bitflags::bitflags! {
+    impl NSTouchPhase: NSUInteger {
+        #[doc(alias = "NSTouchPhaseBegan")]
+        const Began = 1<<0;
+        #[doc(alias = "NSTouchPhaseMoved")]
+        const Moved = 1<<1;
+        #[doc(alias = "NSTouchPhaseStationary")]
+        const Stationary = 1<<2;
+        #[doc(alias = "NSTouchPhaseEnded")]
+        const Ended = 1<<3;
+        #[doc(alias = "NSTouchPhaseCancelled")]
+        const Cancelled = 1<<4;
+        #[doc(alias = "NSTouchPhaseTouching")]
+        const Touching = NSTouchPhase::Began.0|NSTouchPhase::Moved.0|NSTouchPhase::Stationary.0;
+        #[doc(alias = "NSTouchPhaseAny")]
+        const Any = NSUIntegerMax as _;
+    }
 }
 
 unsafe impl Encode for NSTouchPhase {
@@ -58,11 +59,13 @@ unsafe impl RefEncode for NSTouchType {
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSTouchTypeMask(pub NSUInteger);
-impl NSTouchTypeMask {
-    #[doc(alias = "NSTouchTypeMaskDirect")]
-    pub const Direct: Self = Self(1 << NSTouchType::Direct.0);
-    #[doc(alias = "NSTouchTypeMaskIndirect")]
-    pub const Indirect: Self = Self(1 << NSTouchType::Indirect.0);
+bitflags::bitflags! {
+    impl NSTouchTypeMask: NSUInteger {
+        #[doc(alias = "NSTouchTypeMaskDirect")]
+        const Direct = 1<<NSTouchType::Direct.0;
+        #[doc(alias = "NSTouchTypeMaskIndirect")]
+        const Indirect = 1<<NSTouchType::Indirect.0;
+    }
 }
 
 unsafe impl Encode for NSTouchTypeMask {

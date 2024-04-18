@@ -8,53 +8,38 @@ use crate::*;
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSXMLNodeOptions(pub NSUInteger);
-impl NSXMLNodeOptions {
-    #[doc(alias = "NSXMLNodeOptionsNone")]
-    pub const None: Self = Self(0);
-    pub const NSXMLNodeIsCDATA: Self = Self(1 << 0);
-    pub const NSXMLNodeExpandEmptyElement: Self = Self(1 << 1);
-    pub const NSXMLNodeCompactEmptyElement: Self = Self(1 << 2);
-    pub const NSXMLNodeUseSingleQuotes: Self = Self(1 << 3);
-    pub const NSXMLNodeUseDoubleQuotes: Self = Self(1 << 4);
-    pub const NSXMLNodeNeverEscapeContents: Self = Self(1 << 5);
-    pub const NSXMLDocumentTidyHTML: Self = Self(1 << 9);
-    pub const NSXMLDocumentTidyXML: Self = Self(1 << 10);
-    pub const NSXMLDocumentValidate: Self = Self(1 << 13);
-    pub const NSXMLNodeLoadExternalEntitiesAlways: Self = Self(1 << 14);
-    pub const NSXMLNodeLoadExternalEntitiesSameOriginOnly: Self = Self(1 << 15);
-    pub const NSXMLNodeLoadExternalEntitiesNever: Self = Self(1 << 19);
-    pub const NSXMLDocumentXInclude: Self = Self(1 << 16);
-    pub const NSXMLNodePrettyPrint: Self = Self(1 << 17);
-    pub const NSXMLDocumentIncludeContentTypeDeclaration: Self = Self(1 << 18);
-    pub const NSXMLNodePreserveNamespaceOrder: Self = Self(1 << 20);
-    pub const NSXMLNodePreserveAttributeOrder: Self = Self(1 << 21);
-    pub const NSXMLNodePreserveEntities: Self = Self(1 << 22);
-    pub const NSXMLNodePreservePrefixes: Self = Self(1 << 23);
-    pub const NSXMLNodePreserveCDATA: Self = Self(1 << 24);
-    pub const NSXMLNodePreserveWhitespace: Self = Self(1 << 25);
-    pub const NSXMLNodePreserveDTD: Self = Self(1 << 26);
-    pub const NSXMLNodePreserveCharacterReferences: Self = Self(1 << 27);
-    pub const NSXMLNodePromoteSignificantWhitespace: Self = Self(1 << 28);
-    pub const NSXMLNodePreserveEmptyElements: Self = Self(
-        NSXMLNodeOptions::NSXMLNodeExpandEmptyElement.0
-            | NSXMLNodeOptions::NSXMLNodeCompactEmptyElement.0,
-    );
-    pub const NSXMLNodePreserveQuotes: Self = Self(
-        NSXMLNodeOptions::NSXMLNodeUseSingleQuotes.0 | NSXMLNodeOptions::NSXMLNodeUseDoubleQuotes.0,
-    );
-    pub const NSXMLNodePreserveAll: Self = Self(
-        NSXMLNodeOptions::NSXMLNodePreserveNamespaceOrder.0
-            | NSXMLNodeOptions::NSXMLNodePreserveAttributeOrder.0
-            | NSXMLNodeOptions::NSXMLNodePreserveEntities.0
-            | NSXMLNodeOptions::NSXMLNodePreservePrefixes.0
-            | NSXMLNodeOptions::NSXMLNodePreserveCDATA.0
-            | NSXMLNodeOptions::NSXMLNodePreserveEmptyElements.0
-            | NSXMLNodeOptions::NSXMLNodePreserveQuotes.0
-            | NSXMLNodeOptions::NSXMLNodePreserveWhitespace.0
-            | NSXMLNodeOptions::NSXMLNodePreserveDTD.0
-            | NSXMLNodeOptions::NSXMLNodePreserveCharacterReferences.0
-            | 0xFFF00000,
-    );
+bitflags::bitflags! {
+    impl NSXMLNodeOptions: NSUInteger {
+        #[doc(alias = "NSXMLNodeOptionsNone")]
+        const None = 0;
+        const NSXMLNodeIsCDATA = 1<<0;
+        const NSXMLNodeExpandEmptyElement = 1<<1;
+        const NSXMLNodeCompactEmptyElement = 1<<2;
+        const NSXMLNodeUseSingleQuotes = 1<<3;
+        const NSXMLNodeUseDoubleQuotes = 1<<4;
+        const NSXMLNodeNeverEscapeContents = 1<<5;
+        const NSXMLDocumentTidyHTML = 1<<9;
+        const NSXMLDocumentTidyXML = 1<<10;
+        const NSXMLDocumentValidate = 1<<13;
+        const NSXMLNodeLoadExternalEntitiesAlways = 1<<14;
+        const NSXMLNodeLoadExternalEntitiesSameOriginOnly = 1<<15;
+        const NSXMLNodeLoadExternalEntitiesNever = 1<<19;
+        const NSXMLDocumentXInclude = 1<<16;
+        const NSXMLNodePrettyPrint = 1<<17;
+        const NSXMLDocumentIncludeContentTypeDeclaration = 1<<18;
+        const NSXMLNodePreserveNamespaceOrder = 1<<20;
+        const NSXMLNodePreserveAttributeOrder = 1<<21;
+        const NSXMLNodePreserveEntities = 1<<22;
+        const NSXMLNodePreservePrefixes = 1<<23;
+        const NSXMLNodePreserveCDATA = 1<<24;
+        const NSXMLNodePreserveWhitespace = 1<<25;
+        const NSXMLNodePreserveDTD = 1<<26;
+        const NSXMLNodePreserveCharacterReferences = 1<<27;
+        const NSXMLNodePromoteSignificantWhitespace = 1<<28;
+        const NSXMLNodePreserveEmptyElements = NSXMLNodeOptions::NSXMLNodeExpandEmptyElement.0|NSXMLNodeOptions::NSXMLNodeCompactEmptyElement.0;
+        const NSXMLNodePreserveQuotes = NSXMLNodeOptions::NSXMLNodeUseSingleQuotes.0|NSXMLNodeOptions::NSXMLNodeUseDoubleQuotes.0;
+        const NSXMLNodePreserveAll = NSXMLNodeOptions::NSXMLNodePreserveNamespaceOrder.0|NSXMLNodeOptions::NSXMLNodePreserveAttributeOrder.0|NSXMLNodeOptions::NSXMLNodePreserveEntities.0|NSXMLNodeOptions::NSXMLNodePreservePrefixes.0|NSXMLNodeOptions::NSXMLNodePreserveCDATA.0|NSXMLNodeOptions::NSXMLNodePreserveEmptyElements.0|NSXMLNodeOptions::NSXMLNodePreserveQuotes.0|NSXMLNodeOptions::NSXMLNodePreserveWhitespace.0|NSXMLNodeOptions::NSXMLNodePreserveDTD.0|NSXMLNodeOptions::NSXMLNodePreserveCharacterReferences.0|0xFFF00000;
+    }
 }
 
 unsafe impl Encode for NSXMLNodeOptions {

@@ -84,11 +84,13 @@ extern "C" {
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MTLCommandBufferErrorOption(pub NSUInteger);
-impl MTLCommandBufferErrorOption {
-    #[doc(alias = "MTLCommandBufferErrorOptionNone")]
-    pub const None: Self = Self(0);
-    #[doc(alias = "MTLCommandBufferErrorOptionEncoderExecutionStatus")]
-    pub const EncoderExecutionStatus: Self = Self(1 << 0);
+bitflags::bitflags! {
+    impl MTLCommandBufferErrorOption: NSUInteger {
+        #[doc(alias = "MTLCommandBufferErrorOptionNone")]
+        const None = 0;
+        #[doc(alias = "MTLCommandBufferErrorOptionEncoderExecutionStatus")]
+        const EncoderExecutionStatus = 1<<0;
+    }
 }
 
 unsafe impl Encode for MTLCommandBufferErrorOption {

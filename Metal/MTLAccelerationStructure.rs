@@ -9,15 +9,17 @@ use crate::*;
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MTLAccelerationStructureUsage(pub NSUInteger);
-impl MTLAccelerationStructureUsage {
-    #[doc(alias = "MTLAccelerationStructureUsageNone")]
-    pub const None: Self = Self(0);
-    #[doc(alias = "MTLAccelerationStructureUsageRefit")]
-    pub const Refit: Self = Self(1 << 0);
-    #[doc(alias = "MTLAccelerationStructureUsagePreferFastBuild")]
-    pub const PreferFastBuild: Self = Self(1 << 1);
-    #[doc(alias = "MTLAccelerationStructureUsageExtendedLimits")]
-    pub const ExtendedLimits: Self = Self(1 << 2);
+bitflags::bitflags! {
+    impl MTLAccelerationStructureUsage: NSUInteger {
+        #[doc(alias = "MTLAccelerationStructureUsageNone")]
+        const None = 0;
+        #[doc(alias = "MTLAccelerationStructureUsageRefit")]
+        const Refit = 1<<0;
+        #[doc(alias = "MTLAccelerationStructureUsagePreferFastBuild")]
+        const PreferFastBuild = 1<<1;
+        #[doc(alias = "MTLAccelerationStructureUsageExtendedLimits")]
+        const ExtendedLimits = 1<<2;
+    }
 }
 
 unsafe impl Encode for MTLAccelerationStructureUsage {
@@ -32,13 +34,14 @@ unsafe impl RefEncode for MTLAccelerationStructureUsage {
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MTLAccelerationStructureInstanceOptions(pub u32);
-impl MTLAccelerationStructureInstanceOptions {
-    pub const MTLAccelerationStructureInstanceOptionNone: Self = Self(0);
-    pub const MTLAccelerationStructureInstanceOptionDisableTriangleCulling: Self = Self(1 << 0);
-    pub const MTLAccelerationStructureInstanceOptionTriangleFrontFacingWindingCounterClockwise:
-        Self = Self(1 << 1);
-    pub const MTLAccelerationStructureInstanceOptionOpaque: Self = Self(1 << 2);
-    pub const MTLAccelerationStructureInstanceOptionNonOpaque: Self = Self(1 << 3);
+bitflags::bitflags! {
+    impl MTLAccelerationStructureInstanceOptions: u32 {
+        const MTLAccelerationStructureInstanceOptionNone = 0;
+        const MTLAccelerationStructureInstanceOptionDisableTriangleCulling = 1<<0;
+        const MTLAccelerationStructureInstanceOptionTriangleFrontFacingWindingCounterClockwise = 1<<1;
+        const MTLAccelerationStructureInstanceOptionOpaque = 1<<2;
+        const MTLAccelerationStructureInstanceOptionNonOpaque = 1<<3;
+    }
 }
 
 unsafe impl Encode for MTLAccelerationStructureInstanceOptions {

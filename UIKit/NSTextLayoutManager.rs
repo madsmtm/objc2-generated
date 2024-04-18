@@ -30,19 +30,21 @@ unsafe impl RefEncode for NSTextLayoutManagerSegmentType {
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSTextLayoutManagerSegmentOptions(pub NSUInteger);
-impl NSTextLayoutManagerSegmentOptions {
-    #[doc(alias = "NSTextLayoutManagerSegmentOptionsNone")]
-    pub const None: Self = Self(0);
-    #[doc(alias = "NSTextLayoutManagerSegmentOptionsRangeNotRequired")]
-    pub const RangeNotRequired: Self = Self(1 << 0);
-    #[doc(alias = "NSTextLayoutManagerSegmentOptionsMiddleFragmentsExcluded")]
-    pub const MiddleFragmentsExcluded: Self = Self(1 << 1);
-    #[doc(alias = "NSTextLayoutManagerSegmentOptionsHeadSegmentExtended")]
-    pub const HeadSegmentExtended: Self = Self(1 << 2);
-    #[doc(alias = "NSTextLayoutManagerSegmentOptionsTailSegmentExtended")]
-    pub const TailSegmentExtended: Self = Self(1 << 3);
-    #[doc(alias = "NSTextLayoutManagerSegmentOptionsUpstreamAffinity")]
-    pub const UpstreamAffinity: Self = Self(1 << 4);
+bitflags::bitflags! {
+    impl NSTextLayoutManagerSegmentOptions: NSUInteger {
+        #[doc(alias = "NSTextLayoutManagerSegmentOptionsNone")]
+        const None = 0;
+        #[doc(alias = "NSTextLayoutManagerSegmentOptionsRangeNotRequired")]
+        const RangeNotRequired = 1<<0;
+        #[doc(alias = "NSTextLayoutManagerSegmentOptionsMiddleFragmentsExcluded")]
+        const MiddleFragmentsExcluded = 1<<1;
+        #[doc(alias = "NSTextLayoutManagerSegmentOptionsHeadSegmentExtended")]
+        const HeadSegmentExtended = 1<<2;
+        #[doc(alias = "NSTextLayoutManagerSegmentOptionsTailSegmentExtended")]
+        const TailSegmentExtended = 1<<3;
+        #[doc(alias = "NSTextLayoutManagerSegmentOptionsUpstreamAffinity")]
+        const UpstreamAffinity = 1<<4;
+    }
 }
 
 unsafe impl Encode for NSTextLayoutManagerSegmentOptions {

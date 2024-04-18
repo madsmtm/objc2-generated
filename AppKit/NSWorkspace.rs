@@ -9,9 +9,11 @@ use crate::*;
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSWorkspaceIconCreationOptions(pub NSUInteger);
-impl NSWorkspaceIconCreationOptions {
-    pub const NSExcludeQuickDrawElementsIconCreationOption: Self = Self(1 << 1);
-    pub const NSExclude10_4ElementsIconCreationOption: Self = Self(1 << 2);
+bitflags::bitflags! {
+    impl NSWorkspaceIconCreationOptions: NSUInteger {
+        const NSExcludeQuickDrawElementsIconCreationOption = 1<<1;
+        const NSExclude10_4ElementsIconCreationOption = 1<<2;
+    }
 }
 
 unsafe impl Encode for NSWorkspaceIconCreationOptions {
@@ -565,32 +567,33 @@ pub type NSWorkspaceFileOperationName = NSString;
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSWorkspaceLaunchOptions(pub NSUInteger);
-impl NSWorkspaceLaunchOptions {
-    #[deprecated = "Use -[NSWorkspaceOpenConfiguration setForPrinting:YES] instead."]
-    pub const NSWorkspaceLaunchAndPrint: Self = Self(0x00000002);
-    #[deprecated = "Use -[NSWorkspaceOpenConfiguration setPromptsUserIfNeeded:YES] instead."]
-    pub const NSWorkspaceLaunchWithErrorPresentation: Self = Self(0x00000040);
-    #[deprecated = "This option does nothing."]
-    pub const NSWorkspaceLaunchInhibitingBackgroundOnly: Self = Self(0x00000080);
-    #[deprecated = "Use -[NSWorkspaceOpenConfiguration setAddsToRecentItems:YES] instead."]
-    pub const NSWorkspaceLaunchWithoutAddingToRecents: Self = Self(0x00000100);
-    #[deprecated = "Use -[NSWorkspaceOpenConfiguration setActivates:NO] instead."]
-    pub const NSWorkspaceLaunchWithoutActivation: Self = Self(0x00000200);
-    #[deprecated = "When using NSWorkspaceOpenConfiguration, all launches are asynchronous."]
-    pub const NSWorkspaceLaunchAsync: Self = Self(0x00010000);
-    #[deprecated = "Use -[NSWorkspaceOpenConfiguration setCreatesNewApplicationInstance:YES] instead."]
-    pub const NSWorkspaceLaunchNewInstance: Self = Self(0x00080000);
-    #[deprecated = "Use -[NSWorkspaceOpenConfiguration setHides:YES] instead."]
-    pub const NSWorkspaceLaunchAndHide: Self = Self(0x00100000);
-    #[deprecated = "Use -[NSWorkspaceOpenConfiguration setHidesOthers:YES] instead."]
-    pub const NSWorkspaceLaunchAndHideOthers: Self = Self(0x00200000);
-    #[deprecated = "Use NSWorkspaceOpenConfiguration instead."]
-    pub const NSWorkspaceLaunchDefault: Self =
-        Self(NSWorkspaceLaunchOptions::NSWorkspaceLaunchAsync.0);
-    #[deprecated = "The Classic environment is no longer supported."]
-    pub const NSWorkspaceLaunchAllowingClassicStartup: Self = Self(0x00020000);
-    #[deprecated = "The Classic environment is no longer supported."]
-    pub const NSWorkspaceLaunchPreferringClassic: Self = Self(0x00040000);
+bitflags::bitflags! {
+    impl NSWorkspaceLaunchOptions: NSUInteger {
+#[deprecated = "Use -[NSWorkspaceOpenConfiguration setForPrinting:YES] instead."]
+        const NSWorkspaceLaunchAndPrint = 0x00000002;
+#[deprecated = "Use -[NSWorkspaceOpenConfiguration setPromptsUserIfNeeded:YES] instead."]
+        const NSWorkspaceLaunchWithErrorPresentation = 0x00000040;
+#[deprecated = "This option does nothing."]
+        const NSWorkspaceLaunchInhibitingBackgroundOnly = 0x00000080;
+#[deprecated = "Use -[NSWorkspaceOpenConfiguration setAddsToRecentItems:YES] instead."]
+        const NSWorkspaceLaunchWithoutAddingToRecents = 0x00000100;
+#[deprecated = "Use -[NSWorkspaceOpenConfiguration setActivates:NO] instead."]
+        const NSWorkspaceLaunchWithoutActivation = 0x00000200;
+#[deprecated = "When using NSWorkspaceOpenConfiguration, all launches are asynchronous."]
+        const NSWorkspaceLaunchAsync = 0x00010000;
+#[deprecated = "Use -[NSWorkspaceOpenConfiguration setCreatesNewApplicationInstance:YES] instead."]
+        const NSWorkspaceLaunchNewInstance = 0x00080000;
+#[deprecated = "Use -[NSWorkspaceOpenConfiguration setHides:YES] instead."]
+        const NSWorkspaceLaunchAndHide = 0x00100000;
+#[deprecated = "Use -[NSWorkspaceOpenConfiguration setHidesOthers:YES] instead."]
+        const NSWorkspaceLaunchAndHideOthers = 0x00200000;
+#[deprecated = "Use NSWorkspaceOpenConfiguration instead."]
+        const NSWorkspaceLaunchDefault = NSWorkspaceLaunchOptions::NSWorkspaceLaunchAsync.0;
+#[deprecated = "The Classic environment is no longer supported."]
+        const NSWorkspaceLaunchAllowingClassicStartup = 0x00020000;
+#[deprecated = "The Classic environment is no longer supported."]
+        const NSWorkspaceLaunchPreferringClassic = 0x00040000;
+    }
 }
 
 unsafe impl Encode for NSWorkspaceLaunchOptions {

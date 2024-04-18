@@ -242,12 +242,14 @@ unsafe impl RefEncode for EKCalendarType {
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct EKCalendarEventAvailabilityMask(pub NSUInteger);
-impl EKCalendarEventAvailabilityMask {
-    pub const EKCalendarEventAvailabilityNone: Self = Self(0);
-    pub const EKCalendarEventAvailabilityBusy: Self = Self(1 << 0);
-    pub const EKCalendarEventAvailabilityFree: Self = Self(1 << 1);
-    pub const EKCalendarEventAvailabilityTentative: Self = Self(1 << 2);
-    pub const EKCalendarEventAvailabilityUnavailable: Self = Self(1 << 3);
+bitflags::bitflags! {
+    impl EKCalendarEventAvailabilityMask: NSUInteger {
+        const EKCalendarEventAvailabilityNone = 0;
+        const EKCalendarEventAvailabilityBusy = 1<<0;
+        const EKCalendarEventAvailabilityFree = 1<<1;
+        const EKCalendarEventAvailabilityTentative = 1<<2;
+        const EKCalendarEventAvailabilityUnavailable = 1<<3;
+    }
 }
 
 unsafe impl Encode for EKCalendarEventAvailabilityMask {
@@ -308,11 +310,13 @@ unsafe impl RefEncode for EKEntityType {
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct EKEntityMask(pub NSUInteger);
-impl EKEntityMask {
-    #[doc(alias = "EKEntityMaskEvent")]
-    pub const Event: Self = Self(1 << EKEntityType::Event.0);
-    #[doc(alias = "EKEntityMaskReminder")]
-    pub const Reminder: Self = Self(1 << EKEntityType::Reminder.0);
+bitflags::bitflags! {
+    impl EKEntityMask: NSUInteger {
+        #[doc(alias = "EKEntityMaskEvent")]
+        const Event = 1<<EKEntityType::Event.0;
+        #[doc(alias = "EKEntityMaskReminder")]
+        const Reminder = 1<<EKEntityType::Reminder.0;
+    }
 }
 
 unsafe impl Encode for EKEntityMask {

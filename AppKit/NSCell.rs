@@ -117,12 +117,14 @@ pub static NSControlStateValueOn: NSControlStateValue = 1;
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSCellStyleMask(pub NSUInteger);
-impl NSCellStyleMask {
-    pub const NSNoCellMask: Self = Self(0);
-    pub const NSContentsCellMask: Self = Self(1);
-    pub const NSPushInCellMask: Self = Self(2);
-    pub const NSChangeGrayCellMask: Self = Self(4);
-    pub const NSChangeBackgroundCellMask: Self = Self(8);
+bitflags::bitflags! {
+    impl NSCellStyleMask: NSUInteger {
+        const NSNoCellMask = 0;
+        const NSContentsCellMask = 1;
+        const NSPushInCellMask = 2;
+        const NSChangeGrayCellMask = 4;
+        const NSChangeBackgroundCellMask = 8;
+    }
 }
 
 unsafe impl Encode for NSCellStyleMask {
@@ -774,11 +776,13 @@ extern_methods!(
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSCellHitResult(pub NSUInteger);
-impl NSCellHitResult {
-    pub const NSCellHitNone: Self = Self(0);
-    pub const NSCellHitContentArea: Self = Self(1 << 0);
-    pub const NSCellHitEditableTextArea: Self = Self(1 << 1);
-    pub const NSCellHitTrackableArea: Self = Self(1 << 2);
+bitflags::bitflags! {
+    impl NSCellHitResult: NSUInteger {
+        const NSCellHitNone = 0;
+        const NSCellHitContentArea = 1<<0;
+        const NSCellHitEditableTextArea = 1<<1;
+        const NSCellHitTrackableArea = 1<<2;
+    }
 }
 
 unsafe impl Encode for NSCellHitResult {

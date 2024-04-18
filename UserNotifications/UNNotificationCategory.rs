@@ -9,13 +9,15 @@ use crate::*;
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct UNNotificationCategoryOptions(pub NSUInteger);
-impl UNNotificationCategoryOptions {
-    pub const UNNotificationCategoryOptionCustomDismissAction: Self = Self(1 << 0);
-    pub const UNNotificationCategoryOptionAllowInCarPlay: Self = Self(1 << 1);
-    pub const UNNotificationCategoryOptionHiddenPreviewsShowTitle: Self = Self(1 << 2);
-    pub const UNNotificationCategoryOptionHiddenPreviewsShowSubtitle: Self = Self(1 << 3);
-    #[deprecated = "Announcement option is ignored"]
-    pub const UNNotificationCategoryOptionAllowAnnouncement: Self = Self(1 << 4);
+bitflags::bitflags! {
+    impl UNNotificationCategoryOptions: NSUInteger {
+        const UNNotificationCategoryOptionCustomDismissAction = 1<<0;
+        const UNNotificationCategoryOptionAllowInCarPlay = 1<<1;
+        const UNNotificationCategoryOptionHiddenPreviewsShowTitle = 1<<2;
+        const UNNotificationCategoryOptionHiddenPreviewsShowSubtitle = 1<<3;
+#[deprecated = "Announcement option is ignored"]
+        const UNNotificationCategoryOptionAllowAnnouncement = 1<<4;
+    }
 }
 
 unsafe impl Encode for UNNotificationCategoryOptions {

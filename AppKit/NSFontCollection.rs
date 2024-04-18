@@ -9,13 +9,15 @@ use crate::*;
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSFontCollectionVisibility(pub NSUInteger);
-impl NSFontCollectionVisibility {
-    #[doc(alias = "NSFontCollectionVisibilityProcess")]
-    pub const Process: Self = Self(1 << 0);
-    #[doc(alias = "NSFontCollectionVisibilityUser")]
-    pub const User: Self = Self(1 << 1);
-    #[doc(alias = "NSFontCollectionVisibilityComputer")]
-    pub const Computer: Self = Self(1 << 2);
+bitflags::bitflags! {
+    impl NSFontCollectionVisibility: NSUInteger {
+        #[doc(alias = "NSFontCollectionVisibilityProcess")]
+        const Process = 1<<0;
+        #[doc(alias = "NSFontCollectionVisibilityUser")]
+        const User = 1<<1;
+        #[doc(alias = "NSFontCollectionVisibilityComputer")]
+        const Computer = 1<<2;
+    }
 }
 
 unsafe impl Encode for NSFontCollectionVisibility {

@@ -42,9 +42,11 @@ unsafe impl RefEncode for NSNetServicesError {
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSNetServiceOptions(pub NSUInteger);
-impl NSNetServiceOptions {
-    pub const NSNetServiceNoAutoRename: Self = Self(1 << 0);
-    pub const NSNetServiceListenForConnections: Self = Self(1 << 1);
+bitflags::bitflags! {
+    impl NSNetServiceOptions: NSUInteger {
+        const NSNetServiceNoAutoRename = 1<<0;
+        const NSNetServiceListenForConnections = 1<<1;
+    }
 }
 
 unsafe impl Encode for NSNetServiceOptions {

@@ -45,29 +45,31 @@ unsafe impl RefEncode for NSCollectionViewItemHighlightState {
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSCollectionViewScrollPosition(pub NSUInteger);
-impl NSCollectionViewScrollPosition {
-    #[doc(alias = "NSCollectionViewScrollPositionNone")]
-    pub const None: Self = Self(0);
-    #[doc(alias = "NSCollectionViewScrollPositionTop")]
-    pub const Top: Self = Self(1 << 0);
-    #[doc(alias = "NSCollectionViewScrollPositionCenteredVertically")]
-    pub const CenteredVertically: Self = Self(1 << 1);
-    #[doc(alias = "NSCollectionViewScrollPositionBottom")]
-    pub const Bottom: Self = Self(1 << 2);
-    #[doc(alias = "NSCollectionViewScrollPositionNearestHorizontalEdge")]
-    pub const NearestHorizontalEdge: Self = Self(1 << 9);
-    #[doc(alias = "NSCollectionViewScrollPositionLeft")]
-    pub const Left: Self = Self(1 << 3);
-    #[doc(alias = "NSCollectionViewScrollPositionCenteredHorizontally")]
-    pub const CenteredHorizontally: Self = Self(1 << 4);
-    #[doc(alias = "NSCollectionViewScrollPositionRight")]
-    pub const Right: Self = Self(1 << 5);
-    #[doc(alias = "NSCollectionViewScrollPositionLeadingEdge")]
-    pub const LeadingEdge: Self = Self(1 << 6);
-    #[doc(alias = "NSCollectionViewScrollPositionTrailingEdge")]
-    pub const TrailingEdge: Self = Self(1 << 7);
-    #[doc(alias = "NSCollectionViewScrollPositionNearestVerticalEdge")]
-    pub const NearestVerticalEdge: Self = Self(1 << 8);
+bitflags::bitflags! {
+    impl NSCollectionViewScrollPosition: NSUInteger {
+        #[doc(alias = "NSCollectionViewScrollPositionNone")]
+        const None = 0;
+        #[doc(alias = "NSCollectionViewScrollPositionTop")]
+        const Top = 1<<0;
+        #[doc(alias = "NSCollectionViewScrollPositionCenteredVertically")]
+        const CenteredVertically = 1<<1;
+        #[doc(alias = "NSCollectionViewScrollPositionBottom")]
+        const Bottom = 1<<2;
+        #[doc(alias = "NSCollectionViewScrollPositionNearestHorizontalEdge")]
+        const NearestHorizontalEdge = 1<<9;
+        #[doc(alias = "NSCollectionViewScrollPositionLeft")]
+        const Left = 1<<3;
+        #[doc(alias = "NSCollectionViewScrollPositionCenteredHorizontally")]
+        const CenteredHorizontally = 1<<4;
+        #[doc(alias = "NSCollectionViewScrollPositionRight")]
+        const Right = 1<<5;
+        #[doc(alias = "NSCollectionViewScrollPositionLeadingEdge")]
+        const LeadingEdge = 1<<6;
+        #[doc(alias = "NSCollectionViewScrollPositionTrailingEdge")]
+        const TrailingEdge = 1<<7;
+        #[doc(alias = "NSCollectionViewScrollPositionNearestVerticalEdge")]
+        const NearestVerticalEdge = 1<<8;
+    }
 }
 
 unsafe impl Encode for NSCollectionViewScrollPosition {

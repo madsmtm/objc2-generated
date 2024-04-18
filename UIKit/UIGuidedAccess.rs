@@ -86,17 +86,19 @@ extern "C" {
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct UIGuidedAccessAccessibilityFeature(pub NSUInteger);
-impl UIGuidedAccessAccessibilityFeature {
-    #[doc(alias = "UIGuidedAccessAccessibilityFeatureVoiceOver")]
-    pub const VoiceOver: Self = Self(1 << 0);
-    #[doc(alias = "UIGuidedAccessAccessibilityFeatureZoom")]
-    pub const Zoom: Self = Self(1 << 1);
-    #[doc(alias = "UIGuidedAccessAccessibilityFeatureAssistiveTouch")]
-    pub const AssistiveTouch: Self = Self(1 << 2);
-    #[doc(alias = "UIGuidedAccessAccessibilityFeatureInvertColors")]
-    pub const InvertColors: Self = Self(1 << 3);
-    #[doc(alias = "UIGuidedAccessAccessibilityFeatureGrayscaleDisplay")]
-    pub const GrayscaleDisplay: Self = Self(1 << 4);
+bitflags::bitflags! {
+    impl UIGuidedAccessAccessibilityFeature: NSUInteger {
+        #[doc(alias = "UIGuidedAccessAccessibilityFeatureVoiceOver")]
+        const VoiceOver = 1<<0;
+        #[doc(alias = "UIGuidedAccessAccessibilityFeatureZoom")]
+        const Zoom = 1<<1;
+        #[doc(alias = "UIGuidedAccessAccessibilityFeatureAssistiveTouch")]
+        const AssistiveTouch = 1<<2;
+        #[doc(alias = "UIGuidedAccessAccessibilityFeatureInvertColors")]
+        const InvertColors = 1<<3;
+        #[doc(alias = "UIGuidedAccessAccessibilityFeatureGrayscaleDisplay")]
+        const GrayscaleDisplay = 1<<4;
+    }
 }
 
 unsafe impl Encode for UIGuidedAccessAccessibilityFeature {

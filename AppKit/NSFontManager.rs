@@ -9,19 +9,21 @@ use crate::*;
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSFontTraitMask(pub NSUInteger);
-impl NSFontTraitMask {
-    pub const NSItalicFontMask: Self = Self(0x00000001);
-    pub const NSBoldFontMask: Self = Self(0x00000002);
-    pub const NSUnboldFontMask: Self = Self(0x00000004);
-    pub const NSNonStandardCharacterSetFontMask: Self = Self(0x00000008);
-    pub const NSNarrowFontMask: Self = Self(0x00000010);
-    pub const NSExpandedFontMask: Self = Self(0x00000020);
-    pub const NSCondensedFontMask: Self = Self(0x00000040);
-    pub const NSSmallCapsFontMask: Self = Self(0x00000080);
-    pub const NSPosterFontMask: Self = Self(0x00000100);
-    pub const NSCompressedFontMask: Self = Self(0x00000200);
-    pub const NSFixedPitchFontMask: Self = Self(0x00000400);
-    pub const NSUnitalicFontMask: Self = Self(0x01000000);
+bitflags::bitflags! {
+    impl NSFontTraitMask: NSUInteger {
+        const NSItalicFontMask = 0x00000001;
+        const NSBoldFontMask = 0x00000002;
+        const NSUnboldFontMask = 0x00000004;
+        const NSNonStandardCharacterSetFontMask = 0x00000008;
+        const NSNarrowFontMask = 0x00000010;
+        const NSExpandedFontMask = 0x00000020;
+        const NSCondensedFontMask = 0x00000040;
+        const NSSmallCapsFontMask = 0x00000080;
+        const NSPosterFontMask = 0x00000100;
+        const NSCompressedFontMask = 0x00000200;
+        const NSFixedPitchFontMask = 0x00000400;
+        const NSUnitalicFontMask = 0x01000000;
+    }
 }
 
 unsafe impl Encode for NSFontTraitMask {
@@ -36,8 +38,10 @@ unsafe impl RefEncode for NSFontTraitMask {
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSFontCollectionOptions(pub NSUInteger);
-impl NSFontCollectionOptions {
-    pub const NSFontCollectionApplicationOnlyMask: Self = Self(1 << 0);
+bitflags::bitflags! {
+    impl NSFontCollectionOptions: NSUInteger {
+        const NSFontCollectionApplicationOnlyMask = 1<<0;
+    }
 }
 
 unsafe impl Encode for NSFontCollectionOptions {

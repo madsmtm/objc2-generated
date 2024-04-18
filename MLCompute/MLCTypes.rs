@@ -96,17 +96,19 @@ unsafe impl RefEncode for MLCDeviceType {
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MLCGraphCompilationOptions(pub u64);
-impl MLCGraphCompilationOptions {
-    #[doc(alias = "MLCGraphCompilationOptionsNone")]
-    pub const None: Self = Self(0x00);
-    #[doc(alias = "MLCGraphCompilationOptionsDebugLayers")]
-    pub const DebugLayers: Self = Self(0x01);
-    #[doc(alias = "MLCGraphCompilationOptionsDisableLayerFusion")]
-    pub const DisableLayerFusion: Self = Self(0x02);
-    #[doc(alias = "MLCGraphCompilationOptionsLinkGraphs")]
-    pub const LinkGraphs: Self = Self(0x04);
-    #[doc(alias = "MLCGraphCompilationOptionsComputeAllGradients")]
-    pub const ComputeAllGradients: Self = Self(0x08);
+bitflags::bitflags! {
+    impl MLCGraphCompilationOptions: u64 {
+        #[doc(alias = "MLCGraphCompilationOptionsNone")]
+        const None = 0x00;
+        #[doc(alias = "MLCGraphCompilationOptionsDebugLayers")]
+        const DebugLayers = 0x01;
+        #[doc(alias = "MLCGraphCompilationOptionsDisableLayerFusion")]
+        const DisableLayerFusion = 0x02;
+        #[doc(alias = "MLCGraphCompilationOptionsLinkGraphs")]
+        const LinkGraphs = 0x04;
+        #[doc(alias = "MLCGraphCompilationOptionsComputeAllGradients")]
+        const ComputeAllGradients = 0x08;
+    }
 }
 
 unsafe impl Encode for MLCGraphCompilationOptions {
@@ -121,19 +123,21 @@ unsafe impl RefEncode for MLCGraphCompilationOptions {
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MLCExecutionOptions(pub u64);
-impl MLCExecutionOptions {
-    #[doc(alias = "MLCExecutionOptionsNone")]
-    pub const None: Self = Self(0x00);
-    #[doc(alias = "MLCExecutionOptionsSkipWritingInputDataToDevice")]
-    pub const SkipWritingInputDataToDevice: Self = Self(0x01);
-    #[doc(alias = "MLCExecutionOptionsSynchronous")]
-    pub const Synchronous: Self = Self(0x02);
-    #[doc(alias = "MLCExecutionOptionsProfiling")]
-    pub const Profiling: Self = Self(0x04);
-    #[doc(alias = "MLCExecutionOptionsForwardForInference")]
-    pub const ForwardForInference: Self = Self(0x08);
-    #[doc(alias = "MLCExecutionOptionsPerLayerProfiling")]
-    pub const PerLayerProfiling: Self = Self(0x10);
+bitflags::bitflags! {
+    impl MLCExecutionOptions: u64 {
+        #[doc(alias = "MLCExecutionOptionsNone")]
+        const None = 0x00;
+        #[doc(alias = "MLCExecutionOptionsSkipWritingInputDataToDevice")]
+        const SkipWritingInputDataToDevice = 0x01;
+        #[doc(alias = "MLCExecutionOptionsSynchronous")]
+        const Synchronous = 0x02;
+        #[doc(alias = "MLCExecutionOptionsProfiling")]
+        const Profiling = 0x04;
+        #[doc(alias = "MLCExecutionOptionsForwardForInference")]
+        const ForwardForInference = 0x08;
+        #[doc(alias = "MLCExecutionOptionsPerLayerProfiling")]
+        const PerLayerProfiling = 0x10;
+    }
 }
 
 unsafe impl Encode for MLCExecutionOptions {

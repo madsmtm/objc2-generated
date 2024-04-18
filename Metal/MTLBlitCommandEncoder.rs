@@ -9,15 +9,17 @@ use crate::*;
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MTLBlitOption(pub NSUInteger);
-impl MTLBlitOption {
-    #[doc(alias = "MTLBlitOptionNone")]
-    pub const None: Self = Self(0);
-    #[doc(alias = "MTLBlitOptionDepthFromDepthStencil")]
-    pub const DepthFromDepthStencil: Self = Self(1 << 0);
-    #[doc(alias = "MTLBlitOptionStencilFromDepthStencil")]
-    pub const StencilFromDepthStencil: Self = Self(1 << 1);
-    #[doc(alias = "MTLBlitOptionRowLinearPVRTC")]
-    pub const RowLinearPVRTC: Self = Self(1 << 2);
+bitflags::bitflags! {
+    impl MTLBlitOption: NSUInteger {
+        #[doc(alias = "MTLBlitOptionNone")]
+        const None = 0;
+        #[doc(alias = "MTLBlitOptionDepthFromDepthStencil")]
+        const DepthFromDepthStencil = 1<<0;
+        #[doc(alias = "MTLBlitOptionStencilFromDepthStencil")]
+        const StencilFromDepthStencil = 1<<1;
+        #[doc(alias = "MTLBlitOptionRowLinearPVRTC")]
+        const RowLinearPVRTC = 1<<2;
+    }
 }
 
 unsafe impl Encode for MTLBlitOption {

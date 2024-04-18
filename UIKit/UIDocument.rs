@@ -45,19 +45,21 @@ unsafe impl RefEncode for UIDocumentSaveOperation {
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct UIDocumentState(pub NSUInteger);
-impl UIDocumentState {
-    #[doc(alias = "UIDocumentStateNormal")]
-    pub const Normal: Self = Self(0);
-    #[doc(alias = "UIDocumentStateClosed")]
-    pub const Closed: Self = Self(1 << 0);
-    #[doc(alias = "UIDocumentStateInConflict")]
-    pub const InConflict: Self = Self(1 << 1);
-    #[doc(alias = "UIDocumentStateSavingError")]
-    pub const SavingError: Self = Self(1 << 2);
-    #[doc(alias = "UIDocumentStateEditingDisabled")]
-    pub const EditingDisabled: Self = Self(1 << 3);
-    #[doc(alias = "UIDocumentStateProgressAvailable")]
-    pub const ProgressAvailable: Self = Self(1 << 4);
+bitflags::bitflags! {
+    impl UIDocumentState: NSUInteger {
+        #[doc(alias = "UIDocumentStateNormal")]
+        const Normal = 0;
+        #[doc(alias = "UIDocumentStateClosed")]
+        const Closed = 1<<0;
+        #[doc(alias = "UIDocumentStateInConflict")]
+        const InConflict = 1<<1;
+        #[doc(alias = "UIDocumentStateSavingError")]
+        const SavingError = 1<<2;
+        #[doc(alias = "UIDocumentStateEditingDisabled")]
+        const EditingDisabled = 1<<3;
+        #[doc(alias = "UIDocumentStateProgressAvailable")]
+        const ProgressAvailable = 1<<4;
+    }
 }
 
 unsafe impl Encode for UIDocumentState {

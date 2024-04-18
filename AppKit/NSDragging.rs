@@ -9,29 +9,31 @@ use crate::*;
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSDragOperation(pub NSUInteger);
-impl NSDragOperation {
-    #[doc(alias = "NSDragOperationNone")]
-    pub const None: Self = Self(0);
-    #[doc(alias = "NSDragOperationCopy")]
-    pub const Copy: Self = Self(1);
-    #[doc(alias = "NSDragOperationLink")]
-    pub const Link: Self = Self(2);
-    #[doc(alias = "NSDragOperationGeneric")]
-    pub const Generic: Self = Self(4);
-    #[doc(alias = "NSDragOperationPrivate")]
-    pub const Private: Self = Self(8);
-    #[doc(alias = "NSDragOperationMove")]
-    pub const Move: Self = Self(16);
-    #[doc(alias = "NSDragOperationDelete")]
-    pub const Delete: Self = Self(32);
-    #[doc(alias = "NSDragOperationEvery")]
-    pub const Every: Self = Self(NSUIntegerMax as _);
-    #[deprecated]
-    #[doc(alias = "NSDragOperationAll_Obsolete")]
-    pub const All_Obsolete: Self = Self(15);
-    #[deprecated]
-    #[doc(alias = "NSDragOperationAll")]
-    pub const All: Self = Self(NSDragOperation::All_Obsolete.0);
+bitflags::bitflags! {
+    impl NSDragOperation: NSUInteger {
+        #[doc(alias = "NSDragOperationNone")]
+        const None = 0;
+        #[doc(alias = "NSDragOperationCopy")]
+        const Copy = 1;
+        #[doc(alias = "NSDragOperationLink")]
+        const Link = 2;
+        #[doc(alias = "NSDragOperationGeneric")]
+        const Generic = 4;
+        #[doc(alias = "NSDragOperationPrivate")]
+        const Private = 8;
+        #[doc(alias = "NSDragOperationMove")]
+        const Move = 16;
+        #[doc(alias = "NSDragOperationDelete")]
+        const Delete = 32;
+        #[doc(alias = "NSDragOperationEvery")]
+        const Every = NSUIntegerMax as _;
+#[deprecated]
+        #[doc(alias = "NSDragOperationAll_Obsolete")]
+        const All_Obsolete = 15;
+#[deprecated]
+        #[doc(alias = "NSDragOperationAll")]
+        const All = NSDragOperation::All_Obsolete.0;
+    }
 }
 
 unsafe impl Encode for NSDragOperation {
@@ -90,10 +92,11 @@ unsafe impl RefEncode for NSDraggingContext {
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSDraggingItemEnumerationOptions(pub NSUInteger);
-impl NSDraggingItemEnumerationOptions {
-    pub const NSDraggingItemEnumerationConcurrent: Self =
-        Self(NSEnumerationOptions::NSEnumerationConcurrent.0);
-    pub const NSDraggingItemEnumerationClearNonenumeratedImages: Self = Self(1 << 16);
+bitflags::bitflags! {
+    impl NSDraggingItemEnumerationOptions: NSUInteger {
+        const NSDraggingItemEnumerationConcurrent = NSEnumerationOptions::NSEnumerationConcurrent.0;
+        const NSDraggingItemEnumerationClearNonenumeratedImages = 1<<16;
+    }
 }
 
 unsafe impl Encode for NSDraggingItemEnumerationOptions {
@@ -315,11 +318,13 @@ extern_protocol!(
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSSpringLoadingOptions(pub NSUInteger);
-impl NSSpringLoadingOptions {
-    pub const NSSpringLoadingDisabled: Self = Self(0);
-    pub const NSSpringLoadingEnabled: Self = Self(1 << 0);
-    pub const NSSpringLoadingContinuousActivation: Self = Self(1 << 1);
-    pub const NSSpringLoadingNoHover: Self = Self(1 << 3);
+bitflags::bitflags! {
+    impl NSSpringLoadingOptions: NSUInteger {
+        const NSSpringLoadingDisabled = 0;
+        const NSSpringLoadingEnabled = 1<<0;
+        const NSSpringLoadingContinuousActivation = 1<<1;
+        const NSSpringLoadingNoHover = 1<<3;
+    }
 }
 
 unsafe impl Encode for NSSpringLoadingOptions {

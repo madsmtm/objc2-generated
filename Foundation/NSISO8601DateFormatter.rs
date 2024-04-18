@@ -8,21 +8,23 @@ use crate::*;
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSISO8601DateFormatOptions(pub NSUInteger);
-impl NSISO8601DateFormatOptions {
-    pub const NSISO8601DateFormatWithYear: Self = Self(1);
-    pub const NSISO8601DateFormatWithMonth: Self = Self(2);
-    pub const NSISO8601DateFormatWithWeekOfYear: Self = Self(4);
-    pub const NSISO8601DateFormatWithDay: Self = Self(16);
-    pub const NSISO8601DateFormatWithTime: Self = Self(32);
-    pub const NSISO8601DateFormatWithTimeZone: Self = Self(64);
-    pub const NSISO8601DateFormatWithSpaceBetweenDateAndTime: Self = Self(128);
-    pub const NSISO8601DateFormatWithDashSeparatorInDate: Self = Self(256);
-    pub const NSISO8601DateFormatWithColonSeparatorInTime: Self = Self(512);
-    pub const NSISO8601DateFormatWithColonSeparatorInTimeZone: Self = Self(1024);
-    pub const NSISO8601DateFormatWithFractionalSeconds: Self = Self(2048);
-    pub const NSISO8601DateFormatWithFullDate: Self = Self(275);
-    pub const NSISO8601DateFormatWithFullTime: Self = Self(1632);
-    pub const NSISO8601DateFormatWithInternetDateTime: Self = Self(1907);
+bitflags::bitflags! {
+    impl NSISO8601DateFormatOptions: NSUInteger {
+        const NSISO8601DateFormatWithYear = 1;
+        const NSISO8601DateFormatWithMonth = 2;
+        const NSISO8601DateFormatWithWeekOfYear = 4;
+        const NSISO8601DateFormatWithDay = 16;
+        const NSISO8601DateFormatWithTime = 32;
+        const NSISO8601DateFormatWithTimeZone = 64;
+        const NSISO8601DateFormatWithSpaceBetweenDateAndTime = 128;
+        const NSISO8601DateFormatWithDashSeparatorInDate = 256;
+        const NSISO8601DateFormatWithColonSeparatorInTime = 512;
+        const NSISO8601DateFormatWithColonSeparatorInTimeZone = 1024;
+        const NSISO8601DateFormatWithFractionalSeconds = 2048;
+        const NSISO8601DateFormatWithFullDate = 275;
+        const NSISO8601DateFormatWithFullTime = 1632;
+        const NSISO8601DateFormatWithInternetDateTime = 1907;
+    }
 }
 
 unsafe impl Encode for NSISO8601DateFormatOptions {

@@ -31,19 +31,21 @@ unsafe impl RefEncode for ASAuthorizationProviderExtensionAuthenticationMethod {
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct ASAuthorizationProviderExtensionRequestOptions(pub NSUInteger);
-impl ASAuthorizationProviderExtensionRequestOptions {
-    #[doc(alias = "ASAuthorizationProviderExtensionRequestOptionsNone")]
-    pub const None: Self = Self(0);
-    #[doc(alias = "ASAuthorizationProviderExtensionRequestOptionsUserInteractionEnabled")]
-    pub const UserInteractionEnabled: Self = Self(1 << 0);
-    #[doc(alias = "ASAuthorizationProviderExtensionRequestOptionsRegistrationRepair")]
-    pub const RegistrationRepair: Self = Self(1 << 1);
-    #[doc(alias = "ASAuthorizationProviderExtensionRequestOptionsRegistrationSharedDeviceKeys")]
-    pub const RegistrationSharedDeviceKeys: Self = Self(1 << 2);
-    #[doc(alias = "ASAuthorizationProviderExtensionRequestOptionsRegistrationDeviceKeyMigration")]
-    pub const RegistrationDeviceKeyMigration: Self = Self(1 << 3);
-    #[doc(alias = "ASAuthorizationProviderExtensionRequestOptionsUserKeyInvalid")]
-    pub const UserKeyInvalid: Self = Self(1 << 5);
+bitflags::bitflags! {
+    impl ASAuthorizationProviderExtensionRequestOptions: NSUInteger {
+        #[doc(alias = "ASAuthorizationProviderExtensionRequestOptionsNone")]
+        const None = 0;
+        #[doc(alias = "ASAuthorizationProviderExtensionRequestOptionsUserInteractionEnabled")]
+        const UserInteractionEnabled = 1<<0;
+        #[doc(alias = "ASAuthorizationProviderExtensionRequestOptionsRegistrationRepair")]
+        const RegistrationRepair = 1<<1;
+        #[doc(alias = "ASAuthorizationProviderExtensionRequestOptionsRegistrationSharedDeviceKeys")]
+        const RegistrationSharedDeviceKeys = 1<<2;
+        #[doc(alias = "ASAuthorizationProviderExtensionRequestOptionsRegistrationDeviceKeyMigration")]
+        const RegistrationDeviceKeyMigration = 1<<3;
+        #[doc(alias = "ASAuthorizationProviderExtensionRequestOptionsUserKeyInvalid")]
+        const UserKeyInvalid = 1<<5;
+    }
 }
 
 unsafe impl Encode for ASAuthorizationProviderExtensionRequestOptions {
@@ -81,17 +83,19 @@ unsafe impl RefEncode for ASAuthorizationProviderExtensionRegistrationResult {
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct ASAuthorizationProviderExtensionSupportedGrantTypes(pub NSInteger);
-impl ASAuthorizationProviderExtensionSupportedGrantTypes {
-    #[doc(alias = "ASAuthorizationProviderExtensionSupportedGrantTypesNone")]
-    pub const None: Self = Self(0);
-    #[doc(alias = "ASAuthorizationProviderExtensionSupportedGrantTypesPassword")]
-    pub const Password: Self = Self(1 << 0);
-    #[doc(alias = "ASAuthorizationProviderExtensionSupportedGrantTypesJWTBearer")]
-    pub const JWTBearer: Self = Self(1 << 1);
-    #[doc(alias = "ASAuthorizationProviderExtensionSupportedGrantTypesSAML1_1")]
-    pub const SAML1_1: Self = Self(1 << 2);
-    #[doc(alias = "ASAuthorizationProviderExtensionSupportedGrantTypesSAML2_0")]
-    pub const SAML2_0: Self = Self(1 << 3);
+bitflags::bitflags! {
+    impl ASAuthorizationProviderExtensionSupportedGrantTypes: NSInteger {
+        #[doc(alias = "ASAuthorizationProviderExtensionSupportedGrantTypesNone")]
+        const None = 0;
+        #[doc(alias = "ASAuthorizationProviderExtensionSupportedGrantTypesPassword")]
+        const Password = 1<<0;
+        #[doc(alias = "ASAuthorizationProviderExtensionSupportedGrantTypesJWTBearer")]
+        const JWTBearer = 1<<1;
+        #[doc(alias = "ASAuthorizationProviderExtensionSupportedGrantTypesSAML1_1")]
+        const SAML1_1 = 1<<2;
+        #[doc(alias = "ASAuthorizationProviderExtensionSupportedGrantTypesSAML2_0")]
+        const SAML2_0 = 1<<3;
+    }
 }
 
 unsafe impl Encode for ASAuthorizationProviderExtensionSupportedGrantTypes {

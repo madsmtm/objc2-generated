@@ -9,10 +9,12 @@ use crate::*;
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSApplicationActivationOptions(pub NSUInteger);
-impl NSApplicationActivationOptions {
-    pub const NSApplicationActivateAllWindows: Self = Self(1 << 0);
-    #[deprecated = "ignoringOtherApps is deprecated in macOS 14 and will have no effect."]
-    pub const NSApplicationActivateIgnoringOtherApps: Self = Self(1 << 1);
+bitflags::bitflags! {
+    impl NSApplicationActivationOptions: NSUInteger {
+        const NSApplicationActivateAllWindows = 1<<0;
+#[deprecated = "ignoringOtherApps is deprecated in macOS 14 and will have no effect."]
+        const NSApplicationActivateIgnoringOtherApps = 1<<1;
+    }
 }
 
 unsafe impl Encode for NSApplicationActivationOptions {

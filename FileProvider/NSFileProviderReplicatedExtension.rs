@@ -9,9 +9,11 @@ use crate::*;
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSFileProviderCreateItemOptions(pub NSUInteger);
-impl NSFileProviderCreateItemOptions {
-    pub const NSFileProviderCreateItemMayAlreadyExist: Self = Self(1 << 0);
-    pub const NSFileProviderCreateItemDeletionConflicted: Self = Self(1 << 1);
+bitflags::bitflags! {
+    impl NSFileProviderCreateItemOptions: NSUInteger {
+        const NSFileProviderCreateItemMayAlreadyExist = 1<<0;
+        const NSFileProviderCreateItemDeletionConflicted = 1<<1;
+    }
 }
 
 unsafe impl Encode for NSFileProviderCreateItemOptions {
@@ -26,8 +28,10 @@ unsafe impl RefEncode for NSFileProviderCreateItemOptions {
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSFileProviderDeleteItemOptions(pub NSUInteger);
-impl NSFileProviderDeleteItemOptions {
-    pub const NSFileProviderDeleteItemRecursive: Self = Self(1 << 0);
+bitflags::bitflags! {
+    impl NSFileProviderDeleteItemOptions: NSUInteger {
+        const NSFileProviderDeleteItemRecursive = 1<<0;
+    }
 }
 
 unsafe impl Encode for NSFileProviderDeleteItemOptions {
@@ -42,9 +46,11 @@ unsafe impl RefEncode for NSFileProviderDeleteItemOptions {
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSFileProviderMaterializationFlags(pub NSUInteger);
-impl NSFileProviderMaterializationFlags {
-    #[doc(alias = "NSFileProviderMaterializationFlagsKnownSparseRanges")]
-    pub const KnownSparseRanges: Self = Self(1 << 0);
+bitflags::bitflags! {
+    impl NSFileProviderMaterializationFlags: NSUInteger {
+        #[doc(alias = "NSFileProviderMaterializationFlagsKnownSparseRanges")]
+        const KnownSparseRanges = 1<<0;
+    }
 }
 
 unsafe impl Encode for NSFileProviderMaterializationFlags {
@@ -59,9 +65,11 @@ unsafe impl RefEncode for NSFileProviderMaterializationFlags {
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSFileProviderFetchContentsOptions(pub NSUInteger);
-impl NSFileProviderFetchContentsOptions {
-    #[doc(alias = "NSFileProviderFetchContentsOptionsStrictVersioning")]
-    pub const StrictVersioning: Self = Self(1 << 0);
+bitflags::bitflags! {
+    impl NSFileProviderFetchContentsOptions: NSUInteger {
+        #[doc(alias = "NSFileProviderFetchContentsOptionsStrictVersioning")]
+        const StrictVersioning = 1<<0;
+    }
 }
 
 unsafe impl Encode for NSFileProviderFetchContentsOptions {

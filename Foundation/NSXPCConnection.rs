@@ -32,8 +32,10 @@ extern_protocol!(
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSXPCConnectionOptions(pub NSUInteger);
-impl NSXPCConnectionOptions {
-    pub const NSXPCConnectionPrivileged: Self = Self(1 << 12);
+bitflags::bitflags! {
+    impl NSXPCConnectionOptions: NSUInteger {
+        const NSXPCConnectionPrivileged = 1<<12;
+    }
 }
 
 unsafe impl Encode for NSXPCConnectionOptions {

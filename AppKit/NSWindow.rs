@@ -15,34 +15,36 @@ pub static NSAppKitVersionNumberWithDeferredWindowDisplaySupport: NSAppKitVersio
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSWindowStyleMask(pub NSUInteger);
-impl NSWindowStyleMask {
-    #[doc(alias = "NSWindowStyleMaskBorderless")]
-    pub const Borderless: Self = Self(0);
-    #[doc(alias = "NSWindowStyleMaskTitled")]
-    pub const Titled: Self = Self(1 << 0);
-    #[doc(alias = "NSWindowStyleMaskClosable")]
-    pub const Closable: Self = Self(1 << 1);
-    #[doc(alias = "NSWindowStyleMaskMiniaturizable")]
-    pub const Miniaturizable: Self = Self(1 << 2);
-    #[doc(alias = "NSWindowStyleMaskResizable")]
-    pub const Resizable: Self = Self(1 << 3);
-    #[deprecated = "Textured window style should no longer be used"]
-    #[doc(alias = "NSWindowStyleMaskTexturedBackground")]
-    pub const TexturedBackground: Self = Self(1 << 8);
-    #[doc(alias = "NSWindowStyleMaskUnifiedTitleAndToolbar")]
-    pub const UnifiedTitleAndToolbar: Self = Self(1 << 12);
-    #[doc(alias = "NSWindowStyleMaskFullScreen")]
-    pub const FullScreen: Self = Self(1 << 14);
-    #[doc(alias = "NSWindowStyleMaskFullSizeContentView")]
-    pub const FullSizeContentView: Self = Self(1 << 15);
-    #[doc(alias = "NSWindowStyleMaskUtilityWindow")]
-    pub const UtilityWindow: Self = Self(1 << 4);
-    #[doc(alias = "NSWindowStyleMaskDocModalWindow")]
-    pub const DocModalWindow: Self = Self(1 << 6);
-    #[doc(alias = "NSWindowStyleMaskNonactivatingPanel")]
-    pub const NonactivatingPanel: Self = Self(1 << 7);
-    #[doc(alias = "NSWindowStyleMaskHUDWindow")]
-    pub const HUDWindow: Self = Self(1 << 13);
+bitflags::bitflags! {
+    impl NSWindowStyleMask: NSUInteger {
+        #[doc(alias = "NSWindowStyleMaskBorderless")]
+        const Borderless = 0;
+        #[doc(alias = "NSWindowStyleMaskTitled")]
+        const Titled = 1<<0;
+        #[doc(alias = "NSWindowStyleMaskClosable")]
+        const Closable = 1<<1;
+        #[doc(alias = "NSWindowStyleMaskMiniaturizable")]
+        const Miniaturizable = 1<<2;
+        #[doc(alias = "NSWindowStyleMaskResizable")]
+        const Resizable = 1<<3;
+#[deprecated = "Textured window style should no longer be used"]
+        #[doc(alias = "NSWindowStyleMaskTexturedBackground")]
+        const TexturedBackground = 1<<8;
+        #[doc(alias = "NSWindowStyleMaskUnifiedTitleAndToolbar")]
+        const UnifiedTitleAndToolbar = 1<<12;
+        #[doc(alias = "NSWindowStyleMaskFullScreen")]
+        const FullScreen = 1<<14;
+        #[doc(alias = "NSWindowStyleMaskFullSizeContentView")]
+        const FullSizeContentView = 1<<15;
+        #[doc(alias = "NSWindowStyleMaskUtilityWindow")]
+        const UtilityWindow = 1<<4;
+        #[doc(alias = "NSWindowStyleMaskDocModalWindow")]
+        const DocModalWindow = 1<<6;
+        #[doc(alias = "NSWindowStyleMaskNonactivatingPanel")]
+        const NonactivatingPanel = 1<<7;
+        #[doc(alias = "NSWindowStyleMaskHUDWindow")]
+        const HUDWindow = 1<<13;
+    }
 }
 
 unsafe impl Encode for NSWindowStyleMask {
@@ -84,39 +86,41 @@ unsafe impl RefEncode for NSWindowSharingType {
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSWindowCollectionBehavior(pub NSUInteger);
-impl NSWindowCollectionBehavior {
-    #[doc(alias = "NSWindowCollectionBehaviorDefault")]
-    pub const Default: Self = Self(0);
-    #[doc(alias = "NSWindowCollectionBehaviorCanJoinAllSpaces")]
-    pub const CanJoinAllSpaces: Self = Self(1 << 0);
-    #[doc(alias = "NSWindowCollectionBehaviorMoveToActiveSpace")]
-    pub const MoveToActiveSpace: Self = Self(1 << 1);
-    #[doc(alias = "NSWindowCollectionBehaviorManaged")]
-    pub const Managed: Self = Self(1 << 2);
-    #[doc(alias = "NSWindowCollectionBehaviorTransient")]
-    pub const Transient: Self = Self(1 << 3);
-    #[doc(alias = "NSWindowCollectionBehaviorStationary")]
-    pub const Stationary: Self = Self(1 << 4);
-    #[doc(alias = "NSWindowCollectionBehaviorParticipatesInCycle")]
-    pub const ParticipatesInCycle: Self = Self(1 << 5);
-    #[doc(alias = "NSWindowCollectionBehaviorIgnoresCycle")]
-    pub const IgnoresCycle: Self = Self(1 << 6);
-    #[doc(alias = "NSWindowCollectionBehaviorFullScreenPrimary")]
-    pub const FullScreenPrimary: Self = Self(1 << 7);
-    #[doc(alias = "NSWindowCollectionBehaviorFullScreenAuxiliary")]
-    pub const FullScreenAuxiliary: Self = Self(1 << 8);
-    #[doc(alias = "NSWindowCollectionBehaviorFullScreenNone")]
-    pub const FullScreenNone: Self = Self(1 << 9);
-    #[doc(alias = "NSWindowCollectionBehaviorFullScreenAllowsTiling")]
-    pub const FullScreenAllowsTiling: Self = Self(1 << 11);
-    #[doc(alias = "NSWindowCollectionBehaviorFullScreenDisallowsTiling")]
-    pub const FullScreenDisallowsTiling: Self = Self(1 << 12);
-    #[doc(alias = "NSWindowCollectionBehaviorPrimary")]
-    pub const Primary: Self = Self(1 << 16);
-    #[doc(alias = "NSWindowCollectionBehaviorAuxiliary")]
-    pub const Auxiliary: Self = Self(1 << 17);
-    #[doc(alias = "NSWindowCollectionBehaviorCanJoinAllApplications")]
-    pub const CanJoinAllApplications: Self = Self(1 << 18);
+bitflags::bitflags! {
+    impl NSWindowCollectionBehavior: NSUInteger {
+        #[doc(alias = "NSWindowCollectionBehaviorDefault")]
+        const Default = 0;
+        #[doc(alias = "NSWindowCollectionBehaviorCanJoinAllSpaces")]
+        const CanJoinAllSpaces = 1<<0;
+        #[doc(alias = "NSWindowCollectionBehaviorMoveToActiveSpace")]
+        const MoveToActiveSpace = 1<<1;
+        #[doc(alias = "NSWindowCollectionBehaviorManaged")]
+        const Managed = 1<<2;
+        #[doc(alias = "NSWindowCollectionBehaviorTransient")]
+        const Transient = 1<<3;
+        #[doc(alias = "NSWindowCollectionBehaviorStationary")]
+        const Stationary = 1<<4;
+        #[doc(alias = "NSWindowCollectionBehaviorParticipatesInCycle")]
+        const ParticipatesInCycle = 1<<5;
+        #[doc(alias = "NSWindowCollectionBehaviorIgnoresCycle")]
+        const IgnoresCycle = 1<<6;
+        #[doc(alias = "NSWindowCollectionBehaviorFullScreenPrimary")]
+        const FullScreenPrimary = 1<<7;
+        #[doc(alias = "NSWindowCollectionBehaviorFullScreenAuxiliary")]
+        const FullScreenAuxiliary = 1<<8;
+        #[doc(alias = "NSWindowCollectionBehaviorFullScreenNone")]
+        const FullScreenNone = 1<<9;
+        #[doc(alias = "NSWindowCollectionBehaviorFullScreenAllowsTiling")]
+        const FullScreenAllowsTiling = 1<<11;
+        #[doc(alias = "NSWindowCollectionBehaviorFullScreenDisallowsTiling")]
+        const FullScreenDisallowsTiling = 1<<12;
+        #[doc(alias = "NSWindowCollectionBehaviorPrimary")]
+        const Primary = 1<<16;
+        #[doc(alias = "NSWindowCollectionBehaviorAuxiliary")]
+        const Auxiliary = 1<<17;
+        #[doc(alias = "NSWindowCollectionBehaviorCanJoinAllApplications")]
+        const CanJoinAllApplications = 1<<18;
+    }
 }
 
 unsafe impl Encode for NSWindowCollectionBehavior {
@@ -156,9 +160,11 @@ unsafe impl RefEncode for NSWindowAnimationBehavior {
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSWindowNumberListOptions(pub NSUInteger);
-impl NSWindowNumberListOptions {
-    pub const NSWindowNumberListAllApplications: Self = Self(1 << 0);
-    pub const NSWindowNumberListAllSpaces: Self = Self(1 << 4);
+bitflags::bitflags! {
+    impl NSWindowNumberListOptions: NSUInteger {
+        const NSWindowNumberListAllApplications = 1<<0;
+        const NSWindowNumberListAllSpaces = 1<<4;
+    }
 }
 
 unsafe impl Encode for NSWindowNumberListOptions {
@@ -173,9 +179,11 @@ unsafe impl RefEncode for NSWindowNumberListOptions {
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSWindowOcclusionState(pub NSUInteger);
-impl NSWindowOcclusionState {
-    #[doc(alias = "NSWindowOcclusionStateVisible")]
-    pub const Visible: Self = Self(1 << 1);
+bitflags::bitflags! {
+    impl NSWindowOcclusionState: NSUInteger {
+        #[doc(alias = "NSWindowOcclusionStateVisible")]
+        const Visible = 1<<1;
+    }
 }
 
 unsafe impl Encode for NSWindowOcclusionState {

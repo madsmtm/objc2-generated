@@ -9,10 +9,12 @@ use crate::*;
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSTableColumnResizingOptions(pub NSUInteger);
-impl NSTableColumnResizingOptions {
-    pub const NSTableColumnNoResizing: Self = Self(0);
-    pub const NSTableColumnAutoresizingMask: Self = Self(1 << 0);
-    pub const NSTableColumnUserResizingMask: Self = Self(1 << 1);
+bitflags::bitflags! {
+    impl NSTableColumnResizingOptions: NSUInteger {
+        const NSTableColumnNoResizing = 0;
+        const NSTableColumnAutoresizingMask = 1<<0;
+        const NSTableColumnUserResizingMask = 1<<1;
+    }
 }
 
 unsafe impl Encode for NSTableColumnResizingOptions {

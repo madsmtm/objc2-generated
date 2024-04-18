@@ -9,25 +9,27 @@ use crate::*;
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct UIFocusHeading(pub NSUInteger);
-impl UIFocusHeading {
-    #[doc(alias = "UIFocusHeadingNone")]
-    pub const None: Self = Self(0);
-    #[doc(alias = "UIFocusHeadingUp")]
-    pub const Up: Self = Self(1 << 0);
-    #[doc(alias = "UIFocusHeadingDown")]
-    pub const Down: Self = Self(1 << 1);
-    #[doc(alias = "UIFocusHeadingLeft")]
-    pub const Left: Self = Self(1 << 2);
-    #[doc(alias = "UIFocusHeadingRight")]
-    pub const Right: Self = Self(1 << 3);
-    #[doc(alias = "UIFocusHeadingNext")]
-    pub const Next: Self = Self(1 << 4);
-    #[doc(alias = "UIFocusHeadingPrevious")]
-    pub const Previous: Self = Self(1 << 5);
-    #[doc(alias = "UIFocusHeadingFirst")]
-    pub const First: Self = Self(1 << 8);
-    #[doc(alias = "UIFocusHeadingLast")]
-    pub const Last: Self = Self(1 << 9);
+bitflags::bitflags! {
+    impl UIFocusHeading: NSUInteger {
+        #[doc(alias = "UIFocusHeadingNone")]
+        const None = 0;
+        #[doc(alias = "UIFocusHeadingUp")]
+        const Up = 1<<0;
+        #[doc(alias = "UIFocusHeadingDown")]
+        const Down = 1<<1;
+        #[doc(alias = "UIFocusHeadingLeft")]
+        const Left = 1<<2;
+        #[doc(alias = "UIFocusHeadingRight")]
+        const Right = 1<<3;
+        #[doc(alias = "UIFocusHeadingNext")]
+        const Next = 1<<4;
+        #[doc(alias = "UIFocusHeadingPrevious")]
+        const Previous = 1<<5;
+        #[doc(alias = "UIFocusHeadingFirst")]
+        const First = 1<<8;
+        #[doc(alias = "UIFocusHeadingLast")]
+        const Last = 1<<9;
+    }
 }
 
 unsafe impl Encode for UIFocusHeading {

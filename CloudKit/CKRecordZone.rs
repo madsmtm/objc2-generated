@@ -9,11 +9,13 @@ use crate::*;
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CKRecordZoneCapabilities(pub NSUInteger);
-impl CKRecordZoneCapabilities {
-    pub const CKRecordZoneCapabilityFetchChanges: Self = Self(1 << 0);
-    pub const CKRecordZoneCapabilityAtomic: Self = Self(1 << 1);
-    pub const CKRecordZoneCapabilitySharing: Self = Self(1 << 2);
-    pub const CKRecordZoneCapabilityZoneWideSharing: Self = Self(1 << 3);
+bitflags::bitflags! {
+    impl CKRecordZoneCapabilities: NSUInteger {
+        const CKRecordZoneCapabilityFetchChanges = 1<<0;
+        const CKRecordZoneCapabilityAtomic = 1<<1;
+        const CKRecordZoneCapabilitySharing = 1<<2;
+        const CKRecordZoneCapabilityZoneWideSharing = 1<<3;
+    }
 }
 
 unsafe impl Encode for CKRecordZoneCapabilities {
