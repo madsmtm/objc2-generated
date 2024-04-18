@@ -331,6 +331,10 @@ pub use self::__CAMetalDisplayLink::CAMetalDisplayLink;
 pub use self::__CAMetalDisplayLink::CAMetalDisplayLinkDelegate;
 #[cfg(feature = "CAMetalDisplayLink")]
 pub use self::__CAMetalDisplayLink::CAMetalDisplayLinkUpdate;
+#[cfg(all(feature = "CAMetalLayer", feature = "objc2-metal"))]
+pub use self::__CAMetalLayer::CAMetalDrawable;
+#[cfg(all(feature = "CALayer", feature = "CAMetalLayer"))]
+pub use self::__CAMetalLayer::CAMetalLayer;
 #[cfg(feature = "CARemoteLayerClient")]
 pub use self::__CARemoteLayerClient::CARemoteLayerClient;
 #[cfg(feature = "CARemoteLayerServer")]

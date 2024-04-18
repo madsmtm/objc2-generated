@@ -65,6 +65,10 @@ unsafe impl NSObjectProtocol for CAMetalDisplayLink {}
 
 extern_methods!(
     unsafe impl CAMetalDisplayLink {
+        #[cfg(all(feature = "CALayer", feature = "CAMetalLayer"))]
+        #[method_id(@__retain_semantics Init initWithMetalLayer:)]
+        pub unsafe fn initWithMetalLayer(this: Allocated<Self>, layer: &CAMetalLayer) -> Id<Self>;
+
         #[method(addToRunLoop:forMode:)]
         pub unsafe fn addToRunLoop_forMode(&self, runloop: &NSRunLoop, mode: &NSRunLoopMode);
 
