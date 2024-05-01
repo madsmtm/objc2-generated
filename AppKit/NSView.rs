@@ -4,6 +4,8 @@
 use block2::*;
 use objc2::__framework_prelude::*;
 use objc2_foundation::*;
+#[cfg(feature = "objc2-quartz-core")]
+use objc2_quartz_core::*;
 
 use crate::*;
 
@@ -572,6 +574,10 @@ extern_methods!(
         #[method(setWantsRestingTouches:)]
         pub unsafe fn setWantsRestingTouches(&self, wants_resting_touches: bool);
 
+        #[cfg(feature = "objc2-quartz-core")]
+        #[method_id(@__retain_semantics Other makeBackingLayer)]
+        pub unsafe fn makeBackingLayer(&self) -> Id<CALayer>;
+
         #[method(layerContentsRedrawPolicy)]
         pub unsafe fn layerContentsRedrawPolicy(&self) -> NSViewLayerContentsRedrawPolicy;
 
@@ -595,6 +601,14 @@ extern_methods!(
 
         #[method(setWantsLayer:)]
         pub fn setWantsLayer(&self, wants_layer: bool);
+
+        #[cfg(feature = "objc2-quartz-core")]
+        #[method_id(@__retain_semantics Other layer)]
+        pub unsafe fn layer(&self) -> Option<Id<CALayer>>;
+
+        #[cfg(feature = "objc2-quartz-core")]
+        #[method(setLayer:)]
+        pub unsafe fn setLayer(&self, layer: Option<&CALayer>);
 
         #[method(wantsUpdateLayer)]
         pub unsafe fn wantsUpdateLayer(&self) -> bool;
@@ -771,6 +785,26 @@ extern_methods!(
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
     }
+);
+
+extern_protocol!(
+    pub unsafe trait NSViewLayerContentScaleDelegate: NSObjectProtocol {
+        #[cfg(all(
+            feature = "NSResponder",
+            feature = "NSWindow",
+            feature = "objc2-quartz-core"
+        ))]
+        #[optional]
+        #[method(layer:shouldInheritContentsScale:fromWindow:)]
+        unsafe fn layer_shouldInheritContentsScale_fromWindow(
+            &self,
+            layer: &CALayer,
+            new_scale: CGFloat,
+            window: &NSWindow,
+        ) -> bool;
+    }
+
+    unsafe impl ProtocolType for dyn NSViewLayerContentScaleDelegate {}
 );
 
 extern_protocol!(

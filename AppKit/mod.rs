@@ -6795,6 +6795,8 @@ pub use self::__NSView::NSViewFullScreenModeOptionKey;
 #[cfg(feature = "NSView")]
 pub use self::__NSView::NSViewGlobalFrameDidChangeNotification;
 #[cfg(feature = "NSView")]
+pub use self::__NSView::NSViewLayerContentScaleDelegate;
+#[cfg(feature = "NSView")]
 pub use self::__NSView::NSViewLayerContentsPlacement;
 #[cfg(feature = "NSView")]
 pub use self::__NSView::NSViewLayerContentsRedrawPolicy;
