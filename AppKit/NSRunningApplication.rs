@@ -88,6 +88,10 @@ extern_methods!(
         #[method_id(@__retain_semantics Other executableURL)]
         pub unsafe fn executableURL(&self) -> Option<Id<NSURL>>;
 
+        #[cfg(feature = "libc")]
+        #[method(processIdentifier)]
+        pub unsafe fn processIdentifier(&self) -> libc::pid_t;
+
         #[method_id(@__retain_semantics Other launchDate)]
         pub unsafe fn launchDate(&self) -> Option<Id<NSDate>>;
 
@@ -124,6 +128,11 @@ extern_methods!(
         pub unsafe fn runningApplicationsWithBundleIdentifier(
             bundle_identifier: &NSString,
         ) -> Id<NSArray<NSRunningApplication>>;
+
+        #[cfg(feature = "libc")]
+        #[method_id(@__retain_semantics Other runningApplicationWithProcessIdentifier:)]
+        pub unsafe fn runningApplicationWithProcessIdentifier(pid: libc::pid_t)
+            -> Option<Id<Self>>;
 
         #[method_id(@__retain_semantics Other currentApplication)]
         pub unsafe fn currentApplication() -> Id<NSRunningApplication>;

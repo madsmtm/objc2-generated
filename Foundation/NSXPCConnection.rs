@@ -156,6 +156,18 @@ extern_methods!(
         #[method(invalidate)]
         pub unsafe fn invalidate(&self);
 
+        #[cfg(feature = "libc")]
+        #[method(processIdentifier)]
+        pub unsafe fn processIdentifier(&self) -> libc::pid_t;
+
+        #[cfg(feature = "libc")]
+        #[method(effectiveUserIdentifier)]
+        pub unsafe fn effectiveUserIdentifier(&self) -> libc::uid_t;
+
+        #[cfg(feature = "libc")]
+        #[method(effectiveGroupIdentifier)]
+        pub unsafe fn effectiveGroupIdentifier(&self) -> libc::gid_t;
+
         #[method_id(@__retain_semantics Other currentConnection)]
         pub unsafe fn currentConnection() -> Option<Id<NSXPCConnection>>;
 

@@ -44,6 +44,10 @@ extern_methods!(
         #[method(isTestFlightApp)]
         pub unsafe fn isTestFlightApp(&self) -> bool;
 
+        #[cfg(feature = "libc")]
+        #[method(pid)]
+        pub unsafe fn pid(&self) -> libc::pid_t;
+
         #[method_id(@__retain_semantics Other JSONRepresentation)]
         pub unsafe fn JSONRepresentation(&self) -> Id<NSData>;
 

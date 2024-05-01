@@ -92,6 +92,12 @@ extern_methods!(
         #[method_id(@__retain_semantics Other currentProcessDescriptor)]
         pub unsafe fn currentProcessDescriptor() -> Id<NSAppleEventDescriptor>;
 
+        #[cfg(feature = "libc")]
+        #[method_id(@__retain_semantics Other descriptorWithProcessIdentifier:)]
+        pub unsafe fn descriptorWithProcessIdentifier(
+            process_identifier: libc::pid_t,
+        ) -> Id<NSAppleEventDescriptor>;
+
         #[cfg(feature = "NSString")]
         #[method_id(@__retain_semantics Other descriptorWithBundleIdentifier:)]
         pub unsafe fn descriptorWithBundleIdentifier(
