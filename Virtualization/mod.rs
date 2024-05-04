@@ -439,8 +439,28 @@ pub use self::__VZHostAudioOutputStreamSink::VZHostAudioOutputStreamSink;
 pub use self::__VZKeyboardConfiguration::VZKeyboardConfiguration;
 #[cfg(all(feature = "VZBootLoader", feature = "VZLinuxBootLoader"))]
 pub use self::__VZLinuxBootLoader::VZLinuxBootLoader;
+#[cfg(all(
+    feature = "VZLinuxRosettaAbstractSocketCachingOptions",
+    feature = "VZLinuxRosettaCachingOptions"
+))]
+pub use self::__VZLinuxRosettaAbstractSocketCachingOptions::VZLinuxRosettaAbstractSocketCachingOptions;
+#[cfg(feature = "VZLinuxRosettaCachingOptions")]
+pub use self::__VZLinuxRosettaCachingOptions::VZLinuxRosettaCachingOptions;
+#[cfg(feature = "VZLinuxRosettaDirectoryShare")]
+pub use self::__VZLinuxRosettaDirectoryShare::VZLinuxRosettaAvailability;
+#[cfg(all(feature = "VZDirectoryShare", feature = "VZLinuxRosettaDirectoryShare"))]
+pub use self::__VZLinuxRosettaDirectoryShare::VZLinuxRosettaDirectoryShare;
+#[cfg(all(
+    feature = "VZLinuxRosettaCachingOptions",
+    feature = "VZLinuxRosettaUnixSocketCachingOptions"
+))]
+pub use self::__VZLinuxRosettaUnixSocketCachingOptions::VZLinuxRosettaUnixSocketCachingOptions;
 #[cfg(feature = "VZMACAddress")]
 pub use self::__VZMACAddress::VZMACAddress;
+#[cfg(feature = "VZMacAuxiliaryStorage")]
+pub use self::__VZMacAuxiliaryStorage::VZMacAuxiliaryStorage;
+#[cfg(feature = "VZMacAuxiliaryStorage")]
+pub use self::__VZMacAuxiliaryStorage::VZMacAuxiliaryStorageInitializationOptions;
 #[cfg(all(feature = "VZGraphicsDevice", feature = "VZMacGraphicsDevice"))]
 pub use self::__VZMacGraphicsDevice::VZMacGraphicsDevice;
 #[cfg(all(
@@ -455,6 +475,38 @@ pub use self::__VZMacGraphicsDisplay::VZMacGraphicsDisplay;
     feature = "VZMacGraphicsDisplayConfiguration"
 ))]
 pub use self::__VZMacGraphicsDisplayConfiguration::VZMacGraphicsDisplayConfiguration;
+#[cfg(feature = "VZMacHardwareModel")]
+pub use self::__VZMacHardwareModel::VZMacHardwareModel;
+#[cfg(all(
+    feature = "VZKeyboardConfiguration",
+    feature = "VZMacKeyboardConfiguration"
+))]
+pub use self::__VZMacKeyboardConfiguration::VZMacKeyboardConfiguration;
+#[cfg(feature = "VZMacMachineIdentifier")]
+pub use self::__VZMacMachineIdentifier::VZMacMachineIdentifier;
+#[cfg(all(feature = "VZBootLoader", feature = "VZMacOSBootLoader"))]
+pub use self::__VZMacOSBootLoader::VZMacOSBootLoader;
+#[cfg(feature = "VZMacOSConfigurationRequirements")]
+pub use self::__VZMacOSConfigurationRequirements::VZMacOSConfigurationRequirements;
+#[cfg(feature = "VZMacOSInstaller")]
+pub use self::__VZMacOSInstaller::VZMacOSInstaller;
+#[cfg(feature = "VZMacOSRestoreImage")]
+pub use self::__VZMacOSRestoreImage::VZMacOSRestoreImage;
+#[cfg(all(
+    feature = "VZMacOSVirtualMachineStartOptions",
+    feature = "VZVirtualMachineStartOptions"
+))]
+pub use self::__VZMacOSVirtualMachineStartOptions::VZMacOSVirtualMachineStartOptions;
+#[cfg(all(
+    feature = "VZMacPlatformConfiguration",
+    feature = "VZPlatformConfiguration"
+))]
+pub use self::__VZMacPlatformConfiguration::VZMacPlatformConfiguration;
+#[cfg(all(
+    feature = "VZMacTrackpadConfiguration",
+    feature = "VZPointingDeviceConfiguration"
+))]
+pub use self::__VZMacTrackpadConfiguration::VZMacTrackpadConfiguration;
 #[cfg(feature = "VZMemoryBalloonDevice")]
 pub use self::__VZMemoryBalloonDevice::VZMemoryBalloonDevice;
 #[cfg(feature = "VZMemoryBalloonDeviceConfiguration")]

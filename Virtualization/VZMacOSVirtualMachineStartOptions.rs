@@ -4,3 +4,42 @@ use objc2::__framework_prelude::*;
 use objc2_foundation::*;
 
 use crate::*;
+
+extern_class!(
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "VZVirtualMachineStartOptions")]
+    pub struct VZMacOSVirtualMachineStartOptions;
+
+    #[cfg(feature = "VZVirtualMachineStartOptions")]
+    unsafe impl ClassType for VZMacOSVirtualMachineStartOptions {
+        #[inherits(NSObject)]
+        type Super = VZVirtualMachineStartOptions;
+        type Mutability = InteriorMutable;
+    }
+);
+
+#[cfg(feature = "VZVirtualMachineStartOptions")]
+unsafe impl NSObjectProtocol for VZMacOSVirtualMachineStartOptions {}
+
+extern_methods!(
+    #[cfg(feature = "VZVirtualMachineStartOptions")]
+    unsafe impl VZMacOSVirtualMachineStartOptions {
+        #[method(startUpFromMacOSRecovery)]
+        pub unsafe fn startUpFromMacOSRecovery(&self) -> bool;
+
+        #[method(setStartUpFromMacOSRecovery:)]
+        pub unsafe fn setStartUpFromMacOSRecovery(&self, start_up_from_mac_os_recovery: bool);
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "VZVirtualMachineStartOptions")]
+    unsafe impl VZMacOSVirtualMachineStartOptions {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);

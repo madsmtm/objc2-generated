@@ -4,3 +4,25 @@ use objc2::__framework_prelude::*;
 use objc2_foundation::*;
 
 use crate::*;
+
+extern_class!(
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct VZLinuxRosettaCachingOptions;
+
+    unsafe impl ClassType for VZLinuxRosettaCachingOptions {
+        type Super = NSObject;
+        type Mutability = InteriorMutable;
+    }
+);
+
+unsafe impl NSObjectProtocol for VZLinuxRosettaCachingOptions {}
+
+extern_methods!(
+    unsafe impl VZLinuxRosettaCachingOptions {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+    }
+);

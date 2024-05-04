@@ -4,3 +4,39 @@ use objc2::__framework_prelude::*;
 use objc2_foundation::*;
 
 use crate::*;
+
+extern_class!(
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "VZKeyboardConfiguration")]
+    pub struct VZMacKeyboardConfiguration;
+
+    #[cfg(feature = "VZKeyboardConfiguration")]
+    unsafe impl ClassType for VZMacKeyboardConfiguration {
+        #[inherits(NSObject)]
+        type Super = VZKeyboardConfiguration;
+        type Mutability = InteriorMutable;
+    }
+);
+
+#[cfg(feature = "VZKeyboardConfiguration")]
+unsafe impl NSCopying for VZMacKeyboardConfiguration {}
+
+#[cfg(feature = "VZKeyboardConfiguration")]
+unsafe impl NSObjectProtocol for VZMacKeyboardConfiguration {}
+
+extern_methods!(
+    #[cfg(feature = "VZKeyboardConfiguration")]
+    unsafe impl VZMacKeyboardConfiguration {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `VZKeyboardConfiguration`
+    #[cfg(feature = "VZKeyboardConfiguration")]
+    unsafe impl VZMacKeyboardConfiguration {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);

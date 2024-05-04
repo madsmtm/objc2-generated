@@ -161,6 +161,22 @@ extern_methods!(
             completion_handler: &Block<dyn Fn(*mut NSError)>,
         );
 
+        #[cfg(feature = "block2")]
+        #[method(restoreMachineStateFromURL:completionHandler:)]
+        pub unsafe fn restoreMachineStateFromURL_completionHandler(
+            &self,
+            save_file_url: &NSURL,
+            completion_handler: &Block<dyn Fn(*mut NSError)>,
+        );
+
+        #[cfg(feature = "block2")]
+        #[method(saveMachineStateToURL:completionHandler:)]
+        pub unsafe fn saveMachineStateToURL_completionHandler(
+            &self,
+            save_file_url: &NSURL,
+            completion_handler: &Block<dyn Fn(*mut NSError)>,
+        );
+
         #[method(requestStopWithError:_)]
         pub unsafe fn requestStopWithError(&self) -> Result<(), Id<NSError>>;
     }

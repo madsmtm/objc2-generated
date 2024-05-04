@@ -4,3 +4,39 @@ use objc2::__framework_prelude::*;
 use objc2_foundation::*;
 
 use crate::*;
+
+extern_class!(
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "VZPointingDeviceConfiguration")]
+    pub struct VZMacTrackpadConfiguration;
+
+    #[cfg(feature = "VZPointingDeviceConfiguration")]
+    unsafe impl ClassType for VZMacTrackpadConfiguration {
+        #[inherits(NSObject)]
+        type Super = VZPointingDeviceConfiguration;
+        type Mutability = InteriorMutable;
+    }
+);
+
+#[cfg(feature = "VZPointingDeviceConfiguration")]
+unsafe impl NSCopying for VZMacTrackpadConfiguration {}
+
+#[cfg(feature = "VZPointingDeviceConfiguration")]
+unsafe impl NSObjectProtocol for VZMacTrackpadConfiguration {}
+
+extern_methods!(
+    #[cfg(feature = "VZPointingDeviceConfiguration")]
+    unsafe impl VZMacTrackpadConfiguration {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `VZPointingDeviceConfiguration`
+    #[cfg(feature = "VZPointingDeviceConfiguration")]
+    unsafe impl VZMacTrackpadConfiguration {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);

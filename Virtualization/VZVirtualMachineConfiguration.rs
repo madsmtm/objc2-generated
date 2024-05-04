@@ -195,6 +195,9 @@ extern_methods!(
         #[method(validateWithError:_)]
         pub unsafe fn validateWithError(&self) -> Result<(), Id<NSError>>;
 
+        #[method(validateSaveRestoreSupportWithError:_)]
+        pub unsafe fn validateSaveRestoreSupportWithError(&self) -> Result<(), Id<NSError>>;
+
         #[method(minimumAllowedMemorySize)]
         pub unsafe fn minimumAllowedMemorySize() -> u64;
 

@@ -4,3 +4,65 @@ use objc2::__framework_prelude::*;
 use objc2_foundation::*;
 
 use crate::*;
+
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct VZMacAuxiliaryStorageInitializationOptions(pub NSUInteger);
+impl VZMacAuxiliaryStorageInitializationOptions {
+    pub const VZMacAuxiliaryStorageInitializationOptionAllowOverwrite: Self = Self(1 << 0);
+}
+
+unsafe impl Encode for VZMacAuxiliaryStorageInitializationOptions {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+unsafe impl RefEncode for VZMacAuxiliaryStorageInitializationOptions {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+extern_class!(
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct VZMacAuxiliaryStorage;
+
+    unsafe impl ClassType for VZMacAuxiliaryStorage {
+        type Super = NSObject;
+        type Mutability = InteriorMutable;
+    }
+);
+
+unsafe impl NSObjectProtocol for VZMacAuxiliaryStorage {}
+
+extern_methods!(
+    unsafe impl VZMacAuxiliaryStorage {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+
+        #[method_id(@__retain_semantics Init initWithURL:)]
+        pub unsafe fn initWithURL(this: Allocated<Self>, url: &NSURL) -> Id<Self>;
+
+        #[cfg(feature = "VZMacHardwareModel")]
+        #[method_id(@__retain_semantics Init initCreatingStorageAtURL:hardwareModel:options:error:_)]
+        pub unsafe fn initCreatingStorageAtURL_hardwareModel_options_error(
+            this: Allocated<Self>,
+            url: &NSURL,
+            hardware_model: &VZMacHardwareModel,
+            options: VZMacAuxiliaryStorageInitializationOptions,
+        ) -> Result<Id<Self>, Id<NSError>>;
+
+        #[method_id(@__retain_semantics Other URL)]
+        pub unsafe fn URL(&self) -> Id<NSURL>;
+    }
+);
+
+extern_methods!(
+    /// VZDeprecated
+    unsafe impl VZMacAuxiliaryStorage {
+        #[deprecated]
+        #[method_id(@__retain_semantics Init initWithContentsOfURL:)]
+        pub unsafe fn initWithContentsOfURL(this: Allocated<Self>, url: &NSURL) -> Id<Self>;
+    }
+);
