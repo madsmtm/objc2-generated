@@ -5,6 +5,8 @@ use objc2::__framework_prelude::*;
 use objc2_app_kit::*;
 use objc2_foundation::*;
 use objc2_metal::*;
+#[cfg(feature = "objc2-quartz-core")]
+use objc2_quartz_core::*;
 
 use crate::*;
 
@@ -20,6 +22,9 @@ extern_class!(
         type Mutability = MainThreadOnly;
     }
 );
+
+#[cfg(all(feature = "objc2-app-kit", feature = "objc2-quartz-core"))]
+unsafe impl CALayerDelegate for MTKView {}
 
 #[cfg(feature = "objc2-app-kit")]
 unsafe impl NSAccessibility for MTKView {}
@@ -69,6 +74,10 @@ extern_methods!(
 
         #[method(setDevice:)]
         pub unsafe fn setDevice(&self, device: Option<&ProtocolObject<dyn MTLDevice>>);
+
+        #[cfg(feature = "objc2-quartz-core")]
+        #[method_id(@__retain_semantics Other currentDrawable)]
+        pub unsafe fn currentDrawable(&self) -> Option<Id<ProtocolObject<dyn CAMetalDrawable>>>;
 
         #[method(framebufferOnly)]
         pub unsafe fn framebufferOnly(&self) -> bool;

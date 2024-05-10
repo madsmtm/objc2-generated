@@ -2,6 +2,8 @@
 //! DO NOT EDIT
 use objc2::__framework_prelude::*;
 use objc2_foundation::*;
+#[cfg(feature = "objc2-metal")]
+use objc2_metal::*;
 
 use crate::*;
 
@@ -19,6 +21,10 @@ unsafe impl NSObjectProtocol for CAMetalDisplayLinkUpdate {}
 
 extern_methods!(
     unsafe impl CAMetalDisplayLinkUpdate {
+        #[cfg(all(feature = "CAMetalLayer", feature = "objc2-metal"))]
+        #[method_id(@__retain_semantics Other drawable)]
+        pub unsafe fn drawable(&self) -> Id<ProtocolObject<dyn CAMetalDrawable>>;
+
         #[method(targetTimestamp)]
         pub unsafe fn targetTimestamp(&self) -> CFTimeInterval;
 
