@@ -47,7 +47,13 @@ unsafe impl NSObjectProtocol for ASAuthorizationSecurityKeyPublicKeyCredentialRe
 unsafe impl NSSecureCoding for ASAuthorizationSecurityKeyPublicKeyCredentialRegistration {}
 
 extern_methods!(
-    unsafe impl ASAuthorizationSecurityKeyPublicKeyCredentialRegistration {}
+    unsafe impl ASAuthorizationSecurityKeyPublicKeyCredentialRegistration {
+        #[cfg(feature = "ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor")]
+        #[method_id(@__retain_semantics Other transports)]
+        pub unsafe fn transports(
+            &self,
+        ) -> Id<NSArray<ASAuthorizationSecurityKeyPublicKeyCredentialDescriptorTransport>>;
+    }
 );
 
 extern_methods!(

@@ -49,17 +49,49 @@ unsafe impl NSObjectProtocol for UIImpactFeedbackGenerator {}
 extern_methods!(
     #[cfg(feature = "UIFeedbackGenerator")]
     unsafe impl UIImpactFeedbackGenerator {
-        #[method_id(@__retain_semantics Init initWithStyle:)]
-        pub unsafe fn initWithStyle(
-            this: Allocated<Self>,
+        #[cfg(all(feature = "UIResponder", feature = "UIView"))]
+        #[method_id(@__retain_semantics Other feedbackGeneratorWithStyle:forView:)]
+        pub unsafe fn feedbackGeneratorWithStyle_forView(
             style: UIImpactFeedbackStyle,
+            view: &UIView,
         ) -> Id<Self>;
 
         #[method(impactOccurred)]
         pub unsafe fn impactOccurred(&self);
 
+        #[method(impactOccurredAtLocation:)]
+        pub unsafe fn impactOccurredAtLocation(&self, location: CGPoint);
+
         #[method(impactOccurredWithIntensity:)]
         pub unsafe fn impactOccurredWithIntensity(&self, intensity: CGFloat);
+
+        #[method(impactOccurredWithIntensity:atLocation:)]
+        pub unsafe fn impactOccurredWithIntensity_atLocation(
+            &self,
+            intensity: CGFloat,
+            location: CGPoint,
+        );
+
+        #[deprecated]
+        #[method_id(@__retain_semantics Init initWithStyle:)]
+        pub unsafe fn initWithStyle(
+            this: Allocated<Self>,
+            style: UIImpactFeedbackStyle,
+        ) -> Id<Self>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `UIFeedbackGenerator`
+    #[cfg(feature = "UIFeedbackGenerator")]
+    unsafe impl UIImpactFeedbackGenerator {
+        #[cfg(all(feature = "UIResponder", feature = "UIView"))]
+        #[method_id(@__retain_semantics Other feedbackGeneratorForView:)]
+        pub unsafe fn feedbackGeneratorForView(view: &UIView) -> Id<Self>;
+
+        #[deprecated]
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
     }
 );
 
@@ -67,9 +99,6 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "UIFeedbackGenerator")]
     unsafe impl UIImpactFeedbackGenerator {
-        #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
-
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
     }

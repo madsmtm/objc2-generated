@@ -47,6 +47,27 @@ extern_methods!(
     unsafe impl UINotificationFeedbackGenerator {
         #[method(notificationOccurred:)]
         pub unsafe fn notificationOccurred(&self, notification_type: UINotificationFeedbackType);
+
+        #[method(notificationOccurred:atLocation:)]
+        pub unsafe fn notificationOccurred_atLocation(
+            &self,
+            notification_type: UINotificationFeedbackType,
+            location: CGPoint,
+        );
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `UIFeedbackGenerator`
+    #[cfg(feature = "UIFeedbackGenerator")]
+    unsafe impl UINotificationFeedbackGenerator {
+        #[cfg(all(feature = "UIResponder", feature = "UIView"))]
+        #[method_id(@__retain_semantics Other feedbackGeneratorForView:)]
+        pub unsafe fn feedbackGeneratorForView(view: &UIView) -> Id<Self>;
+
+        #[deprecated]
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
     }
 );
 
@@ -54,9 +75,6 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "UIFeedbackGenerator")]
     unsafe impl UINotificationFeedbackGenerator {
-        #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
-
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
     }

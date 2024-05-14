@@ -27,16 +27,6 @@ unsafe impl RefEncode for UIPreferredPresentationStyle {
 }
 
 extern_category!(
-    /// Category on [`NSItemProvider`].
-    pub unsafe trait NSItemProviderTypeAvailability {
-        #[method_id(@__retain_semantics Other _availableTypes)]
-        unsafe fn _availableTypes(&self) -> Id<NSArray<NSString>>;
-    }
-
-    unsafe impl NSItemProviderTypeAvailability for NSItemProvider {}
-);
-
-extern_category!(
     /// Category "UIKitAdditions" on [`NSItemProvider`].
     #[doc(alias = "UIKitAdditions")]
     pub unsafe trait NSItemProviderUIKitAdditions {

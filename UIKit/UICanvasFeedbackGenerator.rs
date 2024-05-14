@@ -8,10 +8,10 @@ use crate::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "UIFeedbackGenerator")]
-    pub struct UISelectionFeedbackGenerator;
+    pub struct UICanvasFeedbackGenerator;
 
     #[cfg(feature = "UIFeedbackGenerator")]
-    unsafe impl ClassType for UISelectionFeedbackGenerator {
+    unsafe impl ClassType for UICanvasFeedbackGenerator {
         #[inherits(NSObject)]
         type Super = UIFeedbackGenerator;
         type Mutability = MainThreadOnly;
@@ -19,23 +19,23 @@ extern_class!(
 );
 
 #[cfg(feature = "UIFeedbackGenerator")]
-unsafe impl NSObjectProtocol for UISelectionFeedbackGenerator {}
+unsafe impl NSObjectProtocol for UICanvasFeedbackGenerator {}
 
 extern_methods!(
     #[cfg(feature = "UIFeedbackGenerator")]
-    unsafe impl UISelectionFeedbackGenerator {
-        #[method(selectionChanged)]
-        pub unsafe fn selectionChanged(&self);
+    unsafe impl UICanvasFeedbackGenerator {
+        #[method(alignmentOccurredAtLocation:)]
+        pub unsafe fn alignmentOccurredAtLocation(&self, location: CGPoint);
 
-        #[method(selectionChangedAtLocation:)]
-        pub unsafe fn selectionChangedAtLocation(&self, location: CGPoint);
+        #[method(pathCompletedAtLocation:)]
+        pub unsafe fn pathCompletedAtLocation(&self, location: CGPoint);
     }
 );
 
 extern_methods!(
     /// Methods declared on superclass `UIFeedbackGenerator`
     #[cfg(feature = "UIFeedbackGenerator")]
-    unsafe impl UISelectionFeedbackGenerator {
+    unsafe impl UICanvasFeedbackGenerator {
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[method_id(@__retain_semantics Other feedbackGeneratorForView:)]
         pub unsafe fn feedbackGeneratorForView(view: &UIView) -> Id<Self>;
@@ -49,7 +49,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "UIFeedbackGenerator")]
-    unsafe impl UISelectionFeedbackGenerator {
+    unsafe impl UICanvasFeedbackGenerator {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
     }

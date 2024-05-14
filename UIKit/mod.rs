@@ -250,6 +250,9 @@ mod __UICalendarView;
 #[cfg(feature = "UICalendarViewDecoration")]
 #[path = "UICalendarViewDecoration.rs"]
 mod __UICalendarViewDecoration;
+#[cfg(feature = "UICanvasFeedbackGenerator")]
+#[path = "UICanvasFeedbackGenerator.rs"]
+mod __UICanvasFeedbackGenerator;
 #[cfg(feature = "UICellAccessory")]
 #[path = "UICellAccessory.rs"]
 mod __UICellAccessory;
@@ -1312,8 +1315,6 @@ pub use self::__NSDiffableDataSourceSectionSnapshot::NSDiffableDataSourceSection
 #[cfg(feature = "NSIndexPath_UIKitAdditions")]
 pub use self::__NSIndexPath_UIKitAdditions::NSIndexPathUIKitAdditions;
 #[cfg(feature = "NSItemProvider_UIKitAdditions")]
-pub use self::__NSItemProvider_UIKitAdditions::NSItemProviderTypeAvailability;
-#[cfg(feature = "NSItemProvider_UIKitAdditions")]
 pub use self::__NSItemProvider_UIKitAdditions::NSItemProviderUIKitAdditions;
 #[cfg(feature = "NSItemProvider_UIKitAdditions")]
 pub use self::__NSItemProvider_UIKitAdditions::UIItemProviderPresentationSizeProviding;
@@ -2283,6 +2284,8 @@ pub use self::__UICalendarView::UICalendarViewDelegate;
 pub use self::__UICalendarViewDecoration::UICalendarViewDecoration;
 #[cfg(feature = "UICalendarViewDecoration")]
 pub use self::__UICalendarViewDecoration::UICalendarViewDecorationSize;
+#[cfg(all(feature = "UICanvasFeedbackGenerator", feature = "UIFeedbackGenerator"))]
+pub use self::__UICanvasFeedbackGenerator::UICanvasFeedbackGenerator;
 #[cfg(feature = "UICellAccessory")]
 pub use self::__UICellAccessory::UICellAccessory;
 #[cfg(feature = "UICellAccessory")]
@@ -3864,9 +3867,17 @@ pub use self::__UIPasteboard::UIPasteboardTypeListString;
 #[cfg(feature = "UIPasteboard")]
 pub use self::__UIPasteboard::UIPasteboardTypeListURL;
 #[cfg(feature = "UIPencilInteraction")]
+pub use self::__UIPencilInteraction::UIPencilHoverPose;
+#[cfg(feature = "UIPencilInteraction")]
 pub use self::__UIPencilInteraction::UIPencilInteraction;
 #[cfg(feature = "UIPencilInteraction")]
 pub use self::__UIPencilInteraction::UIPencilInteractionDelegate;
+#[cfg(feature = "UIPencilInteraction")]
+pub use self::__UIPencilInteraction::UIPencilInteractionPhase;
+#[cfg(feature = "UIPencilInteraction")]
+pub use self::__UIPencilInteraction::UIPencilInteractionSqueeze;
+#[cfg(feature = "UIPencilInteraction")]
+pub use self::__UIPencilInteraction::UIPencilInteractionTap;
 #[cfg(feature = "UIPencilInteraction")]
 pub use self::__UIPencilInteraction::UIPencilPreferredAction;
 #[cfg(all(feature = "UIPickerView", feature = "UIResponder", feature = "UIView"))]

@@ -55,6 +55,12 @@ extern_methods!(
             &self,
             allowed_credentials: &NSArray<ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor>,
         );
+
+        #[method_id(@__retain_semantics Other appID)]
+        pub unsafe fn appID(&self) -> Option<Id<NSString>>;
+
+        #[method(setAppID:)]
+        pub unsafe fn setAppID(&self, app_id: Option<&NSString>);
     }
 );
 

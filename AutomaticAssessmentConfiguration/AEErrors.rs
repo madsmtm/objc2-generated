@@ -16,6 +16,8 @@ pub struct AEAssessmentErrorCode(pub NSInteger);
 impl AEAssessmentErrorCode {
     pub const AEAssessmentErrorUnknown: Self = Self(1);
     pub const AEAssessmentErrorUnsupportedPlatform: Self = Self(2);
+    pub const AEAssessmentErrorMultipleParticipantsNotSupported: Self = Self(3);
+    pub const AEAssessmentErrorConfigurationUpdatesNotSupported: Self = Self(4);
 }
 
 unsafe impl Encode for AEAssessmentErrorCode {

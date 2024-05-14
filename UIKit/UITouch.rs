@@ -91,6 +91,7 @@ impl UITouchProperties {
     pub const UITouchPropertyAzimuth: Self = Self(1 << 1);
     pub const UITouchPropertyAltitude: Self = Self(1 << 2);
     pub const UITouchPropertyLocation: Self = Self(1 << 3);
+    pub const UITouchPropertyRoll: Self = Self(1 << 4);
 }
 
 unsafe impl Encode for UITouchProperties {
@@ -186,6 +187,9 @@ extern_methods!(
 
         #[method(estimatedPropertiesExpectingUpdates)]
         pub unsafe fn estimatedPropertiesExpectingUpdates(&self) -> UITouchProperties;
+
+        #[method(rollAngle)]
+        pub unsafe fn rollAngle(&self) -> CGFloat;
     }
 );
 

@@ -45,6 +45,9 @@ unsafe impl NSSecureCoding for ASAuthorizationSecurityKeyPublicKeyCredentialAsse
 
 extern_methods!(
     unsafe impl ASAuthorizationSecurityKeyPublicKeyCredentialAssertion {
+        #[method(appID)]
+        pub unsafe fn appID(&self) -> bool;
+
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
 

@@ -37,6 +37,9 @@ extern_methods!(
 
         #[method(altitudeAngle)]
         pub unsafe fn altitudeAngle(&self) -> CGFloat;
+
+        #[method(rollAngle)]
+        pub unsafe fn rollAngle(&self) -> CGFloat;
     }
 );
 

@@ -19,6 +19,12 @@ unsafe impl NSObjectProtocol for AEAssessmentSession {}
 
 extern_methods!(
     unsafe impl AEAssessmentSession {
+        #[method(supportsMultipleParticipants)]
+        pub unsafe fn supportsMultipleParticipants() -> bool;
+
+        #[method(supportsConfigurationUpdates)]
+        pub unsafe fn supportsConfigurationUpdates() -> bool;
+
         #[cfg(feature = "AEAssessmentSessionDelegate")]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
