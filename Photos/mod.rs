@@ -245,6 +245,12 @@ pub use self::__PHLivePhotoEditingContext::PHLivePhotoEditingErrorDomain;
 pub use self::__PHLivePhotoEditingContext::PHLivePhotoEditingOption;
 #[cfg(feature = "PHLivePhotoEditingContext")]
 pub use self::__PHLivePhotoEditingContext::PHLivePhotoFrame;
+#[cfg(all(
+    feature = "PHLivePhotoEditingContext",
+    feature = "block2",
+    feature = "objc2-core-image"
+))]
+pub use self::__PHLivePhotoEditingContext::PHLivePhotoFrameProcessingBlock;
 #[cfg(feature = "PHLivePhotoEditingContext")]
 pub use self::__PHLivePhotoEditingContext::PHLivePhotoFrameType;
 #[cfg(feature = "PHLivePhotoEditingContext")]

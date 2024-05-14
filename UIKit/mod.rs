@@ -2578,6 +2578,8 @@ pub use self::__UICollisionBehavior::UICollisionBehaviorDelegate;
 #[cfg(feature = "UICollisionBehavior")]
 pub use self::__UICollisionBehavior::UICollisionBehaviorMode;
 #[cfg(feature = "UIColor")]
+pub use self::__UIColor::CIColorUIKitAdditions;
+#[cfg(feature = "UIColor")]
 pub use self::__UIColor::UIColor;
 #[cfg(all(
     feature = "UIColorPickerViewController",
@@ -3332,6 +3334,8 @@ pub use self::__UIHoverEffectLayer::UIHoverEffectLayer;
 pub use self::__UIHoverGestureRecognizer::UIHoverGestureRecognizer;
 #[cfg(feature = "UIHoverStyle")]
 pub use self::__UIHoverStyle::UIHoverStyle;
+#[cfg(feature = "UIImage")]
+pub use self::__UIImage::CIImageUIKitAdditions;
 #[cfg(feature = "UIImage")]
 pub use self::__UIImage::UIImage;
 #[cfg(feature = "UIImage")]

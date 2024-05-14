@@ -2499,6 +2499,10 @@ pub use self::__NSButtonCell::NSThickerSquareBezelStyle;
 pub use self::__NSButtonCell::NSToggleButton;
 #[cfg(all(feature = "NSButtonTouchBarItem", feature = "NSTouchBarItem"))]
 pub use self::__NSButtonTouchBarItem::NSButtonTouchBarItem;
+#[cfg(feature = "NSCIImageRep")]
+pub use self::__NSCIImageRep::CIImageNSAppKitAdditions;
+#[cfg(all(feature = "NSCIImageRep", feature = "NSImageRep"))]
+pub use self::__NSCIImageRep::NSCIImageRep;
 #[cfg(all(feature = "NSCachedImageRep", feature = "NSImageRep"))]
 pub use self::__NSCachedImageRep::NSCachedImageRep;
 #[cfg(all(feature = "NSCandidateListTouchBarItem", feature = "NSTouchBarItem"))]
@@ -2716,6 +2720,8 @@ pub use self::__NSCollectionViewLayout::NSCollectionViewUpdateItem;
 pub use self::__NSCollectionViewTransitionLayout::NSCollectionViewTransitionLayout;
 #[cfg(feature = "NSCollectionViewTransitionLayout")]
 pub use self::__NSCollectionViewTransitionLayout::NSCollectionViewTransitionLayoutAnimatedKey;
+#[cfg(feature = "NSColor")]
+pub use self::__NSColor::CIColorNSAppKitAdditions;
 #[cfg(all(feature = "NSApplication", feature = "NSColor"))]
 pub use self::__NSColor::NSAppKitVersionNumberWithPatternColorLeakFix;
 #[cfg(feature = "NSColor")]
