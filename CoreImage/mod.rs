@@ -13,7 +13,7 @@
 #![allow(clippy::identity_op)]
 #![allow(clippy::missing_safety_doc)]
 
-#[link(name = "CoreImage", kind = "framework")]
+#[cfg_attr(feature = "apple", link(name = "CoreImage", kind = "framework"))]
 extern "C" {}
 
 #[cfg(feature = "CIBarcodeDescriptor")]
