@@ -13,7 +13,7 @@
 #![allow(clippy::identity_op)]
 #![allow(clippy::missing_safety_doc)]
 
-#[cfg_attr(feature = "apple", link(name = "QuartzCore", kind = "framework"))]
+#[cfg_attr(target_vendor = "apple", link(name = "QuartzCore", kind = "framework"))]
 extern "C" {}
 
 #[cfg(feature = "CAAnimation")]

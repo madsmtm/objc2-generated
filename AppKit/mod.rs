@@ -13,7 +13,7 @@
 #![allow(clippy::identity_op)]
 #![allow(clippy::missing_safety_doc)]
 
-#[cfg_attr(feature = "apple", link(name = "AppKit", kind = "framework"))]
+#[cfg_attr(target_vendor = "apple", link(name = "AppKit", kind = "framework"))]
 extern "C" {}
 
 #[cfg(feature = "AppKitDefines")]
