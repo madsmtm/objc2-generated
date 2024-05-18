@@ -24,3 +24,15 @@ mod __ATTrackingManager;
 pub use self::__ATTrackingManager::ATTrackingManager;
 #[cfg(feature = "ATTrackingManager")]
 pub use self::__ATTrackingManager::ATTrackingManagerAuthorizationStatus;
+use objc2::__framework_prelude::*;
+use objc2_foundation::*;
+
+use crate::*;
+
+extern "C" {
+    pub static AppTrackingTransparencyVersionNumber: c_double;
+}
+
+extern "C" {
+    pub static AppTrackingTransparencyVersionString: *mut c_uchar;
+}
