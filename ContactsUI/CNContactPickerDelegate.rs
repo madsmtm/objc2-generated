@@ -3,7 +3,6 @@
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-contacts")]
 use objc2_contacts::*;
-use objc2_foundation::*;
 
 use crate::*;
 

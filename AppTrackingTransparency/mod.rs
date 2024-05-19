@@ -25,7 +25,6 @@ pub use self::__ATTrackingManager::ATTrackingManager;
 #[cfg(feature = "ATTrackingManager")]
 pub use self::__ATTrackingManager::ATTrackingManagerAuthorizationStatus;
 use objc2::__framework_prelude::*;
-use objc2_foundation::*;
 
 use crate::*;
 

@@ -3,7 +3,6 @@
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-location")]
 use objc2_core_location::*;
-use objc2_foundation::*;
 
 use crate::*;
 
