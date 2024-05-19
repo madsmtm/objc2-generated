@@ -72,7 +72,7 @@ unsafe impl NSObjectProtocol for UIDevice {}
 extern_methods!(
     unsafe impl UIDevice {
         #[method_id(@__retain_semantics Other currentDevice)]
-        pub unsafe fn currentDevice(mtm: MainThreadMarker) -> Id<UIDevice>;
+        pub fn currentDevice(mtm: MainThreadMarker) -> Id<UIDevice>;
 
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Id<NSString>;
@@ -130,7 +130,7 @@ extern_methods!(
         pub unsafe fn isMultitaskingSupported(&self) -> bool;
 
         #[method(userInterfaceIdiom)]
-        pub unsafe fn userInterfaceIdiom(&self) -> UIUserInterfaceIdiom;
+        pub fn userInterfaceIdiom(&self) -> UIUserInterfaceIdiom;
 
         #[method(playInputClick)]
         pub unsafe fn playInputClick(&self);

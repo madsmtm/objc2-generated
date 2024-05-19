@@ -119,16 +119,16 @@ unsafe impl NSObjectProtocol for UITouch {}
 extern_methods!(
     unsafe impl UITouch {
         #[method(timestamp)]
-        pub unsafe fn timestamp(&self) -> NSTimeInterval;
+        pub fn timestamp(&self) -> NSTimeInterval;
 
         #[method(phase)]
-        pub unsafe fn phase(&self) -> UITouchPhase;
+        pub fn phase(&self) -> UITouchPhase;
 
         #[method(tapCount)]
-        pub unsafe fn tapCount(&self) -> NSUInteger;
+        pub fn tapCount(&self) -> NSUInteger;
 
         #[method(type)]
-        pub unsafe fn r#type(&self) -> UITouchType;
+        pub fn r#type(&self) -> UITouchType;
 
         #[method(majorRadius)]
         pub unsafe fn majorRadius(&self) -> CGFloat;
@@ -138,11 +138,11 @@ extern_methods!(
 
         #[cfg(all(feature = "UIResponder", feature = "UIView", feature = "UIWindow"))]
         #[method_id(@__retain_semantics Other window)]
-        pub unsafe fn window(&self) -> Option<Id<UIWindow>>;
+        pub fn window(&self) -> Option<Id<UIWindow>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[method_id(@__retain_semantics Other view)]
-        pub unsafe fn view(&self) -> Option<Id<UIView>>;
+        pub fn view(&self) -> Option<Id<UIView>>;
 
         #[cfg(feature = "UIGestureRecognizer")]
         #[method_id(@__retain_semantics Other gestureRecognizers)]
@@ -150,11 +150,11 @@ extern_methods!(
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[method(locationInView:)]
-        pub unsafe fn locationInView(&self, view: Option<&UIView>) -> CGPoint;
+        pub fn locationInView(&self, view: Option<&UIView>) -> CGPoint;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[method(previousLocationInView:)]
-        pub unsafe fn previousLocationInView(&self, view: Option<&UIView>) -> CGPoint;
+        pub fn previousLocationInView(&self, view: Option<&UIView>) -> CGPoint;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[method(preciseLocationInView:)]
@@ -165,21 +165,21 @@ extern_methods!(
         pub unsafe fn precisePreviousLocationInView(&self, view: Option<&UIView>) -> CGPoint;
 
         #[method(force)]
-        pub unsafe fn force(&self) -> CGFloat;
+        pub fn force(&self) -> CGFloat;
 
         #[method(maximumPossibleForce)]
-        pub unsafe fn maximumPossibleForce(&self) -> CGFloat;
+        pub fn maximumPossibleForce(&self) -> CGFloat;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[method(azimuthAngleInView:)]
-        pub unsafe fn azimuthAngleInView(&self, view: Option<&UIView>) -> CGFloat;
+        pub fn azimuthAngleInView(&self, view: Option<&UIView>) -> CGFloat;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[method(azimuthUnitVectorInView:)]
-        pub unsafe fn azimuthUnitVectorInView(&self, view: Option<&UIView>) -> CGVector;
+        pub fn azimuthUnitVectorInView(&self, view: Option<&UIView>) -> CGVector;
 
         #[method(altitudeAngle)]
-        pub unsafe fn altitudeAngle(&self) -> CGFloat;
+        pub fn altitudeAngle(&self) -> CGFloat;
 
         #[method_id(@__retain_semantics Other estimationUpdateIndex)]
         pub unsafe fn estimationUpdateIndex(&self) -> Option<Id<NSNumber>>;
@@ -191,7 +191,7 @@ extern_methods!(
         pub unsafe fn estimatedPropertiesExpectingUpdates(&self) -> UITouchProperties;
 
         #[method(rollAngle)]
-        pub unsafe fn rollAngle(&self) -> CGFloat;
+        pub fn rollAngle(&self) -> CGFloat;
     }
 );
 

@@ -25,13 +25,13 @@ extern_methods!(
     #[cfg(feature = "UIGestureRecognizer")]
     unsafe impl UIRotationGestureRecognizer {
         #[method(rotation)]
-        pub unsafe fn rotation(&self) -> CGFloat;
+        pub fn rotation(&self) -> CGFloat;
 
         #[method(setRotation:)]
         pub unsafe fn setRotation(&self, rotation: CGFloat);
 
         #[method(velocity)]
-        pub unsafe fn velocity(&self) -> CGFloat;
+        pub fn velocity(&self) -> CGFloat;
     }
 );
 

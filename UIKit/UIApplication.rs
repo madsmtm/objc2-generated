@@ -200,7 +200,7 @@ extern_methods!(
     #[cfg(feature = "UIResponder")]
     unsafe impl UIApplication {
         #[method_id(@__retain_semantics Other sharedApplication)]
-        pub unsafe fn sharedApplication(mtm: MainThreadMarker) -> Id<UIApplication>;
+        pub fn sharedApplication(mtm: MainThreadMarker) -> Id<UIApplication>;
 
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn UIApplicationDelegate>>>;
@@ -257,7 +257,7 @@ extern_methods!(
         #[cfg(all(feature = "UIView", feature = "UIWindow"))]
         #[deprecated = "Use UIWindowScene.windows on a relevant window scene instead"]
         #[method_id(@__retain_semantics Other windows)]
-        pub unsafe fn windows(&self) -> Id<NSArray<UIWindow>>;
+        pub fn windows(&self) -> Id<NSArray<UIWindow>>;
 
         #[cfg(feature = "UIEvent")]
         #[method(sendAction:to:from:forEvent:)]
@@ -293,7 +293,7 @@ extern_methods!(
 
         #[deprecated = "Use the statusBarManager property of the window scene instead."]
         #[method(statusBarFrame)]
-        pub unsafe fn statusBarFrame(&self) -> CGRect;
+        pub fn statusBarFrame(&self) -> CGRect;
 
         #[deprecated = "Use -[UNUserNotificationCenter setBadgeCount:withCompletionHandler:] instead."]
         #[method(applicationIconBadgeNumber)]

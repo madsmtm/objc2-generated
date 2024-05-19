@@ -97,11 +97,11 @@ extern_methods!(
 
         #[cfg(feature = "UIScreen")]
         #[method_id(@__retain_semantics Other screen)]
-        pub unsafe fn screen(&self) -> Id<UIScreen>;
+        pub fn screen(&self) -> Id<UIScreen>;
 
         #[cfg(feature = "UIScreen")]
         #[method(setScreen:)]
-        pub unsafe fn setScreen(&self, screen: &UIScreen);
+        pub fn setScreen(&self, screen: &UIScreen);
 
         #[method(windowLevel)]
         pub unsafe fn windowLevel(&self) -> UIWindowLevel;
@@ -110,7 +110,7 @@ extern_methods!(
         pub unsafe fn setWindowLevel(&self, window_level: UIWindowLevel);
 
         #[method(isKeyWindow)]
-        pub unsafe fn isKeyWindow(&self) -> bool;
+        pub fn isKeyWindow(&self) -> bool;
 
         #[method(canBecomeKeyWindow)]
         pub unsafe fn canBecomeKeyWindow(&self) -> bool;
@@ -125,15 +125,15 @@ extern_methods!(
         pub unsafe fn makeKeyWindow(&self);
 
         #[method(makeKeyAndVisible)]
-        pub unsafe fn makeKeyAndVisible(&self);
+        pub fn makeKeyAndVisible(&self);
 
         #[cfg(feature = "UIViewController")]
         #[method_id(@__retain_semantics Other rootViewController)]
-        pub unsafe fn rootViewController(&self) -> Option<Id<UIViewController>>;
+        pub fn rootViewController(&self) -> Option<Id<UIViewController>>;
 
         #[cfg(feature = "UIViewController")]
         #[method(setRootViewController:)]
-        pub unsafe fn setRootViewController(&self, root_view_controller: Option<&UIViewController>);
+        pub fn setRootViewController(&self, root_view_controller: Option<&UIViewController>);
 
         #[cfg(feature = "UIEvent")]
         #[method(sendEvent:)]

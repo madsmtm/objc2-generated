@@ -112,7 +112,7 @@ extern_methods!(
 
         #[cfg(feature = "UITouch")]
         #[method(forceTouchCapability)]
-        pub unsafe fn forceTouchCapability(&self) -> UIForceTouchCapability;
+        pub fn forceTouchCapability(&self) -> UIForceTouchCapability;
 
         #[cfg(feature = "UIContentSizeCategory")]
         #[method_id(@__retain_semantics Other traitCollectionWithPreferredContentSizeCategory:)]
@@ -471,7 +471,7 @@ extern_methods!(
 extern_protocol!(
     pub unsafe trait UITraitEnvironment: NSObjectProtocol + IsMainThreadOnly {
         #[method_id(@__retain_semantics Other traitCollection)]
-        unsafe fn traitCollection(&self) -> Id<UITraitCollection>;
+        fn traitCollection(&self) -> Id<UITraitCollection>;
 
         #[deprecated = "Use the trait change registration APIs declared in the UITraitChangeObservable protocol"]
         #[method(traitCollectionDidChange:)]

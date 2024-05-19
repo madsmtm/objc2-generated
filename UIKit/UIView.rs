@@ -264,35 +264,35 @@ unsafe impl RefEncode for UISemanticContentAttribute {
 extern_protocol!(
     pub unsafe trait UICoordinateSpace: NSObjectProtocol + IsMainThreadOnly {
         #[method(convertPoint:toCoordinateSpace:)]
-        unsafe fn convertPoint_toCoordinateSpace(
+        fn convertPoint_toCoordinateSpace(
             &self,
             point: CGPoint,
             coordinate_space: &ProtocolObject<dyn UICoordinateSpace>,
         ) -> CGPoint;
 
         #[method(convertPoint:fromCoordinateSpace:)]
-        unsafe fn convertPoint_fromCoordinateSpace(
+        fn convertPoint_fromCoordinateSpace(
             &self,
             point: CGPoint,
             coordinate_space: &ProtocolObject<dyn UICoordinateSpace>,
         ) -> CGPoint;
 
         #[method(convertRect:toCoordinateSpace:)]
-        unsafe fn convertRect_toCoordinateSpace(
+        fn convertRect_toCoordinateSpace(
             &self,
             rect: CGRect,
             coordinate_space: &ProtocolObject<dyn UICoordinateSpace>,
         ) -> CGRect;
 
         #[method(convertRect:fromCoordinateSpace:)]
-        unsafe fn convertRect_fromCoordinateSpace(
+        fn convertRect_fromCoordinateSpace(
             &self,
             rect: CGRect,
             coordinate_space: &ProtocolObject<dyn UICoordinateSpace>,
         ) -> CGRect;
 
         #[method(bounds)]
-        unsafe fn bounds(&self) -> CGRect;
+        fn bounds(&self) -> CGRect;
     }
 
     unsafe impl ProtocolType for dyn UICoordinateSpace {}
@@ -351,10 +351,10 @@ extern_methods!(
     #[cfg(feature = "UIResponder")]
     unsafe impl UIView {
         #[method(layerClass)]
-        pub unsafe fn layerClass(mtm: MainThreadMarker) -> &'static AnyClass;
+        pub fn layerClass(mtm: MainThreadMarker) -> &'static AnyClass;
 
         #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Id<Self>;
+        pub fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
@@ -373,7 +373,7 @@ extern_methods!(
 
         #[cfg(feature = "objc2-quartz-core")]
         #[method_id(@__retain_semantics Other layer)]
-        pub unsafe fn layer(&self) -> Id<CALayer>;
+        pub fn layer(&self) -> Id<CALayer>;
 
         #[method(canBecomeFocused)]
         pub unsafe fn canBecomeFocused(&self) -> bool;
@@ -452,16 +452,16 @@ extern_methods!(
     #[cfg(feature = "UIResponder")]
     unsafe impl UIView {
         #[method(frame)]
-        pub unsafe fn frame(&self) -> CGRect;
+        pub fn frame(&self) -> CGRect;
 
         #[method(setFrame:)]
-        pub unsafe fn setFrame(&self, frame: CGRect);
+        pub fn setFrame(&self, frame: CGRect);
 
         #[method(bounds)]
-        pub unsafe fn bounds(&self) -> CGRect;
+        pub fn bounds(&self) -> CGRect;
 
         #[method(setBounds:)]
-        pub unsafe fn setBounds(&self, bounds: CGRect);
+        pub fn setBounds(&self, bounds: CGRect);
 
         #[method(center)]
         pub unsafe fn center(&self) -> CGPoint;
@@ -478,10 +478,10 @@ extern_methods!(
         pub unsafe fn setTransform3D(&self, transform3_d: CATransform3D);
 
         #[method(contentScaleFactor)]
-        pub unsafe fn contentScaleFactor(&self) -> CGFloat;
+        pub fn contentScaleFactor(&self) -> CGFloat;
 
         #[method(setContentScaleFactor:)]
-        pub unsafe fn setContentScaleFactor(&self, content_scale_factor: CGFloat);
+        pub fn setContentScaleFactor(&self, content_scale_factor: CGFloat);
 
         #[method(anchorPoint)]
         pub unsafe fn anchorPoint(&self) -> CGPoint;
@@ -493,7 +493,7 @@ extern_methods!(
         pub unsafe fn isMultipleTouchEnabled(&self) -> bool;
 
         #[method(setMultipleTouchEnabled:)]
-        pub unsafe fn setMultipleTouchEnabled(&self, multiple_touch_enabled: bool);
+        pub fn setMultipleTouchEnabled(&self, multiple_touch_enabled: bool);
 
         #[method(isExclusiveTouch)]
         pub unsafe fn isExclusiveTouch(&self) -> bool;
@@ -555,14 +555,14 @@ extern_methods!(
     #[cfg(feature = "UIResponder")]
     unsafe impl UIView {
         #[method_id(@__retain_semantics Other superview)]
-        pub unsafe fn superview(&self) -> Option<Id<UIView>>;
+        pub fn superview(&self) -> Option<Id<UIView>>;
 
         #[method_id(@__retain_semantics Other subviews)]
-        pub unsafe fn subviews(&self) -> Id<NSArray<UIView>>;
+        pub fn subviews(&self) -> Id<NSArray<UIView>>;
 
         #[cfg(feature = "UIWindow")]
         #[method_id(@__retain_semantics Other window)]
-        pub unsafe fn window(&self) -> Option<Id<UIWindow>>;
+        pub fn window(&self) -> Option<Id<UIWindow>>;
 
         #[method(removeFromSuperview)]
         pub unsafe fn removeFromSuperview(&self);
@@ -668,7 +668,7 @@ extern_methods!(
 
         #[cfg(feature = "UIGeometry")]
         #[method(safeAreaInsets)]
-        pub unsafe fn safeAreaInsets(&self) -> UIEdgeInsets;
+        pub fn safeAreaInsets(&self) -> UIEdgeInsets;
 
         #[method(safeAreaInsetsDidChange)]
         pub unsafe fn safeAreaInsetsDidChange(&self);
@@ -703,7 +703,7 @@ extern_methods!(
         pub unsafe fn drawRect(&self, rect: CGRect);
 
         #[method(setNeedsDisplay)]
-        pub unsafe fn setNeedsDisplay(&self);
+        pub fn setNeedsDisplay(&self);
 
         #[method(setNeedsDisplayInRect:)]
         pub unsafe fn setNeedsDisplayInRect(&self, rect: CGRect);
@@ -716,11 +716,11 @@ extern_methods!(
 
         #[cfg(feature = "UIColor")]
         #[method_id(@__retain_semantics Other backgroundColor)]
-        pub unsafe fn backgroundColor(&self) -> Option<Id<UIColor>>;
+        pub fn backgroundColor(&self) -> Option<Id<UIColor>>;
 
         #[cfg(feature = "UIColor")]
         #[method(setBackgroundColor:)]
-        pub unsafe fn setBackgroundColor(&self, background_color: Option<&UIColor>);
+        pub fn setBackgroundColor(&self, background_color: Option<&UIColor>);
 
         #[method(alpha)]
         pub unsafe fn alpha(&self) -> CGFloat;
@@ -741,10 +741,10 @@ extern_methods!(
         pub unsafe fn setClearsContextBeforeDrawing(&self, clears_context_before_drawing: bool);
 
         #[method(isHidden)]
-        pub unsafe fn isHidden(&self) -> bool;
+        pub fn isHidden(&self) -> bool;
 
         #[method(setHidden:)]
-        pub unsafe fn setHidden(&self, hidden: bool);
+        pub fn setHidden(&self, hidden: bool);
 
         #[method(contentMode)]
         pub unsafe fn contentMode(&self) -> UIViewContentMode;
@@ -939,7 +939,7 @@ extern_methods!(
     unsafe impl UIView {
         #[cfg(feature = "UIGestureRecognizer")]
         #[method_id(@__retain_semantics Other gestureRecognizers)]
-        pub unsafe fn gestureRecognizers(&self) -> Option<Id<NSArray<UIGestureRecognizer>>>;
+        pub fn gestureRecognizers(&self) -> Option<Id<NSArray<UIGestureRecognizer>>>;
 
         #[cfg(feature = "UIGestureRecognizer")]
         #[method(setGestureRecognizers:)]
@@ -950,15 +950,15 @@ extern_methods!(
 
         #[cfg(feature = "UIGestureRecognizer")]
         #[method(addGestureRecognizer:)]
-        pub unsafe fn addGestureRecognizer(&self, gesture_recognizer: &UIGestureRecognizer);
+        pub fn addGestureRecognizer(&self, gesture_recognizer: &UIGestureRecognizer);
 
         #[cfg(feature = "UIGestureRecognizer")]
         #[method(removeGestureRecognizer:)]
-        pub unsafe fn removeGestureRecognizer(&self, gesture_recognizer: &UIGestureRecognizer);
+        pub fn removeGestureRecognizer(&self, gesture_recognizer: &UIGestureRecognizer);
 
         #[cfg(feature = "UIGestureRecognizer")]
         #[method(gestureRecognizerShouldBegin:)]
-        pub unsafe fn gestureRecognizerShouldBegin(
+        pub fn gestureRecognizerShouldBegin(
             &self,
             gesture_recognizer: &UIGestureRecognizer,
         ) -> bool;

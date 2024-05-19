@@ -24,7 +24,7 @@ unsafe impl NSObjectProtocol for UIScreenMode {}
 extern_methods!(
     unsafe impl UIScreenMode {
         #[method(size)]
-        pub unsafe fn size(&self) -> CGSize;
+        pub fn size(&self) -> CGSize;
 
         #[method(pixelAspectRatio)]
         pub unsafe fn pixelAspectRatio(&self) -> CGFloat;

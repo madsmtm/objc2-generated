@@ -68,12 +68,10 @@ extern_methods!(
         pub unsafe fn removeTarget_action(&self, target: Option<&AnyObject>, action: Option<Sel>);
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(
-            &self,
-        ) -> Option<Id<ProtocolObject<dyn UIGestureRecognizerDelegate>>>;
+        pub fn delegate(&self) -> Option<Id<ProtocolObject<dyn UIGestureRecognizerDelegate>>>;
 
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(
+        pub fn setDelegate(
             &self,
             delegate: Option<&ProtocolObject<dyn UIGestureRecognizerDelegate>>,
         );

@@ -25,13 +25,13 @@ extern_methods!(
     #[cfg(feature = "UIGestureRecognizer")]
     unsafe impl UIPinchGestureRecognizer {
         #[method(scale)]
-        pub unsafe fn scale(&self) -> CGFloat;
+        pub fn scale(&self) -> CGFloat;
 
         #[method(setScale:)]
         pub unsafe fn setScale(&self, scale: CGFloat);
 
         #[method(velocity)]
-        pub unsafe fn velocity(&self) -> CGFloat;
+        pub fn velocity(&self) -> CGFloat;
     }
 );
 

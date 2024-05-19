@@ -97,49 +97,46 @@ extern_methods!(
     unsafe impl UIScreen {
         #[deprecated = "Use UIApplication.shared.openSessions to find open sessions with scenes from other screens"]
         #[method_id(@__retain_semantics Other screens)]
-        pub unsafe fn screens(mtm: MainThreadMarker) -> Id<NSArray<UIScreen>>;
+        pub fn screens(mtm: MainThreadMarker) -> Id<NSArray<UIScreen>>;
 
         #[deprecated = "Use a UIScreen instance found through context instead: i.e, view.window.windowScene.screen"]
         #[method_id(@__retain_semantics Other mainScreen)]
-        pub unsafe fn mainScreen(mtm: MainThreadMarker) -> Id<UIScreen>;
+        pub fn mainScreen(mtm: MainThreadMarker) -> Id<UIScreen>;
 
         #[method(bounds)]
-        pub unsafe fn bounds(&self) -> CGRect;
+        pub fn bounds(&self) -> CGRect;
 
         #[method(scale)]
-        pub unsafe fn scale(&self) -> CGFloat;
+        pub fn scale(&self) -> CGFloat;
 
         #[cfg(feature = "UIScreenMode")]
         #[method_id(@__retain_semantics Other availableModes)]
-        pub unsafe fn availableModes(&self) -> Id<NSArray<UIScreenMode>>;
+        pub fn availableModes(&self) -> Id<NSArray<UIScreenMode>>;
 
         #[cfg(feature = "UIScreenMode")]
         #[method_id(@__retain_semantics Other preferredMode)]
-        pub unsafe fn preferredMode(&self) -> Option<Id<UIScreenMode>>;
+        pub fn preferredMode(&self) -> Option<Id<UIScreenMode>>;
 
         #[cfg(feature = "UIScreenMode")]
         #[method_id(@__retain_semantics Other currentMode)]
-        pub unsafe fn currentMode(&self) -> Option<Id<UIScreenMode>>;
+        pub fn currentMode(&self) -> Option<Id<UIScreenMode>>;
 
         #[cfg(feature = "UIScreenMode")]
         #[method(setCurrentMode:)]
-        pub unsafe fn setCurrentMode(&self, current_mode: Option<&UIScreenMode>);
+        pub fn setCurrentMode(&self, current_mode: Option<&UIScreenMode>);
 
         #[method(overscanCompensation)]
-        pub unsafe fn overscanCompensation(&self) -> UIScreenOverscanCompensation;
+        pub fn overscanCompensation(&self) -> UIScreenOverscanCompensation;
 
         #[method(setOverscanCompensation:)]
-        pub unsafe fn setOverscanCompensation(
-            &self,
-            overscan_compensation: UIScreenOverscanCompensation,
-        );
+        pub fn setOverscanCompensation(&self, overscan_compensation: UIScreenOverscanCompensation);
 
         #[cfg(feature = "UIGeometry")]
         #[method(overscanCompensationInsets)]
         pub unsafe fn overscanCompensationInsets(&self) -> UIEdgeInsets;
 
         #[method_id(@__retain_semantics Other mirroredScreen)]
-        pub unsafe fn mirroredScreen(&self) -> Option<Id<UIScreen>>;
+        pub fn mirroredScreen(&self) -> Option<Id<UIScreen>>;
 
         #[deprecated = "Use the sceneCaptureState in UITraitCollection instead."]
         #[method(isCaptured)]
@@ -159,17 +156,17 @@ extern_methods!(
 
         #[cfg(feature = "UIView")]
         #[method_id(@__retain_semantics Other coordinateSpace)]
-        pub unsafe fn coordinateSpace(&self) -> Id<ProtocolObject<dyn UICoordinateSpace>>;
+        pub fn coordinateSpace(&self) -> Id<ProtocolObject<dyn UICoordinateSpace>>;
 
         #[cfg(feature = "UIView")]
         #[method_id(@__retain_semantics Other fixedCoordinateSpace)]
         pub unsafe fn fixedCoordinateSpace(&self) -> Id<ProtocolObject<dyn UICoordinateSpace>>;
 
         #[method(nativeBounds)]
-        pub unsafe fn nativeBounds(&self) -> CGRect;
+        pub fn nativeBounds(&self) -> CGRect;
 
         #[method(nativeScale)]
-        pub unsafe fn nativeScale(&self) -> CGFloat;
+        pub fn nativeScale(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-quartz-core")]
         #[method_id(@__retain_semantics Other displayLinkWithTarget:selector:)]
@@ -180,7 +177,7 @@ extern_methods!(
         ) -> Option<Id<CADisplayLink>>;
 
         #[method(maximumFramesPerSecond)]
-        pub unsafe fn maximumFramesPerSecond(&self) -> NSInteger;
+        pub fn maximumFramesPerSecond(&self) -> NSInteger;
 
         #[method(referenceDisplayModeStatus)]
         pub unsafe fn referenceDisplayModeStatus(&self) -> UIScreenReferenceDisplayModeStatus;

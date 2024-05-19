@@ -154,11 +154,11 @@ extern_methods!(
 
         #[cfg(feature = "UIView")]
         #[method_id(@__retain_semantics Other view)]
-        pub unsafe fn view(&self) -> Option<Id<UIView>>;
+        pub fn view(&self) -> Option<Id<UIView>>;
 
         #[cfg(feature = "UIView")]
         #[method(setView:)]
-        pub unsafe fn setView(&self, view: Option<&UIView>);
+        pub fn setView(&self, view: Option<&UIView>);
 
         #[method(loadView)]
         pub unsafe fn loadView(&self);
@@ -506,7 +506,7 @@ extern_methods!(
         pub unsafe fn preferredStatusBarUpdateAnimation(&self) -> UIStatusBarAnimation;
 
         #[method(setNeedsStatusBarAppearanceUpdate)]
-        pub unsafe fn setNeedsStatusBarAppearanceUpdate(&self);
+        pub fn setNeedsStatusBarAppearanceUpdate(&self);
 
         #[method_id(@__retain_semantics Other targetViewControllerForAction:sender:)]
         pub unsafe fn targetViewControllerForAction_sender(
@@ -567,7 +567,7 @@ extern_methods!(
     unsafe impl UIViewController {
         #[deprecated = "Please use instance method `setNeedsUpdateOfSupportedInterfaceOrientations`."]
         #[method(attemptRotationToDeviceOrientation)]
-        pub unsafe fn attemptRotationToDeviceOrientation(mtm: MainThreadMarker);
+        pub fn attemptRotationToDeviceOrientation(mtm: MainThreadMarker);
 
         #[cfg(feature = "UIOrientation")]
         #[deprecated]
@@ -1064,7 +1064,7 @@ extern_methods!(
         pub unsafe fn preferredScreenEdgesDeferringSystemGestures(&self) -> UIRectEdge;
 
         #[method(setNeedsUpdateOfScreenEdgesDeferringSystemGestures)]
-        pub unsafe fn setNeedsUpdateOfScreenEdgesDeferringSystemGestures(&self);
+        pub fn setNeedsUpdateOfScreenEdgesDeferringSystemGestures(&self);
     }
 );
 
@@ -1081,7 +1081,7 @@ extern_methods!(
         pub unsafe fn prefersHomeIndicatorAutoHidden(&self) -> bool;
 
         #[method(setNeedsUpdateOfHomeIndicatorAutoHidden)]
-        pub unsafe fn setNeedsUpdateOfHomeIndicatorAutoHidden(&self);
+        pub fn setNeedsUpdateOfHomeIndicatorAutoHidden(&self);
     }
 );
 

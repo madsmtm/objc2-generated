@@ -25,24 +25,24 @@ extern_methods!(
     #[cfg(feature = "UIGestureRecognizer")]
     unsafe impl UITapGestureRecognizer {
         #[method(numberOfTapsRequired)]
-        pub unsafe fn numberOfTapsRequired(&self) -> NSUInteger;
+        pub fn numberOfTapsRequired(&self) -> NSUInteger;
 
         #[method(setNumberOfTapsRequired:)]
-        pub unsafe fn setNumberOfTapsRequired(&self, number_of_taps_required: NSUInteger);
+        pub fn setNumberOfTapsRequired(&self, number_of_taps_required: NSUInteger);
 
         #[method(numberOfTouchesRequired)]
-        pub unsafe fn numberOfTouchesRequired(&self) -> NSUInteger;
+        pub fn numberOfTouchesRequired(&self) -> NSUInteger;
 
         #[method(setNumberOfTouchesRequired:)]
-        pub unsafe fn setNumberOfTouchesRequired(&self, number_of_touches_required: NSUInteger);
+        pub fn setNumberOfTouchesRequired(&self, number_of_touches_required: NSUInteger);
 
         #[cfg(feature = "UIEvent")]
         #[method(buttonMaskRequired)]
-        pub unsafe fn buttonMaskRequired(&self) -> UIEventButtonMask;
+        pub fn buttonMaskRequired(&self) -> UIEventButtonMask;
 
         #[cfg(feature = "UIEvent")]
         #[method(setButtonMaskRequired:)]
-        pub unsafe fn setButtonMaskRequired(&self, button_mask_required: UIEventButtonMask);
+        pub fn setButtonMaskRequired(&self, button_mask_required: UIEventButtonMask);
     }
 );
 

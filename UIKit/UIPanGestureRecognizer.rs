@@ -67,31 +67,31 @@ extern_methods!(
     #[cfg(feature = "UIGestureRecognizer")]
     unsafe impl UIPanGestureRecognizer {
         #[method(minimumNumberOfTouches)]
-        pub unsafe fn minimumNumberOfTouches(&self) -> NSUInteger;
+        pub fn minimumNumberOfTouches(&self) -> NSUInteger;
 
         #[method(setMinimumNumberOfTouches:)]
-        pub unsafe fn setMinimumNumberOfTouches(&self, minimum_number_of_touches: NSUInteger);
+        pub fn setMinimumNumberOfTouches(&self, minimum_number_of_touches: NSUInteger);
 
         #[method(maximumNumberOfTouches)]
-        pub unsafe fn maximumNumberOfTouches(&self) -> NSUInteger;
+        pub fn maximumNumberOfTouches(&self) -> NSUInteger;
 
         #[method(setMaximumNumberOfTouches:)]
-        pub unsafe fn setMaximumNumberOfTouches(&self, maximum_number_of_touches: NSUInteger);
+        pub fn setMaximumNumberOfTouches(&self, maximum_number_of_touches: NSUInteger);
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[method(translationInView:)]
-        pub unsafe fn translationInView(&self, view: Option<&UIView>) -> CGPoint;
+        pub fn translationInView(&self, view: Option<&UIView>) -> CGPoint;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[method(setTranslation:inView:)]
-        pub unsafe fn setTranslation_inView(&self, translation: CGPoint, view: Option<&UIView>);
+        pub fn setTranslation_inView(&self, translation: CGPoint, view: Option<&UIView>);
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[method(velocityInView:)]
-        pub unsafe fn velocityInView(&self, view: Option<&UIView>) -> CGPoint;
+        pub fn velocityInView(&self, view: Option<&UIView>) -> CGPoint;
 
         #[method(allowedScrollTypesMask)]
-        pub unsafe fn allowedScrollTypesMask(&self) -> UIScrollTypeMask;
+        pub fn allowedScrollTypesMask(&self) -> UIScrollTypeMask;
 
         #[method(setAllowedScrollTypesMask:)]
         pub unsafe fn setAllowedScrollTypesMask(&self, allowed_scroll_types_mask: UIScrollTypeMask);
