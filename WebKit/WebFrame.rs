@@ -2,6 +2,7 @@
 //! DO NOT EDIT
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
 use objc2_app_kit::*;
 use objc2_foundation::*;
 
@@ -27,6 +28,7 @@ extern_methods!(
             feature = "WebView",
             feature = "objc2-app-kit"
         ))]
+        #[cfg(target_os = "macos")]
         #[deprecated]
         #[method_id(@__retain_semantics Init initWithName:webFrameView:webView:)]
         pub unsafe fn initWithName_webFrameView_webView(
@@ -41,11 +43,13 @@ extern_methods!(
         pub unsafe fn name(&self) -> Id<NSString>;
 
         #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
+        #[cfg(target_os = "macos")]
         #[deprecated]
         #[method_id(@__retain_semantics Other webView)]
         pub unsafe fn webView(&self, mtm: MainThreadMarker) -> Option<Id<WebView>>;
 
         #[cfg(all(feature = "WebFrameView", feature = "objc2-app-kit"))]
+        #[cfg(target_os = "macos")]
         #[deprecated]
         #[method_id(@__retain_semantics Other frameView)]
         pub unsafe fn frameView(&self, mtm: MainThreadMarker) -> Option<Id<WebFrameView>>;

@@ -2,6 +2,7 @@
 //! DO NOT EDIT
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
 use objc2_app_kit::*;
 use objc2_foundation::*;
 
@@ -33,9 +34,11 @@ unsafe impl RefEncode for GKMatchmakingMode {
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-app-kit")]
+    #[cfg(target_os = "macos")]
     pub struct GKMatchmakerViewController;
 
     #[cfg(feature = "objc2-app-kit")]
+    #[cfg(target_os = "macos")]
     unsafe impl ClassType for GKMatchmakerViewController {
         #[inherits(NSResponder, NSObject)]
         type Super = NSViewController;
@@ -44,25 +47,32 @@ extern_class!(
 );
 
 #[cfg(all(feature = "GKDialogController", feature = "objc2-app-kit"))]
+#[cfg(target_os = "macos")]
 unsafe impl GKViewController for GKMatchmakerViewController {}
 
 #[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
 unsafe impl NSCoding for GKMatchmakerViewController {}
 
 #[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
 unsafe impl NSEditor for GKMatchmakerViewController {}
 
 #[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
 unsafe impl NSObjectProtocol for GKMatchmakerViewController {}
 
 #[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
 unsafe impl NSSeguePerforming for GKMatchmakerViewController {}
 
 #[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
 unsafe impl NSUserInterfaceItemIdentification for GKMatchmakerViewController {}
 
 extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
+    #[cfg(target_os = "macos")]
     unsafe impl GKMatchmakerViewController {
         #[method_id(@__retain_semantics Other matchmakerDelegate)]
         pub unsafe fn matchmakerDelegate(
@@ -132,6 +142,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSViewController`
     #[cfg(feature = "objc2-app-kit")]
+    #[cfg(target_os = "macos")]
     unsafe impl GKMatchmakerViewController {
         #[method_id(@__retain_semantics Init initWithNibName:bundle:)]
         pub unsafe fn initWithNibName_bundle(
@@ -148,6 +159,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSResponder`
     #[cfg(feature = "objc2-app-kit")]
+    #[cfg(target_os = "macos")]
     unsafe impl GKMatchmakerViewController {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -157,6 +169,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "objc2-app-kit")]
+    #[cfg(target_os = "macos")]
     unsafe impl GKMatchmakerViewController {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
@@ -166,6 +179,7 @@ extern_methods!(
 extern_methods!(
     /// Obsoleted
     #[cfg(feature = "objc2-app-kit")]
+    #[cfg(target_os = "macos")]
     unsafe impl GKMatchmakerViewController {
         #[deprecated]
         #[method(setHostedPlayer:connected:)]
@@ -176,6 +190,7 @@ extern_methods!(
 extern_protocol!(
     pub unsafe trait GKMatchmakerViewControllerDelegate: NSObjectProtocol {
         #[cfg(feature = "objc2-app-kit")]
+        #[cfg(target_os = "macos")]
         #[method(matchmakerViewControllerWasCancelled:)]
         unsafe fn matchmakerViewControllerWasCancelled(
             &self,
@@ -183,6 +198,7 @@ extern_protocol!(
         );
 
         #[cfg(feature = "objc2-app-kit")]
+        #[cfg(target_os = "macos")]
         #[method(matchmakerViewController:didFailWithError:)]
         unsafe fn matchmakerViewController_didFailWithError(
             &self,
@@ -191,6 +207,7 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "GKMatch", feature = "objc2-app-kit"))]
+        #[cfg(target_os = "macos")]
         #[optional]
         #[method(matchmakerViewController:didFindMatch:)]
         unsafe fn matchmakerViewController_didFindMatch(
@@ -204,6 +221,7 @@ extern_protocol!(
             feature = "GKPlayer",
             feature = "objc2-app-kit"
         ))]
+        #[cfg(target_os = "macos")]
         #[optional]
         #[method(matchmakerViewController:didFindHostedPlayers:)]
         unsafe fn matchmakerViewController_didFindHostedPlayers(
@@ -217,6 +235,7 @@ extern_protocol!(
             feature = "GKPlayer",
             feature = "objc2-app-kit"
         ))]
+        #[cfg(target_os = "macos")]
         #[optional]
         #[method(matchmakerViewController:hostedPlayerDidAccept:)]
         unsafe fn matchmakerViewController_hostedPlayerDidAccept(
@@ -232,6 +251,7 @@ extern_protocol!(
             feature = "block2",
             feature = "objc2-app-kit"
         ))]
+        #[cfg(target_os = "macos")]
         #[optional]
         #[method(matchmakerViewController:getMatchPropertiesForRecipient:withCompletionHandler:)]
         unsafe fn matchmakerViewController_getMatchPropertiesForRecipient_withCompletionHandler(
@@ -242,6 +262,7 @@ extern_protocol!(
         );
 
         #[cfg(feature = "objc2-app-kit")]
+        #[cfg(target_os = "macos")]
         #[deprecated]
         #[optional]
         #[method(matchmakerViewController:didFindPlayers:)]
@@ -252,6 +273,7 @@ extern_protocol!(
         );
 
         #[cfg(feature = "objc2-app-kit")]
+        #[cfg(target_os = "macos")]
         #[deprecated]
         #[optional]
         #[method(matchmakerViewController:didReceiveAcceptFromHostedPlayer:)]

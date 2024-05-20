@@ -2,6 +2,7 @@
 //! DO NOT EDIT
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
 use objc2_app_kit::*;
 use objc2_foundation::*;
 
@@ -10,9 +11,11 @@ use crate::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-app-kit")]
+    #[cfg(target_os = "macos")]
     pub struct MCBrowserViewController;
 
     #[cfg(feature = "objc2-app-kit")]
+    #[cfg(target_os = "macos")]
     unsafe impl ClassType for MCBrowserViewController {
         #[inherits(NSResponder, NSObject)]
         type Super = NSViewController;
@@ -21,25 +24,32 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MCNearbyServiceBrowser", feature = "objc2-app-kit"))]
+#[cfg(target_os = "macos")]
 unsafe impl MCNearbyServiceBrowserDelegate for MCBrowserViewController {}
 
 #[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
 unsafe impl NSCoding for MCBrowserViewController {}
 
 #[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
 unsafe impl NSEditor for MCBrowserViewController {}
 
 #[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
 unsafe impl NSObjectProtocol for MCBrowserViewController {}
 
 #[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
 unsafe impl NSSeguePerforming for MCBrowserViewController {}
 
 #[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
 unsafe impl NSUserInterfaceItemIdentification for MCBrowserViewController {}
 
 extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
+    #[cfg(target_os = "macos")]
     unsafe impl MCBrowserViewController {
         #[cfg(feature = "MCSession")]
         #[method_id(@__retain_semantics Init initWithServiceType:session:)]
@@ -93,6 +103,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSViewController`
     #[cfg(feature = "objc2-app-kit")]
+    #[cfg(target_os = "macos")]
     unsafe impl MCBrowserViewController {
         #[method_id(@__retain_semantics Init initWithNibName:bundle:)]
         pub unsafe fn initWithNibName_bundle(
@@ -109,6 +120,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSResponder`
     #[cfg(feature = "objc2-app-kit")]
+    #[cfg(target_os = "macos")]
     unsafe impl MCBrowserViewController {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -118,6 +130,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "objc2-app-kit")]
+    #[cfg(target_os = "macos")]
     unsafe impl MCBrowserViewController {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
@@ -127,6 +140,7 @@ extern_methods!(
 extern_protocol!(
     pub unsafe trait MCBrowserViewControllerDelegate: NSObjectProtocol {
         #[cfg(feature = "objc2-app-kit")]
+        #[cfg(target_os = "macos")]
         #[method(browserViewControllerDidFinish:)]
         unsafe fn browserViewControllerDidFinish(
             &self,
@@ -134,6 +148,7 @@ extern_protocol!(
         );
 
         #[cfg(feature = "objc2-app-kit")]
+        #[cfg(target_os = "macos")]
         #[method(browserViewControllerWasCancelled:)]
         unsafe fn browserViewControllerWasCancelled(
             &self,
@@ -141,6 +156,7 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "MCPeerID", feature = "objc2-app-kit"))]
+        #[cfg(target_os = "macos")]
         #[optional]
         #[method(browserViewController:shouldPresentNearbyPeer:withDiscoveryInfo:)]
         unsafe fn browserViewController_shouldPresentNearbyPeer_withDiscoveryInfo(

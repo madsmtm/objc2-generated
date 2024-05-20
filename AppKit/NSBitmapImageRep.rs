@@ -2,6 +2,7 @@
 //! DO NOT EDIT
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-image")]
+#[cfg(target_vendor = "apple")]
 use objc2_core_image::*;
 use objc2_foundation::*;
 
@@ -255,6 +256,7 @@ extern_methods!(
         ) -> Option<Id<Self>>;
 
         #[cfg(feature = "objc2-core-image")]
+        #[cfg(target_vendor = "apple")]
         #[method_id(@__retain_semantics Init initWithCIImage:)]
         pub unsafe fn initWithCIImage(this: Allocated<Self>, ci_image: &CIImage) -> Id<Self>;
 

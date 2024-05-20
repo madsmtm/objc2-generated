@@ -2,6 +2,7 @@
 //! DO NOT EDIT
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
 use objc2_app_kit::*;
 use objc2_foundation::*;
 
@@ -34,6 +35,7 @@ extern_methods!(
         pub unsafe fn securityOrigin(&self) -> Id<WKSecurityOrigin>;
 
         #[cfg(all(feature = "WKWebView", feature = "objc2-app-kit"))]
+        #[cfg(target_os = "macos")]
         #[method_id(@__retain_semantics Other webView)]
         pub unsafe fn webView(&self, mtm: MainThreadMarker) -> Option<Id<WKWebView>>;
     }

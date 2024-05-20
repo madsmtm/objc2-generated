@@ -2,6 +2,7 @@
 //! DO NOT EDIT
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
 use objc2_app_kit::*;
 use objc2_foundation::*;
 
@@ -42,6 +43,7 @@ extern_protocol!(
             feature = "WebView",
             feature = "objc2-app-kit"
         ))]
+        #[cfg(target_os = "macos")]
         #[deprecated]
         #[optional]
         #[method(webView:shouldBeginEditingInDOMRange:)]
@@ -58,6 +60,7 @@ extern_protocol!(
             feature = "WebView",
             feature = "objc2-app-kit"
         ))]
+        #[cfg(target_os = "macos")]
         #[deprecated]
         #[optional]
         #[method(webView:shouldEndEditingInDOMRange:)]
@@ -75,6 +78,7 @@ extern_protocol!(
             feature = "WebView",
             feature = "objc2-app-kit"
         ))]
+        #[cfg(target_os = "macos")]
         #[deprecated]
         #[optional]
         #[method(webView:shouldInsertNode:replacingDOMRange:givenAction:)]
@@ -93,6 +97,7 @@ extern_protocol!(
             feature = "WebView",
             feature = "objc2-app-kit"
         ))]
+        #[cfg(target_os = "macos")]
         #[deprecated]
         #[optional]
         #[method(webView:shouldInsertText:replacingDOMRange:givenAction:)]
@@ -111,6 +116,7 @@ extern_protocol!(
             feature = "WebView",
             feature = "objc2-app-kit"
         ))]
+        #[cfg(target_os = "macos")]
         #[deprecated]
         #[optional]
         #[method(webView:shouldDeleteDOMRange:)]
@@ -127,6 +133,7 @@ extern_protocol!(
             feature = "WebView",
             feature = "objc2-app-kit"
         ))]
+        #[cfg(target_os = "macos")]
         #[deprecated]
         #[optional]
         #[method(webView:shouldChangeSelectedDOMRange:toDOMRange:affinity:stillSelecting:)]
@@ -147,6 +154,7 @@ extern_protocol!(
             feature = "WebView",
             feature = "objc2-app-kit"
         ))]
+        #[cfg(target_os = "macos")]
         #[deprecated]
         #[optional]
         #[method(webView:shouldApplyStyle:toElementsInDOMRange:)]
@@ -164,6 +172,7 @@ extern_protocol!(
             feature = "WebView",
             feature = "objc2-app-kit"
         ))]
+        #[cfg(target_os = "macos")]
         #[deprecated]
         #[optional]
         #[method(webView:shouldChangeTypingStyle:toStyle:)]
@@ -175,6 +184,7 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
+        #[cfg(target_os = "macos")]
         #[deprecated]
         #[optional]
         #[method(webView:doCommandBySelector:)]
@@ -210,6 +220,7 @@ extern_protocol!(
         unsafe fn webViewDidChangeSelection(&self, notification: Option<&NSNotification>);
 
         #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
+        #[cfg(target_os = "macos")]
         #[deprecated]
         #[optional]
         #[method_id(@__retain_semantics Other undoManagerForWebView:)]

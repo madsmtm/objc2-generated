@@ -2,6 +2,7 @@
 //! DO NOT EDIT
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
 use objc2_app_kit::*;
 use objc2_foundation::*;
 
@@ -9,10 +10,12 @@ use crate::*;
 
 extern "C" {
     #[cfg(feature = "objc2-app-kit")]
+    #[cfg(target_os = "macos")]
     pub static NSReadAccessURLDocumentOption: &'static NSAttributedStringDocumentReadingOptionKey;
 }
 
 #[cfg(all(feature = "block2", feature = "objc2-app-kit"))]
+#[cfg(target_os = "macos")]
 pub type NSAttributedStringCompletionHandler = *mut block2::Block<
     dyn Fn(
         *mut NSAttributedString,
@@ -25,6 +28,7 @@ extern_category!(
     /// Category on [`NSAttributedString`].
     pub unsafe trait NSAttributedStringWebKitAdditions {
         #[cfg(all(feature = "block2", feature = "objc2-app-kit"))]
+        #[cfg(target_os = "macos")]
         #[method(loadFromHTMLWithRequest:options:completionHandler:)]
         unsafe fn loadFromHTMLWithRequest_options_completionHandler(
             request: &NSURLRequest,
@@ -33,6 +37,7 @@ extern_category!(
         );
 
         #[cfg(all(feature = "block2", feature = "objc2-app-kit"))]
+        #[cfg(target_os = "macos")]
         #[method(loadFromHTMLWithFileURL:options:completionHandler:)]
         unsafe fn loadFromHTMLWithFileURL_options_completionHandler(
             file_url: &NSURL,
@@ -41,6 +46,7 @@ extern_category!(
         );
 
         #[cfg(all(feature = "block2", feature = "objc2-app-kit"))]
+        #[cfg(target_os = "macos")]
         #[method(loadFromHTMLWithString:options:completionHandler:)]
         unsafe fn loadFromHTMLWithString_options_completionHandler(
             string: &NSString,
@@ -49,6 +55,7 @@ extern_category!(
         );
 
         #[cfg(all(feature = "block2", feature = "objc2-app-kit"))]
+        #[cfg(target_os = "macos")]
         #[method(loadFromHTMLWithData:options:completionHandler:)]
         unsafe fn loadFromHTMLWithData_options_completionHandler(
             data: &NSData,

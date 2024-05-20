@@ -2,6 +2,7 @@
 //! DO NOT EDIT
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
 use objc2_app_kit::*;
 use objc2_foundation::*;
 
@@ -10,9 +11,11 @@ use crate::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-app-kit")]
+    #[cfg(target_os = "macos")]
     pub struct GKTurnBasedMatchmakerViewController;
 
     #[cfg(feature = "objc2-app-kit")]
+    #[cfg(target_os = "macos")]
     unsafe impl ClassType for GKTurnBasedMatchmakerViewController {
         #[inherits(NSResponder, NSObject)]
         type Super = NSViewController;
@@ -21,31 +24,39 @@ extern_class!(
 );
 
 #[cfg(all(feature = "GKDialogController", feature = "objc2-app-kit"))]
+#[cfg(target_os = "macos")]
 unsafe impl GKViewController for GKTurnBasedMatchmakerViewController {}
 
 #[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
 unsafe impl NSCoding for GKTurnBasedMatchmakerViewController {}
 
 #[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
 unsafe impl NSEditor for GKTurnBasedMatchmakerViewController {}
 
 #[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
 unsafe impl NSObjectProtocol for GKTurnBasedMatchmakerViewController {}
 
 #[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
 unsafe impl NSSeguePerforming for GKTurnBasedMatchmakerViewController {}
 
 #[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
 unsafe impl NSUserInterfaceItemIdentification for GKTurnBasedMatchmakerViewController {}
 
 extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
+    #[cfg(target_os = "macos")]
     unsafe impl GKTurnBasedMatchmakerViewController {}
 );
 
 extern_methods!(
     /// Methods declared on superclass `NSViewController`
     #[cfg(feature = "objc2-app-kit")]
+    #[cfg(target_os = "macos")]
     unsafe impl GKTurnBasedMatchmakerViewController {
         #[method_id(@__retain_semantics Init initWithNibName:bundle:)]
         pub unsafe fn initWithNibName_bundle(
@@ -62,6 +73,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSResponder`
     #[cfg(feature = "objc2-app-kit")]
+    #[cfg(target_os = "macos")]
     unsafe impl GKTurnBasedMatchmakerViewController {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -71,6 +83,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "objc2-app-kit")]
+    #[cfg(target_os = "macos")]
     unsafe impl GKTurnBasedMatchmakerViewController {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
@@ -79,6 +92,7 @@ extern_methods!(
 
 extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
+    #[cfg(target_os = "macos")]
     unsafe impl GKTurnBasedMatchmakerViewController {
         #[method_id(@__retain_semantics Other turnBasedMatchmakerDelegate)]
         pub unsafe fn turnBasedMatchmakerDelegate(
@@ -119,6 +133,7 @@ extern_methods!(
 extern_protocol!(
     pub unsafe trait GKTurnBasedMatchmakerViewControllerDelegate: NSObjectProtocol {
         #[cfg(feature = "objc2-app-kit")]
+        #[cfg(target_os = "macos")]
         #[method(turnBasedMatchmakerViewControllerWasCancelled:)]
         unsafe fn turnBasedMatchmakerViewControllerWasCancelled(
             &self,
@@ -126,6 +141,7 @@ extern_protocol!(
         );
 
         #[cfg(feature = "objc2-app-kit")]
+        #[cfg(target_os = "macos")]
         #[method(turnBasedMatchmakerViewController:didFailWithError:)]
         unsafe fn turnBasedMatchmakerViewController_didFailWithError(
             &self,
@@ -134,6 +150,7 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "GKTurnBasedMatch", feature = "objc2-app-kit"))]
+        #[cfg(target_os = "macos")]
         #[deprecated]
         #[optional]
         #[method(turnBasedMatchmakerViewController:didFindMatch:)]
@@ -144,6 +161,7 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "GKTurnBasedMatch", feature = "objc2-app-kit"))]
+        #[cfg(target_os = "macos")]
         #[deprecated]
         #[optional]
         #[method(turnBasedMatchmakerViewController:playerQuitForMatch:)]

@@ -2,6 +2,7 @@
 //! DO NOT EDIT
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
 use objc2_app_kit::*;
 use objc2_foundation::*;
 
@@ -10,10 +11,12 @@ use crate::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-app-kit")]
+    #[cfg(target_os = "macos")]
     #[deprecated]
     pub struct GKChallengesViewController;
 
     #[cfg(feature = "objc2-app-kit")]
+    #[cfg(target_os = "macos")]
     unsafe impl ClassType for GKChallengesViewController {
         #[inherits(NSResponder, NSObject)]
         type Super = NSViewController;
@@ -22,25 +25,32 @@ extern_class!(
 );
 
 #[cfg(all(feature = "GKDialogController", feature = "objc2-app-kit"))]
+#[cfg(target_os = "macos")]
 unsafe impl GKViewController for GKChallengesViewController {}
 
 #[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
 unsafe impl NSCoding for GKChallengesViewController {}
 
 #[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
 unsafe impl NSEditor for GKChallengesViewController {}
 
 #[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
 unsafe impl NSObjectProtocol for GKChallengesViewController {}
 
 #[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
 unsafe impl NSSeguePerforming for GKChallengesViewController {}
 
 #[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
 unsafe impl NSUserInterfaceItemIdentification for GKChallengesViewController {}
 
 extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
+    #[cfg(target_os = "macos")]
     unsafe impl GKChallengesViewController {
         #[deprecated]
         #[method_id(@__retain_semantics Other challengeDelegate)]
@@ -60,6 +70,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSViewController`
     #[cfg(feature = "objc2-app-kit")]
+    #[cfg(target_os = "macos")]
     unsafe impl GKChallengesViewController {
         #[method_id(@__retain_semantics Init initWithNibName:bundle:)]
         pub unsafe fn initWithNibName_bundle(
@@ -76,6 +87,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSResponder`
     #[cfg(feature = "objc2-app-kit")]
+    #[cfg(target_os = "macos")]
     unsafe impl GKChallengesViewController {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -85,6 +97,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "objc2-app-kit")]
+    #[cfg(target_os = "macos")]
     unsafe impl GKChallengesViewController {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
@@ -94,6 +107,7 @@ extern_methods!(
 extern_protocol!(
     pub unsafe trait GKChallengesViewControllerDelegate {
         #[cfg(feature = "objc2-app-kit")]
+        #[cfg(target_os = "macos")]
         #[method(challengesViewControllerDidFinish:)]
         unsafe fn challengesViewControllerDidFinish(
             &self,

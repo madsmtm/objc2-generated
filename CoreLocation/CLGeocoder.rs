@@ -2,6 +2,12 @@
 //! DO NOT EDIT
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-contacts")]
+#[cfg(any(
+    target_os = "macos",
+    target_os = "ios",
+    target_os = "watchos",
+    target_os = "visionos"
+))]
 use objc2_contacts::*;
 use objc2_foundation::*;
 
@@ -105,6 +111,12 @@ extern_methods!(
             feature = "block2",
             feature = "objc2-contacts"
         ))]
+        #[cfg(any(
+            target_os = "macos",
+            target_os = "ios",
+            target_os = "watchos",
+            target_os = "visionos"
+        ))]
         #[method(geocodePostalAddress:completionHandler:)]
         pub unsafe fn geocodePostalAddress_completionHandler(
             &self,
@@ -116,6 +128,12 @@ extern_methods!(
             feature = "CLPlacemark",
             feature = "block2",
             feature = "objc2-contacts"
+        ))]
+        #[cfg(any(
+            target_os = "macos",
+            target_os = "ios",
+            target_os = "watchos",
+            target_os = "visionos"
         ))]
         #[method(geocodePostalAddress:preferredLocale:completionHandler:)]
         pub unsafe fn geocodePostalAddress_preferredLocale_completionHandler(

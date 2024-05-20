@@ -38,4 +38,5 @@ pub use self::__FPUIActionExtensionContext::FPUIExtensionErrorCode;
     feature = "FPUIActionExtensionViewController",
     feature = "objc2-app-kit"
 ))]
+#[cfg(target_os = "macos")]
 pub use self::__FPUIActionExtensionViewController::FPUIActionExtensionViewController;

@@ -3,6 +3,7 @@
 use objc2::__framework_prelude::*;
 use objc2_foundation::*;
 #[cfg(feature = "objc2-link-presentation")]
+#[cfg(any(target_os = "ios", target_os = "tvos", target_os = "visionos"))]
 use objc2_link_presentation::*;
 
 use crate::*;
@@ -83,6 +84,7 @@ extern_protocol!(
             feature = "UIViewController",
             feature = "objc2-link-presentation"
         ))]
+        #[cfg(any(target_os = "ios", target_os = "tvos", target_os = "visionos"))]
         #[optional]
         #[method_id(@__retain_semantics Other activityViewControllerLinkMetadata:)]
         unsafe fn activityViewControllerLinkMetadata(

@@ -168,6 +168,7 @@ pub use self::__SKCloudServiceSetupViewController::SKCloudServiceSetupOptionsMes
     feature = "SKCloudServiceSetupViewController",
     feature = "objc2-app-kit"
 ))]
+#[cfg(target_os = "macos")]
 pub use self::__SKCloudServiceSetupViewController::SKCloudServiceSetupViewController;
 #[cfg(feature = "SKCloudServiceSetupViewController")]
 pub use self::__SKCloudServiceSetupViewController::SKCloudServiceSetupViewControllerDelegate;
@@ -262,6 +263,7 @@ pub use self::__SKStoreProductViewController::SKStoreProductParameterProductIden
 #[cfg(feature = "SKStoreProductViewController")]
 pub use self::__SKStoreProductViewController::SKStoreProductParameterProviderToken;
 #[cfg(all(feature = "SKStoreProductViewController", feature = "objc2-app-kit"))]
+#[cfg(target_os = "macos")]
 pub use self::__SKStoreProductViewController::SKStoreProductViewController;
 #[cfg(feature = "SKStoreProductViewController")]
 pub use self::__SKStoreProductViewController::SKStoreProductViewControllerDelegate;

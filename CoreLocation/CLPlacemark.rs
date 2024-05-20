@@ -2,6 +2,12 @@
 //! DO NOT EDIT
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-contacts")]
+#[cfg(any(
+    target_os = "macos",
+    target_os = "ios",
+    target_os = "watchos",
+    target_os = "visionos"
+))]
 use objc2_contacts::*;
 use objc2_foundation::*;
 
@@ -97,6 +103,12 @@ extern_methods!(
     /// ContactsAdditions
     unsafe impl CLPlacemark {
         #[cfg(feature = "objc2-contacts")]
+        #[cfg(any(
+            target_os = "macos",
+            target_os = "ios",
+            target_os = "watchos",
+            target_os = "visionos"
+        ))]
         #[method_id(@__retain_semantics Other postalAddress)]
         pub unsafe fn postalAddress(&self) -> Option<Id<CNPostalAddress>>;
     }

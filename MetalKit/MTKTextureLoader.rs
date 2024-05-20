@@ -2,6 +2,7 @@
 //! DO NOT EDIT
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
 use objc2_app_kit::*;
 use objc2_foundation::*;
 use objc2_metal::*;
@@ -135,6 +136,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "block2", feature = "objc2-app-kit"))]
+        #[cfg(target_os = "macos")]
         #[method(newTextureWithName:scaleFactor:displayGamut:bundle:options:completionHandler:)]
         pub unsafe fn newTextureWithName_scaleFactor_displayGamut_bundle_options_completionHandler(
             &self,
@@ -167,6 +169,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "block2", feature = "objc2-app-kit"))]
+        #[cfg(target_os = "macos")]
         #[method(newTexturesWithNames:scaleFactor:displayGamut:bundle:options:completionHandler:)]
         pub unsafe fn newTexturesWithNames_scaleFactor_displayGamut_bundle_options_completionHandler(
             &self,
@@ -211,6 +214,7 @@ extern_methods!(
         ) -> Result<Id<ProtocolObject<dyn MTLTexture>>, Id<NSError>>;
 
         #[cfg(feature = "objc2-app-kit")]
+        #[cfg(target_os = "macos")]
         #[method_id(@__retain_semantics New newTextureWithName:scaleFactor:displayGamut:bundle:options:error:_)]
         pub unsafe fn newTextureWithName_scaleFactor_displayGamut_bundle_options_error(
             &self,

@@ -2,6 +2,7 @@
 //! DO NOT EDIT
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
 use objc2_app_kit::*;
 use objc2_foundation::*;
 #[cfg(feature = "objc2-photos")]
@@ -200,10 +201,12 @@ extern_methods!(
         pub unsafe fn setSelectionLimit(&self, selection_limit: NSInteger);
 
         #[cfg(feature = "objc2-app-kit")]
+        #[cfg(target_os = "macos")]
         #[method(edgesWithoutContentMargins)]
         pub unsafe fn edgesWithoutContentMargins(&self) -> NSDirectionalRectEdge;
 
         #[cfg(feature = "objc2-app-kit")]
+        #[cfg(target_os = "macos")]
         #[method(setEdgesWithoutContentMargins:)]
         pub unsafe fn setEdgesWithoutContentMargins(
             &self,
@@ -284,10 +287,12 @@ extern_methods!(
         pub unsafe fn setMode(&self, mode: PHPickerMode);
 
         #[cfg(feature = "objc2-app-kit")]
+        #[cfg(target_os = "macos")]
         #[method(edgesWithoutContentMargins)]
         pub unsafe fn edgesWithoutContentMargins(&self) -> NSDirectionalRectEdge;
 
         #[cfg(feature = "objc2-app-kit")]
+        #[cfg(target_os = "macos")]
         #[method(setEdgesWithoutContentMargins:)]
         pub unsafe fn setEdgesWithoutContentMargins(
             &self,
@@ -353,6 +358,7 @@ extern_protocol!(
         NSObjectProtocol + IsMainThreadOnly
     {
         #[cfg(feature = "objc2-app-kit")]
+        #[cfg(target_os = "macos")]
         #[method(picker:didFinishPicking:)]
         unsafe fn picker_didFinishPicking(
             &self,
@@ -367,9 +373,11 @@ extern_protocol!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-app-kit")]
+    #[cfg(target_os = "macos")]
     pub struct PHPickerViewController;
 
     #[cfg(feature = "objc2-app-kit")]
+    #[cfg(target_os = "macos")]
     unsafe impl ClassType for PHPickerViewController {
         #[inherits(NSResponder, NSObject)]
         type Super = NSViewController;
@@ -378,22 +386,28 @@ extern_class!(
 );
 
 #[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
 unsafe impl NSCoding for PHPickerViewController {}
 
 #[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
 unsafe impl NSEditor for PHPickerViewController {}
 
 #[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
 unsafe impl NSObjectProtocol for PHPickerViewController {}
 
 #[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
 unsafe impl NSSeguePerforming for PHPickerViewController {}
 
 #[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
 unsafe impl NSUserInterfaceItemIdentification for PHPickerViewController {}
 
 extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
+    #[cfg(target_os = "macos")]
     unsafe impl PHPickerViewController {
         #[method_id(@__retain_semantics Other configuration)]
         pub unsafe fn configuration(&self) -> Id<PHPickerConfiguration>;

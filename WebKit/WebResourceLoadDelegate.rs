@@ -2,6 +2,7 @@
 //! DO NOT EDIT
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
 use objc2_app_kit::*;
 use objc2_foundation::*;
 
@@ -15,6 +16,7 @@ extern_protocol!(
             feature = "WebView",
             feature = "objc2-app-kit"
         ))]
+        #[cfg(target_os = "macos")]
         #[deprecated]
         #[optional]
         #[method_id(@__retain_semantics Other webView:identifierForInitialRequest:fromDataSource:)]
@@ -30,6 +32,7 @@ extern_protocol!(
             feature = "WebView",
             feature = "objc2-app-kit"
         ))]
+        #[cfg(target_os = "macos")]
         #[deprecated]
         #[optional]
         #[method_id(@__retain_semantics Other webView:resource:willSendRequest:redirectResponse:fromDataSource:)]
@@ -47,6 +50,7 @@ extern_protocol!(
             feature = "WebView",
             feature = "objc2-app-kit"
         ))]
+        #[cfg(target_os = "macos")]
         #[deprecated]
         #[optional]
         #[method(webView:resource:didReceiveAuthenticationChallenge:fromDataSource:)]
@@ -63,6 +67,7 @@ extern_protocol!(
             feature = "WebView",
             feature = "objc2-app-kit"
         ))]
+        #[cfg(target_os = "macos")]
         #[deprecated]
         #[optional]
         #[method(webView:resource:didCancelAuthenticationChallenge:fromDataSource:)]
@@ -79,6 +84,7 @@ extern_protocol!(
             feature = "WebView",
             feature = "objc2-app-kit"
         ))]
+        #[cfg(target_os = "macos")]
         #[deprecated]
         #[optional]
         #[method(webView:resource:didReceiveResponse:fromDataSource:)]
@@ -95,6 +101,7 @@ extern_protocol!(
             feature = "WebView",
             feature = "objc2-app-kit"
         ))]
+        #[cfg(target_os = "macos")]
         #[deprecated]
         #[optional]
         #[method(webView:resource:didReceiveContentLength:fromDataSource:)]
@@ -111,6 +118,7 @@ extern_protocol!(
             feature = "WebView",
             feature = "objc2-app-kit"
         ))]
+        #[cfg(target_os = "macos")]
         #[deprecated]
         #[optional]
         #[method(webView:resource:didFinishLoadingFromDataSource:)]
@@ -126,6 +134,7 @@ extern_protocol!(
             feature = "WebView",
             feature = "objc2-app-kit"
         ))]
+        #[cfg(target_os = "macos")]
         #[deprecated]
         #[optional]
         #[method(webView:resource:didFailLoadingWithError:fromDataSource:)]
@@ -142,6 +151,7 @@ extern_protocol!(
             feature = "WebView",
             feature = "objc2-app-kit"
         ))]
+        #[cfg(target_os = "macos")]
         #[deprecated]
         #[optional]
         #[method(webView:plugInFailedWithError:dataSource:)]

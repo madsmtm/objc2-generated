@@ -2,6 +2,7 @@
 //! DO NOT EDIT
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-image")]
+#[cfg(target_vendor = "apple")]
 use objc2_core_image::*;
 use objc2_foundation::*;
 
@@ -178,6 +179,7 @@ extern_methods!(
     /// NSQuartzCoreAdditions
     unsafe impl NSGraphicsContext {
         #[cfg(feature = "objc2-core-image")]
+        #[cfg(target_vendor = "apple")]
         #[method_id(@__retain_semantics Other CIContext)]
         pub unsafe fn CIContext(&self) -> Option<Id<CIContext>>;
     }

@@ -2,6 +2,7 @@
 //! DO NOT EDIT
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
 use objc2_app_kit::*;
 
 use crate::*;
@@ -13,6 +14,7 @@ extern_protocol!(
             feature = "WKWebView",
             feature = "objc2-app-kit"
         ))]
+        #[cfg(target_os = "macos")]
         #[method(webView:startURLSchemeTask:)]
         unsafe fn webView_startURLSchemeTask(
             &self,
@@ -25,6 +27,7 @@ extern_protocol!(
             feature = "WKWebView",
             feature = "objc2-app-kit"
         ))]
+        #[cfg(target_os = "macos")]
         #[method(webView:stopURLSchemeTask:)]
         unsafe fn webView_stopURLSchemeTask(
             &self,

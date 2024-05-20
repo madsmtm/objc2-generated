@@ -2,6 +2,7 @@
 //! DO NOT EDIT
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
 use objc2_app_kit::*;
 use objc2_foundation::*;
 
@@ -39,6 +40,7 @@ extern_methods!(
         pub unsafe fn localizedAttributedDescription(&self) -> Option<Id<NSAttributedString>>;
 
         #[cfg(feature = "objc2-app-kit")]
+        #[cfg(target_os = "macos")]
         #[method_id(@__retain_semantics Other image)]
         pub unsafe fn image(&self) -> Option<Id<NSImage>>;
 
@@ -49,6 +51,7 @@ extern_methods!(
         pub unsafe fn canProvideSubtypes(&self) -> bool;
 
         #[cfg(all(feature = "PhotosUITypes", feature = "objc2-app-kit"))]
+        #[cfg(target_os = "macos")]
         #[method_id(@__retain_semantics Init initWithProjectType:title:description:image:subtypeDescriptions:)]
         pub unsafe fn initWithProjectType_title_description_image_subtypeDescriptions(
             this: Allocated<Self>,
@@ -60,6 +63,7 @@ extern_methods!(
         ) -> Id<Self>;
 
         #[cfg(all(feature = "PhotosUITypes", feature = "objc2-app-kit"))]
+        #[cfg(target_os = "macos")]
         #[method_id(@__retain_semantics Init initWithProjectType:title:attributedDescription:image:subtypeDescriptions:)]
         pub unsafe fn initWithProjectType_title_attributedDescription_image_subtypeDescriptions(
             this: Allocated<Self>,
@@ -71,6 +75,7 @@ extern_methods!(
         ) -> Id<Self>;
 
         #[cfg(all(feature = "PhotosUITypes", feature = "objc2-app-kit"))]
+        #[cfg(target_os = "macos")]
         #[method_id(@__retain_semantics Init initWithProjectType:title:description:image:)]
         pub unsafe fn initWithProjectType_title_description_image(
             this: Allocated<Self>,
@@ -81,6 +86,7 @@ extern_methods!(
         ) -> Id<Self>;
 
         #[cfg(all(feature = "PhotosUITypes", feature = "objc2-app-kit"))]
+        #[cfg(target_os = "macos")]
         #[method_id(@__retain_semantics Init initWithProjectType:title:description:image:canProvideSubtypes:)]
         pub unsafe fn initWithProjectType_title_description_image_canProvideSubtypes(
             this: Allocated<Self>,
@@ -92,6 +98,7 @@ extern_methods!(
         ) -> Id<Self>;
 
         #[cfg(all(feature = "PhotosUITypes", feature = "objc2-app-kit"))]
+        #[cfg(target_os = "macos")]
         #[method_id(@__retain_semantics Init initWithProjectType:title:attributedDescription:image:canProvideSubtypes:)]
         pub unsafe fn initWithProjectType_title_attributedDescription_image_canProvideSubtypes(
             this: Allocated<Self>,

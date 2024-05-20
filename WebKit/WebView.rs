@@ -2,6 +2,7 @@
 //! DO NOT EDIT
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
 use objc2_app_kit::*;
 use objc2_foundation::*;
 
@@ -66,10 +67,12 @@ extern "C" {
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-app-kit")]
+    #[cfg(target_os = "macos")]
     #[deprecated = "No longer supported; please adopt WKWebView."]
     pub struct WebView;
 
     #[cfg(feature = "objc2-app-kit")]
+    #[cfg(target_os = "macos")]
     unsafe impl ClassType for WebView {
         #[inherits(NSResponder, NSObject)]
         type Super = NSView;
@@ -78,31 +81,40 @@ extern_class!(
 );
 
 #[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
 unsafe impl NSAccessibility for WebView {}
 
 #[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
 unsafe impl NSAccessibilityElementProtocol for WebView {}
 
 #[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
 unsafe impl NSAnimatablePropertyContainer for WebView {}
 
 #[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
 unsafe impl NSAppearanceCustomization for WebView {}
 
 #[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
 unsafe impl NSCoding for WebView {}
 
 #[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
 unsafe impl NSDraggingDestination for WebView {}
 
 #[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
 unsafe impl NSObjectProtocol for WebView {}
 
 #[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
 unsafe impl NSUserInterfaceItemIdentification for WebView {}
 
 extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
+    #[cfg(target_os = "macos")]
     unsafe impl WebView {
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[method(canShowMIMEType:)]
@@ -476,6 +488,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSView`
     #[cfg(feature = "objc2-app-kit")]
+    #[cfg(target_os = "macos")]
     unsafe impl WebView {
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Id<Self>;
@@ -488,6 +501,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSResponder`
     #[cfg(feature = "objc2-app-kit")]
+    #[cfg(target_os = "macos")]
     unsafe impl WebView {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -497,6 +511,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "objc2-app-kit")]
+    #[cfg(target_os = "macos")]
     unsafe impl WebView {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
@@ -506,6 +521,7 @@ extern_methods!(
 extern_methods!(
     /// WebIBActions
     #[cfg(feature = "objc2-app-kit")]
+    #[cfg(target_os = "macos")]
     unsafe impl WebView {
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[method(takeStringURLFrom:)]
@@ -574,6 +590,7 @@ extern_methods!(
 );
 
 #[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
 unsafe impl NSUserInterfaceValidations for WebView {}
 
 extern "C" {
@@ -599,6 +616,7 @@ extern "C" {
 extern_methods!(
     /// WebViewCSS
     #[cfg(feature = "objc2-app-kit")]
+    #[cfg(target_os = "macos")]
     unsafe impl WebView {
         #[cfg(all(
             feature = "DOMCSSStyleDeclaration",
@@ -620,6 +638,7 @@ extern_methods!(
 extern_methods!(
     /// WebViewEditing
     #[cfg(feature = "objc2-app-kit")]
+    #[cfg(target_os = "macos")]
     unsafe impl WebView {
         #[cfg(all(
             feature = "DOMObject",
@@ -743,6 +762,7 @@ extern_methods!(
 extern_methods!(
     /// WebViewUndoableEditing
     #[cfg(feature = "objc2-app-kit")]
+    #[cfg(target_os = "macos")]
     unsafe impl WebView {
         #[cfg(all(
             feature = "DOMNode",
@@ -784,6 +804,7 @@ extern_methods!(
 extern_methods!(
     /// WebViewEditingActions
     #[cfg(feature = "objc2-app-kit")]
+    #[cfg(target_os = "macos")]
     unsafe impl WebView {
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[method(copy:)]

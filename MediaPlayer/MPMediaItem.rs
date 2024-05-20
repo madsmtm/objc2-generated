@@ -2,6 +2,7 @@
 //! DO NOT EDIT
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
 use objc2_app_kit::*;
 use objc2_foundation::*;
 
@@ -383,6 +384,7 @@ extern_methods!(
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[cfg(all(feature = "block2", feature = "objc2-app-kit"))]
+        #[cfg(target_os = "macos")]
         #[method_id(@__retain_semantics Init initWithBoundsSize:requestHandler:)]
         pub unsafe fn initWithBoundsSize_requestHandler(
             this: Allocated<Self>,
@@ -391,6 +393,7 @@ extern_methods!(
         ) -> Id<Self>;
 
         #[cfg(feature = "objc2-app-kit")]
+        #[cfg(target_os = "macos")]
         #[method_id(@__retain_semantics Other imageWithSize:)]
         pub unsafe fn imageWithSize(&self, size: CGSize) -> Option<Id<NSImage>>;
 

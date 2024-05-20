@@ -2,6 +2,7 @@
 //! DO NOT EDIT
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
 use objc2_app_kit::*;
 use objc2_foundation::*;
 
@@ -46,10 +47,12 @@ extern_methods!(
         pub unsafe fn locations(&self) -> Id<NSArray<NSNumber>>;
 
         #[cfg(feature = "objc2-app-kit")]
+        #[cfg(target_os = "macos")]
         #[method_id(@__retain_semantics Other colors)]
         pub unsafe fn colors(&self) -> Id<NSArray<NSColor>>;
 
         #[cfg(feature = "objc2-app-kit")]
+        #[cfg(target_os = "macos")]
         #[method(setColors:atLocations:)]
         pub unsafe fn setColors_atLocations(
             &self,

@@ -2,6 +2,7 @@
 //! DO NOT EDIT
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
 use objc2_app_kit::*;
 use objc2_foundation::*;
 
@@ -11,6 +12,7 @@ extern_protocol!(
     #[deprecated]
     pub unsafe trait WebFrameLoadDelegate: NSObjectProtocol {
         #[cfg(all(feature = "WebFrame", feature = "WebView", feature = "objc2-app-kit"))]
+        #[cfg(target_os = "macos")]
         #[deprecated]
         #[optional]
         #[method(webView:didStartProvisionalLoadForFrame:)]
@@ -21,6 +23,7 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "WebFrame", feature = "WebView", feature = "objc2-app-kit"))]
+        #[cfg(target_os = "macos")]
         #[deprecated]
         #[optional]
         #[method(webView:didReceiveServerRedirectForProvisionalLoadForFrame:)]
@@ -31,6 +34,7 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "WebFrame", feature = "WebView", feature = "objc2-app-kit"))]
+        #[cfg(target_os = "macos")]
         #[deprecated]
         #[optional]
         #[method(webView:didFailProvisionalLoadWithError:forFrame:)]
@@ -42,6 +46,7 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "WebFrame", feature = "WebView", feature = "objc2-app-kit"))]
+        #[cfg(target_os = "macos")]
         #[deprecated]
         #[optional]
         #[method(webView:didCommitLoadForFrame:)]
@@ -52,6 +57,7 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "WebFrame", feature = "WebView", feature = "objc2-app-kit"))]
+        #[cfg(target_os = "macos")]
         #[deprecated]
         #[optional]
         #[method(webView:didReceiveTitle:forFrame:)]
@@ -63,6 +69,7 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "WebFrame", feature = "WebView", feature = "objc2-app-kit"))]
+        #[cfg(target_os = "macos")]
         #[deprecated]
         #[optional]
         #[method(webView:didReceiveIcon:forFrame:)]
@@ -74,6 +81,7 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "WebFrame", feature = "WebView", feature = "objc2-app-kit"))]
+        #[cfg(target_os = "macos")]
         #[deprecated]
         #[optional]
         #[method(webView:didFinishLoadForFrame:)]
@@ -84,6 +92,7 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "WebFrame", feature = "WebView", feature = "objc2-app-kit"))]
+        #[cfg(target_os = "macos")]
         #[deprecated]
         #[optional]
         #[method(webView:didFailLoadWithError:forFrame:)]
@@ -95,6 +104,7 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "WebFrame", feature = "WebView", feature = "objc2-app-kit"))]
+        #[cfg(target_os = "macos")]
         #[deprecated]
         #[optional]
         #[method(webView:didChangeLocationWithinPageForFrame:)]
@@ -105,6 +115,7 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "WebFrame", feature = "WebView", feature = "objc2-app-kit"))]
+        #[cfg(target_os = "macos")]
         #[deprecated]
         #[optional]
         #[method(webView:willPerformClientRedirectToURL:delay:fireDate:forFrame:)]
@@ -118,6 +129,7 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "WebFrame", feature = "WebView", feature = "objc2-app-kit"))]
+        #[cfg(target_os = "macos")]
         #[deprecated]
         #[optional]
         #[method(webView:didCancelClientRedirectForFrame:)]
@@ -128,6 +140,7 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "WebFrame", feature = "WebView", feature = "objc2-app-kit"))]
+        #[cfg(target_os = "macos")]
         #[deprecated]
         #[optional]
         #[method(webView:willCloseFrame:)]
@@ -139,6 +152,7 @@ extern_protocol!(
             feature = "WebView",
             feature = "objc2-app-kit"
         ))]
+        #[cfg(target_os = "macos")]
         #[deprecated]
         #[optional]
         #[method(webView:didClearWindowObject:forFrame:)]
@@ -154,6 +168,7 @@ extern_protocol!(
             feature = "WebView",
             feature = "objc2-app-kit"
         ))]
+        #[cfg(target_os = "macos")]
         #[deprecated]
         #[optional]
         #[method(webView:windowScriptObjectAvailable:)]

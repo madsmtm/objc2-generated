@@ -3,6 +3,7 @@
 use objc2::__framework_prelude::*;
 use objc2_foundation::*;
 #[cfg(feature = "objc2-quartz-core")]
+#[cfg(target_vendor = "apple")]
 use objc2_quartz_core::*;
 
 use crate::*;
@@ -575,6 +576,7 @@ extern_methods!(
         pub unsafe fn setWantsRestingTouches(&self, wants_resting_touches: bool);
 
         #[cfg(feature = "objc2-quartz-core")]
+        #[cfg(target_vendor = "apple")]
         #[method_id(@__retain_semantics Other makeBackingLayer)]
         pub unsafe fn makeBackingLayer(&self) -> Id<CALayer>;
 
@@ -603,10 +605,12 @@ extern_methods!(
         pub fn setWantsLayer(&self, wants_layer: bool);
 
         #[cfg(feature = "objc2-quartz-core")]
+        #[cfg(target_vendor = "apple")]
         #[method_id(@__retain_semantics Other layer)]
         pub unsafe fn layer(&self) -> Option<Id<CALayer>>;
 
         #[cfg(feature = "objc2-quartz-core")]
+        #[cfg(target_vendor = "apple")]
         #[method(setLayer:)]
         pub unsafe fn setLayer(&self, layer: Option<&CALayer>);
 
@@ -794,6 +798,7 @@ extern_protocol!(
             feature = "NSWindow",
             feature = "objc2-quartz-core"
         ))]
+        #[cfg(target_vendor = "apple")]
         #[optional]
         #[method(layer:shouldInheritContentsScale:fromWindow:)]
         unsafe fn layer_shouldInheritContentsScale_fromWindow(

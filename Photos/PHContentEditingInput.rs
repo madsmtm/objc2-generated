@@ -2,6 +2,7 @@
 //! DO NOT EDIT
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
 use objc2_app_kit::*;
 #[cfg(feature = "objc2-core-location")]
 use objc2_core_location::*;
@@ -50,6 +51,7 @@ extern_methods!(
         pub unsafe fn adjustmentData(&self) -> Option<Id<PHAdjustmentData>>;
 
         #[cfg(feature = "objc2-app-kit")]
+        #[cfg(target_os = "macos")]
         #[method_id(@__retain_semantics Other displaySizeImage)]
         pub unsafe fn displaySizeImage(&self) -> Option<Id<NSImage>>;
 

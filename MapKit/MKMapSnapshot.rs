@@ -2,6 +2,7 @@
 //! DO NOT EDIT
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
 use objc2_app_kit::*;
 #[cfg(feature = "objc2-core-location")]
 use objc2_core_location::*;
@@ -24,10 +25,12 @@ unsafe impl NSObjectProtocol for MKMapSnapshot {}
 extern_methods!(
     unsafe impl MKMapSnapshot {
         #[cfg(feature = "objc2-app-kit")]
+        #[cfg(target_os = "macos")]
         #[method_id(@__retain_semantics Other image)]
         pub unsafe fn image(&self) -> Id<NSImage>;
 
         #[cfg(feature = "objc2-app-kit")]
+        #[cfg(target_os = "macos")]
         #[method_id(@__retain_semantics Other appearance)]
         pub unsafe fn appearance(&self) -> Id<NSAppearance>;
 

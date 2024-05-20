@@ -34,6 +34,7 @@ pub use self::__BCChatAction::BCParameterNameGroup;
 #[cfg(feature = "BCChatAction")]
 pub use self::__BCChatAction::BCParameterNameIntent;
 #[cfg(feature = "BCChatButton")]
+#[cfg(target_os = "macos")]
 pub use self::__BCChatButton::BCChatButton;
 #[cfg(feature = "BCChatButton")]
 pub use self::__BCChatButton::BCChatButtonStyle;

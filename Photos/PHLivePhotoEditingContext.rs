@@ -2,12 +2,24 @@
 //! DO NOT EDIT
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-image")]
+#[cfg(any(
+    target_os = "macos",
+    target_os = "ios",
+    target_os = "tvos",
+    target_os = "visionos"
+))]
 use objc2_core_image::*;
 use objc2_foundation::*;
 
 use crate::*;
 
 #[cfg(all(feature = "block2", feature = "objc2-core-image"))]
+#[cfg(any(
+    target_os = "macos",
+    target_os = "ios",
+    target_os = "tvos",
+    target_os = "visionos"
+))]
 pub type PHLivePhotoFrameProcessingBlock = *mut block2::Block<
     dyn Fn(NonNull<ProtocolObject<dyn PHLivePhotoFrame>>, NonNull<*mut NSError>) -> *mut CIImage,
 >;
@@ -40,14 +52,32 @@ extern_methods!(
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[cfg(feature = "objc2-core-image")]
+        #[cfg(any(
+            target_os = "macos",
+            target_os = "ios",
+            target_os = "tvos",
+            target_os = "visionos"
+        ))]
         #[method_id(@__retain_semantics Other fullSizeImage)]
         pub unsafe fn fullSizeImage(&self) -> Id<CIImage>;
 
         #[cfg(all(feature = "block2", feature = "objc2-core-image"))]
+        #[cfg(any(
+            target_os = "macos",
+            target_os = "ios",
+            target_os = "tvos",
+            target_os = "visionos"
+        ))]
         #[method(frameProcessor)]
         pub unsafe fn frameProcessor(&self) -> PHLivePhotoFrameProcessingBlock;
 
         #[cfg(all(feature = "block2", feature = "objc2-core-image"))]
+        #[cfg(any(
+            target_os = "macos",
+            target_os = "ios",
+            target_os = "tvos",
+            target_os = "visionos"
+        ))]
         #[method(setFrameProcessor:)]
         pub unsafe fn setFrameProcessor(&self, frame_processor: PHLivePhotoFrameProcessingBlock);
 
@@ -110,6 +140,12 @@ unsafe impl RefEncode for PHLivePhotoFrameType {
 extern_protocol!(
     pub unsafe trait PHLivePhotoFrame {
         #[cfg(feature = "objc2-core-image")]
+        #[cfg(any(
+            target_os = "macos",
+            target_os = "ios",
+            target_os = "tvos",
+            target_os = "visionos"
+        ))]
         #[method_id(@__retain_semantics Other image)]
         unsafe fn image(&self) -> Id<CIImage>;
 

@@ -2,6 +2,7 @@
 //! DO NOT EDIT
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
 use objc2_app_kit::*;
 use objc2_foundation::*;
 
@@ -35,9 +36,11 @@ unsafe impl RefEncode for AVPlayerViewControlsStyle {
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-app-kit")]
+    #[cfg(target_os = "macos")]
     pub struct AVPlayerView;
 
     #[cfg(feature = "objc2-app-kit")]
+    #[cfg(target_os = "macos")]
     unsafe impl ClassType for AVPlayerView {
         #[inherits(NSResponder, NSObject)]
         type Super = NSView;
@@ -46,31 +49,40 @@ extern_class!(
 );
 
 #[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
 unsafe impl NSAccessibility for AVPlayerView {}
 
 #[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
 unsafe impl NSAccessibilityElementProtocol for AVPlayerView {}
 
 #[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
 unsafe impl NSAnimatablePropertyContainer for AVPlayerView {}
 
 #[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
 unsafe impl NSAppearanceCustomization for AVPlayerView {}
 
 #[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
 unsafe impl NSCoding for AVPlayerView {}
 
 #[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
 unsafe impl NSDraggingDestination for AVPlayerView {}
 
 #[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
 unsafe impl NSObjectProtocol for AVPlayerView {}
 
 #[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
 unsafe impl NSUserInterfaceItemIdentification for AVPlayerView {}
 
 extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
+    #[cfg(target_os = "macos")]
     unsafe impl AVPlayerView {
         #[method(controlsStyle)]
         pub unsafe fn controlsStyle(&self) -> AVPlayerViewControlsStyle;
@@ -159,6 +171,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSView`
     #[cfg(feature = "objc2-app-kit")]
+    #[cfg(target_os = "macos")]
     unsafe impl AVPlayerView {
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Id<Self>;
@@ -171,6 +184,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSResponder`
     #[cfg(feature = "objc2-app-kit")]
+    #[cfg(target_os = "macos")]
     unsafe impl AVPlayerView {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -180,6 +194,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "objc2-app-kit")]
+    #[cfg(target_os = "macos")]
     unsafe impl AVPlayerView {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
@@ -189,6 +204,7 @@ extern_methods!(
 extern_methods!(
     /// AVPlayerViewCustomization
     #[cfg(feature = "objc2-app-kit")]
+    #[cfg(target_os = "macos")]
     unsafe impl AVPlayerView {
         #[method(showsFrameSteppingButtons)]
         pub unsafe fn showsFrameSteppingButtons(&self) -> bool;
@@ -242,6 +258,7 @@ unsafe impl RefEncode for AVPlayerViewTrimResult {
 extern_methods!(
     /// AVPlayerViewTrimming
     #[cfg(feature = "objc2-app-kit")]
+    #[cfg(target_os = "macos")]
     unsafe impl AVPlayerView {
         #[method(canBeginTrimming)]
         pub unsafe fn canBeginTrimming(&self) -> bool;
@@ -258,6 +275,7 @@ extern_methods!(
 extern_methods!(
     /// AVPlayerViewChapterIndicator
     #[cfg(feature = "objc2-app-kit")]
+    #[cfg(target_os = "macos")]
     unsafe impl AVPlayerView {
         #[method(flashChapterNumber:chapterTitle:)]
         pub unsafe fn flashChapterNumber_chapterTitle(
@@ -271,6 +289,7 @@ extern_methods!(
 extern_methods!(
     /// AVPlayerViewPictureInPictureSupport
     #[cfg(feature = "objc2-app-kit")]
+    #[cfg(target_os = "macos")]
     unsafe impl AVPlayerView {
         #[method(allowsPictureInPicturePlayback)]
         pub unsafe fn allowsPictureInPicturePlayback(&self) -> bool;
@@ -299,26 +318,31 @@ extern_methods!(
 extern_protocol!(
     pub unsafe trait AVPlayerViewDelegate: NSObjectProtocol {
         #[cfg(feature = "objc2-app-kit")]
+        #[cfg(target_os = "macos")]
         #[optional]
         #[method(playerViewWillEnterFullScreen:)]
         unsafe fn playerViewWillEnterFullScreen(&self, player_view: &AVPlayerView);
 
         #[cfg(feature = "objc2-app-kit")]
+        #[cfg(target_os = "macos")]
         #[optional]
         #[method(playerViewDidEnterFullScreen:)]
         unsafe fn playerViewDidEnterFullScreen(&self, player_view: &AVPlayerView);
 
         #[cfg(feature = "objc2-app-kit")]
+        #[cfg(target_os = "macos")]
         #[optional]
         #[method(playerViewWillExitFullScreen:)]
         unsafe fn playerViewWillExitFullScreen(&self, player_view: &AVPlayerView);
 
         #[cfg(feature = "objc2-app-kit")]
+        #[cfg(target_os = "macos")]
         #[optional]
         #[method(playerViewDidExitFullScreen:)]
         unsafe fn playerViewDidExitFullScreen(&self, player_view: &AVPlayerView);
 
         #[cfg(all(feature = "block2", feature = "objc2-app-kit"))]
+        #[cfg(target_os = "macos")]
         #[optional]
         #[method(playerView:restoreUserInterfaceForFullScreenExitWithCompletionHandler:)]
         unsafe fn playerView_restoreUserInterfaceForFullScreenExitWithCompletionHandler(
@@ -334,16 +358,19 @@ extern_protocol!(
 extern_protocol!(
     pub unsafe trait AVPlayerViewPictureInPictureDelegate: NSObjectProtocol {
         #[cfg(feature = "objc2-app-kit")]
+        #[cfg(target_os = "macos")]
         #[optional]
         #[method(playerViewWillStartPictureInPicture:)]
         unsafe fn playerViewWillStartPictureInPicture(&self, player_view: &AVPlayerView);
 
         #[cfg(feature = "objc2-app-kit")]
+        #[cfg(target_os = "macos")]
         #[optional]
         #[method(playerViewDidStartPictureInPicture:)]
         unsafe fn playerViewDidStartPictureInPicture(&self, player_view: &AVPlayerView);
 
         #[cfg(feature = "objc2-app-kit")]
+        #[cfg(target_os = "macos")]
         #[optional]
         #[method(playerView:failedToStartPictureInPictureWithError:)]
         unsafe fn playerView_failedToStartPictureInPictureWithError(
@@ -353,16 +380,19 @@ extern_protocol!(
         );
 
         #[cfg(feature = "objc2-app-kit")]
+        #[cfg(target_os = "macos")]
         #[optional]
         #[method(playerViewWillStopPictureInPicture:)]
         unsafe fn playerViewWillStopPictureInPicture(&self, player_view: &AVPlayerView);
 
         #[cfg(feature = "objc2-app-kit")]
+        #[cfg(target_os = "macos")]
         #[optional]
         #[method(playerViewDidStopPictureInPicture:)]
         unsafe fn playerViewDidStopPictureInPicture(&self, player_view: &AVPlayerView);
 
         #[cfg(all(feature = "block2", feature = "objc2-app-kit"))]
+        #[cfg(target_os = "macos")]
         #[optional]
         #[method(playerView:restoreUserInterfaceForPictureInPictureStopWithCompletionHandler:)]
         unsafe fn playerView_restoreUserInterfaceForPictureInPictureStopWithCompletionHandler(
@@ -372,6 +402,7 @@ extern_protocol!(
         );
 
         #[cfg(feature = "objc2-app-kit")]
+        #[cfg(target_os = "macos")]
         #[optional]
         #[method(playerViewShouldAutomaticallyDismissAtPictureInPictureStart:)]
         unsafe fn playerViewShouldAutomaticallyDismissAtPictureInPictureStart(

@@ -220,6 +220,7 @@ pub use self::__MKAnnotation::MKAnnotation;
 #[cfg(feature = "MKAnnotationView")]
 pub use self::__MKAnnotationView::MKAnnotationCalloutInfoDidChangeNotification;
 #[cfg(all(feature = "MKAnnotationView", feature = "objc2-app-kit"))]
+#[cfg(target_os = "macos")]
 pub use self::__MKAnnotationView::MKAnnotationView;
 #[cfg(feature = "MKAnnotationView")]
 pub use self::__MKAnnotationView::MKAnnotationViewCollisionMode;
@@ -254,6 +255,7 @@ pub use self::__MKCircleRenderer::MKCircleRenderer;
 #[cfg(feature = "MKClusterAnnotation")]
 pub use self::__MKClusterAnnotation::MKClusterAnnotation;
 #[cfg(all(feature = "MKCompassButton", feature = "objc2-app-kit"))]
+#[cfg(target_os = "macos")]
 pub use self::__MKCompassButton::MKCompassButton;
 #[cfg(feature = "MKDirections")]
 pub use self::__MKDirections::MKDirections;
@@ -409,6 +411,7 @@ pub use self::__MKLookAroundSnapshotter::MKLookAroundSnapshotter;
 #[cfg(feature = "MKLookAroundViewController")]
 pub use self::__MKLookAroundViewController::MKLookAroundBadgePosition;
 #[cfg(all(feature = "MKLookAroundViewController", feature = "objc2-app-kit"))]
+#[cfg(target_os = "macos")]
 pub use self::__MKLookAroundViewController::MKLookAroundViewController;
 #[cfg(feature = "MKLookAroundViewController")]
 pub use self::__MKLookAroundViewController::MKLookAroundViewControllerDelegate;
@@ -461,6 +464,7 @@ pub use self::__MKMapSnapshotter::MKMapSnapshotCompletionHandler;
 #[cfg(feature = "MKMapSnapshotter")]
 pub use self::__MKMapSnapshotter::MKMapSnapshotter;
 #[cfg(all(feature = "MKMapView", feature = "objc2-app-kit"))]
+#[cfg(target_os = "macos")]
 pub use self::__MKMapView::MKMapView;
 #[cfg(feature = "MKMapView")]
 pub use self::__MKMapView::MKMapViewDefaultAnnotationViewReuseIdentifier;
@@ -477,6 +481,7 @@ pub use self::__MKMapView::MKUserTrackingMode;
     feature = "MKMarkerAnnotationView",
     feature = "objc2-app-kit"
 ))]
+#[cfg(target_os = "macos")]
 pub use self::__MKMarkerAnnotationView::MKMarkerAnnotationView;
 #[cfg(all(feature = "MKMultiPoint", feature = "MKShape"))]
 pub use self::__MKMultiPoint::MKMultiPoint;
@@ -511,8 +516,10 @@ pub use self::__MKPinAnnotationView::MKPinAnnotationColor;
     feature = "MKPinAnnotationView",
     feature = "objc2-app-kit"
 ))]
+#[cfg(target_os = "macos")]
 pub use self::__MKPinAnnotationView::MKPinAnnotationView;
 #[cfg(all(feature = "MKPitchControl", feature = "objc2-app-kit"))]
+#[cfg(target_os = "macos")]
 pub use self::__MKPitchControl::MKPitchControl;
 #[cfg(all(feature = "MKPlacemark", feature = "objc2-core-location"))]
 pub use self::__MKPlacemark::MKPlacemark;
@@ -645,8 +652,10 @@ pub use self::__MKUserLocation::MKUserLocation;
     feature = "MKUserLocationView",
     feature = "objc2-app-kit"
 ))]
+#[cfg(target_os = "macos")]
 pub use self::__MKUserLocationView::MKUserLocationView;
 #[cfg(all(feature = "MKZoomControl", feature = "objc2-app-kit"))]
+#[cfg(target_os = "macos")]
 pub use self::__MKZoomControl::MKZoomControl;
 #[cfg(feature = "NSUserActivity_MKMapItem")]
 pub use self::__NSUserActivity_MKMapItem::NSUserActivityMKMapItem;

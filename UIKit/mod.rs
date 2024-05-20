@@ -3329,6 +3329,7 @@ pub use self::__UIHoverEffect::UIHoverHighlightEffect;
 #[cfg(feature = "UIHoverEffect")]
 pub use self::__UIHoverEffect::UIHoverLiftEffect;
 #[cfg(all(feature = "UIHoverEffectLayer", feature = "objc2-quartz-core"))]
+#[cfg(any(target_os = "ios", target_os = "tvos", target_os = "visionos"))]
 pub use self::__UIHoverEffectLayer::UIHoverEffectLayer;
 #[cfg(all(feature = "UIGestureRecognizer", feature = "UIHoverGestureRecognizer"))]
 pub use self::__UIHoverGestureRecognizer::UIHoverGestureRecognizer;

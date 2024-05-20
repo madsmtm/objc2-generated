@@ -2,6 +2,7 @@
 //! DO NOT EDIT
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
 use objc2_app_kit::*;
 use objc2_foundation::*;
 
@@ -25,10 +26,12 @@ extern_methods!(
         pub unsafe fn isPictureInPictureSupported() -> bool;
 
         #[cfg(feature = "objc2-app-kit")]
+        #[cfg(target_os = "macos")]
         #[method_id(@__retain_semantics Other pictureInPictureButtonStartImage)]
         pub unsafe fn pictureInPictureButtonStartImage() -> Id<NSImage>;
 
         #[cfg(feature = "objc2-app-kit")]
+        #[cfg(target_os = "macos")]
         #[method_id(@__retain_semantics Other pictureInPictureButtonStopImage)]
         pub unsafe fn pictureInPictureButtonStopImage() -> Id<NSImage>;
 

@@ -2,6 +2,7 @@
 //! DO NOT EDIT
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
 use objc2_app_kit::*;
 use objc2_foundation::*;
 
@@ -291,6 +292,7 @@ extern_methods!(
     #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
     unsafe impl GKLocalPlayer {
         #[cfg(all(feature = "block2", feature = "objc2-app-kit"))]
+        #[cfg(target_os = "macos")]
         #[method(authenticateHandler)]
         pub unsafe fn authenticateHandler(
             &self,
@@ -298,6 +300,7 @@ extern_methods!(
         ) -> *mut block2::Block<dyn Fn(*mut NSViewController, *mut NSError)>;
 
         #[cfg(all(feature = "block2", feature = "objc2-app-kit"))]
+        #[cfg(target_os = "macos")]
         #[method(setAuthenticateHandler:)]
         pub unsafe fn setAuthenticateHandler(
             &self,
@@ -310,6 +313,7 @@ extern_methods!(
         pub unsafe fn isPresentingFriendRequestViewController(&self) -> bool;
 
         #[cfg(feature = "objc2-app-kit")]
+        #[cfg(target_os = "macos")]
         #[method(presentFriendRequestCreatorFromWindow:error:_)]
         pub unsafe fn presentFriendRequestCreatorFromWindow_error(
             &self,

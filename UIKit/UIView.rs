@@ -3,6 +3,7 @@
 use objc2::__framework_prelude::*;
 use objc2_foundation::*;
 #[cfg(feature = "objc2-quartz-core")]
+#[cfg(any(target_os = "ios", target_os = "tvos", target_os = "visionos"))]
 use objc2_quartz_core::*;
 
 use crate::*;
@@ -312,6 +313,7 @@ extern_class!(
 );
 
 #[cfg(all(feature = "UIResponder", feature = "objc2-quartz-core"))]
+#[cfg(any(target_os = "ios", target_os = "tvos", target_os = "visionos"))]
 unsafe impl CALayerDelegate for UIView {}
 
 #[cfg(feature = "UIResponder")]
@@ -372,6 +374,7 @@ extern_methods!(
         pub unsafe fn setTag(&self, tag: NSInteger);
 
         #[cfg(feature = "objc2-quartz-core")]
+        #[cfg(any(target_os = "ios", target_os = "tvos", target_os = "visionos"))]
         #[method_id(@__retain_semantics Other layer)]
         pub fn layer(&self) -> Id<CALayer>;
 
@@ -470,10 +473,12 @@ extern_methods!(
         pub unsafe fn setCenter(&self, center: CGPoint);
 
         #[cfg(feature = "objc2-quartz-core")]
+        #[cfg(any(target_os = "ios", target_os = "tvos", target_os = "visionos"))]
         #[method(transform3D)]
         pub unsafe fn transform3D(&self) -> CATransform3D;
 
         #[cfg(feature = "objc2-quartz-core")]
+        #[cfg(any(target_os = "ios", target_os = "tvos", target_os = "visionos"))]
         #[method(setTransform3D:)]
         pub unsafe fn setTransform3D(&self, transform3_d: CATransform3D);
 

@@ -2,6 +2,7 @@
 //! DO NOT EDIT
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-data")]
+#[cfg(target_vendor = "apple")]
 use objc2_core_data::*;
 use objc2_foundation::*;
 
@@ -58,6 +59,7 @@ extern_methods!(
         ) -> Id<Self>;
 
         #[cfg(feature = "objc2-core-data")]
+        #[cfg(target_vendor = "apple")]
         #[method_id(@__retain_semantics Init initWithLeftExpressions:rightExpressionAttributeType:modifier:operators:options:)]
         pub unsafe fn initWithLeftExpressions_rightExpressionAttributeType_modifier_operators_options(
             this: Allocated<Self>,
@@ -81,6 +83,7 @@ extern_methods!(
         pub unsafe fn rightExpressions(&self) -> Option<Id<NSArray<NSExpression>>>;
 
         #[cfg(feature = "objc2-core-data")]
+        #[cfg(target_vendor = "apple")]
         #[method(rightExpressionAttributeType)]
         pub unsafe fn rightExpressionAttributeType(&self) -> NSAttributeType;
 
@@ -97,6 +100,7 @@ extern_methods!(
         pub unsafe fn compoundTypes(&self) -> Option<Id<NSArray<NSNumber>>>;
 
         #[cfg(feature = "objc2-core-data")]
+        #[cfg(target_vendor = "apple")]
         #[method_id(@__retain_semantics Other templatesWithAttributeKeyPaths:inEntityDescription:)]
         pub unsafe fn templatesWithAttributeKeyPaths_inEntityDescription(
             key_paths: &NSArray<NSString>,

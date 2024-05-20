@@ -2,6 +2,7 @@
 //! DO NOT EDIT
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-data")]
+#[cfg(target_vendor = "apple")]
 use objc2_core_data::*;
 use objc2_foundation::*;
 
@@ -130,10 +131,12 @@ extern_methods!(
     #[cfg(feature = "NSController")]
     unsafe impl NSObjectController {
         #[cfg(feature = "objc2-core-data")]
+        #[cfg(target_vendor = "apple")]
         #[method_id(@__retain_semantics Other managedObjectContext)]
         pub unsafe fn managedObjectContext(&self) -> Option<Id<NSManagedObjectContext>>;
 
         #[cfg(feature = "objc2-core-data")]
+        #[cfg(target_vendor = "apple")]
         #[method(setManagedObjectContext:)]
         pub unsafe fn setManagedObjectContext(
             &self,
@@ -153,6 +156,7 @@ extern_methods!(
         pub unsafe fn setFetchPredicate(&self, fetch_predicate: Option<&NSPredicate>);
 
         #[cfg(feature = "objc2-core-data")]
+        #[cfg(target_vendor = "apple")]
         #[method(fetchWithRequest:merge:error:_)]
         pub unsafe fn fetchWithRequest_merge_error(
             &self,
@@ -170,6 +174,7 @@ extern_methods!(
         pub unsafe fn setUsesLazyFetching(&self, uses_lazy_fetching: bool);
 
         #[cfg(feature = "objc2-core-data")]
+        #[cfg(target_vendor = "apple")]
         #[method_id(@__retain_semantics Other defaultFetchRequest)]
         pub unsafe fn defaultFetchRequest(&self) -> Id<NSFetchRequest>;
     }

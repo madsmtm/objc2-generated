@@ -2,6 +2,7 @@
 //! DO NOT EDIT
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
 use objc2_app_kit::*;
 use objc2_foundation::*;
 
@@ -92,6 +93,7 @@ extern_methods!(
     #[cfg(feature = "GKBasePlayer")]
     unsafe impl GKPlayer {
         #[cfg(all(feature = "block2", feature = "objc2-app-kit"))]
+        #[cfg(target_os = "macos")]
         #[method(loadPhotoForSize:withCompletionHandler:)]
         pub unsafe fn loadPhotoForSize_withCompletionHandler(
             &self,

@@ -47,6 +47,7 @@ mod __PhotosUITypes;
 #[cfg(feature = "PHContentEditingController")]
 pub use self::__PHContentEditingController::PHContentEditingController;
 #[cfg(all(feature = "PHLivePhotoView", feature = "objc2-app-kit"))]
+#[cfg(target_os = "macos")]
 pub use self::__PHLivePhotoView::PHLivePhotoView;
 #[cfg(feature = "PHLivePhotoView")]
 pub use self::__PHLivePhotoView::PHLivePhotoViewContentMode;
@@ -71,6 +72,7 @@ pub use self::__PHPicker::PHPickerResult;
 #[cfg(feature = "PHPicker")]
 pub use self::__PHPicker::PHPickerUpdateConfiguration;
 #[cfg(all(feature = "PHPicker", feature = "objc2-app-kit"))]
+#[cfg(target_os = "macos")]
 pub use self::__PHPicker::PHPickerViewController;
 #[cfg(feature = "PHPicker")]
 pub use self::__PHPicker::PHPickerViewControllerDelegate;

@@ -2,6 +2,7 @@
 //! DO NOT EDIT
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
 use objc2_app_kit::*;
 #[cfg(feature = "objc2-core-location")]
 use objc2_core_location::*;
@@ -106,10 +107,12 @@ extern_methods!(
         pub unsafe fn setSize(&self, size: NSSize);
 
         #[cfg(feature = "objc2-app-kit")]
+        #[cfg(target_os = "macos")]
         #[method_id(@__retain_semantics Other appearance)]
         pub unsafe fn appearance(&self) -> Option<Id<NSAppearance>>;
 
         #[cfg(feature = "objc2-app-kit")]
+        #[cfg(target_os = "macos")]
         #[method(setAppearance:)]
         pub unsafe fn setAppearance(&self, appearance: Option<&NSAppearance>);
     }

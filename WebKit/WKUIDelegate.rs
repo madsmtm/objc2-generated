@@ -2,6 +2,7 @@
 //! DO NOT EDIT
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
 use objc2_app_kit::*;
 use objc2_foundation::*;
 
@@ -79,6 +80,7 @@ extern_protocol!(
             feature = "WKWindowFeatures",
             feature = "objc2-app-kit"
         ))]
+        #[cfg(target_os = "macos")]
         #[optional]
         #[method_id(@__retain_semantics Other webView:createWebViewWithConfiguration:forNavigationAction:windowFeatures:)]
         unsafe fn webView_createWebViewWithConfiguration_forNavigationAction_windowFeatures(
@@ -90,6 +92,7 @@ extern_protocol!(
         ) -> Option<Id<WKWebView>>;
 
         #[cfg(all(feature = "WKWebView", feature = "objc2-app-kit"))]
+        #[cfg(target_os = "macos")]
         #[optional]
         #[method(webViewDidClose:)]
         unsafe fn webViewDidClose(&self, web_view: &WKWebView);
@@ -100,6 +103,7 @@ extern_protocol!(
             feature = "block2",
             feature = "objc2-app-kit"
         ))]
+        #[cfg(target_os = "macos")]
         #[optional]
         #[method(webView:runJavaScriptAlertPanelWithMessage:initiatedByFrame:completionHandler:)]
         unsafe fn webView_runJavaScriptAlertPanelWithMessage_initiatedByFrame_completionHandler(
@@ -116,6 +120,7 @@ extern_protocol!(
             feature = "block2",
             feature = "objc2-app-kit"
         ))]
+        #[cfg(target_os = "macos")]
         #[optional]
         #[method(webView:runJavaScriptConfirmPanelWithMessage:initiatedByFrame:completionHandler:)]
         unsafe fn webView_runJavaScriptConfirmPanelWithMessage_initiatedByFrame_completionHandler(
@@ -132,6 +137,7 @@ extern_protocol!(
             feature = "block2",
             feature = "objc2-app-kit"
         ))]
+        #[cfg(target_os = "macos")]
         #[optional]
         #[method(webView:runJavaScriptTextInputPanelWithPrompt:defaultText:initiatedByFrame:completionHandler:)]
         unsafe fn webView_runJavaScriptTextInputPanelWithPrompt_defaultText_initiatedByFrame_completionHandler(
@@ -150,6 +156,7 @@ extern_protocol!(
             feature = "block2",
             feature = "objc2-app-kit"
         ))]
+        #[cfg(target_os = "macos")]
         #[optional]
         #[method(webView:requestMediaCapturePermissionForOrigin:initiatedByFrame:type:decisionHandler:)]
         unsafe fn webView_requestMediaCapturePermissionForOrigin_initiatedByFrame_type_decisionHandler(
@@ -168,6 +175,7 @@ extern_protocol!(
             feature = "block2",
             feature = "objc2-app-kit"
         ))]
+        #[cfg(target_os = "macos")]
         #[optional]
         #[method(webView:requestDeviceOrientationAndMotionPermissionForOrigin:initiatedByFrame:decisionHandler:)]
         unsafe fn webView_requestDeviceOrientationAndMotionPermissionForOrigin_initiatedByFrame_decisionHandler(
@@ -185,6 +193,7 @@ extern_protocol!(
             feature = "block2",
             feature = "objc2-app-kit"
         ))]
+        #[cfg(target_os = "macos")]
         #[optional]
         #[method(webView:runOpenPanelWithParameters:initiatedByFrame:completionHandler:)]
         unsafe fn webView_runOpenPanelWithParameters_initiatedByFrame_completionHandler(

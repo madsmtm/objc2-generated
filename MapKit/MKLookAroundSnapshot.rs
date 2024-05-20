@@ -2,6 +2,7 @@
 //! DO NOT EDIT
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
 use objc2_app_kit::*;
 
 use crate::*;
@@ -21,6 +22,7 @@ unsafe impl NSObjectProtocol for MKLookAroundSnapshot {}
 extern_methods!(
     unsafe impl MKLookAroundSnapshot {
         #[cfg(feature = "objc2-app-kit")]
+        #[cfg(target_os = "macos")]
         #[method_id(@__retain_semantics Other image)]
         pub unsafe fn image(&self) -> Id<NSImage>;
     }

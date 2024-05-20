@@ -355,6 +355,7 @@ pub use self::__GCDualSenseGamepad::GCDualSenseGamepad;
 ))]
 pub use self::__GCDualShockGamepad::GCDualShockGamepad;
 #[cfg(all(feature = "GCEventViewController", feature = "objc2-app-kit"))]
+#[cfg(target_os = "macos")]
 pub use self::__GCEventViewController::GCEventViewController;
 #[cfg(all(feature = "GCExtendedGamepad", feature = "GCPhysicalInputProfile"))]
 pub use self::__GCExtendedGamepad::GCExtendedGamepad;

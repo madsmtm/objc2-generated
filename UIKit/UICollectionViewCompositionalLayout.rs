@@ -3,6 +3,7 @@
 use objc2::__framework_prelude::*;
 use objc2_foundation::*;
 #[cfg(feature = "objc2-quartz-core")]
+#[cfg(any(target_os = "ios", target_os = "tvos", target_os = "visionos"))]
 use objc2_quartz_core::*;
 
 use crate::*;
@@ -1152,10 +1153,12 @@ extern_protocol!(
         unsafe fn setTransform(&self, transform: CGAffineTransform);
 
         #[cfg(feature = "objc2-quartz-core")]
+        #[cfg(any(target_os = "ios", target_os = "tvos", target_os = "visionos"))]
         #[method(transform3D)]
         unsafe fn transform3D(&self) -> CATransform3D;
 
         #[cfg(feature = "objc2-quartz-core")]
+        #[cfg(any(target_os = "ios", target_os = "tvos", target_os = "visionos"))]
         #[method(setTransform3D:)]
         unsafe fn setTransform3D(&self, transform3_d: CATransform3D);
 

@@ -88,6 +88,7 @@ pub use self::__MTKTextureLoader::MTKTextureLoaderOriginFlippedVertically;
 #[cfg(feature = "MTKTextureLoader")]
 pub use self::__MTKTextureLoader::MTKTextureLoaderOriginTopLeft;
 #[cfg(all(feature = "MTKView", feature = "objc2-app-kit"))]
+#[cfg(target_os = "macos")]
 pub use self::__MTKView::MTKView;
 #[cfg(feature = "MTKView")]
 pub use self::__MTKView::MTKViewDelegate;

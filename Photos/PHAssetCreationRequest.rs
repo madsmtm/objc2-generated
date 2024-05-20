@@ -2,6 +2,7 @@
 //! DO NOT EDIT
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
 use objc2_app_kit::*;
 use objc2_foundation::*;
 
@@ -104,6 +105,7 @@ extern_methods!(
     #[cfg(all(feature = "PHAssetChangeRequest", feature = "PHChangeRequest"))]
     unsafe impl PHAssetCreationRequest {
         #[cfg(feature = "objc2-app-kit")]
+        #[cfg(target_os = "macos")]
         #[method_id(@__retain_semantics Other creationRequestForAssetFromImage:)]
         pub unsafe fn creationRequestForAssetFromImage(image: &NSImage) -> Id<Self>;
 

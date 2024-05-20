@@ -2,6 +2,7 @@
 //! DO NOT EDIT
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
 use objc2_app_kit::*;
 use objc2_foundation::*;
 
@@ -57,6 +58,7 @@ extern_protocol!(
             feature = "block2",
             feature = "objc2-app-kit"
         ))]
+        #[cfg(target_os = "macos")]
         #[optional]
         #[method(webView:decidePolicyForNavigationAction:decisionHandler:)]
         unsafe fn webView_decidePolicyForNavigationAction_decisionHandler(
@@ -73,6 +75,7 @@ extern_protocol!(
             feature = "block2",
             feature = "objc2-app-kit"
         ))]
+        #[cfg(target_os = "macos")]
         #[optional]
         #[method(webView:decidePolicyForNavigationAction:preferences:decisionHandler:)]
         unsafe fn webView_decidePolicyForNavigationAction_preferences_decisionHandler(
@@ -91,6 +94,7 @@ extern_protocol!(
             feature = "block2",
             feature = "objc2-app-kit"
         ))]
+        #[cfg(target_os = "macos")]
         #[optional]
         #[method(webView:decidePolicyForNavigationResponse:decisionHandler:)]
         unsafe fn webView_decidePolicyForNavigationResponse_decisionHandler(
@@ -105,6 +109,7 @@ extern_protocol!(
             feature = "WKWebView",
             feature = "objc2-app-kit"
         ))]
+        #[cfg(target_os = "macos")]
         #[optional]
         #[method(webView:didStartProvisionalNavigation:)]
         unsafe fn webView_didStartProvisionalNavigation(
@@ -118,6 +123,7 @@ extern_protocol!(
             feature = "WKWebView",
             feature = "objc2-app-kit"
         ))]
+        #[cfg(target_os = "macos")]
         #[optional]
         #[method(webView:didReceiveServerRedirectForProvisionalNavigation:)]
         unsafe fn webView_didReceiveServerRedirectForProvisionalNavigation(
@@ -131,6 +137,7 @@ extern_protocol!(
             feature = "WKWebView",
             feature = "objc2-app-kit"
         ))]
+        #[cfg(target_os = "macos")]
         #[optional]
         #[method(webView:didFailProvisionalNavigation:withError:)]
         unsafe fn webView_didFailProvisionalNavigation_withError(
@@ -145,6 +152,7 @@ extern_protocol!(
             feature = "WKWebView",
             feature = "objc2-app-kit"
         ))]
+        #[cfg(target_os = "macos")]
         #[optional]
         #[method(webView:didCommitNavigation:)]
         unsafe fn webView_didCommitNavigation(
@@ -158,6 +166,7 @@ extern_protocol!(
             feature = "WKWebView",
             feature = "objc2-app-kit"
         ))]
+        #[cfg(target_os = "macos")]
         #[optional]
         #[method(webView:didFinishNavigation:)]
         unsafe fn webView_didFinishNavigation(
@@ -171,6 +180,7 @@ extern_protocol!(
             feature = "WKWebView",
             feature = "objc2-app-kit"
         ))]
+        #[cfg(target_os = "macos")]
         #[optional]
         #[method(webView:didFailNavigation:withError:)]
         unsafe fn webView_didFailNavigation_withError(
@@ -181,6 +191,7 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "WKWebView", feature = "block2", feature = "objc2-app-kit"))]
+        #[cfg(target_os = "macos")]
         #[optional]
         #[method(webView:didReceiveAuthenticationChallenge:completionHandler:)]
         unsafe fn webView_didReceiveAuthenticationChallenge_completionHandler(
@@ -193,11 +204,13 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "WKWebView", feature = "objc2-app-kit"))]
+        #[cfg(target_os = "macos")]
         #[optional]
         #[method(webViewWebContentProcessDidTerminate:)]
         unsafe fn webViewWebContentProcessDidTerminate(&self, web_view: &WKWebView);
 
         #[cfg(all(feature = "WKWebView", feature = "block2", feature = "objc2-app-kit"))]
+        #[cfg(target_os = "macos")]
         #[optional]
         #[method(webView:authenticationChallenge:shouldAllowDeprecatedTLS:)]
         unsafe fn webView_authenticationChallenge_shouldAllowDeprecatedTLS(
@@ -213,6 +226,7 @@ extern_protocol!(
             feature = "WKWebView",
             feature = "objc2-app-kit"
         ))]
+        #[cfg(target_os = "macos")]
         #[optional]
         #[method(webView:navigationAction:didBecomeDownload:)]
         unsafe fn webView_navigationAction_didBecomeDownload(
@@ -228,6 +242,7 @@ extern_protocol!(
             feature = "WKWebView",
             feature = "objc2-app-kit"
         ))]
+        #[cfg(target_os = "macos")]
         #[optional]
         #[method(webView:navigationResponse:didBecomeDownload:)]
         unsafe fn webView_navigationResponse_didBecomeDownload(

@@ -2,6 +2,7 @@
 //! DO NOT EDIT
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
 use objc2_app_kit::*;
 use objc2_foundation::*;
 
@@ -29,6 +30,7 @@ extern_protocol!(
         unsafe fn layout(&self);
 
         #[cfg(feature = "objc2-app-kit")]
+        #[cfg(target_os = "macos")]
         #[deprecated]
         #[method(viewWillMoveToHostWindow:)]
         unsafe fn viewWillMoveToHostWindow(&self, host_window: Option<&NSWindow>);

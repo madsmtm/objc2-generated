@@ -2,6 +2,7 @@
 //! DO NOT EDIT
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
 use objc2_app_kit::*;
 use objc2_foundation::*;
 
@@ -27,18 +28,22 @@ extern_methods!(
     #[cfg(feature = "MKOverlayRenderer")]
     unsafe impl MKOverlayPathRenderer {
         #[cfg(feature = "objc2-app-kit")]
+        #[cfg(target_os = "macos")]
         #[method_id(@__retain_semantics Other fillColor)]
         pub unsafe fn fillColor(&self) -> Option<Id<NSColor>>;
 
         #[cfg(feature = "objc2-app-kit")]
+        #[cfg(target_os = "macos")]
         #[method(setFillColor:)]
         pub unsafe fn setFillColor(&self, fill_color: Option<&NSColor>);
 
         #[cfg(feature = "objc2-app-kit")]
+        #[cfg(target_os = "macos")]
         #[method_id(@__retain_semantics Other strokeColor)]
         pub unsafe fn strokeColor(&self) -> Option<Id<NSColor>>;
 
         #[cfg(feature = "objc2-app-kit")]
+        #[cfg(target_os = "macos")]
         #[method(setStrokeColor:)]
         pub unsafe fn setStrokeColor(&self, stroke_color: Option<&NSColor>);
 

@@ -2,6 +2,7 @@
 //! DO NOT EDIT
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
 use objc2_app_kit::*;
 use objc2_foundation::*;
 
@@ -48,6 +49,7 @@ extern_methods!(
         pub unsafe fn setKeyAsset(&self, key_asset: Option<&PHAsset>);
 
         #[cfg(feature = "objc2-app-kit")]
+        #[cfg(target_os = "macos")]
         #[method(setProjectPreviewImage:)]
         pub unsafe fn setProjectPreviewImage(&self, preview_image: &NSImage);
 

@@ -2,6 +2,7 @@
 //! DO NOT EDIT
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
 use objc2_app_kit::*;
 #[cfg(feature = "objc2-core-location")]
 use objc2_core_location::*;
@@ -60,9 +61,11 @@ extern "C" {
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-app-kit")]
+    #[cfg(target_os = "macos")]
     pub struct MKMapView;
 
     #[cfg(feature = "objc2-app-kit")]
+    #[cfg(target_os = "macos")]
     unsafe impl ClassType for MKMapView {
         #[inherits(NSResponder, NSObject)]
         type Super = NSView;
@@ -71,31 +74,40 @@ extern_class!(
 );
 
 #[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
 unsafe impl NSAccessibility for MKMapView {}
 
 #[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
 unsafe impl NSAccessibilityElementProtocol for MKMapView {}
 
 #[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
 unsafe impl NSAnimatablePropertyContainer for MKMapView {}
 
 #[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
 unsafe impl NSAppearanceCustomization for MKMapView {}
 
 #[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
 unsafe impl NSCoding for MKMapView {}
 
 #[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
 unsafe impl NSDraggingDestination for MKMapView {}
 
 #[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
 unsafe impl NSObjectProtocol for MKMapView {}
 
 #[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
 unsafe impl NSUserInterfaceItemIdentification for MKMapView {}
 
 extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
+    #[cfg(target_os = "macos")]
     unsafe impl MKMapView {
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn MKMapViewDelegate>>>;
@@ -491,6 +503,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSView`
     #[cfg(feature = "objc2-app-kit")]
+    #[cfg(target_os = "macos")]
     unsafe impl MKMapView {
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Id<Self>;
@@ -503,6 +516,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSResponder`
     #[cfg(feature = "objc2-app-kit")]
+    #[cfg(target_os = "macos")]
     unsafe impl MKMapView {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -512,6 +526,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "objc2-app-kit")]
+    #[cfg(target_os = "macos")]
     unsafe impl MKMapView {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
@@ -521,6 +536,7 @@ extern_methods!(
 extern_methods!(
     /// OverlaysAPI
     #[cfg(feature = "objc2-app-kit")]
+    #[cfg(target_os = "macos")]
     unsafe impl MKMapView {
         #[cfg(all(feature = "MKAnnotation", feature = "MKOverlay"))]
         #[method(addOverlay:level:)]
@@ -629,41 +645,49 @@ extern_methods!(
 extern_protocol!(
     pub unsafe trait MKMapViewDelegate: NSObjectProtocol {
         #[cfg(feature = "objc2-app-kit")]
+        #[cfg(target_os = "macos")]
         #[optional]
         #[method(mapView:regionWillChangeAnimated:)]
         unsafe fn mapView_regionWillChangeAnimated(&self, map_view: &MKMapView, animated: bool);
 
         #[cfg(feature = "objc2-app-kit")]
+        #[cfg(target_os = "macos")]
         #[optional]
         #[method(mapView:regionDidChangeAnimated:)]
         unsafe fn mapView_regionDidChangeAnimated(&self, map_view: &MKMapView, animated: bool);
 
         #[cfg(feature = "objc2-app-kit")]
+        #[cfg(target_os = "macos")]
         #[optional]
         #[method(mapViewDidChangeVisibleRegion:)]
         unsafe fn mapViewDidChangeVisibleRegion(&self, map_view: &MKMapView);
 
         #[cfg(feature = "objc2-app-kit")]
+        #[cfg(target_os = "macos")]
         #[optional]
         #[method(mapViewWillStartLoadingMap:)]
         unsafe fn mapViewWillStartLoadingMap(&self, map_view: &MKMapView);
 
         #[cfg(feature = "objc2-app-kit")]
+        #[cfg(target_os = "macos")]
         #[optional]
         #[method(mapViewDidFinishLoadingMap:)]
         unsafe fn mapViewDidFinishLoadingMap(&self, map_view: &MKMapView);
 
         #[cfg(feature = "objc2-app-kit")]
+        #[cfg(target_os = "macos")]
         #[optional]
         #[method(mapViewDidFailLoadingMap:withError:)]
         unsafe fn mapViewDidFailLoadingMap_withError(&self, map_view: &MKMapView, error: &NSError);
 
         #[cfg(feature = "objc2-app-kit")]
+        #[cfg(target_os = "macos")]
         #[optional]
         #[method(mapViewWillStartRenderingMap:)]
         unsafe fn mapViewWillStartRenderingMap(&self, map_view: &MKMapView);
 
         #[cfg(feature = "objc2-app-kit")]
+        #[cfg(target_os = "macos")]
         #[optional]
         #[method(mapViewDidFinishRenderingMap:fullyRendered:)]
         unsafe fn mapViewDidFinishRenderingMap_fullyRendered(
@@ -677,6 +701,7 @@ extern_protocol!(
             feature = "MKAnnotationView",
             feature = "objc2-app-kit"
         ))]
+        #[cfg(target_os = "macos")]
         #[optional]
         #[method_id(@__retain_semantics Other mapView:viewForAnnotation:)]
         unsafe fn mapView_viewForAnnotation(
@@ -686,6 +711,7 @@ extern_protocol!(
         ) -> Option<Id<MKAnnotationView>>;
 
         #[cfg(all(feature = "MKAnnotationView", feature = "objc2-app-kit"))]
+        #[cfg(target_os = "macos")]
         #[optional]
         #[method(mapView:didAddAnnotationViews:)]
         unsafe fn mapView_didAddAnnotationViews(
@@ -695,6 +721,7 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "MKAnnotationView", feature = "objc2-app-kit"))]
+        #[cfg(target_os = "macos")]
         #[optional]
         #[method(mapView:didSelectAnnotationView:)]
         unsafe fn mapView_didSelectAnnotationView(
@@ -704,6 +731,7 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "MKAnnotationView", feature = "objc2-app-kit"))]
+        #[cfg(target_os = "macos")]
         #[optional]
         #[method(mapView:didDeselectAnnotationView:)]
         unsafe fn mapView_didDeselectAnnotationView(
@@ -713,6 +741,7 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "MKAnnotation", feature = "objc2-app-kit"))]
+        #[cfg(target_os = "macos")]
         #[optional]
         #[method(mapView:didSelectAnnotation:)]
         unsafe fn mapView_didSelectAnnotation(
@@ -722,6 +751,7 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "MKAnnotation", feature = "objc2-app-kit"))]
+        #[cfg(target_os = "macos")]
         #[optional]
         #[method(mapView:didDeselectAnnotation:)]
         unsafe fn mapView_didDeselectAnnotation(
@@ -731,16 +761,19 @@ extern_protocol!(
         );
 
         #[cfg(feature = "objc2-app-kit")]
+        #[cfg(target_os = "macos")]
         #[optional]
         #[method(mapViewWillStartLocatingUser:)]
         unsafe fn mapViewWillStartLocatingUser(&self, map_view: &MKMapView);
 
         #[cfg(feature = "objc2-app-kit")]
+        #[cfg(target_os = "macos")]
         #[optional]
         #[method(mapViewDidStopLocatingUser:)]
         unsafe fn mapViewDidStopLocatingUser(&self, map_view: &MKMapView);
 
         #[cfg(all(feature = "MKUserLocation", feature = "objc2-app-kit"))]
+        #[cfg(target_os = "macos")]
         #[optional]
         #[method(mapView:didUpdateUserLocation:)]
         unsafe fn mapView_didUpdateUserLocation(
@@ -750,6 +783,7 @@ extern_protocol!(
         );
 
         #[cfg(feature = "objc2-app-kit")]
+        #[cfg(target_os = "macos")]
         #[optional]
         #[method(mapView:didFailToLocateUserWithError:)]
         unsafe fn mapView_didFailToLocateUserWithError(
@@ -759,6 +793,7 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "MKAnnotationView", feature = "objc2-app-kit"))]
+        #[cfg(target_os = "macos")]
         #[optional]
         #[method(mapView:annotationView:didChangeDragState:fromOldState:)]
         unsafe fn mapView_annotationView_didChangeDragState_fromOldState(
@@ -770,6 +805,7 @@ extern_protocol!(
         );
 
         #[cfg(feature = "objc2-app-kit")]
+        #[cfg(target_os = "macos")]
         #[optional]
         #[method(mapView:didChangeUserTrackingMode:animated:)]
         unsafe fn mapView_didChangeUserTrackingMode_animated(
@@ -785,6 +821,7 @@ extern_protocol!(
             feature = "MKOverlayRenderer",
             feature = "objc2-app-kit"
         ))]
+        #[cfg(target_os = "macos")]
         #[optional]
         #[method_id(@__retain_semantics Other mapView:rendererForOverlay:)]
         unsafe fn mapView_rendererForOverlay(
@@ -794,6 +831,7 @@ extern_protocol!(
         ) -> Id<MKOverlayRenderer>;
 
         #[cfg(all(feature = "MKOverlayRenderer", feature = "objc2-app-kit"))]
+        #[cfg(target_os = "macos")]
         #[optional]
         #[method(mapView:didAddOverlayRenderers:)]
         unsafe fn mapView_didAddOverlayRenderers(
@@ -807,6 +845,7 @@ extern_protocol!(
             feature = "MKClusterAnnotation",
             feature = "objc2-app-kit"
         ))]
+        #[cfg(target_os = "macos")]
         #[optional]
         #[method_id(@__retain_semantics Other mapView:clusterAnnotationForMemberAnnotations:)]
         unsafe fn mapView_clusterAnnotationForMemberAnnotations(

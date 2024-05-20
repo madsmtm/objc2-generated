@@ -27,8 +27,10 @@ mod __LAPresentationContext;
 mod __LARight_UI;
 
 #[cfg(all(feature = "LAAuthenticationView", feature = "objc2-app-kit"))]
+#[cfg(target_os = "macos")]
 pub use self::__LAAuthenticationView::LAAuthenticationView;
 #[cfg(all(feature = "LAPresentationContext", feature = "objc2-app-kit"))]
+#[cfg(target_os = "macos")]
 pub use self::__LAPresentationContext::LAPresentationContext;
 #[cfg(feature = "LARight_UI")]
 pub use self::__LARight_UI::LARightUI;

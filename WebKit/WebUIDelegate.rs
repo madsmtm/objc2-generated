@@ -2,6 +2,7 @@
 //! DO NOT EDIT
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
 use objc2_app_kit::*;
 use objc2_foundation::*;
 
@@ -163,6 +164,7 @@ extern_protocol!(
     #[deprecated]
     pub unsafe trait WebUIDelegate: NSObjectProtocol {
         #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
+        #[cfg(target_os = "macos")]
         #[deprecated]
         #[optional]
         #[method_id(@__retain_semantics Other webView:createWebViewWithRequest:)]
@@ -174,12 +176,14 @@ extern_protocol!(
         ) -> Option<Id<WebView>>;
 
         #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
+        #[cfg(target_os = "macos")]
         #[deprecated]
         #[optional]
         #[method(webViewShow:)]
         unsafe fn webViewShow(&self, sender: Option<&WebView>);
 
         #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
+        #[cfg(target_os = "macos")]
         #[deprecated]
         #[optional]
         #[method_id(@__retain_semantics Other webView:createWebViewModalDialogWithRequest:)]
@@ -191,30 +195,35 @@ extern_protocol!(
         ) -> Option<Id<WebView>>;
 
         #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
+        #[cfg(target_os = "macos")]
         #[deprecated]
         #[optional]
         #[method(webViewRunModal:)]
         unsafe fn webViewRunModal(&self, sender: Option<&WebView>);
 
         #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
+        #[cfg(target_os = "macos")]
         #[deprecated]
         #[optional]
         #[method(webViewClose:)]
         unsafe fn webViewClose(&self, sender: Option<&WebView>);
 
         #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
+        #[cfg(target_os = "macos")]
         #[deprecated]
         #[optional]
         #[method(webViewFocus:)]
         unsafe fn webViewFocus(&self, sender: Option<&WebView>);
 
         #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
+        #[cfg(target_os = "macos")]
         #[deprecated]
         #[optional]
         #[method(webViewUnfocus:)]
         unsafe fn webViewUnfocus(&self, sender: Option<&WebView>);
 
         #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
+        #[cfg(target_os = "macos")]
         #[deprecated]
         #[optional]
         #[method_id(@__retain_semantics Other webViewFirstResponder:)]
@@ -225,6 +234,7 @@ extern_protocol!(
         ) -> Option<Id<NSResponder>>;
 
         #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
+        #[cfg(target_os = "macos")]
         #[deprecated]
         #[optional]
         #[method(webView:makeFirstResponder:)]
@@ -235,66 +245,77 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
+        #[cfg(target_os = "macos")]
         #[deprecated]
         #[optional]
         #[method(webView:setStatusText:)]
         unsafe fn webView_setStatusText(&self, sender: Option<&WebView>, text: Option<&NSString>);
 
         #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
+        #[cfg(target_os = "macos")]
         #[deprecated]
         #[optional]
         #[method_id(@__retain_semantics Other webViewStatusText:)]
         unsafe fn webViewStatusText(&self, sender: Option<&WebView>) -> Option<Id<NSString>>;
 
         #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
+        #[cfg(target_os = "macos")]
         #[deprecated]
         #[optional]
         #[method(webViewAreToolbarsVisible:)]
         unsafe fn webViewAreToolbarsVisible(&self, sender: Option<&WebView>) -> bool;
 
         #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
+        #[cfg(target_os = "macos")]
         #[deprecated]
         #[optional]
         #[method(webView:setToolbarsVisible:)]
         unsafe fn webView_setToolbarsVisible(&self, sender: Option<&WebView>, visible: bool);
 
         #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
+        #[cfg(target_os = "macos")]
         #[deprecated]
         #[optional]
         #[method(webViewIsStatusBarVisible:)]
         unsafe fn webViewIsStatusBarVisible(&self, sender: Option<&WebView>) -> bool;
 
         #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
+        #[cfg(target_os = "macos")]
         #[deprecated]
         #[optional]
         #[method(webView:setStatusBarVisible:)]
         unsafe fn webView_setStatusBarVisible(&self, sender: Option<&WebView>, visible: bool);
 
         #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
+        #[cfg(target_os = "macos")]
         #[deprecated]
         #[optional]
         #[method(webViewIsResizable:)]
         unsafe fn webViewIsResizable(&self, sender: Option<&WebView>) -> bool;
 
         #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
+        #[cfg(target_os = "macos")]
         #[deprecated]
         #[optional]
         #[method(webView:setResizable:)]
         unsafe fn webView_setResizable(&self, sender: Option<&WebView>, resizable: bool);
 
         #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
+        #[cfg(target_os = "macos")]
         #[deprecated]
         #[optional]
         #[method(webView:setFrame:)]
         unsafe fn webView_setFrame(&self, sender: Option<&WebView>, frame: NSRect);
 
         #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
+        #[cfg(target_os = "macos")]
         #[deprecated]
         #[optional]
         #[method(webViewFrame:)]
         unsafe fn webViewFrame(&self, sender: Option<&WebView>) -> NSRect;
 
         #[cfg(all(feature = "WebFrame", feature = "WebView", feature = "objc2-app-kit"))]
+        #[cfg(target_os = "macos")]
         #[deprecated]
         #[optional]
         #[method(webView:runJavaScriptAlertPanelWithMessage:initiatedByFrame:)]
@@ -306,6 +327,7 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "WebFrame", feature = "WebView", feature = "objc2-app-kit"))]
+        #[cfg(target_os = "macos")]
         #[deprecated]
         #[optional]
         #[method(webView:runJavaScriptConfirmPanelWithMessage:initiatedByFrame:)]
@@ -317,6 +339,7 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(all(feature = "WebFrame", feature = "WebView", feature = "objc2-app-kit"))]
+        #[cfg(target_os = "macos")]
         #[deprecated]
         #[optional]
         #[method_id(@__retain_semantics Other webView:runJavaScriptTextInputPanelWithPrompt:defaultText:initiatedByFrame:)]
@@ -329,6 +352,7 @@ extern_protocol!(
         ) -> Option<Id<NSString>>;
 
         #[cfg(all(feature = "WebFrame", feature = "WebView", feature = "objc2-app-kit"))]
+        #[cfg(target_os = "macos")]
         #[deprecated]
         #[optional]
         #[method(webView:runBeforeUnloadConfirmPanelWithMessage:initiatedByFrame:)]
@@ -340,6 +364,7 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
+        #[cfg(target_os = "macos")]
         #[deprecated]
         #[optional]
         #[method(webView:runOpenPanelForFileButtonWithResultListener:)]
@@ -350,6 +375,7 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
+        #[cfg(target_os = "macos")]
         #[optional]
         #[method(webView:runOpenPanelForFileButtonWithResultListener:allowMultipleFiles:)]
         unsafe fn webView_runOpenPanelForFileButtonWithResultListener_allowMultipleFiles(
@@ -360,6 +386,7 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
+        #[cfg(target_os = "macos")]
         #[deprecated]
         #[optional]
         #[method(webView:mouseDidMoveOverElement:modifierFlags:)]
@@ -371,6 +398,7 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
+        #[cfg(target_os = "macos")]
         #[deprecated]
         #[optional]
         #[method_id(@__retain_semantics Other webView:contextMenuItemsForElement:defaultMenuItems:)]
@@ -382,6 +410,7 @@ extern_protocol!(
         ) -> Option<Id<NSArray>>;
 
         #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
+        #[cfg(target_os = "macos")]
         #[deprecated]
         #[optional]
         #[method(webView:validateUserInterfaceItem:defaultValidation:)]
@@ -393,6 +422,7 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
+        #[cfg(target_os = "macos")]
         #[deprecated]
         #[optional]
         #[method(webView:shouldPerformAction:fromSender:)]
@@ -404,6 +434,7 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
+        #[cfg(target_os = "macos")]
         #[deprecated]
         #[optional]
         #[method(webView:dragDestinationActionMaskForDraggingInfo:)]
@@ -414,6 +445,7 @@ extern_protocol!(
         ) -> NSUInteger;
 
         #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
+        #[cfg(target_os = "macos")]
         #[deprecated]
         #[optional]
         #[method(webView:willPerformDragDestinationAction:forDraggingInfo:)]
@@ -425,6 +457,7 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
+        #[cfg(target_os = "macos")]
         #[deprecated]
         #[optional]
         #[method(webView:dragSourceActionMaskForPoint:)]
@@ -435,6 +468,7 @@ extern_protocol!(
         ) -> NSUInteger;
 
         #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
+        #[cfg(target_os = "macos")]
         #[deprecated]
         #[optional]
         #[method(webView:willPerformDragSourceAction:fromPoint:withPasteboard:)]
@@ -451,6 +485,7 @@ extern_protocol!(
             feature = "WebView",
             feature = "objc2-app-kit"
         ))]
+        #[cfg(target_os = "macos")]
         #[deprecated]
         #[optional]
         #[method(webView:printFrameView:)]
@@ -461,30 +496,35 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
+        #[cfg(target_os = "macos")]
         #[deprecated]
         #[optional]
         #[method(webViewHeaderHeight:)]
         unsafe fn webViewHeaderHeight(&self, sender: Option<&WebView>) -> c_float;
 
         #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
+        #[cfg(target_os = "macos")]
         #[deprecated]
         #[optional]
         #[method(webViewFooterHeight:)]
         unsafe fn webViewFooterHeight(&self, sender: Option<&WebView>) -> c_float;
 
         #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
+        #[cfg(target_os = "macos")]
         #[deprecated]
         #[optional]
         #[method(webView:drawHeaderInRect:)]
         unsafe fn webView_drawHeaderInRect(&self, sender: Option<&WebView>, rect: NSRect);
 
         #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
+        #[cfg(target_os = "macos")]
         #[deprecated]
         #[optional]
         #[method(webView:drawFooterInRect:)]
         unsafe fn webView_drawFooterInRect(&self, sender: Option<&WebView>, rect: NSRect);
 
         #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
+        #[cfg(target_os = "macos")]
         #[deprecated]
         #[optional]
         #[method(webView:runJavaScriptAlertPanelWithMessage:)]
@@ -495,6 +535,7 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
+        #[cfg(target_os = "macos")]
         #[deprecated]
         #[optional]
         #[method(webView:runJavaScriptConfirmPanelWithMessage:)]
@@ -505,6 +546,7 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
+        #[cfg(target_os = "macos")]
         #[deprecated]
         #[optional]
         #[method_id(@__retain_semantics Other webView:runJavaScriptTextInputPanelWithPrompt:defaultText:)]
@@ -516,12 +558,14 @@ extern_protocol!(
         ) -> Option<Id<NSString>>;
 
         #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
+        #[cfg(target_os = "macos")]
         #[deprecated]
         #[optional]
         #[method(webView:setContentRect:)]
         unsafe fn webView_setContentRect(&self, sender: Option<&WebView>, frame: NSRect);
 
         #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
+        #[cfg(target_os = "macos")]
         #[deprecated]
         #[optional]
         #[method(webViewContentRect:)]

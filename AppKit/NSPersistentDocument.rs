@@ -2,6 +2,7 @@
 //! DO NOT EDIT
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-data")]
+#[cfg(target_vendor = "apple")]
 use objc2_core_data::*;
 use objc2_foundation::*;
 
@@ -39,10 +40,12 @@ extern_methods!(
     #[cfg(feature = "NSDocument")]
     unsafe impl NSPersistentDocument {
         #[cfg(feature = "objc2-core-data")]
+        #[cfg(target_vendor = "apple")]
         #[method_id(@__retain_semantics Other managedObjectContext)]
         pub unsafe fn managedObjectContext(&self) -> Option<Id<NSManagedObjectContext>>;
 
         #[cfg(feature = "objc2-core-data")]
+        #[cfg(target_vendor = "apple")]
         #[method(setManagedObjectContext:)]
         pub unsafe fn setManagedObjectContext(
             &self,
@@ -50,6 +53,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "objc2-core-data")]
+        #[cfg(target_vendor = "apple")]
         #[method_id(@__retain_semantics Other managedObjectModel)]
         pub unsafe fn managedObjectModel(&self) -> Option<Id<NSManagedObjectModel>>;
 

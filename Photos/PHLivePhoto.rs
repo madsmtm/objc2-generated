@@ -2,6 +2,7 @@
 //! DO NOT EDIT
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
 use objc2_app_kit::*;
 use objc2_foundation::*;
 
@@ -50,6 +51,7 @@ extern_methods!(
         pub unsafe fn size(&self) -> CGSize;
 
         #[cfg(all(feature = "PhotosTypes", feature = "block2", feature = "objc2-app-kit"))]
+        #[cfg(target_os = "macos")]
         #[method(requestLivePhotoWithResourceFileURLs:placeholderImage:targetSize:contentMode:resultHandler:)]
         pub unsafe fn requestLivePhotoWithResourceFileURLs_placeholderImage_targetSize_contentMode_resultHandler(
             file_ur_ls: &NSArray<NSURL>,

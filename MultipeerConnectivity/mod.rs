@@ -43,6 +43,7 @@ pub use self::__MCAdvertiserAssistant::MCAdvertiserAssistant;
 #[cfg(feature = "MCAdvertiserAssistant")]
 pub use self::__MCAdvertiserAssistant::MCAdvertiserAssistantDelegate;
 #[cfg(all(feature = "MCBrowserViewController", feature = "objc2-app-kit"))]
+#[cfg(target_os = "macos")]
 pub use self::__MCBrowserViewController::MCBrowserViewController;
 #[cfg(feature = "MCBrowserViewController")]
 pub use self::__MCBrowserViewController::MCBrowserViewControllerDelegate;

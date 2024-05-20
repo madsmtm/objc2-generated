@@ -31,4 +31,5 @@ pub use self::__CNContactPicker::CNContactPicker;
 #[cfg(feature = "CNContactPickerDelegate")]
 pub use self::__CNContactPickerDelegate::CNContactPickerDelegate;
 #[cfg(all(feature = "CNContactViewController", feature = "objc2-app-kit"))]
+#[cfg(target_os = "macos")]
 pub use self::__CNContactViewController::CNContactViewController;

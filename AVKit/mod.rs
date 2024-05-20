@@ -45,6 +45,7 @@ mod __AVPlayerView;
 mod __AVRoutePickerView;
 
 #[cfg(all(feature = "AVCaptureView", feature = "objc2-app-kit"))]
+#[cfg(target_os = "macos")]
 pub use self::__AVCaptureView::AVCaptureView;
 #[cfg(feature = "AVCaptureView")]
 pub use self::__AVCaptureView::AVCaptureViewControlsStyle;
@@ -63,6 +64,7 @@ pub use self::__AVPictureInPictureController_AVSampleBufferDisplayLayerSupport::
 #[cfg(feature = "AVPlaybackSpeed")]
 pub use self::__AVPlaybackSpeed::AVPlaybackSpeed;
 #[cfg(all(feature = "AVPlayerView", feature = "objc2-app-kit"))]
+#[cfg(target_os = "macos")]
 pub use self::__AVPlayerView::AVPlayerView;
 #[cfg(feature = "AVPlayerView")]
 pub use self::__AVPlayerView::AVPlayerViewControlsStyle;
@@ -73,6 +75,7 @@ pub use self::__AVPlayerView::AVPlayerViewPictureInPictureDelegate;
 #[cfg(feature = "AVPlayerView")]
 pub use self::__AVPlayerView::AVPlayerViewTrimResult;
 #[cfg(all(feature = "AVRoutePickerView", feature = "objc2-app-kit"))]
+#[cfg(target_os = "macos")]
 pub use self::__AVRoutePickerView::AVRoutePickerView;
 #[cfg(feature = "AVRoutePickerView")]
 pub use self::__AVRoutePickerView::AVRoutePickerViewButtonState;

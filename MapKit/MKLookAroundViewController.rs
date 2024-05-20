@@ -2,6 +2,7 @@
 //! DO NOT EDIT
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
 use objc2_app_kit::*;
 use objc2_foundation::*;
 
@@ -31,9 +32,11 @@ unsafe impl RefEncode for MKLookAroundBadgePosition {
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-app-kit")]
+    #[cfg(target_os = "macos")]
     pub struct MKLookAroundViewController;
 
     #[cfg(feature = "objc2-app-kit")]
+    #[cfg(target_os = "macos")]
     unsafe impl ClassType for MKLookAroundViewController {
         #[inherits(NSResponder, NSObject)]
         type Super = NSViewController;
@@ -42,25 +45,32 @@ extern_class!(
 );
 
 #[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
 unsafe impl NSCoding for MKLookAroundViewController {}
 
 #[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
 unsafe impl NSEditor for MKLookAroundViewController {}
 
 #[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
 unsafe impl NSObjectProtocol for MKLookAroundViewController {}
 
 #[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
 unsafe impl NSSecureCoding for MKLookAroundViewController {}
 
 #[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
 unsafe impl NSSeguePerforming for MKLookAroundViewController {}
 
 #[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
 unsafe impl NSUserInterfaceItemIdentification for MKLookAroundViewController {}
 
 extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
+    #[cfg(target_os = "macos")]
     unsafe impl MKLookAroundViewController {
         #[cfg(feature = "MKLookAroundScene")]
         #[method_id(@__retain_semantics Init initWithScene:)]
@@ -129,6 +139,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSResponder`
     #[cfg(feature = "objc2-app-kit")]
+    #[cfg(target_os = "macos")]
     unsafe impl MKLookAroundViewController {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -138,6 +149,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "objc2-app-kit")]
+    #[cfg(target_os = "macos")]
     unsafe impl MKLookAroundViewController {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
@@ -147,6 +159,7 @@ extern_methods!(
 extern_protocol!(
     pub unsafe trait MKLookAroundViewControllerDelegate: NSObjectProtocol {
         #[cfg(feature = "objc2-app-kit")]
+        #[cfg(target_os = "macos")]
         #[optional]
         #[method(lookAroundViewControllerWillUpdateScene:)]
         unsafe fn lookAroundViewControllerWillUpdateScene(
@@ -155,6 +168,7 @@ extern_protocol!(
         );
 
         #[cfg(feature = "objc2-app-kit")]
+        #[cfg(target_os = "macos")]
         #[optional]
         #[method(lookAroundViewControllerDidUpdateScene:)]
         unsafe fn lookAroundViewControllerDidUpdateScene(
@@ -163,6 +177,7 @@ extern_protocol!(
         );
 
         #[cfg(feature = "objc2-app-kit")]
+        #[cfg(target_os = "macos")]
         #[optional]
         #[method(lookAroundViewControllerWillPresentFullScreen:)]
         unsafe fn lookAroundViewControllerWillPresentFullScreen(
@@ -171,6 +186,7 @@ extern_protocol!(
         );
 
         #[cfg(feature = "objc2-app-kit")]
+        #[cfg(target_os = "macos")]
         #[optional]
         #[method(lookAroundViewControllerDidPresentFullScreen:)]
         unsafe fn lookAroundViewControllerDidPresentFullScreen(
@@ -179,6 +195,7 @@ extern_protocol!(
         );
 
         #[cfg(feature = "objc2-app-kit")]
+        #[cfg(target_os = "macos")]
         #[optional]
         #[method(lookAroundViewControllerWillDismissFullScreen:)]
         unsafe fn lookAroundViewControllerWillDismissFullScreen(
@@ -187,6 +204,7 @@ extern_protocol!(
         );
 
         #[cfg(feature = "objc2-app-kit")]
+        #[cfg(target_os = "macos")]
         #[optional]
         #[method(lookAroundViewControllerDidDismissFullScreen:)]
         unsafe fn lookAroundViewControllerDidDismissFullScreen(

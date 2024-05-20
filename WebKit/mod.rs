@@ -1742,10 +1742,12 @@ pub use self::__DOMXPathResult::DOM_UNORDERED_NODE_SNAPSHOT_TYPE;
     feature = "block2",
     feature = "objc2-app-kit"
 ))]
+#[cfg(target_os = "macos")]
 pub use self::__NSAttributedString::NSAttributedStringCompletionHandler;
 #[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSAttributedStringWebKitAdditions;
 #[cfg(all(feature = "NSAttributedString", feature = "objc2-app-kit"))]
+#[cfg(target_os = "macos")]
 pub use self::__NSAttributedString::NSReadAccessURLDocumentOption;
 #[cfg(feature = "WKBackForwardList")]
 pub use self::__WKBackForwardList::WKBackForwardList;
@@ -1838,6 +1840,7 @@ pub use self::__WKWebView::WKMediaCaptureState;
 #[cfg(feature = "WKWebView")]
 pub use self::__WKWebView::WKMediaPlaybackState;
 #[cfg(all(feature = "WKWebView", feature = "objc2-app-kit"))]
+#[cfg(target_os = "macos")]
 pub use self::__WKWebView::WKWebView;
 #[cfg(feature = "WKWebViewConfiguration")]
 pub use self::__WKWebViewConfiguration::WKAudiovisualMediaTypes;
@@ -1912,6 +1915,7 @@ pub use self::__WebFrame::WebFrame;
 #[cfg(feature = "WebFrameLoadDelegate")]
 pub use self::__WebFrameLoadDelegate::WebFrameLoadDelegate;
 #[cfg(all(feature = "WebFrameView", feature = "objc2-app-kit"))]
+#[cfg(target_os = "macos")]
 pub use self::__WebFrameView::WebFrameView;
 #[cfg(feature = "WebHistory")]
 pub use self::__WebHistory::WebHistory;
@@ -2096,6 +2100,7 @@ pub use self::__WebView::WebElementLinkTitleKey;
 #[cfg(feature = "WebView")]
 pub use self::__WebView::WebElementLinkURLKey;
 #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
+#[cfg(target_os = "macos")]
 pub use self::__WebView::WebView;
 #[cfg(feature = "WebView")]
 pub use self::__WebView::WebViewDidBeginEditingNotification;

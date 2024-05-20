@@ -2,6 +2,7 @@
 //! DO NOT EDIT
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
 use objc2_app_kit::*;
 use objc2_foundation::*;
 
@@ -77,11 +78,13 @@ extern_methods!(
     /// UI
     unsafe impl GKAchievementDescription {
         #[cfg(feature = "objc2-app-kit")]
+        #[cfg(target_os = "macos")]
         #[deprecated]
         #[method_id(@__retain_semantics Other image)]
         pub unsafe fn image(&self) -> Option<Id<NSImage>>;
 
         #[cfg(all(feature = "block2", feature = "objc2-app-kit"))]
+        #[cfg(target_os = "macos")]
         #[method(loadImageWithCompletionHandler:)]
         pub unsafe fn loadImageWithCompletionHandler(
             &self,
@@ -89,10 +92,12 @@ extern_methods!(
         );
 
         #[cfg(feature = "objc2-app-kit")]
+        #[cfg(target_os = "macos")]
         #[method_id(@__retain_semantics Other incompleteAchievementImage)]
         pub unsafe fn incompleteAchievementImage() -> Id<NSImage>;
 
         #[cfg(feature = "objc2-app-kit")]
+        #[cfg(target_os = "macos")]
         #[method_id(@__retain_semantics Other placeholderCompletedAchievementImage)]
         pub unsafe fn placeholderCompletedAchievementImage() -> Id<NSImage>;
     }

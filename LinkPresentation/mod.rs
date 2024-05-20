@@ -39,6 +39,7 @@ pub use self::__LPError::LPErrorDomain;
 #[cfg(feature = "LPLinkMetadata")]
 pub use self::__LPLinkMetadata::LPLinkMetadata;
 #[cfg(all(feature = "LPLinkView", feature = "objc2-app-kit"))]
+#[cfg(target_os = "macos")]
 pub use self::__LPLinkView::LPLinkView;
 #[cfg(feature = "LPMetadataProvider")]
 pub use self::__LPMetadataProvider::LPMetadataProvider;

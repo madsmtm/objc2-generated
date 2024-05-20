@@ -2,6 +2,7 @@
 //! DO NOT EDIT
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
 use objc2_app_kit::*;
 use objc2_foundation::*;
 
@@ -31,6 +32,7 @@ extern_protocol!(
     #[deprecated]
     pub unsafe trait WebPlugInViewFactory: NSObjectProtocol {
         #[cfg(feature = "objc2-app-kit")]
+        #[cfg(target_os = "macos")]
         #[deprecated]
         #[method_id(@__retain_semantics Other plugInViewWithArguments:)]
         unsafe fn plugInViewWithArguments(

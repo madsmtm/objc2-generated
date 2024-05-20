@@ -27,8 +27,10 @@ mod __EXHostViewController;
     feature = "EXAppExtensionBrowserViewController",
     feature = "objc2-app-kit"
 ))]
+#[cfg(target_os = "macos")]
 pub use self::__EXAppExtensionBrowserViewController::EXAppExtensionBrowserViewController;
 #[cfg(all(feature = "EXHostViewController", feature = "objc2-app-kit"))]
+#[cfg(target_os = "macos")]
 pub use self::__EXHostViewController::EXHostViewController;
 #[cfg(feature = "EXHostViewController")]
 pub use self::__EXHostViewController::EXHostViewControllerDelegate;

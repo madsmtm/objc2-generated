@@ -30,6 +30,7 @@ mod __SLServiceTypes;
 mod __SocialDefines;
 
 #[cfg(all(feature = "SLComposeServiceViewController", feature = "objc2-app-kit"))]
+#[cfg(target_os = "macos")]
 pub use self::__SLComposeServiceViewController::SLComposeServiceViewController;
 #[cfg(feature = "SLRequest")]
 pub use self::__SLRequest::SLRequest;

@@ -2,6 +2,7 @@
 //! DO NOT EDIT
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
 use objc2_app_kit::*;
 use objc2_foundation::*;
 use objc2_local_authentication::*;
@@ -17,6 +18,7 @@ extern_category!(
             feature = "block2",
             feature = "objc2-app-kit"
         ))]
+        #[cfg(target_os = "macos")]
         #[method(authorizeWithLocalizedReason:inPresentationContext:completion:)]
         unsafe fn authorizeWithLocalizedReason_inPresentationContext_completion(
             &self,

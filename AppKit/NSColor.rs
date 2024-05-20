@@ -2,6 +2,7 @@
 //! DO NOT EDIT
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-image")]
+#[cfg(target_vendor = "apple")]
 use objc2_core_image::*;
 use objc2_foundation::*;
 
@@ -695,6 +696,7 @@ extern_methods!(
     /// NSQuartzCoreAdditions
     unsafe impl NSColor {
         #[cfg(feature = "objc2-core-image")]
+        #[cfg(target_vendor = "apple")]
         #[method_id(@__retain_semantics Other colorWithCIColor:)]
         pub unsafe fn colorWithCIColor(color: &CIColor) -> Id<NSColor>;
     }
@@ -709,6 +711,7 @@ extern_category!(
     }
 
     #[cfg(feature = "objc2-core-image")]
+    #[cfg(target_vendor = "apple")]
     unsafe impl CIColorNSAppKitAdditions for CIColor {}
 );
 

@@ -3,6 +3,7 @@
 use objc2::__framework_prelude::*;
 use objc2_foundation::*;
 #[cfg(feature = "objc2-link-presentation")]
+#[cfg(any(target_os = "ios", target_os = "tvos", target_os = "visionos"))]
 use objc2_link_presentation::*;
 
 use crate::*;
@@ -31,6 +32,7 @@ extern_methods!(
         pub unsafe fn initWithURL(this: Allocated<Self>, url: &NSURL) -> Id<Self>;
 
         #[cfg(feature = "objc2-link-presentation")]
+        #[cfg(any(target_os = "ios", target_os = "tvos", target_os = "visionos"))]
         #[method_id(@__retain_semantics Init initWithMetadata:)]
         pub unsafe fn initWithMetadata(
             this: Allocated<Self>,
@@ -38,10 +40,12 @@ extern_methods!(
         ) -> Id<Self>;
 
         #[cfg(feature = "objc2-link-presentation")]
+        #[cfg(any(target_os = "ios", target_os = "tvos", target_os = "visionos"))]
         #[method_id(@__retain_semantics Other metadata)]
         pub unsafe fn metadata(&self) -> Id<LPLinkMetadata>;
 
         #[cfg(feature = "objc2-link-presentation")]
+        #[cfg(any(target_os = "ios", target_os = "tvos", target_os = "visionos"))]
         #[method(setMetadata:)]
         pub unsafe fn setMetadata(&self, metadata: &LPLinkMetadata);
 

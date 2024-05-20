@@ -2,6 +2,7 @@
 //! DO NOT EDIT
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
 use objc2_app_kit::*;
 use objc2_foundation::*;
 
@@ -81,10 +82,12 @@ extern_methods!(
         pub unsafe fn frameInScreenCoordinates(&self) -> NSRect;
 
         #[cfg(feature = "objc2-app-kit")]
+        #[cfg(target_os = "macos")]
         #[method_id(@__retain_semantics Other parentWindow)]
         pub unsafe fn parentWindow(&self, mtm: MainThreadMarker) -> Option<Id<NSWindow>>;
 
         #[cfg(feature = "objc2-app-kit")]
+        #[cfg(target_os = "macos")]
         #[method(setParentWindow:)]
         pub unsafe fn setParentWindow(&self, parent_window: Option<&NSWindow>);
 

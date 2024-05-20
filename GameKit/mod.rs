@@ -156,6 +156,7 @@ pub use self::__GKAchievementDescription::GKAchievementDescription;
     feature = "GKGameCenterViewController",
     feature = "objc2-app-kit"
 ))]
+#[cfg(target_os = "macos")]
 pub use self::__GKAchievementViewController::GKAchievementViewController;
 #[cfg(feature = "GKAchievementViewController")]
 pub use self::__GKAchievementViewController::GKAchievementViewControllerDelegate;
@@ -166,6 +167,7 @@ pub use self::__GKChallenge::GKAchievementChallenge;
 #[cfg(feature = "GKChallenge")]
 pub use self::__GKChallenge::GKChallenge;
 #[cfg(all(feature = "GKChallenge", feature = "block2", feature = "objc2-app-kit"))]
+#[cfg(target_os = "macos")]
 pub use self::__GKChallenge::GKChallengeComposeCompletionBlock;
 #[cfg(all(
     feature = "GKBasePlayer",
@@ -174,6 +176,7 @@ pub use self::__GKChallenge::GKChallengeComposeCompletionBlock;
     feature = "block2",
     feature = "objc2-app-kit"
 ))]
+#[cfg(target_os = "macos")]
 pub use self::__GKChallenge::GKChallengeComposeHandler;
 #[cfg(feature = "GKChallenge")]
 pub use self::__GKChallenge::GKChallengeState;
@@ -184,6 +187,7 @@ pub use self::__GKChallengeEventHandler::GKChallengeEventHandler;
 #[cfg(feature = "GKChallengeEventHandler")]
 pub use self::__GKChallengeEventHandler::GKChallengeEventHandlerDelegate;
 #[cfg(all(feature = "GKChallengesViewController", feature = "objc2-app-kit"))]
+#[cfg(target_os = "macos")]
 pub use self::__GKChallengesViewController::GKChallengesViewController;
 #[cfg(feature = "GKChallengesViewController")]
 pub use self::__GKChallengesViewController::GKChallengesViewControllerDelegate;
@@ -192,6 +196,7 @@ pub use self::__GKCloudPlayer::GKCloudPlayer;
 #[cfg(feature = "GKDefines")]
 pub use self::__GKDefines::GKMatchProperties;
 #[cfg(all(feature = "GKDialogController", feature = "objc2-app-kit"))]
+#[cfg(target_os = "macos")]
 pub use self::__GKDialogController::GKDialogController;
 #[cfg(feature = "GKDialogController")]
 pub use self::__GKDialogController::GKViewController;
@@ -205,12 +210,14 @@ pub use self::__GKEventListener::GKChallengeListener;
     feature = "GKFriendRequestComposeViewController",
     feature = "objc2-app-kit"
 ))]
+#[cfg(target_os = "macos")]
 pub use self::__GKFriendRequestComposeViewController::GKFriendRequestComposeViewController;
 #[cfg(feature = "GKFriendRequestComposeViewController")]
 pub use self::__GKFriendRequestComposeViewController::GKFriendRequestComposeViewControllerDelegate;
 #[cfg(feature = "GKGameCenterViewController")]
 pub use self::__GKGameCenterViewController::GKGameCenterControllerDelegate;
 #[cfg(all(feature = "GKGameCenterViewController", feature = "objc2-app-kit"))]
+#[cfg(target_os = "macos")]
 pub use self::__GKGameCenterViewController::GKGameCenterViewController;
 #[cfg(feature = "GKGameCenterViewController")]
 pub use self::__GKGameCenterViewController::GKGameCenterViewControllerState;
@@ -245,6 +252,7 @@ pub use self::__GKLeaderboardSet::GKLeaderboardSet;
     feature = "GKLeaderboardViewController",
     feature = "objc2-app-kit"
 ))]
+#[cfg(target_os = "macos")]
 pub use self::__GKLeaderboardViewController::GKLeaderboardViewController;
 #[cfg(feature = "GKLeaderboardViewController")]
 pub use self::__GKLeaderboardViewController::GKLeaderboardViewControllerDelegate;
@@ -291,6 +299,7 @@ pub use self::__GKMatchmaker::GKMatchedPlayers;
 #[cfg(feature = "GKMatchmaker")]
 pub use self::__GKMatchmaker::GKMatchmaker;
 #[cfg(all(feature = "GKMatchmakerViewController", feature = "objc2-app-kit"))]
+#[cfg(target_os = "macos")]
 pub use self::__GKMatchmakerViewController::GKMatchmakerViewController;
 #[cfg(feature = "GKMatchmakerViewController")]
 pub use self::__GKMatchmakerViewController::GKMatchmakerViewControllerDelegate;
@@ -366,6 +375,7 @@ pub use self::__GKTurnBasedMatch::GKTurnTimeoutNone;
     feature = "GKTurnBasedMatchmakerViewController",
     feature = "objc2-app-kit"
 ))]
+#[cfg(target_os = "macos")]
 pub use self::__GKTurnBasedMatchmakerViewController::GKTurnBasedMatchmakerViewController;
 #[cfg(feature = "GKTurnBasedMatchmakerViewController")]
 pub use self::__GKTurnBasedMatchmakerViewController::GKTurnBasedMatchmakerViewControllerDelegate;
