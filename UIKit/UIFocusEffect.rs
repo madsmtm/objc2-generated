@@ -3,7 +3,7 @@
 use objc2::__framework_prelude::*;
 use objc2_foundation::*;
 #[cfg(feature = "objc2-quartz-core")]
-#[cfg(any(target_os = "ios", target_os = "tvos", target_os = "visionos"))]
+#[cfg(not(target_os = "watchos"))]
 use objc2_quartz_core::*;
 
 use crate::*;
@@ -77,7 +77,7 @@ extern_methods!(
         pub unsafe fn effectWithRect(rect: CGRect) -> Id<Self>;
 
         #[cfg(feature = "objc2-quartz-core")]
-        #[cfg(any(target_os = "ios", target_os = "tvos", target_os = "visionos"))]
+        #[cfg(not(target_os = "watchos"))]
         #[method_id(@__retain_semantics Other effectWithRoundedRect:cornerRadius:curve:)]
         pub unsafe fn effectWithRoundedRect_cornerRadius_curve(
             rect: CGRect,

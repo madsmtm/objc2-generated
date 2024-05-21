@@ -3,12 +3,7 @@
 use objc2::__framework_prelude::*;
 use objc2_foundation::*;
 #[cfg(feature = "objc2-metal")]
-#[cfg(any(
-    target_os = "macos",
-    target_os = "ios",
-    target_os = "tvos",
-    target_os = "visionos"
-))]
+#[cfg(not(target_os = "watchos"))]
 use objc2_metal::*;
 
 use crate::*;
@@ -39,12 +34,7 @@ extern_protocol!(
         ) -> Result<(), Id<NSError>>;
 
         #[cfg(feature = "objc2-metal")]
-        #[cfg(any(
-            target_os = "macos",
-            target_os = "ios",
-            target_os = "tvos",
-            target_os = "visionos"
-        ))]
+        #[cfg(not(target_os = "watchos"))]
         #[optional]
         #[method(encodeToCommandBuffer:inputs:outputs:error:_)]
         unsafe fn encodeToCommandBuffer_inputs_outputs_error(

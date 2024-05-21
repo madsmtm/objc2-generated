@@ -3,7 +3,7 @@
 use objc2::__framework_prelude::*;
 use objc2_foundation::*;
 #[cfg(feature = "objc2-quartz-core")]
-#[cfg(any(target_os = "ios", target_os = "tvos", target_os = "visionos"))]
+#[cfg(not(target_os = "watchos"))]
 use objc2_quartz_core::*;
 
 use crate::*;
@@ -28,7 +28,7 @@ extern_methods!(
         pub unsafe fn movementDirection(&self) -> CGVector;
 
         #[cfg(feature = "objc2-quartz-core")]
-        #[cfg(any(target_os = "ios", target_os = "tvos", target_os = "visionos"))]
+        #[cfg(not(target_os = "watchos"))]
         #[method(perspectiveTransform)]
         pub unsafe fn perspectiveTransform(&self) -> CATransform3D;
 
@@ -39,7 +39,7 @@ extern_methods!(
         pub unsafe fn translation(&self) -> CGVector;
 
         #[cfg(feature = "objc2-quartz-core")]
-        #[cfg(any(target_os = "ios", target_os = "tvos", target_os = "visionos"))]
+        #[cfg(not(target_os = "watchos"))]
         #[method(interactionTransform)]
         pub unsafe fn interactionTransform(&self) -> CATransform3D;
 

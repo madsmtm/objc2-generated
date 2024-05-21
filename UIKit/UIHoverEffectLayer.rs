@@ -3,7 +3,7 @@
 use objc2::__framework_prelude::*;
 use objc2_foundation::*;
 #[cfg(feature = "objc2-quartz-core")]
-#[cfg(any(target_os = "ios", target_os = "tvos", target_os = "visionos"))]
+#[cfg(not(target_os = "watchos"))]
 use objc2_quartz_core::*;
 
 use crate::*;
@@ -11,11 +11,11 @@ use crate::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-quartz-core")]
-    #[cfg(any(target_os = "ios", target_os = "tvos", target_os = "visionos"))]
+    #[cfg(not(target_os = "watchos"))]
     pub struct UIHoverEffectLayer;
 
     #[cfg(feature = "objc2-quartz-core")]
-    #[cfg(any(target_os = "ios", target_os = "tvos", target_os = "visionos"))]
+    #[cfg(not(target_os = "watchos"))]
     unsafe impl ClassType for UIHoverEffectLayer {
         #[inherits(NSObject)]
         type Super = CALayer;
@@ -24,24 +24,24 @@ extern_class!(
 );
 
 #[cfg(feature = "objc2-quartz-core")]
-#[cfg(any(target_os = "ios", target_os = "tvos", target_os = "visionos"))]
+#[cfg(not(target_os = "watchos"))]
 unsafe impl CAMediaTiming for UIHoverEffectLayer {}
 
 #[cfg(feature = "objc2-quartz-core")]
-#[cfg(any(target_os = "ios", target_os = "tvos", target_os = "visionos"))]
+#[cfg(not(target_os = "watchos"))]
 unsafe impl NSCoding for UIHoverEffectLayer {}
 
 #[cfg(feature = "objc2-quartz-core")]
-#[cfg(any(target_os = "ios", target_os = "tvos", target_os = "visionos"))]
+#[cfg(not(target_os = "watchos"))]
 unsafe impl NSObjectProtocol for UIHoverEffectLayer {}
 
 #[cfg(feature = "objc2-quartz-core")]
-#[cfg(any(target_os = "ios", target_os = "tvos", target_os = "visionos"))]
+#[cfg(not(target_os = "watchos"))]
 unsafe impl NSSecureCoding for UIHoverEffectLayer {}
 
 extern_methods!(
     #[cfg(feature = "objc2-quartz-core")]
-    #[cfg(any(target_os = "ios", target_os = "tvos", target_os = "visionos"))]
+    #[cfg(not(target_os = "watchos"))]
     unsafe impl UIHoverEffectLayer {
         #[cfg(feature = "UIHoverStyle")]
         #[method_id(@__retain_semantics Other hoverStyle)]
@@ -72,7 +72,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `CALayer`
     #[cfg(feature = "objc2-quartz-core")]
-    #[cfg(any(target_os = "ios", target_os = "tvos", target_os = "visionos"))]
+    #[cfg(not(target_os = "watchos"))]
     unsafe impl UIHoverEffectLayer {
         #[method_id(@__retain_semantics Other layer)]
         pub unsafe fn layer(mtm: MainThreadMarker) -> Id<Self>;
@@ -88,7 +88,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "objc2-quartz-core")]
-    #[cfg(any(target_os = "ios", target_os = "tvos", target_os = "visionos"))]
+    #[cfg(not(target_os = "watchos"))]
     unsafe impl UIHoverEffectLayer {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;

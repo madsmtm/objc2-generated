@@ -2,12 +2,7 @@
 //! DO NOT EDIT
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-metal")]
-#[cfg(any(
-    target_os = "macos",
-    target_os = "ios",
-    target_os = "tvos",
-    target_os = "visionos"
-))]
+#[cfg(not(target_os = "watchos"))]
 use objc2_metal::*;
 
 use crate::*;
@@ -40,12 +35,7 @@ extern_methods!(
         pub unsafe fn new() -> Id<Self>;
 
         #[cfg(feature = "objc2-metal")]
-        #[cfg(any(
-            target_os = "macos",
-            target_os = "ios",
-            target_os = "tvos",
-            target_os = "visionos"
-        ))]
+        #[cfg(not(target_os = "watchos"))]
         #[method_id(@__retain_semantics Other metalDevice)]
         pub unsafe fn metalDevice(&self) -> Option<Id<ProtocolObject<dyn MTLDevice>>>;
     }

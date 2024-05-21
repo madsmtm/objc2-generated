@@ -3,7 +3,7 @@
 use objc2::__framework_prelude::*;
 use objc2_foundation::*;
 #[cfg(feature = "objc2-quartz-core")]
-#[cfg(any(target_os = "ios", target_os = "tvos", target_os = "visionos"))]
+#[cfg(not(target_os = "watchos"))]
 use objc2_quartz_core::*;
 
 use crate::*;
@@ -98,12 +98,12 @@ extern_methods!(
         pub unsafe fn setSize(&self, size: CGSize);
 
         #[cfg(feature = "objc2-quartz-core")]
-        #[cfg(any(target_os = "ios", target_os = "tvos", target_os = "visionos"))]
+        #[cfg(not(target_os = "watchos"))]
         #[method(transform3D)]
         pub unsafe fn transform3D(&self) -> CATransform3D;
 
         #[cfg(feature = "objc2-quartz-core")]
-        #[cfg(any(target_os = "ios", target_os = "tvos", target_os = "visionos"))]
+        #[cfg(not(target_os = "watchos"))]
         #[method(setTransform3D:)]
         pub unsafe fn setTransform3D(&self, transform3_d: CATransform3D);
 

@@ -2,7 +2,7 @@
 //! DO NOT EDIT
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-image")]
-#[cfg(any(target_os = "ios", target_os = "tvos", target_os = "visionos"))]
+#[cfg(not(target_os = "watchos"))]
 use objc2_core_image::*;
 use objc2_foundation::*;
 
@@ -164,12 +164,12 @@ extern_methods!(
         pub unsafe fn imageWithData_scale(data: &NSData, scale: CGFloat) -> Option<Id<UIImage>>;
 
         #[cfg(feature = "objc2-core-image")]
-        #[cfg(any(target_os = "ios", target_os = "tvos", target_os = "visionos"))]
+        #[cfg(not(target_os = "watchos"))]
         #[method_id(@__retain_semantics Other imageWithCIImage:)]
         pub unsafe fn imageWithCIImage(ci_image: &CIImage) -> Id<UIImage>;
 
         #[cfg(feature = "objc2-core-image")]
-        #[cfg(any(target_os = "ios", target_os = "tvos", target_os = "visionos"))]
+        #[cfg(not(target_os = "watchos"))]
         #[method_id(@__retain_semantics Other imageWithCIImage:scale:orientation:)]
         pub unsafe fn imageWithCIImage_scale_orientation(
             ci_image: &CIImage,
@@ -194,12 +194,12 @@ extern_methods!(
         ) -> Option<Id<Self>>;
 
         #[cfg(feature = "objc2-core-image")]
-        #[cfg(any(target_os = "ios", target_os = "tvos", target_os = "visionos"))]
+        #[cfg(not(target_os = "watchos"))]
         #[method_id(@__retain_semantics Init initWithCIImage:)]
         pub unsafe fn initWithCIImage(this: Allocated<Self>, ci_image: &CIImage) -> Id<Self>;
 
         #[cfg(feature = "objc2-core-image")]
-        #[cfg(any(target_os = "ios", target_os = "tvos", target_os = "visionos"))]
+        #[cfg(not(target_os = "watchos"))]
         #[method_id(@__retain_semantics Init initWithCIImage:scale:orientation:)]
         pub unsafe fn initWithCIImage_scale_orientation(
             this: Allocated<Self>,
@@ -212,7 +212,7 @@ extern_methods!(
         pub unsafe fn size(&self) -> CGSize;
 
         #[cfg(feature = "objc2-core-image")]
-        #[cfg(any(target_os = "ios", target_os = "tvos", target_os = "visionos"))]
+        #[cfg(not(target_os = "watchos"))]
         #[method_id(@__retain_semantics Other CIImage)]
         pub unsafe fn CIImage(&self) -> Option<Id<CIImage>>;
 
@@ -488,7 +488,7 @@ extern_category!(
         unsafe fn initWithImage(this: Allocated<Self>, image: &UIImage) -> Option<Id<Self>>;
 
         #[cfg(feature = "objc2-core-image")]
-        #[cfg(any(target_os = "ios", target_os = "tvos", target_os = "visionos"))]
+        #[cfg(not(target_os = "watchos"))]
         #[method_id(@__retain_semantics Init initWithImage:options:)]
         unsafe fn initWithImage_options(
             this: Allocated<Self>,
@@ -498,7 +498,7 @@ extern_category!(
     }
 
     #[cfg(feature = "objc2-core-image")]
-    #[cfg(any(target_os = "ios", target_os = "tvos", target_os = "visionos"))]
+    #[cfg(not(target_os = "watchos"))]
     unsafe impl CIImageUIKitAdditions for CIImage {}
 );
 

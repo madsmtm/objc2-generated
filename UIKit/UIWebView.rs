@@ -3,7 +3,7 @@
 use objc2::__framework_prelude::*;
 use objc2_foundation::*;
 #[cfg(feature = "objc2-quartz-core")]
-#[cfg(any(target_os = "ios", target_os = "tvos", target_os = "visionos"))]
+#[cfg(not(target_os = "watchos"))]
 use objc2_quartz_core::*;
 
 use crate::*;
@@ -98,7 +98,7 @@ extern_class!(
     feature = "UIView",
     feature = "objc2-quartz-core"
 ))]
-#[cfg(any(target_os = "ios", target_os = "tvos", target_os = "visionos"))]
+#[cfg(not(target_os = "watchos"))]
 unsafe impl CALayerDelegate for UIWebView {}
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]

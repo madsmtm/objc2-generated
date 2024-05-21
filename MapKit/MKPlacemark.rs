@@ -2,12 +2,7 @@
 //! DO NOT EDIT
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-contacts")]
-#[cfg(any(
-    target_os = "macos",
-    target_os = "ios",
-    target_os = "watchos",
-    target_os = "visionos"
-))]
+#[cfg(not(target_os = "tvos"))]
 use objc2_contacts::*;
 #[cfg(feature = "objc2-core-location")]
 use objc2_core_location::*;
@@ -60,12 +55,7 @@ extern_methods!(
         ) -> Id<Self>;
 
         #[cfg(feature = "objc2-contacts")]
-        #[cfg(any(
-            target_os = "macos",
-            target_os = "ios",
-            target_os = "watchos",
-            target_os = "visionos"
-        ))]
+        #[cfg(not(target_os = "tvos"))]
         #[method_id(@__retain_semantics Init initWithCoordinate:postalAddress:)]
         pub unsafe fn initWithCoordinate_postalAddress(
             this: Allocated<Self>,

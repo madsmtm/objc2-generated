@@ -2,7 +2,7 @@
 //! DO NOT EDIT
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-image")]
-#[cfg(any(target_os = "ios", target_os = "tvos", target_os = "visionos"))]
+#[cfg(not(target_os = "watchos"))]
 use objc2_core_image::*;
 use objc2_foundation::*;
 
@@ -64,7 +64,7 @@ extern_methods!(
         pub unsafe fn colorWithPatternImage(image: &UIImage) -> Id<UIColor>;
 
         #[cfg(feature = "objc2-core-image")]
-        #[cfg(any(target_os = "ios", target_os = "tvos", target_os = "visionos"))]
+        #[cfg(not(target_os = "watchos"))]
         #[method_id(@__retain_semantics Other colorWithCIColor:)]
         pub unsafe fn colorWithCIColor(ci_color: &CIColor) -> Id<UIColor>;
 
@@ -107,7 +107,7 @@ extern_methods!(
         pub unsafe fn initWithPatternImage(this: Allocated<Self>, image: &UIImage) -> Id<UIColor>;
 
         #[cfg(feature = "objc2-core-image")]
-        #[cfg(any(target_os = "ios", target_os = "tvos", target_os = "visionos"))]
+        #[cfg(not(target_os = "watchos"))]
         #[method_id(@__retain_semantics Init initWithCIColor:)]
         pub unsafe fn initWithCIColor(this: Allocated<Self>, ci_color: &CIColor) -> Id<UIColor>;
 
@@ -190,7 +190,7 @@ extern_methods!(
         pub unsafe fn colorWithAlphaComponent(&self, alpha: CGFloat) -> Id<UIColor>;
 
         #[cfg(feature = "objc2-core-image")]
-        #[cfg(any(target_os = "ios", target_os = "tvos", target_os = "visionos"))]
+        #[cfg(not(target_os = "watchos"))]
         #[method_id(@__retain_semantics Other CIColor)]
         pub unsafe fn CIColor(&self) -> Id<CIColor>;
     }
@@ -225,7 +225,7 @@ extern_category!(
     }
 
     #[cfg(feature = "objc2-core-image")]
-    #[cfg(any(target_os = "ios", target_os = "tvos", target_os = "visionos"))]
+    #[cfg(not(target_os = "watchos"))]
     unsafe impl CIColorUIKitAdditions for CIColor {}
 );
 
